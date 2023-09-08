@@ -1,325 +1,321 @@
-## Game > Gamebase > 控制台使用指南 > 客户服务
+## Game > Gamebase > Console User Guide > Customer Center
 
-运营游戏时，可应对客户的提问，且在客户服务网页上管理公告和FAQ设置。
-回答客户提问时，您可将用于发答案的”电子邮件设定"和"常问问题答案”注册为模板使用。 
-> [参考]
-> 如果要使用此菜单，请在”应用程序 - 客户服务”设置选项中选择”Gamebase提供的客户服务”。
+You can process user inquiries received during game operation and manage settings for notices, FAQ, etc. provided through the Customer Center page.
+When processing the user inquiries, you can also register the settings for the email to be sent to the user and frequently used answers as a template for later use.
+> [Note]
+> To use this menu, go to App -  Customer Center settings, and select Customer Center Provided by Gamebase.
 >
 
 ## Help Center Web Page 
 
-描述客户服务的网页内容。 
-客户可在网页上注册提问，并查看自己的查询记录、常见问题及公告。
+Describes the customer center web page exposed to the user.
+Through this screen, the user registers 1:1 inquiry and views the history of inquiries. The user can also check FAQ and Notice pages.
 
-### Main 
+### Main 
 
-在游戏中通过Gamebase SDK向用户显示以下信息。
+When you open the customer center website using the Gamebase SDK in the game, the following screen is exposed to the user.
 ![main](http://static.toastoven.net/prod_gamebase/gamebase_help_center_00_20201125.png)
 
-#### (1) 查询
+#### (1) 1:1 Inquiry
 
-点击**查询**按钮时，将跳转到注册查询的页面。 
-![查询](http://static.toastoven.net/prod_gamebase/gamebase_help_center_01_20201125.png)
+When the user clicks the **1:1 inquiry** button, they are redirected to the screen where 1:1 inquiries can be registered.
 
-如果要注册查询，需输入以下项目。 
-可在**[客户服务 > 客户查询](./oper-customer-service/#inquiry)**控制台中确认客户查询，并回答客户的提问。 
+![Inquiry](http://static.toastoven.net/prod_gamebase/gamebase_help_center_01_20201125.png)
 
-1. 查询类型 : 选择要接待的查询类型。可在[客户服务 > 客户查询](./oper-customer-service/#inquiry)中注册、修改或删除查询类型。
-2. 回复邮件 : 输入要发送答案的电子邮件地址。当您在控制台中应对查询或通过邮件回复提问时，将答案自动发到相关客户的邮件地址。
-3. 名字(网名) : 输入游戏网名（最多只能输入10个字符）。
-如果将游戏网名设置为追加信息，打开客户服务网页时不用直接输入网名，系统将自动输入。
-4. 标题 : 输入查询标题（最多只能输入100个字符）。
-5. 查询内容 : 输入查询内容（最多只能输入1,000个字符）。
-6. 附加文件 : 如有请上传附件。最多可以附加5个小于10MB的文件。 
+The following are the items to be entered when registering inquiries.
+Registered inquiries can be viewed and answered in the **[Customer Center > Customer Inquiry](./oper-customer-service/#inquiry)** console.
 
-> [参考] 
-> 当选择将要接待的查询类型，若在所选的查询类型中已有设置的模板，回复时可自动适用模板的内容。
-> 可以在[客户服务 > 客户查询 > 客户查询类型管理](./oper-customer-service/#inquiry)中设置模板。
+1. Inquiry type: Select the inquiry type for submission. A submission inquiry type can be registered, edited, and deleted in the [Customer Center > Customer Inquiry](./oper-customer-service/#inquiry). 
+2. Reply email: Enter the email address to receive an answer to user inquiry. If the inquiry answer is completely processed in the console, the answer email is automatically sent to the entered email address.
+3. Name (nickname): Users can enter a nickname to be used in the game. The maximum character length is 10. 
+When you open the customer center page after setting the game nickname as additional info, the nickname is automatically entered even if the user did not enter it.
+4. Subject: Enter the inquiry subject. The maximum length is 100 characters
+5. Inquiry: Write the contents of the inquiry. The maximum character length is 1,000 characters.
+6. Attachment: Register the attachment if you have any. Up to 5 files (under 10 MB) can be attached.
 
+> [Note] 
+> When selecting a inquiry type, if a template is set for the inquiry type, the inquiry content is automatically filled with the template content.
+> Template setting can be performed in [Customer Center > Customer Inquiry > Manage inquiry type](./oper-customer-service/#inquiry).
 
-登录客户服务网页后，您将看到**我的查询记录**按钮。点击按钮，可查看客户提问。
-![我的查询记录_登录](http://static.toastoven.net/prod_gamebase/gamebase_help_center_02_20201125.png)
+#### (2) My Inquiries
 
-一次最多只能查看10个历史记录。若想看更多，点击**更多**按钮则再显示10个。
+Logging in and accessing the customer center web page is required to activate **My Inquiries** button. Click the button to go to the screen where users can view the history of their previous inquiries.
+![MyInquiries_login](http://static.toastoven.net/prod_gamebase/gamebase_help_center_02_20201125.png)
 
-> [参考] 若尚未登录，则无法查看我的查询记录。
-> 如果在未登录的状态下注册查询，用户只能通过电子邮件接收答案，无法在查询记录列表中确认。
-> ![我的查询记录_未登录](http://static.toastoven.net/prod_gamebase/gamebase_help_center_03_20201125.png)
- 
-#### (3) 常问问题
+In My Inquiries, you can see 10 listings by default. If there are more than 10, you can click **View more** to expose 10 additional listings.
 
-可在FAQ中查看查询类别和常见问题。列表最多展示12个。
-通过查看信息或点击”类别”按钮，可在[客户服务 > FAQ](./oper-customer-service/#faq)中确认注册的FAQ内容。 
+> [Note] Login is required to be able to view the details in My Inquiries.
+> If the user posts the inquiry without logging in, they can check the inquiries only through emails and cannot see them in My Inquiries.
+> ![MyInquiries_no-login](http://static.toastoven.net/prod_gamebase/gamebase_help_center_03_20201125.png)
+
+#### (3) Frequently Asked Questions
+
+In FAQ, the user can see categorized questions and frequently asked questions. In the list, up to 12 items are exposed.
+The user can search for topics or click the Category button to see the FAQ registered by the [Customer Center > FAQ](./oper-customer-service/#faq).
 ![FAQ](http://static.toastoven.net/prod_gamebase/gamebase_help_center_04_20201125.png)
 
-1) 通过输入搜索关键词来确认包含该关键词的FAQ。
-2) 可以查看常问问题。
-3) 注册FAQ时按照注册的**FAQ类别管理**查看FAQ。
-4) 可在[Gamebase Console > 客户服务 >  FAQ类别管理](./oper-customer-service/#search-faq)中添加或删除FAQ类别。 
+1) You can enter the keyword you want to check to see the FAQs containing that keyword.
+2) You can see the questions registered as FAQ.
+3) You can see FAQs by grouping them using **Manage FAQ Type** that was set when registering the FAQs.
+4) FAQ categories can be added or deleted through [Gamebase Console > Customer Center >  Manage FAQ Type](./oper-customer-service/#search-faq).
 
-#### (4) 公告
-可在**客户服务 > 公告**中查看公告。
-   
-在主页上显示3个帖子，并以粗体显示固定在顶部的帖子。通过点击**more**按钮，可将公告的内容全部显示出来。
-以注册日期为准，按降序排序显示帖子，并以粗体先显示固定在顶部的帖子。若帖子的显示时期到期，则不显示。通过点击帖子，可查看详情。
-![公告](http://static.toastoven.net/prod_gamebase/gamebase_help_center_05_20201126.png)
+#### (4) Notices
+Registered posts can be viewed in the **Customer Center > Notices**.
 
-## Inquiry 
-可以查询或处理客户的提问。
-除此之外，还可以设置注册提问时所需的查询类型，并通过使用发送Push的功能，通知客户已回复提问。
+On the main screen, the three most recent posts are displayed, and the posts pinned at the top are displayed as boldfaced. You can click **more** to see all registered notices.
+Created date is sorted in descending order to expose the notice posts, and the notices pinned at the top are shown in the boldface format. Expired posts are no longer shown in the list. You can click the post to see the details.
+![Notices](http://static.toastoven.net/prod_gamebase/gamebase_help_center_05_20201126.png)
+
+## Inquiry
+Inquiries sent by customers can be viewed or processed.
+You can also set the submission types necessary to register a user inquiry, and set the push notifications sent to the user when the inquiry is completely processed.
 
 ### Search Inquiry
- 
-可以查看符合搜索条件的查询记录。
- 
+
+Searches for the customer inquiry that matches the search conditions.
+
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_01_202109.png)
 
-**搜索条件**
+**Search conditions**
 
-- **状态** : (必选) 选择处理客户提问的现状态。
-- **接待类型** : (必选)选择用户注册提问时选择的接待类型（接待 / 已处理完） 。
-- **接待日期** : (必选)查看所选期间的客户提问。
-- **用户ID** : 如需查看指定用户的提问，请输入用户ID。
-- **提问标题** : 如需查看特定标题的提问，请输入提问标题。 
+- **Status**: (required) Selects the current status of the customer inquiry.
+- **Submission type**: (required) Selects the submission type selected by the user upon user inquiry. There are Submit/Completed items.
+- **Submission period**: (required) Shows the inquiries received during the selected period.
+- **User ID**: Enter the user ID if you want to search for an inquiry made by a particular user.
+- **Inquiry Title**: Enter the inquiry title to search for an inquiry with a specific title.
 
-**搜索结果**
+**Search results**
 
-- **接待类型** : 用户注册提问时选择的接待类型
-- **查询标题** : 用户注册提问时输入的查询标题
-- **接待日期** : 用户注册提问的日期
-- **解决日期** : 处理用户提问的日期
-- **状态** : 处理客户提问的现状态  
-    - 接待 :  用户注册提问的状态。客户在以前的查询留下进一步的提问时，将自动转换为接待状态
-    - 保留 : 负责人员将状态设为”保留”后留下答案的状态。需要重复确认时使用。
-    - 解决 : 负责人员将状态设为”解决”后留下答案的状态。是提问已被解决的状态。
-    - 完成 : 负责人员处理完的或已被解决的提问过两周后将自动转为”完成”状态。 
+- **Submission type**: Submission type selected by the user when registering the inquiry
+- **Inquiry subject**: Inquiry subject entered by the user when registering the inquiry
+- **Submit date**: Date and time user registered the inquiry
+- **Processed date**: Date and time when the customer representative processed the received inquiry
+- **Status**: Current status of the received inquiry
+    - Received: The user has registered an inquiry. Status changed to Received even if leaving an additional inquiry to the previous inquiry
+    - Pending: The person in charge has left a reply as Pending. Used when additional confirmation is required.
+    - Resolved: The person in charge has left a reply as Resolved. The inquiry has been resolved.
+    - Completed: The status becomes Completed automatically when completed or two weeks have passed after being resolved by the person in charge.
 
-#### 1. 查询类型管理 
+#### 1. Manage inquiry type
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_02_202109.png)
 
-可以管理用户在注册查询时选择的接待类型。
-可按支持语言进行注册。每个项目最多只能输入20字符。
-按照显示顺序向用户显示列表，而列表顺序可通过鼠标拖放进行修改。 
-可在**客户服务 > 模板**中选择模板后，在模板上注册回复客户查询时要提供的信息。
-> [参考]
-> 可在应用程序 - 客户服务设置中查看支持语言选择现状。 
+You can manage the submission type which can be selected by users when registering inquiries.
+These can be registered in any of the supported languages, and the maximum length is 20 characters for each type.
+The list is shown to the user in the order of appearance, and this order can be changed within the list by dragging & dropping.
+By selecting a template registered in **Customer Center > Templates**, you can enable customers to fill out the information necessary for inquiry response when they create inquiries.
+> [Note]
+> The currently selected supported language can be checked in App - Customer Center settings.
 
-#### 2. 推送响应设置
+#### 2. Send reply settings
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_05_202106.png)
 
-
-处理客户注册的查询后，通过Push功能向用户发送消息时，可使用此功能来发送推送响应。
-如需使用，则中选上端"发送与否”，向用户发送Push响应，通知客户提问已被回复。
-如果是全球服务，可以再添加语言后发送，并可根据符合用户机器设置的语言向用户发送推送响应。
-> [参考]
-> 1. 为了使用此功能，先要激活NHN Cloud Push商品。      
-> 2. 选择”推送响应设置”语言时，如果是Gamebase支持的语言，即使客户服务不支持也可进行注册。
+You can enable this function when you want to send the Push message to the user when the inquiry has been processed.
+If you decide to use it, check Send at the top to also send the completion push notification to the user when the inquiry has been processed.
+As for the global service, you can additionally register the language you want and sent the mail in that language. Then, the push notification is sent to the user in the language appropriate to the device language setting of the user.
+> [Note]
+> 1. To use this function, NHN Cloud Push product must be enabled first.
+> 2. As for selection of the Send Reply settings, all languages supported by Gamebase can be registered regardless of the languages supported by the customer center.
 
 ### Inquiry details
-   
+
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/Operators_Guide/gamebase_customer_inquiry_03_202107.png)
 
+You can check details and process inquiries regarding the inquiries sent by users.
+After processing the inquiry, the user can make additional inquiries.
+After processing the inquiry, click the **Complete** button to change the inquiry status to Processed. User can no longer leave an inquiry when they have been Processed.
 
-可以查看用户查询的详细信息并对此进行处理。
-若查询已被处理，用户可再添加新提问。
-处理完查询时，通过单机**已处理完**按钮可将查询状态转  为已处理完状态。查询已被处理完后，用户无法再留下提问。
-
-通过选择模板，可直接将在客户服务 - 答案模板菜单中设置的模板作为答案使用，并通过Text editor以自由形式制作答案后向用户传送模板以外的内容。
-回复用户查询时，如需要附加文件，最多可以附加5个小于10MB的文件。
-通过用户注册查询时输入的email将负责人员处理的答案传送给用户。
-传送之后，通过推送响应设置确认用户是否已接收Push推送响应。
-> [参考]
+If you decided to use a template, you can use a template content configured in the Customer Center - Reply Template menu right for the reply. You can also use the Text Editor in addition to the template to customize your answer to the user.
+If you need to attach files when answering the user inquiry, you can attach up to 5 files (under 10 MB).
+And when the inquiry has been processed, the answer written by the customer representative is sent to the user's email address which was entered by the user to submit the inquiry.
+At this point, you can check if the push notification is being sent to the user when the inquiry has been processed by checking the items with the reply sent.
+> [Note]
 > ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/Operators_Guide/gamebase_customer_inquiry_06_202107.png)
-> 登录用户注册查询时，您可在一个页面上查看该用户的信息。
-> 点击右方“X”按钮时窗口将被关闭，而点击用户ID时再显示。
-> 由于您可通过以前的成员菜单中使用的功能查看用户信息，在接收用户查询时，您可在一个页面上查看必要的信息。
+> If a logged-in user registered the inquiry, the information about the user is displayed in a single view.
+> You can close the window by clicking the X button on the right. The window will reopen when you click the user ID.
+> The user information is viewed as similar to the functions from the previous member menu, you can easily check the necessary information when having to respond to the user inquiry.
 
-#### 1. 推送响应设置   
+#### 1. Send Reply settings
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_05_202106.png)
 
-处理客户注册的查询后，通过Push功能向用户发送消息时，可使用此功能来发送推送响应。
-如需使用，则中选上端"发送与否”，向用户发送Push响应，通知客户提问已被回复。
-如果是全球服务，可以再添加语言后发送，并可根据符合用户机器设置的语言向用户发送推送响应。
-> [参考1]
-> 1. 为了使用此功能，先要激活NHN Cloud Push商品。 
-> 2. 选择”推送响应设置”语言时，如果是Gamebase支持的语言，即使客户服务不支持也可注册。
+You can enable this function when you want to send the Push message to the user when the inquiry has been processed.
+If you decide to use it, check Send at the top to also send the completion push notification to the user when the inquiry has been processed.
+As for the global service, you can additionally register the language you want and sent the mail in that language. Then, the push notification is sent to the user in the language appropriate to the device language setting of the user.
+> [Note1]
+> 1. To use this function, NHN Cloud Push product must be enabled first.
+> 2. As for selection of the Send Reply settings, all languages supported by Gamebase can be registered regardless of the languages supported by the customer center.
 
-> [参考2]
-> 查看已处理完的客户提问时，可同时查看提问内容和处理记录。如有要注册的附件，请点击下载。  
+> [Note2]
+> When viewing a closed user inquiry, you can view the inquiry and the answer, and if there is a file attached to the inquiry while processing it, you can click the item to download the attachment.
 
-> [参考2]
-> 查看处理完的提问时，可同时查看客户查询记录和处理完的查询记录。如有要注册的附件，请点击下载。      
 
 ## FAQ
 
-可以管理客户服务FAQ各项目。 
+You can manage the FAQ provided by the customer center page.
+
 ### Search FAQ
 
-可以查看注册的FAQ项目。 
+You can search the registered FAQs.
 
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_07_202106.png)
 
-**搜索条件**
+**Search conditions**
 
-- **状态** : 选择FAQ的显示形式。从显示 / 不显示当中选择。
-- **类别** : （必选）选择FAQ类别后进行搜索。将以FAQ类别管理中注册的为准显示选择项。        
-- **提问+答案** : 查看客户提问或在答案中包括相关关键词的FAQ时使用该选项。若要设置用其他语言注册的项目，请先指定语言后再进行搜索。 
+- **Status**: (required) Select the exposure type of FAQ. You can select either Exposed or Not exposed.
+- **Type**: (required) You can select and search an FAQ type. The selected ones are displayed based on what was registered in Manage FAQ Type.
+- **Question+Answer**: This function is used when trying to search for the FAQ containing a certain keyword in the question or answer. When you want to register the inquiry registered in another language, perform search after specifying the language to search with.
 
-**搜索结果**
+**Search results**
 
-- **常问问题** : 显示常问问题列表是否包含FAQ。 
-- **类别** : 显示注册的FAQ类别。 
-- **标题** : 是FAQ提问的标题。
-- **修改用户** : 显示上一次注册或修改FAQ的用户信息。 
-- **修改日期** : 显示上一次注册或修改FAQ的日期。
-- **状态** : 是否在页面上显示FAQ。可以从显示 / 不显示当中选择。
+- **Frequently asked questions**: Shows whether FAQ is included in the Frequently Asked Questions section.
+- **Type**: Displays the categorical type of the registered FAQ.
+- **Subject**: The question part of the FAQ.
+- **Modified by**: Shows the information of the last user who registered or modified the FAQ.
+- **Modified date**: Shows the last date when the FAQ was registered or modified.
+- **Status**: Shows whether FAQ is currently being displayed. It is either Exposed or Not exposed.
 
-
-#### 管理FAQ类别
+#### Manage FAQ type
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_09_202106.png)
 
-可以管理注册或修改FAQ时选择的类别。
-可按支持语言类别进行注册（每个项目最多只能输入20个字符）。
-按显示顺序显示，并可用鼠标拖放功能修改列表顺序。 
-> [参考]
-> 可在”应用程序 - 客户服务”设置中确认支持语言现状。
+You can manage the type available for selection when registering or modifying the FAQ.
+These can be registered in any of the supported languages, and the maximum length is 20 characters for each type.
+The list is shown in the order of appearance, and this order can be changed within the list by dragging & dropping.
+> [Note]
+> The currently selected supported language can be checked in App - Customer Center settings.
 
 ### Register or Update FAQ
-可以注册FAQ或修改以前的FAQ信息。
-注册或修改时，只能修改同样的项目。
+You can register an FAQ or modify the info of an FAQ that is already registered.
+What can be changed during registration or modification is the same.
 
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_08_202106.png)
 
-#### 1. 状态
-选择是否显示要注册或修改的FAQ。
-从显示 / 不显示中选择是否在客户服务页面上显示FAQ。 
+#### 1. Status
+Selects the exposure status of the FAQ you want to register or modify.
+There are Exposed / Not exposed, and you just have to select whether it will be exposed to actual users on the Customer Center page.
 
-#### 2. 类别
-以在FAQ类别管理中注册的类别为准选择需要注册或修改的FAQ类别。
+#### 2. Type
+Select the FAQ type that you want to register or modify based on the type registered under Manage FAQ Type.
 
-#### 3. 常问问题
-选择是否要将指定客户提问添加在客户服务网页上的常问问题栏中。
+#### 3. Frequently asked questions
+Check whether you will display the question in the Frequently Asked Questions section of the customer center page.
 
-#### 4. 提问
-输入FAQ提问。 
-> [参考]
-> 注册时必须输入”应用程序 - 客户服务”的所有支持语言。
+#### 4. Question
+Enter the text of the FAQ.
+> [Note]
+Supported languages that were configured in the > App - Customer Center can be registered only when all of them were entered.
 
-####. 5. 答案
-输入FAQ答案。 
-通过使用Text Editor可按自由形式编辑答案后显示。 
-> [参考]
-> 注册时必须输入”应用程序 - 客户服务”中的所有支持语言。
+####. 5. Answer
+Enter the answer to the FAQ.
+You can customize the answer by using the Text Editor, and the answer is exposed in the web page as is.
+> [Note]
+Supported languages that were configured in the > App - Customer Center can be registered only when all of them were entered.
 
 ## Notice
 
-可以管理客户服务网页公告。
+You can manage the notices to be provided by the customer center page.
 
 ### Search Notice
 
-可以查看注册的公告列表。
+You can search the registered notices list.
 
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_10_202106.png)
 
-**搜索条件**                         
+**Search conditions**
 
-- **查询类型**:（必选）选择公告的查询类型。状态基本为默认项，若要以显示日期为准进行搜索，则选择相关项目后，以相同的方式进行搜索。
-- **状态** :（必选）是上述查询类型的默认项，要以显示当前公告的状态为准进行搜索。从预定中 / 开了 / 关闭当中选择。
-- **显示日期** : 在查询类型中选择显示日期后进行设置。可查看按选择的显示日期显示的公告列表。
-- **标题+内容** : 当查看标题或包含特定关键词的公告时使用。如果要用其他语言注册，请先指定语言后再进行搜索。
+- **Search type**: (required) You can select the search type for notices. Status is selected by default. But if you want to search by date of exposure, perform the same search procedure after selecting it for the search condition.
+- **Status**: (required) Search by the exposure status of the current notices using the items selected by default from the above search type. You can select one from To Be Exposed / Currently Exposed / Finished.
+- **Date of exposure**: Can be enabled if the exposure date has been selected from the search type. And you can search and view the notices list which is shown based on the selected exposure date.
+- **Subject+Content**: This function is used when trying to search for the notice containing a certain keyword in the subject or body text. When you want to register the notice registered in another language, perform search after specifying the language to search with.
 
-**搜索结果**
-- **最高固定** : 显示是否将公告固定在上端的固定框上。
-- **类别** : 显示公告类别。
-- **标题** : 公告标题
-- **显示日期(UTC+9)** : 显示公告的注册日期（显示日期）。
-- **显示时期** : 显示公告的显示时期。
-- **状态** : 是否要显示公告。从预定中 / 开了 / 关闭中选择。
+**Search results**
+- **Pinned at the top**: Shows whether the notice is included in the pinned field at the top.
+- **Type**: Displays the categorical type of the registered notice.
+- **Subject**: Subject of the notice.
+- **Exposure date (UTC+9)**: Shows the registration date (display date) to carry out the actual exposure when the notice is being exposed.
+- **Exposure period**: Shows the exposure period of the notice.
+- **Status**: Shows the current progress of the notice. You can select one from To Be Exposed / Currently Exposed / Finished.
 
-#### 管理开头词语
+#### Manage Header
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_11_202106.png)
 
-可以管理注册或修改公告时选择的开头词语。 
-可按支持语言类别进行注册（最多只能输入20个字符）。
-以显示顺序显示，并可通过鼠标拖放修改列表的顺序。
-> [参考]
-> 可以在‘’应用程序 - 客户服务‘’设置中确认支持语言的选择现状。
+You can manage the header which can be selected when registering or modifying the notice.
+These can be registered in any of the supported languages, and the maximum length is 20 characters for each type.
+The list is shown in the order of appearance, and this order can be changed within the list by dragging & dropping.
+> [Note]
+> The currently selected supported language can be checked in App - Customer Center settings.
 
 ### Register or Update Notice
-可以注册新的公告或修改以前的公告信息。
-注册或修改时只能修改同样的项目。 
+You can register a new notice or modify the notice information which has already been registered.
+What can be changed during registration or modification is the same.
 
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_15_202106.png)
 
-#### 1. 显示时期
-设置公告的显示时期。
+#### 1. Date of exposure
+Set the period to expose the notice.
 
-#### 2. 显示时间
-设置向用户显示公告的日期。
+#### 2. Display time
+Select the date to be shown to the user when posting the notice.
 
-#### 3. 开头词语
-选择公告的开头词语。
+#### 3. Header
+Select the header of the notice.
 
-#### 4. 最高固定
-通过将公告固定在上端位置，可一直显示。
+#### 4. Pin to top
+Pin the notice at the top, so that it will always be exposed.
 
-#### 5. 标题
-输入公告的标题。
+#### 5. Subject
+Enter the subject of the notice.
 
-#### 6. 内容
-输入公告的内容。 
-通过使用Text Editor可按所需的方式编辑答案后显示。
-> [参考]
-> 注册时必须输入”应用程序 - 客户服务”中的所有支持语言。
+#### 6. Body
+Enter the text for the body of the notice.
+You can customize the answer by using the Text Editor, and the answer is exposed in the web page as is.
+> [Note]
+Supported languages that were configured in the > App - Customer Center can be registered only when all of them were entered.
 
-#### 7. 附加文件
-注册公告时，可上传附加文件。
-最多可以附加5个小于10MB的文件。 
-如果需要，请点击下载。
+#### 7. Attach file
+You can attach and upload a file to be shown with the notice.
+Up to 5 files (under 10 MB) can be attached.
+The attachments are exposed with the notice, and can be downloaded by clicking on them.
 
 ## Answer template
 
-是处理客户提问时，如需重复输入同样的内容，可通过模板进行处理的功能。 
-另外，客户注册提问时，可通过查询类型模板输入所需的信息。
-
+To reduce repetitive typing of the same text while processing customer inquiries, this function provides a template to process the inquiry.
+In addition, this feature supports templates for each inquiry type so that customers can fill out necessary information when they create inquiries.
 
 ### Search Template
-显示被注册的模板列表。可通过在右上方位置输入搜索词来查看注册的模板。
+It shows the list of the currently registered templates, and you can enter the search term in the upper-right corner to search for the currently registered template.
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_12_202106.png)
 
-**结果**
-- **模板名称** : 回复提问时从模板选项中选择模板名称。
-- **修改用户** : 显示上一次注册或修改答案模板的用户信息。
-- **修改日期** : 显示上一次注册或修改答案模板的日期。
+**Results**
+- **Template name**: Name of the template which is exposed in the template list for selection when processing user inquiries.
+- **Modified by**: Shows the information of the last user who registered or modified the reply template.
+- **Modified date**: Shows the date when the reply template was most recently registered or modified.
 
 ### Register or Update Template
-可以注册答案模板或修改已注册的答案模板信息。
-注册或修改时只能修改同样的项目。
+You can register a new reply template or modify the information of the previously registered reply template.
+What can be changed during registration or modification is the same.
 
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_13_202109.png)
 
-#### 1. 区分
-- **查询处理** : 向客户提供的基本答案
-- **查询类型** : 用户注册提问时显示的默认消息
+#### 1. Classification
+- **Inquiry Processing**: The default answer message for customer inquiry.
+- **Inquiry Type**: The message exposed for the user inquiry input by default.
 
-#### 2. 模板名称
-处理查询时，输入要在模板选项显示的模板名称。
-如果设定为查询类型，则是在查询类型管理中将显示的模板名称。
+#### 2. Template name
+Enter the name of the template which will be exposed in the template list when processing user inquiries.
+If the classification is Inquiry Type, this is the template name exposed in the inquiry type management.
 
-#### 3. 内容
-处理客户查询时，输入选择模板时您要输入的内容。
-使用Text editor以自由形式输入，而处理客户查询时，通过选择模板可直接适用您输入的内容。
+#### 3. Body
+Enter the body text to fill the template upon the selection of the template while processing the inquiry.
+You can freely use the text editor to fill out the template, and this text will be applied as is when selecting the template while processing the inquiry.
 
 ## Email Config
-可设置发送答案的电子邮件设定。
-第一次激活时提供默认模板。一旦被激活，每当修改时通过使用Text editor可随意修改。 
+You can set the format of the email which will be sent out to the user after the inquiry is processed.
+A default template is provided when initially activated, and you can edit it as freely as you want by using the text editor.
 
-提供测试发送功能。使用此功能，可通过当前输入的模板内容提前确认客户接收电子邮件的形式。
+Test sending function is provided, which can be utilized for using the currently entered template to preview how it is being sent to the actual user.
 
 ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_14_202106.png)
 
-
-> [参考]
-> 若未在输入的电子邮件地址中设置SPF记录，该电子邮件可能会被视为垃圾邮件，
-> 因此先要在DNS的TXT记录中注册以下值后设置发送地址。
-> 附加值 : v=spf1 include:_spfblocka.toast.com ~all
+> [Note]
+> If the email in the sender address does not have any SPF record setup, the email can be considered spam. 
+> Thus, the following value must be registered in the TXT record of the DNS before setting it to the sender's address.
+> Additional value : v=spf1 include:_spfblocka.toast.com ~all

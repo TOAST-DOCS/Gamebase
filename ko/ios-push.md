@@ -84,6 +84,8 @@
 }
 ```
 
+<br/>
+
 NHN Cloud Push에 사용자를 등록할 때 TCGBNotificationOptions 객체로 알림 옵션 설정이 가능합니다.
 
 포그라운드 푸시 여부(foregroundEnabled), 배지 사용 여부(badgeEnabled), 알림음 사용 여부(soundEnabled) 값을 사용자로부터 받아, 다음의 API 호출을 통해 알림 옵션 설정이 가능합니다.
@@ -121,8 +123,8 @@ NHN Cloud Push에 사용자를 등록할 때 TCGBNotificationOptions 객체로 �
 
     TCGBPushConfiguration *pushConfig = [TCGBPushConfiguration pushConfigurationWithPushEnable:enablePush
                                                                                    ADAgreement:enableAdPush
-                                                                        ADAgreementNight:enableAdNightPush
-                                                            alwaysAllowTokenRegistration:alwaysAllowTokenRegistration];
+                                                                              ADAgreementNight:enableAdNightPush
+                                                                  alwaysAllowTokenRegistration:alwaysAllowTokenRegistration];
     
     TCGBNotificationOptions *options = [TCGBNotificationOptions notificationOptionsWithForegroundEnabled:foregroundEnabled 
                                                                                             badgeEnabled:badgeEnabled 

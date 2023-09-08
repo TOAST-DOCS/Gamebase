@@ -1,244 +1,248 @@
-## Game > Gamebase > 控制台使用指南> Push
+## Game > Gamebase > Console Guide > Push
 
 
 
-可向应用程序用户发送推送通知。
+You can send push notification to app users.
 
-在Gamebase中通过使用NHN Cloud Push服务来发送推送通知。 
+In Gamebase, push notifications are provided by applying TOAST Cloud Push service.
 
 ## Push
-> <font color="red">[注意]</font><br/>
->
-> 正在服务的游戏应用**Gamebase SDK 2.6.0以上**版本时使用的菜单。
 
-可确认发送推送的历史和创建的推送预约列表。
+> <font color="red">[Important]</font><br/>
+>
+> This menu is used when the **Gamebase SDK 2.6.0 or later** is applied to the current game service.
+
+You can see the history of sent push notifications and the list of scheduled push notifications.
 
 ![gamebase_push_01_201910](https://static.toastoven.net/prod_gamebase/gamebase_push_01_201910.png)
 
 ### Registered List
-在预约列表中选择推送，可确认推送的预计发送时间及创建信息。单击**取消传输**按钮，可取消预约发送件，或单击**复制**按钮，可利用创建的推送的创建信息新建推送。
+
+By selecting the push from the scheduled list, you can see the expected time for sending the push and registration info. You can click the **Cancel Transfer** button to cancel the scheduled transfer or click the **Copy** button to register a new push using the registered push registration info.
 
 ### Send History
 
-在发送历史列表中选择推送，可查询传输的推送的详细明细。
-单击**复制**按钮，可利用发送的推送创建信息轻松创建推送。
+By selecting the push from the transfer history list, you can see the details about the transferred push notifications.
+If you click the **Copy** button, you can easily register the push by using the registration info of the sent push.
 
 ![gamebase_push_03_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_03_202101.png)
 
-### Register Push 
+### Register Push
 
-若欲创建新推送，单击**注册**按钮。
-可以通过右侧的预览UI确认实际终端机如何显示控制台中注册的值。
+To register a new push, click the **Register** button.
+You can check the preview on the right to see how the value registered in the console appears in the actual device.
 
 ![gamebase_push_05_202205](https://static.toastoven.net/prod_gamebase/gamebase_push_05_202205.png)
 
-#### (1) 发送类型
+#### (1) Send type
 
-选择发送类型。
+Select the sending frequency.
+- **Send immediately**: Sends the push message right after registration.
+- **Schedule send**: Sends the push message at the scheduled time. To send the push message at the country standard time of the user's device, select **Send in Local Time**. If you select **Send in Local Time** and set it to '2017-01-01 09:00', users of Korean devices receive the push message on '2017-01-01 09:00' Korea Standard Time, and the users with British devices on '2017-01-01 09:00' British Standard Time.
+- **Repeated Send**: Periodically sends the same push message. To send the push message in the country standard time of the user's device, select **Send in Local Time**. Select the sending period and time. Enter the sending frequency as **Daily**, **Weekly**, or **Monthly**.
+	- Daily: Sends the push message daily.
+	- Weekly: Pick a certain day to send the message. Multiple days can be selected.
+	- Monthly: Sends the push message on a specific date every month. Only a date (1 - 31) can be entered, and more than one dates are allowed. For example, if you want the message to be sent on 1st, 5th, and 10th day of every month, enter 1, 5, and 10.
 
-- **立即发送** : 注册时立即发送推送消息。 
-- **预约发送** : 在预约的时间发送推送消息。如果要以用户终端机设置的国家时间为准发送推送消息，要选择**以当地时间为准发送**。选择**以当地时间为准发送**，将时间设置为”2017-01-01 09:00”时，使用韩国终端的用户在韩国时间”2017-01-01 09:00”，使用英国终端的用户在英国时间”2017-01-01 09:00”接收推送消息。
-- **重复** : 定期发送同样的推送消息。如果要以用户终端机设置的国家时间为准发送推送消息，要选择**以当地时间为准发送**。选择发送时期和时间。以**每天**、**每周**、**每月**为准输入发送周期。 
-	- 每天 : 每天发送推送消息。
-	- 每周 : 选择要发送推送的星期发送消息。可以重复选择星期。
-	- 每月 : 以一个月为准，在愿意发送的日期推送消息。您可输入的日期为1~31，而要输入一个或一个以上的日期。例如，如果要在1号、5号和10号发送，则要输入1、5、10。
+#### (2) Recipient
+Select the recipient to send the push message to.
+- **Send to all**: Can be selected based on OS. All users of the selected OS will receive the push message.
+- **Send to specific members only**: Select it when sending the push message to specific members only. The entered User ID sends the push message to the device with the push token registered. When the target user plays the game with 5 devices, the push message is sent to 5 devices.
+- **Group send**: Register the list of the users with intention to receive the message as a file. Group sending is for up to 10,000 users at a time.
+- **Tag send**: You can use the tag to send the push message. The push message can be sent with the tags registered in **Push - Tag** menu, and you can also register multiple tags. The following are the tag filtering functions.
+	- AND: Send the push message to the user who meets all selected tags.
+	- OR: Send the push message to the user who meets at least one of the selected tags.
 
-#### (2) 目标
-选择要发送推送消息的对象。 
-- **全部发送** : 按OS类别选择。正在使用您选择的OS的用户都会收到消息。 
-- **特定会员发送** : 要向指定会员发送推送消息时选择。向使用输入的用户ID注册推送令牌的终端机发送推送消息。指定的用户在5个终端玩游戏时，向5个终端发送推送消息。 
-- **组发送** : 以文件形式注册将要发送推送的用户列表。向小组发送时一次最多只能发给10,000名用户。
-- **Tag** : 使用标签发送推送消息。使用注册在**推送 - 标签**菜单中的标签发送，而可同时注册多个标签。标签过滤功能如下。
-	- AND : 只向符合所选Tag的用户发送推送消息。 
-	- OR : 向至少符合所选Tag中的一个条件的用户发送推送消息。
-
-#### (3) 事件键
-选择用于发送推送统计的事件键。 
-点击**选择**按钮时，将出现选择事件键的弹窗，而可选择**正在搜集**事件键。
+#### (3) Event key
+Select the event key used for push send statistics.
+If you click the **Select** button, a popup with a selectable list of event keys appears, and you can select an event key in **Collecting** status.
 ![gamebase_push_22_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_22_202101.png)
 
-   
+#### (4) Target country
 
-选择要发送推送消息的国家。 
-- **所有国家** : 向所有的用户发送推送消息。
-- **部分国家** : 向所选的国家用户发送推送消息。
-  当输入要添加的国家名，则会被自动适用。如果没有您要输入的国家，请联系[客户服务](https://toast.com/support/inquiry)。
+Select the country to send the push message to.
+- **All countries**: Send the push message to all users.
+- **Some countries**: Send the push message to users from the selected countries.
+  Typing the country name suggests autocomplete words. If there is no country to enter, please contact our [Customer Center](https://toast.com/support/inquiry).
 
-> [参考]
+> [Note]
 >
-> 国家判断标准
-> 以用户的**USIM国家代码**为准进行判断。无USIM时，以终端机设置的国家为准显示推送信息。
+> Criteria for determining the country
+> This is determined based on user's **USIM country code**. If there is no USIM, the push message is displayed based on the country setting of the device.
 
-#### (5) 消息类型
+#### (5) Message type
 
-> [参考]
+> [Note]
 >
-> 为遵守韩国的“信息通信网法”而提供的功能。
-> 发送推送时，若不是信息性信息，应以“（广告）”开始信息，信息中应含有联系方式和取消接收方法。
+> A function provided for compliance with Korea's 'Information Network Law'.
+> If the push message is not informational, it must begin with '(Advertisement)' and contain contact information and the instruction for how to opt out.
 
-- **宣传性**：在输入的信息中添加“（广告）”序言。并且，添加输入的联系方式及取消接收方法一同发送。对于全部发送等广告性推送，在韩国国内，为遵守信息通信网法，必须作为“宣传性”信息发送。
-- **信息性** ：仅输入的信息通过推送发送。对于非韩国终端机（USIM国家代码不是韩国）的用户，作为信息性信息发送即可。
+- **Promotional**: The header '(Advertisement)' is added to the input message, and contains contact information and the instruction on how to opt out. In Korea, advertising push messages (such as Send to All) must be sent as a 'Promotional' message in order to comply with the 'Information Network Law'.
+- **Informational**: Only the typed-in text is sent as the push message. For users of non-Korean devices (USIM country code is non-Korean), send it as an 'Informational' message.
 
 
-> <font color="red">[重要]</font><br/>
+> <font color="red">[Important]</font><br/>
 >
-> 选择**宣传性**后在输入信息中输入“（广告）”语句时，“（广告）”语句会重复，因此请注意。
+> Be careful when you enter '(Advertisement)' into the input message after selecting **Promotional** because there can be multiple '(Advertisement)' texts.
 
- 
+#### (6) Message body
 
-信息可利用多种语言输入，对于使用输入的语种以外语种的用户，以选择为默认语种的语种显示。若欲添加语种，单击下端的**添加信息**按钮。若欲添加列表中没有的语种，请联系[客户服务](https://toast.com/support/inquiry)。
+Enter the push message to show to users.
 
-> [参考]
+The message can be registered in a number of languages, and it will be shown in default language if the user uses a language other than the registered languages. To add a language, click the **Add Message** button at the bottom. To add the language not in the list, please contact our [Customer Center](https://toast.com/support/inquiry).
+If you select 'Auto-translate to default language', the message is translated based on what was entered in the default language and fill out the message using the appropriate language set for each one.
+
+> [Note]
 >
-> 发送了推送信息，但终端机未收到信息时
-> 大部分情况下是未注册用户的推送令牌。请确认是否已注册用户的推送令牌。
-> 在平台上注册推送令牌的方法，请参考以下文件。
-选择“翻译”按键，可将默认语言翻译成设置的语言。
+> If the device does not receive the push message which was already sent,
+> it is highly likely that the user did not register the push token. Please make sure the user's push token has been registered.
+> To find out how to register a push token in the platform, see the following document.
 >
 > - [Android > Register Push](./aos-push/#2-register-push)
 > - [iOS > Register Push](./ios-push/#2-register-push)
 > - [Unity > Register Push](./unity-push/#2-register-push)
 
-#### (7) 留言颜色(Only Android)
+#### (7) Message text color (Only Android)
 
-对于Android，可指定终端机中显示的推送信息的文字颜色。
-可分别指定标题和内容的颜色，可在文字颜色选择窗口中选择颜色或直接输入RGB Hex值指定颜色。
-选择的文字颜色可通过右侧的预览界面确认。
+You can set the text color of the push message in the Android device.
+You can set the color for the subject and body by either picking the color from text color selection window or by manually entering the RGB hex value.
+The selected text color can be viewed in the preview screen on the right.
 
-#### (8) 消息点击动作(选项)
-点击推送消息时可设置将要转到的URL或Scheme。
+#### (8) Message click action (optional)
+You can set a URL to go to or a scheme to use when a push message is clicked.
 
-#### (9) 自定义字段(选项)
-可以设置想要与推送消息一起传送的自定义密钥。
-可以通过按“添加字段”按钮创建项目，最多只能创建10个。
+#### (9) Custom fields (optional)
+You can set a custom key that you want to pass along with the push message.
+You can create an item using the Add Field button, and you can create up to 10 items.
 
-#### (10) 提示音(选项)
+#### (10) Notification sound (optional)
 
-可设置终端机接收推送时播放的提示音。
-单击**添加提示音**按钮，可设置提示音，若不设置，则播放默认提示音。
-输入外部URL链接或应用程序中内置的提示音文件路径。
+You can set the notification sound which is played when the device receives a push message.
+You can set the sound by clicking the **Add Notification Sound** button. The default sound is played if no particular sound has been set.
+Enter the external URL address or the path of the notification sound file deployed in app.
 
-#### (11) 大图标(Only Android)
+#### (11) Large icon (Only Android)
 
-单击**添加大图标**按钮，可设置接收推送时右侧显示的图标的图像。
-设置大图标图像并发送推送时，仅Android终端机显示图像，iOS中不显示。
-选择外部，输入要显示的图标图像的外部URL，或选择内部，输入应用程序中内置的图标图像文件路径。
-为外部图像时，可在右侧预览中提前确认相应图标。
+You can click the **Add Large Icon** button to set the icon image to show on the right upon receiving a push message.
+Once you set the large icon image and send the push message, it appears only in the Android device and not in the iOS device.
+Select **External** to enter the external URL of the icon image to display, or select **Internal** to enter the path of the icon image file deployed in app.
+If it is an external image, you can check the icon beforehand in the preview on the right.
 
-#### (12) 按键
+#### (12) Button
 
-接收推送时的信息下方显示的按钮最多可设置3个，一同发送。
-有4种形态的按钮，各类型运行方式及设置的值不同，因此请参考如下指南设置。
-- 打开应用程序：在推送信息中单击按钮，即可运行相应应用程序。仅可指定按钮名。
-- 打开URL：在推送信息中单击按钮，即可移动至在控制台中输入的URL。可通过应用程序架构运行特定应用程序或连接网页。
-- 响应：在推送信息中单击按钮，即可运行能够响应的窗口。对于iOS，可一同设置传送按钮名。
-- 关闭，在推送信息中单击按钮，即可关闭推送。仅可指定按钮名。
+You can include up to 3 buttons in the message. These buttons appear at the bottom upon receiving a push message.
+There are 4 button types, each with its own behavior and settings.
 
+- Open app: Clicking the button in the push message runs the app. You can specify the button name only.
+- Open URL: Clicking the button in the push message redirects you to the URL which was entered in the console. You can use the app schema to execute certain apps or connect the web page.
+- Response: Clicking the button in the push message opens a window to which you can respond. In iOS, you can set the name of the Send button along with this.
+-  Close: Clicking the button in the push message closes the push message. You can specify the button name only.
 
-#### (13) 媒体(iOS)
+#### (13) Media (iOS)
 
-可添加接收iOS推送时动态执行的媒体。
-可设置**IMAGE**、**GIF**、**VIDEO**、**AUDIO**项目，可输入欲连接的外部URL或内部文件路径。
+You can add a media which is dynamically played when receiving an iOS push message.
+You can set the **IMAGE**, **GIF**, **VIDEO**, and **AUDIO**, and enter the external URL to connect to or internal file path.
 
+#### (14) Media (Android)
 
-#### (14) 媒体(Android)
-
-可添加接收Android推送时执行的媒体。
-目前Android中仅可设置**IMAGE**项目，可输入欲连接的外部URL或内部文件路径。
+You can add a media which is played when receiving an Android push message.
+In Android, you can only set the **IMAGE**, and enter the external URL to connect to or internal file path.
 
 
 ## Statistics
 
-可通过表和图表确认与推送消息、令牌、“接收设定”有关的指标。 
-统计菜单中的项目如下。
+You can see the indicators related to the push message, token, and inbound settings in tables and on graphs.
+The statistics consist of the following menus:
 
-- 发送/接收 : 与发送或接收推送消息有关的指标 
-- 注册令牌 :  与注册或删除推送令牌有关的指标 
-- 接收设定 : 与接收推送设置有关的指标
+- Outbound/Inbound: Indicators relating to sending and receiving the push message
+- Register token: Indicators relating to registering and deleting the push token
+- Inbound settings: Indicators relating to inbound push settings
 
-### 发送/接收
+### Outbound/Inbound
 
 ![gamebase_push_12_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_12_202101.png)
 
 
-1. 发送/接收统计 
+1. Outbound/inbound statistics 
 
-显示在所选期间内推送消息的“发送/接收”统计。
+Shows the outbound/inbound statistics of push message within the selected period.
 
-* 发送比率 : 在特定时期成功发送的次数 / 发送的总次数
-* 接收比率 : 在特定时期成功接收的次数 / 成功发送的总次数
-* 接收确认率 : 在特定时期已确认接收的次数 / 成功接收的总次数
+* Outbound rate: Total number of successful outbounds / total number of outbounds within the period
+* Inbound rate: Total number of successful inbounds / total number of inbounds within the period
+* Confirmed inbound rate: Total number of inbounds checked / total number of inbounds succeeded within the period
 
-> [参考]
-> 为了收集接收率和接收确认率统计数据，需要将**设置**>[接收和确认消息]（#Setting）必须设置为**ON**。
+> [Note]
+> To collect statistics data on inbound rate and confirmed inbound rate, go to **Settings** > [Receiving and Confirming Message](#Setting) and set to **ON**.
 
-2. Push发送列表
-在所选期间内发送推送消息的列表。
+2. List of pushes sent
+List showing the push messages that were sent during the selected period
 
-3. 按时间划分的数据
-显示在所选期间内按时间划分的“发送推送”、“发送失败”及接收/确认接收的指标。 
+3. Hourly data
+Shows the indicators on sent push, failed send, inbound, and confirmed inbound based on the interval during the selected period.
 
-* 只有在所选期间不到24小时，才能选择**分**单位。 
+* Can select it in **minutes** only if the selected period is less than 24 hours.
 
-### 令牌注册
+### Token registration
 
 ![gamebase_push_13_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_13_202101.png)
 
-1. 令牌统计注册
+1. Token registration statistics
 
-显示在所选期间内注册或删除令牌的统计。 
+Shows the statistics on token registration and deletion during the selected period.
 
-* 类型 : 按令牌类型划分的注册占有率
-* 国家 : 按用户国家划分的令牌注册占有率
-* 语言 : 按用户语言划分的令牌注册占有率
+* Type: Registration share based on the token type
+* Country: Token registration share based on the country of use
+* Language: Token registration share based on the user's language
 
-2. 国家 
-显示在所选期间内按用户国家划分的令牌注册和统计的删除。
+2. Country
+Shows the statistics on token registration and deletion based on the user's country during the selected period.
 
-3. 语言
-显示在所选期间内按用户语言划分的令牌注册和统计的删除。
+3. Language
+Shows the statistics on token registration and deletion based on the user's selected language during the selected period.
 
-### 接收设定
-显示在所选期间内的接收设定统计。 
+### Inbound settings
+Shows the inbound settings statistics during the selected period.
 ![gamebase_push_14_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_14_202109.png)
 
-|区分|信息性|广告性|夜间广告性|
+|Type|Information|Advertisement|Night-time Advertisement|
 |------|:---:|:---:|:---:|
-|全部同意| O | O | O |
-|全部拒绝| | | |
-|同意信息性、拒绝所有广告| O | | |
-|同意信息性广告和白天广告、拒接夜间广告| O | O | |
+|Accept all| O | O | O |
+|Reject all| | | |
+|Accept information, reject all advertisements| O | | |
+|Accept information and daytime advertisement, reject night-time advertisement| O | O | |
 
 ## Event Key
-可以管理用于发送推送统计的Event Key。
+You can manage the event key used for push send statistics.
 ![gamebase_push_15_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_15_202101.png)
-可以注册通过Push发送消息时使用的Event Key。
+In Push, you can register the event key which will be used for sending the push message.
 
 ### Event Key register
 ![gamebase_push_16_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_16_202101.png)
 
 ### Event Key detail
-可以管理注册的Event Key。
+You can manage the registered event key.
 ![gamebase_push_17_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_17_202101.png)
 
-通过点击上端的**删除**、**更改**按钮，可修改或删除Event Key信息。 
+Click the **Delete** or **Modify** button to delete or modify the event key information.
 
 ## Authentication
-可管理用于发送推送的认证证书。  
+You can manage the certificate used for push sending.
 ![gamebase_push_18_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_18_202101.png)
 
-通过点击各认证证书的**注册**、**更改**、**删除**按钮，可注册、更改或删除认证证书。
+For each certificate, click the **Register**, **Modify**, or **Delete** button to register, modify, or delete the certificate.
 
 ### Authentication register
 ![gamebase_push_19_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_19_202101.png)
 
+
 ## Tag
 
-提供可按特定标准绑定用户进行传输的标签功能。
+Provides a tag function that can send push messages by grouping users according to specific criteria.
 
 ![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_06_201910.png)
 
-可以注册通过NHN Cloud Push发送推送消息时使用的标签名称。
+You can register a tag name to be used when sending push messages from NHN Cloud Push.
+
 
 
 ### Tag register
@@ -248,77 +252,78 @@
 
 ### Tag detail
 
-可以管理注册的标签，并管理标签的用户列表。
+You can manage the registered tags and manage the list of users registered in the tags.
 
 ![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_07_201911.png)
 
-通过上方的删除/修改按钮，可修改并删除与标签有关的信息。通过下方的用户ID管理功能，可在标签中注册或删除用户。
+You can modify or delete tag information by clicking the **Modify** or **Delete** buttons at the top, and you can register or delete users in the tag using the user ID management function at the bottom.
 
-#### 用户注册
+#### Add users
 
-##### 单件注册
+##### Add a single user
 
 ![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_08_201910.png)
 
-##### 文件注册
+##### Add using a file
 
 ![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_10_201910.png)
 
-按注册按钮，弹出如上注册弹出窗口，可直接输入ID或通过文件注册输入。
+If you click the **Add** button, the registration popup appears as shown above, and you can input users by entering an ID directly or by registering a file.
 
-若欲使用文件注册时，一次最多只能注册1000人。
+**File registration** allows you to register up to 1,000 users at a time.
 
-#### 用户删除
+
+#### Delete users
 
 ![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_11_201910.png)
 
-如果要删除标签的用户，则需在用户列表中勾选左方的复选框后点击**删除**按钮。 
+To delete a user registered in a tag, select the checkbox on the left in the user list and click the **Delete** button.
 
 
 ## Setting
-可进行推送设置。
-![gamebase_push_20_202205](https://static.toastoven.net/prod_gamebase/gamebase_push_20_202205.png)
+You can also manage the push settings
+![gamebase_push_20_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_20_202101.png)
 
-### 接收/确认消息设置
-是收集已发送的消息的接收和确认信息。    
+### Settings for receiving and confirming the message
+Function for collecting information about receiving and confirming the sent messages.
 
-### 邮件保护设置重复
-即使要求多次发送同一条消息，也不将在设置的时间内发送。
+### Settings for preventing duplicate messages
+Function for preventing the identical messages from going out for the specified time even if they were sent out multiple times.
 
-* 可以设置为1分钟到60分钟，增量为1分钟。
+* You can set the time in minutes (1 - 60).
 
-### 设置广告展示位置
-可以设置发送广告性消息时显示的广告展示位置。
+### Settings for ad display text position
+You can set the ad display position which appears when sending out an ad message.
 
-* 点击右方的**预览**按钮时，您可看到根据设置的广告展示位置推送消息的示例。
+* You can click the **Preview** button on the right to see the push example based on the ad display text that you specified.
 
 ![gamebase_push_21_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_21_202101.png)
- 
-### 代币设定
 
-可以设置令牌的过期时间和应用程序类型。 
+### Token settings
 
-* 代币的有效期 : 可以设置为1天到730天。
-* 应用程序类型
-	* 多个令牌 : UID(用户ID)可以具备多个令牌。是一个用户可同时在多台设备上使用的应用程序。
-	* 单令牌 : UID只可以具备一个令牌。是一个用户可只在一台设备上使用的应用程序。
+You can set the token expiration date and app type.
 
-### 保存运输记录
+* Token expiration date: Can be set in days (1 - 730).
+* App type
+	* Multiple tokens: UID(User ID) can have multiple tokens. This app can be used by a single user on multiple devices.
+	* Single token: UID can only have one token. This app can be used by a single user on a single device
 
-是将发送消息的记录保存在NHN Cloud Log & Crash Search中的功能。
+### Save outbound history
 
-* AppKey : 是Log & Crash Search的应用程序key。
-* Log Source : 使用Gamebase提供的PUSH API，可在Log & Crash Search查看发送PUSH的记录。
-* Log Level : 是将传输到Log & Crash Search的日志级别。
-	* ALL : 将所有的日志传送到Log & Crash Search。
-	* INFO : 过期的令牌和运送失败的日志将会被传送到Log & Crash Search。
-	* ERROR : 运送失败的日志将会被传送到Log & Crash Search。
+Saves the history of outbound messages in the NHN Cloud Log & Crash Search.
 
-### 设置预约"同意接收广告消息"的发送时间的功能
-将自动将重新同意接收广告的消息发送给已同意接收广告，并在同意后已过两年的用户。每两年，消息将在该月设定的日期和时间发送。
-* 是否使用 : 是否使用预约"同意接收广告消息"的发送日期和时间的功能。  
-* 预约日期 :  将要发送消息的日期。如果您设为3，将在每月3号传送消息。 
-* 预约时间 : 传送推送消息的时间。如果将预约日期设为3，预约时间设为11，在每月3号早晨11点发送消息。
-* 通知消息
-	* 标题 : 可以设置推送消息的标题。   
-	* 内容 : 可以设置推送消息的内容。如果将同意接收广告性消息的日期 置换因素(###AD_AGREEMENT_DATE_TIME###)包括在内容中，发送消息时将置换为相应令牌的同意日期。您必须在消息内容中输入 同意接收消息的事实、同意接收消息的日期及维持或取消同意接收消息的方法。
+* AppKey: Log & Crash Search app key.
+* Log Source: Uses the PUSH API provided by Gamebase to search the Log & Crash Search for the history on the pushes that have been sent out.
+* Log Level: Level of logs to be sent to Log & Crash Search.
+	* ALL: All logs are sent to Log & Crash Search.
+	* INFO: Expired tokens and send failure logs are sent to Log & Crash Search.
+	* ERROR: Send failure logs are sent to Log & Crash Search.
+
+### Settings for reservation of guidance message for consent to receive advertisements
+Automatically sends a re-consent message to users who agreed to receive advertising messages two years ago. A message is sent on the configured date and time every month that turns 2 years old.
+* Whether to use: Whether to use the reservation setting function for the guidance message of consent to receive advertisements.
+* Reservation date: The date to deliver the push message. If set to 3, the message will be sent on the 3rd of every month.
+* Reservation time: The time to deliver the push message. If you set the reservation date to 3 and the reservation time to 11, the message will be sent on the 3rd of every month at 11am.
+* Guidance message
+	* Subject: You can set the subject of the push message.
+	* Content: You can set the content of the push message. If you enter the date and time replace element (###AD_AGREEMENT_DATE_TIME###) for consent to receiving advertising messages in the body, it will be replaced with the date and time of consent for the corresponding token when sending the message. The content of the message must include the fact of consent, the date of consent, and how to maintain or withdraw the consent.

@@ -1,10 +1,9 @@
-## Game > Gamebase > iOS SDK使用指南 > Logger
+## Game > Gamebase > iOS SDK User Guide > Logger
 
-下面将了解在iOS中使用TOAST Logger SDK的方法。
+Here, we will learn how to use NHN Cloud Logger SDK in iOS.
 
 ### Initialize
-
-利用从Log & Crash Search获得的AppKey对TOAST Logger SDK进行初始化。
+Initialize NHN Cloud Logger SDK using the app key issued via Log & Crash Search.
 
 **API**
 
@@ -27,8 +26,8 @@
 
 ### Send Logs
 
-将日志传输到Log & Crash服务器。
-TOAST Logger SDK可传输如下五种级别的日志。
+Sends logs to Log & Crash Server.
+NHN Cloud Logger SDK can send five different levels of logs listed below:
 
 * DEBUG
 * INFO
@@ -36,7 +35,7 @@ TOAST Logger SDK可传输如下五种级别的日志。
 * ERROR
 * FATAL
 
-日志级别如下所示。
+Log levels are as follows:
 
 * DEBUG > INFO > WARN > ERROR > FATAL
 
@@ -80,9 +79,9 @@ TOAST Logger SDK可传输如下五种级别的日志。
 ```
 
 ### Set User-Defined Fields
-设置需要的用户自定义字段。 
+Set the user-defined fields you need. 
 
-设置用户自定义字段后，每次调用日志传输API时，将设置的值与日志一同传送至服务器。
+With user-defined field setting, set values are delivered to a server along with logs, every time  send logs API is called. 
 
 **API**
 
@@ -101,7 +100,7 @@ TOAST Logger SDK可传输如下五种级别的日志。
 
 ### Further Tasks after Sending Logs
 
-若注册delegate，传输日志后，可进行补充作业。
+Additional tasks are available after logs are sent if a delegate is registered.
 
 **API**
 

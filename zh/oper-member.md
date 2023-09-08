@@ -1,175 +1,183 @@
-## Game > Gamebase > 控制台使用指南 > 会员
+## Game > Gamebase > Console Guide > Member
 
-查询登录游戏的会员信息。
+Retrieve information of members who are logged in a game.
 
 
 ## Search Member
 
-您可以通过输入用户ID / IdP ID来搜索会员信息。
-用户ID(User ID)是Gamebase首次登录时自动发放的用户标识。为了减少同音字符造成的混淆，仅使用“ABCDFGHJKLMNPQRSTWXYZ1346789”字符。
-IdP ID是Id Provider提供的ID信息，这意味着Id Provider中的唯一标识符，而不是登录时输入的信息。 因此，如果要按IDP ID项搜索，请在输入搜索信息时注意。
+Enter User ID to search for member information.
+User ID is a user identifier which is automatically issued at a first-time login by Gamebase. To lessen confusion while delivered, "ABCDFGHJKLMNPQRSTWXYZ1346789" are applied only, in order to prevent confusion due to similar pronunciation.
+IdP is not used for signing in or out, but serves as a unique identifier provided from Id Provider. So you need to be cautious when you want to search by IdP.
 
-搜索到的用户的详细信息显示在顶部，登录、映射、付款、禁用和游戏时间等历史记录显示在底部的选项卡中。
-
+Detailed information of searched users are displayed in the above, while history data such as login, mapping, purchase, ban, and playtime are shown under, as taps.
 
 ### Detail Information
-![gamebase_member_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_01_201812.png)
+![gamebase_member_01_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_01_201812_en.png)
 
 **User **
 
-- **用户ID** : Gamebase用户ID
-- **国家代码(USIM)** : 使用用户终端机中的USIM国家代码进行搜集的结果为失败时，将显示为”ZZ”。如果您想查看代码，请查看底部的**登录历史**。
-- **最后登录的时间** : 用户最后登录的时间   
-- **参加日期** : 用户最初登录的时间
-- **账户状态**
-  - **一般** : 一般用户
-  - **禁用** : 因滥用等理由被禁用(ban)的用户/通过使用右上端的账户状态更改菜单，并可解除禁用。
-  - **退出** : 已退出的用户
-- **查询推送附加信息** : 查询游戏用户的推送令牌和标签信息。
+- **User ID**: Gamebase user ID
+- **Country code(USIM)**: If it fails to retrieve USIM country code from the user's device, it will display 'ZZ.' To check the country code configured for your device, see the **Login History** shown below.
+- **Last login time**: The last time the user logged in.
+- **Sign-up date**: The first time the user logged in.
+- **Account status**
+  - **Normal**: A normal user.
+  - **Banned**: A user who is (banned) for abusing others. The admin can lift the ban via Change Account Status menu on top right of the screen.
+  - **Withdrawn**: A withdrawn user.
+- **Retrieve push additional information**: Retrieves the push tokens and tag information of a game user.
 ![gamebase_member_12_202104](https://static.toastoven.net/prod_gamebase/gamebase_member_12_202104.png)
 
 
+#### Changing Account Status
+![gamebase_member_02_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_02_201812_en.png)
+
+You can change user account status to these below:
+- **OK**: You can change to Banned or Withdrawn status. When the account is withdrawn, all the information is lost and can't be recovered.
+- **Banned**: You can lift a ban on the account.
+- **Withdrawn**: 'Modify Status' button won't be shown.
+
 **Identity Provider **
 
-Gamebase允许多个外部IdP协同工作。换句话说，用户可以通过使用一个用户ID注册Facebook和Google两个IDP来登录。SDK在调用**Login using a specific IdP**或'**Add Mapping** API时注册IdP。
+In Gamebase, many external IdPs can be integrated. In short, a user can log in by registering two IdPs, such as Facebook and Google in one user ID. IdP can be registered when **Login with Specific IDP** or '**Add Mapping'** API is called from SDK.
 
-- **IdP** : 外部IdP(guest, Facebook, PAYCO, Google 等)
-- **Idp ID** : 外部IdP提供的ID(Facebook no, PAYCO ID等)
-- **注册日期** : 用户首次注册IdP的时间
+- **IdP**: External IdPs (Guest, Facebook, PAYCO, or Google)
+- **Idp ID**: ID provided by an external IdP (Facebook no, or PAYCO ID)
+- **Registration Date**: The first time when a user registered an IdP.
 
-#### 添加映射
+#### Mapping
+You can map the user's IdP to other account.
+This only works if the target account status is OK.
+ *Press the button pointing to the right to map the IdP*.
+ You can revoke the change - as long as you didn't press the 'Add Mapping' button - by pressing the subtract button.
+ *When a guest account is mapped to an IdP, the guest information will be lost*.
+ When the account has only one IdP bound but it's mapped to other account, the account status will change to **Lost** and it can't be used anymore.
 
-可添加查询的游戏用户的IdP信息的功能。
-带有要连接的IdP的游戏用户信息仅在**正常**时方可进行添加映射操作。
-* 在提供用户的IdP设置栏单击要连接的IdP信息的1号按钮，添加至右侧界面后，单击下方**添加映射**按钮。
-* 若添加错误，单击**添加映射**按钮前单击2号按钮，可随时更改为其他IdP。
-* 收到提供的游戏用户仅有访客信息时，添加新的IdP信息，原有的访客信息将会丢失，因此应注意。
-* 提供用户的IdP信息为1个时，若进行操作，提供用户信息将更改为**丢失**状态，且无法继续使用，因此应提前确认。
-##### 提供示例
-![gamebase_member_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_03_201812.png)
+##### Mapping Example
 
-#### 解除映射
-多重映射的账户可根据请求解除IdP信息关联。
-各账户应至少有1个连接信息，因此仅当有2个以上连接信息时按钮方可激活。
-* 单击按钮，如下所示，**解除映射**按钮与连接的IdP信息一起显示。
+![gamebase_member_03_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_03_201812_en.png)
 
-![gamebase_member_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_04_201812.png)
+#### Unmapping
+ If the account has been mapped multiple times, it can be unmapped.
+The button only works when the account has been mapped more than twice.
+ *Clicking on the button will make the modal appear*
 
-* 单击**解除**按钮，如下所示，确认最终确认窗口及IdP信息。单击**确认**按钮，解除映射。
+![gamebase_member_04_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_04_201812_en.png)
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_RemoveMapping_2.0.png)
+ Clicking on the 'Remove' button will show final confirmation message along with IdP information.
 
 ### Login History
-![gamebase_member_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_05_201812.png)
+![gamebase_member_05_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_05_201812_en.png)
 
-查看查询用户的登录历史记录。
-查询时最初可以查询最近1天，您还可以输入想查询的日期来进行查询。但，仅提供过去3个月（90天）的历史记录。
-SDK调用与登录相关的API时会添加历史记录。
+Retrieve login history of a searched user.
+For an initial search, the duration is a recent one day or a date of choice. However, history data is provided for recent three months (or 90 days) only.
+Can add history when SDK calls login-related APIs.
 
-- **Login Date** : 用户登录应用程序的时间
-- **Login Type** : 用户登录的身份验证类型（IdP Login/Guest等）。括号内的信息是实际使用的IdProvider信息。
-- **OS / Ver** : 用户登录的OS（IOS / Android / WebGL等）和OS的版本信息
-- **Device model** : 登录应用程序的设备型号名称
-- **Device Key** : 登录用户的设备的唯一标识值（Android：Android ID，iOS：IDFV）
-- **Device Country Code** : 用户登录时在设备上设置的国家代码
-- **USIM Country Code** : 用户登录时在USIM卡上设置的国家代码
-- **Telecom** : 用户登录时使用的运营商信息
-- **Network** : 用户登录的网络类型(Wi-Fi/3G/LTE等)
-- **Language Code** : 用户登录时在终端中设置的语言代码信息
-- **Store Code** : 用户下载应用的商店信息
-- **Client Version** : 应用下载时的客户端版本信息
-- **Gamebase SDK Version** : APP使用的Gamebase SDK版本信息
-- **etc** : 登录时使用的除上述项之外的其他信息
+- **Login Date**: User's login time to an app.
+- **Login Type**: Type of authentication applied for a user login (such as IdPLogin/Guest). In-parentheses refers to IdProvider information which was actually used.
+- **OS / Ver**: OS (iOS/Android/WebGL) and OS version information used for user login.
+- **Device model**: Name of a device model applied for user login.
+- **Device Key**: Original identifier (Android:Android id, iOS:IDFV) of a device applied for user login.
+- **Device Country Code**: Country code configured on a device applied for user login.
+- **USIM Country Code**: Country code configured at USIM card for user login.
+- **Telecom**: Information of telecommunication provider used for login.
+- **Network**: Network type applied for user login (Wifi/3G/LTE).
+- **Language Code**: Language code information configured on a device for user login.
+- **Store Code**: Store information where a user download apps.
+- **Client Version**: The client version information when an app is downloaded.
+- **Gamebase SDK Version**: Version information of Gamebase SDK applied to an app
+- **etc**: Any other information than above items applied for a login.
 
 ### Mapping History
-![gamebase_member_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_06_201812.png)
+![gamebase_member_06_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_06_201812_en.png)
 
-查看查询用户的Mapping，解除Mapping的历史记录。可查看的最长日期为三个月（90天）。
+Retrieve mapping and remove mapping history of a searched user. Shows all history data of the recent 3 months (90 days).
 
-* **IdP ID** : IdP登录时使用的ID信息
-* **IdP** : Mapping IdP信息
-* **日期** : IdP ID和Gamebase ID Mapping映射操作的时间
-* **Type** : Mapping操作的详细信息
-  - AAM : 添加Mapping
-  - ARM : 删除Mapping
-  - AFR : 强制删除Mapping
-  - GMG : 创建guest帐户
-  - OMG : 创建IdP账户
+* **IdP ID**: ID information used for Idp login.
+* **IdP**: Mapped IdP information.
+* **Date**: Time when mapping between IdP ID and Gamebase ID is done.
+* **Type**: Details of mapping
+  - AAM: Add Mapping
+  - ARM: Remove Mapping
+  - AFR: Remove Mapping by force
+  - GMG: Create a guest account
+  - OMG: Create an IdP account
 
-点击Mapping的IDP历史记录可显示基于IdP映射到Gamebase ID的历史记录。
-![gamebase_member_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_07_201812.png)
+Clicking on the mapped IdP will show the mapping history modal based that IdP.
+![gamebase_member_07_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_07_201812_en.png)
 
 ### Purchase History
-![gamebase_member_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_08_201812.png)
-查看查询用户的购买记录。
-您可以输入要查看的日期。可查看的最长日期为一个月（30天）。
+![gamebase_member_08_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_08_201812_en.png)
 
-- **Transaction ID** : 用于区分Gamebase内支付的唯一编号。
-- **商店** : 已付款的商店信息
-- **道具名称** : 用户在APP内购买的实际item名称
-- **价格** : 用户购买的item价格
-- **货币** : 用户购买时使用的货币类型
-- **消费状态** : 付款项目是否已付款
-- **付款状态** : 目前的付款进度
-- **Store Reference Key** : 商店发行的付款唯一编号
-- **付款预约日期** : 用户尝试购买的时间
-- **付款日期** : 用户完成购买的时间
-- **退还日期** : 用户退还item的时间
+Retrieve purchase history of user products.
+Can search by date, and history data can be retrieved up to 1 month (30 days).
+
+- **Transaction ID**: Original number to identify payments within Gamebase
+- **Store**: Information of a store where payment has been made
+- **Item Name**: Name of an item a user purchased in an app
+- **Price**: Price of an item a user purchased
+- **Currency**: Type of currency used to purchase
+- **Consume**: Whether a paid item has been provided or not
+- **Payment Status**: Current status of payment
+- **Store Reference Key**: Original payment number issued by store
+- **Scheduled Purchase Date**: Time when a user attmpted purchase
+- **Purchase Date**: Time when a user completed purchase
+- **Refund Date**: Time when a user item was refunded
+
 
 ### Ban History
-![gamebase_member_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_09_201812.png)
+![gamebase_member_09_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_09_201812_en.png)
 
-查看查询用户的停止使用记录。
+Can retrieve ban history of a searched user.
+Can search by date, and history data can be retrieved up to 1 month (30 days).
 
-您可以输入要查看的日期。可查看的最长日期为一个月（30天）。
-
-- **开始日期** : 适用用户禁用的开始时间
-- **结束日期** : 解除用户禁用的时间
-- **模板** : 添加用户禁用时使用的模板名称
-- **原因** : 管理员禁用用户的实际原因信息
-- **添加人/添加日期** : 管理员/系统信息、日期、时间
-- **解除理由** : 管理员解除禁用时输入的解除原因
-- **解除注册者/解除注册日期** : 管理员/系统信息、日期、时间
+- **Start Date**: Start time to apply banning
+- **End Date**: End time to apply banning
+- **Template**: Name of template applied to register banning
+- **Reason**: Actual reasons of an operator to ban a user
+- **Registered User/Registration Date**: Operator who registered banning/System information and date
+- **Release Reason**: Actual reasons of an operator to release banning
+- **Released User/Release Date**: Operator who released banning/system information and date
 
 ### Playtime
+![gamebase_member_10_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_10_201812_en.png)
 
-![gamebase_member_10_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_10_201812.png)
-按日期查看被查询用户的游戏时间。
-您可以输入要查看的日期，可查看的最长日期为一个月（30天）。
+Retrieve playtime of a searched user by date.
+Can search by date, and history data can be retrieved up to 1 month (30 days).
 
 ### Withdraw History
-![gamebase_member_11_202006](https://static.toastoven.net/prod_gamebase/gamebase_member_11_202006.png)
-如果查看的用户为已退出的用户，则显示退出历史。
-只在查看已退出或预约退出的用户时显示此菜单，而可在此菜单上查看用户的详细退出明细。 
+![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_WithdrawHistory1_1.1.png)
+
+Retrieve withdraw log of a searched user by date.
 
 ## Transfer account
-只在使用**转移账户**功能时才能使用。[启用转移账户功能](./oper-app/#transfer-account)
-可以查询游戏用户的转移账户密钥的发放和验证历史。可以解除被禁用的密钥或重新发放过期的密钥。
+This is available only when the **device transfer** function is used. [Enable the device transfer function](./oper-app/#transfer-account)
+You can check the history of issue and verification of the device transfer key for game users. You can unblock blocked keys or reissue expired keys.
 
-![gamebase_member_transferaccount_01_202107.png](https://static.toastoven.net/prod_gamebase/gamebase_member_transferaccount_01_202107.png)
-**转移账户发放密钥**
+![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_TransferAccount1_1.0.png)
+**Device transfer issue key**
 
-- **ID** : 发给游戏用户的转移账户ID
-- **发行日期** : 发放转移账户ID的日期
-- **有效日期** : 发放的转移账户ID的到期日期
-- **状态** : 发放的转移账户ID的现状态
-  - <font color="white" style="background-color:#88C637">正常</font>: 发放的密钥为正常状态。通过使用相关密钥，可转移账户。 
-  - <font color="white" style="background-color:#FB8F37">阻止</font>: 发放的密钥为阻止状态。使用发放的密钥无法转移账户。
-  - <font color="white" style="background-color:#A1A1A1">过期</font>: 发放的密钥已过期。使用发放的密钥无法转移账户。
+- **ID**: A device transfer ID issued to a game user
+- **Issued on**: A date when the device transfer ID has been issued
+- **Expired on**: An expiry date of the device transfer ID
+- **Status**: The current status of the issued device transfer ID
+  - <font color="white" style="background-color:#88C637">OK</font>: The issued key status is normal. Your device can be transferred using the key.
+  - <font color="white" style="background-color:#FB8F37">Blocked</font>: The issued key status is blocked. Your device cannot be transferred using the key.
+  - <font color="white" style="background-color:#A1A1A1">Expired</font>: The issued key has expired. Your device cannot be transferred using the key.
 
+**Device transfer history**:
+You can retrieve the history of keys issued to game users.
+By default, the last issued key is selected. If you select another key, you can check the history of that key.
 
-**转移账户历史**
-可查看发给相关游戏用户的密钥历史。
-最近发放的密钥将已被选择，而若选择其他密钥，可查看所选的密钥历史。
+### Reissuance Transfer account
 
-### 重新发放转移账户
-单击**重新发放**按钮，可重新发放新的转移账户密钥。若重新发放，以前发放的密钥无法继续使用。
-![gamebase_member_transferaccount_02_202107.png](https://static.toastoven.net/prod_gamebase/gamebase_member_transferaccount_02_202107.png)
+Click the **Reissue** button to reissue the device transfer key. The previous key cannot be used when a new one is reissued.
 
-- **重新发放ID和密码** : ID和密码全部重新发放。
-- **重新发放密码**：ID仍使用以前发放的ID，仅重新发放密码。
+![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_TransferAccount_Renewal1_1.0.png)
 
-#### 重新发放时的注意事项
-- 密码在重新发放时仅显示一次，因此进行重新发放后，请务必另行保存相应信息。
-- 若未能保存，无其他找回密码的方法，因此应再次进行重新发放。
-- 到期的密钥更新到期日期，但账户状态为正常/阻止时，到期日期不更新。
+- **Reissue ID/Password**: Reissue both the ID and password.
+- **Reissue Password**: Use the ID issued as it is and reissue the password only.
+
+#### Cautions for reissuance
+- The password is displayed only once when it is reissued. Please write down the information somewhere else once it is reissued.
+- If you lost it again, there is no way to find the password and in that case, you need to reissue it again.
+- The expiration date of the expired key will be updated; however, it is not updated when the account status is either OK or Blocked.

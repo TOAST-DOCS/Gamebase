@@ -1,74 +1,73 @@
-## Game > Gamebase > Unity SDK 使用指南 > 认证
+﻿## Game > Gamebase > Unity Developer's Guide > Authentication
 
 ## Login
 
-Gamebase默认支持访客登录。<br/>
+Gamebase supports Guest logins by default.<br/>
 
-* 使用游客以外的Provider登录，需要Provider AuthAdapter。
-* AuthAdapter和第三方提供的SDK设置，请参考以下内容。
+* To log into providers other than guest, a matching Provider AuthAdapter is required.
+* For setting of AuthAdapter and 3rd-Party Provider SDK, refer to
     * [3rd-Party Provider SDK Guide](aos-started#3rd-party-provider-sdk-guide)
-
 
 ### Login Flow
 
-多数游戏在标题页上实现登录。
+In many games, login is implemented on a title page.
 
-* 当App首次安装和启动时，游戏用户可以在标题页选择要进行的IdP(identity provider)类型。
-* 登录过一次后，您将不会看到IdP选择画面，将使用之前登录的IdP类型进行认证。
+* Allow a game user to decide which IdP to authenticate on a title screen, when an app is implemented for the first time after installed.
+* After initial login, the IdP selection screen does not show and authentication is made with the latest logged-in IdP.
 
-上述逻辑可以按以下顺序实现。
+The logic described in the above can be implemented in the following order.
 
 ![last provider login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
 ![idp login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
-#### 1. 按上一次的登录类型认证
+#### 1. Authenticate with Latest Login Type
 
-* 如果存在已做过的认证的记录，则尝试进行认证，不需要输入ID和密码。
-* 调用**Gamebase.LoginForLastLoggedInProvider()**。
+* If a previous authentication has been recorded, try to authenticate with no need of ID and password inputs.
+* Call **Gamebase.LoginForLastLoggedInProvider()**.
 
-#### 1-1. 如果认证成功
+#### 1-1. When Authentication is Successful
 
-* 恭喜您！ 认证成功。
-* 可以使用**Gamebase.GetUserID()**取用户ID并实现游戏逻辑。
+* Congratulations! Successfully authenticated.
+* Get a user ID with **Gamebase.GetUserID()** to implement a game logic.
 
-#### 1-2. 如果认证失败
+#### 1-2. When Authentication Fails
 
-* 网络错误
-    * 由于突发的网络问题，认证失败，错误代码为**SOCKET_ERROR(110)**或**SOCKET_RESPONSE_TIMEOUT(101)**。需要重新调用**Gamebase.LoginForLastLoggedInProvider()**，或稍后再试。
-* 禁用游戏用户
-    * 错误代码为**BANNED_MEMBER(7)**时，为停止使用游戏用户，因此验证失败。
-    * 请使用**BanInfo.from(exception)**确认制裁信息，并告知游戏用户无法进行游戏的原因。
-    * 初始化Gamebase 时调用**GamebaseConfiguration.Builder.enablePopup(true)** 和**enableBanPopup(true)**，Gamebase会自动弹出禁用的窗口。
-* 其他错误
-    * 因为使用上一次的登录类型认证失败，请进行**2.使用指定的IdP进行认证**。
+* Network error
+    * If the error code is **SOCKET_ERROR (110)** or **SOCKET_RESPONSE_TIMEOUT (101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.LoginForLastLoggedInProvider()** again, or try again in a moment.
+* Banned game user
+    * When the error code is found as **BANNED_MEMBER(7)** , authentication has failed because the user is banned from the game.
+    * Check the reason for ban using **GamebaseResponse.Auth.BanInfo.From(GamebaseError error)** and inform the game user why they cannot play the game.
+    * When **GamebaseConfiguration.enablePopup** and **GamebaseConfiguration.enableBanPopup** are set as true during Gamebase initialization, Gamebase will automatically display a pop-up on banning.
+* Other errors
+    * Authentication with latest login type has failed. Follow **3. Authenticate with Specified IdP**.
 
-#### 2. 使用指定的Idp进行认证
+#### 2. Authenticate with Specified IdP
 
-* 通过直接指定IdP类型来尝试进行认证。
-    * 可以认证的类型在**GamebaseAuthProvider**类中声明。
-* 调用**Gamebase.Login(providerName, callback)** API。
+* Try to authenticate by specifying an IdP type.
+    * Types that can be authenticated are declared in the **GamebaseAuthProvider** class.
+* Call **Gamebase.Login(providerName, callback)** API.
 
-#### 2-1. 如果认证成功
+#### 2-1. When Authentication is Successful
 
-* 恭喜您！ 认证成功。
-* 可以使用**Gamebase.GetUserID()**获取用户ID并实现游戏逻辑。
+* Congratulations! Successfully authenticated.
+* Get a user ID with **Gamebase.GetUserID()** to implement a game logic.
 
-#### 2-2. 如果认证失败
+#### 2-2. When Authentication Fails
 
-* 网络错误
-    * 由于突发的网络问题，认证失败，错误代码为**SOCKET_ERROR(110)**或**SOCKET_RESPONSE_TIMEOUT(101)**，需要重新调用**Gamebase.Login(providerName, callback)**或稍后再试。
-* 禁用游戏用户
-    * 错误代码为**BANNED_MEMBER(7)**时，为停止使用游戏用户，因此验证失败。
-    * 请使用**BanInfo.from(exception)**确认制裁信息，并告知游戏用户无法进行游戏的原因。
-    * 初始化Gamebase 时调用**GamebaseConfiguration.Builder.enablePopup(true)**和**enableBanPopup(true)**，Gamebase会自动弹出禁用窗口。
-* 其他错误
-	* 通知游戏用户发生了错误，并返回到游戏用户可以选择认证IdP类型的页面（通常是标题页面或登录页面）。
+* Network error
+    * If the error code is **SOCKET_ERROR (110)** or **SOCKET_RESPONSE_TIMEOUT (101)**, the authentication has failed due to a temporary network problem, so call **Gamebase.LoginForLastLoggedInProvider()** again, or try again in a minute.
+* Banned game user
+    * When the error code is found as **BANNED_MEMBER(7)**, authentication has failed because the user is banned from the game.
+    * Check the reason for ban using **GamebaseResponse.Auth.BanInfo.From(GamebaseError error)** and inform the game user why they cannot play the game.
+    * When **GamebaseConfiguration.enablePopup** and **GamebaseConfiguration.enableBanPopup** are set as true during Gamebase initialization, Gamebase will automatically display a pop-up on banning.
+* Other errors
+    * Notify that an error has occurred, and return to the state (mostly in title or login screen) in which user can select an authentication IdP type.
 
-### Login as the Latest Login IdP
+### Login with Latest Login IdP
 
-尝试使用最近登录的IdP登录。
-如果该登录的令牌已过期，或者令牌认证失败，则返回失败。
-此时，须实现[对该IdP的登录](#login-with-idp) 。
+Try login with the most recently logged-in IdP.
+If a token is expired or its authentication fails, return failure.
+Note that a [login for the IdP](#login-with-idp) should be implemented.
 
 **API**
 
@@ -80,7 +79,7 @@ Supported Platforms
 static void LoginForLastLoggedInProvider(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
 ```
 
-**示例**
+**Example**
 
 ``` cs
 public void LoginForLastLoggedInProvider()
@@ -97,7 +96,7 @@ public void LoginForLastLoggedInProvider()
             Debug.Log(string.Format("Login failed. error is {0}", error));
         	if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
             {
-            	Debug.Log(string.Format("Retry LoginForLastLoggedInProvider or notify an error message to the user. : {0}", error.message));
+            	Debug.Log(string.Format("Retry LoginForLastLoggedInProvider or notify an error message to the user.: {0}", error.message));
             }
             else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
             {
@@ -118,9 +117,10 @@ public void LoginForLastLoggedInProvider()
 
 ### Login with GUEST
 
-Gamebase支持游客登录。
-尝试通过为设备创建的唯一密钥来登录Gamebase。
-建议基于IdP的登录方式，因为游客登录方式，在删除App或设备初始化时，账户可能会被删除。
+Gamebase supports Guest logins. 
+
+* Create an only key of device to try to log in Gamebase. 
+* As the device key may be initialized and account may be deleted, it is recommended to use IdP for a Guest login.
 
 **API**
 
@@ -135,7 +135,7 @@ Supported Platforms
 static void Login(string providerName, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
 ```
 
-**示例**
+**Example**
 
 ``` cs
 public void Login()
@@ -153,7 +153,7 @@ public void Login()
         	Debug.Log(string.Format("Login failed. error is {0}", error));
             if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
             {
-            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user.: {0}", error.message));
             }
             else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
             {
@@ -169,7 +169,34 @@ public void Login()
 
 ### Login with IdP
 
-以下是允许您使用特定IdP登录的示例代码。
+Following is a login example with a specific IdP. 
+For more information on IdP types that can be used to log in, refer to the **GamebaseAuthProvider** class.
+
+> [Notes]
+>
+> Some IdPs require additional information when logging in.
+> The static void Login(string providerName, Dictionary additionalInfo, and GamebaseCallback.GamebaseDelegate callback) APIs are provided to configure these additional information.
+>Enter the required information into the additionalInfo parameter in the form of the dictionary.
+>> If additionalInfo has a value, use that value. If null, use the value registered in [NHN Cloud Console](./oper-app/#authentication-information).
+
+> [Note]
+>
+> LINE IdP allows users to set LINE service regions from Gamebase SDK 2.43.0.
+> The regions can be set in AdditionalInfo. 
+
+> <font color="red">[Caution]</font><br/>
+>
+> In Standalone, login is supported through WebViewAdapter. It does not block events entered via UI when WebView is open.
+>
+> To log in using Standalone WebViewAdapter, the CallbackURL below must be configured on the IdP Developer website.
+> - https://id-gamebase.toast.com/oauth/callback
+>
+
+* How to Set additionalInfo Parameters
+
+| keyname                                  | a use                                    | Value Type                                     |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | Set LINE Service Region | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
 
 **API**
 
@@ -178,44 +205,12 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
-
 ```cs
 static void Login(string providerName, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
 static void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
 ```
 
-**providerName**
-
-| Provider    | Define                          | Support Platform | 
-| --------    | ------------------------------- | ---------------- |
-| Google      | GamebaseAuthProvider.GOOGLE     | Android<br/>iOS<br/>Standalone |
-| Game Center | GamebaseAuthProvider.GAMECENTER | iOS |
-| Apple ID    | GamebaseAuthProvider.APPLEID    | iOS |
-| Facebook    | GamebaseAuthProvider.FACEBOOK   | Android<br/>iOS<br/>Standalone |
-| Payco       | GamebaseAuthProvider.PAYCO      | Android<br/>iOS<br/>Standalone |
-| Naver       | GamebaseAuthProvider.NAVER      | Android<br/>iOS |
-| Twitter     | GamebaseAuthProvider.TWITTER    | Android<br/>iOS |
-| Line        | GamebaseAuthProvider.LINE       | Android<br/>iOS |
-| HANGAME     | GamebaseAuthProvider.HANGAME    | Android<br/>iOS |
-| WEIBO       | GamebaseAuthProvider.WEIBO      | Android<br/>iOS |
-
-
-> 个别IdP登录，需要一些特定信息。<br/>
-> 例如，要实现Facebook登录，您需要设置scope等。<br/>
-> 为了设置这些信息，提供了static void Login(string providerName, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback) API。<br/>
-> 可以用dictionary格式把信息输入到参数additionalInfo中。
-当参数值为nil时，它将填充在TOAST Console中注册的additionalInfo值。如果参数值存在，则覆盖在Console中注册的值。
-([在TOAST控制台中设置additionalInfo](./oper-app/#authentication-information))<br/>
-> Stansalone支持通过WebViewAdapter登录，并且在WebView打开时，不会阻止在UI中输入的Event。
-
-
-要是用Standalone WebViewAdapter登录，您需要在IdP开发者网站上设置以下CallbackURL。
-
-* https://alpha-id-gamebase.toast.com/oauth/callback
-* https://beta-id-gamebase.toast.com/oauth/callback
-* https://id-gamebase.toast.com/oauth/callback
-
-**示例**
+**Example**
 
 ``` cs
 public void Login()
@@ -233,7 +228,7 @@ public void Login()
         	Debug.Log(string.Format("Login failed. error is {0}", error));
             if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
             {
-            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user.: {0}", error.message));
             }
             else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
             {
@@ -266,7 +261,7 @@ public void LoginWithAdditionalInfo()
             Debug.Log(string.Format("Login failed. error is {0}", error));
             if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
             {
-            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user.: {0}", error.message));
             }
             else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
             {
@@ -282,39 +277,39 @@ public void LoginWithAdditionalInfo()
 
 ### Login with Credential
 
-是通过IdP提供的SDK在游戏中进行认证后，使用获取到的Access Token，登录到Gamebase的接口。
+This game interface allows authentication to be made with SDK provided by IdP, before login to Gamebase with provided access token.
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 在Standalone、WebGL平台上进行Google登录时要输入 GamebaseAuthProviderCredential.REDIRECT_URI。如果不输入，则将发生`redirect_uri_mismatch`错误。
+> If you are logging into Google on standalone and WebGL platforms, you must enter GamebaseAuthProviderCredential.REDIRECT_URI. If not entered, `redirect_uri_mismatch` error occurs. 
 >
-> 在REDIRECT_URI中输入时，在**Google Cloud Console > API和服务 > 用户认证信息 > 网络客户端**的授权REDIRECTION URI中输入被添加的值。(是从Google登录页面接收Google登录页面返回的AuthCode的URI)
+> For REDIRECT_URI, enter a value added to the approved redirection URI from **Google Cloud Console > API & Services > Credentials > Web Client** (URI to get AuthCode from Google sign-in page)
 >
-> 如果不输入REDIRECT_URI，则使用基本值。
+> If REDIRECT_URI not entered, the default value is applied.
 >   - Standalone: http://localhost:8080/
 >   - WebGL: http://localhost/
 
-* Credential参数设置方法
+* How to Set Credential Parameters
 
-| keyname | a use | 值类型 |
+| Keyname | Usage | Value Type |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | 设置IdP类型。                         | GamebaseAuthProvider.GOOGLE<br>GamebaseAuthProvider.GAMECENTER<br> GamebaseAuthProvider.FACEBOOK<br>GamebaseAuthProvider.NAVER<br>GamebaseAuthProvider.TWITTER<br>GamebaseAuthProvider.LINE<br>GamebaseAuthProvider.HANGAME<br>GamebaseAuthProvider.APPLEID<br>GamebaseAuthProvider.WEIBO<br>GamebaseAuthProvider.KAKAOGAME<br>GamebaseAuthProvider.PAYCO |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | 设置IdP登录后收到的认证信息（Access Token）。<br/>不用于Google认证。 |                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | 输入Google登录后可以获取的认证码(Authorization Code)。 |
-| GamebaseAuthProviderCredential.GAMEBASE_ACCESS_TOKEN | 使用Gamebase访问令牌而非  IdP身份验证信息登录时使用。 |  |
-| GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN | 允许在不注销Gamebase的情况下尝试使用其他帐户登录。 | **bool** |
-| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | 设置提供LINE服务的区域。 | [参考Login with IdP](./aos-authentication/#login-with-idp) |
-| GamebaseAuthProviderCredential.REDIRECT_URI | **Google Cloud Console > 在授权的REDIRECTION URI**中添加已注册的redirect_uri。<br>**Standalone default**: http://localhost:8080/<br>**WebGL default**: http://localhost/<br/>**这仅限于Standalone、WebGL平台上进行Google登录。** |  |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | Set IdP type                           | GamebaseAuthProvider.GOOGLE<br>GamebaseAuthProvider.GAMECENTER<br> GamebaseAuthProvider.FACEBOOK<br>GamebaseAuthProvider.NAVER<br>GamebaseAuthProvider.TWITTER<br>GamebaseAuthProvider.LINE<br>GamebaseAuthProvider.HANGAME<br>GamebaseAuthProvider.APPLEID<br>GamebaseAuthProvider.WEIBO<br>GamebaseAuthProvider.KAKAOGAME<br>GamebaseAuthProvider.PAYCO |
+| GamebaseAuthProviderCredential.ACCESS_TOKEN | Set authentication information (access token) received after login IdP.<br/>Not applied for Google authentication. |                                |
+| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Enter One Time Authorization Code (OTAC) which can be obtained after Google login. |                                          |
+| GamebaseAuthProviderCredential.GAMEBASE_ACCESS_TOKEN | Used when logging in with Gamebase Access Token instead of IdP authentication information |  |
+| GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN | While logged in to Gamebase, allow login attempts with other account without logging out | **bool** |
+| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | Set LINE Service Region  | [See Login with IdP](./aos-authentication/#login-with-idp) |
+| GamebaseAuthProviderCredential.REDIRECT_URI | Add the redirect_uri registered in **Google Cloud Console > Authorized Redirect URI**<br>**Standalone default**: http://localhost:8080/<br>**WebGL default**: http://localhost/<br/>**Limited to Google sign-in on standalone and WebGL platforms** |  |
 
-> [TIP]
+> [Note]
 >
-> 当要在游戏中使用外部服务（例如Facebook）的特有功能时，可能需要它。
+> May require when original functions of external services (such as Facebook) are in need within a game.
 >
 
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 外部SDK要求的开发事项需使用外部SDK的API实现，Gamebase不支持。
+> Development items external SDK requires to support need to be implemented by using external SDK's API, which Gamebase does not support.
 >
 
 **API**
@@ -326,13 +321,13 @@ Supported Platforms
 <span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
 <span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
-UnityEditor仅支持Facebook登录。
+UnityEditor supports Facebook login only.
 
 ```cs
 static void Login(Dictionary<string, object> credentialInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
 ```
 
-**示例**
+**Example**
 
 ``` cs
 public void LoginWithCredential()
@@ -361,7 +356,7 @@ public void LoginWithCredential()
         	Debug.Log(string.Format("Login failed. error is {0}", error));
             if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
             {
-            	Debug.Log(string.Format("Retry Login or notify an error message to the user. : {0}", error.message));
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user.: {0}", error.message));
             }
             else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
             {
@@ -375,15 +370,11 @@ public void LoginWithCredential()
 }
 ```
 
-### Authentication Additional Information Settings
-
-[Console Guide](./oper-app/#authentication-information)
-
 ## Logout
 
-尝试从登录中的IdP退出。通常，在游戏的设置画面有退出登录（退出账号）按钮，然后点击该按钮执行。
-即使退出登录成功，也会保留游戏用户数据。
-如果退出登录成功，将会删除IDP认证记录，则下次登录时将显示ID和密码输入窗口。<br/><br/>
+Try to log out from logged-in IdP. In many cases, the logout button is located on the game configuration screen.
+Even if a logout is successful, a game user's data remain.
+When it is successful, as authentication records with a corresponding IdP are removed, ID and passwords will be required for the next log-in process.<br/><br/>
 
 **API**
 
@@ -398,7 +389,7 @@ Supported Platforms
 static void Logout(GamebaseCallback.ErrorDelegate callback)
 ```
 
-**示例**
+**Example**
 
 ```cs
 public void Logout()
@@ -417,18 +408,21 @@ public void Logout()
 }
 ```
 
+
+
 ## Withdraw
-在登录状态尝试退出（删除数据）。
 
-* 成功退出时 
-  * IdP登录的游戏用户数据将会被删除。 
-  * 可使用IdP重新登录，并创建新的游戏用户数据。
-  * 所有连接的IdP都将注销。
-* 表示退出Gamebase，并不表示IdP账户的退出。 
+Attempts account withdrawal while logged in.
 
-> <font color="red">[注意]</font><br/>
+* Upon successful withdrawal
+  * The game user’s data of the IdP logged in will be deleted.
+  * You can login again with the IdP. A new game user’s data will be created.
+  * All linked IdPs will be logged out.
+* It means user's withdrawal from Gamebase, not from IdP account.
+
+> <font color="red">[Caution]</font><br/>
 >
-> 多个IdP被连接时，将解除所有IdP的连接，并删除Gamebase用户数据。 
+> If multiple IdPs are linked, all IdP linkages will be unlinked and the user data in Gamebase will be deleted.
 >
 
 **API**
@@ -444,7 +438,7 @@ Supported Platforms
 static void Withdraw(GamebaseCallback.ErrorDelegate callback)
 ```
 
-**示例**
+**Example**
 
 ```cs
 public void Withdraw()
@@ -465,69 +459,70 @@ public void Withdraw()
 
 ## Mapping
 
-映射（Mapping）是将已登录的现有游戏帐号和IdP帐户关联或解除关联的功能。
+Mapping refers to connecting or disconnecting an existing login account to/from another IdP account.
 
-在大多数游戏中，可以将多个IdP帐户映射（Mapping）到同一个游戏账户。
-Gamebase的Mapping API，允许将您的其他IdP帐户和您之前登录的游戏帐户进行关联或解除关联操作。<br/>
+In many games, one account may have many integrated (mapped) IdPs.
+By using Gamebase Mapping API, other IdP accounts can be integrated or removed to/from another existing IdP account.<br/>
 
-利用此操作可以将多个IdP账户关联到一个Gamebase用户ID。
-换句话说，当您尝试使用同步的IdP帐户登录时，可以始终使用相同的用户ID登录。<br/>
+As such, one Gamebase UserID can be integrated with many IdP accounts.
+In short, a login to a mapped IdP account will be made available with a same user ID at all times.<br/>
 
-请注意，每个IdP只能关联一个同域名帐户。
-以下是帐户关联的示例。<br/>
+Note, however, that each IdP can have only one account to map.
+Below shows an example.<br/>
 
-* Gamebase用户ID : 123bcabca
-	* Google ID : aa
-	* Facebook ID : bb
-	* AppleGameCenter ID : cc
-	* Payco ID : dd
-* Gamebase用户ID : 456abcabc
-	* Google ID : ee
-	* Google ID : ff **-> 由于您已关联Google ee帐户，因此无法添加其他Google帐户。**
+* Gamebase UserID: 123bcabca
+	* Google ID: aa
+	* Facebook ID: bb
+	* AppleGameCenter ID: cc
+	* PAYCO ID: dd
+* Gamebase UserID: 456abcabc
+	* Google ID: ee
+	* Google ID: ff **-> As the Google ee account is integrated, no additional Google account can be integrated.**
 
-映射（Mapping）包括添加Mapping/解除Mapping API。
+Mapping API includes Add Mapping API and Remove Mapping API.
 
 ### Add Mapping Flow
 
-映射（Mapping）可以按以下顺序实现。
+Implement mapping in the following order.
 
 ![add mapping flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_add_mapping_flow_2.30.0.png)
 
-#### 1. 登录
-Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
-首先通过调用登录API登录。
+#### 1. Login
+Mapping means to add an IdP account integration to a current account, so login is a prerequisite.
+First, call a login API and log in.
 
-#### 2. 映射（Mapping）
+#### 2. Mapping
 
-调用**Gamebase.AddMapping()**尝试进行映射（Mapping）。
+Call **Gamebase.AddMapping()** to try mapping.
 
-#### 2-1. 如果映射（Mapping）成功
+#### 2-1. When mapping is successful
 
-* 恭喜您! 已成功添加与当前账户关联的IdP帐户。
-* 映射（Mapping）成功后，“当前登录的IdP”也不会更改。<br>换句话说，在已使用Google帐户登录后，成功映射（Mapping）到您的Facebook帐户，也不会将您“当前登录的IdP”从Google更改为Facebook，会保持Google的状态。
-* 映射（Mapping）只是添加IdP关联。
+* Congratulations! Successfully added an IdP account integrated with the current account.
+* Even if a mapping is successful, 'currently logged-in IdP' will not change.<br/>For example, after a user’s login with Google account and has successfully mapped with a Facebook account, the user's 'currently logged-in IdP' does not change from Google to Facebook. It still stays with Google account.
+* Mapping simply adds IdP integration.
 
-#### 2-2. 如果映射（Mapping）失败
+#### 2-2. When mapping fails
 
-* 网络错误
-    * 由于突发的网络问题，认证失败，错误代码为**SOCKET_ERROR(110)** 或**SOCKET_RESPONSE_TIMEOUT(101)**，则重新调用**Gamebase.AddMapping()**或稍后再试。
-* 与其他账户关联时发生的错误
-    * 错误代码为 **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**，则表示尝试映射（Mapping）的IdP上的帐户已关联了另一个帐户，要解除已关联的帐户，请使用该帐户登录并通过调用**Gamebase.Withdraw()**退出（删除数据），或者通过调用**Gamebase.RemoveMapping()**解除关联，再尝试映射（Mapping）。
-* 关联相同IdP帐户发生的错误
-	* 错误代码为 **AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)**，则表示已关联了与IDP相同类型的账户。
-	* Gamebase映射（Mapping），每个IdP只能关联一个游戏帐户。例如，已经关联了PAYCO帐户，则无法添加其他PAYCO帐户。
-	* 要关联同一IdP中的另一个帐户，请调用**Gamebase.RemoveMapping()**，解除关联后，再尝试映射（Mapping）。
-* 其他错误
-    * 尝试映射（Mapping）失败。
+* Network error
+    * If the error code is **SOCKET_ERROR(110)** or **SOCKET_RESPONSE_TIMEOUT(101)**, it means that the authentication failed due to temporary network issues, so call **Gamebase.AddMapping()** again or try again later.
+* Error that occurs when already linked to another account
+    * If the error code is **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**, it means that the account of the IdP to map to is already linked to another account. Using the **ForcingMappingTicket** obtained at this point, you can try force mapping (**Gamebase.AddMappingForcibly()**) or changing the login account (**Gamebase.ChangeLogin()**).
+* Error that occurs when already linked to the same IdP account
+    * If the error code is **AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)**, it means that an account of the same type as the IdP you want to map to is already linked.
+	* Gamebase mapping allows linking of only one account per IdP. For example, if an account is already linked to a PAYCO account, no other PAYCO account can be added.
+	* To link another account of the same IdP, call **Gamebase.RemoveMapping()** to remove the linking and try mapping again.
+* Other errors
+    * The mapping attempt has failed.
 
 
 ### Add Mapping
 
-登录特定IdP状态下，尝试用其他IdP Mapping。
-如果想要映射（Mapping）的IdP账户已与其他账户关联，则返还**AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**错误。<br/>
+Try mapping to another IdP while logged-in to a specific IdP.
+If an IdP account to map has already been integrated to another account,
+return the **AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER (3302)** error.<br/>
 
-映射（Mapping）成功后，“当前登录的IdP”也不会更改。<br>换句话说，在已使用Google帐户登录后，成功映射（Mapping）到您的Facebook帐户，也不会将您“当前登录的IdP”从Google更改为Facebook，会保持Google的状态。
-映射（Mapping）只是添加IdP关联。
+Even if a mapping is successful, 'currently logged-in IdP' does not change. For example, after a user logs in a Google account and has successfully mapped with a Facebook account, the user's 'currently logged-in IdP' does not change from Google to Facebook. It still stays with Google account.
+Mapping simply adds IdP integration.
 
 **API**
 
@@ -539,7 +534,7 @@ Supported Platforms
 static void AddMapping(string providerName, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
 ```
 
-**示例**
+**Example**
 
 ```cs
 public void AddMapping(string providerName)
@@ -560,26 +555,25 @@ public void AddMapping(string providerName)
 
 ### AddMapping with Credential
 
-游戏中直接使用ID Provider提供的SDK进行认证后，使用发行的Access Token等，进行GameBase AddMapping的接口。
+This game interface allows authentication to be made with SDK provided by IdP, before applying Gamebase AddMapping with provided access token.
 
 
-* Credential参数设置方法
+* How to Set Credential Parameters
 
-| keyname | a use | 值类型 |
+| keyname | Usage | Value Type |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential.PROVIDER_NAME | 设定IdP类型                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
-| GamebaseAuthProviderCredential.ACCESS_TOKEN | 设置IdP登录后收到的认证信息（Access Token）。<br/>不用于Google认证。 |                                |
-| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | 输入Google登录后可以获取的认证码(Authorization Code)。 |                                          |
+| GamebaseAuthProviderCredential.PROVIDER_NAME | Set IdP type                           | google, facebook, payco, iosgamecenter, naver, twitter, line, appleid |
+| GamebaseAuthProviderCredential.ACCESS_TOKEN | Set authentication information (access token) received after login IdP |                                |
+| GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Enter One Time Authorization Code (OTAC) which can be obtained after Google login. |                                          |
 
-> [TIP]
+> [Note]
 >
-> 当要在游戏中使用外部服务（例如Facebook）的特有功能时，可能需要它。
+> May require when original functions of external services (such as Facebook) are in need within a game.
 >
 
-
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 外部SDK要求的开发事项需使用外部SDK的API实现，Gamebase不支持。
+> Development items external SDK requires to support need to be implemented by using external SDK's API, which Gamebase does not support.
 >
 
 **API**
@@ -592,7 +586,7 @@ Supported Platforms
 static void AddMapping(Dictionary<string, object> credentialInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
 ```
 
-**示例**
+**Example**
 
 ```cs
 public void AddMappingWithCredential()
@@ -622,10 +616,10 @@ public void AddMappingWithCredential()
 ```
 
 ### Add Mapping Forcibly
-若特定IdP有已映射的账户，尝试**强制**映射。
-尝试**强制映射**时需要从AddMapping API获得的`ForcingMappingTicket`。
+If there is any account mapped to a specific IdP, try **force** mapping.
+When you try **force mapping**, you need `ForcingMappingTicket` obtained from the AddMapping API.
 
-如下为对Facebook尝试强制映射的范例。
+The following is an example of force mapping to Facebook:
 
 **API**
 
@@ -647,33 +641,33 @@ public void AddMappingForcibly(string idPName)
     {
         if (Gamebase.IsSuccess(error) == true)
         {
-            // 添加映射成功
+            // Successfully added mapping
         }
         else
         {
-            // 首先调用AddMapping API，尝试以已关联的账户映射，如下可获得ForcingMappingTicket。
+            // First, call the AddMapping API to try mapping to an already linked account and get ForcingMappingTicket as follows.
             if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
             {
-                // 通过利用ForcingMappingTicket类的From()方法获取ForcingMappingTicket实例。
+                // Gets the ForcingMappingTicket instance using the From() method of the ForcingMappingTicket class.
                 GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
 
-                // 尝试强制映射。
-                Gamebase.AddMappingForcibly(idPName, forcingMappingTicket.forcingMappingKey, (authTokenForcibly, errorForcibly) =>
+                // Try force mapping.
+                Gamebase.AddMappingForcibly(forcingMappingTicket, (authTokenForcibly, errorForcibly) =>
                 {
                     if (Gamebase.IsSuccess(error) == true)
                     {
-                        // 添加强制映射成功
+                        // Successfully added force mapping
                     }
                     else
                     {
-                        // 添加强制映射失败
-                        // 确认错误代码并解决错误。
+                        // Failed to add force mapping
+                        // Check the error code and resolve the error.
                     }
                 });
             }
             else
             {
-                // 确认错误代码并解决错误。
+                // Check the error code and resolve the error.
             }
         }
     });
@@ -682,11 +676,10 @@ public void AddMappingForcibly(string idPName)
 
 ### Change Login with ForcingMappingTicket
 
-### Add Mapping Forcibly with Credential
-若特定IdP有已映射的账户，尝试**强制**映射。
-尝试**强制映射**时需要从AddMapping API获得的“ForcingMappingTicket”。
+When there is an account already mapped to a specific IdP, log out from the current account and log in with the account already mapped to the IdP.
+At this time, you need the `ForcingMappingTicket` obtained from the AddMapping API.
 
-若调用Change Login API失败，上一个UserID保持登录状态。
+If the Change Login API call fails, the Gamebase login status remains as the existing UserID.
 
 **API**
 
@@ -696,7 +689,7 @@ static void ChangeLogin(GamebaseResponse.Auth.ForcingMappingTicket forcingMappin
 
 **Example**
 
-以下为一个在尝试映射到Facebook后，当已经映射到Facebook的帐户存在时，将登录账户更改为该账户的示例。
+The following example shows a situation where, after attempting to map to Facebook, an account already mapped to Facebook is found and the login is changed to the account.
 
 ```cs
 public void ChangeLoginWithFacebook()
@@ -705,34 +698,34 @@ public void ChangeLoginWithFacebook()
     {
         if (Gamebase.IsSuccess(error) == true)
         {
-            // 添加映射成功
+            // Successfully added mapping
             return;
         }
         
-        // 首先调用addMapping API并尝试以已关联的账户映射，如下可获得ForcingMappingTicket。
+        // First, call the addMapping API to try mapping to an already linked account and get ForcingMappingTicket as follows.
         if (error.code.Equals(GamebaseErrorCode.AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER) == true)
         {
-            // 通过利用ForcingMappingTicket类的From()方法获取ForcingMappingTicket实例。
+            // Use the from() method of the ForcingMappingTicket class to obtain the ForcingMappingTicket instance.
             GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket = GamebaseResponse.Auth.ForcingMappingTicket.From(error);
 
-            // 尝试强制映射。
-            Gamebase.AddMappingForcibly(credential, forcingMappingTicket.forcingMappingKey, (authTokenForcibly, errorForcibly) =>
+            // Log in with the UserID of ForcingMappingTicket
+            Gamebase.ChangeLogin(forcingMappingTicket, (authTokenForcibly, errorForcibly) =>
             {
-                if (Gamebase.IsSuccess(error) == true)
+                if (Gamebase.IsSuccess(errorForcibly) == true)
                 {
-                    // 添加强制映射成功
+                    // Successfully changed login
                 }
                 else
                 {
-                    // 添加强制映射失败
-                    // 确认错误代码并解决错误。
+                    // Failed to change login
+                    // Check the error code and resolve the error.
                 }
             });
         }
         else
         {
             // Add Mapping Failed.
-            // 确认错误代码并解决错误。
+            // Check the error code and resolve the error.
         }
     });
 }
@@ -740,8 +733,8 @@ public void ChangeLoginWithFacebook()
 
 ### Remove Mapping
 
-解除特定IDP的关联。如果尝试解除当前登录中的帐户，则会失败。
-解除关联之后，Gamebase将该IdP退出登录。
+Remove mapping with a specific IdP. If IdP mapping is not removed, error will occur.
+After mapping is removed, Gamebase processes logout of the IdP.
 
 **API**
 
@@ -753,7 +746,7 @@ Supported Platforms
 static void RemoveMapping(string providerName, GamebaseCallback.ErrorDelegate callback)
 ```
 
-**示例**
+**Example**
 
 ```cs
 public void RemoveMapping(string providerName)
@@ -774,7 +767,7 @@ public void RemoveMapping(string providerName)
 
 ### Get Mapping List
 
-获取与用户ID关联的IdP列表。<br/>
+Return the list of IdPs mapped to user IDs.<br/>
 
 **API**
 
@@ -786,7 +779,7 @@ Supported Platforms
 static List<string> GetAuthMappingList()
 ```
 
-**示例**
+**Example**
 
 ```cs
 public void GetAuthMappingList()
@@ -796,14 +789,14 @@ public void GetAuthMappingList()
 ```
 ## Gamebase User`s Information
 
-在使用Gamebase完成认证过程后，制作App时可获取到所需的信息。
+Process authentication with Gamebase, in order to get information required to create an app.
 
 ### Get Authentication Information for Gamebase
-在使用Gamebase完成认证过程后，制作App时可获取到所需的信息。
+Process authentication with Gamebase, in order to get information required to create an app.
 
 #### UserID
 
-可以获取Gamebase发行的UserID。
+Get User ID issued by Gamebase.
 **API**
 
 Supported Platforms
@@ -817,7 +810,7 @@ Supported Platforms
 static string GetUserID()
 ```
 
-**示例**
+**Example**
 ```cs
 public void GetUserID()
 {
@@ -827,7 +820,7 @@ public void GetUserID()
 
 #### AccessToken
 
-可以获取Gamebase发放的AccessToken。
+Get AccessToken issued by Gamebase.
 
 **API**
 
@@ -842,7 +835,7 @@ Supported Platforms
 static string GetAccessToken()
 ```
 
-**示例**
+**Example**
 ```cs
 public void GetAccessToken()
 {
@@ -852,7 +845,7 @@ public void GetAccessToken()
 
 #### Last LoggedIn Provider Name
 
-可以获取在Gamebase最后一次登录成功的ProviderName。
+Get the last logged-in Provider Name in Gamebase.
 
 **API**
 
@@ -864,7 +857,7 @@ Supported Platforms
 static string GetLastLoggedInProvider()
 ```
 
-**示例**
+**Example**
 ```cs
 public void GetLastLoggedInProvider()
 {
@@ -874,38 +867,89 @@ public void GetLastLoggedInProvider()
 
 ### Get Authentication Information for External IdP
 
-* 登录后，可通过游戏服务器调用Gamebase Server API来获取外部认证IdP的Access Token、用户ID及Profile等信息。 
-    * [Game > Gamebase > API指南 > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
+* Information such as access token, user ID, and profile of an external authentication IdP can be received by calling the Gamebase Server API after login.
+    * [Game > Gamebase > API Guide > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> * 为了安全起见，建议通过游戏服务器调用外部IdP的认证信息。
-> * 根据IDP类型，Access Token可能很快过期。
->     * 例如，Google登录后过2小时，Access Token将过期。
->     * 如果需要用户信息，登录后，请立即调用Gamebase Server API。
-> * 若使用"Gamebase.LoginForLastLoggedInProvider()" API登录时，则不能获取认证信息。 
->     * 如果需要用户信息，通过将与要使用的IDPCode相同的{IDP_CODE}作为参数，而不将"Gamebase.LoginForLastLoggedInProvider()"作为参数来调用"Gamebase.Login(IDP_CODE, callback)" API进行登录。
+> * For security reasons, it is recommended that you call the authentication information of an external IdP from the game server.
+* Access token may expire relatively sooner depending on the IdP.
+>     * For example, the access token of Google will expire within 2 hours from the time of login.
+>     * If you need user information, it is recommended that you call the Gamebase Server API immediately after login.
+> * When logged in with the "Gamebase.LoginForLastLoggedInProvider()” API, the authentication info cannot be retrieved.
+>     * If you need the user info, instead of "Gamebase.LoginForLastLoggedInProvider()” , use the {IDP_CODE} identical to the IDPCode that you want to use as the parameter to log in as the "Gamebase.Login(IDP_CODE, callback)" API.
+
+
+#### AccessToken
+
+Get Access Token from externally authentication SDK.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+static string GetAuthProviderAccessToken(string providerName)
+```
+
+**Example**
+```cs
+public void GetAuthProviderAccessToken(string providerName)
+{
+    string authProviderAccessToken = Gamebase.GetAuthProviderAccessToken(providerName);
+}
+```
+
+#### Profile
+
+Get Profile from externally authenticated SDK.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+```cs
+static GamebaseResponse.Auth.AuthProviderProfile GetAuthProviderProfile(string providerName)
+```
+
+**Example**
+```cs
+public void GetAuthProviderProfile(string providerName)
+{
+    GamebaseRequest.AuthProviderProfile profile = Gamebase.GetAuthProviderProfile(providerName);
+}
+```
 
 ### Get Banned User Information
 
-如果在Gamebase Console中已注册为被禁的游戏用户时，
-当尝试登录时，可能会看到如下所示的禁止信息代码。利用**GamebaseResponse.Auth.BanInfo.from(GamebaseError error)**方法可以确认禁止信息。
+If a user is registered while being banned in Gamebase Console,
+the user will see the following usage restriction code when attempting to log in to the game. The **GamebaseResponse.Auth.BanInfo.from(GamebaseError error)** method can be used to check the ban information.
 
 * BANNED_MEMBER(7)
 
 ## TransferAccount
-获得将访客账户转移至其他终端机的密钥的功能。
+Issues a key to transfer the guest account to another device.
 
-该密钥称为**TransferAccountInfo**。
-获得的TransferAccountInfo可从其他设备调用**requestTransferAccount** API，并转移账户。
+This key is called **TransferAccountInfo**.
+The issued TransferAccountInfo calls the **requestTransferAccount** API from another device to transfer the account.
 
-> <font color="red">[注意]</font><br/>
-> TransferAccountInfo仅在访客登录状态下可获得。
-> 使用TransferAccountInfo的账户转移仅可在访客登录状态或未登录状态下实现。
-> 若登录的访客账户已与其他外部IdP（Google、Facebook、PAYCO等）映射，则不支持账户转移。
+> <font color="red">[Caution]</font><br/>
+> The TransferAccountInfo key can be issued while the guest account is logged in.
+> Transfer of guest account using TransferAccountInfo is allowed only when logged in to a guest account or not logged in.
+> If the logged-in guest account has already been mapped to an IdP (Google, Facebook, PAYCO, etc.) account, account transfer is not supported.
 
 ### Issue TransferAccount
-为了转移访客账户，发放TransferAccountInfo。
+Issues TransferAccountInfo to transfer the guest account.
 
 **API**
 
@@ -933,7 +977,7 @@ public void IssueTransferAccount()
 ```
 
 ### Query TransferAccount
-为了转移访客账户，向Gamebase服务器查询已获得的TransferAccountInfo信息。
+Queries the TransferAccountInfo information issued for guest account transfer to the Gamebase server.
 
 **API**
 
@@ -962,8 +1006,8 @@ public void QueryTransferAccount()
 
 
 ### Renew TransferAccount
-更新已获得的TransferAccountInfo信息。
-更新方法有**自动更新**和**手动更新**，可选择**仅更新密码**、**同时更新ID与密码**更新TransferAccountInfo信息。
+Renews the issued TransferAccountInfo information.
+There are two types of renewal: **Auto Renew** and **Manual Renew**. You can select either **Renew Password Only** or **Renew Both ID and Password** to renew the TransferAccountInfo information.
 
 ```cs
 static void RenewTransferAccount(GamebaseRequest.Auth.TransferAccountRenewConfiguration configuration, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.TransferAccountInfo> callback)
@@ -974,11 +1018,11 @@ static void RenewTransferAccount(GamebaseRequest.Auth.TransferAccountRenewConfig
 ```cs
 public void RenewTransferAccountManualIdPassword(string accountId, string accountPassword)
 {
-    // 手动设置
+    // Manual Setting
     GamebaseRequest.Auth.TransferAccountRenewConfiguration configuration = GamebaseRequest.Auth.TransferAccountRenewConfiguration.MakeManualRenewConfiguration(accountId, accountPassword); // ID + Password
     GamebaseRequest.Auth.TransferAccountRenewConfiguration configuration = GamebaseRequest.Auth.TransferAccountRenewConfiguration.MakeManualRenewConfiguration(accountPassword); // Password
 
-    // 自动设置  
+    // Auto Setting  
     GamebaseRequest.Auth.TransferAccountRenewConfiguration configuration = GamebaseRequest.Auth.TransferAccountRenewConfiguration.MakeAutoRenewConfiguration(type);
     
     Gamebase.RenewTransferAccount(configuration, (transfer, error) =>
@@ -996,16 +1040,17 @@ public void RenewTransferAccountManualIdPassword(string accountId, string accoun
 ```
 
 
+
+
 ### Transfer Guest Account to Another Device
-向从**issueTransfer** API获得的TransferAccount转移账户的功能。
-账户转移成功时获得TransferAccount的终端机可显示转移完成信息，访客登录时创建新的账户。
-在账户转移成功的终端机中可继续使用获得TransferAccount的终端机的账户信息。
+Transfers the account with TransferAccount issued with **issueTransfer** API.
+When account transfer is successful, a transfer completion message will be displayed from the device where TransferAccount has been issued and a new account will be created when a guest logs in.
+On the device where the account transfer was successfully made, the guest account from the previous device where TransferAccount was issued can still be used.
 
-> <font color="red">[注意]</font><br/>
-> * 若以访客登录的状态转移账户，访客账户将丢失。
-> * 如果连续输入不正确的id/password，则出现**AUTH_TRANSFERACCOUNT_BLOCK(3042)**错误，而暂时封禁账号转移。
-> 在上述情况下，根据以下示例，通过使用TransferAccountFailInfo值，可提示用户账号被封，而过多久才能再转移账号。
-
+> <font color="red">[Caution]</font><br/>
+> If account transfer is made while logged in to the guest account, the guest account will be lost.
+> * If incorrect id/password is attempted multiple times, an **AUTH_TRANSFERACCOUNT_BLOCK(3042)** error occurs and the account migration is blocked for a certain period of time.
+> In this case, you can inform the user how long the account migration will be banned through the TransferAccountFailInfo value as shown below.
 
 **API**
 
@@ -1047,21 +1092,21 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 
 ## TemporaryWithdrawal
 
-是“预约退出”功能。
-由于请求了临时退出，不立即退出，预约时期过后退出。
-可以在控制台中修改预约时间。
+This is a 'pending withdrawal" feature.
+By requesting a temporary withdrawal, the account is not immediately withdrawn. Instead, it is withdrawn after a specific grace period.
+The grace period can be changed in the console.
 
-> <font color="red">[注意]</font><br/>
+> 'Caution'
 >
-> 使用预约退出功能时，不应调用****Gamebase.Withdraw()** API。
-> 通过调用**Gamebase.Withdraw()** API，可立即退出。
+> Do not use **Gamebase.Withdraw()** API if you're using the Pending Withdrawal feature.
+> The **Gamebase.Withdraw()** API immediately withdraws accounts when used.
 
-登录成功后，可通过调用AuthToken.member.temporaryWithdrawal判断是否是预约退出的用户。
+If login is successful, AuthToken.member.temporaryWithdrawal can be used to determine if the user is in the status of pending withdrawal.
 
 ### Request TemporaryWithdrawal
 
-请求临时退出。
-在控制台中指定的预约时间过后，自动完成退出处理。
+Requests a temporary withdrawal.
+The account is automatically withdrawn after a specific grace period set in the console.
 
 **API**
 
@@ -1091,7 +1136,7 @@ public void SampleRequestWithdrawal()
 
 ### Check TemporaryWithdrawal User
 
-如果用户登录使用预约退出功能的游戏，您需要调用AuthToken.member.temporaryWithdrawal，若返还的结果不为null，则需通知用户正在进行退出。
+For games using the Pending Withdrawal feature must notify its users that they are in grace period if AuthToken.member.temporaryWithdrawal is not null after login.
 
 **Example**
 
@@ -1105,7 +1150,7 @@ public void LoginSample()
             if(authToken.member.temporaryWithdrawal != null)
             {
                 long gracePeriodDate = authToken.member.temporaryWithdrawal.gracePeriodDate;
-                Debug.Log(string.Format("User is under temporary withdrawa. GracePeriodDate : {0}", error));
+                Debug.Log(string.Format("User is under temporary withdrawa. GracePeriodDate: {0}", error));
             }            
             else
             {
@@ -1125,8 +1170,8 @@ public void LoginSample()
 
 ### Cancel TemporaryWithdrawal
 
-取消退出请求。
-若预约退出时间到期，则无法退出。
+Cancels a withdrawal request.
+If the grace period is over and the withdrawal process is completed, it cannot be undone.
 
 **API**
 
@@ -1154,10 +1199,10 @@ public void SampleCancelWithdrawal()
 
 ### Withdraw Immediately
 
-无论预约退出时期的设置状态如何，都立即退出。
-实际内置运行与Gamebase.Withdraw() API相同。
+Immediately withdraws the account, ignoring the grace period.
+The internal mechanics are the same as the Gamebase.Withdraw() API.
 
-立即退出后无法取消，因此必须提示用户是否继续执行。
+Instant withdrawal cannot be undone, so it is important to ask the user several times if they really want to execute the command.
 
 **API**
 
@@ -1180,18 +1225,18 @@ public void SampleWithdrawImmediately()
         {
             Debug.Log(string.Format("SampleWithdrawImmediately failed. error:{0}", error));
         }
-    }); 
+    });
 }
 ```
 
 ## GraceBan
 
-* 是“结算Abusing自动解除”功能。
-    * 结算Abusing自动解除功能是当存在需通过“结算Abusing自动制裁”来禁止使用的用户时，禁止这些用户的使用之前先提供预约时间的功能。
-    * 如果为“预约禁用状态”，在设定的时期内满足解除条件，则可玩游戏。
-    * 若在所定的时期内未能满足条件，则会被禁用。
-* 登录使用结算Abusing自动解除功能的游戏后，始终要确认AuthToken.getGraceBanInfo() API值，如果返还GraceBanInfo对象，而不返还null，要向相关用户通知禁用解除条件、时期等。
-    * 当需要控制处于预约禁用状态的用户进入游戏时，要在游戏中进行处理。
+* This is a 'purchase abuse automatic release' function.
+    * The purchase abuse automatic release function allows users who should be banned due to purchase abuse automatic lockdown to be banned after ban suspension status.
+    * When a user is in ban suspension status, if the user satisfies all of the release conditions within the set period of time, the user will be able to play normally.
+    * If the user does not satisfy the conditions within the period, the user is banned.
+* Games that use the purchase abuse automatic release function must always call the AuthToken.getGraceBanInfo() API after login. If a valid GraceBanInfo object that is not null is returned, the user must be informed of the ban release conditions, period, etc.
+    * In-game access control for users who are in ban suspension status must be handled by the game.
 
 **Example**
 
@@ -1217,7 +1262,7 @@ public void Login()
             GamebaseResponse.Common.Member.GraceBanInfo.ReleaseRuleCondition releaseRuleCondition = graceBanInfo.releaseRuleCondition;
             if (releaseRuleCondition != null)
             {
-                // condition type : "AND", "OR"
+                // condition type: "AND", "OR"
                 string releaseRule = string.Format("{0}{1} {2} {3}time(s)", releaseRuleCondition.amount,
                     releaseRuleCondition.currency, releaseRuleCondition.conditionType, releaseRuleCondition.count);
             }
@@ -1241,59 +1286,59 @@ public void Login()
 
 ## Error Handling
 
-| Category | Error | Error Code | Description |
-| --- | --- | --- | --- |
-| Auth           | INVALID_MEMBER                           | 6          | 无效的用户请求 |
-|                | BANNED_MEMBER                            | 7          | 被制裁的用户 |
-|                | AUTH_USER_CANCELED                       | 3001       | 登录信息已被取消。 |
-|                | AUTH_NOT_SUPPORTED_PROVIDER              | 3002       | 是不支持的认证方式。 |
-|                | AUTH_NOT_EXIST_MEMBER                    | 3003       | 是不存在或已退出（删除数据）的用户。 |
-|                | AUTH_EXTERNAL_LIBRARY_INITIALIZATION_ERROR | 3006     | 第三方认证库初始化失败 |
-|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 是外部认证库错误。<br/>请确认详细错误。 |
-|                | AUTH_ALREADY_IN_PROGRESS_ERROR           | 3010       | 未完成上一个验证流程。 |
-|                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | 由于Gamebase Access Token无效，已被注销。<br/>请再尝试登录。 |
-| TransferKey    | SAME\_REQUESTOR                          | 8          | 在同一台设备上使用了相同的TransferKey。 |
-|                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | 非游客帐户尝试了转移或帐户已关联了游客以外的IDP。 |
-|                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | TransferAccount的有效期已结束。 |
-|                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | 多次输入错误TransferAccount，账户转移功能锁定。 |
-|                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | TransferAccount的ID无效。 |
-|                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | TransferAccount的密码无效。 |
-|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | 未设置TransferAccount。<br/> 请先在TOAST Gamebase Console中设置。 |
-|                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | TransferAccount不存在。请先获得TransferAccount。 |
-|                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | TransferAccount已存在。 |
-|                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccount已使用。 |
-| Auth (Login)   | AUTH_TOKEN_LOGIN_FAILED                  | 3101       | 令牌登录失败 |
-|                | AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO      | 3102       | 无效的令牌信息 |
-|                | AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103    | 无近期登录的IdP信息 |
-| IdP Login      | AUTH_IDP_LOGIN_FAILED                    | 3201       | IdP登录失败 |
-|                | AUTH_IDP_LOGIN_INVALID_IDP_INFO          | 3202       | 无效的IdP信息 (Console中没有此IdP信息。) |
-| Add Mapping    | AUTH_ADD_MAPPING_FAILED                  | 3301       | 添加映射（Mapping）失败 |
-|                | AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302        | 已与其他账户映射（Mapping）。 |
-|                | AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP    | 3303       | 已映射（Mapping）到相同的IdP。 |
-|                | AUTH_ADD_MAPPING_INVALID_IDP_INFO        | 3304       | 无效的IdP信息（Console中没有此IdP信息。） |
-|                | AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP    | 3305       | 利用Guest IdP无法AddMapping。 |
-| Add Mapping Forcibly | AUTH_ADD_MAPPING_FORCIBLY_NOT_EXIST_KEY         | 3311       | 强制映射密钥(ForcingMappingKey)不存在。<br/>请再次确认ForcingMappingTicket。 |
-|                      | AUTH_ADD_MAPPING_FORCIBLY_ALREADY_USED_KEY      | 3312       | 强制映射密钥(ForcingMappingKey)已使用。 |
-|                      | AUTH_ADD_MAPPING_FORCIBLY_EXPIRED_KEY           | 3313       | 强制映射密钥(ForcingMappingKey)的有效期已结束。 |
-|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_IDP         | 3314       | 强制映射密钥(ForcingMappingKey)已在其他IdP中使用。<br/>获得的ForcingMappingKey用于尝试相同IdP强制映射。 |
-|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_AUTHKEY     | 3315       | 强制映射密钥(ForcingMappingKey)已用于其他账户。<br/>获得的ForcingMappingKey用于尝试相同IdP及账户强制映射。 |
-| Remove Mapping | AUTH_REMOVE_MAPPING_FAILED               | 3401       | 解除映射（Mapping）失败 |
-|                | AUTH_REMOVE_MAPPING_LAST_MAPPED\_IDP     | 3402       | 无法解除最后映射（Mapping）的IdP。 |
-|                | AUTH_REMOVE_MAPPING_LOGGED_IN\_IDP       | 3403       | 是当前登录的IdP。 |
-| Logout         | AUTH_LOGOUT_FAILED                       | 3501       | 退出登录失败 |
-| Withdrawal     | AUTH_WITHDRAW_FAILED                     | 3601       | 退出（删除数据）失败 |
-|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 用户已临时退出。                    |
-|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 用户未临时退出。                    |
-| Not Playable   | AUTH_NOT_PLAYABLE                        | 3701       | 无法玩游戏的状态(维护或已下线等) |
-| Auth(Unknown)  | AUTH_UNKNOWN_ERROR                       | 3999       | 未知错误(未定义的错误) |
+| Category       | Error                                    | Error Code | Description                              |
+| -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
+| Auth           | INVALID\_MEMBER                          | 6          | Request for invalid member.                        |
+|                | BANNED\_MEMBER                           | 7          | Named member has been banned.                               |
+|                | AUTH\_USER\_CANCELED                     | 3001       | Login is cancelled.                            |
+|                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | The authentication is not supported.                        |
+|                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | Named member does not exist or has withdrawn.                      |
+|                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | Failed to initialize the external authentication library. |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | Error in external authentication library. <br/>Check the error details.  |
+|                | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR       | 3010       | Previous authentication process is not complete. |
+|                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | You have been logged out due to an invalid Gamebase Access Token.<br/>Please try logging in again. |
+| TransferAccount| SAME\_REQUESTOR                          | 8          | The issued TransferKey has been used on the same device. |
+|                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | You have tried transferring with a non-guest account or the account is linked with a non-guest IdP. |
+|                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | The date of TransferAccount has expired. |
+|                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | You have entered a wrong TransferAccount several times, so the account transfer function has been locked. |
+|                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | Invalid TransferAccount ID. |
+|                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | Invalid TransferAccount Password. |
+|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccount has not been set. <br/> Please set it on the NHN Cloud Gamebase console first. |
+|                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | TransferAccount does not exist. Please issue TransferAccount first. |
+|                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | TransferAccount exists. |
+|                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccount has already been used. |
+| Auth (Login) | AUTH_TOKEN_LOGIN_FAILED | 3101 | Token login has failed. |
+|              | AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO | 3102 | Invalid token information |
+|              | AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | Invalid last login IDP information |
+| IdP Login | AUTH_IDP_LOGIN_FAILED | 3201 | IDP login has failed. |
+|           | AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3202 | Invalid IDP information (IDP information does not exist in the Console.) |
+| Add Mapping | AUTH_ADD_MAPPING_FAILED | 3301 | Add mapping has failed. |
+|             | AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302 | Already mapped to another member. |
+|             | AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP | 3303 | Already mapped to same IDP. |
+|             | AUTH_ADD_MAPPING_INVALID_IDP_INFO | 3304 | Invalid IDP information (IDP information does not exist in the Console.) |
+|                | AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP    | 3305       | AddMapping is not available with Guest IdP. |
+| Add Mapping Forcibly | AUTH_ADD_MAPPING_FORCIBLY_NOT_EXIST_KEY         | 3311       | The force mapping key (ForcingMappingKey) has not been found.<br/>Please check ForcingMappingTicket again. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_ALREADY_USED_KEY      | 3312       | The force mapping key (ForcingMappingKey) has already been used. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_EXPIRED_KEY           | 3313       | The date of force mapping key (ForcingMappingKey) has expired. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_IDP         | 3314       | The force mapping key (ForcingMappingKey) has been used for a different IdP.<br/>The issued ForcingMappingKey is used for trying to force map to the same IdP. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_AUTHKEY     | 3315       | The force mapping key (ForcingMappingKey) has been used for a different account.<br/>The issued ForcingMappingKey is used for trying to force map to the same IdP and account. |
+| Remove Mapping | AUTH_REMOVE_MAPPING_FAILED | 3401 | Remove mapping has failed. |
+|                | AUTH_REMOVE_MAPPING_LAST_MAPPED_IDP | 3402 | Cannot delete last mapped IDP. |
+|                | AUTH_REMOVE_MAPPING_LOGGED_IN_IDP | 3403 | Currently logged-in IDP |
+| Logout | AUTH_LOGOUT_FAILED | 3501 | Logout has failed. |
+| Withdrawal | AUTH_WITHDRAW_FAILED | 3601 | Withdrawal has failed. |
+|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | The user is already in the status of temporary withdrawal.                    |
+|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | The user is not in the status of temporary withdrawal.                     |
+| Not Playable | AUTH_NOT_PLAYABLE | 3701 | Not playable (due to maintenance or service closed) |
+| Auth(Unknown) | AUTH_UNKNOWN_ERROR | 3999 | Unknown error (Undefined error) |
 
-* 所有错误代码，请参考以下文档。
-    * [错误代码](./error-code/#client-sdk)
+* Refer to the following document for the entire error codes.
+    * [Entire Error Codes](./error-codes#client-sdk)
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
-* 当在外部认证库发生错误时，将返还此错误。
-* 在外部认证库发生的错误信息包含在详细错误中，而详细错误代码和消息如下。
+* The error is returned when an error occurs in external authentication library.
+* The information on the error in external authentication library is included in the error details, and you can find detailed error code and message as follows.
 
 ```cs
 GamebaseError gamebaseError = error; // GamebaseError object via callback
@@ -1319,4 +1364,4 @@ else
 }
 ```
 
-* 关于详细错误代码，请参考每个外部认证库的Developer页面。
+* For detailed error codes, see the Developer page on each external authentication library.

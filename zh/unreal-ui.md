@@ -1,14 +1,14 @@
-## Game > Gamebase > Unreal SDK使用指南 > UI
+## Game > Gamebase > User Guide for Unreal SDK > UI
 
 ## ImageNotice
 
-通过在控制台中注册图片，向用户推送图片通知。
+You can pop up a notice to users after registering an image to the console.
 
 ![ImageNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/imageNotice-guide-002.png)
 
 ### Show ImageNotices
 
-在页面上显示图片通知。
+Show the image notice on the screen.
 
 **API**
 
@@ -45,16 +45,16 @@ void Sample::ShowImageNotices(int32 colorR, int32 colorG, int32 colorB, int32 co
 
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
-| colorR                   | 0~255                                    | Background背景颜色R            |
-| colorG                   | 0~255                                    | Background背景颜色G                |
-| colorB                   | 0~255                                    | Background背景颜色B                |
-| colorA                   | 0~255                                    | Background背景颜色Alpha                |
-| timeOut                  | int64        | 图片通知最大加载时间(单位 : millisecond)<br/>**default**: 5000                     |
+| colorR                   | 0~255                                    | Background color R            |
+| colorG                   | 0~255                                    | Backgrouond color G                |
+| colorB                   | 0~255                                    | Background color B                |
+| colorA                   | 0~255                                    | Background color Alpha                |
+| timeOut                  | int64        | Image notice max loading time (in millisecond)<br/>**default**: 5000                     |
 
 
 ### Close ImageNotices
 
-通过调用closeImageNotices API，可关闭当前显示的所有图片通知。 
+You can call the closeImageNotices API to terminate all image notices currently being displayed.
 
 **API**
 
@@ -69,50 +69,50 @@ void CloseImageNotices();
 
 ## Terms
 
-在Gamebase控制台中显示注册的条款。 
- 
+Shows the Terms and Conditions specified in the Gamebase Console.
+
 ![TermsView Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/termsView-guide-ui-001_2.20.0.png)
 
-调用showTermsView API显示条款窗时通过Webview显示。  
-如果要创建符合Game UI的条款窗，可通过调用QueryTerms API显示Gamebase控制台中注册的条款项目。
-若用户已同意条款，请将各项目的“同意与否”通过调用UpdateTerms API传送到Gamebase服务器。 
+ShowTermsView API displays the terms and conditions window in WebView.
+If you want to create your own terms and conditions window appropriate for the Game UI, call the QueryTerms API to load the terms and conditions set in the Gamebase console.
+If users agree to the terms and conditions, please use the UpdateTerms API to send the user consent of each item to the Gamebase server.
 
 ### ShowTermsView
 
-在页面上显示条款窗。
-若用户已同意条款，在服务器中注册“同意与否”。
-如果已同意条款，即使重新调用ShowTermsView API也不显示条款窗，而直接返还“成功回调”。
-但，如果在Gamebase控制台中将“重新同意条款”项目更改为**必须**，用户再次同意条款之前一直显示条款窗。
+Shows the terms and conditions window on the screen.
+If users agree to the terms and conditions, register the user consent data in the server.
+If users agree to the terms and conditions, calling the ShowTermsView API again will immediately return the success callback without displaying the terms and conditions window.
+However, if the Terms and Conditions reconsent requirement has been changed to **Required**, the terms and conditions window is displayed until users agree again to the terms and conditions.
 
-> <font color="red">[注意]</font><br/> 
+> <font color="red">[Caution]</font><br/>
 >
-> * 未显示条款窗时，FGamebasePushConfiguration为null。(显示条款窗时，始终返还有效的对象。)
-> * FGamebasePushConfiguration.pushEnabled值始终为true。
-> * 如果FGamebasePushConfiguration不是null，**登录后**调用IGamebase::Get().GetPush().RegisterPush()。
+> * FGamebasePushConfiguration is null if the terms and conditions window is not displayed. (If the terms and conditions window is displayed, a valid object is always returned.)
+> * FGamebasePushConfiguration.pushEnabled value is always true.
+> * If FGamebasePushConfiguration is not null, call IGamebase::Get().GetPush().RegisterPush() **after login**.
 
-#### Optional参数
+#### Optional parameter
 
-* GamebaseTermsConfiguration : 通过GamebaseTermsConfiguration对象您可以更改设置，例如是否显示“强制条款协议”窗口。
-* callback : 同意条款后关闭条款窗时，通过回调通知用户。将通过回调返还的GamebaseResponse.DataContainer对象 转换为GamebaseResponse.Push.PushConfiguration，登录后用于Gamebase.Push.RegisterPush API。
+* GamebaseTermsConfiguration: Using the GamebaseTermsConfiguration object, you can change settings such as whether to forcibly display the terms and conditions agreement window.
+* callback: Uses a callback to inform the user when the terms and conditions window closes after agreeing to it. The GamebaseResponse.DataContainer object which comes as a callback can be converted to GamebaseResponse.Push.PushConfiguration. The converted object can be used in the Gamebase.Push.RegisterPush API after login.
 
 **FGamebaseTermsConfiguration** 
-
+ 
 | API | Mandatory(M) / Optional(O) | Description | 
 | --- | --- | --- | 
-| forceShow | O | 如果已同意了条款，即使再调用ShowTermsView API也不显示条款窗，但还是强制显示条款窗。<br>**default**: false | 
-| enableFixedFontSize | O | 决定是否要固定条款窗的字体大小。<br>**default** : false<br/>**Android Only** |
-
+| forceShow | O | If the user agreed to the terms, calling the showTermsView API again will not display the terms and conditions window, but ignore it and force the display of the terms and conditions window.<br>**default** : false | 
+| enableFixedFontSize | O | Determines whether to fix the font size of the terms and conditions window.<br>**default** : false<br/>**Android Only** |
+ 
 **FGamebaseShowTermsViewResult**
 
 | Parameter              | Values                          | Description         |
 | ---------------------- | --------------------------------| ------------------- |
-| isTermsUIOpened        | bool                            | **true** : 显示条款窗，用户同意条款后条款窗被关闭。<br>**false** : 由于已同意了条款，不显示条款窗，而关闭了条款窗。        |
-     
+| isTermsUIOpened        | bool                            | **true** : The terms window was displayed and the user agreed, and the terms window has been closed.<br>**false** : The terms window was not displayed and the terms window has been closed because the user has already agreed to the terms.        |
+
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
 void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
@@ -123,19 +123,18 @@ void ShowTermsView(const FGamebaseTermsConfiguration& configuration, const FGame
 
 | Error | Error Code | Description |
 | --- | --- | --- |
-| NOT\_INITIALIZED | 1 | 未初始化Gamebase。  |
-| LAUNCHING\_SERVER\_ERROR | 2001 | 是从启动服务器返还的项目不包含相关条款内容时出现的错误。<br/>出现此问题时，请联系Gamebase负责人员。 |
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 上一次调用的Terms API未完成。<br/>请稍后再试。 |
-| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925 | 条款Webview尚未结束，但已再次被调用。 | 	
-| WEBVIEW\_TIMEOUT | 7002 | 显示条款Webview时出现超时错误。 |
-| WEBVIEW\_HTTP\_ERROR | 7003 | 打开条款Webview时出现HTTP错误。 | 
+| NOT\_INITIALIZED | 1 | Gamebase not initialized. |
+| LAUNCHING\_SERVER\_ERROR | 2001 | This error occurs when the items downloaded from the launching server do not have any information about the terms and conditions.<br/>This is not a usual case, and you should contact the Gamebase personnel. |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | The Terms API call has not been completed yet.<br/>Please try again later. |
+| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925 | Unfinished terms & conditions WebView has been called again. |
+| WEBVIEW\_TIMEOUT | 7002 | Timed out while displaying the terms and conditions WebView. |
+| WEBVIEW\_HTTP\_ERROR | 7003 | An HTTP error has occurred while opening the terms and conditions WebView. |
 
 **Example**
 
 ```cpp
 void Sample::ShowTermsView()
 {
-    IGamebase::Get().GetTerms().ShowTermsView(
     FGamebaseTermsConfiguration configuration { true };
 
     IGamebase::Get().GetTerms().ShowTermsView(configuration,
@@ -143,7 +142,7 @@ void Sample::ShowTermsView()
             if (Gamebase::IsSuccess(error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView succeeded."));
-     
+                
                 const auto result = FGamebaseShowTermsResult::From(dataContainer);
                 if (result.IsValid())
                 {
@@ -158,6 +157,7 @@ void Sample::ShowTermsView()
         })
     );
 }
+
 void Sample::AfterLogin()
 {
     // Call RegisterPush with saved PushConfiguration.
@@ -174,29 +174,29 @@ void Sample::AfterLogin()
 
 ### QueryTerms
 
-Gamebase通过Webview以简单形式显示条款。 
-如果要创建符合游戏UI的条款窗，可通过调用QueryTerms API ，在Gamebase控制台中获取条款信息后使用。
+Gamebase displays the terms and conditions with a simple WebView.
+If you want to create the terms and conditions appropriate for the game UI, call the QueryTerms API to download the terms and conditions information set in the Gamebase Console for later use.
 
-如果登录后调用，则可确认游戏用户是否同意条款。 
+Calling it after login also lets you see if the game user has agreed to the terms and conditions.
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> * 因Gamebase服务器不保存GamebaseResponse.Terms.ContentDetail.required为true的必要项目，agreed值将始终返回为false。 
->     * 这是因为必要项目将始终保存为true，不需要保存。
-> * 因gamebase服务器不保存“是否接收推送”，agreed值将始终返回为false。
->     * 如需查看用户“是否接收推送”，请调用Gamebase.Push.QueryPush API 。
-> * 使用与条款语言不同的国家代码在设置的终端机上调用queryTerms API，则将出现**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**错误。
->     * 在控制台中设置“基本条款”或出现**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** 错误时，请不要显示条款。 
-            
-#### Required参数
-* callback : 通过回调通知用户调用API的结果。可使用通过回调被返回的GamebaseResponse.Terms.QueryTermsResult来获取控制台中设置的条款信息。
+> * The required items with GamebaseResponse.Terms.ContentDetail.required set to true are not stored in the Gamebase server; therefore, false is always returned for the agreed value.
+>     * It is because there is no point in storing the required items since they are always stored as true.
+> * The user consent for receiving the push notification is not stored in the Gamebase server either; therefore, the agreed value is always returned as false.
+>     * To see if the user has agreed to receive push, use the Gamebase.Push.QueryPush API.
+> * If you do not touch the 'Terms and Conditions settings' in the console, **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** error occurs when you call the queryTerms API from the device with the country code different from the terms and conditions language.
+>     * If you complete the 'Terms and Conditions settings' in the console or if **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** error occurs, please make sure the terms and conditions are not displayed.
+
+#### Required parameter
+* callback: Uses a callback to inform the user about the API call result. With the GamebaseResponse.Terms.QueryTermsResult that comes as callback, you can acquire the terms and conditions information set in the console.
  
 
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cs
 void QueryTerms(const FGamebaseQueryTermsResultDelegate& onCallback);
@@ -206,9 +206,9 @@ void QueryTerms(const FGamebaseQueryTermsResultDelegate& onCallback);
 
 | Error | Error Code | Description |
 | --- | --- | --- |
-| NOT\_INITIALIZED | 1 | 未初始化Gamebase。 |
-| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE | 6921 | 在控制台中未注册条款信息。 |
-| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY | 6922 | 在控制台中未注册符合终端机国家代码的条款信息。 |
+| NOT\_INITIALIZED | 1 | Gamebase not initialized. |
+| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE | 6921 | Terms & conditions information is not registered with the console. |
+| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY | 6922 | Terms & conditions information appropriate for the device's country code is not registered with the console. |
 
 **Example**
 
@@ -234,53 +234,53 @@ void Sample::QueryTerms()
 
 | Parameter            | Values                          | Description         |
 | -------------------- | --------------------------------| ------------------- |
-| termsSeq             | int32                           | 所有条款KEY<br/>是调用updateTerms API时所需的值。          |
-| termsVersion         | FString                         | 条款版本<br/>是调用updateTerms API时所需的值。              |
-| termsCountryType     | FString                         | 条款类型<br/> - KOREAN : 韩国条款 <br/> - GDPR : 欧洲条款 <br/> - ETC : 其他条款         |
-| contents             | TArray<FGamebaseTermsContent>   | 条款项目信息          |
+| termsSeq             | int32                           | KEY for the entire terms and conditions.<br/>This value is required when calling updateTerms API.          |
+| termsVersion         | FString                         | T&C version.<br/>This value is required when calling updateTerms API.              |
+| termsCountryType     | FString                         | Terms and conditions type.<br/> - KOREAN: Korean terms and conditions <br/> - GDPR: European terms and conditions <br/> - ETC: Other countries' terms and conditions         |
+| contents             | TArray<FGamebaseTermsContent>   | Terms and conditions info          |
 
 
 #### GamebaseResponse.Terms.ContentDetail
 
 | Parameter            | Values                | Description         |
 | -------------------- | ----------------------| ------------------- |
-| termsContentSeq      | int32                 | 条款项目KEY         | 
-| name                 | FString               | 条款项目名称         |
-| required             | bool                  | 是否需要必须同意         |
-| agreePush            | FString               | 是否同意接收 广告性推送<br/> - NONE : 不同意。 <br/> - ALL : 全部同意。 <br/> - DAY : 同意在白天接收推送。<br/> - NIGHT : 同意在夜间接收推送。          |
-| agreed               | bool                  | 用户是否同意相关条款项目           |
-| node1DepthPosition   | int32                 | 显示第1阶段项目的顺序           |
-| node2DepthPosition   | int32                 | 显示第2阶段项目的顺序 <br/> 没有 -1           |
-| detailPageUrl        | FString               | 查看条款详情URL<br/> 没有 -null |
+| termsContentSeq      | int32                 | T&C KEY         | 
+| name                 | FString               | T&C Name         |
+| required             | bool                  | Whether agreement is required         |
+| agreePush            | FString               | Whether to accept advertisement push.<br/> - NONE: Do not accept <br/> - ALL: Accept all <br/> - DAY: Accept push notification during daytime<br/> - NIGHT: Accept push notification during night time          |
+| agreed               | bool                  | User's consent to the terms and conditions           |
+| node1DepthPosition   | int32                 | Primary item exposure sequence.           |
+| node2DepthPosition   | int32                 | Secondary item exposure sequence.<br/> If none, -1           |
+| detailPageUrl        | FString               | URL for the full terms and conditions.<br/> If none, null. |
 
 
 ### UpdateTerms
 
-如果使用调用QueryTerms API后被返回的条款信息创建了UI，
-请调用UpdateTerms API将游戏用户同意条款的记录传送到Gamebase服务器。 
+If the UI has been created manually with the terms and conditions info downloaded from the QueryTerms API,
+please use the UpdateTerms API to send the game user's agreement history to the Gamebase server.
 
-不仅可用于取消“可选条款同意”，也可用于修改同意条款的记录。
+It can be used to terminate the agreement to optional terms and conditions as well as to revise the agreed T&C clauses.
 
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> Gamebase服务器不保存“是否同意接收推送”。
-> 当保存“是否同意接收推送”时，**登录后**通过调用Gamebase.Push.RegisterPush API后保存。 
+> Push accept status is not stored in the Gamebase server.
+> Push accept status should be stored by calling the Gamebase.Push.RegisterPush API **after login**.
 >
 
-#### Required参数
-* configuration : 需要在服务器中注册的用户的可选条款信息。
+#### Required parameter
+* configuration: Information of optional T&C of users who will be registered on the server.
  
-#### Optional参数
+#### Optional parameter
 
-* callback : 在服务器中注册可选条款信息，并通过回调通知用户。
+* callback: Registers the information of optional terms and conditions on the server, and uses the callback to inform the user.
 
 
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
 void UpdateTerms(const FGamebaseUpdateTermsConfiguration& configuration, const FGamebaseErrorDelegate onCallback);
@@ -290,9 +290,9 @@ void UpdateTerms(const FGamebaseUpdateTermsConfiguration& configuration, const F
 
 | Error | Error Code | Description |
 | --- | --- | --- |
-| NOT\_INITIALIZED | 1 | 未初始化Gamebase。 |
-| UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | 设置了未注册的条款Seq值。 |
-| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR(6924) | 未完成Terms API的调用。<br/>请稍后再试。 |
+| NOT\_INITIALIZED | 1 | Gamebase not initialized. |
+| UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | Unregistered terms and conditions Seq value has been set. |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | The Terms API call has not been completed yet.<br/>Please try again later. |
 
 
 **Example**
@@ -323,20 +323,20 @@ void Sample::UpdateTerms(int32 termsSeq, const FString& termsVersion, int32 term
 
 | Parameter            | Mandatory(M) / Optional(O) | Values                    | Description         |
 | -------------------- | -------------------------- | ------------------------- | ------------------- |
-| termsVersion         | **M**                      | FString                    | 条款版本<br/>需要传送调用queryTerms API获取的值。   |
-| termsSeq             | **M**                      | int32                       | 所有条款KEY<br/>需要传送调用queryTerms API获取的值。             |
-| contents             | **M**                      | List< Content > | 用户同意可选条款的信息  |
+| termsVersion         | **M**                      | FString                    | T&C version.<br/>The queryTerms API must be called to pass the downloaded value.   |
+| termsSeq             | **M**                      | int32                       | KEY for the entire terms and conditions.<br/>The queryTerms API must be called to pass the downloaded value.             |
+| contents             | **M**                      | List< Content > | Info on whether user agrees to the optional terms and conditions  |
 
 #### GamebaseRequest.Terms.Content
 
 | Parameter            | Mandatory(M) / Optional(O) | Values             | Description         |
 | -------------------- | -------------------------- | ------------------ | ------------------- |
-| termsContentSeq      | **M**                      | int32                | 可选条款项目KEY      |
-| agreed               | **M**                      | bool               | 是否同意可选条款项目  |
+| termsContentSeq      | **M**                      | int32                | KEY for optional terms and conditions      |
+| agreed               | **M**                      | bool               | Info on whether user agrees to optional terms and conditions  |
 
 ### IsShowingTermsView
 
-可以查看当前条款窗是否显示在页面上。
+Determines whether the current terms and conditions window is being displayed on the screen.
 
 **API**
 
@@ -358,16 +358,16 @@ void Sample::IsShowingTermsView()
 
 ### Show WebView
 
-显示WebView。<br/>
+Shows WebView.<br/>
 
-##### Required参数
-* url : 作为参数发送的url必须是有效值。
+##### Required Parameters 
+* url: An URL sent to parameters must be valid. 
 
-##### Optional参数(是Require参数，但在以后版本需要更改为Optional。)
-* configuration : 通过使用GamebaseWebViewConfiguration可更改WebView的布局。
-* closeCallback : 关闭WebView时通过回调通知用户。
-* schemeList : 指定用户需要接收的自定义Scheme列表。
-* schemeEvent : 通过回调通知包含指定为schemeList的自定义Scheme url。
+##### Optional Parameters (Currently Required, which is to be changed to Optional in a later version)
+* configuration: WebView layout could be changed with GamebaseWebViewConfiguration.
+* closeCallback: Notify the user of the closure of WebView with a callback. 
+* schemeList: Specify the list of customized scheme as the user needs.  
+* schemeEvent: Notify the URL including customized scheme which is specified by schemeList.
 
 **API**
 
@@ -410,48 +410,46 @@ void Sample::ShowWebView(const FString& url)
 
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
-| title                    | string                                   | WebView的标题                 |
-| orientation              | GamebaseScreenOrientation::Unspecified    | 未指定 |
-| title                    | FString                                   | WebView的标题                  |
-| orientation              | GamebaseScreenOrientation::Unspecified    | 未指定(**default**)            |
-|                          | GamebaseScreenOrientation::Portrait       | 纵向模式                       |
-|                          | GamebaseScreenOrientation::Landscape      | 横向模式                       |
-|                          | GamebaseScreenOrientation::LandscapeReverse | 将横向模式旋转180度              |
-| contentMode              | GamebaseWebViewContentMode::Recommended        | 当前平台推荐的浏览器(**default**)   |
-|                          | GamebaseWebViewContentMode::Mobile             | 移动浏览器            |
-|                          | GamebaseWebViewContentMode::Desktop            | 桌面浏览器          |
-| colorR                   | 0~255                                    | 导航栏颜色R<br>**default**: 18               |
-| colorG                   | 0~255                                    | 导航栏颜色G<br>**default**: 93               |
-| colorB                   | 0~255                                    | 导航栏颜色B<br>**default**: 230              |
-| colorA                   | 0~255                                    | 导航栏颜色Alpha<br>**default**: 255          |
-| barHeight                | height                                   | 导航栏颜色高度<br>**Android Only**                 |
-| isNavigationBarVisible   | true or false                            | 导航栏有效或无效<br>**default**: true    |
-| isBackButtonVisible      | true or false                            | 返回按钮有效或无效<br>**default**: true   |
-| backButtonImageResource  | ID of resource                           | 返回按钮图像         |
-| closeButtonImageResource | ID of resource                           | 关闭按钮图像             |
-| enableFixedFontSize      | true or false                            | 指定是否固定条款窗的字体大小。<br>**default**: false<br>**仅限Android**     |
-| renderOutSideSafeArea    | true or false                            | 指定是否在Safe Area区域之外进行渲染。<br>**default**: false<br>**仅限Android**   |
+| title                    | FString                                   | Title of WebView                  |
+| orientation              | GamebaseScreenOrientation::Unspecified    | Unspecified (**default**)            |
+|                          | GamebaseScreenOrientation::Portrait       | Portrait mode                       |
+|                          | GamebaseScreenOrientation::Landscape      | Landscape mode                       |
+|                          | GamebaseScreenOrientation::LandscapeReverse | Rotate portrait mode 180 degrees            |
+| contentMode              | GamebaseWebViewContentMode::Recommended        | Browser recommended by the current platform (**default**)   |
+|                          | GamebaseWebViewContentMode::Mobile             | Mobile browser            |
+|                          | GamebaseWebViewContentMode::Desktop            | Desktop browser          |
+| colorR                   | 0~255                                    | Color R of Navigation Bar<br>**default**: 18               |
+| colorG                   | 0~255                                    | Color G of Navigation Bar<br>**default**: 93               |
+| colorB                   | 0~255                                    | Color B of Navigation Bar<br>**default**: 230              |
+| colorA                   | 0~255                                    | Color alpha of Navigation Bar<br>**default**: 255          |
+| barHeight                | height                                   | Height of Navigation Bar<br>**Android Only**                 |
+| isNavigationBarVisible   | true or false                            | Activate or deactivate Navigation Bar<br>**default**: true    |
+| isBackButtonVisible      | true or false                            | Activate or deactivate Go Back button<br>**default**: true   |
+| backButtonImageResource  | ID of resource                           | Image of Go Back button         |
+| closeButtonImageResource | ID of resource                           | Image of Close button            |
+| enableFixedFontSize      | true or false                            | Fix the font size for the terms and condtion window .<br>**default**: false<br>**Only for Android**     |
+| renderOutSideSafeArea    | true or false                            | Render outside Safe Area.<br>**default**: false<br>**Only for Android**   |
 
 > [TIP]
 >
-> iPadOS 13以上中的WebView基本上是桌面模式。
-> 可通过contentMode = “GamebaseWebViewContentMode::MOBILE”设置来更改移动模式。
+> In iPadOS 13 or later, WebView is the default desktop mode.
+> You can use the contentMode =`GamebaseWebViewContentMode::MOBILE` setting to switch to the mobile mode.
 
 #### Predefined Custom Scheme
 
-是Gamebase指定的Scheme。
+Refers to the scheme specified by Gamebase.
 
-| scheme | 用途 |
+| Scheme | Usage |
 | ----------------------------- | ------------------------------ |
-| gamebase://dismiss | 关闭WebView。|
-| gamebase://getMaintenanceInfo | 在WebPage显示维护结果。 |
-| gamebase://getUserId          | 显示当前登录的游戏用户ID。 |
-| gamebase://goBack | 返回到WebView的上一页。|
+| gamebase://dismiss | Close WebView  |
+| gamebase://getMaintenanceInfo | Show maintenance on WebPage  |
+| gamebase://getUserId          | Show user ID of the currently logged-in game user  |
+| gamebase://goBack | Go Back of WebView |
 
 
 ### Close WebView
 
-可以通过调用以下API来关闭WebView。
+With the following API, you can close the Webview of the current display.
 
 **API**
 
@@ -474,7 +472,7 @@ void Sample::CloseWebView()
 
 ## Open External Browser
 
-可以通过调用以下API打开外部浏览器。作为参数传送的url必须是有效值。
+With the following API, you can open an external browser. The URL sent to parameters must be valid. 
 
 **API**
 
@@ -497,8 +495,8 @@ void Sample::OpenWebBrowser(const FString& url)
 
 ## Alert
 
-可以显示系统通知。
-可以在系统通知注册回调。
+Shows notifications of the system. 
+Callback registration is also available on the system notification. 
 
 **API**
 
@@ -529,7 +527,7 @@ void Sample::ShowAlertEvent(const FString& title, const FString& message)
 
 ## Toast
 
-通过调用以下API可轻松地显示消息。
+With the following API, it gets easy to display messages. 
 
 **API**
 
@@ -553,8 +551,8 @@ void Sample::ShowToast(const FString& message, EGamebaseToastExposureTime exposu
 
 | Error              | Error Code | Description                 |
 | ------------------ | ---------- | --------------------------- |
-| UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | 显示图片通知时出现了超时错误。|
-| UI\_UNKNOWN\_ERROR | 6999       | 未知错误(是未定义的错误) |
+| UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | Timed out while displaying image notice. |
+| UI\_UNKNOWN\_ERROR | 6999       | Unknown (undefined) error.  |
 
-* 关于所有错误代码，请参考以下文档。 
-    * [错误代码](./error-code/#client-sdk)
+* See the following document for the entire error codes. 
+    * [Error Codes](./error-code/#client-sdk)
