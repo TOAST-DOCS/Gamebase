@@ -5,10 +5,9 @@
 ### Android
 
 #### Naver Idp
-* Naver Login SDK의 OAuthLoginInAppBrowserActivity에서 발생하던 Cross-app Scripting 취약점이 해결되었습니다.
-* minSDK가 19 -> 21로 상향되었습니다.
+* Naver Login SDK의 업데이트로 minSDK가 19 -> 21로 상향되었습니다.
 
-#### MyCard
+#### MyCard Adapter
 * NHN Cloud SDK의 업데이트로 minSDK가 19 -> 21로 상향되었습니다.
 
 ## 2.53.0
