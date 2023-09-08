@@ -1,138 +1,139 @@
-## Game > Gamebase > iOS SDK使用指南 > 开始
+## Game > Gamebase > iOS Developer's Guide > Getting Started
 
 ## Environments
 
 
 > [INFO]
 >
-> 最低规格
+> Minimum specifications
 >
-> * 用户执行环境 : iOS 11以上
-> * Build环境 : Xcode 14.1(iOS 16.1 SDK)以上
->  
+> * User run environment : iOS 11 or later
+> * Build environment : Xcode 14 (iOS 16.1 SDK) or later
+>
 
 <br/>
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 支持部分IdP时，请参考**以下3rd Party Gamebase Auth Adapters列表中的Support iOS Version项目**。
-> 推出AppStore时，必须遵守Apple版本政策。 
+> If some IdPs are supported, **see the Support iOS Version field in the 3rd Party Gamebase Auth Adapters table** shown below.
+> When releasing the AppStore, Apple version policy must be complied with.
 >
 > * https://developer.apple.com/ios/submit/
 >
 
 ## Setting
 
-Gamebase可以通过以下方式安装。
+Gamebase can be setup as below.
 
 ### Download
 
-* [下载Gamebase iOS SDK](/Download/#game-gamebase)
+* [Download Gamebase iOS SDK](/Download/#game-gamebase)
 
-下载Gamebase.framework和必要的Adapter。<br/>
-并且需要下载进行各IdP认证的SDK文件。仅在使用相关IdP的登录时添加即可。<br/>
-下载后，需要将SDK文件添加在项目的target当中。
+Download Gamebase.framework.zip and required adapters.<br/>
+Also download SDK files to authenticate each IdP, which are required only for a login.<br/>
+Then, include corresponding SDK files to a target of your project.
 
 **Gamebase iOS SDK Components**
 
-| Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | 用途 | Support iOS Version |
+| Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage  | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.4.0 | 包括Gamebase的Interface和核心逻辑。 | iOS 11 or later |
-| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | 支持Facebook登录。 | iOS 11 or later |
-|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.8 | 支持PAYCO登录。 | iOS 11 or later |
-|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | 支持NAVER登录。 | iOS 11 or later |
-|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | 支持Gamecenter登录。 | iOS 11 or later |
-|  | GamebaseAuthGoogleAdapter.framework | GoogleSignIn 5.0.2 | 支持Google登录。 | iOS 11 or later |
-|  | GamebaseAuthTwitterAdapter.framework | | 支持Twitter登录。 | iOS 11 or later |
-|  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | 支持LINE登录。 | iOS 11 or later |
-|  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | 支持iOS 11 or later<br/>arm64。<br/> |
-|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.6 | 支持Hangame登录。 | iOS 11 or later |
-|  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.3.3 | 支持Weibo登录。 | iOS 11 or later |
-|  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.14 | 支持Kakao登录。 | iOS 11 or later |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.4.0 | 支持游戏内支付。 | iOS 9 or later |
-| Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.4.0 | 支持Push。 | iOS 11 or later |
+| Gamebase | Gamebase.framework<br/>Gamebase.bundle | NHNCloudSDK 1.4.0 | Includes the interface and key logic of Gamebase | iOS 11 or later |
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.framework | FacebookSDK v9.2.0 | Supports Facebook login | iOS 11 or later |
+|  | GamebaseAuthPaycoAdapter.framework | PaycoID Login 3rd SDK v1.5.8 | Supports PAYCO login | iOS 11 or later |
+|  | GamebaseAuthNaverAdapter.framework | naveridlogin-sdk-ios-4.1.1 | Supports NAVER login | iOS 11 or later |
+|  | GamebaseAuthGamecenterAdapter.framework | GameKit.framework | Supports Game Center login | iOS 11 or later |
+|  | GamebaseAuthGoogleAdapter.framework | GoogleSignIn 5.0.2 | Supports Google login | iOS 11 or later |
+|  | GamebaseAuthTwitterAdapter.framework | | Supports Twitter login | iOS 11 or later |
+|  | GamebaseAuthLineAdapter.framework | LineSDK v5.8.2 | Supports LINE login  | iOS 11 or later |
+|  | GamebaseAuthAppleidAdapter.framework |  | Sign In with Apple | iOS 11 or later<br/>arm64 support<br/> |
+|  | GamebaseAuthHangameAdapter.framework | HangameID SDK 1.8.6 | Supports Hangame login | iOS 11 or later |
+|  | GamebaseAuthWeiboAdapter.framework | weibo_ios_sdk-3.3.3 | Supports Weibo login | iOS 11 or later |
+|  | GamebaseAuthKakaogameAdapter.framework | KakaoGame 3.14.14 | Supports Kakao login | iOS 11 or later |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.framework | StoreKit.framework<br/>NHNCloudIAP 1.4.0 | Supports in-game purchase | iOS 11 or later |
+| Gamebase Push Adapters | GamebasePushAdapter.framework | NHNCloudPush 1.4.0 | Supports Push | iOS 11 or later |
 
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 添加Sign In with Apple需要的AuthenticationServices.framework时必须设置为Optional。
-> 如果设置为Required，在iOS 11以下设备运行时将会发生崩溃。
+> When adding the AuthenticationServices.framework required for Sign In with Apple, it must be set to Optional.
+> If it is set to Required, the devices running on iOS version 11 or earlier crashes immediately after launching the app.
 > 
-> 从Gamebase SDK iOS 2.13.0开始在iOS 9以上支持Sign In with Apple，并需要在Gamebase Console中输入Service ID。
+> Gamebase SDK iOS 2.13.0 or later supports Sign In with Apple in iOS 9 or later, and additionally the Service ID needs to be set in the Gamebase Console.
 
-<br>
+<br/>
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 从Gamebase Framework文件当中选择文件名包括**Adapter**的文件后, 在项目内决定是否使用，若存在不使用的Adapter Framework，推荐删除。
-> 为了使用Adapter Framework，可能需要上述表中显示的外部SDK。
-> 对于部分验证Adpater，应注意上表中的Support iOS Version。
-> (如果支持版本为iOS 11以上的Auth Adpater被包括在build中，在iOS 9以下设备运行时会发生崩溃。)
+> The Gamebase Framework files that contain **Adapter** in their name can be selected to determine whether they will be used within the project or not. It is recommended to remove any unused Adapter Frameworks.
+> To use these Adapter Frameworks, the external SDKs specified in the above table might be required.
+> For some Auth Adapters, be aware of the supported iOS versions listed in the table above.
+> (If an Auth Adapter that supports iOS version 11 or later is included in the build, it will crash on iOS 10 or earlier.)
 
-<br/> 
+<br/>
 
 > [INFO]
 > 
-> 有关每个IdP提供的外部SDK的设置，请参考IdP指南。
+> For setting of external SDKs which each IdP provides, refer to each IdP guide.
 >
 
 ### Xcode Settings
 
-解压后，显示如下Gamebase.framework等SDK文件。
+By decompression, following SDKs will show, including Gamebase.framework.
 
 ![unzip gamebase](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-002_1.0.0.png)
 
-* 1) 将Framework文件拖到Project的Project Navigator中并导入。添加的Framework文件应添加到项目target中。
-* 2) 将**Gamebase.bundle**文件添加到**Copy Bundle Resources**中。
+
+* 1) Drag framework files to Project Navigator of the project and import. Note that added framework files should be added to a project target.
+* 2) Also add the **Gamebase.bundle** file to **Copy Bundle Resources**.
 ![Gamebase.bundle Bundle Resources](http://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-003_1.0.0.png)
-* 3) 为了使用Gamebase，除了Gamebase的framework之外 ，还需包括Gamebase使用的各种外部SDK功能, 为此需要添加framework和library文件，通过linker进行参考。请添加以下的几个项目。
+* 3) To use Gamebase, a number of frameworks and library files must be added so that they can be referenced by the linker. This is to include the features of the external SDKs used by Gamebase in addition to the framework of Gamebase. You need to add the following:
     * libicucore.tbd
     * libz.tbd
     * libsqlite3.tbd
     * libc++.tbd
-    * AdSupport.framework 
-    * ImageIO.framework    
+    * AdSupport.framework
+    * ImageIO.framework
     * GameKit.framework
     * StoreKit.framework
     * Security.framework
     * AuthenticationServices.framework (Optional)
     * AppTrackingTransparency.framework (Optional)
-  
+
 ![Link Binary With Libraries](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-005_1.0.0.png)
 
-* 4) 使用**Gamebase iOS SDK 2.12.0以上**版本时，更新Facebook SDK的同时要添加设置。 
-    * 添加**Accelerate.framework**。
-    * 在项目内添加**空swift文件**(在项目内没有swift文件时添加)。
-* 5) 需要在**Target > Build Settings > Linking > Other Linker Flags**中添加**-ObjC**。
+* 4) When using **Gamebase iOS SDK 2.12.0 or later**, additional settings are required as Facebook SDK is updated.
+    * Adding **Accelerate.framework**
+    * Add an **empty swift file** within the project (When there are not any swift files within the project)
+* 5) Go to **Target > Build Settings > Linking > Other Linker Flags** and add **-ObjC**.
 ![Other Linker Flags](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
-* 6) 如果使用NaverAuthAdapter则需将NAVER SDK提供的**NaverThirdPartyLogin.framework**文件添加在**Target > Build Phases > Embeded Frameworks**中。 
+* 6) When using NaverAuthAdapter, the **NaverThirdPartyLogin.framework** file provided by NAVER SDK should be added to **Target > Build Phases > Embeded Frameworks**.
  ![Naver Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.8.0.png)
- * 7) 如果使用LineAuthAdapter则需将LINE SDK提供的**LineSDK.xcframework**文件添加在**Target > Build Phases > Embeded Frameworks**中。
+ * 7) When using LineAuthAdapter, the **LineSDK.xcframework** file provided by LINE SDK should be added to **Target > Build Phases > Embeded Frameworks**.
  ![LINE Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.9.1.png)
 
 > [INFO]
 >
-> 链接器上的**-ObjC**选项设置会将加载Static Library中的所有Objective-C class和category。
-> 因此，如果未设置此选项，则在Runtime会出现**selector not recognized**错误。
+> The **-ObjC option** to the Linker allows all Objective-C classes and categories of Static Library to be loaded. <br/>
+> Therefore, if this option is not set, an error like **selector not recognized** may occur during runtime.
 >
 
 <br/>
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> * 进行Unity(2019.3以上)Build时，只能在**UnityFramework**target中import Gamebase iOS SDK。
-> * 进行Unity Build时，在Xcode项目target中将生成**Unity-iPhone**和**UnityFramework**。
-> * 在各target重复import Gamebase iOS SDK时，启动时可能出现问题，因此必须要注意。
+> * When building with Unity (2019.3 or later), import the Gamebase iOS SDK only to the **UnityFramework** target.
+> * When you run Unity build, **Unity-iPhone** and **UnityFramework** are created in the Xcode project target.
+> * Note that there may be problems with operation if you import the Gamebase iOS SDK in duplicate for each target.
 > 
 
 ### CocoaPods Settings
 
-Gamebase iOS SDK可以通过CocoaPods来设置。
+You can set the Gamebase iOS SDK with CocoaPods.
 
-* 1) 运行Xcode以创建项目。
-* 2) 运行Terminal并转到要应用CocoaPods的项目目录。
-* 3) 执行**pod init**命令，创建**Podfile**。
-* 4) 使用编辑器打开已创建的**Podfile**并编写以下内容。
+* 1) Execute Xcode to create a project.
+* 2) Execute the terminal to navigate to the directory of the project where CocoaPods will be applied.
+* 3) Execute the **pod init** command to create **Podfile**.
+* 4) Open the created **Podfile** with the editor and enter the following.
 
 ```ruby
 platform :ios, '11.0'
@@ -151,66 +152,66 @@ target 'SampleApplication' do
     pod 'GamebasePushAdapter'
     pod 'GamebasePurchaseIAPAdapter'
 
-    # 关于以下模块儿的使用方法，请联系客户服务。 
+    # Regarding how to use the following modules, please contact the Customer Center.
     pod 'GamebaseAuthHangameAdapter'
     pod 'GamebaseAuthKakaogameAdapter'
 end
 ```
 
-> [INFO]
+> [Note]
 >
-> 在**target 'SampleApplication' do**部分中输入创建项目的target名称。
-> **按照pod “Gamebase”，“2.48.0”**编制，可以指定特定版本。若各pod未列出版本，则设置为最新版。
-> 只能选择特定Adapter适用。 
+> Enter the target name of the created project in the **target 'SampleApplication' do** part.<br/>
+> You can specify versions by writing in this way: **pod 'Gamebase', '2.48.0'**. If no version is specified in each pod, the newest version is used.<br/>
+> Only some specific Adapters can be selected and applied.
 > 
 
 
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 如果您不使用最新版本的Gamebase，一部分Adapter可能无法使用。
+> If you do not use the latest Gamebase version, some adapter may not be available.
 >
 
-* 5) 创建Podfile后，通过执行**pod install**或**pod update**命令来设置Gamebase。
-* 6) 设置完后**项目名.xcworkspace**的文件将被创建。创建之后使用**xcworkspace**文件进行开发。 
+* 5) Install Gamebase using the **pod install** or **pod update** command after Podfile is written.
+* 6) A **[project name].xcworkspace** file will be created when the installation is complete. From this point on, product is developed using the created **xcworkspace** file.
 
 
-> [INFO]
+> [Note]
 >
-> 详细的CocoaPods使用方法，请参考[CocoaPods指南](https://guides.cocoapods.org/)中的[使用CocoaPods](https://guides.cocoapods.org/using/index.html)页面。 
-> 
+> For more detailed information on how to use CocoaPods, see [Using CocoaPods](https://guides.cocoapods.org/using/index.html) at [CocoaPods Guide](https://guides.cocoapods.org/).
+>
 >
 
 ### IdP Settings
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> * 在NHN Cloud Console中生成新项目后，必须确认Gamebase服务是否已被启用。 
-> * 从各IdP控制台中获取Client ID后，请确认是否已在Gamebase控制台中输入。 
+> * Make sure that Gamebase service is enabled by creating a new project from NHN Cloud Console.
+> * Make sure that Client ID is issued by each IdP console and the IDs are entered in the Gamebase console.
 
-* 为了进行认证，在IdP控制台中获取Client ID，将其在Gamebase控制台中输入。 
-    * [Game > Gamebase > 控制台使用指南 > 应用程序 > Authentication Information](./oper-app/#authentication-information)
-* 使用Gamebase iOS SDK时，对各IdP需要添加设置。
+* For verification, get Client ID from the IdP and enter it in the Gamebase console.
+    * [Game > Gamebase > Console User Guide > App > Authentication Information](./oper-app/#authentication-information)
+* Gamebase iOS SDK requires an additional, separate setting per IdP.
 
 #### Google
 
-* 需要设置URL Scheme。
-    * 然后将**Google Cloud Platform > APIs & Services > Credentials**发布的iOS URL scheme添加在**Xcode > Target > Info > URL Types**。
-* Gamebase iOS SDK 2.34.1以下需要附加的设置。
-    * [Game > Gamebase > iOS SDK使用指南 > 开始 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
+* URL Scheme must be configured.
+    * Add the iOS URL scheme obtained from **Google Cloud Platform > APIs & Services > Credentials** to **Xcode > Target > Info > URL Types**.
+* An additional setting is required for Gamebase iOS SDK 2.34.1 or earlier versions.
+    * [Game > Gamebase > iOS SDK User Guide > Getting Started > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
 #### PAYCO
 
-* 需要设置URL Scheme。
-    * 需要在**Xcode > Target > Info > URL Types**中添加**tcgb.{Bundle ID}.payco**。
-    * 需要在**Xcode > Target > Info > URL Types**中添加**paycologinsdk**。
+* URL Scheme must be configured.
+    * Go to **Xcode > Target > Info > URL Types** and add **tcgb.{Bundle ID}.payco**
+    * Go to **Xcode > Target > Info > URL Types** and add **paycologinsdk**.
 
 #### NAVER
 
-* 需要设置URL Scheme。
-    * 在**Xcode > Target > Info > URL Types**中添加**tcgb.{Bundle ID}.naver**。
-    * 需要在**NAVER Developers > 我的应用程序 > 设置API > iOS > URL Scheme**中添加**tcgb.{Bundle ID}.naver**。
-* 在Info.plist文件注册Scheme。
+* URL Scheme must be configured.
+    * Go to **Xcode > Target > Info > URL Types** and add **tcgb.{Bundle ID}.naver**
+    * In **NAVER Developers > My Application > API Settings > iOS > URL Scheme**, add **tcgb.{Bundle ID}.naver**.
+* Register the Scheme in the Info.plist file.
 ```
 <key>LSApplicationQueriesSchemes</key>
 <array>
@@ -218,45 +219,46 @@ end
     <string>naversearchapp</string>
 </array>
 ```
-* Gamebase iOS SDK 1.12.1以下版本需要附加的设置。 
-    * [Game > Gamebase > iOS SDK使用指南 > 开始 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
- 
+
+* An additional setting is required for Gamebase iOS SDK 1.12.1 or earlier versions.
+    * [Game > Gamebase > iOS SDK User Guide > Getting Started > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
+
 #### Twitter
 
-* 需要设置URL Scheme。
-    * 在**Xcode > Target > Info > URL Types**中添加**tcgb.{Bundle ID}.twitter**。
-* 需要设置Twitter的Developer网页的Apps > 对象项目 > App Details > Callback URL项目。
-    * 添加**tcgb.{Bundle ID}.twitter://**。
+* URL Scheme must be configured.
+    * Go to **Xcode > Target > Info > URL Types** and add **tcgb.{Bundle ID}.twitter**
+* Need to configure Apps > Target Project > App Details > Callback URL on the Developer site of Twitter.
+    *  Add **tcgb.{Bundle ID}.twitter://**.
 
 #### LINE
 
-* 需要设置URL Scheme。
-	* 在**Xcode > Target > Info > URL Types**中添加**line3rdp.{App Bundle ID}**。
+* URL Scheme must be configured.
+	* Go to **Xcode > Target > Info > URL Types** and add **line3rdp.{App Bundle ID}**
 
-* 为了ATS设置，在Info.plist文件中注册Scheme。
+* For ATS setting, register the Scheme in the Info.plist file.
 ```
 <key>LSApplicationQueriesSchemes</key>
 <array>
     <string>lineauth2</string>
 </array>
 ```
-* Gamebase iOS SDK 2.42.2以下需要额外的设置。
-    * [Game > Gamebase > iOS SDK使用指南 > 开始 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
+* For Gamebase iOS SDK 2.42.2 or earlier, additional settings are required.
+    * [Game > Gamebase > iOS SDK User Guide > Getting Started > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
 ### IdP Settings (Legacy)
 
 **Google**
 
-* Gamebase iOS SDK 2.34.1以下
-    * 需要设置URL Scheme。
-        * 需要在**Xcode > Target > Info > URL Types**中添加**tcgb.{Bundle ID}.google**。
-* Gamebase iOS SDK 1.12.1以下
-    * 要在**NHN Cloud Console > Gamebase > App > 认证信息 > 附加信息 & Callback URL**的**附加信息**项目中设定JSON string格式的信息。 
-        * 使用Google时，需要在iOS应用程序中设置**url_scheme_ios_only**必要信息。  
-        * **url_scheme_ios_only**的值要与在Xcode的URL Scheme中注册的值中的一个相一致。 
-    * 需要设置URL Scheme。
+* Gamebase iOS SDK 2.34.1 or earlier
+    * URL Scheme must be configured.
+        * Add **tcgb.{Bundle ID}.google** in **Xcode > Target > Info > URL Types**.
+* Gamebase iOS SDK 1.12.1 or earlier
+    * You need to provide JSON string-type data in the **Additional Info** field in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
+        * For Google, you need to set **url_scheme_ios_only** required for iOS apps.
+        * The value of **url_scheme_ios_only** must match one of the values registered for the URL Scheme of Xcode.
+    * URL Scheme must be configured.
         * **Xcode > Target > Info > URL Types**
-* 输入Google附加认证信息的示例 
+* Example of entering the additional authentication information for Google
 
 ```json
 { "url_scheme_ios_only": "Your URL Scheme" }
@@ -267,24 +269,23 @@ end
 
 **NAVER**
 
-* Gamebase iOS SDK 1.12.1以下
-	* 要在**NHN Cloud Console > Gamebase > App > 认证信息 > 附加信息 & Callback URL**的**附加信息**项目中设定JSON String格式的信息。
-		* 使用NAVER时，需要在同意登录的窗口设置**service_name**（应用程序名称）。
-		* iOS应用程序需要额外的设定。要添加**url_scheme_ios_only**必要信息。
-	* 需要设置URL Scheme。 
+* Gamebase iOS SDK 1.12.1 or earlier
+	* You need to provide JSON String-type data in the **Additional Info** field in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
+		* For NAVER, **service_name**, which is the app name to be displayed on the Agree to Login window, needs to be configured.
+		* **url_scheme_ios_only**, information needed by iOS apps, needs to be configured as well.
+	* URL Scheme must be configured.
 		* **Xcode > Target > Info > URL Types**
-* 输入NAVER附加认证信息的示例 
+* Example of entering the additional authentication information for NAVER
 
 ```json
 { "url_scheme_ios_only": "Your URL Scheme", "service_name": "Your Service Name" }
 ```
 
 ![gamebase_auth_naver_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_naver_console_01.png)
-
 **LINE**
 
-* Gamebase iOS SDK 2.42.2以下
-    * 您需要将LINE发布的ChannelID设置在Info.plist文件中。
+* Gamebase iOS SDK 2.42.2 or earlier
+    * You need to provide the ChannelID issued by LINE in the Info.Plist file.
 
 ```
 <key>LineSDKConfig</key>
@@ -308,17 +309,17 @@ end
 
 ## API Reference
 
-API Reference已被包含在SDK中。
+Included in SDK.
 
 ## API Deprecate Governance
 
-将对Gamebase不再支持的API，进行Deprecate处理。
-在满足以下条件时，可以删除Deprecated的API，不再另行通知。
+The API which is not supported by Gamebase anymore is processed as deprecated (deprecate).
+A (deprecated) API can be deleted without any prior notice when the following conditions are met:
 
-* 超过5次小更新
+* Minor version updates of five or more times.
 	* Gamebase Version Format - XX.YY.ZZ
 		* XX : Major
 		* YY : Minor
 		* ZZ : Hotfix
 
-* 至少5个月
+* Time elapse of at least five months

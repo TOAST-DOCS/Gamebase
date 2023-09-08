@@ -1,11 +1,11 @@
-## Game > Gamebase > iOS SDK 使用指南 > ETC
+## Game > Gamebase > iOS SDK User Guide > ETC
 
 ## Additional Features
-以下描述Gamebase支持的附加功能。
+Additional functions provided by Gamebase are described as below:
 
 ### IDFA
 
-* 返还终端机的广告标识符值。 
+* Returns the ad identifier value of the device.
 
 **API**
 
@@ -13,19 +13,19 @@
 + (NSString *)idfa;
 ```
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 如果在iOS 14以上版本上请求IDFA值，则需要获得用户权限。
-> 需要设定用户权限时，在info.plist中设定您要显示的内容。 
-> 请在info.plist中设定“Privacy - Tracking Usage Description”。
+> For iOS 14 or later, user permission must be required when requesting the IDFA value.
+> When asking for user permission, the text to prompt must be set in info.plist.
+> Please set 'Privacy - Tracking Usage Description' in info.plist.
 
 
 
 
 ### Device Language
 
-* 返回终端机设置的语言代码。
-* 注册多种语言时，仅返回优先权最高的语言。
+* Returns the language code from the device.
+* If there are several languages registered, only the language of top priority is returned.
 
 **API**
 
@@ -34,33 +34,34 @@
 ```
 
 
-### Display Language           
+### Display Language
 
-正像游戏维护弹窗显示语言，Gamebase也显示终端机设置的语言。
+Similar to the Maintenance popup, the language used by the device will be displayed as the Gamebase language.
 
-但有些游戏允许通过额外选项更改终端机设置的语言。
-终端机设置的默认语言是英语，但需将游戏的显示语言转换为日语时，即使要将Gamebase的显示语言也转换为日语，Gamebase仍显示终端机设置的默认语言（en）。
+However, there are games that may use a language different from the device language with separate options.
+For example, if the language configured for the device is English and you changed the game language to Japanese, the language displayed will be still English, even though you might want to see Japanese on the Gamebase screen.
 
-因此Gamebase向需以终端机设置语言之外的其他语言显示Gamebase消息的应用程序，提供“Display Language”功能。
+For this, Gamebase provides a Display Language feature for applications that want to use a language that is not the language configured by the device for Gamebase.
 
-Gamebase显示消息时，按照注册为Display Language的语言显示消息。
-在Display Language输入语言代码时，只能使用以下列表中（**Gamebase支持的语言代码种类**）指定的代码。
+Gamebase displays its messages in the language set in Display Language.
+The language code entered for Display Language should be one of the codes listed in the table (**Types of language codes supported by Gamebase) below:
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> * 无论终端机设置的语言如何，只需更改Gamebase显示的语言时使用Display Language Gamebase功能。
-> * 显示Display Language Code时要以ISO-639格式显示，并且要区分英文字母的大小写。 
-> 若按“EN”或“zh-cn”进行设置，可能出现问题。
-> * 若输入的Display Language Code值不在以下列表时（**Gamebase支持的语言代码种类**）, Display Langauge Code将会设置为Gamebase控制台中设置的默认语言。
->   * 如果未在Gamebase控制台中设置需要使用的语言集，则会自动设置为英语(en)。
+> * Use Display Language only when you want to change the language displayed in Gamebase to a language other than the one configured by the device.
+> * Display Language Code is a case-sensitive value in the form of ISO-639.
+> There could be a problem if it is configured as a value such as 'EN' or 'zh-cn'.
+> * If the value entered for Display Language Code does not exist in the table below (**Types of Language Codes Supported by Gamebase**), Display Language Code is set to the default language set in the Gamebase console.
+>   * If the language is not set in the Gamebase console, English (en) is set as the default language.
 
-> [参考]
+> [Note]
 >
-> * 因Gamebase客户端消息中仅包含英语（en）、韩语（ko）、日语（ja），即使是下列表指定的语言代码，指定英语（en）、韩语（ko）、日语（ja）之外的语言时，也将自动设置为默认语言(en)。
-> * 可以直接添加未注册在Gamebase客户端的语言集合。
-> **请参考**添加新语言集合**项目。
+> * As the client messages of Gamebase include only English (en), Korean (ko), and Japanese (ja), if you try to set a language other than English (en), Korean (ko), or Japanese (ja), even though the language code might be listed in the table below, the value is automatically set to English (en) by default.
+> * You can manually add a language set that is not included in the Gamebase client.
+> See the **Add New Language Set** section.
 
-#### Gamebase支持的语言代码种类。
+
+#### Types of Language Codes Supported by Gamebase 
 | Code | Name |
 | --- | --- |
 | de | German |
@@ -76,11 +77,11 @@ Gamebase显示消息时，按照注册为Display Language的语言显示消息�
 | ru | Russian |
 | th | Thai |
 | vi | Vietnamese |
-| ms | Malay | 
+| ms | Malay |
 | zh-CN | Chinese-Simplified |
 | zh-TW | Chinese-Traditional |
 
-相应的语言代码在“TCGBConstants.h”类中定义。
+Each language code is defined in `TCGBConstants.h`.
 
 
 ```objectivec
@@ -104,9 +105,9 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 ```
 
 
-#### 初始化Gamebase时设定显示语言 
+#### Set Display Language with Gamebase Initialization 
 
-初始化Gamebase时可设定显示语言。
+Display Language can be set when Gamebase is initialized.
 
 **API**
 
@@ -134,9 +135,9 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
     }
 ```
 
-#### 设定显示语言
+#### Set Display Language
 
-初始化Gamebase时可更改输入的Display Language。
+You can change the initial setting of Display Language.
 
 **API**
 
@@ -152,9 +153,9 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 }
 ```
 
-#### 查询显示语言
+#### Get Display Language
 
-可以查看当前使用的显示语言。
+You can retrieve the current application of Display Language.
 
 **API**
 
@@ -162,7 +163,7 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 + (NSString *)displayLanguageCode;
 ```
 
-**示例**
+**Example**
 
 ```objectivec
 - (void)getDisplayLanguageCode()
@@ -171,11 +172,11 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 }
 ```
 
-#### 添加新语言集
+#### Add New Language Sets
 
-如需使用Gamebase提供的默认语言(ko, en, ja, zh-CN, zh-TW, th)以外的其他语言，则在Xcode项目中的“Copy Bundle Resources”中添加**localizedstring.json**文件即可。 
+If you are using a language other than the default language provided by Gamebase (ko, en, ja, zh-CN, zh-TW, th), add a **localizedstring.json** file to `Copy Bundle Resources` in the Xcode project.
 
-在localizedstring.json中定义的格式如下。
+The localizedstring.json has a format defined as below:
 
 ```json
 {
@@ -222,7 +223,7 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 }
 ```
 
-如需添加其他语言集，则在localizedstring.json文件的相关语言代码以`"key":"value"`的形式添加值即可。 
+If you need to add another language set, you can add a value in the form of `"key":"value"` to the corresponding language code in the localizedstring.json file.
 
 ```json
 {
@@ -243,24 +244,24 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 }
 ```
 
-#### Display Language的优先顺序
+#### Priority in Display Language
 
-通过初始化或SetDisplayLanguageCode API设置的Display Language时，最终应用的Display Language可以与输入的值不同。
+If Display Language is set via initialization and SetDisplayLanguageCode API, the final application may be different from what has been entered.
 
-1. 需要确认输入的languageCode是否已在localizedstring.json文件中定义。 
-2. 如果1号失败，初始化Gamebase时，需要确认终端机设置的语言代码是否已在localizedstring.json文件中定义。(若初始化值，即使更改终端机设置的语言，也将会保持此值。)
-3. 如果2号失败，将设置Gamebase控制台中的默认语言。 
-4. 如果Gamebase控制台中不存在语言设置，将设置为默认语言（en）。
-  
+1. Check if the languageCode you enter is defined in the localizedstring.json file. 
+2. If step 1 fails, check if the language code set in the device is defined in the localizedstring.json file during the initialization of Gamebase. (This value is maintained even if the language set in the device is changed after initialization.)
+3. If step 2 fails, the default language set in the Gamebase console is set as the Display Language.
+4. If there is no language set in the Gamebase console, `en` is set as the default value.
+
 ### Country Code
 
-* Gamebase将System的Country Code提供为以下API。
+* Gamebase provides (country codes) for the system in the following APIs.
 
 #### Device Country Code
 
-* 从OS获得的终端机地区设置直接返回,不进行补充确认。
-* 终端机国家代码按照**设置 > 常规 > 语言及地区 > 地区**设置，由OS自动决定。
-* 返回使用iOS提供的NSLocaleCountryCode获得的值。
+* Returns the device region setting received from the OS as it is without any further verification.
+* The country code of the device is automatically determined by the OS according to the **Setting> General > Language and Region > Region** settings.
+* Returns the value obtained using NSLocaleCountryCode provided by iOS.
 
 **API**
 
@@ -270,10 +271,11 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 
 ### Gamebase Event Handler
 
-* Gamebase通过**GamebaseEventHandler**事件系统处理所有的事件。
-* GamebaseEventHandler通过以下API简单添加或删除Handler。 
+* Gamebase can process all kinds of events in a single event system called **GamebaseEventHandler**.
+* GamebaseEventHandler can simply add or remove a Handler through the API below:
 
 **API**
+
 
 ```objectivec
 + (void)addEventHandler:(GamebaseEventHandler)handler;
@@ -336,43 +338,45 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 }
 ```
 
-* Category在GamebaseEventCategory类中定义。
-* 事件大体分为LoggedOut、ServerPush、Observer、Purchase及Push，并按各Category, 按如下列表的方式，将TCGBGamebaseEventMessage.data转换为VO。
+* Category is defined in the GamebaseEventCategory class.
+* In general, events can be categorized into IdPRevoked, LoggedOut, ServerPush, Observer, Purchase, or Push. TCGBGamebaseEventMessage.data can be converted into a VO in the ways shown in the following table for each Category.
 
-| Event种类 | GamebaseEventCategory | VO转换方法 | 备注 |
+| Event type | GamebaseEventCategory | VO conversion method | Remarks |
 | --------- | --------------------- | ----------- | --- |
 | IdPRevoked | kTCGBIdPRevoked | [TCGBGamebaseEventIdPRevokedData gamebaseEventIdPRevokedDataFromJsonString:message.data] | \- |
 | LoggedOut | kTCGBLoggedOut | [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data] | \- |
 | ServerPush | kTCGBServerPushAppKickoutMessageReceived<br>kTCGBServerPushAppKickout<br>kTCGBServerPushTransferKickout | [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data] | \- |
 | Observer | kTCGBObserverLaunching<br>kTCGBObserverHeartbeat<br>kTCGBObserverNetwork | [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data] | \- |
-| Purchase - Promotion支付 | kTCGBPurchaseUpdated | [TCGBPurchasableReceipt purchasableReceiptFromJsonString:message.data] | \- |
-| Push - 接收消息 | kTCGBPushReceivedMessage | [TCGBPushMessage pushMessageFromJsonString:message.data] | \- |
-| Push - - 点击消息 | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
-| Push - 动态点击 | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | 点击RichMessage按键时启动。|
+| Purchase - Promotion payment | kTCGBPurchaseUpdated | [TCGBPurchasableReceipt purchasableReceiptFromJsonString:message.data] | \- |
+| Push - Message received | kTCGBPushReceivedMessage | [TCGBPushMessage pushMessageFromJsonString:message.data] | \- |
+| Push - Message clicked | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
+| Push - Action clicked | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | Operates when the RichMessage button is clicked. |
 
 #### IdP Revoked
- 
-* 是当在IdP中删除相关服务时出现的事件。  
-* 需要通知用户IdP已被禁用，并使用户使用相同的IdP登录时收到新的用户ID。
-* TCGBGamebaseEventIdPRevokedData.code : 为TCGBIdPRevokedCode值。
-    * IDP_REVOKED_WITHDRAW : 600
-        * 表示当前使用禁用的IdP登录，并且没有映射的IdP列表。
-        * 必须通过调用withdraw API对当前帐户进行退出处理。
-    * IDP_REVOKED_OVERWRITE_LOGIN_AND_REMOVE_MAPPING : 601
-        * 表示当前使用禁用的IdP登录，而除了禁用的IdP还有其他IdP被映射。
-        * 需要使用被映射的IdP当中的一个IdP登录，并通过调用removeMapping API解除禁用的IdP的链接。
-    * IDP_REVOKED_REMOVE_MAPPING : 602
-        * 表示映射到当前账户的IdP当中有禁用IdP。
-        * 需要通过调用removeMapping API解除禁用的IdP的链接。
-* TCGBGamebaseEventIdPRevokedData.idpType : 是禁用的IdP类型。 
-* TCGBGamebaseEventIdPRevokedData.authMappingList : 是映射到当前账户的IdP列表。 
+
+* This event occurs when the service is deleted from the IdP.
+* Notifies the user that the IdP has been revoked, and issues a new userID when the user logs in with the same IdP.
+* TCGBGamebaseEventIdPRevokedData.code: Indicates the TCGBIdPRevokedCode value.
+    * IDP_REVOKED_WITHDRAW: 600
+        * Indicates that the user is logged in with a revoked IdP, and there is no list of mapped IdPs.
+        * You need to call the Withdraw API to remove the current account.
+    * IDP_REVOKED_OVERWRITE_LOGIN_AND_REMOVE_MAPPING: 601
+        * Indicates that the user is logged in with a revoked IdP and IdPs other than the revoked IdP are mapped.
+        * You need to log in with one of the mapped IdPs and call the removeMapping API to remove mapping with the revoked IdP.
+    * IDP_REVOKED_REMOVE_MAPPING: 602
+        * Indicates that there is a revoked IdP among IdPs mapped to the current account.
+        * You need to call the removeMapping API to remove mapping with the revoked IdP.
+* TCGBGamebaseEventIdPRevokedData.idpType: Indicates the revoked IdP type.
+* TCGBGamebaseEventIdPRevokedData.authMappingList: Indicates the list of IdPs mapped to the current account.
 
 ```objectivec
 @interface TCGBGamebaseEventIdPRevokedData : NSObject <TCGBValueObject>
+
 @property (nonatomic, assign) int64_t                 code;
 @property (nonatomic, strong) NSString*               idPType;
 @property (nonatomic, strong) NSArray<NSString *>*    authMappingList;
 @property (nonatomic, strong) NSString*               extras;
+
 @end
 ```
 
@@ -384,22 +388,23 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
         if ([message.category isEqualToString:kTCGBIdPRevoked] == YES) {
             TCGBGamebaseEventIdPRevokedData *idPRevokedData = [TCGBGamebaseEventIdPRevokedData gamebaseEventIdPRevokedDataFromJsonString:message.data];
             if (idPRevokedData == nil) { return; }   
+
             NSString *revokedIdP = idPRevokedData.idPType;
             switch (idPRevokedData.code) {
                 case IDP_REVOKED_WITHDRAW:
                 {
-                    // 表示当前使用禁用的IdP登录，并且没有被映射的IdP列表。
-                    // 请通知用户当前账户已被退出。
+                    // The user is logged in with a revoked IdP, and there is no list of mapped IdPs.
+                    // Notifies the user that the current account has been removed.
                     [TCGBGamebase withdrawWithViewController:nil completion:^(TCGBError *error) {
                         ...
                     }];
                     break;
                 }   
                 case IDP_REVOKED_OVERWRITE_LOGIN_AND_REMOVE_MAPPING:
-                {   
-                    // 表示当前使用禁用的IdP登录，而除了禁用的IdP还有其他IdP被映射。
-                    // 让用户从authMappingList中选择要再次登录的IdP，并在使用所选IdP登录后解除禁用的IdP的链接。
-                    NSString *selectedIdPType = "用户选择的IdP";
+                {
+                    // The user is logged in with a revoked IdP and IdPs other than the revoked IdP are mapped.
+                    // Allows the user to select a IdP to log in to among the authMappingList, and remove mapping with the revoked IdP after login with the selected IdP.
+                    NSString *selectedIdPType = "The IdP selected by the user";
                     NSMutableDictionary *additionalInfo = [NSMutableDictionary dictionary];
                     additionalInfo[kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname] = @(YES);
                     [TCGBGamebase loginWithType:selectedIdPType additionalInfo:additionalInfo viewController:viewController completion:^(TCGBAuthToken *authToken, TCGBError *loginError) {
@@ -409,12 +414,12 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
                             }];
                         }
                     }];
-                    break; 
+                    break;
                 }
                 case IDP_REVOKED_REMOVE_MAPPING:
                 {
-                    // 表示映射到当前账户的IdP当中有禁用IdP。
-                    // 请通知用户在当前账户中禁用IdP的链接被解除。
+                    // There is a revoked IdP among IdPs mapped to the current account.
+                    // Notifies the user that mapping with the revoked IdP is removed from the current account.
                     [TCGBGamebase removeMappingWithType:revokedIdP viewController:nil completion:^(TCGBError *error) {
                         ...
                     }];   
@@ -430,13 +435,7 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 
 #### Logged Out
 
-```
-Not translated yet
-```
-
-#### Logged Out
-
-* 是当Gamebase Access Token过期，为了恢复网络会话需要调用函数时出现的事件。
+* This event occurs when the Gamebase Access Token has expired and a login function call is required to recover the network session.
 
 **Example**
 
@@ -458,17 +457,17 @@ Not translated yet
 
 #### Server Push
 
-* 是从Gamebase服务器向客户端终端机传送的消息。
-* Gamebase支持的Server Push Type如下。  
+* This is a message sent from the Gamebase server to the client's device.
+* The Server Push Types supported from Gamebase are as follows:
 	* kTCGBServerPushAppKickoutMessageReceived
-    	*  如果在NHN Cloud Gamebase控制台**Operation > Kickout**中注册Kickout ServerPush消息，则从与Gamebase连接的所有客户端接收Kickout消息。
-        * 是当从客户端终端机接收了服务器消息时出现的事件。
-        * 正如“Autoplay”，当游戏运行时，它可以用于暂停游戏。
+    	* If you register a kickout ServerPush message in **Operation > Kickout** in the NHN Cloud Gamebase console, all clients connected to Gamebase will receive a kickout message.
+        * This event occurs immediately after receiving a server message from the client device.
+        * It can be used to pause the game when the game is running, as in the case of 'Auto Play'.
 	* kTCGBServerPushAppKickout
-    	* 从NHN Cloud Gamebase控制台**Operation > Kickout**中注册Kickout ServerPush消息，则从与Gamebase连接的所有客户端接收Kickout消息。
-        * 是当在客户端终端机接收了服务器消息时显示弹窗，而用户关闭其弹窗时启动的事件。
+    	* If you register a kickout ServerPush message in **Operation > Kickout** of the NHN Cloud Gamebase Console, then all clients connected to Gamebase will receive the kickout message.
+        * A pop-up is displayed when the client device receives a server message. This event occurs when the user closes this pop-up.
     * kTCGBServerPushTransferKickout
-    	* Guest账号成功转移到其他终端机时，将会从转移之前的终端机接收Kickout消息。
+    	* If the guest account is successfully transferred to another device, the previous device receives a kickout message.
 
 **Example**
 
@@ -500,11 +499,11 @@ Not translated yet
 
 #### Observer
 
-* 是处理Gamebase各状态的变动事件的系统。 
-* Gamebase支持的Observer Type如下。
+* It is a system used to handle many different status-changing events in Gamebase.
+* The Observer Types supported by Gamebase are as follows:
     * kTCGBObserverLaunching
-    	* 当维护开始、结束时或发布新版本必须进行更新等Launching状态出现变动时启动。
-    	* TCGBGamebaseEventObserverData.code: 为TCGBLaunchingStatus值。
+    	* It operates when the Launching status is changed, for instance when the server is under maintenance, or the maintenance is over, or a new version is deployed and update is required.
+    	* TCGBGamebaseEventObserverData.code: Indicates the TCGBLaunchingStatus value.
             * IN_SERVICE: 200
             * RECOMMEND_UPDATE: 201
             * IN_SERVICE_BY_QA_WHITE_LIST: 202
@@ -515,14 +514,14 @@ Not translated yet
             * INSPECTING_ALL_SERVICES: 304
             * INTERNAL_SERVER_ERROR: 500
     * kTCGBObserverHeartbeat
-    	* 当因已被退出或禁用、用户账号状态出现变化时启动。
-    	* TCGBGamebaseEventObserverData.code: 为TCGBError值。 
+    	* Operates when the status of a user account changes, for instance when the user account is deleted or banned.
+    	* TCGBGamebaseEventObserverData.code: Indicates the TCGBError value.
             * TCGB_ERROR_INVALID_MEMBER: 6
             * TCGB_ERROR_BANNED_MEMBER: 7
     * kTCGBObserverNetwork
-    	* 可以接收网络变动信息。 
-    	* 当网络断开或被连接时、从Wifi转为Cellular网络时启动。
-    	* TCGBGamebaseEventObserverData.code: 为NetworkManager值。
+    	* Can receive the information about the changes in the network.
+    	* Operates when the network is disconnected or connected, or switched from Wi-Fi to a cellular network.
+    	* TCGBGamebaseEventObserverData.code: Indicates the NetworkManager value.
             * ReachabilityIsNotDefined = -100
             * NotReachable = -1
             * ReachableViaWWAN = 0
@@ -594,8 +593,8 @@ Not translated yet
 
 #### Purchase Updated
 
-* * 是输入Promotion代码获取商品时出现的事件。
-* 可以获取结算票据信息。
+* This event is triggered when a product is acquired by redeeming a promotion code.
+* Can acquire payment receipt information.
 
 **Example**
 
@@ -615,9 +614,9 @@ Not translated yet
 
 #### Push Received Message
 
-* 是接收Push消息时出现的事件。
-* 通过将extras字段转换为JSON，可获取发送Push时传送的自定义信息。
 
+* This event occurs when a push message is received.
+* By converting the extras field to JSON, you can also get custom information sent along with the push message.
 
 **VO**
 
@@ -651,7 +650,7 @@ Not translated yet
 
 #### Push Click Message
 
-* 是点击“已接收的Push消息”时出现的事件。
+* This event is triggered when a received push message is clicked.
 
 **Example**
 
@@ -672,8 +671,8 @@ Not translated yet
 
 #### Push Click Action
 
-* 是通过Rich Message功能，点击生成按钮时出现的事件。
-* actionType中存在以下值。
+* This event is triggered when the button created by the Rich Message feature is clicked.
+* actionType provides the following:
 	* "OPEN_APP"
 	* "OPEN_URL"
 	* "REPLY"
@@ -691,7 +690,7 @@ Not translated yet
 @end
 ```
 
-**示例**
+**Example**
 
 ```objectivec
 - (void)eventHandler_addEventHandler {
@@ -712,39 +711,39 @@ Not translated yet
  
 ### Analytics
 
-可将游戏指标传送到Gamebase服务器。
+The game index can be transferred to the Gamebase server.
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 登录后可调用Gamebase Analytics支持的所有API。
+> All APIs supported by the Gamebase Analytics can be called after login.
 
 > [TIP]
 >
-> 调用TCGBPurchase的requestPurchaseWithItemSeq:viewController:completion API付款或调用setPromotionIAPHandler完成促销付款后，自动传送指标。
+> The index is transmitted automatically when payment is made by calling requestPurchaseWithItemSeq:viewController:completion API of TCGBPurchase or when promotion payment is made by calling setPromotionIAPHandler.
 
-Analytics控制台使用方法，请参考如下指南。
+Please see the following guide for how to use Analytics console.
 
-- [Analytics控制台](./oper-analytics)
+- [Analytics console](./oper-analytics)
 
 #### Game User Data Settings
 
-登录游戏后，可将游戏用户级别信息作为指标传送。
+The game user level information can be transmitted as an index after logging in to the game.
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 若登录游戏后不调用SetGameUserData API，则其他指标中可能遗漏级别信息。
+> If the SetGameUserData API is not called after login to the game, the level information may be missed from other indexes.
 >
 
-调用API所需的参数如下。
+Parameters required for calling the API are as follows:
 
 **GameUserData**
 
-| Name | Mandatory(M) / Optional(O) | type | Desc |
+| Name | Mandatory(M) / Optional(O) | Type | Desc |
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int | 是显示游戏用户级别的字段。|
-| channelId | O | String | 是显示通道的字段。|
-| characterId | O | String | 是显示角色名的字段。|
-| classId | O | String | 是显示职业的字段。|
+| userLevel | M | int | This field represents game user's level. |
+| channelId | O | String | This field represents channel. |
+| characterId | O | String | This field represents character name. |
+| classId | O | String | This field represents class. |
 
 
 **API**
@@ -766,16 +765,16 @@ Analytics控制台使用方法，请参考如下指南。
 
 #### Level Up Trace
 
-升级后可将游戏用户级别信息作为指标传送。
+The game user level information can be transmitted as an index after leveling up.
 
-调用API所需的参数如下。
+Parameters required for calling the API are as follows:
 
 **LevelUpData**
 
-| Name | Mandatory (M) / Optional (O) | type | Desc |
+| Name | Mandatory (M) / Optional (O) | Type | Desc |
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int | 是显示游戏用户级别的字段。|
-| levelUpTime | M | long | 按Epoch time输入。</br>按Millisecond(ms)单位输入。|
+| userLevel | M | int | This field represents game user's level. |
+| levelUpTime | M | long | Enter in Epoch time.</br>The unit is milliseconds. |
 
 **API**
 
@@ -794,17 +793,18 @@ Analytics控制台使用方法，请参考如下指南。
 
 ### Contact
 
-Gamebase提供接待客户查询的功能。
+Gamebase provides features to respond to customer inquiries. 
 
 > [TIP]
 >
-> 如果与NHN Cloud Contact服务联动使用，则可更加轻松方便地应对客户查询。
-> 详细的NHN Cloud Contact服务使用，请参考如下指南。
+> Associate it with the NHN Cloud Contact service to easily respond to inquiries from customers.
+> See the guide below if you want to know how to use the NHN Cloud Contact service in detail.
 > [NHN Cloud Online Contact Guide](/Contact%20Center/zh/online-contact-overview/)
+>
 
 #### Customer Service Type
 
-**Gamebase控制台 > App > InApp URL > 您可从以下Service center**客户服务类型当中选择一个类型。
+In the **Gamebase Console > App > InApp URL > Service Center**, you can choose from three different types of Customer Centers.
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
 
 | Customer Service Type     | Required Login |
@@ -813,30 +813,32 @@ Gamebase提供接待客户查询的功能。
 | Gamebase customer center  | △              |
 | NHN Cloud Online Contact      | △              |
 
-Gamebase SDK的客户服务API根据类型使用以下URL。
+Gamebase SDK's Customer Center API uses the following URLs based on the type:
 
-* 开发公司自建客户服务(Developer customer center)
-    * 在**客户服务URL**中输入的URL
-* Gamebase提供的客户服务(Gamebase customer center)
-    * 登录前 : **不包含**用户信息的客户服务URL
-    * 登录后 : 包含用户信息的客户服务URL
-* NHN Cloud组织服务(Online Contact)
-    * 登录前 : **不包含**用户信息的客户服务URL
-    * 登录后 : 包含用户信息的客户服务URL
+* Developer's Customer Center
+    * URL specified in the **Customer Center URL** field.
+* Gamebase's Customer Center
+    * Before login: Customer Center URL **without** user information.
+    * After login: Customer Center URL with user information.
+* NHN Cloud organization product (Online Contact)
+    * Before login: Customer Center URL **without** user information.
+    * After login: Customer Center URL with user information.
 
 #### Open Contact WebView
 
-是显示Gamebase控制台中输入的**客户服务URL**Webview的功能。
-可通过TCGBContactConfiguration向URL传送附加信息。 
+This feature is used to represent the **Customer Center URL** WebView entered in the Gamebase Console.
+You can pass the additional information to the URL using TCGBContactConfiguration.
+
 
 **TCGBContactConfiguration**
 
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
 | ------------- | ------------- | ---------------------------------- | ------------------ |
-| userName      | O             | string                             | 用户名(nickname)<br>**default**: nil    |
-| additionalURL | O             | string                             | 添加在开发公司自建客户服务URL后面的附加URL<br>只能在客户服务类型为“CUSTOM”时使用。<br>**default**: nil    |
-| additionalParameters | O      | dictionary&lt;string, string&gt;         | 添加在客户服务URL后面的附加URL<br>**default**: nil    |
-| extraData     | O             | dictionary&lt;string, string&gt;         | 当开始客户服务时传送开发公司需要的extra data。<br>**default**: nil    |
+| userName      | O             | string                             | User name (nickname)<br>**default**: nil    |
+| additionalURL | O             | string                             | Additional URL appended to the developer's own customer center URL<br>Use it only if the customer center type is `CUSTOM`<br>**default**: nil    |
+| additionalParameters | O      | dictionary&lt;string, string&gt;         | Additional parameters appended to the contact center URL<br>**default**: nil    |
+| extraData     | O             | dictionary&lt;string, string&gt;        | Passes the extra data wanted by the developer when opening the customer center<br>**default**: nil    |
+
 
 **API**
 
@@ -853,10 +855,9 @@ Gamebase SDK的客户服务API根据类型使用以下URL。
 
 | Error                           | Error Code | Description                 |
 | ------------------------------- | ---------- | --------------------------- |
-| TCGB\_ERROR\_NOT\_INITIALIZED | 1       | 未调用Gamebase。|
-| TCGB\_ERROR\_NOT\_LOGGED\_IN | 2       | 客户服务的类型为“NHN Cloud Online Contact”时，登录前已调用了函数。|
-| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 客户服务URL不存在。<br>请确认Gamebase控制台中的**客户服务URL**。|
-| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | 识别用户的临时ticket发放失败 |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1       | Gamebase not initialized. |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | The Customer Center URL does not exist.<br>Check the **Customer Center URL** of the Gamebase Console. |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | Failed to issue a temporary ticket for user identification. |
 
 **Example**
 
@@ -873,14 +874,14 @@ Gamebase SDK的客户服务API根据类型使用以下URL。
 }];
 ```
 
-> <font color="red">[注意]</font><br/>
-> 
-> 向客服提问时，为了添附文件可能需要允许访问相机或相册权限。
-> 请在info.plist中添加“Privacy - Camera Usage Description”, “Privacy - Photo Library Usage Description”, “Privacy - Microphone Usage Description”。
+> <font color="red">[Caution]</font><br/>
+>
+> When contacting the Customer Center, access to camera or album may be required for file attachment.
+> Please set 'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description', 'Privacy - Microphone Usage Description' in info.plist.
 
 #### Request Contact URL
 
-可以获取显示客户服务Webview时使用的URL。
+Can get the URL used for displaying the Customer Center WebView.
 
 **API**
 
@@ -895,10 +896,9 @@ Gamebase SDK的客户服务API根据类型使用以下URL。
 
 | Error                           | Error Code | Description                 |
 | ------------------------------- | ---------- | --------------------------- |
-| TCGB\_ERROR\_NOT\_INITIALIZED | 1       | 未调用Gamebase。|
-| TCGB\_ERROR\_NOT\_LOGGED\_IN | 2       | 客户服务类型为“NHN Cloud Online Contact”时，登录前已调用了函数。|
-| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | 客户服务URL不存在。<br>请确认Gamebase控制台中的**客户服务URL**。|
-| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | 识别用户的临时ticket发放失败 |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1       | Gamebase not initialized. |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | The Customer Center URL does not exist.<br>Check the **Customer Center URL** of the Gamebase Console. |
+| TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | Failed to issue a temporary ticket for user identification. |
 
 **Example**
 
@@ -914,3 +914,4 @@ Gamebase SDK的客户服务API根据类型使用以下URL。
     }
 }];
 ```
+

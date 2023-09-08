@@ -1,9 +1,9 @@
-## Game > Gamebase > Unity SDK使用指南 > Logger
+## Game > Gamebase > Unity Developer's Guide > Logger
 
-下面将了解在Unity中使用TOAST Logger SDK的方法。
+Here, we will explain how to use NHN Cloud Logger SDK in Unity.
 
 ### Initialize
-利用从Log & Crash Search获得的AppKey对TOAST Logger SDK进行初始化。
+Initializes NHN Cloud Logger SDK using the AppKey issued via Log & Crash Search.
 
 **API**
 
@@ -29,15 +29,15 @@ public static void InitializeSample()
 ```
 
 ### Send Logs
-将日志传输到Log & Crash服务器。
-TOAST Logger SDK可传输如下五种级别的日志。 
+Sends logs to Log & Crash Server.
+NHN Cloud Logger SDK can send five different levels of logs listed below: 
 * DEBUG
 * INFO
 * WARN
 * ERROR
 * FATAL
 
-日志的级别如下。
+The log levels are as follows:
 * DEBUG > INFO > WARN > ERROR > FATAL
 
 **API**
@@ -125,8 +125,8 @@ public void FatalSample()
 ```
 
 ### Set User-Defined Fields
-设置所需的自定义字段。  
-如果设置自定义字段，每当调用日志传送API时，将设置的值和日志传送到服务器。
+Sets user-defined fields you want. 
+If a custom field is set, the setting value are sent along with a log to the server whenever Send Log API is called.
 
 **API**
 
@@ -149,7 +149,7 @@ public void SetUserFieldSample()
 ```
 
 ### Further Tasks after Sending Logs
-若注册listener，传输日志后，可进行补充作业。
+Additional tasks are available after logs are sent if a listener is registered.
 
 **API**
 
@@ -196,13 +196,13 @@ public void SetLoggerListenerSample()
 ```
 
 ### Specifications for SetCrashListener API
-利用Unity的过程中，有可能会搜集到不用搜集的“例外”Log或Crash Log。
-TOAST Logger SDK支持过滤不用搜集的Crash Log的功能。 
-当crashFilter的return值为true时过滤日志。 
+When using Unity, sometimes unwanted exception or crash logs are collected.
+NHN Cloud Logger SDK supports a feature that filters out crash logs that you do not want to collect.
+If crashFilter returns true, the log is filtered out.
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 此功能仅限于"Unity例外"。
+> This feature is only to deal with Unity exceptions
 
 **API**
 

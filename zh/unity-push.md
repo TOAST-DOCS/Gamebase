@@ -1,14 +1,14 @@
-## Game > Gamebase > Unity SDK使用指南 > push
+## Game > Gamebase > Unity Developer's Guide > Push
 
-以下介绍如何为每个平台设置必要的推送通知。
+This document describes how to set push notifications for each platform.
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 在外部Package存在与推送有关的处理时，Gamebase推送功能有可能不正常启动。 
+> If there is push-related processing in an external package, the Gamebase push function may not work properly.
 
 ### Settings
 
-在Android和iOS设置推送的方法请参考以下文档。
+For how to set up push on Android or iOS, refer to the following documents.
 
 * Android
     * [Android Push Settings](aos-push/#settings)
@@ -19,16 +19,16 @@
 
 ### Register Push
 
-调用以下API在TOAST Push注册该用户。
-接受来自用户的推送协议(enablePush)、广告推送协议(enableAdPush)及夜间广告推送协议(enableAdNightPush)的值，并调用以下API完成注册。
+Call the following API to register the user for NHN Cloud Push.
+Get the values of consent to receiving push (enablePush), consent to receiving advertisement push (enableAdPush), and consent to receiving night-time advertisement push (enableAdNightPush) from the user, and call the following API to complete the registration.
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 由于每个UserID的推送设置不同而推送令牌可能过期，建议登录后每次都调用RegisterPush API。
+> It is recommended to call the registerPush API every time after logging in because the push settings may be different for each UserID and the push token may expire.
 
 **API**
 
- 
+Supported Platforms
 
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
@@ -38,7 +38,7 @@ public static void RegisterPush(GamebaseRequest.Push.PushConfiguration pushConfi
 public static void RegisterPush(GamebaseRequest.Push.PushConfiguration pushConfiguration, GamebaseRequest.Push.NotificationOptions options, GamebaseCallback.ErrorDelegate callback);
 ```
 
-**示例**
+**Example**
 
 ```cs
 public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNight)
@@ -63,26 +63,30 @@ public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNig
     });
 }
 ```
+#### Setting for APNS Sandbox
+* Enable the SandboxMode, and push messages can be registered and sent via APNS Sandbox. 
+* Sending from Console
+    * Select **iOS Sandbox** from **Target** of the Push menu, and send.
 
 ### Notification Options
 
-* 通过使用Notification Options功能可更改终端机显示的通知类型。 
-* 可以在运行时调用registerPush API进行更改。
+* You can use the Notification Options to change how the notification will be displayed in the device.
+* You can call the registerPush API at runtime to change it.
 
 #### Set Notification Options with RegisterPush in Runtime
 
-调用RegisterPush API时，可以通过添加GamebaseRequest.Push.NotificationOptions参数来设置通知选项。
-通过向FGamebaseNotificationOptions生成器传送IGamebase::Get ().GetPush().GetNotificationOptions()的调用结果, 可创建一个用当前通知选项初始化的对象, 只对所需的值进行更改。<br/>
-可以设置的值如下。
+When calling the RegisterPush API, you can add the GamebaseRequest.Push.NotificationOptions argument to set the notification options.
+If you pass the Gamebase.Push.GetNotificationOptions() call results to the creator of the GamebaseRequest.Push.NotificationOptions, the object initialized with the current notification options is created, and you can just change the necessary values.<br/>
+The following settings are available:
 
 | API                    | Parameter       | Description        |
 | ---------------------  | ------------ | ------------------ |
-| foregroundEnabled      | bool         | 应用程序为Foreground状态时是否允许推送通知。<br/>**default**: false |
-| badgeEnabled           | bool         | 是否使用Badge图标<br/>**default**: true |
-| soundEnabled           | bool         | 提示音的使用与否<br/>**default**: true<br/>**iOS Only** |
-| priority               | int          | 推送通知的优先顺序/可设置以下5个值。<br/>GamebaseNotificationPriority.MIN : -2<br/> GamebaseNotificationPriority.LOW : -1<br/>GamebaseNotificationPriority.DEFAULT : 0<br/>GamebaseNotificationPriority.HIGH : 1<br/>GamebaseNotificationPriority.MAX : 2<br/>**default**: GamebaseNotificationPriority.HIGH<br/>**Android Only** |
-| smallIconName          | string       | 手机顶端状态栏的通知提示小图标文件名称<br/>如果不设置，则使用应用程序图标。<br/>**default**: null<br/>**Android Only** |
-| soundFileName          | string       | 提示音文件名称/只在Android 8.0以下的OS上运行。<br/>如果指定“res/raw”文件夹的mp3、wav文件名称，则可更改提示音。<br/>**default**: null<br/>**Android Only** |
+| foregroundEnabled      | bool         | Expose the notifications when the app is in the foreground status<br/>**default**: false |
+| badgeEnabled           | bool         | Use the badge icon<br/>**default**: true |
+| soundEnabled           | bool         | Whether to use the notification sound<br/>**default**: true<br/>**iOS Only** |
+| priority               | int          | Notification priority. You can set the following five values:<br/>GamebaseNotificationPriority.MIN : -2<br/> GamebaseNotificationPriority.LOW : -1<br/>GamebaseNotificationPriority.DEFAULT : 0<br/>GamebaseNotificationPriority.HIGH : 1<br/>GamebaseNotificationPriority.MAX : 2<br/>**default**: GamebaseNotificationPriority.HIGH<br/>**Android Only** |
+| smallIconName          | string       | Small icon file name for notification.<br/>If disabled, the app icon is used.<br/>**default**: null<br/>**Android Only** |
+| soundFileName          | string       | Notification sound file name. Works only in OS with Android 8.0 or less.<br/>The notification sound changes if you specify the mp3, wav file name in the 'res/raw' folder.<br/>**default**: null<br/>**Android Only** |
 
 **Example**
 
@@ -120,7 +124,7 @@ public void RegisterPushSample(bool pushEnabled, bool adAgreement, bool adAgreem
 
 #### Get NotificationOptions
 
-注册Push时，返还以前设置的通知选项值。
+Retrieves the notification options value which was set previously when registering the push notification.
 
 **API**
 
@@ -151,8 +155,8 @@ public void GetNotificationOptionsSample()
 
 ### Request Push Settings
 
-要查询用户的推送设置，请使用以下API。<br/>
-可以通过来自回调的GamebasePushTokenInfo值获取用户设置值。
+To retrieve user's push setting, apply API as below.
+From GamebaseResponse.Push.TokenInfo callback values, you can get user's value set.
 
 **API**
 
@@ -168,7 +172,7 @@ public static void QueryTokenInfo(GamebaseCallback.GamebaseDelegate<GamebaseResp
 public static void QueryPush(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Push.PushConfiguration> callback);
 ```
 
-**示例**
+**Example**
 
 ```cs
 public void QueryTokenInfoSample(bool isSandbox)
@@ -195,37 +199,37 @@ public void QueryTokenInfoSample(bool isSandbox)
 
 | Parameter           | Values                | Description         |
 | --------------------| ----------------------| ------------------- |
-| pushType            | string                | Push令牌种类       |
-| token               | string                | 令牌                 |
-| userId              | string                | 用户ID         |
-| deviceCountryCode   | string                | 国家代码           |
-| timezone            | string                | 标准时区           |
-| registeredDateTime  | string                | 令牌更新时间    |
-| languageCode        | string                | 语言设置            | 
-| agreement           | GamebaseResponse.Push.Agreement | 是否同意接收         |
-| sandbox             | bool                  | sandbox与否(iOS Only)        |
+| pushType            | string                | Push token type       |
+| token               | string                | Token                 |
+| userId              | string                | User ID         |
+| deviceCountryCode   | string                | Country code           |
+| timezone            | string                | Standard timezone           |
+| registeredDateTime  | string                | Token update time    |
+| languageCode        | string                | Language settings            |
+| agreement           | GamebaseResponse.Push.Agreement | Opt in        |
+| sandbox             | bool                  | Whether to use sandbox (iOS Only)        |
 
 #### GamebaseResponse.Push.Agreement
 
 | Parameter        | Values  | Description               |
 | -----------------| --------| ------------------------- |
-| pushEnabled      | bool | 是否允许显示推送通知           |
-| adAgreement      | bool | 是否同意接收广告性推送通知      |
-| adAgreementNight | bool | 是否允许在夜间显示广告性推送通知  | 
+| pushEnabled      | bool | Opt in to display notifications           |
+| adAgreement      | bool | Opt in to display advertisement notifications      |
+| adAgreementNight | bool | Opt in to display night advertisement notifications  |
 
 
 ### Event Handling
 
-* 当接收推送消息或点击推送消息时可处理事件。 
-* 关于注册事件的方法，请参考GamebaseEventHandler指南。
-    * [ Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Push Received Message](./unity-etc/#push-received-message)
-    * [ Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./unity-etc/#push-click-message)
-    * [ Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./unity-etc/#push-click-action)
+* You can handle events when a push message is received or clicked.
+* For how to register event handlers, refer to the GamebaseEventHandler guide.
+    * [ Game > Gamebase > Unity SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Push Received Message](./unity-etc/#push-received-message)
+    * [ Game > Gamebase > Unity SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./unity-etc/#push-click-message)
+    * [ Game > Gamebase > Unity SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./unity-etc/#push-click-action)
 
 #### Setting for APNS Sandbox
-* 在APNS Sandbox环境下，为了正常启动Push功能，需要开启SandboxMode。 
-* Push发送方法
-    * 在Push菜单的**对象**中选择**iOS Sandbox**后发送。 
+* By turning on the SandboxMode, it can be registered so that the push will be sent with the APNS Sandbox.
+* How to send console
+    * In the **Target** of the Push menu, select **iOS Sandbox** to send it.
 
 **API**
 
@@ -250,17 +254,18 @@ public void SetSandboxModeSample()
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
-| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | 是NHN Cloud Push库错误。<br>请确认详细错误。 |
-| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102 | 上一次的推送API调用未完成。<br>上一次推送API回调执行后请重新调用。 |
-| PUSH_UNKNOWN_ERROR             | 5999       | 未知推送错误。<br>请将全部的Log上传到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。 |
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | Error in NHN Cloud Push library.<br/>Please check the code details. |
+| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102 | Previous Push API call is not completed.<br/>Please call again after the previous push API callback is executed.  |
+| PUSH_UNKNOWN_ERROR             | 5999       | Undefined push error.<br/>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry), and we'll respond ASAP. |
 
-* 全部错误代码，请参考以下文档。
-    * [错误代码](./error-code/#client-sdk)
+
+* Refer to the following document for the entire error codes.
+    * [Entire Error Codes](./error-code/#client-sdk)
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* 当在NHN Cloud Push库中发生错误时，将返还此错误。
-* 在NHN Cloud Push库发生的错误信息包含在详细错误中，而详细错误代码和消息如下。
+* The error is returned when an error occurs in NHN Cloud Push library.
+* The information on the error in NHN Cloud Push library is included in the error details, and you can find detailed error code and message as follows.
 
 ```cs
 GamebaseError gamebaseError = error; // GamebaseError object via callback
@@ -284,6 +289,6 @@ else
 }
 ```
 
-* 请确认TOAST Push错误代码。
+* NHN Cloud Push error codes are as follows:
     * [Android](aos-push#error-handling)<br/>
     * [iOS](ios-push#error-handling)

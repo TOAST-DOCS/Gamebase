@@ -1,52 +1,52 @@
-## Game > Gamebase > 商店控制台指南 > Apple控制台指南
+## Game > Gamebase > Store Console Guide > Apple Console Guide
 
-当使用Apple订阅支付，您需要在App Store Connect中生成secret key并设置Notification url。
-在IAP应用程序信息中注册Secret Key。
-Apple一般商品支付不需要特殊设置。
+To use purchase of Apple subscription products, you need to generate a secret key and set the Notification URL in App Store Connect.
+Register the secret key in the IAP app information.
+Purchase of Apple consumable products does not require any specific settings.
 
-> 参考
-> https://help.apple.com/app-store-connect/#/devf341c0f01
+> Reference
+https://help.apple.com/app-store-connect/#/devf341c0f01
 
-## 创建shared secret key  
+## Creating a Shared Secret Key
 ```
-shared secret key可以创建为所有应用程序共用的主密钥，还可以为每个应用程序创建密钥。
-在IAP应用程序信息中注册secret key。
+A shared secret key can be created as a master key common to all apps, or it can be created for each app.
+Register the secret key in the IAP app information.
 ```
 
-### master shared secret key
+### Master Shared Secret Key
 ```
-1. App Store Connect
-2. 点击[My Apps]。
-3. 点击[Master Shared Secret]。   
+1. Go to App Store Connect
+2. Click [My Apps]
+3. Click [Master Shared Secret]
 ```
 ![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-apple-shared-key-1.png)
 
 <br>
 
-### 各应用程序shared secret key
+### Shared Secret Key for Each App
 ```
-1. App Store Connect
-2. 点击[My Apps] > 点击将要创建的[应用程序] > 点击toolbar的[Features]。
-3. 点击[App-Specific Shared Secret]。
+1. Go to App Store Connect
+2. Click [My Apps] > Click [App] you want to create > Click [Features] on the toolbar
+3. Click [App-Specific Shared Secret]
 ```
 ![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-apple-shared-key-2.png)
 
 
-### 在IAP应用程序信息输入shared secret key
+### Entering the Shared Secret Key in IAP App Information
 ```
-1. 选择在“Gamebase > 购买（IAP）>商店”菜单中注册的App store信息。
-2. 输入Apple Shared Secret。
+1. In Gamebase > Purchase (IAP) > Store menu, select registered App store information
+2. Enter Apple Shared Secret
 ```
 ![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-apple-edit-gamebase.png)
 
 
-
-## 注册Notification URL
+## Registering a Notification URL
 **Notification V2** is not supported. Please use **V1**.
 ```
-1. App Store Connect > 我的应用程序 > 应用程序信息 > 一般信息 
-2. 在Production服务器URL中注册IAP URL。
-- URL : https://api-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/AS
+1. Go to App Store Connect > My Apps > App Information > General Information
+2. Register the IAP URL in Production Server URL.
+- URL: https://api-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/AS
 - {YOUR_PACKAGE_NAME} : app bundle id
 ```
-- 必须注册Notification URL信息，才能在Gamebase中更新订阅、促销交换及退款信息。
+- Notification URL information must be registered in order to make subscription, promotion exchange, and refund information updated in Gamebase.
+

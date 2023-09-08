@@ -1,306 +1,303 @@
-## Game > Gamebase > 控制台使用指南 > 运营
+## Game > Gamebase > Console Guide > Operation
 
-在运营App时提供必要功能的菜单。
+This menu provides functions that are required for an app operation.
 
-* 维护(Maintenance) : 应用程序维护管理
-* 公告(Notice) : 以弹窗形式给游戏用户提供的紧急公告管理
-* 图片通知(Image notice) : 以图片形式给游戏用户提供的图片通知
-* 踢出(Kick out) : 断开使用应用程序的用户的连接。
-  
+* (Maintenance): Manage app maintenance
+* (Notice): Manage urgent notices by showing a popup window to game users
+* (Image notice): Manage image notices which is provided as an image to game users
+* (Kick out): Disconnect the app user
+
 ## Maintenance
 
-![gamebase_op_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_01_201812.png)
+![gamebase_op_01_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_op_01_201812_en.png)
 
-如果您需要维护游戏，可以轻松地在Console中进行设置。
-可以一目了然地查询已添加App的维护历史记录和维护设置内容及进度状态。
-维护状态分为以下五种类型。
+Can easily register maintenance in the Console, when required.
+Retrieve maintenance history of registered apps and check progress at a glance, and search maintenance by registered causes of maintenance.
+Status of maintenance is classified into five as below.
 
-(1) 已预约 ：预约计划进行的维护
-(2) 维护中 ：正在进行的维护
-(3) 结束 ：维护正常结束
-(4) 解除维护 ：指管理员在维护中的状态下强制 **解除维护**
-(5) 解除维护(到期) ：指已**解除维护**，并预约的维护也已到达结束时间
+(1) In Reservation: Maintenance has been reserved
+(2) In Progress: Maintenance is underway
+(3) Completed: Maintenance time is over.
+(4) Off: Operator has called for **Off** while maintenance is underway
+(5) Off (Expired): When maintenance time is over during **Off**
 
-Gamebase提供维护弹窗和详细信息的页面，以便在维护期间向游戏内的用户公告。
-Gamebase的默认维护弹窗如下 ：
+Gamebase provides maintenance pop-ups and detail pages to show to game users while maintenance is underway.
+Default maintenance pop-up of Gamebase.
 ![gamebase_op_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_02_201812.png)
-Gamebase提供的默认维护网页(显示维护原因和维护时间）如下 ：
+Default maintenance page of Gamebase (with cause and time of maintenance)
 ![gamebase_op_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_03_201812.png)
 
 ### Register Maintenance
-点击维护选项卡上的**注册**按钮，进入设置维护的界面。
+
+Click **Register** under the **Maintenance** tab, to register maintenance.
 
 ![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_op_04_202004.png)
 
->  <font color="red">[注意] </font><br/>
+>  <font color="red">[Caution] </font><br/>
 >  
->  **同时设定强制更新与维护**时，服务状态为“强制更新”。
->  如果您不希望用户在维护过程中看到“强制更新”的弹出窗口，则应在维护结束后将服务状态更改为“强制更新”。
+> If **Update Required and Maintenance are both enabled**, the service status becomes 'Update Required'.
+>  If you do not want to show a popup about required updates to users during the maintenance, the service status must be changed to 'Update Required' after the maintenance.
 
-#### (1) 目标
-选择需要维护的对象。
+#### (1) Target
+Select the maintenance target.
 
-- 所有游戏  : 所有客户端版本都需要维护时选择。
-- 一些客户  : 仅当特定客户端版本需要维护时选择。点击“选择版本”，可以查看在客户端菜单中登记的客户端版本列表。
-  **[选择部分客户端的页面如下]**
-  可以按客户端状态和商店类别进行全部选择。选择要维护的客户端版本后，点击“确定”按钮。
+- Entire game : Select it when maintenance is required for all client versions.
+- Some clients : Select it when maintenance is required only for certain client versions. Click the 'Select version' button to display the list of the client versions registered from the client menu.
+  **[Example of selecting Some clients]**
+  Select All is possible by client status and by store. Just select the client version to perform maintenance, and click the Confirm button.
 ![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
 
- 
-输入进行维护的原因。
-不向游戏用户显示您输入的信息。请输入您注册此维护的简单的理由。
+#### (2) Reason
+Enter the reason why the maintenance is needed.
+This information is not exposed to game users. You just need to enter a brief explanation as to why you registered the maintenance.
 
-#### (3) 时间 
-设置将要进行维护的时间。
-时区的默认设置为“UTC+09:00”，而可通过选择提供服务的国家的时间段来注册维护。
+#### (3) Time
+Set when to conduct the maintenance.
+As for timezone, 'UTC+09:00' is selected by default, and you can also register maintenance by selecting the timezone of the country you are providing service to.
 
-#### (4) 维护页面
-设置向用户提供的维护页面类型。
-可从**Gamebase提供的页面(Webview)**、**自定义HTML(Webview)**、**外部页面**当中选择，而每个项目的输入窗都不同。
-对每个项目要添加的项目如下。可通过点击**预览**确认您输入的内容。
+#### (4) Maintenance page
+Set the type of the maintenance page which will be shown to users.
+You can choose **Page provided by Gamebase (WebView)**, **Custom HTML (WebView)**, or **External page**, and the input window is different for each item.
+The following are the extra input fields for each item. You can click **Preview** to see what was entered.
 
-##### 4-1) Gamebase提供的页面(Webview)
-是默认提供的维护页面。在Gamebase提供的Webview页面上显示运营者输入的信息。 
-没有单独的维护页面时很有用。
-进行维护时，在**显示消息**中显示要向用户显示的消息。
-可以用英语、日语、汉语等语言输入消息。注册的语言当中选择的语言将被设为“默认语言”。
-如果用户在注册的语言当中没有需要的语言，只向这些用户显示“默认语言”。可以通过单机右边的**+**按钮来添加语言。如果要添加新的语言时，请联系[客户服务](https://toast.com/support/inquiry)。
-点击**预览**时，以“默认语言”显示预览页面。
+##### 4-1) Page provided by Gamebase(WebView)
+A default type maintenance page which displays the information that was entered by the operator in the WebView page provided by Gamebase.
+It can be useful when there is no separate maintenance page.
+In the **Exposed Message** field, enter the message to be shown to the users during maintenance.
+The message can also be entered in other languages such as Korean, Japanese, and Chinese, and the chosen language becomes the 'default language'.
+For users who do not have the matching language among the registered messages, the one selected as the 'Default Language' is displayed. You can click the **+** button on the right to add a language. If the language you are looking for is not available, please contact our [Customer Center](https://toast.com/support/inquiry) to request a new language.
+Click **Preview** to see the Preview screen in the 'Default Language'.
 
-##### 4-2) 自定义HTML(Webview)
-运营者以HTML格式直接输入维护页面，并将其提供给用户。
-基于以输入的HTML标签提供预览页面。
-需要制作维护页面形式时很有用。
+##### 4-2) HTML provided by users (WebView)
+The operator directly fills out the maintenance page in HTML format and provides it to users.
+The preview page is also supported based on the entered HTML tags.
+This is useful when creating the maintenance page format you want.
 
-##### 4-3) 外部页面       
+##### 4-3) External page
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance2_4.1.png)
-如果您有自己的维护页面或维护模板，则可以将维护页面链接到该URL。
-支持所链接URL的外部页面预览。
-如果要通过单独输入维护信息，让外部URL来接收，请选择**提供维护信息**项，并在**显示消息**中输入信息。您可以在维护页面上接收Gamebase上设置的维护信息（维护时间、消息等）。
-传递参数如下。所有维护信息，以URL编码传递。
+If you own a maintenance page or template, the maintenance page can be linked to URL.
+Preview of the URL to connect is also supported.
+To be provided with maintenance information, choose **Provide Information** and enter messages in **Message**: maintenance information registered in Gamebase (maintenance time, messages, and etc.) can be provided on the maintenance page.
+Maintenance parameters are as follows: all delivered with URL encoded.
 
-- message ：根据设备信息中设置的语言的维护信息。对于预览，将提供默认选定的消息。
-- timezone ：设置维护时选择的时区信息。例)“UTC+9”，则传递“- +09：00”
-- beginDate ：设置维护时输入的开始时间
-- endDate ：设置维护时输入的结束时间
+- message: Maintenance messages in the language as set in device information. For preview, deliver default messages.
+- timezone: Standard time zone selected for maintenance registration. e.g) Delivery value for UTC+0: +09:00
+- beginDate:  Start time entered for maintenance registration
+- endDate:  End time entered for maintenance registration.
 
-#### (5)推送消息
-设置维护时的推送消息。
-如果点击“翻译”按键，则将默认语言翻译成各项目的设置语言。
+#### (5) Popup Messages 
+Set a message to show for maintenance. 
+Click **Auto Translate to Default Language** and messages in default language are translated into a language set for each item. 
 
 ### Modify Maintenance
 
-可以查看、修改或删除已设置维护的详细信息。
-修改维护的输入项与设置维护页面的基本相同。当维护信息不正确时，可以通过点击删除按钮来删除维护。
-如果要使用类似信息重新设置新维护，可以通过复制功能钮，轻松地设置新维护。
+Can check, modify, and delete details of registered maintenance.
+Input items are same as Registration page, and Delete button is also available.
+To register maintenance again with similar content, you may copy and paste for an easy registration.
 
 ## Notice
 
-![gamebase_op_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_06_201812.png)
+![gamebase_op_06_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_op_06_201812_en.png)
 
-提供App启动时以弹出窗口方式的公告。因为是在登录前弹出的公告，所以在发生外部身份验证失败或游戏服务器故障时，可设置后使用。
-可以一目了然地查看已设置的公告列表和进行情况，并可以按公告信息进行搜索。
+Provides pop-up notifications during app execution. The pop-ups will show before logins; in case of errors in external authentication or game server, pop-ups need to be registered.
+Can easily check the list of registered notifications with status and search messages.
+Status of notice is classified into three as below.
 
-公告状态分为以下三种类型：
-
-(1) 已预约 ：预约计划发布的公告
-(2) 发布中 ：正在发布中的公告
-(3) 结束 ：公告发布结束
+(1) Expected: Notice is expected to show
+(2) In Progress: Notice is now showing
+(3) Completed: Notice time has been completed
 
 ### Register Notice
 
-点击主页上的“添加”按钮转到设置公告页面。
+Clicking the 'Register' button on the main screen of Notice redirects you to the screen where you can register a notice.
 
 ![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_op_07_202011.png)
 
-#### (1) 对象
+#### (1) Target
 
-选择要发布公告的对象。
-
-- 所有游戏 ：所有客户端版本都需要维护时选择。
-- 部分客户端 ：仅当特定客户端版本需要维护时选择。点击“选择版本”，可以查看在客户端菜单中，登记的的客户端版本列表。
-  **选择部分客户端的如下**
-  可以按客户端状态和商店类别进行全部选择。选择了要维护的客户端版本后，点击“确定”按钮。
-  ![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
-
-#### (2) 选择国家
-选择要发布公告的国家。
-
-- 所有国家 ：向所有用户发布公告。
-- 部分国家 ：仅向所选国家的用户发布公告。
-输入要添加的国家代码，它将自动完成。如果想选择的国家代码不存在，请通过[客户服务](https://toast.com/support/inquiry)与我们联系。
-
-> [注意]
-> 国家标准
-> 以用户的 **USIM国家代码** 来判断，如果没有USIM，公告将根据**Device**中设置的国家发布。
-
-#### (3) 显示次数
-选择公告对用户显示的次数。
-
-- 期间内显示一次 ：公告期间内共显示一次。
-- 启动App时始终显示 ：在公告期间内，每次用户启动App时，始终显示公告。
-
-#### (4) 显示时间
-设置公告的显示时间。
-时区默认选择“UTC + 09：00”，可根据该国家时区来设置维护。
-
-#### (5) 公告信息
-输入向用户显示的公告信息。
-可以使用多种语言输入信息，将选中的语言设置为“默认语言”。
-在语言列表中如果没有用户匹配语言，将显示选择为“默认语言”的语言。点击右侧的** + **按钮可以添加语言。如果需要添加新语言，请通过[客户服务](https://toast.com/support/inquiry)与我们联系。
-如果点击“翻译”按键，则将默认语言翻译成各项目的设置语言。
-
-#### (6) 底部按钮类型
-指定要在公告弹屏底部显示的按钮类型。
-- 关闭 ：仅显示关闭按钮。
-  点击“关闭”按钮则关闭弹窗继续玩游戏。
-
-- 关闭+查看更多 : 显示“关闭”和“查看更多”按钮。
-  - 直接输入 : 用户点击“查看更多”按钮时，通过WebView打开在Console中输入的链接。
-  - 联系客户服务 : 设置Gamebase提供的客户服务时，用户单击“查看更多”按钮，将通过WebView打开客户服务。 
+Select a target to show notification.
+- All Games: When maintenance is required for all client version.
+- Some Clients: When only a particular client version requires maintenance. Click 'Select a Version' to show the list of client versions registered in the client menu.
+  **Example of selecting particular clients**
+  Can select a client status and all for each store, and select a client version for maintenance and press OK.
+  ![gamebase_op_05_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812_en.png)
 
 
+#### (2) Target Country
+Select a country to show notification.
 
-#### 紧急公告弹窗示例
-关闭按钮(左边)、关闭+查看更多(右边)
+- All Countries : Show to all users
+- Some Countries: Show to users of a selected country only.
+  Enter a country code to add and it will be automatically completed and entered. If a country code you want des not exist, contact [Customer Center](https://toast.com/support/inquiry).
+
+> [Note]
+> Criteria of Country Selection
+> Notice shows on the basis of user's **USIM Country Code** ; when USIM is not available, it shows based on countries set on **Device**.
+
+#### (3) Number of Impressions
+Select a number of times a notice shows to users.
+
+- One impression during the impression period: Shows one time during impression period
+- Always show when you start an app: Shows every time user starts an app during impression period
+
+#### (4) Time
+Set time to show notices.
+For a timezone, 'UTC+09:00' is provided as default, and maintenance can be registered by selecting a timezone of a country at service.
+
+#### (5) Message
+Enter notice messages to show to users.
+Can register many languages, for those who speak other languages than registered, a default language will show.
+To add a language, click **+** on the right, and if a language you want is not on the list, contact [Customer Center](https://toast.com/support/inquiry)to add as required.
+Click **Auto Translate to Default Language** and messages in default language are translated into a language set for each item. 
+
+#### (6) bottom button type
+Specify the type of the buttons which will be exposed at the bottom of the notice popup.
+- Close: Expose the Close button only.
+  Click the 'Close' button to close the popup and continue the game.
+
+- Close+Read more: Expose the 'Close' and 'Read more' buttons.
+  - Enter Manually: When the user clicks the 'Read More' button, the link that was entered in the console opens in WebView.
+  - Connect to Customer Center: When set to Customer Center Provided by Gamebase, the customer center opens in WebView when the user clicks the 'Read more' button.
+
+
+#### Example of a Notice Pop-up
+Close (left), Close+More (right)
 ![gamebase_op_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_08_201812.png)
 
-### Modify Notice
-可以查看、修改并删除已设置维护的详细信息。
-输入项与注册页面基本相同。当公告信息不正确时，可以通过点击删除按钮来删除公告。
-如果要使用类似信息重新设置新维护，可以通过复制功能钮，轻松地设置公告。
+You can read, edit, or delete the details of the registered notice.
+By default, the input items are identical to those of the registration screen. You can also delete the notice by clicking the 'Delete' button if the notice has been entered incorrectly.
+If you want reregister the maintenance with similar details, you can use the copy function to easily register the notice.
 
 ## Image notice
 
 ![gamebase_image_notice_01_202007](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_image_notice_01_202007.png)
 
-通过在控制台中注册图片，在游戏中可推送图片通知。
-显示时期未到期的公告列表在顶级列表中显示，而已到期的公告列表在下端的单独的列表上显示。
-可通过在未到期的公告列表中直接移动行设置显示顺序，并在游戏中通过调用显示API，在上端部分先显示注册的图片。在同一时间内最多只能显示5个图片通知。
+You can easily provide the notice as an image within the game by registering the image into the console.
+The list of the current notices is exposed at the top of the list, and the list of the completed notices is displayed separately at the bottom.
+The exposure sequence can be set by directly moving the row in the list of the current notices, and when you call the Exposure API in the game, the image registered at the top is exposed first. You can expose up to 5 notice images during the same period.
 
 #### properties
-各项目如下。 
+What's displayed on each item is as follows:
 
-- **通知图片** : 以缩略图的形式显示图片。过14天后，注册的图片将会被删除，而删除后缩略图显示默认图片。
-- **原因** : 显示图片通知的简要说明。输入的信息不显示在实际图片通知。
-- **显示时间** : 显示图片通知的显示时间。显示注册者设置时选择的时间和时区。
-- **显示时间(+09:00)** : 将时间更改为韩国时间（+09:00）来显示通知的显示时间。
-- **更改日期** : 显示最近修改图片通知的时间。
-- **点击率(%)** : 以简单的统计数据来显示游戏中显示图片通知的次数和点击图片通知的点击率。显示总比率的值，点击确认按钮时，可通过图标确认显示时期内的日显示次数和点击次数。 
-	* 通过下载查询的指标来确认每日数据。
-![gamebase_image_notice_02_202107](https://static.toastoven.net/prod_gamebase/gamebase_image_notice_02_202107.png)
-- **状态** : 可确认显示状态。以下为各显示状态。
+- **Notice image**: Shows the thumbnail of the image which is to be actually exposed. The registered image is deleted 14 days after completion. Once deleted, the thumbnails will show a default image.
+- **Reason**: Shows a brief description about the registered image notice. What is entered here is not exposed in the actual image notice.
+- **Time of exposure**: Displays the time when the notice becomes exposed. When enabled, it shows the time and timezone information selected during registration.
+- **Time of exposure (+09:00)**: Changes the time (when the notice is exposed) into Korea Standard Time (+09:00) before displaying it.
+- **Modified date**: Shows the time when the notice was most recently modified.
+- **Click rate (%)**: Shows simple statistics about how many times the image notice has been displayed within the game and how many times it has actually been clicked. It shows the value against the total percentage, and you can see the graph on daily impressions and clicks during the exposure period by clicking the 'Confirm' button.
+- **Status** : Shows the display status as follows.
+![gamebase_image_notice_02_202007](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_image_notice_02_202007.png)
+
 ```
-(1) 已预约 : 预约计划发布的图片通知  
-(2) 发布中 : 正在发布中的图片通知
-(3) 结束 : 图片通知发布结束
+(1) To be exposed: The image notice is expected to be exposed
+(2) Currently exposed: The image notice is currently being exposed
+(3) Finished: The exposure has ended
 ```
 
 ### Register Image notice
 
-您可以通过在**图片通知**列表中点击**注册**按钮来注册图片通知。
+You can register the image notice by selecting the **Register** button from the **Image Notice** list.
 ![gamebase_image_notice_03_202007](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_image_notice_03_202007.png)
 
-#### (1) 目标
+#### (1) Target
 
-选择要显示图片通知的对象。 
+Select the target to expose the image notice to.
 
-- 所有游戏 : 需要显示在所有客户端版本时选择。
-- 一些客户 : 只需显示在指定客户端版本时选择。点击“选择版本”按键，可以查看在客户端菜单中登记的客户端版本列表。
-  **选择部分客户端的页面如下**
-  可以按客户端状态和商店类别进行全部选择。选择要显示的客户端版本后，点击“确定”按钮。
+- Entire game : Select it when exposure is required for all client versions.
+- Some clients : Select it when exposure is required only for certain client versions. Click the 'Select version' button to display the list of the client versions registered from the client menu.
+  **Example of selecting Some clients**
+  Select All is possible by client status and by store. Just select the client version to expose, and click the Confirm button.
 ![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
 
 
-#### (2) 目标国家
-选择要发布通知的国家。
+#### (2) Target country
+Select the country to expose the notice to.
 
-- 所有国家 ：向所有用户发布通知。
-- 一些国家 ：仅向所选国家的用户发布通知。  
-  输入要添加的国家代码，它将自动被输入。如果不存在您想要选择的国家代码，请通过[客户服务](https://toast.com/support/inquiry)与我们联系。
+- All countries : Exposed to all game users
+- Some countries : Exposed to users from the selected countries only
+  Entering the country code that you want to add will autocomplete the spelling. If you cannot find the particular country code, please contact our [Customer Center](https://toast.com/support/inquiry).
 
-> [参考]
+> [Note]
 >
-> 国家判断基准
-> 以用户的**USIM**国家代码作为判断基准。若没有USIM，则以**终端机**设置的国家为基准显示通知。
+> Criteria for determining the country
+> This is determined based on the criteria of **USIM** country code. If there is no USIM, the notice is exposed based on the country setting of the **device**.
 
 
-#### (3) 原因
-输入注册图片通知的原因。
-不需要向游戏用户公开信息，因此只输入运营时所需的识别信息即可。 
- 
-#### (4) 显示时间
-设置显示图片通知的时间。
-时区的默认选项为“UTC + 09：00”，也可通过选择提供服务的国家的时区来设置维护。
+#### (3) Reason
+Enter the reason why the image notice has been registered.
+The input information is not exposed to the game user, and you just need to enter brief information for administrative use.
 
-#### (5) 点击后启动
-设置用户点击图片通知时要处理的事件。
-要设置的项目如下。
+#### (4) Time of exposure
+Set the time when the registered image will be exposed within the game.
+As for timezone, 'UTC+09:00' is selected by default, and you can also register maintenance by selecting the timezone of the country you are providing service to.
 
-- **开启URL** : 输入要开启的URL。点击后在新的Webview中打开输入的URL，图片通知窗不自动关闭。
-- **Payload** : 将输入的数据传送到客户端。如果使用接收的值点击图片，则可移动至游戏内页面或可处理特定事件。将会全部关闭您点击后打开的所有图片通知。
-- **没有** : 即使点击图片通知，也不启动。
+#### (5) Image click action
+Set the action to process when the game user clicks the image notice.
+The following settings are available:
 
-> [参考]
+- **Open URL**: Enter the URL to be redirected to. After clicking the URL, it opens in a new WebView. The image notice window does not close automatically.
+- **Payload**: Pass the input data to the client. You can use the received value to move to the in-game screen or process a particular event. The image notice that was opened after clicking it will be terminated
+- **No action**: Clicking the image notice does not trigger any particular action.
+
+> [Note]
 >
-> 如果要在**开启URL**项目中使用**http**URL，需要在Android build中声明“域名除外”。
-> 要不然因OS默认约束，Android 9.0以上终端机的页面将显示不正常。 
-
-#### (6) 图片
-注册将在游戏内显示的图片。
-可以按语言类别设置将要显示的图片，并按终端机设置的语言显示图片。
-可注册的文件形式为JEPG、JPG、PNG，而大小不能超过10MB。
-图片的建议尺寸为1200x900(Landscape)或900x1200(Portrait)。保持图片的横向和纵向比率以显示整个图像，但如果横向或纵向长度太长，图片可能会被裁剪。
-点击图片预览时，可确认原始图片。
+> To use a certain **http** URL for the **Open URL** menu, a declaration for domain exclusion must be added to the Android build.
+> If not, the page is exposed abnormally on the device running Android 9.0 or later due to basic restrictions to the OS.
 
 
-> [参考]
+#### (6) Image
+Register the image to expose within the game.
+You can set the image that you want to expose per language, and the image is exposed according to the language of the device.
+Registrable file formats are JEPG, JPG, and PNG, and the maximum size is 10 MB.
+Recommended image size is 1200x900 (Landscape) and 900x1200 (Portrait). It maintains the aspect ratio of the image to display the entire image, but if the width or height is too long, the image can be cropped when displayed.
+You can see the original image by clicking the preview image.
+
+> [Note]
 >
-> 如果图片通知的显示时期过期后过14天，则自动删除上传的图片。
+> The uploaded image is automatically deleted 14 days after the exposure date of the image notice ends.
 
-#### (7) 弹窗颜色主题
-可以设置显示图片通知时的Webview颜色主题。
-可以从**深色模式**和 **浅色模式**中选择颜色主题后保存。默认选项为**深色模式**。
+#### (7) Popup color theme
+You can set the WebView theme for when the image notice is exposed.
+You can select and save **Dark Mode** or **Light Mode** as the theme, and the default setting is the **Dark Mode**.
 
-- 深色模式 : 弹屏底部颜色-灰色
-- 浅色模式 : 弹屏底部颜色-白色
+- Dark mode: Grey bottom bar
+- Light mode: White bottom bar
 
 ### Modify Image notice
 
-确认注册的图片通知的详细信息后，可进行修改或删除。 
-如果要将图片替换为另一张图片，可在修改页面重新进行注册，并修改图片通知的显示时间和显示对象等。
-若要以类似于注册的图片通知的内容重新注册图片，则可通过复制功能，重新上载新的图片后注册。
+You can read, edit, or delete the details of the registered images notice.
+You can also register the image from the Edit screen again to replace the previous image, and edit the time and target to expose the image notice.
+If you want to register the notice image again with the similar details to the already registered image notice, you can use the copy function to register by uploading a new image only.
 
 
 ## Kick Out
-因进行维护等理由要断开游戏用户连接时，可轻松地在Console中进行。
-您可以查看已注册的踢出明细，并一目了然地确认注册的踢出信息。
+If you need to disconnect users for reasons such as game maintenance, you can easily do so in the console.
+You can see the kickout history and kickout registrations at a glance.
 ![gamebase_op_09_202102](https://static.toastoven.net/prod_gamebase/gamebase_op_09_202102.png)
 
 ### Register Kick Out
 
-在**踢出**选项卡当中单击**注册**按钮时，将移动至可注册踢出的页面。
+Clicking the **Register** button on the **Kickout** tab redirects you to the screen where you can register a kickout.
 
 ![gamebase_op_10_202201](https://static.toastoven.net/prod_gamebase/gamebase_op_10_202201.png)
 
-### (1) 处理目标
-选择要作为踢出目标的客户端。 
-- 完整客户 : 需要对所有客户版本进行踢出时选择。  
-- 部分客户 : 需要对指定客户版本进行踢出时选择。如果单击“选择版本”按钮，将输出客户端菜单中已注册的客户端版本列表。
-  **[部分客户端的选择页面示例]**
-  可以选择客户端状态，而在选择各商店的选项时可选择“全选”，选择需要进行维护的客户版本后，点击“确认”按钮即可。
+### (1) Target to process
+Select the target client to kick out.
+- Entire client : Select it when kickout is required for all client versions.
+- Some clients : Select it when kickout is required only for certain client versions. Click the 'Select Version' button to display the list of the client versions registered from the client menu.
+  **[Example of selecting Some clients]**
+  Select All is possible by client status and by store. Just select the client version to perform maintenance, and click the Confirm button.
 ![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
 
-### (2) 原因
-输入进行踢出的原因（最多只能输入100个字符）。
-不向游戏用户公开输入的信息。请输入以运营目的注册此踢出的简单的理由。
+### (2) Reason
+You can write the reason for the kickout, up to 100 characters.
+This input information is not exposed to the game user, and you can enter a brief reason for registering the kickout for operational purposes.
 
-### (3) 是否显示弹窗
-- 显示弹窗 : 可输入踢出时向用户显示的弹窗的消息。
-- 不显示弹窗 : 踢出时不显示弹窗。
+### (3) Whether to Expose Popup
+- Expose Popup: You can enter a message in the popup that is exposed to the user upon kickout.
+- Do Not Expose Popup: Popup is not exposed when kicking out.
 
-### (4) 消息
-是将向用户显示的踢出消息。 只有当**是否显示弹窗**为**显示弹窗**时，才可输入。
-如果选择“默认语言翻译”按钮，则根据使用默认语言输入的内容翻译内容后，将按每个项目设置的语言自动输入内容。
-
+### (4) Message
+A kickout message to expose to users. You can write the message only when **Whether to Expose Popup** is **Expose Popup**.
+If you select 'Auto-translate to default language', the message is translated based on what was entered in the default language and the message is filled out using the appropriate language set for each item.

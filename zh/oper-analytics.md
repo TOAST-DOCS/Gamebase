@@ -1,402 +1,388 @@
-## Game > Gamebase > 控制台使用指南 > Analytics
+## Game > Gamebase > Console Guide > Analytics
 
-可以通过表及图表确认应用程序用户的现状、销售相关指标。
-Analytics由以下菜单构成。
+Status of app users and sales indicators are available on tables or graphs. 
+Analytics is composed of the following: 
 
-* 实时监控：应用程序用户的实时同时在线及实时付款指标
-* 用户指标：以应用程序用户为中心的基本指标(DAU, MCU, NRU)及环境、流入/流出、保留等指标
-* 销售指标：应用程序的销售管理指标
-* 组同时在线：Gamebase服务用户所在项目的组同时在线及各组基本指标
-* 使用环境：调用安装URL的相关统计指标
+* Real-Time Monitoring: Real-time concurrent access and purchase indicators of app users 
+* User Indicators: Basic indicators (e.g. DAU, MCU, and NRU) for app users and other indicators, including environment, inflow/outflow, and retention 
+* Sales Indicators: Indicators related to sales of app 
+* Group Concurrence: Concurrent group access to projects of a Gamebase user, as well as basic indicators of each group  
+* Service Environment: Statistical indicators for the call of installation URL 
 
-## 实时监控
-### 实时同时在线
+## Real-time Monitoring 
+### Real-time Concurrence 
 
-可确认当前应用程序用户的实时同时在线指标及检查、推送信息。
+Real-time concurrence indicators, as well as maintenance and push information of current app users are available.  
 
 ![gamebase_analytics_01_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_01_201901_2.png)
 
-#### 1. 实时同时在线人数(CCU)变化图表
-每隔1分钟更新数据，可确认实时更改的指标。
+#### 1. Change Graphs of Real-Time Concurrent Users 
+Data is updated every minute to check changed indicators in real time. 
 
-* 同时在线人数(CCU)：以1分钟为单位测定的实时同时在线人数（登录用户数）
-* 付款金额：当天0点~24点用户在Gamebase中支付的金额之和，且不含退款、取消付款等信息的纯付款金额。
-* 新注册者(NRU)：新注册者。当天0点~24点首次被收集登录日志的用户（以memberno为准）
+* Concurrent Users (CCU): Number of real-time concurrent users measured every minute  (number of logged-in users).
+* Purchase Amount: Sum of amount paid by Gamebase users around the clock on the day, which includes no refund or cancellation. 
+* Newly Registered Users (NRU): Users who are newly registered and whose initial login logs are collected around the clock of the day (by member number).  
 
-#### 2. 维护信息
-根据当天0点~24点登记到Gamebase的维护信息，可以确认维护后同时在线人数的增减趋势。
+#### 2. Maintenance Information
+Maintenance information registered at Gamebase around the clock of the day, to check rise or all of concurrent users after maintenance. 
 
-#### 3. 推送信息
-根据当天0点~24点向Gamebase发送的推送信息，可以确认发送后同时在线人数的增减趋势。
+#### 3. Push Information 
+Push information delivered to Gamebase around the clock of the day, to check rise or fall of concurrent users after delivery. 
 
-### 仪表板
+### Dashboard
 
-可以一目了然地实时确认游戏用户的各种指标。
+A variety of user indicators can be easily noticed in real time. 
 
 ![gamebase_analytics_02_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_02_201901_2.png)
 
-#### 1. 实时用户现状仪表板
-可以确认应用程序用户及付款指标。
-如果日期为今天，每隔10分钟更新；根据选择的日期，显示当天的指标。
+#### 1. Dashboard for Real-Time User Status 
+App users and payment indicators are available. 
+Data is updated every 10 minutes for today, or a selected date's indicators are available.   
 
-* 同时在线(CCU)：以10分钟为单位测定的实时同时在线人数（登录用户数）
-* 最多同时在线人数(MCU)：0点~24点最多同时在线人数（以1分钟为单位CCU中最大的值）
-* 新注册者(NRU)：当天0点~24点首次被收集登录日志的新注册者（以memberno为准）
-* 日用户(DAU)：以每日memberno为准登录1 次以上的活跃用户数(Daily Active Users)
-* 平均游戏时间(Avg.Playtime)：按日期别的整体平均游戏时间（DAU的游戏时间之和/DAU）
-* 累计用户：安装Gamebase后注册的全部累计用户数（以memberno为准）
-* 付款金额：0点~24点用户付款的总金额
-* 付款件数：0点~24点用户的总付款件数
-* PU：支付收费商品的用户（游戏用户）（=再次购买PU + 新增PU）
-* 新增PU(NPU)：第一次支付收费商品的用户(New Paying Users)
-* ARPPU：1名付款用户(PU)支付的平均付款金额（=付款金额/PU）
-* ARPU：1名游戏用户(DAU)支付的平均付款金额（=付款金额/DAU）
+* Concurrent Users (CCU): Number of real-time concurrent users measured every 10 minutes (number of logged-in users) 
+* Maximum Concurrent Users (MCU): Number of maximum concurrent users around the clock (the largest CCU value of every minute) 
+* Newly Registered Users (NRU): New subscribers whose first login logs are collected around the clock of the day (by member number) 
+* Daily Active Users (DAU): Number of daily active users, by member number, logged in more than once 
+* Average Play Time: Average total play time on each day (sum of play time of DAU/DAU)
+* Accumulated Users: Number of all accumulated subscribed users (by member number) since Gamebase is installed 
+* Purchase Amount: Total amount of user purchases around the clock 
+* Purchase Count: Total number of user purchases around the clock 
+* Paying Users (PU): Users (game users) who pay for products (=renewed PU +new PU) 
+* New PU (New Paying Users, NPU): First-time paying users
+* Average Revenue Per Paid User (ARPPU): Average amount paid by a paying user (=purchase amount/PU) 
+* Average Revenue Per User (ARPU): Average amount paid by a daily active user (=purchase amount/DAU) 
 
-※ MCU、ACU、ARPU仅在过滤器为全部时可确认。
+※ In the case of MCU, ACU, and ARPU, the filter must be all. 
 
-#### 2. 主要指标实时变化图表
-可以以10分钟为间隔确认同时在线人数(CCU)、新注册者(NRU)、付款金额、PU指标的变化。
+#### 2. Real-Time Graphs of Change for Major Indicators 
+Changes in Concurrent Users, Newly Registered Users, Purchase Amount, and PU Indicators are available every 10 minutes. 
 
-#### 3. 实时占有率现状
-可以通过图表确认用户的OS、应用程序版本、商店、国家的占有率。
-如果日期为今天，以CCU为准，如果为前一天，以DAU为准显示。
+#### 3. Status of Real-Time Share
+Share by each OS, app version, store or country, is available on a graph: shows by CCU for today, or DAU for the previous day. 
 
-* OS占有率：DAU中各OS占有比例（当天以CCU为准）
-* 应用程序版本占有率：DAU中应用程序版本占有比例（当天以CCU为准）
-* 商店占有率：DAU中商店占有比例（当天以CCU为准）
-* 各国家占有率：DAU中各国家占有比例（当天以CCU为准）
+* OS Share: Share of DAU at each OS (by CCU for the day) 
+* App Version Share: Share of DAU at each app version (by CCU for the day)
+* Store Share: Share of DAU at each store (by CCU for the day)
+* Country Share: Share of DAU at each country (by CCU for the day)
 
-## 用户指标
-### 用户
+## User Indicators
+### Users 
 
-可以确认用户的基本指标。
+Basic user indicators are available. 
 
 ![gamebase_analytics_03_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_03_202212_1.png)
 
-#### 1. 用户现状
-显示所选期间内用户的基本指标。
+#### 1. User Status 
+Basic user indicators during a selected period are available. 
 
-* DAU累积：以每日memberno为准登录1次以上的活跃用户数之和(Daily Active Users)
-* WAU累积：一周AU之和(Weekly Active Users) 选择周指标时，WAU替代DAU项目。
-* MAU累积：一个月AU之和(Monthly Active Users) 选择月指标时，DAU 替代MAU项目。
-* 最多同时在线人数(MCU)：0点~24点最多同时在线人数以1天为单位来合计以1分钟为单位CCU中最大的值 
-* 新注册者(NRU)：新注册者 当天0点~24点首次被收集登录日志的用户（以memberno为准）
-* 退出用户：退出用户 当天0点~24点间被删除memberno的用户数
-* 平均登录次数：所选时间段内平均登录次数
-* 平均.CCU：所选时间段内CCU的平均
-* Avg.Playtime(/DAU)：查询时期的Playtime平均(DAU的Playtime之合 / DAU)
+* Cumulative DAU: Sum of daily active users, by member number, who are logged in more than once a day
+* Cumulative WAU: Sum of weekly active users. With weekly indicators, WAU items are substituted for DAU items.  
+* Cumulative MAU: Sum of monthly active users. With monthly indicators, MAU items are substituted for DAU items. 
+* Maximum Concurrent Users (MCU): The maximum number of concurrent users around the clock. The largest CCU value of each minute is collected on a daily basis. 
+* Newly Registered Users (NRU): New subscribers whose first login logs are collected around the clock of the day (by member number)
+* Withdrawer: Number of users whose member numbers are deleted around the clock.  
+* Average CCU: Average of CCU during a selected period. 
+* Avg.Playtime(/DAU) : Average play time during query period (sum of play time of DAU/DAU) 
 
-#### 2. 日别指标
-以图表和表显示所选期间内日别用户的基本指标。
+#### 2. Daily Indicators
+Shows basic indicators for daily users during selected period on graphs or tables. 
 
-※ MCU、累计用户(ACU)仅在过滤器为全部时可确认。
+※ In the case of MCU and ACU, the filter must be all. 
 
-### 用户环境
+### Service Environment 
 ![gamebase_analytics_04_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_04_201901_2.png)
 
-可确认各环境下的用户指标。
+User indicators are available on each environment. 
 
-* 查询条件
-    * OS：移动设备运营软件Android、IOS等
-    * 国家：用户移动设备上设置的国家
-    * 商店： IdP: Facebook、Google等用户的IdP登录/验证信息
-    * 应用程序版本：运行的应用程序的版本信息
-    * 设备：用户的设备种类。选择设备时不提供PU、付款金额（也不提供周、月数据）
-* 查询值
-    * 日用户(DAU)：以每日memberno为准登录1 次以上的活跃用户数(Daily Active Users)
-    * 新注册者(NRU)：新注册者。当天0点~24点首次被收集登录日志的用户（以memberno为准）
-    * PU：支付收费商品的用户（游戏用户）（=再次购买PU + 新增PU）
-    * 付款金额：用户付款的总金额
+* Query Conditions 
+    * OS: Mobile operating software, such as Android or iOS 
+    * Country: Country set on a user's mobile device
+    * Store: IdP: User's IdP login/authentication information, like Facebook or Google. 
+    * App Version: Version information of an executing app  
+    * Device: Type of a user device. With a device selected, PU and purchase amount are not provided (as well as weekly nor monthly data)
+* Query Values
+    * Daily Active Users (DAU): Number of daily active users, by member number, who are logged in more than once a day 
+    * Newly Registered Users (NRU): New subscribers whose first login logs are collected around the clock of the day (by member number)
+    * Paying Users (PU): Users (game users) who pay for products (=renewed PU +New PU)
+    * Purchase Amount: Total amount paid by a user  
 
-### 用户流入与流出
+### User Inflow and Outflow  
 
-
-可以确认与应用程序用户的流入、流出相关的不同日期的趋势。
+Inflow and outflow of app users are available on a daily basis. 
 
 ![gamebase_analytics_05_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_05_201901_2.png)
 
-* 流入用户（新增+回归）：流入用户为新注册者与回归用户之和（=新注册者 + 回归用户）
-* 新注册者
-    * 每日 : 新注册者/当天0点~24点首次被收集登录日志的用户（以memberno为准）
-    * 每月 : 新注册者/在基准月首次被收集登录日志的用户（以memberno为准）
-* 回归用户
-    * 每日 : 基准日期的前8天内未被收集日志的用户
-    * 每月 : 上一个月未被收集日志，但在基准月被收集日志的用户 
-* 流出用户（退出+离开）：流出用户为退出用户与离开用户之和（=退出用户 + 离开用户）
-* 退出用户
-    * 每日 : 退出用户/当天0点~24点删除memberno的用户数
-    * 每月 : 退出用户/在基准月删除memberno的用户数
-* 离开用户
-    * 每日 : 基准日期的前7天内未被收集日志的用户
-    * 每月 : 上一个月被收集日志的用户当中在基准月未被收集日志的用户
-* 连续用户   
-    * 每月 : 在上一个月和基准月被收集日志的用户 
+* User Inflow (new + returned): User inflow is the combination of new and returned users (=new users + returned users)
+* Newly Registered Users: Newly registered users whose first login logs are collected around the clock of the day (by member number)
+* Returned Users: Users whose logs are not collected during the previous 8 days 
+* User Outflow (withdrawn + inactive): User outflow is the combination of withdrawn and inactive users (=withdrawn users + inactive users)
+* Withdrawn Users: Users who have withdrawn, whose member numbers have been deleted around the clock of the day
+* Inactive Users: Users whose logs are not collected during the previous 7 days 
 
 ### Retention
-![gamebase_analytics_06_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_201901_2.png)
+![gamebase_analytics_06_202107_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202107_2.png)
 
-Retention为可以确认在指定日注册的用户从第二天起的180天内还剩余多少的指标。
+Retention refers to how many subscribed users remain in service for the next 180 days after subscribed. 
 
-显示Retention时通过包括或排除当天退出的用户来显示。
+You can check the retention data either by including or excluding users who subscribe and withdraw on the same day.
 
-* 当天退出者除外：将当天注册并当天退出用户排除在新增用户之外后计算值。
-    * 新注册者(New User) = 当天注册者 - 当天注册后退出者
-      例）1月1日新注册100名，若其中20名在1月1日退出，则实际新注册者计算为80名（100名-20名）
-
+* Exclusion of withdrawer on the same day of subscription: Calculate by excluding those users who subscribed and withdrew on the same day 
+    * New Users = Subscriber - Withdrawer on the same day of subscription
+      e.g.) Out of 100 new users on January 1st, 20 withdrew on January 1st: then, the number of actual new users is calculated at 80 (100-20).
+      
 ### LTV
+![gamebase_analytics_06_201912_1_ltv](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_201912_1_ltv.png)
 
-LTV是显示用户组中一个选定用户每年的预期销售的估算指标。
+LTV is an index representing the expected annual revenue from a single user in the selected user group.
 
-根据国家、OS及日期提供LTV图标。可以在下端表中确认LTV、累积NRU、累积PU、累积付款金额等详细信息。
+LTV chart is provided per country/OS/date, and in the table below, you can see the details such as LTV, accumulated NRU, accumulated PU, accumulated amount of payment, etc.
 
-#### 估算方法
-Gamebase以注册后365天的累积ARPU作为估算LTV的方法。
-  
-#### 用户组条件
-用户组的条件如下。 
+#### Estimation method
+As LTV estimation method, Gamebase uses the ARPU accumulated over 365 days after the registration. 
 
-* 注册日期 
-* 国家
+#### User group conditions
+The user group conditions are as follows:
+
+* Signed-up date
+* Country
 * OS
 
-#### 限制条件
-为了正确估算LTV适用的条件如下。
+#### Restriction conditions
+The following restrictions are applied for accurate estimation of LTV:
 
-* 用户组的用户数需要达到1000名以上。 
-* 用户组的PU(结算用户数)需要达到30以上。
-* 只估算新注册后已过7天的用户组用户。
+* The number of user group members must be 1,000 or more.
+* The number of PU (Payment Users) of the user group must be 30 or more.
+* The most recent signed-up date must be more than 7 days.
 
 ### Life Cycle
+![gamebase_analytics_06_202002_1_lifeCycle](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202002_1_lifeCycle.png)
 
-Life Cycle是可确认从用户首次注册到至今的用户的“日在线趋势”的指标。将数据提供3年。
+Life Cycle is an index used to check the trend of daily active users since the first inflow of users. Data is retained for up to 3 years.
 
-* 日用户(DAU)：以日memberno为基准， 登录次数为1次以上的活跃用户数（Daily Active Users）
-* 最多同时在线用户(MCU)：0点~24点最多同时在线人数/以1天为单位来合计以1分钟为单位CCU中最大的值
-* 新注册者(NRU)：当天0点~24点首次被收集登录日志的用户（以memberno为准）
-* 退出用户：退出用户/当天0点~24点删除memberno的用户数
-* 当天注册退出用户：当天注册后，当天退出的用户
-* 平均CCU：所选时间段内CCU的平均值
-* 玩游戏的平均时间 - Avg.Playtime(/DAU)：查询期间的平均Playtime（DAU的Playtime之合 / DAU）
+* Daily Active Users (DAU): The number of active users who logged in at least once on a daily basis based on memberno
+* Maximum Concurrent Users (MCU): The number of concurrent users during the period between 0:00 and 24:00. The highest value among the CCU values every minute is aggregated on a daily basis
+* Newly Registered Users (NRU): Newly registered users. The user whose login log is collected for the first time between 0:00 and 24:00 (based on memberno)
+* Withdrawn Users: Users who withdrew their account. Users whose memberno is deleted during the period between 00:00 and 24:00
+* Users who registered and withdrew on the same day: Users who deleted their account on the same day they signed up for the service
+* Average CCU: The average CCU during the selected duration
+* Average playtime - Avg.Playtime(/DAU): The average playtime during the retrieved duration (Sum of playtime of DAU/DAU)      
 
 ### Frequency7
 
+![gamebase_analytics_06_202003_1_frequency](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202003_1_frequency.png)
 
-Frequency7指标提供DAU的一周内的访问人数和比率信息。可一目了然地确认游戏沉迷程度及忠诚度。
+The Frequency7 index provides information about weekly visitor and ratio of DAU. It can be used to see immersion, loyalty, and other information at a glance.
 
-Frequency7的标准可分为以下3个项目。
+Frequency7 is divided into the following three categories:
 
-* 访问次数：7天中访问的次数
-* 连续访问次数：7天中包括特定日期的连续访问次数
-* 最多的连续访问次数：7天中连续访问的最多次数
+* Number of visits: The number of visits in 7 days
+* Number of consecutive visits: The number of consecutive visits in 7 days (including the date)
+* Number of maximum consecutive visits: The number of maximum consecutive visits in 7 days
 
-上述标准的计算方法如下。
-如果以3/7为标准，而用户总共在3/1, 3/2, 3/3, 3/6, 3/7访问了，等于访问的次数如下。
+Let's see an example of the three calculation models mentioned above: 
+If there is a user who visited the site on March 1, 2, 3, 6, and 7, as of March 7, the number of visits is as follows:
 
-* 总访问次数：5天(3/1, 3/2, 3/3, 3/6, 3/7)
-* 连续访问次数：2天(3/6, 3/7)
-* 最多的连续访问次数：3天(3/1, 3/2, 3/3)
+* Total number of visits: 5 days (March 1, 2, 3, 6, and 7)
+* Number of consecutive visits: 2 days (March 6-7)
+* Number of maximum consecutive visits: 3 days (March 1, 2, and 3)
 
+## Sales Indicators 
+### Purchase Amount 
 
-> [参考] 
->
-> 只处理预先注册的世界/服务器/渠道、类别/职业信息。
-> 请参考如下文件进行注册。
->
-> - [应用程序 > Analytics Indicator](./oper-app/#analytics-indicator)
-
-## 销售指标
-### 付款金额
-
-可以确认付款金额指标。
+Shows indicators of purchase amount.   
 
 ![gamebase_analytics_07_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_07_202212_1.png)
 
-#### 1. 付款金额现状表
-可以确认所选时间段内的付款金额。
-可以确认总付款金额与主要商店的各国付款金额。
+#### 1.Status Table for Purchase Amount 
+Purchase amount during a specific period can be found. 
+Total amount, as well as purchase amount by country of major stores are available.  
 
-#### 2. 销售趋势
-可以通过图表确认日期别新增销售、再次购买销售、PU（付款用户）的趋势。
-可以在下表中确认各国销售。
+#### 2. Sales Trend  
+New sales, renewed sales, and trends of paying users are displayed on graphs.
+Sales by store, country, and Idp are also available on the below table. 
+Monthly cumulative purchase amount can only be checked on daily view
 
-### 收费用户
-
-可以确认收费用户(PU)的指标。
-
+### Paying Users 
 ![gamebase_analytics_08_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_08_202212_1.png)
 
-以下为图表及表中出现的用语说明。
+Indicators of paying users are displayed. 
+Refer to the following glossaries:
 
-* 付款金额：用户付款的付款金额
-* 新增付款金额：新增付款用户(NPU)支付的付款金额
-* DAU：以每日memberno为准登录1次以上的活跃用户数(Daily Active Users)
-* PU：支付收费商品的用户(Paying User)PU=再次购买PU + 新增PU
-* 新增PU(NPU)：第一次支付收费商品的用户(New Paying Users)
-* 再次购买PU：累计PU - 新增PU（再次购买PU为日数据，以前一日为准计算）
-* PUR：收费用户的比例(PU/DAU * 100)
-* ARPU：一天之内游戏用户数的平均付款金额（付款金额/DAU）
-* ARPPU：付款用户数的平均付款金额（付款金额/PU）
-* ARPNPU：新增收费用户的平均付款金额（付款金额/NPU）
+* Purchase Amount: Amount of purchase paid by a user 
+* New Purchase Amount: Amount of purchase paid by a newly paying user 
+* Daily Active Users (DAU): Number of daily active users, logged in more than once 
+* Paying Users (PU): Users who pay for products (= renewed PU + new PU)
+* New PU (New Paying Users, NPU): First-time paying users
+* Renewed PU: Accumulated  PU - New PU (calculated on a daily basis, as of the previous day)
+* PUR: Rate of paying users (PU/DAU * 100)
+* ARPU: Average purchase amount paid by the number of game users for a day (purchase amount/DAU) 
+* ARPPU: Average purchase amount paid by the number of paying users (purchase amount/PU)
+* ARPNPU: Average purchase amount paid by new paying users (purchase amount/NPU)
+* Cumulative PU(M): Number of paying users on a monthly basis (duplicates excluded)
 
-### 道具销售指标
+### Item Sales Indicators 
 
-可以确认Gamebase中登记的道具的销售指标。
+Sales indicators of Gamebase items are available. 
 
 ![gamebase_analytics_09_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_09_202212_1.png)
 
-* 道具：Gamebase中登记的道具列表
-* 最佳道具Top 10：按照销售金额、销售数量排行的销量最高的Top 10道具列表
-* 商店：应用程序商店、Google Play等商店
-* 付款金额：用户付款的各道具付款金额
-* 付款件数：各道具付款件数
-* 付款比例：各道具付款比例
+* Item: List of items registered at Gamebase 
+* 10 Best-Selling Items: List of 10 most selling items by the price or number of sales 
+* Store: Stores, such as AppStore or Google Play
+* Purchase Amount: Amount paid by users for each item  
+* Purchase Count: Number of purchases for each item 
+* PU: Number of paying users for each item
+* Payment Ratio: Rate of purchase for each item 
 
-### 首次购买
+### First Purchase
 ![gamebase_analytics_10_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_10_202212_1.png)
 
-可以确认新增收费用户首次购买的相关信息。
+First-purchase information of newly paying users can be found. 
 
-显示从新付费用户注册到首次购买的D+0天到D+90天的时间段。
+Shows how long it takes for new paying users to make the first purchase from day 0 to day 90.
 
-按照付款金额顺序显示新增收费用户购买的所有道具。
+All purchased items are displayed in the order of purchase amount. 
 
-* 道具：新增PU购买的道具列表
-* 商店：应用程序商店、Google Play等商店
-* 新增PU(NPU)：第一次支付收费商品的用户(New Paying Users)
-* 新增付款金额：新增PU的付款金额
+* Item: List of items purchased by new paying users 
+* Store: Stores, such as AppStore or Google Play 
+* New PU (New Paying Users, NPU):  First-time paying users
+* New Purchase Amount: Amount paid by new paying users 
 
-## 组同时在线
-### 组同时在线人数
+## Group Concurrence   
+### Concurrent Group Users 
 
-可以确认Gamebase服务用户所在所有项目的同时在线人数指标。
+ Indicators of concurrent users for all Gamebase projects are available.  
 
 ![gamebase_analytics_11_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_11_201901_2.png)
 
-* 实时组同时在线：显示Gamebase服务用户所在项目的实时同时在线人数(CCU)。
-* 项目组同时在线：以选择的时间段、过滤器为准显示应用程序用户数。
+* Real-Time Group Concurrence : Shows real-time concurrent users (CCU) of a Gamebase project. 
+* Project Group Concurrence : Shows app users by selected period or filter.
 
-### 组比较指标
+### Group Comparison Indicators 
 
-可以将Gamebase服务用户所在项目与过滤器组合，作为组比较。
+Projects of Gamebase users can be filtered and compared by group. ![gamebase_analytics_12_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_12_201901_2.png)
 
-![gamebase_analytics_12_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_12_201901_2.png)
 
-* DAU：以每日memberno为准登录1次以上活跃用户数(Daily Active Users)
-* NRU：当天新加入者
-* PU：支付收费商品的用户(Paying User)（=再次购买PU + 新增PU）
-* 付款金额：用户付款的付款金额
 
-※ 图表中显示的组名为**{appId} _ {OS} _ {国家}**形式。
+* DAU: Daily active users, by member number, logged in more than once 
+* NRU: Newly Registered Users of the day 
+* PU: Paying Users (=Renewed PU + New PU)
+* Purchase Amount: Amount paid by user
 
-## 环境
-### 安装URL
+※ Group is named such as **{appId} _ {OS} _ {Country}** on a graph.
 
-可以确认调用安装URL的相关统计指标。
+## Environment 
+### Installation URL  
+
+Statistical indicators for an installation URL call are available.  
 
 ![gamebase_analytics_13_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_13_201901_2.png)
 
-* 最近一周下载URL调用数：通过[应用程序 > 安装URL]的安装路径调用游戏安装API的顾客数.通过应用程序安装的市场营销，可测定调用Short URL的客户数，以确认客户反应。
-* 各浏览器占有率（全部累计）：可确认各浏览器安装URL调用数的比例。
-* 各平台占有率（全部累计）：可确认各平台安装URL调用数的比例。
+* Download URL Call Counts of the Recent Week: Number of clients who call API for game installation via [App > Installation URL]. You can find customer responses, as part of marketing for app installation, by measuring the number of users who call short URL. 
+* Share by Browser (all accumulated): Shows the rate of URL call counts on each browser. 
+* Share by Platform (all accumulated): Shows the rate of installation URL call counts on each platform 
 
 ## Transmission
 
-**传送指标**标签可在游戏向API传送指标时确认。
-传送指标分为如下3种。
+The **Transmission Indicator** tab is available when indicators are sent via API on a game. 
+There are three types of transfer indicators as below: 
 
-* 用户级别：可按用户级别确认访问及销售信息。
-* 世界/服务器/渠道：可按世界/服务器/渠道确认访问及销售信息User IdUser Id。
-* 类别/职业：可按类别/职业确认访问及销售信息。
+* User Level: Access and sales data are available by user level. 
+* World/Server/Channel: Access by world/server/channel and sales data are available with user ID. 
+* Class/Occupation: Access and sales data are available by class/occupation. 
 
-> [参考]
+> [Note] 
 >
-> 只对提前注册的世界/服务器/渠道、类/职业信息进行处理。
-> 关于注册方法，请参考以下文档。
+> World/server/channel, class/profession are processed only pre-registered information.
+> See the following document to learn how to register.
 >
-> - [应用程序 > Analytics Indicator](./oper-app/#analytics-indicator)
+> - [App > Analytics Indicator](./oper-app/#analytics-indicator)
 
 ### Concurrent Status
 
-可确认所选传送指标类型及日期的访问、销售信息。
-同时在线人数按当天提供CCU，按日期提供DAU信息。当天以10分钟为单位更新信息。
+You can find each type of selected transfer indicators, as well as access and sales information on a particular date.  
+Concurrent access is available via CCU for the day, or DAU on each date. 
+Information is updated at every 10 minutes for the day.  
 
 ![gamebase_analytics_14_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_14_201906_1.png)
 
-* CCU (Concurrent User)：以10分钟为单位测定的实时同时在线人数（登录用户数）
-* DAU (Daily Active User)：以一日用户ID为准，登录1次以上的活跃用户数
-* NRU (New Registered User)：当天新增用户
-* 付款件数：收费商品付款件数
-* 付款金额：收费商品付款金额
+* CCU (Concurrent User): Concurrent real-time users measured at every minute (number of login users) 
+* DAU (Daily Active User): Active users, who log in more than once
+* NRU (Newly Registered User) :Users who are newly registered on the day
+* Purchase Count : Number of paid product purchases
+* Purchase Amount: Purchase amount of paid products 
 
-### Status By Level
+### Status by Level
 
-可按级别确认访问、销售现况。
+Access and sales status are available at each level.
 
 ![gamebase_analytics_15_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_15_201906_1.png)
 
-* DAU (Daily Active User)：以日间用户ID为准，登录1次以上活动用户数
-* Avg.Playtime：该级别的各日期所有Playtime的平均值（DAU的Playtime之和 / DAU）
-* 付款金额：收费商品付款金额
-* 新增付款：新增付款用户(NPU)支付的金额
-* 再次购买付款：再次购买付款用户支付的金额
-* PU (Paying User)：支付收费商品的用户。（=再次购买PU + 新增PU）
-* 新增PU：首次支付收费商品的用户
-* 再次购买PU：所有PU - 新增PU（再次购买PU为一日数据，以前一日为基准计算）
+* DAU (Daily Active User): Daily active users, by user ID, who log in more than once 
+* Avg.Playtime: Average total play time on each day of the level (sum of playtime of DAU/DAU)
+* Purchase Amount: Purchase amount of paid products  
+* New Purchase: Purchase amount by new paying users (NPU)
+* Repeat Purchase: Purchase amount by repeat paying users
+* PU (Paying User): Users who purchase paid products (= repeat PU + new PU)
+* New PU: First-time paying user
+* Repeat PU: Total PU - New PU (calculated upon the previous day on a daily basis)
 
-### Status By Channel
+### Status by Channel
 
-可按世界/服务器/渠道确认访问、销售现况。
+Access and sales status are available by world/server/channel. 
 
 ![gamebase_analytics_16_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_16_201906_1.png)
 
-* DAU (Daily Active User)：以一日用户ID为准，登录1次以上的活跃用户数
-* Avg.Playtime：相应级别的各日期所有Playtime的平均值（DAU的Playtime之和 / DAU）
-* 付款金额：收费商品付款金额
-* 新增付款：新增付款用户(NPU)支付的金额
-* 再次购买付款：再次购买付款用户支付的金额
-* PU (Paying User)：支付收费商品的用户（=再次购买PU + 新增PU）
-* 新增PU：首次支付收费商品的用户
-* 再次购买PU：所有PU - 新增PU（再次购买PU为一日数据，以前一日为基准计算）
 
-### Status By Class
+* DAU (Daily Active User): Daily active users, by user ID, who log in more than once 
+* Avg.Playtime: Average total play time on each day of the level (sum of playtime of DAU/DAU)
+* Purchase Amount: Purchase amount of paid products  
+* New Purchase: Purchase amount by new paying users (NPU)
+* Repeat Purchase: Purchase amount by repeat paying users
+* PU (Paying User): Users who purchase paid products (= repeat PU + new PU)
+* New PU: First-time paying user
+* Repeat PU: Total PU - New PU (calculated upon the previous day on a daily basis)
 
-可按类别/职业确认访问、销售现况。
+### Status by Class
+
+Access and sales status are available by class/occupation. 
 
 ![gamebase_analytics_17_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_17_201906_1.png)
 
-* DAU (Daily Active Users)：以一日用户ID为准，登录1次以上的活跃用户数
-* Avg.Playtime：相应级别的各日期所有Playtime的平均值（DAU的Playtime之和 / DAU）
-* 付款金额：收费商品付款金额
-* 新增付款：新增付款用户(NPU)支付的金额
-* 再次购买付款：再次购买付款用户支付的金额
-* PU (Paying User)：支付收费商品的用户。（=再次购买PU + 新增PU）
-* 新增PU：首次支付收费商品的用户
-* 再次购买PU：所有PU - 新增PU（再次购买PU为一日数据，以前一日为基准计算）
+* DAU (Daily Active User): Daily active users, by user ID, who log in more than once 
+* Avg.Playtime: Average total play time on each day of the level (sum of playtime of DAU/DAU)
+* Purchase Amount: Purchase amount of paid products  
+* New Purchase: Purchase amount by new paying users (NPU)
+* Repeat Purchase: Purchase amount by repeat paying users
+* PU (Paying User): Users who purchase paid products (= repeat PU + new PU)
+* New PU: First-time paying user
+* Repeat PU: Total PU - New PU (calculated upon the previous day on a daily basis)
 
-### Level Up
+### Level-ups
 
-可确认用户的升级信息。
+Find the level-up information of each user.  
 
-* 达成级别：已达成的级别
-* 升级达成用户：已达成相应级别的用户数
-* 升级平均达成时间（分钟）：达成相应级别的用户的平均达成时间（分钟）
+* Achieved Level: The level that is achieved 
+* Successful Level-up User: Users who achieved the level 
+* Average Level-up Achievement Time (minutes): Average achievement time (minutes) of level-up users 
 
 ![gamebase_analytics_18_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_18_201906_1.png)
 
-### Item Sales Status
+### Item Sales Status 
 
-可确认所选传送指标类型的道具销售现况。
-单击**条件**按钮，可选择如下查询值。
+Check item sales status for each type of selected transfer indicators. 
+Click **Conditions** and select query values as below:
 
-* 付款金额
-* 付款件数
-* PU (Paying User)
-* 新增PU
-
+* Purchase Amount
+* Number of Purchases 
+* PU (Paying User) 
+* New PU 
 ![gamebase_analytics_19_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_19_201906_1.png)
 
-### Item Sales TOP 50
 
-可确认所选传送指标类型及值的道具销售前50名项目。
+
+### Top 50 Sales Items 
+
+Find the 50 most selling items for each type and value of selected transfer indicators. 
 
 ![gamebase_analytics_20_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_20_201906_1.png)

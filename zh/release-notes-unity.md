@@ -20,115 +20,114 @@
 ### 2.52.1 (2023. 07. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.1/GamebaseSDK-Unity.zip)
 
-#### 修改程序错误
-* (Standalone) 修复了在Gamebase Logger初始化完成之前发送日志会导致null reference exception的错误。
+#### Bug Fixes
+* (Standalone) Fixed an issue where sending a log before Gamebase Logger initialization was complete would result in a null reference exception.
 
-#### 各平台变更项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.52.1](./release-notes-android/#2521-2023-07-17)
 * [Gamebase iOS SDK 2.53.0](./release-notes-ios/#2530-2023-07-25)
 
 ### 2.52.0 (2023. 06. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.0/GamebaseSDK-Unity.zip)
 
-#### 添加功能
+#### Added Features
 * Setting Tool (v2.7.0)
-    * 添加了ONE Store v21支付Adaptor。(仅限Android。)
-    * 添加了Gamebase Custom Push Receiver Adaptor。(仅限Android。)
+    * Added ONE Store v21 Purchase Adapter. (Android only)
+    * Added Gamebase Custom Push Receiver Adapter. (Android only)
 
-#### 改善功能
-* 外部SDK升级 : NHN Cloud Unity SDK(0.28.3)
-* 改善了内部逻辑。
+#### Feature Updates
+* External SDK update: NHN Cloud Unity SDK(0.28.3)
+* Improved internal logic.
 
-#### 各平台变更项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.52.0](./release-notes-android/#2520-2023-06-27)
 * [Gamebase iOS SDK 2.52.0](./release-notes-ios/#2520-2023-06-27)
 
 ### 2.51.0 (2023. 05. 30.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.51.0/GamebaseSDK-Unity.zip)
 
-#### 改善功能
-* 外部SDK升级 : NHN Cloud Unity SDK(0.28.1)
-* 改善了内部逻辑。
+#### Feature Updates
+* External SDK update: NHN Cloud Unity SDK(0.28.1)
+* Improved internal logic.
 
-#### 各平台变更项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.50.0](./release-notes-android/#2500-2023-05-16)
 * [Gamebase iOS SDK 2.51.0](./release-notes-ios/#2510-2023-05-30)
 
 ### 2.50.0 (2023. 05. 16.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.50.0/GamebaseSDK-Unity.zip)
 
-#### 添加功能
-* (Android) 添加了MyCard商店。
+#### Added Features
+* (Android) Added MyCard store.
 * Setting Tool (v2.5.0)
-    * 添加了MyCard商店。(仅限Android。)
-    * 在添加Huawei IAP时，还添加了Huawei repository自动设置功能。
+    * Added MyCard store. (Only for Android)
+    * Added the feature to automatically set up the Huawei repository when adding a Huawei IAP.
+#### Feature Updates
+* External SDK update: NHN Cloud Unity SDK(0.28.0)
 
-#### 改善功能
-* 外部SDK升级 : NHN Cloud Unity SDK(0.28.0)
-
-#### 各平台变更项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.50.0](./release-notes-android/#2500-2023-05-16)
 * [Gamebase iOS SDK 2.49.2](./release-notes-ios/#2492-2023-04-28)
 
 ### 2.49.0 (2023. 04. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.0/GamebaseSDK-Unity.zip)
 
-#### 改善功能
-* (iOS) 改善了内部逻辑。
+#### Feature Updates
+* (iOS) Improved the internal logic.
 
-#### 各平台变更项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.49.0](./release-notes-android/#2490-2023-04-25)
 * [Gamebase iOS SDK 2.49.1](./release-notes-ios/#2491-2023-04-25)
 
 ### 2.48.0 (2023. 03. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.48.0/GamebaseSDK-Unity.zip)
 
-#### 改善/修改功能
-* 外部SDK升级 : NHN Cloud Unity SDK (0.27.4) 
-* 应用了Gamebase服务器附加域。(GSLB双冗余)
+#### Feature Updates
+* External SDK update: NHN Cloud Unity SDK (0.27.4)
+* Applied standby domain for Gamebase server (GSLB redundancy)
 * iOS
-    * Xcode支持的最低版本已更改为14.1。
-    * iOS支持的最低版本已更改为11.0。
-    * 已停止armv7、armv7s及i386Architecture的支持。
-    * 目前不支持bitcode。
+    * Raised the minimum supported version of Xcode to 14.1. 
+    * Raised the minimum supported version of iOS to 11.0.
+    * Removed support for armv7, armv7s, i386 architectures.
+    * Removed support for bitcode.
 
-#### 各平台变更项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.48.0](./release-notes-android/#2480-2023-03-28)
 * [Gamebase iOS SDK 2.48.0](./release-notes-ios/#2480-2023-03-28)
 
 ### 2.46.0 (2023. 01. 31.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.46.0/GamebaseSDK-Unity.zip)
 
-#### 添加功能
-* 添加了(WebGL)谷歌登录功能。
-* 在(Android)WebView中重新支持是否使用“大小固定”的设置的字段。
+#### Added Features
+* (WebGL) Added Google login feature.
+* (Android) Re-supported the field that sets whether to use a fixed font size in the WebView.
     * GamebaseWebViewConfiguration.enableFixedFontSize
-* 添加了在(Android) Webview中使用包括Cutout (Notch)区域在内的所有可用屏幕空间进行Rendering的设置。
+* (Android) Added a setting to allow the WebView to render using all available screen space, including cutout (notched) areas.
     * GamebaseWebViewConfiguration.renderOutsideSafeArea
-* 添加了可以查看(Android) IAP订阅状态的RequestSubscriptionsStatus API。
+* (Android) Added the RequestSubscriptionsStatus API to view IAP subscription status.
 
-#### 修改程序错误
-* 修改了初始化(Standalone)时发生的间歇性ReflectionTypeLoadException错误，使其不再发生。
+#### Bug Fixes
+* (Standalone) Fixed an error where ReflectionTypeLoadException error occurs intermittently on initialization.
 
-#### 各平台更改事项
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.46.0](./release-notes-android/#2460-2023-01-31)
 * [Gamebase iOS SDK 2.46.0](./release-notes-ios/#2460-2023-01-31)
 
 ### 2.45.0 (2022. 12. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.45.0/GamebaseSDK-Unity.zip)
 
-#### 添加功能     
-* 由于“未消费明细查询API”已更改，请更改为新的API。
-
-        // Deprecated API
+#### Added Features
+* Make sure to update to a new API due to changes to the Query Unconsumed Purcahses API. 
+ 
+        // Deprecated API 
         Gamebase.Purchase.RequestItemListOfNotConsumed(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
-
-        // New API
+         
+        // New API 
         Gamebase.Purchase.RequestItemListOfNotConsumed(GamebaseRequest.Purchase.PurchasableConfiguration configuration,
                                                        GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
  
-* 由于“激活订阅查询API”已更改，请更改为新的API。
-    * 如果您要获得与现有的API相同的结果，请将 **GamebaseRequest.Purchase.PurchasableConfiguration.allStores**的值设置为**true**。
+* Make sure to update to a new API due to changes to the Query Activated Subscription API.
+    * To get the same result as the existing API, set the value of **GamebaseRequest.Purchase.PurchasableConfiguration.allStores** to **true**.
  
             // Deprecated API 
             Gamebase.Purchase.RequestActivatedPurchases(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
@@ -137,219 +136,220 @@
             Gamebase.Purchase.RequestActivatedPurchases(GamebaseRequest.Purchase.PurchasableConfiguration configuration,
                                                         GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
 
-#### 改善/修改功能
-* 外部SDK升级 : NHN Cloud Unity SDK (0.27.1)
+#### Feature Updates
+* External SDK update: NHN Cloud Unity SDK (0.27.1)
 
-#### 各平台变更项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.45.0](./release-notes-android/#2450-2022-12-27)
 * [Gamebase iOS SDK 2.45.0](./release-notes-ios/#2450-2022-12-27)
 
 ### 2.44.2 (2022. 11. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.2/GamebaseSDK-Unity.zip)
 
-#### 添加功能
+#### Added Features
 
 * Setting Tool (v2.5.0)
-    * 添加了Onestore v19支付Adapter 。(Android Only)
-    * 必须从Unity项目中完全删除现有的SettingTool后使用最新版本重新安装。 
+    * Added ONE store v19 Purcahse Adapter. (Android Only)
+    * You must reinstall the latest version of SettingTool after removing the existing SettingTool from Unity projects.
 
-#### 修改程序错误
-* (iOS)修改了在游戏中更改Screen.orientation时，受Webview、客户服务和其他View Controller影响的API无法正常显示的问题。
+#### Bug Fixes
+* (iOS) Fixed an issue where, when changing Screen.orientation during game play, the APIs affected by the view controller, such as WebView and Customer Center, were not displayed normally.
 
-#### 各平台更改事项
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.44.2](./release-notes-android/#2442-2022-11-29)
 * [Gamebase iOS SDK 2.44.0](./release-notes-ios/#2440-2022-10-25)
 
 ### 2.44.0 (2022. 10. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.0/GamebaseSDK-Unity.zip)
 
-#### 改善/修改功能
-* 外部SDK升级 : NHN Cloud Unity SDK(0.26.2)
+#### Feature Updates
+* External SDK update: NHN Cloud Unity SDK(0.26.2)
 
-#### 各平台更改项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.44.0](./release-notes-android/#2440-2022-10-11)
 * [Gamebase iOS SDK 2.43.3](./release-notes-ios/#2433-2022-10-04)
 
 ### 2.43.0 (2022. 09. 07.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.0/GamebaseSDK-Unity.zip)
 
-#### 改善/修改功能
-* 外部SDK升级 : TOAST Unity SDK(0.26.1), Kakaogame Unity SDK(3.14.5)
-* 修改后当登录LINE时可输入提供服务的Region。
-    * [Game > Gamebase > Unity SDK使用指南 > 认证 > Login with IdP](./unity-authentication/#login-with-idp)
+#### Feature Updates
+* External SDK update: TOAST Unity SDK(0.26.1), Kakaogame Unity SDK(3.14.5)
+* Modified to enter a service region when logging in to LINE.
+  * [Game > Gamebase > Unity SDK User Guide > Authentication > Login with IdP](./unity-authentication/#login-with-idp)
 
-#### 各平台更改项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.43.0](./release-notes-android/#2430-2022-09-07)
 * [Gamebase iOS SDK 2.43.0](./release-notes-ios/#2430-2022-09-07)
 
 ### 2.42.1 (2022. 08. 09.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Unity.zip)
 
-#### 添加功能
-* 在ForcingMappingTicket类中添加了显示映射用户状态的mappedUserValid字段。
+#### Added Features
+* Added the mappedUserValid field that represents the mapped user status to the ForcingMappingTicket class.
 
-#### 改善/修改功能
-* 已不使用用于设置是否在WebView中使用固定字体大小的字段。
+#### Feature Updates
+* The field to set whether to use the fixed font size in WebView is no longer used.
     * **GamebaseWebViewConfiguration.enableFixedFontSize**
-* 添加了GamebaseWebViewConfiguration的默认值。
-    * 导航栏的颜色字段colorR、colorG、colorB、colorA的默认值被设置为18、93、230、255。
-    * 指定导航栏是否是启用状态的“isNavigationBarVisible”字段的默认值已设置为true。
-    * 指定是否启用Webview内的返回按钮的“isBackButtonVisible”字段的默认值已设置为true。
+* Added the default values of GamebaseWebViewConfiguration.
+    * The default values of navigation bar colorR, colorG, colorB, and colorA are set to 18, 93, 230, 255.
+    * The default value of the isNavigationBarVisible field to enable the navigation bar is set to true.
+    * The default value of the isBackButtonVisible field to enable the Go Back button in WebView is set to true.
 
-#### 各平台变更项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.42.1](./release-notes-android/#2421-2022-07-26)
 * [Gamebase iOS SDK 2.42.1](./release-notes-ios/#2421-2022-08-09)
 
 ### 2.41.0 (2022. 07. 05.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.0/GamebaseSDK-Unity.zip)
 
-#### 添加功能
-* 外部SDK升级 : TOAST Unity SDK(0.25.6)
-* 在GamebaseEventHandler的GamebaseEventCategory中添加了**IDP_REVOKED**类型。
-    * [Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > IdP Revoked](./unity-etc/#idp-revoked)
+#### Added Features
+* External SDK update: TOAST Unity SDK(0.25.6)
+* Added the **IDP_REVOKED** type to GamebaseEventCategory of GamebaseEventHandler.
+    * [Game > Gamebase > Unity SDK User Guide > ETC > Additional Features > Gamebase Event Handler > IdP Revoked](./unity-etc/#idp-revoked)
 
-#### 改善/修改功能
-* 修复了使用Unity的Burst Package时导致内存泄漏的问题。
+#### Feature Updates
+* Fixed an issue where memory leakage occurs when using the Burst package of Unity.
 * Setting Tool (v2.4.0)
-    * 添加了内部稳定指标。
-    * 必须从Unity项目中完全删除现有的SettingTool，并使用最新版本重新安装。
-    * 目前不支持SettingTool v1。
+    * Added internal stability metrics.
+    * You need to install the latest version of Setting Tool after completely deleting the previous version of SettingTool from Unity projects.
+    * SettingTool v1 is no longer supported.
 
-#### 修改程序错误
-* (iOS) 修复了在某些情况下导致付款后崩溃的问题。
+#### Bug Fixes
+* (iOS) Fixed an issue where a crash would occur in a specific environment after payment.
 
-#### 各平台变更项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.41.0](./release-notes-android/#2410-2022-07-05)
 * [Gamebase iOS SDK 2.41.0](./release-notes-ios/#2410-2022-07-05)
 
 ### 2.40.0 (2022. 05. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Unity.zip)
 
-#### 添加功能
-* 外部SDK升级 : TOAST Unity SDK(0.25.5)
-* 更改后支持(Standalone)以下条款API。
+#### Added Features
+* External SDK update: TOAST Unity SDK(0.25.5)
+* (Standalone) Made changes to support the following Terms API.
     * Gamebase.Terms.QueryTerms
     * Gamebase.Terms.UpdateTerms
 
-#### 改善/修改功能
-* 改善后韩语不再显示为统一码。
-* 修改后支持(iOS) bitcode。
+#### Feature Updates
+* Improved an issue where Hangul is displayed in Unicode.
+* (iOS) Made a fix to support bitcode.
 
-#### 修改程序错误
-* 修复了调用(Android) OpenContact API时未能应用Configuration.additionalParameters的问题。
+#### Bug Fixes
+* (Android) Fixed an issue where Configuration.additionalParameters were not applied when calling the OpenContact API.
 
-#### 各平台更改项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.40.0](./release-notes-android/#2400-2022-05-24)
 * [Gamebase iOS SDK 2.40.0](./release-notes-ios/#2400-2022-05-24)
 
 ### 2.39.0 (2022. 05. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.39.0/GamebaseSDK-Unity.zip)
 
-#### 添加功能
-* 外部SDK升级 : TOAST Unity SDK(0.25.4)
+#### Added Features
+* External SDK update: TOAST Unity SDK(0.25.4)
 
-#### 修改程序错误
-* 修改后，即使初始化前调用GetLaunchingInformations()也不出现JsonException。
+#### Bug Fixes
+* Made a fix so that JsonException does not occur when calling the GetLaunchingInformations() API before initialization.
 
-#### 各平台更改项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.39.0](./release-notes-android/#2390-2022-05-10)
 * [Gamebase iOS SDK 2.39.0](./release-notes-ios/#2390-2022-05-10)
 
 ### 2.38.0 (2022. 05. 03.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.38.0/GamebaseSDK-Unity.zip)
 
-#### 添加功能
-* 外部SDK升级 : TOAST Unity SDK(0.25.3)
+#### Added Features
+* External SDK update: TOAST Unity SDK(0.25.3)
 
-#### 改善/修改功能
-* 更改了Display Language中汉语繁体(zh-TW)语言集中的错误句子。
+#### Feature Updates
+* Fixed unnatural sentences in the Traditional Chinese (zh-TW) language set of Display Language.
 
-#### 修改程序错误
-* 修改后在低于(Android) API Level 24上调用指定API时不出现错误。
+#### Bug Fixes
+* (Android) Fixed an issue where an error occurred when calling certain APIs under API Level 24.
     * Gamebase.Purchase.RequestActivatedPurchases()
     * Gamebase.Purchase.RequestItemListOfNotConsumed()
 
-#### 各平台更改项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.38.0](./release-notes-android/#2380-2022-05-03)
 * [Gamebase iOS SDK 2.38.0](./release-notes-ios/#2380-2022-05-03)
 
 ### 2.37.0 (2022. 04. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.37.0/GamebaseSDK-Unity.zip)
 
-#### 添加功能
-* 为了在客户服务URL后边添加参数，添加了以下字段。
+#### Added Features
+* Added the following field so that you can add parameters after the contact center URL.
     * GamebaseRequest.Contact.Configuration.additionalParameters
 
-#### 各平台更改项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.37.0](./release-notes-android/#2370-2022-04-26)
 * [Gamebase iOS SDK 2.37.0](./release-notes-ios/#2370-2022-04-26)
 
 ### 2.36.0 (2022. 04. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.36.0/GamebaseSDK-Unity.zip)
 
-#### 添加功能
-* 外部SDK升级 : TOAST Unity SDK(0.25.2)
-* 添加了付款时确认是否是Promotion付款的isPromotion字段。 
-    * GamebaseResponse.Purchase.PurchasableReceipt.isPromotion。
-* 添加了付款时确认是否是测试付款的isTestPurchase字段。
+#### Added Features
+* External SDK update: TOAST Unity SDK(0.25.2)
+* Added the isPromotion field to determine whether it is promotion payment while purchasing
+    * GamebaseResponse.Purchase.PurchasableReceipt.isPromotion
+* Added the isTestPurchase field to determine whether it is test payment while purchasing
     * GamebaseResponse.Purchase.PurchasableReceipt.isTestPurchase
 
-#### 修改程序错误
-* 修复了设备设置为指定文化圈时，将支付商品价格信息输入为0的错误。
-* 修复了点击(iOS) Push通知时未能启动DeepLink的错误。
-* 修复了(iOS)项目的orientation设置为Auto Rotation，在包含于项目第一scene的MonoBehaviour的Awake中调用Gamebase。 API时未能输出Webview等的UI的错误。
+#### Bug Fixes
+* Fixed an error where, when a device was set to a specific cultural area, price information of the purchase product was entered as 0.
+* (iOS) Fixed an issue where, when clicking on push notifications, deep links did not work.
+* (iOS) Fixed an error where, when the orientation of the project was set to Auto Rotation and Gamebase API was called in Awake of MonoBehaviour included in the first scene of the project, UI such as WebView was not displayed properly.
 
-#### 各平台更改项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.36.0](./release-notes-android/#2360-2022-04-12)
 * [Gamebase iOS SDK 2.36.0](./release-notes-ios/#2360-2022-04-12)
 
 ### 2.35.0 (2022. 03. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.35.0/GamebaseSDK-Unity.zip)
 
-#### 添加功能
-* 外部SDK升级 : TOAST Unity SDK(0.25.1)
-* 添加了可确认是否显示条款的API。
+#### Added Features
+
+* External SDK update: TOAST Unity SDK(0.25.1)
+* Added an API to determine whether the terms and conditions window is displayed or not.
     * Gamebase.Terms.IsShowingTermsView()
-* 添加了可在Webview隐藏导航栏的选项。
+* Added an option to hide the navigation bar in WebView.
     * GamebaseRequest.Webview.GamebaseWebViewConfiguration.isNavigationBarVisible
-* 添加了可在(Android)Webview固定字形大小的选项。
+* (Android) Added an option to fix the font size in WebView.
     * GamebaseRequest.Webview.GamebaseWebViewConfiguration.enableFixedFontSize
-* 添加了可在(Android)条款窗固定文字大小的选项。
+* (Android) Added an option to fix the font size in the terms and conditions window.
     * GamebaseRequest.Terms.GamebaseTermsConfiguration.enableFixedFontSize
 * Setting Tool
-    * 添加了(Android) Amazon商店。
-    * 添加了(Android) Huawei商店。
+    * (Android) Added Amazon store.
+    * (Android) Added Huawei store.
 
-#### 各平台更改项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.35.0](./release-notes-android/#2350-2022-03-29)
 * [Gamebase iOS SDK 2.35.0](./release-notes-ios/#2350-2022-03-29)
 
 ### 2.34.1 (2022. 03. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.1/GamebaseSDK-Unity.zip)
 
-#### 添加功能
-* 添加了可确认终端机是否允许通知的API。
-    * Gamebase.Push.QueryNotificationAllowed()
+#### Added Features
+* Added an API to determine whether the device has allowed notifications or not.
+    * Gamebase.Push.QueryNotificationAllowed
 
-#### 修改程序错误
-* 修复了未能在iOS应用GamebaseWebViewConfiguration的isBackButtonVisible设置的错误。 
+#### Bug Fixes
+* Fixed an error where the isBackButtonVisible setting of GamebaseWebViewConfiguration was not applied on iOS.
 
-#### 各平台更改项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.34.0](./release-notes-android/#2340-2022-02-22)
 * [Gamebase iOS SDK 2.34.1](./release-notes-ios/#2341-2022-03-15)
 
 ### 2.34.0 (2022. 02. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.0/GamebaseSDK-Unity.zip)
 
-#### 添加功能
-* 添加了当调用共同条款API后可确认条款UI是否被显示的VO类。
+#### Added Features
+* Added a VO class that can be used to find out whether the terms and conditions UI was displayed after calling the common terms and conditions API.
     * **GamebaseResponse.Terms.ShowTermsViewResult**
 
-#### 改善/修改功能
-* 由于在Gamebase控制台中注册Kickout时可以设置是否显示kickout弹窗，因此以下字段已被deprecated。
+#### Feature Updates
+* The following field has been deprecated because whether to display the kickout popup window can be set during kickout registration in the Gamebase console.
     * **GamebaseConfiguration.enableKickoutPopup**
-    
-#### 各平台更改事项 
+
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.34.0](./release-notes-android/#2340-2022-02-22)
 * [Gamebase iOS SDK 2.34.0](./release-notes-ios/#2340-2022-02-22)
 
@@ -357,16 +357,16 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-Unity.zip)
 
-#### 添加功能
-* 添加了可更改共同条款窗设置的新API。
-    * [Game > Gamebase > Unity SDK使用指南 > UI > Terms > showTermsView](./unity-ui/#showtermsview)
+#### Added Features
+* Added a new API that allows you to change settings of the common terms and conditions window.
+    * [Game > Gamebase > Unity SDK User Guide > UI > Terms > showTermsView](./unity-ui/#showtermsview)
 
-#### 改善/修改功能
-* 添加或更改错误代码
-    * GamebaseErrorCode.UNKNOWN_ERROR的错误代码从999更改为9999。
-    * 添加了映射到999错误代码的GamebaseErrorCode.SOCKET_UNKNOWN_ERROR错误。
+#### Feature Updates
+* Added and changed error codes
+    * Changed the error code mapped to the GamebaseErrorCode.UNKNOWN_ERROR error from 999 to 9999.
+    * Newly added the GamebaseErrorCode.SOCKET_UNKNOWN_ERROR error mapped to the error code 999.
     
-#### 各平台变更项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.33.0](./release-notes-android/#2330-20220125)
 * [Gamebase iOS SDK 2.33.0](./release-notes-ios/#2330-20220125)
 
@@ -374,14 +374,14 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-Unity.zip)
 
-#### 改善/修改功能
-* 在GamebaseEventHandler的GamebaseEventCategory中添加了**GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED**类型。
-    * 关于此事件的适用方法，请参考如下指南。
-    * [Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Server Push](./unity-etc/#server-push)
-* 添加了当Gamebase Access Token过期，登录时需要启动的**GamebaseEventCategory.LOGGED_OUT** GamebaseEventHandler category。
-    * [Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./unity-etc/#logged-out)
+#### Feature Updates
+* Added the **GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED** type to GamebaseEventCategory of GamebaseEventHandler.
+    * Please refer to the following document for how to use this event.
+    * [Game > Gamebase > Unity SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Server Push](./unity-etc/#server-push)
+* Added the **GamebaseEventCategory.LOGGED_OUT** GamebaseEventHandler category, which works when Gamebase Access Token expires and login is required.
+    * [Game > Gamebase > Unity SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Logged Out](./unity-etc/#logged-out)
 
-#### 各平台变更项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.32.0](./release-notes-android/#2320-20211228)
 * [Gamebase iOS SDK 2.32.0](./release-notes-ios/#2320-20211228)
 
@@ -389,118 +389,119 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-Unity.zip)
 
-#### 改善/修改功能
-* 外部SDK升级 : TOAST Unity SDK(0.25.0)
-* 可以更改Standalone维护弹窗“是否显示维护时间”。 
+#### Feature Updates
+* External SDK update: TOAST Unity SDK(0.25.0)
+* Added a feature in the Standalone maintenance pop-up to dynamically set whether to display the maintenance time.
 * Setting Tool
-    * 添加了Payco IDP。
-    * 需要删除以前的SettingTool后重新进行设置。 
+    * Added PAYCO IDP.
+    * You must delete the existing Setting Tool completely and then reinstall the tool.
 
-#### 各平台变更项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.31.0](./release-notes-android/#2310-20211214)
 * [Gamebase iOS SDK 2.31.0](./release-notes-ios/#2310-20211214)
 
 ### 2.30.0 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-Unity.zip)
 
-#### 添加功能
-* 为了改善强制映射时需要再次尝试IdP登录的不便，添加了一个新的强制映射API。
-    * [Game > Gamebase > Unity SDK使用指南 > 认证 > Mapping > Add Mapping Forcibly](./unity-authentication/#add-mapping-forcibly)
-* 为了解决调用Gamebase.AddMapping()后出现AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)错误的问题，添加了可将帐户转换为已有的帐户后登录的API。
-    * [Game > Gamebase > Unity SDK使用指南 > 认证 > Mapping > Change Login with ForcingMappingTicket](./unity-authentication/#change-login-with-forcingmappingticket)
+#### Added Features
+* Added a new forced mapping API, which removes the inconvenience of having to try IdP login once more when performing forced mapping.
+    * [Game > Gamebase > Unity SDK User Guide > Authentication > Mapping > Add Mapping Forcibly](./unity-authentication/#add-mapping-forcibly)
+* Added an API that allows you to log in to the corresponding account when an AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302) error occurs after calling Gamebase.AddMapping().
+    * [Game > Gamebase > Unity SDK User Guide > Authentication > Mapping > Change Login with ForcingMappingTicket](./unity-authentication/#change-login-with-forcingmappingticket)
 
-#### 各平台变更项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.30.0](./release-notes-android/#2300-20211123)
 * [Gamebase iOS SDK 2.30.0](./release-notes-ios/#2300-20211123)
 
 ### 2.29.0 (2021.11.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-Unity.zip)
 
-#### 改善/修改功能
-* 外部SDK升级 : TOAST Unity SDK(0.23.5)
+#### Feature Updates
+* External SDK update: TOAST Unity SDK(0.23.5)
 * Setting Tool
-    * 发布了v2.0.0版本。
-    * 需要先删除已有的SettingTool后再进行设置。
-    * 关于修改的信息和使用方法，请参考以下指南。 
-        * [Game > Gamebase > Unity SDK使用指南 > 开始 > Specification of Setting Tool](./unity-started/#specification-of-setting-tool)
+    * v2.0.0 has been released.
+    * You must reinstall the tool after removing the previous version of SettingTool completely.
+    * Refer to the guide below for what has changed and how to use it.
+        * [Game > Gamebase > Unity SDK User Guide > Getting Started > Specification of Setting Tool](./unity-started/#specification-of-setting-tool)
 
-#### 修改程序错误
-* 修改了GamebaseDisplayLanguageCode芬兰语错误。 
+#### Bug Fixes
+* Fixed a typo of Finnish language on GamebaseDisplayLanguageCode
     * Finish → Finnish
 
-#### 各平台变更项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.29.0](./release-notes-android/#2290-20211109)
 * [Gamebase iOS SDK 2.29.0](./release-notes-ios/#2290-2021109)
 
 ### 2.28.1 (2021.10.26)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.1/GamebaseSDK-Unity.zip)
 
-#### 修改程序错误
-* 修改了未设置(Android) DisplayLanguage时，使用错误值进行设置的问题。
-* 修改了在(Standalone)前帧需要较长时间时发生的Timeout错误。 
+#### Bug Fixes
+* (Android) Fixed an issue where DisplayLanguage was set to an incorrect value if not set.
+* (Standalone) Fixed a timeout error that occurred when it took a long time in the previous frame.
 
 ### 2.28.0 (2021.09.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-Unity.zip)
 
-#### 添加功能
-* 添加Kakaogame认证
-* 添加了“结算Abusing自动解除”功能。 
-    * [Game > Gamebase > Unity SDK使用指南 > 认证 > GraceBan](./unity-authentication/#graceban)
-    * 结算Abusing自动解除功能是当存在需通过“结算Abusing自动制裁”来禁止使用的用户时，禁止这些用户的使用之前先提供预约时间的功能。
-    * 如果为“预约禁用”状态，在设定的时期内满足解除条件，则可玩游戏。
-    * 若在所定的时期内未能满足条件，则会被禁用。
-* 登录使用结算Abusing自动解除功能的游戏后，始终要确认AuthToken.member.graceBanInfo API值，如果返还GraceBanInfo对象，而不返还null，要向相关用户通知禁用解除条件和时期等。
-    * 当需要控制处于预约禁用状态的用户进入游戏时，要在游戏中进行处理。
+#### Added Features
+* Added Kakaogame authentication
+* Added a 'purchase abuse automatic release' function.
+    * [Game > Gamebase > Unity SDK User Guide > Authentication > GraceBan](./unity-authentication/#graceban)
+    * The purchase abuse automatic release function allows users who should be banned due to purchase abuse automatic lockdown to be banned after ban suspension status.
+    * When a user is in ban suspension status, if the user satisfies all of the release conditions within the set period of time, the user will be able to play normally.
+    * If the user does not satisfy the conditions within the period, the user is banned.
+* Games that use the purchase abuse automatic release function must always call the AuthToken.member.graceBanInfo API after login. If a valid GraceBanInfo object that is not null is returned, the user must be informed of the ban release conditions, period, etc.
+    * In-game access control for users who are in ban suspension status must be handled by the game.
 
-#### 各平台项目变更
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.28.0](./release-notes-android/#2280-20210928)
-* [Gamebase iOS SDK 2.28.0](./release-notes-ios/#2280-20210928)  
+* [Gamebase iOS SDK 2.28.0](./release-notes-ios/#2280-20210928)
 
 ### 2.27.1 (2021.09.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-Unity.zip)
 
-#### 改善/修改功能
-* 改善了Display Language功能。
-    * 默认语言代码为**en**，但经过改善已可适用Gamebase控制台中设置的默认语言。
-        * [Game > Gamebase > 控制台使用指南 > 应用程序 > App > 语言设置](./oper-app/#language-settings)
+#### Feature Updates
+* Improved the Display Language feature.
+     * So far, the default language code was **en**. It has been improved to reflect the default language set in the Gamebase console.
+         * [Game > Gamebase > Console User Guide > App > App > Language Settings](./oper-app/#language-settings)
 
-#### 修改错误
-* 修改了只用英语显示“未注册的游戏版本”错误弹窗的问题。 
-* 修改了维护弹窗不显示汉语的错误。
+#### Bug Fixes
+* Fixed a bug where the 'Unregistered Game Version' error pop-up was displayed only in English.
+* Fixed a bug where the Chinese text was not displayed in the maintenance pop-up.
 
-#### 各平台变更项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.27.1](./release-notes-android/#2271-20210914)
 * [Gamebase iOS SDK 2.27.1](./release-notes-ios/#2271-20210914)
 
 ### 2.27.0 (2021.08.24)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-Unity.zip)
 
-#### 改善/修改功能
-* 外部SDK升级 : TOAST Unity SDK(0.23.2)
-* 添加ONE Store V16商店
+#### Feature Updates
+* Updated the external SDK: TOAST Unity SDK (0.27.1)
+* Added ONE Store V16 store
 
-#### 修改错误
-* 在Unity SDK 2.25.0中删除不应添加的文件。 
-    * 路径 : Assets/Gamebase/Toast/IAP/Plugins
+#### Bug Fixes
+* Removed erroneously added files in Unity SDK 2.25.0
+    * Path: Assets/Gamebase/Toast/IAP/Plugins
 
 ### 2.26.0 (2021.08.10)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-Unity.zip)
 
-#### 改善/修改功能
-* 改善了Display Language功能。
-    * 在Display Language语言集中添加了汉语简体(zh-CN)、汉语繁体(zh-TW)及泰国语(th)。
-* 调用showTermsView API后，可创建PushConfiguration对象的基准被更改为；
-    * 修改前
-        * 仅当在条款项目中存在**接收Push**项目时，才返还有效的PushConfiguration，而不返还null。
-        * 如果用户拒绝在白天和夜间接收广告性Push，PushConfiguration.pushEnabled则会创建为false。
-    * 修改后
-        * 如果显示了条款UI，将返还有效的PushConfiguration，而不始终返还null。
-        * ShowTermsView返还的PushConfiguration对象的pushEnabled值始终为true。
-    * 未修改项目
-        * 若因已同意条款，未显示条款UI时，PushConfiguration将会返还为null。
+#### Feature Updates
+* Improved the Display Language feature.
+    * Simplified Chinese (zh-CN), Traditional Chinese (zh-TW), and Thai (th) have been added to the Display Language language set.
+* Changed the creation criteria of the PushConfiguration object that can be created after calling the showTermsView API as follows.
+    * Before change
+        * A valid non-null PushConfiguration was returned only when **Receive Push Notification** item exists in the terms and conditions.
+        * PushConfiguration.pushEnabled was created as false when the user declines to receive both daytime and nighttime promotional push notifications.
+    * After change
+        * A valid non-null PushConfiguration is always returned if the terms and conditions UI was displayed.
+        * The pushEnabled value of the PushConfiguration object returned by showTermsView is always true.
+    * Same point without change
+        * PushConfiguration is returned as null if the user has already agreed to the terms and conditions and the terms and conditions UI was not displayed.
 
-#### 修改错误
-* 修改了因终端机的语言代码和Push控制台中的语言代码不一致，而导致未能正常设置Push语言的问题。
+#### Bug Fixes
+* Fixed an issue where the language code of the message sent from the Push console does not match because the language code of the device is applied to the Push notification language setting without any extra processing.
+
 
 ### 2.25.0 (2021.07.26)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.25.0/GamebaseSDK-Unity.zip)
@@ -577,9 +578,7 @@
 
 #### Bug Fixes
 * [SDK] 2.19.0
-    * (Unity) Fixed an issue that caused OutOfMemoryException on retry in WebSocket
-* [SDK] 2.19.1
-	* (Android) Fixed a crash when logging in with a different IdP after trying to log in to Weibo IdP
+    * (Unity) WebSocket에서 재시도 시 OutOfMemoryException이 발생하는 문제 수정
 
 ### 2.18.2 (December 15, 2020)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.18.2/GamebaseSDK-Unity.zip)
@@ -769,12 +768,12 @@ you may encounter an issue during reprocessing if a different billing client ver
 	* (Unity) Updated CefWebview version with StandaloneWebviewAdapter: v2.0.4
 		* Updated the logic of WebviewIndex validation  
 		* Fixed infrequent error of NullReferenceException while Webview is created 
-    * (Unity) Added the error code regarding socket connection to the GamebaseErrorCode definition: SOCKET_CONNECTION_TIMEOUT, SOCKET_CONNECTION_FAIL
+    * (Unity) GamebaseErrorCode에 소켓 연결에 관한 에러 코드 추가: SOCKET_CONNECTION_TIMEOUT, SOCKET_CONNECTION_FAIL
 
 #### Bug Fixes
 * [SDK] 2.9.1
-    * (Andoird) Fixed an error where the indicator level became null after mapping and not reflected normally in the payment indicator
-    * (iOS) When building in unreal engine, a warning is judged as a build error and the build is not possible.    
+    * (Andoird) 매핑 이후 지표 레벨이 null이 되어 결제 지표에 정상적으로 반영되지 않는 오류 수정
+    * (iOS) unreal 엔진에서 빌드 하면, warning을 빌드 오류로 판정해서 빌드가 안되는 부분을 수정
 
 ### 2.9.1 (April 29, 2020)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.9.1/GamebaseSDK-Unity.zip)
@@ -988,3 +987,379 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 
     * (Android) NAVER SDK Version Updated (v4.2.5): Bug of NAVER SDK fixed (fixed the issue, in which authentication process was stopped due to forced closure of activities when the app was restarted via app icon while NAVER login was underway)  
     * (Unity) StandaloneWebview supports 32bit Build (SDK volume upgraded from 53.6MB to 99.2MB)
+
+### 2.3.0 (2019.04.23)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.3.0/GamebaseSDK-Unity.zip)
+
+```
+Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
+중국출시에 관심 있으신 경우에는 고객센터로 연락주세요.
+```
+
+#### 기능 추가
+* [SDK] 2.3.0
+	* (Android/Unity)중국스토어 인증/결제 추가
+
+#### 기능 개선/변경
+* [SDK] 2.3.0
+	* (공통)Launching Status Code 추가: "심사중(204)", "테스트중(203)"
+
+### 2.2.2 (2019.04.11)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.2.2/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* [SDK] 2.2.2
+	* (Unity)SDK 로그 개선
+
+#### 버그수정
+* [SDK] 2.2.2
+	* (Unity)AddMappingForcibly API를 호출하면 크래쉬가 발생하여 수정
+
+### 2.2.1 (2019.04.02)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.2.1/GamebaseSDK-Unity.zip)
+#### 버그수정
+* [SDK] 2.2.1
+	* (Unity) Unity Editor에서 Android 플랫폼을 선택하고 플레이를 하면 initialize시 서버에서 에러가 발생하는 이슈 수정
+
+### 2.2.0 (2019.03.26)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.2.0/GamebaseSDK-Unity.zip)
+#### 기능 추가
+* TransferAccount 기능 추가: guest 사용자가 매핑없이 최대 2개의 키를 이용하여 새로운 기기로 이전할 수 있는 기능
+    * (SDK공통)추가된 API 
+        * TransferAccountInfo 발급 API (issueTransferAccount)
+        * 발급된 TransferAccountInfo를 사용하여 계정 이전을 요청하는 API (transferAccountWithIdPLogin)
+        * 발급된 TransferAccountInfo를 확인하는 API (queryTransferAccount)
+        * 이미 발급된 TransferAccountInfo 갱신하는 API (renewTransferAccount)        
+* 강제매핑 기능 추가: 이미 다른 계정에 연동 되어있는 IdP계정을 매핑할 수 있는 기능
+    * (SDK공통)추가된 API 
+        * 강제매핑하는 API (addMappingForcibly)
+
+#### 기능 개선/변경
+* [SDK] 2.2.0
+	* (Android)IAP SDK 버전을 최신버전인 v1.5.3 버전으로 업데이트
+	* (iOS)LINE SDK의 App 로그인 기능이 비활성화
+		* LINE SDK v4의 버그로 인해 iOS 12에서 앱 로그인이 실패 하는 이슈가 있어 Gamebase Line Adapter에서 Web 로그인만 지원하도록 변경
+	* (Unity)GamebaseMainActivity의 Package Name이 변경
+		* com.toast.gamebase.activity.GamebaseMainActivity -> com.toast.android.gamebase.activity.GamebaseMainActivity
+
+### 2.1.0 (2019.02.26)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.2.0/GamebaseSDK-Unity.zip)
+#### 기능 개선/변경
+* [SDK] 2.1.0
+	* (공통)TransferKey API 삭제
+		* issueTransferKey : TransferKey 발급
+		* requestTransfer : TransferKey 검증
+
+### 2.0.0 (2019.01.29)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.0.0/GamebaseSDK-Unity.zip)
+```
+Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데이트가 필요합니다.
+```
+
+#### 기능 추가
+* [SDK] 2.0.0
+	* (공통)Custom 지표를 위한 API 추가 (구매 성공의 경우 SDK내부에서 자동 전송)
+		* setGameUserData : 게임 로그인 이후 유저 레벨 정보 전송
+		* traceLevelUpData : 레벨업 추적을 위하여 게임 유저의 레벨업이 되었을 때 호출
+
+### 1.14.2 (2018.11.15)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.2.1/GamebaseSDK-Unity.zip)
+#### 기능 개선/변경
+* [SDK] 1.14.2
+	* (Android)점검시, 데이터구조에서 점검 시작/종료 시간을 의미하는 epoch time의 타입을 기존 String에서 long으로 타입 변경 : 기존 Gamebase Unity와 연동 후 점검 호출 시 타입불일치로 콜백이 내려오지 않는 현상으로 인한 수정
+	* (iOS)Provider Profile 획득 메서드 호출 시, 반환하는 TCGBAuthProviderProfile 객체의 description 메서드의 JSON 문자열 구조 변경으로 인하여 Gamebase iOS SDK 1.14.0와 Unity Plugin 1.14.0 적용시 crash가 발생될 수 있는 구조 수정
+
+#### 버그수정
+* [SDK] 1.14.2
+	* (Unity)ShowWebView API 호출시 파라메타에 Callback을 넣지 않으면 crash가 발생되는 부분 수정
+	* (Unity)iOS SDK의 Deleted API를 호출하는 코드가 있어 컴파일시 오류가 발생 되는 버그 수정
+
+### 1.14.0 (2018.10.23)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.14.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* [SDK] 1.14.0
+    * (공통)Gamebase Webview에서 파일첨부 기능 추가 : Android의 API 19, Kitcat 에서는 정상 동작하지 않습니다.
+    
+#### 기능 개선/변경
+* [SDK] 1.14.0
+    * (공통)이용정지/점검에 대해 사용자가 콘솔에 작성한 메시지들을 URL 인코딩하여 전송하고 클라이언트에서 디코딩하여 처리하도록 수정
+    * (Unity)GamebaseSDKSetting 오브젝트가 있는 씬으로 돌아갈 경우 오브젝트가 중복으로 생기지 않도록 개선
+    * Remove API : Webview, Network, Launching
+        * ShowWebBrowser(string url)
+        * ShowWebView(GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration)
+        * ShowToast(string message, int duration)
+        * AddUpdateStatusListener(GamebaseCallback.DataDelegate<GamebaseResponse.Launching.LaunchingStatus> callback) 
+        * RemoveUpdateStatusListener(GamebaseCallback.DataDelegate<GamebaseResponse.Launching.LaunchingStatus> callback)
+        * AddOnChangedStatusListener(GamebaseCallback.DataDelegate<GamebaseNetworkType> callback)
+        * RemoveOnChangedStatusListener(GamebaseCallback.DataDelegate<GamebaseNetworkType> callback)
+    * Deprecated  API 
+        * GetLanguageCode()
+* [SDK] Setting Tool        
+    * 팝업 창 및 UI 개선
+    
+### 1.13.0 (2018.09.13)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.13.0/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* [SDK] 1.13.0
+    * (공통)IAP SDK 최신버전 적용 (android:1.5.1, iOS:1.6.0)
+    * (Unity)로그에서 보여주는 json 데이터를 알아보기 쉽도록 출력 포맷 개선
+    
+#### 버그수정
+* [SDK] 1.13.0
+    * (Unity)Unity 2017.2 이상 버전에서 Editor Play Mode 종료 시 websocke close 처리에서 발생하던 오류 수정
+        
+### 1.12.1 (2018.08.09)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.12.1/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* [SDK] 1.12.1
+    * (공통)IAP SDK 최신버전 적용 (1.5.0)
+    * (공통)Gamebase 점검페이지에서 점검시간을 단말기 설정 국가시간에 맞추어 노출하도록 개선
+    * (공통)점검페이지를 외부 페이지로 사용할 때 Console에 입력한 점검 정보를 사용할 수 있도록 기능 추가
+    * (공통)IdP 매핑된 사용자의 Guest 매핑시도시 에러 발생(TCGB_ERROR_AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP)
+    * (공통)인증 API 중복 호출시 에러 발생(AUTH_ALREADY_IN_PROGRESS_ERROR)
+    * (Android)TencentPush SDK 업데이트 (3.2.3)
+    * (Android)Onestore v17(API v5) 지원 : Gamebase에서는 v16(스토어코드=TS)은 제공하지 않습니다.
+    * (iOS)에러코드 추가 : Gamecenter 로그인 거부(TCGB_ERROR_IOS_GAMECENTER_DENIED)
+* [SDK] Setting Tool
+    * 폴더명 변경 : TOAST -> Toast
+    * 에러발생시 팝업 창 알림 추가 : File Download 실패, File Extract 실패, XML 파싱 실패
+    
+### 1.12.0 (2018.07.24)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.12.0/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* [SDK] Setting Tool
+    * Setting Tool 최신 버전이 있을 경우 업데이트 알림 기능 추가 
+    * 내부 null Exception 수정
+    
+#### 버그수정
+* [SDK] 1.12.0
+    * (Unity)IssueTransferKey API 호출시 exception 발생하던 버그 수정
+    * (Unity)Unity Google Adapter 제거 : 기존에 GoogleAdapter 사용중인 개발사는 아래 업데이트 가이드 참고
+    
+**Unity Google Adapter 업데이트 가이드**
+
+* Unity SDK 1.6.0이상 1.11.0 이상 버전을 사용하는 경우 1.12.0 버전으로 업데이트 하기 전에 아래 내용을 필히 숙지하셔야 합니다.(1.6.0 미만 버전 사용중인 경우에는 GoogleAdapter를 미사용하기 때문에 영향이 없습니다.)
+    1. Setting Tool 설정
+        * GoogleAdapter가 제거됨에 따라 더이상 Unity 탭에서 Google 항목이 노출되지 않는다.
+        * Google 인증을 사용할 경우에는 각 플랫폼 탭에서 Google 항목을 활성화한다.
+            * Android > Authentication > Google 선택해서 설정
+            * iOS > Authentication > Google 선택해서 설정
+    2. Gamebase Login API (변경 없음)
+        * Gamebase.Login(GamebaseAuthProvider.GOOGLE, callback);
+    3. GPGS 기능을 사용하는 경우
+        * GPGS SDK for Unity 유지
+        * GPGS 관련 로직은 앱에서 별도로 관리
+    4. GPGS 기능을 사용하지 않는 경우
+        * GPGS SDK for Unity 삭제 
+
+### 1.11.0 (2018.06.26)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.11.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* iOS Google IdP 추가 : iOS
+* Twitter IdP 추가 : Android, iOS
+* LINE IdP 추가 : Android만 제공. iOS는 2018년 7월 제공 예정입니다.
+    
+#### 기능 개선/변경
+* [SDK] 1.11.0
+    * (공통)LocalizedString 일본어 번역 추가
+    * (공통)인증 API 호출시 초기화, 로그인을 하지 않은 경우 명확히 에러 코드를 구분하도록 내부 로직을 개선
+    * (Android)'android.permission.READ_PHONE_STATE' 권한 제거
+    * (Android)GamebaseConfiguration.Builder의 필수 설정값인 setAppId, setAppVersion을 생성자에서 입력할 수 있도록 변경
+    * (Android)GamebaseConfiguration.Builder 의 setServerApiVerseion API를 제거
+    * (Android)getAuthBanInfo() API, class AuthBanInfo 이름을 변경 : getBanInfo(), class BanInfo
+    * NAVER ID Login SDK 업데이트 : iOS(4.0.10)
+* Sample App 
+    * ServerPush 기능 및 Observer 기능 추가
+    * Gamebase SDK 업데이트 : Android(1.9.0), iOS(1.9.0), Unity(1.10.1)    
+    
+### 1.10.1 (2018.06.11)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.10.1/GamebaseSDK-Unity.zip)
+
+#### 버그수정
+* [SDK] 1.10.1
+    * (Unity)Unity Adapter가 없는 경우 AddMapping API 호출 시 내부적으로 로그인으로 처리하던 버그 수정
+
+### 1.10.0 (2018.06.07)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.10.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* [SDK] 1.10.0
+    * (Unity)StandaloneWebviewAdapter: html source rendering 지원    
+
+#### 기능 개선/변경
+* [SDK] 1.10.0
+    * (Unity)Unity Adapter의 interface가 수정
+        * v1.10.0 이상 사용 시에는 UnityAdapter 버전 업그레이드가 필요(GamebaseUnitySDK_FacebookAdapter_v1.5.0, GamebaseUnitySDK_StandaloneWebviewAdapter_v1.7.0)
+    * (Unity)Login API 호출 시 Unity Adapter가 없는 경우 네이티브(Android/iOS)의 로그인 API를 호출하도록 로직 변경 : facebook, Google
+    * (Unity)각 Adapter 폴더 구조 및 이름 오타 수정
+        * 경로: Assets/Gamebase/Scripts/Adapter => Assets/Gamebase/Adapter
+        * 오타: Adapater => Adapter    
+    
+### 1.9.0 (2018.05.18)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.9.0/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* [SDK] 1.9.0
+    * Unity SDK(1.9.0) Google Adapter 신규버전(1.6.2)으로 교체하여 재배포
+        * 5/3 배포된 Unity SDK(1.9.0)에 적용된 Google Adapter를 최신버전으로 교체(1.6.1->1.6.2)
+    
+### 1.9.0 (2018.05.03)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.9.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* Transfer 기능 추가
+    * guest 사용자가 매핑없이 새로운 기기로 이전할 수 있는 기능
+    * (SDK공통)추가된 API 
+        * Transfer Key 발급 API (IssueTransferKey)
+        * 발급된 TransferKey를 사용하여 계정 이전을 요청하는 API (RequestTransfer)
+* 이용정지 등록시 사용자의 리더보드(랭킹) 데이터를 삭제할 수 있는 옵션 추가(TOAST Leaderboard를 사용하는 경우에 한함)
+    * 이용정지 등록 메뉴를 이용하거나 App Guard 연동 페이지에서 사용 가능
+
+### 1.8.1 (2018.04.09)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.8.1/GamebaseSDK-Unity.zip)
+#### 버그 수정
+* [SDK] 1.8.1
+    * (Unity)UnityAndroid 플랫폼에서 아래 기능 사용 시 모듈 초기화가 되지 않아 NullReferenceException이 발생하여 수정
+        * Launching, Purchase, Push, Util, Webview
+
+### 1.8.0 (2018.04.05)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.8.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* Kick out 기능 추가
+    * 현재 게임 중인 전체 사용자의 연결을 끊는 기능(점검시 게임에서 전체 사용자의 연결을 끊고 싶을 때 사용할 수 있음)
+    * (SDK 공통)kick out 이벤트를 받을 수 있는 API 추가
+* 점검 웹페이지를 사용자가 Console에서 입력한 HTML 페이지로 사용할 수 있도록 기능을 개선
+    * 이전에는 Gamebase에서 제공하는 웹페이지나 외부 웹페이지 연결만 가능했음
+    * 웹서버가 없는 경우에도 점검페이지를 사용자가 원하는 형태로 만들 수 있음
+* Observer 기능 개발 및 API 추가
+    * (SDK 공통) 점검 등 앱 상태/네트워크 상태/유저 상태(이용정지) 변경사항에 대한 Listener를 Observer 등록을 통하여 일괄 처리할 수 있도록 API 추가
+
+#### 기능 개선/변경
+* [SDK] 1.8.0
+    * (공통)Observer 기능 추가에 따라 다음 API Deprecated : LaunchingStatus Listener, Network Listener(기존 사용자는 계속 사용 가능)
+    * (iOS)페이코 간편로그인 3rd SDK v1.2.2 적용 : 로그인 성공 시 토큰 만료 정보(expires_in) 제공, iPhoneX 로그인 UI 개선
+    * (iOS)iPhoneX 지원을 위하여, Webview 사용 인터페이스 수정
+
+#### 버그 수정
+* 국가코드(contry code)가 10자 이상인 경우 동접 데이터가 저장되지 않는 현상 수정
+* [SDK] 1.8.0
+    * (Setting Tool)Unity Facebook Adapter를 체크하면 에러가 나는 버그 수정
+
+### 1.7.1 (2018.03.13)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.7.1/GamebaseSDK-Unity.zip)
+
+#### 버그 수정
+* [SDK] 1.7.1
+    * (Unity)Inspector에서 설정된 SetDebugMode 값이 반영 안 되던 버그 수정
+    * (Unity)Standalone, WebGL: Display Language에서 사용되는 리소스 파일 누락 부분 수정
+    * (Unity)Google Adapter 1.6.2 배포: Google Adapter 1.6.1에서 AuthCode가 Empty로 반환되어 인증 실패하는 버그 수정
+
+### 1.7.0 (2018.02.22)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.7.0/GamebaseSDK-Unity.zip)
+#### 기능 추가
+* [SDK] 1.7.0
+    * NAVER IdP 인증 추가
+    * Display Language 설정 추가: 단말기 언어와 별도로 게임내에서 게임유저의 노출 언어를 설정할 수 있도록 Display 언어를 추가하였습니다.
+
+### 1.6.0 (2018.01.25)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.6.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* [SDK] 1.6.0
+    * (Unity)Standalone WinSDK 추가
+        * 64비트 지원
+        * 인증 지원 : facebook, google, payco
+
+### 1.5.0 (2017.12.21)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.5.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* [SDK] 1.5.0
+    * WebView가 닫힐 때 발생하는 Close Callback 추가
+    * WebView에서 사용하는 Custom Scheme의 Event를 받을 수 있는 기능 추가
+    * Unity Setting Tool 신규 배포
+
+#### 버그 수정
+* [SDK] 1.5.0
+    * (Unity)UnityEditor에서 Guest로그인이 되지 않는 현상 수정
+    * (Unity)TOAST Console에 Facebook 인증 정보를 등록하지 않고 Gamebase.Login("facebook") API를 호출할 경우, KeyNotFoundException이 발생하여 방어코드 추가
+
+### 1.4.0 (2017.11.23)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.4.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* [SDK] 1.4.0 업데이트
+    * (Unity)Gamebase Facebook Adapter가 추가 : Android, iOS, WebGL, Standalone Platform 및 UnityEditor 지원
+
+### 1.3.0 (2017.10.26)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.3.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* [SDK] 1.3.0 업데이트
+    * Credential을 이용한 AddMapping API추가
+
+#### 기능 개선/변경
+* [SDK] 1.3.0 업데이트
+    * (Unity)CredentialInfo를 사용하는 Login API호출 시 iOSPlugin에서 Json 파싱이 안되던 버그를 수정
+
+### 1.2.0 (2017.09.21)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.2.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* 이용정지(사용자처벌) 기능 추가
+* [SDK] 1.2.0 업데이트
+    * 이용정지 사용자 팝업 창 노출
+
+### 1.1.5 (2017.07.20)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.5/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* Gamebase 상품 이용 중지시 관련 데이터 삭제를 위한 일 배치 기능 추가
+* [SDK] 1.1.5 업데이트
+    * 시스템 팝업 창 API 추가 (showAlertWithTitle)
+    * 국가코드를 대문자로 반환하도록 변경 (Android)
+    * TCPush SDK 1.4.1 로 업데이트
+    * IAP SDK 1.3.3.20170627 로 업데이트
+
+### 1.1.4 (2017.05.25)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.4/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* Gamebase 상품 이용 중지시 관련 데이터 삭제를 위한 일 배치 기능 추가
+* [SDK] 1.1.4 업데이트
+    * 런타임 중 결제 Store를 변경할 수 있는 API 제공
+    * (Android)TCPushSdk v1.4 적용, Tencent Push 기능 제공
+
+### 1.1.2 (2017.04.04)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.2/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* [SDK] 1.1.2 업데이트
+    * 게임 론칭시 점검, 긴급공지 팝업 창 개선
+    * Unity Plugin 디버그로그 추가 및 익셉션 상세처리
+
+### 1.1.0 (2017.03.21)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.0/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* [SDK] 1.1.0 업데이트
+    * 외부 AccessToken을 받아서 idPLogin을 해주는 인터페이스를 추가
+    * [UI 기능 추가](./aos-ui) : Custom Webview, AlertDialog
+
+### 1.0.0 (2017.03.09)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.0.0/GamebaseSDK-Unity.zip)
+
+#### 신규 상품 출시
+* 게임에서 공통적으로 필요한 기능들을 제공하여 손쉽고 효율적으로 게임 개발이 가능하도록 돕는 서비스입니다.
+    * 다양한 인증 지원 : Guest , 3rd Party(Google , Facebook, GameCenter 등) 인증
+    * 로그아웃 및 회원탈퇴 기능을 제공
+    * 하나의 User가 여러 개의 외부 IDP를 동시에 사용할 수 있도록 mapping기능을 제공
+    * 게임운영을 위한 게임 앱 상태관리, 점검, 긴급공지 등의 기능을 웹콘솔로 제공
+    * 실시간 운영지표 확인 가능한 웹콘솔 화면 제공
+    * TOAST Cloud상품 연동 : PUSH, IAP

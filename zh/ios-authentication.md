@@ -1,20 +1,21 @@
-## Game > Gamebase > iOS SDK使用指南 > 认证
+## Game > Gamebase > iOS Developer's Guide > Authentication
 
 
 ## Login
 
-Gamebase默认支持Guest登录。
+Gamebase supports guest logins by default.
 
-- 使用游客以外的Provider登录，需要Provider AuthAdapter。
-- AuthAdapter和第三方提供的SDK设置，请参考以下内容。
-    - [Game > Gamebase > iOS SDK使用指南 > 开始 > 3rd-Party Provider SDK Guide](ios-started#3rd-party-provider-sdk-guide)
+- To log in to a provider other than the guest, the corresponding Provider AuthAdapter is required.
+- For AuthAdapter and 3rd-Party Provider SDK settings, see the following.
+    - [Game > Gamebase > iOS SDK User Guide > Getting Started > 3rd-Party Provider SDK Guide](ios-started#3rd-party-provider-sdk-guide)
 
-根据尝试登录的IdP，可能需要输入additionalInfo参数。<br/>
-有关AdditionalInfo的说明，请参考以下**Gamebase支持的IdP说明**。
- 
-   
+In some cases, additionalInfo parameter is required for IdP trying a login.
+For more details about AdditionalInfo, refer to **IdPs supported by Gamebase** below.
+
+
 ### Import Header File
-在ViewController中，导入要实现登录的以下头文件。
+
+Import the following header file to the ViewController to implement a login.
 
 ```objectivec
 #import <Gamebase/Gamebase.h>
@@ -22,63 +23,64 @@ Gamebase默认支持Guest登录。
 
 ### Login Flow
 
-多数游戏在标题页上实现登录。
+In most games, login is implemented on the title screen.
 
-* 当App首次安装和启动时，游戏用户可以在标题页选择要进行的IdP(identity provider)类型。
-* 登录过一次后，您将不会看到IdP选择画面，将使用之前登录的IdP类型进行认证。
+* Ensures game users are able to select which IdP (identity provider) to use for authentication in the title screen when installing and running the app for the first time.
+* Once you log in, the authentication is done via IdP type which was previously logged in without displaying the IdP selection screen.
 
-上述逻辑可以按以下顺序实现。
+The logic described in the above can be implemented in the following order.
 
 ![last provider login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
 ![idp login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
-#### 1. 按上一次的登录类型认证
+#### 1. Authenticate with Latest Login Type
 
-* 如果存在已做过的认证的记录，则尝试进行认证，不需要输入ID和密码。
-* 调用**[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]**。
+* If a previous authentication has been recorded, try to authenticate with no need of ID and password.
+* Call **[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]**.
 
-#### 1-1. 如果认证成功
+#### 1-1. When Authentication is Successful
 
-* 恭喜！ 认证成功。
-* 可以使用**[TCGBGamebase userID]**获取用户ID并实现游戏逻辑。
+* Congratulations! Successfully authenticated
+* Get a user ID with **[TCGBGamebase userID]** to implement a game logic.
 
-#### 1-2. 如果认证失败
+#### 1-2. When Authentication Fails
 
-* 网络错误
-    * 由于突发的网络问题，认证失败，错误代码为TCGB_ERROR_SOCKET_ERROR(110)或TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)。需要重新调用**[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]**或稍后再试。
-* 禁用游戏用户
-    * 由于用户是禁用状态，认证失败，错误代码为TCGB_ERROR_BANNED_MEMBER(7)。
-    * 请使用**[TCGBBanInfo banInfoFromError:error]**确认制裁信息，并告知游戏用户无法进行游戏的原因。
-    * 初始化Gamebase时调用**[TCGBConfiguration enablePopup:YES]**和**[TCGBConfiguration enableBanPopup:YES]**Gamebase会自动弹出禁用的窗口。
-* 其他错误
-    * 因为使用上一次的登录类型认证失败，请进行**'2. 使用指定的IdP进行认证。
+* Network error
+    * If the error code is **TCGB_ERROR_SOCKET_ERROR(110)** or **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**, it means the authentication failed due to temporary network issues, so call **[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]** again or try again later.
+* Banned game user
+    * If the error code is **TCGB_ERROR_BANNED_MEMBER(7)**, the authentication failed because the game user has been banned.
+    * Check the ban information with **[TCGBBanInfo banInfoFromError:error]** and inform the game user why he cannot play the game.
+    * If **[TCGBConfiguration enablePopup:YES]** and **[TCGBConfiguration enableBanPopup:YES]** are called when initializing Gamebase, Gamebase automatically displays a popup explaining the reason for user ban.
+* Other errors
+    * Authentication with the previous login type has failed. **'2. Authenticate with the designated IdP'**.
 
-#### 2. 使用指定的IdP进行认证
+#### 2. Authenticate with Specified IdP
 
-* 通过直接指定IdP类型来尝试进行认证。
-    * 可认证的类型在**TCGBConstants.h**文件的**TCGBAuthIdPs**类中声明。
-* 调用**[TCGBGamebase loginWithType:viewController:completion:]**API。
+* Try to authenticate by specifying an IdP type.
+    * Types that can be authenticated are declared in **TCGBAuthIdPs** of the **TCGBConstants.h** file.
+* Call **[TCGBGamebase loginWithType:viewController:completion:]** API.
 
-#### 2-1. 如果认证成功
+#### 2-1. When Authentication is Successful
 
-* 恭喜！ 认证成功。
-* 可以使用**[TCGBGamebase userID]**获取用户ID并实现游戏逻辑。
+* Congratulations! Successfully authenticated.
+* Get a user ID with **[TCGBGamebase userID]** to implement a game logic.
 
-#### 2-2. 如果认证失败
+### 2-2. When Authentication Fails
 
-* 网络错误
-    * 由于突发的网络问题，认证失败，错误代码为**TCGB_ERROR_SOCKET_ERROR(110)**或**TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**。需要重新调用**[TCGBGamebase loginWithType:viewController:completion:]**或稍后再试。
-* 禁用游戏用户
-    * 由于用户是禁用状态，认证失败，错误代码为**TCGB_ERROR_BANNED_MEMBER(7)**。
-    * 请使用**[TCGBBanInfo banInfoFromError:error]**确认制裁信息，并告知游戏用户无法进行游戏的原因。
-    * 初始化Gamebase时调用**[TCGBConfiguration enablePopup:YES]**和**[TCGBConfiguration enableBanPopup:YES]**，Gamebase会自动弹出禁用的窗口。
-* 其他错误
-    * 通知游戏用户发生了错误，并返回到游戏用户可以选择认证IdP类型的页面（通常是标题页面或登录页面）。
+* Network error
+    * If the error code is either **TCGB_ERROR_SOCKET_ERROR(110)** or **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**, authentication failed because of a temporary network problem. In this case, call **[TCGBGamebase loginWithType:viewController:completion:]** again or try authenticating later.
+* Banned game users
+    * If the error code is **TCGB_ERROR_BANNED_MEMBER(7)**, it means authentication failed because the user has been banned.
+    * Check the ban information with **[TCGBBanInfo banInfoFromError:error]** and inform the game user why they cannot play the game.
+    * If **[TCGBConfiguration enablePopup:YES]** and **[TCGBConfiguration enableBanPopup:YES]** are called when initializing Gamebase, Gamebase automatically displays a popup explaining the ban.
+* Other errors
+    * Informs users of an error and returns them to the state where they can select an authentication IdP type (usually title screen or login screen).
 
 ### Login as the Latest Login IdP
 
-尝试使用最近登录的IdP登录。如果该登录的令牌已过期，或者令牌认证失败，则返回失败。<br/>
-此时，必须实现对该IdP的登录。
+Try login with the most recently logged-in IdP. If a token is expired
+or its authentication fails, return failure.<br/>
+Note that a login should be implemented for the IdP.
 
 
 
@@ -123,33 +125,35 @@ Gamebase默认支持Guest登录。
 
 ### Login with IdP
 
-如果要调用特定的IdP登录，可以调用**[TCGBGamebase loginWithType:viewController:completion:]**方法。<br/>
-如果是第一次尝试通过Gamebase登录，或者登录信息（Access Token）已过期，则可以尝试使用此API登录。<br/>
-作为登录的结果，可以使用**(TCGBError *)error**对象来确定是否成功。<br/>
-您还可以使用**TCGBAuthToken**对象来获取如用ID等用户信息和令牌信息。<br/>
-如果登录成功，Gamebase Access Token将存储在Local Storage中，并在调用loginForLastLoggedInProviderWithViewController:completion:方法后，可以应用存储的Access Token。<br/>
-但是，IdP的Access Token是由每个IdP提供的SDK管理。<br/>
+To call a specific IdP login, call **[TCGBGamebase loginWithType:viewController:completion:]**.<br/>
+If it is the first login-trial via Gamebase, or login information (access token) has been expired, it is required to use this API to try a login.<br/>
+With a login result, you can see if it is successful or not by using **(TCGBError \*) error**.<br/>
+In addition, by using **TCGBAuthToken** , you can get user information, such as user ID and token.<br/>
+When a login is successful, Gamebase access token is saved at a local storage; to use loginForLastLoggedInProviderWithViewController:completion: method, the stored access token can be applied.<br/>
+However, access token of each IdP is managed by SDK of each IdP.<br/>
 
-> [参考]
+> [Note]
 >
-> iOS支持的IdP已定义为**TCGBConstants.h**的TCGBAuthIDPs领域的**kTCGBAuthXXXXXX**。
+> The IdP supported by iOS is defined as **kTCGBAuthXXXXXX** in the TCGBAuthIDPs area of **TCGBConstants.h**.
 >
-> [参考]
->
-> 某些IdP在登录时需要附加信息。
-> 为了设置这些附加信息，提供**[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]** API。
-> 您可以在additionalInfo参数中以dictionary的形式输入所需信息。
-> 如果有additionalInfo值，则使用相应值，而如果是null，使用在[NHN Cloud Console](./oper-app/#authentication-information)中注册的值。
-> [参考]
->
-> LINE IdP可以从Gamebase SDK 2.43.0开始设置提供LINE服务的区域。
-> 可以在additionalInfo中设置此区域。    
 
-* additionalInfo参数设置方法
+> [Note]
+>
+> Some IdPs require additional information when logging in.
+> To be able to set the required information, **[TCGBGamebase loginWithType:additionalInfo:viewController:completion:]** API is provided.
+> Enter the required information into the parameter additionalInfo in the form of the dictionary.
+> If there is a value in the additionalInfo parameter, use that value. if null, use the value registered in [NHN Cloud Console](./oper-app/#authentication-information).
 
-| keyname                                  | a use                          | 值类型                           |
+> [Note]
+>
+> LINE IdPs can set LINE service regions starting with Gamebase SDK 2.43.0.
+> The service regions can be set in the additionalInfo.
+
+* How to Set additionalInfo Parameters
+
+| keyname                                  | a use                          | Value type                         |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | 设置提供LINE服务的区域 | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
+| kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | Set LINE service region | "japan"<br/>"thailand"<br/>"taiwan"<br/>"indonesia" |
 
 **API**
 
@@ -174,16 +178,16 @@ Gamebase默认支持Guest登录。
 ```
 
 ```objectivec
-- (void)loginLineButtonClick {
-    NSDictionary *additionalInfo = @{ 
+ - (void)loginLineButtonClick {
+     NSDictionary *additionalInfo = @{ 
         @"key" : @"value" 
     };
-
-    [TCGBGamebase loginWithType:kTCGBAuthLine additionalInfo:additionalInfo viewController:viewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
-       if ([TCGBGamebase isSuccessWithError:error] == YES) {
+    
+     [TCGBGamebase loginWithType:kTCGBAuthLine additionalInfo:additionalInfo viewController:viewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
+       if ([TCGBGamebase isSuccessWithError:error] == YES){
             // To Login Succeeded
             NSString *userId = [authToken.tcgbMember userId];
-        } else { 
+        } else {
             // To Login Failed
         }
     }];
@@ -192,36 +196,38 @@ Gamebase默认支持Guest登录。
 
 ### Login with Credential
 
-是使用IdP提供的SDK在游戏中直接进行认证后，使用接收到的Access Token登录Gamebase的界面。
+This game interface allows authentication to be made with SDK provided by IdP, before login to Gamebase with provided access token.
 
 
-* Credential参数设置方法
+* How to Set Credential Parameters
 
-| keyname                                  | a use                          | 值类型                           |
+| keyname                                  | Usage                          | Value Type                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | 设定IdP类型                     | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo, kakaogame |
-| kTCGBAuthLoginWithCredentialAccessTokenKeyname |设定IdP登录后收到的认证信息（Access Token）。|                                |
-| kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname | 允许登录Gamebase后尝试使用其他帐户登录而不注销。 | **BOOL** |
-|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINE服务区域中要登录的一个服务区域。| [参考Login with IdP](./ios-authentication/#login-with-idp)|
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo, kakaogame |
+| kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set authentication information (access token) received after login IdP |                   | 
+| kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname | Allow login attempts using other accounts while logged into Gamebase without logging out  | **BOOL** |      
+|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | One of the LINE service regions to log in  | [See Login with IdP ](./ios-authentication/#login-with-idp)|                                  
 
 
-> [参考]
+
+> [Note]
 >
-> 当要在游戏中使用外部服务（例如Facebook）的特有功能时，可能需要它。
+> May require when original functions of external services (such as Facebook) are in need within a game.
 >
+
 <br/>
 
-> <font color="red">[注意]</font><br/>
+
+> <font color="red">[Caution]</font><br/>
 >
-> 外部SDK要求的开发事项需使用外部SDK的API实现，Gamebase不支持。
+> Development items required by the external SDK must be implemented by using the API of the external SDK, which is not supported by Gamebase.
 >
 
 ```objectivec
 #import "TCGBConstants.h"
 
 - (void)authLoginWithCredential {
-    NSDictionary *credentialDic = @{ kTCGBAuthLoginWithCredentialProviderNameKeyname: kTCGBAuthFacebook, kTCGBAuthLoginWithCredentialAccessTokenKeyname:@"此处输入来自facebook SDK的Access Token" };    
-
+    NSDictionary *credentialDic = @{ kTCGBAuthLoginWithCredentialProviderNameKeyname: kTCGBAuthFacebook, kTCGBAuthLoginWithCredentialAccessTokenKeyname:@"Enter the Access Token issued by the Facebook SDK here" };
     [TCGBGamebase loginWithCredential:credentialDic viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
         NSLog([authToken description]);
     }];
@@ -230,13 +236,13 @@ Gamebase默认支持Guest登录。
 
 ### Authentication Additional Information Settings
 
-[控制台使用指南](./oper-app/#authentication-information)
+[Console Guide](./oper-app/#authentication-information)
 
 ## Logout
 
 #### Import Header File
 
-将以下头文件导入到ViewController中来实现退出登录。
+Import the following header file to the ViewController to implement a logout.
 
 ```objectivec
 #import <Gamebase/Gamebase.h>
@@ -244,11 +250,11 @@ Gamebase默认支持Guest登录。
 
 #### Logout API
 
-尝试从登录中的IdP退出。 通常，在游戏的设置画面有退出登录（退出账号）按钮，然后点击该按钮执行。
-即使退出登录成功，也会保留游戏用户数据。
-如果退出登录成功，将会删除IDP认证记录，则下次登录时将显示ID和密码输入窗口。<br/> <br/>
+Try to log out from logged-in IdP. In many cases, the log-out button is located on the game configuration screen.
+Even if a logout is successful, data of game users remain.
+When it is successful, as authentication records with a corresponding IdP are removed, ID and passwords will be required for the next login process.<br/><br/>
 
-以下是点击“退出登录”按钮时的示例代码。
+Following shows a log-out example code with a click of the log-out button.
 
 ```objectivec
 - (void)authLogout {
@@ -269,7 +275,7 @@ Gamebase默认支持Guest登录。
 
 ### Import Header File
 
-将以下头文件导入到ViewController中来实现退出（删除数据）。
+Import the following header file to the ViewController to implement withdrawal.
 
 ```objectivec
 #import <Gamebase/Gamebase.h>
@@ -277,20 +283,19 @@ Gamebase默认支持Guest登录。
 
 ### Withdraw API
 
-在登录状态下尝试退出。
+Attempts account withdrawal while logged in.
 
-* 成功退出时
-  * IdP登录的游戏用户数据将会被删除。
-  * 可通过相关IdP重新登录。将创建新的游戏用户数据。
-  * 所有连接的IDP都将被注销。
-* 表示退出Gamebase，而不表示退出IdP账户。 
-
-> <font color="red">[注意]</font><br/>
-> 
-> 连接多个IdP时，所有IdP的连接将被解除，Gamebase用户数据也将被删除。 
+* Upon successful withdrawal
+  * The game user’s data of the IdP logged in will be deleted.
+  * You can login again with the IdP. A new game user’s data will be created.
+  * All linked IdPs will be logged out.
+* It means user's withdrawal from Gamebase, not from IdP account.
+> <font color="red">[Caution]</font><br/>
+>
+> If multiple IdPs are linked, all IdP linkages will be unlinked and the user data in Gamebase will be deleted.
 >
 
-以下是点击“退出”按钮时，将删除数据的示例代码。
+Following shows an exemplary withdrawal code with a click of the withdraw button.
 
 ```objectivec
 - (void)authWithdrawal {
@@ -306,76 +311,80 @@ Gamebase默认支持Guest登录。
 
 ## Mapping
 
-映射（Mapping）是将已登录的现有游戏帐号和IdP帐户关联或解除关联的功能。
+Mapping refers to connecting or disconnecting an existing login account to/from another IdP account.
 
-在大多数游戏中，可以将多个IdP帐户映射（Mapping）到同一个游戏账户。<br/>Gamebase的Mapping API，允许将您的其他IdP帐户和您之前登录的游戏帐户进行关联或解除关联操作。
+In many games, one account may have many integrated (mapped) IdPs.<br/>By using Gamebase Mapping API, other IdP accounts can be integrated or removed to/from another existing IdP account.
 
-换句话说，当您尝试使用同步的IdP帐户登录时，可以始终使用相同的用户ID登录。<br/> <br/>
+In short, a login to a mapped IdP account will be made available with a same user ID at all times.<br/><br/>
 
-请注意，每个IdP只能关联一个同域名帐户。<br/>
-例如，如果您已经关联了Google帐户，则无法添加其他Google帐户。<br/>
-以下是帐户关联的示例。<br/><br/>
+Note, however, that each IdP can have only one account to map.<br/>
+For instance, if a Google account is mapped, no other Google account can be additionally mapped.<br/>
+Below shows an example.<br/><br/>
 
-* Gamebase用户 ID: 123bcabca
+* Gamebase UserID: 123bcabca
     * Google ID: aa
     * Facebook ID: bb
     * AppleGameCenter ID: cc
-* Gamebase用户 ID: 456abcabc
+* Gamebase UserID: 456abcabc
     * Google ID: ee
-    * Google ID: ff **-> 由于您已关联Google ee帐户，因此无法添加其他Google帐户。**
+    * Google ID: ff **-> As the Google ee account is integrated, no additional Google account can be integrated.**
 
-Mapping API中有添加映射和解除映射的功能。
+Mapping API includes Add Mapping API and Remove Mapping API.
 
 ### Add Mapping Flow
 
-映射（Mapping）可以按以下顺序实现。
+Implement mapping in the following order.
 
 ![add mapping flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_add_mapping_flow_2.30.0.png)
 
-#### 1. 登录
-Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
-首先通过调用登录API登录。
+#### 1. Login
+Mapping means to add an IdP account integration to a current account, so login is a prerequisite.
+First, call a login API and log in.
 
-#### 2. 映射（Mapping）                   
+#### 2. Mapping
 
-调用**[TCGBGamebase addMappingWithType:viewController:completion:]**尝试进行映射（Mapping）。
+Call **[TCGBGamebase addMappingWithType:viewController:completion:]** to try mapping.
 
-#### 2-1. 如果映射（Mapping）成功
-* 恭喜！ 已成功添加与当前账户关联的IdP帐户。
-*    映射（Mapping）成功后，“当前登录的IdP”也不会更改。 换句话说，在已使用Gamecenter帐户登录后，成功映射（Mapping）到您的Facebook帐户，也不会将您“当前登录的IdP”从Google更改为Facebook，会保持Gamecenter的状态。
-    * <font color="red">[注意]</font><br/> : Guest账户是个例外。若使用Guest账户登录后映射成功，Guest IdP将被**删除**，而“当前登录的IdP”也将更改为映射的IdP。
-* 映射（Mapping）只是添加IdP关联。
+#### 2-1. When mapping is successful
 
-#### 2-2. 如果映射（Mapping）失败
+* Congratulations! Successfully added an IdP account integrated with the current account.
+* Even if a mapping is successful, 'currently logged-in IdP' will not change. For example, after a user’s login with Gamecenter account and has successfully mapped with a Facebook account, the user's 'currently logged-in IdP' does not change from Gamecenter to Facebook. It still stays with Gamecenter account.
+    * <font color="red">[Caution]</font><br/> : The Guest account is an exception. If the mapping attempt performed while logged in with the Guest account is successful, the Guest IdP is **deleted** and the 'currently logged-in IdP' is also changed to the mapped IdP.
+* Mapping simply adds IdP integration.
 
-* 网络错误
-    * 由于突发的网络问题，认证失败，错误代码为**TCGB_ERROR_SOCKET_ERROR(110)**和**TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**，则重新调用**[TCGBGamebase addMappingWithType:viewController:completion:]**或稍后再试。
-* 与其他帐户关联时发生的错误
-    * 错误代码为**TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**，则表示尝试映射（Mapping）的IdP上的帐户已关联了另一个帐户。请使用已获取的**ForcingMappingTicket**强制映射(**[TCGBGamebase addMappingForciblyWithTicket:viewController:completion:]**)或在尝试更改登录账号(**[TCGBGamebase changeLoginWithForcingMappingTicket:viewController:completion:]**)。
-* 关联相同IdP帐户发生的错误
-	* 错误代码为**TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)**，则表示已关联了与IDP相同类型的账户。
-	* Gamebase映射（Mapping），每个IdP只能关联一个游戏帐户。例如，已经关联了Google帐户，则无法添加其他Google帐户。
-	* 要关联同一IdP中的另一个帐户，请调用**[TCGBGamebase removeMappingWithType:viewController:completion:]**，解除关联后，再尝试映射（Mapping）。
-* 其他错误                            
-    * 尝试映射（Mapping）失败。              
+#### 2-2. When mapping fails
+
+* Network error
+    * If the error code is **TCGB_ERROR_SOCKET_ERROR(110)** or **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**, it means that the authentication failed due to temporary network issues, so call **[TCGBGamebase addMappingWithType:viewController:completion:]** again or try again later.
+* Error that occurs when already linked to another account
+    * If the error code is **TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**, it means that the account of the IdP to map is already linked to another account. Using the **ForcingMappingTicket** obtained at this point, you can try force mapping (**[TCGBGamebase addMappingForciblyWithTicket:viewController:completion:]**) or changing the login account (**[TCGBGamebase changeLoginWithForcingMappingTicket:viewController:completion:]**).
+* Error that occurs when already linked to the same IdP account
+	* If the error code is **TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP(3303)**, it means that an account of the same type as the IdP you want to map to is already linked.
+	* Gamebase mapping allows linking of only one account per IdP. For example, if it is already linked to a Google account, no other Google account can be added.
+	* To link another account of the same IdP, call **[TCGBGamebase removeMappingWithType:viewController:completion:]** to remove the linking and try mapping again.
+* Other errors
+    * The mapping attempt has failed.
 
 ### Import Header file into ViewController
 
-将以下头文件导入到ViewController中，来实现映射（Mapping）。
+Import the following header file to the ViewController to implement mapping.
 
 ```objectivec
 #import <Gamebase/Gamebase.h>
 ```
 
+
+
 ### Add Mapping API
 
-在登录特定IdP状态下，尝试用其他IdP Mapping。<br/>
+Try mapping to another IdP while logged-in to a specific IdP.<br/>
 
-* additionalInfo参数设置方法
-  
-| keyname                                  | a use                          | 值类型                          |
+* How to Set additionalInfo Parameters
+
+| Keyname                                  | Usage                        | Value Type                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINE服务区域中要登录的一个服务区域。 | [参考Login with IdP](./ios-authentication/#login-with-idp)|
+|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | A region to perform login among LINE service regions  | [See Login with IdP](./ios-authentication/#login-with-idp)|
+
 
 **API**
 
@@ -386,7 +395,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 
 **Example**
 
-如下为对Facebook尝试强制映射的范例。
+Below is an example of mapping to Facebook.
 
 ```objectivec
 - (void)authAddMapping {
@@ -406,34 +415,33 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 
 ### AddMapping with Credential
 
-游戏中直接使用IdP提供的SDK进行认证后，使用发行的Access Token，进行Gamebase AddMapping的接口。
+This game interface allows authentication to be made with SDK provided by IdP, before applying Gamebase AddMapping with provided access token.
 
 
 
 
-* Credential参数设置方法
+* How to Set Credential Parameters
 
 
 
-| keyname                                  | a use                          | 值类型                           |
+| keyname                                  | Usage                          | Value Type                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-| kTCGBAuthLoginWithCredentialProviderNameKeyname | 设定IdP类型                     | facebook, iosgamecenter, naver, google, twitter, line, appleid |
-| kTCGBAuthLoginWithCredentialAccessTokenKeyname | 设定IdP登录后收到的认证信息（Access Token）。|                                |
+| kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, iosgamecenter, naver, google, twitter, line, appleid |
+| kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set authentication information (access token) received after login IdP |                                |
 
 
 
-
-> [参考]
+> [Note]
 >
-> 当要在游戏中使用外部服务（例如Facebook）的特有功能时，可能需要它。
+> May require when original functions of external services (such as Facebook) are in need within a game.
 >
 
 <br/>
 
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 外部SDK要求的开发事项需使用外部SDK的API实现，Gamebase不支持。
+> Development items required by the external SDK must be implemented by using the API of the external SDK, which is not supported by Gamebase.
 >
 
 **API**
@@ -471,8 +479,8 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 ```
 
 ### Add Mapping Forcibly
-若特定IdP有已映射的账户，尝试**强制**映射。
-尝试**强制映射**时需要从AddMapping API获得的“ForcingMappingTicket”。
+If there is any account mapped to a specific IdP, try **force** mapping.
+When you try **force mapping**, you need `ForcingMappingTicket` obtained from the AddMapping API.
 
 **API**
 
@@ -482,7 +490,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 
 **Example**
 
-如下为对Facebook尝试强制映射的范例。
+The following is an example of force mapping to Facebook:
 
 ```objectivec
 - (void)authAddMappingForcibly {
@@ -511,10 +519,10 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 
 ### Change Login with ForcingMappingTicket
 
-若特定IdP有已映射的账户，尝试**更改登录账号**。
-尝试**更改登录账号**时需要从AddMapping API获得的“ForcingMappingTicket”。
+When there is an account already mapped to a specific IdP, **change the login account**.
+**When changing the login account**, the `ForcingMappingTicket` obtained from the AddMapping API is required.
 
-若调用Change Login API失败，上一个账号保持登录状态。
+If the Change Login API call fails, the existing account's login status is maintained.
 
 **API**
 
@@ -524,7 +532,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 
 **Example**
 
-如下为对Facebook尝试强制映射的范例。
+The following is an example of trying to change the login account to Facebook.
 
 ```objectivec
 - (void)authChangeLogin {
@@ -538,7 +546,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
             TCGBForcingMappingTicket* ticket = [TCGBForcingMappingTicket forcingMappingTicketFromError:error];
             [TCGBGamebase changeLoginWithForcingMappingTicket:ticket viewController:self completion:^(TCGBAuthToken *authToken, TCGBError *error) {
                 if ([TCGBGamebase isSuccessWithError:error]) {
-                    // Change login successed.
+                    // Change login succeeded.
                 }
                 else {
                     // Change login failed.
@@ -554,9 +562,9 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 
 ### Remove Mapping API
 
-解除特定IdP的关联。 <br/>
-如果您要解除关联的IdP是**唯一的IdP**，则会返还失败。<br/>
-解除关联之后，Gamebase将该IdP退出登录。
+Remove mapping with a specific IdP. <br/>
+If IdP mapping is not removed, error will occur.<br/>
+After mapping is removed, Gamebase processes logout of the IdP.
 
 ```objectivec
 [TCGBGamebase removeMappingWithType:kTCGBAuthFacebook viewController:topViewController completion:^(TCGBError *error) {
@@ -569,7 +577,7 @@ Mapping是为当前帐户添加IdP帐户链接，因此您必须先登录。
 ```
 
 ### Get IdP Mapping List
-可以查看当前帐户映射（Mapping）到各IdP的列表。
+Check the list of mapped accounts to IdPs.
 
 ```objectivec
 // Obtaining Names of Mapping IdPs
@@ -577,17 +585,17 @@ NSArray* authMappingList = [TCGBGamebase authMappingList];
 ```
 
 
-## Gamebase Users`s Information
-在使用Gamebase完成认证过程后，制作App时可获取您所需要的信息。
+## Gamebase User`s Information
+Process authentication with Gamebase, in order to get information required to create an app.
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 如果您使用“[TCGBGamebase loginForLastLoggedInProvider]”API登录，则无法获取认证信息。
+> Cannot import authentication information when you're logged in with "[TCGBGamebase loginForLastLoggedInProvider]" API.
 >
-> 如果需要认证信息，使用IDPCode和同一个{IDP_CODE}作为参数（不是使用"[TCGBGamebase loginForLastLoggedInProvider]"），调用"[TCGBGamebase loginWithType:IDP_CODE viewController:topViewController completion:completion];" API登录，才可获取正确的认证信息。
+> If authentication information is needed, log in using the "[TCGBGamebase loginWithType:IDP_CODE viewController:topViewController completion:completion];" API, using the {IDP_CODE} parameter that is same as that of the IDPCode to be used, instead of "[TCGBGamebase loginForLastLoggedInProvider]".
 
 ### Get Authentication Information for Gamebase
-可以获取Gamebase发行的认证信息。
+Get authentication information issued by Gamebase.
 
 ```objectivec
 // Obtaining Gamebase UserID
@@ -600,46 +608,49 @@ NSString* gamebaseAccessToken = [TCGBGamebase accessToken];
 NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 ```
 
+
 ### Get Authentication Information for External IdP
 
-* 登录后，通过游戏服务器调用Gamebase Server API，可获取外部认证IdP的Access Token、用户ID及Profile等信息。
-    * [Game > Gamebase > API指南 > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
+* Information such as access token, user ID, and profile of an external authentication IdP can be gotten by calling Gamebase Server API after login.
+    * [Game > Gamebase > API Guide > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
 
-> <font color="red">[注意]</font><br/>
->   
-> * 为了安全起见，建议通过游戏服务器调用外部IdP的认证信息。
-> * 根据IdP访问令牌类型，可能会很快过期。
->     * 例如，Google登录过2小时后，Access Token将会过期。
->     * 如果您需要用户信息，登录后，请直接调用Gamebase Server API。
-> * 如果调用"[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]" API登录，则无法接收认证信息。
->     * 如需用户信息，需要通过与IDPCode相同的{IDP_CODE}作为参数，调用"[TCGBGamebase loginWithType:viewController:completion:]" API登录，而不调用"[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]"。
-
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 在iOS 12上使用appleid登录时，无法查看认证信息。
+> * For security reasons, it is recommended to call the authentication information of an external IdP from the game server.
+> * Access token may expire relatively sooner depending on the IdP.
+>     * For example, the access token of Google will expire within 2 hours from the time of login.
+>     * If you need user information, it is recommended to call Gamebase Server API immediately after login.
+> * "[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]" API is used to log in, authentication information cannot be retrieved.
+>     * If you need user information, log in with "[TCGBGamebase loginWithType:viewController:completion:]" API using the same {IDP_CODE} parameter as the IDPCode to be used instead of "[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]".
+
+> <font color="red">[Caution]</font><br/>
+>
+> For appleid login using iOS 12 or earlier, the authentication information cannot be viewed.
 >
 
 ### Get Banned User Information
 
-如果在Gamebase Console中登记为受到制裁的游戏用户，
-当该用户尝试登录时，可能会看到以下限制信息代码。您可以使用**[TCGBBanInfo banInfoFromError:error]**方法，确认制裁信息。
+If a user is registered while being banned in Gamebase Console,
+the user will see the following usage restriction code when attempting to log in to the game. Ban information can be checked using the **[TCGBBanInfo banInfoFromError:error]** method.
 
 * TCGB_ERROR_BANNED_MEMBER
 
+
+
+
 ## TransferAccount
-获得将访客账户转移至其他终端机密钥的功能。
+Issues a key to transfer the guest account to another device.
 
-此密钥称为**TransferAccountInfo**。
-获得的TransferAccountInfo可从其他终端机调用**requestTransferAccount** API，并转移账户。
+This key is called **TransferAccountInfo**.
+The issued TransferAccountInfo calls the **requestTransferAccount** API from another device to transfer the account.
 
-> <font color="red">[注意]</font><br/>
-> 
-> TransferAccountInfo仅在访客登录状态下可获得。
-> 使用TransferAccountInfo的账户转移仅可在访客登录状态或未登录状态下实现。
-> 若登录的访客账户已与其他外部IdP(Google、Facebook等) 映射，则不支持账户转移。
+> <font color="red">[Caution]</font><br/>
+> The TransferAccountInfo key can be issued while the guest account is logged in.
+> Transfer of guest account using TransferAccountInfo is allowed only when logged in to a guest account or not logged in.
+> If the logged-in guest account has already been mapped to an IdP (Google, Facebook etc.) account, account transfer is not supported.
 
 ### Issue TransferAccount
-为了转移访客账户，发放TransferAccountInfo。
+Issues TransferAccountInfo to transfer the guest account.
 
 **API**
 
@@ -658,7 +669,7 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 ```
 
 ### Query TransferAccount
-为了转移访客账户，向Gamebase服务器查询已获得的TransferAccountInfo信息。
+Queries the TransferAccountInfo information issued for guest account transfer to the Gamebase server.
 
 **API**
 
@@ -678,8 +689,8 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 
 
 ### Renew TransferAccount
-更新已获得的TransferAccountInfo信息。
-更新方法有**自动更新**与**手动更新**，可选择**仅更新密码**、**同时更新ID与密码**更新TransferAccountInfo信息。
+Renews the issued TransferAccountInfo information.
+There are two types of renewal: **Auto Renew** and **Manual Renew**. You can select either **Renew Password Only** or **Renew Both ID and Password** to renew the TransferAccountInfo information.
 
 ```objectivec
 + (void)renewTransferAccountWithConfiguration:(TCGBTransferAccountRenewConfiguration *)config completion:(TransferAccountCompletion)completion;
@@ -692,7 +703,7 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
     // If you want renew the account automatically, use this config.
     TCGBTransferAccountRenewalTargetType renewalTargetType = TCGBTransferAccountRenewalTargetTypeIdPassword;
     TCGBTransferAccountRenewConfiguration* autoConfig = [TCGBTransferAccountRenewConfiguration autoRenewConfigurationWithRenewalTarget:renewalTargetType];
-
+    
     // If you want renew the account manually, use this config.
     TCGBTransferAccountRenewConfiguration* manualConfig = [TCGBTransferAccountRenewConfiguration manualRenewConfigurationWithAccountId:@"ID" accountPassword:@"PASSWORD"];
     [TCGBGamebase renewTransferAccountWithConfiguration:autoConfig completion:^(TCGBTransferAccountInfo *transferAccount, TCGBError *error) {
@@ -709,16 +720,20 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 }
 ```
 
-### Transfer Guest Account to Another Device
-向从**issueTransfer** API获得的TransferAccount转移账户的功能。
-账户转移成功时获得TransferAccount的终端机可显示转移完成信息，访客登录时创建新的账户。
-在账户转移成功的终端机中可继续使用获得TransferAccount的终端机的账户信息。
 
-> <font color="red">[注意]</font><br/>
-> 
-> 若以访客登录的状态转移账户，访客账户将丢失。
-> 若连续输入错误的id/password，将发生**AUTH_TRANSFERACCOUNT_BLOCK(3042)**错误，账户被暂时禁用。 
-> 如果出现上述错误，如下所示，可通过调用TCGBTransferAccountFailInfo值通知用户账户转移将被阻止多长时间。 
+
+
+### Transfer Guest Account to Another Device
+Transfers the account with TransferAccount issued with **issueTransfer** API.
+When account transfer is successful, a transfer completion message will be displayed from the device where TransferAccount has been issued and a new account will be created when a guest logs in.
+On the device where the account transfer was successfully made, the guest account from the previous device where TransferAccount was issued can still be used.
+
+> <font color="red">[Caution]</font><br/>
+>
+> If migration succeeds while already logged in as a guest, the guest account logged in to the device will be lost.
+> If incorrect id/password is attempted multiple times, an **AUTH_TRANSFERACCOUNT_BLOCK(3042)** error occurs and the account migration is blocked for a certain period of time.
+> In this case, you can inform the user how long the account migration will be banned through the TCGBTransferAccountFailInfo as shown below.
+
 
 
 **API**
@@ -753,24 +768,25 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
  }
 ```
 
+
+
 ## TemporaryWithdrawal
 
-为“预约退出”功能。
-由于请求了临时退出，不立即退出，预约时期过后退出。
-可以在控制台中修改预约时期。
+This is a 'pending withdrawal" feature.
+By requesting a temporary withdrawal, the account is not immediately withdrawn. Instead, it is withdrawn after a specific grace period.
+The grace period can be changed in the console.
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 如果使用预约退出功能，不应调用**[TCGBGamebase withdrawWithViewController:completion:]** API。
-> 通过调用**[TCGBGamebase withdrawWithViewController:completion:]** API，可立即退出。
+> Do not use **[TCGBGamebase withdrawWithViewController:completion:]** API if you're using the Pending Withdrawal feature.
+> The **[TCGBGamebase withdrawWithViewController:completion:]** API immediately withdraws accounts when used.
 
-如果登录成功，您可通过调用AuthToken.getTemporaryWithdrawalInfo() API，确认用户是否在预约退出状态。
-
+If login is successful, the AuthToken.getTemporaryWithdrawalInfo() API can be called to determine if the user is in the status of pending withdrawal.
 
 ### Request TemporaryWithdrawal
 
-请求临时退出。
-在控制台中指定的预约时间过后，自动完成退出处理。
+Requests a temporary withdrawal.
+The account is automatically withdrawn after a specific grace period set in the console.
 
 **API**
 
@@ -782,7 +798,7 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 
 |Error Code | Description |
 | --- | --- |
-| TCGB\_ERROR\_AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW(3602) | 用户已临时退出。|
+| TCGB\_ERROR\_AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW(3602) | The user is already in the status of temporary withdrawal. |
 
 **Example**
 
@@ -806,10 +822,11 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 
 ### Check TemporaryWithdrawal User
 
-登录使用预约退出的游戏后始终使用**TCGBAuthToken.tcgbMember.temporaryWithdrawal**，若返还有效的TemporaryWithdrawalInfo对象，而不返还null，则需通知相关用户正在进行退出处理。
+For games using the Pending Withdrawal feature must notify their users that they are in grace period if **TCGBAuthToken.tcgbMember.temporaryWithdrawal** is used and it returns a valid TemporaryWithdrawalInfo object instead of null.
 
 **Example**
-  
+
+
 ```objectivec
 - (void)testLogin {
     [TCGBGamebase loginWithType:@"appleid" viewController:parentViewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
@@ -830,11 +847,10 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 }
 ```
 
-
 ### Cancel TemporaryWithdrawal
 
-取消退出请求。
-若预约退出时间过期，则无法退出。 
+Cancels a withdrawal request.
+If the grace period is over and the withdrawal process is completed, it cannot be undone.
 
 **API**
 
@@ -846,7 +862,7 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 
 |Error Code | Description |
 | --- | --- |
-| TCGB\_ERROR\_AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW(3603) |  用户未临时退出。 |
+| TCGB\_ERROR\_AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW(3603) | The user is not in the status of temporary withdrawal. |
 
 **Example**
 
@@ -870,10 +886,10 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 
 ### Withdraw Immediately
 
-无论预约退出时期的设置状态如何，都立即退出。
-实际的内置启动与**[TCGBGamebase withdrawWithViewController:completion:]** API相同。
+Immediately withdraws the account, ignoring the grace period.
+The internal mechanics are the same as the **[TCGBGamebase withdrawWithViewController:completion:]** API.
 
-无法取消立即退出，因此要反复提示用户是否继续执行。
+Instant withdrawal cannot be undone, so it is important to ask the user several times if they really want to execute the command.
 
 **API**
 
@@ -899,15 +915,15 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 
 ## GraceBan
 
-* 是“结算Abusing自动解除”功能。
-    * 结算Abusing自动解除功能是当存在需通过“结算Abusing自动制裁”来禁止用户使用时，禁止这些用户的使用之前先提供预约时间的功能。
-    * 如果为“预约禁用状态”，在设定的时期内满足解除条件，则可玩游戏。
-    * 若在所定的时期内未能满足条件，则会被禁用。
-* 登录使用结算Abusing自动解除功能的游戏后，始终要确认TCGBAuthToken.tcgbMember.graceBanInfo值，如果返还有效的TCGBGraceBanInfo对象，而不返还null，要向相关用户通知解除禁用的条件、时期等。
-    * 当需要控制处于预约禁用状态的用户进入游戏时，要在游戏中进行处理。   
+* This is a 'purchase abuse automatic release' function.
+    * The purchase abuse automatic release function allows users who should be banned due to purchase abuse automatic lockdown to be banned after ban suspension status.
+    * When a user is in ban suspension status, if the user satisfies all of the release conditions within the set period of time, the user will be able to play normally.
+    * If the user does not satisfy the conditions within the period, the user is banned.
+* Games that use the purchase abuse automatic release function must always check the value of TCGBAuthToken.tcgbMember.graceBanInfo after login. If a valid TCGBGraceBanInfo object that is not null is returned, the user must be informed of the ban release conditions, period, etc.
+    * In-game access control for users who are in ban suspension status must be handled by the game.
 
 **Example**
-    
+
 ```objectivec
 - (void)testGraceBanInfo {
     [TCGBGamebase loginWithType:kTCGBAuthAppleID viewController:viewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
@@ -948,42 +964,45 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 
 | Category       | Error                                    | Error Code | Description                              |
 | -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
-| Auth           | TCGB\_ERROR\_INVALID\_MEMBER             | 6          | 请求了错误的成员。                        |
-|                | TCGB\_ERROR\_BANNED\_MEMBER              | 7          | 此成员已被禁用。                            |
-|                | TCGB\_ERROR\_AUTH\_USER\_CANCELED        | 3001       | 已取消登录。                            |
-|                | TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002       | 是不支持的认证方式。                        |
-|                | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER    | 3003       | 是不存在或已退出的成员。                      |
-|                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR    | 3006       |  第三方认证库初始化失败                      |
-|                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | 是外部认证库错误。<br/>请确认详细错误。  |
-|                | TCGB\_ERROR\_AUTH\_INVALID\_GAMEBASE\_TOKEN | 3011       | 由于Gamebase Access Token无效已注销。<br/>请稍后重新登录。 |
-| Auth (Login)   | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED  | 3101       | 令牌登录失败                          |
-|                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | 是无效的令牌信息。                      |
-|                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | 最近登录的IdP信息不存在。                   |
-| IdP Login      | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_FAILED    | 3201       | IdP登录失败                        |
-|                | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO | 3202       | 是无效的IdP信息（在Console中不存在该IdP信息）。 |
-| Add Mapping    | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FAILED  | 3301       | 添加映射失败                          |
-|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | 已关联了其他成员。                      |
-|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       | 已关联了相同类型的IdP。                     |
-|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO | 3304       | 是无效的IdP信息 (在Console中不存在该IdP信息)。 |
-|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_CANNOT\_ADD\_GUEST\_IDP | 3305  | 用客户IdP无法进行AddMapping。|
-| Remove Mapping | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_FAILED | 3401       | 映射删除失败                           |
-|                | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | 最后关联的IdP无法删除。                |
-|                | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP | 3403       | 是已登录的IdP。                     |
-| Logout         | TCGB\_ERROR\_AUTH\_LOGOUT\_FAILED        | 3501       | 注销失败                            |
-| Withdrawal     | TCGB\_ERROR\_AUTH\_WITHDRAW\_FAILED      | 3601       | 退出失败                              |
-|                | TCGB\_ERROR\_AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | 用户已临时退出。                    |
-|                | TCGB\_ERROR\_AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | 用户未临时退出。                     |
-| Not Playable   | TCGB\_ERROR\_AUTH\_NOT\_PLAYABLE         | 3701       | 无法进入游戏 （维护或终止服务等）。        |
-| Auth(Unknown)  | TCGB\_ERROR\_AUTH\_UNKNOWN\_ERROR        | 3999       | 发生未知错误 (出现未定义错误)。            |
+| Auth           | TCGB\_ERROR\_INVALID\_MEMBER             | 6          | Invalid member request.                        |
+|                | TCGB\_ERROR\_BANNED\_MEMBER              | 7          | The member is temporarily banned.                               |
+|                | TCGB\_ERROR\_AUTH\_USER\_CANCELED        | 3001       | Login has been canceled.                            |
+|                | TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002       | The authentication method is not supported.                        |
+|                | TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER    | 3003       | The member either does not exist or withdrew their account.                      |
+|                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR    | 3006       | Failed to initialize the external authentication library.                      |
+|                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | An external authentication library error. <br/> Please check the error details. |
+|                | TCGB\_ERROR\_AUTH\_INVALID\_GAMEBASE\_TOKEN | 3011       | You have been logged out due to an invalid Gamebase Access Token.<br/>Please try logging in again. |
+| Auth (Login)   | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED  | 3101       | Token login failed.                          |
+|                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | Invalid token information.                        |
+|                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | No recent login IdP information.                   |
+| IdP Login      | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_FAILED    | 3201       | IdP login failed.                        |
+|                | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO | 3202       | Invalid IdP information. (The console has no information about the IdP.) |
+| Add Mapping    | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FAILED  | 3301       | Additional mapping failed.                           |
+|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | Already mapped to a different member.                      |
+|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       | Already mapped to the same IdP.                     |
+|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO | 3304       | Invalid IdP information. (The console has no information about the IdP.) |
+|                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_CANNOT\_ADD\_GUEST\_IDP | 3305  | AddMapping is unavailable with the guest IdP. |
+| Remove Mapping | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_FAILED | 3401       | Failed to delete mapping.                           |
+|                | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | The last mapped IdP cannot be deleted.                |
+|                | TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP | 3403       | The IdP is currently logged in.                     |
+| Logout         | TCGB\_ERROR\_AUTH\_LOGOUT\_FAILED        | 3501       | Failed to log out.                            |
+| Withdrawal     | TCGB\_ERROR\_AUTH\_WITHDRAW\_FAILED      | 3601       | Failed to withdraw the account.                              |
+|                | TCGB\_ERROR\_AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | The user is already in the status of temporary withdrawal.                    |
+|                | TCGB\_ERROR\_AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | The user is not in the status of temporary withdrawal.                     |
+| Not Playable   | TCGB\_ERROR\_AUTH\_NOT\_PLAYABLE         | 3701       | The game is unavailable at the moment (for maintenance, service termination, or other reasons).        |
+| Auth(Unknown)  | TCGB\_ERROR\_AUTH\_UNKNOWN\_ERROR        | 3999       | An unknown error occurred (undefined error).            |
 
-* 有关所有的错误代码，请参考如下文件。
-    - [错误代码](./error-code/#client-sdk)
+
+
+
+* For the entire list of error codes, see the following document.
+    - [Error Code](./error-code/#client-sdk)
 
 
 **TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR**
 
-* 当在外部认证库发生错误时，将返还此错误。
-* 在外部认证库发生的错误信息包含在详细错误中，而详细错误代码和消息如下。
+* The error is returned when an error occurs in external authentication library.
+* The information on the error in external authentication library is included in the error details, and you can find detailed error code and message as follows.
 
 ```objectivec
 TCGBError *tcgbError = error; // TCGBError object via callback
@@ -995,4 +1014,4 @@ NSString *detailErrorMessage = [error detailErrorMessage];
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
-* 关于详细错误代码，请参考每个外部认证库的Developer页面。
+For detailed error codes, see the Developer page on each external authentication library.
