@@ -11,6 +11,7 @@
 #### 버그 수정
 * idP Login 시 로딩 애니메이션 off가 적용되지 않는 현상이 수정되었습니다.
 * API Level 28, 29 전체화면 웹뷰에서 windowFocus가 변경되면 네비게이션 바가 다시 생겨나는 이슈가 수정되었습니다.
+* Weibo 로그인에 성공했지만 간헐적으로 Weibo SDK에서 access token이 null로 리턴되는 경우 크래시가 발생하지 않도록 방어 로직을 추가했습니다.
 
 ### 2.53.0 (2023. 08. 17.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.53.0/GamebaseSDK-Android.zip)
