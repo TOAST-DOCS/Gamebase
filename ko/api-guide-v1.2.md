@@ -1385,7 +1385,7 @@ Gamebase는 NHN Cloud Leaderboard 서비스의 서버 API에 대해 **Wrapping**
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
 
 
-[Leaderboard Guide](/Game/Leaderboard/ko/api-guide/)
+[Leaderboard Guide]((https://docs.nhncloud.com/ko/Game/Leaderboard/ko/api-guide/)
 
 ##### API 호출 예시
 

@@ -339,6 +339,10 @@ void Sample::AddEventHandler()
 
 #### IdP Revoked
 
+> [참고]
+>
+> iOS Appleid 로그인을 사용하는 경우에만 발생할 수 있는 이벤트입니다.
+
 * IdP에서 해당 서비스를 삭제하였을 때 발생하는 이벤트입니다.
 * 유저에게 IdP가 사용 중지된 것을 알리고, 동일한 IdP로 로그인할 때 userID를 새로 발급 받을 수 있도록 구현해야 합니다.
 * FGamebaseEventIdPRevokedData.code: GamebaseIdPRevokedCode 값을 의미합니다.
@@ -883,7 +887,7 @@ Gamebase 는 고객 문의 대응을 위한 기능을 제공합니다.
 >
 > NHN Cloud  Contact 서비스와 연동해서 사용하면 보다 쉽고 편리하게 고객 문의에 대응할 수 있습니다.
 > 자세한 NHN Cloud  Contact 서비스 이용법은 아래 가이드를 참고하시기 바랍니다.
-> [NHN Cloud Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
+> [NHN Cloud Online Contact Guide](https://docs.nhncloud.com/ko/Contact%20Center/ko/online-contact-overview/)
 
 #### Customer Service Type
 
@@ -919,7 +923,7 @@ ContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니다.
 | ------------- | ------------- | ---------------------------------- | ------------------ |
 | userName      | O             | FString                            | 사용자 이름(닉네임) <br>**default**: ""   |
 | additionalURL | O             | FString                            | 개발사 자체 고객 센터 URL 뒤에 붙는 추가적인 URL <br>**default**: ""    |
-| additionalParameters | O      | TMap<string, string>               | 고객센터 URL 뒤에 붙는 추가적인 파라미터<br>**default** : EmptyMap |
+| additionalParameters | O      | TMap<string, string>               | 고객 센터 URL 뒤에 붙는 추가적인 파라미터<br>**default** : EmptyMap |
 | extraData     | O             | TMap<FString, FString>             | 개발사가 원하는 extra data를 고객 센터 오픈 시에 전달<br>**default**: EmptyMap |
 
 **API**

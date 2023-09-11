@@ -706,4 +706,4 @@ else
 ```
 
 * NHN Cloud IAPのエラーコードは、次のドキュメントをご参考ください。
-    * [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud IAP > Unity > エラーコード](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-unity/#error-code)
+    * [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud IAP > Unity > エラーコード](https://docs.nhncloud.com/en/nhncloud/en/nhncloud-sdk/iap-unity/#error-code)

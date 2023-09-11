@@ -14,16 +14,16 @@ To execute Gamebase in Android, the following system environment is required.
 
 | Gamebase SDK | Gamebase Adapter | External SDK | Purpose | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.6.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.7.20<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include the interface and core logic of Gamebase | API 19(KitKat, OS 4.4) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.6.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include the interface and core logic of Gamebase | API 19(KitKat, OS 4.4) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Support Sign In With Apple login | - |
-|  | gamebase-adapter-auth-facebook | facebook-login-11.3.0 | Support Facebook login | - |
+|  | gamebase-adapter-auth-facebook | facebook-login-16.1.2 | Support Facebook login | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Support Google login | - |
 |  | gamebase-adapter-auth-hangame | hangame-id-1.6.3 | Support Hangame login | - |
-|  | gamebase-adapter-auth-line | linesdk-5.8.0 | Support LINE login | - |
+|  | gamebase-adapter-auth-line | linesdk-5.8.1 | Support LINE login | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | Support NAVER login | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.12 | Support PAYCO login | - |
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Support Twitter login | - |
-|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-12.5.0 | Support Weibo login | - |
+|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.5.0 | Support Weibo login | - |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Support Weibo login | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.14.14<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.11.1<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 21(Lollipop, OS 5.0) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | Support in-app purchase | - |
@@ -54,11 +54,12 @@ To execute Gamebase in Android, the following system environment is required.
 * For authentication, get the Client ID from the IdP and enter it in the Gamebase console.
     * [Game > Gamebase > Console User Guide > App > Authentication Information](./oper-app/#authentication-information)
 * To enable item purchase, register the app info in the Store console and enter it in Gamebase > Purchase(IAP) console.
-	* [Game > Gamebase > Store Console Guide > Google Console Guide](./console-google-guide)
-	* [Game > Gamebase > Store Console Guide > ONE store Console Guide](./console-onestore-guide)
-	* [Game > Gamebase > Store Console Guide > GALAXY Store Console Guide](./console-galaxy-guide)
-	* [Game > Gamebase > Store Console Guide > Amazon Appstore Console Guide](./console-amazon-guide)
-	* [Game > Gamebase > Store Console Guide > Huawei App Gallery Console Guide](./console-huawei-guide)
+    * [Game > Gamebase > Store Console Guide > Google Console Guide](./console-google-guide)
+    * [Game > Gamebase > Store Console Guide > ONE store Console Guide](./console-onestore-guide)
+    * [Game > Gamebase > Store Console Guide > GALAXY Store Console Guide](./console-galaxy-guide)
+    * [Game > Gamebase > Store Console Guide > Amazon Appstore Console Guide](./console-amazon-guide)
+    * [Game > Gamebase > Store Console Guide > Huawei App Gallery Console Guide](./console-huawei-guide)
+    * [Game > Gamebase > Store Console Guide > MyCard Console Guide](./console-mycard-guide)
     * See the following guide to register items.
         * [Game > Gamebase > Console User Guide > Payment > Register](./oper-purchase/#register_1)
 * For push notifications, go to Gamebase > Push > Certificate Console and enter the push notification service certificate.
@@ -175,8 +176,8 @@ buildscript {
 #### Define Adapters
 
 * Declare Gamebase version and authentication to use, and the payment and the push modules in the build.gradle file.
-	* Find the latest Gamebase version at [Maven Central(LINK)](https://repo1.maven.org/maven2/com/toast/android/gamebase/gamebase-sdk/).
-	* Add the  `mavenCentral()`  storage. 
+    * Find the latest Gamebase version at [Maven Central(LINK)](https://repo1.maven.org/maven2/com/toast/android/gamebase/gamebase-sdk/).
+    * Add the  `mavenCentral()`  storage. 
 
 ```groovy
 // >>> [Huawei App Gallery] agconnect plugin for huawei - when Native Android build
@@ -257,6 +258,17 @@ android {
 
 ### Resources
 
+#### Weibo IdP
+
+* Depending on your build target, download the so files from the following URLs and copy them to your project.
+    * https://github.com/sinaweibosdk/weibo_android_sdk/tree/master/so
+* In case of Android Studio build
+    * Copy under the project's src/main/java/jniLibs folder.
+    * ![Add so file to Android Studio project](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-started-resources-weibo-so-android-studio-2.53.0.png)
+* In case of Unity build
+    * Copy the so and foler under the Assets/Plugins/Android/libs.
+    * ![Add so file to Unity project](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-started-resources-weibo-so-unity-2.53.0.png)
+
 #### Huawei Store
 
 * You must add the AppGallery Connection configuration file (agconnect-services.json) to the assets folder.
@@ -273,7 +285,7 @@ android {
 
 * For Android Studio build
     * To use the Firebase push, you need to follow the guide below to complete the Firebase settings, and then include the google-services.json file in the project.
-		* [NHN Cloud > SDK User Guide> Push > Android > Firebase Cloud Messaging Settings](/TOAST/en/toast-sdk/push-android/#firebase-cloud-messaging)
+        * [NHN Cloud > SDK User Guide> Push > Android > Firebase Cloud Messaging Settings](/TOAST/en/toast-sdk/push-android/#firebase-cloud-messaging)
 * For a Unity build
     * **Caution**: It is not necessary to install the Firebase Unity SDK Package, and even if you do not, push works properly.
     * If the Firebase Unity SDK Package has been installed, you can use the following command to execute **generate_xml_from_google_services_json.exe** file to convert json files into xml files.
@@ -305,6 +317,21 @@ android {
 
 ### AndroidManifest.xml
 
+#### Contact
+
+* To make an inquiry in [Game > Gamebase > Android SDK User Guide > ETC > Additional Features > Contact](./aos-etc/#contact) with photos and media, you need permission to read storage.
+        
+        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+        
+* If your app is targeting Android 13 (API Level 33) or later, in addition to the storage read permission, you also need to decare the following detailed media permissions.
+        
+        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+        <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+        <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+        <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+        
+* If permissions are declared, the Gamebase SDK will automatically request runtime permissions at file upload time.
+
 #### Facebook IdP
 
 * Declares the App ID and the client token to initialize Facebook SDK.
@@ -335,16 +362,6 @@ android {
     <string name="facebook_app_id">123456789012345</string>
     <string name="facebook_client_token">a01234bc56de7fg89012hi3j45k67890</string>
 </resources>
-```
-
-#### LINE IdP
-
-* As **android:allowBackup="false"** is declared in LINE SDK, Manifest merger might fail while building the application. If a build fails in this way, add **tools:replace="android:allowBackup"** declaration to the application tag.
-
-```xml
-<application
-      tools:replace="android:allowBackup"
-      ... >
 ```
 
 #### Weibo IdP
@@ -562,15 +579,6 @@ class MyApplication: GamebaseMyCardApplication() {
         <package android:name="nh.smart.nhallonepay" />
         <!-- [Hangame] Configurations end -->
 
-        <!-- [LINE] Configurations begin -->
-        <package android:name="jp.naver.line.android" />
-        <intent>
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.BROWSABLE" />
-            <data android:scheme="https" />
-        </intent>
-        <!-- [LINE] Configurations end -->
-
         <!-- [NAVER] Configurations begin -->
         <package android:name="com.nhn.android.search" />
         <!-- [NAVER] Configurations end -->
@@ -668,9 +676,9 @@ The API which is not supported by Gamebase anymore is processed as deprecated (d
 A deprecated API can be deleted without any prior notice when the following conditions are met:
 
 * Minor version updates of five or more times.
-	* Gamebase version format - XX.YY.ZZ
-		* XX: Major
-		* YY: Minor
-		* ZZ: Hotfix
+    * Gamebase version format - XX.YY.ZZ
+        * XX: Major
+        * YY: Minor
+        * ZZ: Hotfix
 * Time elapse of at least five months
 

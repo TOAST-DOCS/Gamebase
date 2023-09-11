@@ -1,133 +1,129 @@
 ## Game > Gamebase > Release Notes > Server API
 
-### 2023. 08. 17.
+### July 25, 2023
 
-#### 添加功能
-* 添加了“Get Ban Members”API来搜索当前被禁止使用的用户。
+#### Added Features
+* Add 'includeInactiveGoogleStatuses' field to the List Active Subscriptions API request body
+* Added 'renewTime' field to the List Active Subscriptions API response
+* Added 'marketIds' field to the List Active Subscriptions API to allow querying against N stores at once.
 
-### 2023. 07. 25.
+### December 27, 2022
 
-#### 添加功能
-* 在订阅查询API request body中添加了“includeInactiveGoogleStatuses”字段。
-* 在订阅查询API响应中添加了“renewTime”字段。
-* 在订阅查询API中添加了“marketIds”字段，以便一次搜索N个商店。 
+#### Added Features
 
-### 2022. 12. 27.
+* Add an API to cancel products in subscription for Google Play Store
+* Added the 'linkedPaymentId' field to response results of the "List Active Subscriptions" API
 
-#### 添加功能
+#### Feature Updates
+* Fixed an issue where, when purchasing items through a specific payment scenario, null occurs in gamebaseProductId for response results of the list non-consumed payment API
 
-* 添加了“Google Play商店的订阅商品的取消API”。 
-* 在“查询订阅 API” 响应中添加了 “linkedPaymentId”字段。
+### August 23, 2022
 
-#### 改善/修改功能
-* 修改了通过特定的支付程序购买道具时，在“未消费支付明细查询API”响应结果中出现gamebaseProductId null的问题。
+#### Added Features
 
-### 2022. 08. 23.
-
-#### 添加功能
-
-* 添加了服务器URL。
+* Added the server URL
 	* https://api-gamebase.nhncloudservice.com
 
-### 2022. 07. 26.
+### July 26, 2022
 
-#### 添加功能
-* 为了一次搜索N家商店，“marketIds”被添加到未消费支付明细查询API中。
+#### Added Features
+* Added 'marketIds' to the "List Consumables" API that queries the unconsumed payment history so that multiple stores can be viewed at a time. 
 
-### 2022. 06. 30. 
+### June 30, 2022
 
-#### 添加功能
-* 如果退出的用户正在使用Apple ID认证，添加了调用Apple ID AccessToken到期API。
-* 如果退出的用户正在使用Apple ID认证，添加了调用Apple ID AccessToken到期API。
-* 在响应未消费结算明细查询API中添加了“paymentId”字段。
+#### Added Features
+* Added Apple ID AccessToken expiry API call in case the withdrawn user is using Apple ID authentication
+* Added the 'paymentId' field to the response for unconsumed payment history query API
 
-### 2022. 06. 14.
+### June 14, 2022
 
-#### 添加功能
-* 添加了结算Transaction查询API。
-* 在响应未消费结算明细查询API中添加了“isTestPurchase”。
+#### Added Features
+* Added the payment transaction query API
+* Added the 'isTestPurchase' field to the response for the unconsumed payment history query API
 
-### 2022. 05. 24.
+### May 24, 2022
 
-#### 添加功能
-* 添加了禁用和解除禁用的API。 
- 
-### 2022. 05. 10.
+#### Added Features
+* Added the Ban and Ban Release APIs
 
-#### 添加功能
-* 添加了可查看在指定期间内退出的用户的API。 
+### May 10, 2022
 
-### 2021. 09. 14.
+#### Added Features
+* Added an API to query users who have withdrawn during a specific period
 
-#### 修改程序错误  
-* 修改了Leaderboard Wrapping API。
-	* 修改了“多数用户分数/ExtraData注册”API的映射错误。
+### September 14, 2021
 
-### 2021. 03. 09.
+#### Bug Fixes
+* Modified Leaderboard Wrapping API
+	* Fixed an error where mapping of Register Scores/ExtraData of Multiple Users API is wrong.
 
-#### 添加功能
-* 添加了使用IdP ID获取Gamebase user ID的API。
+### March 09, 2021
 
-### 2020. 08. 11.
+#### Added Features
+* Added an API that can be used to acquire Gamebase user ID with IdP ID
 
-#### 改善/修改功能
-* 添加了消耗优惠券的API错误代码 : 在优惠券代码输入英文或数字之外的值时(Error Code:-4000205)
+### August 11, 2020
 
-### 2020. 02. 11.
+#### Feature Updates
+* Added error code for Coupon Expired API: When a coupon code includes a value other than English or numbers (Error Code:-4000205)
 
-#### 改善/修改功能
-* 添加了调用退出API时的regUser长度有效性验证(validation)。
+### February 11, 2020
 
-### 2020. 01. 14.
+#### Feature Updates
+* Added validation for the regUser length when Withdraw API is called
 
-#### 添加功能
-* 添加了用户退出API。
+### January 14, 2020
 
-### 2019. 11. 12.
+#### Added Features
+* Added Withdraw Users API
 
-#### 添加功能
-* 已开始优惠券服务 : 生成和管理大量优惠券的功能
-	* 添加了确认或消费优惠券的API。
+### November 12, 2019
 
-### 2019. 05. 28.
+#### Added Features
+* Coupon Service Newly Open: Create and manage coupons in large quantity
+	* Find coupons and add Consume API
 
-#### 改善/修改功能
-* 更改了LTV查询修改和failover逻辑。
+### May 28, 2019
+
+#### Feature Updates
+* Modified LTV queries and the failover logic
 
 ### 2019. 03. 26.
 
-#### 添加功能
-* 添加了TransferAccount功能 : 是guest用户在未映射的状态下，最多使用2个密钥转移至新设备的功能。
-	* 验证发布的TransferAccount的ID/PW服务器API(validateTransferAccount)。
+#### 기능 추가
+* TransferAccount 기능 추가: guest 사용자가 매핑없이 최대 2개의 키를 이용하여 새로운 기기로 이전할 수 있는 기능
+	- (Server API)
+		* 발급된 TransferAccount의 ID/PW 검증하는 서버 API (validateTransferAccount)
 
 ### 2018. 06. 26.
 
-#### 添加功能
-* getSimpleLaunching : 是确认启动客户端应用程序时提供的Launching信息的API。
+#### 기능 추가
+* getSimpleLaunching : 클라이언트 앱 기동시 제공되는 Launching 정보 확인용 API
 
 ### 2017. 11. 30.
 
-#### 改善/修改功能
-* 在List中将[查询维护API](./api-guide/#check-under-maintenance)结果更改为单一对象。
+#### 기능 개선/변경
+* [점검 조회 API](./api-guide/#check-under-maintenance) 결과를 List 에서 단일 객체로 변경
 
 ### 2017. 04. 04.
 
-#### 改善/修改功能
-* [IAP](./api-guide/#purchaseiap) API联动 : 查询道具、查询未消费明细
-* 在checkAccessToken API响应结果中添加了用于登录的包含IdP信息的Spec。
+#### 기능 개선/변경
+* [IAP](./api-guide/#purchaseiap) API 연동 : 아이템 조회, 미소비내역 조회
+* checkAccessToken API 응답 결과에, 로그인 시 사용된 IdP 관련 정보 포함하는 스펙 추가
+
 
 ### 2017. 03. 21.
 
-#### 改善/修改功能
-* [Leaderboard](./api-guide/#leaderboard), [IAP](./api-guide/#purchaseiap) API联动
+#### 기능 개선/변경
+* [Leaderboard](./api-guide/#leaderboard), [IAP](./api-guide/#purchaseiap) API 연동
 
 ### 2017. 03. 09.
 
-#### 推出新商品
-* 是一项通过提供游戏中通常需要的功能来帮助轻松高效地开发游戏的服务。
-	* 支持多种认证 : Guest、3rd Party(Google、Facebook、GameCenter等)认证
-	* 提供注销和退出会员功能。
-	* 为了使一名User同时使用多个外部IDP，提供mapping功能。
-	* 为了运营游戏，通过网络控制台提供游戏应用程序状态管理、维护、紧急公告等功能。
-	* 提供可实时确认运营指标的网络控制台。
-	* TOAST Cloud商品联动 : PUSH、IAP
+#### 신규 상품 출시
+* 게임에서 공통적으로 필요한 기능들을 제공하여 손쉽고 효율적으로 게임 개발이 가능하도록 돕는 서비스입니다.
+	* 다양한 인증 지원 : Guest , 3rd Party(Google , Facebook, GameCenter 등) 인증
+	* 로그아웃 및 회원탈퇴 기능을 제공
+	* 하나의 User가 여러 개의 외부 IDP를 동시에 사용할 수 있도록 mapping기능을 제공
+	* 게임운영을 위한 게임 앱 상태관리, 점검, 긴급공지 등의 기능을 웹콘솔로 제공
+	* 실시간 운영지표 확인 가능한 웹콘솔 화면 제공
+	* TOAST Cloud상품 연동 : PUSH, IAP

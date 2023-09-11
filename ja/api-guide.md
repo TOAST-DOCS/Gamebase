@@ -2065,7 +2065,7 @@ Gamebase Wrapping APIとマッピングされたLeaderboard APIのスペック�
 Leaderboard Appkeyを設定しないで、Gamebase AppIdおよびSecretKeyを利用してGamebase Wrapping Leaderboard APIを呼び出せます。
 
 
-[Leaderboard APIガイド](/Game/Leaderboard/ja/api-guide/)
+[Leaderboard APIガイド](https://docs.nhncloud.com/ja/Game/Leaderboard/ja/api-guide/)
 
 <br/>
 
@@ -2111,7 +2111,7 @@ Gamebaseは、NHN Cloud PushサービスのサーバーAPIで**Wrapping**機能�
 Gamebase Wrapping APIとマッピングされたPush APIのスペックは、以下のガイドを参照してください。
 Push Appkeyの設定を行わずに、Gamebase AppIdおよびSecretKeyを利用してGamebase Wrapping Push APIを呼び出せます。
 
-[Push Guide](/Notification/Push/en/api-guide/)
+[Push Guide](https://docs.nhncloud.com/ja/Notification/Push/ja/api-guide/)
 
 > [参考1]
 > Pushガイドに存在するuid値はgamebase userId値を使用できます。クライアントSDKでプッシュトークン登録時、ユーザー識別子はgamebase userIdに登録されています。

@@ -1,17 +1,28 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.55.0
+
+### Android
+
+#### Naver Idp
+* Naver Login SDK의 OAuthLoginInAppBrowserActivity에서 발생하던 Cross-app Scripting 취약점이 해결되었습니다.
+* minSDK가 19 -> 21로 상향되었습니다.
+
+#### MyCard
+* NHN Cloud SDK의 업데이트로 minSDK가 19 -> 21로 상향되었습니다.
+
 ## 2.53.0
 
 ### Android
 
 #### Contact
 
-* 如果您使用的是“客户服务”功能，则需要按照以下指南将权限设置添加到AndroidManifest.xml中，以便在选择附加文件时权限请求能够正常操作。
-    * [Game > Gamebase > Android SDK使用指南 > 开始 > Setting > AndroidManifest.xml > Contact](./aos-started/#contact)
+* If you are using the 'Customer Center' feature, you will need to add permission settings to the AndroidManifest.xml following the guide below to ensure that permission requests work properly when selecting attachments.
+    * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > Contact](./aos-started/#contact)
 
 #### Line IdP
 
-* 在现有的[“开始”文档](./aos-started)中，由于Line SDK更新，以下信息已变得不必要，因此请删除指导您在使用Line IdP时在AndroidManifest.xml中声明的信息。
+* For the following content of declaration to the AndroidManifest.xml when using Line IdP as shown in [Getting Started](./aos-started), the content is now unnecessary due to the Line SDK update so please delete the following.
 
 ```xml
 <manifest>
@@ -38,32 +49,32 @@
 
 ### Android
 
-* Android 4.4(OS 19 Kitkat)终端出现crash。
-    * 请使用修改问题的Gamebase Android SDK 2.52.1。
+* Confirmed that a crash occurred on Android 4.4 (OS 19 Kitkat) devices.
+    * Please use the Gamebase Android SDK 2.52.1 where the issue was fixed.
 
 ### Unity
 
-* 以前显示为'**IapOnestore**'的**ONE Store v17**支付Adaptor从Gamebase Setting Tool (v2.7.0)开始将显示为“**IapOnestoreV17**”。
+* The **ONE Store v17** purchase adapter, which was displayed as '**IapOnestore**', is now displayed as '**IapOnestoreV17**' starting with the Gamebase Setting Tool (v2.7.0).
 
 ### iOS
 
 #### Weibo IdP
 
-* 由于WeiboSDK更新到3.3.3，您需要将weibosdk3.3添加到info.plist中。
+* With the WeiboSDK updated to 3.3.3, you must add weibosdk3.3 to info.plist.
 ```
 <key>LSApplicationQueriesSchemes</key>
-<array>
-    ...
-    <string>weibosdk</string>
-    <string>weibosdk2.5</string>
-    <string>weibosdk3.3</string>
-    ...
-</array>
+	<array>
+		...
+		<string>weibosdk</string>
+		<string>weibosdk2.5</string>
+		<string>weibosdk3.3</string>
+        ...
+    </array>
+</key>
 ```
 
 #### Changed/Deprecated APIs
-
-* 从iOS 16.4开始，由于Apple  CTCarrier class已被deprecated，以下API也随之被deprecated。
+* Starting from iOS 16.4, the following APIs have been deprecated as Apple deprecated the CTCarrier class.
     * **[TCGBGamebase countryCode];**
     * **[TCGBGamebase countryCodeOfUSIM];**
     * **[TCGBGamebase carrierCode];**
@@ -77,23 +88,23 @@
 
 ### Android
 
-* Android 4.4(OS 19 Kitkat)终端出现crash。
-    * 请使用修改问题的Gamebase Android SDK 2.50.1。
+* Confirmed that a crash occurred on Android 4.4 (OS 19 Kitkat) devices.
+    * Please use the Gamebase Android SDK 2.50.1 where the issue was fixed.
 
 ## 2.49.0
 
 ### Unreal
 
-* 支持的最低版本从4.22更改为4.26。
-* “查询激活订阅API”已被更改，需要更改为新的API。
+* Raised the minimum supported version from 4.22 to 4.26.
+* Please update to a new API due to changes to the Query Unconsumed Purchases API.
 
         // Deprecated API
         void RequestItemListOfNotConsumed(const FGamebasePurchasableReceiptListDelegate& onCallback);
         // New API
         void RequestItemListOfNotConsumed(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
 
-* “查询激活订阅API”已被更改，需要更改为新的API。
-    * 如需收到与以前的API相同的结果，要将**FGamebasePurchasableConfiguration.allStores**设置为**true**。
+* Make sure to update to a new API due to changes to the Query Activated Subscription API.
+    * To get the same results as the existing API, set **FGamebasePurchasableConfiguration.allStores** to **true**.
 
             // Unity: Deprecated API
             void RequestActivatedPurchases(const FGamebasePurchasableReceiptListDelegate& onCallback);
@@ -103,21 +114,21 @@
 ### Android
 
 ```
-支持的最低版本已升级到Android 4.4或更高版本。(minSdk 16 -> 19)
+Raised the minimum supported verision to Android 4.4.(minSdk 16 -> 19)
 ```
 
 ## 2.47.0
 
 ### Android
 
-* 修改了在Unity中应用proguard时，Purchase相关API调用失败的错误。
-    * 在2.48.0中已修改此问题。 
+* When applying Proguard in Unity, API calls related to Purchase fail.
+    * The issue has been fixed in the version of 2.48.0.
 
 ## 2.45.0
 
 ### Android, iOS, Unity
 
-* 由于“未消费明细查询API”已更改，请更改为新的API。
+* Please update to a new API due to changes to the Query Unconsumed Purchases API.
 
         // Unity: Deprecated API
         Gamebase.Purchase.RequestItemListOfNotConsumed(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
@@ -136,9 +147,8 @@
         // iOS: New API
         + (void)requestItemListOfNotConsumedWithConfiguration:(TCGBPurchasableConfiguration *)configuration
                                                    completion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
-
-* 由于“激活订阅查询API”已更改，请更改为新的API。
-    * 如果您要获得与现有的API相同的结果，请将**GamebaseRequest.Purchase.PurchasableConfiguration.allStores**的值设置为**true**。
+* Make sure to update to a new API due to changes to the Query Activated Subscription API.
+    * To get the same results as the existing API, set **PurchasableConfiguration.setAllStores(true)**.
 
             // Unity: Deprecated API
             Gamebase.Purchase.RequestActivatedPurchases(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
@@ -162,21 +172,21 @@
 
 ### Unity
 
-* 在Gamebase SettingTool(v2.5.0)添加了Onestore v19支付Adapter。
-    * 当在**SettingTool > Android**设置中启用Onestore v19 Adapter时, 您将连接至iap_sdk-v19.xx.xx.aar下载页面, 您要将相关文件复制到**Assets > Plugins > Android**文件夹。
+* Added the ONE store v19 Purchase Adapter to Gamebase SettingTool(v2.5.0).
+    * When enabling ONE store v19 Adapter in **SettingTool > Android**, you are connected to the download page of iap_sdk-v19.xx.xx.aar, and must copy the file in **Assets > Plugins > Android**.
 
 ## 2.44.0
 
 ### Android
 
-* 如果在Gamebase Android SDK 2.44.0中调用registerPush，Android 6.0(M, API Level 23) 终端上将出现崩溃。 
-    * 请使用已修改问题的Gamebase Android SDK 2.44.1。
+* Confirmed that a crash occurred on Android 6.0 (M, API Level 23) when calling registerPush in Gamebase Android SDK 2.44.0.
+    * Please use Gamebase Android SDK 2.44.1 where the issue was fixed.  
 
 ## 2.43.3
 
 ### Unreal
 
-* 已修改为Google Billing Client 5.0.0版本。使用Unreal提供的Online SubSystem GooglePlay Plug-In时通过在 /Config/Android/AndroidEngine.ini文件中添加相应值来避免Build时出现的错误。
+* Changed to Google Billing Client 5.0.0. When using the Online SubSystem GooglePlay plugin provided by Unreal, you must add the value to the /Config/Android/AndroidEngine.ini file so that a build error would not occur.
 
             [OnlineSubsystemGooglePlay.Store]
             bUseGooglePlayBillingApiV2=False
@@ -184,65 +194,66 @@
 ## 2.42.1
 
 ### Unity
-
+    
 #### Changed/Deprecated APIs
-* FGamebaseWebViewConfiguration不支持enableFixedFontSize字段。
-* 默认值​​已添加到GamebaseWebViewConfiguration的部分字段，因此没有设置值时启动方式可能会与以前不同。​​
-    * 导航栏的颜色字段colorR、colorG、colorB、colorA的默认值已设置为18、93、230、255。
-    * 指定导航栏是否处于有效状态的字段NavigationBarVisible的默认值已设置为true。
-    * 指定Webview内的返回按钮是否处于有效状态的isBackButtonVisible字段的默认值已设置为true。
+* The enableFixedFontSize field in FGamebaseWebViewConfiguration is no longer supported.
+* Default values have been added to some fields of GamebaseWebViewConfiguration, which may behave differently if no values are set.
+    * The default values of navigation bar color R, colorG, colorB, and colorA are set to 18, 93, 230, 255.
+    * The default value of the isNavigationBarVisible field to enable the navigation bar is set to true.
+    * The default value of the isBackButtonVisible field to enable Go Back button in the webview is set to true.
 
 ### Unreal
 
-* (iOS) 添加了**Xcode Path** 设置以更改[iOS设置工具](./unreal-started/#ios-settings)中Xcode的路径。
-    * 如果不更改则设置为默认值(默认值 : /Applications/Xcode.app)。
+* (iOS) Added the**Xcode Path** setting to change the path of Xcode in [the iOS Settings tool](./unreal-started/#ios-settings).
+    * If you don’t change the path, it is set to default (default: /Applications/Xcode.app).
 
 #### Changed/Deprecated APIs
-* 目前不支持FGamebaseConfiguration的enableKickoutPopup俗性。
-* 默认值​​已添加到FGamebaseConfiguration的部分字段，因此没有设置值时启动方式可能会与以前不同。​​
-    * enableLaunchingStatusPopup的默认值已设置为true。
-    * enableBanPopup的默认值已设置为true。
-* FGamebaseWebViewConfiguration不支持enableFixedFontSize字段。
-* 默认值​​已添加到FGamebaseWebViewConfiguration的部分字段，因此没有设置值时启动方式可能会与以前不同。​​
-    * 导航栏的颜色字段colorR、colorG、colorB、colorA的默认值已设置为18、93、230、255。
-    * 指定导航栏是否处于有效状态的字段isNavigationBarVisible的默认值已设置为true。
-    * 指定Webview内的返回按钮是否处于有效状态的isBackButtonVisible字段的默认值已设置为true。
+* The enableKickoutPopup property of FGamebaseConfiguration is no longer supported.
+* Default values have been added to some fields in FGamebaseConfiguration, which may behave differently if no values are set.
+    * The default value of enableLaunchingStatusPopup is set to true.
+    * The default value of enableBanPopup is set to true.
+* The enableFixedFontSize field in FGamebaseWebViewConfiguration is no longer supported.
+* Default values have been added to some fields in FgamebaseWebViewConfiguration, which may behave differently if no values are set.
+    * The default values of navigation bar color R, colorG, colorB, and colorA are set to 18, 93, 230, 255.
+    * The default value of the isNavigationBarVisible field to enable the navigation bar is set to true.
+    * The default value of the isBackButtonVisible field to enable the Go Back button in WebVeiw is set to true.
 
 ## 2.41.0
 
 ### Android
 
-* 当在WebView中注册的Custom Scheme事件被启动时，WebView将自动关闭。
-    * 如果您想与以前一样在Custom Scheme事件启动时仍使用WebView，请调用**GamebaseWebViewConfigurati  on.Builder.enableAutoCloseByCustomScheme(false)** API。
-* Gamebase Android SDK 2.41.0中出现条款窗中的“阅览”按钮不启动的错误。 
-    * 如果您使用Gamebase条款窗，请使用已修改问题的Gamebase Android SDK 2.41.1。
+* When the custom scheme event registered in WebView works, the WebView is automatically closed.
+    * If you want to maintain WebView when the custom scheme works as before, call **GamebaseWebViewConfiguration.Builder.enableAutoCloseByCustomScheme(false)** API.
+* There is a bug where the 'View' button in the Terms and Conditions screen does not work in Gamebase Android SDK 2.41.0.
+    * To use the Gamebase's Terms and Conditions screen, use the Gamebase Android SDK 2.41.1 where the bug is fixed.
 
 ### Unity
 
-* 添加了“推荐更新Gamebase SettingTool(v2.4.0)”。
-    * 现有的SettingTool必须从Unity项目中完全删除，并重新安装最新版本。
-    * 目前不支持SettingTool v1。
+* Added the required updates to Gamebase SettingTool. (v2.4.0)
+    * You need to intall the latest version of SettingTool after completely deleting the previous version of SettingTool from Unity projects.
+    * SettingTool v1 is no longer supported.
 
 ## 2.40.0
 
 ### Unreal
 
-* 更改了一些API的名称。
-    * FGamebaseAnalyticesLevelUpData → FGamebaseAnalyticsLevelUpData
+* The enableKickoutPopup property of FGamebaseConfiguration is no longer supported.
+* Changed the name of the following APIs.
+    * FGamebaseAnalyticsLevelUpData → FGamebaseAnalyticsLevelUpData
     * FGambaseBanInfoPtr → FGamebaseBanInfoPtr
-* (iOS) 更改后当提供iOS设置工具进行Build时只包含必要的框架。
-* (iOS) 由于PLCrashReporter被更新，也需要更新引擎内部的PLCrashReporter。
-    * [Game > Gamebase > Unreal SDK使用指南 > 开始 > Installation > iOS Settings > PLCrashReporter](./unreal-started/#ios-settings)
-* (iOS) 由于Facebook iOS SDK升级为9.2.0版本，为了使用swift需要修改引擎代码。 
-    * [Game > Gamebase > Unreal SDK使用指南 > 开始 > Installation > iOS Settings > Facebook SDK](./unreal-started/#ios-settings)
+* (iOS) Made modifications so that only the necessary frameworks are included when building, with the iOS settings tool.
+* (iOS) PLCrashReporter has been updated, so PLCrashReporter inside the engine also needs to be updated.
+    * [Game > Gamebase > Unreal SDK User Guide > Getting Started > Installation > iOS Settings > PLCrashReporter](./unreal-started/#ios-settings)
+* (iOS) Facebook iOS SDK has been updated to version 9.2.0, so engine code needs to be modified in order to use swift.
+    * [Game > Gamebase > Unreal SDK User Guide > Getting Started > Installation > iOS Settings > Facebook SDK](./unreal-started/#ios-settings)
 
 ## 2.36.0
 
 ### Android
 
 #### Hangame SDK
-* 更改后，在Hangame Android SDK v1.4.5的内部创建sms_hash。
-    * 不需要再设置sms_hash。
+* Made improvements so that sms_hash is generated internally in Hangame Android SDK v1.4.5.
+    * sms_hash does not need to be set anymore.
 
 ## 2.35.0
 
@@ -250,10 +261,10 @@
 
 #### NAVER IdP
 
-* 目前注销NAVER账号时不需要令牌。
-    * 重新登录时不显示个人隐私协议窗。 
-    * 登录网页时，保持原有账号。
-    * 如需保持更改之前的状态，请在Gamebase Console中的AdditionalInfo输入如下信息。
+* From this version, a token is not deleted when performing NAVER logout.
+    * When the user logs in again, the information provision consent window does not appear.
+    * The account is not changed when performing web login.
+    * To maintain the previous behavior, set AdditionalInfo in the Gamebase Console as follows.
 
 ```
 {"logout_and_delete_token":true}
@@ -265,86 +276,76 @@
 
 #### Changed/Deprecated APIs
 
-* 由于在Gamebase控制台中注册Kickout时可以设置是否显示kickout弹窗，以下字段已被deprecated。
+* The following field has been deprecated because whether to display the kickout popup window can be set during kickout registration in the Gamebase console.
     * **UIPopupConfiguration.enableKickoutPopup**
 
 ### iOS
 
 #### Changed/Deprecated APIs
 
-* 由于在Gamebase控制台中注册Kickout时可以设置是否显示kickout弹窗，以下API已被deprecated。
+* The following APIs have been deprecated because whether to display the kickout popup window can be set during kickout registration in the Gamebase console.
     * **[TCGBConfiguration enableKickoutPopup:]**
     * **[TCGBConfiguration isEnableKickoutPopup]**
 
 ### Unity
 
-* 目前不支持GamebaseConfiguration的enableKickoutPopup属性。
+* The enableKickoutPopup property of GamebaseConfiguration is no longer supported.
 
 ## 2.33.0
 
 ### iOS
 
-* 更改了与TCGB_ERROR_UNKNOWN_ERROR进行映射的错误代码。
-    * TCGB_ERROR_UNKNOWN_ERROR的错误代码从999更改为9999。
-    * 添加了映射到999错误代码的TCGB_ERROR_SOCKET_UNKNOWN_ERROR错误。
-    
+* The error code mapped to TCGB_ERROR_UNKNOWN_ERROR has been changed.
+    * Changed the error code mapped to the TCGB_ERROR_UNKNOWN_ERROR error from 999 to 9999.
+    * Newly added the TCGB_ERROR_SOCKET_UNKNOWN_ERROR error mapped to the error code 999.
+
 ### Unity
 
-* 更改了映射到GamebaseErrorCode.UNKNOWN_ERROR的错误代码。
-    * 将映射到GamebaseErrorCode.UNKNOWN_ERROR的错误代码从999更改为9999。
-    * 添加了映射到999错误代码的GamebaseErrorCode.SOCKET_UNKNOWN_ERROR错误。
+* The error code mapped to GamebaseErrorCode.UNKNOWN_ERROR has been changed.
+    * Changed the error code mapped to the GamebaseErrorCode.UNKNOWN_ERROR error from 999 to 9999.
+    * Newly added the GamebaseErrorCode.SOCKET_UNKNOWN_ERROR error mapped to the error code 999.
 
 ### Unreal
 
-* 更改了映射到GamebaseErrorCode.UNKNOWN_ERROR的错误代码。
-    * GamebaseErrorCode::UNKNOWN_ERROR的错误代码从999更改为9999。
-    * 添加了映射到999错误代码的GamebaseErrorCode::SOCKET_UNKNOWN_ERROR错误。  
+* The error code mapped to GamebaseErrorCode.UNKNOWN_ERROR has been changed.
+    * Changed the error code mapped to the GamebaseErrorCode::UNKNOWN_ERROR error from 999 to 9999.
+    * Newly added the GamebaseErrorCode::SOCKET_UNKNOWN_ERROR error mapped to the error code 999.
 
 ## 2.32.0
 
 ### Android
 
-* 由于Gamebase Access Token过期无法恢复而发生的GamebaseEventHandler事件category，在**GamebaseEventCategory.OBSERVER_HEARTBEAT**中已更改为**GamebaseEventCategory.LOGGED_OUT**。
-    * 请更改登录条件，即当**GamebaseEventCategory.OBSERVER_HEARTBEAT**事件中的GamebaseEventObserverData.code值为**GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)**时登录的条件，更改为在**GamebaseEventCategory.LOGGED_OUT**事件中登录。
+* The category for a GamebaseEventHandler event that occurs when the Gamebase Access Token expires and cannot be recovered has been changed from **GamebaseEventCategory.OBSERVER_HEARTBEAT** to **GamebaseEventCategory.LOGGED_OUT**.
+    * If you implemented the code to perform login when the GamebaseEventObserverData.code value is **GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)** in the **GamebaseEventCategory.OBSERVER_HEARTBEAT** event, change it to perform login in the **GamebaseEventCategory.LOGGED_OUT** event.
 
-## 2.29.0
-
-### iOS
-
-* Xcode支持的最低版本从12更改为13。
-    * 在Xcode 12进行Archive Build时将出现错误。请更新到Xcode 13。
-
-### Unity
+## 2.29.0 
  
-* 已发布Setting Tool 2.0.0。  
-    * 因文件结构已被更改，需要删除以前的Setting Tool后重新进行设置。 
-    * 使用Setting Tool 1.5.0以下的用户需要删除以下Directory中的所有与Gamebase有关的库。
-        * **Assets/Plugins/Android**  
-        * **Assets/Plugins/iOS** 
-    * 关于更改的信息和使用方法，请参考如下指南。
-        * [Game > Gamebase > Unity SDK使用指南 > 开始 > Specification of Setting Tool](./unity-started/#specification-of-setting-tool)
-
-## 2.27.0
-
 ### iOS
 
-#### ImageNotice
+* The minimum supported version of Xcode has been changed from 12 to 13.
+    * An error occurs if you run archive build in Xcode 12. Please update to Xcode 13.
 
-* 已修改在Unity中未能显示图片通知的问题。
-    * 如果使用低于Gamebase iOS SDK 2.27.0的版本，有可能在Unity中看不到图片通知。 
-    * 如果要使用图片通知，请使用Gamebase iOS SDK 2.27.0以上版本。 
+### Unity 
+ 
+* Setting Tool 2.0.0 has been released.
+    * The folder structure has been changed, so you must delete the previous version of the Setting Tool completely and reinstall the tool.
+    * If you are using Setting Tool 1.5.0 or lower, you must remove all Gamebase-related libraries in the following directories.
+        * **Assets/Plugins/Android**
+        * **Assets/Plugins/iOS**
+    * Check the following guide for changed features and how to use them.
+        * [Game > Gamebase > Unity Developer's Guide > Getting Started > Specification of Setting Tool](./unity-started/#specification-of-setting-tool)
  
 ## 2.26.0
 
 ### Unity
 
-* 使用相关版本时，请直接删除“Assets/Gamebase/Toast/IAP/Plugins”后使用。
-    * 如果应用了Gamebase Unity SDK 2.27.0或更高版本，则无需删除。 
+* If you're using this version, you need to manually delete **Assets/Gamebase/Toast/IAP/Plugins** before use.
+    * If Gamebase Unity SDK 2.27.0 or higher is applied, you do not need to delete it.
 
 ### Unreal
 
-* 在Gamebase中multidex设置已被删除。如果要设置，请参考以下指南。
-    * [Game > Gamebase > Unreal SDK使用指南 > 开始 > Installation > Android Settings > 应用multidex](./unreal-started/#android-settings)
+* The multidex setting has been removed from Gamebase. To enable multidex, see the following guide.
+    * [Game > Gamebase > Unreal SDK User Guide > Getting Started > Installation > Android Settings > Enable multidex](./unreal-started/#android-settings)
 
 
 ## 2.25.0
@@ -353,17 +354,17 @@
 
 #### Changed Minimum Support Version
 
-* 支持的最低Android Gradle Plugin(AGP)版本从2.3.0已升级至3.2.0。
-    * 但将targetSdkVersion设置为30以上时，若要支持Android 11终端机，则需AGP 3.3.3以上版本。
-        * 请参考以下文件。
-        * [Game > Gamebase > Android SDK使用指南 > 开始 > Setting > Android 11](./aos-started/#android-11)
-* 如果需要低版本的AGP支持，请联系[客户服务](https://toast.com/support/inquiry)。
+* The minimum Android Gradle Plugin(AGP) version has changed from 2.3.0 to 3.2.0 .
+    * AGP 3.3.3 or higher is required to support Android 11 terminals when setting the targetSdkVersion to 30 or higher.
+        * Refer to the following document.
+        * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > Android 11](./aos-started/#android-11)
+* Please contact [Customer Service]( https://toast.com/support/inquiry) if you need support for an earlier version of AGP.
 
 #### AndroidX
 
-* Android Support Library的依赖已被更改为AndroidX，请将该修改项目应用于Gradle中。
+* Please apply the following changes to Gradle since the dependency of the Android Support Library has been changed to AndroidX.
 
-* 为不支持AndroidX的库，请在gradle.properties文件中添加以下迁移声明。
+* Add migration declarations for libraries that do not support AndroidX in the gradle.properties file.
 
 ```groovy
 # >>> [AndroidX]
@@ -371,7 +372,7 @@ android.useAndroidX=true
 android.enableJetifier=true
 ```
 
-* 为最新AndroidX版本，请在build.gradle文件中添加Java 8打包设置。 
+* Add Java 8 build settings for the latest AndroidX to the build.gradle file.
 
 ```groovy
 android {
@@ -385,7 +386,7 @@ android {
 
 #### Under AGP 3.4.0
 
-* Android Gradle Plugin版本低于3.4.0时将出现打包失败，因此需要在gradle.properties文件中添加如下声明。
+* If the Android Gradle Plugin version is lower than 3.4.0, the build will fail, so the following declaration is required in the gradle.properties file:
 
 ```groovy
 # gradle.properties
@@ -396,11 +397,12 @@ android.enableIncrementalDesugaring=false
 
 #### LINE IdP
 
-* 使用LINE IdP时，因在Line SDK内存在**&lt;queries&gt;**标签，根据AGP版本可能会打包失败。 
-    * 请参考以下指南，请升级为可进行“queries”标签打包的AGP版本。 
-    * [Game > Gamebase > Android SDK使用指南 > 开始 > Setting > Android 11](./aos-started/#android-11)
-* 使用LINE IdP时，由于在Line SDK内已被声明为**android:allowBackup="false"**，应用程序打包时有可能在Manifest merger中出现fail。如果打包失败，请按照以下示例，在application标签中添加**tools:replace="android:allowBackup"**声明。
-```xml 
+* When using the LINE IdP, the build may fail depending on the AGP version as there is a **&lt;queries&gt;** tag inside the LINE SDK.
+    * Please refer to the following guide to upgrade to the AGP version that can build the 'queries' tag.
+    * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > Android 11](./aos-started/#android-11)
+* If you are using the LINE IdP, an error may occur in Manifest merger when building an application because **android:allowBackup="false"** is declared in LINE SDK. If a build fails for this reason, declare **tools:replace="android:allowBackup"** in the application tag as follows.
+
+```xml
 <application
       tools:replace="android:allowBackup"
       ... >
@@ -408,22 +410,22 @@ android.enableIncrementalDesugaring=false
 
 ### iOS
 
-* 进行修改后，当出现Sign In with Apple的ASAuthorizationErrorUnknown错误时返回TCGB_ERROR_AUTH_EXTERNAL_LIBRARY_ERROR (3009)错误。 
+* Changed to return TCGB_ERROR_AUTH_EXTERNAL_LIBRARY_ERROR (3009) error when an ASAuthorizationErrorUnknown error occurs in Sign In with an Apple OS.
 
 ### Unity
 
-* 使用相关版本时，请直接删除“Assets/Gamebase/Toast/IAP/Plugins”后使用。
-    * 如果应用了Gamebase Unity SDK 2.27.0或更高版本，则无需删除。 
+* If you're using this version, you need to manually delete **Assets/Gamebase/Toast/IAP/Plugins** before use.
+    * If Gamebase Unity SDK 2.27.0 or higher is applied, you do not need to delete it.
 
 #### Changed Minimum Support Version
 
-* 支持的最低Unity版本从2017.4.16已升级至2018.4.0。
-* 如果需要低版本的Unity支持，请联系[客户服务](https://toast.com/support/inquiry)。
+* The minimum Unity version changed from April 16, 2017 to April 0, 2018.
+* Please contact [Customer Service]( https://toast.com/support/inquiry) if you need support for an older version of Unity.
 
 #### AndroidX Build
 
-* 在Gamebase Android SDK中应用AndroidX时，为了Android打包需要添加以下声明。 
-* 低于2019.3
+* Please add the following declaration when building Android due to AndroidX migration of the Gamebase Android SDK.
+* 2019.3 or earlier
 
 ```groovy
 // mainTemplate.gradle
@@ -435,7 +437,7 @@ android.enableIncrementalDesugaring=false
 }
 ```
 
-* 2019.3以上
+* 2019.3 or later
 
 ```groovy
 // gradleTemplate.properties
@@ -444,8 +446,8 @@ android.enableJetifier=true
 ```
 
 #### Under AGP 3.4.0
- 
-* 当Unity Editor版本为2018.4.3以下或2019.1.6以下时，由于AGP版本低(3.2.0)将出现打包失败，因此需要添加如下声明。 
+
+* If the Unity Editor version is 2018.4.3 or lower or 2019.1.6 or lower, the build will fail because the AGP version is low (3.2.0), so add the following declaration.
 
 ```groovy
 // mainTemplate.gradle
@@ -462,7 +464,7 @@ android.enableJetifier=true
 
 #### AndroidX Build
 
-* 在Gamebase Android SDK中应用AndroidX时，为了Android打包在UPL中添加以下声明。
+* Please add the following declaration to UPL when building Android due to AndroidX migration of the Gamebase Android SDK.
 
 ```xml
 <gradleProperties>    
@@ -477,18 +479,18 @@ android.enableJetifier=true
 
 ### iOS
 
-* 如果在Gamebase iOS SDK 2.21.1中启用bitcode并进行**archive build**，则将出现错误。
-    * 使用bitcode时，请使用已解决上述问题的Gamebase iOS SDK 2.21.2。
+* If you enable bitcode and **archive build** in Gamebase iOS SDK 2.21.1, error occurs.
+    * If you want to use bitcode, use Gamebase iOS SDK 2.21.2 to avoid any associated error.
 
 ## 2.21.0
 
-### Android  
+### Android
 
-* 若由于向jCenter发布的Gamebase Android SDK 2.21.0打包出现错误，在声明**mavenCentral()**之前声明了**jcenter()**，将使所有Gamebase API崩溃。 
-    * 请使用未出现错误的Gamebase Android SDK 2.21.1或声明**jcenter（）之前先声明**mavenCentral（）**。
+* If a wrong jCenter build is deployed so that **jcenter()** was declared before **mavenCentral()** was declared in Gamebase Android SDK 2.21.0, all Gamebase APIs might crash.
+    * In this case, use a properly deployed Gamebase Android SDK 2.21.1 or declare **mavenCentral()** ahead of **jcenter()**.
 * Maven Repository
-    * 因jCenter停止向一般用户提供服务([https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/](https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/) )，无法再上载新版本。(对jCenter的访问也将于2022年2月1日结束。)
-    * 从Gamebase Android SDK 2.21.0以上版本开始只在**mavenCentral()**发布，而不在**jcenter()**发布，因此需要在gradle repository中添加mavenCentral。
+    * As jCenter stopped providing services to individual users, ( [https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/](https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/) ) new builds can no longer be uploaded.(Users will not be able to access jCenter starting from February 1st, 2022.)
+    * For this reason, since Gamebase Android SDK 2.21.0 and later versions will be deployed only to **mavenCentral()** and not to **jcenter()**, please add mavenCentral to gradle repository.
 
 ```groovy
 repositories {
@@ -500,34 +502,34 @@ repositories {
 
 #### LINE IdP
 
-* 使用LINE IdP时，当Line SDK被更新时，若不在Gradle中设置**JavaVersion.VERSION_1_8**，则将导致打包失败(请参考以下示例)。
+* If you are using LINE IdP, due to the LINE SDK update, you must configure **JavaVersion.VERSION_1_8** in Gradle to make the build succeed.
 
 ```groovy
 android {
     compileOptions {
         // >>> [LINE IdP]
         sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8 
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 ```
 
 ### iOS
 
-* 如果在Gamebase iOS SDK 2.21.0上使用bitcode，则将出现错误。 
-    * 如果要使用bitcode，请使用Gamebase iOS SDK 2.21.1。
+* Error occurs when using bitcode in Gamebase iOS SDK 2.21.0.
+    * If you want to use bitcode, use Gamebase iOS SDK 2.21.1 instead.
 
 ## 2.20.2
- 
+
 ### iOS
 
 #### Facebook IdP
 
-* Facebook SDK已在Gamebase iOS SDK 2.20.2中更新至9.1.0。
-    * 需要对Facebook SDK进行额外的设置，请在info.plist中添加以下值。如果不进行设置，则将导致崩溃。
+* In Gamebase iOS SDK 2.20.2, Facebook SDK has been updated to 9.1.0. 
+    * Now the Facebook SDK needs additional settings, so please add the following value to the info.plist. If not, the system might crash.
         * FacebookAutoLogAppEventsEnabled
         * FacebookAdvertiserIDCollectionEnabled
-* 关于详细信息，请参考[Facebook iOS SDK指南](https://developers.facebook.com/docs/app-events/getting-started-app-events-ios)。
+* To find out more, see the [Facebook iOS SDK Guide](https://developers.facebook.com/docs/app-events/getting-started-app-events-ios).
 
 ## 2.19.0
 
@@ -535,8 +537,8 @@ android {
 
 #### Weibo IdP
 
-* 若在Gamebase Android SDK 2.19.0中交替使用Weibo IdP登录和其他IdP登录，则将发生崩溃。
-    * 如果需要用Weibo IdP，请使用已解决上述问题的Gamebase Android SDK 2.19.1。
+* Alternating the call between Weibo IdP login and another IdP login in Gamebase Android SDK 2.19.0 will lead to a crash.
+    * If the Weibo IdP is being used, please use Gamebase Android SDK 2.19.1 where the issue has been fixed.
 
 ## 2.18.2
 
@@ -544,7 +546,7 @@ android {
 
 #### Removed APIs
 
-* 已经从Gamebase Android SDK 2.6.0中删除被deprecated的函数。
+* In Gamebase Android SDK 2.6.0, the following features were removed after being deprecated.
     * **GamebaseConfiguration.Builder.setFCMSenderId()**
     * **GamebaseConfiguration.Builder.setTencentAccessKey()**
     * **GamebaseConfiguration.Builder.setTencentAccessId()**
@@ -555,21 +557,21 @@ android {
 
 #### Purchase Google
 
-* 如果在Gamebase Android SDK 2.18.0中调用Google道具支付，则将发生崩溃。 
-    * 如果需要用Weibo IdP，请使用已解决上述问题的Gamebase Android SDK 2.18.1。
+* Calling the Google item payment in Gamebase Android SDK 2.18.0 causes a crash.
+    * Please use the Gamebase Android SDK 2.18.1 where the issue has been fixed.
 
 ## 2.17.0
 
 ### Android
 
-* 若在Gamebase Android SDK 2.17.0中调用Gamebase.ImageNotice.showImageNotices API，则将发生崩溃。
-    * 请使用已解决2.17.0崩溃或在OS 5.0~6.0中Custom Scheme Event不正常启动等问题的Gamebase Android SDK 2.17.4。
- 
+* Calling Gamebase.ImageNotice.showImageNotices API in Gamebase Android SDK 2.17.0 causes a crash.
+    * Please use Gamebase Android SDK 2.17.4 where the crash issues from 2.17.0 and custom scheme event failure from OS 5.0 - 6.0 have been fixed.
+
 ## 2.15.1
 
 ### iOS
 
-* 当使用gamebase SDK中定义的**gamebaseeventcategory**类型而不使用nsstring时，要将此类型更改为**tcgbgamebaseeventcategory**。
+* If the type **GamebaseEventCategory** defined by the SDK is used in place of the NSString, it has to be updated to **TCGBGamebaseEventCategory**.
 
 ## 2.15.0
 
@@ -577,8 +579,8 @@ android {
 
 #### Purchase Google
 
-* 使用**gamebase-adapter-purchase-google**时，若要将Gamebase SDK 2.15.0以下版本升级到2.15.0以上版本，则必须将**以前版本的Game Client Version设置为“必须更新”**。 
-	* 当Google Billing Client模块儿被更新，使不同的Billing Client版本应用于多个终端机的情况下，如果购买道具时出现错误，进行“支付在处理”时将出现问题。
+* If **gamebase-adapter-purchase-google** is being used, the previous Game Client Version must be set to **Update to the latest version required** if the Gamebase SDK version earlier than 2.15.0 is to be upgraded to 2.15.0 or later.
+	* The Google Billing Client module has been updated. Because of this, when purchasing an item while different billing client versions have been applied to multiple devices, any resultant error could lead to a reprocessing problem.
 
 ## 2.6.0
 
@@ -586,8 +588,8 @@ android {
 
 #### Android Limitation
 
-* 由于Android Support Library版本升至28.0.0，Unity 5、Unity 2017.1、Unity 2017.2中Android创建失败。
-	* 若使用Unity 2017.3以下版本Editor，请安装Unity 2017.3以上版本，复制“Editor/Data/PlaybackEngines/AndroidPlayer/Tools/gradle/lib”文件夹，覆盖在与您使用的Unity Editor的相同的路径，并按如下示例修改mainTemplate.gradle文件。
+* With Android Support Library upgraded to 28.0.0, an Android build fails in Unity 5, Unity 2017.1, and Unity 2017.2.  
+	* If your Editor is below Unity 2017.3, install a higher version than Unity 2017.3, copy the 'Editor/Data/PlaybackEngines/AndroidPlayer/Tools/gradle/lib' folder and paste it to the same path of your current Unity Editor; then, modify the mainTemplate.gradle file like below.
 
 ```groovy
 // GENERATED BY UNITY. REMOVE THIS COMMENT TO PREVENT OVERWRITING WHEN EXPORTING AGAIN
@@ -608,18 +610,18 @@ buildscript {
 }
 ```
 
-#### Firebase推送
+#### Firebase Push
 
-* 使用Firebase Cloud Messaging时，将从Firebase Console中下载的google-services.json文件转换为xml资源，并添加到项目中才能成功收到推送。
-    * 使用Gamebase 2.5.0以前的旧版本时，没有xml资源的情况下也可收到推送，但使用Gamebase 2.6.0以上版本时必须要有xml资源才能收到。
-* 请参考以下实施指南。
-    * [\[Game > Gamebase > Android SDK使用指南 > push > Settings > Firebase\]](./aos-push/#firebase)
+* In case of using Firebase Cloud Messaging, download a google-services.json file from Firebase Console and convert it into XML. Include XML resource in your project.
+    * XML resource is required in Gamebase version 2.6.0 or higher. Under 2.6.0, Firebase Push works without XML resource.
+* Refer to the below guide for implementation.
+    * [\[Game > Gamebase > Android Developer's Guide > Push > Settings > Firebase\]](./aos-push/#firebase)
 
 #### Standalone
 
 * Removed Japan Purchase
-	* 日本支付已FadeOut。
-	* 若使用GamebaseUnitySDK_IAPAdapter，请直接删除如下文件夹。
+	* Faded out Japan Purchase.
+	* If you're using GamebaseUnitySDK_IAPAdapter, please delete the folders like below:
         * Asset/Toast/Common
         * Asset/Toast/Core
         * Asset/Toast/IAP
@@ -629,34 +631,34 @@ buildscript {
 
 #### Limitation
 
-* minSdkVersion由15(IceCreamSandwichMR1, 4.0.3)更改为16(JellyBean, 4.1)。
-	* OS 4.1以下的终端机中无法保证正常运行，因此项目的minSdkVersion为15时，请更改为16。
+* Changed the minSdkVersion from 15 (IceCreamSandwichMR1, 4.0.3) to 16 (JellyBean, 4.1).
+	* When your minSdkVersion of the project is 15, since normal operation is not ensured for any device below OS 4.1, change it to 16.
 
 #### Removed APIs
 
-* 清除的函数如下。请更改为替代函数。
-    * **Gamebase.getAuthBanInfo()**已清除。请更改为**Gamebase.getBanInfo()**。
-    * **Gamebase.getLanguageCode()**已清除。请更改为**Gamebase.getDeviceLanguageCode()**。
-    * **new GamebaseConfiguration.Builder(void)**已清除。请更改为**GamebaseConfiguration.newBuilder()**。
-    * **new GamebaseConfiguration.Builder.setAppId()**已清除。请更改为**GamebaseConfiguration.newBuilder()**。
-    * **new GamebaseConfiguration.Builder.setAppVersion()**已清除。请更改为**GamebaseConfiguration.newBuilder()**。
+* Following functions have been removed: replace them with alternatives.
+    * Removed **Gamebase.getAuthBanInfo()**: replace it with **Gamebase.getBanInfo()**.
+    * Removed **Gamebase.getLanguageCode()**: replace it with **Gamebase.getDeviceLanguageCode()**.
+    * Removed **new GamebaseConfiguration.Builder(void)**: replace it with  **GamebaseConfiguration.newBuilder()**.
+    * Removed **new GamebaseConfiguration.Builder.setAppId()**: replace it with  **GamebaseConfiguration.newBuilder()**.
+    * Removed **new GamebaseConfiguration.Builder.setAppVersion()**: replace it with **GamebaseConfiguration.newBuilder()**.
 
 #### Changed/Deprecated APIs
 
-* Gamebase.activeApp()为自动调用，因此可不再调用。
-* 作为Gamebase.initialize()的因素需要的GamebaseConfiguration的创建方法已更改。
-    * 取代**new GamebaseConfiguration.Builder(String, String)**，调用**GamebaseConfiguration.newBuilder()**。
-* 请勿再调用LaunchingStatus.isPlayable()。
-	* 请参考[\[Game > Gamebase > Android SDK使用指南 > 初始化 > Launching Information\]](./aos-initialization/#launching-information)文件，按照Launching Status Code直接决定是否可以玩游戏。
+* No need to call Gamebase.activeApp() any more since it is automatically called.
+* Change the method of creating GamebaseConfiguration, which is required as parameter of Gamebase.initialize().
+    * Call **GamebaseConfiguration.newBuilder()**, instead of **new GamebaseConfiguration.Builder(String, String)**.
+* Do not call LaunchingStatus.isPlayable() any more.
+	* See [\[Game > Gamebase > Android SDK User Guide > Initialization > Launching Information\]](./aos-initialization/#launching-information) and decide if game play is available according to the Launching Status Code.
 * Purchase
-    * Store Code无法更改，因此应从**GamebaseConfiguration.newBuilder()**传输Store Code。
-        * Gamebase.Purchase.getStoreCode() / Gamebase.Purchase.setStoreCode()将清除。请勿再使用。
-    * Gamebase.Purchase.requestRetryTransaction()现在不调用也无妨。
+    * Since store code cannot be changed, it must be delivered at  **GamebaseConfiguration.newBuilder()**.
+        * Gamebase.Purchase.getStoreCode() / Gamebase.Purchase.setStoreCode() is scheduled to be removed. Do not use it again.
+    * No need to call Gamebase.Purchase.requestRetryTransaction() any more.
 * Push
-    * 自Gamebase Android SDK 2.6.0以上起，发送推送信息时，应通过Gamebase控制台的**推送**选项卡的菜单发送。
-        * 若低于Gamebase Android SDK 2.6.0，应从Gamebase控制台的**推送（旧）**选项卡发送推送。
-    * GamebaseConfiguration.Builder.setFCMSenderId()现在不调用也无妨。
-    * 调用GamebaseConfiguration.Builder.setTencentAccessKey()、 GamebaseConfiguration.Builder.setTencentAccessId()时，应清除API调用，并在build.gradle中如下声明。
+    * Since Gamebase Android SDK 2.6.0, push messages must be sent out via menu of the **Push** tab on the Gamebase console.
+        * For Gamebase Android SDK 2.6.0 or lower versions, push must be sent from the **Push(Old)** tab of the Gamebase console.
+    * No need to call GamebaseConfiguration.Builder.setFCMSenderId() any more.
+    * When GamebaseConfiguration.Builder.setTencentAccessKey(),  GamebaseConfiguration.Builder.setTencentAccessId() is being called, remove the API call and declare for build.gradle as follows:
 
 ```groovy
 android {
@@ -675,22 +677,22 @@ android {
 
 ### Unity
 
-* Setting Tool已升级。
-    * 文件夹结构更改，应将之前版本的SettingTool完全删除后重新安装。
+* Updated the setting tool.
+    * Due to changes in the folder structure, the previous SettingTool must be completely removed before re-installed. 
 
 ## 2.2.2
 
 ### Unity
 
-* GamebaseUnitySDKSettings类的**storeCodeAOS**变量名更改为**storeCodeAndroid**。
-    * 若存在参考**storeCodeAOS**定义Store Code的代码或Prefab，则变量参考失败，因此请更改为**storeCodeAndroid**变量。
+* Changed the variable name from **storeCodeAOS** to **storeCodeAndroid** for the GamebaseUnitySDKSettings class.
+    * If there is any code or prefab which defines store code in reference of **storeCodeAOS**, change the variable to **storeCodeAndroid**, so as variable reference does not fail.
 
 ## 2.2.0
 
 ### Unity
 
-* GamebaseMainActivity的Package Name已更改。
-    * AndroidManifest.xml的MainActivity声明若未如下更改，则会发生崩溃。
+* Changed the Package Name of GamebaseMainActivity.
+    * Unless the MainActivity declaration of AndroidManifest.xml is changed like below, crash may occur:
     * **com.toast.gamebase.activity.GamebaseMainActivity** -> **com.toast.android.gamebase.activity.GamebaseMainActivity**
 
 ```xml
@@ -719,5 +721,5 @@ android {
 
 #### Removed APIs
 
-* 未使用的TransferKey功能已清除。
-	* 若需要Guest账号迁移功能，请使用自Gamebase SDK 2.2.1起添加的[\[Game > Gamebase > Unity SDK使用指南 > 验证 > TransferAccount\]](./unity-authentication/#transferaccount)功能。
+* Removed TransferKey which is not used.
+	* If you need guest account transfer, go to [\[Game > Gamebase > Unity SDK User Guide > Authentication > TransferAccount\]](./unity-authentication/#transferaccount), updated as of Gamebase SDK 2.2.1.

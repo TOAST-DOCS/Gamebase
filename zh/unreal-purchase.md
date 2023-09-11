@@ -1,88 +1,89 @@
-## Game > Gamebase > Unreal SDK使用指南 > 结算
+## Game > Gamebase > User Guide for Unreal SDK > Purchase 
 
-下面将了解使用In-App结算的时的设置方法。
-Gamebase提供集成支付API，帮助您在游戏中轻松联动多家商店的In-App结算。
+This document describes setting requirements to use Unreal in-app purchase.  
+The unified purchase API of Gamebase supports for easy integration of in-app purchases of many stores. 
 
 ### Settings
 
-如果要在Android或iOS上设置In-App结算功能，请参考以下文档。
+Regarding how to set in-app purchases on Android or iOS, read the following documents: <br/>
 
 * [Android Purchase Settings](aos-purchase#settings)
 * [iOS Purchase Settings](ios-purchase#settings)
 
-#### 设置Unreal Plugin
+#### Unreal Plugin Settings
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 在外部Plugin存在与支付有关的处理时，Gamebase的支付功能可能不正常启动。 
-* 您需要禁用Online SubSystem Plugin，该Plugin在Unreal中默认启用，或者将其更改为不使用商店功能。
-    * 使用Online SubSystem GooglePlay Plugin时编辑/Config/Android/AndroidEngine.ini文件。
+> If there is payment-related processing in an external plugin, the Gamebase purchase function may not work properly.
 
+* You must disable the Online SubSystem plugin, which is enabled by default in Unreal, or change it to not use the Store function.
+    * If you're using Online SubSystem GooglePlay plugin, edit the /Config/Android/AndroidEngine.ini file.
+            
             [OnlineSubsystemGooglePlay.Store]
             bSupportsInAppPurchasing=False
             bUseGooglePlayBillingApiV2=False
-
-    * 使用Online SubSystem iOS Plugin时编辑/Config/IOS/IOSEngine.ini文件。
-
+            
+    * If you're using Online SubSystem Online SubSystem iOS plugin, edit the /Config/IOS/IOSEngine.ini file.
+            
             [OnlineSubsystemIOS.Store]
             bSupportsInAppPurchasing=False
+            
 
-  
-#### 有关Android结算的设置(引擎版本为4.24以下)
+#### Setting for Purchases on Android (for 4.24 or lower engine version)
 
-* 通过Epic Games Launcher设置4.24以下版本时, 
-    删除**Engine\Build\Android\Java\src\com\android\vending\billing\IInAppBillingService.aidl**才能打包。
-    * 因Gamebase提供[IInAppBillingService.aidl](https://developer.android.com/google/play/billing/api)文件，将发生冲突，因此需要删除。
-    * 如果使用4.25以上版本或由github提供引擎，则不需删除。
+* When the version 4.24 or lower is installed via Epic Games Launcher, 
+    delete **Engine\Build\Android\Java\src\com\android\vending\billing\IInAppBillingService.aidl** to build it properly.  
+    * [IInAppBillingService.aidl](https://developer.android.com/google/play/billing/api), provided by Gamebase, must be removed to prevent conflicts. 
+    * There's no need to remove it, though, if you're using 4.25 or higher engine versions, or if the engine is provided by github. 
 
 ### Purchase Flow
 
-道具的购买大体分为Flow、Consume Flow及“支付再处理”Flow。
-请按以下顺序实现结算Flow。
+Purchase of an item can be divided into Purchase Flow, Consume Flow, and Reprocess Flow.
+It is recommended to implement the Purchase Flow in the following order:
 
-![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.40.1.png)
+![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
 
-1. 尚未正常结束上一次支付时，若不进行“支付再处理”则将导致支付失败。因此支付前应调用**RequestI temListOfNotConsumed**进行“支付再处理”，若存在未提供的道具则进行Consume Flow。
-2. 游戏客户端通过从Gamebase SDK调用**RequestPurchase**尝试支付。 
-3. 如果付款成功，调用**RequestItemListOfNotConsumed**查看未消费结算明细。若存在未提供的道具，则进行Consume Flow。
+1. If the previous purchase was not completed normally, the purchase will fail if the reprocessing is not performed. Therefore, call **RequestItemListOfNotConsumed** before the purchase to run reprocessing, so that the Consume Flow is executed if there are any unprovided items.
+2. The game client attempts to make a purchase by calling **RequestPurchase** of the Gamebase SDK.
+3. If the purchase is successful, call **RequestItemListOfNotConsumed** to check the unconsumed purchase details, and if there is an item to provide, proceed with the Consume Flow.
 
 ### Consume Flow
 
-如果返还的未消费结算明细列表中存在值，请按以下顺序进行**Consume Flow**。
+If there's a value on the list of unconsumed purchases, proceed with the Consume Flow in the following order:
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 为了防止重复提供道具，必须通过游戏服务器确认是否重复提供道具。
+> To prevent duplicate provision of an item, always check whether the item is being provided in duplicate in the game server.
 >
 
 ![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.40.1.png)
 
-1. 游戏客户向游戏服务器请求consume（消费）。
-    * 传送UserID、gamebaseProductId、paymentSeq、purchaseToken。
-2. 游戏服务器查看在游戏DB中是否存在以同样的paymentSeq提供道具的历史记录。
-    * 2-1. 如果还未提供道具，则调用Gamebase服务器的Payment Transaction API验证paymentSeq和purchaseToken 值是否有效。
-        * [Game > Gamebase > API指南 > Purchase(IAP) > Get Payment Transaction](./api-guide/#get-payment-transaction)
-    * 2-2. 如果purchaseToken为正常的值，则向UserID提供使用gamebaseProductId购买的道具。
-    * 2-3. 提供道具后在游戏DB保存UserID、gamebaseProductId、paymentSeq及purchaseToken，必要时进行“支付再处理”或防止重复提供。
-3. 游戏服务器通过调用Gamebase服务器的consume（消费）API提供道具（不考虑是否已提供道具）。
-    * [Game > Gamebase > API指南 > Purchase(IAP) > Consume](./api-guide/#consume)
+1. The game client makes a request to the game server to consume the purchase item.
+    * Passes UserID, gamebaseProductId, paymentSeq, and purchaseToken.
+2. The game server checks the game DB to see if there is a history of already providing an item with the same paymentSeq.
+    * 2-1. If the item has not been provided yet, call the Gamebase server's Payment Transaction API to verify that the paymentSeq and purchaseToken values are valid.
+        * [Game > Gamebase > API Guide > Purchase(IAP) > Get Payment Transaction](./api-guide/#get-payment-transaction)
+    * 2-2. If purchaseToken is a normal value, provide the item corresponding to gamebaseProductId to UserID.
+    * 2-3. After providing the item, store UserID, gamebaseProductId, paymentSeq, and purchaseToken in the game DB to prevent duplicate provision or allow for re-provision.
+3. Regardless of whether the item has been provided, the game server completes the item provision by calling the Gamebase server's consume API.
+    * [Game > Gamebase > API Guide > Purchase(IAP) > Consume](./api-guide/#consume)
 
 ### Retry Transaction Flow
 
 ![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
 
-* 商店支付已成功，但因出现错误无法正常终止时，
-* 请调用**RequestItemListOfNotConsumed**进行“支付再处理”。若存在尚未提供的道具，则进行Consume Flow。
-* 请在下列情况下进行“支付再处理”。
-    * 完成登录后
-    * 支付之前
-    * 进入游戏内商店（或 Lobby）时
-    * 查看用户简介或邮箱时
+* There are cases where the store purchase has been made successfully but the process was not properly completed due to errors.
+* Call **RequestItemListOfNotConsumed** to run reprocessing and proceed with the Consume Flow for any unprovided items.
+* It is recommended to call reprocessing at the following times:
+    * After login is completed
+    * Before making a purchase
+    * When entering the store (or lobby) in a game
+    * When checking the user profile or mailbox
 
 ### Purchase Item
 
-使用想要购买商品的gamebaseProductId调用以下API请求购买。
-游戏用户取消购买时返还**PURCHASE_USER_CANCELED**错误。
+By using itemSeq of an item to purchase, call the following API and request a purchase.  
+If a game user cancels purchase, the **PURCHASE_USER_CANCELED** error is returned.
 
 
 **API**
@@ -164,89 +165,90 @@ struct FGamebasePurchasableReceipt
 {
     GENERATED_USTRUCT_BODY()
     
-    // 是购买的道具商品ID。 
+    // The product ID of a purchased item.
     UPROPERTY()
     FString gamebaseProductId;
 
-    // 是通过itemSeq购买商品的Legacy API专用标识符。 
+    // An identifier for Legacy API that purchases products with itemSeq.
     UPROPERTY()
     int64 itemSeq;
 
-    // 是购买的商品价格。
+    // The price of purchased product.
     UPROPERTY()
     float price;
 
-    // 是货币代码。
+    // Currency code.
     UPROPERTY()
     FString currency;
 
-    // 是结算标识符。 
-    // 是调用“Consume”服务器API时与purchaseToken使用的重要信息。 
+    // Payment identifier.
+    // This is an important piece of information used to call 'Consume' server API with purchaseToken.
     // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
-    // 注意 : 请通过游戏服务器调用Consume API! 
+    // Caution: Call Consume API from game server!
     UPROPERTY()
     FString paymentSeq;
 
-    // 是结算标识符。
-    // 是调用“Consume”服务器API时与paymentSeq使用的重要信息。  
-    // 调用Consume API时要将参数名称作为“accessToken”传送。  
+    // Payment identifier.
+    // This is an important piece of information used to call 'Consume' server API with paymentSeq.
+    // In Consume API, the parameter must be named 'accessToken' to be passed.
     // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
-    // 注意 : 请通过游戏服务器调用Consume API! 
+    // Caution: Call Consume API from game server!
     UPROPERTY()
     FString purchaseToken;
 
-    // 是与Google和Apple在商店控制台中注册的商品ID。
+    // The product ID that is registered to store console such as Google or Apple.
     UPROPERTY()
     FString marketItemId;
 
-    // 商品类型存在以下值。  
-    // * UNKNOWN : 无法识别类型/请更新Gamebase SDK或联系Gamebase客户服务。
-    // * CONSUMABLE : 消费型商品
-    // * AUTO_RENEWABLE : 订阅型商品        
-    // * CONSUMABLE_AUTO_RENEWABLE : 指需向购买订购商品的用户定期提供可消费商品时使用的“可消费订购商品”。
+    // The product type which can have the following values:
+    // * UNKNOWN: An unknown type. Either update Gamebase SDK or contact Gamebase Customer Center.
+    // * CONSUMABLE: A consumable product.
+    // * AUTO_RENEWABLE: A subscription product.
+    // * CONSUMABLE_AUTO_RENEWABLE: This 'consumable subscription product' is used when providing a subscribed user a subscription product that can be consumed periodically.
     UPROPERTY()
     FString productType;
 
-    // 为购买商品的User ID。
-    // 如果使用没有购买商品的User ID登录，则无法获取购买的道具。
+    // This is a user ID with which a product is purchased.
+    // If a user logs in with a user ID that is not used to purchase a product, the user cannot obtain the product they purchased.
     UPROPERTY()
     FString userId;
 
-    // 为商店的结算标识符。 
+    // The payment identifier of a store.
     UPROPERTY()
     FString paymentId;
 
-    // 每当订购商品被更新，paymentId也将被修改。
-    // 通过此字段可以确认第一次进行订阅商品支付时的paymentId。 
-    // 根据商店类型、结算服务器状态，可能不存在值，
-    // 因此不能保证始终是有效值。
+    // paymentId is changed whenever product subscription is renewed.
+    // This field shows the paymentId that was used when a subscription product was first purchased.
+    // This value does not guarantee to be always valid, as it can have no value depending on the store
+    // the user made a purchase and the status of the payment server.
     UPROPERTY()
     FString originalPaymentId;
     
-    // 是购买商品的时间。(epoch time)
+    // The time when the product was purchased.(epoch time)
     UPROPERTY()
     int64 purchaseTime;
     
-    // 是订购结束的时间。(epoch time)
+    // The time when the subscription expires.(epoch time)
     UPROPERTY()
     int64 expiryTime;
-    
-    // 是支付的商店代码。 
-    // 可以在GamebaseStoreCode类中查看商店代码列表。 
+
+    // This is a code for store where purchase is made.
+    // The store code list can be found in the GamebaseStoreCode class.  
     UPROPERTY()
     FString storeCode;
-
-    // 是调用RequestPurchase API时传送至payload的值。
-    // 根据商店服务器的状态，信息可能会丢失，因此我们不建议使用它。   
+    
+    // The value sent to payload when callign the RequestPurchase API.
+    // Not guarantee to use due to possible loss of information depending on the store server status.
     UPROPERTY()
-    FString payload;    这是在调用RequestPurchase API时作为payload传递的值。
-   
-    // Promotion支付与否
-    // 如果- (Android) Gamebase支付服务器暂时关闭验证逻辑，它只会输出false，因此不能保证有效值。
+    FString payload;
+    
+    // Whether it is promotion or not
+    // - (Android) If the validation logic is temporarily turned off in the Gamebase payment server, a valid value is not guaranteed because this value will be output as false only.
     UPROPERTY()
     bool isPromotion;
-    // 测试支付与否
-    // 如果- (Android) Gamebase支付服务器暂时关闭验证逻辑，它只会输出false，因此不能保证有效值。
+
+    // Whether it is test purchase or not
+    // - (Android) If the validation logic is temporarily turned off in the Gamebase payment server, a valid value is not guaranteed because this value will be output as false only.
     UPROPERTY()
     bool isTestPurchase;
 };
@@ -255,8 +257,8 @@ struct FGamebasePurchasableReceipt
 
 ### List Purchasable Items
 
-若需查看道具列表，请调用以下API。
-通过回调返还的列表显示每个道具的信息。 
+To query the list of items, call the following API: 
+The list of callback returns includes information of each item. 
 
 **API**
 
@@ -301,52 +303,52 @@ struct FGamebasePurchasableItem
 {
     GENERATED_USTRUCT_BODY()
     
-    // 是在Gamebase控制台中注册的商品ID。
-    // 是用于调用Gamebase.Purchase.requestPurchase API来购买商品。
+    // The product ID that is registered with the Gamebase console.
+    // Used when a product is purchased using Gamebase.Purchase.requestPurchase API.
     UPROPERTY()
     FString gamebaseProductId;
 
-    // 是通过itemSeq购买商品的Legacy API专用标识符。
+    // An identifier for Legacy API that purchases products with itemSeq.
     UPROPERTY()
     int64 itemSeq;
 
-    // 为商品的价格。
+    // The price of a product.
     UPROPERTY()
     float price;
 
-    // 为货币代码。
+    // Currency code.
     UPROPERTY()
     FString currency;
 
-    // 是在Gamebase控制台中注册的商品名称。
+    // The name of a product registered in the Gamebase console.
     UPROPERTY()
     FString itemName;
 
-    // 是与Google和Apple在商店控制台中注册的商品ID。
+    // The product ID that is registered to store console such as Google or Apple.
     UPROPERTY()
     FString marketItemId;
 
-    // 商品类型存在以下值。  
-    // * UNKNOWN : 无法识别类型/请更新Gamebase SDK或联系Gamebase客户服务。
-    // * CONSUMABLE : 消费型商品
-    // * AUTORENEWABLE : 订购型商品
-    // * CONSUMABLE_AUTO_RENEWABLE : 指需向购买订购商品的用户定期提供可消费商品时用的“可消费订购商品”。
+    // The product type which can have the following values:
+    // * UNKNOWN: An unknown type. Either update Gamebase SDK or contact Gamebase Customer Center.
+    // * CONSUMABLE: A consumable product.
+    // * AUTO_RENEWABLE: A subscription product.
+    // * CONSUMABLE_AUTO_RENEWABLE: This 'consumable subscription product' is used when providing a subscribed user a subscription product that can be consumed periodically.
     UPROPERTY()
     FString productType;
     
-    // 是包含货币符号的当地价格信息。
+    // Localized price information with currency symbol.
     UPROPERTY()
     FString localizedPrice;
     
-    // 是在商店控制台中注册的当地商品名称。 
+    // The name of a localized product registered with the store console.
     UPROPERTY()
     FString localizedTitle;
 
-    // 是在商店控制台中注册的当地商品说明。
+    // The description of a localized product registered with the store console.
     UPROPERTY()
     FString localizedDescription;
 
-    // Gamebase控制台显示此商品的“使用与否”。
+    // Shows whether the product is 'used or not' in the Gamebase console.
     UPROPERTY()
     bool isActive;
 };
@@ -355,16 +357,15 @@ struct FGamebasePurchasableItem
 
 ### List Non-Consumed Items
 
-对已购买，但未消费(配送、支付)道具的未消费结算明细进行请求。
-如果有未完成的商品，必须要求游戏服务器（item 服务器）处理配送item（支付）。
+Send a request for unconsumed purchases of which items have not been normally consumed (delivered or provided) even after purchased. 
+When there's an unconsumed purchase, send a request to the game server (item server) so as to deliver (provide) items. 
 
 
 **FGamebasePurchasableConfiguration**
 
 | API                             | Mandatory(M) / Optional(O) | Description                                                                    |
 | ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
-| allStores                       | O                          | 还返回使用相同UserID在其他商店购买的未消费明细。<br/>基本值为**false**。 |
-
+| allStores                       | O                          | Return unconsumed lists purchased with the same UserID from a different store.<br/>Default is **false**. |
 
 **API**
 
@@ -380,8 +381,9 @@ void RequestItemListOfNotConsumed(const FGamebasePurchasableConfiguration& Confi
 ```cpp
 void Sample::RequestItemListOfNotConsumed(bool allStores)
 {
-        FGamebasePurchasableConfiguration Configuration;
+    FGamebasePurchasableConfiguration Configuration;
     Configuration.allStores = allStores;
+
     IGamebase::Get().GetPurchase().RequestItemListOfNotConsumed(Configuration, FGamebasePurchasableItemListDelegate::CreateLambda(
         [](const TArray<FGamebasePurchasableItem>* purchasableItemList, const FGamebaseError* error)
     {
@@ -406,21 +408,21 @@ void Sample::RequestItemListOfNotConsumed(bool allStores)
 }
 ```
 
-### List Actived Subscriptions
+### List Activated Subscriptions
 
-以当前用户ID为准查看激活的订阅列表。
-到期前可一直查看完成支付的订阅商品（自动更新型订阅、自动更新型消费性订阅商品）。 
-若用户ID相同，可同时查看在Android和iOS中购买的订阅商品。
+Query the list of activated subscriptions of a current user ID. 
+Paid subscriptions (auto-renewal subscription, or auto-renewal consumable subscription products) can be queried until they are expired. 
+Under same user ID, you can query all subscriptions purchased both on Android and iOS.  
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> Android对当前的订阅商品仅支持Google Play商店。
+> For Android, subscriptions are currently supported only on the Google Play Store.
 
 **FGamebasePurchasableConfiguration**
 
 | API                             | Mandatory(M) / Optional(O) | Description                                                                    |
 | ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
-| allStores                       | O                          | 还返回使用相同UserID在其他商店购买的未消费明细。<br/>基本值为**false**。 |
+| allStores                       | O                          | Return unconsumed lists purchased with the same UserID from a different store.<br/>Default is **false**. |
 
 **API**
 
@@ -436,9 +438,10 @@ void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configur
 ```cpp
 void Sample::RequestActivatedPurchases(bool allStores)
 {
-        FGamebasePurchasableConfiguration Configuration;
-        Configuration.allStores = allStores;
-       IGamebase::Get().GetPurchase().RequestActivatedPurchases(Configuration, FGamebasePurchasableReceiptListDelegate::CreateLambda(
+     FGamebasePurchasableConfiguration Configuration;
+     Configuration.allStores = allStores;
+
+     IGamebase::Get().GetPurchase().RequestActivatedPurchases(Configuration, FGamebasePurchasableReceiptListDelegate::CreateLambda(
         [](const TArray<FGamebasePurchasableReceipt>* purchasableReceiptList, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
@@ -461,21 +464,22 @@ void Sample::RequestActivatedPurchases(bool allStores)
 
 ### List Subscriptions Status
 
-以当前使用的ID为准查看订阅商品的状态。
-通过回调返还的列表包含订阅商品的信息。 
+Retrieve the status of subscription products based on the current user ID.
+The list returned in the callback contains information about the subscription products.
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> * 按照以下指南设置订阅事件，以便正确返回订阅状态代码。
->     * [Game > Gamebase > 商店控制台指南 > Google控制台指南 > 设置Google系统内订阅信息事件传播](./console-google-guide/#google_1)
->     * 对于在没有设置事件的情况下购买的订阅，始终返回状态代码0（PURCHASED）。 
-> * 当前的订阅商品仅支持Google Play商店。
+> * The subscription status code is only returned correctly if you follow the guide below to set up the subscription event.
+>     * Go to [Game > Gamebase > Store Console Guide > Google Console Guide and set up event propagation of real-time subscription information within Google's system
+>     * The status code for a subscription product purchased without setting up events always returns 0 (PURCHASED).
+> * Subscription products currently only supports Google Play Store.
+
 
 **FGamebasePurchasableConfiguration**
 
 | API                             | Mandatory(M) / Optional(O) | Description                                                 |
 | ------------------------------- | -------------------------- | ----------------------------------------------------------- |
-|  includeExpiredSubscriptions    | O                          | 搜索包括过期订阅。<br/>基本值为**false**。   |
+|  includeExpiredSubscriptions    | O                          | Retrieves including expired subscription products.<br/>Default value is **false**.   |
 
 **API**
 
@@ -492,12 +496,14 @@ void Sample::RequestSubscriptionsStatus(bool includeExpiredSubscriptions)
 {
     FGamebasePurchasableConfiguration Configuration;
     Configuration.allStores = allStores;
+
     IGamebase::Get().GetPurchase().RequestSubscriptionsStatus(Configuration, FGamebasePurchasableSubscriptionStatusDelegate::CreateLambda(
         [](const TArray<FGamebasePurchasableSubscriptionStatus>* purchasableReceiptList, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("RequestSubscriptionsStatus succeeded."));
+
             for (const FGamebasePurchasableSubscriptionStatus& purchasableReceipt : *purchasableReceiptList)
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT(" - gamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s"),
@@ -518,115 +524,126 @@ USTRUCT()
 struct GAMEBASE_API FGamebasePurchasableSubscriptionStatus
 {
     GENERATED_USTRUCT_BODY()
-    // 是Gamebase为安装应用程序的商店定义的代码。
-    UPROPERTY()   
+
+    // This is the code defined internally by Gamebase for the store where your app is installed.
+    UPROPERTY()
     FString storeCode;
     
-    // 是商店的结算标识符。       
+    // The payment identifier of a store
     UPROPERTY()
     FString paymentId;
-    // 每当更新订阅商品时paymentId也将被更改。    
-    // 此字段为您提供首次支付订阅时的paymentId。
-    // 根据商店和支付服务器的状态，该值可能不存在，
-    // 因此不始终保障有效的值。
+
+    // The paymentId is changed every time subscription product is renewed.
+    // This field provides the paymentId of the first time the subscription is paid for. 
+    // This value does not guarantee to be always valid, 
+    // because the value may not exist depending on the status of the store or payment server.
     UPROPERTY()
     FString originalPaymentId;
-    // 是结算标识符。 
-    // 是与purchaseToken调用“Consume”服务器API的重要信息。
-    //       
-    // 注意 : 请在游戏服务器调用Consume API! (https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap)
+
+    // Payment identifier
+    // This is important information used to call the ‘Consume’ server API along with purchaseToken.
+    //    
+    // Caution: Call the Consume API from the game server! (https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap)
     UPROPERTY()
     FString paymentSeq;
-    // 是购买的商品的商品ID。
+
+    // Product ID for the purchased product.
     UPROPERTY()
     FString marketItemId;
     
-    // IAP Web控制台的项目固有标识符
+    // Item unique identifier in the IAP web console
     UPROPERTY()
     int64 itemSeq;
-    // 采用以下值之一 ：
-    // * UNKNOWN : 无法识别类型/请更新Gamebase SDK或联系Gamebase客户服务。
-    // * CONSUMABLE : 消费型商品
-    // * AUTO_RENEWABLE : 订阅型商品
+
+    // Contains one of the following values.
+    // * UNKNOWN: Unknown type. Update Gamebase SDK or contact Gamebase customer center.
+    // * CONSUMABLE: a consumable.
+    // * AUTO_RENEWABLE: a subscription product.
     UPROPERTY()
     FString productType;
-    // 是购买商品的用户ID。
-    // 如果您使用未用于购买产品的用户ID登录，则无法收到购买的产品。
+
+    // User ID that purchased the product.
+    // If you log in not with a user ID that purchased the product, you cannot get the purchased product.
     UPROPERTY()
     FString userId;
     
-    // 是商品的价格。
+    // Product price.
     UPROPERTY()
     float price;
-    // 是货币信息。
+
+    // Currency information.
     UPROPERTY()
     FString currency;
-    // Payment标识符           
-    // 是与paymentSeq调用“Consume”服务器API的重要信息。
-    // 在Consume API中，参数名称必须指定为“accessToken”才能传递。
-    // 参考 : https://docs.toast.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap
+
+    // Payment identifier.
+    // As paymentSeq, important information to call the 'Consume' server API.
+    // It is sent only when the parameter name is set to ‘access_Token’ from Consume API.
+    // Note: https://docs.toast.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap
     UPROPERTY()
-    FString purchaseToken;         
-    // 此值在从谷歌购买时使用，而可以采用以下值 ：
-    // 但是如果由于谷歌服务器中的错误导致Gamebase支付服务器中的认证逻辑被暂时禁用，
-    // 只返还null，因此不始终保障有效的值。
-    // * null : 正常支付     
-    // * 测试 : 测试支付
-    // * Promotion : Promotion支付
+    FString purchaseToken;
+
+    // The value is used when purchasing from Google and has one of the following values.
+    // But, when authentication logic is deactivated temporarily from Gamebase payment server due to Google server errors
+    // May not always guarantee a valid value as it only returns null
+    // * null: Normal payment
+    // * Test: Test payment
+    // * Promotion: Promotion payment
     UPROPERTY()
     FString purchaseType;
-    // 购买商品的时间(epoch time)
+
+    // Time of product purchase .(epoch time)
     UPROPERTY()
     int64 purchaseTime;
     
-    // 订阅结束的时间(epoch time)
+    // Time the subscription expires.(epoch time)
     UPROPERTY()
     int64 expiryTime;
     
-    // 是调用RequestPurchase API时传送至Payload的值。
-    // 根据商店服务器的状态，信息可能会丢失，因此我们不建议使用它。
-    UPROPERTY()  
+    // A value sent to payload when calling the RequestPurchase API.
+    // Not guarantee to use due to possible loss of information depending on the store server status.
+    UPROPERTY()
     FString payload;
     
-    // 订阅状态
-    // 关于所有状态代码，请参考以下文件。
+    // Subscription status
+    // For all status codes, see the following documentation.
     // - https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-unity/#iapsubscriptionstatus
     UPROPERTY()
     int32 statusCode;
     
-    // 是有关订阅状态的描述。
+    // Description for subscription status.
     UPROPERTY()
     FString statusDescription;
     
-    // 是在Gamebase控制台中注册的商品ID。
-    // 当调用RequestPurchase API购买商品时使用。
-    UPROPERTY()    
+    // Product ID registered in Gamebase console.
+    // It is used to purchase products with the RequestPurchase API.
+    UPROPERTY()
     FString gamebaseProductId;
 };
 ```
 
+
 ### Error Handling
 
-| Error                                     | Error Code | Description                              |
-| ----------------------------------------- | ---------- | ---------------------------------------- |
-| PURCHASE_NOT_INITIALIZED                  | 4001       | 未初始化Purchase模块。<br>请确认是否将gamebase-adapter-purchase-IAP模块添加在项目中。|
-| PURCHASE_USER_CANCELED                    | 4002       | 游戏用户取消购买道具。                  |
-| PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 尚未完成购买逻辑的状态下调用了API。|
-| PURCHASE_NOT_ENOUGH_CASH                  | 4004       | 因该商店的现金不足，无法进行结算。              |
-| PURCHASE_INACTIVE_PRODUCT_ID              | 4005       | 此商品为非激活状态。 |
-| PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 使用不存在的GamebaseProductID请求了支付。 |
-| PURCHASE_LIMIT_EXCEEDED                   | 4007       | 超过了一个月的购买限额。             |
-| PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 是不支持的商店。<br>可以选择的商店为AS(App Store)、GG(Google)及ONESTORE及GALAXY。|
-| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | 是NHN Cloud IAP库错误。<br/>请确认详细错误。 |
-| PURCHASE_UNKNOWN_ERROR                    | 4999       | 未定义的购买错误<br>请将所有日志上传到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。|
+| Error                                       | Error Code | Description                              |
+| ------------------------------------------- | ---------- | ---------------------------------------- |
+| PURCHASE_NOT_INITIALIZED                    | 4001       | The purchase module has not been initialized.<br>Check if the gamebase-adapter-purchase-IAP module has been added to project. |
+| PURCHASE_USER_CANCELED                      | 4002       | Purchase has been cancelled. |
+| PURCHASE_NOT_FINISHED\_PREVIOUS\_PURCHASING | 4003       | API has been called when a purchase logic is not completed. |
+| PURCHASE_NOT_ENOUGH_CASH                    | 4004       | Cannot purchase due to shortage of cash of the store. |
+| PURCHASE_INACTIVE_PRODUCT_ID                | 4005       | Product is not activated.   |
+| PURCHASE_NOT_EXIST_PRODUCT_ID               | 4006       | Requested for purchase with invalid GamebaseProductID. |
+| PURCHASE_LIMIT_EXCEEDED                     | 4007       | You have exceeded your monthly purchase limit.              |
+| PURCHASE_NOT_SUPPORTED_MARKET               | 4010       | The store is not supported.<br>The stores you can select are AS (App Store), GG (Google), ONESTORE, and GALAXY. |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR             | 4201       | Error in NHN Cloud IAP library.<br>Check the error details. |
+| PURCHASE_UNKNOWN_ERROR                      | 4999       | Unknown error in purchase.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry) and we'll reply at the earliest possible moment. |
 
-* 关于所有错误代码，请参考以下文档。 
-    * [错误代码](./error-code/#client-sdk)
+* See the following document for the entire error codes. 
+    * [Error Codes](./error-code/#client-sdk)
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* 当在NHN Cloud IAP库中发生错误时，将返还此错误。 
-* 在NHN Cloud IAP库发生的错误信息包含在详细错误中，而详细的错误代码和消息如下。
+* The error is returned when an error occurs in NHN Cloud IAP library.
+* The information on the error in NHN Cloud IAP library is included in the error details, and you can find detailed error code and message as follows.
 
 ```cpp
 GamebaseError* gamebaseError = error; // GamebaseError object via callback
@@ -647,8 +664,10 @@ else
 }
 ```
 
-* 关于NHN Cloud IAP错误代码，请参考以下文件。 
-    * [NHN Cloud > NHN Cloud SDK使用指南 > NHN Cloud IAP > Unity > 错误代码](/TOAST/ko/toast-sdk/iap-unity/#_17)
+* For NHN Cloud IAP error codes, refer to the document below.
+    * [NHN Cloud > User Guide for NHN Cloud SDK > NHN Cloud IAP > Unity > Error Codes](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-unity/#error-code)
+
+
 
 
 

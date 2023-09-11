@@ -1,6 +1,6 @@
-## Game > Gamebase > 商店控制台指南 > MyCard控制台指南
+## Game > Gamebase > Store Console Guide > MyCard Console Guide
 
-## 注册MyCard应用程序   
+## Register MyCard store
 
 - MyCard does not provide a web console where customers can log in. (As of July 2023)
 - Integration with MyCard is processed according to the information entered in the NHN Cloud IAP console.

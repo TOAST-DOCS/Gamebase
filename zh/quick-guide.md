@@ -1,36 +1,36 @@
 ## Game > Gamebase > Quick Guide
 
-参考以下Quick Guide上的程序，轻松掌握Gamebase功能。
+A Step-By-Step Quick Guide is available to get to know Gamebase easily.
 
 ## Install: Developers
 
-### Gamebase SDK设置 [\[跳转\]](https://forward.nhn.com/2021/hands-on-labs/gamebase.install-with-setting-tool/)
+### Gamebase SDK Installation [\[link\]](https://forward.nhn.com/2021/hands-on-labs/gamebase.install-with-setting-tool/)
 
-#### 初级/10分
-	
-* Setting Tool设置
-* 使用Setting Tool下载Gamebase SDK。 
-* 使用Setting Tool设置Gamebase SDK。 
-* 使用Settign Tool删除Gamebase SDK。 
-* Setting Tool升级
+#### Beginners / 10 mins
+
+* Setting Tool Installation
+* Gamebase SDK Download using Setting Tool
+* Gamebase SDK Installation using Setting Tool
+* Gamebase SDK Deletion using Setting Tool
+* Setting Tool Update
 
 ## Authentication: Developers
 
-### [Unity] Guest认证 [\[跳转\]](https://forward.nhn.com/2021/hands-on-labs/gamebase.guest-auth-on-unity/)
+### [Unity] Guest Authentication [\[link\]](https://forward.nhn.com/2021/hands-on-labs/gamebase.guest-auth-on-unity/)
 
-#### 初级/15分
+#### Beginners / 15 mins
 
-* 在Gamebase console中创建项目。
-* 使用Gamebase Setting Tool设置Gamebase SDK。
-* 在Unity项目中设置Gamebase。
+* Project Creation in Gamebase Console
+* Gamebase SDK Installation using Gamebase Setting Tool
+* Gamebase Configuration from Unity Project
 * Gamebase Initialize
 * Gamebase Guest Login
 * Gamebase Logout
-	
-### [Unity] Google IdP认证 [\[跳转\]](https://forward.nhn.com/2021/hands-on-labs/gamebase.google-setting/)
 
-#### 初级/30分
+### [Unity] Google IdP Authentication [\[link\]](https://forward.nhn.com/2021/hands-on-labs/gamebase.google-setting/)
 
-* 设置Google Play Console。
-* 在Gamebase Console中添加认证信息。
+#### Beginners / 30 mins
+
+* Google Play Console Configuration
+* Register Authentication Information from Gamebase Console
 

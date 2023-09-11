@@ -1,9 +1,9 @@
-## Game > Gamebase > Unreal SDK使用指南 > Logger
+## Game > Gamebase > User Guide for Unreal SDK > Logger
 
-下面将了解在Unreal中使用TOAST Logger SDK的方法。
+This document describes how to use Unreal NHN Cloud Logger SDK.  
 
 ### Initialize
-利用从Log & Crash Search获得的AppKey对TOAST Logger SDK进行初始化。
+Initialize NHN Cloud Logger SDK with appkey issued from Log & Crash Search. 
 
 **API**
 
@@ -25,8 +25,8 @@ void Sample::InitializeLogger()
 ```
 
 ### Send Logs
-将日志传输到Log & Crash服务器。
-TOAST Logger SDK可传输如下五种级别的日志。 
+Send logs to Log & Crash Server. 
+NHN Cloud Logger SDK can send logs of the five levels as below: 
 
 * DEBUG
 * INFO
@@ -34,7 +34,7 @@ TOAST Logger SDK可传输如下五种级别的日志。
 * ERROR
 * FATAL
 
-日志的级别如下。
+Logs are levelled as follows:
 
 * DEBUG > INFO > WARN > ERROR > FATAL
 
@@ -101,8 +101,8 @@ void Sample::FatalLogger()
 ```
 
 ### Set User-Defined Fields
-设置所需的自定义字段。  
-如果设置自定义字段，每当调用日志传送API时，则将设置的值和日志传送到服务器。
+Set user-defined field as needed. 
+With user-defined field setting, set value is sent to server along with logs every time Send Logs API is called. 
 
 **API**
 

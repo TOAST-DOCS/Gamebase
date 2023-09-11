@@ -3,196 +3,198 @@
 ### 2.49.1 (2023. 04. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.1/GamebaseSDK-Unreal.zip)
 
-#### 修改程序错误
-* (iOS) 修复了调用“查询支付产品API”时出现崩溃的问题。
+#### Bug Fixes
+* (iOS) Fixed a crash when calling the API to query purchases.
 
-#### 各平台更改项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.48.0](./release-notes-android/#2480-2023-03-28)
 * [Gamebase iOS SDK 2.49.0](./release-notes-ios/#2490-2023-04-11)
 
 ### 2.49.0 (2023. 04. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.0/GamebaseSDK-Unreal.zip)
 
-#### 添加功能
-* “查询未消费明细API”已被更改，因此需要更改为新的API。
-
+#### Added Features
+*  Please update to a new API due to changes to the Query Unconsumed Purchases API.
+ 
         // Deprecated API
-        void RequestItemListOfNotConsumed(const FGamebasePurchasableReceiptListDelegate& onCallback);  
+        void RequestItemListOfNotConsumed(const FGamebasePurchasableReceiptListDelegate& onCallback);
         // New API
         void RequestItemListOfNotConsumed(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
-
-* “查询激活订阅API”已被更改，因此需要更改为新的API。
-    * 如需获得与以前的API相同的结果，要将** FGamebasePurchasableConfiguration.allStores**设置为**true**。
-   
+ 
+* Make sure to update to a new API due to changes to the Query Activated Subscription API.
+    * To get the same results as the existing API, set **FGamebasePurchasableConfiguration.allStores** to **true**.
+ 
             // Deprecated API
             void RequestActivatedPurchases(const FGamebasePurchasableReceiptListDelegate& onCallback);
             // New API
             void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
- 
-* (Android) 添加了可查看IAP订阅状态的RequestSubscriptionsStatus API。
-* (Android) 在Webview中将重新支持设置是否使用固定字体大小的字段。
+
+* (Android) Added the RequestSubscriptionsStatus API to view the IAP subscription status.
+* (Android) Re-supported the field to set whether to use fixed font sizes from the WebView.
     * GamebaseWebViewConfiguration.enableFixedFontSize
-* (Android) 添加了使用包括Cutout（Notch）区域的所有可用屏幕空间进行渲染的设置。
+* (Android) Added a setting to allow WebView to render using all available screen spaces, including cutout (notched) areas.
     * GamebaseWebViewConfiguration.renderOutsideSafeArea
 
-#### 改善/修改功能
-* Unreal支持的最低版本已更改为4.26。
-* (iOS) 修改了在Xcode 14.1上进行Build时出现错误的问题。
-   
-#### 各平台更改项目
+#### Feature Updates
+* Raised the minimum supported version of Unreal to 4.26.
+* (iOS) Fixed an error that occurred when running a build from Xcode 14.1.
+    
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.48.0](./release-notes-android/#2480-2023-03-28)
 * [Gamebase iOS SDK 2.49.0](./release-notes-ios/#2490-2023-04-11)
 
 ### 2.43.3 (2022. 10. 04.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.3/GamebaseSDK-Unreal.zip)
 
-#### 改善/修改功能
-* 修改后当登录LINE时可输入提供服务的Region。
-    * [Game > Gamebase > Unreal SDK使用指南 > 认证 > Login with IdP](./unreal-authentication/#login-with-idp)
+#### Feature Updates
+* Modified to enter a service region when logging in to LINE.
+    * [Game > Gamebase > Unreal SDK User Guide > Authentication > Login with IdP](./unreal-authentication/#login-with-idp)
     
-#### 各平台更改项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.43.0](./release-notes-android/#2430-2022-09-07)
 * [Gamebase iOS SDK 2.43.3](./release-notes-ios/#2433-2022-10-04)
 
 ### 2.42.1 (2022. 08. 09.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Unreal.zip)
 
-#### 添加功能
-* 在FGamebaseForcingMappingTicket类中添加了显示映射用户状态的mappedUserValid字段。 
-* [iOS设置工具]添加了**Xcode Path**设置，允许您在（./unreal start/#ios设置）指定Xcode的路径。
+#### Added Features
+* Added the mappedUserValid field that represents the mapped user status to the FGamebaseForcingMappingTicket class.
+* Added the **Xcode Path** setting to specify the path for Xcode in [iOS Setting Tool](./unreal-started/#ios-settings).
 
-#### 改善/修改功能
-* 在Gamebase控制台中注册Kickout时可以设置是否要显示Kickout弹窗，因此不需要使用以下字段。
+#### Feature Updates
+* The following field has been deprecated because whether to display the kickout popup window can be set during kickout registration in the Gamebase console.
     * **FGamebaseConfiguration.enableKickoutPopup**
-* 在FGamebaseConfiguration中的一部分字段添加了默认值。
-    * enableLaunchingStatusPopup的默认值已设置为true。
-    * enableBanPopup的默认值已设置为true。
-* 不使用用于设置是否在FWebView中使用固定字体大小的字段。
+* Default values have been added to some fields in FGamebaseConfiguration.
+    * The default value of enableLaunchingStatusPopup is set to true.
+    * The default value of enableBanPopup is set to true.
+* The field to set whether to use the fixed font size in FWebView is no longer used.
     * **FGamebaseWebViewConfiguration.enableFixedFontSize**
-* 在FGamebaseWebViewConfiguratio内一部分字段添加了默认值。
-    *  导航栏的颜色字段colorR、colorG、colorB、colorA的默认值被设置为18、93、230、255。 
-    * 指定导航栏是否是启用状态的“isNavigationBarVisible”字段的默认值已设置为true。
-    * 指定是否启用Webview内的返回按钮的“isBackButtonVisible”字段的默认值已设置为true。
-
-#### 各平台更改项目
+* Default values have been added to some fields in FGamebaseWebViewConfiguration.
+    *  The default values of navigation bar colorR, colorG, colorB, and colorA are set to 18, 93, 230, 255.
+    * The default value of the isNavigationBarVisible field to enable the navigation bar is set to true.
+    * The default value of the isBackButtonVisible field to enable the Go Back button in WebView is set to true.
+    
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.42.1](./release-notes-android/#2421-2022-07-26)
 * [Gamebase iOS SDK 2.42.1](./release-notes-ios/#2421-2022-08-09)
 
 ### 2.41.0 (2022. 07. 05.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.0/GamebaseSDK-Unreal.zip)
 
-#### 添加功能
-* 在GamebaseEventHandler的GamebaseEventCategory中添加了**IdPRevoked**类型。
-    * [Game > Gamebase > Unreal SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > IdP Revoked](./unreal-etc/#idp-revoked)
+#### Added Features
+* Added the **IdPRevoked** type to GamebaseEventCategory of GamebaseEventHandler
+    * [Game > Gamebase > Unreal SDK User Guide > ETC > Additional Features > Gamebase Event Handler > IdP Revoked](./unreal-etc/#idp-revoked)
 
-#### 各平台更改项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.41.0](./release-notes-android/#2410-2022-07-05)
 * [Gamebase iOS SDK 2.41.0](./release-notes-ios/#2410-2022-07-05)
 
 ### 2.40.1 (2022. 06. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.1/GamebaseSDK-Unreal.zip)
 
-#### 修改程序错误
-* 修改了可能出现崩溃的逻辑。
-* (iOS) 修改了连续调用同样的API时未能传送回调的问题。     
+#### Bug Fixes
+* Fixed the logic that could cause a crash.
+* (iOS) Fixed an issue where the callback was not passed normally when calling the same API consecutively.
 
 ### 2.40.0 (2022. 05. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Unreal.zip)
 
-#### 添加功能
-*  提供[iOS设置工具](./unreal-started/#ios-settings)。
-    * 在以前的项目设置中被显示为**Gamebase**，而升级后被显示为**Gamebase - Android**, **Gamebase - iOS**。
-    * 更改后当提供iOS设置工具打包时只包含必要的框架。
-* 添加了可在调用共同条款API后确认是否显示了条款UI的VO类。
-    * FGamebaseShowTermsViewResult   
-* 添加了可确认终端机是否允许通知的API。
+#### Added Features
+*  Provides [iOS settings tool](./unreal-started/#ios-settings).
+    * In the previous project settings, it was displayed as **Gamebase**, but after the update, it is displayed as **Gamebase - Android**, **Gamebase - iOS**.
+    * Made modifications so that only the necessary frameworks when running a build are included, with the iOS settings tool.
+* Added the VO class to determine whether the Terms UI is displayed after calling the Common Terms API.
+    * FGamebaseShowTermsViewResult
+* Added an API to determine whether the device has allowed notifications or not.
     * IGamebase::Get().GetPush().QueryNotificationAllowed()
-* 添加了可确认是否显示条款的API。
+* Added an API to determine whether terms and conditions have been displayed.
     * IGamebase::Get().GetTerms().IsShowingTermsView()
-* 添加了可在Webview隐藏导航栏的选项。
+* Added an option to hide the navigation bar in WebView.
     * FGamebaseWebViewConfiguration.isNavigationBarVisible
-* 添加了可在(Android)WebView固定字体大小的选项。
+* (Android) Added an option to fix the font size in WebView
     * FGamebaseTermsConfiguration.enableFixedFontSize
-* 添加了可在(Android)条款窗固定文字大小的选项。
-    * FGamebaseTermsConfiguration.enableFixedFontSize	    
-* 添加了当付款时可以确认是否是Promotion的isPromotion字段。 
+* (Android) Added an option to fix the font size in terms and conditions window.
+    * FGamebaseTermsConfiguration.enableFixedFontSize
+* Added the isPromotion field to determine whether it is a promotion or not when making payment.
     * FGamebasePurchasableReceipt.isPromotion
-* 添加了当付款时可以确认是否是测试付款的isTestPurchase字段。 
+* Added the isTestPurchase field to determine whether it is a test purchase or not when making payment.
     * FGamebasePurchasableReceipt.isTestPurchase
-* 为了在客户服务URL后边添加参数添加了以下字段。
+* Added the following field to add parameters after the Customer Center URL.
     * FGamebaseContactConfiguration.additionalParameters
 
-#### 改善/修改功能
-* 更改后调用API结果的回调时，将转换为GameThread后调用回调。
-* 修复了调用RequestActivatedPurchases API时，API在内部被调用两次的问题。
-* 更改了一些API的名称。
-    * FGamebaseAnalyticesLevelUpData → FGamebaseAnalyticsLevelUpData        
+#### Feature Updates
+* Made modifications so that, when calling an API result callback, the callback is called after switching to GameThread.
+* Fixed an issue where, when calling the RequestActivatedPurchases API, the API is called twice internally.
+* Changed the name of the following APIs.
+    * FGamebaseAnalyticsLevelUpData → FGamebaseAnalyticsLevelUpData
     * FGambaseBanInfoPtr → FGamebaseBanInfoPtr
+* Deprecated the following fields, because it is possible to set whether to display the kickout popup window during kickout registration in the Gamebase console.
+     * FGamebaseConfiguration.enableKickoutPopup
     
-#### 各平台更改项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.40.0](./release-notes-android/#2400-2022-05-24)
 * [Gamebase iOS SDK 2.40.0](./release-notes-ios/#2400-2022-05-24)
 
 ### 2.33.1 (2022. 02. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.1/GamebaseSDK-Unreal.zip)
 
-#### 修改错误
-* 修改了iOS打包时出现的错误。
+#### Bug Fixes
+* Fixed an error that occurred when running the iOS build.
 
 ### 2.33.0 (2022.01.25)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-Unreal.zip)
 
-#### 添加功能
-* 添加了“结算Abusing自动解除”功能。        
-    * [Game > Gamebase > Unreal SDK使用指南 > 认证 > GraceBan](./unreal-authentication/#graceban)
-    * 结算Abusing自动解除功能是当存在需通过“结算Abusing自动制裁”来禁止使用的用户时，禁止这些用户的使用之前先提供预约时间的功能。
-    * 如果为“预约禁用”状态，在设定的时期内满足解除条件，则可正常玩游戏。
-    * 若在所定的时期内未能满足条件，则会被禁用。
-* 登录使用结算Abusing自动解除功能的游戏后，始终要确认AuthToken.member.graceBanInfo API的值，如果返还GraceBanInfo对象，而不返还null，要告知相关用户禁用解除条件、时期等。
-    * 当需要控制处于预约禁用状态的用户进入游戏时，要在游戏中进行处理。
-* 添加了新的强制映射API，以改善进行强制映射时再次尝试IdP登录的不便。
-    * [Game > Gamebase > Unreal SDK使用指南 > 认证 > Mapping > Add Mapping Forcibly](./unreal-authentication/#add-mapping-forcibly)
-* 添加了当调用Gamebase.AddMapping()后出现AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)时您可使用相关账户进行登录的API。
-    * [Game > Gamebase > Unreal SDK使用指南 > 认证 > Mapping > Change Login with ForcingMappingTicket](./unreal-authentication/#change-login-with-forcingmappingticket)
-* 在GamebaseEventHandler的GamebaseEventCategory中添加了**GamebaseEventCategory::ServerPushAppKickOutMessageReceived**类型。
-    * 关于此事件的应用方法，请参考以下文件。
-    * [Game > Gamebase > Unreal SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Server Push](./unreal-etc/#server-push)
-* 在GamebaseEventHandler的GamebaseEventCategory中添加了**GamebaseEventCategory::LoggedOut**类型。
-    * 当Gamebase Access Token已过期，需要登录时启动。 
-    * [Game > Gamebase > Unreal SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Logged Out](./unreal-etc/#logged-out)
-* 添加了可更改共同条款窗设置的新API。
-    * [Game > Gamebase > Unreal SDK使用指南 > UI > Terms > showTermsView](./unreal-ui/#showtermsview)
+#### Added Features
+* Added a 'purchase abuse automatic release' function.
+    * [Game > Gamebase > Unreal SDK User Guide > Authentication > GraceBan](./unreal-authentication/#graceban)
+    * The purchase abuse automatic release function allows users who should be banned due to purchase abuse automatic lockdown to be banned after ban suspension status.
+    * When a user is in ban suspension status, if the user satisfies all of the release conditions within the set period of time, the user will be able to play normally.
+    * If the user does not satisfy the conditions within the period, the user is banned.
+* Games that use the purchase abuse automatic release function must always check the value of AuthToken.member.graceBanInfo API after login. If a valid GraceBanInfo object that is not null is returned, the user must be informed of the ban release conditions, period, etc.
+    * In-game access control for users who are in ban suspension status must be handled by the game.
+* Added a new forced mapping API, which removes the inconvenience of having to try IdP login once more when performing forced mapping.
+    * [Game > Gamebase > Unreal SDK User Guide > Authentication > Mapping > Add Mapping Forcibly](./unreal-authentication/#add-mapping-forcibly)
+* Added an API that allows you to log in to the corresponding account when an AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302) error occurs after calling Gamebase.AddMapping().
+    * [Game > Gamebase > Unreal SDK User Guide > Authentication > Mapping > Change Login with ForcingMappingTicket](./unreal-authentication/#change-login-with-forcingmappingticket)
+* Added the **GamebaseEventCategory::ServerPushAppKickOutMessageReceived** type to GamebaseEventCategory of GamebaseEventHandler.
+    * For information on how to use this event, refer to the following document.
+    * [Game > Gamebase > Unreal SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Server Push](./unreal-etc/#server-push)
+* Added the **GamebaseEventCategory::LoggedOut** type to GamebaseEventCategory of GamebaseEventHandler.
+    * This type is applied when login is required because the Gamebase Access Token has expired.
+    * [Game > Gamebase > Unreal SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Logged Out](./unreal-etc/#logged-out)
+* Added a new API that allows you to change settings of the common terms and conditions window.
+    * [Game > Gamebase > Unreal SDK User Guide > UI > Terms > showTermsView](./unreal-ui/#showtermsview)
 
-#### 改善/修改功能
-* 添加或更改错误代码
-    * GamebaseErrorCode::UNKNOWN_ERROR的错误代码从999更改为9999。
-    * 添加了映射到999错误代码的GamebaseErrorCode::SOCKET_UNKNOWN_ERROR错误。
+#### Feature Updates
+* Added and changed error codes
+    * Changed the error code mapped to the GamebaseErrorCode::UNKNOWN_ERROR error from 999 to 9999.
+    * Newly added the GamebaseErrorCode::SOCKET_UNKNOWN_ERROR error mapped to the error code 999.
     
-#### 各平台变更项目
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.33.0](./release-notes-android/#2330-20220125)
 * [Gamebase iOS SDK 2.33.0](./release-notes-ios/#2330-20220125)
 
 ### 2.26.1 (2021.11.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.1/GamebaseSDK-Unreal.zip)
 
-#### 修改程序错误
-* 修改了GamebaseDisplayLanguageCode芬兰语错误。
+#### Bug Fixes
+* Fixed a typo of Finnish language on GamebaseDisplayLanguageCode
     * Finish → Finnish
 
 ### 2.26.0 (2021.09.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-Unreal.zip)
 
-#### 添加功能
-* 添加共同条款功能
-    * 添加打开条款WebView的API。
-    * 添加查询“条款列表”和“用户是否同意”API。
-    * 添加将”用户是否同意条款”保存在Gamebase服务器的API。
+#### Added Features
+* Added a common Terms and Conditions feature
+	* Added an API that opens the Terms and Conditions webview
+	* Added an API that views the Terms and Conditions list and agreement status per user
+	* Added an API that stores the user agreement data on the Gamebase server
 
-#### 改善/修改功能
-* 客户服务类型为TOAST组织服务(Online Contact)时，即使不登录，也显示客户服务。
-* 更改内部Launching URL 
-* 从Gamebase中删除Android multidex适用。
+#### Feature Updates
+* Changed to display the Customer Center without login if the Customer Center type is TOAST organization product (Online Contact).
+* Changed the internal launching URL
+* Removed Android multidex-related setting from Gamebase
 
 ### 2.19.2 (2021.06.29)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.2/GamebaseSDK-Unreal.zip)

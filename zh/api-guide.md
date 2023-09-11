@@ -1,65 +1,65 @@
-## Game > Gamebase > API v1.3指南
+## Game > Gamebase > API v1.3 Guide
 
-## 更改事项
-- 在IAP(In App Purchase)API的请求参数和响应结果中已添加并删除了新的项目。
-- 已添加Push Wrapping API。
-- 添加了使用Gamebase Access Token可获取登录时使用的IdP Profiles和令牌信息的“Get IdP Token and Profiles”API。
-- 添加了获取映射到IdP Id的Gamebase userId的“Get UserId Information with IdP Id”API。
-- 添加了获取在特定时间内退出的用户的Gamebase userId的“Withdraw Histories”API。
-- 添加了进行禁用和解除禁用的“Ban”和“Ban Release”API。
-- 添加了查询支付Transaction的“Get Payment Transaction”API。
-- **marketIds**已添加到“List Consumables”API中，该API检索未消费支付历史记录，因此可以一次查看N家商店。
-- 在"List Active Subscriptions" API响应结果中添加了在“取消订阅商品/重新购买”时显示原交易订阅商店支付号码的**linkedPaymentId**。
-- 添加了"Cancel Subscriptions"和"Revoke Subscriptions" API以取消当前的订阅商品。
-- **includeInactiveGoogleStatuses**已添加到"List Active Subscriptions" API request body，以请求Google订阅处于非激活状态。
-- 将**renewTime**添加到"List Active Subscriptions" API响应结果中，以显示RENEWED/RECOVERED发生时间。
-- 将**marketIds**添加到"List Active Subscriptions" API request中，以便可以一次搜索N个商店。
-- 添加了“Get Ban Members”API来搜索当前被禁止使用的用户。 
+## Updates
+- New items have been added to or deleted from the request parameters and response results of IAP (In App Purchase) API.
+- Added Push Wrapping API.
+- Added the "Get IdP Token and Profiles" API that lets you acquire the profile and token info of the IdP used for logging in with the Gamebase Access Token.
+- Added the "Get UserId Information with IdP Id" API which acquires the Gamebase userId mapped with IdP Id.
+- Added the "Withdraw Histories" API to get Gamebase userId of users who have withdrawn during a specific period.
+- Added the "Ban" and "Ban Release" APIs that perform ban and ban release.
+- Added the "Get Payment Transaction" API to query payment transaction.
+- Added **marketIds** to the "List Consumables" API that queries the unconsumed payment history so that multiple stores can be viewed at a time. 
+- The server address has changed to "https://api-gamebase.nhncloudservice.com". The previous address will be maintained until further notice.
+- Added **linkedPaymentId** to response results of the "List Active Subscriptions" API, indicating the market payment number for the originally transacted subscription when canceling or repurchasing subscription products.
+- Added the "Cancel Subscriptions" and "Revoke Subscriptions" APIs that cancel the products in subscripion.
+- Added **includeInactiveGoogleStatuses** to the "List Active Subscriptions" API request body to request inactive Google subscription statuses.
+- Added **renewTime** to the "List Active Subscriptions" API response result to indicate when RENEWED/RECOVERED occurred.
+- Added **marketIds** to the "List Active Subscriptions" API request to perform querying against N stores at once.
 
 ## Advance Notice
 
-Gamebase Server API以RESTful类型提供如下API。为了使用服务器API，应了解以下信息。
+Gamebase Server API provides APIs as follows, in the RESTful format. Following information is required to use Server API.
 
-#### 服务器地址
+#### Server Address
 
-调用API的服务器地址如下。此地址也可以在Gamebase控制台页面中确认。
+To call API, below address is needed, which is also available in the Gamebase Console.
 > https://api-gamebase.nhncloudservice.com
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.3.png)
 
 #### AppId
 
-可通过NHN Cloud项目ID，在APP菜单页面上确认APP ID。
+App ID, as a project ID of NHN Cloud, can be found on the **Project List** page of the Console.
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
 #### SecretKey
 
-密钥(secret key)是API的访问控制方法，可在Gamebase Console进行确认。调用Server API时，在HTTP标头中将密钥设置为必须。
-> [参考]
-> 如果密钥被泄露发生了无效调用，则可通过点击**创建**按钮创建新密钥后使用新秘钥。
+Secret Key, as a control access of API, can be found in the Gamebase Console. It must be set at the HTTP header to call Server API.
+> [Note]<br>
+> When a secret key is exposed and a wrong call is made, click **Create** to create a new secret key and replace the old one.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.2.png)
+![image alt](https://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.2.png)
 
 #### TransactionId
 
-作为调用API的服务器内部管理API请求，提供TransactionId功能。调用API的服务器发送HTTP请求时，在Head中设置Transaction ID，Gamebase服务器也将在响应HTTP Header和响应结果的Response Body Header中设置TransactionId发送结果给调用API的服务器。
+As part of managing API internally within a server that calls API, TransactionId is provided. By setting a transaction ID at the HTTP header from a calling server to call API, the Gamebase server delivers results with corresponding TransactionId set at the response HTTP Header and Response Body Header of results.
 
 ## Common
 
 #### HTTP Header
 
-API调用时在HTTP Header中设置以下项目。
+Following items should be set at the HTTP Header to call API.
 
 | Name | Required | Value |
 | --- | --- | --- |
 | Content-Type | Required | application/json; charset=UTF-8 |
-| X-Secret-Key | Required |参考SecretKey说明 |
-| X-TCGB-Transaction-Id | Optional | 参考TransactionId说明 |
+| X-Secret-Key | Required | Refer to description of SecretKey  |
+| X-TCGB-Transaction-Id | Optional | Refer to description of TransactionId |
 
-#### API响应
+#### API Response
 
-传递**HTTP 200 OK**以响应所有API请求。可以通过Response Body的Header项目来判断API请求是否成功。
+As a response to all API requests, **HTTP 200 OK** is delivered. Whether an API request is successful or not can be determined in reference of the Header of Response Body.
 
 **[Request]**
 
@@ -80,37 +80,37 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-    "header" : {
-    	"transactionId": "88a1ae42-6b1d-48c8-894e-54e97aca07fq",
-        "isSuccessful" : true,
+    "header": {
+        "transactionId": "88a1ae42-6b1d-48c8-894e-54e97aca07fq",
+        "isSuccessful": true,
         "resultCode": 0,
-        "resultMessage" : "Success."
+        "resultMessage": "Success."
     }
 }
 ```
 
 | Key | Type | Description |
 | --- | --- | --- |
-| transactionId | String | API请求时在HTTP Header设定的值。<br>如果不传递此值，则返回Gamebase内部生成的值。|
-| isSuccessful | boolean | 成功与否 |
-| resultCode | int | 响应代码<br>成功时为0，失败时返还错误代码。 |
-| resultMessage | String | 响应消息 |
+| transactionId | String | The value set at HTTP Header when API is requested.<br>If the value is not delivered, return value that is created within Gamebase. |
+| isSuccessful | boolean | Whether it is successful or not.  |
+| resultCode | int | Result code<br>0 for success; return error codes, for failure |
+| resultMessage | String | Result message  |
 
 #### API Version
 
-当API响应结果的特定变数类型被更改时API版本也将被更改。即，即使添加新API或在响应结果添加新变数，API版本也不会被更改。
+When a specific variable type in the API response result changes, the API version changes. That is, even if a new API is added or a new variable is added to the response result, the API version does not change.
 
-> [注意]
-> 请添加您正在使用的JSON库的选项，以便即使向API响应结果中添加了新变量，也不会发生JSON解析错误。
+> [Caution]
+> Make sure that you add the option of the JSON library you are using so that a JSON parsing error does not occur even if a new variable is added to the API response result.
 
 <br>
 <br>
 
 ## Authentication
 
-#### 令牌认证
+#### Token Authentication
 
-检查发给登录用户的访问令牌是否有效。如果访问令牌运行正常，则返回该用户的信息。
+Authenticates an Access Token issued to a login user. If it is normal, returns information of the corresponding user.
 
 **[Method, URI]**
 
@@ -120,21 +120,21 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-确认共通事项
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
-| userId | String | 登录用户ID |
-| accessToken | String | 发放给登录用户的访问令牌 |
+| appId | String | NHN Cloud project ID  |
+| userId | String | ID of the logged-in user  |
+| accessToken | String | Access Token issued to the logged-in user |
 
 **[Request Parameter]**
 
 | Name | Type | Required |  Value |
 | --- | --- | --- | --- |
-| linkedIdP | boolean | Optional | 是否包含获取true or false (默认值为false) 访问令牌时使用的IdP相关信息。|
+| linkedIdP | boolean | Optional | True or false (Default is false) <br>Whether IdP-related information, used when Access Token is issued, is included or not |
 
 **[Response Body]**
 
@@ -181,39 +181,39 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| linkedIdP | Object | 登录用户使用的IdP信息 |
-| linkedIdP.idPCode | String | [用户认证IdP](#identity-provider-code)  |
+| linkedIdP | Object | Logged-in user's IdP information  |
+| linkedIdP.idPCode | String | [User authentication IdP](#identity-provider-code) |
 | linkedIdP.idPId | String | IdP ID |
-| member.userId | String | 用户ID |
-| member.lastLoginDate | String | 上一次登录的时间 <br>第一次登录的用户没有此值。|
+| member.userId | String | User ID |
+| member.lastLoginDate | String | Last login time ISO 8601 <br>Not available for a first-time login user  |
 | member.appId | String | appId |
-| member.valid | String | [用户状态](#member-valid-code)<br>成功登录账号的用户值为“Y”。 |
-| member.regDate | String | 用户创建账户的时间 |
-| authList | Array[Object] | 用户认证IdP相关信息 |
-| authList[].authSystem | String | Gamebase内部使用的认证系统 <br>计划支持用户认证系统。 |
-| authList[].idPCode | String | [用户认证IdP](#identity-provider-code) |
-| authList[].authKey | String | 在authSystem对每个IdP ID发布的用户区分值 |
-| temporaryWithdrawal | Object | 预约退出信息 <br>仅在valid为“T”值时提供。|
-| temporaryWithdrawal.gracePeriodDate | String | 预约退出的到期时间ISO 8601 |
+| member.valid | String | [User status](#member-valid-code)<br>Value of a successful login user is "Y" |
+| member.regDate | String | Time when a user created an account |
+| authList | Array[Object] | Information related to user authentication IdP  |
+| authList[].authSystem | String | Authentication system internally used within Gamebase <br>User authentication system to be provided |
+| authList[].idPCode | String | [User authentication IdP](#identity-provider-code)  |
+| authList[].authKey | String | User classification value issued per IdP ID by authSystem  |
+| temporaryWithdrawal | Object | Information related to pending withdrawal <br>Provided only when the value of valid is "T" |
+| temporaryWithdrawal.gracePeriodDate | String | Expiration time for pending withdrawal ISO 8601 |
 
 **[Error Code]**
 
-[错误代码](./error-code/#server)
+[Error Code](./error-code/#server)
 
-<br/>  
+<br/>
 #### Get IdP Token and Profiles
 
-是在客户端通过“Login with IdP”登录时发放的Gamebase Access Token。使用此令牌可查看登录时使用的IdP Access Token和Profiles信息。
+Gamebase Access Token which is issued upon successful login with "Login with IdP" from the client side. It retrieves the Access Token and Profiles information of the IdP used for login.
 
-> [注意]
-> 按照各IdP类别，IdP的Access Token有效时间都不同，而且一般很短。
-> 在客户端通过“Login as the Latest Login IdP”登录成功后，通过服务器调用相关API时，因IdP的Access Token已过期，有可能无法获取IdP信息。
+> [Caution]
+> IdP's Access Token expiration date varies by IdP, and they are usually short.
+> If you successfully log in with "Login as the Latest Login IdP" from the client and call the API from the server, you may not be able to acquire IdP info because IdP's Access Token has been expired.
 
 <br/>
 
-> [参考]
-> 如果只用IdP的Access Token，有些IdP无法获取信息。
-> ex) appleid / iosgamecenter : 不存在使用Access Token，通过Server to Server可获取的信息。
+> [Note]
+> There are also IdPs that are unable to acquire information with the IdP's Access Token only.
+> Example: appleid / iosgamecenter / kakaogame : There is no information you can retrieve from Server to Server with Access Token.
 
 <br/>
 
@@ -225,21 +225,21 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-确认共通事项
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
-| userId | String | 登录用户ID |
-| idPCode | String |  [用户认证IdP](#identity-provider-code) |
+| appId | String | NHN Cloud project ID |
+| userId | String | ID of the logged-in user |
+| idPCode | String | [User authentication IdP](#identity-provider-code) |
 
 **[Request Parameter]**
 
 | Name | Type | Required |  Value |
 | --- | --- | --- | --- |
-| accessToken | String | Required | 发放给登录用户的Gamebase Access Token |
+| accessToken | String | Required | Gamebase Access Token issued to the logged-in user |
 
 **[Response Body]**
 
@@ -267,9 +267,9 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| idPProfile | Map<String, Object> | 登录用户使用过的IdP Profiles <br>- 每个IdP的响应格式(format)都不同。|
-| idPToken | Object | 登录用户使用过的IdP的Access Token信息 |
-| idPToken.idPCode | String | [用户认证IdP](#identity-provider-code) |
+| idPProfile | Map<String, Object> | IdP's profile used by the logged-in user<br>- All IdPs have different response formats |
+| idPToken | Object | Access Token information of IdP used by the logged-in user |
+| idPToken.idPCode | String | [User authentication IdP](#identity-provider-code) |
 | idPToken.accessToken | String | IdP Access Token |
 <br>
 <br>
@@ -278,8 +278,8 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 #### Get Simple Launching
 
-可以简单确认在Console设置的服务器地址、安装URL及当前维护状态时的维护时间、消息等启动客户端时提供的Launching信息。
-若仅欲确认当前是否设置检查，使用[Check Maintenance] API即可。
+In the console, you can view the launching information provided when starting up a client app, such as the server address, install URL, current maintenance status, maintenance time, and messages.
+To check only if the current maintenance setting is enabled, use [Check Maintenance] API.
 
 **[Method, URI]**
 
@@ -289,25 +289,25 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-确认共通事项
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | NHN Cloud Project ID |
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| osCode | Enum | true | [OS代码](#os-code) |
-| storeCode | Enum | true | [商店代码](#store-code) |
-| clientVersion | String | true | 在控制台中设置的客户版本 |
+| osCode | OsCode | true | [OS code](#os-code) |
+| storeCode | Enum | true | [Store code](#store-code) |
+| clientVersion | String | true | Client version |
 
 **[Response Body]**
 
-##### 正常
+##### OK
 ```json
 {
     "header": {
@@ -340,7 +340,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 }
 ```
 
-##### 维护
+##### Maintenance
 ```json
 {
     "header": {
@@ -383,32 +383,32 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| status | Object | 表示当前客户端状态的信息 |
-| status.code | int | 客户端状态代码 <br><br>正常 ：200 <br>推荐更新 ：201、强制更新 ：300 <br>服务终止 : 302 <br>维护中 ：303 |
-| status.message | String | 客户端状态消息 |
-| app | Object | App信息 |
-| app.storeCode | String | [商店代码](#store-code) |
-| app.accessInfo | Object | 在控制台应用页面中设置的信息 |
-| app.accessInfo.serverAddress | String | 服务器地址<br>在客户端设置的服务地址的优先级高。<br>如果未设置客户端服务器地址时，将传递应用页面中设置的服务器地址。|
-| app.accessInfo.csInfo | String | 客户服务信息 |
-| app.relatedUrls | Object | 要在应用内使用的应用内URL |
-| app.relatedUrls.termsUrl | String | 使用条款 |
-| app.relatedUrls.csUrl| String | 客户服务 |
-| app.relatedUrls.punishRuleUrl | String | 禁用规定 |
-| app.relatedUrls.personalInfoCollectionUrl | String | 个人信息同意 |
-| app.install | Object | 应用设置信息 |
-| app.install.url | String | 安装URL |
-| maintenance | Object | 维护信息 |
-| maintenance.typeCode | String | 维护类型代码 <br>维护全部 :“SYSTEM”, 按应用维护 ：“APP” |
-| maintenance.beginDate | Date | 维护开始时间ISO 8601 |
-| maintenance.endDate | Date | 维护结束时间ISO 8601 |
-| maintenance.url | String | 维护URL |
-| maintenance.reason | String | 维护原因 |
-| maintenance.message | String | default维护原因消息 |
+| status | Object | Information which shows the current client status |
+| status.code | int | Client status code <br><br>OK: 200 <br>Update recommended: 201, Update required: 300 <br>Service terminated: 302 <br>Maintenance in progress: 303 |
+| status.message | String | Client status message |
+| app | Object | App information |
+| app.storeCode | String | [Store code](#store-code) |
+| app.accessInfo | Object | Information set on the console app screen |
+| app.accessInfo.serverAddress | String | Server address<br>The server address set on the client side has a higher priority. <br>When no client server address is set, the server address set on the app screen is delivered. |
+| app.accessInfo.csInfo | String | Customer Center information |
+| app.relatedUrls | Object | In-app URL to be used within the app |
+| app.relatedUrls.termsUrl | String | Terms and Conditions |
+| app.relatedUrls.csUrl| String | Customer Center |
+| app.relatedUrls.punishRuleUrl | String | Ban Rules |
+| app.relatedUrls.personalInfoCollectionUrl | String | Privacy Information Agreement |
+| app.install | Object | App Installation information |
+| app.install.url | String | Install URL |
+| maintenance | Object | Maintenance Information |
+| maintenance.typeCode | String | Maintenance type code <br>Overall maintenance : 'SYSTEM', Maintenance per App: 'APP' |
+| maintenance.beginDate | Date | Maintenance start date ISO 8601 |
+| maintenance.endDate | Date | Maintenance end date ISO 8601 |
+| maintenance.url | String | Maintenance URL |
+| maintenance.reason | String | Maintenance reason |
+| maintenance.message | String | Default maintenance reason message |
 
 **[Error Code]**
 
-[错误代码](./error-code/#server)
+[Error code](./error-code/#server)](./error-code/#server)
 
 <br>
 <br>
@@ -417,7 +417,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 #### Get Member
 
-查询单个用户的详细信息。
+Retrieves detailed information of a single user.
 
 **[Method, URI]**
 
@@ -427,20 +427,20 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-确认共通事项
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
-| userId | String | 查询用户ID |
+| appId | String |  NHN Cloud project ID |
+| userId | String | User ID to retrieve |
 
 **[Request Parameter]**
 
 | Name | Type | Required |  Value |
 | --- | --- | --- | --- |
-| includeMemberInfo | boolean | Optional | 是否包含true or false (默认值为true) 用户终端，OS等的详细信息 |
+| includeMemberInfo | boolean | Optional | true or false (default value: true) Whether to include detailed information of user device, OS, etc. |
 
 **[Response Body]**
 ```json
@@ -488,43 +488,44 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| member | Object | 被查询用户的基本信息 |
-| member.userId | String | 用户ID |
-| member.valid | Enum | [用户状态](#member-valid-code) |
+| member | Object | Basic information of a retrieved user|
+| member.userId | String | User ID |
+| member.valid | Enum | [User status](#member-valid-code) |
 | member.appId | String | appId |
-| member.regDate | String | 用户创建账户的时间 |
-| member.lastLoginDate | String | 上一次登录的时间 <br>第一次登录的用户或已退出的用户没有此值。|
-| member.authList | Array[Object] | 用户认证IdP相关信息 |
-| member.authList[].userId | String | 用户ID |
-| member.authList[].authSystem | String | Gamebase内部使用的认证系统 <br>预计将会支持用户认证系统 |
-| member.authList[].idPCode | String | [用户认证IdP](#identity-provider-code) |
-| member.authList[].authKey | String | authSystem发放的用户区分值 |
-| member.authList[].regDate | String | IdP信息与用户账户映射的时间 |
-| memberInfo | Object | 用户的附加信息<br>退出的用户没有相关信息 |
-| memberInfo.deviceCountryCode | String | 设置用户设备的国家 |
-| memberInfo.usmCountryCode | String | 用户USIM的国家代码 |
-| memberInfo.language | String | 用户终端机语言, ISO 639-1 |
-| memberInfo.osCode | String | [OS代码](#os-code) |
-| memberInfo.telecom | String | 运营商 |
-| memberInfo.storeCode | String | [store代码](#store-code) |
-| memberInfo.network | String | 网络环境 <br>3g、WiFi等|
-| memberInfo.deviceModel | String | 用户设备的型号名称 |
-| memberInfo.osVersion | String | 用户设备的OS版本 |
-| memberInfo.sdkVersion | String | SDK版本 |
-| memberInfo.clientVersion | String | 客户端版本 |
+| member.regDate | String | Time when a user created an account   |
+| member.lastLoginDate | String | Last login time <br>Not available for a first-time login user or a withdrawn user |
+| member.authList | Array[Object] | Information related to user authentication IdP  |
+| member.authList[].userId | String | User ID |
+| member.authList[].authSystem | String |  Authentication system used internally within Gamebase <br>User authentication system to be provided |
+| member.authList[].idPCode | String | [User authentication IdP](#identity-provider-code) |
+| member.authList[].authKey | String |  User classification value issued per IdP ID by authSystem   |
+| member.authList[].regDate | String | Time when the IdP information was mapped with the user account |
+| temporaryWithdrawal | Object | Information related to pending withdrawal <br>Provided only when the value of valid is "T" |
+| temporaryWithdrawal.gracePeriodDate | String | Expiration time for pending withdrawal ISO 8601 |
+| memberInfo                   | Object        | Additional user information<br>Not available for a withdrawn user |
+| memberInfo.deviceCountryCode | String        | Country code of user device              |
+| memberInfo.usmCountryCode    | String        | Country code of user USIM                |
+| memberInfo.language          | String        | User device language, ISO 639-1          |
+| memberInfo.osCode            | String        | [OS code](#os-code)                      |
+| memberInfo.telecom           | String        | Telecommunication provider               |
+| memberInfo.storeCode         | String        | [Store code](#store-code)               |
+| memberInfo.network           | String        | Network environment <br>e.g. 3G and WiFi |
+| memberInfo.deviceModel       | String        | Model name of user device                |
+| memberInfo.osVersion         | String        | OS version of user device                |
+| memberInfo.sdkVersion        | String        | SDK version                              |
+| memberInfo.clientVersion     | String        | Client version                           |
 
 **[Error Code]**
 
-[错误代码](./error-code/#server)
+[Error Code](./error-code/#server)
 
-<br>
 <br>
 
 #### Get Members
 
-简单查询多个用户信息。
+Retrieves brief information about multiple users.
 
-**[Method、URI]**
+**[Method, URI]**
 
 | Method | URI |
 | --- | --- |
@@ -532,13 +533,13 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-确认共通事项
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | NHN Cloud project ID |
 
 **[Request Body]**
 
@@ -548,7 +549,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Type | Required | Value |
 | --- | --- | --- |
-| Array[String] | Required | 查询对象用户ID |
+| Array[String] | Required | User ID to retrieve |
 
 **[Response Body]**
 
@@ -573,21 +574,21 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| memberList | Array[Object] | 查询的用户基本信息 |
-| memberList[].userId | String | 用户ID |
-| memberList[].valid | Enum | [用户状态](#member-valid-code) |
-| memberList[].appId | String | appId |
-| memberList[].regDate | String | 创建账户的时间 |
+| memberList           | Array [Object] | Basic information of retrieved users     |
+| memberList[].userId  | String         | User ID                                  |
+| memberList[].valid   | Enum           | [User status](#member-valid-code)        |
+| memberList[].appId   | String         | appId                                    |
+| memberList[].regDate | String         | Time when a user created an account      |
 
 **[Error Code]**
 
-[错误代码](./error-code/#server)
+[Error Code](./error-code/#server)
 
 <br>
 
-#### 获取IdP信息
+#### Get IdP Information
 
-查询与用户ID映射的IdP信息。
+Retrieves IdP information mapped with user ID.
 
 **[Method, URI]**
 
@@ -597,13 +598,13 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-确认共通事项
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | NHN Cloud project ID |
 
 **[Request Body]**
 
@@ -613,7 +614,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Type | Required | Value |
 | --- | --- | --- |
-| Array[String] | Required | 查询对象用户ID |
+| Array[String] | Required | User ID to retrieve |
 
 **[Response Body]**
 
@@ -639,20 +640,20 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Array[Object] | 被查询用户的基本信息 <br> userId为key，IdP信息为value的object |
-| authkey | String | authSystem发放的用户区分值 |
-| IdPCode | String | [用户认证IdP](#identity-provider-code) |
-| authSystem | String | Gamebase内部使用的认证系统 <br>预计将会提供用户认证系统 |
+| result     | Array [Object] | Basic information of retrieved users <br>An object with userId as key and IdP information as value |
+| authkey    | String         | User classification value issued per IdP ID by authSystem      |
+| IdPCode    | String         | [User authentication IdP](#identity-provider-code) |
+| authSystem | String         | Authentication system used internally within Gamebase <br>Authentication system to be provided |
 
 **[Error Code]**
 
-[错误代码](./error-code/#server)
+[Error Code](./error-code/#server)
 
 <br>
 
-#### 使用认证密钥获取User ID信息
+#### Get UserId Information with Auth key
 
-查询与用户认证密钥映射的ID。
+Retrieves a user ID mapped to user authentication key.
 
 **[Method, URI]**
 
@@ -662,19 +663,19 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-确认共通事项
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | NHN Cloud project ID |
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| authSystem | String | Required | Gamebase内部使用的认证系统，预计将会支持用户认证系统，目前是gbid。|
+| authSystem | String | Required | Authentication system used internally within Gamebase <br>User authentication system to be provided  <br>Currently provides gbid |
 
 **[Request Body]**
 
@@ -684,7 +685,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Type | Required | Value |
 | --- | --- | --- |
-| Array[String] | Required | authSystem发放的authKey |
+| Array[String] | Required | authKey issued at authSystem |
 
 **[Response Body]**
 
@@ -704,17 +705,17 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Array[Object] | 查询用户的基本信息authKey是key，用户Id是value的object。 |
+| result | Array [Object] | Basic information of a retrieved user <br>An object with authKey as key, and useID as value. |
 
 **[Error Code]**
 
-[错误代码](./error-code/#server)
+[Error Code](./error-code/#server)
 
 <br>
 
 #### Get UserId Information with IdP Id
 
-查看使用IdP ID映射的用户ID信息。
+Retrieves the information of user ID mapped with IdP ID.
 
 **[Method, URI]**
 
@@ -724,14 +725,14 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-确认共通事项
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
-| idPCode | String | [用户认证IdP](#identity-provider-code) |
+| appId | String | NHN Cloud project ID |
+| idPCode | String | [User authentication IdP](#identity-provider-code) |
 
 **[Request Body]**
 
@@ -741,7 +742,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Type | Required | Value |
 | --- | --- | --- |
-| Array[String] | Required | 查询对象用户的IdP ID。 <br> 查询对象列表的最大尺寸为300。 |
+| Array[String] | Required | IdP ID of users to retrieve <br> Max size of the list to be searched is 300 |
 
 **[Response Body]**
 
@@ -763,17 +764,17 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Map<String, String> | 查询用户的ID信息<br>- IdP ID为key，Gamebase userId为value<br>- 如果不存在包含请求查询的IdP ID的userId信息，则在响应结果中不存在。|
+| result | Map<String, String> | ID info of the retrieved users <br>- IdP ID is the key, and Gamebase userId is the value<br>- If the userID info containing the IdP ID requested for retrieval does not exist, it won't be available in the response result. |
 
 **[Error Code]**
 
-[错误代码](./error-code/#server)
+[Error code](./error-code/#server)
 
 <br>
 
 #### Ban
 
-将用户更改为禁用状态。
+Changed users to the banned state.
 
 **[Method, URI]**
 
@@ -783,17 +784,17 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-确认共通事项
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | NHN Cloud project ID |
 
 **[Request Parameter]**
 
-没有。
+N/A
 
 **[Request Body]**
 
@@ -814,69 +815,14 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| userIdList | Array[String] | 禁用用户ID |
-| banTypeCode | Enum | 禁用类型 TEMPORARY or PERMANENT |
-| end | String | 禁用结束时间(ISO 8601标准时间) <br>- TEMPORARY类型时必须值 |
-| templateCode | Integer | 禁用时显示的消息所用模板的模板代码 <br>- 可以在Console **禁用 > 模板** 详细查询页面上查看相关值。 |
-| banReason | String | 禁用原因 |
-| flags | String | 如果要删除已禁用用户的leaderboard数据则设置为“leaderboard”。 |
-| flags | String | 如果要删除已禁用用户的leaderboard数据则设置为“leaderboard”。 |
-| banCaller | String | 作为调用禁用API的主体，设置为固定值“APP_SERVER”。 |
-| regUser | String | 将在Console禁用页面显示的名称 |
-
-**[Response Body]**
-
-```json
-{
-    "header": {
-        "transactionId": "String",
-        "r esultCode": 0,
-        "resultMessage": "SUCCESS",
-        "isSuccessful": true
-    },
-    "failedUserIdList": ["userId-1"]
-}
-```
-
-| Key | Type | Description |
-| --- | --- | --- |     
-| failedUserIdList | Array[String] | 未能注册为禁用用户的用户ID |
-
-**[Error Code]**
-
-[错误代码](./error-code/#server)
-
-</br>
-
-#### Ban Histories
-
-查询用户禁用历史记录。
-
-**[Method, URI]**
-
-| Method | URI |
-| --- | --- |
-| GET | /tcgb-member/v1.3/apps/{appId}/members/bans |
-
-**[Request Header]**
-
-确认共通事项
-
-**[Path Variable]**
-
-| Name | Type | Value |
-| --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
-
-**[Request Parameter]**
-
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| begin | String | Required |禁用历史记录查询开始时间 (ISO 8601标准时间，需要UTF-8 Encoding) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
-| end | String | Required |禁用历史记录查询结束时间 (ISO 8601标准时间，需要UTF-8 Encoding) <br>begin ~ end期间被禁用，则在查询结果中存在。|
-| page | String | Optional | 要查询的页面/从0开始 |
-| size | String | Optional | 每页的数据数量 |
-| order | String | Optional | 查询数据排列方法 ASC or DESC |
+| userIdList | Array[String] | IDs of the users who are target for the ban |
+| banTypeCode | Enum | Type of the ban. TEMPORARY or PERMANENT |
+| end | String | End time for the ban (ISO 8601 standard time) <br>- Required for TEMPORARY type |
+| templateCode | Integer | Template code of the template used for the message to be displayed when the user is banned <br>- The value can be found on the console's **Ban > Template** detailed query page |
+| banReason | String | Reason for the ban |
+| flags | String | To delete the banned users' leaderboard data as well, set it to 'leaderboard' |
+| banCaller | String | The subject who called the Ban API. Set it to a fixed value of 'APP_SERVER'. |
+| regUser | String | Name to display on the console's Ban page |
 
 **[Response Body]**
 
@@ -888,86 +834,49 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
         "resultMessage": "SUCCESS",
         "isSuccessful": true
     },
-    "pagingInfo": {
-        "first": true,
-        "last": true,
-        "numberOfElements": 0,
-        "page": 0,
-        "size": 0,
-        "totalElements": 0,
-        "totalPages": 0
-    },
-    "result": [
-        {
-             "userId": "String",
-            "banCaller": "CONSOLE",
-            "banReason": "String",
-            "banType": "TEMPORARY",
-            "beginDate": "2019-08-27T17:41:05+09:00",
-            "endDate": "2019-08-28T17:41:05+09:00",
-            "flags": "String",
-            "name": "String",
-            "templateCode": 0
-        }
-    ]
+    "failedUserIdList": ["userId-1"]
 }
 ```
 
 | Key | Type | Description |
 | --- | --- | --- |
-| pagingInfo | Object | 查询的页面信息 |
-| pagingInfo.first | boolean | 如果是第一页，则为true。|
-| pagingInfo.last | boolean | 如果是最后一页，则为true。|
-| pagingInfo.numberOfElements | int | 数据总数 |
-| pagingInfo.page | int | 页面编号 |
-| pagingInfo.size | int | 每页的数据数量 |
-| pagingInfo.totalElements | int | 数据总数 |
-| pagingInfo.totalPages | int | 页面总数 |
-| result | Array[Object] | 查询的禁用历史记录 |
-| result.userId | String | 用户ID |
-| result.banCaller | String | 禁用调用主体 |
-| result.banReason | String | 禁用原因 |
-| result.banType | String | 禁用类型 TEMPORARY or PERMANENT |
-| result.be  ginDate | String | 禁用开始时间 |
-| result.endDate | Long | 禁用结束时间<br>PERMANENT类型时相关值不存在。 |
-| result.flags | String | 在控制台中注册禁用时选择删除leaderboard时返还为“leaderboard”。 |
-| result.name | String | 在控制台添加的模板名称 |
-| result.templateCode | Long | 在控制台添加的禁用模板代码值 |
-
+| failedUserIdList | Array[String] | IDs of the users who could not be registered for the ban |
 
 **[Error Code]**
 
-[错误代码](./error-code/#server)
+[Error code](./error-code/#server)
 
 </br>
 
-#### Get Ban Members
+#### Ban Histories
 
-搜索已被禁止使用的用户。
+Retrieves the user ban history.
 
 **[Method, URI]**
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-member/v1.3/apps/{appId}/members/bans/current |
+| GET | /tcgb-member/v1.3/apps/{appId}/members/bans |
 
 **[Request Header]**
 
-确认共通事项
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | NHN Cloud Project ID |
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| page | String | Optional | 要搜索的页面/ 从0开始。 |
-| size | String | Optional | 每页数据个数 | 
-| order | String | Optional | 查找数据排序方法/ ASC or DESC |
+| begin | String | Required | Ban history query start time (ISO 8601 standard time, UTF-8 encoding required) <br>Example: yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
+| end | String | Required | Ban history query end time (ISO 8601 standard time, UTF-8 encoding required)<br>If banned between the begin and end time, the query result shows this. |
+| page | String | Optional | Page to retrieve, starting from 0 |
+| size | String | Optional | Number of data per page |
+| order | String | Optional | Sorting method for queried data. ASC or DESC |
 
 **[Response Body]**
 
@@ -1006,35 +915,35 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| pagingInfo | Object | 被搜索的页面信息 |
-| pagingInfo.first | boolean | 如果是第一页，则为true。 |
-| pagingInfo.last | boolean | 如果是最后一页，则为true。 |
-| pagingInfo.numberOfElements | int | 所有数据个数 |
-| pagingInfo.page | int | 页码 |
-| pagingInfo.size | int | 每页数据个数 |
-| pagingInfo.totalElements | int | 所有数据个数 |
-| pagingInfo.totalPages | int | 所有页数 |
-| result | Array[Object] | 已搜索的禁止使用历史记录 |
-| result.userId | String | 用户ID |
-| result.banCaller | String | 调用禁止使用的主题 |
-| result.banReason | String | 禁止使用原因 |
-| result.banType | String | 禁止使用类型/ TEMPORARY or PERMANENT |
-| result.beginDate | Long | 开始禁止使用的时间 |
-| result.endDate | Long | 结束禁止使用的时间<br>如果为PERMANENT类型，该值不存在。 |
-| result.flags | String | 如果在控制台中选择“注册禁止使用时删除leaderboard”，则返还为leaderboard。 |
-| result.name | String | 控制台中注册的模板名称 |
-| result.templateCode | Long | 控制台中注册的禁止使用模板代码值 |
+| pagingInfo | Object | Retrieved paging information |
+| pagingInfo.first | boolean | True if it is the first page |
+| pagingInfo.last | boolean | True if it is the last page |
+| pagingInfo.numberOfElements | int | Total number of data |
+| pagingInfo.page | int | Page No. |
+| pagingInfo.size | int | Number of data per page |
+| pagingInfo.totalElements | int | Total number of data |
+| pagingInfo.totalPages | int | Total number of pages |
+| result | Array[Object] | Retrieved ban history details |
+| result.userId | String | User ID |
+| result.banCaller | String | Subject of calling ban |
+| result.banReason | String | Reason for the ban |
+| result.banType | String | Type of the ban. TEMPORARY or PERMANENT |
+| result.beginDate | Long | Start date of the ban|
+| result.endDate | Long | End date of the ban<br>In case of PERMANENT type, the value does not exist |
+| result.flags | String | Returned as 'leaderboard' when you have selected Delete Leaderboard upon Registering Ban in the console. |
+| result.name | String | Template name registered in the console |
+| result.templateCode | Long | Code value of the ban template registered in the console |
 
 
 **[Error Code]**
 
-[错误代码](./error-code/#server)
+[Error code](./error-code/#server)
 
 </br>
- 
+
 #### Ban Release
 
-将禁用用户更改为禁用解除状态，即，正常状态。
+Changes users to the ban released state, that is, the normal state.
 
 **[Method, URI]**
 
@@ -1044,17 +953,17 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-确认共通事项
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | NHN Cloud project ID |
 
 **[Request Parameter]**
 
-没有。
+N/A
 
 **[Request Body]**
 
@@ -1071,10 +980,10 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| userIdList | Array[String] | 解除禁用的用户ID |
-| banReleaseReason | String | 解除禁用原因 |
-| banReleaseCaller | String | 作为调用解除禁用API的主体，设置为“APP_SERVER”固定值。 |
-| releaseUser | String | 将在Console解除禁用页面上显示的名称 |
+| userIdList | Array[String] | IDs of the users who are target for the ban release |
+| banReleaseReason | String | Reason for the ban release |
+| banReleaseCaller | String | Subject who called the Ban Release API. Set it to a fixed value of 'APP_SERVER'. |
+| releaseUser | String | Name to display on the console's Ban Release page |
 
 **[Response Body]**
 
@@ -1092,17 +1001,17 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| failedUserIdList | Array[String] | 未能解除禁用的用户ID |
+| failedUserIdList | Array[String] | IDs of the users who could not be released from a ban |
 
 **[Error Code]**
 
-[错误代码](./error-code/#server)
+[Error code](./error-code/#server)
 
 </br>
 
 #### Ban Release Histories
 
-查询用户禁用历史记录。
+Retrieves the user ban release history.
 
 **[Method, URI]**
 
@@ -1112,23 +1021,23 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-确认共通事项
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | NHN Cloud Project ID |
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| begin | String | Required | 禁用解除历史记录查询开始时间 (ISO 8601标准时间，需要UTF-8 Encoding) <br>ex) yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
-| end | String | Required | 禁用解除历史记录查询结束时间 (ISO 8601标准时间， 需要UTF-8 Encoding) <br>begin ~ end期间禁用解除，则在查询结果中存在。|
-| page | String | Optional | 要查询的页面。从0开始。|
-| size | String | Optional | 每页的数据数量 |
-| order | String | Optional | 查询数据排列方法 ASC or DESC |
+| begin | String | Required | Ban release history query start time (ISO 8601 standard time, UTF-8 encoding required) <br>Example: yyyy-MM-dd'T'HH:mm:ss.SSSXXX |
+| end | String | Required | Ban release history query end time (ISO 8601 standard time, UTF-8 encoding required)<br>If unbanned between the begin and end time, the query result shows this. |
+| page | String | Optional | Page to retrieve, starting from 0 |
+| size | String | Optional | Number of data per page |
+| order | String | Optional | Sorting method for queried data. ASC or DESC |
 
 **[Response Body]**
 
@@ -1170,39 +1079,38 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| pagingInfo | Object | 查询的页面信息 |
-| pagingInfo.first | boolean | 如果是第一页，则为true。|
-| pagingInfo.last | boolean | 如果是最后一页，则为true。|
-| pagingInfo.numberOfElements | int | 数据总数 |
-| pagingInfo.page | int | 页面编号 |
-| pagingInfo.size | int | 每页的数据数量 |
-| pagingInfo.totalElements | int | 数据总数 |
-| pagingInfo.totalPages | int | 页面总数 |
-| result | Array[Object] | 查询的禁用历史记录 |
-| result.userId | String | 用户ID |
-| result.banCaller | String | 禁用调用主体 |
-| result.banReason | String | 禁用原因 |
-| result.banType | String | 禁用类型 TEMPORARY or PERMANENT |
-| result.beginDate | String | 禁用开始时间 ISO 8601标准时间 |
-| result.endDate | String | 禁用结束时间 ISO 8601标准时间 |
-| result.flags | String | 如果在控制台登录禁用时选择了Leaderboard删除，则返还“Leaderboard”。|
-| result.name | String | 在控制台注册的模板名称 |
-| result.templateCode | Long | 在控制台中注册的禁用模板代码值 |
-| result.releaseCaller | String | 禁用解除主题 |
-| result.releaseReason | String | 禁用解除原因 |
-| result.releaseDate | String | 禁用解除时间 |
+| pagingInfo | Object | Retrieved paging information |
+| pagingInfo.first | boolean | True if it is the first page |
+| pagingInfo.last | boolean | True if it is the last page |
+| pagingInfo.numberOfElements | int | Total number of data |
+| pagingInfo.page | int | Page No. |
+| pagingInfo.size | int | Number of data per page |
+| pagingInfo.totalElements | int | Total number of data |
+| pagingInfo.totalPages | int | Total number of pages |
+| result | Array[Object] | Retrieved ban information |
+| result.userId | String | User ID |
+| result.banCaller | String | Subject of calling the ban |
+| result.banReason | String | Reason for the ban |
+| result.banType | String | Type of the ban. TEMPORARY or PERMANENT |
+| result.beginDate | String | Start date of the ban |
+| result.endDate | String | End date of the ban |
+| result.flags | String | Returned as 'leaderboard' if you have selected Delete Leaderboard when registering the ban in the console. |
+| result.name | String | Template name registered in the console |
+| result.templateCode | Long | Code value of the ban template registered in the console |
+| result.releaseCaller | String | Subject of the ban release |
+| result.releaseReason | String | Reason for the ban release |
+| result.releaseDate | String | Date of the ban release |
 
 
 **[Error Code]**
 
-[错误代码](./error-code/#server)
+[Error code](./error-code/#server)
 
-<br>
 <br>
 
 #### Validate TransferAccount
 
-检查为转移访客账户获得的ID及密码的有效性。为有效的TransferAccount时，返回获得的userId信息。
+Validates the ID and password issued for transferring the guest account. For valid TransferAccount, return issued userID information.
 
 **[Method, URI]**
 
@@ -1212,17 +1120,17 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-确认共通事项
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | NHN Cloud Project ID |
 
 **[Request Parameter]**
 
-无
+None
 
 **[Request Body]**
 
@@ -1237,8 +1145,8 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| account.id | String | 要进行有效性验证的ID |
-| account.password | String | 要进行有效性验证的密码 |
+| account.id | String | ID to be validated |
+| account.password | String | Password to be validated |
 
 **[Response Body]**
 
@@ -1262,26 +1170,25 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| member | Object | 查询的用户基本信息 |
-| member.userId | String | 用户ID |
-| member.valid | Enum | [用户状态](#member-valid-code) |
-| member.appId | String | 应用程序ID |
-| member.regDate | String | 用户创建账户的时间 |
-| member.lastLoginDate | String | 最后一次登录的时间 <br>初次登录的用户无相应值 |
+| member | Object | Basic information of the retrieved user |
+| member.userId | String | User ID |
+| member.valid | Enum | [User status](#member-valid-code) |
+| member.appId | String | App ID |
+| member.regDate | String | The time when the user created the account |
+| member.lastLoginDate | String | The last login time <br>Not available for a first-time login user |
 
 **[Error Code]**
 
-[错误代码](./error-code/#server)
+[Error code](./error-code/#server)
 
-<br>
 <br>
 
 #### Withdraw
 
-用户账号将被删除。
+Withdraws a user account.
 
-> [参考]
-> 调用服务器退出API进行账号退出处理时，若成功退出，则需通过客户端调用SDK的logout API删除令牌等数据。
+> [Note]
+> If the account withdrawal has been implemented using the server withdraw API instead of the SDK's withdrawal API, the client needs to delete data such as cached tokens by calling the logout API of SDK after the successful withdrawal.
 
 **[Method, URI]**
 
@@ -1291,24 +1198,24 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-确认共通事项
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
-| userId | String | 需要进行退出处理的用户ID |
+| appId | String | NHN Cloud project ID |
+| userId | String | ID of the withdrawal target user |
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| regUser | String | Required | 请求退出的系统或操作员信息，不留空格。<br> - 此信息可以在Console > “member”页面的“退出历史记录”页面上确认。|
+| regUser | String | Required | Enter the system or operator information of the entity that requested withdrawal without spaces<br> - The information can be viewed in the withdrawl history from Console > the 'Member' page |
 
 **[Request Body]**
 
-无
+None
 
 **[Response Body]**
 
@@ -1325,13 +1232,13 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Error Code]**
 
-[错误代码](./error-code/#server)
+[Error code](./error-code/#server)
 
 </br>
 
 #### Withdraw Histories
 
-查询在特定时间内退出的用户。 
+Retrieves users who have withdrawn during a specific period.
 
 **[Method, URI]**
 
@@ -1341,23 +1248,23 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-确认共通事项
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | NHN Cloud Project ID |
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| begin | String | Required | 查询历史记录的开始时间(ISO 8601标准时间，需要UTF-8 Encoding) <br>**仅提供一年的数据。** |
-| end | String | Required | 查询历史记录的结束时间(ISO 8601标准时间，需要UTF-8 Encoding) <br>例子) yyyy-MM-dd'T'HH:mm:ss.SSSXXX / 2021-09-11T00%3a00%3a00%2b09%3a00 |
-| page | String | Optional | 将要查询的页面/ 从0开始。 |
-| size | String | Optional | 每个页面的数据个数 |
-| order | String | Optional | 查询数据排列方法 ASC or DESC |
+| begin | String | Required | History query start time (ISO 8601 standard time, UTF-8 encoding required) <br>**Only data within the last 1 year are provided** |
+| end | String | Required | History query end time (ISO 8601 standard time, UTF-8 encoding required) <br>Example: yyyy-MM-dd'T'HH:mm:ss.SSSXXX / 2021-09-11T00%3a00%3a00%2b09%3a00 |
+| page | String | Optional | Page to retrieve, starting from 0 |
+| size | String | Optional | Number of data per page |
+| order | String | Optional | Sorting method for queried data. ASC or DESC |
 
 **[Response Body]**
 
@@ -1395,31 +1302,31 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| pagingInfo | Object | 查询的页面信息 |
-| pagingInfo.first | boolean | 如果是第一页则为true。 |
-| pagingInfo.last | boolean | 如果是最后一页则为true。 |
-| pagingInfo.numberOfElements | int | 数据的总个数 |
-| pagingInfo.page | int | 页面编号 |
-| pagingInfo.size | int | 每个页面的数据个数 |
-| pagingInfo.totalElements | int | 数据的总个数 |
-| pagingInfo.totalPages | int | 总页数 |
-| result | Array[Object] | 查询的退出用户历史记录 |
-| result.userId | String | 用户ID |
-| result.date | String | 退出日期 |
-| result.regUser | String | 调用退出API的主体<br>- 相关值为**null**时在client SDK调用。|
+| pagingInfo | Object | Retrieved paging information |
+| pagingInfo.first | boolean | True if it is the first page |
+| pagingInfo.last | boolean | True if it is the last page |
+| pagingInfo.numberOfElements | int | Total number of data |
+| pagingInfo.page | int | Page No. |
+| pagingInfo.size | int | Number of data per page |
+| pagingInfo.totalElements | int | Total number of data |
+| pagingInfo.totalPages | int | Total number of pages |
+| result | Array[Object] | Retrieved withdrawn user details |
+| result.userId | String | User ID |
+| result.date | String | Date of withdrawal |
+| result.regUser | String | The entity that called the Withdraw API<br>- If the value is **null**, the API has been called from the client SDK |
 
 **[Error Code]**
 
-[错误代码](./error-code/#server)
+[Error code](./error-code/#server)
 
 </br>
 </br>
 
 ## Maintenance
 
-#### 确认维护设置
+#### Check Maintenance Set
 
-确认当前是否设置了维护。
+Checks whether maintenance is currently set.
 
 **[Method, URI]**
 
@@ -1429,17 +1336,17 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-确认共通事项
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | NHN Cloud project ID |
 
 **[Request Parameter]**
 
-无
+N/A
 
 **[Response Body]**
 
@@ -1471,18 +1378,18 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| underMaintenance | boolean | 是否设置了当前维护 |
-| maintenance | Object | 如果已设置维护，维护基本信息 |
-| maintenance.typeCode | Enum | APP ：游戏中设置的维护 <br>SYSTEM : Gamebase系统中设置的维护 |
-| maintenance.beginDate | String | 维护开始时间 ISO 8601 |
-| maintenance.endDate | String | 维护结束时间 ISO 8601 |
-| maintenance.url | String | 详细维护URL |
-| maintenance.message | String | 维护消息 |
-| maintenance.targetStores | Array[Enum] | 仅对特定客户设置进行检查时，设置检查的客户[商店代码](#store-code) |
+| underMaintenance       | Boolean | Whether maintenance is currently set     |
+| maintenance           | Object  | Default maintenance information, if maintenance is set |
+| maintenance.typeCode  | Enum    | APP: Maintenance set in a game <br>SYSTEM: Maintenance set by the Gamebase system |
+| maintenance.beginDate | String  | Start time of maintenance. ISO 8601      |
+| maintenance.endDate   | String  | End time of maintenance. ISO 8601        |
+| maintenance.url       | String  | Detailed maintenance URL                 |
+| maintenance.message   | String  | Maintenance message                      |
+| maintenance.targetStores | Array[Enum] | [Store code](#store-code) of a client for the maintenance setting of a particular client only |
 
 **[Error Code]**
 
-[错误代码](./error-code/#server)
+[Error Code](./error-code/#server)
 
 <br>
 <br>
@@ -1491,7 +1398,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 #### Check Validation And Consume Coupon
 
-对于通过Console获得的优惠券代码，验证有效性并更改优惠券状态。若为有效的优惠券，则更改为消费状态，作为响应结果，返回支付的道具信息。
+Validates published coupon code and change coupon status via console. For valid coupons, change to consume status and return item information to be paid as response result.
 
 **[Method, URI]**
 
@@ -1501,21 +1408,21 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-确认共通事项
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
-| userId | String | 要使用优惠券的userId |
-| couponCode | String | 优惠券代码 |
+| appId | String | NHN Cloud project ID |
+| userId | String | User ID to use coupons |
+| couponCode | String | Coupon code |
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| storeCode | String | Optional | 如果您将优惠券设置为仅用于从商店安装的应用程序，则需传送商店代码。<br>如果是所有的商店，“ALL”或省略参数。<br>- [商店代码](#store-code) |
+| storeCode | String | Optional | If you set the coupon to be used only for apps installed from a specific store in the console, you must pass the store code<br>- If it's usable at all stores, set the parameter to ALL or omit the parameter<br>- [Store code](#store-code) |
 
 **[Response Body]**
 
@@ -1544,34 +1451,34 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Object | 优惠券信息 |
-| result.title | String | 优惠券名 |
-| result.benefits | Array[Object] | 要支付的道具信息 |
-| result.benefits.itemId | String | 道具ID |
-| result.benefits.amount | Integer | 道具个数 |
+| result | Object | Coupon Information |
+| result.title | String | Coupon name |
+| result.benefits | Array[Object] | Information of item to be provided |
+| result.benefits.itemId | String | Item ID |
+| result.benefits.amount | Integer | Item count |
 
 **[Error Code]**
 
-[错误代码](./error-code/#server)
+[Error Code](./error-code/#server)
 
 <br>
 <br>
 
-## Purchase(IAP)
+## Purchase (IAP)
 
 #### Consume
 
-若已完成Google Play Store、App Store及ONEStore支付，则需向用户提供道具并将履历注册在服务器后通知Gmaebase该支付消费。1项支付仅可进行1次支付消费，若支付的状态非正常，则不消费。
+If the store payment (Google Play Store, App Store, ONEStore, etc.) has been made successfully, it issues the purchased items to the user, records the purchase history in the server, and then informs the Gamebase of the payment consumption. You can consume payment only once per payment, and the payment is not consumed if the payment status is not normal.
 
-> [参考]
-> 注册商品时，仅对商品类型为一次性（CONSUMABLE）的，或消费性订购(CONSUMABLE_AUTO_RENEWABLE) 道具支付进行消费（consume）处理。
-> 1项支付可进行1次消费，未进行支付消费的支付视为IAP没有提供道具。
+> [Note]
+> Only the item payment with the product type CONSUMABLE or CONSUMABLE_AUTO_RENEWABLE at the time of registration will be consumed.
+> Can consume once per payment, and IAP regards any payment without consumption as not issuing the purchased item.
 
-可通过调用SDK及服务器的未消费支付明细API查看未消费（consume）支付明细。即使存在未消费支付明细，如果在游戏服务器中有提供道具的历史记录，则优先考虑在游戏服务器内的历史记录。
-（如果网络故障出现API timeout，即使Gamebase已提供道具，由于游戏服务器中的API响应失败，也无法向用户提供道具。)  
+Unconsumed payment history can be viewed through SDK and View Unconsumed Payment History API. Even if the unconsumed payment history exists through the API, the provisioning history within the game server becomes the priority if the game server has the history about the item provisioning.
+(If an API timeout occurs due to a network failure, etc., there might be cases where payment is completed in Gamebase whereas the item is not issued to the user due to API response failure in the game server.)
 
-> [参考]
-> 如果游戏未能管理所有的（提供道具的）历史记录，则需将该API的request timeout设置为10秒以上，至少在出现API timout时注册历史记录，防止出现重复提供或未提供等错误。
+> [Note]
+> If it is not possible to manage all item issuance history inside the game, a safety measure for a duplicate issuance or non-issuance issue is required, for example, by setting the request timeout of API to 10 seconds or longer, and logging the history at least when an API timeout occurs.
 
 **[Method, URI]**
 
@@ -1581,17 +1488,17 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-确认共通事项
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | NHN Cloud project ID |
 
 **[Request Parameter]**
 
-无
+N/A
 
 **[Request Body]**
 
@@ -1604,11 +1511,11 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| paymentSeq | String | Required | 支付编号 |
-| accessToken | String | Required  | 支付验证令牌（非登录验证令牌） |
+| paymentSeq | String | Required | Payment number |
+| accessToken | String | Required  | Payment authentication token (not a login authentication token) |
 
-> [参考]
-> 客户调用requestPurchase API时响应的purchaseToken值作为accessToken使用。
+> [Note]
+> When client calls requestPurchase API, the purchaseToken for response is used as accessToken
 
 **[Response Body]**
 
@@ -1632,29 +1539,29 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Object | 支付基本信息 |
-| result.price | Float | 支付价格 |
-| result.currency  | String  | 支付货币  |
-| result.productSeq | Long | 支付道具编号（console中注册的道具固有编号）|
-| result.marketId | String | [商店代码](#store-code) |
-| result.gamebaseProductId | String | Gamebase商品ID<br>用户在控制台中注册商品时的用户输入值 |
-| result.payload | String | 在SDK中设置的附加信息 |
+| result | Object | Basic payment information |
+| result.price | Float | Payment price |
+| result.currency  | String  | Payment currency |
+| result.productSeq | Long | Item number<br>Automatically generated value for external store items when registering a product in the console |
+| result.marketId | String | [Store code](#store-code) |
+| result.gamebaseProductId | String | Gamebase product ID<br>The value to be entered by user when registering products using the console |
+| result.payload | String | Additional information configured in SDK |
 
-> [参考]
-> 根据客户端使用的SDK版本及支付API，在响应结果中存在或不存在gamebaseProductId值。
+> [Note]
+> The gamebaseProductId value exists in the response result according to the SDK version and payment API used by the client.
 
-> [参考]
-> 游戏服务器端按照道具号码、商店代码及Gamebase商品ID提供商品（道具）， 但若对1个商店道具ID注册N个Gamebase商品时，应按照商店代码和Gamebase商品ID提供商品。
+> [Note]
+> In the game server, specified products (items) can be issued using the item number or store code together with the Gamebase product ID, but if multiple Gamebase products are registered with a single store item ID, the products need to be issued using the store code and Gamebase product ID.
 
 **[Error Code]**
 
-[错误代码](./error-code/#server)
+[Error Code](./error-code/#server)
 
 <br>
 
 #### List Consumables
 
-可查询完成支付但尚未消费(Consume)的未消费支付明细。
+Lists non-consumed payment, which is not consumed even if paid up.
 
 **[Method, URI]**
 
@@ -1664,17 +1571,17 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-确认共通事项
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | NHN Cloud project ID |
 
 **[Request Parameter]**
 
-无
+N/A
 
 **[Request Body]**
 
@@ -1686,10 +1593,10 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 ```
 
 | Name | Type | Required | Value |
-| --- | --- | --- | --- | 
-| marketId | String | Optional | [商店代码](#store-code)<br>- 将被**deprecated**，因此使用*marketIds*。 |
-| marketIds | Array | Optional | [商店代码](#store-code)<br>- 如果为空值(或null)，则以所有商店为对象进行查询。<br> - 但是，当查看包括AMAZON商店在内的所有商店时，您必须明确列出要查看的**所有商店**。 |
-| userId | String | Required  | 用户ID  |
+| --- | --- | --- | --- |
+| marketId | String | Optional | [Store code](#store-code)<br>- Use *marketIds* as it will be **deprecated** |
+| marketIds | Array | Optional | [Store code](#store-code)<br>- Retrieve all stores when the value is empty (or null)<br> - However, **all stores** must be listed explicitly when retrieving all stores including AMAZON stores. |
+| userId | String | Required  | User ID |
 
 **[Response Body]**
 
@@ -1732,29 +1639,29 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Array[Object] | 支付基本信息 |
-| result[].paymentSeq | String |  Gamebase发布的支付编号 / 结算Transaction ID | |
-| result[].productSeq | Long | 支付道具编号（console中注册的道具固有编号）|
-| result[].currency  | String  | 支付货币 |
-| result[].price | Float | 支付价格 |
-| result[].accessToken | String | 支付验证令牌 |
-| result[].paymentId | String | 商店发布的支付ID |
-| result[].marketId | String | [商店代码](#store-code) |
-| result[].gamebaseProductId | String | Gamebase商品ID<br>在控制台中注册商品时的用户输入值 |
-| result[].purchaseTime | String | 支付日期 |
-| result[].payload | String | 在SDK中设置的附加信息<br>Amazon商店可能存在遗漏，没有相关值。 |
-| result[].isTestPurchase | boolean | 测试支付与否 |
+| result | Array[Object] | Basic payment information |
+| result[].paymentSeq | String |  Payment ID issued by Gamebase / Payment transaction ID |
+| result[].productSeq | Long | Item number<br>Automatically generated value for external store items when registering a product in the console |
+| result[].currency  | String  | Payment currency |
+| result[].price | Float | Payment price |
+| result[].accessToken | String | Payment authentication token |
+| result[].paymentId | String | Payment ID issued by the store |
+| result[].marketId | String | [Store code](#store-code) |
+| result[].gamebaseProductId | String | Gamebase product ID<br>The value entered by the user when registering a product in the console |
+| result[].purchaseTime | String | Time and date of payment |
+| result[].payload | String | Additional information configured in SDK<br>For Amazon store, the value might be missing |
+| result[].isTestPurchase | boolean | Whether it is a test purchase or not |
 
 **[Error Code]**
 
-[错误代码](./error-code/#server)
+[Error Code](./error-code/#server)
 
 <br>
 
 #### Get Payment Transaction
 
-可以通过客户端SDK确认获取的未消费支付明细是否有效。 
-(在服务器调用consume API之前，您如果需要支付编号(paymentSeq)和支付认证令牌(accessToken)的有效性检查，则调用相关API。)
+You can check whether the non-consumed payment history obtained through the client SDK is valid.
+(If you want to validate the payment number (paymentSeq) and payment authentication token (accessToken) before calling the item issuance (consume) API on the server, call this API.)
 
 **[Method, URI]**
 
@@ -1764,23 +1671,23 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-确认共通事项
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | NHN Cloud project ID |
 
 **[Request Parameter]**
 
 | Name | Type | Required |  Value |
 | --- | --- | --- | --- |
-| accessToken | String | Required | 支付认证令牌(purchaseToken) |
+| accessToken | String | Required | Payment authentication token (purchaseToken) |
 
 **[Request Body]**
 
-没有。
+N/A
 
 **[Response Body]**
 
@@ -1812,31 +1719,31 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Object | 支付信息 |
-| result.paymentSeq | String | Gamebase发布的支付编号 |
-| result.productSeq | Long | 道具编号<br>在控制台中注册商品时，对外部商店道具生成的值 |
-| result.currency  | String | 支付货币  |
-| result.price | Float | 支付价格 |
-| result.marketId | String | [商店代码](#store-code) |
-| result.accessToken | String | 支付认证令牌 |
-| result.paymentId | String | 商店发布的支付ID |
-| result.productType | String  | 商品(道具) 类型<br>- 一次性 : CONSUMABLE<br>- 消费性订购 : CONSUMABLE_AUTO_RENEWABLE<br>- 订购 : AUTO_RENEWABLE |
-| result.userId | String  | 用户ID  |
-| result.gamebaseProductId | String | Gamebase商品ID<br>在控制台中注册商品时的用户输入值 |
-| result.purchaseTime | String | 发生支付的日期 |
-| result.payload | String | 在SDK中设置的附加信息<br>Amazon商店可能存在遗漏，没有相关值。 |
-| result.isTestPurchase | boolean | 测试支付与否<br>- true : 测试支付 |
-| result.isConsumable | boolean | 是否可调用消费API<br>- true : 目前为未消费状态，可以调用消费API。 |
+| result | Object |  Payment information |
+| result.paymentSeq | String | Payment ID issued by Gamebase |
+| result.productSeq | Long | Item number<br>Automatically generated value for external store items when registering a product in the console |
+| result.currency  | String | Payment currency  |
+| result.price | Float | Payment price |
+| result.marketId | String | [Store code](#store-code) |
+| result.accessToken | String | Payment authentication token |
+| result.productType | String  | Product (item) type<br>- One-time: CONSUMABLE<br>- Consumable Subscription: CONSUMABLE_AUTO_RENEWABLE<br>- Subscription: AUTO_RENEWABLE |
+| result.paymentId | String | Payment ID issued by the store |
+| result.userId | String  | User ID  |
+| result.gamebaseProductId | String | Gamebase product ID<br>The value entered by the user when registering a product in the console |
+| result.purchaseTime | String | Time and date of payment |
+| result.payload | String | Additional information configured in SDK<br>For Amazon store, the value might be missing |
+| result.isTestPurchase | boolean | Whether it is a test purchase or not<br>- true: Test purchase |
+| result.isConsumable | boolean | Whether Consume API can be called<br>- true: Currently in non-consumed state, so Consume API can be called |
 
 **[Error Code]**
 
-[错误代码](./error-code/#server)
+[Error Code](./error-code/#server)
 
 <br>
 
 ### List Active Subscriptions
 
-可查询用户当前订阅的支付。
+Lists payment of user's current subscriptions.
 
 **[Method, URI]**
 
@@ -1846,17 +1753,17 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-确认共通事项
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | NHN Cloud project ID |
 
 **[Request Parameter]**
 
-无
+N/A
 
 **[Request Body]**
 
@@ -1876,11 +1783,11 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| marketId | String | Optional | [商店代码](#store-code)<br>- 因将会**deprecated**，使用*marketIds*。 |
-| marketIds | Array[String] | Optional | [商店代码](#store-code)<br>- 为空值(或null)时，搜索所有的商店。 |
-| packageName | String | Required | 控制台中注册的商店应用程序ID |
-| userId | String | Required | 用户ID |
-| includeInactiveGoogleStatuses  | Array[String] | Optional | 将包含在响应结果中的**谷歌订阅非激活状态**<br>- 目前仅支持“ON_HOLD”状态。 |
+| marketId | String | Optional | [Store code](#store-code)<br>- Scheduled to be **deprecated** so *marketIds* used |
+| marketIds | Array[String] | Optional | [Store code](#store-code)<br>- Lookup against all stores if the value is empty (or null) |
+| packageName | String | Required | Store app ID registered on the console |
+| userId | String | Required | User ID |
+| includeInactiveGoogleStatuses | Array[String] | Optional | **Google Subscription in Inactive Status** to be included in response result<br>- Currently only support 'ON_HOLD' status |
 
 **[Response Body]**
 
@@ -1919,39 +1826,40 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Array[Object] | 支付基本信息 |
-| result[].marketId  | String  | [商店代码](#store-code) |
-| result[].userId  | String  | 用户ID |
-| result[].paymentSeq | String  | 支付编号 |
-| result[].accessToken | String | 支付验证令牌 |
-| result[].productSeq | Long | 支付道具编号（console中注册的道具固有编号）|
-| result[].productId | String  | 商店注册的商品（道具）标识符 |
-| result[].productType | String  | 商品（道具）类型<br>订阅 ：AUTO_RENEWABLE |
-| result[].currency  | String  | 支付货币  |
-| result[].price | Float | 支付价格 |
-| result[].originalPaymentId | String | 最初的商店支付ID |
-| result[].paymentId | String | 最近更新的商店支付ID |
-| result[].linkedPaymentId | String | 取消订阅/重新购买时原交易的结算ID<br>仅支持Google Play商店。 |
-| result[].gamebaseProductId | String | Gamebase商品ID<br>在控制台中注册商品时的用户输入值 |
-| result[].payload | String | 在SDK中设置的附加信息 |
-| result[].purchaseTime | String | 最近更新的时间 |
-| result[].expiryTime | String | 订阅到期时间 |
-| result[].renewTime | String | RENEWED/RECOVERED发生时间 |
-| result[].isTestPurchase | boolean | 测试支付与否 |
-| result[].referenceStatus | String | 支付系统(应用程序内支付、外部支付)提供的[支付参考状态](#store-reference-status)<br>目前只支持 Google Play商店。 |
+| result | Array[Object] | Basic payment information |
+| result[].marketId  | String  | [Store code](#store-code) |
+| result[].userId  | String  | User ID |
+| result[].paymentSeq | String  | Payment number |
+| result[].accessToken | String | Payment validation token |
+| result[].productSeq | Long | Item number<br>Automatically generated value for external store items when registering a product in the console |
+| result[].productId | String  | Identifier of product (item) registered at store |
+| result[].productType | String  | Product (item) type <br>Subscription: AUTO_RENEWABLE |
+| result[].currency  | String  | Payment currency |
+| result[].price | Float | Payment price |
+| result[].originalPaymentId | String | Initial store payment ID |
+| result[].paymentId | String | Recently updated store payment ID |
+| result[].linkedPaymentId | String | Payment ID for the original transaction when canceling/repurchasing subscription <br>Currently only supported by Google Play Store |
+| result[].gamebaseProductId | String | Gamebase product ID<br>The value entered by the user when registering a product in the console |
+| result[].payload | String | Additional information configured in SDK |
+| result[].purchaseTime | String | Recent updated time |
+| result[].expiryTime | String | Subscription expiration time |
+| result[].renewTime | String | When RENEWED/RECOVERED occurred |
+| result[].isTestPurchase | boolean | Whether it is a test purchase or not |
+| result[].referenceStatus | String | [Payment reference status](#store-reference-status) provided by the payment system (in-app purchase, external payment)<br>Currently only supported by Google Play Store |
 
 **[Error Code]**
 
-[错误代码](./error-code/#server)
+[Error Code](./error-code/#server)
 
 <br>
 
 ### Cancel Subscriptions
 
-如果您继续订阅正在订阅的产品，订阅将不再续订，并将在当前订阅到期之前保持有效。
+Products in subscription is no longer renewed at the time of renewal, and the subscription will remain until it expires.
 
-> [参考]
-> 目前仅支持Google Play商店。
+> [Note]
+> Currently only supported by Google Play Store.
+
 **[Method, URI]**
 
 | Method | URI |
@@ -1960,17 +1868,17 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-确认共通事项
+Check common items
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | NHN Cloud project ID |
 
 **[Request Parameter]**
 
-无
+None
 
 **[Request Body]**
 
@@ -1983,8 +1891,8 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| paymentSeq | String | Required | 支付号码 |
-| accessToken | String | Required | 支付认证令牌 |
+| paymentSeq | String | Required | Payment number |
+| accessToken | String | Required | Payment authentication token |
 
 **[Response Body]**
 
@@ -2000,16 +1908,17 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Error Code]**
 
-[错误代码](./error-code/#server)
+[Error Code](./error-code/#server)
 
 <br>
 
 ### Revoke Subscriptions
 
-将立即取消当前订阅的商品，并对当前的订阅商品进行退款程序。
+Cancel the current subscription immediately and proceed with a refund for the products in subscription.
 
-> [参考]
-> 目前仅支持Google Play商店。
+> [Note]
+> Currently only supported by Google Play Store.
+
 **[Method, URI]**
 
 | Method | URI |
@@ -2018,17 +1927,17 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Request Header]**
 
-确认共通事项
+Check common items
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud项目ID |
+| appId | String | NHN Cloud proejct ID |
 
 **[Request Parameter]**
 
-无
+None
 
 **[Request Body]**
 
@@ -2041,8 +1950,8 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| paymentSeq | String | Required | 支付号码 |
-| accessToken | String | Required | 支付认证令牌 |
+| paymentSeq | String | Required | Payment number |
+| accessToken | String | Required | Payment authentication token |
 
 **[Response Body]**
 
@@ -2058,48 +1967,48 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Error Code]**
 
-[错误代码](./error-code/#server)
+[Error Code](./error-code/#server)
 
 <br>
 <br>
 
 ## Leaderboard
 
-Gamebase为NHN Cloud Leaderboard服务的服务器API提供**Wrapping**功能。使用Wrapping功能可在用户服务器上通过统一接口来使用NHN Cloud服务。
+Gamebase provides Wrapping to server API of NHN Cloud Leaderboard. With Wrapping, NHN Cloud products become available at a user server on a consistent interface.
 
-> [参考]
-> 如果启用Gamebase，即使不设置Leaderboard Appkey，也可通过调用Gamebase Wrapping API来使用Leaderboard。
+> [Note]
+> Once the Gamebase is activated, you can call Gamebase Wrapping API to use the Leaderboard function without setting the Leaderboard Appkey.
 
 <br>
 
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
 | --- | --- | --- | --- |
-| 查询Factor中的注册用户数<br>- Get user count in factor | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
-| 查看所有Factor数<br>- Get total factor count | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factor-count | /leaderboard/v2.0/appkeys/{appKey}/factor-count |
-| 查询Factor信息<br>- Get factor info<br>- Get multiple factor info | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors | /leaderboard/v2.0/appkeys/{appKey}/factors |
-| 查询单个用户分数/排名<br>- Get single user info | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
-| 查询多个用户分数/排名<br>- Get multiple user info | POST | /tcgb-leaderboard/v1.3/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
-| 查询一定范围的整体分数/排名<br>- Get multiple user info by range | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
-| 查询指定顺序的用户<br>- Get selected rank user info | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
-| 查询指定用户的顺序和上级、下级用户的顺序<br>- Get multiple user info by pivot user | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} | /leaderboard/v2.0/appkeys/{appkey}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} |
-| 登录单个用户分数<br>- Set single user score | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
-| 登录单个用户分数/ExtraData- Set single user score with extra data | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
-| 登录多个用户分数- Set multiple user score | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
-| 登录多个用户分数/ExtraData<br>- Set multiple user score with extra data | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/scores-with-extra |
-| 删除单个用户Leaderboard信息<br>- Delete single user info<br>- Delete multiple user info | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+| Get user count in factor<br>- Get user count in factor | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
+| Get total factor count <br>- Get total factor count | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factor-count | /leaderboard/v2.0/appkeys/{appKey}/factor-count |
+| Get factor info<br>- Get factor info<br>- Get multiple factor info | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors | /leaderboard/v2.0/appkeys/{appKey}/factors |
+| Get single user info (score/ranking)<br>- Get single user info | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
+| Get multiple user info (score/ranking)<br>- Get multiple user info | POST | /tcgb-leaderboard/v1.3/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
+| Get the entire info (score/ranking) by range<br>- Get multiple user info by range | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
+| Get selected rank user info<br>- Get selected rank user info | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+| Get ranking of a specific user or upper and lower users<br>- Get multiple user info by pivot user | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} | /leaderboard/v2.0/appkeys/{appkey}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} |
+| Set single user score<br>- Set single user score | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
+| Set single user score with extra data<br>- Set single user score with extra data | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
+| Set multiple user score<br>- Set multiple user score | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
+| Set multiple user score with extra data<br>- Set multiple user score with extra data | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
+| Delete user leaderboard information<br>- Delete single user info<br>- Delete multiple user info | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
 
 <br/>
 
-**有关API的详细说明，请参考以下链接。**
-关于与Gamebase Wrapping API映射的Leaderboard API Spec，请参考以下指南。
-即使不设置Leaderboard Appkey，也可使用Gamebase AppId和SecretKey调用Gamebase Wrapping Leaderboard API。
+**For more information of the API, click the following link.**
+To find out about Leaderboard API specs mapped with Gamebase Wrapping API, see the following guide.
+Use the Gamebase AppId and SecretKey to call the Gamebase Wrapping Leaderboard API without setting the Leaderboard Appkey.
 
-[Leaderboard Guide](/Game/Leaderboard/zh/api-guide/)
+[Leaderboard Guide](https://docs.nhncloud.com/en/Game/Leaderboard/en/api-guide/)
 
 <br/>
 
-##### API调用示例
+##### Example of API Call
 
 ```
 GET https://api-gamebase.nhncloudservice.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
@@ -2114,10 +2023,10 @@ X-Secret-Key: IgsaAP
 
 ## Push
 
-Gamebase为NHN Cloud Push服务的服务器API提供**Wrapping**功能。如果使用Wrapping功能，可通过用户服务器的单一的统合界面来使用NHN Cloud服务。
+Gamebase provides **Wrapping** function for the Server API of the NHN Cloud Push service. By using the Wrapping function, you can use the NHN Cloud services on the user server with consistent interfaces.
 
-> [参考]
-> 如果启用Gamebase，即使不设置Push Appkey，也可通过调用Gamebase Wrapping API使用Push功能。
+> [Note]
+> Once the Gamebase is activated, you can call the Gamebase Wrapping API to use the Push function without setting the Push Appkey.
 
 
 <br>
@@ -2125,32 +2034,35 @@ Gamebase为NHN Cloud Push服务的服务器API提供**Wrapping**功能。如果�
 #### Wrapping API
 |    | API | Method | Wrapping URI | Push URI |
 | --- | --- | --- | --- | --- |
-| 消息 | 发送 | POST | /tcgb-push/v1.3/apps/{appId}/messages | /push/v2.4/appkeys/{appkey}/messages |
-|   | 查询 | GET | /tcgb-push/v1.3/apps/{appId}/messages | /push/v2.4/appkeys/{appkey}/messages |
-|   | 查询发送日志 | GET | /tcgb-push/v1.3/apps/{appId}/logs/message | /push/v2.4/appkeys/{appkey}/logs/message |
-| 预约的消息 | 生成发送日程 | POST | /tcgb-push/v1.3/apps/{appId}/schedules | /push/v2.4/appkeys/{appkey}/schedules |
-|   | 生成 | POST | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
-|   | 查询列表 | GET | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
-|   | 查询单件 | GET | /tcgb-push/v1.3/apps/{appId}/reservations/{reservation-id} | /push/v2.4/appkeys/{appkey}/reservations/{reservation-id} |
-|   | 查询成功发送 | GET | /tcgb-push/v1.3/apps/{appId}/reservations/{reservation-id}/messages | /push/v2.4/appkeys/{appkey}/reservations/{reservation-id}/messages |
-|   | 更改 | PUT | /tcgb-push/v1.3/apps/{appId}/reservations/{reservationId} | /push/v2.4/appkeys/{appkey}/reservations/{reservationId} |
-|   | 删除 | DELETE | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+| Message | Send | POST | /tcgb-push/v1.3/apps/{appId}/messages | /push/v2.4/appkeys/{appkey}/messages |
+|   | View | GET | /tcgb-push/v1.3/apps/{appId}/messages | /push/v2.4/appkeys/{appkey}/messages |
+|   | View sent log | GET | /tcgb-push/v1.3/apps/{appId}/logs/message | /push/v2.4/appkeys/{appkey}/logs/message |
+| Scheduled message | Create send schedule | POST | /tcgb-push/v1.3/apps/{appId}/schedules | /push/v2.4/appkeys/{appkey}/schedules |
+|   | Create | POST | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+|   | View list | GET | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+|   | View a single item | GET | /tcgb-push/v1.3/apps/{appId}/reservations/{reservation-id} | /push/v2.4/appkeys/{appkey}/reservations/{reservation-id} |
+|   | View sent ones | GET | /tcgb-push/v1.3/apps/{appId}/reservations/{reservation-id}/messages | /push/v2.4/appkeys/{appkey}/reservations/{reservation-id}/messages |
+|   | Modify | PUT | /tcgb-push/v1.3/apps/{appId}/reservations/{reservationId} | /push/v2.4/appkeys/{appkey}/reservations/{reservationId} |
+|   | Delete | DELETE | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
 
 <br/>
 
-**有关相关API的详细说明，请参考以下链接。**
-关于与Gamebase Wrapping API映射的Push API Spec，请参考以下指南。
-即使不设置Push Appkey，也可使用Gamebase AppId和SecretKey调用Gamebase Wrapping Push API。
+**For more information of the API, click the following link.**
+To find out about the Push API spec mapped with Gamebase Wrapping API, see the following guide.
+Use the Gamebase AppId and SecretKey to call the Gamebase Wrapping Push API without setting the Push Appkey.
 
-> [参考]
-> 将Push指南上的uid Key指定为gamebase userId值。在客户端SDK中注册推送令牌时，用户标识符将注册为gamebase userId。
-> 一个用户同意允许从多个终端机接收推送时，将从所有的终端机接收推送。
+> [Notes 1]
+> User can use the gamebase userId value for the uid value exists in Push guide. When registering push token in client SDK, the user identifier is registered as gamebase userId.
+> When a single user allows all push notifications on multiple devices, the user will receive all pushes on multiple devices.
 
-[Push Guide](/Notification/Push/zh/api-guide/)
+> [Notes 2]
+> You can find the history in the **Log & Crash** settings from **Push > Settings > Save Send History**.
+> When you send a push message with an API, the send history cannot be checked from **Push > Send History** on the Gamebase console.
+[Push Guide](https://docs.nhncloud.com/en/Notification/Push/en/api-guide/)
 
 <br/>
 
-##### API调用示例
+##### Example of API Call
 
 ```
 POST https://api-gamebase.nhncloudservice.com/tcgb-push/v1.3/apps/{appId}/messages
@@ -2186,9 +2098,9 @@ X-Secret-Key: IgsaAP
 
 ### OS Code
 
-是Gamebase内部为用户终端的OS下定义的代码。
+The code defined internally by Gamebase for the OS of the user device.
 
-| Code | 描述 |
+| Code | Description |
 | --- | --- |
 | AOS | Android |
 | IOS | iOS |
@@ -2198,9 +2110,9 @@ X-Secret-Key: IgsaAP
 
 ### Store Code
 
-是Gamebase内部为安装应用程序的商店下定义的代码。
+The code defined internally by Gamebase for the store where the app is installed.
 
-| Code | 描述 |
+| Code | Description |
 | --- | --- |
 | GG | Google Play Store |
 | AS | App Store |
@@ -2213,7 +2125,7 @@ X-Secret-Key: IgsaAP
 
 ### Identity Provider Code
 
-是Gamebase内部为用于用户身份验证的 Identity Provider下定义的代码。
+The code defined internally by Gamebase for the Identity Providers used for user authentication.
 
 - guest
 - google
@@ -2231,55 +2143,55 @@ X-Secret-Key: IgsaAP
 
 ### Member Valid Code
 
-是Gamebase内部为用户的现状态下定义的代码。
+The code defined internally by Gamebase for the user's current status.
 
-| Code | 描述 |
+| Code | Description |
 | --- | --- |
-| Y | 正常用户 |
-| D | 退出的用户 |
-| B | 禁用用户 |
-| T | 预约退出的用户 |
-| P | 预约禁用的用户 |
-| M | 流失的账户 |
+| Y | Normal user |
+| D | Withdrawn user |
+| B | Banned user |
+| T | Withdrawal-suspended user |
+| P | Ban-suspended user |
+| M | Missing account |
 <br/>
 
 
 ### Store Reference Status
 
-支付系统(商店的应用程序内支付、外部支付)提供的支付参考状态 
+Payment reference status provided by the payment system (in-app purchase in stores, external payment)
 
-| 支付系统 | Code | 描述 |
+| Payment System | Code | Description |
 | --- | --- | --- |
-| 谷歌应用程序内 | PURCHASED | 购买完 |
-| | REPURCHASED | 重新购买完 |
-| | RESTARTED | 重新开始订阅 |
-| | PENDING | 正在延迟支付 |
-| | RENEWED | 更新订阅 |
-| | RECOVERED | 恢复订阅 |
-| | PAUSE_SCHEDULED | 预定要暂停订阅 |
-| | PAUSED | 暂停 |
-| | REVOKED | 退款 |
-| | CANCELED_PRODUCT | 取消单品支付 |
-| | CANCELED_SUBSCRIPTION | 取消订阅(暂停更新)<br>- 但需要提供当前次序的订阅。 |
-| | ON_HOLD | 正在保留 |
-| | IN_GRACE | 正在预约 |
-| | EXPIRED | 到期 |
-| | NOT_APPOINTED | 没有适合的特定 |
+| Google In-App | PURCHASED | Purchase complete |
+| | REPURCHASED | Repurchase complete |
+| | RESTARTED | Subscription restarted |
+| | PENDING | Payment pending |
+| | RENEWED | Subscription renewed |
+| | RECOVERED | Subscription recovered |
+| | PAUSE_SCHEDULED | Subscription to be paused |
+| | PAUSED | Paused |
+| | REVOKED | Refunded |
+| | CANCELED_PRODUCT | Single item payment canceled |
+| | CANCELED_SUBSCRIPTION | Subscription canceled (renewal stopped)<br>- Current subscription must be provided |
+| | ON_HOLD | On hold |
+| | IN_GRACE | In grace period |
+| | EXPIRED | Expired |
+| | NOT_APPOINTED | No corresponding condition |
 
 <br/>
 
 
 ### Support
 
-如果您对API调用失败原因有疑问，请将**调用API URL(如有HTTP body，则包括body)和其响应结果**上传到[客户服务](https://toast.com/support/inquiry) ，我们将尽快回复。
+To inquire about causes of failure in API call, upload **API call URL (with HTTP body, if available) along with response results** to [Customer Center](https://toast.com/support/inquiry), and we'll respond as soon as possible.
 
-##### API调用示例
+##### Example of API Call
 
 ```
 GET https://api-gamebase.nhncloudservice.com/tcgb-launching/v1.3/apps/C3JmSctU/maintenances/under-maintenance
 ```
 
-##### API失败响应结果
+##### Result of Failed API Response
 
 ```json
 {

@@ -1,12 +1,12 @@
-## Game > Gamebase > Unity SDK使用指南 > 初始化
+## Game > Gamebase > Unity Developer's Guide > Initialization
 
-如需使用Gamebase Unity SDK，必须先执行初始化。此外，还需在TOAST控制台中注册APP ID和APP版本信息。
+To use Gamebase Unity SDK, initialization is required, and App ID and app version should be registered in the NHN Cloud Console.
 
 ### GamebaseConfiguration 
 
-初始化所需的设置如下。
+Following settings are required for initialization.
 
-| 设定值                      | 支持的Platform | 强制(M) / 可选(O) |
+| Setting value              | Supported Platform | Mandatory(M) / Optional(O) |
 | -------------------------- | ------------------ | -------------------------- |
 | appID | ALL | M |
 | appVersion | ALL | M |
@@ -15,82 +15,80 @@
 | enablePopup | ALL | O |
 | enableLaunchingStatusPopup | ALL | O |
 | enableBanPopup | ALL | O |
-| enableKickoutPopup | ALL | O |
-| fcmSenderId | Android | O |
-| useWebview | Standalone | O |
+| useWebViewLogin | Standalone | O |
 
 #### 1. App ID
 
-在Gamebase控制台中注册的项目ID。
+Project ID registered in NHN Cloud.
 
-[Game > Gamebase > 控制台使用指南> APP > App](./oper-app/#app)
+[Game > Gamebase > Console Guide > App > App](./oper-app/#app)
 
 #### 2. appVersion
 
-在Gamebase控制台中注册的客户端版本。
+Client version registered in NHN Cloud.
 
-[Game > Gamebase > 控制台使用指南> APP > Client](./oper-app/#client)
+[Game > Gamebase > Console Guide > App > Client](./oper-app/#client)
 
 #### 3. storeCode
 
-为初始化TOAST应用程序内结算服务IAP(In-App Purchase)而所需的商店信息。
+Store information required to initialize In-App Purchase (IAP) of NHN Cloud.
 
 | Store       | Code | Description  |
 | ----------- | ---- | ------------ |
-| App Store | AS | 仅限iOS。 |
-| Google Play | GG | 仅限Android。 |
-| ONE Store | ONESTORE | 仅限Android。 |
-| GALAXY Store | GALAXY | 仅限Android。 |
-| Huawei AppGallery | HUAWEI | 仅限Android。 |
-| MyCard | MYCARD | 仅限Android。 |
+| App Store | AS | only iOS |
+| Google Play | GG | only Android |
+| ONE Store | ONESTORE | only Android |
+| GALAXY Store | GALAXY | only Android |
+| Huawei AppGallery | HUAWEI | only Android |
+| My Card | MYCARD | only Android |
 | Windows | WIN | only Unity Standalone |
-| Web | WEB | only Unity WebGL |
+| Web | WEB | only Unity WebGL|
 
 #### 4. displayLanguageCode
 
-可以将Gamebase提供的UI及SystemDialog中显示的语言更改为设备上设置的语言以外的语言。
+The display language on the Gamebase UI and SystemDialog can be changed into another language, which is not set on a device, as the user wants. 
 
-[Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Display Language](./unity-etc/#display-language)
+[Game > Gamebase > Unity SDK User Guide > ETC > Additional Features > Display Language](./unity-etc/#display-language)
 
 #### 5. enablePopup
 
-因系统维护、禁用(ban)等原因用户无法玩游戏时，需要通过弹出窗口等方式显示原因。
-此设置为是否使用Gamebase提供的默认弹出窗口的设置。
+When a game user cannot play games due to system maintenance or banned from use, reasons need to be displayed by pop-ups.
+This setting is related to applying default pop-ups provided by Gamebase SDK.
 
-* true：根据enableLaunchingStatusPopup、enableBanPopup的设置决定是否显示弹出窗口。
-* false：Gamebase提供的所有弹出窗口均不显示。
-* 默认值 : false
+* True: Pop-ups are exposed depending on the setting of enableLaunchingStatusPopup and enableBanPopup.
+* False: All pop-ups provided by Gamebase are not exposed.
+* Default: False
 
 #### 6. enableLaunchingStatusPopup
 
-此设置是当LaunchingStatus不能进行游戏时是否使用Gamebase提供默认弹出窗口的设置。
-LaunchingStatus请参考下面Launching段落下面的State、Code部分。
+This setting is related to applying default pop-ups provided by Gamebase, when the LaunchingStatus is disabled to play games.
+For LaunchingStatus, refer to Status/Code below Launching.
 
-* 默认值: true
+* Default: True
 
 #### 7. enableBanPopup
 
-此设置是当登录时该游戏用户为禁用状态时，是否使用Gamebase提供的默认弹窗的设置。
+This setting is related to applying default pop-ups provided by Gamebase, when the game user has been banned.
 
-* 默认值: true
+* Default: True
 
 #### 8. useWebViewLogin
 
-此设置为是否在Standalone平台上通过WebView进行登录的设置。
+Set whether or not to log in to WebView on a (Standalone) platform.
 
 ### Debug Mode
-* Gamebase仅显示警告(warning)和错误日志。 
-* 如果要打开系统日志进行开发，请调用**Gamebase.SetDebugMode(true)**。
+* Gamebase only displays the (warning) and error log.
+* To turn on system logs for development reference, call **Gamebase.SetDebugMode(true)**.
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 当**发布**游戏时，请务必从源代码中删除SetDebugMode调用，或者将参数更改为false之后再打包。
+> Before **releasing** a game, make sure to delete SetDebugMode call from the source code or change the parameter to false before building.
 
-可在Console中设置Debug，而在Console中设置的值的优先权最高。
-关于Console的设置方法，请参考如下指南。
+Debug setting is also available in the Console, and this setting in the Console takes precedence over the other.
+To find out how to set up the Console, see the following guide.
 
-* [Console测试终端机的设置](./oper-app/#test-device)
-* [Console Client的设置](./oper-app/#client)
+* [Setting Console test device](./oper-app/#test-device)
+* [Setting Console Client](./oper-app/#client)
 
 **API**
 
@@ -116,7 +114,7 @@ public void SetDebugModeSample(bool isDebugMode)
 
 ### Initialize
 
-需要初始化SDK。
+Initialize SDK.
 
 **API**
 
@@ -131,7 +129,7 @@ Supported Platforms
 static void Initialize(GamebaseRequest.GamebaseConfiguration configuration, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Launching.LaunchingInfo> callback)
 ```
 
-**示例**
+**Example**
 
 ```cs
 public class SampleInitialization
@@ -232,84 +230,95 @@ public class SampleInitialization
 
 ### Launching Information
 
-使用Initialize API来初始化Gamebase Unity SDK，LaunchingInfo对象将作为结果值传递。
-此LaunchingInfo对象包含了Gamebase Console中设置的值和游戏状态等。
+When Gamebase Unity SDK is initialized by using Initialize API, LaunchingInfo object results will be delievered.
+This LaunchingInfo object contains settings of the NHN Cloud Gamebase Console and game status.
 
 #### 1. Launching
 
-Gamebase发布信息。
+Launching information of Gamebase.
 
-**1.1 状态**
+**1.1 Status**
 
-Gamebase Unity SDK初始化设置是输入的APP版本的游戏状态信息。
+Status information of game app version set in the Gamebase Unity SDK initialization.
 
-* code：游戏状态码(维护中，强制更新，已下线等)
-* message：游戏状态消息
+* Code: Game status code (e.g. Under maintenance, Update is required, Service has been terminated)
+* Message: Game status message
 
-有关状态代码，请参考下表。
+For game status codes, refer to the table below.
 
-| 状态                      | Code | 描述                                    |
+| Status                      | Code | Description                              |
 | --------------------------- | ---- | ---------------------------------------- |
-| IN_SERVICE                  | 200  | 正常服务中                             |
-| RECOMMEND_UPDATE            | 201  | 推荐更新                                 |
-| IN_SERVICE_BY_QA_WHITE_LIST | 202  | 维护期间该服务不可用，但如果登记为测试设备，则无论维护如何，都可以连接和测试该服务。|
-| IN_TEST                     | 203  | 正在测试 |
-| IN_REVIEW                   | 204  | 正在审查 |
-| IN_BETA                     | 205  | Beta服务器环境  |
-| REQUIRE_UPDATE              | 300  | 强制更新                                |
-| BLOCKED_USER                | 301  | 访问权限已被禁用的用户。|
-| TERMINATED_SERVICE          | 302  | 终止服务                                  |
-| INSPECTING_SERVICE          | 303  | 服务正在维护中                             |
-| INSPECTING_ALL_SERVICES     | 304  | 所有服务正在维护中                              |
-| INTERNAL_SERVER_ERROR       | 500  | 内部服务器错误                                 |
+| IN_SERVICE                  | 200  | Service is provided normally                                 |
+| RECOMMEND_UPDATE            | 201  | Update is recommended                                  |
+| IN_SERVICE_BY_QA_WHITE_LIST | 202  | The service cannot be used during maintenance, but if the device is registered as a QA device, you can access and test the service regardless of maintenance status. |
+| IN_TEST                     | 203  | Test in progress |
+| IN_REVIEW                   | 204  | Review in progress |
+| IN_BETA                     | 205  | Beta server environment |
+| REQUIRE_UPDATE              | 300  | Update is required                                  |
+| BLOCKED_USER                | 301  | The service has been accessed with a device (device key) registered as access blocked. |
+| TERMINATED_SERVICE          | 302  | Service has been terminated                                   |
+| INSPECTING_SERVICE          | 303  | Service maintenance in progress                                 |
+| INSPECTING_ALL_SERVICES     | 304  | The whole service maintenance in progress                              |
+| INTERNAL_SERVER_ERROR       | 500  | Internal server error                                 |
 
-[Game > Gamebase > 控制台使用指南> APP > App](./oper-app/#app)
+[Game > Gamebase > Console Guide > App > App](./oper-app/#app)
 
 **1.2 App**
 
-Gamebase Console中注册的APP信息。
+App information registered in the NHN Cloud Console.
 
 * accessInfo
-    * serverAddress : 服务器地址
+    * serverAddress: Server address
 * customerService
-    * accessInfo : 客户服务信息
-    * type : 客户服务的类型
-    * url : 客户服务URL
+    * accessInfo : Customer Center contact information
+    * type : Customer Center type
+    * url : Customer Center URL
 * relatedUrls
-    * termsUrl : 使用条款
-    * personalInfoCollectionUrl : 同意个人信息
-    * punishRuleUrl : 停止使用规定
-* install : 安装URL
-* idP : 验证信息
+    * termsUrl: Terms of use
+    * personalInfoCollectionUrl: Agreement to collection of personal information
+    * punishRuleUrl: User ban rules
+* install: Installation URL
+* idP: Authentication information
 
-[Game > Gamebase > 控制台使用指南 > APP > Client](./oper-app/#client)
+[Game > Gamebase > Console Guide > App > Client](./oper-app/#client)
 
-**1.3维护**
+**1.3 Maintenance**
 
-在Gamebase Console设置的维护信息。
+Maintenance information registered in the NHN Cloud Console is as follows.
 
-* url：维护页面URL
-* timezone：标准时间段(timezone)
-* beginDate：开始时间
-* endDate：结束时间
-* message：维护理由
-* hideDate : 是否显示维护的开始和结束时间
+* url: Maintenance page url
+* timezone: Standard timezone (timezone)
+* beginDate: Start time
+* endDate: End time
+* message: Purpose of maintenance
+* hideDate: Whether to display maintenance start and end times
 
-[Game > Gamebase > 控制台使用指南 > 运营 > Maintenance](./oper-operation/#maintenance)
+[Game > Gamebase > Console Guide > Operation > Maintenance](./oper-operation/#maintenance)
 
-**1.4 公告**
+##### Change Default Maintenance HTML
 
-在Gamebaes Console中设置的公告信息。
+If both the `enablePopup` and `enableLaunchingStatusPopup` values are `true`, a maintenance popup will be automatically displayed if the game is in maintenance status.
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_popup_android_2.30.0.png)
 
-* message：消息
-* title：标题
-* url：维护URL 
+If you click the **DETAILS** button here, the maintenance information is automatically displayed in a webview.
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_webview_android_2.30.0.png)
 
-[Game > Gamebase > 控制台使用指南 > 运营 > Notice](./oper-operation/#notice)
+If you want to modify the displayed HTML file, download the HTML file from the following link, modify it as you need, and place it in the 'Assets > StreamingAssets > Gamebase' folder. Then the HTML file will be used to display maintenance information instead of the default HTML file included in the Gamebase SDK.
+[HTML file download link](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gamebase-maintenance.html)
+
+**1.4 Notice**
+
+Following notices are registered in the Gamebase Console.
+
+* message: Messages
+* title: Title
+* url: Maintenance url
+
+[Game > Gamebase > Console Guide > Operation > Notice](./oper-operation/#notice)
 
 #### 2. tcProduct
 
-与Gamebase关联的TOAST服务的appKey。
+Appkey of NHN Cloud Products linked to Gamebase.
 
 * gamebase
 * tcLaunching
@@ -318,33 +327,33 @@ Gamebase Console中注册的APP信息。
 
 #### 3. tcIap
 
-在TOAST Console中登记的IAP商店信息。
+IAP store information registered in the NHN Cloud Console.
 
 * id: App ID
 * name: App Name
 * storeCode: Store Code
  
-[Game > Gamebase > 控制台使用指南 > IAP](./oper-purchase/)
+[Game > Gamebase > Console Guide > Purchase](./oper-purchase/)
 
 #### 4. tcLaunching
 
-是TOAST Launching Console中用户输入的信息
+Refers to user-input information on NHN Cloud Launching Console.  
 
-* 用户输入的值传至JSON string。
-* TOAST Launching具体设置请参考如下指南。
+* Deliver user-input values via JSON string. 
+* For detail setting of NHN Cloud Launching, see the guide as below. 
  
-[Game > Gamebase > 操控台使用指南 > 管理 > Config](./oper-management/#config)
+[Game > Gamebase > Console Guide > Management > Config](./oper-management/#config)
 
 ### Get Launching Information
 
-使用GetLaunchingInformations API，Initialize之后也可获取LaunchingInfo对象。
+With the GetLaunchingInformations API, you can get the LaunchingInfo object even after initialization.
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> GetLaunchingInformations API不是从服务器实时获取信息的异步API。
-> 因每两分钟返还更新的现金信息，不适合实时判断当前是否维护。
-> 在此情况下，请使用Launching Status Code被更改时启动事件的GamebaseEventHandler。
-> [Game > Gamebase > Unity SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Observer](./unity-etc/#observer)
+> The GetLaunchingInformations API is not an asynchronous API that retrieves information from the server in real time.
+> It returns cached information updated every 2 minutes, so it is not suitable for real-time checking of the current status.
+> In that case, use GamebaseEventHandler, which triggers an event when the Launching Status Code is changed.
+> [Game > Gamebase > Unity SDK ser Guide > ETC > Additional Features > Gamebase Event Handler > Observer](./unity-etc/#observer)
 
 **API**
 
@@ -359,7 +368,7 @@ Supported Platforms
 static GamebaseResponse.Launching.LaunchingInfo GetLaunchingInformations()
 ```
 
-**示例**
+**Example**
 
 ```cs
 public GamebaseResponse.Launching.LaunchingInfo GetLaunchingInformations()
@@ -370,19 +379,19 @@ public GamebaseResponse.Launching.LaunchingInfo GetLaunchingInformations()
 
 ### Handling Unregistered Version
  	 
-初始化未在Gamebase控制台中注册的GameClientVersion时，将出现**LAUNCHING_UNREGISTERED_CLIENT(2004)**错误。
-如果是enablePopup(true)、enableLaunchingStatusPopup(true)状态，则显示强制更新弹窗，并可跳转到商店。
-若不使用Gamebase弹窗，则可从GamebaseError对象获取商店URL等的Update信息。 
+By initializing GameClientVersion which is not registered on Gamebase console, error occurs like follows: **LAUNCHING_UNREGISTERED_CLIENT(2004)**.  
+Under enablePopup(true), or enableLaunchingStatusPopup(true), popup shows for a forced update, and the user could be linked to the market.
+If Gamebase popup is disabled, updates like market URL can be obtained from the GamsebaseError object. 
 
 **VO**
 
 ```cs
 public class UpdateInfo {
-	// 是可以下载最新版本的”安装商店的URL”。
+	// URL for store installation to download the latest version.
 	string installUrl;
-    // 按用户终端机设置的语言向用户显示信息。
-    // 语言为”ko”时，提示以下消息。
-    // ”是不支持的版本。请更新至最新版本。”
+    // User can find a message in the language set on device.
+    // When the language is 'ko', the message shows like follows.
+    // 'This version is not supported. Please update to the latest version.'
     string message;
 }
 ```
@@ -453,14 +462,14 @@ public class SampleInitialization
 
 ### Error Handling
 
-| Error                              | Error Code | 描述            |
+| Error                              | Error Code | Description            |
 | ---------------------------------- | ---------- | ---------------------- |
-| NOT\_INITIALIZED      | 1          | 未初始化Gamebase。 |
-| NOT\_LOGGED\_IN       | 2          | 需要登录。            |
-| INVALID\_PARAMETER    | 3          | 无效的参数           |
-| INVALID\_JSON\_FORMAT | 4          | JSON格式错误         |
-| USER\_PERMISSION      | 5          | 无权限。              |
-| NOT\_SUPPORTED        | 10         | 不支持此功能。         |
+| NOT\_INITIALIZED      | 1          | Gamebase not initialized. |
+| NOT\_LOGGED\_IN       | 2          | Login required.            |
+| INVALID\_PARAMETER    | 3          | Invalid parameter.           |
+| INVALID\_JSON\_FORMAT | 4          | JSON format error.         |
+| USER\_PERMISSION      | 5          | No permissions.              |
+| NOT\_SUPPORTED        | 10         | Function not supported.         |
 
-* 所有错误代码，请参考以下文档。
-    * [错误代码](./error-code/#client-sdk)
+* Refer to the following document for all error codes.
+    * [Error code](./error-code/#client-sdk)

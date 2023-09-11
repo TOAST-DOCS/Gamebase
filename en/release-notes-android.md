@@ -1,19 +1,32 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.55.0 (2023. 09. 12.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.55.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: Naver Login Android SDK(5.7.0), NHN Cloud Android SDK(1.7.1)
+* 구 버전 Naver Login SDK의 OAuthLoginInAppBrowserActivity에서 발생하던 Cross-app Scripting 취약점이 해결되었습니다.
+* Naver IdP 사용 시 Naver IdP에서 지원하지 않는 API 21 미만 단말기에서도 크래시가 발생하지 않도록 방어 로직을 추가했습니다.
+
+#### 버그 수정
+* idP Login 시 로딩 애니메이션 off가 적용되지 않는 현상이 수정되었습니다.
+* API Level 28, 29 전체화면 웹뷰에서 windowFocus가 변경되면 네비게이션 바가 다시 생겨나는 이슈가 수정되었습니다.
+* Weibo 로그인에 성공했지만 간헐적으로 Weibo SDK에서 access token이 null로 리턴되는 경우 크래시가 발생하지 않도록 방어 로직을 추가했습니다.
+
 ### 2.53.0 (2023. 08. 17.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.53.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* loginForLastLoggedInProvider 호출 중에 로딩 애니메이션을 숨기는 옵션을 지정할 수 있는 신규 API가 추가되었습니다.
+#### Added Features
+* Added a new API to specify an option that hides the loading animation when calling loginForLastLoggedInProvider.
     * Gamebase.loginForLastLoggedInProvider(Activity activity, Map&lt;String, Object&gt; additionalInfo, GamebaseDataCallback&lt;AuthToken&gt; callback);
-    * API 호출 방법은 다음 가이드 문서를 참고하시기 바랍니다.
-        * [Game > Gamebase > Android SDK 사용 가이드 > 인증 > Login > Login Flow > Login as the Latest Login IdP](./aos-authentication/#login-as-the-latest-login-idp)
+    * For more details on how to call API, see the following documents.
+        * [Game > Gamebase > Android SDK User Guide > Authentication > Login > Login Flow > Login as the Latest Login IdP](./aos-authentication/#login-as-the-latest-login-idp)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Facebook Android SDK(16.1.2), Line Android SDK(5.8.1), Weibo Android SDK(13.5.0)
-* 고객 센터 웹뷰에서 파일을 첨부할 때 앨범, 카메라, 저장소 타입에 따라 자동으로 권한을 획득하고 타입에 맞는 기능을 실행하도록 개선되었습니다.
-    * '고객 센터'의 개선된 파일 첨부 기능을 사용하려면 아래 가이드에 따라 AndroidManifest.xml에 권한 설정을 추가해야 합니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > Contact](./aos-started/#contact)
+#### Feature Updates
+* External SDK update: Facebook Android SDK(16.1.2), Line Android SDK(5.8.1), Weibo Android SDK(13.5.0)
+* Improved so that, when attaching files in the Customer Center Webview, permissions are automatically acquired according to albums, cameras, storage types, and run the right feature for the type.
+    * To use the enhanced file attachment feature in the Customer Center, you need to add permission settings to the AndroidManifest.xml by following the guide below.
+    * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > Contact](./aos-started/#contact)
 
 ### 2.52.1 (2023. 07. 17.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.1/GamebaseSDK-Android.zip)

@@ -1,64 +1,65 @@
-## Game > Gamebase > 控制台使用指南 > 运营指标
+## Game > Gamebase > Console Guide > Monitoring
 
-可以以指标和图表查看APP用户的状态。
-由监控、组同时在线用户数、安装URL统计、销售情况菜单组成。
+Status of app users is shown by indicator or graph.
+The menu is composed of Monitoring, Concurrent Group User, User Statistics, Install URL Statistics, and Sales Status.
+
 
 ## Monitoring
-![operation-indicator_01_201812](https://static.toastoven.net/prod_gamebase/operation-indicator_01_201812.png)
-您可以查看当前使用APP的用户统计，预定的推送状态和维护内容。
-每隔5分钟，页面会自动“刷新”，您可以实时查看变化的指标。
-1
-* 基准指标
-	* CCU(concurrent connected users)：同时在线用户数
-	* MCU(maximum concurrent users)：最大同时在线用户数(可按实时，日期查询)
-	* DAU(daily active users)：日活跃用户数(可按实时，日期查询)
-	* NRU(new registered users)：新注册用户数(可按实时，日期查询)
-* 占有率图表：游戏用户的占有率
-	* 按操作系统：Android，iOS，WebGL 等
-	* 按国家：通过SDK收集的USIM国家基准
-	* 按版本：Console中登记的客户端版本占有率
-* 同时在线用户数图表：每日00:00起至当前时间，同时在线人数变化的图表
-	* 维护及推送在图表上单独显示，以便于确认由于维护和推送而导致的同时在线人数的变化。
-	* 可通过右侧按钮下载相关数据。
+![operation-indicator_01_201812_en](https://static.toastoven.net/prod_gamebase/operation-indicator_01_201812_en.png)
+Shows statistics of current app users, reserved push status at the moment, and reserved maintenance.
+The screen is automatically refreshed every five minutes, to display changed indicators in real time.
 
+* Basic Indicators
+    * Concurrent Connected User (CCU): Number of concurrently connected users in real time
+    * Maximum Concurrent User (MCU): Maximum number of concurrently connected users of a day (can retrieve in real time and by date)
+    * Daily Active User (DAU): Net number of users who use game of a day (can retrieve in real time and by date)
+    * New Registered User (NRU): Number of new users of a day (can retrieve in real time and by date)
+* Market Share Chart: Pie Chart of Games User's Market Share
+    * By Operating System: Android, iOS, WebGL, and etc.
+    * By Country: By USIM country collected by SDK
+    * By Version: By client version registered at console
+* Change Graph of Concurrent Connection: Graph of changes of concurrent connection from 00:00 today up to now
+	* Show maintenance and push details on graph to easily follow changes in concurrent connection out of maintenance and push.
+    * You can download the graph in .xlsx or .csv format by clicking on the button at the top right corner of the panel.
 
 ## User Statistics
-![operation-indicator_02_201812](https://static.toastoven.net/prod_gamebase/operation-indicator_02_201812.png)
-可以用图表查看DAU、MCU、NRU、CCU AVG状态。
-可以一目了然地查看当前用户的趋势变化。
-可以通过右上角选择栏来指定日期，查看数据。
-各项说明如下：
+![operation-indicator_02_201812_en](https://static.toastoven.net/prod_gamebase/operation-indicator_02_201812_en.png)
+Check DAU, MCU,NRU, and CCU AVG on graphs.
+Easy to identify trend changes of the current games users.
+You can specify a date by using the selection bar at the top right to check data.
+Each item is described as below:
 
-* 单项说明
-	* DAU(daily active users)：日活跃用户数(可按实时，日期查询)
-	* MCU(maximum concurrent users)：最大同时在线用户数(可按实时，日期查询)
-	* NRU(new registered users)：新注册用户数(可按实时，日期查询)
-	* CCU AVG(concurrent connected users average)：同时在线用户数平均值
+* Description
+    * Daily Active User (DAU): Net number of users who use game of a day (can retrieve in real time and by date)
+    * Maximum Concurrent User (MCU): Maximum number of concurrently connected users of a day (can retrieve in real time and by date)
+    * New Registered User (NRU): Number of new users of a day (can retrieve in real time and by date)
+    * Concurrent Connected User Average(CCU AVG): Average of concurrently connected users in real time
 
 ## Concurrent Group User
-![operation-indicator_03_201812](https://static.toastoven.net/prod_gamebase/operation-indicator_03_201812.png)
-可以查看所属项目在线用户数。按系统分类，可一目了然地查看有权限的各项目的同时在线用户数。
+![operation-indicator_03_201812_en](https://static.toastoven.net/prod_gamebase/operation-indicator_03_201812_en.png)
+Check statistics of concurrent connection of groups where your project belongs to. The real-time number of concurrent connectors can be seen at a glance per operating system of many projects at your authority.
 
 ## Installed URL Statistics
-![operation-indicator_04_201812](https://static.toastoven.net/prod_gamebase/operation-indicator_04_201812.png)
-可以查看通过安装URL调用的统计数据。
+![operation-indicator_04_201812_en](https://static.toastoven.net/prod_gamebase/operation-indicator_04_201812_en.png)
+Shows statistical data of install URL calls.
 
-* 每日安装URL调用的图表
-* 各浏览器占有率: Internet Explorer, Chrome 等
-* 各平台占有率: Android, iOS 等
+* Change graph of installed URL calls by date
+* Market share by browser: Internet Explorer, Chrome, and etc.
+* Market share by platform: Android, iOS, and etc.
+
 
 ## Statistics
 ![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Monitoring_Statistics1_1.2.png)
-可以通过销售情况页面，轻松查看APP销售状况。
-右上角**货币**，可按各货币查看销售额。
+Shows real-time sales statistics of a game in Sales Status.
+Select a currency to check sales volume of the currency.
 
-#### (1) 日销售情况统计图表
-可通过线性图表查看每日销售情况，掌握销售情况和趋势。
+#### (1) Statistical Graph of Daily Sales Status
+Easy to identify daily sales status and trends on a line graph.
 
-#### (2) 月销售情况
-按商店和综合数据，统计出每月或本月销售总额。
+#### (2) Monthly Sales Status
+Displays monthly or accumulated sales of the month in statistics by store and aggregated data.
 
-#### (3) 日销售情况
-可以查询在APP注册的各商店的每日销售额。
-可以查询当月至今天的所有数据。
-可以查看比每月更详细的销售情况，还可以比较和分析活动期间及发生问题时的销售情况。
+#### (3) Daily Sales Status
+Retrieves sales status of each store registered in an app, by date.
+You can find data up to today for the month.
+Daily sales status is more precise than monthly status. You can compare and analyze sales status, during an event or when an issue occurs.

@@ -1,23 +1,15 @@
-## Game > Gamebase > Android SDK使用指南 > push
+## Game > Gamebase > Android Developer's Guide > Push
 
 ### Settings
 
 #### Android Notification Icon
 
-```
-Not translated yet
-```
+For the icon displayed when a push notification arrives, the app icon is used by default.
 
-### Settings  
+However, a push icon on Android is displayed correctly only if the icon uses a solid color image with an alpha area applied.
+[Material Design Guide - Android Notification \[LINK\]](https://material.io/design/platform-guidance/android-notifications.html#anatomy-of-a-notification)
 
-#### Android Notification Icon
-
-在基本状态下推送通知时一般使用应用程序图标。
-
-但Android上的推送图标只有在使用应用了alpha区域单色图像时，才能正确地显示。
-[Material Design指南 - Android Notification \[LINK\]](https://material.io/design/platform-guidance/android-notifications.html#anatomy-of-a-notification)
-
-由于图标大小由终端机分辨率决定，请参考以下规则设置推送图标。
+Since the icon size is also fixed by device resolution, please refer to the following to prepare a push icon.
 
 * MDPI - 24 x 24  (drawable-mdpi)
 * HDPI - 36 x 36  (drawable-hdpi)
@@ -25,20 +17,20 @@ Not translated yet
 * XXHDPI - 72 x 72  (drawable-xxhdpi)
 * XXXHDPI - 96 x 96  (drawable-xxxhdpi)
 
-推送图标文件名中不能包含空格、大写英文字母和特殊字符。
+Push icon file names cannot include spaces, uppercase English characters, and special characters.
 
-请参考以下Notification Options指南设置**default_small_icon**(AndroidManifest.xml)或**setSmallIconName**(API)。
-[Game > Gamebase > Android SDK使用指南 > 开始 > Setting > AndroidManifest.xml > Notification Options](./aos-started/#notification-options)
-[Game > Gamebase > Android SDK使用指南 > 推送 > Notification Options > Set Notification Options with RegisterPush in Runtime](./aos-push/#set-notification-options-with-registerpush-in-runtime)
+You need to set **default_small_icon** (AndroidManifest.xml) or **setSmallIconName** (API) by referring to the following Notification Options guide.
+[Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > Notification Options](./aos-started/#notification-options)
+[Game > Gamebase > Android SDK User Guide > Push > Notification Options > Set Notification Options with RegisterPush in Runtime](./aos-push/#set-notification-options-with-registerpush-in-runtime)
 
 ### Register Push
 
-调用以下API在TOAST Push注册用户。<br/>
-接受来自用户的推送协议（enablePush）、广告推送协议（enableAdPush）、夜间广告推送协议（enableAdNightPush）的值，并调用以下API完成注册。
+Call the following API to register the user for NHN Cloud Push.<br/>
+Get the values of consent to receiving push (enablePush), consent to receiving advertisement push (enableAdPush), and consent to receiving night-time advertisement push (enableAdNightPush) from the user, and call the following API to complete the registration.
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 由于每个UserID的推送设置有可能不同，并且推送令牌也可能过期，登录后推荐每次都调用registerPush API。
+> It is recommended to call the registerPush API every time after logging in because the push settings may be different for each UserID and the push token may expire.
 
 **API**
 
@@ -79,31 +71,32 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 
 ### Notification Options
 
-* 通过使用Notification Options功能可更改终端机显示的推送通知类型。 
-* 需要进行更改时在AndroidManifest.xml文件中定义或在运行时调用registerPush API。
+* You can use the Notification Options to change how the notification will be displayed in the device.
+* Notification Options can be changed by setting it to AndroidManifest.xml or calling the registerPush API at runtime.
 
 #### Set Notification Options with AndroidManifest.xml
 
-设置时在AndroidManifest.xml文件中声明。<br/>
-关于Notification Options的设置方法，请参考如下指南。
-[Game > Gamebase > Android SDK使用指南 > 开始 > Setting > AndroidManifest.xml > Notification Options](./aos-started/#notification-options)
+Notification options can be set by defining them to AndroidManifest.xml.<br/>
+To find out how to set the options, see the following guide:
+
+[Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > Notification Options](./aos-started/#notification-options)
 
 #### Set Notification Options with RegisterPush in Runtime
 
-需要设置时，在AndroidManifest.xml中声明或在运行时设置（在运行时可修改在文件中定义的值）。
-调用registerPush API时，通过添加GamebaseNotificationOptions参数设置Notification Options。
-如果使用GamebaseNotificationOptions.newBuilder()参数传送”调用Gamebase.Push.getNotificationOptions()获得的结果"，则生成使用当前的Notification Options功能初始化的Builder。通过该Builder可以更改值。<br/>
-以下为可以设置的值。
+You can also set the notification options at runtime without defining them in AndroidManifest.xml, or you can change the value set in AndroidManifest.xml at runtime as well.
+When calling the registerPush API, add the GamebaseNotificationOptions argument to set the notification options.
+If you pass the call results for the Gamebase.Push.getNotificationOptions() with the argument of the GamebaseNotificationOptions.newBuilder(), the builder initialized with the current notification options is created. Thus, you can just change the necessary values.<br/>
+The following settings are available:
 
 | API                   | Parameter       | Description        |
 | --------------------  | ------------ | ------------------ |
-| enableForeground      | boolean      | App为Foreground状态时是否允许推送通知<br/>**default**: false  |
-| enableBadge           | boolean      | 是否使用Badge图标<br/>**default**: true |
-| setPriority           | int          | 推送通知的优先顺序-可以设置以下5个值。<br/>NoticationComapt.PRIORITY_MIN : -2<br/> NoticationComapt.PRIORITY_LOW : -1<br/>NoticationComapt.PRIORITY_DEFAULT : 0<br/>NoticationComapt.PRIORITY_HIGH : 1<br/>NoticationComapt.PRIORITY_MAX : 2<br/>**default**: NoticationComapt.HIGH |
-| setSmallIconName         | String       | 手机顶端状态栏的通知提示小图标文件名称<br/>-如果不设置，则使用APP图标。<br/>**default**: null |
-| setSoundFileName      | String       | 提示音文件名称-仅在Android 8.0以下的OS上运行。<br/>如果指定”res/raw”文件夹的mp3、wav文件名称，则可更改提示音。<br/>**default**: null |
+| enableForeground      | boolean      | Expose the notifications when the app is in the foreground status<br/>**default**: false |
+| enableBadge           | boolean      | Use the badge icon<br/>**default**: true |
+| setPriority           | int          | Notification priority. You can set the following five values:<br/>NoticationComapt.PRIORITY_MIN : -2<br/> NoticationComapt.PRIORITY_LOW : -1<br/>NoticationComapt.PRIORITY_DEFAULT : 0<br/>NoticationComapt.PRIORITY_HIGH : 1<br/>NoticationComapt.PRIORITY_MAX : 2<br/>**default**: NoticationComapt.HIGH |
+| setSmallIconName         | String       | Small icon file name for notification.<br/>If disabled, app icon is used.<br/>**default**: null |
+| setSoundFileName      | String       | Notification sound file name. Works only in AOS 8.0 or earlier.<br/>The notification sound will change as you specify the .mp3 or .wav file name in the 'res/raw' folder.<br/>**default**: null |
 
-**示例**
+**Example**
 
 ```java
 boolean enableForeground;
@@ -140,8 +133,8 @@ Gamebase.Push.registerPush(activity, pushConfiguration, notificationOptions, new
 
 #### Get NotificationOptions
 
-通过调用Get NotificationOptions，注册推送时可获取已设置的通知选项值。
-可以获取（包括在AndroidManifest.xml文件中定义的值和在运行时更改的值）最新设置值。
+Retrieves the notification options value which was set previously when registering the push notification.
+Retrieves the most recent settings by including the value set in AndroidManifest.xml and the value which was changed at runtime.
 
 **API**
 
@@ -151,8 +144,8 @@ Gamebase.Push.registerPush(activity, pushConfiguration, notificationOptions, new
 
 ### Request Push Settings
 
-要查询用户的推送设置，请使用以下API。<br/>
-可以通过来自回调的GamebasePushTokenInfo值获取用户设置值。
+To retrieve user's push setting, apply API as below. <br/>
+From GamebasePushTokenInfo callback values, you can get user's value set.
 
 **API**
 
@@ -165,7 +158,7 @@ Gamebase.Push.registerPush(activity, pushConfiguration, notificationOptions, new
                                 @NonNull GamebaseDataCallback<PushConfiguration> callback);
 ```
 
-**示例**
+**Example**
 
 ```java
 Gamebase.Push.queryTokenInfo(activity, new GamebaseDataCallback<PushConfiguration>() {
@@ -188,46 +181,46 @@ Gamebase.Push.queryTokenInfo(activity, new GamebaseDataCallback<PushConfiguratio
 
 | Parameter           | Values                | Description         |
 | --------------------| ----------------------| ------------------- |
-| pushType            | String                | 推送令牌种类       |
-| token               | String                | 令牌                 |
-| userId              | String                | 用户ID         |
-| deviceCountryCode   | String                | 国家代码           |
-| timezone            | String                | 标准时区           |
-| registeredDateTime  | String                | 令牌更新时间    |
-| languageCode        | String                | 语言设置            |
-| agreement           | GamebasePushAgreement | 是否同意接收        |
+| pushType            | String                | Push token type       |
+| token               | String                | Token                 |
+| userId              | String                | User ID         |
+| deviceCountryCode   | String                | Country code           |
+| timezone            | String                | Standard timezone           |
+| registeredDateTime  | String                | Token update time    |
+| languageCode        | String                | Language settings            |
+| agreement           | GamebasePushAgreement | Opt in        |
 
 #### GamebasePushAgreement
 
 | Parameter        | Values  | Description               |
 | -----------------| --------| ------------------------- |
-| pushEnabled      | boolean | 是否允许显示推送通知          |
-| adAgreement      | boolean | 是否同意接收广告性推送通知      |
-| adAgreementNight | boolean | 是否允许在夜间显示广告性推送通知  |
+| pushEnabled      | boolean | Opt in to display notifications           |
+| adAgreement      | boolean | Opt in to display advertisement notifications      |
+| adAgreementNight | boolean | Opt in to display night advertisement notifications  |
 
 ### Event Handling
 
-* 当接受了推送消息或点击推送消息时可处理事件。
-* 关于事件注册方法，请参考GamebaseEventHandler指南。
-    * [ Game > Gamebase > Android SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Push Received Message](./aos-etc/#push-received-message)
-    * [ Game > Gamebase > Android SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./aos-etc/#push-click-message)
-    * [ Game > Gamebase > Android SDK使用指南 > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./aos-etc/#push-click-action)
+* You can handle events when a push message is received or clicked.
+* For how to register event handlers, refer to the GamebaseEventHandler guide.
+    * [ Game > Gamebase > Android SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Push Received Message](./aos-etc/#push-received-message)
+    * [ Game > Gamebase > Android SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./aos-etc/#push-click-message)
+    * [ Game > Gamebase > Android SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./aos-etc/#push-click-action)
 
 ### Error Handling
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
-| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | 是NHN Cloud Push库错误。<br>请确认详细错误。 |
-| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | 上一次的推送API调用未完成。<br>上一次推送API回调执行后请重新调用。 |
-| PUSH_UNKNOWN_ERROR             | 5999       | 未知推送错误<br>请将全部的Log上传到[客户服务](https://toast.com/support/inquiry)，我们会尽快回复。 |
+| PUSH_EXTERNAL_LIBRARY_ERROR    | 5101       | Error in NHN Cloud Push library.<br>Please check the error details. |
+| PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | Previous push API call has not been completed.<br>Please call again after the previous push API callback is executed. |
+| PUSH_UNKNOWN_ERROR             | 5999       | Unknown push error.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry), and we'll respond ASAP. |
 
-* 全部错误代码，请参考以下文档。
-    * [错误代码](./error-code/#client-sdk)
+* Refer to the following document for the entire error codes:
+    * [Entire Error Codes](./error-code/#client-sdk)
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
-* 当在NHN Cloud Push库中发生错误时，返还此错误。
-* 在NHN Cloud Push库中发生的错误信息包含在详细错误中，而详细错误代码和消息如下。
+* The error is returned when an error occurs in NHN Cloud Push library.
+* The information on the error in NHN Cloud Push library is included in the error details, and you can find detailed error code and message as follows.
 
 ```java
 Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {
@@ -255,15 +248,15 @@ Gamebase.Push.registerPush(activity, pushConfiguration, new GamebaseCallback() {
 });
 ```
 
-* TOAST Push SDK错误代码如下。
+* The NHN Cloud Push SDK error codes are as follows:
 
 | Error | Error Code | Description |
 | --- | --- | --- |
-| OK | 0 | 调用API成功 |
-| NOT_INITIALIZE | 100 | 未对TOAST SDK或TOAST Push SDK进行初始化时 |
-| PROVIDER_SDK_ERROR | 101 | 外部SDK(Firebase)发生错误时 |
-| USER_ID_NOT_REGISTERED | 102 | 未登录时 |
-| UNSUPPORTED_PUSH_TYPE | 103 | PushType输入错误或项目中不包含推送库 |
-| API_SERVER_ERROR | 104 | 调用TOAST Push服务器API失败时 |
-| TOKEN_NOT_REGISTERED | 105 | 内部缓存的Push Token不存在时 |
-| INVALID_PARAMETER | 106 | 为错误参数时 |
+| OK | 0 | API call is successful |
+| NOT_INITIALIZE | 100 | NHN Cloud SDK or NHN Cloud Push SDK is not initialized |
+| PROVIDER_SDK_ERROR | 101 | Error occurs from external SDK (Firebase or Tencent) |
+| USER_ID_NOT_REGISTERED | 102 | Not logged in |
+| UNSUPPORTED_PUSH_TYPE | 103 | PushType is invalid or push library is not included to a project |
+| API_SERVER_ERROR | 104 | NHN Cloud Push server API call fails |
+| TOKEN_NOT_REGISTERED | 105 | Internally-cached push token does not exist |
+| INVALID_PARAMETER | 106 | Invalid parameter |

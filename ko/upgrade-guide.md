@@ -1,5 +1,15 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.55.0
+
+### Android
+
+#### Naver Idp
+* Naver Login SDK의 업데이트로 minSDK가 19 -> 21로 상향되었습니다.
+
+#### MyCard Adapter
+* NHN Cloud SDK의 업데이트로 minSDK가 19 -> 21로 상향되었습니다.
+
 ## 2.54.0
 
 ### iOS

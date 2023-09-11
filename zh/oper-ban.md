@@ -1,177 +1,170 @@
-## Game > Gamebase > 控制台使用指南 > 禁用
+## Game > Gamebase > Console Guide > Ban
 
-提供禁用功能，限制不当使用应用或玩游戏的用户。
-当被禁用的用户再次登录或恢复会话时，将显示禁止使用弹窗以限制游戏的使用。
+Gamebase bans those game users who use apps inappropriately or abusively.
+When a banned user tries to log in again, or session is restored, a pop-up will be displayed to restrict game use.
 
-注册禁用时，可在Gamebase Console中手动进行。若使用NHN Cloud AppGuard，则可通过利用图案注册来自动注册。
+You can register banning either manually in the Gamebase Console or automatically with NHN Cloud Cloud AppGuard by using registered patterns.
 
-关于AppGuard联动方法，请参考[AppGuard](./oper-ban/#appguard)。
+Refer to [AppGuard](./oper-ban/#appguard) on how to integrate AppGuard.
 
 
 ## Ban
 
-您可以查询禁用历史记录，添加禁用或解除已禁用的游戏用户。
+Retrieve the list of game users who are banned/released from banning, as search conditions allow.
 
-### Search Banned User 
+### Search Banned User
 
-根据搜索条件查询禁用/解除禁用的游戏用户列表。
+Retrieve the list of game users who are banned/released from banning, as search conditions allow.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_01_201812.png)
+![gamebase_ban_01_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_01_201812_en.png)
 
-**搜索条件**
+**Search Conditions**
 
-- **状态** : (必选) 选择禁用状态(禁用/解除禁用)。两个选项中只能选择一项。
-- **注册日** : (必选) 选择禁用注册日的时期(from-to)。
-- **用户ID** : 禁用/被解除禁用的Gamebase用户ID
-- **模板** : 选择用于注册禁用的模板并进行搜索。   
-- **注册系统** : 选择注册禁用的系统并进行搜索。可以重复选择。
-    - **控制台** : 通过Gamebase Console进行注册。
-    - **AppGuard** : 通过与AppGuard连接自动注册。 
-    - **外部服务器** : 在运行应用程序的服务器或其他外部服务器进行注册。
-    - **其他** : 注册除上述示例以外的其他禁用。(直接调用API等)
+- **Status**: (Required) Select a status of banning (ban/release ban). Must choose only one, not both.
+- **Registration Date**: (Required) Select the range of registration date of banning (from-to).
+- **User ID**: Gamebase user IDs of those who are banned/released from ban.
+- **Template**: Select and retrieve a particular template which is applied to register banning.
+- **Registration System**: Select and retrieve a system which registers banning. Can make multiple choices.
+    - **Console**: Register via Gamebase Console.
+    - **AppGuard**: Automatically register with AppGuard integration.
+    - **External Server**: Register at an app operating server or other external servers.
+    - **ETC**: Register other banning cases, except the above (e.g. direct API calls).
 
-> [参考]
+> [Note]
 >
-> 为了使以多种语言输入向用户显示的消息并反复使用它，提供模板功能。 
-> 必须至少有一个已注册的模板才能注册禁用。
-> 关于注册模板的方法，请参考[Template](./oper-ban/#template)。
+> By using a multi-language template, messages can be easily displayed to users in a language of choice, while the template can be reused.
+> Requires more than one registered template to register banning.
+> Refer to [Template](./oper-ban/#template) to register a template.
 
-**搜索结果**
- 
-- **用户ID** : 禁用游戏用户ID
-- **期间** : 禁用时期/如果是永久禁用，则显示为“永久禁用”。 
-- **模板** : 用于注册禁用的模板 
-- **原因** : 注册禁用时管理员输入的禁用原因。其原因不会向用户显示，只能通过操作历史记录确认。
-- **注册者/注册日** : 注册禁用的管理员账号/注册禁用的日期 
-- **解除理由** : 解除禁用时管理员注册的禁用理由/其理由不会向用户显示，只能通过操作历史记录确认。
-- **解除注册者/解除注册日** : 解除禁用的管理员账号/解除禁用的日期
-- **解除** : 在查询列表中显示可以解除用户禁用的**解除禁用**按钮。单机此按钮时将显示输入解除禁用理由的弹窗，输入解除禁用理由后按**保存**按钮时禁用将被解除。 
-- **状态**       
-    - <font color="white" style="background-color:#FB8F37">禁用</font> : 是游戏用户无法连接应用程序的状态。
-    - <font color="white" style="background-color:#A1A1A1">禁用(期限届满)</font> : 是游戏用户的禁用期限已过，但尚未登录的状态/ 游戏用户重新连接时，将自动转为“期限届满”状态。
-    - <font color="white" style="background-color:#88C637">解除</font> : 是管理员解除游戏用户禁用的状态。
-    - <font color="white" style="background-color:#2AB1A6">解除(期限届满)</font> : 是禁用期限过后，当游戏用户重新连接到游戏时禁用被解除的状态。
+**Search Results**
+
+- **User ID**: User ID of a banned game user.
+- **Period**: Banning period. Shown as 'Permanent Banning' for a permanently banned user.
+- **Template**: Template used for registering banning.
+- **Reason**: Reasons that an operator entered when registering banning. Serves only as an operation history, without being displayed to users.
+- **Registered User/Registration Date**: Account of an operator who registered banning/date of ban registration.
+- **Release Reason**: Reasons an operator registered to release banning. Serves only as an operation history, without being displayed to users.
+- **Released User/Release Date**: Account of an operator who released banning/date of release.
+- **Release**: A banned user is marked with the **Release** button on the search list to allow release. Click the button, and a pop-up to enter release reason will show up. Enter the release reason, click **Save**, and banning is released.
+- **Status**
+    - <font color="white" style="background-color:#FB8F37">Ban</font>: Game user cannot access the app at the moment.
+    - <font color="white" style="background-color:#A1A1A1">Ban (expired)</font>: Game user's ban has expired but user has not logged in. When the user logs in, the status will change to release (expired).
+    - <font color="white" style="background-color:#88C637">Release</font>: Game user's ban has been released by operator.
+    - <font color="white" style="background-color:#2AB1A6">Release (expired)</font>: Game user's ban has been released due to expiration.
 
 
-> [参考]
+> [Note]
 >
-> 点击**下载文件**按钮将搜索结果另存为CSV文件。
+> Click the **File Download** button, and you can save search results in CSV files.
+
 
 
 ### Register Ban
 
-点击禁用页面上的**添加**按钮，则可添加禁用。
+You can register banning by clicking **Register** on the Retrieve Ban page.
 
-![gamebase_ban_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_02_201812.png
-#### (1) 用户ID
-输入Gamebase用户ID以添加禁用。您可以一次添加多个用户，有两种添加方式。
+![gamebase_ban_02_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_02_201812_en.png)
+#### (1) User ID
+Enter a Gamebase user ID to register banning. Multiple users can be registered at once, following the two methods as below.
 
-- **输入用户** : 在输入窗口中直接输入要禁用的用户ID，然后按Enter键或点击添加按钮。将进行用户ID的有效性验证，因此无法输入无效的用户ID。
-- **批量添加** : 只能上传CSV文件。可以从Console 画面下载示例文件。批量添加一次最多可支持10,000人。
-  ![gamebase_ban_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_03_201812.png)
+- **User Input**: Directly enter a user ID to register and press **Enter** or click **Add.** As validity is checked for user IDs, invalid user IDs cannot be entered.
+- **Batch Registration**: Can upload CSV files only, and an example file can be downloaded from the Console page. Up to 10,000 persons can be registered at once by batch.
+  ![gamebase_ban_03_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_03_201812_en.png)
 
-> [参考]</br>
+> [Note]</br>
 >
-> 若一次性注册失败，将显示提示弹窗。点击该弹窗中的**Download**按钮以文件形式下载无法注册的用户列表。
-> ![gamebase_ban_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_04_201812.png)
+> If batch registration fails during progress, a pop-up will be displayed. Click **Download** from the pop-up to download the list of users who are failed to be registered in a file.
+> ![gamebase_ban_04_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_04_201812_en.png)
 
-#### (2) 期限
-设置游戏用户的禁用期限。添加禁用后此游戏用户无法登录。
+#### (2) Period
+Set a banning period for a game user. Banning will be applied from the moment of registration.
 
+- **Permanent**: Select to ban permanently.
+- **Specify Period**: Enter how long to ban by day and hour. Can expect banned period with **anticipated expiration time**.
 
-- **永久禁用** : 选择此项以永久禁用。
-- **指定时期** : 输入禁用期限。通过日期(day)和小时(hour)**预计到期时间**信息，可以提前确认用户的禁用期限。
+#### (3) Reason
+Enter reasons why a user is to be banned.
+Serves only as an operation history, without exposed to users.
 
-#### (3) 原因  
-输入用户被禁用的原因。
-其原因不会向用户显示，只能通过操作历史记录确认。
+#### (4) Message
+Enter messages to be displayed to banned user.
+A multi-language template to display messages is supported for users and allow easy re-use. Select a pre-registered template to register.
 
-#### (4) 公布消息
-输入向用户显示的禁用消息。
-提供模板方便以多种语言输入消息显示给用户并重复使用。选择预先添加的模板进行添加。
+> <font color="red">[Important Note]</font>
+> You can register banning only when a template of displayed message is registered.
+> If a template has not been registered, first go to **Template** of **BAN** to register a template.
+> Refer to [Template](./oper-ban/#template) on how to register a template.
 
-> <font color="red">[重要]</font>
-> 您只能在添加了显示消息模板的前提下，才能完成添加禁用。
-> 如果您没有添加模板，请先在**BAN**菜单的**Template**标签中添加模板。
-> 添加Template方法，请参考[Template](./oper-ban/#template)。
-
-#### (5)删除Leaderboard
-设置是否在添加禁用时删除用户Leader board。
-选择后，添加时将从Leader board删除用户的数据<font color="red">。请注意，删除后该数据将无法恢复。</font>
+#### (5) Delete Leaderboard
+When registering banning, you can select whether to delete the game user's Leaderboard data or not.
+If you select this option and register banning, data of the game user is deleted. Caution is required because the deleted Leaderboard data <font color="red">cannot be recovered</font>.
 
 ### Release Ban
 
-您可通过点击禁用页面上的**解除**按钮解除禁用。
+You can release banning by clicking **Release** on the Retrieve Ban page.
 
-![gamebase_ban_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_05_201812.png)
+![gamebase_ban_05_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_05_201812_en.png)
 
-#### 解除理由
-输入解除用户禁用原因。
-其原因不会向用户显示，只能通过操作记录确认。
- 
-#### 用户ID
-输入要解除禁用的Gamebase用户ID。您可以一次添加多个用户，有两种添加方式。
+#### Release Reason
+Enter reasons why a user is to be released from banning.
+Serves only as an operation history, without exposed to users.
 
-- **输入用户** : 在输入窗口中直接输入要禁用的用户ID，然后按**Enter**键或点击**添加**按钮。将进行用户ID的有效性验证，因此无法输入无效的用户ID。
-- **批量添加** : 只能上传CSV文件。可以从Console画面下载示例文件。批量添加一次最多可支持10,000人。
-![gamebase_ban_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_06_201812.png)
+#### User ID
+Enter a Gamebase user ID to release banning. Multiple users can be registered at once, following the two methods as below.
 
-> [参考]
-> 如果批量添加失败，将出现提示。您可以通过点击提示页面中的**Download**按钮下载添加失败的用户列表文件。
-> ![gamebase_ban_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_04_201812.png)
+- **User Input**: Directly enter a user ID to register and press **Enter** or click **Add.** As validity is checked for user IDs, invalid user IDs cannot be entered.
+- **Batch Registration**: Can upload CSV files only, and an example file can be downloaded from the Console page. Up to 10,000 persons can be registered by batch at once.
 
-## Template 
-提供模板轻松以多种语言输入消息显示给禁用用户。选择预先创建的模板。
-您可以按语种添加，如果您禁用该用户，将根据设置的语言显示禁用消息。
+![gamebase_ban_06_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_06_201812_en.png)
+
+
+> [Note]
+>
+> If batch registration fails during progress, a pop-up will be displayed. Click **Download** from the pop-up to download the list of users who are failed to be registered in a file.
+> ![gamebase_ban_04_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_04_201812_en.png)
+
+## Template
+Provides a multi-language template to display messages for banning target users and allows easy re-use. Select a pre-registered template.
+You can register templates by language, and a message of banning will be displayed for banning target users based on the language set on each of their devices.
 
 ### Search
 
-您可以搜索已创建的模板列表。
-您可以创建新模板，修改已创建的模板，但不能删除已创建的模板。
+Allows you to search the list of registered templates.
+You can register a new template, or modify registered templates, but cannot delete them.
 
+![gamebase_ban_07_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_07_201812_en.png)
 
-![gamebase_ban_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_07_201812.png)
-
-- 在模板列表页面中，“公布消息”显示创建模板时作为“默认语言”输入的消息。
+- In the template list, the Message item will show messages in a language entered as 'Default Language' while registering a template.
 
 ### Register Template
 ![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_ban_08_202004.png)
 
-#### (1) 名称
+#### (1) Name
+Enter a name of template to show on the list to register banning.
 
-当注册禁用时输入将在列表中显示的模板名称。
+#### (2) Message
+Enter messages for banning target users.
+The messages can be registered in multiple languages, and for users using other languages, the language selected as 'Default Language' will be displayed. To add a language, click **+** on the right, and if there's any other language you want on the list, contact [Customer Center](https://toast.com/support/inquiry).
+Click **Auto Translate to Default Language** and messages in the default language are translated into a language set for each item.
 
-#### (2) 公布消息
-
-输入向用户显示的禁用消息。您可以使用多种语言，对使用您输入语言之外的其他语言的用户，将显示“默认语言”。点击右侧的**+**按钮可以添加语言，如果没有所需的语言，可通过联系[客户服务](https://toast.com/support/inquiry)服务将其添加。
-选择“翻译”按键，可将默认语言翻译成设置的语言。  
-                                                                                                                                                   
 ## AppGuard
 
-> <font color="red">[注意]</font> 
-> 仅可在NHN Cloud中与将要应用此功能的服务相同的项目启用了NHN AppGuard服务时使用AppGuard连接功能。
+> <font color="red">[Important Note]</font>
+> The AppGuard integration function is available only when the NHN AppGuard service is activated in the same project as the service to which the function is to be applied in NHN Cloud.
 
-![gamebase_ban_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_ban_09_202101.png)
+![gamebase_ban_09_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_09_201812_en.png)
 
-- **联动与否** : 当AppGuard需要自动将已被检测或制裁用户添加为Gamebase禁用用户时启用。
-- **自动禁用**分为**立即阻止**和**根据条件阻止**的两种。
-    - 由于**立即阻止**而禁用时，每小时15分钟和45分钟进行一次。**立即阻止**时无法设置检测时期，而检测次数限制为1次。 
-    - 由于**根据条件阻止**禁用时，每天午夜进行一次。
-        - 例如 : 检测篡改的时期 : 5, 检测次数 : 设为3时    
-            - 若1月 14号 ~ 1月 18之间检测到特定用户篡改3次以上，则将在1月 19号午夜注册禁用。 
-- **禁用类型**分为**永久禁用**和**根据条件禁用**的两种。
-    - **永久禁用**：永久禁用符合自动禁用条件的用户的使用。
-    - **根据条件禁用**：在设定的时间禁用符合自动禁用用户的使用。
-- **Leader board删除** 当选择项目，将禁用自动禁用用户的使用，而Leader board数据也将被删除。
-- **联动与否** : 当AppGuard需要自动将已被检测或制裁用户添加为Gamebase禁用用户时启用。
-- **永久禁用**是针对检测/制裁等种类的，将自动禁用设定为**立即阻止**，输入”向用户显示消息”和**禁用期限**，点击**保存**按钮即可。
-- **根据条件阻止**是针对检测/制裁等种类的，将自动禁用设定为**根据条件阻止**，输入检测期限和次数，点击**保存**按钮即可。
-  - 由于条件阻止而禁用时，每天午夜执行一次。
-  - 篡改的检测周期 : 5，检测次数 : 设为3时
-    - 若在1月14日 ~ 1月18日之间特定用户因篡改而被检测到3次以上，则将在1月19日午夜注册用户禁用。
-- 通过选择与**Leader board联动**项，可同时选择是否删除检测到或受制裁用户的Leader board数据。
+- **Linking**: Enable this if you want to automatically register the users detected or restricted by AppGuard as Gamebase-banned users.
+- There are two types of **Auto Ban**: **Immediate Block** and **Conditional Block**.
+    - Banning by **Immediate Block** is performed at 15 and 45 minutes of every hour. For **Immediate Block**, the detection period cannot be set, and the number of detection is fixed to one.
+    - Banning by **Conditional Block** is performed once a day at midnight.
+        - Example: If "Detection Period: 5" and "Detection Count: 3" are set for tampering
+            - If a user's tampering activity is detected 3 or more times during the period of January 14-18, user ban will be registered on January 19 at midnight.
+- There are two types of **Ban Type**: **Permanent Ban** and **Conditional Ban**.
+    - **Permanent Ban** permanently bans the users who meet the automatic ban conditions.
+    - **Conditional Ban** bans the users who meet the automatic ban conditions for a set period.
+- If you select **Delete Leaderboard**, Leaderboard data will also be deleted for users who have been automatically banned.
 
-> [参考]
+> [Note]
 >
-> 因用户触发APPGuard规则被自动禁用时，结果将会添加到注册系统的”APPGuard”列表。
-
+> In case banning is automatically registered due to AppGuard integration, it will be registered as 'AppGuard' in the registration system.

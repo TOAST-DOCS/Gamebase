@@ -1,36 +1,36 @@
-## Game > Gamebase > Unreal SDK使用指南 > ETC
+## Game > Gamebase > User Guide for Unreal SDK > ETC
 
 ## Additional Features
 
-描述Gamebase支持的附加功能。
+This document describes additional features supported by Gamebase. 
 
 ### Device Language
 
-* 返还终端机设置的语言代码。
-* 注册多个语言时，返还优先权最高的语言。
+* Return the language code configured for your device. 
+* When there's many number of registered languages, return only the language of the highest priority.   
 
 **API**
 
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
- 
+
 ```cpp
 FString GetDeviceLanguageCode() const;
 ```
 
 ### Display Language
 
-* 可以将Gamebase提供的UI和在SystemDialog中显示的语言更改为终端机设置的语言之外的其他语言。 
-* Gamebase显示包含在客户端的消息或从服务器接收的消息。
-* 设置DisplayLanguage时，以符合用户设置的语言代码(ISO-639)的语言显示消息。 
-* 可以添加所需的语言集合。可以添加的语言代码如下。
+* You may change language displayed on Gamebase UI or SystemDialog to another one which is different from the configured language on device. 
+* Gamebase shows messages that are included to client or received from the server. 
+* With DisplayLanguage, messages are displayed in an appropriate language for the user-configured language code (ISO-639). 
+* More language sets could be added as required. Following language codes are available: 
 
-> [参考]
+> [Note]
 >
-> Gamebase的客户端消息只包含英语(en)、韩语(ko)及日语(ja)。
+> Gamebase client messages are available in English (en), Korean (ko), and Japanese (ja) only. 
 
-#### Gamebase支持的语言代码种类
+#### Language Codes Supported by Gamebase
 
 | Code | Name |
 | --- | --- |
@@ -51,12 +51,12 @@ FString GetDeviceLanguageCode() const;
 | zh-CN | Chinese-Simplified |
 | zh-TW | Chinese-Traditional |
 
-相关语言代码在“GamebaseDisplayLanguageCode”类中定义。
+Each language code is defined in the `GamebaseDisplayLanguageCode` class. 
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> Gamebase支持的语言代码区分大小写字母。
-> 若按“EN”或“zh-cn”进行设置，可能出现问题。
+> Gamebase-supported language codes are case-sensitive. 
+> Settings like 'EN' or 'zh-cn' may cause trouble. 
 
 ```cpp
 namespace GamebaseDisplayLanguageCode
@@ -80,9 +80,9 @@ namespace GamebaseDisplayLanguageCode
 }
 ```
 
-#### 初始化Gamebase时的Display Language设置
+#### Display Language Setting for Gamebase Initialization
 
-初始化Gamebase时可以设置Display Language。
+Display Language can be configured when Gamebase is initialized.  
 
 **API**
 
@@ -121,7 +121,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
 
 #### Set Display Language
 
-初始化Gamebase时可更改已输入的Display Language。
+Display Language can be changed from Gamebase initialization. 
 
 **API**
 
@@ -144,7 +144,7 @@ void Sample::SetDisplayLanguageCode(cosnt FString& displayLanguage)
 
 #### Get Display Language
 
-可以查看当前设置的Display Language。
+Current Display Language can be queried.
 
 **API**
 
@@ -165,48 +165,49 @@ void Sample::GetDisplayLanguageCode()
 }
 ```
 
-#### 添加新语言集合
+#### Add New Language Sets
 
-有关在Unreal Android、iOS平台上添加新语言集合的方法，请参考以下指南。
+Regarding how to add new language sets on Unreal Android or iOS platform, see the following guides:  
 
-* [添加Android的新语言集合](./aos-etc#display-language)
-* [添加iOS的新语言集合](./ios-etc#display-language)
+* [Adding New Language Sets on Android](./aos-etc#display-language)
+* [Addig New Languages Sets on iOS](./ios-etc#display-language)
 
-#### Display Language的优先顺序
+#### Priority of Display Languages
 
-通过初始化或调用SetDisplayLanguageCode API设置Display Language时，最终适用的Display Language值与输入的值不同。
+When Display Language is set by initialization or SetDisplayLanguageCode API, the final value might be different from actual input. 
 
-1. 确认输入到的languageCode是否在localizedstring.json文件中定义。
-2. 初始化Gamebase时，确认终端机设置的语言代码是否在localizedstring.json文件中定义。( 一旦初始化DisplayLanguageCode值，即使终端机设置的语言被更改，也会保持初始值。）                          
-3. 自动设置Display Language的默认值“en”。  
+1. Check if the languageCode input is defined in the localizedstring.json file. 
+2. When Gamebase is initialized, see if the language set on device is defined in the localizedstring.json file. (This value, after initialization, shall remain the same even with the change of language set on device.)
+3. The default `en` is automatically set for Display Language. 
 
 ### Country Code
 
-* Gamebase使用以下API提供System的国家代码。 
-* 每个API都有不同的特征，请选择符合用途的API。
+* Gamebase provides country codes of a system on the following APIs.  
+* Each API has different features, so select one to suit your needs. 
 
 #### USIM Country Code
 
-* 返还USIM中存储的国家代码。
-* 即使USIM中的值当中有错误的国家代码，也不再确认，而直接返还。
-* 如果为空值，则返还“ZZ”。
+* Return the country code recorded at USIM. 
+* Return without further checks even with invalid country code recorded at USIM. 
+* If value is empty, return 'zz'. 
 
 **API**
 
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
- 
+
+
 ```cpp
 FString GetCountryCodeOfUSIM() const;
 ```
 
 #### Device Country Code
 
-* 不再进一步确认，直接返还从OS接收的终端机国家代码。                
-* OS按照“语言”设置自动选择终端机的国际代码。
-* 注册的语言为多个语言时，选择优先权最高的语言。
-* 如果为空值，则返还“ZZ”。
+* Return the device country code delivered from OS without further checks. 
+* Device language code is automatically determined by OS, according to each 'Language' setting. 
+* When many languages are registered, a language of the highest priority order is determined as the country code.   
+* If the value is empty, return 'zz'. 
 
 **API**
 
@@ -220,11 +221,11 @@ FString GetCountryCodeOfDevice() const;
 
 #### Intergrated Country Code
 
-* 按照USIM、终端机的语言设置顺序确认国家代码后返还。 
-* GetCountryCode API按以下顺序启动。 
-    1. 如果USIM中的国家代码当中存在值，则不再确认，而直接返还。
-    2. 如果USIM国家代码为空值，需要确认终端机国家代码，若存在值，则不再确认，而直接返还。
-    3. 若USIM、终端机国家代码为空值，则返还“ZZ”。 
+* Check and return country code in the order of language setting of USIM and device. 
+* GetCountryCode API operates in the following order:  
+    1. Check country code recorded at USIM, and if a value exists, return it without further checks. 
+    2. If USIM country code is empty, check the device country code; if a value exists, return it without further checks.  
+    3. If both USIM and device have empty country code, return 'zz'.  
 
 ![observer](https://static.toastoven.net/prod_gamebase/DevelopersGuide/get_country_code_001_1.14.0.png)
 
@@ -234,14 +235,14 @@ FString GetCountryCodeOfDevice() const;
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
-```cpp 
+```cpp
 FString GetCountryCode() const;
 ```
 
 ### Gamebase Event Handler
 
-* Gamebase通过**GamebaseEventHandler**事件系统处理各种事件。 
-* GamebaseEventHandler通过以下API添加或删除Listener。
+* Gamebase can process all kinds of events in a single event system called **GamebaseEventHandler**.
+* GamebaseEventHandler can simply add or remove a Listener through the API below:
 
 **API**
 
@@ -260,11 +261,11 @@ void RemoveAllHandler();
 ```cpp
 struct GAMEBASE_API FGamebaseEventMessage
 {
-    // 显示Event种类。
-    // 分配GamebaseEventCategory类的值。 
+	// Represents the type of an event.
+    // The value of the GamebaseEventCategory class is assigned.
     FString category;
 
-    // 是可以转换为符合各category的VO的JSON String数据。
+    // JSON String data that can be converted into a VO that is appropriate for each category.
     FString data;
 };
 ```
@@ -322,36 +323,36 @@ void Sample::AddEventHandler()
 }
 ```
 
-* Category在GamebaseEventCategory类中定义。 
-* 事件大体分为LoggedOut、ServerPush、Observer、Purchase及Push，根据各Category将GamebaseEventMessage.data按以下表的方式转换为VO。 
+* Category is defined in the GamebaseEventCategory class.
+* In general, events can be categorized into LoggedOut, ServerPush, Observer, Purchase, or Push. GamebaseEventMessage.data can be converted into a VO in the ways shown in the following table for each Category.
 
-| Event种类 | GamebaseEventCategory | VO转换方法 | 备注 |
+| Event type | GamebaseEventCategory | VO conversion method | Remarks |
 | --------- | --------------------- | ----------- | --- |
 | IdPRevoked | GamebaseEventCategory::IdPRevoked | FGamebaseEventIdPRevokedData::From(message.data) | \- |
 | LoggedOut | GamebaseEventCategory::LoggedOut | FGamebaseEventLoggedOutData::From(message.data) | \- |
 | ServerPush | GamebaseEventCategory::ServerPushAppKickOut<br>GamebaseEventCategory::ServerPushAppKickOutMessageReceived<br>GamebaseEventCategory::ServerPushTransferKickout | FGamebaseEventServerPushData::From(message.data) | \- |
 | Observer | GamebaseEventCategory::ObserverLaunching<br>GamebaseEventCategory::ObserverNetwork<br>GamebaseEventCategory::ObserverHeartbeat | FGamebaseEventObserverData::From(message.data) | \- |
-| Purchase - Promotion支付 | GamebaseEventCategory::PurchaseUpdated | FGamebaseEventPurchasableReceipt::From(message.data) | \- |
-| Push - 接收消息 | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(message.data) | |
-| Push - 点击消息 | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(message.data) | |
-| Push - 动态点击 | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(message.data) | 点击RichMessage时启动。|
+| Purchase - Promotion payment | GamebaseEventCategory::PurchaseUpdated | FGamebaseEventPurchasableReceipt::From(message.data) | \- |
+| Push - Message received | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(message.data) |  |
+| Push - Message clicked | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(message.data) |  |
+| Push - Action clicked | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(message.data) | Operates when the RichMessage button is clicked. |
 
 #### IdP Revoked
 
-* 是当在IdP中删除相关服务时出现的事件。
-* 需要通知用户IdP已被禁用，并使用户使用相同的IdP登录时收到新的userID。
-* FGamebaseEventIdPRevokedData.code : 为GamebaseIdPRevokedCode值。
-    * Withdraw : 600   。
-        * 表示当前使用禁用的IdP登录，并且没有映射的IdP列表。
-        * 必须通过调用Withdraw API对当前帐户进行退出处理。
-    * OverwriteLoginAndRemoveMapping : 601  
-        * 表示当前使用禁用的IdP登录，而除了禁用的IdP还有其他IdP被映射。
-        * 需要使用被映射的IdP当中的一个IdP登录，并通过调用RemoveMapping API解除禁用的IdP的链接。
-    * RemoveMapping : 602  
-        * 表示映射到当前账户的IdP当中有禁用IdP。   
-        * 需要通过调用RemoveMapping API解除禁用的IdP的链接。
-* FGamebaseEventIdPRevokedData.idpType : 是禁用的IdP类型。
-* FGamebaseEventIdPRevokedData.authMappingList : 是映射到当前账户的IdP列表。
+* This event occurs when the service is deleted from the IdP.
+* Notifies the user that the IdP has been revoked, and issues a new userID when the user logs in with the same IdP.
+* FGamebaseEventIdPRevokedData.code: Indicates the GamebaseIdPRevokedCode value.
+    * Withdraw : 600
+        * Indicates that the user is logged in with a revoked IdP, and there is no list of mapped IdPs.
+        * You need to call the Withdraw API to remove the current account.
+    * OverwriteLoginAndRemoveMapping : 601
+        * Indicates that the user is logged in with a revoked IdP and IdPs other than the revoked IdP are mapped.
+        * You need to log in with one of the mapped IdPs and call the RemoveMapping API to remove mapping with the revoked IdP.
+    * RemoveMapping : 602
+        * Indicates that there is a revoked IdP among IdPs mapped to the current account.
+        * You need to call the RemoveMapping API to remove mapping with the revoked IdP.
+* FGamebaseEventIdPRevokedData.idpType: Indicates the revoked IdP type.
+* FGamebaseEventIdPRevokedData.authMappingList: Indicates the list of IdPs mapped to the current account.
 
 **Example**
 
@@ -369,15 +370,15 @@ void Sample::AddEventHandler()
             }
         }
     }));
-}
 
+}
 void Sample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
 {
     auto revokedIdP = data->idPType;
     switch (data->code)
-    {                  
-        // 表示当前使用禁用的IdP登录，并且没有被映射的IdP列表。
-        // 请通知用户当前账户已被退出。
+    {
+        // Indicates that the user is logged in with a revoked IdP, and there is no list of mapped IdPs.
+        // Notifies the user that the current account has been deleted.
         case GamebaseIdPRevokeCode::Withdraw:
         {
             IGamebase::Get().Withdraw(FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
@@ -387,12 +388,13 @@ void Sample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
             break;
         }
         case GamebaseIdPRevokeCode::OverwriteLoginAndRemoveMapping:
-        {      
-            // 表示当前使用禁用的IdP登录，而除了禁用的IdP还有其他IdP被映射。
-            // 让用户从authMappingList中选择要再次登录的IdP，并在使用所选IdP登录后解除禁用的IdP的链接。
-            auto selectedIdP = "用户选择的IdP";
+        {
+            // Indicates that the user is logged in with a revoked IdP and IdPs other than the revoked IdP are mapped.
+            // Allows the user to select an IdP to login in to among the authMappingList, and removes mapping with the revoked IdP after login with the selected IdP.
+            auto selectedIdP = "the IdP selected by the user";
             auto additionalInfo = NewObject<UGamebaseJsonObject>();
             additionalInfo->SetBoolField(GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn, true);
+
             IGamebase::Get().Login(selectedIdP, *additionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
             {
                 if (Gamebase::IsSuccess(error))
@@ -402,14 +404,14 @@ void Sample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
                         ...
                     }));
                 }
-            }));
+             }));
             break;
         }
         case GamebaseIdPRevokeCode::RemoveMapping:
         {
-            // 表示映射到当前账户的IdP当中有禁用IdP。
-            // 请通知用户在当前账户中禁用IdP的链接被解除。
-            IGamebase::Get().RemoveMapping(revokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+            // Indicates that there is a revoked IdP among IdPs mapped to the current account.
+            // Notifies the user that mapping with the revoked IdP is removed from the current account.
+              IGamebase::Get().RemoveMapping(revokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
             {
                 ...
             }));
@@ -421,7 +423,7 @@ void Sample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
 
 #### Logged Out
 
-* 当Gamebase Access Token已过期并需要登录函数调用来恢复网络会话时，会引发此事件。
+* This event occurs when the Gamebase Access Token has expired and a login function call is required to recover the network session.
 
 **Example**
 
@@ -445,17 +447,17 @@ void Sample::AddEventHandler()
 
 #### Server Push
 
-* 是从Gamebase服务器向客户端终端机传送的消息。 
-* Gamebase支持的Server Push Type如下。
-  * GamebaseEventCategory::ServerPushAppKickOutMessageReceived
-    	* 如果在NHN Cloud Gamebase控制台中的**Operation > Kickout**中注册Kickout ServerPush消息，则与Gamebase连接的所有 客户端接收Kickout消息。
-        * 是在客户终端机接收服务器消息时立即启动的事件。
-        * 它可以用于在游戏运行时暂停游戏，例如“AutoPlay”。
+* This is a message sent from the Gamebase server to the client's device.
+* The Server Push Types supported from Gamebase are as follows:
+    * GamebaseEventCategory::ServerPushAppKickOutMessageReceived
+    	* If you register a kickout ServerPush message in **Operation > Kickout** in the NHN Cloud Gamebase console, all clients connected to Gamebase will receive a kickout message.
+        * This event occurs immediately after receiving a server message from the client device.
+        * It can be used to pause the game when the game is running, as in the case of 'Auto Play'.
     * GamebaseEventCategory::ServerPushAppKickOut
-        * 通过在NHN Cloud Gamebase控制台的**Operation > Kickout**中注册Kickout ServerPush消息，将从与Gamebase连接的所有客户端接收Kickout消息。
-       * 在客户终端机接收服务器消息时显示弹窗，而当用户关闭该弹窗时启动此事件。 
+    	* If you register a kickout ServerPush message in **Operation > Kickout** of the NHN Cloud Gamebase Console, then all clients connected to Gamebase will receive the kickout message.
+        * A pop-up is displayed when the client device receives a server message. This event occurs when the user closes this pop-up.
     * GamebaseEventCategory::ServerPushTransferKickout
-        * 将Guest账户成功转移至其他终端机时，从以前的终端机接收Kickout消息。
+    	* If the guest account is successfully transferred to another device, the previous device receives a kickout message.
 
 **Example**
 
@@ -481,12 +483,11 @@ void Sample::CheckServerPush(const FString& category, const FGamebaseEventServer
 {
     if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut))
     {
-        // Kicked out from Gamebase server.(Maintenance, banned or etc..)
         // Kicked out from Gamebase server.(Maintenance, banned or etc.)
         // And the game user closes the kickout pop-up.
         // Return to title and initialize Gamebase again.
     }
- else if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOutMessageReceived))
+    else if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOutMessageReceived))
     {
         // Currently, the kickout pop-up is displayed.
         // If your game is running, stop it.
@@ -501,13 +502,13 @@ void Sample::CheckServerPush(const FString& category, const FGamebaseEventServer
 }
 ```
 
-  
+#### Observer
 
-* 是处理Gamebase的各种状态变动事件的系统。 
-* Gamebase支持的Observer Type如下。
+* It is a system used to handle many different status-changing events in Gamebase.
+* The Observer Types supported by Gamebase are as follows:
     * GamebaseEventCategory::ObserverLaunching
-        * 当维护开始、结束时或发布新版本必须进行更新等Launching状态出现变动时启动。
-        * GamebaseEventObserverData.code: 为LaunchingStatus值。
+    	* It operates when the Launching status is changed, for instance when the server is under maintenance, or the maintenance is over, or a new version is deployed and update is required.
+        * GamebaseEventObserverData.code : Indicates the LaunchingStatus value.
             * GamebaseLaunchingStatus::IN_SERVICE: 200
             * GamebaseLaunchingStatus::RECOMMEND_UPDATE: 201
             * GamebaseLaunchingStatus::IN_SERVICE_BY_QA_WHITE_LIST: 202
@@ -518,14 +519,14 @@ void Sample::CheckServerPush(const FString& category, const FGamebaseEventServer
             * GamebaseLaunchingStatus::INSPECTING_ALL_SERVICES: 304
             * GamebaseLaunchingStatus::INTERNAL_SERVER_ERROR: 500
     * GamebaseEventCategory::ObserverHeartbeat
-        * 当因已被退出或禁用、用户账号状态出现变化时启动。
-        * GamebaseEventObserverData.code: 为GamebaseError值。
+    	* Operates when the status of a user account changes, for instance when the user account is deleted or banned.
+        * GamebaseEventObserverData.code : Indicates the GamebaseError value.
             * GamebaseErrorCode::INVALID_MEMBER: 6
             * GamebaseErrorCode::BANNED_MEMBER: 7
     * GamebaseEventCategory::ObserverNetwork
-        * 可以接收网络变动信息。 
-        * 当网络断开或被连接时、从Wifi转为Cellular网络时启动。
-        * GamebaseEventObserverData.code: 为NetworkManager值。 
+    	* Can receive the information about the changes in the network.
+    	* Operates when the network is disconnected or connected, or switched from Wi-Fi to a cellular network.
+        * GamebaseEventObserverData.code : Indicates the NetworkManager value.
             * EGamebaseNetworkType::Not: 255
             * EGamebaseNetworkType::Mobile: 0
             * EGamebaseNetworkType::Wifi: 1
@@ -536,13 +537,13 @@ void Sample::CheckServerPush(const FString& category, const FGamebaseEventServer
 ```cpp
 struct GAMEBASE_API FGamebaseEventObserverData
 {
-    // 为显示状态值的信息。
+	// This information represents the status value.
     int32 code;
 
-    // 是用于附加信息的保留字段。
+    // This information shows the message about status.
     FString message;
 
-    // 是有关状态的消息信息。 
+    // A reserved field for additional information.
     FString extras;
 }
 ```
@@ -605,22 +606,14 @@ void Sample::CheckNetwork(const FGamebaseEventObserverData& data)
     {
         case EGamebaseNetworkType::Not:
             {
-                // Network disconnected
+                // Network disconnected.
                 break;
             }
         case EGamebaseNetworkType::Mobile:
-            {
-                // Network connected
-                break;
-            }
         case EGamebaseNetworkType::Wifi:
-            {
-                // Network connected
-                break;
-            }
         case EGamebaseNetworkType::Any:
             {
-                // Network connected
+                // Network connected.
                 break;
             }
     }
@@ -632,13 +625,13 @@ void Sample::CheckHeartbeat(const FGamebaseEventObserverData& data)
     {
         case EGGamebaseErrorCode::INVALID_MEMBER:
             {
-                // You should to write the code necessary in game. (End the session.)
+                // You can check the invalid user session in here.
+                // ex) After transferred account to another device.
                 break;
             }
         case EGGamebaseErrorCode::BANNED_MEMBER:
             {
-                // The ban information can be found by using the GetBanInfo API.
-                // Show kickout message to user and need kickout in game.
+                // You can check the banned user session in here.
                 break;
             }
     }
@@ -647,8 +640,8 @@ void Sample::CheckHeartbeat(const FGamebaseEventObserverData& data)
 
 #### Purchase Updated
 
-* 是输入Promotion代码获取商品时出现的事件。
-* 可以获取结算票据信息。
+* This event is triggered when a product is acquired by redeeming a promotion code.
+* Can acquire payment receipt information.
 
 **Example**
 
@@ -673,25 +666,25 @@ void Sample::AddEventHandler()
 
 #### Push Received Message
 
-* 是接收Push消息时出现的事件。
-* 通过将extras字段转换为JSON，可获取发送Push时传送的自定义信息。
-    *  在**Android**上可通过**isForeground**字段可区分是在Foreground状态还是在Backgroud状态接收的消息。 
-        
+* This event is triggered when a push message is received.
+* You can also acquire custom information that was sent along with push by converting the extras field to JSON.
+    * In **Android**, you can determine whether the message was received in the foreground or in the background through the **isForeground** field.
+
 **VO**
 
 ```cpp
 struct FGamebaseEventPushMessage
 {
-    // 为消息的固有id。
+	// The unique ID of a message.
     FString id;
 
-    // 为Push消息的标题。 
-    FString title;  
+    // The title of the push message.
+    FString title;
 
-    // 为Push消息的身体。
+    // The body of the push message.
     FString body;
 
-    // 可以确认以JSON格式发送Push时传送的自定义信息。 
+    // You can check the custom information sent when sending a push in JSON format.
     FString extras;
 };
 ```
@@ -721,8 +714,8 @@ void Sample::AddEventHandler()
 
 #### Push Click Message
 
-* 是点击“已接收的Push消息”时出现的事件。
-* 与“GamebaseEventCategory::PushReceivedMessage”不同，Android上的extras字段中没有**isForeground**信息。
+* This event is triggered when a received message is clicked.
+* Unlike 'GamebaseEventCategory.PushReceivedMessage', there is no **isForeground** information in the extras field on Android.
 
 **Example**
 
@@ -746,26 +739,25 @@ void Sample::AddEventHandler()
 
 #### Push Click Action
 
-* 是通过Rich Message功能，点击生成按钮时出现的事件。
-* actionType中存在以下值。
-    * "OPEN_APP"
-    * "OPEN_URL"
-    * "REPLY"
-    * "DISMISS"
-
+* This event is triggered when the button created by the Rich Message feature is clicked.
+* actionType provides the following:
+	* "OPEN_APP"
+	* "OPEN_URL"
+	* "REPLY"
+	* "DISMISS"
 
 **VO**
 
 ```cpp
 struct FGamebaseEventPushAction
 {
-    // 为ButtonAction种类。 
+	// Button action type.
     FString actionType;
 
-    // 为PushMessage数据。
+	// PushMessage data.
     FGamebaseEventPushMessage message;
 
-    // 为在Push控制台中输入的用户文本。
+	// User text typed in Push console.
     FString userText;
 };
 ```
@@ -792,41 +784,41 @@ void Sample::AddEventHandler()
 
 ### Analytics
 
-可将Game指标传送到Gamebase Server。
+Game indicators can be sent to Gamebase Server. 
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 登录后可以调用Gamebase Analytics支持的所有API。
+> All APIs supported by Gamebase Analytics can be called after login. 
 >
 >
 > [TIP]
 >
-> 调用RequestPurchase API完成支付时，自动传送指标。
+> When a purchase is completed by calling RequestPurchase API, indicators are automatically deliverd. 
 >
 
-有关Analytics Console的使用方法，请参考以下指南。
+Regarding the usage of Analytics Console, see the following guide:  
 
 * [Analytics Console](./oper-analytics)
 
 #### Game User Data Settings
 
-登录游戏后，可将游戏用户级别信息传送到指标。
+Level information of a game user can be delivered to indicators, after a user login.  
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 登录游戏后，若不调用SetGameUserData API，其他指标可能缺漏Level信息。
+> If SetGameUserData API is not called after a login to game, level information might be missing from other indicators. 
 >
 
-调用API时需要的参数如下。
+Following parameters are required to call APIs:  
 
 **FGamebaseAnalyticsUserData**
 
-| Name                       | Mandatory(M) / Optional(O) | type | Desc |
+| Name                       | Mandatory(M) / Optional(O) | Type | Desc. |
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int32 | 是显示游戏用户级别的字段。|
-| channelId | O | FString | 是显示渠道的字段。|
-| characterId | O | FString | 是显示游戏人物名称的字段。|
-| characterClassId | O | FString | 是显示职业的字段。|
+| userLevel | M | int32 | Refers to the level of a game user. |
+| channelId | O | FString | Indicates a channel. |
+| characterId | O | FString | Refers to the name of a character. |
+| characterClassId | O | FString | Indicates an occupation. |
 
 **API**
 
@@ -851,16 +843,16 @@ void Sample::SetGameUserData(int32 userLevel, const FString& channelId, const FS
 
 #### Level Up Trace
 
-升级时，可以将游戏用户的级别信息传送到指标。
+Updated level information of a game user can be delivered to indicators. 
 
-调用API时所需的参数如下。
+Following paratemers are required to call APIs:
 
 **LevelUpData**
 
-| Name                       | Mandatory(M) / Optional(O) | type | Desc    |
+| Name                       | Mandatory(M) / Optional(O) | Type | Desc.	|
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int32 | 是显示游戏用户级别的字段。|
-| levelUpTime | M | long | 按Epoch time输入。</br>按Millisecond单位输入。 |
+| userLevel | M | int32 | Refers to the level of a game user. |
+| levelUpTime | M | int64 | Enter by Epoch Time.</br> Enter by the millisecond. |
 
 **API**
 
@@ -884,18 +876,17 @@ void Sample::TraceLevelUpNow(int32 userLevel)
 
 ### Contact
 
-Gamebase提供回复客户咨询的功能。 
+Gamebase provides features for customer response. 
 
 > [TIP]
 >
-> 若与NHN Cloud Contact服务联动后使用，则可更容易应对客户咨询。
-> 有关详细的NHN Cloud Contact服务使用方法，请参考以下指南。
-> [NHN Cloud Online Contact Guide](/Contact%20Center/zh/online-contact-overview/)
-
+> By integrating with NHN Cloud Contact, customer inquiries can be handled with more ease and convenience.  
+> For more details on NHN Cloud Contact, see the guide as below: 
+> [NHN Cloud Online Contact Guide](https://docs.nhncloud.com/en/Contact%20Center/en/online-contact-overview/)
 
 #### Customer Service Type
 
-**在Gamebase控制台 > App > InApp URL > Service center**中可以选择以下3个类型中的一个客户服务。
+In the **Gamebase Console > App > InApp URL > Service Center**, you can choose from three different types of Customer Centers.
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
 
 | Customer Service Type     | Required Login |
@@ -904,38 +895,36 @@ Gamebase提供回复客户咨询的功能。
 | Gamebase customer center  | △             |
 | NHN Cloud  Online Contact      | O              |
 
-Gamebase SDK的客户服务API根据各类型使用如下URL。
+Gamebase SDK's Customer Center API uses the following URLs based on the type:
 
-* 开发公司自建客户服务(Developer customer center)
-    * 在**客户服务URL**输入的URL
-* Gamebase提供的客户服务(Gamebase customer center)
-    * 登录前 : **不包含**用户信息的客户服务URL
-    * 登录后 : 包含用户信息的客户服务URL
-* NHN Cloud组织服务(Online Contact)
-    * 登录前 : **不包含**用户信息的客户服务URL
-    * 登录后 : 包含用户信息的客户服务URL
-
+* Developer's Customer Center
+    * URL specified in the **Customer Center URL** field.
+* Gamebase's Customer Center
+    * Before login: Customer Center URL **without** user information.
+    * After login: Customer Center URL with user information.
+* NHN Cloud  organization product (Online Contact)
+    * Before login : NOT_LOGGED_IN(2) error has occurred.
+    * After login: Customer Center URL with user information.
 
 #### Open Contact WebView
 
-
-显示客户服务WebView。
-根据客户服务类型选择URL。
-可通过ContactConfiguration向URL传送附加信息。
+Displays the Customer Center WebView.
+URL is determined by the customer center type.
+You can pass the additional information to the URL using ContactConfiguration.
 
 **FGamebaseContactConfiguration**
 
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
 | ------------- | ------------- | ---------------------------------- | ------------------ |
-| userName      | O             | FString                            | 用户名(nickname) <br>**default**: ""   |
-| additionalURL | O             | FString                            | 在开发公司客户服务URL后面添加的附加URL <br>**default**: ""    |
-| additionalParameters | O      | TMap<string, string>               | 客户服务URL后面添加的附加参数<br>**default**: EmptyMap |
-| extraData     | O             | TMap<FString, FString>             | 开始客户服务时传送开发公司需要的extra data。<br>**default**: EmptyMap |
+| userName      | O             | FString                            | User name (nickname) <br>**default**: ""   |
+| additionalURL | O             | FString                            | Additional URL appended to the developer's own customer center URL <br>**default**: ""    |
+| additionalParameters | O      | TMap<string, string>               | Additional parameters appended to the customer center URL<br>**default** : EmptyMap |
+| extraData     | O             | TMap<FString, FString>             | Passes the extra data wanted by the developer when opening the customer center<br>**default**: EmptyMap |
 
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS 
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
@@ -945,13 +934,13 @@ void OpenContact(const FGamebaseContactConfiguration& configuration, const FGame
 
 **ErrorCode**
 
-| Error Code | Description |                     
+| Error Code | Description |
 | --- | --- |
-| NOT\_INITIALIZED(1)                                 | 未调用Gamebase.initialize。|
-| NOT\_LOGGED\_IN(2)                                  | 客户服务类型为“NHN Cloud  OC”， 但在登录之前已被调用。 |
-| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 客户服务URL不存在。<br>请确认Gamebase控制台中的**客户服务URL**。|
-| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 识别用户的临时发票发布失败 |
-| UI\_CONTACT\_FAIL\_ANDROID\_DUPLICATED\_VIEW(6913)  | 已经显示客户服务WebView。|
+| NOT\_INITIALIZED(1)                                 | Gamebase.initialize has not been called. |
+| NOT\_LOGGED\_IN(2)                                  | The customer center type is 'NHN Cloud  OC', and it was called before login. |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | The Customer Center URL does not exist.<br>Check the **Customer Center URL** of the Gamebase Console. |
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | Failed to issue a temporary ticket for user identification. |
+| UI\_CONTACT\_FAIL\_ANDROID\_DUPLICATED\_VIEW(6913)  | The Customer Center WebView is already being displayed. |
 
 **Example**
 
@@ -971,7 +960,7 @@ void Sample::OpenContact()
             if (error->code == GamebaseErrorCode::WEBVIEW_INVALID_URL)
             {
                 // Gamebase Console Service Center URL is invalid.
-                // Please check the url field in the TOAST Gamebase Console.
+                // Please check the url field in the NHN Cloud Gamebase Console.
                 auto launchingInfo = IGamebase::Get().GetLaunching().GetLaunchingInformations();
                 UE_LOG(GamebaseTestResults, Display, TEXT("csUrl: %s"), *launchingInfo->launching.app.relatedUrls.csUrl);
             }
@@ -981,25 +970,25 @@ void Sample::OpenContact()
 ```
 
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> 在客户服务注册咨询时可能需要附加文件。 
-> 为此，需要在运行时从用户获取拍照和Storage储存权限。
+> Contacting the Customer Center may require file attachment.
+> To do so, permissions for using the camera or using the storage must be acquired from the user at runtime.
 >
-> Android用户
+> Android user
 >
 > * [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
 >
-> * 使用Unreal时，通过启用内置于引擎中的**Android Runtime Permission**plug-in，查看以下API Reference后在获取所需的权限时参考。 
+> * For Unreal, activate the built-in **Android Runtime Permission** plugin in the engine, and then refer to the following API Reference to acquire necessary permissions.
 > [Unreal API Reference : AndroidPermission](https://docs.unrealengine.com/en-US/API/Plugins/AndroidPermission/index.html)
 >
-> iOS用户
+> iOS user
 >
-> * 请在info.plist中设置“Privacy - Camera Usage Description”和“Privacy - Photo Library Usage Description”。 
+> * Please set 'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description' in info.plist.
 
 #### Request Contact URL
 
-返还显示客户服务WebView时使用的URL。 
+Returns the URL used for displaying the Customer Center WebView.
 
 **API**
 
@@ -1012,10 +1001,10 @@ void RequestContactURL(const FGamebaseContactConfiguration& configuration, const
 
 | Error Code | Description |
 | --- | --- |
-| NOT\_INITIALIZED(1)                                 | 未调用Gamebase.initialize。|
-| NOT\_LOGGED\_IN(2)                                  | 客户服务类型为“NHN Cloud  OC”，但在登录之前已被调用。|
-| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | 客户服务URL不存在。<br>请确认Gamebase控制台中的**客户服务URL**。|
-| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | 识别用户的临时发票发放失败 |
+| NOT\_INITIALIZED(1)                                 | Gamebase.initialize has not been called. |
+| NOT\_LOGGED\_IN(2)                                  | The customer center type is 'NHN Cloud  OC', and it was called before login. |
+| UI\_CONTACT\_FAIL\_INVALID\_URL(6911)               | The Customer Center URL does not exist.<br>Check the **Customer Center URL** of the Gamebase Console. |
+| UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET(6912) | Failed to issue a temporary ticket for user identification. |
 
 **Example**
 
@@ -1038,7 +1027,7 @@ void Sample::RequestContactURL(const FString& userName)
             if (error->code == GamebaseErrorCode::UI_CONTACT_FAIL_INVALID_URL)
             {
                 // Gamebase Console Service Center URL is invalid.
-                // Please check the url field in the TOAST Gamebase Console.
+                // Please check the url field in the NHN Cloud Gamebase Console.
             }
             else
             {

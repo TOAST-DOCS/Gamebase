@@ -399,7 +399,7 @@ Facebook SDK、Google AdMob SDKなどのように、SDK内にIn App Purchase(App
 * 解決方法
   * Facebook
     * Facebook Console > 設定 > 基本設定 > **アプリ内イベントを自動的にロギング(推奨)**機能を無効化
-    * Facebook認証機能を使用しない場合：**GamebaseAuthFacebookAdapter.frameworkファイルを除外**した後ビルド
+    * Facebook認証機能を使用しない場合：**GamebaseAuthFacebookAdapter.xcframeworkファイルを除外**した後ビルド
 
 
 #### Overview

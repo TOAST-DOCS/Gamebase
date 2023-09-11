@@ -1,17 +1,27 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.55.0
+
+### Android
+
+#### Naver Idp
+* Naver Login SDK의 업데이트로 minSDK가 19 -> 21로 상향되었습니다.
+
+#### MyCard Adapter
+* NHN Cloud SDK의 업데이트로 minSDK가 19 -> 21로 상향되었습니다.
+
 ## 2.53.0
 
 ### Android
 
 #### Contact
 
-* '고객 센터' 기능을 사용하는 경우 첨부 파일 선택 시 권한 요청이 정상적으로 작동하도록 아래 가이드에 따라 AndroidManifest.xml에 권한 설정을 추가해야 합니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > Contact](./aos-started/#contact)
+* If you are using the 'Customer Center' feature, you will need to add permission settings to the AndroidManifest.xml following the guide below to ensure that permission requests work properly when selecting attachments.
+    * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > Contact](./aos-started/#contact)
 
 #### Line IdP
 
-* 기존 ['시작하기' 문서](./aos-started)에서 Line IdP 사용 시 AndroidManifest.xml에 선언하도록 안내한 아래 내용은 Line SDK 업데이트로 인해 불필요해졌으므로 삭제하시기 바랍니다.
+* For the following content of declaration to the AndroidManifest.xml when using Line IdP as shown in [Getting Started](./aos-started), the content is now unnecessary due to the Line SDK update so please delete the following.
 
 ```xml
 <manifest>
