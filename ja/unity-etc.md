@@ -1189,7 +1189,7 @@ Gamebaseは、顧客の問い合わせに対応するための機能を提供し
 >
 > NHN Cloud Contactサービスと連携して使用すると、顧客からの問い合わせに簡単に対応できます。
 > 詳細はNHN Cloud Contactサービスの利用ガイドを参照してください。
-> [NHN Cloud Online Contact Guide](/Contact%20Center/ja/online-contact-overview/)
+> [NHN Cloud Online Contact Guide](https://docs.nhncloud.com/ja/Contact%20Center/ja/online-contact-overview/)
 
 #### Customer Service Type
 

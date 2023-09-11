@@ -882,7 +882,7 @@ Gamebase provides features for customer response.
 >
 > By integrating with NHN Cloud Contact, customer inquiries can be handled with more ease and convenience.  
 > For more details on NHN Cloud Contact, see the guide as below: 
-> [NHN Cloud Online Contact Guide](/Contact%20Center/zh/online-contact-overview/)
+> [NHN Cloud Online Contact Guide](https://docs.nhncloud.com/en/Contact%20Center/en/online-contact-overview/)
 
 #### Customer Service Type
 

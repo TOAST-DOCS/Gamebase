@@ -2097,7 +2097,7 @@ Gamebase Wrapping API와 매핑된 Leaderboard API 스펙은 아래 가이드를
 Leaderboard Appkey 설정 없이 Gamebase AppId 및 SecretKey를 이용해서 Gamebase Wrapping Leaderboard API를 호출할 수 있습니다.
 
 
-[Leaderboard Guide](/Game/Leaderboard/ko/api-guide/)
+[Leaderboard Guide](https://docs.nhncloud.com/ko/Game/Leaderboard/ko/api-guide/)
 
 <br/>
 
@@ -2152,7 +2152,7 @@ Push Appkey 설정 없이 Gamebase AppId 및 SecretKey를 이용하여 Gamebase 
 > API를 통해 푸시 메시지를 발송한 경우 발송 내역은 Gamebase Console의 **푸시 > 발송 이력**에서 확인할 수 없습니다.
 > **푸시 > 설정 > 발송 내역 저장** 메뉴에서 **Log & Crash** 설정을 통해 확인할 수 있습니다.
 
-[Push Guide](/Notification/Push/ko/api-guide/)
+[Push Guide](https://docs.nhncloud.com/ko/Notification/Push/ko/api-guide/)
 
 <br/>
 
