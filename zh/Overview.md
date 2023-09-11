@@ -210,7 +210,7 @@ Gamebase基本上支持全球游戏，并提供以下功能：
 ## Console Role
 
 关于TOAST的基本成员政策和权限，请参考以下指南。
-* [TOAST > 控制台使用指南 > 管理成员](https://docs.toast.com/zh/TOAST/zh/console-guide/#_14)
+* [TOAST > 控制台使用指南 > 管理成员](https://docs.nhncloud.com/en/nhncloud/en/console-guide/#manage-members)
 
 ### Manage Role
 

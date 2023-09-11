@@ -2005,7 +2005,7 @@ To find out about Leaderboard API specs mapped with Gamebase Wrapping API, see t
 Use the Gamebase AppId and SecretKey to call the Gamebase Wrapping Leaderboard API without setting the Leaderboard Appkey.
 
 
-[Leaderboard Guide](/Game/Leaderboard/en/api-guide/)
+[Leaderboard Guide](https://docs.nhncloud.com/en/Game/Leaderboard/en/api-guide/)
 
 <br/>
 
@@ -2059,7 +2059,7 @@ Use the Gamebase AppId and SecretKey to call the Gamebase Wrapping Push API with
 > [Notes 2]
 > When you send a push message with an API, the send history cannot be checked from **Push > Send History** on the Gamebase console.
 > You can find the history in the **Log & Crash** settings from **Push > Settings > Save Send History**.
-[Push Guide](/Notification/Push/en/api-guide/)
+[Push Guide](https://docs.nhncloud.com/en/Notification/Push/en/api-guide/)
 
 <br/>
 

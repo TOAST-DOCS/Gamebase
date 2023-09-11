@@ -2095,7 +2095,7 @@ Gamebase为NHN Cloud Leaderboard服务的服务器API提供**Wrapping**功能。
 关于与Gamebase Wrapping API映射的Leaderboard API Spec，请参考以下指南。
 即使不设置Leaderboard Appkey，也可使用Gamebase AppId和SecretKey调用Gamebase Wrapping Leaderboard API。
 
-[Leaderboard Guide](/Game/Leaderboard/zh/api-guide/)
+[Leaderboard Guide](https://docs.nhncloud.com/en/Game/Leaderboard/en/api-guide/)
 
 <br/>
 
@@ -2146,7 +2146,7 @@ Gamebase为NHN Cloud Push服务的服务器API提供**Wrapping**功能。如果�
 > 将Push指南上的uid Key指定为gamebase userId值。在客户端SDK中注册推送令牌时，用户标识符将注册为gamebase userId。
 > 一个用户同意允许从多个终端机接收推送时，将从所有的终端机接收推送。
 
-[Push Guide](/Notification/Push/zh/api-guide/)
+[Push Guide](https://docs.nhncloud.com/en/Notification/Push/en/api-guide/)
 
 <br/>
 

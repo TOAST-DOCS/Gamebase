@@ -886,7 +886,7 @@ Gamebase为NHN Cloud IAP服务的服务器API提供**Wrapping**功能。使用Wr
 
 **有关API的详细说明，请参考以下链接。**
 
-[IAP Guide](/Mobile%20Service/IAP/zh/api-guide/)
+[IAP Guide](https://docs.nhncloud.com/en/Mobile%20Service/IAP/en/api-guide-for-toast-sdk/)
 
 ##### API调用示例
 
@@ -920,7 +920,7 @@ Gamebase为NHN Cloud Leaderboard服务的服务器API提供**Wrapping**功能。
 **有关API的详细说明，请参考以下链接。**
 
 
-[Leaderboard Guide](/Game/Leaderboard/zh/api-guide/)
+[Leaderboard Guide](https://docs.nhncloud.com/en/Game/Leaderboard/en/api-guide/)
 
 ##### API调用示例
 
