@@ -1,10 +1,24 @@
 ## Game > Gamebase > 릴리스 노트 > Unity
 
+### 2.55.0 (2023. 09. 12.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.55.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* (iOS) 사용자가 푸시 권한을 거부해도 토큰을 등록할 수 있도록 GamebaseRequest.Push.PushConfiguration.alwaysAllowTokenRegistration 필드가 추가되었습니다.
+
+#### 기능 개선
+* NHN Cloud Unity SDK가 서비스 종료 됨에 따라 Gamebase Unity SDK 내에서 제거되었습니다.
+* 내부 로직을 개선했습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.55.0](./release-notes-android/#2550-2023-09-12)
+* [Gamebase iOS SDK 2.55.0](./release-notes-ios/#2550-2023-09-12)
+
 ### 2.54.0 (2023. 08. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.54.0/GamebaseSDK-Unity.zip)
 
 #### 기능 추가
-* (Android) Android 13 이상의 OS에서 RegisterPush API를 호출했을 때 Push 권한 요청 팝업이 자동으로 뜨지 않도록 할 수 있는 **GamebaseRequest.Push.PushConfiguration.requestNotificationPermission** 필드가 추가되었습니다.
+* (Android) Android 13 이상의 OS에서 RegisterPush API를 호출했을 때 Push 권한 요청 팝업이 자동으로 뜨지 않도록 할 수 있는 GamebaseRequest.Push.PushConfiguration.requestNotificationPermission 필드가 추가되었습니다.
 * (Android) loginForLastLoggedInProvider 호출 중에 로딩 애니메이션을 숨기는 옵션을 지정할 수 있는 신규 API가 추가되었습니다.
     * Gamebase.LoginForLastLoggedInProvider(Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback);
     * API 호출 방법은 다음 가이드 문서를 참고하시기 바랍니다.
