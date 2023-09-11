@@ -860,7 +860,7 @@ Gamebaseでは顧客からの問い合わせに対応するための機能を提
 >
 > NHN Cloud Contactサービスと連携して使用すると、簡単に顧客からの問い合わせに対応できます。
 > 詳細はNHN Cloud Contactサービスの利用ガイドを参照してください。
-> [NHN Cloud Online Contact Guide](/Contact%20Center/ja/online-contact-overview/)
+> [NHN Cloud Online Contact Guide](https://docs.nhncloud.com/ja/Contact%20Center/ja/online-contact-overview/)
 
 > <font color="red">[注意]</font><br/>
 >

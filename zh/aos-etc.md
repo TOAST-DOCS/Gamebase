@@ -859,7 +859,7 @@ Gamebase provides features to respond to customer inquiries.
 >
 > By integrating with NHN Cloud Contact, customer inquiries can be handled more at ease and convenience.
 > For more details on NHN Cloud Contact, see the guide as below:
-> [NHN Cloud Online Contact Guide](/Contact%20Center/zh/online-contact-overview/)
+> [NHN Cloud Online Contact Guide](https://docs.nhncloud.com/en/Contact%20Center/en/online-contact-overview/)
 
 > <font color="red">[Caution]</font><br/>
 >

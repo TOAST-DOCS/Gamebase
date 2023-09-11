@@ -799,7 +799,7 @@ Gamebase provides features to respond to customer inquiries.
 >
 > Associate it with the NHN Cloud Contact service to easily respond to inquiries from customers.
 > See the guide below if you want to know how to use the NHN Cloud Contact service in detail.
-> [NHN Cloud Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
+> [NHN Cloud Online Contact Guide](https://docs.nhncloud.com/en/Contact%20Center/en/online-contact-overview/)
 >
 
 #### Customer Service Type

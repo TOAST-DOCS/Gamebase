@@ -1379,7 +1379,7 @@ Gamebaseは、NHN Cloud LeaderboardサービスのサーバーAPIに対して**W
 **該当するAPIに対する詳細説明は、次のリンクをご参考ください。**
 
 <br>
-[Game > Leaderboard > APIガイド](/Game/Leaderboard/ja/api-guide/)
+[Game > Leaderboard > APIガイド]((https://docs.nhncloud.com/ja/Game/Leaderboard/ja/api-guide/)
 
 ##### API呼び出し例
 

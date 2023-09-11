@@ -209,7 +209,7 @@ Gamebaseは、基本的にゲームのグローバルオープンに対応して
 ## Console Role
 
 NHN Cloudの基本的なメンバーポリシーと権限については、次のガイドを参考にしてください。
-* [NHN Cloud > コンソール使用ガイド > メンバー管理](https://docs.toast.com/ja/TOAST/ja/console-guide/#_13)
+* [NHN Cloud > コンソール使用ガイド > メンバー管理](https://docs.nhncloud.com/ja/nhncloud/ja/console-guide/#_13)
 
 ### Manage Role
 
