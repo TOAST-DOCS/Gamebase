@@ -516,6 +516,10 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 
 #### IdP Revoked
 
+> [참고]
+>
+> iOS Appleid 로그인을 사용하는 경우에만 발생할 수 있는 이벤트입니다.
+
 * IdP에서 해당 서비스를 삭제하였을 때 발생하는 이벤트입니다.
 * 유저에게 IdP가 사용 중지된 것을 알리고, 동일한 IdP로 로그인할 때 userID를 새로 발급 받을 수 있도록 구현해야 합니다.
 * GamebaseEventIdPRevokedData.code: GamebaseIdPRevokedCode 값을 의미합니다.
