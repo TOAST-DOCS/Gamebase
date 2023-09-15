@@ -1,5 +1,11 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.55.1 (2023. 09. 19.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.55.1/GamebaseSDK-iOS.zip)
+
+#### 버그 수정
+* Unity환경에서 Weibo 로그인 시 콜백을 받지 못하는 오류를 수정했습니다.
+
 ### 2.55.0 (2023. 09. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.55.0/GamebaseSDK-iOS.zip)
 
