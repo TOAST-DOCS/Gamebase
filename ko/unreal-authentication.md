@@ -403,25 +403,29 @@ void Sample::Withdraw()
 
 매핑은 기존에 로그인된 계정에 다른 IdP의 계정을 연동하거나 해제시키는 기능입니다.
 
-많은 게임들이 하나의 계정에 여러 IdP를 연동(mapping)할 수 있도록 하고 있습니다.
-Gamebase의 Mapping API를 사용하여 기존에 로그인된 계정에 다른 IdP의 계정을 연동/해제할 수 있습니다.<br/>
+대다수의 게임에서는 게임 유저 계정 하나에 여러 IdP를 연동(매핑)할 수 있습니다.<br/>Gamebase의 매핑 API를 사용하면 기존에 로그인된 계정에 다른 IdP 계정을 연동하거나 해제할 수 있습니다.
 
-이렇게 하나의 Gamebase 사용자 ID에 다양한 IdP 계정을 연동할 수 있습니다.
-즉, 연동 중인 IdP 계정으로 로그인을 시도한다면 항상 동일한 사용자 ID로 로그인됩니다.<br/>
+즉, 연동 중인 IdP 계정으로 로그인을 시도하면 항상 같은 사용자 ID로 로그인됩니다.<br/><br/>
 
-주의할 점은, IdP마다 하나의 계정만 연동할 수 있다는 것입니다.
-예시는 다음과 같습니다.<br/>
+주의할 점은, IdP마다 하나의 계정만 연동할 수 있다는 점입니다.<br/>
+예를 들어 Google 계정을 연동 중이면, 다른 Google 계정을 추가로 연동할 수 없습니다.<br/>
+계정 연동 예시는 다음과 같습니다.<br/><br/>
 
-* Gamebase 사용자 ID : 123bcabca
-    * Google ID : aa
-    * Facebook ID : bb
-    * AppleGameCenter ID : cc
-    * PAYCO ID : dd
+* Gamebase 사용자 ID: 123bcabca
+    * Google ID: aa
+    * Facebook ID: bb
+    * AppleID ID: cc
+    * Twitter ID: dd
 * Gamebase 사용자 ID : 456abcabc
-    * Google ID : ee
-    * Google ID : ff **-> 이미 Google ee 계정이 연동 중이므로 Google 계정을 추가로 연동할 수 없습니다.**
+    * Google ID: ee
+    * Google ID: ff **-> 이미 Google ee 계정이 연동 중이므로 Google 계정을 추가로 연동할 수 없습니다.**
 
-Mapping에는 Mapping 추가/해제 API 2개가 있습니다.
+매핑 API에는 매핑 추가와 매핑 해제 API가 있습니다.
+
+> <font color="red">[주의]</font><br/>
+>
+> Guest 로그인 중에 매핑을 성공하면 Guest IdP는 사라집니다.
+>
 
 ### Add Mapping Flow
 

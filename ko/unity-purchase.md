@@ -714,8 +714,5 @@ else
 ```
 
 * NHN Cloud IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud IAP > Unity > 오류 코드](https://docs.nhncloud.com/en/nhncloud/en/nhncloud-sdk/iap-unity/#error-code)
-
-
-
-
+    * [NHN Cloud > SDK 사용 가이드 > IAP > Android > 오류 코드](https://docs.nhncloud.com/ko/nhncloud/ko/nhncloud-sdk/iap-android/#_32)
+    * [NHN Cloud > SDK 사용 가이드 > IAP > iOS > 에러 코드](https://docs.nhncloud.com/ko/nhncloud/ko/nhncloud-sdk/iap-ios/#_17)
