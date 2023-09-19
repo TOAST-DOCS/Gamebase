@@ -329,6 +329,11 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 매핑 API에는 매핑 추가와 매핑 해제 API가 있습니다.
 
+> <font color="red">[주의]</font><br/>
+>
+> Guest 로그인 중에 매핑을 성공하면 Guest IdP는 사라집니다.
+>
+
 ### Add Mapping Flow
 
 매핑은 다음 순서로 구현할 수 있습니다.

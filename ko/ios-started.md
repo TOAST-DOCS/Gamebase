@@ -47,7 +47,7 @@ Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
 |  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.8.2 | LINE 로그인을 지원 | iOS 11 or later |
 |  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 11 or later<br/>arm64 지원<br/> |
 |  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.8.6 | Hangame 로그인을 지원 | iOS 11 or later |
-|  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.3.3 | Weibo 로그인을 지원 | iOS 11 or later |
+|  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.3.4 | Weibo 로그인을 지원 | iOS 11 or later |
 |  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.14.14 | Kakao 로그인을 지원 | iOS 11 or later |
 | Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit.framework<br/>NHNCloudIAP 1.6.2 | 게임 내 결제 지원 | iOS 11 or later |
 | Gamebase Push Adapters | GamebasePushAdapter.xcframework | NHNCloudPush 1.6.2 | Push를 지원 | iOS 11 or later |
@@ -245,7 +245,7 @@ end
 #### LINE
 
 * URL Scheme을 설정해야 합니다.
-	* **Xcode > Target > Info > URL Types**에 **line3rdp.{Bundle ID}**를 추가해야 합니다.
+    * **Xcode > Target > Info > URL Types**에 **line3rdp.{Bundle ID}**를 추가해야 합니다.
 
 * ATS 설정을 위해서 Info.plist 파일에 Scheme을 등록합니다.
 ```
@@ -256,6 +256,21 @@ end
 ```
 * Gamebase iOS SDK 2.42.2 이하는 추가 설정이 필요합니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
+
+#### Weibo
+
+* URL Scheme을 설정해야 합니다.
+    * **Xcode > Target > Info > URL Types**에 **wb{Weibo 개발자 사이트에 등록한 앱의 App Key}**를 추가해야 합니다.
+* Info.plist 파일에서 Scheme을 등록합니다.
+```
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>sinaweibo</string>
+    <string>weibosdk</string>
+    <string>weibosdk2.5</string>
+    <string>weibosdk3.3</string>
+</array>
+```
 
 ### IdP Settings (Legacy)
 
@@ -316,7 +331,7 @@ end
 * [Twitter Developer's guide - Authentication](https://developer.twitter.com/en/docs/authentication/overview)
 * [LINE for developers](https://developers.line.biz/en/docs/line-login-sdks/ios-sdk/swift/overview/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/ios)
-* [Weibo for developers](https://github.com/sinaweibosdk/weibo_ios_sdk/blob/3.3.3/%E5%BE%AE%E5%8D%9AiOS%E5%B9%B3%E5%8F%B0SDK%E6%96%87%E6%A1%A3V3.3.3.pdf)
+* [Weibo for developers](https://github.com/sinaweibosdk/weibo_ios_sdk/blob/3.3.4/iOS%E5%B9%B3%E5%8F%B0SDK%E6%96%87%E6%A1%A3V3.3.4.pdf)
 * [Google Sign-In for iOS](https://developers.google.com/identity/sign-in/ios)
 * [Kakaogame SDK 3.0 Guide for Channeling](https://kakaogames.atlassian.net/wiki/spaces/KS3GFC/overview)
 
