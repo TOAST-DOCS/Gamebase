@@ -326,9 +326,9 @@ android {
 * 앱이 Android 13(API Level 33) 이상을 타겟팅하는 경우, 저장소 읽기 권한과 함께 다음과 같이 세분화된 미디어 권한 선언도 추가로 필요합니다.
         
         <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
         <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
         <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-        <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
         
 * 권한이 선언되어 있으면 파일 업로드 시점에 Gamebase SDK가 자동으로 런타임 권한 요청을 진행합니다.
 
