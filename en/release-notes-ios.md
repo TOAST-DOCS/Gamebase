@@ -19,12 +19,12 @@
 ### 2.54.0 (2023. 08. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.54.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* SDK를 xcframework로 변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* Changed SDK to xcframework
+* External SDK update
     * Facebook iOS SDK (14.1.0)
     * Google iOS SDK (7.0.0)
-* SDK 내부 로직 개선
+* Improved SDK internal logic
 
 ### 2.53.0 (2023. 07. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.53.0/GamebaseSDK-iOS.zip)
