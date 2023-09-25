@@ -1,5 +1,15 @@
 ## Game > Gamebase > リリースノート > iOS
 
+### 2.55.2 (2023. 09. 26.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.55.2/GamebaseSDK-iOS.zip)
+
+#### 機能改善/変更
+* 外部SDKアップデート
+    * Weibo iOS SDK (3.3.4)
+
+#### バグ修正
+* アプリを初めてインストールした後、Weiboログインをしようとすると、コールバックが正常に動作しないバグを修正しました。
+
 ### 2.55.0 (2023. 09. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.55.0/GamebaseSDK-iOS.zip)
 
