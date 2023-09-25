@@ -35,9 +35,9 @@
 
 ### Register Push
 
-다음 API를 호출하여, NHN Cloud Push에 해당 사용자를 등록합니다.
+다음 API를 호출하여 NHN Cloud Push에 해당 사용자를 등록합니다.
 
-푸시 수신 동의 여부(TCGBPushConfiguration)를 사용자로부터 받아, 다음의 API 호출을 통해 등록을 완료합니다.
+푸시 수신 동의 여부(TCGBPushConfiguration)를 사용자로부터 받아 다음의 API 호출을 통해 등록을 완료합니다.
 
 > <font color="red">[주의]</font><br/>
 >
@@ -102,7 +102,7 @@ NHN Cloud Push에 사용자를 등록할 때 TCGBNotificationOptions 객체로 �
 
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
 | ------------- | ------------- | ---------------------------------- | ------------------ |
-| foregroundEnabled   | M     | BOOL         | 앱이 포그라운드 상태일때의 알림 노출 여부<br/>**default**: NO           |
+| foregroundEnabled   | M     | BOOL         | 앱이 포그라운드 상태일 때의 알림 노출 여부<br/>**default**: NO           |
 | badgeEnabled        | M     | BOOL         | 배지 아이콘 사용 여부<br/>**default**: YES           |
 | soundEnabled        | M     | BOOL         | 알림음 사용 여부<br/>**default**: YES           |
 
@@ -181,7 +181,7 @@ Push 메뉴의 **대상**에서 **iOS Sandbox**를 선택한 후 발송합니다
 
 ### Query Token Info
 
-사용자의 푸시 설정을 조회하기 위해, 다음 API를 이용합니다.
+사용자의 푸시 설정을 조회하기 위해 다음 API를 이용합니다.
 콜백으로 오는 TCGBPushTokenInfo 값으로 등록한 푸시 정보를 얻을 수 있습니다.
 
 ```objectivec
@@ -257,13 +257,13 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
     
 | 오류 코드 |  설명 |
 | --- | --- |
-| NHNCloudPushErrorUnknown |           알수 없음 |
+| NHNCloudPushErrorUnknown |           알 수 없음 |
 | NHNCloudPushErrorNotInitialized |    초기화하지 않음 |
 | NHNCloudPushErrorUserInvalid |       사용자 아이디 미설정 |
 | NHNCloudPushErrorPermissionDenied |  권한 획득 실패 |
 | NHNCloudPushErrorSystemFailed |      시스템에 의한 실패 |
 | NHNCloudPushErrorTokenInvalid |      토큰 값이 없거나 유효하지 않음 |
-| NHNCloudPushErrorAlreadyInProgress | 이미 진행중 |
-| NHNCloudPushErrorParameterInvalid |  매계변수 오류 |
+| NHNCloudPushErrorAlreadyInProgress | 이미 진행 중 |
+| NHNCloudPushErrorParameterInvalid |  매개변수 오류 |
 | NHNCloudPushErrorNotSupported |      지원하지 않는 기능 |
 | NHNCloudPushErrorClientFailed |      서버 오류 |

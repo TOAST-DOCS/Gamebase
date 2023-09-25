@@ -18,7 +18,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Apple 로그인을 지원 | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-16.1.2 | Facebook 로그인을 지원 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Google 로그인을 지원 | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.6.3 | Hangame 로그인을 지원 | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.7.1 | Hangame 로그인을 지원 | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | LINE 로그인을 지원 | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.7.0 | NAVER 로그인을 지원 | API 21(Lollipop, OS 5.0) |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.12 | PAYCO 로그인을 지원 | - |
@@ -326,9 +326,9 @@ android {
 * 앱이 Android 13(API Level 33) 이상을 타겟팅하는 경우, 저장소 읽기 권한과 함께 다음과 같이 세분화된 미디어 권한 선언도 추가로 필요합니다.
         
         <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
         <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
         <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-        <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
         
 * 권한이 선언되어 있으면 파일 업로드 시점에 Gamebase SDK가 자동으로 런타임 권한 요청을 진행합니다.
 

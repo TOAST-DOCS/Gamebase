@@ -395,7 +395,7 @@ If In-App Purchase (for App Store) is included to SDK, like Facebook SDK or Goog
 * Solution 
   * Facebook
     * Facebook Console > Setting > Default Setting > Disable the **Automatically Log In-App Events (Recommended)** feature
-    * When the Facebook authentication feature is not used: **Exclude the GamebaseAuthFacebookAdapter.framework file** and build
+    * When the Facebook authentication feature is not used: **Exclude the GamebaseAuthFacebookAdapter.xcframework file** and build
 
 
 #### Overview
