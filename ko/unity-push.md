@@ -48,7 +48,7 @@ public static void RegisterPush(GamebaseRequest.Push.PushConfiguration pushConfi
 | requestNotificationPermission | O             | bool         | Android 13 이상의 OS에서 RegisterPush API를 호출했을 때 Push 권한 요청 팝업 자동 출력 여부<br>**default**: true<br/>**Android에 한함** |
 | alwaysAllowTokenRegistration  | O             | bool         | 사용자가 푸시 권한을 거부해도 토큰을 등록할지 여부<br>true로 설정할 경우 푸시 권한을 획득하지 못하더라도 토큰을 등록합니다.<br>**default**: false<br/>**iOS에 한함** |
 
-**Example**s
+**Example**
 
 ```cs
 public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNight, bool requestNotificationPermission, bool alwaysAllowTokenRegistration)
