@@ -335,6 +335,10 @@ end
 * [Google Sign-In for iOS](https://developers.google.com/identity/sign-in/ios)
 * [Kakaogame SDK 3.0 Guide for Channeling](https://kakaogames.atlassian.net/wiki/spaces/KS3GFC/overview)
 
+## Sample App
+
+* [https://github.com/nhn/toast.gamebase.ios.sample](https://github.com/nhn/toast.gamebase.ios.sample)
+
 ## API Reference
 
 API Reference는 SDK 내에 포함되어 있습니다.
