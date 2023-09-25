@@ -9,7 +9,7 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 > 
 > Unity対応バージョン
 >
-> * 2018.4.0 ~ 2022.3.1
+> * 2018.4.0～2023.1.12
 
 #### Android
 > <font color="red">[注意]</font>
@@ -18,10 +18,6 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 > [Google Playポリシーおよび64bitをサポートするUnityバージョン確認](https://developer.android.com/games/optimize/64-bit?#unity-developers)
 
 #### Dependencies
-
-| Gamebase SDK | External SDK |
-| --- | --- |
-| Gamebase | NHN Cloud Unity SDK 0.28.3 |
 
 * [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
 * [Gamebase iOS SDK - Dependencies](./ios-started/#setting)
