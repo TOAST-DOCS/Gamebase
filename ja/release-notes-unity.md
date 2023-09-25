@@ -3,14 +3,14 @@
 ### 2.55.0 (2023. 09. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.55.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* (iOS) 사용자가 푸시 권한을 거부해도 토큰을 등록할 수 있도록 GamebaseRequest.Push.PushConfiguration.alwaysAllowTokenRegistration 필드가 추가되었습니다.
+#### 機能追加
+* (iOS)ユーザーがプッシュ権限を拒否してもトークンを登録できるようにGamebaseRequest.Push.PushConfiguration.alwaysAllowTokenRegistrationフィールドが追加されました。
 
-#### 기능 개선
-* NHN Cloud Unity SDK가 서비스 종료 됨에 따라 Gamebase Unity SDK 내에서 제거되었습니다.
-* 내부 로직을 개선했습니다.
+#### 機能改善
+* NHN Cloud Unity SDKのサービス終了に伴い、Gamebase Unity SDK内から削除されました。
+* 内部ロジックを改善しました。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.55.0](./release-notes-android/#2550-2023-09-12)
 * [Gamebase iOS SDK 2.55.0](./release-notes-ios/#2550-2023-09-12)
 
@@ -18,7 +18,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.54.0/GamebaseSDK-Unity.zip)
 
 #### 機能追加
-* (Android) Android 13以降のOSでRegisterPush APIを呼び出したときにPush権限要求ポップアップが自動的に表示されないようにすることができる**GamebaseRequest.Push.PushConfiguration.requestNotificationPermission**フィールドが追加されました。
+* (Android)Android 13以降のOSでRegisterPush APIを呼び出した時に、Push権限要求ポップアップが自動的に表示されないようにできるGamebaseRequest.Push.PushConfiguration.requestNotificationPermissionフィールドが追加されました。
 * (Android) loginForLastLoggedInProviderの呼び出し中にローディングアニメーションを非表示にするオプションを指定できるAPIが追加されました。
     * Gamebase.LoginForLastLoggedInProvider(Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback);
     * API呼び出し方法は次のガイド文書を参照してください。
