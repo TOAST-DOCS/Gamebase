@@ -415,8 +415,8 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | member.authList[].idPCode | String |ユーザー認証IdP情報 <br>guest、payco、facebookなど |
 | member.authList[].authKey | String | authSystemから発行された、ユーザーを区別する値 |
 | member.authList[].regDate | String | IdP情報がユーザーアカウントとマッピングされた時間 |
-| temporaryWithdrawal | Object | 탈퇴 유예 관련 정보 <br>valid 가 "T" 값에서만 제공 |
-| temporaryWithdrawal.gracePeriodDate | String | 탈퇴 유예 만료 시간 ISO 8601 |
+| temporaryWithdrawal | Object | 退会猶予関連情報 <br>valid が "T" の値のみ提供 |
+| temporaryWithdrawal.gracePeriodDate | String | 退会猶予の有効期限 ISO 8601 |
 | memberInfo | Object | ユーザーに対する付加情報 |
 | memberInfo.deviceCountryCode | String |ユーザー端末の国家設定 |
 | memberInfo.usmCountryCode | String |ユーザーUSIMの国家コード|
@@ -487,7 +487,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | memberList | Array[Object] | 照会されたユーザーの基本情報 |
 | memberList[].userId | String |ユーザーID |
-| memberList[].valid | Enum | Y：正常なユーザー<br>D：退会したユーザー<br>B：利用停止中のユーザー<br>M：流出したアカウント<br>T: 탈퇴 유예 상태인 사용자 |
+| memberList[].valid | Enum | Y：正常なユーザー<br>D：退会したユーザー<br>B：利用停止中のユーザー<br>M：流出したアカウント<br>T: 退会猶予状態のユーザー |
 | memberList[].appId | String | appId |
 | memberList[].regDate | String | ユーザーがアカウントを作成した時間 |
 
