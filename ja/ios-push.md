@@ -35,23 +35,46 @@ Push APIを設計するViewControllerに次のヘッダーファイルを持っ�
 
 ### Register Push
 
-次のAPIを呼び出して、 NHN Cloud Pushに該当ユーザーを登録します。<br/>
-プッシュ同意有無(enablePush)、広告性プッシュ同意有無(enableAdPush)、夜間広告性プッシュ同意有無(enableAdNightPush)値をユーザーから取得し、次のAPIを呼び出して登録を完了します。
+次のAPIを呼び出して、NHN Cloud Pushに該当ユーザーを登録します。
+
+プッシュ受信同意有無(TCGBPushConfiguration)をユーザーから取得し、次のAPIを呼び出して登録を完了します。
 
 > <font color="red">[注意]</font><br/>
 >
 > プッシュトークンがいつ有効期限切れになるかわからないため、ログイン後は常にregisterPush APIを呼び出すことを推奨します。
 >
 
+#### API
+
+```objectivec
++ (void)registerPushWithPushConfiguration:(TCGBPushConfiguration *)configuration
+                               completion:(nullable void(^)(TCGBError * _Nullable error))completion;
+```
+
+#### TCGBPushConfiguration
+
+| Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
+| ------------- | ------------- | ---------------------------------- | ------------------ |
+| pushEnabled                   | M             | BOOL         | プッシュ同意有無 |
+| ADAgreement                   | M             | BOOL         | 広告性プッシュ同意有無 |
+| ADAgreementNight              | M             | BOOL         | 夜間広告性プッシュ同意有無 |
+| alwaysAllowTokenRegistration  | O             | BOOL         | ユーザーがプッシュ権限を拒否してもトークンを登録するかどうか<br>YESに設定した場合は、プッシュ権限を取得できなくてもトークンを登録します。<br>**default**: NO    |
+
+#### Example
+
 ```objectivec
 - (void)didLoginSucceeded {
     BOOL enablePush;
     BOOL enableAdPush;
     BOOL enableAdNightPush;
+    BOOL alwaysAllowTokenRegistration;
 
     // You should receive the above values to the logged-in user.
 
-    TCGBPushConfiguration* pushConfig = [TCGBPushConfiguration pushConfigurationWithPushEnable:enablePush ADAgreement:enableAdPush ADAgreementNight:enableAdNightPush];
+    TCGBPushConfiguration* pushConfig = [TCGBPushConfiguration pushConfigurationWithPushEnable:enablePush
+                                                                            ADAgreement:enableAdPush
+                                                                        ADAgreementNight:enableAdNightPush
+                                                            alwaysAllowTokenRegistration:alwaysAllowTokenRegistration];
 
     [TCGBPush registerPushWithPushConfiguration:pushConfig completion:^(TCGBError* error) {
         if (error != nil) {
@@ -61,24 +84,51 @@ Push APIを設計するViewControllerに次のヘッダーファイルを持っ�
 }
 ```
 
-NHN Cloud Pushにユーザーを登録する時、TCGBNotificationOptionsオブジェクトで通知オプションの設定が可能です。<Mb>
+<br/>
+
+NHN Cloud Pushにユーザーを登録する時、TCGBNotificationOptionsオブジェクトで通知オプションの設定が可能です。
+
 フォアグラウンドプッシュ有無(foregroundEnabled)、バッジ使用有無(badgeEnabled)、通知音使用有無(soundEnabled)値をユーザーから取得し、次のAPIを呼び出して通知オプションの設定が可能です。
+
+#### API
+
+```objectivec
++ (void)registerPushWithPushConfiguration:(TCGBPushConfiguration *)configuration
+                      notificationOptions:(nullable TCGBNotificationOptions *)notificationOptions
+                               completion:(nullable void(^)(TCGBError * _Nullable error))completion;
+```
+
+#### TCGBNotificationOptions
+
+| Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
+| ------------- | ------------- | ---------------------------------- | ------------------ |
+| foregroundEnabled   | M     | BOOL         | アプリがフォアグラウンド状態の時に通知を表示するかどうか<br/>**default**: NO           |
+| badgeEnabled        | M     | BOOL         | バッジアイコンの使用有無<br/>**default**: YES           |
+| soundEnabled        | M     | BOOL         | 通知音の使用有無<br/>**default**: YES           |
+
+#### Example
 
 ```objectivec
 - (void)didLoginSucceeded {
     BOOL enablePush;
     BOOL enableAdPush;
     BOOL enableAdNightPush;
+    BOOL alwaysAllowTokenRegistration;
 
     BOOL foregroundEnabled;
     BOOL badgeEnabled;
     BOOL soundEnabled;
 
     // You should receive the above values to the logged-in user.
-    
-    TCGBPushConfiguration* pushConfig = [TCGBPushConfiguration pushConfigurationWithPushEnable:enablePush ADAgreement:enableAdPush ADAgreementNight:enableAdNightPush];
-    
-    TCGBNotificationOptions* options = [TCGBNotificationOptions notificationOptionsWithForegroundEnabled:foregroundEnabled badgeEnabled:badgeEnabled soundEnabled:soundEnabled];
+
+    TCGBPushConfiguration *pushConfig = [TCGBPushConfiguration pushConfigurationWithPushEnable:enablePush
+                                                                                   ADAgreement:enableAdPush
+                                                                              ADAgreementNight:enableAdNightPush
+                                                                  alwaysAllowTokenRegistration:alwaysAllowTokenRegistration];
+
+    TCGBNotificationOptions *options = [TCGBNotificationOptions notificationOptionsWithForegroundEnabled:foregroundEnabled 
+                                                                                            badgeEnabled:badgeEnabled 
+                                                                                            soundEnabled:soundEnabled];
 
     [TCGBPush registerPushWithPushConfiguration:pushConfig notificationOptions:options completion:^(TCGBError* error) {
         if (error != nil) {
@@ -89,7 +139,7 @@ NHN Cloud Pushにユーザーを登録する時、TCGBNotificationOptionsオブ�
 }
 ```
 
-#### Setting for APNS Sandbox
+### Setting for APNS Sandbox
 
 SandboxModeをオンにすると、APNS SandboxでPushを送信するように登録できます。
 
@@ -108,7 +158,7 @@ SandboxModeをオンにすると、APNS SandboxでPushを送信するように�
 
 Pushメニューの**対象**から**iOS Sandbox**を選択した後に送信します。
 
-#### Get NotificationOptions
+### Get NotificationOptions
 
 プッシュを登録する時に設定した通知オプション値を取得します。
 
@@ -122,15 +172,6 @@ Pushメニューの**対象**から**iOS Sandbox**を選択した後に送信し
 }
 ```
 
-#### TCGBNotificationOptions
-
-| Parameter             | Values       | Description        |
-| --------------------  | ------------ | ------------------ |
-| foregroundEnabled     | YES or NO    | アプリがフォアグラウンド状態の時の通知表示有無<br/>**default**: NO           |
-| badgeEnabled          | YES or NO    | バッジアイコン使用有無<br/>**default**: YES           |
-| soundEnabled          | YES or NO    | 通知音使用有無<br/>**default**: YES           |
-
-
 > [参考]
 >
 > foregroundEnabledオプションはランタイムの時に変更が可能です。
@@ -138,9 +179,9 @@ Pushメニューの**対象**から**iOS Sandbox**を選択した後に送信し
 >
 
 
-### Request Push Settings
+### Query Token Info
 
-ユーザーのプッシュ設定を照会するために、次のAPIを利用します。<br/>
+ユーザーのプッシュ設定を照会するために、次のAPIを利用します。
 コールバックで来るTCGBPushTokenInfo値で登録したプッシュ情報を取得できます。
 
 ```objectivec
@@ -216,11 +257,13 @@ NSLog(@"TCGBError:%@", [tcgbError description]);
 
 | エラーコード | 説明 |
 | --- | --- |
-| TCPushErrorNotInitialized | 初期化されていない |
-| TCPushErrorInvalidParameters | パラメータエラー |
-| TCPushErrorPermissionDenined | 権限未取得 |
-| TCPushErrorSystemFail | システム通知登録失敗 |
-| TCPushErrorNetworkFail | ネットワーク送受信失敗 |
-| TCPushErrorServerFail | サーバーレスポンス失敗 |
-| TCPushErrorInvalidUrl | 無効なURLリクエスト |
-| TCPushErrorNetworkNotReachable | ネットワーク未接続 |
+| NHNCloudPushErrorUnknown |           不明 |
+| NHNCloudPushErrorNotInitialized |   初期化されていない |
+| NHNCloudPushErrorUserInvalid |      ユーザーIDが未設定 |
+| NHNCloudPushErrorPermissionDenied | 権限の取得に失敗 |
+| NHNCloudPushErrorSystemFailed |     システムによる失敗 |
+| NHNCloudPushErrorTokenInvalid |     トークン値がないか無効 |
+| NHNCloudPushErrorAlreadyInProgress | すでに進行中 |
+| NHNCloudPushErrorParameterInvalid | 引数エラー |
+| NHNCloudPushErrorNotSupported |     サポートしていない機能 |
+| NHNCloudPushErrorClientFailed |     サーバーエラー |

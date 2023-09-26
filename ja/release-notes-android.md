@@ -3,21 +3,21 @@
 ### 2.56.0 (2023. 09. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.56.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Hangame Android SDK (1.7.1)
+#### 機能改善/変更
+* 外部SDKアップデート: Hangame Android SDK (1.7.1)
 
 ### 2.55.0 (2023. 09. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.55.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Naver Login Android SDK(5.7.0), NHN Cloud Android SDK(1.7.1)
-* 구 버전 Naver Login SDK의 OAuthLoginInAppBrowserActivity에서 발생하던 Cross-app Scripting 취약점이 해결되었습니다.
-* Naver IdP 사용 시 Naver IdP에서 지원하지 않는 API 21 미만 단말기에서도 크래시가 발생하지 않도록 방어 로직을 추가했습니다.
+#### 機能改善/変更
+* 外部SDKアップデート:Naver Login Android SDK(5.7.0)、NHN Cloud Android SDK(1.7.1)
+* 旧バージョンNaver Login SDKのOAuthLoginInAppBrowserActivityで発生していたCross-app Scriptingの脆弱性が解決されました。
+* Naver IdPを使用中にNaver IdPがサポートしていないAPI 21未満の端末でもクラッシュが発生しないように防御ロジックを追加しました。
 
-#### 버그 수정
-* idP Login 시 로딩 애니메이션 off가 적용되지 않는 현상이 수정되었습니다.
-* API Level 28, 29 전체화면 웹뷰에서 windowFocus가 변경되면 네비게이션 바가 다시 생겨나는 이슈가 수정되었습니다.
-* Weibo 로그인에 성공했지만 간헐적으로 Weibo SDK에서 access token이 null로 리턴되는 경우 크래시가 발생하지 않도록 방어 로직을 추가했습니다.
+#### バグ修正
+* idP Login時にローディングアニメーションのoffが適用されない現象が修正されました。
+* API Level 28、29全体画面WebビューでwindowFocusが変更されると、ナビゲーションバーが再表示されるイシューが修正されました。
+* Weiboログインに成功しても断続的にWeibo SDKからaccess tokenがnullで返される場合に、クラッシュが発生しないよう防御ロジックを追加しました。
 
 ### 2.53.0 (2023. 08. 17.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.53.0/GamebaseSDK-Android.zip)
