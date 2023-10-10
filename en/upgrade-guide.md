@@ -4,11 +4,11 @@
 
 ### Android
 
-#### Naver Idp
-* Naver Login SDK의 업데이트로 minSDK가 19 -> 21로 상향되었습니다.
+#### Naver IdP
+* Raised the minimum supported version from 19 to 21 due to Naver Login SDK's updates.
 
 #### MyCard Adapter
-* NHN Cloud SDK의 업데이트로 minSDK가 19 -> 21로 상향되었습니다.
+* Raised the minimum supported version from 19 to 21 due to NHN Cloud SDK's updates.
 
 ## 2.54.0
 

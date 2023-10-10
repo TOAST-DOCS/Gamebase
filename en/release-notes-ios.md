@@ -13,11 +13,11 @@
 ### 2.55.0 (2023. 09. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.55.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* 사용자가 푸시 권한을 거부해도 토큰을 등록할 수 있도록 TCGBPushConfiguration.alwaysAllowTokenRegistration 필드 추가
+#### Added Features
+* Added the TCGBPushConfiguration.alwaysAllowTokenRegistration field to allow users to register tokens even if they deny push permissions
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* External SDK update
     * NHN Cloud iOS SDK (1.6.2)
     
 ### 2.54.0 (2023. 08. 29.)

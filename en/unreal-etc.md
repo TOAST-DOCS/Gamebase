@@ -339,6 +339,10 @@ void Sample::AddEventHandler()
 
 #### IdP Revoked
 
+> [Note]
+>
+> This is an event that can only occur when using iOS Appleid login.
+
 * This event occurs when the service is deleted from the IdP.
 * Notifies the user that the IdP has been revoked, and issues a new userID when the user logs in with the same IdP.
 * FGamebaseEventIdPRevokedData.code: Indicates the GamebaseIdPRevokedCode value.
