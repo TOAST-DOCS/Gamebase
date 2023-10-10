@@ -111,20 +111,13 @@ Get the values of Enable foreground push (foregroundEnabled), Enable badge (badg
     BOOL enablePush;
     BOOL enableAdPush;
     BOOL enableAdNightPush;
-
-    BOOL foregroundEnabled;
     BOOL alwaysAllowTokenRegistration;
-
+   
     BOOL foregroundEnabled;
     BOOL badgeEnabled;
     BOOL soundEnabled;
 
     // You should receive the above values to the logged-in user.
-    
-        TCGBPushConfiguration *pushConfig = [TCGBPushConfiguration pushConfigurationWithPushEnable:enablePush
-                                                                                   ADAgreement:enableAdPush
-                                                                              ADAgreementNight:enableAdNightPush
-                                                                  alwaysAllowTokenRegistration:alwaysAllowTokenRegistration];
 
  TCGBNotificationOptions *options = [TCGBNotificationOptions notificationOptionsWithForegroundEnabled:foregroundEnabled 
                                                                                             badgeEnabled:badgeEnabled 
