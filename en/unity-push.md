@@ -38,18 +38,32 @@ public static void RegisterPush(GamebaseRequest.Push.PushConfiguration pushConfi
 public static void RegisterPush(GamebaseRequest.Push.PushConfiguration pushConfiguration, GamebaseRequest.Push.NotificationOptions options, GamebaseCallback.ErrorDelegate callback);
 ```
 
+#### GamebaseRequest.Push.PushConfiguration
+
+| Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
+| ------------- | ------------- | ---------------------------------- | ------------------ |
+| pushEnabled                   | M             | bool         | 푸시 동의 여부 |
+| adAgreement                   | M             | bool         | 광고성 푸시 동의 여부 |
+| ADAgreemadAgreementNightentNight | M          | bool         | 야간 광고성 푸시 동의 여부 |
+| requestNotificationPermission | O             | bool         | Android 13 이상의 OS에서 RegisterPush API를 호출했을 때 Push 권한 요청 팝업 자동 출력 여부<br>**default**: true<br/>**Android에 한함** |
+| alwaysAllowTokenRegistration  | O             | bool         | 사용자가 푸시 권한을 거부해도 토큰을 등록할지 여부<br>true로 설정할 경우 푸시 권한을 획득하지 못하더라도 토큰을 등록합니다.<br>**default**: false<br/>**iOS에 한함** |
+
 **Example**
 
 ```cs
-public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNight)
+public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNight, bool requestNotificationPermission, bool alwaysAllowTokenRegistration)
 {
-    GamebaseRequest.Push.PushConfiguration pushConfiguration = new GamebaseRequest.Push.PushConfiguration();
-    pushConfiguration.pushEnabled = pushEnabled;
-    pushConfiguration.adAgreement = adAgreement;
-    pushConfiguration.adAgreementNight = adAgreementNight;
+    GamebaseRequest.Push.PushConfiguration pushConfiguration = new GamebaseRequest.Push.PushConfiguration
+    {
+        pushEnabled = pushEnabled,
+        adAgreement = adAgreement,
+        adAgreementNight = adAgreementNight,
+        displayLanguageCode = displayLanguage,
+        requestNotificationPermission = requestNotificationPermission,
+        alwaysAllowTokenRegistration = alwaysAllowTokenRegistration
+    };
 
 	// You should receive the above values to the logged-in user.
-
     Gamebase.Push.RegisterPush(pushConfiguration, (error) =>
     {
         if (Gamebase.IsSuccess(error))
@@ -91,14 +105,14 @@ The following settings are available:
 **Example**
 
 ```cs
-public void RegisterPushSample(bool pushEnabled, bool adAgreement, bool adAgreementNight)
-{
-    var configuration = new GamebaseRequest.Push.PushConfiguration
+public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNight, bool requestNotificationPermission, bool alwaysAllowTokenRegistration)
+    GamebaseRequest.Push.PushConfiguration pushConfiguration = new GamebaseRequest.Push.PushConfiguration
     {
         pushEnabled = pushEnabled,
         adAgreement = adAgreement,
         adAgreementNight = adAgreementNight,
-        displayLanguageCode = GamebaseDisplayLanguageCode.Korean
+        requestNotificationPermission = requestNotificationPermission,
+        alwaysAllowTokenRegistration = alwaysAllowTokenRegistration
     };
 
     var notificationOptions = new GamebaseRequest.Push.NotificationOptions

@@ -35,23 +35,46 @@ Import the following header file to the ViewController you want to implement a p
 
 ### Register Push
 
-Call the following API to register the user for NHN Cloud Push.<br/>
-Get the values of consent to receiving push (enablePush), consent to receiving advertisement push (enableAdPush), and consent to receiving night-time advertisement push (enableAdNightPush) from the user, and call the following API to complete the registration.
+Call the following API to register the user for NHN Cloud Push.
+
+Get the values of consent to receiving push (TCGBPushConfiguration) from the user, and call the following API to complete the registration.
 
 > <font color="red">[Caution]</font><br/>
 >
 > It is recommended that you always call the registerPush API after logging in, because it is not certain when the push token will expire.
 >
 
+#### API
+
+```objectivec
++ (void)registerPushWithPushConfiguration:(TCGBPushConfiguration *)configuration
+                               completion:(nullable void(^)(TCGBError * _Nullable error))completion;
+```
+
+#### TCGBPushConfiguration
+
+| Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
+| ------------- | ------------- | ---------------------------------- | ------------------ |
+| pushEnabled                   | M             | BOOL         | Consent to receiving pushes or not |
+| ADAgreement                   | M             | BOOL         | Consent to receiving advertising pushes or not |
+| ADAgreementNight              | M             | BOOL         | Consent to receiving nighttime advertising pushes |
+| alwaysAllowTokenRegistration  | O             | BOOL         | Whether to register the token if the user denies push permissions<br>Set to YES to register the token even if push permissions are not obtained.<br>**default**: NO    |
+
+#### Example
+
 ```objectivec
 - (void)didLoginSucceeded {
     BOOL enablePush;
     BOOL enableAdPush;
     BOOL enableAdNightPush;
-
+    BOOL alwaysAllowTokenRegistration;
+    
     // You should receive the above values to the logged-in user.
 
-    TCGBPushConfiguration* pushConfig = [TCGBPushConfiguration pushConfigurationWithPushEnable:enablePush ADAgreement:enableAdPush ADAgreementNight:enableAdNightPush];
+    TCGBPushConfiguration* pushConfig = [TCGBPushConfiguration pushConfigurationWithPushEnable:enablePush
+                                                                            ADAgreement:enableAdPush
+                                                                        ADAgreementNight:enableAdNightPush
+                                                            alwaysAllowTokenRegistration:alwaysAllowTokenRegistration];
 
     [TCGBPush registerPushWithPushConfiguration:pushConfig completion:^(TCGBError* error) {
         if (error != nil) {
@@ -61,8 +84,27 @@ Get the values of consent to receiving push (enablePush), consent to receiving a
 }
 ```
 
-When registering the user for the NHN Cloud Push, the notification option can be set using the TCGBNotificationOptions object.<Mb>
+<br/>
+
+When registering the user for the NHN Cloud Push, the notification option can be set using the TCGBNotificationOptions object.
+
 Get the values of Enable foreground push (foregroundEnabled), Enable badge (badgeEnabled), and Enable notification sound (soundEnabled) from the user. Then you can call the following API to set the notification option.
+
+#### API
+
+```objectivec
++ (void)registerPushWithPushConfiguration:(TCGBPushConfiguration *)configuration
+                      notificationOptions:(nullable TCGBNotificationOptions *)notificationOptions
+                               completion:(nullable void(^)(TCGBError * _Nullable error))completion;
+```
+#### TCGBNotificationOptions
+| Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
+| ------------- | ------------- | ---------------------------------- | ------------------ |
+| foregroundEnabled   | M     | BOOL         | 앱이 포그라운드 상태일때의 알림 노출 여부<br/>**default**: NO           |
+| badgeEnabled        | M     | BOOL         | 배지 아이콘 사용 여부<br/>**default**: YES           |
+| soundEnabled        | M     | BOOL         | 알림음 사용 여부<br/>**default**: YES           |
+
+#### Example
 
 ```objectivec
 - (void)didLoginSucceeded {
@@ -71,14 +113,22 @@ Get the values of Enable foreground push (foregroundEnabled), Enable badge (badg
     BOOL enableAdNightPush;
 
     BOOL foregroundEnabled;
+    BOOL alwaysAllowTokenRegistration;
+
+    BOOL foregroundEnabled;
     BOOL badgeEnabled;
     BOOL soundEnabled;
 
     // You should receive the above values to the logged-in user.
     
-    TCGBPushConfiguration* pushConfig = [TCGBPushConfiguration pushConfigurationWithPushEnable:enablePush ADAgreement:enableAdPush ADAgreementNight:enableAdNightPush];
-    
-    TCGBNotificationOptions* options = [TCGBNotificationOptions notificationOptionsWithForegroundEnabled:foregroundEnabled badgeEnabled:badgeEnabled soundEnabled:soundEnabled];
+        TCGBPushConfiguration *pushConfig = [TCGBPushConfiguration pushConfigurationWithPushEnable:enablePush
+                                                                                   ADAgreement:enableAdPush
+                                                                              ADAgreementNight:enableAdNightPush
+                                                                  alwaysAllowTokenRegistration:alwaysAllowTokenRegistration];
+
+ TCGBNotificationOptions *options = [TCGBNotificationOptions notificationOptionsWithForegroundEnabled:foregroundEnabled 
+                                                                                            badgeEnabled:badgeEnabled 
+                                                                                            soundEnabled:soundEnabled];
 
     [TCGBPush registerPushWithPushConfiguration:pushConfig notificationOptions:options completion:^(TCGBError* error) {
         if (error != nil) {
@@ -89,7 +139,7 @@ Get the values of Enable foreground push (foregroundEnabled), Enable badge (badg
 }
 ```
 
-#### Setting for APNS Sandbox
+### Setting for APNS Sandbox
 
 By turning on the SandboxMode, it can be registered so that the push will be sent with the APNS Sandbox.
 
@@ -108,7 +158,7 @@ By turning on the SandboxMode, it can be registered so that the push will be sen
 
 Select **iOS Sandbox** as the **Target** from the Push menu and send push.
 
-#### Get NotificationOptions
+### Get NotificationOptions
 
 Retrieve the notification option value which was set when registering for the push notification.
 
@@ -122,15 +172,6 @@ Retrieve the notification option value which was set when registering for the pu
 }
 ```
 
-#### TCGBNotificationOptions
-
-| Parameter             | Values       | Description        |
-| --------------------  | ------------ | ------------------ |
-| foregroundEnabled     | YES or NO    | Expose the notification when the app is in the foreground<br/>**default**: NO           |
-| badgeEnabled          | YES or NO    | Enable badge icon<br/>**default**: YES           |
-| soundEnabled          | YES or NO    | Enable notification sound<br/>**default**: YES           |
-
-
 > [Note]
 >
 > foregroundEnabled option can be changed at runtime.
@@ -138,9 +179,9 @@ Retrieve the notification option value which was set when registering for the pu
 >
 
 
-### Request Push Settings
+### Query Token Info
 
-To view the push settings of the user, the following API is used.<br/>
+To view the push settings of the user, the following API is used.
 You can get the push info registered with the TCGBPushTokenInfo value which comes as callback.
 
 ```objectivec
@@ -216,11 +257,13 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
     
 | Error Code |  Description |
 | --- | --- |
-| TCPushErrorNotInitialized | Not initialized |
-| TCPushErrorInvalidParameters | Parameter error |
-| TCPushErrorPermissionDenined | Permission not obtained |
-| TCPushErrorSystemFail | System alert registration failed |
-| TCPushErrorNetworkFail | Transmission on the network failed |
-| TCPushErrorServerFail | Server response failed |
-| TCPushErrorInvalidUrl | Invalid URL request |
-| TCPushErrorNetworkNotReachable | Network not connected |
+| NHNCloudPushErrorUnknown |           Unknown |
+| NHNCloudPushErrorNotInitialized |    Not initialized |
+| NHNCloudPushErrorUserInvalid |       User ID is not set |
+| NHNCloudPushErrorPermissionDenied |  Failed to get permission |
+| NHNCloudPushErrorSystemFailed |      System failed |
+| NHNCloudPushErrorTokenInvalid |      Token value is empty or invalid |
+| NHNCloudPushErrorAlreadyInProgress | Already in progress |
+| NHNCloudPushErrorParameterInvalid |  Invalid parameter |
+| NHNCloudPushErrorNotSupported |      Not supported feature |
+| NHNCloudPushErrorClientFailed |      Server error |

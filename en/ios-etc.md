@@ -354,6 +354,10 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 
 #### IdP Revoked
 
+> [Note]
+>
+> This is an event that only occur when using the iOS Appleid login.
+
 * This event occurs when the service is deleted from the IdP.
 * Notifies the user that the IdP has been revoked, and issues a new userID when the user logs in with the same IdP.
 * TCGBGamebaseEventIdPRevokedData.code: Indicates the TCGBIdPRevokedCode value.

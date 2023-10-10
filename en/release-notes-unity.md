@@ -3,14 +3,14 @@
 ### 2.55.0 (2023. 09. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.55.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* (iOS) 사용자가 푸시 권한을 거부해도 토큰을 등록할 수 있도록 GamebaseRequest.Push.PushConfiguration.alwaysAllowTokenRegistration 필드가 추가되었습니다.
+#### Added Features
+* (iOS) Add the GamebaseRequest.Push.PushConfiguration.alwaysAllowTokenRegistration to allow users to register tokens even if they deny push permissions.
 
-#### 기능 개선
-* NHN Cloud Unity SDK가 서비스 종료 됨에 따라 Gamebase Unity SDK 내에서 제거되었습니다.
-* 내부 로직을 개선했습니다.
+#### Feature Updates
+* Removed the NHN Cloud Unity SDK from the Gamebase Unity SDK as it was discontinued.
+* Improved internal logic.
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.55.0](./release-notes-android/#2550-2023-09-12)
 * [Gamebase iOS SDK 2.55.0](./release-notes-ios/#2550-2023-09-12)
 

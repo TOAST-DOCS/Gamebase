@@ -9,7 +9,7 @@ This guide describes the environments and initial setting of Gamebase Unity SDK.
 > 
 > Supported Unity versions
 >
-> * 2018.4.0 ~ 2022.3.1
+> * 2018.4.0 ~ 2023.1.12
 
 #### Android
 > <font color="red">[Caution]</font>
@@ -18,10 +18,6 @@ This guide describes the environments and initial setting of Gamebase Unity SDK.
 > [See Google Play policy and Unity versions supporting 64 bits](https://developer.android.com/games/optimize/64-bit?#unity-developers)
 
 #### Dependencies
-
-| Gamebase SDK | External SDK |
-| --- | --- |
-| Gamebase | NHN Cloud Unity SDK 0.28.3 |
 
 * [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
 * [Gamebase iOS SDK - Dependencies](./ios-started/#setting)
