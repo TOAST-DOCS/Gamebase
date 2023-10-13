@@ -47,7 +47,7 @@ Then, include corresponding SDK files to a target of your project.
 |  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.8.2 | Supports LINE login  | iOS 11 or later |
 |  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 11 or later<br/>arm64 support<br/> |
 |  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.8.6 | Supports Hangame login | iOS 11 or later |
-|  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.3.3 | Supports Weibo login | iOS 11 or later |
+|  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.3.4 | Supports Weibo login | iOS 11 or later |
 |  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.14.14 | Supports Kakao login | iOS 11 or later |
 | Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit.framework<br/>NHNCloudIAP 1.6.2 | Supports in-game purchase | iOS 11 or later |
 | Gamebase Push Adapters | GamebasePushAdapter.xcframework | NHNCloudPush 1.6.2 | Supports Push | iOS 11 or later |
@@ -232,7 +232,6 @@ end
     <string>naversearchapp</string>
 </array>
 ```
-
 * An additional setting is required for Gamebase iOS SDK 1.12.1 or earlier versions.
     * [Game > Gamebase > iOS SDK User Guide > Getting Started > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
@@ -257,6 +256,21 @@ end
 ```
 * For Gamebase iOS SDK 2.42.2 or earlier, additional settings are required.
     * [Game > Gamebase > iOS SDK User Guide > Getting Started > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
+
+#### Weibo
+
+* URL Scheme must be configured.
+    * Go to **Xcode > Target > Info > URL Types** and add **wb{App Key for apps registered on the Weibo developer site}**.
+* Register the scheme in the Info.plist file.
+```
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>sinaweibo</string>
+    <string>weibosdk</string>
+    <string>weibosdk2.5</string>
+    <string>weibosdk3.3</string>
+</array>
+```
 
 ### IdP Settings (Legacy)
 
@@ -295,6 +309,7 @@ end
 ```
 
 ![gamebase_auth_naver_console_01](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_auth_naver_console_01.png)
+
 **LINE**
 
 * Gamebase iOS SDK 2.42.2 or earlier
@@ -316,9 +331,13 @@ end
 * [Twitter Developer's guide - Authentication](https://developer.twitter.com/en/docs/authentication/overview)
 * [LINE for developers](https://developers.line.biz/en/docs/line-login-sdks/ios-sdk/swift/overview/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/ios)
-* [Weibo for developers](https://github.com/sinaweibosdk/weibo_ios_sdk/blob/3.3.3/%E5%BE%AE%E5%8D%9AiOS%E5%B9%B3%E5%8F%B0SDK%E6%96%87%E6%A1%A3V3.3.3.pdf)
+* [Weibo for developers](https://github.com/sinaweibosdk/weibo_ios_sdk/blob/3.3.4/iOS%E5%B9%B3%E5%8F%B0SDK%E6%96%87%E6%A1%A3V3.3.4.pdf)
 * [Google Sign-In for iOS](https://developers.google.com/identity/sign-in/ios)
 * [Kakaogame SDK 3.0 Guide for Channeling](https://kakaogames.atlassian.net/wiki/spaces/KS3GFC/overview)
+
+## Sample App
+
+* [https://github.com/nhn/toast.gamebase.ios.sample](https://github.com/nhn/toast.gamebase.ios.sample)
 
 ## API Reference
 

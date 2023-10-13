@@ -3,12 +3,12 @@
 ### 2.55.2 (2023. 09. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.55.2/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* External SDK update
     * Weibo iOS SDK (3.3.4)
     
-#### 버그 수정
-* 앱을 처음 설치한 후 Weibo 로그인을 시도할 때, 콜백이 정상적으로 작동하지 않는 버그를 수정하였습니다.
+#### Bug Fixes
+* Fixed a bug where, when trying to log in to Weibo after first installing the app, callback does not work properly.
 
 ### 2.55.0 (2023. 09. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.55.0/GamebaseSDK-iOS.zip)
