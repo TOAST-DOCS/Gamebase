@@ -38,7 +38,7 @@ NHN Cloud 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 초기화하
 | App Store | AS | iOS에 한함 |
 | Google Play | GG | Android에 한함 |
 | ONE Store | ONESTORE | Android에 한함 |
-| GALAXY Store | GALAXY | Android에 한함 |-
+| GALAXY Store | GALAXY | Android에 한함 |
 | Huawei AppGallery | HUAWEI | Android에 한함 |
 | MyCard | MYCARD | Android에 한함 |
 | Windows | WIN | Standalone에 한함 |

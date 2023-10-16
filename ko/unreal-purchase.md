@@ -29,13 +29,6 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
             bSupportsInAppPurchasing=False
             
 
-#### Android 결제 설정(엔진 버전 4.24 이하)
-
-* Epic Games Launcher를 통해 4.24 이하 버전을 설치한 경우,
-    **Engine\Build\Android\Java\src\com\android\vending\billing\IInAppBillingService.aidl**을 삭제해야 정상적으로 빌드할 수 있습니다.
-    * [IInAppBillingService.aidl](https://developer.android.com/google/play/billing/api) 파일은 Gamebase에서 제공하고 있어 충돌이 발생하여 제거가 필요합니다.
-    * 엔진 4.25 이상 버전이나 GitHub에서 엔진을 받은 경우에는 별도로 제거할 필요가 없습니다.
-
 ### Purchase Flow
 
 아이템 구매는 크게 결제 Flow 와 Consume Flow, 재처리 Flow 로 나누어 볼 수 있습니다.
@@ -93,8 +86,8 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void RequestPurchase(const FString& gamebaseProductId, const FGamebasePurchasableReceiptDelegate& onCallback);
-void RequestPurchase(const FString& gamebaseProductId, const FString& payload, const FGamebasePurchasableReceiptDelegate& onCallback);
+void RequestPurchase(const FString& gamebaseProductId, const FGamebasePurchasableReceiptDelegate& Callback);
+void RequestPurchase(const FString& gamebaseProductId, const FString& payload, const FGamebasePurchasableReceiptDelegate& Callback);
 ```
 
 **Example**
@@ -160,32 +153,24 @@ void Sample::RequestPurchaseWithPayload(const FString& gamebaseProductId)
 **VO**
 
 ```cpp
-USTRUCT()
 struct FGamebasePurchasableReceipt
-{
-    GENERATED_USTRUCT_BODY()
-    
+{   
     // 구매한 아이템의 상품 ID입니다.
-    UPROPERTY()
     FString gamebaseProductId;
 
     // itemSeq 로 상품을 구매하는 Legacy API용 식별자입니다.
-    UPROPERTY()
     int64 itemSeq;
 
     // 구매한 상품의 가격입니다.
-    UPROPERTY()
     float price;
 
     // 통화 코드입니다.
-    UPROPERTY()
     FString currency;
 
     // 결제 식별자입니다.
     // purchaseToken 과 함께 'Consume' 서버 API 를 호출하는데 사용하는 중요한 정보입니다.
     // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // 주의 : Consume API 는 게임 서버에서 호출하세요! 
-    UPROPERTY()
     FString paymentSeq;
 
     // 결제 식별자입니다.
@@ -193,11 +178,9 @@ struct FGamebasePurchasableReceipt
     // Consume API 에서는 'accessToken' 라는 이름의 파라메터로 전달해야 합니다.
     // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // 주의 : Consume API 는 게임 서버에서 호출하세요! 
-    UPROPERTY()
     FString purchaseToken;
 
     // Google, Apple 과 같이 스토어 콘솔에 등록된 상품 ID입니다.
-    UPROPERTY()
     FString marketItemId;
 
     // 상품 타입으로, 다음 값들이 올 수 있습니다.
@@ -205,51 +188,41 @@ struct FGamebasePurchasableReceipt
     // * CONSUMABLE : 소비성 상품.
     // * AUTO_RENEWABLE : 구독형 상품.
     // * CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'.
-    UPROPERTY()
     FString productType;
 
     // 상품을 구매했던 User ID.
     // 상품을 구매하지 않은 User ID 로 로그인 한다면 구매한 아이템을 획득할 수 없습니다.
-    UPROPERTY()
     FString userId;
 
     // 스토어의 결제 식별자입니다.
-    UPROPERTY()
     FString paymentId;
 
     // 구독 상품은 갱신될 때마다 paymentId가 변경됩니다.
     // 이 필드는 맨 처음 구독 상품을 결제 했을때의 paymentId 를 알려줍니다.
     // 스토어에 따라, 결제 서버 상태에 따라 값이 존재하지 않을 수 있으므로
     // 항상 유효한 값을 보장하지는 않습니다.
-    UPROPERTY()
     FString originalPaymentId;
     
     // 상품을 구매했던 시각입니다.(epoch time)
-    UPROPERTY()
     int64 purchaseTime;
     
     // 구독이 종료되는 시각입니다.(epoch time)
-    UPROPERTY()
     int64 expiryTime;
     
     // 결제한 스토어 코드입니다.
     // GamebaseStoreCode 클래스에서 스토어 코드 목록을 확인할 수 있습니다.
-    UPROPERTY()
     FString storeCode;
     
     // RequestPurchase API 호출 시 payload로 전달했던 값입니다.
     // 스토어 서버 상태에 따라 정보가 유실되는 경우가 있으므로 사용을 권장하지 않습니다.
-    UPROPERTY()
     FString payload;
     
     // 프로모션 결제 여부
     // - (Android) Gamebase 결제 서버에서 일시적으로 검증 로직을 끄는 경우에는 false로만 출력되므로 유효한 값이 보장되지 않습니다.
-    UPROPERTY()
     bool isPromotion;
 
     // 테스트 결제 여부
     // - (Android) Gamebase 결제 서버에서 일시적으로 검증 로직을 끄는 경우에는 false로만 출력되므로 유효한 값이 보장되지 않습니다.
-    UPROPERTY()
     bool isTestPurchase;
 };
 ```
@@ -267,7 +240,7 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void RequestItemListPurchasable(const FGamebasePurchasableItemListDelegate& onCallback);
+void RequestItemListPurchasable(const FGamebasePurchasableItemListDelegate& Callback);
 ```
 
 **Example**
@@ -298,34 +271,25 @@ void Sample::RequestItemListPurchasable()
 **VO**
 
 ```cpp
-USTRUCT()
 struct FGamebasePurchasableItem
 {
-    GENERATED_USTRUCT_BODY()
-    
     // Gamebase 콘솔에 등록된 상품 ID입니다.
     // Gamebase.Purchase.requestPurchase API로 상품을 구매할 때 사용됩니다.
-    UPROPERTY()
     FString gamebaseProductId;
 
     // itemSeq 로 상품을 구매하는 Legacy API용 식별자입니다.
-    UPROPERTY()
     int64 itemSeq;
 
     // 상품의 가격입니다.
-    UPROPERTY()
     float price;
 
     // 통화 코드입니다.
-    UPROPERTY()
     FString currency;
 
     // Gamebase 콘솔에 등록된 상품 이름입니다.
-    UPROPERTY()
     FString itemName;
 
     // Google, Apple 과 같이 스토어 콘솔에 등록된 상품 ID입니다.
-    UPROPERTY()
     FString marketItemId;
 
     // 상품 타입으로, 다음 값들이 올 수 있습니다.
@@ -333,23 +297,18 @@ struct FGamebasePurchasableItem
     // * CONSUMABLE : 소비성 상품.
     // * AUTORENEWABLE : 구독형 상품.
     // * CONSUMABLE_AUTO_RENEWABLE : 구독형 상품을 구매한 유저에게 정기적으로 소비가 가능한 상품을 지급하고자 하는 경우 사용되는 '소비가 가능한 구독 상품'.
-    UPROPERTY()
     FString productType;
     
     // 통화 기호가 포함된 현지화 된 가격 정보입니다.
-    UPROPERTY()
     FString localizedPrice;
     
     // 스토어 콘솔에 등록된 현지화된 상품 이름입니다.
-    UPROPERTY()
     FString localizedTitle;
 
     // 스토어 콘솔에 등록된 현지화된 상품 설명입니다.
-    UPROPERTY()
     FString localizedDescription;
 
     // Gamebase 콘솔에서 해당 상품의 '사용 여부'를 나타냅니다.
-    UPROPERTY()
     bool isActive;
 };
 ```
@@ -374,7 +333,7 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void RequestItemListOfNotConsumed(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
+void RequestItemListOfNotConsumed(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& Callback);
 ```
 
 **Example**
@@ -431,7 +390,7 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
+void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& Callback);
 ```
 
 **Example**
@@ -487,7 +446,7 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void RequestSubscriptionsStatus(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableSubscriptionStatusDelegate& onCallback);
+void RequestSubscriptionsStatus(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableSubscriptionStatusDelegate& Callback);
 ```
 
 **Example**
@@ -520,67 +479,75 @@ void Sample::RequestSubscriptionsStatus(bool includeExpiredSubscriptions)
 
 **VO**
 ```cpp
-USTRUCT()
-struct GAMEBASE_API FGamebasePurchasableSubscriptionStatus
+struct FGamebasePurchasableSubscriptionStatus
 {
-    GENERATED_USTRUCT_BODY()
-
     // 앱이 설치된 스토어에 대해 Gamebase에서 내부적으로 정의한 코드입니다.
-    UPROPERTY()
     FString storeCode;
     
     // 스토어의 결제 식별자입니다.
-    UPROPERTY()
     FString paymentId;
 
     // 구독 상품은 갱신될 때마다 paymentId가 변경됩니다.
     // 이 필드는 구독 상품을 최초 결제했을 때의 paymentId를 알려줍니다.
     // 스토어 및 결제 서버 상태에 따라 값이 존재하지 않을 수 있으므로
     // 항상 유효한 값을 보장하지는 않습니다.
-    UPROPERTY()
     FString originalPaymentId;
 
     // 결제 식별자입니다.
     // purchaseToken과 함께 'Consume' 서버 API를 호출하는 데 사용하는 중요한 정보입니다.
     //    
     // 주의: Consume API는 게임 서버에서 호출하세요! (https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap)
-    UPROPERTY()
     FString paymentSeq;
 
     // 구매한 상품의 상품 ID입니다.
-    UPROPERTY()
     FString marketItemId;
     
     // IAP 웹 콘솔의 항목 고유 식별자
-    UPROPERTY()
     int64 itemSeq;
 
     // 다음 값 중 하나를 가집니다.
     // * UNKNOWN: 알 수 없는 유형입니다. Gamebase SDK를 업데이트하거나 Gamebase 고객 센터에 문의하세요.
     // * CONSUMABLE: 소모품입니다.
     // * AUTO_RENEWABLE: 구독 상품입니다.
-    UPROPERTY()
     FString productType;
 
     // 상품을 구매한 사용자 아이디입니다.
     // 상품 구매에 사용하지 않은 사용자 아이디로 로그인하면 구매한 상품을 받을 수 없습니다.
-    UPROPERTY()
     FString userId;
     
     // 상품의 가격입니다.
-    UPROPERTY()
     float price;
 
     // 통화 정보입니다.
-    UPROPERTY()
     FString currency;
 
     // Payment 식별자.
     // paymentSeq로 'Consume' 서버 API를 호출하는 데 사용되는 중요한 정보입니다.
     // Consume API에서 매개변수 이름을 'accessToken'으로 지정해야 전달됩니다.
     // 참고: https://docs.toast.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap
-    UPROPERTY()
     FString purchaseToken;
+
+    // 상품을 구매한 시간.(epoch time)
+    int64 purchaseTime;
+    
+    // 구독이 만료되는 시간.(epoch time)
+    int64 expiryTime;
+    
+    // RequestPurchase API 호출 시 페이로드에 전달되는 값입니다.
+    // 스토어 서버 상태에 따라 정보가 유실되는 경우가 있으므로 사용을 권장하지 않습니다.
+    FString payload;
+    
+    // 구독 상태
+    // 전체 상태 코드는 다음 문서를 참조하세요.
+    // - https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-unity/#iapsubscriptionstatus
+    int32 statusCode;
+    
+    // 구독 상태에 대한 설명입니다.
+    FString statusDescription;
+    
+    // Gamebase 콘솔에 등록된 상품 ID입니다.
+    // RequestPurchase API로 상품을 구매할 때 사용됩니다.
+    FString gamebaseProductId;
 
     // 이 값은 Google에서 구매할 때 사용되며 다음 값을 가질 수 있습니다.
     // 단, Google 서버의 오류로 인해 Gamebase 결제 서버에서 일시적으로 인증 로직이 비활성화된 경우
@@ -588,36 +555,7 @@ struct GAMEBASE_API FGamebasePurchasableSubscriptionStatus
     // * null: 정상 결제
     // * 테스트: 테스트 결제
     // * 프로모션: 프로모션 결제
-    UPROPERTY()
     FString purchaseType;
-
-    // 상품을 구매한 시간.(epoch time)
-    UPROPERTY()
-    int64 purchaseTime;
-    
-    // 구독이 만료되는 시간.(epoch time)
-    UPROPERTY()
-    int64 expiryTime;
-    
-    // RequestPurchase API 호출 시 페이로드에 전달되는 값입니다.
-    // 스토어 서버 상태에 따라 정보가 유실되는 경우가 있으므로 사용을 권장하지 않습니다.
-    UPROPERTY()
-    FString payload;
-    
-    // 구독 상태
-    // 전체 상태 코드는 다음 문서를 참조하세요.
-    // - https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-unity/#iapsubscriptionstatus
-    UPROPERTY()
-    int32 statusCode;
-    
-    // 구독 상태에 대한 설명입니다.
-    UPROPERTY()
-    FString statusDescription;
-    
-    // Gamebase 콘솔에 등록된 상품 ID입니다.
-    // RequestPurchase API로 상품을 구매할 때 사용됩니다.
-    UPROPERTY()
-    FString gamebaseProductId;
 };
 ```
 
