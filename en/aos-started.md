@@ -329,7 +329,6 @@ android {
         
         <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
         <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-        <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
         
 * If permissions are declared, the Gamebase SDK will automatically request runtime permissions at file upload time.
 

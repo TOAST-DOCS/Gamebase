@@ -209,13 +209,13 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 |kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | One of the LINE service regions to log in  | [See Login with IdP ](./ios-authentication/#login-with-idp)|                                  
 
 
-> [참고]
+> [Note]
 >
 > May require when original functions of external services (such as Facebook) are in need within a game.
 >
 <br/>
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
 > Development items required by the external SDK must be implemented by using the API of the external SDK, which is not supported by Gamebase.
 >
