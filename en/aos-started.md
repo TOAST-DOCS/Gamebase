@@ -18,7 +18,7 @@ To execute Gamebase in Android, the following system environment is required.
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Support Sign In With Apple login | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-16.1.2 | Support Facebook login | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Support Google login | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.6.3 | Support Hangame login | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.7.1 | Support Hangame login | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | Support LINE login | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | Support NAVER login | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.12 | Support PAYCO login | - |
@@ -326,9 +326,9 @@ android {
 * If your app is targeting Android 13 (API Level 33) or later, in addition to the storage read permission, you also need to decare the following detailed media permissions.
         
         <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+        
         <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
         <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-        <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
         
 * If permissions are declared, the Gamebase SDK will automatically request runtime permissions at file upload time.
 

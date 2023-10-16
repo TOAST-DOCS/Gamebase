@@ -8,7 +8,7 @@
     * Weibo iOS SDK (3.3.4)
 
 #### 버그 수정
-* 앱을 처음 설치한 후 Weibo 로그인을 시도할 때, 콜백이 정상적으로 작동하지 않는 버그를 수정하였습니다.
+* 앱을 처음 설치하고 Weibo 로그인을 시도할 때 콜백이 정상적으로 작동하지 않는 버그를 수정하였습니다.
 
 ### 2.55.0 (2023. 09. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.55.0/GamebaseSDK-iOS.zip)
