@@ -1,5 +1,12 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.56.0
+
+### Unreal
+ 
+* 제공되는 타입이 USTRUCT에서 일반 구조체로 변경되었습니다.
+    * 결과로 받는 타입의 경우 기본적으로 제공되지 않는 값인 경우 TOptional 형태로 제공되어 기존에 값을 사용하시던 경우 Value.IsSet() API를 통해 설정된 값인지 확인 후 Value.GetValue()를 통해 값을 사용하실 수 있습니다.
+
 ## 2.55.0
 
 ### Android

@@ -18,7 +18,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Appleログインをサポート | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-16.1.2 | Facebookログインをサポート | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Googleログインをサポート | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.6.3 | Hangameログインをサポート | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.7.1 | Hangameログインをサポート | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | Lineログインをサポート | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.7.0 | NAVERログインをサポート | API 21(Lollipop、OS 5.0) |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.12 | Paycoログインをサポート | - |
@@ -324,9 +324,9 @@ android {
 * アプリがAndroid 13(API Level 33)以上をターゲットにする場合、ストレージの読み取り権限と一緒に次のように細分化されたメディア権限宣言も追加で必要です。
 
         <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
         <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
         <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-        <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
 
 * 権限が宣言されている場合、ファイルのアップロード時にGamebase SDKが自動的にランタイム権限を要求します。
 

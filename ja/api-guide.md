@@ -1,20 +1,21 @@
 ## Game > Gamebase > API v1.3ガイド
 
 ## 変更事項
-- IAP(In App Purchase) APIのリクエストパラメータおよびレスポンス結果に新しい項目が追加および削除されました。
-- Push Wrapping APIが追加されました。
-- Gamebase Access Tokenでログインする時に使用されたIdPのプロフィールおよびトークン情報を取得できる"Get IdP Token and Profiles" APIが追加されました。
-- IdP IdでマッピングされたGamebase userIdを取得する"Get UserId Information with IdP Id" APIが追加されました。
-- 特定期間に退会したユーザーのGamebase userIdを取得する"Withdraw Histories" APIが追加されました。
-'- 利用停止および利用停止解除を行う"Ban"、"Ban Release" APIが追加されました。
-'- 決済トランザクションを照会する"Get Payment Transaction" APIが追加されました。
-'- 未消費決済履歴を照会する"List Consumables"APIで一度にN個のストアを対象に照会できるように**marketIds**が追加されました。
-'- サーバーアドレスが"https://api-gamebase.nhncloudservice.com"に変更されました。既存アドレスも別途の告知前まで継続維持されます。
-'- "List Active Subscriptions" APIレスポンス結果にサブスクリプション商品キャンセル/再購入時に元取引購読のマーケット決済番号を表す**linkedPaymentId**が追加されました。
-'- 購読中の商品をキャンセルする"Cancel Subscriptions"、"Revoke Subscriptions" APIが追加されました。
-'- "List Active Subscriptions" API request bodyにGoogle購読の無効化状態をリクエストできる**includeInactiveGoogleStatuses**が追加されました。
-'- "List Active Subscriptions" APIレスポンス結果にRENEWED/RECOVERED発生時間を表す**renewTime**が追加されました。
-'- "List Active Subscriptions" API requestに一度にN個のストアを対象に照会できるように **marketIds**が追加されました。
+'- IAP(In App Purchase) APIのリクエストパラメータおよびレスポンス結果項目追加および削除
+- `Push Wrapping` API追加
+- Gamebase Access Tokenでログインする時に使用されたIdPのプロフィールおよびトークン情報を取得できる`Get IdP Token and Profiles` API追加
+- IdP IdでマッピングされたGamebase userIdを取得する`Get UserId Information with IdP Id` API追加
+- 特定期間に退会したユーザーのGamebase userIdを取得する`Withdraw Histories` API追加
+- 利用停止および利用停止解除を行う`Ban`, `Ban Release` API追加
+- 決済トランザクションを照会する`Get Payment Transaction` API追加
+- 未消費決済履歴を照会する`List Consumables` APIで一度にN個のストアを対象に照会できるように`marketIds`追加
+- サーバーアドレスがhttps://api-gamebase.nhncloudservice.comに変更。既存アドレスも別途の告知前まで維持
+- `List Active Subscriptions` APIレスポンス結果にサブスクリプション商品キャンセル/再購入時に元取引購読のマーケット決済番号を表す`linkedPaymentId`追加
+- 購読中の商品をキャンセルする`Cancel Subscriptions`, `Revoke Subscriptions` API追加
+- `List Active Subscriptions` API request bodyにGoogle購読の無効化状態をリクエストできる`includeInactiveGoogleStatuses`追加
+- `List Active Subscriptions` APIレスポンス結果にRENEWED/RECOVERED発生時間を現す`renewTime`追加
+- `List Active Subscriptions` API requestに一度にN個のストアを対象に照会できるように`marketIds`追加
+- 利用停止状態のユーザーを照会する`Get Ban Members` API追加
 
 ## Advance Notice
 
