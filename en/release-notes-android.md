@@ -3,8 +3,8 @@
 ### 2.56.0 (2023. 09. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.56.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Hangame Android SDK (1.7.1)
+#### Feature Updates
+* External SDK update: Hangame Android SDK (1.7.1)
 
 ### 2.55.0 (2023. 09. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.55.0/GamebaseSDK-Android.zip)
