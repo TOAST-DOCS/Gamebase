@@ -16,6 +16,7 @@
 - `List Active Subscriptions` API 응답 결과에 RENEWED/RECOVERED 발생 시간을 나타내는 `renewTime` 추가
 - `List Active Subscriptions` API request에 한 번에 N개의 스토어를 대상으로 조회할 수 있도록 `marketIds` 추가
 - 이용 정지 상태의 유저를 조회하는 `Get Ban Members` API 추가
+- 구독의 현재 상태를 조회하는 `Get Subscriptions Status` API 추가
 
 ## Advance Notice
 
@@ -2056,6 +2057,108 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
     }
 }
 ```
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+<br>
+
+### Get Subscriptions Status
+
+구독 상품에 대해 현재 상태를 조회합니다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/subscriptions/status |
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud 프로젝트 ID |
+
+**[Request Parameter]**
+
+없음
+
+**[Request Body]**
+
+```json
+{
+  "payments": [
+    {
+      "paymentSeq": "2023082410408370",
+      "accessToken": "Yk3sMxc-JSaGLLY0X-DnajXDyMXRVjxSRks0Lk1SaoaO7RD7VRjZcs8OTm8lOQVFoP71pgjAb_INjl0Y5KN8_A"
+    },
+    {
+      "paymentSeq": "2023082410408383",
+      "accessToken": "qEP1ZeV_ORmJdlNr9xDm9DXDyMXRVjxSRks0Lk1SaoaPiqPX4dG6UstXeWUt1NujyQAwH8BWQJueaPRfmnRyeg"
+    }
+  ]
+}
+```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| payments | Array[Object] | 결제 기본 정보 |
+| payments[].paymentSeq | String | Required | 결제 번호 |
+| payments[].accessToken | String | Required | 결제 인증 토큰 |
+
+**[Response Body]**
+
+```json
+{
+  "header": {
+    "isSuccessful": true,
+    "resultCode": 0,
+    "resultMessage": "SUCCESS"
+  },
+  "result": [
+    {
+      "userId": "QXG774PMRZMWR3BR",
+      "paymentSeq": "2023082410408389",
+      "accessToken": "uddRuwkHm9nFIHjvVuDS2jXDyMXRVjxSRks0Lk1SaoaPiqPX4dG6UstXeWUt1NujyQAwH8BWQJueaPRfmnRyeg",
+      "paymentId": "GPA.3333-7714-3477-48799..5",
+      "originalPaymentId": "GPA.3333-7714-3477-48799",
+      "purchaseTime": "2022-05-16T09:59:27+09:00",
+      "expiryTime": "2023-08-24T12:48:45+09:00",
+      "renewTime": "2023-08-24T12:48:45+09:00",
+      "referenceStatus": "REPURCHASED"
+    },
+    {
+      "userId": "QXG774PMRZMWR3BR",
+      "paymentSeq": "2023082410408381",
+      "accessToken": "SFkxJL2sk8NlbsPe8ivVGDXDyMXRVjxSRks0Lk1SaoaO7RD7VRjZcs8OTm8lOQVFoP71pgjAb_INjl0Y5KN8_A",
+      "paymentId": "GPA.3395-4426-6912-10820..5",
+      "originalPaymentId": "GPA.3395-4426-6912-10820",
+      "purchaseTime": "2022-05-16T09:59:27+09:00",
+      "expiryTime": "2023-08-24T12:48:45+09:00",
+      "renewTime": "2023-08-24T12:48:45+09:00",
+      "referenceStatus": "EXPIRED"
+    }
+  ]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Array[Object] | 결제 기본 정보 |
+| result[].userId | String  | 유저 ID  |
+| result[].paymentSeq | String  | 결제 번호 |
+| result[].accessToken | String | 결제 인증 토큰 |
+| result[].paymentId | String | 최근 갱신된 스토어 결제 ID |
+| result[].originalPaymentId | String | 최초 스토어 결제 ID |
+| result[].purchaseTime | String | 최근 갱신된 시간 |
+| result[].expiryTime | String | 구독 만료 시간 |
+| result[].renewTime | String | RENEWED/RECOVERED 발생 시간 |
+| result[].referenceStatus | String | 결제 시스템(인앱 결제, 외부 결제)이 제공하는 [결제 참조 상태](#store-reference-status)<br>현재 Google Play 스토어만 지원 |
 
 **[Error Code]**
 
