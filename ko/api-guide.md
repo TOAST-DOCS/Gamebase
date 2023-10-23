@@ -2107,7 +2107,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| payments | Array[Object] | 결제 기본 정보 |
+| payments | Array[Object] | 구독 결제 정보. 최대 10개까지 입력 |
 | payments[].paymentSeq | String | Required | 결제 번호 |
 | payments[].accessToken | String | Required | 결제 인증 토큰 |
 
