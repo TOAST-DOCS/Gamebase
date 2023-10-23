@@ -2,19 +2,20 @@
 
 ## Updates
 - New items have been added to or deleted from the request parameters and response results of IAP (In App Purchase) API.
-- Added Push Wrapping API.
-- Added the "Get IdP Token and Profiles" API that lets you acquire the profile and token info of the IdP used for logging in with the Gamebase Access Token.
-- Added the "Get UserId Information with IdP Id" API which acquires the Gamebase userId mapped with IdP Id.
-- Added the "Withdraw Histories" API to get Gamebase userId of users who have withdrawn during a specific period.
-- Added the "Ban" and "Ban Release" APIs that perform ban and ban release.
-- Added the "Get Payment Transaction" API to query payment transaction.
-- Added **marketIds** to the "List Consumables" API that queries the unconsumed payment history so that multiple stores can be viewed at a time. 
-- The server address has changed to "https://api-gamebase.nhncloudservice.com". The previous address will be maintained until further notice.
-- Added **linkedPaymentId** to response results of the "List Active Subscriptions" API, indicating the market payment number for the originally transacted subscription when canceling or repurchasing subscription products.
-- Added the "Cancel Subscriptions" and "Revoke Subscriptions" APIs that cancel the products in subscripion.
-- Added **includeInactiveGoogleStatuses** to the "List Active Subscriptions" API request body to request inactive Google subscription statuses.
-- Added **renewTime** to the "List Active Subscriptions" API response result to indicate when RENEWED/RECOVERED occurred.
-- Added **marketIds** to the "List Active Subscriptions" API request to perform querying against N stores at once.
+- Added the `Push Wrapping` API.
+- Added the `Get IdP Token and Profiles` API that lets you acquire the profile and token info of the IdP used for logging in with the Gamebase Access Token.
+- Added the `Get UserId Information with IdP Id` API which acquires the Gamebase userId mapped with IdP Id.
+- Added the `Withdraw Histories` API to get Gamebase userId of users who have withdrawn during a specific period.
+- Added the `Ban` and `Ban Release` APIs that perform ban and ban release.
+- Added the `Get Payment Transaction` API to query payment transaction.
+- Added `marketIds` to the `List Consumables` API that queries the unconsumed payment history so that multiple stores can be viewed at a time. 
+- The server address has changed to https://api-gamebase.nhncloudservice.com. The previous address will be maintained until further notice.
+- Added `linkedPaymentId` to response results of the `List Active Subscriptions` API, indicating the market payment number for the originally transacted subscription when canceling or repurchasing subscription products.
+- Added the `Cancel Subscriptions` and `Revoke Subscriptions` APIs that cancel the products in subscripion.
+- Added `includeInactiveGoogleStatuses` to the `List Active Subscriptions` API request body to request inactive Google subscription statuses.
+- Added `renewTime` to the `List Active Subscriptions` API response result to indicate when RENEWED/RECOVERED occurred.
+- Added `marketIds` to the `List Active Subscriptions` API request to perform querying against N stores at once.
+- Added the `Get Ban Members` API to retrieve users who are banned from using the service
 
 ## Advance Notice
 

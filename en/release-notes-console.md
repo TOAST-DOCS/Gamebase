@@ -1,6 +1,21 @@
 ## Game > Gamebase > Release Notes > Console
 
-### 2023. 07. 25.
+### September 26, 2023
+
+#### Feature Updates
+* Mobile Customer Center
+    * Added support for Thai
+
+### 2023. 09. 12.
+
+#### Bug Fixes
+* Purchase (IAP) > Payment Abusing Monitoring
+    * Fixed a paging error in the Refund History page
+* Mobile Customer Center
+    * Fixed an issue where incorrect information appears when selecting an email domain in 1:1 Inquiry
+    * Fixed an issue where file attachment fails on certain verions of Android
+
+### July 25, 2023
 
 #### Feature Updates
 * App > App
@@ -14,7 +29,7 @@
 * Push > Push
     * Fixed an error where, when repeatitive push notification was set for time zones other than UTC+9, the sending time was incorrectly set
 
-### 2023. 07. 11.
+### July 11, 2023
 
 #### Feature Updates
 * Operation > Kickout
