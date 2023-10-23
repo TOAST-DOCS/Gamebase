@@ -1,34 +1,42 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.57.0 (2023. 10. 31.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.57.0/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* Privacy manifest 파일을 추가하였습니다.
+* Gamebase GameCenter 로그인 스펙이 변경되었습니다.
+    * GameCenter 로그인 취소 후 재요청 시, 에러 팝업 창이 뜨며 TCGB_ERROR_AUTH_IDP_LOGIN_EXTERNAL_AUTHENTICATION_REQUIRED(3203) 에러가 발생하도록 수정하였습니다.
+    
 ### 2.55.2 (2023. 09. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.55.2/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* External SDK update
     * Weibo iOS SDK (3.3.4)
     
-#### 버그 수정
-* 앱을 처음 설치한 후 Weibo 로그인을 시도할 때, 콜백이 정상적으로 작동하지 않는 버그를 수정하였습니다.
+#### Bug Fixes
+* Fixed a bug where, when trying to log in to Weibo after first installing the app, callback does not work properly.
 
 ### 2.55.0 (2023. 09. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.55.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* 사용자가 푸시 권한을 거부해도 토큰을 등록할 수 있도록 TCGBPushConfiguration.alwaysAllowTokenRegistration 필드 추가
+#### Added Features
+* Added the TCGBPushConfiguration.alwaysAllowTokenRegistration field to allow users to register tokens even if they deny push permissions
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* External SDK update
     * NHN Cloud iOS SDK (1.6.2)
     
 ### 2.54.0 (2023. 08. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.54.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* SDK를 xcframework로 변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* Changed SDK to xcframework
+* External SDK update
     * Facebook iOS SDK (14.1.0)
     * Google iOS SDK (7.0.0)
-* SDK 내부 로직 개선
+* Improved SDK internal logic
 
 ### 2.53.0 (2023. 07. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.53.0/GamebaseSDK-iOS.zip)

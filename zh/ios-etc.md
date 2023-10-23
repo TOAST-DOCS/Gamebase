@@ -354,6 +354,10 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 
 #### IdP Revoked
 
+> [Note]
+>
+> This is an event that only occur when using the iOS Appleid login.
+
 * This event occurs when the service is deleted from the IdP.
 * Notifies the user that the IdP has been revoked, and issues a new userID when the user logs in with the same IdP.
 * TCGBGamebaseEventIdPRevokedData.code: Indicates the TCGBIdPRevokedCode value.
@@ -877,7 +881,7 @@ You can pass the additional information to the URL using TCGBContactConfiguratio
 > <font color="red">[Caution]</font><br/>
 >
 > When contacting the Customer Center, access to camera or album may be required for file attachment.
-> Please set 'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description', 'Privacy - Microphone Usage Description' in info.plist.
+> Please set 'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description' in info.plist.
 
 #### Request Contact URL
 
