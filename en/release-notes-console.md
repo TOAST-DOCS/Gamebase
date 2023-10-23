@@ -6,7 +6,7 @@
 * Mobile Customer Center
     * Added support for Thai
 
-### 2023. 09. 12.
+### September 12, 2023
 
 #### Bug Fixes
 * Purchase (IAP) > Payment Abusing Monitoring
