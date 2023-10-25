@@ -38,14 +38,28 @@ void RegisterPush(const FGamebasePushConfiguration& configuration, const FGameba
 void RegisterPush(const FGamebasePushConfiguration& configuration, const FGamebaseNotificationOptions& notificationOptions, const FGamebaseErrorDelegate& onCallback);
 ```
 
+#### FGamebasePushConfiguration
+| Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
+| ------------- | ------------- | ---------------------------------- | ------------------ |
+| pushEnabled                   | M             | bool         | プッシュ同意の有無 |
+| adAgreement                   | M             | bool         | 広告性プッシュ同意の有無 |
+| ADAgreemadAgreementNightentNight | M          | bool         | 夜間広告性プッシュ同意の有無 |
+| requestNotificationPermission | O             | bool         | Android 13以上のOSでRegisterPush APIを呼び出した場合、Push権限リクエストポップアップを自動出力するかどうか<br>**default**: true<br/>**Androidに限る** |
+| alwaysAllowTokenRegistration  | O             | bool         | ユーザーがプッシュ権限を拒否してもトークンを登録するかどうか<br>trueに設定した場合、プッシュ権限を取得できなくてもトークンを登録します。<br>**default**: false<br/>**iOSに限る** |
+
 **Example**
 
 ```cpp
 void Sample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNight)
 {
-    FGamebasePushConfiguration configuration{ pushEnabled, adAgreement, adAgreementNight };
-    
-    IGamebase::Get().GetPush().RegisterPush(configuration, FGamebasePushConfigurationDelegate::CreateLambda([](const FGamebaseError* error)
+    FGamebasePushConfiguration Configuration;
+    Configuration.pushEnabled = pushEnabled;
+    Configuration.adAgreement = adAgreement;
+    Configuration.adAgreementNight = adAgreementNight;
+    Configuration.requestNotificationPermission = bRequestNotificationPermission;
+    Configuration.alwaysAllowTokenRegistration = bAlwaysAllowTokenRegistration;
+
+    IGamebase::Get().GetPush().RegisterPush(Configuration, FGamebasePushConfigurationDelegate::CreateLambda([](const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -84,10 +98,22 @@ FGamebaseNotificationOptionsの作成者にIGamebase::Get().GetPush().GetNotific
 ```cpp
 void Sample::RegisterPushWithOption(bool pushEnabled, bool adAgreement, bool adAgreementNight, const FString& displayLanguage, bool foregroundEnabled, bool badgeEnabled, bool soundEnabled, int32 priority, const FString& smallIconName, const FString& soundFileName)
 {
-    FGamebasePushConfiguration configuration{ pushEnabled, adAgreement, adAgreementNight, displayLanguage };
-    FGamebaseNotificationOptions notificationOptions{ foregroundEnabled, badgeEnabled, soundEnabled, priority, smallIconName, soundFileName };
+    FGamebasePushConfiguration Configuration;
+    Configuration.pushEnabled = pushEnabled;
+    Configuration.adAgreement = adAgreement;
+    Configuration.adAgreementNight = adAgreementNight;
+    Configuration.requestNotificationPermission = bRequestNotificationPermission;
+    Configuration.alwaysAllowTokenRegistration = bAlwaysAllowTokenRegistration;
 
-    IGamebase::Get().GetPush().RegisterPush(configuration, notificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+    FGamebaseNotificationOptions NotificationOptions;
+    NotificationOptions.foregroundEnabled = bForegroundEnabled;
+    NotificationOptions.badgeEnabled = bBadgeEnabled;
+    NotificationOptions.soundEnabled = bSoundEnabled;
+    NotificationOptions.priority = Priority;
+    NotificationOptions.smallIconName = SmallIconName;
+    NotificationOptions.soundFileName = SoundFileName;
+
+    IGamebase::Get().GetPush().RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -122,15 +148,15 @@ FGamebaseNotificationOptionsPtr GetNotificationOptions();
 ```cpp
 void Sample::GetNotificationOptions()
 {
-    auto notificationOptions = IGamebase::Get().GetPush().GetNotificationOptions();
+    auto NotificationOptions = IGamebase::Get().GetPush().GetNotificationOptions();
     if (result.IsValid())
     {
-        notificationOptions->foregroundEnabled = true;
-        notificationOptions->smallIconName = TEXT("notification_icon_name");
+        NotificationOptions->foregroundEnabled = true;
+        NotificationOptions->smallIconName = TEXT("notification_icon_name");
         
-        FGamebasePushConfiguration configuration;
+        FGamebasePushConfiguration Configuration;
         
-        IGamebase::Get().GetPush().RegisterPush(configuration, notificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) { }));
+        IGamebase::Get().GetPush().RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) { }));
     }
     else
     {
