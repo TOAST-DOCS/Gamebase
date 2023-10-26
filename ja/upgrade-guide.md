@@ -1,5 +1,12 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.56.0
+
+### Unreal
+
+* 提供されるタイプがUSTRUCTから一般構造体に変更されました。
+    * 結果として受け取るタイプは基本的に提供されない値の場合、Toptional形式で提供され、すでに値を使用していた場合は、Value.IsSet()APIを通じて設定された値かどうか確認後にValue.GetValue()を通じて値を使用できます。
+
 ## 2.55.0
 
 ### Android

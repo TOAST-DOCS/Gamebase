@@ -211,12 +211,6 @@ dependencies {
 
     // >>> Gamebase - Select Purchase Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
-    // >>> [ONE store v17]
-    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
-    // >>> [ONE store v19]
-    // https://github.com/ONE-store/onestore_iap_release/tree/iap19-release/android_app_sample/app/libs
-    implementation files('libs/iap_sdk-v19.00.02.aar')
-    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v19:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v21:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-external:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
@@ -233,8 +227,19 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangamejp:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangamejpemail:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-kakaogame:$GAMEBASE_SDK_VERSION"
+    // >>> [Weibo v4]
+    // https://github.com/nhn/toast.gamebase.android.sample/tree/main/weibo_sdk
+    implementation files('libs/openDefault-4.4.4.aar')
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-weibo-v4:$GAMEBASE_SDK_VERSION"
+    // >>> [ONE store v16]
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v16:$GAMEBASE_SDK_VERSION"
+    // >>> [ONE store v17]
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
+    // >>> [ONE store v19]
+    // https://github.com/ONE-store/onestore_iap_release/tree/iap19-release/android_app_sample/app/libs
+    implementation files('libs/iap_sdk-v19.00.02.aar')
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v19:$GAMEBASE_SDK_VERSION"
+    // >>> [Push Custom Receiver]
     implementation "com.toast.android.gamebase:gamebase-adapter-push-notification:$GAMEBASE_SDK_VERSION"
 }
 

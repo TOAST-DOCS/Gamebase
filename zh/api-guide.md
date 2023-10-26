@@ -2004,6 +2004,7 @@ Gamebase provides Wrapping to server API of NHN Cloud Leaderboard. With Wrapping
 To find out about Leaderboard API specs mapped with Gamebase Wrapping API, see the following guide.
 Use the Gamebase AppId and SecretKey to call the Gamebase Wrapping Leaderboard API without setting the Leaderboard Appkey.
 
+
 [Leaderboard Guide](https://docs.nhncloud.com/en/Game/Leaderboard/en/api-guide/)
 
 <br/>
@@ -2056,8 +2057,8 @@ Use the Gamebase AppId and SecretKey to call the Gamebase Wrapping Push API with
 > When a single user allows all push notifications on multiple devices, the user will receive all pushes on multiple devices.
 
 > [Notes 2]
-> You can find the history in the **Log & Crash** settings from **Push > Settings > Save Send History**.
 > When you send a push message with an API, the send history cannot be checked from **Push > Send History** on the Gamebase console.
+> You can find the history in the **Log & Crash** settings from **Push > Settings > Save Send History**.
 [Push Guide](https://docs.nhncloud.com/en/Notification/Push/en/api-guide/)
 
 <br/>

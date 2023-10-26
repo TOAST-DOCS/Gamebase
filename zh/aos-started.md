@@ -18,7 +18,7 @@ To execute Gamebase in Android, the following system environment is required.
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Support Sign In With Apple login | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-16.1.2 | Support Facebook login | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Support Google login | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.6.3 | Support Hangame login | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.7.1 | Support Hangame login | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | Support LINE login | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | Support NAVER login | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.12 | Support PAYCO login | - |
@@ -285,7 +285,7 @@ android {
 
 * For Android Studio build
     * To use the Firebase push, you need to follow the guide below to complete the Firebase settings, and then include the google-services.json file in the project.
-        * [NHN Cloud > SDK User Guide> Push > Android > Firebase Cloud Messaging Settings](/TOAST/zh/toast-sdk/push-android/#firebase-cloud-messaging)
+        * [NHN Cloud > SDK User Guide> Push > Android > Firebase Cloud Messaging Settings](/TOAST/en/toast-sdk/push-android/#firebase-cloud-messaging)
 * For a Unity build
     * **Caution**: It is not necessary to install the Firebase Unity SDK Package, and even if you do not, push works properly.
     * If the Firebase Unity SDK Package has been installed, you can use the following command to execute **generate_xml_from_google_services_json.exe** file to convert json files into xml files.
@@ -326,9 +326,9 @@ android {
 * If your app is targeting Android 13 (API Level 33) or later, in addition to the storage read permission, you also need to decare the following detailed media permissions.
         
         <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+        
         <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
         <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-        <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
         
 * If permissions are declared, the Gamebase SDK will automatically request runtime permissions at file upload time.
 

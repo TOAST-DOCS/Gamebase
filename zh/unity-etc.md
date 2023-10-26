@@ -516,6 +516,10 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 
 #### IdP Revoked
 
+> [Note]
+>
+> This is an event that only occur when using iOS Appleid login.
+
 * This event occurs when the service is deleted from the IdP.
 * Notifies the user that the IdP has been revoked, and issues a new userID when the user logs in with the same IdP.
 * GamebaseEventIdPRevokedData.code:  Indicates the GamebaseIdPRevokedCode value.
@@ -1188,7 +1192,8 @@ Gamebase provides features to respond to customer inquiries.
 >
 > Associate it with the NHN Cloud Contact service to easily respond to inquiries from customers.
 > See the guide below if you want to know how to use the NHN Cloud Contact service in detail.
-> [TOAST Online Contact Guide](https://docs.nhncloud.com/en/Contact%20Center/en/online-contact-overview/)
+> [NHN Cloud Online Contact Guide](https://docs.nhncloud.com/en/Contact%20Center/en/online-contact-overview/)
+
 
 #### Customer Service Type
 

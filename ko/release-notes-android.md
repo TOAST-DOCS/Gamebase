@@ -1,5 +1,26 @@
 ## Game > Gamebase > 릴리스 노트 > Android
 
+### 2.57.0 (2023. 10. 31.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.57.0/GamebaseSDK-Android.zip)
+
+#### 기능 추가
+* Exception을 Log & Crash로 전송할 수 있는 API가 추가되었습니다.
+
+        Gamebase.Logger.report(String message, Throwable throwable);
+        Gamebase.Logger.report(String message, Throwable throwable, Map<String, String> userFields);
+
+#### 버그 수정
+* Gamebase WebView close()시에 드물게 EmptyStackException이 발생하는 버그를 수정했습니다.
+
+### 2.56.1 (2023. 10. 17.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.56.1/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: NHN Cloud Android SDK (1.8.0)
+    * Google billing client version 5.2.1 버전이 적용되었습니다.
+    * 2023/11/01 이후 Google Play Store에 신규 및 앱 업데이트 시 해당 버전 적용이 반드시 필요합니다. 자세한 내용은 다음 링크를 참고 부탁드립니다.
+    * [Google Play 결제 라이브러리 버전 지원 중단](https://developer.android.com/google/play/billing/deprecation-faq?hl=ko)
+
 ### 2.56.0 (2023. 09. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.56.0/GamebaseSDK-Android.zip)
 

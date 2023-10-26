@@ -209,14 +209,11 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 |kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | One of the LINE service regions to log in  | [See Login with IdP ](./ios-authentication/#login-with-idp)|                                  
 
 
-
 > [Note]
 >
 > May require when original functions of external services (such as Facebook) are in need within a game.
 >
-
 <br/>
-
 
 > <font color="red">[Caution]</font><br/>
 >
@@ -290,6 +287,7 @@ Attempts account withdrawal while logged in.
   * You can login again with the IdP. A new game user’s data will be created.
   * All linked IdPs will be logged out.
 * It means user's withdrawal from Gamebase, not from IdP account.
+
 > <font color="red">[Caution]</font><br/>
 >
 > If multiple IdPs are linked, all IdP linkages will be unlinked and the user data in Gamebase will be deleted.
@@ -330,6 +328,11 @@ Below shows an example.<br/><br/>
     * Google ID: ff **-> As the Google ee account is integrated, no additional Google account can be integrated.**
 
 Mapping API includes Add Mapping API and Remove Mapping API.
+
+> <font color="red">[Caution]</font><br/>
+>
+> If the mapping is successful during a Guest login, the Guest IdP disappears.
+>
 
 ### Add Mapping Flow
 
@@ -384,7 +387,6 @@ Try mapping to another IdP while logged-in to a specific IdP.<br/>
 | Keyname                                  | Usage                        | Value Type                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
 |kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | A region to perform login among LINE service regions  | [See Login with IdP](./ios-authentication/#login-with-idp)|
-
 
 **API**
 
@@ -645,6 +647,7 @@ This key is called **TransferAccountInfo**.
 The issued TransferAccountInfo calls the **requestTransferAccount** API from another device to transfer the account.
 
 > <font color="red">[Caution]</font><br/>
+
 > The TransferAccountInfo key can be issued while the guest account is logged in.
 > Transfer of guest account using TransferAccountInfo is allowed only when logged in to a guest account or not logged in.
 > If the logged-in guest account has already been mapped to an IdP (Google, Facebook etc.) account, account transfer is not supported.
@@ -690,7 +693,8 @@ Queries the TransferAccountInfo information issued for guest account transfer to
 
 ### Renew TransferAccount
 Renews the issued TransferAccountInfo information.
-There are two types of renewal: **Auto Renew** and **Manual Renew**. You can select either **Renew Password Only** or **Renew Both ID and Password** to renew the TransferAccountInfo information.
+There are two types of renewal: **Auto Renew** and **Manual Renew**. 
+You can select either **Renew Password Only** or **Renew Both ID and Password** to renew the TransferAccountInfo information.
 
 ```objectivec
 + (void)renewTransferAccountWithConfiguration:(TCGBTransferAccountRenewConfiguration *)config completion:(TransferAccountCompletion)completion;
@@ -846,6 +850,7 @@ For games using the Pending Withdrawal feature must notify their users that they
     }];
 }
 ```
+
 
 ### Cancel TemporaryWithdrawal
 
@@ -1015,3 +1020,5 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
 For detailed error codes, see the Developer page on each external authentication library.
+
+

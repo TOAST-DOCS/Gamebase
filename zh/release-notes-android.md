@@ -1,15 +1,44 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.57.0 (2023. 10. 31.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.57.0/GamebaseSDK-Android.zip)
+
+#### 기능 추가
+* Exception을 Log & Crash로 전송할 수 있는 API가 추가되었습니다.
+
+        Gamebase.Logger.report(String message, Throwable throwable);
+        Gamebase.Logger.report(String message, Throwable throwable, Map<String, String> userFields);
+
+#### 버그 수정
+* Gamebase WebView close()시에 드물게 EmptyStackException이 발생하는 버그를 수정했습니다.
+
+### 2.56.1 (2023. 10. 17.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.56.1/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: NHN Cloud Android SDK (1.8.0)
+    * Google billing client version 5.2.1 버전이 적용되었습니다.
+    * 2023/11/01 이후 Google Play Store에 신규 및 앱 업데이트 시 해당 버전 적용이 반드시 필요합니다. 자세한 내용은 다음 링크를 참고 부탁드립니다.
+    * [Google Play 결제 라이브러리 버전 지원 중단](https://developer.android.com/google/play/billing/deprecation-faq?hl=ko)
+
+### 2.56.0 (2023. 09. 26.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.56.0/GamebaseSDK-Android.zip)
+
+#### Feature Updates
+* External SDK update: Hangame Android SDK (1.7.1)
+
 ### 2.55.0 (2023. 09. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.55.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Naver Login Android SDK(5.7.0), NHN Cloud Android SDK(1.7.1)
-* Naver IdP 사용 시 Naver IdP에서 지원하지 않는 API 21 미만 단말기에서도 크래시가 발생하지 않도록 방어 로직을 추가했습니다.
+#### Feature Updates
+* External SDK update: Naver Login Android SDK(5.7.0), NHN Cloud Android SDK(1.7.1)
+* Fixed a cross-app scripting vulnerability in the OAuthLoginInAppBrowserActivity in older versions of the Naver Login SDK.
+* Added a defense logic to prevent crashes when using Naver IdP on devices below API 21, which are not supported by Naver IdP.
 
-#### 버그 수정
-* idP Login 시 로딩 애니메이션 off가 적용되지 않는 현상이 수정되었습니다.
-* API Level 28, 29 전체화면 웹뷰에서 windowFocus가 변경되면 네비게이션 바가 다시 생겨나는 이슈가 수정되었습니다.
+#### Bug Fixes
+* Fixed an issue where the loading animation off is not applied when idP Login.
+* Fixed an issue where the navigation bar reappears when the windowFocus is changed in API Level 28, 29 fullscreen webview.
+* Added a defensive logic to prevent crashing if Weibo login is successful but access token is returned as null from Weibo SDK intermittently.
 
 ### 2.53.0 (2023. 08. 17.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.53.0/GamebaseSDK-Android.zip)
@@ -897,7 +926,7 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 * [SDK] 2.4.0
   * (Common) Change of Classes Relevant to Indicators 
         * LevelUpData Class: Changed userLevel and levelUpTime as required parameters; the other fields are deleted [See Details: [Android](./aos-etc/#game-user-data-settings) / [iOS](./ios-etc/#game-user-data-settings) / [Unity](./unity-etc/#game-user-data-settings) / JavaScript]
-            * GameUserData Class: Added the classId (game user's profession) field [See Details: [Android](./aos-etc/#level-up-trace) / [iOS](./ios-etc/#level-up-trace) / [Unity](./unity-etc/#level-up-trace) / JavaScript]
+            * GameUserData Class: Added the classId (game user's profession) field [See Details: [Android](./aos-etc/#level-up-trace) / [iOS](./en/ios-etc/#level-up-trace) / [Unity](./unity-etc/#level-up-trace) / JavaScript]
 
     * (Android) NAVER SDK Version Updated (v4.2.5): Bug of NAVER SDK fixed (fixed the issue, in which authentication process was stopped due to forced closure of activities when the app was restarted via app icon while NAVER login was underway)  
 

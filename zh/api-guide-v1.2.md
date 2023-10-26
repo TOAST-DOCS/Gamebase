@@ -1382,7 +1382,7 @@ Gamebase provides Wrapping to server API of NHN Cloud Leaderboard. With Wrapping
 **For more information of the API, click the following link.**
 
 
-[Leaderboard Guide](/Game/Leaderboard/zh/api-guide/)
+[Leaderboard Guide](https://docs.nhncloud.com/en/Game/Leaderboard/en/api-guide/)
 
 ##### Example of API Call
 
