@@ -5,6 +5,7 @@
 ### iOS
 
 * Privacy manifest 파일을 추가했습니다.
+    * Privacy manifest 파일에서 Gamebase iOS SDK가 수집하는 데이터와 허용된 사유를 명시해야 하는 API 목록들을 볼 수 있습니다.
     * 애플 정책에 따라 2024년 봄까지 Gamebase iOS SDK 2.57.0으로 업데이트해 주시기 바랍니다.
 
 ## 2.56.0
