@@ -695,4 +695,4 @@ else
 ```
 
 * For NHN Cloud IAP error codes, refer to the document below.
-    * [NHN Cloud > NHN Cloud SDK使用指南 > NHN Cloud IAP > Unity > 错误代码](https://docs.nhncloud.com/en/nhncloud/en/nhncloud-sdk/iap-unity/#error-code)
+    * [NHN Cloud > User Guide for NHN Cloud SDK > NHN Cloud IAP > Unity > Error Codes](https://docs.nhncloud.com/en/nhncloud/en/nhncloud-sdk/iap-unity/#error-code)

@@ -1,5 +1,13 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.57.0
+
+### iOS
+
+* Privacy manifest 파일을 추가했습니다.
+    * Privacy manifest 파일에서 Gamebase iOS SDK가 수집하는 데이터와 허용된 사유를 명시해야 하는 API 목록들을 볼 수 있습니다.
+    * 애플 정책에 따라 2024년 봄까지 Gamebase iOS SDK 2.57.0으로 업데이트해 주시기 바랍니다.
+
 ## 2.56.0
 
 ### Unreal
@@ -22,6 +30,8 @@
 ### iOS
 
 * SDK가 xcframework로 변경되었습니다.
+* Facebook iOS SDK가 14.1.0으로 업데이트 되었습니다. Gamebase Console의 AdditionalInfo에 Facebook Client Token을 설정해 주시기 바랍니다.
+    * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > App > Authentication Information > 1. Facebook](./oper-app/#1-facebook)    
 
 ## 2.53.0
 
@@ -537,7 +547,7 @@ android {
 #### Facebook IdP
 
 * Gamebase iOS SDK 2.20.2 에서 Facebook SDK가 9.1.0으로 업데이트 되었습니다. 
-    * Facebook SDK에 추가 설정이 필요하게 되어 info.plist에 아래의 값을 추가해주시기 바랍니다. 설정하지 않을 경우 크래시가 발생할 수 있습니다.
+    * Facebook SDK에 추가 설정이 필요하게 되어 info.plist에 아래의 값을 추가해 주시기 바랍니다. 설정하지 않을 경우 크래시가 발생할 수 있습니다.
         * FacebookAutoLogAppEventsEnabled
         * FacebookAdvertiserIDCollectionEnabled
 * 자세한 내용은 [Facebook iOS SDK 가이드](https://developers.facebook.com/docs/app-events/getting-started-app-events-ios) 를 참고하시기 바랍니다.
