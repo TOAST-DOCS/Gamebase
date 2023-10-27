@@ -238,7 +238,7 @@ public void RemoveCrashFilterSample()
 }
 ```
 
-### Send Logs
+### Send Handled Exceptions
 
 일반/크래시 로그 뿐만 아니라, try/catch 구문에서 예외와 관련된 내용을 Report API를 사용하여 전송할 수 있습니다.
 이렇게 전송한 예외 로그는 "Log & Crash Search 콘솔" > "App Crash Search 탭"의 오류 유형에서 "Handled"로 필터링하여 조회할 수 있습니다.
