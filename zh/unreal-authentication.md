@@ -70,6 +70,12 @@ Attempt to log in with the most recent login IdP.
 When token for the login has expired, or if token verification has failed, return such failure.  
 To that end, it is required to implement [Login for IdP](#login-with-idp).
 
+* Settings AdditionalInfo Parameters
+
+| keyname                                  | a use                                    | value type                                     |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | Display loading animation until API call ends<br>**Only for Android** | **bool**<br>**default**: true |
+
 **API**
 
 Supported Platforms
@@ -78,6 +84,7 @@ Supported Platforms
 
 ```cpp
 void LoginForLastLoggedInProvider(const FGamebaseAuthTokenDelegate& onCallback);
+void LoginForLastLoggedInProvider(const UGamebaseJsonObject& additionalInfo, const FGamebaseAuthTokenDelegate& onCallback);
 ```
 
 **Example**
@@ -1041,11 +1048,14 @@ void Sample::Login()
 {
     IGamebase::Get().Login(GamebaseAuthProvider::Guest, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
-        if (Gamebase::IsSuccess(error))
+      if (Gamebase::IsSuccess(error))
         {
-            if (authToken->member.temporaryWithdrawal.gracePeriodDate > 0)
+            if (authToken->member.temporaryWithdrawal.IsSet())
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("User is under temporary withdrawa. GracePeriodDate : %d"), authToken->member.temporaryWithdrawal.gracePeriodDate);
+                const auto temporaryWithdrawal = authToken->member.temporaryWithdrawal.GetValue();
+                // gracePeriodDate: epoch time in milliseconds
+                const FDateTime PeriodDate = FDateTime(1970, 1, 1) + FTimespan::FromMilliseconds(temporaryWithdrawal.gracePeriodDate);
+                UE_LOG(GamebaseTestResults, Display, TEXT("User is under temporary withdrawa. GracePeriodDate : %s"), *PeriodDate.ToString());
             }
             else
             {
@@ -1143,33 +1153,33 @@ void Sample::Login()
             return;
         }
         
-        // Check if user is under grace ban
-        GamebaseResponse.Common.Member.GraceBanInfo graceBanInfo = authToken->member.graceBan;
-        if (graceBanInfo != null)
+        if (authToken->member.graceBan.IsSet())
         {
-            string periodDate = string.Format("{0:yyyy/MM/dd HH:mm:ss}", 
-                new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(graceBanInfo.gracePeriodDate));
-            string message = graceBanInfo.message;
-            
-            GamebaseResponse.Common.Member.GraceBanInfo.ReleaseRuleCondition releaseRuleCondition = graceBanInfo.releaseRuleCondition;
-            if (releaseRuleCondition != null)
+            const auto graceBan = authToken->member.graceBan.GetValue();
+
+            // gracePeriodDate: epoch time in milliseconds
+            const FDateTime PeriodDate = FDateTime(1970, 1, 1) + FTimespan::FromMilliseconds(graceBan.gracePeriodDate);
+
+            if (graceBan.releaseRuleCondition.IsSet())
             {
-                // condition type : "AND", "OR"
-                string releaseRule = string.Format("{0}{1} {2} {3}time(s)", releaseRuleCondition.amount,
-                    releaseRuleCondition.currency, releaseRuleCondition.conditionType, releaseRuleCondition.count);
+                const auto releaseRuleCondition = graceBan.releaseRuleCondition.GetValue();
+
+                // condition type: "AND", "OR"
+                FString releaseRule = FString::Printf(TEXT("%lld%s %s %dtime(s)"), releaseRuleCondition.amount,
+                    *releaseRuleCondition.currency, *releaseRuleCondition.conditionType, releaseRuleCondition.count);
             }
 
-            GamebaseResponse.Common.Member.GraceBanInfo.PaymentStatus paymentStatus = graceBanInfo.paymentStatus;
-            if (paymentStatus != null) {
-                String paidAmount = paymentStatus.amount + paymentStatus.currency;
-                String paidCount = paymentStatus.count + "time(s)";
-            }
+            if (graceBan.paymentStatus.IsSet())
+            {
+                const auto paymentStatus = graceBan.paymentStatus.GetValue();
 
-            // Guide the user through the UI how to finish the grace ban status.
+                FString paidAmount = FString::Printf(TEXT("%lld%s"), paymentStatus.amount, *paymentStatus.currency);
+                FString paidCount = paymentStatus.count + "time(s)";
+            }
         }
         else
         {
-            // Login success.
+            UE_LOG(GamebaseTestResults, Display, TEXT("Login succeeded. Gamebase userId is %s"), *authToken->member.userId);
         }
     }));
 }

@@ -1,5 +1,10 @@
 ## Game > Gamebase > 릴리스 노트 > Server API
 
+### 2023. 10. 31.
+
+#### 기능 추가
+* 구독의 현재 상태를 조회하는 "Get subscriptions Status" API가 추가
+
 ### 2023. 08. 17.
 
 #### 기능 추가

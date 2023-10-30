@@ -29,13 +29,6 @@ Regarding how to set in-app purchases on Android or iOS, read the following docu
             bSupportsInAppPurchasing=False
             
 
-#### Setting for Purchases on Android (for 4.24 or lower engine version)
-
-* When the version 4.24 or lower is installed via Epic Games Launcher, 
-    delete **Engine\Build\Android\Java\src\com\android\vending\billing\IInAppBillingService.aidl** to build it properly.  
-    * [IInAppBillingService.aidl](https://developer.android.com/google/play/billing/api), provided by Gamebase, must be removed to prevent conflicts. 
-    * There's no need to remove it, though, if you're using 4.25 or higher engine versions, or if the engine is provided by github. 
-
 ### Purchase Flow
 
 Purchase of an item can be divided into Purchase Flow, Consume Flow, and Reprocess Flow.
@@ -93,8 +86,8 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void RequestPurchase(const FString& gamebaseProductId, const FGamebasePurchasableReceiptDelegate& onCallback);
-void RequestPurchase(const FString& gamebaseProductId, const FString& payload, const FGamebasePurchasableReceiptDelegate& onCallback);
+void RequestPurchase(const FString& gamebaseProductId, const FGamebasePurchasableReceiptDelegate& Callback);
+void RequestPurchase(const FString& gamebaseProductId, const FString& payload, const FGamebasePurchasableReceiptDelegate& Callback);
 ```
 
 **Example**
@@ -160,32 +153,24 @@ void Sample::RequestPurchaseWithPayload(const FString& gamebaseProductId)
 **VO**
 
 ```cpp
-USTRUCT()
 struct FGamebasePurchasableReceipt
-{
-    GENERATED_USTRUCT_BODY()
-    
+{    
     // The product ID of a purchased item.
-    UPROPERTY()
     FString gamebaseProductId;
 
     // An identifier for Legacy API that purchases products with itemSeq.
-    UPROPERTY()
     int64 itemSeq;
 
     // The price of purchased product.
-    UPROPERTY()
     float price;
 
     // Currency code.
-    UPROPERTY()
     FString currency;
 
     // Payment identifier.
     // This is an important piece of information used to call 'Consume' server API with purchaseToken.
     // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // Caution: Call Consume API from game server!
-    UPROPERTY()
     FString paymentSeq;
 
     // Payment identifier.
@@ -193,11 +178,9 @@ struct FGamebasePurchasableReceipt
     // In Consume API, the parameter must be named 'accessToken' to be passed.
     // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // Caution: Call Consume API from game server!
-    UPROPERTY()
     FString purchaseToken;
 
     // The product ID that is registered to store console such as Google or Apple.
-    UPROPERTY()
     FString marketItemId;
 
     // The product type which can have the following values:
@@ -205,51 +188,41 @@ struct FGamebasePurchasableReceipt
     // * CONSUMABLE: A consumable product.
     // * AUTO_RENEWABLE: A subscription product.
     // * CONSUMABLE_AUTO_RENEWABLE: This 'consumable subscription product' is used when providing a subscribed user a subscription product that can be consumed periodically.
-    UPROPERTY()
     FString productType;
 
     // This is a user ID with which a product is purchased.
     // If a user logs in with a user ID that is not used to purchase a product, the user cannot obtain the product they purchased.
-    UPROPERTY()
     FString userId;
 
     // The payment identifier of a store.
-    UPROPERTY()
     FString paymentId;
 
     // paymentId is changed whenever product subscription is renewed.
     // This field shows the paymentId that was used when a subscription product was first purchased.
     // This value does not guarantee to be always valid, as it can have no value depending on the store
     // the user made a purchase and the status of the payment server.
-    UPROPERTY()
     FString originalPaymentId;
     
     // The time when the product was purchased.(epoch time)
-    UPROPERTY()
     int64 purchaseTime;
     
     // The time when the subscription expires.(epoch time)
-    UPROPERTY()
     int64 expiryTime;
 
     // This is a code for store where purchase is made.
     // The store code list can be found in the GamebaseStoreCode class.  
-    UPROPERTY()
     FString storeCode;
     
     // The value sent to payload when callign the RequestPurchase API.
     // Not guarantee to use due to possible loss of information depending on the store server status.
-    UPROPERTY()
     FString payload;
     
     // Whether it is promotion or not
     // - (Android) If the validation logic is temporarily turned off in the Gamebase payment server, a valid value is not guaranteed because this value will be output as false only.
-    UPROPERTY()
     bool isPromotion;
 
     // Whether it is test purchase or not
     // - (Android) If the validation logic is temporarily turned off in the Gamebase payment server, a valid value is not guaranteed because this value will be output as false only.
-    UPROPERTY()
     bool isTestPurchase;
 };
 ```
@@ -267,7 +240,7 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void RequestItemListPurchasable(const FGamebasePurchasableItemListDelegate& onCallback);
+void RequestItemListPurchasable(const FGamebasePurchasableItemListDelegate& Callback);
 ```
 
 **Example**
@@ -298,34 +271,25 @@ void Sample::RequestItemListPurchasable()
 **VO**
 
 ```cpp
-USTRUCT()
 struct FGamebasePurchasableItem
 {
-    GENERATED_USTRUCT_BODY()
-    
     // The product ID that is registered with the Gamebase console.
     // Used when a product is purchased using Gamebase.Purchase.requestPurchase API.
-    UPROPERTY()
     FString gamebaseProductId;
 
     // An identifier for Legacy API that purchases products with itemSeq.
-    UPROPERTY()
     int64 itemSeq;
 
     // The price of a product.
-    UPROPERTY()
     float price;
 
     // Currency code.
-    UPROPERTY()
     FString currency;
 
     // The name of a product registered in the Gamebase console.
-    UPROPERTY()
     FString itemName;
 
     // The product ID that is registered to store console such as Google or Apple.
-    UPROPERTY()
     FString marketItemId;
 
     // The product type which can have the following values:
@@ -333,23 +297,18 @@ struct FGamebasePurchasableItem
     // * CONSUMABLE: A consumable product.
     // * AUTO_RENEWABLE: A subscription product.
     // * CONSUMABLE_AUTO_RENEWABLE: This 'consumable subscription product' is used when providing a subscribed user a subscription product that can be consumed periodically.
-    UPROPERTY()
     FString productType;
     
     // Localized price information with currency symbol.
-    UPROPERTY()
     FString localizedPrice;
     
     // The name of a localized product registered with the store console.
-    UPROPERTY()
     FString localizedTitle;
 
     // The description of a localized product registered with the store console.
-    UPROPERTY()
     FString localizedDescription;
 
     // Shows whether the product is 'used or not' in the Gamebase console.
-    UPROPERTY()
     bool isActive;
 };
 ```
@@ -374,7 +333,7 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void RequestItemListOfNotConsumed(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
+void RequestItemListOfNotConsumed(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& Callback);
 ```
 
 **Example**
@@ -431,7 +390,7 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
+void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& Callback);
 ```
 
 **Example**
@@ -487,7 +446,7 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void RequestSubscriptionsStatus(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableSubscriptionStatusDelegate& onCallback);
+void RequestSubscriptionsStatus(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableSubscriptionStatusDelegate& Callback);
 ```
 
 **Example**
@@ -520,104 +479,83 @@ void Sample::RequestSubscriptionsStatus(bool includeExpiredSubscriptions)
 
 **VO**
 ```cpp
-USTRUCT()
-struct GAMEBASE_API FGamebasePurchasableSubscriptionStatus
+struct FGamebasePurchasableSubscriptionStatus
 {
-    GENERATED_USTRUCT_BODY()
-
     // This is the code defined internally by Gamebase for the store where your app is installed.
-    UPROPERTY()
     FString storeCode;
     
     // The payment identifier of a store
-    UPROPERTY()
     FString paymentId;
 
     // The paymentId is changed every time subscription product is renewed.
     // This field provides the paymentId of the first time the subscription is paid for. 
     // This value does not guarantee to be always valid, 
     // because the value may not exist depending on the status of the store or payment server.
-    UPROPERTY()
     FString originalPaymentId;
 
     // Payment identifier
     // This is important information used to call the ‘Consume’ server API along with purchaseToken.
     //    
     // Caution: Call the Consume API from the game server! (https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap)
-    UPROPERTY()
     FString paymentSeq;
 
     // Product ID for the purchased product.
-    UPROPERTY()
     FString marketItemId;
     
     // Item unique identifier in the IAP web console
-    UPROPERTY()
     int64 itemSeq;
 
     // Contains one of the following values.
     // * UNKNOWN: Unknown type. Update Gamebase SDK or contact Gamebase customer center.
     // * CONSUMABLE: a consumable.
     // * AUTO_RENEWABLE: a subscription product.
-    UPROPERTY()
     FString productType;
 
     // User ID that purchased the product.
     // If you log in not with a user ID that purchased the product, you cannot get the purchased product.
-    UPROPERTY()
     FString userId;
     
     // Product price.
-    UPROPERTY()
     float price;
 
     // Currency information.
-    UPROPERTY()
     FString currency;
 
     // Payment identifier.
     // As paymentSeq, important information to call the 'Consume' server API.
     // It is sent only when the parameter name is set to ‘access_Token’ from Consume API.
     // Note: https://docs.toast.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap
-    UPROPERTY()
     FString purchaseToken;
 
-    // The value is used when purchasing from Google and has one of the following values.
-    // But, when authentication logic is deactivated temporarily from Gamebase payment server due to Google server errors
-    // May not always guarantee a valid value as it only returns null
-    // * null: Normal payment
-    // * Test: Test payment
-    // * Promotion: Promotion payment
-    UPROPERTY()
-    FString purchaseType;
-
     // Time of product purchase .(epoch time)
-    UPROPERTY()
     int64 purchaseTime;
     
     // Time the subscription expires.(epoch time)
-    UPROPERTY()
     int64 expiryTime;
     
     // A value sent to payload when calling the RequestPurchase API.
     // Not guarantee to use due to possible loss of information depending on the store server status.
-    UPROPERTY()
     FString payload;
     
     // Subscription status
     // For all status codes, see the following documentation.
     // - https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-unity/#iapsubscriptionstatus
-    UPROPERTY()
     int32 statusCode;
     
     // Description for subscription status.
-    UPROPERTY()
     FString statusDescription;
     
     // Product ID registered in Gamebase console.
     // It is used to purchase products with the RequestPurchase API.
-    UPROPERTY()
     FString gamebaseProductId;
+    
+    // This value is used when purchasing from Google and can have the following values.
+     // However, if the authentication logic is temporarily disabled on the Gamebase payment server due to an error in the Google server,
+     // only returns null, so may not always guarantee a valid value.
+     // * null: normal payment
+     // * test: test payment
+     // * Promotion: promotion payment
+    FString purchaseType;
 };
 ```
 
