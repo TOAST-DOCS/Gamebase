@@ -213,7 +213,8 @@ Enter {App ID} and {App Secret Code} of an app registered in the Facebook develo
 ##### Android
 * [Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > Facebook IdP](./aos-started/#facebook-idp)
 
-
+##### iOS
+* [Gamebase > iOS SDK User Guide > Getting Started > IdP Settings > Facebook](./ios-started/#facebook)
 
 #### 2. Google
 

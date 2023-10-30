@@ -982,6 +982,7 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 |                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | 최근에 로그인한 IdP 정보가 없습니다.                   |
 | IdP Login      | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_FAILED    | 3201       | IdP 로그인에 실패하였습니다.                        |
 |                | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO | 3202       | IdP 정보가 유효하지 않습니다. (Console에 해당 IdP 정보가 없습니다.) |
+|                | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_EXTERNAL\_AUTHENTICATION\_REQUIRED | 3203       | Gamebase 로그인 요청 전에 먼저 IdP 로그인이 되어 있어야 합니다. |
 | Add Mapping    | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FAILED  | 3301       | 매핑 추가에 실패했습니다.                           |
 |                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | 이미 다른 멤버에 매핑돼 있습니다.                      |
 |                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       | 이미 같은 IdP에 매핑돼 있습니다.                     |
