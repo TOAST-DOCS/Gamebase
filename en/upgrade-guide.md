@@ -1,5 +1,12 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.56.0
+
+### Unreal
+
+* The provided type has changed from USTRUCT to a general structure.
+    * If the type received as a result is not a value provided by default, it is provided in TOptional form. If you used the value previously, you can use the value through Value.GetValue() after checking whether it is a value set through the Value.IsSet() API.
+
 ## 2.55.0
 
 ### Android
