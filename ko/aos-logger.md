@@ -142,7 +142,7 @@ Gamebase.Logger.setLoggerListener(new LoggerListener() {
 
 Android 플랫폼에서는 try/catch 구문에서 예외와 관련된 내용을 NHN Cloud Logger의 Handled Exception API를 사용하여 전송할 수 있습니다.
 이렇게 전송한 예외 로그는 콘솔에서 **Log & Crash Search > 앱 크래시 검색**을 클릭하고 **오류 유형**에서 **Handled**를 클릭해 조회할 수 있습니다.
-자세한 Log & Crash 콘솔 사용 방법은 [콘솔 사용 가이드](https://docs.nhncloud.com/ko/Data%20&%20Analytics/Log%20&%20Crash%20Search/ko/console-guide/)를 참고하세요.
+자세한 Log & Crash Search 콘솔 사용 방법은 [콘솔 사용 가이드](https://docs.nhncloud.com/ko/Data%20&%20Analytics/Log%20&%20Crash%20Search/ko/console-guide/)를 참고하세요.
 
 **API**
 
