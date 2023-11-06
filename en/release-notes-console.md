@@ -1,5 +1,11 @@
 ## Game > Gamebase > Release Notes > Console
 
+### October 31, 2023
+
+#### Feature Updates
+* Purchase (IAP) > Store
+    * Added Epic store
+
 ### September 26, 2023
 
 #### Feature Updates

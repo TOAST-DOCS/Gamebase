@@ -16,6 +16,7 @@
 - Added `renewTime` to the `List Active Subscriptions` API response result to indicate when RENEWED/RECOVERED occurred.
 - Added `marketIds` to the `List Active Subscriptions` API request to perform querying against N stores at once.
 - Added the `Get Ban Members` API to retrieve users who are banned from using the service
+- Added the `Get Subscription Status` API to retrieve the current status of subscriptions
 
 ## Advance Notice
 
@@ -2063,6 +2064,109 @@ Use the Gamebase AppId and SecretKey to call the Gamebase Wrapping Push API with
 [Push Guide](https://docs.nhncloud.com/en/Notification/Push/en/api-guide/)
 
 <br/>
+
+<br>
+
+### Get Subscriptions Status
+
+Queries the current status of subscriptions.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/subscriptions/status |
+
+**[Request Header]**
+
+Check for common items
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud project ID |
+
+**[Request Parameter]**
+
+None
+
+**[Request Body]**
+
+```json
+{
+  "payments": [
+    {
+      "paymentSeq": "2023082410408370",
+      "accessToken": "Yk3sMxc-JSaGLLY0X-DnajXDyMXRVjxSRks0Lk1SaoaO7RD7VRjZcs8OTm8lOQVFoP71pgjAb_INjl0Y5KN8_A"
+    },
+    {
+      "paymentSeq": "2023082410408383",
+      "accessToken": "qEP1ZeV_ORmJdlNr9xDm9DXDyMXRVjxSRks0Lk1SaoaPiqPX4dG6UstXeWUt1NujyQAwH8BWQJueaPRfmnRyeg"
+    }
+  ]
+}
+```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| payments | Array[Object] | Subscription payment information. Up to 10 can be entered |
+| payments[].paymentSeq | String | Required | Payment number |
+| payments[].accessToken | String | Required | Payment authentication token |
+
+**[Response Body]**
+
+```json
+{
+  "header": {
+    "isSuccessful": true,
+    "resultCode": 0,
+    "resultMessage": "SUCCESS"
+  },
+  "result": [
+    {
+      "userId": "QXG774PMRZMWR3BR",
+      "paymentSeq": "2023082410408389",
+      "accessToken": "uddRuwkHm9nFIHjvVuDS2jXDyMXRVjxSRks0Lk1SaoaPiqPX4dG6UstXeWUt1NujyQAwH8BWQJueaPRfmnRyeg",
+      "paymentId": "GPA.3333-7714-3477-48799..5",
+      "originalPaymentId": "GPA.3333-7714-3477-48799",
+      "purchaseTime": "2022-05-16T09:59:27+09:00",
+      "expiryTime": "2023-08-24T12:48:45+09:00",
+      "renewTime": "2023-08-24T12:48:45+09:00",
+      "referenceStatus": "REPURCHASED"
+    },
+    {
+      "userId": "QXG774PMRZMWR3BR",
+      "paymentSeq": "2023082410408381",
+      "accessToken": "SFkxJL2sk8NlbsPe8ivVGDXDyMXRVjxSRks0Lk1SaoaO7RD7VRjZcs8OTm8lOQVFoP71pgjAb_INjl0Y5KN8_A",
+      "paymentId": "GPA.3395-4426-6912-10820..5",
+      "originalPaymentId": "GPA.3395-4426-6912-10820",
+      "purchaseTime": "2022-05-16T09:59:27+09:00",
+      "expiryTime": "2023-08-24T12:48:45+09:00",
+      "renewTime": "2023-08-24T12:48:45+09:00",
+      "referenceStatus": "EXPIRED"
+    }
+  ]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Array[Object] | Payment basic information |
+| result[].userId | String  | User ID  |
+| result[].paymentSeq | String  | Payment number |
+| result[].accessToken | String | Payment authentication token |
+| result[].paymentId | String | Recently updated store payment ID |
+| result[].originalPaymentId | String | Initial store payment ID |
+| result[].purchaseTime | String | Recently updated time |
+| result[].expiryTime | String | When subscription expires |
+| result[].renewTime | String | When RENEWED/RECOVERED occurs |
+| result[].referenceStatus | String | [Payment Reference Status](#store-reference-status) provided by payment system (in-app purchase in stores, external payment)<br>Currently only available in Google Play Store |
+
+**[Error Code]**
+
+[Error Code](./error-code/#server)
+
 
 ##### Example of API Call
 
