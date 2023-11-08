@@ -1,5 +1,13 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.57.0
+
+### iOS
+
+* Privacy manifestファイルを追加しました。
+    * Privacy manifestファイルでGamebase iOS SDKが収集するデータと許可された理由を明示しなければならないAPIのリストを見ることができます。
+    * Appleのポリシーに基づき、2024年春までにGamebase iOS SDK 2.57.0にアップデートしてください。
+
 ## 2.56.0
 
 ### Unreal
@@ -22,6 +30,8 @@
 ### iOS
 
 * SDKがxcframeworkに変更されました。
+* Facebook iOS SDKが14.1.0にアップデートされました。Gamebase ConsoleのAdditionalInfoにFacebook Client Tokenを設定してください。
+    * [Game > Gamebase > コンソール使用ガイド > アプリ > App > Authentication Information > 1. Facebook](./oper-app/#1-facebook)    
 
 ## 2.53.0
 
