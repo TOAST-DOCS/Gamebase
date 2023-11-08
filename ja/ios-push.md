@@ -72,9 +72,9 @@ Push APIを設計するViewControllerに次のヘッダーファイルを持っ�
     // You should receive the above values to the logged-in user.
 
     TCGBPushConfiguration* pushConfig = [TCGBPushConfiguration pushConfigurationWithPushEnable:enablePush
-                                                                            ADAgreement:enableAdPush
-                                                                        ADAgreementNight:enableAdNightPush
-                                                            alwaysAllowTokenRegistration:alwaysAllowTokenRegistration];
+                                                                                   ADAgreement:enableAdPush
+                                                                               ADAgreementNight:enableAdNightPush
+                                                                   alwaysAllowTokenRegistration:alwaysAllowTokenRegistration];
 
     [TCGBPush registerPushWithPushConfiguration:pushConfig completion:^(TCGBError* error) {
         if (error != nil) {
