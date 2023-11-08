@@ -3,11 +3,11 @@
 ### 2.57.0 (2023. 10. 31.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.57.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* (공통) try/catch 구문에서 예외와 관련된 로그를 전송할 수 있는 Gamebase.Logger.Report API가 추가되었습니다.
-* (iOS) AUTH_IDP_LOGIN_EXTERNAL_AUTHENTICATION_REQUIRED 오류 코드가 추가되었습니다. 
+#### 機能追加
+* (共通) try/catch構文で例外に関するログを送信できるGamebase.Logger.Report APIを追加しました。
+* (iOS) AUTH_IDP_LOGIN_EXTERNAL_AUTHENTICATION_REQUIRED エラーコードを追加しました。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.57.0](./release-notes-android/#2570-2023-10-31)
 * [Gamebase iOS SDK 2.57.0](./release-notes-ios/#2570-2023-10-31)
 
