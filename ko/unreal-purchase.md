@@ -9,6 +9,7 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 
 * [Android Purchase Settings](aos-purchase#settings)
 * [iOS Purchase Settings](ios-purchase#settings)
+* [Windows Purchase Settings](unreal-started/#windows-settings)
 
 #### Unreal Plugin 설정
 
@@ -27,7 +28,6 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
             
             [OnlineSubsystemIOS.Store]
             bSupportsInAppPurchasing=False
-            
 
 ### Purchase Flow
 
@@ -84,6 +84,7 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void RequestPurchase(const FString& gamebaseProductId, const FGamebasePurchasableReceiptDelegate& Callback);
@@ -238,6 +239,7 @@ struct FGamebasePurchasableReceipt
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void RequestItemListPurchasable(const FGamebasePurchasableItemListDelegate& Callback);
@@ -331,6 +333,7 @@ struct FGamebasePurchasableItem
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void RequestItemListOfNotConsumed(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& Callback);

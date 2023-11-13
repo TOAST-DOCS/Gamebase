@@ -4,13 +4,13 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.57.0/GamebaseSDK-Android.zip)
 
 #### 기능 추가
-* Exception을 Log & Crash로 전송할 수 있는 API가 추가되었습니다.
+* Exception을 Log & Crash Search로 전송할 수 있는 API가 추가되었습니다.
 
         Gamebase.Logger.report(String message, Throwable throwable);
         Gamebase.Logger.report(String message, Throwable throwable, Map<String, String> userFields);
 
 #### 버그 수정
-* Gamebase WebView close()시에 드물게 EmptyStackException이 발생하는 버그를 수정했습니다.
+* Gamebase WebView close() 시에 간헐적으로 EmptyStackException이 발생하는 버그를 수정했습니다.
 
 ### 2.56.1 (2023. 10. 17.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.56.1/GamebaseSDK-Android.zip)

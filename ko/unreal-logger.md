@@ -10,6 +10,7 @@ Log & Crash Search에서 발급 받은 Appkey로  NHN Cloud  Logger SDK를 초�
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void Initialize(const FGamebaseLoggerConfiguration& loggerConfiguration);
@@ -43,6 +44,7 @@ NHN Cloud  Logger SDK는 아래 다섯 가지 레벨의 로그를 전송할 수 
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void Debug(const FString& message, const TMap<FString, FString>& userFields = TMap<FString, FString>());
@@ -109,6 +111,7 @@ void Sample::FatalLogger()
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void SetUserField(const FString& key, const FString& value);

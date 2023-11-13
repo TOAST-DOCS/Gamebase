@@ -237,3 +237,28 @@ public void RemoveCrashFilterSample()
     Gamebase.Logger.RemoveCrashFilter(crashFilter);
 }
 ```
+
+### Send Handled Exceptions
+
+一般/クラッシュログだけでなく、try/catch構文の例外に関する内容をReport APIを使用して送信できます。
+このように送信した例外ログは「Log & Crash Searchコンソール」>「App Crash Searchタブ」のエラータイプで「Handled」でフィルタリングして照会できます。
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_WEBGL
+
+```cs
+static void Report(GamebaseLoggerConst.LogLevel logLevel, string message, string logString, string stackTrace)
+```
+
+**Example**
+```cs
+public void ReportSample(Exception e)
+{
+    Gamebase.Logger.Report(GamebaseLoggerConst.LogLevel.ERROR, "message", e.Message, e.StackTrace);
+}
+```

@@ -3,10 +3,10 @@
 ### 2.57.0 (2023. 10. 31.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.57.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* Privacy manifest 파일을 추가하였습니다.
-* Gamebase GameCenter 로그인 스펙이 변경되었습니다.
-    * GameCenter 로그인 취소 후 재요청 시, 에러 팝업 창이 뜨며 TCGB_ERROR_AUTH_IDP_LOGIN_EXTERNAL_AUTHENTICATION_REQUIRED(3203) 에러가 발생하도록 수정하였습니다.
+#### 機能改善/変更
+* Privacy manifestファイルを追加しました。
+* Gamebase GameCenterログインスペックが変更されました。
+    * GameCenterログインキャンセル後、再リクエストすると、エラーポップアップウィンドウが表示され、TCGB_ERROR_AUTH_IDP_LOGIN_EXTERNAL_AUTHENTICATION_REQUIRED(3203)エラーが発生するように修正しました。
     
 ### 2.55.2 (2023. 09. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.55.2/GamebaseSDK-iOS.zip)
