@@ -15,6 +15,7 @@
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void ShowImageNotices(FGamebaseImageNoticeConfiguration& configuration, const FGamebaseErrorDelegate& onCloseCallback);
@@ -197,6 +198,7 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cs
 void QueryTerms(const FGamebaseQueryTermsResultDelegate& onCallback);
@@ -281,6 +283,7 @@ QueryTerms API로 내려받은 약관 정보로 UI를 직접 제작했다면,
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void UpdateTerms(const FGamebaseUpdateTermsConfiguration& configuration, const FGamebaseErrorDelegate onCallback);
@@ -374,6 +377,7 @@ void Sample::IsShowingTermsView()
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void ShowWebView(const FString& url, const FGamebaseWebViewConfiguration& configuration, FGamebaseErrorDelegate& onCloseCallback, const TArray<FString>& schemeList, const FGamebaseSchemeEventDelegate& onSchemeEvent);
@@ -456,6 +460,7 @@ Gamebase에서 지정해 놓은 스킴입니다.
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void CloseWebView();
