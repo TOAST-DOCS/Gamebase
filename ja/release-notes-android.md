@@ -9,7 +9,7 @@
 * 내부 로직 개선
 
 #### 버그 수정
-* Gamebase.Logger.report(String message, ...) API의 message에 빈 문자열을 넣으면 crash가 발생하는 이슈가 수정되었습니다.
+* Gamebase.Logger.report(String message, ...) API의 message에 빈 문자열을 넣어도 crash가 발생하지 않도록 방어코드를 추가하였습니다.
 
 ### 2.57.0 (2023. 10. 31.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.57.0/GamebaseSDK-Android.zip)
