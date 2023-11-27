@@ -1,14 +1,25 @@
 ## Game > Gamebase > リリースノート > Unreal
 
+### 2.58.0 (2023. 11. 28.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.58.0/GamebaseSDK-Unreal.zip)
+
+#### 버그 수정
+* (Windows) 서버 푸시가 동작하지 않는 이슈가 수정되었습니다.
+* 초기화 시 크래시가 발생할 수 있는 로직이 수정되었습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.58.0](./release-notes-android/#2580-2023-11-28)
+* [Gamebase iOS SDK 2.58.0](./release-notes-ios/#2580-2023-11-28)
+
 ### 2.57.0 (2023. 11. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.57.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 추가
-* Windows 플랫폼 지원 추가
-    * [Windows 설정 툴](./unreal-started/#windows-settings)이 추가되었습니다.
-    * 플랫폼에서 지원되는 API는 각 문서에 `UNREAL_WINDOWS` 항목을 확인바랍니다.
+#### 機能追加
+* Windowsプラットフォームのサポートを追加
+    * [Windows設定ツール](./unreal-started/#windows-settings)が追加されました。
+    * プラットフォームでサポートするAPIは、各文書の`UNREAL_WINDOWS`項目をご確認ください。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更点
 * [Gamebase Android SDK 2.57.0](./release-notes-android/#2570-2023-10-31)
 * [Gamebase iOS SDK 2.57.0](./release-notes-ios/#2570-2023-10-31)
 
