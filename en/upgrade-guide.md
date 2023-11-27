@@ -1,5 +1,12 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.58.0
+
+### Android
+
+#### Twitter IdP
+* Twitter api server의 인증서 업데이트로, minSDKVersion이 19에서 21로 상향되었습니다.
+
 ## 2.56.0
 
 ### Unreal
