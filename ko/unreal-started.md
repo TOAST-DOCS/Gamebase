@@ -15,8 +15,7 @@ Gamebase Unreal SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 
 * iOS
 * Android
-* Editor
-    * 일부 기능만 지원합니다.
+* Windows
 
 선택한 플랫폼에서 지원하지 않는 Gamebase API를 호출할 때는 아래와 같은 오류가 콜백으로 반환되며 콜백이 없는 경우에는 Warning 로그가 출력됩니다.
 
@@ -43,17 +42,29 @@ Supported Platforms
 
 ## Installation
 
-1. Gamebase Unreal SDK를 다운로드한 후 프로젝트 경로에 **Plugins** 폴더를 만들어 다운로드한 SDK를 추가합니다.
-2. Unreal 에디터에서 **Settings > Plugins** 창을 띄우고, **Project > Gamebase > Gamebase Plugin** 플러그인을 찾아 활성화합니다.
+1. Gamebase Unreal SDK를 다운로드한 후 프로젝트 경로에 **Plugins** 폴더를 만들어 다운로드한 SDK 내부 **NHNCloud** 폴더를 추가합니다.
+2. Unreal 에디터에서 **Settings > Plugins** 창을 띄우고, **Project > NHN Cloud > Gamebase Plugin** 플러그인을 찾아 활성화합니다.
 
 * [Download Gamebase Unreal SDK](/Download/#game-gamebase)
+
+### Module Settings
+
+* Gamebase 코드를 사용하시려면 모듈의 Build.cs 파일에서 의존 모듈 설정시 아래와 같이 2개의 모듈을 추가해야 합니다.
+
+        PrivateDependencyModuleNames.AddRange(
+            new[]
+            {
+                "Gamebase",
+                "GamebaseInterface"
+            }
+        );
 
 ### Android Settings
 
 1. 에디터의 메뉴 **Edit > Project Settings**를 선택합니다.
 2. Project Settings 창의 Plugin 카테고리에서 **Gamebase - Android**를 선택합니다.
 
-![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.57.0.png)
+![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.58.0.png)
 
 * Authentication
     * 사용하려는 IdP를 활성화합니다.
@@ -249,7 +260,6 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
 * 게임 시작 시 EOS Handle 설정이 필요합니다.
     * 엔진에 포함된 Online Subsystem EOS를 사용하는 경우 아래 코드와 같이 설정이 가능합니다.
 
-            ```cpp 
             #include "OnlineSubsystemEOS.h" 
             #include "IEOSSDKManager.h"
             #include "GamebaseStandalonePurchaseEpicAdapterModule.h"
@@ -264,9 +274,8 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
                     FGamebaseStandalonePurchaseEpicAdapterModule::SetEosPlatformInstance(*Handle);
                 }
             }
-            ```
 
-        > `OnlineSubsystemEOS.h` 헤더를 인클루드하면 빌드 오류가 발생하므로 OnlineSubsystemEOS 플러그인의 Private 폴더 안 Header를 Public으로 이동해 주는 과정이 필요합니다. (참고: [EOS 관련 문의](https://eoshelp.epicgames.com/s/question/0D54z00007QIJjhCAH/cant-call-get-voice-chat-user-interface-from-game-instance-using-the-eos-plugin-and-eos-voice-plugins-on-unreal-engine4?language=en_US))
+        > `OnlineSubsystemEOS.h` 헤더를 포함하면 빌드 오류가 발생하므로 OnlineSubsystemEOS 플러그인의 Private 폴더 안 Header 파일을 Public 폴더로 이동해 주는 과정이 필요합니다. (참고: [EOS 오류 관련 문의](https://eoshelp.epicgames.com/s/question/0D54z00007QIJjhCAH/cant-call-get-voice-chat-user-interface-from-game-instance-using-the-eos-plugin-and-eos-voice-plugins-on-unreal-engine4?language=en_US))
         > - SocketSubsystemEOS.h 
         > - EOSSettings.h
         > - EOSHelpers.h
