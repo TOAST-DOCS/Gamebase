@@ -15,6 +15,18 @@
     * Privacy manifestファイルでGamebase iOS SDKが収集するデータと許可された理由を明示しなければならないAPIのリストを見ることができます。
     * Appleのポリシーに基づき、2024年春までにGamebase iOS SDK 2.57.0にアップデートしてください。
 
+### Unreal
+ 
+* Gamebase 모듈이 분리되었습니다. Gamebase 코드를 사용하시려면 모듈의 Build.cs 파일 내 **GamebaseInterface** 모듈을 의존 모듈로 추가해주셔야 합니다.
+
+        PrivateDependencyModuleNames.AddRange(
+            new[]
+            {
+                "Gamebase",
+                "GamebaseInterface"
+            }
+        );
+
 ## 2.56.0
 
 ### Unreal
