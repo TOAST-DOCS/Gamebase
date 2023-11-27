@@ -3,12 +3,12 @@
 ### 2.57.0 (2023. 11. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.57.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 추가
-* Windows 플랫폼 지원 추가
-    * [Windows 설정 툴](./unreal-started/#windows-settings)이 추가되었습니다.
-    * 플랫폼에서 지원하는 API는 각 문서에 `UNREAL_WINDOWS` 항목을 확인하시기 바랍니다.
+#### 機能追加
+* Windowsプラットフォームのサポートを追加
+    * [Windows設定ツール](./unreal-started/#windows-settings)が追加されました。
+    * プラットフォームでサポートするAPIは、各文書の`UNREAL_WINDOWS`項目をご確認ください。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更点
 * [Gamebase Android SDK 2.57.0](./release-notes-android/#2570-2023-10-31)
 * [Gamebase iOS SDK 2.57.0](./release-notes-ios/#2570-2023-10-31)
 
