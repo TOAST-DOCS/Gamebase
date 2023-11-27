@@ -34,6 +34,7 @@ Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 <span style="color:#B60205; font-size: 10pt">■</span> UNREAL_EDITOR
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 #### Dependencies
 
@@ -52,7 +53,7 @@ Supported Platforms
 1. エディタのメニュー **Edit > Project Settings**を選択します。
 2. Project SettingsウィンドウでPluginカテゴリーから**Gamebase - Android**を選択します。
 
-![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.40.0.png)
+![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.57.0.png)
 
 * Authentication
     * 使用するIdPを有効にします。
@@ -121,7 +122,7 @@ See below for relevant guides.
 1. エディタのメニュー**Edit > Project Settings**を選択します。
 2. Project SettingsウィンドウでPluginカテゴリーから**Gamebase - iOS**を選択します。
 
-![Unreal Project Settings - iOS](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-ios-setttings-2.42.1.png)
+![Unreal Project Settings - iOS](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-ios-setttings-2.57.0.png)
 
 * Path
     * Xcode Path：Xcodeのパスを入力します。 (デフォルト値： /Applications/Xcode.app)
@@ -180,7 +181,7 @@ Result += " -rpath @executable_path/Frameworks";
 #### Remote Notification
 
 1. Gamebase Remote Notification機能を使用するには、Project Settings > Platforms > iOSページでEnable Remote Notifications Support機能を有効化する必要があります。(Githubソースからのみ可能)
-2. Foregroundプッシュ通知を受け取るには[Engine/Source/Runtime/ApplicationCore/Private/IOS/IOSAppDelegate.cpp](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Runtime/ApplicationCore/Private/IOS/IOSAppDelegate.cpp)ファイルから以下のコードを削除するか
+2. Foregroundプッシュ通知を受け取るには[Engine/Source/Runtime/ApplicationCore/Private/IOS/IOSAppDelegate.cpp](https://github.com/EpicGames/UnrealEngine/blob/4.26/Engine/Source/Runtime/ApplicationCore/Private/IOS/IOSAppDelegate.cpp)ファイルから以下のコードを削除するか
 
         - (void)userNotificationCenter:(UNUserNotificationCenter *)center
             willPresentNotification:(UNNotification *)notification
@@ -224,6 +225,53 @@ NHN Cloud Log & Crash Searchでクラッシュ分析を行うゲーム開発会�
 1. GamebaseSDK-Unreal/Source/Gamebase/ThirdParty/IOS/GamebaseSDK-iOS/externals/plcrashreporter.zipファイルを解凍します。
 2. UE4内部PLCrashReporterのaファイルとheaderファイルを解凍したファイルと交換します。
     * Engine/Source/ThirdParty/PLCrashReporter/plcrashreporter-master-xxxxxxx
+
+### Windows Settings
+
+1. エディタのメニュー **Edit > Project Settings**を選択します。
+2. Project SettingsウィンドウでPluginカテゴリーから**Gamebase - Windows**を選択します。
+
+![Unreal Project Settings - Windows](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-windows-setttings-2.57.0.png)
+
+* Authentication
+    * 使用する IdP を有効にします。
+* Purchase
+    * 使用したいストアを選択します。
+    * Epic Store
+        * EOSサービス情報を各項目に合わせて入力します。
+
+#### Epic Storeサービス
+
+* UE 4.27以降のバージョンでサポートされ、エンジン内部にEOSSDKモジュールが使用されています。
+* Epic Storeを使用するためには、EOSSDKを使用してログインする必要があります。
+* Gamebase で使用する EOS のバージョンは 1.15.5.0 で、エンジンパス `Engine\Source\ThirdParty\EOSSDK\SDK` に該当バージョンをインストールしてアップグレードする必要があります。
+    * [参考: EOS SDKアップグレードガイド](https://docs.unrealengine.com/5.2/en/upgrading-the-eos-sdk-in-unreal-engine/)
+* ゲーム起動時にEOS Handleの設定が必要です。
+    * エンジンに含まれているOnline Subsystem EOSを使用する場合、下記のコードのように設定できます。
+
+            ```cpp 
+            #include "OnlineSubsystemEOS.h" 
+            #include "IEOSSDKManager.h"
+            #include "GamebaseStandalonePurchaseEpicAdapterModule.h"
+
+            void UGamebasePurchaseEpicSupportTestCase::SetEosPlatformInstance()
+            {
+                IOnlineSubsystem* Subsystem = Online::GetSubsystem(GetWorld());
+
+                if (const FOnlineSubsystemEOS* EosSubsystem = static_cast<FOnlineSubsystemEOS*>(Subsystem))
+                {
+                    EOS_HPlatform PlatformHandle = *EosSubsystem->EOSPlatformHandle;
+                    FGamebaseStandalonePurchaseEpicAdapterModule::SetEosPlatformInstance(*Handle);
+                }
+            }
+            ```
+
+        > `OnlineSubsystemEOS.h`ヘッダーを含めるとビルドエラーが発生するので、OnlineSubsystemEOSプラグイン内のPrivateフォルダの中のHeaderをPublicに移動する必要があります。(参考: [EOS関連お問い合わせ](https://eoshelp.epicgames.com/s/question/0D54z00007QIJjhCAH/cant-call-get-voice-chat-user-interface-from-game-instance-using-the-eos-plugin-and-eos-voice-plugins-on-unreal-engine4?language=en_US))
+        > - SocketSubsystemEOS.h 
+        > - EOSSettings.h
+        > - EOSHelpers.h
+        > - [Platform]/[Platform]EOSHelpers.h
+
 
 ## API Deprecate Governance
 
