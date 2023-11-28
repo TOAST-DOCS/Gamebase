@@ -33,6 +33,7 @@ Platforms supported by each API can be categorized by the following icon:
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 <span style="color:#B60205; font-size: 10pt">■</span> UNREAL_EDITOR
 
 #### Dependencies
@@ -52,7 +53,7 @@ Supported Platforms
 1. Select **Edit > Project Settings** from the editor menu.
 2. In the Project Settings window, under Plugin category, select **Gamebase - Android**.
 
-![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.40.0.png)
+![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.57.0.png)
 
 * Authentication
     * Activate the IdP to use.
@@ -121,7 +122,7 @@ See below for relevant guides.
 1. Select the editor menu **Edit > Project Settings**.
 2. In the Project Settings window, select **Gamebase - iOS** from the Plugin category.
 
-![Unreal Project Settings - iOS](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-ios-setttings-2.42.1.png)
+![Unreal Project Settings - iOS](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-ios-setttings-2.57.0.png)
 
 * Path
     * Xcode Path: Enter the path of Xcode. (default: /Applications/Xcode.app)
@@ -179,7 +180,7 @@ Result += " -rpath @executable_path/Frameworks";
 #### Remote Notification
 
 1. To enable Gamebase Remote Notification, go to **Project Settings > Platforms > iOS** and activate **Enable Remote Notifications Support**. (available only on Github sources)
-2. To receive the Foreground push notification, the code shown below must be removed from the [Engine/Source/Runtime/ApplicationCore/Private/IOS/IOSAppDelegate.cpp](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Runtime/ApplicationCore/Private/IOS/IOSAppDelegate.cpp) file, or
+2. To receive the Foreground push notification, the code shown below must be removed from the [Engine/Source/Runtime/ApplicationCore/Private/IOS/IOSAppDelegate.cpp](https://github.com/EpicGames/UnrealEngine/blob/4.26/Engine/Source/Runtime/ApplicationCore/Private/IOS/IOSAppDelegate.cpp) file, or
 
         - (void)userNotificationCenter:(UNUserNotificationCenter *)center
             willPresentNotification:(UNNotification *)notification
@@ -224,15 +225,63 @@ Game developers using the crash analysis of the NHN Cloud Log & Crash Search mus
 2. Replace the file and header file of the UE4 internal PLCrashReporter with the unzipped file.
     * Engine/Source/ThirdParty/PLCrashReporter/plcrashreporter-master-xxxxxxx
 
+
+### Windows Settings
+
+1. 1. Select **Edit > Project Settings** from the editor menu.
+2. In the Project Settings window, in the Plugin category, select **Gamebase - Windows**.
+
+![Unreal Project Settings - Windows](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-windows-setttings-2.57.0.png)
+
+* Authentication
+    * Activate the IdP to use.
+* Purchase
+    * Select the store to use.
+    * Epic Store
+        * Enter the EOS service information as appropriate for each field.
+
+#### Epic Store Services
+
+* Supported by UE 4.27 and later, the EOSSDK module is used inside the engine.
+* To use the Epic Store, you must be logged in using the EOSSDK.
+* The EOS version used by Gamebase is 1.15.5.0, which requires an upgrade by installing it in the engine path `Engine\Source\ThirdParty\EOSSDK\SDK`.
+    * [Note: EOS SDK Upgrade Guide](https://docs.unrealengine.com/5.2/en/upgrading-the-eos-sdk-in-unreal-engine/)
+* EOS Handle settings are required when starting the game.
+    * If you're using the Online Subsystem EOS included in the engine, you can set it up like the code below.
+
+            ```cpp 
+            #include "OnlineSubsystemEOS.h" 
+            #include "IEOSSDKManager.h"
+            #include "GamebaseStandalonePurchaseEpicAdapterModule.h"
+
+            void UGamebasePurchaseEpicSupportTestCase::SetEosPlatformInstance()
+            {
+                IOnlineSubsystem* Subsystem = Online::GetSubsystem(GetWorld());
+
+                if (const FOnlineSubsystemEOS* EosSubsystem = static_cast<FOnlineSubsystemEOS*>(Subsystem))
+                {
+                    EOS_HPlatform PlatformHandle = *EosSubsystem->EOSPlatformHandle;
+                    FGamebaseStandalonePurchaseEpicAdapterModule::SetEosPlatformInstance(*Handle);
+                }
+            }
+            ```
+
+        > Including the `OnlineSubsystemEOS.h` header causes a build error, so you need to move the header to Public in the OnlineSubsystemEOS plugin's Private folder. (See [: EOS Guide](https://eoshelp.epicgames.com/s/question/0D54z00007QIJjhCAH/cant-call-get-voice-chat-user-interface-from-game-instance-using-the-eos-plugin-and-eos-voice-plugins-on-unreal-engine4?language=en_US))
+        > - SocketSubsystemEOS.h 
+        > - EOSSettings.h
+        > - EOSHelpers.h
+        > - [Platform]/[Platform]EOSHelpers.h
+
+
 ## API Deprecate Governance
 
-APIs that are no longer supported by Gamebase are to be deprecated. 
-Once deprecated, APIs might be deleted without previous notice if they fulfill the following conditions: 
+It deprecates the API that is not supported by Gamebase. 
+The deprecated API can be deleted without prior notice when the following conditions are satisfied.
 
-* Updated more than 5 times for a minor version 
+* Minor version update for more than 5 times
     * Gamebase Version Format - XX.YY.ZZ
         * XX : Major
         * YY : Minor
         * ZZ : Hotfix
 
-* At least 5-month old 
+* At least 5 months later

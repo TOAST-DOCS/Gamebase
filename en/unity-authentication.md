@@ -135,6 +135,7 @@ Gamebase supports Guest logins.
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 <span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
 <span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR

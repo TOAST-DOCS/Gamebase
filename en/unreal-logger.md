@@ -10,6 +10,7 @@ Initialize NHN Cloud Logger SDK with appkey issued from Log & Crash Search.
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void Initialize(const FGamebaseLoggerConfiguration& loggerConfiguration);
@@ -43,6 +44,7 @@ Logs are levelled as follows:
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void Debug(const FString& message, const TMap<FString, FString>& userFields = TMap<FString, FString>());
@@ -109,6 +111,7 @@ With user-defined field setting, set value is sent to server along with logs eve
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void SetUserField(const FString& key, const FString& value);

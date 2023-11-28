@@ -133,6 +133,7 @@ Gamebase supports guest login.
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 <span style="color:#B60205; font-size: 10pt">■</span> UNREAL_EDITOR
 
 ```cpp
@@ -200,6 +201,7 @@ Supported Platforms
 
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void Login(const FString& providerName, const FGamebaseAuthTokenDelegate& onCallback);
@@ -335,6 +337,7 @@ Supported Platforms
 
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 <span style="color:#B60205; font-size: 10pt">■</span> UNREAL_EDITOR
 
 ```cpp
@@ -381,6 +384,7 @@ Supported Platforms
 
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 <span style="color:#B60205; font-size: 10pt">■</span> UNREAL_EDITOR
 
 ```cpp
