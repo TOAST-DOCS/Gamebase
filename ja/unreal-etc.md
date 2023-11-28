@@ -14,6 +14,7 @@ Gamebaseでサポートする付加機能を説明します。
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 FString GetDeviceLanguageCode() const;
@@ -128,6 +129,7 @@ Gamebase初期化時、入力されたDisplay Languageを変更できます。
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void SetDisplayLanguageCode(const FString& languageCode);
@@ -151,6 +153,7 @@ void Sample::SetDisplayLanguageCode(cosnt FString& displayLanguage)
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 FString GetDisplayLanguageCode() const;
@@ -196,7 +199,6 @@ Unreal Android、iOSプラットフォームでの新規言語セット追加方
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
-
 
 ```cpp
 FString GetCountryCodeOfUSIM() const;
@@ -251,6 +253,7 @@ FString GetCountryCode() const;
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cs
 FDelegateHandle AddHandler(const FGamebaseEventDelegate::FDelegate& onCallback);
@@ -852,6 +855,7 @@ APIの呼び出しに必要なパラメータは下記のとおりです。
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void SetGameUserData(const FGamebaseAnalyticsUserData& gameUserData);
@@ -886,6 +890,7 @@ APIの呼び出しに必要なパラメータは下記の通りです。
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void TraceLevelUp(const FGamebaseAnalyticesLevelUpData& levelUpData);
@@ -952,6 +957,7 @@ ContactConfigurationでURLに追加情報を伝達できます。
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void OpenContact(const FGamebaseErrorDelegate& onCloseCallback);

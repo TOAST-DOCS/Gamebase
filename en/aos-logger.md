@@ -137,3 +137,28 @@ Gamebase.Logger.setLoggerListener(new LoggerListener() {
     }
 });
 ```
+
+### Use Handled Exception API
+
+On the Android platform, you can send exception-related content in the try/catch syntax using NHN Cloud Logger's Handled Exception API.
+The exception logs you sent can be viewed in the console by clicking **Log & Crash Search > App Crash Search** and clicking **Handled** under **Error Type**.
+For more information on how to use the Log & Crash Search console, [Console User Guide](https://docs.nhncloud.com/en/Data%20&%20Analytics/Log%20&%20Crash%20Search/en/console-guide/).
+
+**API**
+
+```java
++ (void)report(String message, Throwable throwable);
++ (void)report(String message, Throwable throwable, Map<String, String> userFields);
+```
+
+**Example**
+
+```java
+try {
+    // User Codes...
+} catch (Exception e) {
+    final Map<String, Object> userFields = new HashMap<>();
+    userField.put("KEY", "VALUE");
+    Gamebase.Logger.report("message", e, userFields);
+}
+```

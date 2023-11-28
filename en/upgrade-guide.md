@@ -1,5 +1,32 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.58.0
+
+### Android
+
+#### Twitter IdP
+* Twitter api server의 인증서 업데이트로, minSDKVersion이 19에서 21로 상향되었습니다.
+
+## 2.57.0
+
+### iOS
+
+* Added the Privacy manifest fils.
+    * In the Privacy manifest file, you can see a list of APIs that need to specify what data the Gamebase iOS SDK collects and why it is allowed.
+    * Please update to Gamebase iOS SDK 2.57.0 by Spring 2024 according to the Apple policies. 
+
+### Unreal
+ 
+* Gamebase 모듈이 분리되었습니다. Gamebase 코드를 사용하시려면 모듈의 Build.cs 파일 내 **GamebaseInterface** 모듈을 의존 모듈로 추가해주셔야 합니다.
+
+        PrivateDependencyModuleNames.AddRange(
+            new[]
+            {
+                "Gamebase",
+                "GamebaseInterface"
+            }
+        );
+
 ## 2.56.0
 
 ### Unreal
@@ -22,6 +49,8 @@
 ### iOS
 
 * Changed SDK to xcframework.
+* Updated Facebook iOS SDK to 14.1.0. Set the Facebook Client Token in AdditionalInfo in the Gamebase Console.
+    * [Game > Gamebase > Console User Guide > App > App > Authentication Information > 1. Facebook](./oper-app/#1-facebook) 
 
 ## 2.53.0
 

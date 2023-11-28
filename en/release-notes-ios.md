@@ -1,12 +1,22 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.58.0 (2023. 11. 28.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.58.0/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트
+    * PAYCO iOS SDK (1.5.9)
+    * Kakaogame iOS SDK (3.17.5)
+* 최상위 ViewController 획득 로직 개선
+* Gamebase 론칭 팝업 창이 완전히 종료된 후에 초기화 콜백이 호출되도록 수정하였습니다.
+
 ### 2.57.0 (2023. 10. 31.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.57.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* Privacy manifest 파일을 추가하였습니다.
-* Gamebase GameCenter 로그인 스펙이 변경되었습니다.
-    * GameCenter 로그인 취소 후 재요청 시, 에러 팝업 창이 뜨며 TCGB_ERROR_AUTH_IDP_LOGIN_EXTERNAL_AUTHENTICATION_REQUIRED(3203) 에러가 발생하도록 수정하였습니다.
+#### Feature Updates
+* Added the Privacy manifest file.
+* Changed Gamebase GameCenter login specifications.
+    * After canceling and re-requesting a GameCenter login, an error pop-up window would appear with the error TCGB_ERROR_AUTH_IDP_LOGIN_EXTERNAL_AUTHENTICATION_REQUIRED (3203).
     
 ### 2.55.2 (2023. 09. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.55.2/GamebaseSDK-iOS.zip)
