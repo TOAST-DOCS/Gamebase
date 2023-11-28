@@ -275,13 +275,13 @@ Game developers using the crash analysis of the NHN Cloud Log & Crash Search mus
 
 ## API Deprecate Governance
 
-It deprecates the API that is not supported by Gamebase. 
-The deprecated API can be deleted without prior notice when the following conditions are satisfied.
+APIs that are no longer supported by Gamebase are to be deprecated. 
+Once deprecated, APIs might be deleted without previous notice if they fulfill the following conditions: 
 
-* Minor version update for more than 5 times
+* Updated more than 5 times for a minor version 
     * Gamebase Version Format - XX.YY.ZZ
         * XX : Major
         * YY : Minor
         * ZZ : Hotfix
 
-* At least 5 months later
+* At least 5-month old 
