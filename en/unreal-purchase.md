@@ -9,6 +9,7 @@ Regarding how to set in-app purchases on Android or iOS, read the following docu
 
 * [Android Purchase Settings](aos-purchase#settings)
 * [iOS Purchase Settings](ios-purchase#settings)
+* [Windows Purchase Settings](unreal-started/#windows-settings)
 
 #### Unreal Plugin Settings
 
@@ -26,8 +27,7 @@ Regarding how to set in-app purchases on Android or iOS, read the following docu
     * If you're using Online SubSystem Online SubSystem iOS plugin, edit the /Config/IOS/IOSEngine.ini file.
             
             [OnlineSubsystemIOS.Store]
-            bSupportsInAppPurchasing=False
-            
+            bSupportsInAppPurchasing=False           
 
 ### Purchase Flow
 
@@ -84,6 +84,7 @@ If a game user cancels purchase, the **PURCHASE_USER_CANCELED** error is returne
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void RequestPurchase(const FString& gamebaseProductId, const FGamebasePurchasableReceiptDelegate& Callback);
@@ -238,6 +239,7 @@ The list of callback returns includes information of each item.
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void RequestItemListPurchasable(const FGamebasePurchasableItemListDelegate& Callback);
@@ -331,6 +333,7 @@ When there's an unconsumed purchase, send a request to the game server (item ser
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void RequestItemListOfNotConsumed(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& Callback);

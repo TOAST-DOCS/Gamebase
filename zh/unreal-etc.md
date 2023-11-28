@@ -14,6 +14,7 @@ This document describes additional features supported by Gamebase.
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 FString GetDeviceLanguageCode() const;
@@ -128,6 +129,7 @@ Display Language can be changed from Gamebase initialization.
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void SetDisplayLanguageCode(const FString& languageCode);
@@ -151,6 +153,7 @@ Current Display Language can be queried.
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 FString GetDisplayLanguageCode() const;
@@ -249,6 +252,7 @@ FString GetCountryCode() const;
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cs
 FDelegateHandle AddHandler(const FGamebaseEventDelegate::FDelegate& onCallback);
@@ -829,6 +833,7 @@ Following parameters are required to call APIs:
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void SetGameUserData(const FGamebaseAnalyticsUserData& gameUserData);
@@ -863,6 +868,7 @@ Following paratemers are required to call APIs:
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void TraceLevelUp(const FGamebaseAnalyticesLevelUpData& levelUpData);
@@ -930,6 +936,7 @@ You can pass the additional information to the URL using ContactConfiguration.
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 void OpenContact(const FGamebaseErrorDelegate& onCloseCallback);
