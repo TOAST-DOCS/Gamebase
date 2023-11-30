@@ -1,14 +1,25 @@
 ## Game > Gamebase > Release Notes > Unreal
 
+### 2.58.0 (2023. 11. 28.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.58.0/GamebaseSDK-Unreal.zip)
+
+#### Bug Fixes
+* Fixed an issue where (Windows) server push would not work.
+* Fixed logic that could cause a crash on initialization.
+
+#### Platform-specific Changes
+* [Gamebase Android SDK 2.58.0](./release-notes-android/#2580-2023-11-28)
+* [Gamebase iOS SDK 2.58.0](./release-notes-ios/#2580-2023-11-28)
+
 ### 2.57.0 (2023. 11. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.57.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 추가
-* Windows 플랫폼 지원 추가
-    * [Windows 설정 툴](./unreal-started/#windows-settings)이 추가되었습니다.
+#### Added Features
+* Added support for Windows
+    * Added [Windows Settings Tool](./unreal-started/#windows-settings).
     * 플랫폼에서 지원하는 API는 각 문서에 `UNREAL_WINDOWS` 항목을 확인하시기 바랍니다.
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.57.0](./release-notes-android/#2570-2023-10-31)
 * [Gamebase iOS SDK 2.57.0](./release-notes-ios/#2570-2023-10-31)
 
@@ -34,7 +45,7 @@
 #### Bug Fixes
 * Modified to ensure that the withdrawal delay information and payment abusing auto cancellation information are delivered normally after logging in.
 
-#### Platform-specific changes
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.56.0](./release-notes-android/#2560-2023-09-26)
 * [Gamebase iOS SDK 2.55.2](./release-notes-ios/#2552-2023-09-26)
 

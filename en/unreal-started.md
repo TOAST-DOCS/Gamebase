@@ -15,8 +15,7 @@ This document describes the environment and initial setting to enable Unreal Gam
 
 * iOS
 * Android
-* Editor
-    * Supports partial features only. 
+* Windows
 
 When unsupported Gamebase API is called on a selected platform, errors like below are returned as callback; if a callback is not available, warning logs show as output.  
 
@@ -42,17 +41,29 @@ Supported Platforms
 
 ## Installation
 
-1. Download Unreal Gamebase SDK and create a folder named `Plugins` in the project path and add the downloaded SDK.  
-2. From the Unreal editor, display the `Settings > Plugins` window, and find and enable `Project > Gamebase > Gamebase Plugin`.
+1. Download Unreal Gamebase SDK and create a folder named `Plugins` in the project path and add **NHN Cloud** Folder in the downloaded SDK.  
+2. From the Unreal editor, display the `Settings > Plugins` window, and find and enable `Project > NHN Cloud > Gamebase Plugin`.
 
 * [Download Gamebase Unreal SDK](/Download/#game-gamebase)
+
+### Module Settings
+
+* To use the Gamebase code, you need to add 2 modules as shown below when setting up dependencies in the module's Build.cs file.
+
+        PrivateDependencyModuleNames.AddRange(
+            new[]
+            {
+                "Gamebase",
+                "GamebaseInterface"
+            }
+        );
 
 ### Android Settings
 
 1. Select **Edit > Project Settings** from the editor menu.
 2. In the Project Settings window, under Plugin category, select **Gamebase - Android**.
 
-![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.40.0.png)
+![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.58.0.png)
 
 * Authentication
     * Activate the IdP to use.
@@ -224,6 +235,50 @@ Game developers using the crash analysis of the NHN Cloud Log & Crash Search mus
 2. Replace the file and header file of the UE4 internal PLCrashReporter with the unzipped file.
     * Engine/Source/ThirdParty/PLCrashReporter/plcrashreporter-master-xxxxxxx
 
+
+### Windows Settings
+
+1. Select **Edit > Project Settings** from the editor menu.
+2. In the Project Settings window, select **Gamebase - Windows** from the Plugin category.
+
+![Unreal Project Settings - Windows](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-windows-setttings-2.57.0.png)
+
+* Authentication
+    * Activate the IdP to use.
+* Purchase
+    * Select a store to use.
+    * Epic Store
+        * Enter the EOS service information as appropriate for each field.
+
+#### Epic Store Service
+
+* Supported by UE 4.27 and later, the EOSSDK module is being used inside the engine.
+* You must be logged in using the EOSSDK to use the Epic Store.
+* The EOS version used by Gamebase is 1.15.5.0, which requires an upgrade by installing that version in the engine path `Engine\Source\ThirdParty\EOSSDK\SDK`.
+    * [Reference: EOS SDK Upgrade Guide](https://docs.unrealengine.com/5.2/en/upgrading-the-eos-sdk-in-unreal-engine/)
+* You must set the EOS Handle at game startup.
+    * If you are using the Online Subsystem EOS included in the engine, you can set it like the code below.
+
+       #include "OnlineSubsystemEOS.h" 
+            #include "IEOSSDKManager.h"
+            #include "GamebaseStandalonePurchaseEpicAdapterModule.h"
+            void UGamebasePurchaseEpicSupportTestCase::SetEosPlatformInstance()
+            {
+                IOnlineSubsystem* Subsystem = Online::GetSubsystem(GetWorld());
+
+                if (const FOnlineSubsystemEOS* EosSubsystem = static_cast<FOnlineSubsystemEOS*>(Subsystem))
+                {
+                    EOS_HPlatform PlatformHandle = *EosSubsystem->EOSPlatformHandle;
+                    FGamebaseStandalonePurchaseEpicAdapterModule::SetEosPlatformInstance(*Handle);
+                }
+            }
+
+        > Including the `OnlineSubsystemEOS.h` header causes a build error, so you must move the header file from the OnlineSubsystemEOS plugin's private folder to the public folder. (Reference: [EOS Error-related Inquiry](https://eoshelp.epicgames.com/s/question/0D54z00007QIJjhCAH/cant-call-get-voice-chat-user-interface-from-game-instance-using-the-eos-plugin-and-eos-voice-plugins-on-unreal-engine4?language=en_US))
+        > - SocketSubsystemEOS.h 
+        > - EOSSettings.h
+        > - EOSHelpers.h
+        > - [Platform]/[Platform]EOSHelpers.h 
+        
 ## API Deprecate Governance
 
 APIs that are no longer supported by Gamebase are to be deprecated. 

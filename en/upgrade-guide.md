@@ -1,5 +1,12 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.58.0
+
+### Android
+
+#### Twitter IdP
+* Updated minSDKVersion to 21 from 19 after Twitter API server certificate update.
+
 ## 2.56.0
 
 ### Unreal

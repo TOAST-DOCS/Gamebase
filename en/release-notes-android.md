@@ -1,25 +1,36 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.58.0 (2023. 11. 28.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.58.0/GamebaseSDK-Android.zip)
+
+#### Feature Updates
+* External SDK update: Kakaogame version update (3.17.5)
+* Improved internal logic
+
+#### Bug Fixes
+* Added a defense code to prevent a crash when an empty string is entered in the message of the Gamebase.Logger.report(String message, ...) API.
+* Updated Twitter Adapter minSDK to 21 due to Twitter API server certificate renewal
+
 ### 2.57.0 (2023. 10. 31.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.57.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* Exception을 Log & Crash로 전송할 수 있는 API가 추가되었습니다.
+#### Added Features
+* Added a new API to send Exception to Log & Crash.
 
         Gamebase.Logger.report(String message, Throwable throwable);
         Gamebase.Logger.report(String message, Throwable throwable, Map<String, String> userFields);
 
-#### 버그 수정
-* Gamebase WebView close()시에 드물게 EmptyStackException이 발생하는 버그를 수정했습니다.
+#### Bug Fixes
+* Fixed a bug where Gamebase WebView close() would rarely cause an EmptyStackException.
 
 ### 2.56.1 (2023. 10. 17.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.56.1/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: NHN Cloud Android SDK (1.8.0)
-    * Google billing client version 5.2.1 버전이 적용되었습니다.
-    * 2023/11/01 이후 Google Play Store에 신규 및 앱 업데이트 시 해당 버전 적용이 반드시 필요합니다. 자세한 내용은 다음 링크를 참고 부탁드립니다.
-    * [Google Play 결제 라이브러리 버전 지원 중단](https://developer.android.com/google/play/billing/deprecation-faq?hl=ko)
+#### Feature Updates
+* External SDK update: NHN Cloud Android SDK (1.8.0)
+    * Google billing client version 5.2.1 has been applied.
+    * When new or app updates are made to the Google Play Store after 2023/11/01, you must apply the version. For more information, please refer to the following link.
+    * [Google Play Billing Library version deprecation](https://developer.android.com/google/play/billing/deprecation-faq?hl=ko)
 
 ### 2.56.0 (2023. 09. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.56.0/GamebaseSDK-Android.zip)
