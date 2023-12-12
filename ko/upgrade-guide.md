@@ -5,7 +5,7 @@
 ### Android
 
 #### Twitter IdP
-* Twitter api server의 인증서 업데이트로, minSDKVersion이 19에서 21로 상향되었습니다.
+* Twitter API 서버의 인증서 업데이트로 minSdkVersion이 19에서 21로 상향되었습니다.
 
 ## 2.57.0
 
