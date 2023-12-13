@@ -1,5 +1,17 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.59.0 (2023. 12. 19.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.59.0/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트
+    * NAVER iOS SDK (4.2.0)
+* 약관 창이 태블릿 환경에서 고정 크기로 표시되도록 수정하였습니다.
+* Launching Status Code가 INTERNAL_SERVER_ERROR(500)일 때 오류 팝업 창을 표시하도록 수정하였습니다.
+
+#### 버그 수정
+* LINE 로그인 중복 호출 시 크래시가 발생하는 버그를 수정하였습니다.
+
 ### 2.58.0 (2023. 11. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.58.0/GamebaseSDK-iOS.zip)
 
