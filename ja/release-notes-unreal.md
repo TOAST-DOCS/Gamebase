@@ -3,11 +3,11 @@
 ### 2.58.0 (2023. 11. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.58.0/GamebaseSDK-Unreal.zip)
 
-#### 버그 수정
-* (Windows) 서버 푸시가 동작하지 않는 이슈가 수정되었습니다.
-* 초기화 시 크래시가 발생할 수 있는 로직이 수정되었습니다.
+#### バグ修正
+* (Windows)サーバープッシュが動作しない問題を修正しました。
+* 初期化時にクラッシュが発生する可能性があるロジックを修正しました。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更点
 * [Gamebase Android SDK 2.58.0](./release-notes-android/#2580-2023-11-28)
 * [Gamebase iOS SDK 2.58.0](./release-notes-ios/#2580-2023-11-28)
 
