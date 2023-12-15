@@ -3,13 +3,13 @@
 ### 2.58.0 (2023. 11. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.58.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Kakaogame 버전 업데이트 (3.17.5)
-* Twitter API서버 인증서 갱신으로 인한 Twitter Adapter minSDK 21로 상승
-* 내부 로직 개선
+#### 機能改善/変更
+* 外部SDKアップデート: Kakaogameバージョンアップデート(3.17.5)
+* Twitter APIサーバー証明書更新によるTwitter Adapter minSDK 21にアップグレード。
+* 内部ロジック改善
 
-#### 버그 수정
-* Gamebase.Logger.report(String message, ...) API의 message에 빈 문자열을 넣어도 crash가 발생하지 않도록 방어코드를 추가하였습니다.
+#### バグ修正
+* Gamebase.Logger.report(String message, ...) APIのmessageに空の文字列を入れてもcrashが発生しないように防御コードを追加しました。
 
 ### 2.57.0 (2023. 10. 31.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.57.0/GamebaseSDK-Android.zip)
