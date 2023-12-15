@@ -317,7 +317,6 @@ android {
         
         <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-        <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
         <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
         
 * 권한이 선언되어 있으면 파일 업로드 시점에 Gamebase SDK가 자동으로 런타임 권한 요청을 진행합니다.
