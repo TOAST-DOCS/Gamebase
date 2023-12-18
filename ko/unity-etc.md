@@ -733,6 +733,7 @@ private void CheckServerPush(string category, GamebaseResponse.Event.GamebaseEve
             * GamebaseError.INVALID_MEMBER: 6
             * GamebaseError.BANNED_MEMBER: 7
     * GamebaseEventCategory.OBSERVER_NETWORK
+        * Android, iOS에 한함
     	* 네트워크 변동 사항 정보를 받을 수 있습니다.
     	* 네트워크가 끊기거나 연결되었을 때, 혹은 Wifi 에서 셀룰러 네트워크로 변경되었을 때 동작합니다.
     	* GamebaseEventObserverData.code : NetworkManager 값을 의미합니다.
@@ -741,11 +742,13 @@ private void CheckServerPush(string category, GamebaseResponse.Event.GamebaseEve
             * NetworkManager.TYPE_WIFI: 1
             * NetworkManager.TYPE_ANY: 2
     * GamebaseEventCategory.OBSERVER_WEBVIEW
+        * Standalone에 한함
         * Standalone에서 웹뷰를 열고 닫을 때 동작 합니다.
             * GamebaseWebViewEventType.OPENED: 1
             * GamebaseWebViewEventType.CLOSED: 2
     * GamebaseEventCategory.OBSERVER_INTROSPECT
-        * Standalone/WebGL에서 로그인 후 세션 연장에 실패할 때 동작합니다.
+        * Standalone, WebGL에 한함
+        * 로그인 후 세션 연장에 실패할 때 동작합니다.
 
 **VO**
 
