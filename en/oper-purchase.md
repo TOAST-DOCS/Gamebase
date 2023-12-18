@@ -112,7 +112,13 @@ Transaction status code indicates what occurs while the user is making a payment
 - Canceled during purchase: Purchase is canceled by user during purchase
 
 > [Note]
-> If there is no change in the verification completed status, please contact the Customer Center.
+> - The **Reservation completed** status can occur in the following cases.
+>   - When the user cancels purchase from the payment screen
+>   - When the user exits the app while the purchase is in progress
+>   - When the user doesn't receive a response from the market during the purchase process (temporary market error, user network disconnection, etc.)
+>   - When the user attempts to purchase the same item for which the payment hasn't been processed by the marketplace
+> 
+> - If there is no change in the **Verification completed** status, please contact the Customer Center.
 
 ### View Transaction List
 ![gamebase_purchase_17_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_17_202306_en.png)

@@ -2,6 +2,7 @@
 
 Gamebase Unreal SDKを使用するには、初期化を行う必要があります。またアプリID、アプリバージョン情報がTOAST Consoleに登録されている必要があります。
 
+
 ### Include Header File
 
 Gamebase APIを使用するには、次のヘッダファイルをインクルードします。

@@ -1,5 +1,15 @@
 ## Game > Gamebase > Release Notes > Server API
 
+### October 31, 2023
+
+#### Added Features
+* Added the `Get Subscription Status` API to retrieve the current status of subscriptions
+
+### August 17, 2023
+
+#### Added Features
+* Added the `Get Ban Members` API to retrieve users who are banned from using the service
+
 ### July 25, 2023
 
 #### Added Features

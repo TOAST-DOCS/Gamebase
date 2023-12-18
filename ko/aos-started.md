@@ -14,7 +14,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 용도 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.6.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 19(Kitkat, OS 4.4) |
+| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.8.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 19(Kitkat, OS 4.4) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Apple 로그인을 지원 | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-16.1.2 | Facebook 로그인을 지원 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Google 로그인을 지원 | - |
@@ -292,32 +292,17 @@ android {
     * Firebase 푸시를 사용하려면 아래 가이드에 따라 Firebase 설정을 완료한 후 google-services.json 파일을 프로젝트에 포함시켜야 합니다.
         * [NHN Cloud > SDK 사용 가이드 > Push > Android > Firebase Cloud Messaging 설정](/TOAST/ko/toast-sdk/push-android/#firebase-cloud-messaging)
 * Unity 빌드인 경우
-    * **주의**: 반드시 Firebase Unity SDK Package를 설치해야 하는 것은 아니며, 설치하지 않아도 푸시는 정상적으로 동작합니다.
-    * 만일 Firebase Unity SDK Package 를 설치했다면 아래 명령어로 **generate_xml_from_google_services_json.exe** 파일을 실행하여 json 파일을 xml 파일로 변환시킬 수 있습니다.
+    * 'Firebase Console > 프로젝트 설정' 에서 google-services.json 파일을 다운로드하고, xml 변환을 위한 **[generate_xml_from_google_services_json.exe]()** 파일도 다운로드 한 후 아래 명령어를 실행하여 json 파일을 xml 파일로 변환시킬 수 있습니다.
             
             "{UnityProject}\Firebase\Editor\generate_xml_from_google_services_json.exe" -i "{JsonFilePath}\google-services.json" -o "{UnityProject}\Assets\Plugins\Android\res\values\google-services.xml" -p "{PackageName}"
             
-    * Firebase Unity SDK Package 를 설치하지 않았다면, 'Firebase Console > 프로젝트 설정' 에서 google-services.json 파일을 다운로드하여 아래 가이드에 따라 string resource(xml) 파일을 직접 만들어서 'Assets/Plugins/Android/res/values/' 폴더에 포함시켜야 합니다.
-        Firebase 서비스 연동에 따라서 google-services.json 파일의 내용은 달라질 수 있습니다.
-        ![Download google-services.json](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-push_001_1.13.0.png)
-        * [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
-        * 다음은 직접 제작한 string resource(xml) 파일의 예시입니다.
-
-```xml
-<!-- Assets/Plugins/Android/res/values/google-services-json.xml -->
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="firebase_database_url" translatable="false">https://gamebase-sample-00000000.firebaseio.com</string>
-    <string name="gcm_defaultSenderId" translatable="false">000000000000</string>
-    <string name="google_storage_bucket" translatable="false">gamebase-sample-00000000.appspot.com</string>
-    <string name="project_id" translatable="false">gamebase-sample-00000000</string>
-    <string name="google_api_key" translatable="false">AbCd_AbCd_AbCd_AbCd_AbCd_AbCd_AbCd</string>
-    <string name="google_app_id" translatable="false">1:000000000000:android:abcd0123abcd0123</string>
-    <string name="default_web_client_id" translatable="false">000000000000-abcdabcdabcdabcdabcdabcdabcd.apps.googleusercontent.com</string>
-</resources>
-```
-
-* Unreal 빌드인 경우 Gamebase Unreal SDK에서 빈 google-service-json.xml 파일을 포함해 배포하고 있으니 해당 게임 정보에 맞는 값으로 변경하시기 바랍니다.
+    * 변환한 xml 파일은 'Android 라이브러리 프로젝트'에 리소스로 추가해야 합니다.
+        * 'Android 라이브러리 프로젝트'는 폴더명에 '.androidlib'를 포함해야 하고, AndroidManifest.xml 파일을 가지고 있어야 합니다.
+            * https://docs.unity3d.com/kr/2023.2/Manual/android-library-project-import.html
+        * 다음 예시 경로는 'Android 라이브러리 프로젝트'에 추가한 String 리소스 경로를 보여줍니다.
+            * 'Assets/Plugins/Android/MyAndroidProject.androidlib/res/values/google-services.xml'
+* Unreal 빌드인 경우
+    * Gamebase Unreal SDK에서 빈 google-service-json.xml 파일을 포함해 배포하고 있으니 'Unity 빌드인 경우' 항목의 설명을 따라 json 파일에서 직접 변환한 xml 파일로 변경하시기 바랍니다.
     * 만일 EasyFirebase와 같이 비슷한 형태의 XML을 자동으로 생성해 주는 Content가 있을 경우, 리소스 중복에 의해 빌드 에러가 발생할 수 있습니다. 이때는 google-service-json.xml 파일을 제거하면 됩니다.
 
 ### AndroidManifest.xml
@@ -332,7 +317,6 @@ android {
         
         <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-        <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
         <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
         
 * 권한이 선언되어 있으면 파일 업로드 시점에 Gamebase SDK가 자동으로 런타임 권한 요청을 진행합니다.
