@@ -9,7 +9,7 @@ Gamebase Unity SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 >
 > Unity 지원 버전
 >
-> * 2018.4.0 ~ 2023.1.12
+> * 2018.4.0 ~ 2023.2.3
 
 #### Android
 > <font color="red">[주의]</font>
@@ -27,8 +27,8 @@ Gamebase Unity SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 * iOS
 * Android
 * Standalone
-    * Windows7 이상
-	* MAC OS는 지원하지 않습니다.
+    * Windows 7 이상
+    * macOS 10.15 이상
 * WebGL
     * [WebGL Browser Compatibility](https://docs.unity3d.com/Manual/webgl-browsercompatibility.html)
 * Editor

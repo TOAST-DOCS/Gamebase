@@ -531,6 +531,7 @@ void Sample::CheckServerPush(const FString& category, const FGamebaseEventServer
             * GamebaseErrorCode::INVALID_MEMBER: 6
             * GamebaseErrorCode::BANNED_MEMBER: 7
     * GamebaseEventCategory::ObserverNetwork
+        * Android, iOS에 한함
         * 네트워크 변동 사항 정보를 받을 수 있습니다.
         * 네트워크가 끊기거나 연결되었을 때, 혹은 Wifi 에서 셀룰러 네트워크로 변경되었을 때 동작합니다.
         * GamebaseEventObserverData.code : NetworkManager 값을 의미합니다.
@@ -538,7 +539,6 @@ void Sample::CheckServerPush(const FString& category, const FGamebaseEventServer
             * EGamebaseNetworkType::Mobile: 0
             * EGamebaseNetworkType::Wifi: 1
             * EGamebaseNetworkType::Any: 2
-
 **VO**
 
 ```cpp

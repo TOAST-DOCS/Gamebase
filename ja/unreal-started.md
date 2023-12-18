@@ -15,8 +15,7 @@ Gamebase Unreal SDKの使用環境および初期設定の説明を行います�
 
 * iOS
 * Android
-* Editor
-    * 一部機能のみサポートします。
+* Windows
 
 選択したプラットフォームでサポートしないGamebase APIを呼び出す時は、下記のエラーがコールバックで返り、コールバックがない場合はWarningログが出力されます。
 
@@ -43,17 +42,30 @@ Supported Platforms
 
 ## Installation
 
-1. Gamebase Unreal SDKをダウンロードして、プロジェクトパスに`Plugins`フォルダを作成し、ダウンロードしたSDKを追加します。
-2. Unrealエディタで`Settings > Plugins`ウィンドウを開き、`Project > Gamebase > Gamebase Plugin`プラグインを探して有効にします。
+1. Gamebase Unreal SDKをダウンロードして、プロジェクトパスに`Plugins`フォルダを作成し、ダウンロードしたSDK内部 **NHNCloud**フォルダを追加します。
+2. Unrealエディタで`Settings > Plugins`ウィンドウを開き、`Project > NHN Cloud > Gamebase Plugin`プラグインを探して有効にします。
 
 * [Download Gamebase Unreal SDK](/Download/#game-gamebase)
+
+### Module Settings
+
+* Gamebaseコードを使用するには、モジュールのBuild.csファイルの依存モジュール設定時に、下記のように2つのモジュールを追加する必要があります。
+lurim-nhn marked this conversation as resolved.
+
+        PrivateDependencyModuleNames.AddRange(
+            new[]
+            {
+                "Gamebase",
+                "GamebaseInterface"
+            }
+        );
 
 ### Android Settings
 
 1. エディタのメニュー **Edit > Project Settings**を選択します。
 2. Project SettingsウィンドウでPluginカテゴリーから**Gamebase - Android**を選択します。
 
-![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.57.0.png)
+![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.58.0.png)
 
 * Authentication
     * 使用するIdPを有効にします。
@@ -249,7 +261,6 @@ NHN Cloud Log & Crash Searchでクラッシュ分析を行うゲーム開発会�
 * ゲーム起動時にEOS Handleの設定が必要です。
     * エンジンに含まれているOnline Subsystem EOSを使用する場合、下記のコードのように設定できます。
 
-            ```cpp 
             #include "OnlineSubsystemEOS.h" 
             #include "IEOSSDKManager.h"
             #include "GamebaseStandalonePurchaseEpicAdapterModule.h"
@@ -264,9 +275,8 @@ NHN Cloud Log & Crash Searchでクラッシュ分析を行うゲーム開発会�
                     FGamebaseStandalonePurchaseEpicAdapterModule::SetEosPlatformInstance(*Handle);
                 }
             }
-            ```
 
-        > `OnlineSubsystemEOS.h`ヘッダーを含めるとビルドエラーが発生するので、OnlineSubsystemEOSプラグイン内のPrivateフォルダの中のHeaderをPublicに移動する必要があります。(参考: [EOS関連お問い合わせ](https://eoshelp.epicgames.com/s/question/0D54z00007QIJjhCAH/cant-call-get-voice-chat-user-interface-from-game-instance-using-the-eos-plugin-and-eos-voice-plugins-on-unreal-engine4?language=en_US))
+        > `OnlineSubsystemEOS.h`ヘッダーを含めるとビルドエラーが発生するので、OnlineSubsystemEOSプラグインのPrivateフォルダ内のHeaderファイルをPublicフォルダへ移動する必要があります。 (参考： [EOSエラーに関するお問い合わせ](https://eoshelp.epicgames.com/s/question/0D54z00007QIJjhCAH/cant-call-get-voice-chat-user-interface-from-game-instance-using-the-eos-plugin-and-eos-voice-plugins-on-unreal-engine4?language=en_US))
         > - SocketSubsystemEOS.h 
         > - EOSSettings.h
         > - EOSHelpers.h

@@ -16,6 +16,7 @@
 - `List Active Subscriptions` APIレスポンス結果にRENEWED/RECOVERED発生時間を現す`renewTime`追加
 - `List Active Subscriptions` API requestに一度にN個のストアを対象に照会できるように`marketIds`追加
 - 利用停止状態のユーザーを照会する`Get Ban Members` API追加
+- 購読の現在状態を照会する`Get Subscriptions Status` APIを追加
 
 ## Advance Notice
 
@@ -2025,6 +2026,108 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
     }
 }
 ```
+
+**[Error Code]**
+
+[エラーコード](./error-code/#server)
+
+<br>
+
+### Get Subscriptions Status
+
+サブスクリプション商品の現在状態を照会します。
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/subscriptions/status |
+
+**[Request Header]**
+
+共通事項確認
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN CloudプロジェクトID |
+
+**[Request Parameter]**
+
+なし
+
+**[Request Body]**
+
+```json
+{
+  "payments": [
+    {
+      "paymentSeq": "2023082410408370",
+      "accessToken": "Yk3sMxc-JSaGLLY0X-DnajXDyMXRVjxSRks0Lk1SaoaO7RD7VRjZcs8OTm8lOQVFoP71pgjAb_INjl0Y5KN8_A"
+    },
+    {
+      "paymentSeq": "2023082410408383",
+      "accessToken": "qEP1ZeV_ORmJdlNr9xDm9DXDyMXRVjxSRks0Lk1SaoaPiqPX4dG6UstXeWUt1NujyQAwH8BWQJueaPRfmnRyeg"
+    }
+  ]
+}
+```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| payments | Array[Object] | 購読決済情報。最大10個まで入力 |
+| payments[].paymentSeq | String | Required | 決済番号 |
+| payments[].accessToken | String | Required | 決済認証トークン |
+
+**[Response Body]**
+
+```json
+{
+  "header": {
+    "isSuccessful": true,
+    "resultCode": 0,
+    "resultMessage": "SUCCESS"
+  },
+  "result": [
+    {
+      "userId": "QXG774PMRZMWR3BR",
+      "paymentSeq": "2023082410408389",
+      "accessToken": "uddRuwkHm9nFIHjvVuDS2jXDyMXRVjxSRks0Lk1SaoaPiqPX4dG6UstXeWUt1NujyQAwH8BWQJueaPRfmnRyeg",
+      "paymentId": "GPA.3333-7714-3477-48799..5",
+      "originalPaymentId": "GPA.3333-7714-3477-48799",
+      "purchaseTime": "2022-05-16T09:59:27+09:00",
+      "expiryTime": "2023-08-24T12:48:45+09:00",
+      "renewTime": "2023-08-24T12:48:45+09:00",
+      "referenceStatus": "REPURCHASED"
+    },
+    {
+      "userId": "QXG774PMRZMWR3BR",
+      "paymentSeq": "2023082410408381",
+      "accessToken": "SFkxJL2sk8NlbsPe8ivVGDXDyMXRVjxSRks0Lk1SaoaO7RD7VRjZcs8OTm8lOQVFoP71pgjAb_INjl0Y5KN8_A",
+      "paymentId": "GPA.3395-4426-6912-10820..5",
+      "originalPaymentId": "GPA.3395-4426-6912-10820",
+      "purchaseTime": "2022-05-16T09:59:27+09:00",
+      "expiryTime": "2023-08-24T12:48:45+09:00",
+      "renewTime": "2023-08-24T12:48:45+09:00",
+      "referenceStatus": "EXPIRED"
+    }
+  ]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Array[Object] | 決済基本情報 |
+| result[].userId | String  | ユーザーID  |
+| result[].paymentSeq | String  | 決済番号 |
+| result[].accessToken | String | 決済認証トークン |
+| result[].paymentId | String | 最近更新されたストア決済ID |
+| result[].originalPaymentId | String | 最初のストア決済ID |
+| result[].purchaseTime | String | 最近更新された時間 |
+| result[].expiryTime | String | 購読の有効期限 |
+| result[].renewTime | String | RENEWED/RECOVERED発生時間 |
+| result[].referenceStatus | String | 決済システム(アプリ内決済、外部決済)が提供する[決済参照状態](#store-reference-status)<br>現在Google Playストアのみサポート |
 
 **[Error Code]**
 

@@ -22,10 +22,10 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | Lineログインをサポート | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.7.0 | NAVERログインをサポート | API 21(Lollipop、OS 5.0) |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.12 | Paycoログインをサポート | - |
-|  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Twitterログインをサポート | - |
+|  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Twitterログインをサポート | API 21(Lollipop, OS 5.0) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.5.0 | Weiboログインをサポート | - |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Weiboログインをサポート | - |
-|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.14.14<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.11.0<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Kakaoログインをサポート | API 21(Lollipop, OS 5.0) |
+|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.17.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.13.0<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Kakaoログインをサポート | API 21(Lollipop, OS 5.0) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | toast-gamebase-iap-0.21.0<br>nhncloud-iap-core | ゲーム内決済をサポート | - |
 |  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Amazon Appstoreをサポート | - |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Galaxy Storeをサポート | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDKのminSdkVersionは18ですが、<br>実際の決済のためにインストールしなければいけないCheckoutサービスアプリの<br>minSdkVersionは21です。 |
