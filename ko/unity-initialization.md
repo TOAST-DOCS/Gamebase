@@ -42,6 +42,7 @@ NHN Cloud 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 초기화하
 | Huawei AppGallery | HUAWEI | Android에 한함 |
 | MyCard | MYCARD | Android에 한함 |
 | Windows | WIN | Standalone에 한함 |
+| macOS | MAC | Standalone에 한함 |
 | Web | WEB | WebGL에 한함 |
 
 #### 4. displayLanguageCode
@@ -155,8 +156,8 @@ public class SampleInitialization
         configuration.storeCode = GamebaseStoreCode.APPSTORE;
     #elif UNITY_WEBGL
         configuration.storeCode = GamebaseStoreCode.WEBGL;
-    #elif UNITY_STANDALONE
-        configuration.storeCode = GamebaseStoreCode.WINDOWS;
+    #elif UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
+        configuration.storeCode = GamebaseStoreCode.MACOS;
     #else
         configuration.storeCode = GamebaseStoreCode.WINDOWS;
     #endif
@@ -426,8 +427,8 @@ public class SampleInitialization
         configuration.storeCode = GamebaseStoreCode.APPSTORE;
     #elif UNITY_WEBGL
         configuration.storeCode = GamebaseStoreCode.WEBGL;
-    #elif UNITY_STANDALONE
-        configuration.storeCode = GamebaseStoreCode.WINDOWS;
+    #elif UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
+        configuration.storeCode = GamebaseStoreCode.MACOS;
     #else
         configuration.storeCode = GamebaseStoreCode.WINDOWS;
     #endif

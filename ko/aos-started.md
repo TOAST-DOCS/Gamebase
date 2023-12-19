@@ -298,9 +298,10 @@ android {
             
     * 변환한 xml 파일은 'Android 라이브러리 프로젝트'에 리소스로 추가해야 합니다.
         * 'Android 라이브러리 프로젝트'는 폴더명에 '.androidlib'를 포함해야 하고, AndroidManifest.xml 파일을 가지고 있어야 합니다.
-            * https://docs.unity3d.com/kr/2023.2/Manual/android-library-project-import.html
+            * [https://docs.unity3d.com/kr/2023.2/Manual/android-library-project-import.html](https://docs.unity3d.com/kr/2023.2/Manual/android-library-project-import.html)
         * 다음 예시 경로는 'Android 라이브러리 프로젝트'에 추가한 String 리소스 경로를 보여줍니다.
             * 'Assets/Plugins/Android/MyAndroidProject.androidlib/res/values/google-services.xml'
+
 * Unreal 빌드인 경우
     * Gamebase Unreal SDK에서 빈 google-service-json.xml 파일을 포함해 배포하고 있으니 'Unity 빌드인 경우' 항목의 설명을 따라 json 파일에서 직접 변환한 xml 파일로 변경하시기 바랍니다.
     * 만일 EasyFirebase와 같이 비슷한 형태의 XML을 자동으로 생성해 주는 Content가 있을 경우, 리소스 중복에 의해 빌드 에러가 발생할 수 있습니다. 이때는 google-service-json.xml 파일을 제거하면 됩니다.
