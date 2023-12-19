@@ -292,7 +292,7 @@ android {
     * Firebase 푸시를 사용하려면 아래 가이드에 따라 Firebase 설정을 완료한 후 google-services.json 파일을 프로젝트에 포함시켜야 합니다.
         * [NHN Cloud > SDK 사용 가이드 > Push > Android > Firebase Cloud Messaging 설정](/TOAST/ko/toast-sdk/push-android/#firebase-cloud-messaging)
 * Unity 빌드인 경우
-    * 'Firebase Console > 프로젝트 설정' 에서 google-services.json 파일을 다운로드하고, xml 변환을 위한 **[generate_xml_from_google_services_json.exe]()** 파일도 다운로드 한 후 아래 명령어를 실행하여 json 파일을 xml 파일로 변환시킬 수 있습니다.
+    * 'Firebase Console > 프로젝트 설정' 에서 google-services.json 파일을 다운로드하고, xml 변환을 위한 **[generate_xml_from_google_services_json.exe](https://github.com/firebase/firebase-cpp-sdk/blob/main/generate_xml_from_google_services_json.exe)** 파일도 다운로드 한 후 아래 명령어를 실행하여 json 파일을 xml 파일로 변환시킬 수 있습니다.
             
             "{UnityProject}\Firebase\Editor\generate_xml_from_google_services_json.exe" -i "{JsonFilePath}\google-services.json" -o "{UnityProject}\Assets\Plugins\Android\res\values\google-services.xml" -p "{PackageName}"
             
