@@ -2,7 +2,7 @@
 
 ゲームプラットフォーム企業NHNの10年のノウハウを詰め込んだGamebaseを自信を持って推薦します。 
 Gamebase SDKを適用すれば、ゲームに必要な共通サービスを簡単に利用できます。 
-
+ㄴㅇㄴ
 ![Gamebase_summary](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_01_201903_jp.png)
 
 
