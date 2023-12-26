@@ -8,9 +8,9 @@ Create your license key and OAuth credentials in the one-store to register for t
 Apps > select App > In-App information > Licensing & in-app billing
 ```
 
-![원스토어 인증 및 라이선스 확인](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_52.PNG)
+![[]](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/iap_52.PNG)
 
-![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-onestore-edit.png)
+![[]](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/ONEStore/jp/store_info_registration_jp_231226.png)
 
 | Key | Description                                             |
 | ------------- | ------------------------------ |

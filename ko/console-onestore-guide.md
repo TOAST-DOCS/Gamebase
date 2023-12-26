@@ -6,9 +6,9 @@
 ```
 Apps > 앱 선택 >In-App정보 > 인증 및 라이선스
 ```
-![원스토어 인증 및 라이선스 확인](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap_52.PNG)
+![원스토어 인증 및 라이선스 확인](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/iap_52.PNG)
 
-![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-onestore-edit-gamebase.png)
+![[]](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/ONEStore/ko/store_info_registration_ko_231226.png)
 
 [표] 원스토어 v17 연동을 위한 앱 등록 필드
 
