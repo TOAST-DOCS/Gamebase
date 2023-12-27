@@ -495,7 +495,7 @@ void processServerPush(String category, GamebaseEventServerPushData data) {
 * Gamebase에서 지원하는 Observer Type은 다음과 같습니다.
     * GamebaseEventCategory.OBSERVER_LAUNCHING
     	* 점검이 걸리거나 풀린 경우, 새로운 버전이 배포되어 업데이트가 필요한 경우와 같이, Launching 상태가 변경되었을 때 동작합니다.
-    	* GamebaseEventObserverData.code : LaunchingStatus 값을 의미합니다.
+    	* GamebaseEventObserverData.code: LaunchingStatus 값을 의미합니다.
             * LaunchingStatus.IN_SERVICE: 200
             * LaunchingStatus.RECOMMEND_UPDATE: 201
             * LaunchingStatus.IN_SERVICE_BY_QA_WHITE_LIST: 202
@@ -510,13 +510,13 @@ void processServerPush(String category, GamebaseEventServerPushData data) {
             * LaunchingStatus.INTERNAL_SERVER_ERROR: 500
     * GamebaseEventCategory.OBSERVER_HEARTBEAT
     	* 탈퇴 처리 되거나 이용 정지로 인하여 사용자 계정 상태가 변했을 때 동작합니다.
-    	* GamebaseEventObserverData.code : GamebaseError 값을 의미합니다.
+    	* GamebaseEventObserverData.code: GamebaseError 값을 의미합니다.
             * GamebaseError.INVALID_MEMBER: 6
             * GamebaseError.BANNED_MEMBER: 7
     * GamebaseEventCategory.OBSERVER_NETWORK
     	* 네트워크 변동 사항 정보를 받을 수 있습니다.
-    	* 네트워크가 끊기거나 연결되었을 때, 혹은 Wifi 에서 셀룰러 네트워크로 변경되었을 때 동작합니다.
-    	* GamebaseEventObserverData.code : NetworkManager 값을 의미합니다.
+    	* 네트워크가 끊기거나 연결되었을 때, 혹은 Wifi에서 셀룰러 네트워크로 변경되었을 때 동작합니다.
+    	* GamebaseEventObserverData.code: NetworkManager 값을 의미합니다.
             * NetworkManager.TYPE_NOT: -1
             * NetworkManager.TYPE_MOBILE: 0
             * NetworkManager.TYPE_WIFI: 1

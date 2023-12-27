@@ -524,7 +524,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
             * TCGB_ERROR_BANNED_MEMBER: 7
     * kTCGBObserverNetwork
     	* 네트워크 변동 사항 정보를 받을 수 있습니다.
-    	* 네트워크가 끊기거나 연결되었을 때, 혹은 Wifi 에서 셀룰러 네트워크로 변경되었을 때 동작합니다.
+    	* 네트워크가 끊기거나 연결되었을 때, 혹은 Wifi에서 셀룰러 네트워크로 변경되었을 때 동작합니다.
     	* TCGBGamebaseEventObserverData.code: NetworkManager 값을 의미합니다.
             * ReachabilityIsNotDefined = -100
             * NotReachable = -1

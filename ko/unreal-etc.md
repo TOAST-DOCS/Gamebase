@@ -515,7 +515,7 @@ void Sample::CheckServerPush(const FString& category, const FGamebaseEventServer
 * Gamebase 에서 지원하는 Observer Type 은 다음과 같습니다.
     * GamebaseEventCategory::ObserverLaunching
         * 점검이 걸리거나 풀린 경우, 새로운 버전이 배포되어 업데이트가 필요한 경우와 같이, Launching 상태가 변경되었을 때 동작합니다.
-        * GamebaseEventObserverData.code : LaunchingStatus 값을 의미합니다.
+        * GamebaseEventObserverData.code: LaunchingStatus 값을 의미합니다.
             * GamebaseLaunchingStatus::IN_SERVICE: 200
             * GamebaseLaunchingStatus::RECOMMEND_UPDATE: 201
             * GamebaseLaunchingStatus::IN_SERVICE_BY_QA_WHITE_LIST: 202
@@ -527,14 +527,14 @@ void Sample::CheckServerPush(const FString& category, const FGamebaseEventServer
             * GamebaseLaunchingStatus::INTERNAL_SERVER_ERROR: 500
     * GamebaseEventCategory::ObserverHeartbeat
         * 탈퇴 처리 되거나 이용 정지로 인하여 사용자 계정 상태가 변했을 때 동작합니다.
-        * GamebaseEventObserverData.code : GamebaseError 값을 의미합니다.
+        * GamebaseEventObserverData.code: GamebaseError 값을 의미합니다.
             * GamebaseErrorCode::INVALID_MEMBER: 6
             * GamebaseErrorCode::BANNED_MEMBER: 7
     * GamebaseEventCategory::ObserverNetwork
-        * Android, iOS에 한함
+        *Android, iOS에 한합니다.
         * 네트워크 변동 사항 정보를 받을 수 있습니다.
-        * 네트워크가 끊기거나 연결되었을 때, 혹은 Wifi 에서 셀룰러 네트워크로 변경되었을 때 동작합니다.
-        * GamebaseEventObserverData.code : NetworkManager 값을 의미합니다.
+        * 네트워크가 끊기거나 연결되었을 때, 혹은 Wifi에서 셀룰러 네트워크로 변경되었을 때 동작합니다.
+        * GamebaseEventObserverData.code: NetworkManager 값을 의미합니다.
             * EGamebaseNetworkType::Not: 255
             * EGamebaseNetworkType::Mobile: 0
             * EGamebaseNetworkType::Wifi: 1
