@@ -4,7 +4,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.58.0/GamebaseSDK-Unreal.zip)
 
 #### Bug Fixes
-* Fixed an issue where (Windows) server push would not work.
+* (Windows) Fixed an issue where server push would not work.
 * Fixed logic that could cause a crash on initialization.
 
 #### Platform-specific Changes
