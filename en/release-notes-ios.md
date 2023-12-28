@@ -15,12 +15,12 @@
 ### 2.58.0 (2023. 11. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.58.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* External SDK update
     * PAYCO iOS SDK (1.5.9)
     * Kakaogame iOS SDK (3.17.5)
-* 최상위 ViewController 획득 로직 개선
-* Gamebase 론칭 팝업 창이 완전히 종료된 후에 초기화 콜백이 호출되도록 수정하였습니다.
+* Improved the logic to get the top most ViewController
+* Modified the initialization callback to be called after the Gamebase launch popup window has completely exited.
 
 ### 2.57.0 (2023. 10. 31.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.57.0/GamebaseSDK-iOS.zip)

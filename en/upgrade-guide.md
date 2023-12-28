@@ -5,7 +5,7 @@
 ### Android
 
 #### Twitter IdP
-* Twitter api server의 인증서 업데이트로, minSDKVersion이 19에서 21로 상향되었습니다.
+* Updated minSDKVersion to 21 from 19 after Twitter API server certificate update.
 
 ## 2.57.0
 
@@ -17,7 +17,7 @@
 
 ### Unreal
  
-* Gamebase 모듈이 분리되었습니다. Gamebase 코드를 사용하려면 모듈의 Build.cs 파일 내 **GamebaseInterface** 모듈을 의존 모듈로 추가해야 합니다.
+* The Gamebase module has been separated. To use the Gamebase code, add the **GamebaseInterface** module as a dependency module in the module's Build.cs file.
 
         PrivateDependencyModuleNames.AddRange(
             new[]
