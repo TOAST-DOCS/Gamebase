@@ -14,7 +14,7 @@ Analytics is composed of the following:
 
 Real-time concurrence indicators, as well as maintenance and push information of current app users are available.  
 
-![gamebase_analytics_01_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_01_201901_2.png)
+![analytics_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_01_en_240103.png)
 
 #### 1. Change Graphs of Real-Time Concurrent Users 
 Data is updated every minute to check changed indicators in real time. 
@@ -32,8 +32,7 @@ Push information delivered to Gamebase around the clock of the day, to check ris
 ### Dashboard
 
 A variety of user indicators can be easily noticed in real time. 
-
-![gamebase_analytics_02_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_02_201901_2.png)
+![analytics_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_02_en_240103.png)
 
 #### 1. Dashboard for Real-Time User Status 
 App users and payment indicators are available. 
@@ -69,8 +68,7 @@ Share by each OS, app version, store or country, is available on a graph: shows 
 ### Users 
 
 Basic user indicators are available. 
-
-![gamebase_analytics_03_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_03_202212_1.png)
+![analytics_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_03_en_240103.png)
 
 #### 1. User Status 
 Basic user indicators during a selected period are available. 
@@ -90,7 +88,7 @@ Shows basic indicators for daily users during selected period on graphs or table
 ※ In the case of MCU and ACU, the filter must be all. 
 
 ### Service Environment 
-![gamebase_analytics_04_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_04_201901_2.png)
+![analytics_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_04_en_240103.png)
 
 User indicators are available on each environment. 
 
@@ -110,7 +108,7 @@ User indicators are available on each environment.
 
 Inflow and outflow of app users are available on a daily basis. 
 
-![gamebase_analytics_05_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_05_201901_2.png)
+![analytics_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_05_en_240103.png)
 
 * User Inflow (new + returned): User inflow is the combination of new and returned users (=new users + returned users)
 * Newly Registered Users: Newly registered users whose first login logs are collected around the clock of the day (by member number)
@@ -120,7 +118,7 @@ Inflow and outflow of app users are available on a daily basis.
 * Inactive Users: Users whose logs are not collected during the previous 7 days 
 
 ### Retention
-![gamebase_analytics_06_202107_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202107_2.png)
+![analytics_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_06_en_240103.png)
 
 Retention refers to how many subscribed users remain in service for the next 180 days after subscribed. 
 
@@ -131,7 +129,7 @@ You can check the retention data either by including or excluding users who subs
       e.g.) Out of 100 new users on January 1st, 20 withdrew on January 1st: then, the number of actual new users is calculated at 80 (100-20).
       
 ### LTV
-![gamebase_analytics_06_201912_1_ltv](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_201912_1_ltv.png)
+![analytics_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_07_en_240103.png)
 
 LTV is an index representing the expected annual revenue from a single user in the selected user group.
 
@@ -155,7 +153,7 @@ The following restrictions are applied for accurate estimation of LTV:
 * The most recent signed-up date must be more than 7 days.
 
 ### Life Cycle
-![gamebase_analytics_06_202002_1_lifeCycle](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202002_1_lifeCycle.png)
+![analytics_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_08_en_240103.png)
 
 Life Cycle is an index used to check the trend of daily active users since the first inflow of users. Data is retained for up to 3 years.
 
@@ -168,8 +166,7 @@ Life Cycle is an index used to check the trend of daily active users since the f
 * Average playtime - Avg.Playtime(/DAU): The average playtime during the retrieved duration (Sum of playtime of DAU/DAU)      
 
 ### Frequency7
-
-![gamebase_analytics_06_202003_1_frequency](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202003_1_frequency.png)
+![analytics_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_09_en_240103.png)
 
 The Frequency7 index provides information about weekly visitor and ratio of DAU. It can be used to see immersion, loyalty, and other information at a glance.
 
@@ -190,8 +187,7 @@ If there is a user who visited the site on March 1, 2, 3, 6, and 7, as of March 
 ### Purchase Amount 
 
 Shows indicators of purchase amount.   
-
-![gamebase_analytics_07_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_07_202212_1.png)
+![analytics_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_10_en_240103.png)
 
 #### 1.Status Table for Purchase Amount 
 Purchase amount during a specific period can be found. 
@@ -203,7 +199,7 @@ Sales by store, country, and Idp are also available on the below table.
 Monthly cumulative purchase amount can only be checked on daily view
 
 ### Paying Users 
-![gamebase_analytics_08_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_08_202212_1.png)
+![analytics_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_11_en_240103.png)
 
 Indicators of paying users are displayed. 
 Refer to the following glossaries:
@@ -223,8 +219,7 @@ Refer to the following glossaries:
 ### Item Sales Indicators 
 
 Sales indicators of Gamebase items are available. 
-
-![gamebase_analytics_09_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_09_202212_1.png)
+![analytics_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_12_en_240103.png)
 
 * Item: List of items registered at Gamebase 
 * 10 Best-Selling Items: List of 10 most selling items by the price or number of sales 
@@ -235,7 +230,7 @@ Sales indicators of Gamebase items are available.
 * Payment Ratio: Rate of purchase for each item 
 
 ### First Purchase
-![gamebase_analytics_10_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_10_202212_1.png)
+![analytics_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_13_en_240103.png)
 
 First-purchase information of newly paying users can be found. 
 
@@ -252,17 +247,15 @@ All purchased items are displayed in the order of purchase amount.
 ### Concurrent Group Users 
 
  Indicators of concurrent users for all Gamebase projects are available.  
-
-![gamebase_analytics_11_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_11_201901_2.png)
+![analytics_14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_14_en_240103.png)
 
 * Real-Time Group Concurrence : Shows real-time concurrent users (CCU) of a Gamebase project. 
 * Project Group Concurrence : Shows app users by selected period or filter.
 
 ### Group Comparison Indicators 
 
-Projects of Gamebase users can be filtered and compared by group. ![gamebase_analytics_12_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_12_201901_2.png)
-
-
+Projects of Gamebase users can be filtered and compared by group. 
+![analytics_15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_15_en_240103.png)
 
 * DAU: Daily active users, by member number, logged in more than once 
 * NRU: Newly Registered Users of the day 
@@ -270,17 +263,6 @@ Projects of Gamebase users can be filtered and compared by group. ![gamebase_ana
 * Purchase Amount: Amount paid by user
 
 ※ Group is named such as **{appId} _ {OS} _ {Country}** on a graph.
-
-## Environment 
-### Installation URL  
-
-Statistical indicators for an installation URL call are available.  
-
-![gamebase_analytics_13_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_13_201901_2.png)
-
-* Download URL Call Counts of the Recent Week: Number of clients who call API for game installation via [App > Installation URL]. You can find customer responses, as part of marketing for app installation, by measuring the number of users who call short URL. 
-* Share by Browser (all accumulated): Shows the rate of URL call counts on each browser. 
-* Share by Platform (all accumulated): Shows the rate of installation URL call counts on each platform 
 
 ## Transmission
 
@@ -303,8 +285,7 @@ There are three types of transfer indicators as below:
 You can find each type of selected transfer indicators, as well as access and sales information on a particular date.  
 Concurrent access is available via CCU for the day, or DAU on each date. 
 Information is updated at every 10 minutes for the day.  
-
-![gamebase_analytics_14_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_14_201906_1.png)
+![analytics_16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_16_en_240103.png)
 
 * CCU (Concurrent User): Concurrent real-time users measured at every minute (number of login users) 
 * DAU (Daily Active User): Active users, who log in more than once
@@ -315,8 +296,7 @@ Information is updated at every 10 minutes for the day.
 ### Status by Level
 
 Access and sales status are available at each level.
-
-![gamebase_analytics_15_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_15_201906_1.png)
+![analytics_17](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_17_en_240103.png)
 
 * DAU (Daily Active User): Daily active users, by user ID, who log in more than once 
 * Avg.Playtime: Average total play time on each day of the level (sum of playtime of DAU/DAU)
@@ -330,9 +310,7 @@ Access and sales status are available at each level.
 ### Status by Channel
 
 Access and sales status are available by world/server/channel. 
-
-![gamebase_analytics_16_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_16_201906_1.png)
-
+![analytics_18](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_18_en_240103.png)
 
 * DAU (Daily Active User): Daily active users, by user ID, who log in more than once 
 * Avg.Playtime: Average total play time on each day of the level (sum of playtime of DAU/DAU)
@@ -346,8 +324,7 @@ Access and sales status are available by world/server/channel.
 ### Status by Class
 
 Access and sales status are available by class/occupation. 
-
-![gamebase_analytics_17_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_17_201906_1.png)
+![analytics_19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_19_en_240103.png)
 
 * DAU (Daily Active User): Daily active users, by user ID, who log in more than once 
 * Avg.Playtime: Average total play time on each day of the level (sum of playtime of DAU/DAU)
@@ -366,7 +343,7 @@ Find the level-up information of each user.
 * Successful Level-up User: Users who achieved the level 
 * Average Level-up Achievement Time (minutes): Average achievement time (minutes) of level-up users 
 
-![gamebase_analytics_18_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_18_201906_1.png)
+![analytics_20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_20_en_240103.png)
 
 ### Item Sales Status 
 
@@ -377,12 +354,11 @@ Click **Conditions** and select query values as below:
 * Number of Purchases 
 * PU (Paying User) 
 * New PU 
-![gamebase_analytics_19_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_19_201906_1.png)
-
+![analytics_21](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_21_en_240103.png)
 
 
 ### Top 50 Sales Items 
 
 Find the 50 most selling items for each type and value of selected transfer indicators. 
 
-![gamebase_analytics_20_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_20_201906_1.png)
+![analytics_22](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_22_en_240103.png)

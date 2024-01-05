@@ -1,5 +1,5 @@
 ## Before Using Purchase Menu
-![gamebase_purchase_01_201812](http://static.toastoven.net/prod_gamebase/Console_IAP_Select_currency_1.0.png)
+![purchase_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_01_en_240103.png)
 To use the purchase menu, currency must be selected for purchase metrics. 
 It can be set only once initially, and the Analytics sales metrics show in the currency code as configured. 
 Please be cautious with your choice, since the currency code cannot be modified, once selected. 
@@ -13,13 +13,13 @@ Gamebase uses NHN Cloud IAP (In-App Purchase) service.
 
 Register stores to sell products in games.
 Register a new store on the **Store Information List** of the **Store** tab, or manage registered stores.
-![gamebase_purchase_01_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_01_202210_en.png)
+![purchase_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_02_en_240103.png)
 
 ### Register
 
 Click **Register** on the **Store Information List** to register a new store.
 
-![gamebase_purchase_02_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_02_202210_en.png)
+![purchase_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_03_en_240103.png)
 
 * **Store**  Select an external store to register.  If it is not on the list, contact [Customer Center](https://toast.com/support/inquiry).
 * **App Name**   Enter the name of a game to register.
@@ -35,7 +35,7 @@ Click **Register** on the **Store Information List** to register a new store.
 
 Retrieve or modify detail information of registered stores on the list.
 
-![gamebase_purchase_03_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_03_202210_en.png)
+![purchase_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_04_en_240103.png)
 
 - Select a registered store on the list to retrieve detail information.
 - Click **Modify** to modify information such as app name, store app, and use or not, but not store App ID.
@@ -46,17 +46,17 @@ Retrieve or modify detail information of registered stores on the list.
 You can register products to sell at the store.
 In the **Product** tab, you can register a new product or manage the registered products.
 
-- (1) **Register** : You can use a single Store Item ID to register multiple products.
-- (2) **Change store item status** : You can use a single Store Item ID to change whether to use the registered products all at once.
-- (3) **Filter** : Provides filters for usage, store/store item ID/product ID, product name to allow easy search. When there is no search value, the list of products from all stores is displayed.
+- (1) **Filter** : Provides filters for usage, store/store item ID/product ID, product name to allow easy search. When there is no search value, the list of products from all stores is displayed.
+- (2) **Register** : You can use a single Store Item ID to register multiple products.
+- (3) **Change store item status** : You can use a single Store Item ID to change whether to use the registered products all at once.
 
-![gamebase_purchase_04_202006](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_04_202012.png)
+![purchase_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_05_en_240103.png)
 
 ### Register
 
 To register a new product, click **Register** on the **Product List** page. 
 #### 1. User-input Registration
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_05_202006.png)
+![purchase_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_06_en_240103.png)
 
 * (1) **Product ID**: Enter product ID to request for purchase. Purchase API must be called from SDK with a product ID so as to purchase the corresponding product. 
 * (2) **Product Name**: Enter name to show for purchase. Purchase history as well as metrics can be listed by the name.   
@@ -67,7 +67,7 @@ To register a new product, click **Register** on the **Product List** page.
 * (7) **Store Item Type**: Select the type of product to register. For Google Play and App Store, items can be registered for subscription, and for other stores, only one-time item registration is available.     
 
 #### 2. File-uploading Registration 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_06_202006.png)
+![purchase_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_07_en_240103.png)
 
 * Products can be registered by uploading files. 
 * Up to 1,000 products can be registered at once. 
@@ -79,7 +79,7 @@ To register a new product, click **Register** on the **Product List** page.
 ### Modify
 
 Query details or change information of a registered product from the list. 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_07_202006.png)
+![purchase_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_08_en_240103.png)
 - Select each item from the list to query details. 
 - Click **Modify** to change information, except Store, Item Number, and Product Type. 
 - Only **Product Name, Use, and Store Item ID** are modifiable, and the others cannot be changed. 
@@ -112,10 +112,16 @@ Transaction status code indicates what occurs while the user is making a payment
 - Canceled during purchase: Purchase is canceled by user during purchase
 
 > [Note]
-> If there is no change in the verification completed status, please contact the Customer Center.
+> - The **Reservation completed** status can occur in the following cases.
+>   - When the user cancels purchase from the payment screen
+>   - When the user exits the app while the purchase is in progress
+>   - When the user doesn't receive a response from the market during the purchase process (temporary market error, user network disconnection, etc.)
+>   - When the user attempts to purchase the same item for which the payment hasn't been processed by the marketplace
+> 
+> - If there is no change in the **Verification completed** status, please contact the Customer Center.
 
 ### View Transaction List
-![gamebase_purchase_17_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_17_202306_en.png)
+![purchase_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_09_en_240103.png)
 
 #### Category
 
@@ -129,7 +135,7 @@ You can view transaction list with two categories.
 Each search type shows different search items.  
 
 ##### (1) General Search 
-![gamebase_purchase_10_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_202306_en.png)
+![purchase_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_10_en_240103.png)
 
 Search is available by the following conditions: 
 - **Search Period**: A period when user attempted to purchase, in the ascending or descending order 
@@ -141,19 +147,19 @@ Search is available by the following conditions:
 
 
 ##### (2) Search by Transaction ID 
-![gamebase_purchase_11_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202306_en.png)
+![purchase_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_11_en_240103.png)
 
 Search is available by Transaction ID which is created upon purchase. 
 
 ##### (3) Search by Receipt 
-![gamebase_purchase_12_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202306_en.png)
+![purchase_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_12_en_240103.png)
 You can view the results using the receipt issued during the purchase.
 
 
 #### [All] Search Results
 The search results are as follows:
 
-![gamebase_purchase_13_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_13_202306_en.png)
+![purchase_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_13_en_240103.png)
 
 - **Transaction ID**: Unique number for identifying purchases within Gamebase
 - **Store**: Information about the store where the purchase has been made
@@ -190,16 +196,16 @@ The status of the searched purchase information is as follows:
 
 
 ##### Changing to Success
-![gamebase_purchase_08_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_08_202210_en.png)
+![purchase_14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_14_en_240103.png)
 In order to proceed, you need to provide **Receipt Number, Value, and Currency**.
 
 #### Changing to Refund
-![gamebase_purchase_09_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_purchase_09_202210_en.png)
+![purchase_15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_15_en_240103.png)
 No additional information is required. 
 Once it has been changed to Refund status, it's set for good.
 
 ##### Validate Receipt
-![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction3.1.png)
+![purchase_16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_16_en_240103.png)
 
 * Validates transaction of the retrieved receipt.
 * You can see the results of comparing each field. The response value is provided in JSON format, so you can directly check the data if needed.
@@ -209,7 +215,7 @@ Once it has been changed to Refund status, it's set for good.
 
 ##### View Transaction List
 You can view transaction lists by clicking the Transaction ID of the payment information you found.
-![gamebase_purchase_14_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_14_202306_en.png)
+![purchase_17](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_17_en_240103.png)
 
 ###### (1) View Additional Info and Receipt
 For each payment status, you can click the right arrow to view additional information and receipt information.
@@ -218,7 +224,7 @@ For each payment status, you can click the right arrow to view additional inform
 #### Search Result of [Product Information Unregistered Payment]
 Search result items are as follows.
 
-![gamebase_purchase_15_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_15_202306_en.png)
+![purchase_18](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_18_en_240103.png)
 
 - **Transaction ID**: Unique number to identify transactions in Gamebase
 - **Store**: Information of the store where payment is made
@@ -234,7 +240,7 @@ Search result items are as follows.
 - **Register Product ID**: Product information manually registered
 
 ##### Register Product ID
-![gamebase_purchase_16_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_16_202306_en.png)
+![purchase_19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_19_en_240103.png)
 * You can manually add missing item information. 
 
 ## Monitor Purchase Abuse
@@ -243,7 +249,7 @@ You can view purchase abuse information and set automatic lockdown/release.
 
 ### Query Refund History
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing1_1.3_en.png)
+![purchase_20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_20_en_240103.png)
 
 Purchase and refund information can be queried by search conditions as below.
 Click **Download** on top right to download purchase and refund list at any time.
@@ -270,7 +276,7 @@ Click **Download** on top right to download purchase and refund list at any time
 - **Change Status**: Ban or release depending on the user status
 
 #### Change Status
-![gamebase_member_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_02_201812.png)
+![purchase_21](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_21_en240103.png)
 
 The feature allows to change status of the game user's account.
 Each status is available for change like below:
@@ -284,7 +290,7 @@ Each status is available for change like below:
 
 You can query detailed purchase history during the search period by clicking a user ID on the list.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing2_1.3_en.png)
+![purchase_22](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_22_en240103.png)
 
 #### Purchase History
 - **Scheduled purchase date**: Time when a user attempted purchase
@@ -299,7 +305,7 @@ You can query detailed purchase history during the search period by clicking a u
 
 ### Query the History of Automatic Release for Purchase Abuse
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing5_1.3_en.png)
+![purchase_23](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_23_en240103.png)
 
 You can search for user information on automatic release for purchase abuse by using the following search conditions.
 
@@ -323,7 +329,7 @@ You can search for user information on automatic release for purchase abuse by u
 You can query detailed purchase history during the search period by clicking a user ID on the list.
 (Note that users without purchase history shows up as inactivated.)
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing6_1.3_en.png)
+![purchase_24](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_24_en240103.png)
 
 #### Purchase History
 - **Purchase Date**: Time when a user completed purchase
@@ -337,11 +343,11 @@ You can query detailed purchase history during the search period by clicking a u
 
 Click **Enable** to enable the auto lockdown setting, and enter value.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing3_1.3_en.png)
+![purchase_25](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_25_en240103.png)
 
 #### Setting Information
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing4_1.3_en.png)
+![purchase_26](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_26_en240103.png)
 
 * **Ban Period**  Enter the ban period to be applied for auto lockdown.
     * **Permanent Ban**: To be selected for a permanent ban.
@@ -361,11 +367,11 @@ Click **Enable** to enable the auto lockdown setting, and enter value.
 To use the automatic release setting, click the **Use** button and enter the setting value.
 To enable the automatic release setting, the automatic lockdown setting must be <font color="red">enabled</font>.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing7_1.3_en.png)
+![purchase_27](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_27_en240103.png)
 
 #### Setting Information
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing8_1.3_en.png)
+![purchase_28](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_28_en240103.png)
 
 * **Temporary ban release period**: Enter the ban suspension period when automatic released is applied.
 * **Set the conditions for releasing the ban**: Set the conditions required for automatic release. At least one field must be set.

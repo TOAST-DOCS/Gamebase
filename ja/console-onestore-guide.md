@@ -14,7 +14,7 @@ Apps > select App > In-App information > Licensing & in-app billing
 
 | Key | Description                                             |
 | ------------- | ------------------------------ |
-| Store ID     | ONEStore v17 |
+| Store ID     | ONEStore v21 |
 | App Name      | App Name|
 | ONE Store Client ID | ONEStore ClientID |
 | ONE Store Client Secret | ONEStore Oauth Client Secret |

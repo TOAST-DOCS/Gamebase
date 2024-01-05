@@ -14,7 +14,7 @@ In Gamebase, push notifications are provided by applying TOAST Cloud Push servic
 
 You can see the history of sent push notifications and the list of scheduled push notifications.
 
-![gamebase_push_01_201910](https://static.toastoven.net/prod_gamebase/gamebase_push_01_201910.png)
+![push_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_01_en_240103.png)
 
 ### Registered List
 
@@ -25,14 +25,14 @@ By selecting the push from the scheduled list, you can see the expected time for
 By selecting the push from the transfer history list, you can see the details about the transferred push notifications.
 If you click the **Copy** button, you can easily register the push by using the registration info of the sent push.
 
-![gamebase_push_03_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_03_202101.png)
+![push_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_02_en_240103.png)
 
 ### Register Push
 
 To register a new push, click the **Register** button.
 You can check the preview on the right to see how the value registered in the console appears in the actual device.
 
-![gamebase_push_05_202205](https://static.toastoven.net/prod_gamebase/gamebase_push_05_202205.png)
+![push_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_03_en_240103.png)
 
 #### (1) Send type
 
@@ -56,7 +56,7 @@ Select the recipient to send the push message to.
 #### (3) Event key
 Select the event key used for push send statistics.
 If you click the **Select** button, a popup with a selectable list of event keys appears, and you can select an event key in **Collecting** status.
-![gamebase_push_22_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_22_202101.png)
+![push_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_04_en_240103.png)
 
 #### (4) Target country
 
@@ -159,9 +159,7 @@ The statistics consist of the following menus:
 - Inbound settings: Indicators relating to inbound push settings
 
 ### Outbound/Inbound
-
-![gamebase_push_12_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_12_202101.png)
-
+![push_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_05_en_240103.png)
 
 1. Outbound/inbound statistics 
 
@@ -184,7 +182,7 @@ Shows the indicators on sent push, failed send, inbound, and confirmed inbound b
 
 ### Token registration
 
-![gamebase_push_13_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_13_202101.png)
+![push_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_06_en_240103.png)
 
 1. Token registration statistics
 
@@ -202,7 +200,7 @@ Shows the statistics on token registration and deletion based on the user's sele
 
 ### Inbound settings
 Shows the inbound settings statistics during the selected period.
-![gamebase_push_14_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_14_202109.png)
+![push_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_07_en_240103.png)
 
 |Type|Information|Advertisement|Night-time Advertisement|
 |------|:---:|:---:|:---:|
@@ -213,48 +211,47 @@ Shows the inbound settings statistics during the selected period.
 
 ## Event Key
 You can manage the event key used for push send statistics.
-![gamebase_push_15_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_15_202101.png)
+![push_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_08_en_240103.png)
 In Push, you can register the event key which will be used for sending the push message.
 
 ### Event Key register
-![gamebase_push_16_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_16_202101.png)
+![push_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_09_en_240103.png)
 
 ### Event Key detail
 You can manage the registered event key.
-![gamebase_push_17_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_17_202101.png)
+![push_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_10_en_240103.png)
 
 Click the **Delete** or **Modify** button to delete or modify the event key information.
 
 ## Authentication
 You can manage the certificate used for push sending.
-![gamebase_push_18_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_18_202101.png)
+![push_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_11_en_240103.png)
 
 For each certificate, click the **Register**, **Modify**, or **Delete** button to register, modify, or delete the certificate.
 
 ### Authentication register
-![gamebase_push_19_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_19_202101.png)
-
+![push_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_12_en_240103.png)
+![push_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_13_en_240103.png)
+![push_14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_14_en_240103.png)
+![push_15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_15_en_240103.png)
 
 ## Tag
 
 Provides a tag function that can send push messages by grouping users according to specific criteria.
 
-![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_06_201910.png)
+![push_16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_16_en_240103.png)
 
 You can register a tag name to be used when sending push messages from NHN Cloud Push.
 
-
-
 ### Tag register
 
-![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_09_201910.png)
-
+![push_17](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_17_en_240103.png)
 
 ### Tag detail
 
 You can manage the registered tags and manage the list of users registered in the tags.
 
-![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_07_201911.png)
+![push_18](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_18_en_240103.png)
 
 You can modify or delete tag information by clicking the **Modify** or **Delete** buttons at the top, and you can register or delete users in the tag using the user ID management function at the bottom.
 
@@ -262,11 +259,11 @@ You can modify or delete tag information by clicking the **Modify** or **Delete*
 
 ##### Add a single user
 
-![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_08_201910.png)
+![push_19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_19_en_240103.png)
 
 ##### Add using a file
 
-![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_10_201910.png)
+![push_20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_20_en_240103.png)
 
 If you click the **Add** button, the registration popup appears as shown above, and you can input users by entering an ID directly or by registering a file.
 
@@ -275,14 +272,14 @@ If you click the **Add** button, the registration popup appears as shown above, 
 
 #### Delete users
 
-![gamebase_push_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_push_11_201910.png)
+![push_21](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_21_en_240103.png)
 
 To delete a user registered in a tag, select the checkbox on the left in the user list and click the **Delete** button.
 
 
 ## Setting
 You can also manage the push settings
-![gamebase_push_20_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_20_202101.png)
+![push_22](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_22_en_240103.png)
 
 ### Settings for receiving and confirming the message
 Function for collecting information about receiving and confirming the sent messages.
@@ -296,8 +293,7 @@ Function for preventing the identical messages from going out for the specified 
 You can set the ad display position which appears when sending out an ad message.
 
 * You can click the **Preview** button on the right to see the push example based on the ad display text that you specified.
-
-![gamebase_push_21_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_21_202101.png)
+![push_23](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_23_en_240103.png)
 
 ### Token settings
 

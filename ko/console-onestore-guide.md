@@ -14,7 +14,7 @@ Apps > 앱 선택 >In-App정보 > 인증 및 라이선스
 
 | 필드         | 설명                             |
 | ------------- | ------------------------------ |
-| Store ID     | 스토어 리스트에서 ONE Store v17 선택|
+| Store ID     | 스토어 리스트에서 ONE Store v21 선택|
 | App Name      | IAP Console에서 사용할 이름|
 | ONE Store Client ID | 스토어에 등록한 ClientID |
 | ONE Store Client Secret | 스토어 Oauth 인증 정보 중 Client Secret |

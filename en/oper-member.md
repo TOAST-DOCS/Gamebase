@@ -2,7 +2,6 @@
 
 Retrieve information of members who are logged in a game.
 
-
 ## Search Member
 
 Enter User ID to search for member information.
@@ -12,7 +11,7 @@ IdP is not used for signing in or out, but serves as a unique identifier provide
 Detailed information of searched users are displayed in the above, while history data such as login, mapping, purchase, ban, and playtime are shown under, as taps.
 
 ### Detail Information
-![gamebase_member_01_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_01_201812_en.png)
+![member_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_01_en_240103.png)
 
 **User **
 
@@ -25,11 +24,10 @@ Detailed information of searched users are displayed in the above, while history
   - **Banned**: A user who is (banned) for abusing others. The admin can lift the ban via Change Account Status menu on top right of the screen.
   - **Withdrawn**: A withdrawn user.
 - **Retrieve push additional information**: Retrieves the push tokens and tag information of a game user.
-![gamebase_member_12_202104](https://static.toastoven.net/prod_gamebase/gamebase_member_12_202104.png)
-
+![member_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_02_en_240103.png)
 
 #### Changing Account Status
-![gamebase_member_02_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_02_201812_en.png)
+![member_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_03_en_240103.png)
 
 You can change user account status to these below:
 - **OK**: You can change to Banned or Withdrawn status. When the account is withdrawn, all the information is lost and can't be recovered.
@@ -53,20 +51,21 @@ This only works if the target account status is OK.
  When the account has only one IdP bound but it's mapped to other account, the account status will change to **Lost** and it can't be used anymore.
 
 ##### Mapping Example
-
-![gamebase_member_03_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_03_201812_en.png)
+![member_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_04_en_240103.png)
+![member_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_05_en_240103.png)
 
 #### Unmapping
  If the account has been mapped multiple times, it can be unmapped.
 The button only works when the account has been mapped more than twice.
  *Clicking on the button will make the modal appear*
-
-![gamebase_member_04_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_04_201812_en.png)
+![member_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_06_en_240103.png)
 
  Clicking on the 'Remove' button will show final confirmation message along with IdP information.
 
+ ![member_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_07_en_240103.png)
+
 ### Login History
-![gamebase_member_05_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_05_201812_en.png)
+![member_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_08_en_240103.png)
 
 Retrieve login history of a searched user.
 For an initial search, the duration is a recent one day or a date of choice. However, history data is provided for recent three months (or 90 days) only.
@@ -88,7 +87,8 @@ Can add history when SDK calls login-related APIs.
 - **etc**: Any other information than above items applied for a login.
 
 ### Mapping History
-![gamebase_member_06_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_06_201812_en.png)
+
+![member_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_09_en_240103.png)
 
 Retrieve mapping and remove mapping history of a searched user. Shows all history data of the recent 3 months (90 days).
 
@@ -103,10 +103,10 @@ Retrieve mapping and remove mapping history of a searched user. Shows all histor
   - OMG: Create an IdP account
 
 Clicking on the mapped IdP will show the mapping history modal based that IdP.
-![gamebase_member_07_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_07_201812_en.png)
+![member_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_10_en_240103.png)
 
 ### Purchase History
-![gamebase_member_08_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_08_201812_en.png)
+![member_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_11_en_240103.png)
 
 Retrieve purchase history of user products.
 Can search by date, and history data can be retrieved up to 1 month (30 days).
@@ -123,9 +123,8 @@ Can search by date, and history data can be retrieved up to 1 month (30 days).
 - **Purchase Date**: Time when a user completed purchase
 - **Refund Date**: Time when a user item was refunded
 
-
 ### Ban History
-![gamebase_member_09_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_09_201812_en.png)
+![member_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_12_en_240103.png)
 
 Can retrieve ban history of a searched user.
 Can search by date, and history data can be retrieved up to 1 month (30 days).
@@ -139,13 +138,20 @@ Can search by date, and history data can be retrieved up to 1 month (30 days).
 - **Released User/Release Date**: Operator who released banning/system information and date
 
 ### Playtime
-![gamebase_member_10_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_member_10_201812_en.png)
+![member_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_13_en_240103.png)
 
 Retrieve playtime of a searched user by date.
 Can search by date, and history data can be retrieved up to 1 month (30 days).
 
+### Coupon using history
+![member_14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_14_en_240103.png)
+
+### Inquiry histoy
+![member_15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_15_en_240103.png)
+
+
 ### Withdraw History
-![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_WithdrawHistory1_1.1.png)
+![member_16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_16_en_240103.png)
 
 Retrieve withdraw log of a searched user by date.
 
@@ -153,7 +159,7 @@ Retrieve withdraw log of a searched user by date.
 This is available only when the **device transfer** function is used. [Enable the device transfer function](./oper-app/#transfer-account)
 You can check the history of issue and verification of the device transfer key for game users. You can unblock blocked keys or reissue expired keys.
 
-![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_TransferAccount1_1.0.png)
+![member_17](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_17_en_240103.png)
 **Device transfer issue key**
 
 - **ID**: A device transfer ID issued to a game user
@@ -172,7 +178,7 @@ By default, the last issued key is selected. If you select another key, you can 
 
 Click the **Reissue** button to reissue the device transfer key. The previous key cannot be used when a new one is reissued.
 
-![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_TransferAccount_Renewal1_1.0.png)
+![member_18](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_18_en_240103.png)`
 
 - **Reissue ID/Password**: Reissue both the ID and password.
 - **Reissue Password**: Use the ID issued as it is and reissue the password only.
