@@ -28,7 +28,7 @@ This guide describes the environments and initial setting of Gamebase Unity SDK.
 * Android
 * Standalone
     * Windows 7 or higher
-	* macOS 10.15 or higher
+    * macOS 10.15 or higher
 * WebGL
     * [WebGL Browser Compatibility](https://docs.unity3d.com/Manual/webgl-browsercompatibility.html)
 * Editor
