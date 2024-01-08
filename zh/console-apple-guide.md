@@ -19,7 +19,7 @@ Register the secret key in the IAP app information.
 2. Click [My Apps]
 3. Click [Master Shared Secret]
 ```
-![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-apple-shared-key-1.png)
+![[]](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/iap-console-apple-shared-key-1.png)
 
 <br>
 
@@ -29,7 +29,7 @@ Register the secret key in the IAP app information.
 2. Click [My Apps] > Click [App] you want to create > Click [Features] on the toolbar
 3. Click [App-Specific Shared Secret]
 ```
-![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-apple-shared-key-2.png)
+![[]](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/iap-console-apple-shared-key-2.png)
 
 
 ### Entering the Shared Secret Key in IAP App Information
@@ -37,7 +37,7 @@ Register the secret key in the IAP app information.
 1. In Gamebase > Purchase (IAP) > Store menu, select registered App store information
 2. Enter Apple Shared Secret
 ```
-![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-apple-edit-gamebase.png)
+![[]](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/AppStore/en/store_info_en_231226.png)
 
 
 ## Registering a Notification URL

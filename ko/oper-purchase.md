@@ -1,5 +1,5 @@
 ## IAP 메뉴 이용에 앞서
-![gamebase_purchase_01_201812](http://static.toastoven.net/prod_gamebase/Console_IAP_Select_currency_1.0.png)
+![purchase_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_01_kr_240103.png)
 IAP 메뉴를 이용하려면 결제 지표를 위한 통화를 먼저 선택해 주셔야 합니다.
 최초 한번만 설정 가능하며 Analytics 매출지표에는 설정된 통화코드로 지표가 노출됩니다.
 한번 선택한 통화코드는 변경할 수 없으니 신중히 선택해 주세요.
@@ -13,13 +13,13 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 
 게임 내에서 상품을 판매하기 위해 스토어를 등록합니다.
 **Store** 탭의 **스토어 정보 리스트**에서 새 스토어를 등록하거나 이미 등록한 스토어를 관리할 수 있습니다.
-![gamebase_purchase_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_01_202210.png)
+![purchase_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_02_kr_240103.png)
 
 ### Register
 
 새로운 스토어를 등록하려면 **스토어 정보 리스트** 화면의 **등록** 버튼을 클릭합니다.
 
-![gamebase_purchase_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_02_202210.png)
+![purchase_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_03_kr_240103.png)
 
 * **스토어**  등록하고자 하는 외부 스토어를 선택합니다.  등록하고자 하는 스토어가 없다면, [고객센터](https://toast.com/support/inquiry)로 연락주시기 바랍니다.
 * **앱 이름**   등록하고자 하는 게임의 이름을 입력합니다.
@@ -35,7 +35,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 
 조회 목록에서 등록된 스토어의 상세 정보를 조회하거나 정보를 변경할 수 있습니다.
 
-![gamebase_purchase_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_03_202210.png)
+![purchase_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_04_kr_240103.png)
 
 - 조회 목록에서 등록된 스토어를 선택하면 상세 정보를 조회할 수 있습니다.
 - **수정** 버튼을 클릭하면 스토어 앱 ID를 제외한 앱 이름, 스토어 앱, 사용 여부 정보를 수정할 수 있습니다.
@@ -46,17 +46,17 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 스토어에서 판매할 상품을 등록할 수 있습니다.
 **상품** 탭에서 새 상품을 등록하거나 이미 등록한 상품을 관리할 수 있습니다.
 
-- (1) **등록** : 하나의 스토어 아이템 ID를 이용해 여러개의 상품을 등록할 수 있습니다
-- (2) **스토어 아이템 상태 변경** : 하나의 스토어 아이템 ID로 등록된 상품들의 사용 여부를 한번에 변경할 수 있습니다.
-- (3) **필터** : 사용여부, 스토어/스토어 아이템 ID/상품 ID, 상품 이름 필터를 제공하여 검색을 편리하게 할 수 있습니다. 검색값이 없을 경우 모든 스토어의 상품 목록이 노출됩니다.
+- (1) **필터** : 사용여부, 스토어/스토어 아이템 ID/상품 ID, 상품 이름 필터를 제공하여 검색을 편리하게 할 수 있습니다. 검색값이 없을 경우 모든 스토어의 상품 목록이 노출됩니다.
+- (2) **등록** : 하나의 스토어 아이템 ID를 이용해 여러개의 상품을 등록할 수 있습니다.
+- (3) **스토어 아이템 상태 변경** : 하나의 스토어 아이템 ID로 등록된 상품들의 사용 여부를 한번에 변경할 수 있습니다.
 
-![gamebase_purchase_04_202006](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_04_202012.png)
+![purchase_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_05_kr_240103.png)
 
 ### Register
 
 새로운 상품을 등록하려면 **상품 목록** 화면의 **등록** 버튼을 클릭합니다.
 #### 1. 직접 입력을 이용한 등록 방법
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_05_202006.png)
+![purchase_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_06_kr_240103.png)
 
 * (1) **상품 ID** : 결제 요청시 사용 할 상품 ID를 입력합니다. 해당 ID를 통해 SDK에서 구매 API를 호출해야 입력한 상품으로 구매가 진행됩니다.
 * (2) **상품 이름** : 결제 되는 상품의 이름을 입력합니다. 이 곳에 입력한 내용을 기반으로 결제 내역 조회 및 지표에서 해당 상품명이 표시됩니다.
@@ -67,7 +67,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 * (7) **스토어 아이템 유형**  등록하고자 하는 상품 유형을 선택합니다. Google play, App store의 경우 구독 아이템 등록이 가능하며 그 외의 스토어를 선택할 경우 일회성 아이템으로 등록됩니다.
 
 #### 2. 파일 업로드를 이용한 등록 방법
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_06_202006.png)
+![purchase_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_07_kr_240103.png)
 
 * 파일 업로드를 통해 상품 등록을 진행할 수 있습니다.
 * 파일 업로드를 통한 상품 등록은 한 번에 최대 1,000개까지 가능합니다.
@@ -79,7 +79,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 ### Modify
 
 조회 목록에서 등록된 상품의 상세 정보를 조회하거나 정보를 변경할 수 있습니다.
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_07_202006.png)
+![purchase_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_08_kr_240103.png)
 - 조회 목록에서 각 아이템을 선택하면 등록된 아이템의 상세 정보를 조회할 수 있습니다.
 - **수정** 버튼을 클릭하면 스토어와 아이템 번호 및 상품 유형을 제외한 나머지 정보를 변경할 수 있습니다.
 - 수정이 가능한 항목은 **상품 이름**, **사용 여부**, **스토어 아이템 ID** 항목이며 그 외의 항목은 수정할 수 없으므로 등록 시 주의가 필요합니다.
@@ -122,7 +122,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 > **결제 검증 완료** 상태에서 변경이 없다면 고객 센터로 문의 주시기 바랍니다.
 
 ### 결제 내역 조회
-![gamebase_purchase_17_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_17_202306.png)
+![purchase_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_09_kr_240103.png)
 
 #### 카테고리
 
@@ -136,7 +136,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 선택한 검색 유형에 따라 검색 항목이 다르게 표시됩니다.
 
 ##### (1) 일반 검색
-![gamebase_purchase_10_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_10_202306.png)
+![purchase_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_10_kr_240103.png)
 
 아래의 검색 조건을 만족하는 결과를 검색할 수 있습니다.
 - **검색 기간**: 사용자가 구입을 시도한 기간. 오른쪽의 내림차순/오름차순 항목을 통해 정렬을 선택할 수 있음
@@ -148,19 +148,19 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 
 
 ##### (2) Trnasaction ID 검색
-![gamebase_purchase_11_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_11_202306.png)
+![purchase_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_11_kr_240103.png)
 
 결제 시 생성되는 Transaction ID를 이용해 검색할 수 있습니다.
 
 ##### (3) 영수증 검색
-![gamebase_purchase_12_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_12_202306.png)
+![purchase_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_12_kr_240103.png)
 결제 시 지급된 영수증 정보를 이용해 검색할 수 있습니다.
 
 
 #### [전체] 검색 결과
 검색 결과 항목은 아래와 같습니다.
 
-![gamebase_purchase_13_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_13_202306.png)
+![purchase_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_13_kr_240103.png)
 
 - **Transaction ID**: Gamebase 내에서 결제를 구별할 수 있는 고유 번호
 - **스토어**: 결제된 스토어 정보
@@ -197,17 +197,17 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 
 
 ###### Success 변경
-![gamebase_purchase_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_08_202210.png)
+![purchase_14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_14_kr_240103.png)
 결제 진행 시 발급받은 **영수증 번호**, **가격**, **통화** 정보를 입력해야 상태를 변경할 수 있습니다.
 
 ###### Refund 변경
-![gamebase_purchase_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_purchase_09_202210.png)
+![purchase_15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_15_kr_240103.png)
 추가 정보 입력 없이 상태를 선택한 후 변경을 선택합니다.
 변경된 결제 정보는 이후 변경이 불가능하므로 신중하게 확인해야 합니다.
 
 
 ##### 영수증 검증
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_Transaction3.1.png)
+![purchase_16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_16_kr_240103.png)
 
 * 조회된 영수증의 결제가 유효한지 검증할 수 있습니다.
 * 각 필드를 비교한 결과를 확인할 수 있습니다. 스토어에서 받은 응답값을 JSON 형식으로 제공하므로 필요한 경우 데이터를 직접 확인하실 수 있습니다.
@@ -216,7 +216,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 
 ##### 결제 이력 조회
 검색한 결제 정보의 Transaction ID를 클릭해서 결제 이력을 조회할 수 있습니다.
-![gamebase_purchase_14_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_14_202306.png)
+![purchase_17](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_17_kr_240103.png)
 
 ###### (1) 부가 정보 및 영수증 조회
 각각의 결제 상태마다 오른쪽 화살표를 클릭해서 부가 정보와 영수증 정보를 확인할 수 있습니다.
@@ -225,7 +225,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 #### [상품 정보 미등록 결제] 검색 결과
 검색 결과 항목은 아래와 같습니다.
 
-![gamebase_purchase_15_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_15_202306.png)
+![purchase_18](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_18_kr_240103.png)
 
 - **Transaction ID**: Gamebase 내에서 결제를 구별할 수 있는 고유 번호
 - **스토어**: 결제된 스토어 정보
@@ -241,7 +241,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 - **상품 ID 등록**: 상품 정보 수동 등록
 
 ##### 상품 ID 등록
-![gamebase_purchase_16_202306](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_purchase_16_202306.png)
+![purchase_19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_19_kr_240103.png)
 * 누락된 아이템 정보를 수동으로 선택하여 지급할 수 있습니다. 
 
 
@@ -251,7 +251,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 
 ### 환불 이력 조회
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing1_1.3_ko.png)
+![purchase_20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_20_kr_240103.png)
 
 아래 검색 조건을 이용해 원하는 결제 및 환불 정보를 검색할 수 있습니다.
 결제 및 환불 내역은 오른쪽 상단의 **다운로드** 버튼을 클릭해 언제든지 다운로드할 수 있습니다.
@@ -278,7 +278,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 - **상태 변경**: 사용자 상태에 따라 이용 정지 또는 정지 해제
 
 #### 상태 변경
-![gamebase_member_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_02_201812.png)
+![purchase_21](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_21_kr_240103.png)
 
 조회한 게임 유저의 계정 상태를 변경할 수 있는 기능입니다.
 상태별로 변경할 수 있는 경우는 아래와 같습니다.
@@ -292,7 +292,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 
 검색된 목록에서 유저 ID를 클릭하면 검색 기간의 결제 상세 내역을 조회할 수 있습니다.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing2_1.3_ko.png)
+![ipurchase_22](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_22_kr_240103.png)
 
 #### 결제 내역
 - **결제 예약 일시**: 사용자가 구입을 시도한 시간
@@ -307,7 +307,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 
 ### 결제 어뷰징 자동 해제 이력 조회
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing5_1.3_ko.png)
+![purchase_23](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_23_kr_240103.png)
 
 아래 검색 조건을 이용해 원하는 결제 어뷰징 자동 해제 사용자 정보를 검색할 수 있습니다.
 
@@ -331,7 +331,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 검색된 목록에서 유저 ID를 클릭하면 검색 기간의 결제 상세 내역을 조회할 수 있습니다.
 (단, 결제 내역이 없는 유저는 비활성화됩니다.)
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing6_1.3_ko.png)
+![purchase_24](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_24_kr_240103.png)
 
 #### 결제 내역
 - **결제 일시**: 사용자가 구입을 완료한 시간
@@ -345,11 +345,11 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 
 자동 제재 설정을 사용하려면 **사용** 버튼을 클릭해 설정 값을 입력합니다.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing3_1.3_ko.png)
+![purchase_25](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_25_kr_240103.png)
 
 #### 설정 정보
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing4_1.3_ko.png)
+![purchase_26](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_26_kr_240103.png)
 
 * **이용 정지 기간**  자동 제재 적용 시 이용 정지 기간을 입력합니다.
     * **영구 정지**: 영구 이용 정지를 하려면 선택합니다.
@@ -369,11 +369,11 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 자동 해제 설정을 사용하려면 **사용** 버튼을 클릭해 설정 값을 입력합니다.
 자동 해제 설정을 활성화하기 위해서는 자동 제재 설정이 반드시 <font color="red">활성화</font>되어야 합니다.
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing7_1.3_ko.png)
+![purchase_27](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_27_kr_240103.png)
 
 #### 설정 정보
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_IAP_PaymentAbusing8_1.3_ko.png)
+![purchase_28](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_28_kr_240103.png)
 
 * **이용 정지 일시 해제 기간**: 자동 해제 적용 시 이용 정지 유예 기간을 입력합니다.
 * **이용 정지 해제 조건 설정**: 자동 해제에 필요한 조건을 설정합니다. 최소 1개 이상 설정해야 합니다.

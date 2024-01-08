@@ -6,9 +6,9 @@ To use Galaxy Store in IAP, you should enter PackageName at app registration.
 After binary file registration, Check the package name.
 
 [Galaxy Store Seller Portal](https://seller.samsungapps.com/main/sellerMain.as) > App > Select App > Binary
- ![[]](http://static.toastoven.net/prod_iap/2020/galaxy_app_kr.png)
+ ![[]](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GalaxyStore/ko/galaxy_store_01_kr.png)
  
 
 ## Registering app from the console
 Please enter Package Name in the Store App ID.
-![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/galaxy_app_2_kr.png)
+![[]](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GalaxyStore/en/store_info_registration_en_231226.png)

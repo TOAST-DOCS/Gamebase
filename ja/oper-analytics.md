@@ -13,8 +13,7 @@ Analyticsは、次のメニューで構成されています。
 ### リアルタイム同時接続
 
 現在、アプリユーザーのリアルタイム同時接続指標およびメンテナンス、プッシュ情報を確認できます。
-
-![gamebase_analytics_01_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_01_202004_2_ja.png)
+![analytics_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_01_jp_240103.png)
 
 #### 1. リアルタイム同時接続者(CCU)変化グラフ
 1分ごとにデータを更新し、リアルタイムに変更された指標を確認できます。
@@ -32,8 +31,7 @@ Analyticsは、次のメニューで構成されています。
 ### ダッシュボード
 
 リアルタイムにゲームユーザーの多様な指標をひと目で確認できます。
-
-![gamebase_analytics_02_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_02_202004_2_ja.png)
+![analytics_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_02_jp_240103.png)
 
 #### 1. リアルタイムユーザー状況ダッシュボード
 アプリユーザーおよび決済指標を確認できます。
@@ -70,8 +68,7 @@ Analyticsは、次のメニューで構成されています。
 ### ユーザー
 
 ユーザーの基本指標を確認できます。
-
-![gamebase_analytics_03_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_03_202212_1_ja.png)
+![analytics_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_03_jp_240103.png)
 
 #### 1. ユーザー状況
 選択された期間のユーザー基本指標を表示します。
@@ -92,7 +89,7 @@ Analyticsは、次のメニューで構成されています。
 ※ MCU、累積ユーザー(ACU)の場合、フィルタが全体の場合のみ確認できます。
 
 ### ユーザー環境
-![gamebase_analytics_04_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_04_202004_2_ja.png)
+![analytics_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_04_jp_240103.png)
 
 利用環境ごとのユーザー指標を確認できます。
 
@@ -111,8 +108,7 @@ Analyticsは、次のメニューで構成されています。
 ### ユーザーの流入と流出
 
 アプリユーザーの流入、流出数の日付別推移を確認できます。
-
-![gamebase_analytics_05_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_05_202004_2_ja.png)
+![analytics_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_05_jp_240103.png)
 
 * 流入ユーザー(新規+復帰)：流入ユーザーは新規加入者と復帰ユーザーの合計(=新規加入者 + 復帰ユーザー)。
 * 新規加入者
@@ -134,8 +130,8 @@ Analyticsは、次のメニューで構成されています。
 ### Retention
 
 Retentionは、特定の日に加入したユーザーが、加入した次の日から180日間、どれだけ残っているかを確認できる指標です。
+![analytics_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_06_jp_240103.png)
 
-![gamebase_analytics_06_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202004_2_ja.png)
 
 当日退会者除外オプションを選択すると、加入当日に退会したユーザーを除外して確認できます。
 
@@ -144,7 +140,7 @@ Retentionは、特定の日に加入したユーザーが、加入した次の�
    例) 1月1日に100人新規加入、このうち20人が1月1日に退会したなら、実際の新規加入者を80人(100人-20人)と計算
 
 ### LTV
-![gamebase_analytics_06_202004_1_ltv_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202004_1_ltv_ja.png)
+![analytics_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_07_jp_240103.png)
 
 LTVは、選択された利用者グループで、利用者1人の1年間の期待売上を表す推定指標です。
 
@@ -168,7 +164,7 @@ LTVを正確に推定するために、以下の制限条件があります。
 * 利用者グループ中、最も新しい加入日から7日経過している必要があります。
 
 ### Life Cycle
-![gamebase_analytics_06_202004_1_lifeCycle_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202004_1_lifeCycle_ja.png)
+![analytics_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_08_jp_240103.png)
 
 Life Cycleは、最初に利用者が流入した時点から、日別の利用者推移を確認できる指標です。データは最大3年まで提供されます。
 
@@ -181,8 +177,7 @@ Life Cycleは、最初に利用者が流入した時点から、日別の利用�
 * 平均ゲーム時間 - Avg.Playtime(/DAU)：照会期間のPlaytime平均(DAUのPlaytimeの合計 / DAU)
 
 ### Frequency7
-
-![gamebase_analytics_06_202004_1_frequency_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202004_1_frequency_ja.png)
+![analytics_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_09_jp_240103.png)
 
 Frequency7指標は、DAUの一週間間の訪問数と比率情報を提供します。ゲーム没入度、忠誠度などをひと目で把握できます。
 
@@ -203,8 +198,7 @@ Frequency7の基準は、以下の3つに分けられます。
 ### 決済額
 
 決済額の指標を確認できます。
-
-![gamebase_analytics_07_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_07_202212_1_ja.png)
+![analytics_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_10_jp_240103.png)
 
 #### 1. 決済額状況表
 選択した期間の決済額を表示します。
@@ -218,8 +212,7 @@ Frequency7の基準は、以下の3つに分けられます。
 ### 有料ユーザー
 
 有料ユーザー(PU)の指標を確認できます。
-
-![gamebase_analytics_08_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_08_202212_1_ja.png)
+![analytics_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_11_jp_240103.png)
 
 次は、グラフと表で使われる用語説明です。
 
@@ -237,8 +230,7 @@ Frequency7の基準は、以下の3つに分けられます。
 ### アイテム販売指標
 
 Gamebaseに登録したアイテムの販売指標を確認できます。
-
-![gamebase_analytics_09_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_09_202212_1_ja.png)
+![analytics_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_12_jp_240103.png)
 
 * アイテム：Gamebaseに登録したアイテムリスト
 * ベストアイテムTop 10：販売金額別、販売数別に販売量が多いアイテムTop 10のリスト
@@ -249,7 +241,7 @@ Gamebaseに登録したアイテムの販売指標を確認できます。
 * 決済比率：アイテム別決済比重
 
 ### 初回購入
-![gamebase_analytics_10_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_10_202212_1_ja.png)
+![analytics_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_13_jp_240103.png)
 
 新規有料ユーザーの初回購入に関する情報を確認できます。
 
@@ -267,8 +259,7 @@ Gamebaseに登録したアイテムの販売指標を確認できます。
 ### グループ同時接続者
 
 Gamebaseサービスユーザーが属するすべてのプロジェクトの同時接続指標を確認できます。
-
-![gamebase_analytics_11_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_11_202004_2_ja.png)
+![analytics_14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_14_jp_240103.png)
 
 * リアルタイムグループ同時接続：Gamebaseサービスユーザーが属するプロジェクトのリアルタイム同時接続者(CCU)を表します。
 * プロジェクトグループ同時接続：選択された期間、フィルタを基準にアプリユーザー数を表示します。
@@ -276,8 +267,7 @@ Gamebaseサービスユーザーが属するすべてのプロジェクトの同
 ### グループ比較指標
 
 Gamebaseサービスユーザーが属するプロジェクトを、フィルタと組み合わせてグループで比較できます。
-
-![gamebase_analytics_12_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_12_202004_2_ja.png)
+![analytics_15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_15_jp_240103.png)
 
 * DAU：日間memberno基準でログイン1回以上のアクティブユーザー数(Daily Active Users)
 * NRU：当日新規加入者
@@ -285,17 +275,6 @@ Gamebaseサービスユーザーが属するプロジェクトを、フィルタ
 * 決済額：ユーザーが決済した金額
 
 ※グラフに表示されるグループ名は**{appId} _ {OS} _ {国}**の形式です。
-
-## 環境
-### インストールURL
-
-インストールURL呼び出しに対する統計指標を確認できます。
-
-![gamebase_analytics_13_202004_2_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_13_202004_2_ja.png)
-
-* 過去1週間のダウンロードURL呼び出し数：[アプリ > インストールURL]のインストールパスに、ゲームインストールAPIを呼び出した顧客数。アプリインストールマーケティング用で、Short URL呼び出した顧客数を測定し、顧客の反応を確認できます。
-* ブラウザ別占有率(全体累積)：ブラウザ別にインストールURL呼び出し数の比率を確認できます。
-* プラットフォーム別占有率(全体累積)：プラットフォーム別にインストールURL呼び出し数の比率を確認できます。
 
 ## Transmission
 
@@ -317,8 +296,7 @@ Gamebaseサービスユーザーが属するプロジェクトを、フィルタ
 
 選択された転送指標の種類と、各日付の接続、売上情報を確認できます。
 同時接続者は、当日はCCUを提供し、日付別はDAU情報を提供します。当日の場合は10分単位で情報が更新されます。
-
-![gamebase_analytics_14_202004_1_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_14_202004_1_ja.png)
+![analytics_16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_16_jp_240103.png)
 
 * CCU (Concurrent User)：10分単位で測定されたリアルタイム同時接続者数(ログイン利用者数)
 * DAU (Daily Active User)：利用者ID基準で、1日に1回以上ログインしたアクティブ利用者数
@@ -329,8 +307,7 @@ Gamebaseサービスユーザーが属するプロジェクトを、フィルタ
 ### Status By Level
 
 レベル別に接続、売上状況を確認できます。
-
-![gamebase_analytics_15_202004_1_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_15_202004_1_ja.png)
+![analytics_17](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_17_jp_240103.png)
 
 * DAU (Daily Active User)：利用者ID基準で、1日に1回以上ログインしたアクティブ利用者数
 * Avg.Playtime：該当レベルの日付別の全Playtimeの平均(DAUのPlaytimeの合計 / DAU)
@@ -344,8 +321,7 @@ Gamebaseサービスユーザーが属するプロジェクトを、フィルタ
 ### Status By Channel
 
 ワールド/サーバー/チャンネル別に接続、売上状況を確認できます。
-
-![gamebase_analytics_16_202004_1_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_16_202004_1_ja.png)
+![analytics_18](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_18_jp_240103.png)
 
 * DAU (Daily Active User)：利用者ID基準で、1日に1回以上ログインしたアクティブ利用者数
 * Avg.Playtime：該当レベルの日付別の全Playtimeの平均(DAUのPlaytimeの合計 / DAU)
@@ -359,8 +335,7 @@ Gamebaseサービスユーザーが属するプロジェクトを、フィルタ
 ### Status By Class
 
 クラス/職業別に接続、売上状況を確認できます。
-
-![gamebase_analytics_17_202004_1_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_17_202004_1_ja.png)
+![analytics_19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_19_jp_240103.png)
 
 * DAU (Daily Active User)：利用者ID基準で、1日に1回以上ログインしたアクティブ利用者数
 * Avg.Playtime：該当レベルの日付別の全Playtimeの平均(DAUのPlaytimeの合計 / DAU)
@@ -378,8 +353,7 @@ Gamebaseサービスユーザーが属するプロジェクトを、フィルタ
 * 達成レベル：達成したレベル
 * レベルアップ達成利用者：該当レベルを達成した利用者数
 * レベルアップ平均達成時間(分)：該当レベルを達成した利用者の平均達成時間(分)
-
-![gamebase_analytics_18_202004_1_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_18_202004_1_ja.png)
+![analytics_20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_20_jp_240103.png)
 
 ### Item Sales Status
 
@@ -391,11 +365,10 @@ Gamebaseサービスユーザーが属するプロジェクトを、フィルタ
 * PU (Paying User)
 * 新規PU
 
-![gamebase_analytics_19_202004_1_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_19_202004_1_ja.png)
-
+![analytics_21](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_21_jp_240103.png)
 
 ### Item Sales TOP 50
 
 選択された転送指標の種類および値に応じて、アイテム販売上位50個の項目を確認できます。
 
-![gamebase_analytics_20_202004_1_ja](https://static.toastoven.net/prod_gamebase/gamebase_analytics_20_202004_1_ja.png)
+![analytics_22](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_22_jp_240103.png)
