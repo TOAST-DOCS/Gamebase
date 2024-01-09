@@ -12,7 +12,7 @@ IdP IDはIdPで提供するID情報で、ログイン時に入力する情報で
 
 
 ### Detail Information
-![gamebase_member_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_01_201812.png)
+![member_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_01_jp_240103.png)
 
 **User **
 
@@ -25,10 +25,10 @@ IdP IDはIdPで提供するID情報で、ログイン時に入力する情報で
   - **利用停止**：アビューズなどで利用停止(ban)したユーザー。右上のアカウント状態変更メニューから利用停止を解除できます。
   - **退会**：退会したユーザー。
 - **プッシュ不可情報照会**：ゲームユーザーのプッシュトークンおよびタグ情報を照会。
-![gamebase_member_12_202104](https://static.toastoven.net/prod_gamebase/gamebase_member_12_202104.png)
+![member_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_02_jp_240103.png)
 
 #### アカウント状態変更
-![gamebase_member_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_02_201812.png)
+![member_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_03_jp_240103.png)
 
 照会したゲームユーザーのアカウント状態を変更できる機能です。
 各状態から、以下のように状態を変更できます。
@@ -53,20 +53,20 @@ Gamebaseでは、複数の外部IdPを連動することができます。つま
 * ゲームユーザーがゲスト情報のみ持っている時は、新しいIdP情報が追加され、既存のゲスト情報は消滅するため注意してください。
 * 提供ユーザーのIdP情報が1つの時は、作業を行うと提供ユーザー情報が**消滅**状態に変更されて二度と使用できないため、よく確認してください。
 ##### 提供例
-![gamebase_member_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_03_201812.png)
+![member_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_04_jp_240103.png)
+![member_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_05_jp_240103.png)
 
 #### マッピング解除
 多重マッピングしたアカウントは、リクエストに応じてIdP情報の連携を解除できます。
 各々のアカウントは、少なくとも1個の接続情報が存在する必要があるため、2個以上の接続情報がある時のみボタンが有効になります。
 * ボタンをクリックすると、下記のように接続したIdP情報と共に**マッピング解除**ボタンが表示されます。
-
-![gamebase_member_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_04_201812.png)
+![member_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_06_jp_240103.png)
 
 * **解除**ボタンをクリックすると、下記のように最終確認ウィンドウが表示されるので、IdP情報を確認します。**確認**ボタンをクリックすると、マッピングが解除されます。
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_RemoveMapping_2.0.png)
+![member_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_07_jp_240103.png)
 
 ### Login History
-![gamebase_member_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_05_201812.png)
+![member_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_08_jp_240103.png)
 
 照会したユーザーのログイン内訳を照会します。
 初めて照会するときは、直近1日分が照会され、照会したい日付をもう一度入力して照会することもできます。ただし、直近3ヶ月間(90日)の履歴のみ提供します。
@@ -88,7 +88,8 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
 - **etc**：その他、ログイン時に使用された上記項目以外の情報
 
 ### Mapping History
-![gamebase_member_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_06_201812.png)
+![member_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_09_jp_240103.png)
+
 照会したユーザーのマッピング、マッピング解除履歴を照会します。直近3ヶ月(90日)間の履歴がすべて表示されます。
 
 - **IdP ID**：IdPログイン時に使用されるID情報
@@ -102,10 +103,11 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
   - OMG：IdPアカウント作成
 
 マッピングされたIdP履歴をクリックした場合、該当IdPを基準にGamebase IDにマッピングされた履歴を表示します。
-![gamebase_member_07_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_07_201812.png)
+![member_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_10_jp_240103.png)
 
 ### Purchase History
-![gamebase_member_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_08_201812.png)
+![member_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_11_jp_240103.png)
+
 照会したユーザーの商品購入内訳を照会します。
 照会したい日付を入力して照会することができ、最大1ヶ月(30日)まで照会可能です。
 
@@ -122,7 +124,8 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
 - **払戻日時**：ユーザーのアイテムが払い戻された時間
 
 ### Ban History
-![gamebase_member_09_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_09_201812.png)
+![member_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_12_jp_240103.png)
+
 
 照会したユーザーの利用停止内訳を照会することができます。
 照会したい日付を入力して照会することができ、最大1ヶ月(30日)まで照会可能です。
@@ -136,20 +139,26 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
 - **解除登録者/解除登録日**：利用停止を解除した運営者/システム情報及び日時
 
 ### Playtime
-![gamebase_member_10_201812](https://static.toastoven.net/prod_gamebase/gamebase_member_10_201812.png)
+![member_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_13_jp_240103.png)
 照会したユーザーがゲームをプレイした時間を日付ごとに照会します。
 照会したい日付を入力して照会することができ、最大1ヶ月(30日)まで照会可能です。
 
+### Coupon using history
+![member_14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_14_jp_240103.png)
+
+### Inquiry history
+![member_15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_15_jp_240103.png)
+
 ### Withdraw History
-![image alt](https://static.toastoven.net/prod_gamebase/gamebase_member_11_202006.png)
+![member_16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_16_jp_240103.png)
 照会したユーザーが退会したゲームユーザーの場合、退会履歴を表示します。
 このメニューは、退会したゲームユーザーを照会する場合にのみ表示され、ゲームユーザーの退会経路を照会できます。
 
 ## Transfer account
 **端末移行**機能を使用する場合にのみ使用できます。[端末移行機能の有効化](./oper-app/#transfer-account)
 ゲームユーザーの端末移行キーの発行および検証履歴を確認できます。遮断されたキーの遮断解除や、有効期限が切れたキーの再発行ができます。
+![member_17](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_17_jp_240103.png)
 
-![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_TransferAccount1_1.0.png)
 **端末移行発行キー**
 - **ID**：ゲームユーザーに発行された端末移行ID
 - **発行日時**：端末移行IDが発行された日時
@@ -164,7 +173,7 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
 デフォルトで最後に発行されたキーが選択されていて、他のキーを選択すると、選択したキーの履歴を照会できます。
 
 ### 端末移行キーの再発行
-![image alt](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Member_TransferAccount_Renewal1_1.0.png)
+![member_18](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_18_jp_240103.png)
 **再発行**ボタンをクリックすると、新しい端末移行キーを再発行できます。再発行すると、以前に発行されたキーは使用できません。
 - **ID、パスワード再発行**：ID、パスワードを再発行します。
 - **パスワード再発行**：IDは以前に発行されたIDをそのまま使用し、パスワードのみ再発行します。

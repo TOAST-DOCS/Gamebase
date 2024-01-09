@@ -19,7 +19,7 @@ secret keyをIAPアプリ情報に登録します。
 2. Click [My Apps] 
 3. Click [Master Shared Secret]
 ```
-![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-apple-shared-key-1.png)
+![[]](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/iap-console-apple-shared-key-1.png)
 
 ### App-specific shared secret key
 ```
@@ -27,7 +27,7 @@ secret keyをIAPアプリ情報に登録します。
 2. Click [My Apps]  > Click App>  Click [Features] in toolbar
 3. Click [App-Specific Shared Secret]
 ```
-![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-apple-shared-key-2.png)
+![[]](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/iap-console-apple-shared-key-2.png)
 
 
 ### IAPアプリ情報にshared secret key入力する。
@@ -35,7 +35,7 @@ secret keyをIAPアプリ情報に登録します。
 1. IAP Console > App > choose ios APP
 2. Apple Shared Secret 入力
 ```
-![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/iap-console-apple-edit.png)
+![[]](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/AppStore/jp/store_info_jp_231226.png)
 
 
 ## Notification URLを登録する

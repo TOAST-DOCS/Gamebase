@@ -10,7 +10,7 @@ Gamebaseでは、NHN Cloud Pushサービスを使用してPush通知を送信し
 
 プッシュを送信した履歴と登録されたプッシュ予約リストを確認できます。
 
-![gamebase_push_01_201910](https://static.toastoven.net/prod_gamebase/gamebase_push_01_201910.png)
+![push_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_01_jp_240103.png)
 
 ### Registered List
 
@@ -21,14 +21,14 @@ Gamebaseでは、NHN Cloud Pushサービスを使用してPush通知を送信し
 送信履歴リストからプッシュを選択すると、送信されたプッシュの詳細履歴を照会できます。
 **コピー**ボタンを押すと、送信されたプッシュの登録情報を利用して簡単にプッシュを登録できます。
 
-![gamebase_push_03_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_03_202101.png)
+![push_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_02_jp_240103.png)
 
 ### Register Push
 
 新しいプッシュを登録するには**登録**ボタンを押します。
 コンソールに登録した値が実際の端末でどのように表示されるかを右側のプレビューで確認できます。
 
-![gamebase_push_05_202205](https://static.toastoven.net/prod_gamebase/gamebase_push_05_202205.png)
+![push_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_03_jp_240103.png)
 
 #### (1)送信タイプ
 
@@ -52,7 +52,7 @@ Gamebaseでは、NHN Cloud Pushサービスを使用してPush通知を送信し
 #### (3)イベントキー
 プッシュ送信統計に使用するイベントキーを選択します。
 **選択**ボタンを押すとイベントキー選択ポップアップが表示され、**収集中**状態のイベントキーを選択できます。
-![gamebase_push_22_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_22_202101.png)
+![push_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_04_jp_240103.png)
 
 #### (4)対象国
 
@@ -155,9 +155,7 @@ Androidプッシュメッセージの受信時に実行されるメディアを�
 - 受信設定：プッシュ受信設定関連指標
 
 ### 送信/受信
-
-![gamebase_push_12_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_12_202101.png)
-
+![push_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_05_jp_240103.png)
 
 1. 送信/受信統計
 
@@ -177,7 +175,7 @@ Androidプッシュメッセージの受信時に実行されるメディアを�
 
 ### トークン登録
 
-![gamebase_push_13_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_13_202101.png)
+![push_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_06_jp_240103.png)
 
 1. トークン登録統計
 
@@ -195,7 +193,7 @@ Androidプッシュメッセージの受信時に実行されるメディアを�
 
 ### 受信設定
 選択された期間の受信設定関連統計を表示します。
-![gamebase_push_14_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_14_202109.png)
+![push_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_07_jp_240103.png)
 
 |区分|情報性|広告性|夜間広告性|
 |------|:---:|:---:|:---:|
@@ -206,32 +204,73 @@ Androidプッシュメッセージの受信時に実行されるメディアを�
 
 ## Event Key
 プッシュ送信統計に使用するイベントキーを管理できます。
-![gamebase_push_15_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_15_202101.png)
+![push_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_08_jp_240103.png)
 Pushからプッシュメッセージを送信する時に使用するイベントキーを登録できます。
 
 ### Event Key register
-![gamebase_push_16_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_16_202101.png)
+![push_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_09_jp_240103.png)
 
 ### Event Key detail
 登録されたイベントキーを管理できます。
-![gamebase_push_17_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_17_202101.png)
+![push_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_10_jp_240103.png)
 
 上部の**削除**、**修正**ボタンを押してイベントキー情報を修正または削除できます。
 
 ## Authentication
 プッシュ送信に使用する証明書を管理できます。
-![gamebase_push_18_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_18_202101.png)
+![push_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_11_jp_240103.png)
 
 各証明書の**登録**、**修正**、**削除**ボタンを押して証明書を登録、修正、削除できます。
 
 ### Authentication register
-![gamebase_push_19_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_19_202101.png)
-{@line：end}
+![push_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_12_jp_240103.png)
+![push_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_13_jp_240103.png)
+![push_14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_14_jp_240103.png)
+![push_15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_15_jp_240103.png)
 
-{@line：263}
+## Tag
+
+Provides a tag function that can send push messages by grouping users according to specific criteria.
+
+![push_16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_16_jp_240103.png)
+
+You can register a tag name to be used when sending push messages from NHN Cloud Push.
+
+### Tag register
+
+![push_17](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_17_jp_240103.png)
+
+### Tag detail
+
+You can manage the registered tags and manage the list of users registered in the tags.
+
+![push_18](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_18_jp_240103.png)
+
+You can modify or delete tag information by clicking the **Modify** or **Delete** buttons at the top, and you can register or delete users in the tag using the user ID management function at the bottom.
+
+#### Add users
+
+##### Add a single user
+
+![push_19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_19_jp_240103.png)
+
+##### Add using a file
+
+![push_20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_20_jp_240103.png)
+
+If you click the **Add** button, the registration popup appears as shown above, and you can input users by entering an ID directly or by registering a file.
+
+**File registration** allows you to register up to 1,000 users at a time.
+
+#### Delete users
+
+![push_21](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_21_jp_240103.png)
+
+To delete a user registered in a tag, select the checkbox on the left in the user list and click the **Delete** button.
+
 ## Setting
 プッシュ関連設定が行えます。
-![gamebase_push_20_202205](https://static.toastoven.net/prod_gamebase/gamebase_push_20_202205.png)
+![push_22](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_22_jp_240103.png)
 
 ### メッセージ受信および確認設定
 送信されたメッセージの受信と確認情報を収集する機能です。
@@ -246,7 +285,7 @@ Pushからプッシュメッセージを送信する時に使用するイベン�
 
 * 右側**プレビュー**ボタンを押すと、設定した広告表示文言位置のプッシュ例を確認できます。
 
-![gamebase_push_21_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_21_202101.png)
+![push_23](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_23_jp_240103.png)
 
 ### トークン設定
 

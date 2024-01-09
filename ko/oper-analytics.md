@@ -11,7 +11,7 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 
 ## Real-time Monitoring
 ### Concurrent User
-![gamebase_analytics_01_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_01_201901_2.png)
+![analytics_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_01_kr_240103.png)
 
 현재 앱 이용자의 실시간 동접 지표 및 점검, 푸시 정보를 확인할 수 있습니다.
 
@@ -30,7 +30,7 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 당일 0시~24시까지 Gamebase에 발송된 PUSH 정보
 
 ### Dashboard
-![gamebase_analytics_02_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_02_201901_2.png)
+![analytics_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_02_kr_240103.png)
 
 실시간 이용자 현황에 대한 여러 지표를 한눈에 확인할 수 있습니다.
 
@@ -67,7 +67,7 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 
 ## User Statistics
 ### User
-![gamebase_analytics_03_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_03_202212_1.png)
+![analytics_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_03_kr_240103.png)
 
 이용자의 기본 지표들을 확인할 수 있습니다.
 
@@ -90,7 +90,7 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 ※ MCU, 누적 이용자(ACU)의 경우 필터가 전체일 경우만 확인할 수 있습니다.
 
 ### User Environment
-![gamebase_analytics_04_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_04_201901_2.png)
+![analytics_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_04_kr_240103.png)
 
 이용 환경에 따른 이용자의 지표를 확인할 수 있습니다.
 
@@ -107,7 +107,7 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
     * 결제금액: 이용자가 결제한 총 결제금액
 
 ### User Inflow and Outflow
-![gamebase_analytics_05_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_05_201901_2.png)
+![analytics_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_05_kr_240103.png)
 
 앱 이용자의 유입, 유출에 대한 일자별 추이를 확인할 수 있습니다.
 
@@ -129,7 +129,7 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
     * 월별: 전월 및 기준월 로그가 모두 수집된 이용자
 
 ### Retention
-![gamebase_analytics_06_202107_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202107_2.png)
+![analytics_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_06_kr_240103.png)
 
 Retention은 특정일에 가입한 이용자가 D+1일부터 D+180일까지 얼마나 잔존해 있는지를 보여 주는 지표입니다.
 
@@ -140,7 +140,7 @@ Retention은 특정일에 가입한 이용자가 D+1일부터 D+180일까지 얼
     * 예) 1월 1일 100명 신규 가입, 이 중 20명이 1월 1일 탈퇴자라면 실제 신규 가입자를 80명(100명-20명)으로 계산
 
 ### LTV
-![gamebase_analytics_06_201912_1_ltv](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_201912_1_ltv.png)
+![analytics_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_07_kr_240103.png)
 
 LTV는 선택된 이용자 그룹에서 이용자 1명의 1년간 기대 매출을 나타내는 추정 지표입니다.
 
@@ -164,7 +164,7 @@ LTV의 정확한 추정을 위해 아래의 제한 조건이 있습니다.
 * 이용자 그룹 중 가장 최근 가입일에 대해 7일이 경과해야 합니다.
 
 ### Life Cycle
-![gamebase_analytics_06_202002_1_lifeCycle](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202002_1_lifeCycle.png)
+![analytics_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_08_kr_240103.png)
 
 Life Cycle은 최초로 이용자가 유입된 시점부터, 일별 이용자 추이를 확인할 수 있는 지표입니다. 데이터는 최대 3년까지 제공됩니다.
 
@@ -177,8 +177,7 @@ Life Cycle은 최초로 이용자가 유입된 시점부터, 일별 이용자 �
 * 평균 게임 시간 - Avg.Playtime(/DAU): 조회기간의 Playtime 평균 (DAU의 Playtime의 합 / DAU)
 
 ### Frequency7
-
-![gamebase_analytics_06_202003_1_frequency](https://static.toastoven.net/prod_gamebase/gamebase_analytics_06_202003_1_frequency.png)
+![analytics_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_09_kr_240103.png)
 
 Frequency7 지표는 DAU의 일주일간 방문 수와 비율 정보를 제공합니다. 게임 몰입도, 충성도 등을 한눈에 파악할 수 있습니다.
 
@@ -197,7 +196,7 @@ Frequency7 기준은 아래 3개로 나뉩니다.
 
 ## Sales Statistics
 ### Payment Amount
-![gamebase_analytics_07_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_07_202212_1.png)
+![analytics_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_10_kr_240103.png)
 
 결제 금액에 대한 지표를 확인할 수 있습니다.
 
@@ -211,7 +210,7 @@ Frequency7 기준은 아래 3개로 나뉩니다.
 일간 조회 시에만 월 단위 누적 결제 금액을 확인할 수 있습니다.
 
 ### Paying User
-![gamebase_analytics_08_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_08_202212_1.png)
+![analytics_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_11_kr_240103.png)
 
 유료 이용자(PU)에 관한 지표를 확인할 수 있습니다.
 아래는 그래프와 표에 나온 용어 설명입니다.
@@ -229,7 +228,7 @@ Frequency7 기준은 아래 3개로 나뉩니다.
 * 누적 PU(M): 월 단위의 결제 이용자 수(중복 제외)
 
 ### Item Sales
-![gamebase_analytics_09_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_09_202212_1.png)
+![analytics_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_12_kr_240103.png)
 
 등록된 아이템의 판매 지표를 확인할 수 있습니다.
 
@@ -242,7 +241,7 @@ Frequency7 기준은 아래 3개로 나뉩니다.
 * 결제 비율: 아이템별 결제 비중
 
 ### First Purchase
-![gamebase_analytics_10_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_10_202212_1.png)
+![analytics_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_13_kr_240103.png)
 
 신규 유료 이용자의 첫 구매에 관한 정보를 확인할 수 있습니다.
 
@@ -257,7 +256,7 @@ Frequency7 기준은 아래 3개로 나뉩니다.
 
 ## Concurrent Group User
 ### Concurrent Group User
-![gamebase_analytics_11_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_11_201901_2.png)
+![analytics_14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_14_kr_240103.png)
 
 Gamebase 서비스 이용자가 속한 모든 프로젝트의 동접 지표를 확인할 수 있습니다.
 
@@ -265,7 +264,7 @@ Gamebase 서비스 이용자가 속한 모든 프로젝트의 동접 지표를 �
 * 프로젝트 그룹 동접: 선택된 기간, 필터를 기준으로 앱 이용자 수가 나타납니다.
 
 ### Group Comparison
-![gamebase_analytics_12_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_12_201901_2.png)
+![analytics_15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_15_kr_240103.png)
 
 Gamebase 서비스 이용자가 속한 프로젝트들을 필터와 조합하여 그룹으로 비교할 수 있습니다.
 
@@ -275,16 +274,6 @@ Gamebase 서비스 이용자가 속한 프로젝트들을 필터와 조합하여
 * 결제금액: 이용자가 결제한 결제금액
 
 ※ 그래프에 표시되는 그룹명은 **{appId} _ {OS} _ {국가}** 형태입니다.
-
-## Environment
-### Install URL
-![gamebase_analytics_13_201901_2](https://static.toastoven.net/prod_gamebase/gamebase_analytics_13_201901_2.png)
-
-설치 URL 호출에 대한 통계 지표를 확인할 수 있습니다.
-
-* 최근 일주일간 다운로드 URL 호출 수: 앱 > 설치 URL의 설치 경로로 게임 설치 API를 호출한 고객수. 앱 설치 마케팅용으로 Short URL 호출한 고객수를 측정함으로써, 고객 반응도를 확인할 수 있습니다.
-* 브라우저별 점유율(전체 누적): 브라우저별로 설치 URL 호출 수 비율을 확인할 수 있습니다. (전체 누적)
-* 플랫폼별 점유율(전체 누적): 플랫폼별로 설치 URL 호출 수 비율을 확인할 수 있습니다. (전체 누적)
 
 ## Transmission
 
@@ -306,10 +295,7 @@ Gamebase 서비스 이용자가 속한 프로젝트들을 필터와 조합하여
 
 선택된 전송 지표 종류와 날짜의 접속, 매출 정보를 확인할 수 있습니다.
 동시 접속자는 당일은 CCU를 제공하며, 일자별은 DAU 정보를 제공합니다. 당일이면 10분 단위로 정보가 갱신됩니다.
-
-![gamebase_analytics_14_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_14_201906_1.png)
-
-
+![analytics_16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_16_kr_240103.png)
 
 * CCU (Concurrent User): 10분 단위로 측정된 실시간 동시 접속자 수(로그인 이용자 수)
 * DAU (Daily Active User): 일간 이용자 아이디 기준, 로그인 1회 이상 액티브 이용자 수
@@ -320,9 +306,7 @@ Gamebase 서비스 이용자가 속한 프로젝트들을 필터와 조합하여
 ### Status By Level
 
 레벨별로 접속, 매출 현황을 확인할 수 있습니다.
-
-![gamebase_analytics_15_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_15_201906_1.png)
-
+![analytics_17](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_17_kr_240103.png)
 
 * DAU (Daily Active User): 일간 이용자 아이디 기준, 로그인 1회 이상 액티브 이용자 수
 * Avg.Playtime: 해당 레벨의 일자별 전체 Playtime의 평균(DAU의 Playtime의 합 / DAU)
@@ -336,9 +320,7 @@ Gamebase 서비스 이용자가 속한 프로젝트들을 필터와 조합하여
 ### Status By Channel
 
 월드/서버/채널별로 접속, 매출 현황을 확인할 수 있습니다.
-
-![gamebase_analytics_16_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_16_201906_1.png)
-
+![analytics_18](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_18_kr_240103.png)
 
 * DAU (Daily Active User): 일간 이용자 아이디 기준, 로그인 1회 이상 액티브 이용자 수
 * Avg.Playtime: 해당 레벨의 일자별 전체 Playtime의 평균(DAU의 Playtime의 합 / DAU)
@@ -352,10 +334,7 @@ Gamebase 서비스 이용자가 속한 프로젝트들을 필터와 조합하여
 ### Status By Class
 
 클래스/직업별로 접속, 매출 현황을 확인할 수 있습니다.
-
-![gamebase_analytics_17_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_17_201906_1.png)
-
-
+![analytics_19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_19_kr_240103.png)
 
 * DAU (Daily Active Users): 일간 이용자 아이디 기준, 로그인 1회 이상 액티브 이용자 수
 * Avg.Playtime: 해당 레벨의 일자별 전체 Playtime의 평균(DAU의 Playtime의 합 / DAU)
@@ -373,8 +352,7 @@ Gamebase 서비스 이용자가 속한 프로젝트들을 필터와 조합하여
 * 달성 레벨: 달성한 레벨
 * 레벨 업 달성 이용자: 해당 레벨을 달성한 이용자 수
 * 레벨 업 평균 달성 시간(분): 해당 레벨을 달성한 이용자들의 평균 달성 시간(분)
-
-![gamebase_analytics_18_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_18_201906_1.png)
+![analytics_20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_20_kr_240103.png)
 
 ### Item Sales Status
 선택된 전송 지표 종류에 따른 아이템 판매 현황을 확인할 수 있습니다.
@@ -384,13 +362,10 @@ Gamebase 서비스 이용자가 속한 프로젝트들을 필터와 조합하여
 * 결제 건수
 * PU (Paying User)
 * 신규 PU
-
-![gamebase_analytics_19_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_19_201906_1.png)
-
-
+![analytics_21](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_21_kr_240103.png)
 
 ### Item Sales TOP 50
 
 선택된 전송 지표 종류 및 값에 따른 아이템 판매 상위 50개 항목을 확인할 수 있습니다.
 
-![gamebase_analytics_20_201906_1](https://static.toastoven.net/prod_gamebase/gamebase_analytics_20_201906_1.png)
+![analytics_22](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_22_kr_240103.png)

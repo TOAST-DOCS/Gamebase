@@ -11,22 +11,22 @@
     - すでにリンクされているGoogle Cloudプロジェクトがある場合はリンクされたGoogle Cloudプロジェクトの状態が表示されます。
     - [Google Cloud Consoleメインページ](https://console.cloud.google.com/home/dashboard)で事前にプロジェクトを作成してから既存プロジェクトにリンクすることもできます。
 
-![Google Cloudプロジェクトのリンク](https://static.toastoven.net/prod_iap/console_google/google_common_step_01.png)
+![Google Cloudプロジェクトのリンク](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/google_play_console_api_access_01_ja_231220.png)
 
 - Google PlayとGoogle Cloudの間のプロジェクト接続が正常に完了したら、Google Play Consoleの**設定** > **APIアクセス**ページにリンクされているGoogle CloudプロジェクトとAPIリストが表示されます。
 - 以下のガイドに沿って設定を完了した後、画面のようにリンクされたプロジェクトの状態が表示されない場合は、Google Cloudとの接続部分を確認してください。
 
-![Google Cloudプロジェクト接続](https://static.toastoven.net/prod_iap/console_google/google_common_step_03.png)
+![Google Cloudプロジェクト接続](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/google_play_console_api_access_02_ja_231220.png)
 
 - 新規プロジェクト作成後、連動認証設定を行うにはOAuth同意画面設定などが必要です。
     - **OAuth同意画面設定**関連の詳細については、画面内のガイドおよび[Googleが提供するOAuth2ガイド](https://developers.google.com/identity/protocols/oauth2/)を参照してください。
 
-![Google Cloudプロジェクト接続](https://static.toastoven.net/prod_iap/console_google/google_common_step_02.png)
+![Google Cloudプロジェクト接続](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/oauth_consent_screen_ja_231220.png)
 
 
 ## 2つの連動認証方式を提供
 
-![NHN Cloud IAPアプリ設定](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/gamebase_google_iap_console_ja_202210.png)
+![NHN Cloud IAPアプリ設定](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/store_info_registration_ja_231220.png)
 
 - Google連携を行うには、GoogleのAndroid開発者APIにアクセスするための認証が必要です。
 - NHN Cloud IAPは、2つの認証モデルを提供し、それぞれ認証のために異なる特化情報が必要です。
@@ -47,7 +47,7 @@
     - `Google API Client ID`：最高管理者認証モデルガイドのステップ4を参照
     - `Google API Client Secret`：最高管理者認証モデルガイドのステップ4を参照
     - `Refresh Token For Google Oauth`：最高管理者認証モデルガイドのステップ6を参照
-      ![最高管理者モデル設定](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/gamebase_google_iap_console_supervisor_ja_202210.png)
+      ![最高管理者モデル設定](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/store_info_registration_supervisor_ja_231220.png)
 
 
 2. [Google Cloud Console APIおよびサービス](https://console.cloud.google.com/apis/dashboard)ダッシュボードに移動
@@ -55,7 +55,7 @@
     - **ユーザー認証情報**メニューに移動
     - **ユーザー認証情報を作成** > **OAuthクライアントID**を選択
 
-   ![最高管理者モデル設定](https://static.toastoven.net/prod_iap/console_google/google_supervisor_step_01.png)
+   ![最高管理者モデル設定](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/google_cloud_credentials_01_ja_231220.png)
 
 3. 新規OAuth Client基本情報の入力
     - アプリケーションタイプ：Webアプリケーションの指定
@@ -63,14 +63,14 @@
     - 承認されたjavascript原本：無視
     - 承認されたリダイレクトURI：追加後に`https://developers.google.com/oauthplayground`を入力
 
-   ![最高管理者モデル設定](https://static.toastoven.net/prod_iap/console_google/google_supervisor_step_02.png)
+   ![最高管理者モデル設定](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/google_cloud_credentials_02_ja_231220.png)
 
 4. 新規OAuth Clientが作成されると、作成されたOAuth Clientの2つの情報についての案内ポップアップが表示されます。
     - クライアントID：NHN Cloud IAPアプリ情報設定画面の`Google API Client ID`の値を入力します。
     - クライアントセキュリティパスワード：NHN Cloud IAPアプリ情報設定画面の`Google API Client Secret`の値を入力します。
     - 上記の2つの情報はOAuth Client情報画面で再確認することができ、Googleが提供するOAuth Client情報JSONダウンロードファイルでも確認できます。
 
-   ![最高管理者モデル設定](https://static.toastoven.net/prod_iap/console_google/google_supervisor_step_03.png)
+   ![最高管理者モデル設定](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/google_cloud_credentials_03_ja_231220.png)
 
 5. [Google OAuth 2 Playground](https://developers.google.com/oauthplayground)ページに移動
     - 画面右上の歯車ボタンを押すと表示される**OAuth 2.0 Configuration**ポップアップ設定でUse your own OAuth credentialsチェックボックスをチェックします。
@@ -79,12 +79,12 @@
         - 左側の選択画面下の範囲入力部分に`https://www.googleapis.com/auth/androidpublisher`を入力しても構いません。
     - すべての設定値の入力と選択が完了したら左下のAuthorize APIボタンをクリックします。
 
-   ![最高管理者モデル設定](https://static.toastoven.net/prod_iap/console_google/google_supervisor_step_04.png)
+   ![最高管理者モデル設定](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/google_oauth2.0_playground_01_ja_231220.png)
 
 6. Authorize APIボタンをクリックするとGoogle OAuth 2 PlaygroundページがStep 2に変わり、追加情報が表示されます。
     - Refresh Token：NHN Cloud IAPアプリ情報設定画面の`Refresh Token For Google Oauth`の値を入力します。
 
-   ![最高管理者モデル設定](https://static.toastoven.net/prod_iap/console_google/google_supervisor_step_05.png)
+   ![最高管理者モデル設定](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/google_oauth2.0_playground_02_ja_231220.png)
 
 ## サービスアカウント認証モデル
 - 最高管理者アカウントが委任した権限を持つGoogle内サービスアカウントの認証を代行するモデルであり、 2022年4月NHN Cloud IAPに新規追加された認証サポートモデルです。
@@ -95,14 +95,14 @@
 
 1. NHN Cloud IAPサービスアカウント認証モデル特化入力情報
     - `サービスアカウント連動情報`：サービスアカウント認証モデルガイドのステップ5を参照 
-      ![サービスアカウントモデル設定](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/gamebase_google_iap_console_service_account_ja_202210.png)
+      ![サービスアカウントモデル設定](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/store_info_registration_service_account_ja_231220.png)
 
 2. [Google Cloud Console](https://console.cloud.google.com/apis/dashboard) APIおよびサービスページに移動
     - Google Play管理アカウントと連携するプロジェクトを選択
     - **ユーザー認証情報**メニューに移動
     - **ユーザー認証情報を作成** > **サービスアカウント**を選択
 
-   ![サービスアカウントモデル設定](https://static.toastoven.net/prod_iap/console_google/google_service_account_step_02.png)
+   ![サービスアカウントモデル設定](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/google_cloud_service_accounts_01_ja_231220.png)
 
 3. 新規サービスアカウントの基本情報の入力
     - 管理しやすい形の基本情報を入力した後、`作成して続行`をクリックします。
@@ -110,7 +110,7 @@
     - 追加選択事項で作成するサービスアカウントの管理者メールを入力すると、その管理者にサービスアカウント設定の権限が付与されます。
         - Google Cloud Console内に存在しない管理者メールアドレスの場合は、入力したメールアドレスに管理者招待メールが送信されます。
 
-   ![サービスアカウントモデル設定](https://static.toastoven.net/prod_iap/console_google/google_service_account_step_03.png)
+   ![サービスアカウントモデル設定](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/google_cloud_service_accounts_02_ja_231220.png)
 
 4. サービスアカウントへの権限委任
     - **Google Play Console** > **APIアクセス**メニューに移動
@@ -119,7 +119,7 @@
     - 範囲は顧客の意図に合わせて設定しますが、権限の種類のうち`アプリ情報表示(読み取り専用)`、`財務データ表示`、`注文および購読管理`の権限は必ず委任設定する必要があります。
     - 委任設定された権限は反映されるまで数日かかる場合があります。委任権限が反映されるまで最長7日程度かかった事例がありますのでご参考ください。
 
-   ![サービスアカウントモデル設定](https://static.toastoven.net/prod_iap/console_google/google_service_account_step_05.png)
+   ![サービスアカウントモデル設定](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/google_play_console_api_access_03_ja_231220.png)
 
 5. APIおよびサービスページの新しく作成されたサービスアカウントリストのうち、作成した**サービスアカウント**の詳細情報画面に移動
     - キータブに移動して、キー追加 > 新しいキーを作成
@@ -129,7 +129,7 @@
     - ダウンロードしたファイルは最初のダウンロード後に、再ダウンロードすることはできませんので、大切に保管して入力してください。
     - ステップ4で言及したように、Google内部でまだ権限が反映されていない場合は権限なし登録エラーが発生することがありますので、このような場合は時間をおいて再試行してください。
 
-   ![サービスアカウントモデル設定](https://static.toastoven.net/prod_iap/console_google/google_service_account_step_04.png)
+   ![サービスアカウントモデル設定](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/google_cloud_service_accounts_03_ja_231220.png)
 
 
 ## 共通入力情報
@@ -141,7 +141,7 @@
 - **Google Play Console** > 該当アプリダッシュボード > 収入創出メニューに移動
 - 画面下部にBase64エンコードされたライセンス公開鍵が表記されます。この値をNHN Cloud IAPアプリ設定の`Google In App Purchase License Key`に入力します。
 
-![IAPライセンスキー](https://static.toastoven.net/prod_iap/console_google/google_iap_license_key.png)
+![IAPライセンスキー](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/google_play_console_monetization_setup_01_ja_231220.png)
 
 ### マーケット検証の省略
 - NHN Cloud IAPが提供するGoogle決済の検証は大きく2つのステップに分けられます。2つのステップのうち**ステップ2を省略するかどうかを設定**します。
@@ -167,14 +167,15 @@
     - **トピック(Topic)**メニューから新しいトピックを作成します。
     - トピックIDは管理しやすい任意の名称を使用してください。
 
-   ![購読情報配信設定](https://static.toastoven.net/prod_iap/console_google/google_subscription_event_01.png)
+   ![購読情報配信設定](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/google_cloud_pub_sub_01_ja_231220.png)
+   ![購読情報配信設定](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/google_cloud_pub_sub_02_ja_231220.png)
 
 2. 作成したトピックに**メインメンバーを追加**を行います。
     - 詳細メンバー情報`google-play-developer-notifications@system.gserviceaccount.com`を入力
     - 役割`掲示/購読` > `掲示/購読掲示者`を選択
 
-   ![購読情報配信設定](https://static.toastoven.net/prod_iap/console_google/google_subscription_event_02.png)
-   ![購読情報配信設定](https://static.toastoven.net/prod_iap/console_google/google_subscription_event_03.png)
+   ![購読情報配信設定](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/google_cloud_pub_sub_03_ja_231220.png)
+   ![購読情報配信設定](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/google_cloud_pub_sub_04_ja_231220.png)
 
 3. **購読**メニューに移動し、IAPサーバーに伝える購読を作成します。
     - 購読IDは管理しやすい値を入力
@@ -183,11 +184,13 @@
     - エンドポイントURL：`https://api-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/GG`入力
     - `{YOUR_PACKAGE}`部分にはNHN Cloud App設定のStoreAppIDに入力した値と同じアプリビルド時に使用したパッケージ名を入力します。
 
-   ![購読情報配信設定](https://static.toastoven.net/prod_iap/console_google/google_subscription_event_04.png)
+      ![購読情報配信設定](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/google_cloud_pub_sub_05_ja_231220.png)
+   ![購読情報配信設定](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/google_cloud_pub_sub_06_ja_231220.png)
+
 
 4. テスト用のGamebaseサンドボックス環境を使用する場合は、ステップ3の購読をサンドボックス用に作成する必要があります。
     - GamebaseサンドボックスエンドポイントURL入力：`https://sandbox-api-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/GG`
 5. [Google Play Console](https://play.google.com/console)のアプリダッシュボードに移動
     - **収入創出設定設定** > **Google Play決済**画面のリアルタイム開発者通知トピック名にステップ1で作成したトピックの全体名称を入力
 
-   ![購読情報配信設定](https://static.toastoven.net/prod_iap/console_google/google_subscription_event_05.png)
+   ![購読情報配信設定](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/google_play_console_monetization_setup_02_ja_231220.png)
