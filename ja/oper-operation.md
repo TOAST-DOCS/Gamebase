@@ -9,7 +9,7 @@
 
 ## Maintenance
 
-![gamebase_op_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_01_201812.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_01_ja_240105.jpg)
 
 ゲームメンテナンスが必要な場合、Consoleから簡単に登録することができます。
 登録したアプリメンテナンス内訳の照会とメンテナンスの登録内容及び進行状態などを一目で確認でき、登録されたメンテナンス理由でメンテナンスを検索することができます。
@@ -23,15 +23,15 @@
 
 Gamebaseでは、メンテナンスが進行しているゲーム内でユーザーに表示するメンテナンスポップアップと詳細ページを提供しています。
 Gamebaseで基本提供するメンテナンスポップアップ
-![gamebase_op_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_02_201812.png)
+![gamebase_op_img](https://static.toastoven.net/prod_gamebase/gamebase_op_02_201812.png)
 Gamebaseで基本提供するメンテナンスページ(メンテナンス理由とメンテナンス時間を表示)
-![gamebase_op_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_03_201812.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_02_ja_240105.jpg)
 
 ### Register Maintenance
 
 **メンテナンス**タブから**登録**ボタンをクリックすると、メンテナンスを登録する画面へ移動します。
 
-![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_op_04_202004.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_03_ja_240105.jpg)
 
 >  <font color="red">[注意] </font><br/>
 >  
@@ -45,7 +45,7 @@ Gamebaseで基本提供するメンテナンスページ(メンテナンス理�
 - 一部クライアント：特定クライアントバージョンにのみメンテナンスが必要な場合に選択します。「バージョン選択」ボタンを押すと、クライアントメニューで登録したクライアントバージョンリストが出力されます。
   **[一部クライアント選択画面例]**
  クライアントの状態およびストア別全体選択が可能で、メンテナンスを行いたいクライアントのバージョンを選択して確認ボタンを押してください。
-![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_04_ja_240105.jpg)
 
 #### (2)理由
 メンテナンスが行われる理由を入力します。
@@ -75,7 +75,7 @@ Gamebaseで基本提供するメンテナンスページ(メンテナンス理�
 
 ##### 4-3)外部ページ
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance2_4.1.png)
+![image alt](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_05_ja_240105.jpg)
 メンテナンスページまたはメンテナンステンプレートを既にお持ちの場合、メンテナンスページを該当するURLでリンクさせることができます。
 リンクさせるURLのプレビューページも併せてサポートします。
 メンテナンス情報を別途入力してメンテナンス情報を受け取りたい場合、**メンテナンス情報の提供**項目を選択して**表示するメッセージ**にメッセージを入力します。メンテナンスページでGamebaseのメンテナンス内容に登録したメンテナンス情報(メンテナンス時間の情報、メッセージなど)を受け取ることができます。
@@ -98,7 +98,7 @@ Gamebaseで基本提供するメンテナンスページ(メンテナンス理�
 
 ## Notice
 
-![gamebase_op_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_06_201812.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_06_ja_240105.jpg)
 
 アプリを起動する際にポップアップ形式で表示されるお知らせを提供します。ログインする前に表示されるポップアップですので、外部認証障害やゲームサーバーに障害が発生した場合、登録して使用してください。
 登録されたお知らせリストと進行状態などを一目で確認でき、お知らせメッセージでも検索できます。
@@ -112,7 +112,7 @@ Gamebaseで基本提供するメンテナンスページ(メンテナンス理�
 
 告知メイン画面で「登録」ボタンを押すと告知を登録する画面に移動します。
 
-![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_op_07_202011.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_07_ja_240105.jpg)
 
 #### (1) 対象
 
@@ -122,7 +122,7 @@ Gamebaseで基本提供するメンテナンスページ(メンテナンス理�
 - 一部のクライアント：特定のクライアントバージョンに対してだけメンテナンスが必要な場合に選択します。「バージョン 選択」ボタンをクリックすると、クライアントメニューから登録したクライアントバージョンのリストが出力されます。
   **一部のクライアントを選択する画面の例**
   クライアントの状態及びストアごとに全体を選択することができ、メンテナンスが必要なクライアントバージョンを選択してから確認ボタンを押してください。
-  ![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
+  ![gamebase_op_05_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_04_ja_240105.jpg)
 
 #### (2) 対象国家
 お知らせを表示する国家を選択します。
@@ -162,7 +162,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 
 #### 緊急のお知らせポップアップの例
 閉じるボタン(左), 閉じる+詳細確認(右)
-![gamebase_op_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_08_201812.png)
+![gamebase_op_img](https://static.toastoven.net/prod_gamebase/gamebase_op_08_201812.png)
 
 ### Modify Notice
 
@@ -172,7 +172,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 
 ## Image notice
 
-![gamebase_image_notice_01_202007](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_image_notice_01_202007.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_08_ja_240105.jpg)
 
 コンソールにイメージを登録してゲーム内にイメージで告知を簡単に提供できます。
 現在進行中の告知リストは、上位リストに表示され、完了した告知リストは下位に別途表示されます。
@@ -188,8 +188,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 - **修正日**：告知が最終的に修正された時刻を表示します。
 - **クリック率(%)**：ゲーム内にイメージ告知が表示された数とイメージ告知をクリックした数を簡単な統計で表示します。全体比率の値を表示し、確認ボタンを押すと表示期間の日別表示数とクリック数をグラフで確認できます。
 - **状態**：表示状態を表示します。各状態は以下の通りです。
-![gamebase_image_notice_02_202007](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_image_notice_02_202007.png)
-
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_09_ja_240105.jpg)
 ```
 (1)予定：イメージ告知が表示される予定の状態
 (2)表示中：現在、イメージ告知が表示中の状態
@@ -199,7 +198,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 ### Register Image notice
 
 **イメージ告知**リストから**登録**ボタンを選択すると、イメージ告知を登録できます。
-![gamebase_image_notice_03_202007](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_image_notice_03_202007.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_10_ja_240105.jpg)
 
 #### (1)対象
 
@@ -209,7 +208,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 - 一部のクライアント：特定のクライアントバージョンにのみ表示する必要がある場合に選択します。「バージョン選択」ボタンを押すと、クライアントメニューで登録したクライアントバージョンリストが出力されます。
   **一部のクライアント選択画面例**
  クライアントの状態およびストア別全体選択が可能で、表示したいクライアントバージョンを選択して確認ボタンを押してください。
-![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_04_ja_240105.jpg)
 
 
 #### (2)対象国
@@ -275,13 +274,13 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 ## Kick Out
 ゲームメンテナンスなどの理由でユーザーの接続を解除する場合は、Consoleから簡単にユーザーの接続を解除できます。
 登録したキックアウト内容は、ひと目で確認できます。
-![gamebase_op_09_202102](https://static.toastoven.net/prod_gamebase/gamebase_op_09_202102.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_11_ja_240105.jpg)
 
 ### Register Kick Out
 
 **キックアウト**タブで**登録**ボタンを押すと、キックアウトを登録する画面に移動します。
 
-![gamebase_op_10_202201](https://static.toastoven.net/prod_gamebase/gamebase_op_10_202201.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_12_ja_240105.jpg)
 
 ### (1)処理対象
 キックアウト対象のクライアントを選択します。
@@ -289,7 +288,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 - 一部のクライアント：特定のクライアントバージョンにのみキックアウトが必要な場合に選択します。「バージョン選択」ボタンを押すと、クライアントメニューで登録したクライアントバージョンリストが出力されます。
   **[一部のクライアント選択画面例]**
  クライアントの状態およびストア別全体選択が可能で、メンテナンスを行いいたいクライアントバージョンを選択し、確認ボタンを押してください。
-![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_04_ja_240105.jpg)
 
 ### (2)理由
 キックアウトが行われる理由を最大100文字まで作成できます。
