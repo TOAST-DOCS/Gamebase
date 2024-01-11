@@ -9,7 +9,7 @@
 
 ## Maintenance
 
-![gamebase_op_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_01_201812.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_01_ko_240105.jpg)
 
 게임 점검이 필요한 경우 Console에서 손쉽게 등록할 수 있습니다.
 등록한 앱 점검 내역 조회와 점검 등록 내용 및 진행 상태 등을 한눈에 확인할 수 있으며 등록된 점검 사유로 점검 검색이 가능합니다.
@@ -23,16 +23,16 @@
 
 Gamebase에서는 점검진행 중 게임내에서 사용자에게 보여줄 점검팝업과 상세페이지를 제공하고 있습니다.
 Gamebase에서 기본으로 제공하는 점검 팝업
-![gamebase_op_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_02_201812.png)
+![gamebase_op_img](https://static.toastoven.net/prod_gamebase/gamebase_op_02_201812.png)
 Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점검 시간 표시)
-![gamebase_op_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_03_201812.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_02_ko_240105.jpg)
 
 
 ### Register Maintenance
 
 **점검** 탭에서 **등록** 버튼을 클릭하면 점검을 등록하는 화면으로 이동합니다.
 
-![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_op_04_202004.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_03_ko_240105.jpg)
 
 >  <font color="red">[주의] </font><br/>
 >  
@@ -46,7 +46,7 @@ Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점�
 - 일부 클라이언트 : 특정 클라이언트 버전에만 점검이 필요한 경우 선택합니다. '버전 선택'버튼을 클릭하면 클라이언트 메뉴에서 등록한 클라이언트 버전리스트가 출력됩니다.
   **[일부 클라이언트 선택 화면 예시]**
   클라이언트 상태 및 스토어별 전체 선택이 가능하며, 점검을 원하는 클라이언트 버전을 선택 후 확인 버튼을 누르면 됩니다.
-![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240105.jpg)
 
 #### (2) 사유
 점검이 진행되는 사유를 입력합니다.
@@ -75,7 +75,7 @@ Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점�
 원하는 점검 페이지 형식을 만들고자 할 때 유용하게 사용할 수 있습니다.
 
 ##### 4-3) 외부 페이지
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance2_4.1.png)
+![image alt](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_05_ko_240105.jpg)
 자체 점검 페이지 또는 점검 템플릿을 가지고 있을 경우 점검 페이지를 해당 URL로 연결할 수 있습니다.
 연결하는 URL의 미리보기 페이지도 함께 지원합니다.
 점검 정보를 별도로 입력하여 점검 정보를 전달받고 싶은 경우 **점검 정보 제공** 항목을 선택하고 **노출 메시지**에 메시지를 입력합니다. 점검 페이지에 Gamebase 점검 내용에 등록한 점검 정보(점검 시간 정보, 메시지 등)를 전달받을 수 있습니다.
@@ -98,7 +98,7 @@ Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점�
 
 ## Notice
 
-![gamebase_op_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_06_201812.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_06_ko_240105.jpg)
 
 앱 실행시 팝업 형태로 노출되는 공지를 제공합니다. 로그인 이전에 노출되는 팝업이므로 외부 인증 장애나 게임 서버 장애가 발생한 경우 등록하여 사용하면 됩니다.
 등록된 공지리스트와 진행상태 등을 한눈에 확인 가능하며 공지메시지로 검색도 가능합니다.
@@ -112,7 +112,7 @@ Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점�
 
 공지 메인화면에서 '등록'버튼을 클릭하면 공지를 등록하는 화면으로 이동합니다.
 
-![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_op_07_202011.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_07_ko_240105.jpg)
 
 #### (1) 대상
 
@@ -122,7 +122,7 @@ Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점�
 - 일부 클라이언트 : 특정 클라이언트 버전에만 점검이 필요한 경우 선택합니다. '버전 선택'버튼을 클릭하면 클라이언트 메뉴에서 등록한 클라이언트 버전리스트가 출력됩니다.
   **일부 클라이언트 선택 화면 예시**
   클라이언트 상태 및 스토어별 전체 선택이 가능하며, 점검을 원하는 클라이언트 버전을 선택 후 확인 버튼을 누르면 됩니다.
-![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240105.jpg)
 
 
 #### (2) 대상 국가
@@ -167,7 +167,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 
 #### 긴급공지 팝업 예시
 닫기버튼(왼쪽), 닫기+자세히보기 (오른쪽)
-![gamebase_op_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_08_201812.png)
+![gamebase_op_img](https://static.toastoven.net/prod_gamebase/gamebase_op_08_201812.png)
 
 ### Modify Notice
 
@@ -177,7 +177,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 
 ## Image notice
 
-![gamebase_image_notice_01_202007](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_image_notice_01_202007.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_08_ko_240105.jpg)
 
 콘솔에 이미지를 등록하여 게임 내에 이미지로 공지를 손쉽게 제공할 수 있습니다.
 현재 진행 중인 공지 목록은 상위 목록에 노출되며 완료된 공지 목록은 하위에 별도 목록으로 표시됩니다.
@@ -193,7 +193,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 - **수정일**: 공지가 최종적으로 수정된 시각을 보여줍니다.
 - **클릭율(%)**: 게임 내에 이미지 공지가 표시된 숫자와 이미지 공지를 실제 클릭한 숫자를 간단한 통계로 보여줍니다. 전체 비율에 대한 값을 표시해 주며 확인 버튼을 클릭하면 노출 기간 동안의 일별 노출 수와 클릭 수를 그래프를 통해 확인할 수 있습니다.
 	* 조회된 지표는 파일로 다운로드하여 일자별 데이터를 확인하실 수 있습니다.
-![gamebase_image_notice_02_202107](https://static.toastoven.net/prod_gamebase/gamebase_image_notice_02_202107.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_09_ko_240105.jpg)
 - **상태** : 표시 상태를 보여줍니다. 각 상태는 아래와 같습니다.
 ```
 (1) 예정: 이미지 공지가 노출될 예정인 상태
@@ -204,7 +204,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 ### Register Image notice
 
 **이미지 공지** 목록에서 **등록** 버튼을 선택하면 이미지 공지를 등록할 수 있습니다.
-![gamebase_image_notice_03_202007](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_image_notice_03_202007.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_10_ko_240105.jpg)
 
 #### (1) 대상
 
@@ -214,7 +214,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 - 일부 클라이언트 : 특정 클라이언트 버전에만 노출이 필요한 경우 선택합니다. '버전 선택'버튼을 클릭하면 클라이언트 메뉴에서 등록한 클라이언트 버전 리스트가 출력됩니다.
   **일부 클라이언트 선택 화면 예시**
   클라이언트 상태 및 스토어별 전체 선택이 가능하며, 노출을 원하는 클라이언트 버전을 선택 후 확인 버튼을 누르면 됩니다.
-![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240105.jpg)
 
 
 #### (2) 대상 국가
@@ -280,13 +280,13 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 ## Kick Out
 게임 점검 등의 이유로 유저의 연결을 해제할 경우 Console에서 손쉽게 유저의 연결을 해제할 수 있습니다.
 등록한 킥아웃 내역 조회와 킥아웃 등록 내용을 한눈에 확인할 수 있습니다.
-![gamebase_op_09_202102](https://static.toastoven.net/prod_gamebase/gamebase_op_09_202102.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_11_ko_240105.jpg)
 
 ### Register Kick Out
 
 **킥아웃** 탭에서 **등록** 버튼을 클릭하면 킥아웃을 등록하는 화면으로 이동합니다.
 
-![gamebase_op_10_202201](https://static.toastoven.net/prod_gamebase/gamebase_op_10_202201.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_12_ko_240105.jpg)
 
 ### (1) 처리대상
 킥아웃 대상이 될 클라이언트를 선택합니다.
@@ -294,7 +294,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 - 일부 클라이언트 : 특정 클라이언트 버전에만 킥아웃이 필요한 경우 선택합니다. '버전 선택'버튼을 클릭하면 클라이언트 메뉴에서 등록한 클라이언트 버전리스트가 출력됩니다.
   **[일부 클라이언트 선택 화면 예시]**
   클라이언트 상태 및 스토어별 전체 선택이 가능하며, 점검을 원하는 클라이언트 버전을 선택 후 확인 버튼을 누르면 됩니다.
-![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240105.jpg)
 
 ### (2) 사유
 킥아웃이 진행되는 사유를 최대 100자까지 작성할 수 있습니다.

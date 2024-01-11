@@ -532,6 +532,7 @@ void Sample::CheckServerPush(const FString& category, const FGamebaseEventServer
             * GamebaseErrorCode::INVALID_MEMBER: 6
             * GamebaseErrorCode::BANNED_MEMBER: 7
     * GamebaseEventCategory::ObserverNetwork
+        * Only for Android and iOS
     	* Can receive the information about the changes in the network.
     	* Operates when the network is disconnected or connected, or switched from Wi-Fi to a cellular network.
         * GamebaseEventObserverData.code : Indicates the NetworkManager value.
@@ -539,7 +540,6 @@ void Sample::CheckServerPush(const FString& category, const FGamebaseEventServer
             * EGamebaseNetworkType::Mobile: 0
             * EGamebaseNetworkType::Wifi: 1
             * EGamebaseNetworkType::Any: 2
-
 **VO**
 
 ```cpp
