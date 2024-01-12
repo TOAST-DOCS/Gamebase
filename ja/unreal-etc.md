@@ -554,6 +554,7 @@ void Sample::CheckServerPush(const FString& category, const FGamebaseEventServer
             * GamebaseErrorCode::INVALID_MEMBER: 6
             * GamebaseErrorCode::BANNED_MEMBER: 7
     * GamebaseEventCategory::ObserverNetwork
+        * Android, iOSに限る
     	* ネットワーク変動事項情報を受け取れます。
     	* ネットワークが切断されたり、接続された時、またはWi-FiからCellularネットワークに変更された時に動作します。
         * GamebaseEventObserverData.code : NetworkManager値を意味します。
@@ -561,7 +562,6 @@ void Sample::CheckServerPush(const FString& category, const FGamebaseEventServer
             * EGamebaseNetworkType::Mobile: 0
             * EGamebaseNetworkType::Wifi: 1
             * EGamebaseNetworkType::Any: 2
-
 **VO**
 
 ```cpp
@@ -950,7 +950,6 @@ ContactConfigurationでURLに追加情報を伝達できます。
 | ------------- | ------------- | ---------------------------------- | ------------------ |
 | userName      | O             | FString                            | ユーザー名前(ニックネーム) <br>**default** : ""   |
 | additionalURL | O             | FString                            | 開発会社独自のサポートURLの後ろにつく追加のURL <br>**default** : ""    |
-| additionalParameters | O      | TMap<string, string>               | サポートURLの後ろにつく追加のパラメータ<br>**default**：EmptyMap |
 | extraData     | O             | TMap<FString, FString>             | 開発会社が任意のextra dataをサポートオープン時に伝達<br>**default** : EmptyMap |
 
 **API**
