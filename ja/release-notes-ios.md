@@ -1,11 +1,26 @@
 ## Game > Gamebase > リリースノート > iOS
 
+### 2.60.0 (2024. 01. 23.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.60.0/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트
+    * PAYCO iOS SDK가 xcframework로 변경되었습니다.
+* SDK 내부 로직 개선
+
+### 2.59.1 (2023. 12. 27.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.59.1/GamebaseSDK-iOS.zip)
+
+#### 버그 수정
+* Hangame 로그인 시 오류가 발생하는 버그를 수정하였습니다.
+
 ### 2.59.0 (2023. 12. 19.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.59.0/GamebaseSDK-iOS.zip)
 
 #### 機能改善/変更
 * 外部SDKアップデート
     * NAVER iOS SDK (4.2.0)
+        * NAVER iOS SDK가 xcframework로 변경되었습니다.
 * 約款ウィンドウがタブレット環境で固定サイズで表示されるように修正しました。
 * Launching Status CodeがINTERNAL_SERVER_ERROR(500)の時にエラーポップアップを表示するように修正しました。
 
@@ -18,6 +33,7 @@
 #### 機能改善/変更
 * 外部SDKアップデート
     * PAYCO iOS SDK (1.5.9)
+        * PAYCO iOS SDK가 xcframework로 변경되었습니다.
     * Kakaogame iOS SDK (3.17.5)
 * 最上位ViewController取得ロジックを改善
 * Gamebaseローンチポップアップウィンドウが完全に終了した後に初期化コールバックが呼び出されるように修正しました。
