@@ -735,6 +735,7 @@ private void CheckServerPush(string category, GamebaseResponse.Event.GamebaseEve
             * GamebaseError.INVALID_MEMBER: 6
             * GamebaseError.BANNED_MEMBER: 7
     * GamebaseEventCategory.OBSERVER_NETWORK
+        * Android, iOSに限る
     	* ネットワーク変動事項情報を受け取れます。
     	* ネットワークが切断されたり、接続された時、またはWi-FiからCellularネットワークに変更された時に動作します。
     	* GamebaseEventObserverData.code : NetworkManager値を意味します。
@@ -743,11 +744,13 @@ private void CheckServerPush(string category, GamebaseResponse.Event.GamebaseEve
             * NetworkManager.TYPE_WIFI: 1
             * NetworkManager.TYPE_ANY: 2
     * GamebaseEventCategory.OBSERVER_WEBVIEW
+        * Standaloneに限る
         * StandaloneでWebビューを開閉した時に動作します。
             * GamebaseWebViewEventType.OPENED: 1
             * GamebaseWebViewEventType.CLOSED: 2
     * GamebaseEventCategory.OBSERVER_INTROSPECT
-        * Standalone/WebGLでログイン後、セッションの延長に失敗した時に動作します。
+        * Standalone, WebGLに限る
+        * ログイン後、セッション延長に失敗した場合に動作します。
 
 **VO**
 
