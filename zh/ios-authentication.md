@@ -982,6 +982,7 @@ Instant withdrawal cannot be undone, so it is important to ask the user several 
 |                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | No recent login IdP information.                   |
 | IdP Login      | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_FAILED    | 3201       | IdP login failed.                        |
 |                | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO | 3202       | Invalid IdP information. (The console has no information about the IdP.) |
+|                | TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_EXTERNAL\_AUTHENTICATION\_REQUIRED | 3203       | You must be logged into your IdP before requesting a Gamebase login. |
 | Add Mapping    | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FAILED  | 3301       | Additional mapping failed.                           |
 |                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | Already mapped to a different member.                      |
 |                | TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       | Already mapped to the same IdP.                     |

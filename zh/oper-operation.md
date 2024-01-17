@@ -9,7 +9,7 @@ This menu provides functions that are required for an app operation.
 
 ## Maintenance
 
-![gamebase_op_01_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_op_01_201812_en.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_01_en_240105.jpg)
 
 Can easily register maintenance in the Console, when required.
 Retrieve maintenance history of registered apps and check progress at a glance, and search maintenance by registered causes of maintenance.
@@ -23,15 +23,15 @@ Status of maintenance is classified into five as below.
 
 Gamebase provides maintenance pop-ups and detail pages to show to game users while maintenance is underway.
 Default maintenance pop-up of Gamebase.
-![gamebase_op_02_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_02_201812.png)
+![gamebase_op_img](https://static.toastoven.net/prod_gamebase/gamebase_op_02_201812.png)
 Default maintenance page of Gamebase (with cause and time of maintenance)
-![gamebase_op_03_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_03_201812.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_02_en_240105.jpg)
 
 ### Register Maintenance
 
 Click **Register** under the **Maintenance** tab, to register maintenance.
 
-![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_op_04_202004.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_03_en_240105.jpg)
 
 >  <font color="red">[Caution] </font><br/>
 >  
@@ -45,7 +45,7 @@ Select the maintenance target.
 - Some clients : Select it when maintenance is required only for certain client versions. Click the 'Select version' button to display the list of the client versions registered from the client menu.
   **[Example of selecting Some clients]**
   Select All is possible by client status and by store. Just select the client version to perform maintenance, and click the Confirm button.
-![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240105.jpg)
 
 #### (2) Reason
 Enter the reason why the maintenance is needed.
@@ -75,7 +75,7 @@ This is useful when creating the maintenance page format you want.
 
 ##### 4-3) External page
 
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_Maintenance2_4.1.png)
+![image alt](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_05_en_240105.jpg)
 If you own a maintenance page or template, the maintenance page can be linked to URL.
 Preview of the URL to connect is also supported.
 To be provided with maintenance information, choose **Provide Information** and enter messages in **Message**: maintenance information registered in Gamebase (maintenance time, messages, and etc.) can be provided on the maintenance page.
@@ -98,7 +98,7 @@ To register maintenance again with similar content, you may copy and paste for a
 
 ## Notice
 
-![gamebase_op_06_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_op_06_201812_en.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_06_en_240105.jpg)
 
 Provides pop-up notifications during app execution. The pop-ups will show before logins; in case of errors in external authentication or game server, pop-ups need to be registered.
 Can easily check the list of registered notifications with status and search messages.
@@ -112,7 +112,7 @@ Status of notice is classified into three as below.
 
 Clicking the 'Register' button on the main screen of Notice redirects you to the screen where you can register a notice.
 
-![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_op_07_202011.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_07_en_240105.jpg)
 
 #### (1) Target
 
@@ -121,7 +121,7 @@ Select a target to show notification.
 - Some Clients: When only a particular client version requires maintenance. Click 'Select a Version' to show the list of client versions registered in the client menu.
   **Example of selecting particular clients**
   Can select a client status and all for each store, and select a client version for maintenance and press OK.
-  ![gamebase_op_05_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812_en.png)
+  ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240105.jpg)
 
 
 #### (2) Target Country
@@ -163,7 +163,7 @@ Specify the type of the buttons which will be exposed at the bottom of the notic
 
 #### Example of a Notice Pop-up
 Close (left), Close+More (right)
-![gamebase_op_08_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_08_201812.png)
+![gamebase_op_img](https://static.toastoven.net/prod_gamebase/gamebase_op_08_201812.png)
 
 You can read, edit, or delete the details of the registered notice.
 By default, the input items are identical to those of the registration screen. You can also delete the notice by clicking the 'Delete' button if the notice has been entered incorrectly.
@@ -171,7 +171,7 @@ If you want reregister the maintenance with similar details, you can use the cop
 
 ## Image notice
 
-![gamebase_image_notice_01_202007](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_image_notice_01_202007.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_08_en_240105.jpg)
 
 You can easily provide the notice as an image within the game by registering the image into the console.
 The list of the current notices is exposed at the top of the list, and the list of the completed notices is displayed separately at the bottom.
@@ -187,7 +187,7 @@ What's displayed on each item is as follows:
 - **Modified date**: Shows the time when the notice was most recently modified.
 - **Click rate (%)**: Shows simple statistics about how many times the image notice has been displayed within the game and how many times it has actually been clicked. It shows the value against the total percentage, and you can see the graph on daily impressions and clicks during the exposure period by clicking the 'Confirm' button.
 - **Status** : Shows the display status as follows.
-![gamebase_image_notice_02_202007](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_image_notice_02_202007.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_09_en_240105.jpg)
 
 ```
 (1) To be exposed: The image notice is expected to be exposed
@@ -198,7 +198,7 @@ What's displayed on each item is as follows:
 ### Register Image notice
 
 You can register the image notice by selecting the **Register** button from the **Image Notice** list.
-![gamebase_image_notice_03_202007](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_image_notice_03_202007.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_10_en_240105.jpg)
 
 #### (1) Target
 
@@ -208,7 +208,7 @@ Select the target to expose the image notice to.
 - Some clients : Select it when exposure is required only for certain client versions. Click the 'Select version' button to display the list of the client versions registered from the client menu.
   **Example of selecting Some clients**
   Select All is possible by client status and by store. Just select the client version to expose, and click the Confirm button.
-![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240105.jpg)
 
 
 #### (2) Target country
@@ -274,13 +274,13 @@ If you want to register the notice image again with the similar details to the a
 ## Kick Out
 If you need to disconnect users for reasons such as game maintenance, you can easily do so in the console.
 You can see the kickout history and kickout registrations at a glance.
-![gamebase_op_09_202102](https://static.toastoven.net/prod_gamebase/gamebase_op_09_202102.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_11_en_240105.jpg)
 
 ### Register Kick Out
 
 Clicking the **Register** button on the **Kickout** tab redirects you to the screen where you can register a kickout.
 
-![gamebase_op_10_202201](https://static.toastoven.net/prod_gamebase/gamebase_op_10_202201.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_12_en_240105.jpg)
 
 ### (1) Target to process
 Select the target client to kick out.
@@ -288,7 +288,7 @@ Select the target client to kick out.
 - Some clients : Select it when kickout is required only for certain client versions. Click the 'Select Version' button to display the list of the client versions registered from the client menu.
   **[Example of selecting Some clients]**
   Select All is possible by client status and by store. Just select the client version to perform maintenance, and click the Confirm button.
-![gamebase_op_05_201812](https://static.toastoven.net/prod_gamebase/gamebase_op_05_201812.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240105.jpg)
 
 ### (2) Reason
 You can write the reason for the kickout, up to 100 characters.
