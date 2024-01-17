@@ -950,6 +950,7 @@ ContactConfigurationでURLに追加情報を伝達できます。
 | ------------- | ------------- | ---------------------------------- | ------------------ |
 | userName      | O             | FString                            | ユーザー名前(ニックネーム) <br>**default** : ""   |
 | additionalURL | O             | FString                            | 開発会社独自のサポートURLの後ろにつく追加のURL <br>**default** : ""    |
+| additionalParameters | O      | TMap<string, string>               | サポートURLの後ろにつく追加のパラメータ<br>**default**：EmptyMap |
 | extraData     | O             | TMap<FString, FString>             | 開発会社が任意のextra dataをサポートオープン時に伝達<br>**default** : EmptyMap |
 
 **API**

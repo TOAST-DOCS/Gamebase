@@ -461,6 +461,10 @@ class MyApplication: GamebaseMyCardApplication() {
 **Example**
 
 ```xml
+<!-- When you have multiple applications sharing an Gamebase project, use this field to identify each application. -->
+<meta-data android:name="com.nhncloud.sdk.push.deviceId.salt"
+           android:value="ApplicationForGoogleStore" />
+
 <!-- Notification priority -->
 <meta-data android:name="com.toast.sdk.push.notification.default_priority"
            android:value="1"/>
@@ -493,6 +497,7 @@ class MyApplication: GamebaseMyCardApplication() {
 
 | meta-data key | value type | description |
 | ------------- | ---------- | ----------- |
+| com.nhncloud.sdk.push.deviceId.salt | String | 別々のアプリケーションが1つのGamebaseプロジェクトを共有する場合、プッシュが正常に動作しません。<br/>各アプリに異なる任意の「salt」値を指定する必要があります。 |
 | com.toast.sdk.push.notification.default_priority | int | 優先順位。<br/>以下の5つの値を設定できます。<br/>NoticationComapt.PRIORITY_MIN : -2<br/> NoticationComapt.PRIORITY_LOW : -1<br/>NoticationComapt.PRIORITY_DEFAULT : 0<br/>NoticationComapt.PRIORITY_HIGH : 1<br/>NoticationComapt.PRIORITY_MAX : 2 |
 | com.toast.sdk.push.notification.default_background_color | int | 背景色。 |
 | com.toast.sdk.push.notification.default_light_color | int | LED色。 |
