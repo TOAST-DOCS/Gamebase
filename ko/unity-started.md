@@ -9,7 +9,7 @@ Gamebase Unity SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 >
 > Unity 지원 버전
 >
-> * 2018.4.0 ~ 2023.2.3
+> * 2018.4.0 ~ 2023.2.5
 
 #### Android
 > <font color="red">[주의]</font>

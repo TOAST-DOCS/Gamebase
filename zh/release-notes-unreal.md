@@ -3,11 +3,11 @@
 ### 2.58.0 (2023. 11. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.58.0/GamebaseSDK-Unreal.zip)
 
-#### 버그 수정
-* (Windows) 서버 푸시가 동작하지 않는 이슈가 수정되었습니다.
-* 초기화 시 크래시가 발생할 수 있는 로직이 수정되었습니다.
+#### Bug Fixes
+* (Windows) Fixed an issue where server push would not work.
+* Fixed logic that could cause a crash on initialization.
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.58.0](./release-notes-android/#2580-2023-11-28)
 * [Gamebase iOS SDK 2.58.0](./release-notes-ios/#2580-2023-11-28)
 
@@ -45,7 +45,7 @@
 #### Bug Fixes
 * Modified to ensure that the withdrawal delay information and payment abusing auto cancellation information are delivered normally after logging in.
 
-#### Platform-specific changes
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.56.0](./release-notes-android/#2560-2023-09-26)
 * [Gamebase iOS SDK 2.55.2](./release-notes-ios/#2552-2023-09-26)
 

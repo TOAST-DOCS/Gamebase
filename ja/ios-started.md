@@ -40,7 +40,7 @@ Gamebase.xcframework及び必要なadapterをダウンロードします。<br/>
 | Gamebase | Gamebase.xcframework<br/>Gamebase.bundle | NHNCloudSDK 1.6.2 | GamebaseのInterfaceおよびコアロジックを含む | iOS 11 or later |
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.xcframework | FacebookSDK 14.1.0 | Facebookログインをサポート | iOS 11 or later |
 |  | GamebaseAuthPaycoAdapter.xcframework | PaycoID Login 3rd SDK v1.5.9 | PAYCOログインをサポート | iOS 11 or later |
-|  | GamebaseAuthNaverAdapter.xcframework | naveridlogin-sdk-ios-4.1.1 | NAVERログインをサポート | iOS 11 or later |
+|  | GamebaseAuthNaverAdapter.xcframework | naveridlogin-sdk-ios-4.2.0 | NAVERログインをサポート | iOS 11 or later |
 |  | GamebaseAuthGamecenterAdapter.xcframework | GameKit.xcframework | Gamecenterログインをサポート | iOS 11 or later |
 |  | GamebaseAuthGoogleAdapter.xcframework | GoogleSignIn 7.0.0 | Googleログインをサポート | iOS 11 or later |
 |  | GamebaseAuthTwitterAdapter.xcframework | | Twitterログインをサポート | iOS 11 or later |
@@ -106,8 +106,8 @@ Gamebase.xcframework及び必要なadapterをダウンロードします。<br/>
     * プロジェクト内部に**空のswiftファイル**追加(プロジェクト内部にswiftファイルが1つもない場合)
 * 5) **Target > Build Settings > Linking > Other Linker Flags**に**-ObjC**を追加する必要があります。
 ![Other Linker Flags](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
-* 6) NaverAuthAdapterを使用する場合にはNAVER SDKで提供する**NaverThirdPartyLogin.framework**ファイルを**Target > Build Phases > Embeded Frameworks**に追加する必要があります。
- ![Naver Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.8.0.png)
+* 6) NaverAuthAdapterを使用する場合にはNAVER SDKで提供する**NaverThirdPartyLogin.xcframework**ファイルを**Target > Build Phases > Embeded Frameworks**に追加する必要があります。
+ ![Naver Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_2.59.0.png)
  * 7) LineAuthAdapterを使用する場合にはLINE SDKで提供する**LineSDK.xcframework**ファイルを**Target > Build Phases > Embeded Frameworks**に追加する必要があります。
  ![LINE Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.9.1.png)
 

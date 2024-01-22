@@ -20,12 +20,12 @@ To execute Gamebase in Android, the following system environment is required.
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Support Google login | - |
 |  | gamebase-adapter-auth-hangame | hangame-id-1.7.1 | Support Hangame login | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | Support LINE login | - |
-|  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-4.4.1 | Support NAVER login | - |
+|  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.8.0 | Support NAVER login | API 21(Lollipop, OS 5.0) |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.12 | Support PAYCO login | - |
-|  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Support Twitter login | - |
+|  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Support Twitter login | API 21 (Lollipop, OS 5.0) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.5.0 | Support Weibo login | - |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Support Weibo login | - |
-|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.14.14<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.11.1<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 21(Lollipop, OS 5.0) |
+|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.17.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.13.0<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 21(Lollipop, OS 5.0) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | Support in-app purchase | - |
 |  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Support Amazon Appstore | - |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Support Samsung Galaxy Store | API 21(Lollipop, OS 5.0)<br>Although minSdkVersion of Galaxy IAP SDK is 18, the minSdkVersion of Checkout service app that must be installed for actual purchase is 21. |
@@ -292,32 +292,18 @@ android {
     * To use the Firebase push, you need to follow the guide below to complete the Firebase settings, and then include the google-services.json file in the project.
         * [NHN Cloud > SDK User Guide> Push > Android > Firebase Cloud Messaging Settings](/TOAST/en/toast-sdk/push-android/#firebase-cloud-messaging)
 * For a Unity build
-    * **Caution**: It is not necessary to install the Firebase Unity SDK Package, and even if you do not, push works properly.
-    * If the Firebase Unity SDK Package has been installed, you can use the following command to execute **generate_xml_from_google_services_json.exe** file to convert json files into xml files.
+    * Download the google-services.json file from 'Firebase Console > Project Settings' along with the **[generate_xml_from_google_services_json.exe](https://github.com/firebase/firebase-cpp-sdk/blob/main/generate_xml_from_google_services_json.exe)** file for xml conversion, and execute the command below to convert the json file to an xml file.  
             
             "{UnityProject}\Firebase\Editor\generate_xml_from_google_services_json.exe" -i "{JsonFilePath}\google-services.json" -o "{UnityProject}\Assets\Plugins\Android\res\values\google-services.xml" -p "{PackageName}"
             
-    * If the Firebase Unity SDK Package is not installed, go to 'Firebase Console > Project Settings' to download google-services.json file, and then follow the guide below to directly create a string resource (xml) file. The created file must be included in 'Assets/Plugins/Android/res/values/' folder.
-        Depending on the Firebase service link, the contents of the google-services.json file may vary.
-        ![Download google-services.json](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-push_001_1.13.0.png)
-        * [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
-        * The following is the example of the string resource(xml) file directly created.
+    * Add the converted xml file to the 'Android Library Project' as a resource.
+        * The 'Android Library Project' must contain '.androidlib' in the folder name and have an AndroidManifest.xml file.
+            * [https://docs.unity3d.com/kr/2023.2/Manual/android-library-project-import.html](https://docs.unity3d.com/kr/2023.2/Manual/android-library-project-import.html)
+        * The following example path shows the path to the String resource added to the 'Android Library project'.
+            * 'Assets/Plugins/Android/MyAndroidProject.androidlib/res/values/google-services.xml'
 
-```xml
-<!-- Assets/Plugins/Android/res/values/google-services-json.xml -->
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="firebase_database_url" translatable="false">https://gamebase-sample-00000000.firebaseio.com</string>
-    <string name="gcm_defaultSenderId" translatable="false">000000000000</string>
-    <string name="google_storage_bucket" translatable="false">gamebase-sample-00000000.appspot.com</string>
-    <string name="project_id" translatable="false">gamebase-sample-00000000</string>
-    <string name="google_api_key" translatable="false">AbCd_AbCd_AbCd_AbCd_AbCd_AbCd_AbCd</string>
-    <string name="google_app_id" translatable="false">1:000000000000:android:abcd0123abcd0123</string>
-    <string name="default_web_client_id" translatable="false">000000000000-abcdabcdabcdabcdabcdabcdabcd.apps.googleusercontent.com</string>
-</resources>
-```
-
-* In the case of Unreal build, it is distributed by Gamebase Unreal SDK which included empty google-service-json.xml files, so please change it to the appropriate value for the game information.
+* For a Unreal build
+    * The Gamebase Unreal SDK includes an empty google-service-json.xml file, so follow the instructions in 'For a Unity build' to change to an xml file from the json file.
     * If there is Content automatically creating xml in a similar form like EasyFirebase, there may be a build error due to resource duplication. At this time, remove the google-service-json.xml file.
 
 ### AndroidManifest.xml
@@ -332,7 +318,6 @@ android {
         
         <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
         
-        <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
         <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
         
 * If permissions are declared, the Gamebase SDK will automatically request runtime permissions at file upload time.
