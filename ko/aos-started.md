@@ -578,8 +578,8 @@ class MyApplication: GamebaseMyCardApplication() {
         <package android:name="com.sina.weibo" />
         <!-- [Weibo] Configurations end -->
 
-        <!-- Android 2.60.0 이상부터는 아래 ONE store queries 선언이 필요하지 않습니다. -->
         <!-- [ONE store] Configurations begin -->
+        <!-- Android 2.60.0 이상부터는 ONE store queries 선언이 필요하지 않습니다. -->
         <intent>
             <action android:name="com.onestore.ipc.iap.IapService.ACTION" />
         </intent>
