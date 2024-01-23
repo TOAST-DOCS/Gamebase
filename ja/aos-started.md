@@ -291,31 +291,18 @@ android {
     * Firebaseプッシュを使用するには、以下のガイドに従ってFirebaseの設定を完了した後、google-services.jsonファイルをプロジェクトに含める必要があります。
         * [NHN Cloud > SDK使用ガイド > Push > Android > Firebase Cloud Messaging設定](https://docs.toast.com/ja/TOAST/ja/toast-sdk/push-android/#firebase-cloud-messaging)
 * Unityビルドの場合
-    * Firebase Unity SDK Packageをインストールした場合は、以下のコマンドで**generate_xml_from_google_services_json.exe**ファイルを実行してjsonファイルをxmlファイルに変換できます。
+    * 'Firebase Console > プロジェクト設定' からgoogle-services.jsonファイルをダウンロードし、xml変換のための**[generate_xml_from_google_services_json.exe](https://github.com/firebase/firebase-cpp-sdk/blob/main/generate_xml_from_google_services_json.exe)**ファイルもダウンロードした後、下記のコマンドを実行してjsonファイルを xmlファイルに変換できます。
             
             "{UnityProject}\Firebase\Editor\generate_xml_from_google_services_json.exe" -i "{JsonFilePath}\google-services.json" -o "{UnityProject}\Assets\Plugins\Android\res\values\google-services.xml" -p "{PackageName}"
             
-    * Firebase Unity SDK Packageをインストールしていない場合は、「Firebase Console > プロジェクト設定」からgoogle-services.jsonファイルをダウンロードして、以下のガイドに従ってstring resource(xml)ファイルを直接作って「Assets/Plugins/Android/res/values/」フォルダに含める必要があります。
-        Firebaseサービスの連携によってgoogle-services.jsonファイルの内容は異なる場合があります。
-        ![Download google-services.json](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-push_001_1.13.0.png)
-        * [Google Service Gradle Plugin](https://developers.google.com/android/guides/google-services-plugin#processing_the_json_file)
-        * 次は、直接作成したstring resource(xml)ファイルの例です。
+    * 変換したxmlファイルは'Androidライブラリプロジェクト'にリソースとして追加する必要があります。
+        * 'Androidライブラリプロジェクト'はフォルダ名に'.androidlib'を含める必要があり、AndroidManifest.xmlファイルを持っている必要があります。
+            * [https://docs.unity3d.com/kr/2023.2/Manual/android-library-project-import.html](https://docs.unity3d.com/kr/2023.2/Manual/android-library-project-import.html)
+        * 次の例示パスは'Androidライブラリプロジェクト'に追加したStringリソースのパスを示しています。
+            * 'Assets/Plugins/Android/MyAndroidProject.androidlib/res/values/google-services.xml'
 
-```xml
-<!-- Assets/Plugins/Android/res/values/google-services-json.xml -->
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="firebase_database_url" translatable="false">https://gamebase-sample-00000000.firebaseio.com</string>
-    <string name="gcm_defaultSenderId" translatable="false">000000000000</string>
-    <string name="google_storage_bucket" translatable="false">gamebase-sample-00000000.appspot.com</string>
-    <string name="project_id" translatable="false">gamebase-sample-00000000</string>
-    <string name="google_api_key" translatable="false">AbCd_AbCd_AbCd_AbCd_AbCd_AbCd_AbCd</string>
-    <string name="google_app_id" translatable="false">1:000000000000:android:abcd0123abcd0123</string>
-    <string name="default_web_client_id" translatable="false">000000000000-abcdabcdabcdabcdabcdabcdabcd.apps.googleusercontent.com</string>
-</resources>
-```
-
-* Unrealビルドの場合、Gamebase Unreal SDKで空のgoogle-service-json.xmlファイルを含めて配布しているため、該当ゲーム情報に合った値に変更してください。
+* Unrealビルドの場合
+    * Gamebase Unreal SDKで空のgoogle-service-json.xmlファイルを含めて配布しているので、「Unityビルドの場合」の説明に従ってjsonファイルから直接変換したxmlファイルに変更してください。
     * もしEasyFirebaseのように、似たような形式のxmlを自動作成するContentがある場合、リソース重複により ビルドエラーが発生する場合があります。この時はgoogle-service-json.xmlファイルを除去してください。
 
 ### AndroidManifest.xml
@@ -330,7 +317,6 @@ android {
 
         <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-        <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
         <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
 * 権限が宣言されている場合、ファイルのアップロード時にGamebase SDKが自動的にランタイム権限を要求します。

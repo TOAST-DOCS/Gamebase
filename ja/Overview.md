@@ -215,15 +215,15 @@ NHN Cloudの基本的なメンバーポリシーと権限については、次�
 
 **Console > プロジェクト設定 > メンバー管理**
 プロジェクト設定画面でTOAST会員を追加したり、会員に個別に権限を付与できます。1人の会員に複数の権限を付与できます。
-![プロジェクト権限](http://static.toastoven.net/prod_gamebase/Overview/overview_project_role_01_20201123.png)
+![プロジェクト権限](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/jp/gamebase_overview_01_ja_240105.png)
 
 **Console > プロジェクト設定 > 権限グループ管理**
 運営上の便宜上、頻繁に使用する権限は*権限グループ*に登録してTOAST会員に権限グループ単位で権限を付与できます。
-![プロジェクト権限グループ](http://static.toastoven.net/prod_gamebase/Overview/overview_project_role_02_20201123.png)
+![プロジェクト権限グループ](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/jp/gamebase_overview_02_ja_240105.png)
 
 **Console > 組織設定 > プロジェクト共通権限グループ設定**
 組織管理画面で組織内のプロジェクトで共通で使用する権限グループを管理できます。
-![組織権限グループ](http://static.toastoven.net/prod_gamebase/Overview/overview_company_role_01_20201123.png)
+![組織権限グループ](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/jp/gamebase_overview_03_ja_240105.png)
 
 ### Gamebaseで提供する権限リスト
 

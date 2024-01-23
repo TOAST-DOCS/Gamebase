@@ -40,7 +40,7 @@ Then, include corresponding SDK files to a target of your project.
 | Gamebase | Gamebase.xcframework<br/>Gamebase.bundle | NHNCloudSDK 1.6.2 | Includes the interface and key logic of Gamebase | iOS 11 or later |
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.xcframework | FacebookSDK 14.1.0 | Supports Facebook login | iOS 11 or later |
 |  | GamebaseAuthPaycoAdapter.xcframework | PaycoID Login 3rd SDK v1.5.9 | Supports PAYCO login | iOS 11 or later |
-|  | GamebaseAuthNaverAdapter.xcframework | naveridlogin-sdk-ios-4.1.1 | Supports NAVER login | iOS 11 or later |
+|  | GamebaseAuthNaverAdapter.xcframework | naveridlogin-sdk-ios-4.2.0 | Supports NAVER login | iOS 11 or later |
 |  | GamebaseAuthGamecenterAdapter.xcframework | GameKit.framework | Supports Game Center login | iOS 11 or later |
 |  | GamebaseAuthGoogleAdapter.xcframework | GoogleSignIn 7.0.0 | Supports Google login | iOS 11 or later |
 |  | GamebaseAuthTwitterAdapter.xcframework | | Supports Twitter login | iOS 11 or later |
@@ -106,7 +106,8 @@ By decompression, following SDKs will show, including Gamebase.xcframework.
     * Add an **empty swift file** within the project (When there are not any swift files within the project)
 * 5) Go to **Target > Build Settings > Linking > Other Linker Flags** and add **-ObjC**.
 ![Other Linker Flags](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
-* 6) When using NaverAuthAdapter, the **NaverThirdPartyLogin.framework** file provided by NAVER SDK should be added to **Target > Build Phases > Embeded Frameworks**.
+* 6) When using NaverAuthAdapter, the **NaverThirdPartyLogin.xcframework** file provided by NAVER SDK should be added to **Target > Build Phases > Embeded Frameworks**.
+ ![Naver Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_2.59.0.png)
  ![Naver Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.8.0.png)
  * 7) When using LineAuthAdapter, the **LineSDK.xcframework** file provided by LINE SDK should be added to **Target > Build Phases > Embeded Frameworks**.
  ![LINE Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.9.1.png)

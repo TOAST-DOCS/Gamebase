@@ -16,7 +16,7 @@ Retrieve the list of game users who are banned/released from banning, as search 
 
 Retrieve the list of game users who are banned/released from banning, as search conditions allow.
 
-![gamebase_ban_01_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_01_201812_en.png)
+![gamebase_ban_01_201812_en](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_01_en_240105.jpg)
 
 **Search Conditions**
 
@@ -63,18 +63,18 @@ Retrieve the list of game users who are banned/released from banning, as search 
 
 You can register banning by clicking **Register** on the Retrieve Ban page.
 
-![gamebase_ban_02_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_02_201812_en.png)
+![gamebase_ban_02_201812_en](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_02_en_240105.jpg)
 #### (1) User ID
 Enter a Gamebase user ID to register banning. Multiple users can be registered at once, following the two methods as below.
 
 - **User Input**: Directly enter a user ID to register and press **Enter** or click **Add.** As validity is checked for user IDs, invalid user IDs cannot be entered.
 - **Batch Registration**: Can upload CSV files only, and an example file can be downloaded from the Console page. Up to 10,000 persons can be registered at once by batch.
-  ![gamebase_ban_03_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_03_201812_en.png)
+  ![gamebase_ban_03_201812_en](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_03_en_240105.jpg)
 
 > [Note]</br>
 >
 > If batch registration fails during progress, a pop-up will be displayed. Click **Download** from the pop-up to download the list of users who are failed to be registered in a file.
-> ![gamebase_ban_04_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_04_201812_en.png)
+> ![gamebase_ban_04_201812_en](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_04_en_240105.jpg)
 
 #### (2) Period
 Set a banning period for a game user. Banning will be applied from the moment of registration.
@@ -103,7 +103,7 @@ If you select this option and register banning, data of the game user is deleted
 
 You can release banning by clicking **Release** on the Retrieve Ban page.
 
-![gamebase_ban_05_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_05_201812_en.png)
+![gamebase_ban_05_201812_en](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_05_en_240105.jpg)
 
 #### Release Reason
 Enter reasons why a user is to be released from banning.
@@ -115,13 +115,13 @@ Enter a Gamebase user ID to release banning. Multiple users can be registered at
 - **User Input**: Directly enter a user ID to register and press **Enter** or click **Add.** As validity is checked for user IDs, invalid user IDs cannot be entered.
 - **Batch Registration**: Can upload CSV files only, and an example file can be downloaded from the Console page. Up to 10,000 persons can be registered by batch at once.
 
-![gamebase_ban_06_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_06_201812_en.png)
+![gamebase_ban_06_201812_en](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_06_en_240105.jpg)
 
 
 > [Note]
 >
 > If batch registration fails during progress, a pop-up will be displayed. Click **Download** from the pop-up to download the list of users who are failed to be registered in a file.
-> ![gamebase_ban_04_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_04_201812_en.png)
+> ![gamebase_ban_04_201812_en](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_04_en_240105.jpg)
 
 ## Template
 Provides a multi-language template to display messages for banning target users and allows easy re-use. Select a pre-registered template.
@@ -132,12 +132,12 @@ You can register templates by language, and a message of banning will be display
 Allows you to search the list of registered templates.
 You can register a new template, or modify registered templates, but cannot delete them.
 
-![gamebase_ban_07_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_07_201812_en.png)
+![gamebase_ban_07_201812_en](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_07_en_240105.jpg)
 
 - In the template list, the Message item will show messages in a language entered as 'Default Language' while registering a template.
 
 ### Register Template
-![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_ban_08_202004.png)
+![gamebase_app_01_202004](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_08_en_240105.jpg)
 
 #### (1) Name
 Enter a name of template to show on the list to register banning.
@@ -152,7 +152,7 @@ Click **Auto Translate to Default Language** and messages in the default languag
 > <font color="red">[Important Note]</font>
 > The AppGuard integration function is available only when the NHN AppGuard service is activated in the same project as the service to which the function is to be applied in NHN Cloud.
 
-![gamebase_ban_09_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_ban_09_201812_en.png)
+![gamebase_ban_09_201812_en](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_09_en_240105.jpg)
 
 - **Linking**: Enable this if you want to automatically register the users detected or restricted by AppGuard as Gamebase-banned users.
 - There are two types of **Auto Ban**: **Immediate Block** and **Conditional Block**.

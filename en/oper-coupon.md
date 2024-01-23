@@ -10,7 +10,7 @@ You can issue or search for coupons which can be used within the app.
 
 Searches for coupon issuance history that matches the search conditions.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_01_202106.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/en/gamebase_coupon_01_en_240105.jpg)
 
 **Search conditions**
 
@@ -35,7 +35,7 @@ Searches for coupon issuance history that matches the search conditions.
 
 You can click the **Register** button on the coupon Issuance search screen to proceed with the coupon issuance
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_02_202106.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/en/gamebase_coupon_02_en_240105.jpg)
 
 #### 1. Coupon Type
 
@@ -90,7 +90,7 @@ You have to register the item in the Coupon Item menu first to be able to select
 To change the information about the issued coupon, click the **Modify** button in the Details.
 Since a coupon code type already issued cannot be edited, you must register new issuance information if you want to issue a new coupon type.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_03_202106.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/en/gamebase_coupon_03_en_240105.jpg)
 
 #### 1. Coupon Name
 
@@ -119,7 +119,7 @@ For item registration, register an item from the menu first.
 #### 6. Send Coupon
 Provides a feature that directly sends coupons to users using issued coupon information.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_04_202106.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/en/gamebase_coupon_04_en_240105.jpg)
 ##### (1) Send type: Select the send type. Supports MMS/SMS. For MMS, you also need to enter the title to send it.
 
 ##### (2) Select template: If you registered a template from the TOAST Cloud SMS service, you can select and send that template. If you do not have any template registered, you do not have to select any.
@@ -151,11 +151,11 @@ Provides a feature that directly sends coupons to users using issued coupon info
 #### 7. Issue additional coupons
 If the coupon type is serial, you can receive up to 100 (100,000 at a time) additional coupons (including the initially issued quantity).
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_05_202106.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/en/gamebase_coupon_05_en_240105.jpg)
 
 #### 8. Coupon statistics
 SMS send history can be viewed at the bottom of the coupon issue details screen. The statistics related to issuing coupons can be viewed and the file can be downloaded.
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/gamebase_coupon_05_202006.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/en/gamebase_coupon_06_en_240105.jpg)
 
 The send statistics of SMS that actually sent to users can be checked via requested statistics. You can also download the detailed results by clicking the Request Download button on the right.
 The status after requesting download is as follows:
@@ -173,17 +173,17 @@ Search screen comes as below depending on the search conditions.
 #### Query By Coupon Code
 
 Enter coupon code to query the usage.
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_06_202106.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/en/gamebase_coupon_07_en_240105.jpg)
 
 #### Query By User ID
 
 Query history of coupon usage by each user ID.
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_07_202106.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/en/gamebase_coupon_08_en_240105.jpg)
 
 #### Query By Coupon Name
 
 Query history of coupon usage by coupon name and other search conditions.
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_08_202106.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/en/gamebase_coupon_09_en_240105.jpg)
 
 1. **Coupon Name**: Select a coupon published from Publish Coupons.
 2. **Availability**: Query is available by selecting availability. Currently, only used coupons can be queried, and further search conditions are to be added for other statuses.  
@@ -197,7 +197,7 @@ Query/Manage coupon items to be provided to use coupon codes.
 
 List history of registered coupon items.
 Search by Item ID/Item Name is available through filtering.
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_09_202106.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/en/gamebase_coupon_10_en_240105.jpg)
 
 ### Register Coupon item
 
@@ -206,7 +206,7 @@ Items can be registered by case or file.
 
 #### Register By Case
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_10_202106.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/en/gamebase_coupon_11_en_240105.jpg)
 
 ##### 1. Item ID
 
@@ -219,7 +219,7 @@ Enter item name to identify a registered item.
 
 #### Register By File Upload
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_11_202106.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/en/gamebase_coupon_12_en_240105.jpg)
 You may use files to register mass data all at once.
 Up to 10,000 cases can be registered with a file. To enable file registration, first download a template file and fill in information for each format, before uploading it.  
 
@@ -231,7 +231,7 @@ Information of registered item can be updated, and you may disable the item so a
 >
 > Item ID cannot be modified: instead of correction, a new item ID must be registered.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_coupon_12_202106.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/en/gamebase_coupon_13_en_240105.jpg)
 
 #### 1. Item Name
 

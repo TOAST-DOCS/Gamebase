@@ -218,15 +218,15 @@ As for the standard member policy and permission for NHN Cloud, see the followin
 
 **Console > Project Settings > Manage Members**
 On the Project Settings screen, you can add Toast members, or grant permissions to registered members individually. Multiple permissions can be granted to a single member.
-![Project Permission](http://static.toastoven.net/prod_gamebase/Overview/overview_project_role_01_20201123.png)
+![Project Permission](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/en/gamebase_overview_01_en_240105.png)
 
 **Console > Project Settings > Manage Group Permission**
 For the ease of operation, group permission can be granted to a Toast member by registering frequently used permissions as *group permission*.
-![Project Permission Group](http://static.toastoven.net/prod_gamebase/Overview/overview_project_role_02_20201123.png)
+![Project Permission Group](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/en/gamebase_overview_02_en_240105.png)
 
 **Console > Organization Settings > Project Common Permission Group Settings**
 On the Organization Admin screen, you can manage the permission group commonly used in the project within the organization.
-![Organization Permission Group](http://static.toastoven.net/prod_gamebase/Overview/overview_company_role_01_20201123.png)
+![Organization Permission Group](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/en/gamebase_overview_03_en_240105.png)
 
 ### Permissions list provided by Gamebase
 

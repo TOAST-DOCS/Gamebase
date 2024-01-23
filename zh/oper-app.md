@@ -14,7 +14,7 @@ Since only one Gamebase app can be managed per NHN Cloud project, you cannot reg
 For more detailed information on each item, see the details below:
 
 ### Basic information
-![gamebase_app_01_202009](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_01_202009.png)
+![gamebase_app_01_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_01_en_240105.png)
 
 #### (1) Installation URL
 Shortened URL information that can be used to install and promote the app.
@@ -47,7 +47,7 @@ The default is 7 days and it can be anywhere between 1 and 30 days.
 > The services are available as usual during the grace period.
 
 ### Server address
-![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_02_202012.png)
+![gamebase_app_02_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_02_en_240105.png)
 
 - Used when the game needs to receive the server address (e.g. IP, URL) in real time.
 - If you configure the server address, you can see the entered information in Launching Information after the client is initialized.
@@ -55,13 +55,13 @@ The default is 7 days and it can be anywhere between 1 and 30 days.
 - Enter information only if required by the game; otherwise, leave it empty.
 
 ### Language settings
-![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_03_202004.png)
+![gamebase_app_03_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_03_en_240105.png)
 - You can specify the default language to display in advance in the multi-language setting in each menu.
 - The selected languages are displayed when displaying multiple languages and the default language is set as selected.
 - If you do not want to use it, leave it empty.
 
 ###  Authentication information
-![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_04_202004.png)
+![gamebase_app_04_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_04_en_240105.png)
 
 The authentication information of the IdP to be used when logging in to the app can be registered, edited, and deleted.
 
@@ -75,7 +75,7 @@ See [Authentication Information](#authentication-information) for more informati
 > If **Always Verify** is selected, not only the internal tokens issued by Gamebase but also external IdP tokens are validated every time.
 
 ### In-app URL
-![gamebase_app_01_202004](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_05_202009.png)
+![gamebase_app_05_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_05_en_240105.png)
 You can edit URLs frequently used in the app in real time via Console without having to redeploy the client.
 
 - Terms and Conditions
@@ -91,14 +91,14 @@ As of now, Gamebase provides 3 types of customer center formats, and the items y
 The following are the settings for each customer center type:
 
 #### 1. Developer's Own Customer Center
-![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_19_202009.png)
+![gamebase_app_06_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_06_en_240105.png)
 Set this when the developer uses its own customer center.
 The options to be set are as follows:
 * **Customer Center URL**: Enter developer's own customer center address which is currently being provided or used.
 * **Contact**: Enter the Customer Center contact information. This information will be delivered via the Gamebase SDK.
 
 #### 2. Customer Center Provided by Gamebase
-![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_20_202009.png)
+![gamebase_app_07_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_07_en_240105.png)
 Set this when you want to use the customer center feature provided by Gamebase.
 The options to be set are as follows:
 * **Customer Center URL**: Provides the page info where you can receive customer inquiries. This URL is automatically created when selecting the Customer Center Provided by Gamebase, and you can receive the customer inquiry through a separate web page by using this URL.
@@ -107,7 +107,7 @@ The options to be set are as follows:
 * **Default language**: From the list of the selected support languages, select the default one.
 
 #### 3. NHN Cloud organization product (Online Contact)
-![gamebase_app_19_202009.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_21_202102.png)
+![gamebase_app_08_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_08_en_240105.png)
 Set this to use online contact products provided by each organization within NHN Cloud.
 The options to be set are as follows:
 * **Customer Center URL**: Enter the address provided by NHN Cloud Online Contact. You can see this info by accessing the NHN Cloud Online Contact
@@ -119,7 +119,7 @@ The options to be set are as follows:
 >
 > 1) Set the method of linking members to the NHN Cloud Online Contact
 > Service Management -> Help Center -> Link Member
-> ![gamebase_app_22_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_22_202102.png)
+> ![gamebase_app_09_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_09_en_240105.png)
 > Enable member linking: Enable
 > Login type: GET method
 > Token validation URL: https://web-gamebase.nhncloud.com/tcgb-web/v1.0/apps/{appId}/online-contact/login-status
@@ -127,24 +127,24 @@ The options to be set are as follows:
 >
 > 2) Acquire the OC organization Key and enter it in the OC organization Key field.
 > Full Administration -> Contract service status -> Go to the organization info, copy the OC organization key of the OC organization info, and then enter it in the Gamebase OC organization Key field
-> ![gamebase_app_25_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_25_202102.png)
+> ![gamebase_app_10_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_10_en_240105.png)
 >
 > 3) Acquire the NHN Cloud Online Contact Customer Center site address, and enter it in the Customer Center URL field
 > Help Center -> Select the submenu -> Click the shortcut for help center at the top right
-> ![gamebase_app_02_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_26_202009.png)
+> ![gamebase_app_11_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_11_en_240105.png)
 > Enter the address shown at the top of the browser in the Gamebase Customer Center URL field
-> ![gamebase_app_27_202102.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_27_202102.png)
+> ![gamebase_app_12_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_12_en_240105.png)
 >
 
 ### Test Device
 
-![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_02_201912.png)
+![gamebase_app_13_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_13_en_240105.png)
 If it is registered as a test device, it can access the game as usual even when the app running Gamebase is under maintenance.
 You need to register **Device Key** or **IP** information to register a test device. You can register it by directly entering the information or retrieving **Game User ID**.
 Test devices can be managed by allowing them to be able to access the game even when it is under maintenance or configuring whether to display the debug log on each device.
 You can also delete test devices that you don't use anymore.
 Click the Access History button to check **Connected Time and Detailed Connection Log during Maintenance** via the device.
-![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_09_201912.png)
+![gamebase_app_14_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_14_en_240105.png)
 
 > [Note]
 > Up to 100 test devices can be registered.
@@ -157,8 +157,8 @@ Can check all test devices registered with the app. Enter a keyword in the **Sea
 
 Click the **Register** button on the Search screen to access the screen where test devices can be registered. Manually enter **Device Key** or search for **Game User ID** and register a test device.
 
-![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_10_201912.png)
-![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_11_201912.png)
+![gamebase_app_15_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_15_en_240105.png)
+![gamebase_app_16_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_16_en_240105.png)
 
 **(1) Register using Game User ID**
 
@@ -175,7 +175,7 @@ Enter **Device Name**, debug log, and whether to ignore maintenance of the devic
 
 #### (3) Delete
 
-![gamebase_app_02_201812.png](http://static.toastoven.net/prod_gamebase/gamebase_app_12_201912.png)
+![gamebase_app_17_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_17_en_240105.png)
 
 Select the test device to delete on the Search Test Device screen and click the Delete button located at the top left of the screen to delete the test device information. Once deleted, the information cannot be recovered, so please make sure that it needs to be deleted before clicking the button.
 
@@ -191,8 +191,8 @@ Enter {App ID} and {App Secret Code} of an app registered in the Facebook develo
 - Additional Info: Facebook Permission & Facebook Client Token (json format)
 
 
-![gamebase_app_04_201812](https://static.toastoven.net/prod_gamebase/gamebase_app_04_201812.png)
-![gamebase_app_authentication_information_facebook_02.png](https://static.toastoven.net/prod_gamebase/gamebase_app_authentication_information_facebook_02.png)
+![gamebase_app_18_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_18_en_240105.png)
+![gamebase_app_19_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_19_en_240105.png)
 
 ##### Additional Info Settings
 * Set JSON string type information in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Information**. 
@@ -203,7 +203,7 @@ Enter {App ID} and {App Secret Code} of an app registered in the Facebook develo
 { "facebook_permission": ["public_profile", "email"], "facebook_client_token": "Your Facebook Client Token" }
 ```
 
-![gamebase_app_authentication_information_facebook_03.png](https://static.toastoven.net/prod_gamebase/gamebase_app_authentication_information_facebook_03.png)
+![gamebase_app_20_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_20_en_240105.png)
 
 **Reference URL**<br />
 
@@ -242,7 +242,7 @@ Select **Application type** as **iOS** and input the Bundle ID.
 
 #### Gamebase Console
 
-![gamebase_app_google_ios_4.png](https://static.toastoven.net/prod_gamebase/gamebase_app_google_ios_4.png)
+![gamebase_app_21_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_21_en_240105.png)
 
 **Input field**<br />
 
@@ -376,7 +376,7 @@ To enable Sign In with Apple, setting is required for AppStore Connect, Gamebase
 [Direct link to NHN Cloud Console](https://console.toast.com/)
 
 * Gamebase
-![Set SecretKey Setting](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid4_1.0.png)
+![Set SecretKey Setting](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_22_en_240105.png)
 
 
 ###### Client ID Settings
@@ -473,7 +473,7 @@ As of November 2019, there are only two types of scope, `full_name` and `email`,
 > If Sign In with Apple is not previously set up, you need to set up the rest as well.
 
 1. Add the Service ID you registered with the Apple developer site in the Service ID field here as follows: (If there is already a setting for Sign In with Apple, no need to change other values.)
-![Set Service ID for Sign In with Apple JS](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_TOAST_01.png)
+![Set Service ID for Sign In with Apple JS](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_23_en_240105.png)
 
 
 #### 9. WEIBO
@@ -516,7 +516,7 @@ You should not change this.
 You can set up universalLink according to the Weibo guide document.
 If not entered, it is set to a random value.
 
-![gamebase_app_28_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_28_202306.png)
+![gamebase_app_24_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_24_en_240105.png)
 
 **Reference URL**
 - [Weibo Developer](https://open.weibo.com/)
@@ -528,7 +528,7 @@ If not entered, it is set to a random value.
 Can manage client information by operating system (iOS, Android, Unity WebGL, or Unity Standalone), or version.
 
 ### Client List
-![image alt](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Client1_1.2.png)
+![image alt](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_client_01_en_240105.png)
 You can see the list of currently registered clients.
 They are sorted by OS, and the number in the icon indicates the version entered when registering the client.
 Only the icon list shows only the following service statuses: <font color="white" style="background-color:#eed14c">Test</font>, <font color="white" style="background-color:#eba34b">Beta Service</font>, <font color="white" style="background-color:#eb7e4b">Review in Progress</font>, <font color="white" style="background-color:#88C637">In Service</font>, and <font color="white" style="background-color:#2AB1A6">Update Recommended (In Service)</font>. If you click the arrow at the bottom right of each OS, you can see the list of clients in the following statuses: <font color="white" style="background-color:#A1A1A1">Update Required</font>, and <font color="white" style="background-color:#CCCCCC">Service Closed</font>.
@@ -538,7 +538,7 @@ You can see the service status at a glance thanks to the distinguished icon colo
 
 Explains about the client registration information managed by the Gamebase Console.
 If you click buttons such as **Register AOS**, and **Register iOS** on the **Client** tab, the client registration screen appears. If you want to edit or delete the input value of the registered client, click the icon from the icons list or select the client you want from all clients list.
-![gamebase_app_13_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_13_202012.png)
+![gamebase_client_02_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_client_02_en_240105.png)
 #### (1) Store
 (<font color="red">Required</font>) Select the store to deploy the client.
 The store you can select varies by OS.
@@ -558,7 +558,7 @@ There are 6 service statuses: <font color="white" style="background-color:#eed14
 
 - <font color="white" style="background-color:#A1A1A1">Update Required</font>: Service unavailable. <br/>The game currently does not support the service of this version, so it displays a popup to prompt users to install the latest version.<br />The following is the default popup provided by Gamebase SDK when the service status is 'Update Required'. <br/> You can add a popup button when the status is 'Update Required'. If you select **Add Button** in **Add Details Button**, you can set the URL to connect to.
 
-![gamebase_app_37_202205.png](https://static.toastoven.net/prod_gamebase/gamebase_app_37_202205.png)
+![gamebase_client_04_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_client_04_en_240105.png)
 
 >  <font color="red">[Caution] </font>
 >  If **Update Required and Maintenance are both enabled**, the service status becomes 'Update Required'.
@@ -577,7 +577,7 @@ There are 6 service statuses: <font color="white" style="background-color:#eed14
 > If you select the service status, default messages are provided according to the language settings configured for the app, and if you want, more languages can be added or change the default message text.
 > If there are already settings for each language, those settings are used regardless of the app's language settings.
 > If there is no information in the app's language settings, the default messages are provided in 5 languages (Korean, English, Japanese, Simplified Chinese, and Traditional Chinese). These languages can be added or the text of the default message can be changed.
-> ![gamebase_app_18_202004](https://static.toastoven.net/prod_gamebase/gamebase_app_18_202004.png)
+> ![gamebase_client_03_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_client_03_en_240105.png)
 
 #### (4) Server address
 Enter the server address (IP, URL) to be used by client.
@@ -593,10 +593,10 @@ You can write a brief memo about the client in no more than 30 characters.
 
 ## Terms Of Service
 Create and configure the terms and conditions to display within the game.
-![gamebase_app_30_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_30_202102.png)
+![gamebase_terms_of_service_01_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_terms_of_service_01_en_240105.png)
 ### (1) Created terms and conditions list
 You can click the - **+** button to create another terms and conditions.
-![gamebase_app_31_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_31_202102.png)
+![gamebase_terms_of_service_02_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_terms_of_service_02_en_240105.png)
 
 ### (2) Terms and conditions country type
 
@@ -620,7 +620,7 @@ You can click the - **+** button to create another terms and conditions.
 	- None: Details page does not exist.
 	- Enter URL: Sets URL for Details page.
 	- Enter Manually: Creates a Details page.
-![gamebase_app_32_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_32_202102.png)
+![gamebase_terms_of_service_03_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_terms_of_service_03_en_240105.png)
 - Text to display
 	- Text to display in the game.
 	- **+** button allows you to add a language.
@@ -640,10 +640,10 @@ You can click the - **+** button to create another terms and conditions.
 ## Terms Of Service Deploy
 
 The distribute terms and conditions and distribution history to display in game.
-![gamebase_app_33_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_33_202102.png)
+![gamebase_terms_of_service_deploy_01_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_terms_of_service_deploy_01_en_240105.jpg)
 
 ### (1) Default terms and conditions settings
-![gamebase_app_35_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_35_202102.png)
+![gamebase_terms_of_service_deploy_02_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_terms_of_service_deploy_02_en_240105.jpg)
 
 - Select the terms and conditions to expose by default if accessed from a country without distributed terms and conditions.
 
@@ -657,7 +657,7 @@ The distribute terms and conditions and distribution history to display in game.
 - List of the currently created terms and conditions.
 
 ### (3) Preview
-![gamebase_app_36_202102](https://static.toastoven.net/prod_gamebase//gamebase_app_36_202102.png)
+![gamebase_terms_of_service_deploy_03_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_terms_of_service_deploy_03_en_240105.jpg)
 
 - You can preview the terms and conditions selected from the list of terms and conditions.
 
@@ -667,14 +667,14 @@ The distribute terms and conditions and distribution history to display in game.
 - If you proceed with distributing after checking 'Agree again to Terms and Conditions', new terms and conditions are exposed to the users who have previously consented to the terms and conditions. For a simple revision, such as some word changes, checking the Agree again to Terms and Conditions box is unnecessary.
 
 #### Distribution history
-![gamebase_app_34_202102](https://static.toastoven.net/prod_gamebase/gamebase_app_34_202102.png)
+![gamebase_terms_of_service_deploy_04_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_terms_of_service_deploy_04_en_240105.jpg)
 - Distribution history of the terms and conditions selected from the list of terms and conditions.
 
 ## Installed URL
 
 Manage store URL information to install a game.
 
-![gamebase_app_19_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_19_201812_en.png)
+![gamebase_installed_url_01_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_installed_url_01_en_240105.jpg)
 
 Set the value of address to be provided by store when the client status is   <font color="white" style="background-color:#2AB1A6">Update is recommended(in service )</font> or <font color="white" style="background-color:#A1A1A1">update is required</font>.
 A user's click on a short URL via PC or mobile will be redirected to a site entered on a user device (device, operating system, store, etc.).
@@ -692,7 +692,7 @@ _[Example 3] A user enters Install URL on a PC._
 
 To modify Install URL, click **Modify**.
 
-![gamebase_app_20_201812_en](https://static.toastoven.net/prod_gamebase/gamebase_app_20_201812_en.png)
+![gamebase_installed_url_02_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_installed_url_02_en_240105.jpg)
 
 - Item setting can be different for PC and mobile. Enter the same value for each device, if there is no need to separate.
 - When a store you want is not on the list, contact [CustomerCenter](https://toast.com/support/inquiry) so as to add as required.
@@ -714,11 +714,11 @@ Transfer account allows a game user logged in as Guest to continue the game on a
 You can change the game device just by getting the transfer key from the current device where the game is being played and entering the key on another device.
 **Transfer Device** function is disabled by default. To use this, click **Enable** on **Transfer Device**.
 
-![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_TransferAccount1_1.0.png)
+![gamebase_transfer_account_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_transfer_account_01_en_240105.jpg)
 
 Click the **Enable** button and then enter the information required for transferring to the device.
 
-![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_TransferAccount1_2.0.png)
+![gamebase_transfer_account_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_transfer_account_02_en_240105.jpg)
 Description on each item is as follows:
 
 ### Properties
@@ -752,7 +752,7 @@ For verification of the issued device transfer, you can set the transfer count, 
 7. **Block period**: Sets the period of blocking time that must be passed to unblock the account for retry. Select **PERMANENT** or **Specify Period**.If you select **Specify Period**, you can set the desired block hours and minutes.
 
 #### After initial setting completed
-![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_TransferAccount1_3.0.png)
+![gamebase_transfer_account_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_transfer_account_03_en_240105.jpg)
 Once the initial settings are done, game users can disable the device transfer function only if they want. If they need to change the settings, they need to contact Customer Center.
 Click **Disable** to disable the function. In this case, all device transfer keys issued will be deleted. So be careful when you should determine whether to disable the function or not.
 
@@ -762,19 +762,19 @@ They are divided by user level (INT), world/server/channel, and class/profession
 ### By User Level (INT)
 Can check the level indexes transferred to the Analytics system.
 In this item, only search is available, without separate edits.
-![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_analytics_indicator_01_202003.png)
+![gamebase_analytics_indicator_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_analytics_indicator_02_en_240105.jpg)
 
 ### Search by World/Server/Channel and Class/Profession
 Currently, you can check the transfer index configured for each item.
 If you do not want to stack the indexes for the items configured in the Search screen, you can delete previously registered items using the Delete button.
 Deleted items are not displayed as indexes in the Analytics menu. Be careful when deleting items, as the indexes of deleted items won't be stacked anymore.
-![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_analytics_indicator_02_202003.png)
+![gamebase_analytics_indicator_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_analytics_indicator_03_en_240105.jpg)
 
 ### Register each World/Server/Channel and Class/Profession
 You can register new information that you want to stack in Analytics indexes.
 You can use the Add button below. **Up to 100 new items** can be registered.
 Only **those items displayed on the Index screen can be edited** among the previously registered data. If you want to delete them, you need to go to the Search screen and delete them there.
-![gamebase_app_20_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_analytics_indicator_03_202003.png)
+![gamebase_analytics_indicator_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_analytics_indicator_04_en_240105.jpg)
 
 #### (1) ChannelId/ClassId: Enter the information of the separator to be stacked in Analytics. Enter the ID information you want to set when stacking indexes.
 #### (2) Display index screen: Type in text to display when displaying the index that was transferred to the ID entered as the first item. The information can be used to edit already registered indexes.

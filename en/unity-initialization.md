@@ -42,6 +42,7 @@ Store information required to initialize In-App Purchase (IAP) of NHN Cloud.
 | Huawei AppGallery | HUAWEI | only Android |
 | My Card | MYCARD | only Android |
 | Windows | WIN | only Unity Standalone |
+| macOS | MAC | only Standalone |
 | Web | WEB | only Unity WebGL|
 
 #### 4. displayLanguageCode
@@ -155,8 +156,8 @@ public class SampleInitialization
         configuration.storeCode = GamebaseStoreCode.APPSTORE;
     #elif UNITY_WEBGL
         configuration.storeCode = GamebaseStoreCode.WEBGL;
-    #elif UNITY_STANDALONE
-        configuration.storeCode = GamebaseStoreCode.WINDOWS;
+    #elif UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
+        configuration.storeCode = GamebaseStoreCode.MACOS;
     #else
         configuration.storeCode = GamebaseStoreCode.WINDOWS;
     #endif
@@ -426,8 +427,8 @@ public class SampleInitialization
         configuration.storeCode = GamebaseStoreCode.APPSTORE;
     #elif UNITY_WEBGL
         configuration.storeCode = GamebaseStoreCode.WEBGL;
-    #elif UNITY_STANDALONE
-        configuration.storeCode = GamebaseStoreCode.WINDOWS;
+    #elif UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
+        configuration.storeCode = GamebaseStoreCode.MACOS;
     #else
         configuration.storeCode = GamebaseStoreCode.WINDOWS;
     #endif

@@ -733,6 +733,7 @@ private void CheckServerPush(string category, GamebaseResponse.Event.GamebaseEve
             * GamebaseError.INVALID_MEMBER: 6
             * GamebaseError.BANNED_MEMBER: 7
     * GamebaseEventCategory.OBSERVER_NETWORK
+        * Only Android and iOS
     	* Can receive the information about the changes in the network.
     	* Operates when the network is disconnected or connected, or switched from Wi-Fi to a cellular network.
     	* GamebaseEventObserverData.code: Indicates the NetworkManager value.
@@ -741,11 +742,13 @@ private void CheckServerPush(string category, GamebaseResponse.Event.GamebaseEve
             * NetworkManager.TYPE_WIFI: 1
             * NetworkManager.TYPE_ANY: 2
     * GamebaseEventCategory.OBSERVER_WEBVIEW
+        * Only Standalone
         * Operates when opening or closing the WebView on Standalone.
             * GamebaseWebViewEventType.OPENED: 1
             * GamebaseWebViewEventType.CLOSED: 2
     * GamebaseEventCategory.OBSERVER_INTROSPECT
-        * Operates when logged in from Standalone/WebGL and fails to extend the session.
+        * Only Standalone and WebGL
+        * Operates when session extension fails after login.
 
 **VO**
 

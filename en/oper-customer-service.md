@@ -14,13 +14,13 @@ Through this screen, the user registers 1:1 inquiry and views the history of inq
 ### Main 
 
 When you open the customer center website using the Gamebase SDK in the game, the following screen is exposed to the user.
-![main](http://static.toastoven.net/prod_gamebase/gamebase_help_center_00_20201125.png)
+![main](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_help_center_01_en_240105.jpg)
 
 #### (1) 1:1 Inquiry
 
 When the user clicks the **1:1 inquiry** button, they are redirected to the screen where 1:1 inquiries can be registered.
 
-![Inquiry](http://static.toastoven.net/prod_gamebase/gamebase_help_center_01_20201125.png)
+![Inquiry](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_help_center_02_en_240105.jpg)
 
 The following are the items to be entered when registering inquiries.
 Registered inquiries can be viewed and answered in the **[Customer Center > Customer Inquiry](./oper-customer-service/#inquiry)** console.
@@ -40,19 +40,19 @@ When you open the customer center page after setting the game nickname as additi
 #### (2) My Inquiries
 
 Logging in and accessing the customer center web page is required to activate **My Inquiries** button. Click the button to go to the screen where users can view the history of their previous inquiries.
-![MyInquiries_login](http://static.toastoven.net/prod_gamebase/gamebase_help_center_02_20201125.png)
+![MyInquiries_login](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_help_center_03_en_240105.jpg)
 
 In My Inquiries, you can see 10 listings by default. If there are more than 10, you can click **View more** to expose 10 additional listings.
 
 > [Note] Login is required to be able to view the details in My Inquiries.
 > If the user posts the inquiry without logging in, they can check the inquiries only through emails and cannot see them in My Inquiries.
-> ![MyInquiries_no-login](http://static.toastoven.net/prod_gamebase/gamebase_help_center_03_20201125.png)
+> ![MyInquiries_no-login](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_help_center_04_en_240105.jpg)
 
 #### (3) Frequently Asked Questions
 
 In FAQ, the user can see categorized questions and frequently asked questions. In the list, up to 12 items are exposed.
 The user can search for topics or click the Category button to see the FAQ registered by the [Customer Center > FAQ](./oper-customer-service/#faq).
-![FAQ](http://static.toastoven.net/prod_gamebase/gamebase_help_center_04_20201125.png)
+![FAQ](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_help_center_05_en_240105.jpg)
 
 1) You can enter the keyword you want to check to see the FAQs containing that keyword.
 2) You can see the questions registered as FAQ.
@@ -64,7 +64,7 @@ Registered posts can be viewed in the **Customer Center > Notices**.
 
 On the main screen, the three most recent posts are displayed, and the posts pinned at the top are displayed as boldfaced. You can click **more** to see all registered notices.
 Created date is sorted in descending order to expose the notice posts, and the notices pinned at the top are shown in the boldface format. Expired posts are no longer shown in the list. You can click the post to see the details.
-![Notices](http://static.toastoven.net/prod_gamebase/gamebase_help_center_05_20201126.png)
+![Notices](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_help_center_06_en_240105.jpg)
 
 ## Inquiry
 Inquiries sent by customers can be viewed or processed.
@@ -74,7 +74,7 @@ You can also set the submission types necessary to register a user inquiry, and 
 
 Searches for the customer inquiry that matches the search conditions.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_01_202109.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_inquiry_01_en_240105.jpg)
 
 **Search conditions**
 
@@ -97,7 +97,7 @@ Searches for the customer inquiry that matches the search conditions.
     - Completed: The status becomes Completed automatically when completed or two weeks have passed after being resolved by the person in charge.
 
 #### 1. Manage inquiry type
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_02_202109.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_inquiry_02_en_240105.jpg)
 
 You can manage the submission type which can be selected by users when registering inquiries.
 These can be registered in any of the supported languages, and the maximum length is 20 characters for each type.
@@ -107,7 +107,7 @@ By selecting a template registered in **Customer Center > Templates**, you can e
 > The currently selected supported language can be checked in App - Customer Center settings.
 
 #### 2. Send reply settings
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_05_202106.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_inquiry_03_en_240105.jpg)
 
 You can enable this function when you want to send the Push message to the user when the inquiry has been processed.
 If you decide to use it, check Send at the top to also send the completion push notification to the user when the inquiry has been processed.
@@ -118,7 +118,7 @@ As for the global service, you can additionally register the language you want a
 
 ### Inquiry details
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/Operators_Guide/gamebase_customer_inquiry_03_202107.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_inquiry_04_en_240105.jpg)
 
 You can check details and process inquiries regarding the inquiries sent by users.
 After processing the inquiry, the user can make additional inquiries.
@@ -129,13 +129,13 @@ If you need to attach files when answering the user inquiry, you can attach up t
 And when the inquiry has been processed, the answer written by the customer representative is sent to the user's email address which was entered by the user to submit the inquiry.
 At this point, you can check if the push notification is being sent to the user when the inquiry has been processed by checking the items with the reply sent.
 > [Note]
-> ![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/Operators_Guide/gamebase_customer_inquiry_06_202107.png)
+> ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_inquiry_05_en_240105.jpg)
 > If a logged-in user registered the inquiry, the information about the user is displayed in a single view.
 > You can close the window by clicking the X button on the right. The window will reopen when you click the user ID.
 > The user information is viewed as similar to the functions from the previous member menu, you can easily check the necessary information when having to respond to the user inquiry.
 
 #### 1. Send Reply settings
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_05_202106.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_inquiry_03_en_240105.jpg)
 
 You can enable this function when you want to send the Push message to the user when the inquiry has been processed.
 If you decide to use it, check Send at the top to also send the completion push notification to the user when the inquiry has been processed.
@@ -156,7 +156,7 @@ You can manage the FAQ provided by the customer center page.
 
 You can search the registered FAQs.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_07_202106.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_faq_01_en_240105.jpg)
 
 **Search conditions**
 
@@ -174,7 +174,7 @@ You can search the registered FAQs.
 - **Status**: Shows whether FAQ is currently being displayed. It is either Exposed or Not exposed.
 
 #### Manage FAQ type
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_09_202106.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_faq_02_en_240105.jpg)
 
 You can manage the type available for selection when registering or modifying the FAQ.
 These can be registered in any of the supported languages, and the maximum length is 20 characters for each type.
@@ -186,7 +186,7 @@ The list is shown in the order of appearance, and this order can be changed with
 You can register an FAQ or modify the info of an FAQ that is already registered.
 What can be changed during registration or modification is the same.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_08_202106.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_faq_03_en_240105.jpg)
 
 #### 1. Status
 Selects the exposure status of the FAQ you want to register or modify.
@@ -217,7 +217,7 @@ You can manage the notices to be provided by the customer center page.
 
 You can search the registered notices list.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_10_202106.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_notice_01_en_240105.jpg)
 
 **Search conditions**
 
@@ -235,7 +235,7 @@ You can search the registered notices list.
 - **Status**: Shows the current progress of the notice. You can select one from To Be Exposed / Currently Exposed / Finished.
 
 #### Manage Header
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_11_202106.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_notice_02_en_240105.jpg)
 
 You can manage the header which can be selected when registering or modifying the notice.
 These can be registered in any of the supported languages, and the maximum length is 20 characters for each type.
@@ -247,7 +247,7 @@ The list is shown in the order of appearance, and this order can be changed with
 You can register a new notice or modify the notice information which has already been registered.
 What can be changed during registration or modification is the same.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_15_202106.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_notice_03_en_240105.jpg)
 
 #### 1. Date of exposure
 Set the period to expose the notice.
@@ -282,7 +282,7 @@ In addition, this feature supports templates for each inquiry type so that custo
 
 ### Search Template
 It shows the list of the currently registered templates, and you can enter the search term in the upper-right corner to search for the currently registered template.
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_12_202106.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_template_01_en_240105.jpg)
 
 **Results**
 - **Template name**: Name of the template which is exposed in the template list for selection when processing user inquiries.
@@ -293,7 +293,7 @@ It shows the list of the currently registered templates, and you can enter the s
 You can register a new reply template or modify the information of the previously registered reply template.
 What can be changed during registration or modification is the same.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_13_202109.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_template_02_en_240105.jpg)
 
 #### 1. Classification
 - **Inquiry Processing**: The default answer message for customer inquiry.
@@ -313,7 +313,7 @@ A default template is provided when initially activated, and you can edit it as 
 
 Test sending function is provided, which can be utilized for using the currently entered template to preview how it is being sent to the actual user.
 
-![gamebase_ban_01_201812](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_customer_inquiry_14_202106.png)
+![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_template_03_en_240105.jpg)
 
 > [Note]
 > If the email in the sender address does not have any SPF record setup, the email can be considered spam. 
