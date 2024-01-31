@@ -3,16 +3,16 @@
 ### 2.60.0 (2024. 01. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.60.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
-    * PAYCO iOS SDK가 xcframework로 변경되었습니다.
-* SDK 내부 로직 개선
+#### Feature Updates
+* External SDK update
+    * Changed PAYCO iOS SDK to xcframework.
+* Improved SDK internal logic
 
 ### 2.59.1 (2023. 12. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.59.1/GamebaseSDK-iOS.zip)
 
-#### 버그 수정
-* Hangame 로그인 시 오류가 발생하는 버그를 수정하였습니다.
+#### Bug Fixes
+* Fixed a bug where an error occurs when logging into Hangame.
 
 ### 2.59.0 (2023. 12. 19.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.59.0/GamebaseSDK-iOS.zip)
@@ -20,7 +20,7 @@
 #### Feature Updates
 * External SDK update
     * NAVER iOS SDK (4.2.0)
-        * NAVER iOS SDK가 xcframework로 변경되었습니다.
+        * Changed NAVER iOS SDK to xcframework.
 * Modified the Terms and Conditions window to display at a fixed size in tablet environments.
 * Modified to display an error popup window when the Launching Status Code is INTERNAL_SERVER_ERROR(500).
 
