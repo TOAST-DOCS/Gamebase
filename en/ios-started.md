@@ -35,7 +35,7 @@ Then, include corresponding SDK files to a target of your project.
 
 **Gamebase iOS SDK Components**
 
-| Gamebase SDK | Gamebase Auth Adapter | External(iOS) SDK & Compatible Version | Usage  | Support iOS Version |
+| Gamebase SDK | Gamebase Auth Adapter | External SDK & Compatible Version | Usage  | Support iOS Version |
 | --- | --- | --- | --- | --- |
 | Gamebase | Gamebase.xcframework<br/>Gamebase.bundle | NHNCloudSDK 1.6.2 | Includes the interface and key logic of Gamebase | iOS 11 or later |
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.xcframework | FacebookSDK 14.1.0 | Supports Facebook login | iOS 11 or later |
@@ -45,11 +45,11 @@ Then, include corresponding SDK files to a target of your project.
 |  | GamebaseAuthGoogleAdapter.xcframework | GoogleSignIn 7.0.0 | Supports Google login | iOS 11 or later |
 |  | GamebaseAuthTwitterAdapter.xcframework | | Supports Twitter login | iOS 11 or later |
 |  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.8.2 | Supports LINE login  | iOS 11 or later |
-|  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 11 or later<br/>arm64 support<br/> |
+|  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 11 or later |
 |  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.8.6 | Supports Hangame login | iOS 11 or later |
 |  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.3.4 | Supports Weibo login | iOS 11 or later |
 |  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.17.5 | Supports Kakao login | iOS 11 or later |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit.framework<br/>NHNCloudIAP 1.6.2 | Supports in-game purchase | iOS 11 or later |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit<br/>NHNCloudIAP 1.6.2 | Supports in-game purchase | iOS 11 or later |
 | Gamebase Push Adapters | GamebasePushAdapter.xcframework | NHNCloudPush 1.6.2 | Supports Push | iOS 11 or later |
 
 
