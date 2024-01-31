@@ -6,7 +6,7 @@
 #### Added Features
 * Improved internal logic.
 
-#### Platform-specific changes
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.60.0](./release-notes-android/#2600-2024-01-23)
 * [Gamebase iOS SDK 2.60.0](./release-notes-ios/#2600-2024-01-23)
 
