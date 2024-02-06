@@ -13,11 +13,11 @@
 #### Twitter IdP
 * Twitter api serverの証明書のアップデートにより、minSDKVersionが19から21に更新されました。
 
-## 2.57.0
-
 ### iOS
 
 * GamebaseAuthPaycoAdapterで使用するPAYCO iOS SDKがxcframeworkに変更されました。
+
+## 2.57.0
 
 ### iOS
 
