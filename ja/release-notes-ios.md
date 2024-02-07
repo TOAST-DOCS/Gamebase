@@ -1,5 +1,11 @@
 ## Game > Gamebase > リリースノート > iOS
 
+### 2.60.1 (2024. 02. 15.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.60.1/GamebaseSDK-iOS.zip)
+
+#### 버그 수정
+* 특정 IdP로 로그인한 후 GameCenter 계정으로 변경되던 버그를 수정하였습니다.
+
 ### 2.60.0 (2024. 01. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.60.0/GamebaseSDK-iOS.zip)
 
