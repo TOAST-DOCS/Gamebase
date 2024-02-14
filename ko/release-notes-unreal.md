@@ -1,5 +1,15 @@
 ## Game > Gamebase > 릴리스 노트 > Unreal
 
+### 2.60.0 (2024. 02. 15.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.60.0/GamebaseSDK-Unreal.zip)
+
+#### 기능 개선
+* 내부 로직을 개선했습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.60.0](./release-notes-android/#2600-2024-01-23)
+* [Gamebase iOS SDK 2.60.1](./release-notes-ios/#2601-2024-02-15)
+
 ### 2.58.0 (2023. 11. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.58.0/GamebaseSDK-Unreal.zip)
 

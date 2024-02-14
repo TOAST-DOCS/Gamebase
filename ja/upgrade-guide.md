@@ -1,5 +1,11 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.59.0
+
+### iOS
+
+* GamebaseAuthNaverAdapterで使用するNAVER iOS SDKがxcframeworkに変更されました。
+
 ## 2.58.0
 
 ### Android
@@ -7,13 +13,17 @@
 #### Twitter IdP
 * Twitter api serverの証明書のアップデートにより、minSDKVersionが19から21に更新されました。
 
+### iOS
+
+* GamebaseAuthPaycoAdapterで使用するPAYCO iOS SDKがxcframeworkに変更されました。
+
 ## 2.57.0
 
 ### iOS
 
 * Privacy manifestファイルを追加しました。
     * Privacy manifestファイルでGamebase iOS SDKが収集するデータと許可された理由を明示しなければならないAPIのリストを見ることができます。
-    * Appleのポリシーに基づき、2024年春までにGamebase iOS SDK 2.57.0にアップデートしてください。
+    * Appleのポリシーに基づき、2024年春までにGamebase iOS SDK 2.57.0以上にアップデートしてください。
 
 ### Unreal
  
@@ -48,7 +58,7 @@
 
 ### iOS
 
-* SDKがxcframeworkに変更されました。
+* Gamebase SDKがxcframeworkに変更されました。
 * Facebook iOS SDKが14.1.0にアップデートされました。Gamebase ConsoleのAdditionalInfoにFacebook Client Tokenを設定してください。
     * [Game > Gamebase > コンソール使用ガイド > アプリ > App > Authentication Information > 1. Facebook](./oper-app/#1-facebook)    
 
