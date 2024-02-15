@@ -21,7 +21,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 |  | gamebase-adapter-auth-hangame | hangame-id-1.7.1 | Hangameログインをサポート | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | Lineログインをサポート | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.7.0 | NAVERログインをサポート | API 21(Lollipop、OS 5.0) |
-|  | gamebase-adapter-auth-payco | payco-login-1.5.12 | Paycoログインをサポート | - |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.13 | Paycoログインをサポート | - |
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Twitterログインをサポート | API 21(Lollipop, OS 5.0) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.5.0 | Weiboログインをサポート | - |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Weiboログインをサポート | - |
@@ -573,6 +573,7 @@ class MyApplication: GamebaseMyCardApplication() {
         <!-- [Weibo] Configurations end -->
 
         <!-- [ONE store] Configurations begin -->
+        <!-- Android 2.60.0以上からはONE store queries宣言が必要ありません。 -->
         <intent>
             <action android:name="com.onestore.ipc.iap.IapService.ACTION" />
         </intent>

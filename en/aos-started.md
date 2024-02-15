@@ -21,7 +21,7 @@ To execute Gamebase in Android, the following system environment is required.
 |  | gamebase-adapter-auth-hangame | hangame-id-1.7.1 | Support Hangame login | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | Support LINE login | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.8.0 | Support NAVER login | API 21(Lollipop, OS 5.0) |
-|  | gamebase-adapter-auth-payco | payco-login-1.5.12 | Support PAYCO login | - |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.13 | Support PAYCO login | - |
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Support Twitter login | API 21 (Lollipop, OS 5.0) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.5.0 | Support Weibo login | - |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Support Weibo login | - |
@@ -579,6 +579,7 @@ class MyApplication: GamebaseMyCardApplication() {
         <!-- [Weibo] Configurations end -->
 
         <!-- [ONE store] Configurations begin -->
+        <!-- Starting with Android 2.60.0 and later, the ONE store queries declaration is not required. -->
         <intent>
             <action android:name="com.onestore.ipc.iap.IapService.ACTION" />
         </intent>

@@ -5,7 +5,7 @@
 
 #### 기능 개선/변경
 * 외부 SDK 업데이트: PAYCO Android SDK(1.5.13)
-* ONE store adpater 사용 시 필요한 queries 선언을 SDK 내부로 이동하였습니다.
+* ONE store adapter 사용 시 필요한 queries 선언을 SDK 내부로 이동하였습니다.
 * 내부 로직 개선
 
 #### 버그 수정
