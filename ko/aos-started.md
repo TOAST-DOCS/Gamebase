@@ -310,17 +310,11 @@ android {
 
 #### Contact
 
-* 고객 센터 페이지([Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Contact](./aos-etc/#contact))에서 문의글 작성 시 사진 및 미디어를 첨부하기 위해 저장소 읽기 권한 선언이 필요합니다.
+* 고객 센터 페이지([Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Contact](./aos-etc/#contact))에서 문의글 작성 시 사진 및 미디어를 첨부하기 위해 ~API 21에서 저장소 읽기 권한 선언이 필요합니다.
         
-        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="21"/>
         
-* 앱이 Android 13(API Level 33) 이상을 타겟팅하는 경우, 저장소 읽기 권한과 함께 다음과 같이 세분화된 미디어 권한 선언도 추가로 필요합니다.
-        
-        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-        <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-        
-* 권한이 선언되어 있으면 파일 업로드 시점에 Gamebase SDK가 자동으로 런타임 권한 요청을 진행합니다.
+* Android API Level 22 이상의 단말기에서도 READ_EXTERNAL_STORAGE 권한이 필요하다면 **android:maxSdkVersion="21"** 구문을 제거하고 런타임 권한 요청을 구현해야 합니다.
 
 #### Facebook IdP
 
