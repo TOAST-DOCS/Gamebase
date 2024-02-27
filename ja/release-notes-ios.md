@@ -1,5 +1,13 @@
 ## Game > Gamebase > リリースノート > iOS
 
+### 2.61.0 (2024. 02. 27.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.61.0/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트
+    * NHN Cloud iOS SDK (1.8.0)
+* SDK 내부 로직 개선
+
 ### 2.60.1 (2024. 02. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.60.1/GamebaseSDK-iOS.zip)
 
