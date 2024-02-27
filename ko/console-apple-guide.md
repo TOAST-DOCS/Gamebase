@@ -48,7 +48,7 @@
 #### 기본 공유 암호
 1. **App Store Connect** > **사용자 및 액세스** > **통합** 탭 클릭
 2. **생성** 클릭
-![[]](http://static.toastoven.net/StoreConsoleGuide/AppStore/ko/app_store_connect_02_ko_240226.png)
+![[]](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/AppStore/ko/app_store_connect_02_ko_240226.png)
 
 #### 앱 공유 암호
 1. **App Store Connect** > **앱** > **앱 선택** > **배포** > **일반 정보** > **앱 정보** > **앱 공유 암호** > **관리** 클릭
@@ -75,4 +75,3 @@
     - Product App 변경 전 Sandbox App에서 충분히 테스트한 뒤 작업하십시오.
 - 점검을 마친 뒤 사용자가 App의 최신 버전을 사용하도록 강제 업데이트가 필요합니다.
     - 최신 버전이 아닐 경우 사용자가 App을 이용할 때 오류가 발생할 수 있습니다.
-    
