@@ -1,6 +1,6 @@
 ## Game > Gamebase > iOS SDK使用ガイド > Logger
 
-ここではiOSでNHN Cloud Logger SDKを使用する方法を説明します。
+ここではLog & Crash転送APIを使用する方法を説明します。
 
 ### Initialize
 Log & Crash Searchで発行されたアプリケーションキーでNHN Cloud Logger SDKを初期化します。

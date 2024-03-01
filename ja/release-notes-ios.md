@@ -3,16 +3,16 @@
 ### 2.61.0 (2024. 02. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.61.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### 機能改善/変更
+* 外部SDKアップデート
     * NHN Cloud iOS SDK (1.8.0)
-* SDK 내부 로직 개선
+* SDK内部ロジック改善
 
 ### 2.60.1 (2024. 02. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.60.1/GamebaseSDK-iOS.zip)
 
-#### 버그 수정
-* 특정 IdP로 로그인한 후 GameCenter 계정으로 변경되던 버그를 수정하였습니다.
+#### バグ修正
+* 特定のIdPでログインした後、GameCenterアカウントに変更されるバグを修正しました。
 
 ### 2.60.0 (2024. 01. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.60.0/GamebaseSDK-iOS.zip)

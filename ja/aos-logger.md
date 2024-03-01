@@ -1,6 +1,6 @@
 ## Game > Gamebase > Android SDK使用ガイド > Logger
 
-ここではAndroidでNHN Cloud Logger SDKを使用する方法を説明します。
+ここではLog & Crash転送APIを使用する方法を説明します。
 
 ### Initialize
 

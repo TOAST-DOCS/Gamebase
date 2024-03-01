@@ -1,6 +1,6 @@
 ## Game > Gamebase > Unreal SDK使用ガイド > Logger
 
-ここではUnrealからNHN Cloud Logger SDKを使用する方法を説明します。
+ここではLog & Crash転送APIを使用する方法を説明します。
 
 ### Initialize
 Log & Crash Searchで発行されたAppKeyで、NHN Cloud Logger SDKを初期化します。

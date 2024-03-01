@@ -1,6 +1,6 @@
 ## Game > Gamebase > Unity SDK使用ガイド > Logger
 
-ここではUnityでNHN Cloud Logger SDKを使用する方法を説明します。
+ここではLog & Crash転送APIを使用する方法を説明します。
 
 ### Initialize
 Log & Crash Searchで発行されたAppKeyでNHN Cloud Logger SDKを初期化します。
