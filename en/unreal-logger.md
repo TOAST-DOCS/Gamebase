@@ -1,6 +1,6 @@
 ## Game > Gamebase > User Guide for Unreal SDK > Logger
 
-This document describes how to use Unreal NHN Cloud Logger SDK.  
+This document describes how to Log & Crach Search API.
 
 ### Initialize
 Initialize NHN Cloud Logger SDK with appkey issued from Log & Crash Search. 
