@@ -310,7 +310,7 @@ android {
 
 #### Contact
 
-* 고객 센터 페이지([Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Contact](./aos-etc/#contact))에서 문의글 작성 시 사진 및 미디어를 첨부하기 위해 ~API 21에서 저장소 읽기 권한 선언이 필요합니다.
+* 고객 센터 페이지([Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Contact](./aos-etc/#contact))에서 문의글 작성 시 사진 및 미디어를 첨부하기 위해 Android API Level 21(OS 5.0) 이하 단말기에서는 저장소 읽기 권한 선언이 필요합니다.
         
         <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="21"/>
         
