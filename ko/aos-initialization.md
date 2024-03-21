@@ -38,11 +38,11 @@ Gamebase를 초기화할 때, GamebaseConfiguration.Builder 객체로 Gamebase �
 >
 > 게임을 **릴리스**할 때는 반드시 소스 코드에서 setDebugMode 호출을 제거하거나 파라미터를 false로 바꿔서 빌드하세요.
 
-디버그 설정은 Console에서도 가능하며 Console에서 설정된 값을 우선시합니다.
-Console 설정 방법은 아래 가이드를 참고하십시오.
+디버그 설정은 콘솔에서도 가능하며 콘솔에서 설정된 값을 우선시합니다.
+콘솔 설정 방법은 아래 가이드를 참고하십시오.
 
-* [Console 테스트 단말기 설정](./oper-app/#test-device)
-* [Console Client 설정](./oper-app/#client)
+* [콘솔 테스트 단말기 설정](./oper-app/#test-device)
+* [콘솔 Client 설정](./oper-app/#client)
 
 
 ### Initialize
