@@ -278,6 +278,16 @@ Gamebase 콘솔에 등록된 공지 정보입니다.
 
 [Game > Gamebase > 콘솔 사용 가이드 > 운영 > Notice](./oper-operation/#notice)
 
+**1.5 user**
+
+Gamebase 초기화를 실행한 사용자 정보입니다.
+
+* testDevice: 테스트 단말기 정보 (Status가 200대 일 경우에만 전달)
+    * matchingFlag: 사용자 단말기가 Gamebase 콘솔에 설정된 테스트 단말기의 정보와 동일한 지 여부
+    * matchingTypes
+        * 테스트 단말기 정보와 매칭된 타입
+        * matchingFlag가 true 일 경우에만 전달
+
 #### 2. tcProduct
 
 Gamebase와 연계된 NHN Cloud 서비스의 앱키(Appkey)입니다.
