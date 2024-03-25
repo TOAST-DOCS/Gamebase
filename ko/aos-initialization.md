@@ -38,11 +38,11 @@ Gamebase를 초기화할 때, GamebaseConfiguration.Builder 객체로 Gamebase �
 >
 > 게임을 **릴리스**할 때는 반드시 소스 코드에서 setDebugMode 호출을 제거하거나 파라미터를 false로 바꿔서 빌드하세요.
 
-디버그 설정은 Console에서도 가능하며 Console에서 설정된 값을 우선시합니다.
-Console 설정 방법은 아래 가이드를 참고하십시오.
+디버그 설정은 콘솔에서도 가능하며 콘솔에서 설정된 값을 우선시합니다.
+콘솔 설정 방법은 아래 가이드를 참고하십시오.
 
-* [Console 테스트 단말기 설정](./oper-app/#test-device)
-* [Console Client 설정](./oper-app/#client)
+* [콘솔 테스트 단말기 설정](./oper-app/#test-device)
+* [콘솔 Client 설정](./oper-app/#client)
 
 
 ### Initialize
@@ -193,11 +193,11 @@ getLaunchingInformations() API를 이용하면 초기화 이후에도 LaunchingI
 LaunchingInfo 객체에는 Gamebase 콘솔에 설정한 값들과 게임 상태 등이 포함돼 있습니다.
 
 
-#### 1. Launching
+#### 1. launching
 
 Gamebase 론칭 정보입니다.
 
-**1.1 Status**
+**1.1 status**
 
 Gamebase Android SDK 초기화 설정에 입력한 앱 버전의 게임 상태 정보입니다.
 
@@ -225,7 +225,7 @@ Gamebase Android SDK 초기화 설정에 입력한 앱 버전의 게임 상태 �
 
 [Game > Gamebase > 콘솔 사용 가이드 > 앱 > App](./oper-app/#app)
 
-**1.2 App**
+**1.2 app**
 
 Gamebase 콘솔에 등록된 앱 정보입니다.
 
@@ -244,7 +244,7 @@ Gamebase 콘솔에 등록된 앱 정보입니다.
 
 [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Client](./oper-app/#client)
 
-**1.3 Maintenance**
+**1.3 maintenance**
 
 Gamebase 콘솔에 등록된 점검 정보입니다.
 
@@ -268,7 +268,7 @@ Gamebase 콘솔에 등록된 점검 정보입니다.
 이때 표시되는 html 파일을 수정하고 싶다면 다음 링크의 html 파일을 다운로드하여 원하는 대로 수정한 후 'assets/Gamebase' 폴더에 두면 Gamebase SDK에 내장된 기본 html 파일 대신 해당 html 파일을 사용하여 점검 정보를 표시하게 됩니다.
 [html 파일 다운로드 LINK](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gamebase-maintenance.html)
 
-**1.4 Notice**
+**1.4 notice**
 
 Gamebase 콘솔에 등록된 공지 정보입니다.
 
@@ -277,6 +277,16 @@ Gamebase 콘솔에 등록된 공지 정보입니다.
 * url: 점검 URL
 
 [Game > Gamebase > 콘솔 사용 가이드 > 운영 > Notice](./oper-operation/#notice)
+
+**1.5 user**
+
+Gamebase 초기화를 실행한 사용자 정보입니다.
+
+* testDevice: 테스트 단말기 정보 (Status가 200대 일 경우에만 전달)
+    * matchingFlag: 사용자 단말기가 Gamebase 콘솔에 설정된 테스트 단말기의 정보와 동일한 지 여부
+    * matchingTypes
+        * 테스트 단말기 정보와 매칭된 타입
+        * matchingFlag가 true 일 경우에만 전달
 
 #### 2. tcProduct
 
