@@ -1,5 +1,14 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.62.0
+
+### iOS
+* Xcode 최소 지원 버전이 14.1에서 15로 변경되었습니다.
+* Gamebase iOS 최소 지원 버전이 11.0에서 12.0으로 변경되었습니다.
+* Gamebase와 Gamebase Adapter에 Privacy Manifest와 서명을 적용했습니다.
+    * Apple 정책에 따라 2024년 5월 1일 전까지 Gamebase iOS SDK 2.62.0 이상으로 업데이트해 주시기 바랍니다.
+* LINE 인증 최소 지원 버전이 11.0에서 13.0으로 변경되었습니다.
+
 ## 2.59.0
 
 ### iOS

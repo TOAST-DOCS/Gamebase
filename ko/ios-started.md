@@ -7,8 +7,8 @@
 >
 > 최소 사양
 >
-> * 사용자 실행 환경: iOS 11 이상
-> * 빌드 환경: Xcode 14.1(iOS 16.1 SDK) 이상
+> * 사용자 실행 환경: iOS 12 이상
+> * 빌드 환경: Xcode 15.0(iOS 17 SDK) 이상
 >
 
 <br/>
@@ -37,26 +37,23 @@ Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
 
 | Gamebase SDK | Gamebase Auth Adapter | External SDK & Compatible Version | 용도  | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.xcframework<br/>Gamebase.bundle | NHNCloudSDK 1.8.0 | Gamebase의 Interface 및 핵심 로직을 포함 | iOS 11 이상 |
-| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.xcframework | FacebookSDK 14.1.0 | Facebook 로그인을 지원 | iOS 11 이상 |
-|  | GamebaseAuthPaycoAdapter.xcframework | PaycoID Login 3rd SDK v1.5.9 | PAYCO 로그인을 지원 | iOS 11 이상 |
-|  | GamebaseAuthNaverAdapter.xcframework | naveridlogin-sdk-ios-4.2.0 | NAVER 로그인을 지원 | iOS 11 이상 |
-|  | GamebaseAuthGamecenterAdapter.xcframework | GameKit | Gamecenter 로그인을 지원 | iOS 11 이상 |
-|  | GamebaseAuthGoogleAdapter.xcframework | GoogleSignIn 7.0.0 | Google 로그인을 지원 | iOS 11 이상 |
-|  | GamebaseAuthTwitterAdapter.xcframework | | Twitter 로그인을 지원 | iOS 11 이상 |
-|  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.8.2 | LINE 로그인을 지원 | iOS 11 이상 |
-|  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 11 이상 |
-|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.8.6 | Hangame 로그인을 지원 | iOS 11 이상 |
-|  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.3.4 | Weibo 로그인을 지원 | iOS 11 이상 |
-|  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.17.5 | Kakao 로그인을 지원 | iOS 11 이상 |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit<br/>NHNCloudIAP 1.8.0 | 게임 내 결제 지원 | iOS 11 이상 |
-| Gamebase Push Adapters | GamebasePushAdapter.xcframework | NHNCloudPush 1.8.0 | Push를 지원 | iOS 11 이상 |
+| Gamebase | Gamebase.xcframework<br/>Gamebase.bundle | NHNCloudSDK 1.8.1 | Gamebase의 Interface 및 핵심 로직을 포함 | iOS 12 이상 |
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.xcframework | FacebookSDK 14.1.0 | Facebook 로그인을 지원 | iOS 12 이상 |
+|  | GamebaseAuthPaycoAdapter.xcframework | PaycoID Login 3rd SDK v1.5.10 | PAYCO 로그인을 지원 | iOS 12 이상 |
+|  | GamebaseAuthNaverAdapter.xcframework | naveridlogin-sdk-ios-4.2.1 | NAVER 로그인을 지원 | iOS 12 이상 |
+|  | GamebaseAuthGamecenterAdapter.xcframework | GameKit | Gamecenter 로그인을 지원 | iOS 12 이상 |
+|  | GamebaseAuthGoogleAdapter.xcframework | GoogleSignIn 7.0.0 | Google 로그인을 지원 | iOS 12 이상 |
+|  | GamebaseAuthTwitterAdapter.xcframework | | Twitter 로그인을 지원 | iOS 12 이상 |
+|  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.11.0 | LINE 로그인을 지원 | iOS 13 이상 |
+|  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 12 이상 |
+|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.8.6 | Hangame 로그인을 지원 | iOS 12 이상 |
+|  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.3.4 | Weibo 로그인을 지원 | iOS 12 이상 |
+|  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.17.5 | Kakao 로그인을 지원 | iOS 12 이상 |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit<br/>NHNCloudIAP 1.8.1 | 게임 내 결제 지원 | iOS 12 이상 |
+| Gamebase Push Adapters | GamebasePushAdapter.xcframework | NHNCloudPush 1.8.1 | Push를 지원 | iOS 12 이상 |
 
 
 > <font color="red">[주의]</font><br/>
->
-> Sign In with Apple에 필요한 AuthenticationServices.framework를 추가할 경우에는 반드시 Optional로 설정해야 합니다.
-> Required로 설정할 경우에는 iOS 11 이하 기기에서는 실행 직후 크래시가 발생합니다.
 > 
 > Gamebase SDK iOS 2.13.0부터 iOS 9 이상에서 Sign In with Apple이 지원되며, 추가로 Gamebase Console에 Service ID를 설정해야 합니다.
 
@@ -67,7 +64,7 @@ Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
 > Gamebase Framework 파일 중 이름에 **Adapter**가 포함되어 있는 파일들은 선택해 프로젝트 내에서 사용 여부를 결정할 수 있으며, 사용하지 않는 Adapter Framework는 제거하는 것을 권장합니다.
 > 해당 Adapter Framework를 사용하려면 위의 표에 명시된 외부 SDK들이 필요할 수 있습니다.
 > 일부 인증 Adapter의 경우 위의 표에 있는 지원하는 iOS 버전에 유의해야 합니다.
-> (지원 버전이 iOS 11 이상인 Auth Adpater를 빌드에 포함하면 iOS 10 이하에서는 런타임 크래시가 발생합니다.)
+> (지원 버전이 iOS 12 이상인 Auth Adpater를 빌드에 포함하면 iOS 11 이하에서는 런타임 크래시가 발생합니다.)
 
 <br/>
 
@@ -96,7 +93,7 @@ Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
     * GameKit.framework
     * StoreKit.framework
     * Security.framework
-    * AuthenticationServices.framework (Optional)
+    * AuthenticationServices.framework
     * AppTrackingTransparency.framework (Optional)
 
 ![Link Binary With Libraries](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-005_1.0.0.png)
@@ -136,7 +133,7 @@ Gamebase iOS SDK는 CocoaPods를 통해서도 설정할 수 있습니다.
 * 4) 생성된 **Podfile**을 편집기로 열어 다음과 같은 내용을 작성합니다.
 
 ```ruby
-platform :ios, '11.0'
+platform :ios, '12.0'
 
 target 'SampleApplication' do
     pod 'Gamebase'
