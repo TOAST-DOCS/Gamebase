@@ -144,48 +144,23 @@ Gamebase SDK for Unreal을 사용하려면 `UE4 Github 소스 코드`를 사용�
 * Push
     * 사용하려는 푸시 서비스를 활성화합니다.
 
-#### Sign in with Apple
+#### Gamebase Unreal SDK 사용을 위한 엔진 수정
 
-Sign in with Apple 기능을 사용하려면 entitlement에 com.apple.developer.applesignin 키값을 추가해야 합니다.
-
-* [Sign in with Apple Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_applesignin)
-
-키값을 추가하지 않고 Gamebsae AppleId 로그인을 진행하면 다음과 같은 오류가 발생합니다.
-
-```
-Authorization failed: Error Domain=AKAuthenticationError Code=-7026 "(null)"
-```
-
-UE4(4.24.3)는 해당 기능을 지원하지 않으므로 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs) 파일에서 아래 코드를 수정해야 합니다.
-
-```cs
-// AS-IS
-if (bRemoteNotificationsSupported)
-{
-    Text.AppendLine("\t<key>aps-environment</key>");
-    Text.AppendLine(string.Format("\t<string>{0}</string>", bForDistribution ? "production" : "development"));
-}
-
-// TO-BE
-if (bRemoteNotificationsSupported)
-{
-    Text.AppendLine("\t<key>aps-environment</key>");
-    Text.AppendLine(string.Format("\t<string>{0}</string>", bForDistribution ? "production" : "development"));
-    Text.AppendLine("\t<key>com.apple.developer.applesignin</key>");
-    Text.AppendLine("\t<array>");
-    Text.AppendLine("\t\t<string>Default</string>");
-    Text.AppendLine("\t</array>");
-}
-```
-
-#### Facebook SDK
-
-Facebook IdP를 사용하려면 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs) 파일에서 아래 코드를 추가해주셔야 합니다.
+Gamebase Unreal SDK 및 외부 인증 SDK에서 swift로 개발된 프레임워크를 컴파일하려면 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.26/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs) 파일에서 아래 코드를 추가해주셔야 합니다.
 
 ```cs
 // need to tell where to load Framework dylibs
 Result += " -rpath /usr/lib/swift";                 // 추가 코드
 Result += " -rpath @executable_path/Frameworks";
+```
+
+#### Sign in with Apple
+
+Sign in with Apple 사용 시 프로젝트에서 /Config/IOS/IOSEngine.ini 파일에 아래 내용을 추가합니다.
+
+```ini
+[/Script/IOSRuntimeSettings.IOSRuntimeSettings]
+bEnableSignInWithAppleSupport=True
 ```
 
 #### Remote Notification
