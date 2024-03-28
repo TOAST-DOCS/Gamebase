@@ -1,6 +1,6 @@
 ## Game > Gamebase > Unity Developer's Guide > Logger
 
-Here, we will explain how to use NHN Cloud Logger SDK in Unity.
+This document describes how to use Log & Crash Search API.
 
 ### Initialize
 Initializes NHN Cloud Logger SDK using the AppKey issued via Log & Crash Search.
