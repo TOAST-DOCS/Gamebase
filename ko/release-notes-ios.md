@@ -5,10 +5,10 @@
 
 #### 기능 추가
 * Gamebase와 Gamebase Adapter SDK에 Privacy manifest와 서명을 적용했습니다.
-* Gamebase 초기화 후 리턴되는 LaunchingInfo VO에서 테스트 단말기임을 알 수 있는 testDevice 필드가 추가되었습니다.
+* Gamebase 초기화 후 반환되는 LaunchingInfo VO에서 테스트 단말기임을 알 수 있는 testDevice 필드가 추가되었습니다.
 
 #### 기능 개선/변경
-* Xcode 최소 지원 버전이 15.0로 변경되었습니다. 
+* Xcode 최소 지원 버전이 15.0으로 변경되었습니다. 
 * iOS 최소 지원 버전이 12.0으로 변경되었습니다.
 * 외부 SDK 업데이트
     * NHN Cloud iOS SDK (1.8.1)

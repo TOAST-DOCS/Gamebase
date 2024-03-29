@@ -83,7 +83,7 @@ Standalone 플랫폼에서 웹뷰를 통해서 로그인을 할 것인지에 대
 
 > <font color="red">[주의]</font><br/>
 >
-> 게임을 **릴리스**할 때는 반드시 소스 코드에서 SetDebugMode 호출을 제거하거나 파라미터를 false로 바꿔서 빌드하세요.
+> 게임을 **릴리스**할 때는 반드시 소스 코드에서 SetDebugMode 호출을 제거하거나 파라미터를 false로 바꿔서 빌드하십시오.
 
 디버그 설정은 콘솔에서도 가능하며 콘솔에서 설정된 값을 우선시합니다.
 콘솔 설정 방법은 아래 가이드를 참고하십시오.
@@ -321,11 +321,11 @@ Gamebase 콘솔에 등록된 공지 정보입니다.
 
 Gamebase 초기화를 실행한 사용자 정보입니다.
 
-* testDevice: 테스트 단말기 정보 (Status가 200대 일 경우에만 전달)
-    * matchingFlag: 사용자 단말기가 Gamebase 콘솔에 설정된 테스트 단말기의 정보와 동일한 지 여부
+* testDevice: 테스트 단말기 정보(Status가 200대일 경우에만 전달)
+    * matchingFlag: 사용자 단말기가 Gamebase 콘솔에 설정된 테스트 단말기의 정보와 동일한지 여부
     * matchingTypes
         * 테스트 단말기 정보와 매칭된 타입
-        * matchingFlag가 true 일 경우에만 전달
+        * matchingFlag가 true일 경우에만 전달
 
 #### 2. tcProduct
 
