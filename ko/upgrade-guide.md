@@ -2,6 +2,13 @@
 
 ## 2.62.0
 
+### Android
+
+* Gamebase Android SDK 2.62.0은 Android 7.0(API Level 24) 미만 단말기에서 다음 이슈가 발생합니다. 
+    * Gamebase.loginForLastLoggedInProvider 호출이 항상 실패합니다.
+    * Guest 계정이 유실됩니다.
+* 이슈가 해결된 Gamebase Android SDK 2.62.1을 사용하세요.
+
 ### iOS
 * Xcode 최소 지원 버전이 14.1에서 15로 변경되었습니다.
 * Gamebase iOS 최소 지원 버전이 11.0에서 12.0으로 변경되었습니다.

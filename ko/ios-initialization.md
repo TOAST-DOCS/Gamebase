@@ -13,7 +13,7 @@ AppDelegate.h 등 Gamebase 기능을 초기화할 곳에 다음의 헤더 파일
 
 ### Initialization Flow
 
-게임이 시작되면 Debug Mode를 설정하고, Gamebase를 초기화하여 Launching Status Code에 따라 게임 진입여부를 결정하도록 아래 Flow와 같이 구현하시면 됩니다.
+게임이 시작되면 Debug Mode를 설정하고, Gamebase를 초기화하여 Launching Status Code에 따라 게임 진입 여부를 결정하도록 아래 플로우와 같이 구현합니다.
 
 ![initialization flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/initialization_flow_2.19.0.png)
 
@@ -201,7 +201,7 @@ Gamebase 콘솔에 등록된 점검 정보입니다.
 여기서 **자세히 보기** 버튼을 클릭하면 점검 정보가 자동으로 웹뷰로 표시됩니다.
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_webview_android_2.30.0.png)
 
-이때 표시되는 html 파일을 수정하고 싶다면 다음 링크의 html 파일을 다운로드하여 원하는 대로 수정한 후 Xcode 프로젝트의 `Copy Bundle Resources`에 **gamebase-maintenance.html** 파일을 추가하면 됩니다.
+이때 표시되는 html 파일을 수정하려면 다음 링크의 html 파일을 다운로드하여 원하는 대로 수정한 뒤 Xcode 프로젝트의 `Copy Bundle Resources`에 **gamebase-maintenance.html** 파일을 추가합니다.
 [html 파일 다운로드 LINK](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gamebase-maintenance.html)
 
 **1.4 notice**
@@ -218,11 +218,11 @@ Gamebase 콘솔에 등록된 공지 정보입니다.
 
 Gamebase 초기화를 실행한 사용자 정보입니다.
 
-* testDevice: 테스트 단말기 정보 (Status가 200대 일 경우에만 전달)
-  * matchingFlag: 사용자 단말기가 Gamebase 콘솔에 설정된 테스트 단말기의 정보와 동일한 지 여부
+* testDevice: 테스트 단말기 정보(Status가 200대일 경우에만 전달)
+  * matchingFlag: 사용자 단말기가 Gamebase 콘솔에 설정된 테스트 단말기의 정보와 동일한지 여부
   * matchingTypes
     * 테스트 단말기 정보와 매칭된 타입
-    * matchingFlag가 true 일 경우에만 전달
+    * matchingFlag가 true일 경우에만 전달
 
 #### 2. tcProduct
 

@@ -309,17 +309,11 @@ android {
 
 #### Contact
 
-* サポートページ([Game > Gamebase > Android SDK使用ガイド > ETC > Additional Features > Contact](./aos-etc/#contact))でお問い合わせの際、写真やメディアを添付するためにストレージの読み取り権限宣言が必要です。
+* サポートページ([Game > Gamebase > Android SDK使用ガイド > ETC > Additional Features > Contact](./aos-etc/#contact))でお問い合わせの際、写真やメディアを添付するために~API 21でストレージの読み取り権限宣言が必要です。
 
-        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="21"/>
 
-* アプリがAndroid 13(API Level 33)以上をターゲットにする場合、ストレージの読み取り権限と一緒に次のように細分化されたメディア権限宣言も追加で必要です。
-
-        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-        <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-
-* 権限が宣言されている場合、ファイルのアップロード時にGamebase SDKが自動的にランタイム権限を要求します。
+* Android API Level 22以上の端末でもREAD_EXTERNAL_STORAGE権限が必要な場合は、**android:maxSdkVersion="21"**構文を削除し、ランタイム権限リクエストを実装する必要があります。
 
 #### Facebook IdP
 

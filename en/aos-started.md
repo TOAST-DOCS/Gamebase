@@ -310,17 +310,11 @@ android {
 
 #### Contact
 
-* To make an inquiry in [Game > Gamebase > Android SDK User Guide > ETC > Additional Features > Contact](./aos-etc/#contact) with photos and media, you need permission to read storage.
+* To attach photos and media when writing an inquiry on the Customer Center ([Game > Gamebase > Android SDK User Guide > ETC > Additional Features > Contact](./aos-etc/#contact)), storage read permission declaration is required on devices below Android API Level 21 (OS 5.0).
         
-        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-        
-* If your app is targeting Android 13 (API Level 33) or later, in addition to the storage read permission, you also need to decare the following detailed media permissions.
-        
-        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-        
-        <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-        
-* If permissions are declared, the Gamebase SDK will automatically request runtime permissions at file upload time.
+        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="21"/>
+  
+* If you need the READ_EXTERNAL_STORAGE permission even on devices with Android API Level 22 or higher, you must remove the **android:maxSdkVersion="21"** syntax and implement a runtime permission request.
 
 #### Facebook IdP
 
