@@ -146,7 +146,7 @@ Gamebase SDK for Unreal을 사용하려면 `UE4 Github 소스 코드`를 사용�
 
 #### Gamebase Unreal SDK 사용을 위한 엔진 수정
 
-Gamebase Unreal SDK 및 외부 인증 SDK에서 swift로 개발된 프레임워크를 컴파일하려면 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.26/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs) 파일에서 아래 코드를 추가해주셔야 합니다.
+Gamebase Unreal SDK 및 외부 인증 SDK에서 swift로 개발된 프레임워크를 컴파일하려면 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.26/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs) 파일에서 아래 코드를 추가해야 합니다.
 
 ```cs
 // need to tell where to load Framework dylibs
