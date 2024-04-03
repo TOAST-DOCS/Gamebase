@@ -1,6 +1,6 @@
 ## Game > Gamebase > Unity SDK ご利用ガイド > 初期化
 
-Gamebase Unity SDKを使用するためには、まず初期化を行う必要があります。また、アプリID、アプリバージョン情報がNHN Cloud Consoleに必ず登録されていなければなりません。
+Gamebase Unity SDKを使用するためには、まず初期化を行う必要があります。また、アプリID、アプリバージョン情報がNHN Cloudコンソールに必ず登録されていなければなりません。
 
 ### GamebaseConfiguration 
 
@@ -19,13 +19,13 @@ Gamebase Unity SDKを使用するためには、まず初期化を行う必要�
 
 #### 1. App ID
 
-Gamebase Consoleに登録されたプロジェクトIDです。
+Gamebaseコンソールに登録されたプロジェクトIDです。
 
 [Game > Gamebase > コンソール使用ガイド > アプリ > App](./oper-app/#app)
 
 #### 2. appVersion
 
-Gamebase Consoleに登録したクライアントバージョンです。
+Gamebaseコンソールに登録したクライアントバージョンです。
 
 [Game > Gamebase > コンソール使用ガイド > アプリ > Client](./oper-app/#client)
 
@@ -85,11 +85,11 @@ LaunchingStatusは、次のLaunchingチャプターの下のState、Code部分�
 >
 > ゲームを**リリース**する時は、必ずソースコードからSetDebugModeの呼び出しを削除するか、パラメータをfalseに変更してビルドしてください。
 
-デバッグ設定はConsoleでも行えます。Consoleで設定された値を優先視します。
-Console設定方法は、以下のガイドを参考にしてください。
+デバッグ設定はコンソールでも行えます。コンソールで設定された値を優先視します。
+コンソール設定方法は、以下のガイドを参考にしてください。
 
-* [Consoleテスト端末設定](./oper-app/#test-device)
-* [Console Client設定](./oper-app/#client)
+* [コンソールテスト端末設定](./oper-app/#test-device)
+* [コンソールClient設定](./oper-app/#client)
 
 **API**
 
@@ -232,13 +232,13 @@ public class SampleInitialization
 ### Launching Information
 
 InitializeAPIを使用してGamebase Unity SDKを初期化すると、LaunchingInfoの客体が結果値として送られます。
-このLaunchingInfoの客体には、Gamebase Consoleに設定した値やゲーム状態などが含まれています。
+このLaunchingInfoの客体には、Gamebaseコンソールに設定した値やゲーム状態などが含まれています。
 
-#### 1. Launching
+#### 1. launching
 
 Gamebaseの起動情報です。
 
-**1.1 Status**
+**1.1 status**
 
 Gamebase Unity SDKの初期化の設定に入力したアプリバージョンのゲームステータス情報です。
 
@@ -265,9 +265,9 @@ Gamebase Unity SDKの初期化の設定に入力したアプリバージョン�
 [Game > Gamebase > コンソール使用ガイド > アプリ > App](./oper-app/#app)
 
 
-**1.2 App**
+**1.2 app**
 
-Gamebase Consoleに登録されたアプリ情報です。
+Gamebaseコンソールに登録されたアプリ情報です。
 
 * accessInfo
     * serverAddress:サーバーアドレス
@@ -282,9 +282,9 @@ Gamebase Consoleに登録されたアプリ情報です。
 
 [Game > Gamebase > コンソール使用ガイド > アプリ > Client](./oper-app/#client)
 
-**1.3 Maintenance**
+**1.3 maintenance**
 
-Gamebase Consoleに登録されたメンテナンス情報です。
+Gamebaseコンソールに登録されたメンテナンス情報です。
 
 * url:メンテナンスページのURL
 * timezone:標準時(timezone)
@@ -306,15 +306,25 @@ enablePopupとenableLaunchingStatusPopupの値がいずれもtrueの場合、ゲ
 この時に表示されるhtmlファイルを修正したい場合は、次のリンクのhtmlファイルをダウンロードして自由に修正した後、'Assets > StreamingAssets > Gamebase'フォルダに追加するとGamebase SDKに内蔵された基本htmlファイルの代わりにそのhtmlファイルを使用してメンテナンス情報を表示します。
 [htmlファイルダウンロードLINK](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gamebase-maintenance.html)
 
-**1.4 Notice**
+**1.4 notice**
 
-Gamebaes Consoleに登録されたお知らせ情報です。
+Gamebaesコンソールに登録されたお知らせ情報です。
 
 * message:メッセージ
 * title:タイトル
 * url:メンテナンスURL
 
 [Game > Gamebase > コンソール使用ガイド > 運営 > Notice](./oper-operation/#notice)
+
+**1.5 user**
+
+Gamebase初期化を実行したユーザー情報です。
+
+* testDevice:テスト端末情報(Statusが200台の場合のみ伝達)
+    * matchingFlag:ユーザー端末がGamebaseコンソールに設定されたテスト端末の情報と同じかどうか
+    * matchingTypes
+        * テスト端末情報とマッチングされたタイプ
+        * matchingFlagがtrueの場合のみ伝達   
 
 #### 2. tcProduct
 
@@ -327,7 +337,7 @@ Gamebaseと連携しているNHN CloudサービスのappKeyです。
 
 #### 3. tcIap
 
-**NHN Cloud** Consoleに登録されたIAPストアの情報です。
+**NHN Cloud**コンソールに登録されたIAPストアの情報です。
 
 * id:App ID
 * name:App Name
