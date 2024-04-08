@@ -7,8 +7,8 @@
 >
 > Minimum specifications
 >
-> * User run environment : iOS 11 or later
-> * Build environment : Xcode 14 (iOS 16.1 SDK) or later
+> * User run environment : iOS 12 or later
+> * Build environment : Xcode 15 (iOS 16.1 SDK) or later
 >
 
 <br/>
@@ -37,26 +37,24 @@ Then, include corresponding SDK files to a target of your project.
 
 | Gamebase SDK | Gamebase Auth Adapter | External SDK & Compatible Version | Usage  | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.xcframework<br/>Gamebase.bundle | NHNCloudSDK 1.8.0 | Includes the interface and key logic of Gamebase | iOS 11 or later |
-| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.xcframework | FacebookSDK 14.1.0 | Supports Facebook login | iOS 11 or later |
-|  | GamebaseAuthPaycoAdapter.xcframework | PaycoID Login 3rd SDK v1.5.9 | Supports PAYCO login | iOS 11 or later |
-|  | GamebaseAuthNaverAdapter.xcframework | naveridlogin-sdk-ios-4.2.0 | Supports NAVER login | iOS 11 or later |
-|  | GamebaseAuthGamecenterAdapter.xcframework | GameKit.framework | Supports Game Center login | iOS 11 or later |
-|  | GamebaseAuthGoogleAdapter.xcframework | GoogleSignIn 7.0.0 | Supports Google login | iOS 11 or later |
-|  | GamebaseAuthTwitterAdapter.xcframework | | Supports Twitter login | iOS 11 or later |
-|  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.8.2 | Supports LINE login  | iOS 11 or later |
-|  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 11 or later |
-|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.8.6 | Supports Hangame login | iOS 11 or later |
-|  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.3.4 | Supports Weibo login | iOS 11 or later |
-|  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.17.5 | Supports Kakao login | iOS 11 or later |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit<br/>NHNCloudIAP 1.8.0 | Supports in-game purchase | iOS 11 or later |
-| Gamebase Push Adapters | GamebasePushAdapter.xcframework | NHNCloudPush 1.8.0 | Supports Push | iOS 11 or later |
+| Gamebase | Gamebase.xcframework<br/>Gamebase.bundle | NHNCloudSDK 1.8.1 | Includes the interface and key logic of Gamebase | iOS 12 or later |
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.xcframework | FacebookSDK 14.1.0 | Supports Facebook login | iOS 12 or later |
+|  | GamebaseAuthPaycoAdapter.xcframework | PaycoID Login 3rd SDK v1.5.10 | Supports PAYCO login | iOS 12 or later |
+|  | GamebaseAuthNaverAdapter.xcframework | naveridlogin-sdk-ios-4.2.1 | Supports NAVER login | iOS 12 or later |
+|  | GamebaseAuthGamecenterAdapter.xcframework | GameKit.framework | Supports Game Center login | iOS 12 or later |
+|  | GamebaseAuthGoogleAdapter.xcframework | GoogleSignIn 7.0.0 | Supports Google login | iOS 12 or later |
+|  | GamebaseAuthTwitterAdapter.xcframework | | Supports Twitter login | iOS 12 or later |
+|  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.11.0 | Supports LINE login  | iOS 13 or later |
+|  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 12 or later |
+|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.8.6 | Supports Hangame login | iOS 12 or later |
+|  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.3.4 | Supports Weibo login | iOS 12 or later |
+|  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.17.5 | Supports Kakao login | iOS 12 or later |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit<br/>NHNCloudIAP 1.8.1 | Supports in-game purchase | iOS 12 or later |
+| Gamebase Push Adapters | GamebasePushAdapter.xcframework | NHNCloudPush 1.8.1 | Supports Push | iOS 12 or later |
 
 
 > <font color="red">[Caution]</font><br/>
 >
-> When adding the AuthenticationServices.framework required for Sign In with Apple, it must be set to Optional.
-> If it is set to Required, the devices running on iOS version 11 or earlier crashes immediately after launching the app.
 > 
 > Gamebase SDK iOS 2.13.0 or later supports Sign In with Apple in iOS 9 or later, and additionally the Service ID needs to be set in the Gamebase Console.
 
@@ -67,7 +65,7 @@ Then, include corresponding SDK files to a target of your project.
 > The Gamebase Framework files that contain **Adapter** in their name can be selected to determine whether they will be used within the project or not. It is recommended to remove any unused Adapter Frameworks.
 > To use these Adapter Frameworks, the external SDKs specified in the above table might be required.
 > For some Auth Adapters, be aware of the supported iOS versions listed in the table above.
-> (If an Auth Adapter that supports iOS version 11 or later is included in the build, it will crash on iOS 10 or earlier.)
+> (If an Auth Adapter that supports iOS version 12 or later is included in the build, it will crash on iOS 11 or earlier.)
 
 <br/>
 
@@ -96,7 +94,7 @@ By decompression, following SDKs will show, including Gamebase.xcframework.
     * GameKit.framework
     * StoreKit.framework
     * Security.framework
-    * AuthenticationServices.framework (Optional)
+    * AuthenticationServices.framework
     * AppTrackingTransparency.framework (Optional)
 
 ![Link Binary With Libraries](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-005_1.0.0.png)
@@ -137,7 +135,7 @@ You can set the Gamebase iOS SDK with CocoaPods.
 * 4) Open the created **Podfile** with the editor and enter the following.
 
 ```ruby
-platform :ios, '11.0'
+platform :ios, '12.0'
 
 target 'SampleApplication' do
     pod 'Gamebase'
