@@ -193,11 +193,11 @@ With the getLaunchingInformations API, you can get the LaunchingInfo object afte
 LaunchingInfo includes values set on Gamebase Console, as well as game status.
 
 
-#### 1. Launching
+#### 1. launching
 
 Refers to Gamebase launching data.
 
-**1.1 Status**
+**1.1 status**
 
 The game status information belongs to the app version entered for the setting of Gamebase Android SDK initialization. 
 
@@ -225,7 +225,7 @@ Refer to the table for status codes:
 
 [Console Guide](./oper-app/#app)
 
-**1.2 App**
+**1.2 app**
 
 App information registered on Gamebase console.
 
@@ -244,7 +244,7 @@ App information registered on Gamebase console.
 
 [Game > Gamebase > Console User Guide > App > Client](./oper-app/#client)
 
-**1.3 Maintenance**
+**1.3 maintenance**
 
 Maintenance information registered on Gamebase Console:
 
@@ -268,7 +268,7 @@ If you click the **DETAILS** button here, the maintenance information is automat
 If you want to modify the displayed HTML file, download the HTML file from the following link, modify it as you need, and place it in the 'assets/Gamebase' folder. Then the HTML file will be used to display maintenance information instead of the default HTML file included in the Gamebase SDK.
 [HTML file download link](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gamebase-maintenance.html)
 
-**1.4 Notice**
+**1.4 notice**
 
 Notice information registered on Gamebase console:
 
