@@ -317,6 +317,16 @@ Following notices are registered in the Gamebase Console.
 
 [Game > Gamebase > Console Guide > Operation > Notice](./oper-operation/#notice)
 
+**1.5 user**
+
+Below is the user information who initialized Gamebase.
+
+* testDevice: Test device information (Forwarded when Status is in the 200s)
+    * matchingFlag: Whether the user device matches the test device set in the Gamebase console
+    * matchingTypes
+        * Type matched with the test device information
+        * Forwarded when matchingFlag is true
+        
 #### 2. tcProduct
 
 Appkey of NHN Cloud Products linked to Gamebase.

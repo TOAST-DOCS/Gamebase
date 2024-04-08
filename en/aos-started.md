@@ -14,11 +14,11 @@ To execute Gamebase in Android, the following system environment is required.
 
 | Gamebase SDK | Gamebase Adapter | External SDK | Purpose | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.8.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include the interface and core logic of Gamebase | API 19(KitKat, OS 4.4) |
+| Gamebase | gamebase-sdk | nhncloud-core-1.8.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include the interface and core logic of Gamebase | API 19(KitKat, OS 4.4) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Support Sign In With Apple login | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-16.1.2 | Support Facebook login | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Support Google login | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.7.1 | Support Hangame login | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.9.0 | Support Hangame login | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | Support LINE login | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.8.0 | Support NAVER login | API 21(Lollipop, OS 5.0) |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.13 | Support PAYCO login | - |

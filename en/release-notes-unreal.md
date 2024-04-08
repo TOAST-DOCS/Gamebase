@@ -3,13 +3,13 @@
 ### 2.62.0 (2024. 03. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.62.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 추가
-* (iOS) Gamebase SDK에 Privacy manifest와 서명을 적용했습니다.
+#### Added Feature
+* (iOS) Applied privacy manifest and signature to Gamebase SDK.
 
-#### 기능 개선
-* 내부 로직을 개선했습니다.
+#### Feature Updates
+* Improved internal logic.
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.62.0](./release-notes-android/#2620-2024-03-26)
 * [Gamebase iOS SDK 2.62.0](./release-notes-ios/#2620-2024-03-26)
 

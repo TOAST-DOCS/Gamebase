@@ -3,21 +3,21 @@
 ### 2.62.0 (2024. 03. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.62.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* Gamebase와 Gamebase Adapter SDK에 Privacy manifest와 서명을 적용했습니다.
-* Gamebase 초기화 후 리턴되는 LaunchingInfo VO에서 테스트 단말기임을 알 수 있는 testDevice 필드가 추가되었습니다.
+#### Added Features
+* Applied Privacy manifest and signature to Gamebase and Gamebase Adapter SDK.
+* Added the testDevice field to indicate a test device in LaunchingInfo VO that returns after Gamebase is initialized.
 
-#### 기능 개선/변경
-* Xcode 최소 지원 버전이 15.0로 변경되었습니다. 
-* iOS 최소 지원 버전이 12.0으로 변경되었습니다.
-* 외부 SDK 업데이트
+#### Feature Updates
+* Raised the minimum supported version of Xcode to 15.0. 
+* Raised the minimum supported version of iOS to 12.0.
+* External SDK update
     * NHN Cloud iOS SDK (1.8.1)
     * LINE iOS SDK (5.11.0)
-        * LINE 인증 최소 지원 버전이 13.0으로 변경되었습니다.
+        * Mininum supported version of LINE changed to 13.0.
     * NAVER iOS SDK (4.2.1)
     * PAYCO iOS SDK (1.5.10)
-    * Hangame iOS SDK (1.11.0
-* 내부 로직 개선
+    * Hangame iOS SDK (1.11.0)
+* Improved internal logic
 
 ### 2.61.0 (2024. 02. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.61.0/GamebaseSDK-iOS.zip)
