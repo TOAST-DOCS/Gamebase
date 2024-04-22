@@ -1,5 +1,12 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.63.0 (2024. 04. 23.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.63.0/GamebaseSDK-Android.zip)
+
+#### Feature Updates
+* Improved internal logic
+
 ### 2.62.1 (2024. 03. 29.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.62.1/GamebaseSDK-Android.zip)
