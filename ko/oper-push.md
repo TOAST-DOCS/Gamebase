@@ -227,9 +227,14 @@ Push에서 푸시 메시지를 발송할 때 사용할 이벤트키를 등록할
 
 ## Authentication
 푸시 발송에 사용하는 인증서를 관리할 수 있습니다.
-![gamebase_push_18_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_18_202101.png)
+![gamebase_push_18_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_18_202404.png)
 
 각 인증서 별로 **등록**, **수정**, **삭제** 버튼을 클릭해 인증서를 등록, 수정, 삭제할 수 있습니다.
+
+> [참고]
+> FCM Server Key 인증서는 2024년 6월 20일 지원이 중단됩니다.
+> 6월 20일까지 신규 인증 FCM Service Account Credential 등록이 필요합니다.
+> FCM Service Account Credential을 등록하면 FCM Server Key 인증서는 삭제됩니다. FCM Server Key를 복구하려면 다시 FCM Server Key 인증서를 등록하시면 됩니다.
 
 ### Authentication register
 ![gamebase_push_19_202101](https://static.toastoven.net/prod_gamebase/gamebase_push_19_202101.png)
