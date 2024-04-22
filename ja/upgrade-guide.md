@@ -4,24 +4,24 @@
 
 ### Android
 
-* Gamebase Android SDK 2.62.0은 Android 7.0(API Level 24) 미만 단말기에서 다음 이슈가 발생합니다. 
-    * Gamebase.loginForLastLoggedInProvider 호출이 항상 실패합니다.
-    * Guest 계정이 유실됩니다.
-    * 이슈가 해결된 Gamebase Android SDK 2.62.1을 사용하세요.
+* Gamebase Android SDK 2.62.0は、Android 7.0(API Level 24)未満の端末で以下の問題が発生します。
+    * Gamebase.loginForLastLoggedInProviderの呼び出しが常に失敗します。
+    * Guestアカウントが失われます。
+    * 問題が解決されたGamebase Android SDK 2.62.1を使用してください。
 
 ### iOS
-* Xcode 최소 지원 버전이 14.1에서 15로 변경되었습니다.
-* Gamebase iOS 최소 지원 버전이 11.0에서 12.0으로 변경되었습니다.
-* Gamebase와 Gamebase Adapter에 Privacy Manifest와 서명을 적용했습니다.
-    * 2024년 5월 1일 이후 신규 출시 또는 업데이트를 하는 경우, Apple 정책에 따라 Gamebase iOS SDK 2.62.0 이상을 적용해야 합니다.
-* LINE 인증 최소 지원 버전이 11.0에서 13.0으로 변경되었습니다.
+* Xcode の最小サポートバージョンが 14.1 から 15 に変更されました。
+* Gamebase iOSの最小サポートバージョンが11.0から12.0に変更されました。
+* GamebaseとGamebase AdapterにPrivacy Manifestと署名を適用しました。
+    * 2024年5月1日以降に新規リリースまたはアップデートする場合、Appleのポリシーに基づき、Gamebase iOS SDK 2.62.0以上を適用する必要があります。
+* LINE認証の最小サポートバージョンが11.0から13.0に変更されました。
 
 ### Unity
 
-* Apple 개인정보 보호 정책을 준수하기 위한 대응 조치가 완료되었습니다.
-    * Privacy Manifest 파일이 추가되었습니다.
-    * Framework에 서명이 적용되었습니다.
-    * 2024년 5월 1일 이후에는 새로운 출시나 업데이트를 위해 Apple 정책에 따라 Gamebase SDK for Unity 2.62.0 이상을 적용해야 합니다.
+* Apple個人情報保護ポリシーに準拠するための対応が完了しました。
+    * Privacy Manifestファイルが追加されました。
+    * Framework に署名が適用されました。
+    * 2024年5月1日以降、新しいリリースやアップデートには、Appleのポリシーに基づき、Gamebase SDK for Unity 2.62.0以降を適用する必要があります。
 
 ## 2.59.0
 

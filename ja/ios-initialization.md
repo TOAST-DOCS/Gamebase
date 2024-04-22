@@ -131,11 +131,11 @@ NSDictionary* launchingInfo = [TCGBLaunching launchingInformations];
 ```
 
 
-#### 1. Launching
+#### 1. launching
 
 Gamebaseローンチ情報です。
 
-**1.1 Status**
+**1.1 status**
 
 Gamebase iOS SDKの初期化設定に入力したアプリバージョンのゲーム状態情報です。
 
@@ -163,7 +163,7 @@ Gamebase iOS SDKの初期化設定に入力したアプリバージョンのゲ�
 
 [Game > Gamebase > コンソール使用ガイド > アプリ > App](./oper-app/#app)
 
-**1.2 App**
+**1.2 app**
 
 Gamebaseコンソールに登録されたアプリ情報です。
 
@@ -182,7 +182,7 @@ Gamebaseコンソールに登録されたアプリ情報です。
 
 [Game > Gamebase > コンソール使用ガイド > アプリ > Client](./oper-app/#client)
 
-**1.3 Maintenance**
+**1.3 maintenance**
 
 Gamebaseコンソールに登録されたメンテナンス情報です。
 
@@ -204,7 +204,7 @@ enablePopupとenableLaunchingStatusPopupの値がいずれもtrueの場合、ゲ
 この時に表示されるhtmlファイルを修正したい場合は、次のリンクのhtmlファイルをダウンロードして自由に修正した後、Xcodeプロジェクトの`Copy Bundle Resources`に**gamebase-maintenance.html**ファイルを追加してください。
 [htmlファイルのダウンロードLINK](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gamebase-maintenance.html)
 
-**1.4 Notice**
+**1.4 notice**
 
 Gamebaseコンソールに登録された告知情報です。
 
@@ -213,6 +213,16 @@ Gamebaseコンソールに登録された告知情報です。
 * url: Maintenance URL
 
 [Game > Gamebase > コンソール使用ガイド > 運営 > Notice](./oper-operation/#notice)
+
+**1.5 user**
+
+Gamebase初期化を実行したユーザー情報です。
+
+* testDevice:テスト端末情報(Statusが200台の場合のみ伝達)
+    * matchingFlag:ユーザー端末がGamebaseコンソールに設定されたテスト端末の情報と同じかどうか
+  * matchingTypes
+        * テスト端末情報とマッチングされたタイプ
+    * matchingFlagがtrueの場合のみ伝達 
 
 #### 2. tcProduct
 

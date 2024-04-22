@@ -89,7 +89,7 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
 ### Purchase Item
 
 購入するアイテムのgamebaseProductIdを利用して次のAPIを呼び出し、購入をリクエストします。<br/>
-gamebaseProductIdは一般的にはストアに登録したアイテムのIDと同じですが、Gamebaseコンソールでも変更できます。payloadフィールドに入力した追加情報は決済成功後、**TCGBPurchasableReceipt.payload**フィールドに維持されるため、複数の用途で活用できます。 <br/>
+gamebaseProductIdは一般的にはストアに登録したアイテムのIDと同じですが、Gamebaseコンソールでも変更できます。
 ゲームユーザーが購入をキャンセルした場合、**TCGB_ERROR_PURCHASE_USER_CANCELED**エラーが返ります。キャンセル処理を行ってください。
 
 **API**

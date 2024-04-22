@@ -1,5 +1,12 @@
 ## Game > Gamebase > 릴리스 노트 > Android
 
+### 2.63.0 (2024. 04. 23.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.63.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 내부 로직 개선
+
 ### 2.62.1 (2024. 03. 29.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.62.1/GamebaseSDK-Android.zip)
@@ -12,7 +19,8 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.62.0/GamebaseSDK-Android.zip)
 
 #### 기능 추가
-* Gamebase 초기화 후 반환되는 LaunchingInfo VO에서 테스트 단말기임을 알 수 있는 testDevice 필드가 추가되었습니다.
+* Gamebase 초기화 후 반환되는 LaunchingInfo VO에서 테스트 단말기임을 알 수 있도록 필드가 추가되었습니다.
+    * **launchingInfo.user.testDevice**
 
 #### 기능 개선/변경
 * 외부 SDK 업데이트: Hangame Android SDK(1.9.0)

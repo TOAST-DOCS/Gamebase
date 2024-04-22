@@ -141,38 +141,23 @@ See below for relevant guides.
 * Push
     * 使用したいプッシュサービスを有効にします。
 
-#### Sign in with Apple
+#### Gamebase Unreal SDKを使用するためのエンジン変更
 
-Sign in with Apple機能を使用するにはentitlementにcom.apple.developer.applesigninキー値が追加されている必要があります。
-
-* [Sign in with Apple Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_applesignin)
-
-該当のキー値を追加せずにGamebsae AppleIdログインを進行する場合、下記のようなエラーが発生します。
-
-```
-Authorization failed: Error Domain=AKAuthenticationError Code=-7026 "(null)"
-```
-
-UE4(4.24.3)は該当機能をサポートしないため、[Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs)ファイルの上に上記コードを追加する必要があります。
+Gamebase Unreal SDK及び外部認証SDKでswiftで開発されたフレームワークをコンパイルするには、[Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.26/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs)ファイルで下記のコードを追加してください。
 
 ```cs
-// AS-IS
-if (bRemoteNotificationsSupported)
-{
-    Text.AppendLine("\t<key>aps-environment</key>");
-    Text.AppendLine(string.Format("\t<string>{0}</string>", bForDistribution ? "production" : "development"));
-}
+// need to tell where to load Framework dylibs
+Result += " -rpath /usr/lib/swift";                 // 追加コード
+Result += " -rpath @executable_path/Frameworks";
+```
 
-// TO-BE
-if (bRemoteNotificationsSupported)
-{
-    Text.AppendLine("\t<key>aps-environment</key>");
-    Text.AppendLine(string.Format("\t<string>{0}</string>", bForDistribution ? "production" : "development"));
-    Text.AppendLine("\t<key>com.apple.developer.applesignin</key>");
-    Text.AppendLine("\t<array>");
-    Text.AppendLine("\t\t<string>Default</string>");
-    Text.AppendLine("\t</array>");
-}
+#### Sign in with Apple
+
+Sign in with Appleを使う時、プロジェクトで /Config/IOS/IOSEngine.ini ファイルに下記の内容を追加します。
+
+```ini
+[/Script/IOSRuntimeSettings.IOSRuntimeSettings]
+bEnableSignInWithAppleSupport=True
 ```
 
 #### Remote Notification
