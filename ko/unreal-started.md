@@ -64,18 +64,21 @@ Supported Platforms
 1. 에디터의 메뉴 **Edit > Project Settings**를 선택합니다.
 2. Project Settings 창의 Plugin 카테고리에서 **Gamebase - Android**를 선택합니다.
 
-![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.58.0.png)
+![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-settings-2.63.0.png)
 
 * Authentication
     * 사용하려는 IdP를 활성화합니다.
     * Hangame IdP 사용 시 고객 센터로 별도로 문의 바랍니다.
+* Push
+    * 사용하려는 푸시 서비스를 활성화 합니다.
+    * FCM
+        * 해당 기능을 사용하는 경우 활성화 됩니다.
+        * GoogleServicesFilePath - [Firebase Notification Settings](./aos-started/#firebase-notification) 시 다운로드 받은 google-services.json 파일의 경로를 지정합니다.
 * Purchase
     * 사용하려는 스토어를 선택합니다.
     * ONE Store
+        * 해당 스토어를 사용하는 경우 활성화 됩니다.
         * View Option - 전체 결제 화면(Full)과 팝업 결제 화면(Popup) 중 선택합니다.
-* Push
-    * 사용하려는 푸시 서비스를 활성화 합니다.
-
 
 #### Google Play 인증 및 결제가 되지 않는 문제
 

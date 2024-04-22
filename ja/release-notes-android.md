@@ -1,23 +1,30 @@
 ## Game > Gamebase > リリースノート > Android
 
+### 2.63.0 (2024. 04. 23.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.63.0/GamebaseSDK-Android.zip)
+
+#### 機能改善/変更
+* 内部ロジック改善
+
 ### 2.62.1 (2024. 03. 29.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.62.1/GamebaseSDK-Android.zip)
 
-#### 버그 수정
-* Android 7.0(API Level 24) 미만 단말기에서 Gamebase.loginForLastLoggedInProvider 호출이 항상 실패하고 Guest 계정이 유실되는 버그를 수정했습니다.
-    * 이 문제는 Gamebase Android SDK 2.62.0에서만 발생합니다.
+#### バグ修正
+* Android 7.0(API Level 24)未満の端末でGamebase.loginForLastLoggedInProviderの呼び出しが常に失敗し、Guestアカウントが失われるバグを修正しました。
+    * この問題はGamebase Android SDK 2.62.0でのみ発生します。
 
 ### 2.62.0 (2024. 03. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.62.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* Gamebase 초기화 후 리턴되는 LaunchingInfo VO에서 테스트 단말기임을 알 수 있는 testDevice 필드가 추가되었습니다.
+#### 機能追加
+* Gamebase初期化後に返されるLaunchingInfo VOでテスト端末であることを知ることができるtestDeviceフィールドが追加されました。
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Hangame Android SDK(1.9.0)
-* Preference를 복사해서 사용할 수 없도록 내부 로직이 개선되었습니다.
-* gamebase-sdk-base 모듈이 gamebase-sdk 단일 모듈로 통합되었습니다.
+#### 機能改善/変更
+* 外部SDKアップデート: Hangame Android SDK(1.9.0)
+* Preferenceをコピーして使用できないように内部ロジックを改善しました。
+* gamebase-sdk-baseモジュールがgamebase-sdk単一モジュールに統合されました。
 
 ### 2.61.0 (2024. 02. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.61.0/GamebaseSDK-Android.zip)

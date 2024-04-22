@@ -144,48 +144,25 @@ See below for relevant guides.
 * Push
     * Enable the push service to use.
 
-#### Sign in with Apple
+#### Modify the Engine to Use the Gamebase Unreal SDK
 
-To enable Sign in with Apple, com.apple.developer.applesignin must be added to entitlement.  
-
-* [Sign in with Apple Entitlement](https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_applesignin)
-
-If login to Gamebase AppleId is attempted without a key value added, error shall occur like below:   
-
-```
-Authorization failed: Error Domain=AKAuthenticationError Code=-7026 "(null)"
-```
-
-Since UE4(4.24.3) does not support the feature, below codes must be added above line 196 of the following file.  [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSExports.cs).
-
-```cs
-// AS-IS
-if (bRemoteNotificationsSupported)
-{
-    Text.AppendLine("\t<key>aps-environment</key>");
-    Text.AppendLine(string.Format("\t<string>{0}</string>", bForDistribution ? "production" : "development"));
-}
-
-// TO-BE
-if (bRemoteNotificationsSupported)
-{
-    Text.AppendLine("\t<key>aps-environment</key>");
-    Text.AppendLine(string.Format("\t<string>{0}</string>", bForDistribution ? "production" : "development"));
-    Text.AppendLine("\t<key>com.apple.developer.applesignin</key>");
-    Text.AppendLine("\t<array>");
-    Text.AppendLine("\t\t<string>Default</string>");
-    Text.AppendLine("\t</array>");
-}
-```
-
-#### Facebook SDK
-
-To use Facebook IdP, you need to add the following code in the [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS /IOSToolChain.cs) file.
-
+To compile frameworks developed in swift from the Gamebase Unreal SDK and external authentication SDKs, you need to add the code below in the [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.26/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs) file.
+ 
+ 
 ```cs
 // need to tell where to load Framework dylibs
-Result += " -rpath /usr/lib/swift";                 // Added code
+Result += " -rpath /usr/lib/swift";                 // Additional code
 Result += " -rpath @executable_path/Frameworks";
+```
+
+#### Sign in with Apple
+
+When using Sign in with Apple, add the following to the /Config/IOS/IOSEngine.ini file in your project
+
+
+```ini
+[/Script/IOSRuntimeSettings.IOSRuntimeSettings]
+bEnableSignInWithAppleSupport=True
 ```
 
 #### Remote Notification
