@@ -1,5 +1,16 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.63.0 (2024. 04. 23.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.63.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+
+* (MacOS) WebView 신규 지원
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.63.0](./release-notes-android/#2620-2024-04-23)
+* [Gamebase iOS SDK 2.63.0](./release-notes-ios/#2620-2024-04-23)
+
 ### 2.62.0 (2024. 03. 26.) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.62.0/GamebaseSDK-Unity.zip)
 
