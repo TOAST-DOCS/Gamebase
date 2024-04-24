@@ -218,9 +218,15 @@ Pushからプッシュメッセージを送信する時に使用するイベン�
 
 ## Authentication
 プッシュ送信に使用する証明書を管理できます。
-![push_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_11_jp_240103.png)
+![push_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_11_jp_240422.png)
 
 各証明書の**登録**、**修正**、**削除**ボタンを押して証明書を登録、修正、削除できます。
+
+> [参考]
+> FCM Server Key証明書は2024年6月20日にサポートが終了します。
+> 6月20日までに新規認証FCM Service Account Credentialの登録が必要です。
+> FCM Service Account Credentialを登録すると、FCM Server Key証明書は削除されます。FCM Server Keyを復旧するには、FCM Server Key証明書を再登録してください。
+
 
 ### Authentication register
 ![push_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/jp/push_12_jp_240103.png)
