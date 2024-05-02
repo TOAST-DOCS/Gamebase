@@ -303,8 +303,8 @@ android {
             * 'Assets/Plugins/Android/MyAndroidProject.androidlib/res/values/google-services.xml'
 
 * Unreal 빌드인 경우
-    * Unreal의 프로젝트의 [Gamebase Android 설정](./unreal-started/#android-settings)에서 `GoogleServicesFilePath`의 값을 Firebase 콘솔에서 다운로드 받은 `google-services.json`의 경로로 지정합니다.
-    * Firebase 관련으로 다른 플러그인을 사용할 때, google-services.json의 데이터를 Android 리소스로 만드는 과정이 있다면 Gamebase 처리하는 리소스 처리와 중복이 발생하여 빌드 중 에러가 발생할 수 있습니다. 이 경우에는 Gamebase Android 설정에서 `GoogleServicesFilePath`의 값을 비워두시면 Gamebase에서는 해당 json을 Android 리소스로 변환하는 작업을 진행하지 않습니다.
+    * Unreal의 프로젝트의 [Gamebase Android 설정](./unreal-started/#android-settings)에서 `GoogleServicesFilePath`의 값을 Firebase 콘솔에서 다운로드한 `google-services.json`의 경로로 지정합니다.
+    * Firebase와 관련하여 다른 플러그인을 사용할 때 google-services.json의 데이터를 Android 리소스로 만드는 과정이 있다면 Gamebase 처리하는 리소스 처리와 중복되어 빌드 중 오류가 발생할 수 있습니다. 이 경우에는 Gamebase Android 설정에서 `GoogleServicesFilePath`의 값을 비워 두면 Gamebase에서는 해당 JSON을 Android 리소스로 변환하는 작업을 진행하지 않습니다.
     
 ### AndroidManifest.xml
 
