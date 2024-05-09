@@ -1,5 +1,41 @@
 ## Game > Gamebase > Release Notes > Console
 
+### March 26, 2024
+
+#### Added Features
+* Push > Certificates
+	* Add the PUSH FCM Service Account Credential method
+
+### February 27, 2024
+
+#### Added Features
+* Purchase (IAP) > Store
+	* Added the Notification V2 feature in AppStore
+
+#### Feature Updates
+* Purchase (IAP) > Payment Information
+	* Added a SERVER/CLIENT distinguishing column on the payment history page
+* App > Client
+	* Changed client version registration to only accept alphabets, numbers, periods (.), and underscores (_)
+
+### January 9, 2024.
+
+#### Bug Fixes
+* Mobile Customer Center
+	* Fixed FAQ search not working after changing language within Customer Center
+
+### December 19, 2023
+
+#### Added Features
+* Analytics > User Indicators > Inflow/Outflow
+	* Added weekly inflow/outflow metrics
+* App > Client
+	* Added macOS
+* App > Terms and Conditions
+	* Improved UX to help operators recognize when undeployed terms exist after modification
+* Mobile Customer Center
+	* Added support for Spanish/Portuguese/German/French language
+
 ### October 31, 2023
 
 #### Feature Updates
@@ -59,29 +95,29 @@
 
 #### Feature Updates
 * App > App
-    * Changed the URL of token verification entered in NHN Cloud Online Contact screen from `https://gamebase-web.cloud.toast.com` to `https://web-gamebase.nhncloud.com`
+        * Changed the URL of token verification entered in NHN Cloud Online Contact screen from `https://gamebase-web.cloud.toast.com` to `https://web-gamebase.nhncloud.com`
 
 ### June 13, 2023
 
 #### Feature Updates
 * App > App
-    * Add a universalLink entry to Additional information for Weibo login authentication.
+        * Add a universalLink entry to Additional information for Weibo login authentication.
 	
 ### May 16, 2023
 
 #### Added Features
 * Purchase (IAP) > Store
-    * Added MyCard store
+        * Added MyCard store
 * Coupon > Issue Coupon
-    * Added Galaxy store
+        * Added Galaxy store
 
 ### April 25, 2023
 
 #### Added Features
 * Push > Push 
-    * Added paging to the scheduled push list
+        * Added paging to the scheduled push list
 * Analytics > User Metrics > Inflow/Outflow
-    * Added monthly inflow/outflow metrics
+        * Added monthly inflow/outflow metrics
 
 ### April 11, 2023
 
@@ -93,7 +129,7 @@
 
 #### Added Features
 * Purchase (IAP) > Payment Information
-    * Added the feature to view and register payments with product information unregistered and register
+        * Added the feature to view and register payments with product information unregistered and register
 
 #### Feature Updates
 * Analytics > User Metrics > User Metrics
@@ -103,7 +139,7 @@
 
 #### Feature Updates
 * Purchase (IAP) > Payment Information
-    * Improved so that the status can be changed from 'Reserved' to 'Success' (Google Play Store excluded)
+        * Improved so that the status can be changed from 'Reserved' to 'Success' (Google Play Store excluded)
 
 ### February 28, 2023
 
@@ -113,13 +149,13 @@
 
 #### Added Features
 * Member > Member
-    * Added a feature to search for members by Device Key
+        * Added a feature to search for members by Device Key
 
 ### February 14, 2023
 
 #### Feature Updates
 * Management > Alarm > Recipient List
-	* Added support for SMS alarm receiving feature for IAM members
+	    * Added support for SMS alarm receiving feature for IAM members
 
 ### January 10, 2023
 
@@ -139,7 +175,7 @@
 
 #### Feature Updates
 * Analytics > User Indicators > Retention
-    * Changed the maximum retention period from 90 days to 180 days
+        * Changed the maximum retention period from 90 days to 180 days
 
 ### November 29, 2022
 
@@ -382,10 +418,10 @@
 	* Added a template feature where users can enter details depending on an inquiry type
 	* Added an internationalization feature to the customer inquiry reply template
 * Analytics
-    * Added a feature to provide MCU/ACU data when a filter is selected
-        * MCU data is provided from August 11
+        * Added a feature to provide MCU/ACU data when a filter is selected
+            * MCU data is provided from August 11
 * Analytics > Real-Time Monitoring > Concurrent Users
-	* Added a feature to provide push notifications scheduling history
+	    * Added a feature to provide push notifications scheduling history
 
 #### Bug Fixes
 * Customer Center > Customer Inquiry
@@ -572,7 +608,7 @@ Push > Push (Old) Console menu feature has been removed.
 #### Feature Updates
 * [Console]
 	* Analytics > Live Monitoring: display color changes when there is a gain/loss in day-over-day metric data
-		* Increase: blue->red, decrease: red->blue
+		* Increase: blue > red, decrease: red > blue
 	* Analytics > Sales Metrics > Payment Amount: Now sales data comparison can be viewed "per store" and "per IdP" in addition to the previous "per country"
 	* Operation > announcement: setting to move to Customer Center added in the Read More link
 	* Customer Center > Customer Inquiry: Auto Translation function added in the Send Reply settings
@@ -910,14 +946,15 @@ you may encounter an issue during reprocessing if a different billing client ver
     		- With 'Exclude Test Payment', the analytics sales indicators show all but test payment.
 		- Purchase (IAP): Set currency code for payment indicators on the initial access to purchase (IAP) menu
 	- Only the initial setting is available, and the Analytics sales indicators show in the configured currency code.
-  	- Added the 'View on Desktop' feature on the mobile console (including TOAST app)
+  	- Added the 'View on Desktop' feature on the mobile console (including NHN Gameplatform app)
 
 #### Feature Updates
 
 - [Console]
-  	- App  >  Installation URL: Additionally apply available scheme for input URL  
-    		- Previously: Common ('http://', 'https://'), Android('market://')
-    		- Now: iOS('itms://', 'itmss://', 'itms-apps://'), Android('intent://')
+- App  >  Installation URL: Additionally apply available scheme for input URL  
+- Previously: Common ('http://', 'https://'), Android('market://')
+- Now: iOS('itms://', 'itmss://', 'itms-apps://'), Android('intent://')
+
 - [SDK] 2.7.2
   	- (Unity) Updated FacebookAdapter  
     		- Compatibility testig from v7.9.4 to v7.18.1
@@ -935,7 +972,7 @@ you may encounter an issue during reprocessing if a different billing client ver
 #### Bug Fixes
 
 - [Console]
-  	- Analytics: Fixed an issue in which the sales indicator is displayed as '0' when the currency code is in coins
+- Analytics: Fixed an issue in which the sales indicator is displayed as '0' when the currency code is in coins
 
 ### February 25, 2020
 
@@ -1038,7 +1075,7 @@ you may encounter an issue during reprocessing if a different billing client ver
 * [Console]
   * Coupons >Issuance: Fixed the abnormal downloading when downloading a coupon after session is expired  
   * Analytics > Real-time Monitoring > Dashboard: Fixed data of the previous date wrongly displayed as 0  
-     Fixed the issue in which the page is not properly displayed for a disabled product, when accessing relevant menu of TOAST Product (e.g. IAP, Push, or AppGuard)
+     Fixed the issue in which the page is not properly displayed for a disabled product, when accessing relevant menu of NHN Cloud Product (e.g. IAP, Push, or AppGuard)
 
 ### November 20, 2019
 
@@ -1698,8 +1735,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 		* Transfer Key 발급 API (IssueTransferKey)
 		* 발급된 TransferKey를 사용하여 계정 이전을 요청하는 API (RequestTransfer)
     - (console)회원메뉴의 매핑이력조회 탭에서 Transfer 이력 확인이 가능
-* 이용정지 등록시 사용자의 리더보드(랭킹) 데이터를 삭제할 수 있는 옵션 추가(TOAST Leaderboard를 사용하는 경우에 한함)
-    - 이용정지 등록 메뉴를 이용하거나 App Guard 연동 페이지에서 사용 가능
+* 이용정지 등록시 사용자의 리더보드(랭킹) 데이터를 삭제할 수 있는 옵션 추가(NHN Cloud Leaderboard를 사용하는 경우에 한함)
+    - 이용정지 등록 메뉴를 이용하거나 NHN App Guard 연동 페이지에서 사용 가능
 
 #### 버그 수정
 * [SDK] 1.9.0
@@ -1955,4 +1992,4 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 	* 하나의 User가 여러 개의 외부 IDP를 동시에 사용할 수 있도록 mapping기능을 제공
 	* 게임운영을 위한 게임 앱 상태관리, 점검, 긴급공지 등의 기능을 웹콘솔로 제공
 	* 실시간 운영지표 확인 가능한 웹콘솔 화면 제공
-	* TOAST Cloud상품 연동 : PUSH, IAP
+	* NHN Cloud상품 연동 : PUSH, IAP
