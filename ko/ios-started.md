@@ -46,7 +46,7 @@ Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
 |  | GamebaseAuthTwitterAdapter.xcframework | | Twitter 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.11.0 | LINE 로그인을 지원 | iOS 13 이상 |
 |  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 12 이상 |
-|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.12.0 | Hangame 로그인을 지원 | iOS 12 이상 |
+|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.13.1 | Hangame 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.3.8 | Weibo 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.17.5 | Kakao 로그인을 지원 | iOS 12 이상 |
 | Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit<br/>NHNCloudIAP 1.8.1 | 게임 내 결제 지원 | iOS 12 이상 |
@@ -201,6 +201,16 @@ end
     <string>fbapi</string>
     <string>fb-messenger-share-api</string>
 </array>
+```
+
+* Info.plist 파일에 FacebookAppID, FacebookClientToken, FacebookDisplayName을 등록합니다.
+```
+<key>FacebookAppID</key>
+<string>{FACEBOOK_APP_ID}</string>
+<key>FacebookClientToken</key>
+<string>{FACEBOOK_CLIENT_TOKEN}</string>
+<key>FacebookDisplayName</key>
+<string>{FACEBOOK_DISPLAY_NAME}</string>
 ```
 
 #### Google
