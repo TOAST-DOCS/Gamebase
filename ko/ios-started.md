@@ -136,6 +136,8 @@ Gamebase iOS SDK는 CocoaPods를 통해서도 설정할 수 있습니다.
 platform :ios, '12.0'
 
 target 'SampleApplication' do
+    use_frameworks!
+    
     pod 'Gamebase'
     pod 'GamebaseAuthFacebookAdapter'
     pod 'GamebaseAuthGamecenterAdapter'
