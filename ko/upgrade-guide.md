@@ -2,6 +2,16 @@
 
 ## 2.63.0
 
+### iOS
+
+* Facebook SDK가 17.0.0으로 업데이트되면서 Info.plist에 FacebookClientToken과 FacebookDisplayName을 추가해야 합니다.
+```
+<key>FacebookClientToken</key>
+<string>{FACEBOOK_CLIENT_TOKEN}</string>
+<key>FacebookDisplayName</key>
+<string>{FACEBOOK_DISPLAY_NAME}</string>
+```
+
 ### Unreal
 
 * Android Firebase Notification 설정 방법이 변경되어 플러그인 내부에 google-services-json.xml 파일이 아닌 설정 툴에서 직접 지정하도록 변경되었습니다.
