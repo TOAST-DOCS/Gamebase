@@ -3,11 +3,11 @@
 ### 2.63.0 (2024. 04. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.63.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
+#### 機能追加
 
-* (MacOS) WebView 신규 지원
+* (MacOS) WebView新規サポート
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.63.0](./release-notes-android/#2620-2024-04-23)
 * [Gamebase iOS SDK 2.63.0](./release-notes-ios/#2620-2024-04-23)
 
@@ -17,7 +17,8 @@
 #### 機能追加
 * iOS個人情報保護ポリシーに対応しました。
     * Gamebase SDKにPrivacy manifestと署名を適用しました。
-* Gamebase初期化後に返されるLaunchingInfo VOでテスト端末であることを知ることができるtestDeviceフィールドが追加されました。
+* Gamebase初期化後に返されるLaunchingInfo VOでテスト端末であることを知らせるためのフィールドが追加されました。
+    * **launchingInfo.user.testDevice**
 * (MacOS, Windows) TOASTタイプサポートに 対してFAQ/告知事項を直接開くことができる機能を追加しました。
 
 ### 2.61.0 (2024. 02. 27.) 

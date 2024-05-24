@@ -8,9 +8,7 @@ AndroidやiOSでプッシュを設定する方法は、次の文書を参照し�
 
 * Android
     * [Android Push Settings](aos-push/#settings)
-    * [Firebase Notification Settings](aos-started/#firebase-notification)
-        * Androidビルド時にres/values/google-services-json.xmlファイル含まれている必要があるため、ガイドを参考にして作成します。
-        * Plugins/Gamebase/Source/Gamebase/ThirdParty/Android/res/values/google-services-json.xmlパスにファイルがあります。
+    * [Firebase Notification Settings](aos-started/₩1#firebase-notification)
 * iOS
     * [iOS Push Settings](ios-push#settings)
 

@@ -19,7 +19,8 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.62.0/GamebaseSDK-Android.zip)
 
 #### 機能追加
-* Gamebase初期化後に返されるLaunchingInfo VOでテスト端末であることを知ることができるtestDeviceフィールドが追加されました。
+* Gamebase初期化後に返されるLaunchingInfo VOでテスト端末であることを知らせるためのフィールドが追加されました。
+    * **launchingInfo.user.testDevice**
 
 #### 機能改善/変更
 * 外部SDKアップデート: Hangame Android SDK(1.9.0)
