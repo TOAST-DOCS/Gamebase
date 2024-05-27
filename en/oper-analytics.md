@@ -104,18 +104,33 @@ User indicators are available on each environment.
     * Paying Users (PU): Users (game users) who pay for products (=renewed PU +New PU)
     * Purchase Amount: Total amount paid by a user  
 
-### User Inflow and Outflow  
+### User Inflow and Outflow
+![analytics_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_05_kr_240103.png)
 
-Inflow and outflow of app users are available on a daily basis. 
+You can find a day-by-day trend of app user inflow and outflow.
 
-![analytics_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_05_en_240103.png)
+* Incoming users (new + returning): Incoming users are the sum of new and returning users (new + returning).
+* Newly registered users
+  * Daily: Newly registered users. Users for whom login logs were first collected between 0:00 and 24:00 on the same day (based on memberno)
+  * Weekly: Newly registered users. Users for whom login logs were first collected in a given week (by memberno)
+  * Monthly: Newly registered users. Users for whom login logs were first collected in a given month (by memberno)
+* Returning users
+  * Daily: Users for whom no logs were collected in the previous 8 days on a given day
+  * Weekly: Users for whom no logs were collected in the previous week but logs were collected in a given week
+  * Monthly: Users for whom no logs were collected in the previous month but logs were collected in a given month
+* Outgoing users (unenrolled + churned): Outgoing users are the sum of unenrolled users and inactive users (unenrolled + churned users)
+* Unenrolled users
+  * Daily: Unenrolled users. Number of users whose memberno was deleted from 0:00 to 24:00 on the same day
+  * Weekly: Unenrolled users. Number of users whose memberno was deleted in a given week
+  * Monthly: Unenrolled users. Number of users whose memberno was deleted in a given month
+* Churned users
+  * Daily: Users for whom no logs were collected in the 7 days prior to the reference date.
+  * Weekly: Users for whom logs were collected in the previous week, but not in a given week.
+  * Monthly: Users for whom logs were collected in the previous month, but no logs were collected in a given month
+* Continuous users
+  * Weekly: Users for whom logs were collected in both the previous and given week
+  * Monthly: Users for whom logs were collected in with the previous and given month
 
-* User Inflow (new + returned): User inflow is the combination of new and returned users (=new users + returned users)
-* Newly Registered Users: Newly registered users whose first login logs are collected around the clock of the day (by member number)
-* Returned Users: Users whose logs are not collected during the previous 8 days 
-* User Outflow (withdrawn + inactive): User outflow is the combination of withdrawn and inactive users (=withdrawn users + inactive users)
-* Withdrawn Users: Users who have withdrawn, whose member numbers have been deleted around the clock of the day
-* Inactive Users: Users whose logs are not collected during the previous 7 days 
 
 ### Retention
 ![analytics_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_06_en_240103.png)
