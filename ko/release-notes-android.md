@@ -2,15 +2,14 @@
 
 ### 2.64.0 (2024. 5. 28.)
 
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.46.0/GamebaseSDK-Android.zip)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.64.0/GamebaseSDK-Android.zip)
 
 #### 기능 개선/변경
 * 외부 SDK 업데이트: Kakaogame SDK (3.19.0), PAYCO SDK (1.5.14)
-* 이미지 공지 및 약관 팝업에서 사용되는 Popup WebView를 개선하였습니다.
 * 약관 팝업창이 떠있는 상태에서 back key가 동작하지 않도록 변경되었습니다.
 
 #### 버그 수정
-* API 19~23에서 String Raw 리소스 참조 실패하는 버그가 수정되었습니다.
+* API Level 23(OS 6.0, M) 이하 단말기에서 문자열 리소스 참조 실패로 Gamebase 내부 메세지가 정상 표시되지 않는 버그를 수정했습니다.
 
 ### 2.63.0 (2024. 04. 23.)
 
