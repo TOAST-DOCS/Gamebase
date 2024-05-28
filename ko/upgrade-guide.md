@@ -1,5 +1,11 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.64.0
+
+### iOS
+
+* Kakaogame 인증 최소 지원 버전이 12.0에서 13.0으로 변경되었습니다.
+
 ## 2.63.0
 
 ### iOS
