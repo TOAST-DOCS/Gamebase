@@ -1,5 +1,13 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.63.0
+
+### Unreal
+
+* Changed the way Firebase Notification is set up in Android to use the settings tool rather than modifying the google-services-json.xml file inside the plugin. 
+    * Removed the previously provided Gamebase/Source/Gamebase/ThirdParty/Android/res/values/google-services-json.xml file.
+    * You can now set the `GoogleServicesFilePath` value under FCM in the Push item in the [Android Settings Tool](./unreal-started/#android-settings) to the google-services.json file downloaded from the Firebase console instead of the google-services-json.xml.
+
 ## 2.62.0
 
 ### Android

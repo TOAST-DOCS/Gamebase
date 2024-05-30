@@ -64,17 +64,22 @@ Supported Platforms
 1. Select **Edit > Project Settings** from the editor menu.
 2. In the Project Settings window, under Plugin category, select **Gamebase - Android**.
 
-![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.58.0.png)
+![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-settings-2.63.0.png)
 
 * Authentication
-    * Activate the IdP to use.
+    * Enable the IdP to use.
     * To use Hangame IdP, please contact our Customer Center.
+* Push
+    * Enable the push service to use.
+* FCM
+    * Enable the feature.    
+    * Specify the path to the google-services.json file downloaded during GoogleServicesFilePath - [Firebase Notification Settings](./aos-started/#firebase-notification).
 * Purchase
     * Select the store to use.
     * ONE Store
+        * Enable the feature.
         * Select View Option - Full payment screen (Full) or Payment popup window (Popup).
-* Push
-    * Enable the push service to use.
+
 
 
 #### An issue where Google Play authentication and payment does not complete
