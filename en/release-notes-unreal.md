@@ -18,7 +18,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.62.0/GamebaseSDK-Unreal.zip)
 
 #### Added Feature
-* (iOS) Applied privacy manifest and signature to Gamebase SDK.
+* (iOS) Applied privacy manifest and signature to the iOS framework in Gamebase SDK.
 
 #### Feature Updates
 * Improved internal logic.
