@@ -1,5 +1,13 @@
 ## Game > Gamebase > リリースノート
 
+### 2.63.1 (2024. 05. 14.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.63.1/GamebaseSDK-iOS.zip)
+
+#### 機能改善/変更
+* 外部SDKアップデート
+    * Hangame iOS SDK (1.13.1)
+* 内部ロジック改善
+
 ### 2021. 04. 19.
 
 #### バグ修正

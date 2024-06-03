@@ -46,7 +46,7 @@ Gamebase.xcframework及び必要なadapterをダウンロードします。<br/>
 |  | GamebaseAuthTwitterAdapter.xcframework | | Twitterログインをサポート | iOS 12以上 |
 |  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.11.0 | LINEログインをサポート | iOS 13以上 |
 |  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 12以上<br/>arm64サポート<br/> |
-|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.12.0 | Hangameログインをサポート | iOS 12以上 |
+|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.13.1 | Hangameログインをサポート | iOS 12以上 |
 |  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.3.8 | Weiboログインをサポート | iOS 12以上 |
 |  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.17.5 | Kakaoログインをサポート | iOS 12以上 |
 | Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit.xcframework<br/>NHNCloudIAP 1.8.1 | ゲーム内決済をサポート | iOS 12以上 |
@@ -136,6 +136,8 @@ Gamebase iOS SDKは、CocoaPodsを使用して設定できます。
 platform :ios, '12.0'
 
 target 'SampleApplication' do
+    use_frameworks!
+
     pod 'Gamebase'
     pod 'GamebaseAuthFacebookAdapter'
     pod 'GamebaseAuthGamecenterAdapter'
@@ -201,6 +203,16 @@ end
     <string>fbapi</string>
     <string>fb-messenger-share-api</string>
 </array>
+```
+
+* Info.plistファイルにFacebookAppID、FacebookClientToken、FacebookDisplayNameを登録します。
+```
+<key>FacebookAppID</key>
+<string>{FACEBOOK_APP_ID}</string>
+<key>FacebookClientToken</key>
+<string>{FACEBOOK_CLIENT_TOKEN}</string>
+<key>FacebookDisplayName</key>
+<string>{FACEBOOK_DISPLAY_NAME}</string>
 ```
 
 #### Google
