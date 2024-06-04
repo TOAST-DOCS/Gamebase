@@ -46,7 +46,7 @@ Then, include corresponding SDK files to a target of your project.
 |  | GamebaseAuthTwitterAdapter.xcframework | | Supports Twitter login | iOS 12 or later |
 |  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.11.0 | Supports LINE login  | iOS 13 or later |
 |  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 12 or later |
-|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.8.6 | Supports Hangame login | iOS 12 or later |
+|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.13.1 | Supports Hangame login | iOS 12 or later |
 |  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.3.4 | Supports Weibo login | iOS 12 or later |
 |  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.17.5 | Supports Kakao login | iOS 12 or later |
 | Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit<br/>NHNCloudIAP 1.8.1 | Supports in-game purchase | iOS 12 or later |
@@ -54,7 +54,6 @@ Then, include corresponding SDK files to a target of your project.
 
 
 > <font color="red">[Caution]</font><br/>
->
 > 
 > Gamebase SDK iOS 2.13.0 or later supports Sign In with Apple in iOS 9 or later, and additionally the Service ID needs to be set in the Gamebase Console.
 
@@ -106,7 +105,6 @@ By decompression, following SDKs will show, including Gamebase.xcframework.
 ![Other Linker Flags](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
 * 6) When using NaverAuthAdapter, the **NaverThirdPartyLogin.xcframework** file provided by NAVER SDK should be added to **Target > Build Phases > Embeded Frameworks**.
  ![Naver Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_2.59.0.png)
- ![Naver Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.8.0.png)
  * 7) When using LineAuthAdapter, the **LineSDK.xcframework** file provided by LINE SDK should be added to **Target > Build Phases > Embeded Frameworks**.
  ![LINE Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.9.1.png)
 
@@ -138,6 +136,8 @@ You can set the Gamebase iOS SDK with CocoaPods.
 platform :ios, '12.0'
 
 target 'SampleApplication' do
+    use_frameworks!
+
     pod 'Gamebase'
     pod 'GamebaseAuthFacebookAdapter'
     pod 'GamebaseAuthGamecenterAdapter'
@@ -203,6 +203,16 @@ end
     <string>fbapi</string>
     <string>fb-messenger-share-api</string>
 </array>
+```
+
+* Register FacebookAppID, FacebookClientToken, FacebookDisplayName to the Info.plist file.
+```
+<key>FacebookAppID</key>
+<string>{FACEBOOK_APP_ID}</string>
+<key>FacebookClientToken</key>
+<string>{FACEBOOK_CLIENT_TOKEN}</string>
+<key>FacebookDisplayName</key>
+<string>{FACEBOOK_DISPLAY_NAME}</string>
 ```
 
 #### Google

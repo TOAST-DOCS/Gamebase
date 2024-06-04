@@ -1,5 +1,18 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.63.0
+
+### iOS
+
+* With the Facebook SDK updated to 17.0.0, you need to add FacebookClientToken and FacebookDisplayName to the Info.plist file.
+
+```
+<key>FacebookClientToken</key>
+<string>{FACEBOOK_CLIENT_TOKEN}</string>
+<key>FacebookDisplayName</key>
+<string>{FACEBOOK_DISPLAY_NAME}</string>
+```
+
 ## 2.62.0
 
 ### Android

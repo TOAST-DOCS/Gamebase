@@ -23,10 +23,10 @@
 ### 2.63.1 (2024. 05. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.63.1/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* External SDK update
     * Hangame iOS SDK (1.13.1)
-* 내부 로직 개선
+* Improved internal logic
 
 ### 2.63.0 (2024. 04. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.63.0/GamebaseSDK-iOS.zip)
