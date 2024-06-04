@@ -31,19 +31,20 @@
 ### 2.63.0 (2024. 04. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.63.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* External SDK update
     * Google iOS SDK (7.1.0)
     * Facebook iOS SDK (17.0.0)
     * Weibo iOS SDK (3.3.8)
-* 내부 로직 개선
+* Improved internal logic
 
 ### 2.62.0 (2024. 03. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.62.0/GamebaseSDK-iOS.zip)
 
 #### Added Features
 * Applied Privacy manifest and signature to Gamebase and Gamebase Adapter SDK.
-* Added the testDevice field to indicate a test device in LaunchingInfo VO that returns after Gamebase is initialized.
+*  Added a field to the LaunchingInfo VO returned after Gamebase initialization to indicate that it is a test device.
+    * **launchingInfo.user.testDevice**
 
 #### Feature Updates
 * Raised the minimum supported version of Xcode to 15.0. 

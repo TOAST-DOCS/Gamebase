@@ -9,8 +9,6 @@ For how to set up push on Android or iOS, refer to the following documents.
 * Android
     * [Android Push Settings](aos-push/#settings)
     * [Firebase Notification Settings](aos-started/#firebase-notification)
-        * When building for Android, the res/values/google-services-json.xml file must be included, so prepare the file by referring to the guide.
-        * The file is in the path Plugins/Gamebase/Source/Gamebase/ThirdParty/Android/res/values/google-services-json.xml.
 * iOS
     * [iOS Push Settings](ios-push#settings)
 

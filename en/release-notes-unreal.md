@@ -3,14 +3,14 @@
 ### 2.63.0 (2024. 04. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.63.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 추가
-* (Android) Firebase Notification 설정 방식이 변경되어 플러그인 내부에 google-services-json.xml 파일 수정이 아닌 [Android 설정 툴](./unreal-started/#android-settings)에서 google-services.json 파일 경로를 지정하도록 변경되었습니다.
-* (iOS) Gamebase Unreal SDK에 Privacy manifest와 서명을 적용했습니다.
+#### Added Feature
+* (Android) Changed the way Firebase Notification is set up to specify the path to the google-services.json file in the [Android Settings Tool](./unreal-started/#android-settings) rather than modifying the google-services-json.xml file inside the plugin. 
+* (iOS) Applied Privacy manifest and signature to Gamebase Unreal SDK.
 
-#### 기능 개선
-* (iOS) 빌드 시 오류가 발생하지 않도록 수정되었습니다.
+#### Feature Updates
+* (iOS) Fixed an issue where an error occurred during build.
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.63.0](./release-notes-android/#2630-2024-04-23)
 * [Gamebase iOS SDK 2.63.0](./release-notes-ios/#2630-2024-04-23)
 
@@ -18,7 +18,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.62.0/GamebaseSDK-Unreal.zip)
 
 #### Added Feature
-* (iOS) Applied privacy manifest and signature to Gamebase SDK.
+* (iOS) Applied privacy manifest and signature to the iOS framework in Gamebase SDK.
 
 #### Feature Updates
 * Improved internal logic.
