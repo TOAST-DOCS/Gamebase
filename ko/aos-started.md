@@ -155,23 +155,38 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
         
 #### Root level build.gradle
 
+* Google Play Billing Library(PBL) 6.x를 R8과 함께 사용하는 경우, Android 4.4(API 레벨 19)에서 동작하지 않는 문제가 발생할 수 있습니다.
+    * Gamebase Android SDK 2.65.0부터 PBL 6.2.1을 사용합니다.
+    * 이 문제를 해결하고 Android 4.4(API 레벨 19)를 지원하려면 프로젝트 수준(root level)의 build.gradle 또는 settings.gradle(AGP 7.1 이상)에 다음 선언을 추가하세요.
+
+            buildscript {
+                repositories {
+                    // Raw R8 releases.
+                    maven {
+                        url("https://storage.googleapis.com/r8-releases/raw")
+                    }
+                }
+
+                dependencies {
+                    classpath("com.android.tools:r8:8.1.46")
+                }
+            }
+
 * Huawei IAP를 사용하기 위해서 프로젝트 수준(root level)의 build.gradle 또는 settings.gradle(AGP 7.1 이상)에 다음 선언을 추가하세요.
 
-```groovy
-buildscript {
-    repositories {
-        ...
-        // [Huawei App Gallery] Maven repository address for the HMS Core SDK.
-        maven { url 'https://developer.huawei.com/repo/' }
-    }
+        buildscript {
+            repositories {
+                ...
+                // [Huawei App Gallery] Maven repository address for the HMS Core SDK.
+                maven { url 'https://developer.huawei.com/repo/' }
+            }
 
-    dependencies {
-        ...
-        // [Huawei App Gallery] AppGallery Connect plugin configuration. please use the latest plugin version.
-        classpath 'com.huawei.agconnect:agcp:1.6.0.300'
-    }
-}
-```
+            dependencies {
+                ...
+                // [Huawei App Gallery] AppGallery Connect plugin configuration. please use the latest plugin version.
+                classpath 'com.huawei.agconnect:agcp:1.6.0.300'
+            }
+        }
 
 #### Define Adapters
 
