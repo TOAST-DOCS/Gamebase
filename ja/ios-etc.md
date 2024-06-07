@@ -884,7 +884,7 @@ TCGBContactConfigurationでURLに追加情報を伝達できます。
 > <font color="red">[注意]</font><br/>
 >
 > サポートへのお問い合わせの際、ファイルを添付するために、カメラまたはアルバムへのアクセスが必要な場合があります。
-> info.plistに'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description'設定をしてください。
+> info.plistに'Privacy - Camera Usage Description', 'Privacy — Microphone Usage Description'設定をしてください。
 
 #### Request Contact URL
 

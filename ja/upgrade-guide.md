@@ -1,5 +1,23 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.63.0
+
+### iOS
+
+* Facebook SDKが17.0.0にアップデートされ、Info.plistにFacebookClientTokenとFacebookDisplayNameを追加する必要があります。
+```
+<key>FacebookClientToken</key>
+<string>{FACEBOOK_CLIENT_TOKEN}</string>
+<key>FacebookDisplayName</key>
+<string>{FACEBOOK_DISPLAY_NAME}</string>
+```
+
+### Unreal
+
+* Android Firebase Notificationの設定方法が変更され、プラグイン内のgoogle-services-json.xmlファイルではなく、設定ツールで直接指定するように変更されました。
+    * 提供していたGamebase/Source/Gamebase/ThirdParty/Android/res/values/google-services-json.xmlファイルが削除されました。
+    * google-services-json.xmlではなく、Firebaseコンソールからダウンロードした google-services.jsonファイルを[Android設定ツール](./unreal-started/#android-settings)のPush項目内のFCMの下にある`GoogleServicesFilePath`の値を設定してください。
+
 ## 2.62.0
 
 ### Android

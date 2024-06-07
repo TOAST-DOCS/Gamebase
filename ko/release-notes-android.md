@@ -1,15 +1,31 @@
 ## Game > Gamebase > 릴리스 노트 > Android
 
-### 2.64.0 (2024. 5. 28.)
+### 2.65.0 (2024. 06. 11.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.0/GamebaseSDK-Android.zip)
+
+#### 기능 추가
+* 이미지 공지 기능에 신규 타입이 추가되었습니다.
+    * `롤링 팝업` 타입이 추가되었습니다.
+    * 기존의 이미지 공지는 `개별 팝업` 타입으로 표기됩니다.
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: NHN Cloud SDK(1.9.0), Hangame Android SDK(1.13.0)
+    * Google billing client version 6.2.1 버전이 적용되었습니다.
+    * Android OS 4.4(API Level 19) 단말기에서 결제하려면 추가 설정이 필요합니다. 자세한 내용은 다음 링크를 참고 부탁드립니다.
+        * [NHN Cloud > SDK 사용 가이드 > IAP > Android](https://docs.nhncloud.com/en/nhncloud/en/nhncloud-sdk/iap-android/#issue-for-android-44-api-level-19)
+* 내부 로직 개선
+
+### 2.64.0 (2024. 05. 28.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.64.0/GamebaseSDK-Android.zip)
 
 #### 기능 개선/변경
 * 외부 SDK 업데이트: Kakaogame SDK (3.19.0), PAYCO SDK (1.5.14)
-* 약관 팝업창이 떠있는 상태에서 back key가 동작하지 않도록 변경되었습니다.
+* 약관 팝업이 열려 있는 상태에서 뒤로 가기 키(back key)가 동작하지 않도록 변경하였습니다.
 
 #### 버그 수정
-* API Level 23(OS 6.0, M) 이하 단말기에서 문자열 리소스 참조 실패로 Gamebase 내부 메세지가 정상 표시되지 않는 버그를 수정했습니다.
+* API Level 23(OS 6.0, M) 이하 단말기에서 문자열 리소스 참조 실패로 Gamebase 내부 메시지가 정상 표시되지 않는 버그를 수정했습니다.
 
 ### 2.63.0 (2024. 04. 23.)
 
@@ -81,6 +97,9 @@
 
 ### 2.57.0 (2023. 10. 31.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.57.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: Naver Login Android SDK(5.8.0)
 
 #### 기능 추가
 * Exception을 Log & Crash Search로 전송할 수 있는 API가 추가되었습니다.
