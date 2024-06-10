@@ -85,7 +85,7 @@ Idp별 자세한 설정 방법은 [Authentication Information](#authentication-i
 설정한 정보는 클라이언트 초기화 이후에 '런칭정보'에서 입력된 정보를 확인할 수 있습니다.
 
 ### 이미지 공지 팝업
-![gamebase_app_05_ko_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/ko/gamebase_app_05_ko_240105.png)
+![gamebase_app_25_ko_240611](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/ko/gamebase_app_25_ko_240611.png)
 이미지 공지 팝업의 기본적인 설정을 할 수 있으며, 설정한 정보는 모든 이미지 공지에 일괄 적용됩니다.
 
 - 이미지 공지 타입: 이미지 공지 게시 타입을 지정할 수 있습니다. 선택할 수 있는 게시 타입은 아래와 같습니다.
