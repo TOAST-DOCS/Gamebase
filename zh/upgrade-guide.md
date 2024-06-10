@@ -1,27 +1,64 @@
 ## Game > Gamebase > Upgrade Guide
 
-## 2.62.0
+## 2.65.0
 
 ### Android
 
-* Gamebase Android SDK 2.62.0은 Android 7.0(API Level 24) 미만 단말기에서 다음 이슈가 발생합니다. 
-    * Gamebase.loginForLastLoggedInProvider 호출이 항상 실패합니다.
-    * Guest 계정이 유실됩니다.
-    * 이슈가 해결된 Gamebase Android SDK 2.62.1을 사용하세요.
+* Google billing client version 6.2.1 버전 적용으로 Android OS 4.4(API Level 19) 단말기에서 결제하려면 추가 설정이 필요합니다.
+    * 자세한 내용은 [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > Gradle > Root level build.gradle](./aos-started/#root-level-buildgradle) 가이드를 참고하시기 바랍니다.
 
 ### iOS
-* Xcode 최소 지원 버전이 14.1에서 15로 변경되었습니다.
-* Gamebase iOS 최소 지원 버전이 11.0에서 12.0으로 변경되었습니다.
-* Gamebase와 Gamebase Adapter에 Privacy Manifest와 서명을 적용했습니다.
-    * 2024년 5월 1일 이후 신규 출시 또는 업데이트를 하는 경우, Apple 정책에 따라 Gamebase iOS SDK 2.62.0 이상을 적용해야 합니다.
-* LINE 인증 최소 지원 버전이 11.0에서 13.0으로 변경되었습니다.
+
+* Facebook SDK가 17.0.1로 업데이트되면서 Dynamic Framework로 변경되었습니다.
+    * Gamebase SDK를 다운로드하여 Xcode에 직접 설정하는 경우, Facebook SDK를 Embeded Frameworks에 추가해야 합니다.
+    * 자세한 내용은 [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > Setting > Xcode Settings](./ios-started/#xcode-settings) 가이드를 참고하시기 바랍니다.
+
+## 2.64.0
+
+### iOS
+
+* Kakaogame 인증 최소 지원 버전이 12.0에서 13.0으로 변경되었습니다.
+
+## 2.63.0
+
+### iOS
+
+* Facebook SDK가 17.0.0으로 업데이트되면서 Info.plist에 FacebookClientToken과 FacebookDisplayName을 추가해야 합니다.
+```
+<key>FacebookClientToken</key>
+<string>{FACEBOOK_CLIENT_TOKEN}</string>
+<key>FacebookDisplayName</key>
+<string>{FACEBOOK_DISPLAY_NAME}</string>
+```
+
+### Unreal
+
+* Android Firebase Notification 설정 방법이 변경되어 플러그인 내부에 google-services-json.xml 파일이 아닌 설정 툴에서 직접 지정하도록 변경되었습니다.
+    * 기존에 제공되었던 Gamebase/Source/Gamebase/ThirdParty/Android/res/values/google-services-json.xml 파일이 제거되었습니다.
+    * Firebase 콘솔에서 다운로드한 google-services.json 파일을 [Android 설정 툴](./unreal-started/#android-settings)의 Push 항목 내 FCM 하위에 있는 `GoogleServicesFilePath` 값을 설정합니다.
+
+## 2.62.0
+
+### Android
+     
+* Gamebase Android SDK 2.62.0 causes the following issues on devices below Android 7.0 (API Level 24). 
+    * The Gamebase.loginForLastLoggedInProvider call always fails.
+    * Guest accounts are lost.
+    * Please use Gamebase Android SDK 2.62.1 where the issue was fixed.
+
+### iOS
+* Raised the minimum supported version of Xcode from 14.1 to 15.
+* Raised the minimum supported version of Gamebase iOS from 11.0 to 12.0.
+* Applied Privacy Manifest and signature to Gamebase and Gamebase Adapter.
+    * For new releases or updates after May 1, 2024, you must apply Gamebase iOS SDK 2.62.0 or later according to the Apple policy.
+* Raised the minimum supported version of LINE from 11.0 to 13.0.
 
 ### Unity
-
-* Apple 개인정보 보호 정책을 준수하기 위한 대응 조치가 완료되었습니다.
-    * Privacy Manifest 파일이 추가되었습니다.
-    * Framework에 서명이 적용되었습니다.
-    * 2024년 5월 1일 이후에는 새로운 출시나 업데이트를 위해 Apple 정책에 따라 Gamebase SDK for Unity 2.62.0 이상을 적용해야 합니다.
+   
+* Completed corresponding actions to comply with the Apple Privacy Policy.
+    * Added the Privacy Manifest file.
+    * Applied signatures to Framework.
+    * For new releases or updates after May 1, 2024, you must apply Gamebase SDK for Unity 2.62.0 or later according to the Apple policy.
 
 ## 2.59.0
 
@@ -81,7 +118,7 @@
 
 ### iOS
 
-* Changed SDK to xcframework.
+* Changed Gamebase SDK to xcframework.
 * Updated Facebook iOS SDK to 14.1.0. Set the Facebook Client Token in AdditionalInfo in the Gamebase Console.
     * [Game > Gamebase > Console User Guide > App > App > Authentication Information > 1. Facebook](./oper-app/#1-facebook) 
 
