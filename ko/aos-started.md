@@ -14,18 +14,18 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 용도 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk | nhncloud-core-1.8.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 19(Kitkat, OS 4.4) |
+| Gamebase | gamebase-sdk | nhncloud-core-1.9.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 19(Kitkat, OS 4.4) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Apple 로그인을 지원 | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-16.1.2 | Facebook 로그인을 지원 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Google 로그인을 지원 | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.9.0 | Hangame 로그인을 지원 | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.13.0 | Hangame 로그인을 지원 | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | LINE 로그인을 지원 | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.8.0 | NAVER 로그인을 지원 | API 21(Lollipop, OS 5.0) |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.14 | PAYCO 로그인을 지원 | - |
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Twitter 로그인을 지원 | API 21(Lollipop, OS 5.0) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.5.0 | Weibo 로그인을 지원 | - |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Weibo 로그인을 지원 | - |
-|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.19.0<br>kakaogame.gamesdk-3.19.0<br>kakaogame.common-3.19.0<br>kakao.sdk.v2-auth-3.19.0<br>kakao.sdk.v2-partner-auth-3.19.0<br>kakao.sdk.v2-common-3.19.0<br>play-services-ads-identifier-17.0.0 | Kakao 로그인을 지원 | API 21(Lollipop, OS 5.0) |
+|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.19.0<br>kakaogame.gamesdk-3.19.0<br>kakaogame.common-3.19.0<br>kakao.sdk.v2-auth-3.19.0<br>kakao.sdk.v2-partner-auth-3.19.0<br>kakao.sdk.v2-common-3.19.0<br>play-services-ads-identifier-17.0.0 | Kakao 로그인을 지원 | API 23(Marshmallow, OS 6.0) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | 게임 내 결제 지원 | - |
 |  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Amazon Appstore를 지원 | - |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Samsung Galaxy Store를 지원 | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDK의 minSdkVersion은 18이지만, 실제 결제를 위해 설치해야 하는 Checkout 서비스 앱의 minSdkVersion은 21입니다. |
@@ -155,23 +155,38 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
         
 #### Root level build.gradle
 
+* Google Play Billing Library(PBL) 6.x를 R8과 함께 사용하는 경우, Android 4.4(API 레벨 19)에서 동작하지 않는 문제가 발생할 수 있습니다.
+    * Gamebase Android SDK 2.65.0부터 PBL 6.2.1을 사용합니다.
+    * 이 문제를 해결하고 Android 4.4(API 레벨 19)를 지원하려면 프로젝트 수준(root level)의 build.gradle 또는 settings.gradle(AGP 7.1 이상)에 다음 선언을 추가하세요.
+
+            buildscript {
+                repositories {
+                    // Raw R8 releases.
+                    maven {
+                        url("https://storage.googleapis.com/r8-releases/raw")
+                    }
+                }
+
+                dependencies {
+                    classpath("com.android.tools:r8:8.1.46")
+                }
+            }
+
 * Huawei IAP를 사용하기 위해서 프로젝트 수준(root level)의 build.gradle 또는 settings.gradle(AGP 7.1 이상)에 다음 선언을 추가하세요.
 
-```groovy
-buildscript {
-    repositories {
-        ...
-        // [Huawei App Gallery] Maven repository address for the HMS Core SDK.
-        maven { url 'https://developer.huawei.com/repo/' }
-    }
+        buildscript {
+            repositories {
+                ...
+                // [Huawei App Gallery] Maven repository address for the HMS Core SDK.
+                maven { url 'https://developer.huawei.com/repo/' }
+            }
 
-    dependencies {
-        ...
-        // [Huawei App Gallery] AppGallery Connect plugin configuration. please use the latest plugin version.
-        classpath 'com.huawei.agconnect:agcp:1.6.0.300'
-    }
-}
-```
+            dependencies {
+                ...
+                // [Huawei App Gallery] AppGallery Connect plugin configuration. please use the latest plugin version.
+                classpath 'com.huawei.agconnect:agcp:1.6.0.300'
+            }
+        }
 
 #### Define Adapters
 

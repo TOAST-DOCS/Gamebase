@@ -302,8 +302,8 @@ android {
             * 'Assets/Plugins/Android/MyAndroidProject.androidlib/res/values/google-services.xml'
 
 * Unrealビルドの場合
-    * Gamebase Unreal SDKで空のgoogle-service-json.xmlファイルを含めて配布しているので、「Unityビルドの場合」の説明に従ってjsonファイルから直接変換したxmlファイルに変更してください。
-    * もしEasyFirebaseのように、似たような形式のxmlを自動作成するContentがある場合、リソース重複により ビルドエラーが発生する場合があります。この時はgoogle-service-json.xmlファイルを除去してください。
+    * Unrealのプロジェクトの[Gamebase Android設定](./unreal-started/#android-settings)で`GoogleServicesFilePath`の値をFirebaseコンソールからダウンロードした`google-services.json`のパスに指定します。
+    * Firebase関連で他のプラグインを使う時、google-services.jsonのデータをAndroidリソースにする過程がある場合、Gamebaseが処理するリソース処理と重複してビルド中にエラーが発生する場合があります。この場合、Gamebase Androidの設定で`GoogleServicesFilePath`の値を空白にしておけば、GamebaseはそのjsonをAndroidリソースに変換する作業を行いません。
 
 ### AndroidManifest.xml
 

@@ -1,5 +1,19 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.65.0 (2024. 06. 11.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+
+* 이미지 공지 기능에 신규 타입이 추가되었습니다.
+    * 롤링 팝업 타입이 추가되었습니다.
+    * 기존의 이미지 공지는 팝업 타입으로 표기됩니다.
+* 내부 로직을 개선했습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.65.0](./release-notes-android/#2650-2024-06-11)
+* [Gamebase iOS SDK 2.65.0](./release-notes-ios/#2650-2024-06-11)
+
 ### 2.64.0 (2024. 05. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.64.0/GamebaseSDK-Unity.zip)
 
@@ -14,11 +28,11 @@
 ### 2.63.0 (2024. 04. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.63.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
+#### 機能追加
 
-* (MacOS) WebView 신규 지원
+* (MacOS) WebView新規サポート
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.63.0](./release-notes-android/#2620-2024-04-23)
 * [Gamebase iOS SDK 2.63.0](./release-notes-ios/#2620-2024-04-23)
 
@@ -28,7 +42,8 @@
 #### 機能追加
 * iOS個人情報保護ポリシーに対応しました。
     * Gamebase SDKにPrivacy manifestと署名を適用しました。
-* Gamebase初期化後に返されるLaunchingInfo VOでテスト端末であることを知ることができるtestDeviceフィールドが追加されました。
+* Gamebase初期化後に返されるLaunchingInfo VOでテスト端末であることを知らせるためのフィールドが追加されました。
+    * **launchingInfo.user.testDevice**
 * (MacOS, Windows) TOASTタイプサポートに 対してFAQ/告知事項を直接開くことができる機能を追加しました。
 
 ### 2.61.0 (2024. 02. 27.) 

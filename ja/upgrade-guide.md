@@ -1,5 +1,42 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.65.0
+
+### Android
+
+* Google billing client version 6.2.1 버전 적용으로 Android OS 4.4(API Level 19) 단말기에서 결제하려면 추가 설정이 필요합니다.
+    * 자세한 내용은 [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > Gradle > Root level build.gradle](./aos-started/#root-level-buildgradle) 가이드를 참고하시기 바랍니다.
+
+### iOS
+
+* Facebook SDK가 17.0.1로 업데이트되면서 Dynamic Framework로 변경되었습니다.
+    * Gamebase SDK를 다운로드하여 Xcode에 직접 설정하는 경우, Facebook SDK를 Embeded Frameworks에 추가해야 합니다.
+    * 자세한 내용은 [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > Setting > Xcode Settings](./ios-started/#xcode-settings) 가이드를 참고하시기 바랍니다.
+
+## 2.64.0
+
+### iOS
+
+* Kakaogame 인증 최소 지원 버전이 12.0에서 13.0으로 변경되었습니다.
+
+## 2.63.0
+
+### iOS
+
+* Facebook SDKが17.0.0にアップデートされ、Info.plistにFacebookClientTokenとFacebookDisplayNameを追加する必要があります。
+```
+<key>FacebookClientToken</key>
+<string>{FACEBOOK_CLIENT_TOKEN}</string>
+<key>FacebookDisplayName</key>
+<string>{FACEBOOK_DISPLAY_NAME}</string>
+```
+
+### Unreal
+
+* Android Firebase Notificationの設定方法が変更され、プラグイン内のgoogle-services-json.xmlファイルではなく、設定ツールで直接指定するように変更されました。
+    * 提供していたGamebase/Source/Gamebase/ThirdParty/Android/res/values/google-services-json.xmlファイルが削除されました。
+    * google-services-json.xmlではなく、Firebaseコンソールからダウンロードした google-services.jsonファイルを[Android設定ツール](./unreal-started/#android-settings)のPush項目内のFCMの下にある`GoogleServicesFilePath`の値を設定してください。
+
 ## 2.62.0
 
 ### Android

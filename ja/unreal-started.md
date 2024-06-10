@@ -60,18 +60,21 @@ lurim-nhn marked this conversation as resolved.
 1. エディタのメニュー **Edit > Project Settings**を選択します。
 2. Project SettingsウィンドウでPluginカテゴリーから**Gamebase**を選択します。
 
-![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.58.0.png)
+![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-settings-2.63.0.png)
 
 * Android - Authentication
     * 使用するIdPを有効にします。
     * Hangame IdPを使用する時は、サポートへお問い合わせください。
-* Android - Push
-    * 使用するPushを有効にします。
-* Android - Purchase
+* Push
+    * 使用したいプッシュサービスを有効にします。
+    * FCM
+        * 該当機能を使用する場合に有効になります。
+        * GoogleServicesFilePath - [Firebase Notification Settings](./aos-started/#firebase-notification)でダウンロードしたgoogle-services.jsonファイルのパスを指定します。
+* Purchase
     * 使用するストアを選択します。
     * ONE Store
+        * 該当ストアを使用する場合に有効化になります。
         * View Option - 全体決済画面(Full)とポップアップ決済画面(Popup)のいずれかを選択します。
-
 
 #### Google Play認証および決済ができない問題
 
