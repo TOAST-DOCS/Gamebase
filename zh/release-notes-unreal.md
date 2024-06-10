@@ -1,5 +1,16 @@
 ## Game > Gamebase > Release Notes > Unreal
 
+### 2.64.0 (2024. 06. 11.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.64.0/GamebaseSDK-Unreal.zip)
+
+#### 기능 개선
+* C++ 환경에 따라 경고가 발생하여 빌드 시 오류가 발생하는 코드가 수정되었습니다.
+* 내부 로직이 수정되었습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.64.0](./release-notes-android/#2640-2024-05-28)
+* [Gamebase iOS SDK 2.64.0](./release-notes-ios/#2640-2024-05-28)
+
 ### 2.63.0 (2024. 04. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.63.0/GamebaseSDK-Unreal.zip)
 
