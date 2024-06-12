@@ -11,8 +11,6 @@
 > * 빌드 환경: Xcode 15.0(iOS 17 SDK) 이상
 >
 
-<br/>
-
 > <font color="red">[주의]</font><br/>
 >
 > 일부 IdP 지원 시 **하단 3rd Party Gamebase Auth Adapters 표 안의 Support iOS Version 항목을 참고**하세요.
@@ -38,7 +36,7 @@ Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
 | Gamebase SDK | Gamebase Auth Adapter | External SDK & Compatible Version | 용도  | Support iOS Version |
 | --- | --- | --- | --- | --- |
 | Gamebase | Gamebase.xcframework<br/>Gamebase.bundle | NHNCloudSDK 1.8.1 | Gamebase의 Interface 및 핵심 로직을 포함 | iOS 12 이상 |
-| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.xcframework | FacebookSDK 17.0.0 | Facebook 로그인을 지원 | iOS 12 이상 |
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.xcframework | FacebookSDK 17.0.1 | Facebook 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthPaycoAdapter.xcframework | PaycoID Login 3rd SDK v1.5.11 | PAYCO 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthNaverAdapter.xcframework | naveridlogin-sdk-ios-4.2.1 | NAVER 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthGamecenterAdapter.xcframework | GameKit | Gamecenter 로그인을 지원 | iOS 12 이상 |
@@ -107,6 +105,8 @@ Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
  ![Naver Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_2.59.0.png)
  * 7) LineAuthAdapter를 사용하는 경우에는 LINE SDK에서 제공하는 **LineSDK.xcframework** 파일을 **Target > Build Phases > Embeded Frameworks**에 추가해야 합니다.
  ![LINE Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.9.1.png)
+ * 8) FacebookAuthAdapter를 사용하는 경우에는 Facebook SDK를 **Target > Build Phases > Embeded Frameworks**에 추가해야 합니다.
+ ![Facebook Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_2.65.0-facebook-embeded.png)
 
 > [INFO]
 >
