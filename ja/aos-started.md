@@ -14,11 +14,11 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 用途 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk | nhncloud-core-1.8.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebaseのインターフェイスおよびコアロジックを含む | API 19(Kitkat, OS 4.4) |
+| Gamebase | gamebase-sdk | nhncloud-core-1.9.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebaseのインターフェイスおよびコアロジックを含む | API 19(Kitkat, OS 4.4) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Appleログインをサポート | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-16.1.2 | Facebookログインをサポート | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Googleログインをサポート | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.9.1 | Hangameログインをサポート | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.13.0 | Hangameログインをサポート | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | Lineログインをサポート | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.7.0 | NAVERログインをサポート | API 21(Lollipop、OS 5.0) |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.14 | Paycoログインをサポート | - |
@@ -154,22 +154,38 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 
 #### Root level build.gradle
 
+* Google Play Billing Library(PBL) 6.xをR8と一緒に使用する場合、Android 4.4(APIレベル19)で動作しない問題が発生する可能性があります。
+    * Gamebase Android SDK 2.65.0からPBL 6.2.1を使用します。
+    * この問題を解決し、Android 4.4(APIレベル19)をサポートするには、プロジェクトレベル(root level)のbuild.gradleまたはsettings.gradle(AGP 7.1以上)に次の宣言を追加してください。
+
+            buildscript {
+                repositories {
+                    // Raw R8 releases.
+                    maven {
+                        url("https://storage.googleapis.com/r8-releases/raw")
+                    }
+                }
+
+                dependencies {
+                    classpath("com.android.tools:r8:8.1.46")
+                }
+            }
+
 * Huawei IAPを使用するにはプロジェクトレベル(root level)のbuild.gradleまたはsettings.gradle(AGP 7.1以上)に次の宣言を追加してください。
 
-```groovy
-buildscript {
-    repositories {
-        ...
-        // [Huawei App Gallery] Maven repository address for the HMS Core SDK.
-        maven { url 'https://developer.huawei.com/repo/' }
-    }
-    dependencies {
-        ...
-        // [Huawei App Gallery] AppGallery Connect plugin configuration. please use the latest plugin version.
-        classpath 'com.huawei.agconnect:agcp:1.6.0.300'
-    }
-}
-```
+        buildscript {
+            repositories {
+                ...
+                // [Huawei App Gallery] Maven repository address for the HMS Core SDK.
+                maven { url 'https://developer.huawei.com/repo/' }
+            }
+            
+            dependencies {
+                ...
+                // [Huawei App Gallery] AppGallery Connect plugin configuration. please use the latest plugin version.
+                classpath 'com.huawei.agconnect:agcp:1.6.0.300'
+            }
+        }            
 
 #### Define Adapters
 

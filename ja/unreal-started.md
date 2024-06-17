@@ -32,7 +32,6 @@ Gamebase Unreal SDKの使用環境および初期設定の説明を行います�
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
-<span style="color:#B60205; font-size: 10pt">■</span> UNREAL_EDITOR
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 #### Dependencies
