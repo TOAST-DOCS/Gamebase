@@ -3,14 +3,14 @@
 ### 2.64.0 (2024. 06. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.64.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 개선
-* 내부 로직을 개선했습니다.
+#### 機能改善
+* 内部ロジックを改善しました。
 
-#### 버그 수정
-* C++ 환경에 따라 경고가 발생하여 빌드 시 오류가 발생하는 코드가 수정되었습니다.
-* (Android) ProGuard 선언이 누락되어 API 호출 시 오류가 발생하는 내용이 수정되었습니다.
+#### バグ修正
+* C++環境によって警告が発生し、ビルド時にエラーが発生するコードを修正しました。
+* (Android) ProGuard宣言が抜けていてAPI呼び出し時にエラーが発生する内容を修正しました。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.64.0](./release-notes-android/#2640-2024-05-28)
 * [Gamebase iOS SDK 2.64.0](./release-notes-ios/#2640-2024-05-28)
 

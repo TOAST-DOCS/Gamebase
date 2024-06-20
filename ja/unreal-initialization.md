@@ -96,7 +96,6 @@ Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
-<span style="color:#B60205; font-size: 10pt">■</span> UNREAL_EDITOR
 
 ```cpp
 void SetDebugMode(bool isDebugMode);
@@ -121,7 +120,6 @@ Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
-<span style="color:#B60205; font-size: 10pt">■</span> UNREAL_EDITOR
 
 ```cpp
 void Initialize(const FGamebaseConfiguration& configuration, const FGamebaseLaunchingInfoDelegate& onCallback);
@@ -315,7 +313,7 @@ GetLaunchingInformations APIを利用すると、Initialize後にもLaunchingInf
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
-<span style="color:#B60205; font-size: 10pt">■</span> UNREAL_EDITOR
+<span style="color:#B60205; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 const FGamebaseLaunchingInfoPtr GetLaunchingInformations() const;
