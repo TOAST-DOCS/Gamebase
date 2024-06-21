@@ -34,7 +34,9 @@
 | Error | Error Code | Description |
 | --- | --- | --- |
 | NOT\_INITIALIZED | 1 | Gamebase.initialize가 호출되지 않았습니다. |
+| SERVER\_INVALID\_RESPONSE | 8003 | 서버에서 유효하지 않은 응답이 리턴되었습니다. |
 | UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | 이미지 공지 팝업 창 표시중 타임아웃이 발생하여 모든 팝업 창을 강제 종료합니다. |
+| UI\_IMAGE\_NOTICE\_NOT\_SUPPORTED\_OS | 6902 | 롤링 타입의 경우, API 19 이하의 단말기에서는 이미지 공지를 지원하지 않습니다. |
 
 **Example**
 
