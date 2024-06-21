@@ -4,28 +4,28 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* 이미지 공지 기능에 신규 타입이 추가되었습니다.
-    * `롤링 팝업` 타입이 추가되었습니다.
-    * 기존의 이미지 공지는 `개별 팝업` 타입으로 표기됩니다.
+#### 機能追加
+* イメージ告知機能に新規タイプが追加されました。
+    * `ローリングポップアップ`タイプが追加されました。
+    * 既存のイメージ告知は`個別ポップアップ`タイプと表記されます。
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: NHN Cloud SDK(1.9.0), Hangame Android SDK(1.13.0)
-    * Google billing client version 6.2.1 버전이 적용되었습니다.
-    * Android OS 4.4(API Level 19) 단말기에서 결제하려면 추가 설정이 필요합니다.
-        * 자세한 내용은 [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > Gradle > Root level build.gradle](./aos-started/#root-level-buildgradle) 가이드를 참고하시기 바랍니다.
-* 내부 로직 개선
+#### 機能改善/変更
+* 外部SDKアップデート: NHN Cloud SDK(1.9.0), Hangame Android SDK(1.13.0)
+    * Google billing client version 6.2.1バージョンが適用されました。
+    * Android OS 4.4(API Level 19)端末で決済するには追加設定が必要です。
+        * 詳細は[Game > Gamebase > Android SDK使用ガイド > はじめる > Setting > Gradle > Root level build.gradle](./aos-started/#root-level-buildgradle)ガイドを参照してください。
+* 内部ロジック改善
 
 ### 2.64.0 (2024. 05. 28.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.64.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Kakaogame SDK (3.19.0), PAYCO SDK (1.5.14)
-* 약관 팝업창이 떠있는 상태에서 back key가 동작하지 않도록 변경되었습니다.
+#### 機能改善/変更
+* 外部SDKアップデート: Kakaogame SDK (3.19.0), PAYCO SDK (1.5.14)
+* 約款ポップアップウィンドウが表示された状態でback keyが動作しないように変更しました。
 
-#### 버그 수정
-* API Level 23(OS 6.0, M) 이하 단말기에서 문자열 리소스 참조 실패로 Gamebase 내부 메세지가 정상 표시되지 않는 버그를 수정했습니다.
+#### バグ修正
+* API Level 23(OS 6.0, M)以下の端末で文字列リソースの参照失敗でGamebase内部メッセージが正常に表示されないバグを修正しました。
 
 ### 2.63.0 (2024. 04. 23.)
 

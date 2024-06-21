@@ -4,7 +4,7 @@
 
 ### Android
 
-* Google billing client version 6.2.1 버전 적용으로 Android OS 4.4(API Level 19) 단말기에서 결제하려면 추가 설정이 필요합니다.
+* Google billing client version 6.2.1이 적용되어 Android OS 4.4(API Level 19) 단말기에서 결제하려면 추가 설정이 필요합니다.
     * 자세한 내용은 [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > Gradle > Root level build.gradle](./aos-started/#root-level-buildgradle) 가이드를 참고하시기 바랍니다.
 
 ### iOS

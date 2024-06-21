@@ -4,7 +4,7 @@
 
 콘솔에 이미지를 등록한 후 사용자에게 공지를 띄울 수 있습니다.
 
-![ImageNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/imageNotice-guide-002.png)
+![ImageNotice Example](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/DevelopersGuide/imageNotice-guide-landscape-ko_v3.png)
 
 ### Show ImageNotices
 
