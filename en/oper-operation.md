@@ -9,7 +9,7 @@ This menu provides functions that are required for an app operation.
 
 ## Maintenance
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_01_en_240105.jpg)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_01_en_240625.png)
 
 Can easily register maintenance in the Console, when required.
 Retrieve maintenance history of registered apps and check progress at a glance, and search maintenance by registered causes of maintenance.
@@ -31,7 +31,7 @@ Default maintenance page of Gamebase (with cause and time of maintenance)
 
 Click **Register** under the **Maintenance** tab, to register maintenance.
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_03_en_240105.jpg)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_03_en_240625.png)
 
 >  <font color="red">[Caution] </font><br/>
 >  
@@ -45,7 +45,7 @@ Select the maintenance target.
 - Some clients : Select it when maintenance is required only for certain client versions. Click the 'Select version' button to display the list of the client versions registered from the client menu.
   **[Example of selecting Some clients]**
   Select All is possible by client status and by store. Just select the client version to perform maintenance, and click the Confirm button.
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240105.jpg)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
 
 #### (2) Reason
 Enter the reason why the maintenance is needed.
@@ -75,7 +75,7 @@ This is useful when creating the maintenance page format you want.
 
 ##### 4-3) External page
 
-![image alt](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_05_en_240105.jpg)
+![image alt](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_05_en_240625.png)
 If you own a maintenance page or template, the maintenance page can be linked to URL.
 Preview of the URL to connect is also supported.
 To be provided with maintenance information, choose **Provide Information** and enter messages in **Message**: maintenance information registered in Gamebase (maintenance time, messages, and etc.) can be provided on the maintenance page.
@@ -98,7 +98,7 @@ To register maintenance again with similar content, you may copy and paste for a
 
 ## Notice
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_06_en_240105.jpg)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_06_en_240625.png)
 
 Provides pop-up notifications during app execution. The pop-ups will show before logins; in case of errors in external authentication or game server, pop-ups need to be registered.
 Can easily check the list of registered notifications with status and search messages.
@@ -112,7 +112,7 @@ Status of notice is classified into three as below.
 
 Clicking the 'Register' button on the main screen of Notice redirects you to the screen where you can register a notice.
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_07_en_240105.jpg)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_07_en_240625.png)
 
 #### (1) Target
 
@@ -121,7 +121,7 @@ Select a target to show notification.
 - Some Clients: When only a particular client version requires maintenance. Click 'Select a Version' to show the list of client versions registered in the client menu.
   **Example of selecting particular clients**
   Can select a client status and all for each store, and select a client version for maintenance and press OK.
-  ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240105.jpg)
+  ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
 
 
 #### (2) Target Country
@@ -171,7 +171,7 @@ If you want reregister the maintenance with similar details, you can use the cop
 
 ## Image Notice
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_08_en_240105.jpg)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_08_en_240625.png)
 
 You can easily provide the notice as an image within the game by registering the image into the console.
 The list of the current notices is exposed at the top of the list, and the list of the completed notices is displayed separately at the bottom.
@@ -193,7 +193,7 @@ What's displayed on each item is as follows:
 - **Click-Through Rate (%)**: Shows simple statistics about how many times the image notice has been displayed within the game and how many times it has actually been clicked. It shows the value against the total percentage, and you can see the graph on daily impressions and clicks during the display period by clicking the 'Confirm' button.
     * You can download and check the click-through rate data by date that users searched for and viewed within the display period. 
 - **Status** : Shows the display status as follows.
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_09_en_240105.jpg)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_09_en_240625.png)
 
 ```
 (1) To be exposed: The image notice is expected to be exposed
@@ -204,7 +204,7 @@ What's displayed on each item is as follows:
 ### Register Image notice
 
 You can register the image notice by selecting the **Register** button from the **Image Notice** list.
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_10_en_240105.jpg)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_10_en_240625.png)
 
 #### (1) Target
 
@@ -214,7 +214,7 @@ Select the target to expose the image notice to.
 - Some clients : Select it when exposure is required only for certain client versions. Click the 'Select version' button to display the list of the client versions registered from the client menu.
   **Example of selecting Some clients**
   Select All is possible by client status and by store. Just select the client version to expose, and click the Confirm button.
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240105.jpg)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
 
 
 #### (2) Target country
@@ -271,13 +271,13 @@ If you want to register the notice image again with the similar details to the a
 ## Kick Out
 If you need to disconnect users for reasons such as game maintenance, you can easily do so in the console.
 You can see the kickout history and kickout registrations at a glance.
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_11_en_240105.jpg)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_11_en_240625.png)
 
 ### Register Kick Out
 
 Clicking the **Register** button on the **Kickout** tab redirects you to the screen where you can register a kickout.
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_12_en_240105.jpg)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_12_en_240625.png)
 
 ### (1) Target to process
 Select the target client to kick out.
@@ -285,7 +285,7 @@ Select the target client to kick out.
 - Some clients : Select it when kickout is required only for certain client versions. Click the 'Select Version' button to display the list of the client versions registered from the client menu.
   **[Example of selecting Some clients]**
   Select All is possible by client status and by store. Just select the client version to perform maintenance, and click the Confirm button.
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240105.jpg)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
 
 ### (2) Reason
 You can write the reason for the kickout, up to 100 characters.

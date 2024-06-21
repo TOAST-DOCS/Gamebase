@@ -59,7 +59,7 @@ NHN Cloudプロジェクト1つにつき1つのGamebaseアプリを管理する�
 - 使用したくない場合は該当欄を空白にしてください。
 
 ### 認証情報
-![gamebase_app_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_04_ja_240105.png)
+![gamebase_app_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_04_ja_240625.png)
 
 アプリでログインする時に使用するIdPの認証情報を登録、修正、削除できます。
 
