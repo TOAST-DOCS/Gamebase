@@ -86,7 +86,7 @@ Enter information only if required by the game; otherwise, leave it empty.
 The configured information can be viewed in Launching Information after the client is initialized.
 
 ### Image Notice Popup
-![gamebase_app_05_ko_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/ko/gamebase_app_05_ko_240105.png)
+![gamebase_app_05_en_240625](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_05_en_240625.png)
 You can make basic settings for the image notice popup, and the information you set will be batch applied to all image notice.
 
 - Image Notice Type: Specify the image notice posting type. You can choose from the following types: 
