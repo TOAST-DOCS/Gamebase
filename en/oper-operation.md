@@ -169,7 +169,7 @@ You can read, edit, or delete the details of the registered notice.
 By default, the input items are identical to those of the registration screen. You can also delete the notice by clicking the 'Delete' button if the notice has been entered incorrectly.
 If you want reregister the maintenance with similar details, you can use the copy function to easily register the notice.
 
-## Image notice
+## Image Notice
 
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_08_en_240105.jpg)
 
