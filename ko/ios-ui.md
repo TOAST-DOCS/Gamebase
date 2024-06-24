@@ -89,6 +89,7 @@ closeImageNotices API를 호출하여 현재 표시 중인 이미지 공지를 �
 | --- | --- | --- |
 | TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
 | TCGB\_ERROR\_UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | 이미지 공지 팝업 창 표시중 타임아웃이 발생하여 모든 팝업 창을 강제 종료합니다. |
+| TCGB\_ERROR\_SERVER\_INVALID\_RESPONSE | 8003 | 서버에서 유효하지 않은 응답이 리턴되었습니다. | 
 
 
 
