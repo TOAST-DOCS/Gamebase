@@ -1,5 +1,18 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.65.1 (2024. 06. 25.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.1/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* 특정 클라이언트에서 보여줄 이미지가 없는 경우, 에러 대신 성공 콜백이 호출되도록 수정하였습니다.
+
+#### 버그 수정
+* 등록된 이미지 공지가 없는 경우, 빈 이미지 공지가 노출되는 이슈를 수정하였습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.65.1](./release-notes-android/#2651-2024-06-25)
+* [Gamebase iOS SDK 2.65.1](./release-notes-ios/#2651-2024-06-25)
+
 ### 2.65.0 (2024. 06. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.0/GamebaseSDK-Unity.zip)
 

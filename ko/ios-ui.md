@@ -18,6 +18,27 @@
 * closeCompletion: 이미지 공지가 전체 종료될 때 사용자에게 콜백으로 알려 줍니다.
 * schemeEvent: 이미지를 클릭했을 때, 콘솔에 등록한 payload를 콜백으로 알려 줍니다.
 
+**API**
+
+```objectivec
++ (void)showImageNoticesWithViewController:(nullable UIViewController *)viewController
+                            closeCompletion:(void(^ _Nullable)(TCGBError * _Nullable error))closeCompletion;
+
++ (void)showImageNoticesWithViewController:(nullable UIViewController *)viewController
+                             configuration:(nullable TCGBImageNoticeConfiguration *)configuration
+                           closeCompletion:(void(^ _Nullable)(TCGBError * _Nullable error))closeCompletion
+                               schemeEvent:(void(^ _Nullable)(NSString * _Nullable payload, TCGBError * _Nullable error))schemeEvent;
+```
+
+**ErrorCode**
+
+| Error | Error Code | Description |
+| --- | --- | --- |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
+| TCGB\_ERROR\_UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | 이미지 공지 팝업 창 표시중 타임아웃이 발생하여 모든 팝업 창을 강제 종료합니다. |
+| TCGB\_ERROR\_SERVER\_INVALID\_RESPONSE | 8003 | 서버에서 유효하지 않은 응답이 리턴되었습니다. | 
+
+**Example**
 
 ```objectivec
 - (void)showImageNotices {
@@ -35,12 +56,12 @@
 }
 ```
 
-
 ### Custom ImageNotices
 
 사용자 설정 이미지 공지를 화면에 띄워 줍니다.
 TCGBImageNoticeConfiguration으로 사용자 설정 이미지 공지를 만들 수 있습니다.
 
+**Example**
 
 ```objectivec
 - (void)showImageNotices {
@@ -77,21 +98,19 @@ TCGBImageNoticeConfiguration으로 사용자 설정 이미지 공지를 만들 �
 
 closeImageNotices API를 호출하여 현재 표시 중인 이미지 공지를 모두 종료할 수 있습니다.
 
+**API**
+
+```objecgivec
++ (void)closeImageNoticesWithViewController:(nullable UIViewController *)viewController;
+```
+
+**Example**
+
 ```objectivec
 - (void)closeImageNotices {
     [TCGBImageNotice closeImageNoticesWithViewController:self];
 }
 ```
-
-**ErrorCode**
-
-| Error | Error Code | Description |
-| --- | --- | --- |
-| TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
-| TCGB\_ERROR\_UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | 이미지 공지 팝업 창 표시중 타임아웃이 발생하여 모든 팝업 창을 강제 종료합니다. |
-| TCGB\_ERROR\_SERVER\_INVALID\_RESPONSE | 8003 | 서버에서 유효하지 않은 응답이 리턴되었습니다. | 
-
-
 
 ## Terms
 
