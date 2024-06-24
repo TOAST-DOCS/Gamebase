@@ -85,6 +85,19 @@ You can edit URLs frequently used in the app in real time via Console without ha
 Enter information only if required by the game; otherwise, leave it empty.
 The configured information can be viewed in Launching Information after the client is initialized.
 
+### Image Notice Popup
+![gamebase_app_05_en_240625](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_05_en_240625.png)
+You can make basic settings for the image notice popup, and the information you set will be batch applied to all image notice.
+
+- Image Notice Type: Specify the image notice posting type. You can choose from the following types: 
+- Individual Pop-up: Display the registered notices as individual pop-ups, so that when you register multiple notices, the pop-ups are displayed on top of each other. 
+- Rolling Type: Display multiple notices in a single pop-up, so that when the image is displayed one by one, you can swipe left or right to see the next image notice.
+- Pop-up Theme: Specify the webview theme when displaying image notices. The following themes are available to choose from: 
+- Dark Mode: Set the webview bottom bar colour to grey 
+- Light Mode: Set the webview bottom bar colour to white 
+- Apply Show No More Today: Specify whether or not to show the **Show No More Today** area that appears in the bottom area in addition to the image notice. 
+- Popup re-display settings: Specify when to re-display the image notice popup when the **Show No More Today** setting is applied.
+
 ### Customer Center
 You can perform the customer center settings.
 As of now, Gamebase provides 3 types of customer center formats, and the items you can configure vary depending on the type you selected.
