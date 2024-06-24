@@ -8,6 +8,7 @@
 
 #### 버그 수정
 * 등록된 이미지 공지가 없는 경우, 빈 이미지 공지가 노출되는 이슈를 수정하였습니다.
+* (macOS) UnityEditor에서 GamebaseUtils.bundle 파일이 참조되지 않는 오류를 수정하였습니다.
 
 #### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.65.1](./release-notes-android/#2651-2024-06-25)
