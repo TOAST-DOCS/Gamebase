@@ -15,8 +15,8 @@
 
 #### Added Features
 * Added a new type to the image notice feature.
-    * Added the `rolling popup` type.
-    * Displays the existing image notice as the `individual popup` type.
+    * Added the `Rolling Popup` type.
+    * Displays the existing image notice as the `Individual Popup` type.
 
 #### Feature Updates
 * External SDK update: NHN Cloud SDK(1.9.0), Hangame Android SDK(1.13.0)
