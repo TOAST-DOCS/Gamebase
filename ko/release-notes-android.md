@@ -1,5 +1,14 @@
 ## Game > Gamebase > 릴리스 노트 > Android
 
+### 2.65.1 (2024. 06. 25.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.1/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 특정 클라이언트에서 보여줄 이미지가 없는 경우, 에러 대신 성공 콜백이 호출되도록 수정하였습니다.
+
+#### 버그 수정  
+* 등록된 이미지 공지가 없는 경우, 빈 이미지 공지가 노출되는 이슈를 수정하였습니다.
+
 ### 2.65.0 (2024. 06. 11.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.0/GamebaseSDK-Android.zip)
@@ -11,7 +20,7 @@
 
 #### 기능 개선/변경
 * 외부 SDK 업데이트: NHN Cloud SDK(1.9.0), Hangame Android SDK(1.13.0)
-    * Google billing client version 6.2.1 버전이 적용되었습니다.
+    * Google billing client version 6.2.1이 적용되었습니다.
     * Android OS 4.4(API Level 19) 단말기에서 결제하려면 추가 설정이 필요합니다.
         * 자세한 내용은 [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > Gradle > Root level build.gradle](./aos-started/#root-level-buildgradle) 가이드를 참고하시기 바랍니다.
 * 내부 로직 개선

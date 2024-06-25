@@ -62,16 +62,19 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
 > アイテムが重複支給されることがないように、ゲームサーバーで必ず重複支給有無をチェックしてください。
 >
 
-![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.40.1.png)
+![consume flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_002_2.64.0.png)
 
 1. ゲームクライアントがゲームサーバーに決済アイテムのconsume(消費)をリクエストします。
-    * UserID, gamebaseProductId, paymentSeq, purchaseTokenを伝達します。
+    * UserID、paymentSeq、purchaseTokenを渡します。
 2. ゲームサーバーは、ゲームDBにすでに同じpaymentSeqでアイテムを支給した履歴があるかを確認します。
-    * 2-1. まだアイテムを支給していなければGamebaseサーバーのPayment Transaction APIを呼び出ししてpaymentSeq、purchaseToken値が有効か検証します。
+    * 2-1. まだアイテムを支給していなければGamebaseサーバーのPayment Transaction APIを呼び出してpurchaseTokenが有効か、レスポンスフィールドのpaymentSeqと一致するか検証します。
         * [Game > Gamebase > APIガイド > Purchase(IAP) > Get Payment Transaction](./api-guide/#get-payment-transaction)
-    * 2-2. purchaseTokenが正常な値の場合はUserIDにgamebaseProductIdに該当するアイテムを支給します。
-    * 2-3. アイテム支給後、ゲームDBにUserID、gamebaseProductId、paymentSeq、purchaseTokenを保存して重複支給防止または再支給ができるようにします。
-3. アイテム支給有無に関係なく、ゲームサーバーはGamebaseサーバーのconsume(消費) APIを呼び出してアイテムの支給を完了します。
+        * purchaseTokenがサーバーAPIガイド文書の**accessToken**に該当します。
+    * 2-2. gamebaseProductIdはサーバーのPayment Transaction APIのレスポンスフィールドで確認できます。
+        * クライアントの未消費決済履歴リストにもgamebaseProductIdが存在しますが、再処理時にはその値がない場合もありますので、サーバーのPayment Transaction APIから取得したgamebaseProductIdの値を使用してください。
+    * 2-3. Payment Transaction APIの呼び出しが成功し、purchaseTokenが正常であることが確認されると、UserIDにgamebaseProductIdに該当するアイテムを支給します。
+    * 2-4. アイテム支給後、ゲームDBにUserID、gamebaseProductId、paymentSeq、purchaseTokenを保存して重複支給防止または再支給ができるようにします。
+3. アイテム支給有無に関係なく、ゲームサーバーは未消費履歴が返されないようにGamebaseサーバーのconsume(消費) APIを呼び出してアイテムの支給を完了します。
     * [Game > Gamebase > APIガイド > Purchase(IAP) > Consume](./api-guide/#consume)
 
 ### Retry Transaction Flow

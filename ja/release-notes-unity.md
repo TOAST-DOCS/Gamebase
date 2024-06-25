@@ -1,27 +1,41 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.65.1 (2024. 06. 25.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.1/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* 특정 클라이언트에서 보여줄 이미지가 없는 경우, 에러 대신 성공 콜백이 호출되도록 수정하였습니다.
+
+#### 버그 수정
+* 등록된 이미지 공지가 없는 경우, 빈 이미지 공지가 노출되는 이슈를 수정하였습니다.
+* (macOS) UnityEditor에서 GamebaseUtils.bundle 파일이 참조되지 않는 오류를 수정하였습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.65.1](./release-notes-android/#2651-2024-06-25)
+* [Gamebase iOS SDK 2.65.1](./release-notes-ios/#2651-2024-06-25)
+
 ### 2.65.0 (2024. 06. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
+#### 機能追加
 
-* 이미지 공지 기능에 신규 타입이 추가되었습니다.
-    * 롤링 팝업 타입이 추가되었습니다.
-    * 기존의 이미지 공지는 팝업 타입으로 표기됩니다.
-* 내부 로직을 개선했습니다.
+* イメージ告知機能に新規タイプが追加されました。
+    * ローリングポップアップタイプが追加されました。
+    * 既存のイメージ告知はポップアップタイプと表記されます。
+* 内部ロジックを改善しました。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.65.0](./release-notes-android/#2650-2024-06-11)
 * [Gamebase iOS SDK 2.65.0](./release-notes-ios/#2650-2024-06-11)
 
 ### 2.64.0 (2024. 05. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.64.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
+#### 機能追加
 
 * 内部ロジックを改善しました。
 
-#### 플랫폼별 변경 사항
+#### プラットフォームごとの変更事項
 * [Gamebase Android SDK 2.64.0](./release-notes-android/#2620-2024-05-28)
 * [Gamebase iOS SDK 2.64.0](./release-notes-ios/#2620-2024-05-28)
 
