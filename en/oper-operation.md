@@ -268,6 +268,20 @@ You can also register the image from the Edit screen again to replace the previo
 If you want to register the notice image again with the similar details to the already registered image notice, you can use the copy function to register by uploading a new image only.
 
 
+### Modify Image notice setting
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_10_en_240709.png)
+You can make basic settings for the image notice popup, and the information you set will be batch applied to all image notice.
+
+- Image Notice Type: Specify the image notice posting type. You can choose from the following types:
+  - Individual Pop-up: Display the registered notices as individual pop-ups, so that when you register multiple notices, the pop-ups are displayed on top of each other.
+  - Rolling Type: Display multiple notices in a single pop-up, so that when the image is displayed one by one, you can swipe left or right to see the next image notice.
+- Apply Show No More Today: Specify whether or not to show the **Show No More Today** area that appears in the bottom area in addition to the image notice.
+  - Pop-up Theme: Specify the webview theme when displaying image notices. The following themes are available to choose from:
+    - Dark Mode: Set the webview bottom bar colour to grey
+    - Light Mode: Set the webview bottom bar colour to white
+  - Popup re-display settings: Specify when to re-display the image notice popup when the **Show No More Today** setting is applied.
+
+
 ## Kick Out
 If you need to disconnect users for reasons such as game maintenance, you can easily do so in the console.
 You can see the kickout history and kickout registrations at a glance.
