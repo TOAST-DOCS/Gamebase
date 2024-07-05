@@ -267,12 +267,12 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 登録されたイメージ告知と類似した内容でイメージ告知を再度登録したい場合は、コピー機能を利用してイメージのみ新たにアップロードして登録できます。
 
 ### Modify Image notice setting
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_maintenance_10_ja_240709.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_10_ja_240709.png)
 画像告知ポップアップの基本的な設定を行うことができ、設定した情報はすべての画像告知に一括適用されます。
 
 - 画像告知タイプ：画像告知の投稿タイプを指定できます。選択できる投稿タイプは次のとおりです。
-  - 個別ポップアップ：登録された告知を個別ポップアップの形で表示する方式で、複数の告知を登録するとポップアップが重なって表示されます。
   - ローリングタイプ：一つのポップアップに複数の告知をローリングして表示する方式で、画像が一つずつ表示されると、左右スワイプで次の画像の告知を確認できます。
+  - 個別ポップアップ：登録された告知を個別ポップアップの形で表示する方式で、複数の告知を登録するとポップアップが重なって表示されます。
 - 今日は表示しない適用：画像告知以外の下部に表記される**今日は表示しない**領域に対する表示の有無を指定できます。
   - ポップアップカラーテーマ:画像告知を表示する際のWebビューのテーマを指定できます。選択できるテーマは次のとおりです。
     - ダークモード：Webビューの下部バーの色をグレーに指定します。

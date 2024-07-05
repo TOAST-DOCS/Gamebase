@@ -273,8 +273,8 @@ If you want to register the notice image again with the similar details to the a
 You can make basic settings for the image notice popup, and the information you set will be batch applied to all image notice.
 
 - Image Notice Type: Specify the image notice posting type. You can choose from the following types:
-  - Individual Pop-up: Display the registered notices as individual pop-ups, so that when you register multiple notices, the pop-ups are displayed on top of each other.
   - Rolling Type: Display multiple notices in a single pop-up, so that when the image is displayed one by one, you can swipe left or right to see the next image notice.
+  - Individual Pop-up: Display the registered notices as individual pop-ups, so that when you register multiple notices, the pop-ups are displayed on top of each other.
 - Apply Show No More Today: Specify whether or not to show the **Show No More Today** area that appears in the bottom area in addition to the image notice.
   - Pop-up Theme: Specify the webview theme when displaying image notices. The following themes are available to choose from:
     - Dark Mode: Set the webview bottom bar colour to grey
