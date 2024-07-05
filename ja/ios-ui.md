@@ -18,6 +18,27 @@
 * closeCompletion ：イメージ告知が全て終了する時、ユーザーにコールバックで知らせます。
 * schemeEvent ：イメージを押した時、コンソールに登録したpayloadをコールバックで知らせます。
 
+**API**
+
+```objectivec
++ (void)showImageNoticesWithViewController:(nullable UIViewController *)viewController
+                            closeCompletion:(void(^ _Nullable)(TCGBError * _Nullable error))closeCompletion;
+
++ (void)showImageNoticesWithViewController:(nullable UIViewController *)viewController
+                             configuration:(nullable TCGBImageNoticeConfiguration *)configuration
+                           closeCompletion:(void(^ _Nullable)(TCGBError * _Nullable error))closeCompletion
+                               schemeEvent:(void(^ _Nullable)(NSString * _Nullable payload, TCGBError * _Nullable error))schemeEvent;
+```
+
+**ErrorCode**
+
+| Error | Error Code | Description |
+| --- | --- | --- |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebaseが初期化されていません。 |
+| TCGB\_ERROR\_UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | イメージ告知ポップアップウィンドウの表示中にタイムアウトし、すべてのポップアップウィンドウを強制終了します。 |
+| TCGB\_ERROR\_SERVER\_INVALID\_RESPONSE | 8003 | サーバーが無効なレスポンスを返しました。 | 
+
+**Example**
 
 ```objectivec
 - (void)showImageNotices {
@@ -35,12 +56,12 @@
 }
 ```
 
-
 ### Custom ImageNotices
 
 ユーザー設定イメージ告知を画面に表示します。
 TCGBImageNoticeConfigurationでユーザー設定イメージ告知を作成できます。
 
+**Example**
 
 ```objectivec
 - (void)showImageNotices {
@@ -77,20 +98,19 @@ TCGBImageNoticeConfigurationでユーザー設定イメージ告知を作成で�
 
 closeImageNotices APIを呼び出して現在表示中のイメージ告知を全て終了できます。
 
+**API**
+
+```objecgivec
++ (void)closeImageNoticesWithViewController:(nullable UIViewController *)viewController;
+```
+
+**Example**
+
 ```objectivec
 - (void)closeImageNotices {
     [TCGBImageNotice closeImageNoticesWithViewController:self];
 }
 ```
-
-**ErrorCode**
-
-| Error | Error Code | Description |
-| --- | --- | --- |
-| TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebaseが初期化されていません。 |
-| TCGB\_ERROR\_UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | イメージ告知ポップアップ表示中タイムアウトが発生してすべてのポップアップを強制終了します。 |
-
-
 
 ## Terms
 

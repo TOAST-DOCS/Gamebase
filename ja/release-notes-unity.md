@@ -3,14 +3,14 @@
 ### 2.65.1 (2024. 06. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.1/GamebaseSDK-Unity.zip)
 
-#### 기능 개선/변경
-* 특정 클라이언트에서 보여줄 이미지가 없는 경우, 에러 대신 성공 콜백이 호출되도록 수정하였습니다.
+#### 機能改善/変更
+* 特定のクライアントで表示する画像がない場合、エラーの代わりに成功コールバックが呼び出されるように修正しました。
 
-#### 버그 수정
-* 등록된 이미지 공지가 없는 경우, 빈 이미지 공지가 노출되는 이슈를 수정하였습니다.
-* (macOS) UnityEditor에서 GamebaseUtils.bundle 파일이 참조되지 않는 오류를 수정하였습니다.
+#### バグ修正
+* 登録されたイメージ告知がない場合、空白のイメージ告知が表示されるイシューを修正しました。
+* (macOS) UnityEditorで GamebaseUtils.bundleファイルが参照されないエラーを修正しました。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.65.1](./release-notes-android/#2651-2024-06-25)
 * [Gamebase iOS SDK 2.65.1](./release-notes-ios/#2651-2024-06-25)
 
