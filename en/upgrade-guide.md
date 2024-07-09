@@ -2,13 +2,6 @@
 
 ## 2.65.0
 
-### Common
-
-* Gamebase SDK 2.65.0에서 이미지 공지 기능 사용 시 발생하는 문제를 수정하였습니다.
-    * 표시할 이미지 공지가 없는 경우 오류 대신 성공 콜백이 호출되도록 변경하였습니다.
-    * 등록된 이미지 공지가 없을 경우 빈 공지 화면이 노출되고 이 때 Android에서는 오늘은 그만보기를 체크한 뒤 닫으면 crash가 발생합니다.
-    * 이슈가 해결된 Gamebase SDK 2.65.1 이상을 사용하세요.
-
 ### Android
 
 * With the application of Google billing client version 6.2.1, additional settings are required to make payments on Android OS 4.4 (API Level 19) devices.
