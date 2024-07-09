@@ -14,11 +14,11 @@ To execute Gamebase in Android, the following system environment is required.
 
 | Gamebase SDK | Gamebase Adapter | External SDK | Purpose | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk | nhncloud-core-1.8.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include the interface and core logic of Gamebase | API 19(KitKat, OS 4.4) |
+| Gamebase | gamebase-sdk | nhncloud-core-1.9.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include the interface and core logic of Gamebase | API 19(KitKat, OS 4.4) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Support Sign In With Apple login | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-16.1.2 | Support Facebook login | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Support Google login | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.9.0 | Support Hangame login | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.13.0 | Support Hangame login | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | Support LINE login | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.8.0 | Support NAVER login | API 21(Lollipop, OS 5.0) |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.13 | Support PAYCO login | - |
@@ -155,23 +155,38 @@ To execute Gamebase in Android, the following system environment is required.
         
 #### Root level build.gradle
 
+* If you are using Google Play Billing Library (PBL) 6.x with R8, the library may not work with Android 4.4 (API level 19) 
+    * Use PBL 6.2.1 starting with the Gamebase Android SDK 2.65.0 
+    * To resolve this issue and support Android 4.4 (API level 19), add the following declaration to your project-level (root level) build.gradle or settings.gradle (AGP 7.1 or later)
+
+            buildscript {
+                repositories {
+                    // Raw R8 releases.
+                    maven {
+                        url("https://storage.googleapis.com/r8-releases/raw")
+                    }
+                }
+
+                dependencies {
+                    classpath("com.android.tools:r8:8.1.46")
+                }
+            }
+
 * To use Huawei IAP, add the following declaration to build.gradle or settings.gradle (AGP 7.1 or later) at the project level (root level).
 
-```groovy
-buildscript {
-    repositories {
-        ...
-        // [Huawei App Gallery] Maven repository address for the HMS Core SDK.
-        maven { url 'https://developer.huawei.com/repo/' }
-    }
+        buildscript {
+            repositories {
+                ...
+                // [Huawei App Gallery] Maven repository address for the HMS Core SDK.
+                maven { url 'https://developer.huawei.com/repo/' }
+            }
 
-    dependencies {
-        ...
-        // [Huawei App Gallery] AppGallery Connect plugin configuration. please use the latest plugin version.
-        classpath 'com.huawei.agconnect:agcp:1.6.0.300'
-    }
-}
-```
+            dependencies {
+                ...
+                // [Huawei App Gallery] AppGallery Connect plugin configuration. please use the latest plugin version.
+                classpath 'com.huawei.agconnect:agcp:1.6.0.300'
+            }
+        }
 
 #### Define Adapters
 
