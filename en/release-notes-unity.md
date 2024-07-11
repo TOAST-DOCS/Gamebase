@@ -31,22 +31,22 @@
 ### 2.64.0 (2024. 05. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.64.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
+#### Added Features
 
 * Improved internal logic.
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.64.0](./release-notes-android/#2620-2024-05-28)
 * [Gamebase iOS SDK 2.64.0](./release-notes-ios/#2620-2024-05-28)
 
 ### 2.63.0 (2024. 04. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.63.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
+#### Added Features
 
-* (MacOS) WebView 신규 지원
+* (MacOS) Added support for WebView
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.63.0](./release-notes-android/#2620-2024-04-23)
 * [Gamebase iOS SDK 2.63.0](./release-notes-ios/#2620-2024-04-23)
 
