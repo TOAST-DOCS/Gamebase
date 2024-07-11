@@ -8,6 +8,7 @@
 
 #### 버그 수정
 * 등록된 이미지 공지가 없는 경우, 빈 이미지 공지가 노출되는 이슈를 수정하였습니다.
+* (macOS) UnityEditor에서 GamebaseUtils.bundle 파일이 참조되지 않는 오류를 수정하였습니다.
 
 #### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.65.1](./release-notes-android/#2651-2024-06-25)
@@ -16,14 +17,14 @@
 ### 2.65.0 (2024. 06. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
+#### Added Features
 
-* 이미지 공지 기능에 신규 타입이 추가되었습니다.
-    * 롤링 팝업 타입이 추가되었습니다.
-    * 기존의 이미지 공지는 팝업 타입으로 표기됩니다.
-* 내부 로직을 개선했습니다.
+* Added a new type to the image notice feature.
+    * Added the `rolling popup` type.
+    * Displays the existing image notice as the `individual popup` type.
+* Improved internal logic.
 
-#### 플랫폼별 변경 사항
+#### Platform-Specific Changes
 * [Gamebase Android SDK 2.65.0](./release-notes-android/#2650-2024-06-11)
 * [Gamebase iOS SDK 2.65.0](./release-notes-ios/#2650-2024-06-11)
 
