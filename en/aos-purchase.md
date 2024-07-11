@@ -61,7 +61,7 @@ If there's a value on the list of unconsumed purchases, proceed with the **Consu
         * gamebaseProductId also exists in the client's used payment history list, but the value may not be available at the time of reprocessing, so please use the gamebaseProductId value obtained from the server's Payment Transaction API 
     * 2-3. If the Payment Transaction API call succeeds and the purchaseToken is confirmed to be valid, issues the item corresponding to the gamebaseProductId to the UserID 
     * 2-4. After issuing the item, saves the UserID, gamebaseProductId, paymentSeq, and purchaseToken in the game DB to prevent duplicate payments or re-payments 
-3. Regardless of whether the item has been provided, the game server completes the item provision by calling the Gamebase server's consume API.
+3. Regardless of whether the item has been provided, the game server completes the item provision by calling the Gamebase server's consume API so that the unspent payment list is no longer returned.
     * [Game > Gamebase > API Guide > Purchase(IAP) > Consume](./api-guide/#consume)
 
 ### Retry Transaction Flow
