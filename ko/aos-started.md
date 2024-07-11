@@ -18,6 +18,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Apple 로그인을 지원 | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-16.1.2 | Facebook 로그인을 지원 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Google 로그인을 지원 | - |
+|  | gamebase-adapter-auth-gpgs-v2 | play-services-games-v2-20.1.2 | GPGS(Google Play Games Services) V2 로그인을 지원 | - |
 |  | gamebase-adapter-auth-hangame | hangame-id-1.13.0 | Hangame 로그인을 지원 | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | LINE 로그인을 지원 | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.8.0 | NAVER 로그인을 지원 | API 21(Lollipop, OS 5.0) |
@@ -218,6 +219,7 @@ dependencies {
 
     // >>> Gamebase - Add Auth Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-google:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-auth-gpgs-v2:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-facebook:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-appleid:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-twitter:$GAMEBASE_SDK_VERSION"
@@ -360,6 +362,34 @@ android {
     <!-- [Facebook] Facebook APP ID & Client Token -->
     <string name="facebook_app_id">123456789012345</string>
     <string name="facebook_client_token">a01234bc56de7fg89012hi3j45k67890</string>
+</resources>
+```
+
+#### GPGS v2 IdP
+
+* GPGS v2 SDK 초기화를 위해 App ID를 선언합니다.
+    * 해당 값을 직접 선언하지 말고 아래 예시와 같이 resources를 참조하도록 설정하세요.
+
+**AndroidManifest.xml**
+
+```xml
+<manifest ...>
+    <application ...>
+        ...
+        <!-- [GPGS v2] Configurations begin -->
+        <meta-data android:name="com.google.android.gms.games.APP_ID" android:value="@string/game_services_project_id" />
+        <!-- [GPGS v2] Configurations end -->
+        ...
+    </application>
+</manifest>
+```
+
+**res/values/strings.xml**
+
+```xml
+<resources>
+    <!-- [GPGS v2] GPGS v2 APP ID -->
+    <string name="game_services_project_id">1234567890</string>
 </resources>
 ```
 
