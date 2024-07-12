@@ -1,10 +1,16 @@
 ## Game > Gamebase > リリースノート > Android
 
+### 2.66.0 (2024. 07. 10.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.0/GamebaseSDK-Android.zip)
+
+#### 機能追加
+* GPGS v2認証を追加
+
 ### 2.65.1 (2024. 06. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.1/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 특정 클라이언트에서 보여줄 이미지가 없는 경우, 에러 대신 성공 콜백이 호출되도록 수정하였습니다.
+#### 機能改善/変更
+* 特定のクライアントで表示する画像がない場合、エラーの代わりに成功コールバックが呼び出されるように修正しました。
 
 #### 버그 수정  
 * 등록된 이미지 공지가 없는 경우, 빈 이미지 공지가 노출되고, 이 때 오늘은 그만보기 체크 후 닫기 시 crash가 발생되는 오류를 수정하였습니다.
