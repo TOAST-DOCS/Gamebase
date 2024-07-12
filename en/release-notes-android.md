@@ -1,5 +1,11 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.66.0 (2024. 07. 10.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.0/GamebaseSDK-Android.zip)
+
+#### Added Features
+* Added GPGS v2 authentication
+
 ### 2.65.1 (2024. 06. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.1/GamebaseSDK-Android.zip)
 
