@@ -24,13 +24,13 @@
 
 ### iOS
 
-* Kakaogame 인증 최소 지원 버전이 12.0에서 13.0으로 변경되었습니다.
+* Raised the minimum supported version of Kakaogame from 12.0 to 13.0.
 
 ## 2.63.0
 
 ### iOS
 
-* Facebook SDK가 17.0.0으로 업데이트되면서 Info.plist에 FacebookClientToken과 FacebookDisplayName을 추가해야 합니다.
+* With the Facebook SDK updated to 17.0.0, you must add FacebookClientToken and FacebookDisplayName to your Info.plist.
 ```
 <key>FacebookClientToken</key>
 <string>{FACEBOOK_CLIENT_TOKEN}</string>
@@ -40,9 +40,9 @@
 
 ### Unreal
 
-* Android Firebase Notification 설정 방법이 변경되어 플러그인 내부에 google-services-json.xml 파일이 아닌 설정 툴에서 직접 지정하도록 변경되었습니다.
-    * 기존에 제공되었던 Gamebase/Source/Gamebase/ThirdParty/Android/res/values/google-services-json.xml 파일이 제거되었습니다.
-    * Firebase 콘솔에서 다운로드한 google-services.json 파일을 [Android 설정 툴](./unreal-started/#android-settings)의 Push 항목 내 FCM 하위에 있는 `GoogleServicesFilePath` 값을 설정합니다.
+* Changed the way Android Firebase Notification is set up so that you need to specify it directly in the settings tool instead of the google-services-json.xml file inside the plugin
+    * Removed the previously provided Gamebase/Source/Gamebase/ThirdParty/Android/res/values/google-services-json.xml file
+     * Set the `GoogleServicesFilePath` value in the [Android Settings Tool](./unreal-started/#android-settings) under FCM in the Push entry in the [Android Settings Tool] (./unreal-started/#android-settings) to the google-services.json file downloaded from the Firebase console.
 
 ## 2.62.0
 

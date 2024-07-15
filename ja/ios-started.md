@@ -11,6 +11,8 @@
 > * ビルド環境：Xcode 15.0 (iOS 17 SDK)以上
 >
 
+<br/>
+
 > <font color="red">[注意]</font><br/>
 >
 > 一部のIdPサポートをする時は**下段3rd Party Gamebase Auth Adapters表内のSupport iOS Version項目を参考**にしてください。

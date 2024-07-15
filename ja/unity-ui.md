@@ -21,6 +21,15 @@ Supported Platforms
 static void ShowImageNotices(GamebaseRequest.ImageNotice.Configuration configuration, GamebaseCallback.ErrorDelegate closeCallback, GamebaseCallback.GamebaseDelegate<string> eventCallback = null)
 ```
 
+**ErrorCode**
+
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | Gamebaseが初期化されていません。 |
+| UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | イメージ告知ポップアップウィンドウの表示中にタイムアウトし、すべてのポップアップウィンドウを強制終了します。 |
+| UI\_IMAGE\_NOTICE\_NOT\_SUPPORTED\_OS | 6902 | ローリングタイプの場合、API 19以下の端末では、イメージ告知をサポートしません。 |
+| SERVER\_INVALID\_RESPONSE | 8003 | サーバーが無効なレスポンスを返しました。 |
+
 **Example**
 
 ```cs
