@@ -21,6 +21,15 @@ Supported Platforms
 static void ShowImageNotices(GamebaseRequest.ImageNotice.Configuration configuration, GamebaseCallback.ErrorDelegate closeCallback, GamebaseCallback.GamebaseDelegate<string> eventCallback = null)
 ```
 
+**ErrorCode**
+
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NOT\_INITIALIZED | 1 | Gamebase is not initialized. |
+| UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | For all popup screens to close due to a timeout while displaying an image notice popup screen. |
+| UI\_IMAGE\_NOTICE\_NOT\_SUPPORTED\_OS | 6902 | For rolling types, image notices are not supported on devices with API 19 or lower. |
+| SERVER\_INVALID\_RESPONSE | 8003 | Invalid response was returned from the server. |
+
 **Example**
 
 ```cs
