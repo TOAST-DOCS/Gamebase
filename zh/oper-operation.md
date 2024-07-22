@@ -34,7 +34,7 @@ Click **Register** under the **Maintenance** tab, to register maintenance.
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_03_en_240625.png)
 
 >  <font color="red">[Caution] </font><br/>
->
+>  
 > If **Update Required and Maintenance are both enabled**, the service status becomes 'Update Required'.
 >  If you do not want to show a popup about required updates to users during the maintenance, the service status must be changed to 'Update Required' after the maintenance.
 
@@ -45,7 +45,7 @@ Select the maintenance target.
 - Some clients : Select it when maintenance is required only for certain client versions. Click the 'Select version' button to display the list of the client versions registered from the client menu.
   **[Example of selecting Some clients]**
   Select All is possible by client status and by store. Just select the client version to perform maintenance, and click the Confirm button.
-  ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
 
 #### (2) Reason
 Enter the reason why the maintenance is needed.
@@ -86,9 +86,9 @@ Maintenance parameters are as follows: all delivered with URL encoded.
 - beginDate:  Start time entered for maintenance registration
 - endDate:  End time entered for maintenance registration.
 
-#### (5) Popup Messages
-Set a message to show for maintenance.
-Click **Auto Translate to Default Language** and messages in default language are translated into a language set for each item.
+#### (5) Popup Messages 
+Set a message to show for maintenance. 
+Click **Auto Translate to Default Language** and messages in default language are translated into a language set for each item. 
 
 ### Modify Maintenance
 
@@ -149,7 +149,7 @@ For a timezone, 'UTC+09:00' is provided as default, and maintenance can be regis
 Enter notice messages to show to users.
 Can register many languages, for those who speak other languages than registered, a default language will show.
 To add a language, click **+** on the right, and if a language you want is not on the list, contact [Customer Center](https://toast.com/support/inquiry)to add as required.
-Click **Auto Translate to Default Language** and messages in default language are translated into a language set for each item.
+Click **Auto Translate to Default Language** and messages in default language are translated into a language set for each item. 
 
 #### (6) bottom button type
 Specify the type of the buttons which will be exposed at the bottom of the notice popup.
@@ -191,9 +191,9 @@ What's displayed on each item is as follows:
 - **Display Time (+09:00)**: Changes the time (when the notice is exposed) into Korea Standard Time (+09:00) before displaying it.
 - **Modified Date**: Shows the time when the notice was most recently modified.
 - **Click-Through Rate (%)**: Shows simple statistics about how many times the image notice has been displayed within the game and how many times it has actually been clicked. It shows the value against the total percentage, and you can see the graph on daily impressions and clicks during the display period by clicking the 'Confirm' button.
-  * You can download and check the click-through rate data by date that users searched for and viewed within the display period.
+    * You can download and check the click-through rate data by date that users searched for and viewed within the display period. 
 - **Status** : Shows the display status as follows.
-  ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_09_en_240625.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_09_en_240625.png)
 
 ```
 (1) To be exposed: The image notice is expected to be exposed
@@ -214,7 +214,7 @@ Select the target to expose the image notice to.
 - Some clients : Select it when exposure is required only for certain client versions. Click the 'Select version' button to display the list of the client versions registered from the client menu.
   **Example of selecting Some clients**
   Select All is possible by client status and by store. Just select the client version to expose, and click the Confirm button.
-  ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
 
 
 #### (2) Target country
@@ -260,7 +260,7 @@ Set the click action to handle when a game user clicks on an image notice. The c
 >
 > If you want to use a specific **http** URL for the **Open URL** field, you must add a domain exception declaration to your Android build.
 > Otherwise, the page will display abnormally on Android 9.0+ devices due to the OS's native limitations.
-
+  
 ### Modify Image notice
 
 You can read, edit, or delete the details of the registered images notice.
@@ -281,6 +281,7 @@ You can make basic settings for the image notice popup, and the information you 
     - Light Mode: Set the webview bottom bar colour to white
   - Popup re-display settings: Specify when to re-display the image notice popup when the **Show No More Today** setting is applied.
 
+
 ## Kick Out
 If you need to disconnect users for reasons such as game maintenance, you can easily do so in the console.
 You can see the kickout history and kickout registrations at a glance.
@@ -298,7 +299,7 @@ Select the target client to kick out.
 - Some clients : Select it when kickout is required only for certain client versions. Click the 'Select Version' button to display the list of the client versions registered from the client menu.
   **[Example of selecting Some clients]**
   Select All is possible by client status and by store. Just select the client version to perform maintenance, and click the Confirm button.
-  ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
 
 ### (2) Reason
 You can write the reason for the kickout, up to 100 characters.

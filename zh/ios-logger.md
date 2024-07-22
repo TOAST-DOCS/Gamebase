@@ -1,6 +1,6 @@
 ## Game > Gamebase > iOS SDK User Guide > Logger
 
-Here, we will learn how to use NHN Cloud Logger SDK in iOS.
+This document describes how to use Log & Crash Search API.
 
 ### Initialize
 Initialize NHN Cloud Logger SDK using the app key issued via Log & Crash Search.

@@ -11,26 +11,26 @@
 
 ### Android
 
-* Google billing client version 6.2.1 버전 적용으로 Android OS 4.4(API Level 19) 단말기에서 결제하려면 추가 설정이 필요합니다.
-    * 자세한 내용은 [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > Gradle > Root level build.gradle](./aos-started/#root-level-buildgradle) 가이드를 참고하시기 바랍니다.
+* With the application of Google billing client version 6.2.1, additional settings are required to make payments on Android OS 4.4 (API Level 19) devices.
+    * For more information, see [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > Gradle > Root level build.gradle](./aos-started/#root-level-buildgradle).
 
 ### iOS
 
-* Facebook SDK가 17.0.1로 업데이트되면서 Dynamic Framework로 변경되었습니다.
-    * Gamebase SDK를 다운로드하여 Xcode에 직접 설정하는 경우, Facebook SDK를 Embeded Frameworks에 추가해야 합니다.
-    * 자세한 내용은 [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > Setting > Xcode Settings](./ios-started/#xcode-settings) 가이드를 참고하시기 바랍니다.
+* With Facebook SDK updated to 17.0.1, changed to Dynamic Framework.
+    * If you download the Gamebase SDK and set it up directly in Xcode, you must add the Facebook SDK to Embedded Frameworks.
+    * For more information, see [Game > Gamebase > iOS SDK User Guide > Getting Started > Setting > Xcode Settings](./ios-started/#xcode-settings).
 
 ## 2.64.0
 
 ### iOS
 
-* Kakaogame 인증 최소 지원 버전이 12.0에서 13.0으로 변경되었습니다.
+* Raised the minimum supported version of Kakaogame from 12.0 to 13.0.
 
 ## 2.63.0
 
 ### iOS
 
-* Facebook SDK가 17.0.0으로 업데이트되면서 Info.plist에 FacebookClientToken과 FacebookDisplayName을 추가해야 합니다.
+* With the Facebook SDK updated to 17.0.0, you must add FacebookClientToken and FacebookDisplayName to your Info.plist.
 ```
 <key>FacebookClientToken</key>
 <string>{FACEBOOK_CLIENT_TOKEN}</string>
@@ -40,9 +40,9 @@
 
 ### Unreal
 
-* Android Firebase Notification 설정 방법이 변경되어 플러그인 내부에 google-services-json.xml 파일이 아닌 설정 툴에서 직접 지정하도록 변경되었습니다.
-    * 기존에 제공되었던 Gamebase/Source/Gamebase/ThirdParty/Android/res/values/google-services-json.xml 파일이 제거되었습니다.
-    * Firebase 콘솔에서 다운로드한 google-services.json 파일을 [Android 설정 툴](./unreal-started/#android-settings)의 Push 항목 내 FCM 하위에 있는 `GoogleServicesFilePath` 값을 설정합니다.
+* Changed the way Android Firebase Notification is set up so that you need to specify it directly in the settings tool instead of the google-services-json.xml file inside the plugin
+    * Removed the previously provided Gamebase/Source/Gamebase/ThirdParty/Android/res/values/google-services-json.xml file
+     * Set the `GoogleServicesFilePath` value in the [Android Settings Tool](./unreal-started/#android-settings) under FCM in the Push entry in the [Android Settings Tool] (./unreal-started/#android-settings) to the google-services.json file downloaded from the Firebase console.
 
 ## 2.62.0
 

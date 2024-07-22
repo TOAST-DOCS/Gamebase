@@ -118,22 +118,22 @@ The options to be set are as follows:
 > For the customer center to provide stable service, please follow the below steps in the correct order:
 >
 > 1) Set the method of linking members to the NHN Cloud Online Contact
-	 > Service Management -> Help Center -> Link Member
-	 > ![gamebase_app_09_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_09_en_240105.png)
-	 > Enable member linking: Enable
-	 > Login type: GET method
-	 > Token validation URL: https://web-gamebase.nhncloud.com/tcgb-web/v1.0/apps/{appId}/online-contact/login-status
-	 > For the **{appId}** field, check the project ID of Gamebase and enter it in the field.
+> Service Management -> Help Center -> Link Member
+> ![gamebase_app_09_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_09_en_240105.png)
+> Enable member linking: Enable
+> Login type: GET method
+> Token validation URL: https://web-gamebase.nhncloud.com/tcgb-web/v1.0/apps/{appId}/online-contact/login-status
+> For the **{appId}** field, check the project ID of Gamebase and enter it in the field.
 >
 > 2) Acquire the OC organization Key and enter it in the OC organization Key field.
-	 > Full Administration -> Contract service status -> Go to the organization info, copy the OC organization key of the OC organization info, and then enter it in the Gamebase OC organization Key field
-	 > ![gamebase_app_10_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_10_en_240105.png)
+> Full Administration -> Contract service status -> Go to the organization info, copy the OC organization key of the OC organization info, and then enter it in the Gamebase OC organization Key field
+> ![gamebase_app_10_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_10_en_240105.png)
 >
 > 3) Acquire the NHN Cloud Online Contact Customer Center site address, and enter it in the Customer Center URL field
-	 > Help Center -> Select the submenu -> Click the shortcut for help center at the top right
-	 > ![gamebase_app_11_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_11_en_240105.png)
-	 > Enter the address shown at the top of the browser in the Gamebase Customer Center URL field
-	 > ![gamebase_app_12_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_12_en_240105.png)
+> Help Center -> Select the submenu -> Click the shortcut for help center at the top right
+> ![gamebase_app_11_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_11_en_240105.png)
+> Enter the address shown at the top of the browser in the Gamebase Customer Center URL field
+> ![gamebase_app_12_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_12_en_240105.png)
 >
 
 ### Test Device
@@ -195,7 +195,7 @@ Enter {App ID} and {App Secret Code} of an app registered in the Facebook develo
 ![gamebase_app_19_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_19_en_240105.png)
 
 ##### Additional Info Settings
-* Set JSON string type information in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Information**.
+* Set JSON string type information in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Information**. 
 * For Facebook, set **facebook_permission** and **facebook_client_token**, which is the authentication information to request for Facebook when attempting to authenticate with OAuth.
 * Example of entering Facebook additional authentication information
 
@@ -224,9 +224,9 @@ Enter {App ID} and {App Secret Code} of an app registered in the Facebook develo
 
 For Google authentication, you must obtain a **Web Application Client ID** from Google Cloud Console and enter it into Gamebase Console.
 Enter these URIs in the **Authorized redirect URIs** field.
-* https://alpha-id-gamebase.toast.com/oauth/callback
-* https://beta-id-gamebase.toast.com/oauth/callback
-* https://id-gamebase.toast.com/oauth/callback
+	* https://alpha-id-gamebase.toast.com/oauth/callback
+	* https://beta-id-gamebase.toast.com/oauth/callback
+	* https://id-gamebase.toast.com/oauth/callback
 
 <br/>
 
@@ -333,7 +333,7 @@ You need to provide {Consumer Key} and {consumer Secret} acquired from Twitter A
 ##### Android
 > <font color="red">[Caution]</font><br/>
 >
-> As of July 25 of 2019, Twitter has suspended its support for TLS 1.0 and TLS 1.1, to support TLS 1.2 only.
+> As of July 25 of 2019, Twitter has suspended its support for TLS 1.0 and TLS 1.1, to support TLS 1.2 only. 
 > Therefore, Android 4.3 (Jellybean, API Level 18) or lower devices do not support logins to Twitter via Android WebView.
 >
 > In short, only Android 4.4 and higher devices (KitKat, API Level 19) allow logins to Twitter.
@@ -363,42 +363,42 @@ To enable Sign In with Apple, setting is required for AppStore Connect, Gamebase
 
 ###### Certificates, Identifiers & Profiles > Keys > Add (+)
 1. Check `Sign In with Apple` and process the setting.
-   ![Check SignInWithApple](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid0_1.0.png)
+![Check SignInWithApple](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid0_1.0.png)
 2. Select Bundle ID to enable`Sign in with Apple`.
-   ![ChooseAPrimaryAppID](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid1_1.0.png)
+![ChooseAPrimaryAppID](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid1_1.0.png)
 3. Download <span style="color:#e11d21">Privatekey</span> and check <span style="color:#e11d21">Key ID</span> which is created and saved.
-   ![DownloadPrivateKey](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid2_1.0.png)
+![DownloadPrivateKey](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid2_1.0.png)
 4. Go to Certificates, Identifiers & Profiles > Identifiers > Select Target Apps and enable  `Sign In with Apple`.
-	* Set `Enable as a primary App ID`.
-	  ![DownloadPrivateKey](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid3_1.0.png)
+    * Set `Enable as a primary App ID`.
+![DownloadPrivateKey](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid3_1.0.png)
 
 ##### Gamebase Console > App Settings
 [Direct link to NHN Cloud Console](https://console.toast.com/)
 
 * Gamebase
-  ![Set SecretKey Setting](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_22_en_240105.png)
+![Set SecretKey Setting](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_22_en_240105.png)
 
 
 ###### Client ID Settings
 > Set Bundle ID for the app.
 
 ###### Secret Key Settings
-> Use **TeamID**, **KeyID**, or **PrivateKey** that are acquired from Apple Developer Account setting to create JSON character strings.
+> Use **TeamID**, **KeyID**, or **PrivateKey** that are acquired from Apple Developer Account setting to create JSON character strings.  
 
 * **teamId**: Set value on top right of the developer account.
 * **keyId**: Go to Certificates, Identifiers & Profiles > Keys, and check Sign In with Apple to set created value.
-  ![SecretKey Setting](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid5_1.0.png)
+![SecretKey Setting](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid5_1.0.png)
 * **privateKey**: Set PrivateKey file which is created along with the Keys. (Open the downloaded file and apply the value in red rectangle like the screen shot as below.)
-  ![SecretKey Setting](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
+![SecretKey Setting](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid7_1.0.png)
 
 Set the values above by creating JSON as in the following example.
 
 
 ```json
 {
-	"teamId":"2UH5Cxxxx",
-	"keyId":"3C3FXYxxxx",
-	"privateKey":"MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBA.. omitted"
+    "teamId":"2UH5Cxxxx",
+    "keyId":"3C3FXYxxxx",
+    "privateKey":"MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBA.. omitted"
 }
 ```
 
@@ -423,9 +423,9 @@ As of November 2019, there are only two types of scope, `full_name` and `email`,
 
 
 1. Select Target > Signing & Capabilities,  and add Sign In with Apple.
-   [Capability_SignInWithApple](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid8_1.0.png)
+[Capability_SignInWithApple](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid8_1.0.png)
 2. Select Target > Build Phases > Link Binary With Libraries, and add Authentication.framework as **Optional**.
-   ![AuthenticationServices.framework](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid9_1.0.png)
+![AuthenticationServices.framework](http://static.toastoven.net/prod_gamebase/Operators_Guide/Console_App_Auth_appleid9_1.0.png)
 
 > <font color="red">[Caution]</font><br/>
 > If this is set to Optional instead of Required, the app crashes at runtime for any device running iOS 12 or earlier.
@@ -451,19 +451,19 @@ As of November 2019, there are only two types of scope, `full_name` and `email`,
 **You must follow the below procedure to register a new Service ID in the Apple developer site.**
 
 1. Add Service ID<br/>
-   ![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_01.png)
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_01.png)
 2. Set the identifier to use as the Service ID (usually bundle ID + **.string to sort**)<br/>
-   ![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_02.png)
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_02.png)
 3. Check the registered Service ID and modify it<br/>
-   ![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_03.png)
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_03.png)
 4. Click Configure for the Sign In with Apple at the bottom<br/>
-   ![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_04.png)
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_04.png)
 5. Set the Primary App ID (If Sign In with Apple is already being used, set the bundle ID of that app)<br/>
-   ![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_05.png)
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_05.png)
 6. Authenticate with the Apple ID, and set the Callback URL to receive the authentication info<br/>
-   ![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_06.png)
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_06.png)
 7. Set up and save<br/>
-   ![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_07.png)
+![Create new Service ID](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_SignInWithAppleJS_AppStore_07.png)
 
 
 **Go to NHN Cloud Gamebase Console > Gamebase > App > Authentication Information > Apple > Service ID, and enter the service ID from above.***
@@ -473,7 +473,7 @@ As of November 2019, there are only two types of scope, `full_name` and `email`,
 > If Sign In with Apple is not previously set up, you need to set up the rest as well.
 
 1. Add the Service ID you registered with the Apple developer site in the Service ID field here as follows: (If there is already a setting for Sign In with Apple, no need to change other values.)
-   ![Set Service ID for Sign In with Apple JS](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_23_en_240105.png)
+![Set Service ID for Sign In with Apple JS](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_23_en_240105.png)
 
 
 #### 9. WEIBO
@@ -481,7 +481,7 @@ As of November 2019, there are only two types of scope, `full_name` and `email`,
 ##### Weibo Console
 
 1. Enter {client_id} and {client_secret} issued by Weibo Developers site in the Gamebase Console.
-   {scope}, which is required for logging in, also needs to be entered in the Additional Info field as a JSON string.
+{scope}, which is required for logging in, also needs to be entered in the Additional Info field as a JSON string.
 
 
 ![gamebase_app_29_202012.png](https://static.toastoven.net/prod_gamebase/Operators_Guide/gamebase_app_29_202012.png)
@@ -620,7 +620,7 @@ You can click the - **+** button to create another terms and conditions.
 	- None: Details page does not exist.
 	- Enter URL: Sets URL for Details page.
 	- Enter Manually: Creates a Details page.
-	  ![gamebase_terms_of_service_03_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_terms_of_service_03_en_240105.png)
+![gamebase_terms_of_service_03_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_terms_of_service_03_en_240105.png)
 - Text to display
 	- Text to display in the game.
 	- **+** button allows you to add a language.

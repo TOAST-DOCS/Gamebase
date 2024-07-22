@@ -225,7 +225,13 @@ Click the **Delete** or **Modify** button to delete or modify the event key info
 
 ## Authentication
 You can manage the certificate used for push sending.
-![push_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_11_en_240103.png)
+![push_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_11_kr_240422.png)
+
+> [Note]
+> FCM Server Key certificates will be deprecated on June 20, 2024.
+> You will need to register a newly authenticated FCM Service Account Credential by June 20th.
+> When you register an FCM Service Account Credential, the FCM Server Key certificate is deleted. To recover your FCM Server Key, re-register an FCM Server Key certificate.
+
 
 For each certificate, click the **Register**, **Modify**, or **Delete** button to register, modify, or delete the certificate.
 
