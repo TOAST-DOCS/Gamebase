@@ -104,6 +104,7 @@ Gamebase SDKを手軽にインストールすることができるように、Se
         * この機能を有効にする必要があるユーザーは、次の2つの方法のいずれかでエラーを解決してください。
             * CocoaPods 1.10.xバージョンをインストールします。
             * Unityで作成したXcodeプロジェクトから**pod install**を直接呼び出します。
+    * Link frameworks statically：無効
 
 > <font color="red">[注意]</font>
 >
