@@ -14,18 +14,18 @@ To execute Gamebase in Android, the following system environment is required.
 
 | Gamebase SDK | Gamebase Adapter | External SDK | Purpose | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk-base<br>gamebase-sdk | nhncloud-core-1.8.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include the interface and core logic of Gamebase | API 19(KitKat, OS 4.4) |
+| Gamebase | gamebase-sdk | nhncloud-core-1.9.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include the interface and core logic of Gamebase | API 19(KitKat, OS 4.4) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Support Sign In With Apple login | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-16.1.2 | Support Facebook login | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Support Google login | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.7.1 | Support Hangame login | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.13.0 | Support Hangame login | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | Support LINE login | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.8.0 | Support NAVER login | API 21(Lollipop, OS 5.0) |
-|  | gamebase-adapter-auth-payco | payco-login-1.5.12 | Support PAYCO login | - |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.14 | Support PAYCO login | - |
 |  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Support Twitter login | API 21 (Lollipop, OS 5.0) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.5.0 | Support Weibo login | - |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Support Weibo login | - |
-|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.17.5<br>kakaogame.gamesdk<br>kakaogame.common<br>kakao.sdk.v2-auth-2.13.0<br>kakao.sdk.v2-partner-auth<br>kakao.sdk.v2-common<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 21(Lollipop, OS 5.0) |
+|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.19.0<br>kakaogame.gamesdk-3.19.0<br>kakaogame.common-3.19.0<br>kakao.sdk.v2-auth-3.19.0<br>kakao.sdk.v2-partner-auth-3.19.0<br>kakao.sdk.v2-common-3.19.0<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 23(Marshmallow, OS 6.0) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | Support in-app purchase | - |
 |  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Support Amazon Appstore | - |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Support Samsung Galaxy Store | API 21(Lollipop, OS 5.0)<br>Although minSdkVersion of Galaxy IAP SDK is 18, the minSdkVersion of Checkout service app that must be installed for actual purchase is 21. |
@@ -155,23 +155,38 @@ To execute Gamebase in Android, the following system environment is required.
         
 #### Root level build.gradle
 
+* If you are using Google Play Billing Library (PBL) 6.x with R8, the library may not work with Android 4.4 (API level 19) 
+    * Use PBL 6.2.1 starting with the Gamebase Android SDK 2.65.0 
+    * To resolve this issue and support Android 4.4 (API level 19), add the following declaration to your project-level (root level) build.gradle or settings.gradle (AGP 7.1 or later)
+
+            buildscript {
+                repositories {
+                    // Raw R8 releases.
+                    maven {
+                        url("https://storage.googleapis.com/r8-releases/raw")
+                    }
+                }
+
+                dependencies {
+                    classpath("com.android.tools:r8:8.1.46")
+                }
+            }
+
 * To use Huawei IAP, add the following declaration to build.gradle or settings.gradle (AGP 7.1 or later) at the project level (root level).
 
-```groovy
-buildscript {
-    repositories {
-        ...
-        // [Huawei App Gallery] Maven repository address for the HMS Core SDK.
-        maven { url 'https://developer.huawei.com/repo/' }
-    }
+        buildscript {
+            repositories {
+                ...
+                // [Huawei App Gallery] Maven repository address for the HMS Core SDK.
+                maven { url 'https://developer.huawei.com/repo/' }
+            }
 
-    dependencies {
-        ...
-        // [Huawei App Gallery] AppGallery Connect plugin configuration. please use the latest plugin version.
-        classpath 'com.huawei.agconnect:agcp:1.6.0.300'
-    }
-}
-```
+            dependencies {
+                ...
+                // [Huawei App Gallery] AppGallery Connect plugin configuration. please use the latest plugin version.
+                classpath 'com.huawei.agconnect:agcp:1.6.0.300'
+            }
+        }
 
 #### Define Adapters
 
@@ -310,17 +325,11 @@ android {
 
 #### Contact
 
-* To make an inquiry in [Game > Gamebase > Android SDK User Guide > ETC > Additional Features > Contact](./aos-etc/#contact) with photos and media, you need permission to read storage.
+* To attach photos and media when writing an inquiry on the Customer Center ([Game > Gamebase > Android SDK User Guide > ETC > Additional Features > Contact](./aos-etc/#contact)), storage read permission declaration is required on devices below Android API Level 21 (OS 5.0).
         
-        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-        
-* If your app is targeting Android 13 (API Level 33) or later, in addition to the storage read permission, you also need to decare the following detailed media permissions.
-        
-        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-        
-        <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-        
-* If permissions are declared, the Gamebase SDK will automatically request runtime permissions at file upload time.
+        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="21"/>
+  
+* If you need the READ_EXTERNAL_STORAGE permission even on devices with Android API Level 22 or higher, you must remove the **android:maxSdkVersion="21"** syntax and implement a runtime permission request.
 
 #### Facebook IdP
 
@@ -579,6 +588,7 @@ class MyApplication: GamebaseMyCardApplication() {
         <!-- [Weibo] Configurations end -->
 
         <!-- [ONE store] Configurations begin -->
+        <!-- Starting with Android 2.60.0 and later, the ONE store queries declaration is not required. -->
         <intent>
             <action android:name="com.onestore.ipc.iap.IapService.ACTION" />
         </intent>

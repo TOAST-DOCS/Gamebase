@@ -1,6 +1,6 @@
 ## Game > Gamebase > Android SDK User Guide > Logger
 
-This document describes how to use NHN Cloud Logger SDK on Android.
+This document describes how to use Log & Crash Search API.
 
 ### Initialize
 

@@ -881,7 +881,7 @@ You can pass the additional information to the URL using TCGBContactConfiguratio
 > <font color="red">[Caution]</font><br/>
 >
 > When contacting the Customer Center, access to camera or album may be required for file attachment.
-> Please set 'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description' in info.plist.
+> Please set 'Privacy - Camera Usage Description', 'Privacy - Microphone Library Usage Description' in info.plist.
 
 #### Request Contact URL
 
