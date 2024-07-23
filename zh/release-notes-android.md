@@ -1,10 +1,18 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.66.1 (2024. 07. 23.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.1/GamebaseSDK-Android.zip)
+
+#### 버그 수정
+* targetSdk 34로 빌드했을 때 Android 14 단말기에서 `gamebase://dismiss` 스킴이 동작하지 않아 커스텀 스킴으로 웹뷰를 종료할 수 없는 이슈를 수정했습니다.
+
 ### 2.66.0 (2024. 07. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.0/GamebaseSDK-Android.zip)
 
 #### Added Features
 * Added GPGS v2 authentication
+    * 설정 방법은 다음 가이드 문서를 참고하시기 바랍니다.
+        * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#gpgs-v2-idp)
 
 ### 2.65.1 (2024. 06. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.1/GamebaseSDK-Android.zip)
@@ -35,12 +43,12 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.64.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Kakaogame SDK (3.19.0), PAYCO SDK (1.5.14)
-* 약관 팝업창이 떠있는 상태에서 back key가 동작하지 않도록 변경되었습니다.
+#### Feature Updates
+* External SDK update: Kakaogame SDK (3.19.0), PAYCO SDK (1.5.14)
+* Changed so that the back key does not run when the Terms and Conditions popup appears.
 
-#### 버그 수정
-* API Level 23(OS 6.0, M) 이하 단말기에서 문자열 리소스 참조 실패로 Gamebase 내부 메세지가 정상 표시되지 않는 버그를 수정했습니다.
+#### Bug Fixes
+* Fixed a bug where Gamebase internal messages do not appear correctly due to string resource reference failures on devices below API Level 23 (OS 6.0, M).
 
 ### 2.63.0 (2024. 04. 23.)
 

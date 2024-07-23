@@ -1,5 +1,14 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.66.0 (2024. 07. 23.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.0/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트
+    * Facebook iOS SDK (17.0.2)
+    * Hangame iOS SDK (1.15.0)
+* 앱 추적을 허용하지 않아도 Hangame-Facebook 로그인이 가능하도록 수정하였습니다.
+
 ### 2.65.1 (2024. 06. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.1/GamebaseSDK-iOS.zip)
 
@@ -12,93 +21,93 @@
 ### 2.65.0 (2024. 06. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* 이미지 공지 기능에 신규 타입이 추가되었습니다.
-    * `롤링 팝업` 타입이 추가되었습니다.
-    * 기존의 이미지 공지는 `개별 팝업` 타입으로 표기됩니다.
+#### Added Features
+* Added a new type to the image notice feature.
+    * Added the `rolling popup` type.
+    * Displays the existing image notice as the `individual popup` type.
 
-#### 기능 개선/변경
-* 앱 추적을 허용하지 않아도 Facebook 로그인이 가능하도록 수정하였습니다.
-* 외부 SDK 업데이트
+#### Feature Updates
+* Fixed to allow Facebook login even if you don't allow app tracking.
+* External SDK update
     * Facebook iOS SDK (17.0.1)
-        * Facebook SDK가 Dynamic Framework로 변경되었습니다.
-* Weibo iOS SDK의 PrivacyInfo.xcprivacy 파일이 수정되었습니다.
-* 내부 로직 개선
+        * Changed Facebook SDK to Dynamic Framework.
+* Modified the PrivacyInfo.xcprivacy file of Weibo iOS SDK.
+* Improved internal logic
 
 ### 2.64.0 (2024. 05. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.64.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* External SDK update
     * PAYCO iOS SDK (1.5.11)
     * Kakaogame iOS SDK (3.19.0)
-* TCGBPushConfiguration.displayLanguageCode를 빈 문자열로 설정한 경우 Gamebase의 displayLanguageCode를 사용하도록 수정하였습니다.
-* 내부 로직 개선
+* Made modifications so that Gamebase's displayLanguageCode is used when TCGBPushConfiguration.displayLanguageCode is set to an empty string.
+* Improved internal logic
 
 ### 2.63.1 (2024. 05. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.63.1/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* External SDK update
     * Hangame iOS SDK (1.13.1)
-* 내부 로직 개선
+* Improved internal logic
 
 ### 2.63.0 (2024. 04. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.63.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* External SDK update
     * Google iOS SDK (7.1.0)
     * Facebook iOS SDK (17.0.0)
     * Weibo iOS SDK (3.3.8)
-* 내부 로직 개선
+* Improved internal logic
 
 ### 2.62.0 (2024. 03. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.62.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* Gamebase와 Gamebase Adapter SDK에 Privacy manifest와 서명을 적용했습니다.
-* Gamebase 초기화 후 리턴되는 LaunchingInfo VO에서 테스트 단말기임을 알 수 있는 testDevice 필드가 추가되었습니다.
+#### Added Features
+* Applied Privacy manifest and signature to Gamebase and Gamebase Adapter SDK.
+* Added the testDevice field to indicate a test device in LaunchingInfo VO that returns after Gamebase is initialized.
 
-#### 기능 개선/변경
-* Xcode 최소 지원 버전이 15.0로 변경되었습니다. 
-* iOS 최소 지원 버전이 12.0으로 변경되었습니다.
-* 외부 SDK 업데이트
+#### Feature Updates
+* Raised the minimum supported version of Xcode to 15.0. 
+* Raised the minimum supported version of iOS to 12.0.
+* External SDK update
     * NHN Cloud iOS SDK (1.8.1)
     * LINE iOS SDK (5.11.0)
-        * LINE 인증 최소 지원 버전이 13.0으로 변경되었습니다.
+        * Mininum supported version of LINE changed to 13.0.
     * NAVER iOS SDK (4.2.1)
     * PAYCO iOS SDK (1.5.10)
     * Hangame iOS SDK (1.12.0)
-* 내부 로직 개선
+* Improved internal logic
 
 ### 2.61.0 (2024. 02. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.61.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* External SDK update
     * NHN Cloud iOS SDK (1.8.0)
-* SDK 내부 로직 개선
+* Improved SDK internal logic
 
 ### 2.60.1 (2024. 02. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.60.1/GamebaseSDK-iOS.zip)
 
-#### 버그 수정
-* 특정 IdP로 로그인한 후 GameCenter 계정으로 변경되던 버그를 수정하였습니다.
+#### Bug Fixes
+* Fixed a bug where the account changes to a GameCenter account even after logging in with a specific Idp.
 
 ### 2.60.0 (2024. 01. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.60.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
-    * PAYCO iOS SDK가 xcframework로 변경되었습니다.
-* SDK 내부 로직 개선
+#### Feature Updates
+* External SDK update
+    * Changed PAYCO iOS SDK to xcframework.
+* Improved SDK internal logic
 
 ### 2.59.1 (2023. 12. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.59.1/GamebaseSDK-iOS.zip)
 
-#### 버그 수정
-* Hangame 로그인 시 오류가 발생하는 버그를 수정하였습니다.
+#### Bug Fixes
+* Fixed a bug where an error occurs when logging into Hangame.
 
 ### 2.59.0 (2023. 12. 19.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.59.0/GamebaseSDK-iOS.zip)
@@ -106,7 +115,7 @@
 #### Feature Updates
 * External SDK update
     * NAVER iOS SDK (4.2.0)
-        * NAVER iOS SDK가 xcframework로 변경되었습니다.
+        * Changed NAVER iOS SDK to xcframework.
 * Modified the Terms and Conditions window to display at a fixed size in tablet environments.
 * Modified to display an error popup window when the Launching Status Code is INTERNAL_SERVER_ERROR(500).
 

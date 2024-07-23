@@ -1,19 +1,34 @@
 ## Game > Gamebase > リリースノート > Unity
 
-### 2.66.0 (2024. 07. 12.)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.0/GamebaseSDK-Unity.zip)
+### 2.66.1 (2024. 07. 23.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.1/GamebaseSDK-Unity.zip)
 
 #### 기능 추가
 
-* (Android) GPGS V2 인증이 추가되었습니다.
+* (macOS) 개인정보 보호 정책이 대응되었습니다.
+
+#### 기능 개선
+
+* 내부 로직을 개선했습니다.
 
 #### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.66.1](./release-notes-android/#2661-2024-07-23)
+* [Gamebase iOS SDK 2.66.0](./release-notes-ios/#2660-2024-07-23)
+
+### 2.66.0 (2024. 07. 12.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.0/GamebaseSDK-Unity.zip)
+
+#### 機能追加
+
+* (Android) GPGS V2認証が追加されました。
+
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.66.0](./release-notes-android/#2660-2024-07-10)
 * [Gamebase iOS SDK 2.65.1](./release-notes-ios/#2651-2024-06-25)
 
 #### Setting Tool (v2.9.0)
 
-* GPGS V2 인증이 추가되었습니다. (Android에 한함)
+* GPGS V2認証が追加されました。 (Androidのみ)
 
 ### 2.65.1 (2024. 06. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.1/GamebaseSDK-Unity.zip)

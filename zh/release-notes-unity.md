@@ -1,5 +1,20 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.66.1 (2024. 07. 23.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.1/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+
+* (macOS) 개인정보 보호 정책이 대응되었습니다.
+
+#### 기능 개선
+
+* 내부 로직을 개선했습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.66.1](./release-notes-android/#2661-2024-07-23)
+* [Gamebase iOS SDK 2.66.0](./release-notes-ios/#2660-2024-07-23)
+
 ### 2.66.0 (2024. 07. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.0/GamebaseSDK-Unity.zip)
 
@@ -32,65 +47,69 @@
 ### 2.65.0 (2024. 06. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
+#### Added Features
 
-* 이미지 공지 기능에 신규 타입이 추가되었습니다.
-    * 롤링 팝업 타입이 추가되었습니다.
-    * 기존의 이미지 공지는 팝업 타입으로 표기됩니다.
-* 내부 로직을 개선했습니다.
+* Added a new type to the image notice feature.
+    * Added the `rolling popup` type.
+    * Displays the existing image notice as the `individual popup` type.
+* Improved internal logic.
 
-#### 플랫폼별 변경 사항
+#### Platform-Specific Changes
 * [Gamebase Android SDK 2.65.0](./release-notes-android/#2650-2024-06-11)
 * [Gamebase iOS SDK 2.65.0](./release-notes-ios/#2650-2024-06-11)
 
 ### 2.64.0 (2024. 05. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.64.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
+#### Added Features
 
-* 내부 로직을 개선했습니다.
+* Improved internal logic.
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.64.0](./release-notes-android/#2620-2024-05-28)
 * [Gamebase iOS SDK 2.64.0](./release-notes-ios/#2620-2024-05-28)
 
 ### 2.63.0 (2024. 04. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.63.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
+#### Added Features
 
-* (MacOS) WebView 신규 지원
+* (MacOS) Added support for WebView
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.63.0](./release-notes-android/#2620-2024-04-23)
 * [Gamebase iOS SDK 2.63.0](./release-notes-ios/#2620-2024-04-23)
 
 ### 2.62.0 (2024. 03. 26.) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.62.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* iOS 개인정보 보호 정책이 대응되었습니다.
-    * Gamebase SDK에 Privacy manifest와 서명을 적용했습니다.
-* Gamebase 초기화 후 리턴되는 LaunchingInfo VO에서 테스트 단말기임을 알 수 있는 testDevice 필드가 추가되었습니다.
-* (MacOS, Windows) TOAST 타입 고객센터에 대해 FAQ/공지사항을 직접 열 수 있는 기능을 추가했습니다.
+#### Added Features
+* Responded to iOS privacy policy.
+    * Applied Privacy manifest and signature to Gamebase SDK.
+* Added the testDevice field to indicate a test device in LaunchingInfo VO that returns after Gamebase is initialized.
+* (MacOS, Windows) Added the feature to open FAQs/announcements directly for TOAST-type customer support.
+
+#### Platform-specific Changes
+* [Gamebase Android SDK 2.62.0](./release-notes-android/#2620-2024-03-26)
+* [Gamebase iOS SDK 2.62.0](./release-notes-ios/#2620-2024-03-26)
 
 ### 2.61.0 (2024. 02. 27.) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.61.0/GamebaseSDK-Unity.zip)
 
-#### 버그 수정
-* (macOS) 내부 bundle 파일이 정상적으로 로드되지 않는 문제를 수정했습니다.
+#### Bug Fixes
+* (macOS) Fixed an issue where internal bundle files are not loaded normally.
 
-#### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.61.0](./release-notes-android/#2610-2024-02-27)
+#### Platform-specific Changes
+* [Gamebase Android SDK 2.60.0](./release-notes-android/#2610-2024-02-27)
 * [Gamebase iOS SDK 2.61.0](./release-notes-ios/#2610-2024-02-27)
 
 ### 2.60.0 (2024. 01. 23.) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.60.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* 내부 로직을 개선했습니다.
+#### Added Features
+* Improved internal logic.
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.60.0](./release-notes-android/#2600-2024-01-23)
 * [Gamebase iOS SDK 2.60.0](./release-notes-ios/#2600-2024-01-23)
 

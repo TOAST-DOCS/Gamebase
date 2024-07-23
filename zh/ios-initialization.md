@@ -131,11 +131,11 @@ NSDictionary* launchingInfo = [TCGBLaunching launchingInformations];
 ```
 
 
-#### 1. Launching
+#### 1. launching
 
 Refers to Gamebase launching data.
 
-**1.1 Status**
+**1.1 status**
 
 The game status information belongs to the app version entered for the setting of Gamebase Android SDK initialization.
 
@@ -163,7 +163,7 @@ Refer to the table for status codes:
 
 [Game > Gamebase > Console Guide > App > App](./oper-app/#app)
 
-**1.2 App**
+**1.2 app**
 
 This is information about apps registered in the Gamebase Console.
 
@@ -182,7 +182,7 @@ This is information about apps registered in the Gamebase Console.
 
 [Game > Gamebase > Console Guide > App > Client](./oper-app/#client)
 
-**1.3 Maintenance**
+**1.3 maintenance**
 
 This is information about maintenance registered in the Gamebase Console.
 
@@ -204,7 +204,7 @@ If you click the **DETAILS** button here, the maintenance information is automat
 If you want to modify the displayed HTML file, download the HTML file from the following link, modify it as you need, and add it as the **gamebase-maintenance.html** file in `Copy Bundle Resources` of the Xcode project.
 [HTML file download link](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gamebase-maintenance.html)
 
-**1.4 Notice**
+**1.4 notice**
 
 This is information about notification registered in the Gamebase Console.
 
@@ -213,6 +213,16 @@ This is information about notification registered in the Gamebase Console.
 * url: Maintenance URL
 
 [Game > Gamebase > Console Guide > Operation > Notice](./oper-operation/#notice)
+
+**1.5 user**
+
+Below is the user information who initialized Gamebase.
+
+* testDevice: Test device information (Forwarded when Status is in the 200s)
+    * matchingFlag: Whether the user device matches the test device set in the Gamebase console
+    * matchingTypes
+        * Type matched with the test device information
+        * Forwarded when matchingFlag is true
 
 #### 2. tcProduct
 
