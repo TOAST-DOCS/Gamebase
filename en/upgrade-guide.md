@@ -1,13 +1,22 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.65.1
+
+### Android, iOS, Unity
+
+* When using the image notice feature in Gamebase SDK 2.65.0, the following issues occur.
+    * An error callback is called if there are no image notices to show on a particular client.
+    * If there are no registered image notices, an empty image notice is displayed.
+    * Please use Gamebase SDK 2.65.1 or later, where the issue has been resolved.
+
 ## 2.65.0
 
 ### Common
 
-* Gamebase SDK 2.65.0에서 이미지 공지 기능 사용 시 발생하는 문제를 수정하였습니다.
-    * 표시할 이미지 공지가 없는 경우 오류 대신 성공 콜백이 호출되도록 변경하였습니다.
-    * 등록된 이미지 공지가 없을 경우 빈 공지 화면이 노출되고 이 때 Android에서는 오늘은 그만보기를 체크한 뒤 닫으면 crash가 발생합니다.
-    * 이슈가 해결된 Gamebase SDK 2.65.1 이상을 사용하세요.
+* Fixed an issue when using the image notice feature in Gamebase SDK 2.65.0.
+    * Changed the success callback to be called instead of an error if there are no image notices to display.
+    * If there are no registered image notices, an empty notice screen appears, at which point Android will crash if you check Stop viewing today and close it.
+    * Please use Gamebase SDK 2.65.1 or later, where the issue has been resolved.
 
 ### Android
 
