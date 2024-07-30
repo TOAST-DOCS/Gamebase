@@ -11,8 +11,7 @@
 
 #### Added Features
 * Added GPGS v2 authentication
-    * 설정 방법은 다음 가이드 문서를 참고하시기 바랍니다.
-        * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#gpgs-v2-idp)
+    * For how to set, see [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#gpgs-v2-idp)
 
 ### 2.65.1 (2024. 06. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.1/GamebaseSDK-Android.zip)
