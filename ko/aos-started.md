@@ -256,7 +256,7 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore:$GAMEBASE_SDK_VERSION"
     // >>> [ONE store v19]
     // https://github.com/ONE-store/onestore_iap_release/tree/iap19-release/android_app_sample/app/libs
-    implementation files('libs/iap_sdk-v19.00.02.aar')
+    implementation files('libs/iap_sdk-v19.01.00.aar')
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v19:$GAMEBASE_SDK_VERSION"
     // >>> [Push Custom Receiver]
     implementation "com.toast.android.gamebase:gamebase-adapter-push-notification:$GAMEBASE_SDK_VERSION"

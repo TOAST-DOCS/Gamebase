@@ -104,6 +104,7 @@ Setting Tool is provided to install Gamebase SDK easily.
         * For users who need to enable this feature, solve the error in one of the 2 ways below.
             * Install CocoaPods version 1.10.x.
             * Call **pod install** directly from the Xcode project created in Unity.
+    * Link frameworks statically: Disable
 
 > <font color="red">[Caution]</font>
 >
