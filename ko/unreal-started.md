@@ -13,25 +13,25 @@ Gamebase Unreal SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 
 #### Supported Platforms
 
-* iOS
 * Android
+* iOS
 * Windows
 
 선택한 플랫폼에서 지원하지 않는 Gamebase API를 호출할 때는 아래와 같은 오류가 콜백으로 반환되며 콜백이 없는 경우에는 Warning 로그가 출력됩니다.
 
 * GamebaseErrorCode::NOT_SUPPORTED
-* GamebaseErrorCode::NOT_SUPPORTED_IOS
 * GamebaseErrorCode::NOT_SUPPORTED_ANDROID
-* GamebaseErrorCode::NOT_SUPPORTED_UE4_STANDALONE
-* GamebaseErrorCode::NOT_SUPPORTED_UE4_EDITOR
+* GamebaseErrorCode::NOT_SUPPORTED_IOS
+* GamebaseErrorCode::NOT_SUPPORTED_UE_STANDALONE
+* GamebaseErrorCode::NOT_SUPPORTED_UE_EDITOR
 
 API별 지원하는 플랫폼은 아래와 같은 아이콘으로 구분합니다.
 
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 #### Dependencies
