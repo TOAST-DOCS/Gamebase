@@ -10,7 +10,7 @@
 
 검색 조건에 맞는 쿠폰 발급 내역을 검색합니다.
 
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_01_ko_240105.jpg)
+![gamebase_coupon_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_01_240813.png)
 
 **검색 조건**
 
@@ -35,7 +35,7 @@
 
 쿠폰 발급 검색 화면에서 **등록** 버튼을 클릭하면 쿠폰 발급을 진행할 수 있습니다.
 
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_02_ko_240105.jpg)
+![gamebase_coupon_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_02_240813.png)
 
 #### 1. 쿠폰 타입
 
@@ -90,7 +90,7 @@
 발급한 쿠폰 정보를 수정하려면 상세 정보에서 **수정** 버튼을 클릭합니다.
 이미 발급한 쿠폰 코드 타입은 수정할 수 없으므로 새 타입의 쿠폰을 발급하려면 발급 정보를 새로 등록해야 합니다.
 
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_03_ko_240105.jpg)
+![gamebase_coupon_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_03_240813.png)
 
 #### 1. 쿠폰명
 
@@ -119,7 +119,7 @@
 #### 6. 쿠폰 발송
 발급된 쿠폰 정보를 이용하여 유저에게 직접 쿠폰을 발송할 수 있는 기능을 제공합니다.
 
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_04_ko_240105.jpg)
+![gamebase_coupon_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_04_240813.png)
 ##### (1) 발송 유형 : 발송 유형을 선택합니다. MMS/SMS를 지원하며 MMS의 경우 제목을 추가로 입력하여 발송해야 합니다.
 
 ##### (2) 템플릿 선택 : NHN Cloud SMS 서비스에서 템플릿을 등록하셨다면 해당 템플릿을 선택하여 발송할 수 있습니다. 등록된 템플릿이 없다면 선택하지 않아도 됩니다.
@@ -138,7 +138,7 @@
 
 ##### (9) 수신 번호 : 수신 대상을 파일을 이용하여 등록합니다. **번호** 또는 **번호/쿠폰** 형식으로 등록할 수 있으며 번호만 입력되었을 경우 배정되는 쿠폰은 발급된 쿠폰에서 순차적으로 배정하여 전송합니다.
 
-##### (10) 테스트 발송 : 입력한 형식을 바탕으로 테스트 발송을 할 수 있습니다. 수신받고자 하는 번호를 입력 후 발송 버튼을 누르면 입력한 번호로 테스트 SMS가 발송됩니다. 실제 발송 전 테스트 발송을 통해 실제 수신형태를 확인하신 후 발송하시기를 권장합니다.
+##### (10) 테스트 수신 번호 : 입력한 형식을 바탕으로 테스트 발송을 할 수 있습니다. 수신받고자 하는 번호를 입력 후 발송 버튼을 누르면 입력한 번호로 테스트 SMS가 발송됩니다. 실제 발송 전 테스트 발송을 통해 실제 수신형태를 확인하신 후 발송하시기를 권장합니다.
 
 > [참고1]
 >
@@ -151,11 +151,11 @@
 #### 7. 쿠폰 추가 발급
 쿠폰 타입이 시리얼인 경우 1회 10만 개씩 최대 100만 개까지(초기 발급 개수 포함) 추가로 발급받을 수 있습니다.
 
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_05_ko_240105.jpg)
+![gamebase_coupon_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_05_240813.png)
 
 #### 8. 쿠폰 통계
 쿠폰 발급 상세 정보 화면의 하단에서 SMS 발송 내역을 조회할 수 있으며 발송과 관련된 통계를 조회 및 파일 다운로드를 진행할 수 있습니다.
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_06_ko_240105.jpg)
+![gamebase_coupon_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_06_240813.png)
 
 요청 통계 항목을 통해 실제 발송한 SMS의 발송 통계를 확인할 수 있으며 우측의 다운로드 요청 버튼을 통해 발송 결과에 대한 상세 내역을 다운로드하여 확인할 수 있습니다.
 다운로드 요청 후의 상태는 아래와 같습니다.
@@ -173,21 +173,20 @@
 #### 쿠폰 코드별 조회
 
 쿠폰 코드를 직접 입력하여 사용여부를 조회할 수 있습니다.
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_07_ko_240105.jpg)
+![gamebase_coupon_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_07_240813.png)
 
 #### 유저 ID별 조회
 
 유저 ID를 통해 해당 유저가 쿠폰을 사용한 이력을 조회할 수 있습니다.
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_08_ko_240105.jpg)
+![gamebase_coupon_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_08_240813.png)
 
 #### 쿠폰명 조회
 
 쿠폰명 및 기타 검색조건을 통해 사용 이력을 조회할 수 있습니다.
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_09_ko_240105.jpg)
+![gamebase_coupon_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_09_240813.png)
 
 1. **쿠폰명**: 쿠폰 발급 메뉴를 통해 발급한 쿠폰을 선택할 수 있습니다.
-2. **사용 여부**: 사용 여부를 선택하여 조회할 수 있는 기능을 제공합니다. 현재는 사용된 쿠폰만 조회가능하며 추후 다른 상태에 대한 검색 조건도 제공할 예정입니다.
-3. **쿠폰 사용일**: 기간을 설정하여 해당 기간에 사용된 쿠폰만 조회할 수 있는 기능을 제공합니다.
+2. **쿠폰 사용일**: 기간을 설정하여 해당 기간에 사용된 쿠폰만 조회할 수 있는 기능을 제공합니다.
 
 ## Coupon Item
 
@@ -197,7 +196,7 @@
 
 등록된 쿠폰 아이템 내역을 조회할 수 있습니다.
 필터를 통해 아이템 ID/아이템 이름을 통한 검색도 가능합니다.
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_10_ko_240105.jpg)
+![gamebase_coupon_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_10_240813.png)
 
 ### Register Coupon item
 
@@ -206,7 +205,7 @@
 
 #### 단건 등록
 
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_11_ko_240105.jpg)
+![gamebase_coupon_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_11_240813.png)
 
 ##### 1. 아이템 ID
 
@@ -219,7 +218,7 @@
 
 #### 파일 업로드
 
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_12_ko_240105.jpg)
+![gamebase_coupon_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_12_240813.png)
 한번에 대량으로 등록하고자 할 때 파일을 이용하여 등록할 수 있습니다.
 파일을 이용해서 등록할 경우 한번에 최대 10,000건까지 등록할 수 있으며 템플릿 예시 파일을 다운로드 받은 후 해당 형식에 맞도록 작성해서 업로드를 해주셔야 정상적으로 파일을 이용한 아이템 등록 작업 진행이 가능합니다.
 
@@ -231,7 +230,7 @@
 >
 > 아이템 ID 정보는 변경할 수 없으므로 아이템 ID가 잘못 되었다면 새로운 아이템 ID로 다시 등록해주셔야 합니다.
 
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_13_ko_240105.jpg)
+![gamebase_coupon_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_13_240813.png)
 
 #### 1. 아이템 이름
 
