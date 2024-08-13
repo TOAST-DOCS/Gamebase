@@ -538,10 +538,10 @@ Kakao 인증 정보는 퍼블리싱 계약 관계에 따라 카카오 디벨로�
 Kakao games에서 발급받은 {App ID}, {Native App Key} 및 {Admin Key}를 Gamebase Console에 입력합니다.
 ![gamebase_console_app_kakaogames_04_20240723.png](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/ko/gamebase_console_app_kakaogames_04_20240723.png)
 
-###### Client ID Settings
+##### Client ID Settings
 App ID를 설정합니다.
 
-###### Secret Key Settings
+##### Secret Key Settings
 Gamebase 인증 정보로 Kakao games를 추가하면 'Secret Key'에 아래의 JSON값이 설정됩니다.
 각각의 값을 Kakao games 콘솔에서 발급 받은 값으로 변경하세요.
 
@@ -555,7 +555,7 @@ Gamebase 인증 정보로 Kakao games를 추가하면 'Secret Key'에 아래의 
 }
 ```
 
-###### Additional Info Settings
+##### Additional Info Settings
 Gamebase 인증 정보로 Kakao games를 추가하면 '추가 정보'에 아래의 JSON값이 설정됩니다.
 Unity 빌드인 경우 **AppDelegate**를 **UnityAppController**로 변경하세요.
 
