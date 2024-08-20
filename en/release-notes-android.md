@@ -1,5 +1,18 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.66.2 (2024. 08. 27.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.2/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: NHN Cloud SDK(1.9.1), Kakaogame SDK(3.19.3), PAYCO SDK(1.5.14)
+* Amazon 스토어 결제시 문제가 생겨 재처리가 동작할 때 처음 결제를 시도했던 User ID로 아이템을 지급하도록 하는 보완 로직이 추가되었습니다.
+* Twitter 로그인 타이틀 바 색상과 이름이 변경되었습니다.
+* 롤링 팝업 타입의 이미지 공지를 표시하는 도중 웹뷰 에러가 발생할 경우, 에러 콜백이 호출되도록 수정하였습니다.
+
+#### 버그 수정
+* Activity가 파괴된 경우, 파괴된 Activity위에 떠 있는 WebView가 close되며 이 때 close event callback이 누락되는 이슈가 수정되었습니다.
+* Hangame 로그인 어댑터에서 외부 idP 로그인 시 callback이 중복으로 오는 경우 already resumed 에러가 나지 않도록 방어 로직을 추가하였습니다.
+
 ### 2.66.1 (2024. 07. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.1/GamebaseSDK-Android.zip)
 
