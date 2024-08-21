@@ -17,6 +17,7 @@
 - `List Active Subscriptions` API requestに一度にN個のストアを対象に照会できるように`marketIds`追加
 - 利用停止状態のユーザーを照会する`Get Ban Members` API追加
 - 購読の現在状態を照会する`Get Subscriptions Status` APIを追加
+- `Get Payment Transaction` API request bodyにONEStoreのpurchaseIdまたはpurchaseTokenの値を表す`paymentToken`を追加
 
 ## Advance Notice
 
@@ -1771,6 +1772,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
         "marketId": "AS",
         "accessToken": "-Fr8Y7_dvv5qhdd6qVHbs7gKnkX0r7EKPvuK6CI-UBBekc1rE9CVbMKVCNuw6ZtwkBGlzeIHg6DdjaRVeaW7GYlPF4vRa50L8umB6tdBvk8",
         "paymentId" : "Store Reference Key",
+        "paymentToken" : "19062709124410111299",        
         "productType": "CONSUMABLE",
         "userId": "AS@QW4M1GM7W97YJDCN",
         "gamebaseProductId": "qa_ksw_prod_as_001",
@@ -1792,6 +1794,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 | result.marketId | String | [ストアコード](#store-code) |
 | result.accessToken | String | 決済認証トークン |
 | result.paymentId | String | ストアで発行された決済ID |
+| result.paymentToken | String | ストアで発行された決済トークンで、ONEStoreの決済案件にのみ存在する<br>- ONEStore V5: purchaseId<br> - ONEStore V6,7: purchaseToken |
 | result.productType | String  | 商品(アイテム)タイプ<br>- 消費：CONSUMABLE<br>- 消費性購読：CONSUMABLE_AUTO_RENEWABLE<br>- 購読：AUTO_RENEWABLE |
 | result.userId | String  | ユーザーID  |
 | result.gamebaseProductId | String | Gamebase商品ID<br>コンソールで商品登録時、ユーザー入力値 |
