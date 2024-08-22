@@ -110,6 +110,7 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 ![analytics_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_05_kr_240103.png)
 
 앱 이용자의 유입, 유출에 대한 일자별 추이를 확인할 수 있습니다.
+주간, 월간 유입/유출 지표는 오전 10시 기준으로 업데이트되어 반영됩니다.
 
 * 유입 이용자(신규+복귀): 유입 이용자는 신규 가입자와 복귀 이용자의 합(신규 가입자 + 복귀 이용자)
 * 신규 가입자
