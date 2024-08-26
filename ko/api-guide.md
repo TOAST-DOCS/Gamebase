@@ -1204,7 +1204,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 
 #### Validate TransferAccount
 
-게스트 계정 이전을 위해 발급 받은 ID 및 PASSWORD의 유효성 검사를 수행합니다. 유효한 TransferAccount인 경우 발급받은 userId 정보를 반환합니다.
+게스트 계정 이전을 위해 발급 받은 ID 및 PASSWORD의 유효성 검사를 수행합니다. 유효한 TransferAccount인 경우 발급 받은 userId 정보를 반환합니다.
 
 **[Method, URI]**
 

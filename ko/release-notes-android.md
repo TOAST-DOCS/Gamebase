@@ -24,7 +24,7 @@
 
 #### 기능 추가
 * GPGS v2 인증 추가
-    * 설정 방법은 다음 가이드 문서를 참고하시기 바랍니다.
+    * 설정 방법은 다음 가이드 문서를 참고하세요.
         * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#gpgs-v2-idp)
 
 ### 2.65.1 (2024. 06. 25.)
