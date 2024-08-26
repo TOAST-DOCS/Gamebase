@@ -1,5 +1,14 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.66.2
+
+### iOS
+
+#### Changed/Deprecated APIs
+
+* 다음 필드가 deprecated 되었습니다.
+    * **TCGBWebViewConfiguration.orientationMask**
+
 ## 2.65.0
 
 ### Common

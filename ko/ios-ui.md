@@ -427,10 +427,7 @@ Gamebase에서는 기본적인 웹뷰를 지원합니다.<br/>
 - (void)showFixedOrientationWebView:(id)sender {
     NSString* urlString = @"https://www.toast.com/";
     TCGBWebViewConfiguration* config = [[TCGBWebViewConfiguration alloc] init];
-    
-    // Webview is fixed to Landscape mode
-    config.orientationMask = TCGBWebViewOrientationLandscapeLeft | TCGBWebViewOrientationLandscapeRight;
-    
+
     void(^closeCompletion)(TCGBError *) = ^(TCGBError *error) {
         NSLog(@"WebView Close Event occured");
     };
@@ -445,8 +442,6 @@ Gamebase에서는 기본적인 웹뷰를 지원합니다.<br/>
     // After this method is called, every webview(TCGBWebView) is shown with Landscape mode
 
     TCGBWebViewConfiguration *config = [[TCGBWebViewConfiguration alloc] init];
-    config.orientationMask = TCGBWebViewOrientationLandscapeLeft | TCGBWebViewOrientationLandscapeRight;
-
     [TCGBWebView sharedTCGBWebView].defaultWebConfiguration = config;
 }
 ```
@@ -506,11 +501,6 @@ Gamebase에 스킴 이름과 블록을 지정해 원하는 기능을 추가할 �
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
 | navigationBarTitle                     | string                                   | 웹뷰의 제목        |
-| orientationMask                        | TCGBWebViewOrientationUnspecified        | 미지정                |
-|                                        | TCGBWebViewOrientationPortrait           | 세로 모드              |
-|                                        | TCGBWebViewOrientationPortraitUpsideDown | 세로 모드 180도 회전      |
-|                                        | TCGBWebViewOrientationLandscapeRight     | 가로 모드              |
-|                                        | TCGBWebViewOrientationLandscapeLeft      | 가로 모드를 180도 회전     |
 | contentMode                            | TCGBWebViewContentModeRecommended        | 현재 플랫폼 추천 브라우저(**default**)    |
 |                                        | TCGBWebViewContentModeMobile             | 모바일 브라우저            |
 |                                        | TCGBWebViewContentModeDesktop            | 데스크톱 브라우저          |
