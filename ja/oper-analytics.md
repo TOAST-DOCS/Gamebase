@@ -109,6 +109,7 @@ Analyticsは、次のメニューで構成されています。
 
 アプリユーザーの流入、流出数の日付別推移を確認できます。
 ![analytics_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_05_jp_240103.png)
+毎週、毎月の流入/流出指標は午前10時時点で更新されて反映されます。
 
 * 流入ユーザー(新規+復帰)：流入ユーザーは新規加入者と復帰ユーザーの合計(新規加入者 + 復帰ユーザー)
 * 新規加入者

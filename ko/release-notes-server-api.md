@@ -1,5 +1,10 @@
 ## Game > Gamebase > 릴리스 노트 > Server API
 
+### 2024. 08. 27.
+
+#### 기능 추가
+* 결제 내역 조회 API request body에 'paymentToken' 필드 추가
+
 ### 2023. 10. 31.
 
 #### 기능 추가

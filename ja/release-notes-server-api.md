@@ -1,5 +1,10 @@
 ## Game > Gamebase > リリースノート > Server API
 
+### 2024. 08. 27.
+
+#### 機能追加
+* 決済履歴照会API request bodyに'paymentToken'フィールドを追加
+
 ### 2023. 10. 31.
 
 #### 機能追加
