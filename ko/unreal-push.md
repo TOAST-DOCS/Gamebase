@@ -49,7 +49,7 @@ void RegisterPush(const FGamebasePushConfiguration& configuration, const FGameba
 **Example**
 
 ```cpp
-void Sample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNight)
+void USample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNight)
 {
     FGamebasePushConfiguration Configuration;
     Configuration.pushEnabled = pushEnabled;
@@ -58,7 +58,8 @@ void Sample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNi
     Configuration.requestNotificationPermission = bRequestNotificationPermission;
     Configuration.alwaysAllowTokenRegistration = bAlwaysAllowTokenRegistration;
     
-    IGamebase::Get().GetPush().RegisterPush(Configuration, FGamebasePushConfigurationDelegate::CreateLambda([](const FGamebaseError* error)
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPush()->RegisterPush(Configuration, FGamebasePushConfigurationDelegate::CreateLambda([](const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -80,7 +81,7 @@ void Sample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNi
 #### Set Notification Options with RegisterPush in Runtime
 
 RegisterPush API 호출 시 FGamebaseNotificationOptions 인자를 추가하여 알림 옵션을 설정할 수 있습니다.
-FGamebaseNotificationOptions 의 생성자에 IGamebase::Get().GetPush().GetNotificationOptions() 호출 결과를 전달하면, 현재의 알림 옵션으로 초기화 된 오브젝트가 생성되므로, 필요한 값만 변경할 수 있습니다.<br/>
+FGamebaseNotificationOptions 의 생성자에 GamebaseSubsystem->GetPush()->GetNotificationOptions() 호출 결과를 전달하면, 현재의 알림 옵션으로 초기화 된 오브젝트가 생성되므로, 필요한 값만 변경할 수 있습니다.<br/>
 설정 가능한 값은 아래와 같습니다.
 
 | API                    | Parameter       | Description        |
@@ -95,7 +96,7 @@ FGamebaseNotificationOptions 의 생성자에 IGamebase::Get().GetPush().GetNoti
 **Example**
 
 ```cpp
-void Sample::RegisterPushWithOption(bool pushEnabled, bool adAgreement, bool adAgreementNight, const FString& displayLanguage, bool foregroundEnabled, bool badgeEnabled, bool soundEnabled, int32 priority, const FString& smallIconName, const FString& soundFileName)
+void USample::RegisterPushWithOption(bool pushEnabled, bool adAgreement, bool adAgreementNight, const FString& displayLanguage, bool foregroundEnabled, bool badgeEnabled, bool soundEnabled, int32 priority, const FString& smallIconName, const FString& soundFileName)
 {
     FGamebasePushConfiguration Configuration;
     Configuration.pushEnabled = pushEnabled;
@@ -112,7 +113,8 @@ void Sample::RegisterPushWithOption(bool pushEnabled, bool adAgreement, bool adA
     NotificationOptions.smallIconName = SmallIconName;
     NotificationOptions.soundFileName = SoundFileName;
 
-    IGamebase::Get().GetPush().RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPush()->RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -145,9 +147,10 @@ FGamebaseNotificationOptionsPtr GetNotificationOptions();
 **Example**
 
 ```cpp
-void Sample::GetNotificationOptions()
+void USample::GetNotificationOptions()
 {
-    auto NotificationOptions = IGamebase::Get().GetPush().GetNotificationOptions();
+    auto NotificationOptions = UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPush()->GetNotificationOptions();
     if (result.IsValid())
     {
         NotificationOptions->foregroundEnabled = true;
@@ -155,7 +158,8 @@ void Sample::GetNotificationOptions()
         
         FGamebasePushConfiguration Configuration;
         
-        IGamebase::Get().GetPush().RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) { }));
+        UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPush()->RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) { }));
     }
     else
     {
@@ -186,9 +190,10 @@ void QueryPush(const FGamebasePushConfigurationDelegate& onCallback);
 **Example**
 
 ```cpp
-void Sample::QueryTokenInfo()
+void USample::QueryTokenInfo()
 {
-    IGamebase::Get().GetPush().QueryTokenInfo(FGamebasePushTokenInfoDelegate::CreateLambda([=](const FGamebasePushTokenInfo* tokenInfo, const FGamebaseError* error)
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPush()->QueryTokenInfo(FGamebasePushTokenInfoDelegate::CreateLambda([=](const FGamebasePushTokenInfo* tokenInfo, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -257,9 +262,10 @@ void SetSandboxMode(bool isSandbox);
 **Example**
 
 ```cpp
-void Sample::SetSandboxMode(bool isSandbox)
+void USample::SetSandboxMode(bool isSandbox)
 {
-    IGamebase::Get().GetPush().SetSandboxMode(isSandbox);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPush()->SetSandboxMode(isSandbox);
 }
 ```
 

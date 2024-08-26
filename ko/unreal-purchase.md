@@ -85,8 +85,8 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -96,9 +96,10 @@ void RequestPurchase(const FString& gamebaseProductId, const FString& payload, c
 
 **Example**
 ```cpp
-void Sample::RequestPurchase(const FString& gamebaseProductId)
+void USample::RequestPurchase(const FString& gamebaseProductId)
 {
-    IGamebase::Get().GetPurchase().RequestPurchase(gamebaseProductId, FGamebasePurchasableReceiptDelegate::CreateLambda(
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPurchase()->RequestPurchase(gamebaseProductId, FGamebasePurchasableReceiptDelegate::CreateLambda(
         [](const FGamebasePurchasableReceipt* purchasableReceipt, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
@@ -123,11 +124,12 @@ void Sample::RequestPurchase(const FString& gamebaseProductId)
     }));
 }
 
-void Sample::RequestPurchaseWithPayload(const FString& gamebaseProductId)
+void USample::RequestPurchaseWithPayload(const FString& gamebaseProductId)
 {
     FString userPayload = TEXT("{\"description\":\"This is example\",\"channelId\":\"delta\",\"characterId\":\"abc\"}");
     
-    IGamebase::Get().GetPurchase().RequestPurchase(gamebaseProductId, userPayload, FGamebasePurchasableReceiptDelegate::CreateLambda(
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPurchase()->RequestPurchase(gamebaseProductId, userPayload, FGamebasePurchasableReceiptDelegate::CreateLambda(
         [](const FGamebasePurchasableReceipt* purchasableReceipt, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
@@ -240,8 +242,8 @@ struct FGamebasePurchasableReceipt
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -250,9 +252,10 @@ void RequestItemListPurchasable(const FGamebasePurchasableItemListDelegate& Call
 
 **Example**
 ```cpp
-void Sample::RequestItemListPurchasable()
+void USample::RequestItemListPurchasable()
 {
-    IGamebase::Get().GetPurchase().RequestItemListPurchasable(FGamebasePurchasableItemListDelegate::CreateLambda(
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPurchase()->RequestItemListPurchasable(FGamebasePurchasableItemListDelegate::CreateLambda(
         [](const TArray<FGamebasePurchasableItem>* purchasableItemList, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
@@ -334,8 +337,8 @@ struct FGamebasePurchasableItem
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -344,12 +347,13 @@ void RequestItemListOfNotConsumed(const FGamebasePurchasableConfiguration& Confi
 
 **Example**
 ```cpp
-void Sample::RequestItemListOfNotConsumed(bool allStores)
+void USample::RequestItemListOfNotConsumed(bool allStores)
 {
     FGamebasePurchasableConfiguration Configuration;
     Configuration.allStores = allStores;
 
-    IGamebase::Get().GetPurchase().RequestItemListOfNotConsumed(Configuration, FGamebasePurchasableItemListDelegate::CreateLambda(
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPurchase()->RequestItemListOfNotConsumed(Configuration, FGamebasePurchasableItemListDelegate::CreateLambda(
         [](const TArray<FGamebasePurchasableItem>* purchasableItemList, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
@@ -401,12 +405,13 @@ void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configur
 
 **Example**
 ```cpp
-void Sample::RequestActivatedPurchases(bool allStores)
+void USample::RequestActivatedPurchases(bool allStores)
 {
     FGamebasePurchasableConfiguration Configuration;
     Configuration.allStores = allStores;
 
-    IGamebase::Get().GetPurchase().RequestActivatedPurchases(Configuration, FGamebasePurchasableReceiptListDelegate::CreateLambda(
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPurchase()->RequestActivatedPurchases(Configuration, FGamebasePurchasableReceiptListDelegate::CreateLambda(
         [](const TArray<FGamebasePurchasableReceipt>* purchasableReceiptList, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
@@ -457,12 +462,13 @@ void RequestSubscriptionsStatus(const FGamebasePurchasableConfiguration& Configu
 
 **Example**
 ```cpp
-void Sample::RequestSubscriptionsStatus(bool includeExpiredSubscriptions)
+void USample::RequestSubscriptionsStatus(bool includeExpiredSubscriptions)
 {
     FGamebasePurchasableConfiguration Configuration;
     Configuration.allStores = allStores;
 
-    IGamebase::Get().GetPurchase().RequestSubscriptionsStatus(Configuration, FGamebasePurchasableSubscriptionStatusDelegate::CreateLambda(
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPurchase()->RequestSubscriptionsStatus(Configuration, FGamebasePurchasableSubscriptionStatusDelegate::CreateLambda(
         [](const TArray<FGamebasePurchasableSubscriptionStatus>* purchasableReceiptList, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))

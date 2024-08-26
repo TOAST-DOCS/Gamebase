@@ -31,6 +31,7 @@ Gamebase Console에 등록된 프로젝트 ID입니다.
 
 [Game > Gamebase > 콘솔 사용 가이드 > 앱 > App](./oper-app/#app)
 
+
 #### 2. appVersion
 
 Gamebase Console에 등록한 클라이언트 버전입니다.
@@ -79,7 +80,7 @@ LaunchingStatus는 아래 Launching 절 아래 State, Code 부분을 참고하�
 ### Debug Mode
 
 * Gamebase는 경고(warning)와 오류 로그만을 표시합니다.
-* 개발에 참고할 수 있는 시스템 로그를 켜려면 **IGamebase::Get().SetDebugMode(true)**를 호출하시기 바랍니다.
+* 개발에 참고할 수 있는 시스템 로그를 켜려면 **GamebaseSubsystem->SetDebugMode(true)**를 호출하시기 바랍니다.
 
 > <font color="red">[주의]</font><br/>
 >
@@ -94,8 +95,8 @@ Console 설정 방법은 아래 가이드를 참고하십시오.
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -105,9 +106,10 @@ void SetDebugMode(bool isDebugMode);
 **Example**
 
 ```cpp
-void Sample::SetDebugMode(bool isDebugMode)
+void USample::SetDebugMode(bool isDebugMode)
 {
-    IGamebase::Get().SetDebugMode(isDebugMode);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->SetDebugMode(isDebugMode);
 }
 ```
 
@@ -118,29 +120,30 @@ SDK를 초기화합니다.
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void Initialize(const FGamebaseConfiguration& configuration, const FGamebaseLaunchingInfoDelegate& onCallback);
+void Initialize(const FGamebaseConfiguration& Configuration, const FGamebaseLaunchingInfoDelegate& Callback);
 ```
 
 **Example**
 
 ```cpp
-void Sample::Initialize(const FString& appID, const FString& appVersion)
+void USample::Initialize(const FString& AppID, const FString& AppVersion)
 {
-    FGamebaseConfiguration configuration;
-    configuration.appID = appID;
-    configuration.appVersion = appVersion;
-    configuration.storeCode = GamebaseStoreCode.Google;
-    configuration.displayLanguageCode = GamebaseDisplayLanguageCode.Korean;
-    configuration.enablePopup = true;
-    configuration.enableLaunchingStatusPopup = true;
-    configuration.enableBanPopup = true;
+    FGamebaseConfiguration Configuration;
+    Configuration.appID = AppID;
+    Configuration.appVersion = AppVersion;
+    Configuration.storeCode = GamebaseStoreCode.Google;
+    Configuration.displayLanguageCode = GamebaseDisplayLanguageCode.Korean;
+    Configuration.enablePopup = true;
+    Configuration.enableLaunchingStatusPopup = true;
+    Configuration.enableBanPopup = true;
 
-    IGamebase::Get().Initialize(configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* launchingInfo, const FGamebaseError* error)
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->Initialize(Configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* launchingInfo, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -159,17 +162,17 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
             }
             
             // Status information of game app version set in the Gamebase Unreal SDK initialization.
-            auto status = launchingInfo->launching.status;
+            auto Status = launchingInfo->launching.status;
     
             // Game status code (e.g. Under maintenance, Update is required, Service has been terminated)
             // refer to GamebaseLaunchingStatus
-            if (status.code == GamebaseLaunchingStatus::IN_SERVICE)
+            if (Status.code == GamebaseLaunchingStatus::IN_SERVICE)
             {
                 // Service is now normally provided.
             }
             else
             {
-                switch (status.code)
+                switch (Status.code)
                 {
                     case GamebaseLaunchingStatus::RECOMMEND_UPDATE:
                     {
@@ -187,7 +190,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
         }
         else
         {
-                // Check the error code and handle the error appropriately.
+            // Check the error code and handle the error appropriately.
             UE_LOG(GamebaseTestResults, Display, TEXT("Initialize failed."));
         }
     }));
@@ -324,9 +327,10 @@ const FGamebaseLaunchingInfoPtr GetLaunchingInformations() const;
 **Example**
 
 ```cpp
-void Sample::GetLaunchingInformations()
+void USample::GetLaunchingInformations()
 {
-    auto launchingInformation = IGamebase::Get().GetLaunching().GetLaunchingInformations();
+    auto launchingInformation = UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetLaunching().GetLaunchingInformations();
     if (launchingInformation.IsValid() == false)
     {
         UE_LOG(GamebaseTestResults, Display, TEXT("Not found launching info."));
