@@ -8,8 +8,8 @@ Log & Crash Search에서 발급 받은 앱키로 NHN Cloud Logger SDK를 초기�
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -18,10 +18,14 @@ void Initialize(const FGamebaseLoggerConfiguration& loggerConfiguration);
 
 **Example**
 ```cpp
-void Sample::InitializeLogger()
+void USample::InitializeLogger()
 {
-    FGamebaseLoggerConfiguration configuration{ "USER_LOGGER_APP_KEY", enableCrashReporter };
-    IGamebase::Get().GetLogger().Initialize(configuration);
+    FGamebaseLoggerConfiguration Configuration;
+    Configuration.Appkey = TEXT("USER_LOGGER_APP_KEY");
+    Configuration.bEnableCrashReporter = true;
+    
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetLogger()->Initialize(Configuration);
 }
 ```
 
@@ -42,8 +46,8 @@ NHN Cloud  Logger SDK는 아래 다섯 가지 레벨의 로그를 전송할 수 
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -55,50 +59,56 @@ void Fatal(const FString& message, const TMap<FString, FString>& userFields = TM
 ```
 
 **Example**
+
 ```cpp
-void Sample::DebugLogger()
+void USample::DebugLogger()
 {
     TMap<FString, FString> userFields;
     userFields.Add("KEY_1", "VALUE_1");
     userFields.Add("KEY_2", "VALUE_2");
 
-    IGamebase::Get().GetLogger().Debug("MESSAGE", userFields);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetLogger()->Debug("MESSAGE", userFields);
 }
 
-void Sample::InfoLogger()
+void USample::InfoLogger()
 {
     TMap<FString, FString> userFields;
     userFields.Add("KEY_1", "VALUE_1");
     userFields.Add("KEY_2", "VALUE_2");
 
-    IGamebase::Get().GetLogger().Info("MESSAGE", userFields);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetLogger()->Info("MESSAGE", userFields);
 }
 
-void Sample::WarnLogger()
+void USample::WarnLogger()
 {
     TMap<FString, FString> userFields;
     userFields.Add("KEY_1", "VALUE_1");
     userFields.Add("KEY_2", "VALUE_2");
 
-    IGamebase::Get().GetLogger().Warn("MESSAGE", userFields);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetLogger()->Warn("MESSAGE", userFields);
 }
 
-void Sample::ErrorLogger()
+void USample::ErrorLogger()
 {
     TMap<FString, FString> userFields;
     userFields.Add("KEY_1", "VALUE_1");
     userFields.Add("KEY_2", "VALUE_2");
 
-    IGamebase::Get().GetLogger().Error("MESSAGE", userFields);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetLogger()->Error("MESSAGE", userFields);
 }
 
-void Sample::FatalLogger()
+void USample::FatalLogger()
 {
     TMap<FString, FString> userFields;
     userFields.Add("KEY_1", "VALUE_1");
     userFields.Add("KEY_2", "VALUE_2");
 
-    IGamebase::Get().GetLogger().Fatal("MESSAGE", userFields);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetLogger()->Fatal("MESSAGE", userFields);
 }
 ```
 
@@ -109,8 +119,8 @@ void Sample::FatalLogger()
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -119,8 +129,9 @@ void SetUserField(const FString& key, const FString& value);
 
 **Example**
 ```cpp
-void Sample::SetLoggerUserField()
+void USample::SetLoggerUserField()
 {
-    IGamebase::Get().GetLogger().SetUserField("KEY", "VALUE");
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetLogger()->SetUserField("KEY", "VALUE");
 }
 ```
