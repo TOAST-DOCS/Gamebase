@@ -93,7 +93,7 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void Initialize(const FGamebaseConfiguration& configuration, const FGamebaseLaunchingInfoDelegate& onCallback);
+void Initialize(const FGamebaseConfiguration& Configuration, const FGamebaseLaunchingInfoDelegate& onCallback);
 ```
 
 **Example**
@@ -101,13 +101,13 @@ void Initialize(const FGamebaseConfiguration& configuration, const FGamebaseLaun
 ```cpp
 void USample::Initialize(const FString& appID, const FString& appVersion)
 {
-    FGamebaseConfiguration configuration;
+    FGamebaseConfiguration Configuration;
     ...
-    configuration.displayLanguageCode = displayLanguage;
+    Configuration.displayLanguageCode = displayLanguage;
     ...
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->Initialize(configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* launchingInfo, const FGamebaseError* Error)
+    Subsystem->Initialize(Configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* LaunchingInfo, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
@@ -270,10 +270,10 @@ struct GAMEBASE_API FGamebaseEventMessage
 {
     // Event 종류를 나타냅니다.
     // GamebaseEventCategory 클래스의 값이 할당됩니다.
-    FString category;
+    FString Category;
 
-    // 각 category 에 맞는 VO 로 변환할 수 있는 JSON String 데이터입니다.
-    FString data;
+    // 각 Category 에 맞는 VO 로 변환할 수 있는 JSON String 데이터입니다.
+    FString Data;
 };
 ```
 
@@ -283,49 +283,49 @@ struct GAMEBASE_API FGamebaseEventMessage
 void USample::AddEventHandler()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& Message)
     {
-        if (message.category.Equals(GamebaseEventCategory::IdPRevoked))
+        if (Message.Category.Equals(GamebaseEventCategory::IdPRevoked))
         {
-            auto idPRevokedData = FGamebaseEventIdPRevokedData::From(message.data);
+            auto IdpRevokedData = FGamebaseEventIdPRevokedData::From(Message.Data);
         }
-        else if (message.category.Equals(GamebaseEventCategory::LoggedOut))
+        else if (Message.Category.Equals(GamebaseEventCategory::LoggedOut))
         {
-            auto loggedOutData = FGamebaseEventLoggedOutData::From(message.data);
+            auto LoggedOutData = FGamebaseEventLoggedOutData::From(Message.Data);
         }
-        else if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut) ||
-                 message.category.Equals(GamebaseEventCategory::ServerPushAppKickOutMessageReceived) ||
-                 message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
+        else if (Message.Category.Equals(GamebaseEventCategory::ServerPushAppKickOut) ||
+                 Message.Category.Equals(GamebaseEventCategory::ServerPushAppKickOutMessageReceived) ||
+                 Message.Category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
         {
-            auto serverPushData = FGamebaseEventServerPushData::From(message.data);
+            auto serverPushData = FGamebaseEventServerPushData::From(Message.Data);
         }
-        else if (message.category.Equals(GamebaseEventCategory::ObserverLaunching))
+        else if (Message.Category.Equals(GamebaseEventCategory::ObserverLaunching))
         {
-            auto observerData = FGamebaseEventObserverData::From(message.data);
+            auto observerData = FGamebaseEventObserverData::From(Message.Data);
         }
-        else if (message.category.Equals(GamebaseEventCategory::ObserverNetwork))
+        else if (Message.Category.Equals(GamebaseEventCategory::ObserverNetwork))
         {
-            auto observerData = FGamebaseEventObserverData::From(message.data);
+            auto observerData = FGamebaseEventObserverData::From(Message.Data);
         }
-        else if (message.category.Equals(GamebaseEventCategory::ObserverHeartbeat))
+        else if (Message.Category.Equals(GamebaseEventCategory::ObserverHeartbeat))
         {
-            auto observerData = FGamebaseEventObserverData::From(message.data);
+            auto observerData = FGamebaseEventObserverData::From(Message.Data);
         }
-        else if (message.category.Equals(GamebaseEventCategory::PurchaseUpdated))
+        else if (Message.Category.Equals(GamebaseEventCategory::PurchaseUpdated))
         {
-            auto purchasableReceipt = FGamebaseEventPurchasableReceipt::From(message.data);
+            auto purchasableReceipt = FGamebaseEventPurchasableReceipt::From(Message.Data);
         }
-        else if (message.category.Equals(GamebaseEventCategory::PushReceivedMessage))
+        else if (Message.Category.Equals(GamebaseEventCategory::PushReceivedMessage))
         {
-            auto pushMessage = FGamebaseEventPushMessage::From(message.data);
+            auto PushMessage = FGamebaseEventPushMessage::From(Message.Data);
         }
-        else if (message.category.Equals(GamebaseEventCategory::PushClickMessage))
+        else if (Message.Category.Equals(GamebaseEventCategory::PushClickMessage))
         {
-            auto pushMessage = FGamebaseEventPushMessage::From(message.data);
+            auto PushMessage = FGamebaseEventPushMessage::From(Message.Data);
         }
-        else if (message.category.Equals(GamebaseEventCategory::PushClickAction))
+        else if (Message.Category.Equals(GamebaseEventCategory::PushClickAction))
         {
-            auto pushAction = FGamebaseEventPushAction::From(message.data);
+            auto PushAction = FGamebaseEventPushAction::From(Message.Data);
         }
     }));
 }
@@ -336,14 +336,14 @@ void USample::AddEventHandler()
 
 | Event 종류 | GamebaseEventCategory | VO 변환 방법 | 비고 |
 | --------- | --------------------- | ----------- | --- |
-| IdPRevoked | GamebaseEventCategory::IdPRevoked | FGamebaseEventIdPRevokedData::From(message.data) | \- |
-| LoggedOut | GamebaseEventCategory::LoggedOut | FGamebaseEventLoggedOutData::From(message.data) | \- |
-| ServerPush | GamebaseEventCategory::ServerPushAppKickOut<br>GamebaseEventCategory::ServerPushAppKickOutMessageReceived<br>GamebaseEventCategory::ServerPushTransferKickout | FGamebaseEventServerPushData::From(message.data) | \- |
-| Observer | GamebaseEventCategory::ObserverLaunching<br>GamebaseEventCategory::ObserverNetwork<br>GamebaseEventCategory::ObserverHeartbeat | FGamebaseEventObserverData::From(message.data) | \- |
-| Purchase - 프로모션 결제 | GamebaseEventCategory::PurchaseUpdated | FGamebaseEventPurchasableReceipt::From(message.data) | \- |
-| Push - 메시지 수신 | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(message.data) |  |
-| Push - 메시지 클릭 | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(message.data) |  |
-| Push - 액션 클릭 | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(message.data) | RichMessage 버튼 클릭 시 동작합니다. |
+| IdPRevoked | GamebaseEventCategory::IdPRevoked | FGamebaseEventIdPRevokedData::From(Message.Data) | \- |
+| LoggedOut | GamebaseEventCategory::LoggedOut | FGamebaseEventLoggedOutData::From(Message.Data) | \- |
+| ServerPush | GamebaseEventCategory::ServerPushAppKickOut<br>GamebaseEventCategory::ServerPushAppKickOutMessageReceived<br>GamebaseEventCategory::ServerPushTransferKickout | FGamebaseEventServerPushData::From(Message.Data) | \- |
+| Observer | GamebaseEventCategory::ObserverLaunching<br>GamebaseEventCategory::ObserverNetwork<br>GamebaseEventCategory::ObserverHeartbeat | FGamebaseEventObserverData::From(Message.Data) | \- |
+| Purchase - 프로모션 결제 | GamebaseEventCategory::PurchaseUpdated | FGamebaseEventPurchasableReceipt::From(Message.Data) | \- |
+| Push - 메시지 수신 | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(Message.Data) |  |
+| Push - 메시지 클릭 | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(Message.Data) |  |
+| Push - 액션 클릭 | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(Message.Data) | RichMessage 버튼 클릭 시 동작합니다. |
 
 #### IdP Revoked
 
@@ -372,23 +372,23 @@ void USample::AddEventHandler()
 void USample::AddEventHandler()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& Message)
     {
-        if (message.category.Equals(GamebaseEventCategory::IdPRevoked))
+        if (Message.Category.Equals(GamebaseEventCategory::IdPRevoked))
         {
-            auto idPRevokedData = FGamebaseEventIdPRevokedData::From(message.data);
-            if (idPRevokedData.IsValid())
+            auto IdpRevokedData = FGamebaseEventIdPRevokedData::From(Message.Data);
+            if (IdpRevokedData.IsValid())
             {
-                ProcessIdPRevoked(idPRevokedData);
+                ProcessIdPRevoked(IdpRevokedData);
             }
         }
     }));
 }
 
-void USample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
+void USample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& Data)
 {
-    auto revokedIdP = data->idPType;
-    switch (data->code)
+    auto RevokedIdP = Data->IdpType;
+    switch (Data->code)
     {
         // 현재 사용 중지된 IdP로 로그인되어 있고, 매핑된 IdP 목록이 없을 때를 의미합니다.
         // 유저에게 현재 계정이 탈퇴 처리된 것을 알려 주세요.
@@ -404,15 +404,15 @@ void USample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
         {
             // 현재 사용 중지된 IdP로 로그인되어 있고, 사용 중지된 IdP 외에 다른 IdP가 매핑되어 있는 경우를 의미합니다.
             // 유저가 authMappingList 중 다시 로그인할 IdP를 선택하도록 하고, 선택한 IdP로 로그인한 뒤에는 사용 중지된 IdP의 연동을 해제해 주세요.
-            auto selectedIdP = "유저가 선택한 IdP";
-            auto additionalInfo = NewObject<UGamebaseJsonObject>();
-            additionalInfo->SetBoolField(GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn, true);
+            auto SelectedIdP = "유저가 선택한 IdP";
+            auto AdditionalInfo = NewObject<UGamebaseJsonObject>();
+            AdditionalInfo->SetBoolField(GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn, true);
 
-            Subsystem->Login(selectedIdP, *additionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
+            Subsystem->Login(SelectedIdP, *AdditionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
             {
                 if (Gamebase::IsSuccess(Error))
                 {
-                    Subsystem->RemoveMapping(revokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error)
+                    Subsystem->RemoveMapping(RevokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error)
                     {
                         ...
                     }));
@@ -424,7 +424,7 @@ void USample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
         {
             // 현재 계정에 매핑된 IdP 중 사용 중지된 IdP가 있을 경우를 의미합니다.
             // 유저에게 현재 계정에서 사용 중지된 IdP가 연동 해제됨을 알려 주세요.
-            Subsystem->RemoveMapping(revokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error)
+            Subsystem->RemoveMapping(RevokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error)
             {
                 ...
             }));
@@ -444,11 +444,11 @@ void USample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
 void USample::AddEventHandler()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& Message)
     {
-        if (message.category.Equals(GamebaseEventCategory::LoggedOut))
+        if (Message.Category.Equals(GamebaseEventCategory::LoggedOut))
         {
-            auto loggedOutData = FGamebaseEventLoggedOutData::From(message.data);
+            auto LoggedOutData = FGamebaseEventLoggedOutData::From(Message.Data);
             if (loggedData.IsValid() == true)
             {
                 // There was a problem with the access token.
@@ -479,35 +479,35 @@ void USample::AddEventHandler()
 void USample::AddEventHandler()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& Message)
     {
-        if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut) ||
-            message.category.Equals(GamebaseEventCategory::ServerPushAppKickOutMessageReceived) ||
-            message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
+        if (Message.Category.Equals(GamebaseEventCategory::ServerPushAppKickOut) ||
+            Message.Category.Equals(GamebaseEventCategory::ServerPushAppKickOutMessageReceived) ||
+            Message.Category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
         {
-            auto serverPushData = FGamebaseEventServerPushData::From(message.data);
+            auto serverPushData = FGamebaseEventServerPushData::From(Message.Data);
             if (serverPushData.IsVaild())
             {
-                CheckServerPush(message.category, *serverPushData);
+                CheckServerPush(Message.Category, *serverPushData);
             }
         }
     }));
 }
 
-void USample::CheckServerPush(const FString& category, const FGamebaseEventServerPushData& data)
+void USample::CheckServerPush(const FString& Category, const FGamebaseEventServerPushData& Data)
 {
-    if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut))
+    if (Message.Category.Equals(GamebaseEventCategory::ServerPushAppKickOut))
     {
         // Kicked out from Gamebase server.(Maintenance, banned or etc.)
         // And the game user closes the kickout pop-up.
         // Return to title and initialize Gamebase again.
     }
-    else if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOutMessageReceived))
+    else if (Message.Category.Equals(GamebaseEventCategory::ServerPushAppKickOutMessageReceived))
     {
         // Currently, the kickout pop-up is displayed.
         // If your game is running, stop it.
     }
-    else if (message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
+    else if (Message.Category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
     {
         // If the user wants to move the guest account to another device,
         // if the account transfer is successful,
@@ -556,7 +556,7 @@ struct GAMEBASE_API FGamebaseEventObserverData
     int32 code;
 
     // 추가 정보용 예비 필드입니다.
-    FString message;
+    FString Message;
 
     // 상태에 관련된 메시지 정보입니다.
     FString extras;
@@ -569,27 +569,27 @@ struct GAMEBASE_API FGamebaseEventObserverData
 void USample::AddEventHandler()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& Message)
     {
-        if (message.category.Equals(GamebaseEventCategory::ObserverLaunching))
+        if (Message.Category.Equals(GamebaseEventCategory::ObserverLaunching))
         {
-            auto observerData = FGamebaseEventObserverData::From(message.data);
+            auto observerData = FGamebaseEventObserverData::From(Message.Data);
             if (observerData.IsVaild())
             {
                 CheckLaunchingStatus(*observerData);
             }
         }
-        else if (message.category.Equals(GamebaseEventCategory::ObserverNetwork))
+        else if (Message.Category.Equals(GamebaseEventCategory::ObserverNetwork))
         {
-            auto observerData = FGamebaseEventObserverData::From(message.data);
+            auto observerData = FGamebaseEventObserverData::From(Message.Data);
             if (observerData.IsVaild())
             {
                 CheckNetwork(*observerData);
             }
         }
-        else if (message.category.Equals(GamebaseEventCategory::ObserverHeartbeat))
+        else if (Message.Category.Equals(GamebaseEventCategory::ObserverHeartbeat))
         {
-            auto observerData = FGamebaseEventObserverData::From(message.data);
+            auto observerData = FGamebaseEventObserverData::From(Message.Data);
             if (observerData.IsVaild())
             {
                 CheckHeartbeat(*observerData);
@@ -598,9 +598,9 @@ void USample::AddEventHandler()
     }));
 }
 
-void USample::CheckLaunchingStatus(const FGamebaseEventObserverData& data)
+void USample::CheckLaunchingStatus(const FGamebaseEventObserverData& Data)
 {
-    switch (data.code)
+    switch (Data.code)
     {
         case GamebaseLaunchingStatus::IN_SERVICE:
             {
@@ -616,9 +616,9 @@ void USample::CheckLaunchingStatus(const FGamebaseEventObserverData& data)
     }
 }
 
-void USample::CheckNetwork(const FGamebaseEventObserverData& data)
+void USample::CheckNetwork(const FGamebaseEventObserverData& Data)
 {
-    switch ((GamebaseNetworkType)data.code)
+    switch ((GamebaseNetworkType)Data.code)
     {
         case EGamebaseNetworkType::Not:
             {
@@ -635,9 +635,9 @@ void USample::CheckNetwork(const FGamebaseEventObserverData& data)
     }
 }
 
-void USample::CheckHeartbeat(const FGamebaseEventObserverData& data)
+void USample::CheckHeartbeat(const FGamebaseEventObserverData& Data)
 {
-    switch (data.code)
+    switch (Data.code)
     {
         case EGGamebaseErrorCode::INVALID_MEMBER:
             {
@@ -665,11 +665,11 @@ void USample::CheckHeartbeat(const FGamebaseEventObserverData& data)
 void USample::AddEventHandler()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& Message)
     {
-        if (message.category.Equals(GamebaseEventCategory::PurchaseUpdated))
+        if (Message.Category.Equals(GamebaseEventCategory::PurchaseUpdated))
         {
-            auto purchasableReceipt = FGamebaseEventPurchasableReceipt::From(message.data);
+            auto purchasableReceipt = FGamebaseEventPurchasableReceipt::From(Message.Data);
             if (purchasableReceipt.IsVaild())
             {
                 // If the user got item by 'Promotion Code',
@@ -693,16 +693,16 @@ void USample::AddEventHandler()
 struct FGamebaseEventPushMessage
 {
     // 메시지 고유의 id입니다.
-    FString id;
+    FString Id;
 
     // Push 메시지 제목입니다.
-    FString title;
+    FString Title;
 
     // Push 메시지 본문 내용입니다.
-    FString body;
+    FString Body;
 
     // JSON 형식으로 Push 발송 시 전송했던 커스텀 정보를 확인할 수 있습니다.
-    FString extras;
+    FString Extras;
 };
 ```
 
@@ -712,16 +712,16 @@ struct FGamebaseEventPushMessage
 void USample::AddEventHandler()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& Message)
     {
-        if (message.category.Equals(GamebaseEventCategory::PushReceivedMessage))
+        if (Message.Category.Equals(GamebaseEventCategory::PushReceivedMessage))
         {
-            auto pushMessage = FGamebaseEventPushMessage::From(message.data);
-            if (pushMessage.IsVaild())
+            auto PushMessage = FGamebaseEventPushMessage::From(Message.Data);
+            if (PushMessage.IsVaild())
             {
-                // When you clicked push message.
+                // When you clicked push Message.
 
-                // By converting the extras field of the push message to JSON,
+                // By converting the extras field of the push Message to JSON,
                 // you can get the custom information added by the user when sending the push.
                 // (For Android, an 'isForeground' field is included so that you can check if received in the foreground state.)
             }
@@ -741,14 +741,14 @@ void USample::AddEventHandler()
 void USample::AddEventHandler()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& Message)
     {
-        if (message.category.Equals(GamebaseEventCategory::PushClickMessage))
+        if (Message.Category.Equals(GamebaseEventCategory::PushClickMessage))
         {
-            auto pushMessage = FGamebaseEventPushMessage::From(message.data);
-            if (pushMessage.IsVaild())
+            auto PushMessage = FGamebaseEventPushMessage::From(Message.Data);
+            if (PushMessage.IsVaild())
             {
-                // When you clicked push message.
+                // When you clicked push Message.
             }
         }
     }));
@@ -759,7 +759,7 @@ void USample::AddEventHandler()
 #### Push Click Action
 
 * Rich Message 기능을 통해 생성한 버튼을 클릭했을때 발생하는 이벤트입니다.
-* actionType 은 다음 항목이 제공됩니다.
+* ActionType 은 다음 항목이 제공됩니다.
     * "OPEN_APP"
     * "OPEN_URL"
     * "REPLY"
@@ -772,13 +772,13 @@ void USample::AddEventHandler()
 struct FGamebaseEventPushAction
 {
     // 버튼 액션 종류입니다.
-    FString actionType;
+    FString ActionType;
 
     // PushMessage 데이터입니다.
-    FGamebaseEventPushMessage message;
+    FGamebaseEventPushMessage Message;
 
     // Push 콘솔에서 입력한 사용자 텍스트입니다.
-    FString userText;
+    FString UserText;
 };
 ```
 
@@ -788,12 +788,12 @@ struct FGamebaseEventPushAction
 void USample::AddEventHandler()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& Message)
     {
-        if (message.category.Equals(GamebaseEventCategory::PushClickAction))
+        if (Message.Category.Equals(GamebaseEventCategory::PushClickAction))
         {
-            auto pushAction = FGamebaseEventPushAction::From(message.data);
-            if (pushAction.IsVaild())
+            auto PushAction = FGamebaseEventPushAction::From(Message.Data);
+            if (PushAction.IsVaild())
             {
                 // When you clicked action button by 'Rich Message'.
             }
@@ -836,10 +836,10 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc |
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int32 | 게임 유저 레벨을 나타내는 필드입니다. |
-| channelId | O | FString | 채널을 나타내는 필드입니다. |
-| characterId | O | FString | 캐릭터 이름을 나타내는 필드입니다. |
-| characterClassId | O | FString | 직업을 나타내는 필드입니다. |
+| UserLevel | M | int32 | 게임 유저 레벨을 나타내는 필드입니다. |
+| ChannelId | O | FString | 채널을 나타내는 필드입니다. |
+| CharacterId | O | FString | 캐릭터 이름을 나타내는 필드입니다. |
+| CharacterClassId | O | FString | 직업을 나타내는 필드입니다. |
 
 **API**
 
@@ -849,17 +849,22 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void SetGameUserData(const FGamebaseAnalyticsUserData& gameUserData);
+void SetGameUserData(const FGamebaseAnalyticsUserData& GameUserData);
 ```
 
 **Example**
 
 ```cpp
-void USample::SetGameUserData(int32 userLevel, const FString& channelId, const FString& characterId, const FString& characterClassId)
+void USample::SetGameUserData(int32 UserLevel, const FString& ChannelId, const FString& CharacterId, const FString& CharacterClassId)
 {
-    FGamebaseAnalyticsUserData gameUserData{ userLevel, channelId, characterId, characterClassId };
+    FGamebaseAnalyticsUserData GameUserData;
+    GameUserData.UserLevel = UserLevel;
+    GameUserData.ChannelId = ChannelId;
+    GameUserData.CharacterId = CharacterId;
+    GameUserData.CharacterClassId = CharacterClassId;
+    
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetAnalytics().SetGameUserData(gameUserData);
+    Subsystem->GetAnalytics().SetGameUserData(GameUserData);
 }
 
 ```
@@ -874,8 +879,8 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 
 | Name                       | Mandatory(M) / Optional(O) | type | Desc    |
 | -------------------------- | -------------------------- | ---- | ---- |
-| userLevel | M | int32 | 게임 유저 레벨을 나타내는 필드입니다. |
-| levelUpTime | M | long | Epoch Time으로 입력합니다.</br>Millisecond 단위로 입력합니다. |
+| UserLevel | M | int32 | 게임 유저 레벨을 나타내는 필드입니다. |
+| LevelUpTime | M | long | Epoch Time으로 입력합니다.</br>Millisecond 단위로 입력합니다. |
 
 **API**
 
@@ -891,9 +896,9 @@ void TraceLevelUp(const FGamebaseAnalyticesLevelUpData& levelUpData);
 **Example**
 
 ```cpp
-void USample::TraceLevelUpNow(int32 userLevel)
+void USample::TraceLevelUpNow(int32 UserLevel)
 {
-    FGamebaseAnalyticesLevelUpData levelUpData{ userLevel, FDateTime::Now().ToUnixTimestamp() };
+    FGamebaseAnalyticesLevelUpData levelUpData{ UserLevel, FDateTime::Now().ToUnixTimestamp() };
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->GetAnalytics().TraceLevelUp(levelUpData);
 }
@@ -941,10 +946,10 @@ ContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니다.
 
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
 | ------------- | ------------- | ---------------------------------- | ------------------ |
-| userName      | O             | FString                            | 사용자 이름(닉네임) <br>**default**: ""   |
-| additionalURL | O             | FString                            | 개발사 자체 고객 센터 URL 뒤에 붙는 추가적인 URL <br>**default**: ""    |
-| additionalParameters | O      | TMap<string, string>               | 고객 센터 URL 뒤에 붙는 추가적인 파라미터<br>**default** : EmptyMap |
-| extraData     | O             | TMap<FString, FString>             | 개발사가 원하는 extra data를 고객 센터 오픈 시에 전달<br>**default**: EmptyMap |
+| UserName      | O             | FString                            | 사용자 이름(닉네임) <br>**default**: ""   |
+| AdditionalURL | O             | FString                            | 개발사 자체 고객 센터 URL 뒤에 붙는 추가적인 URL <br>**default**: ""    |
+| AdditionalParameters | O      | TMap<string, string>               | 고객 센터 URL 뒤에 붙는 추가적인 파라미터<br>**default** : EmptyMap |
+| ExtraData     | O             | TMap<FString, FString>             | 개발사가 원하는 extra data를 고객 센터 오픈 시에 전달<br>**default**: EmptyMap |
 
 **API**
 
@@ -955,7 +960,7 @@ Supported Platforms
 
 ```cpp
 void OpenContact(const FGamebaseErrorDelegate& onCloseCallback);
-void OpenContact(const FGamebaseContactConfiguration& configuration, const FGamebaseErrorDelegate& onCloseCallback);
+void OpenContact(const FGamebaseContactConfiguration& Configuration, const FGamebaseErrorDelegate& onCloseCallback);
 ```
 
 **ErrorCode**
@@ -988,8 +993,8 @@ void USample::OpenContact()
             {
                 // Gamebase Console Service Center URL is invalid.
                 // Please check the url field in the TOAST Gamebase Console.
-                auto launchingInfo = Subsystem->GetLaunching().GetLaunchingInformations();
-                UE_LOG(GamebaseTestResults, Display, TEXT("csUrl: %s"), *launchingInfo->launching.app.relatedUrls.csUrl);
+                auto LaunchingInfo = Subsystem->GetLaunching().GetLaunchingInformations();
+                UE_LOG(GamebaseTestResults, Display, TEXT("csUrl: %s"), *LaunchingInfo->Launching.App.RelatedUrls.CsUrl);
             }
         }
     }));
@@ -1021,7 +1026,7 @@ void USample::OpenContact()
 
 ```cs
 void RequestContactURL(const FGamebaseContactUrlDelegate& onCallback);
-void RequestContactURL(const FGamebaseContactConfiguration& configuration, const FGamebaseContactUrlDelegate& onCallback);
+void RequestContactURL(const FGamebaseContactConfiguration& Configuration, const FGamebaseContactUrlDelegate& onCallback);
 ```
 
 **ErrorCode**
@@ -1038,10 +1043,10 @@ void RequestContactURL(const FGamebaseContactConfiguration& configuration, const
 ``` cs
 void USample::RequestContactURL(const FString& userName)
 {
-    FGamebaseContactConfiguration configuration{ userName };
+    FGamebaseContactConfiguration Configuration{ userName };
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetContact()->RequestContactURL(configuration, FGamebaseContactUrlDelegate::CreateLambda([=](FString url, const FGamebaseError* Error)
+    Subsystem->GetContact()->RequestContactURL(Configuration, FGamebaseContactUrlDelegate::CreateLambda([=](FString url, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
