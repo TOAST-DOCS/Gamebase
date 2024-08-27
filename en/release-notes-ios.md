@@ -1,5 +1,18 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.66.2 (2024. 08. 27.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.2/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트
+    * NHN Cloud iOS SDK (1.8.3)
+        * 앱 스토어 심사에서 PrivacyInfo manifest 관련 경고 메일이 오지 않도록 수정되었습니다.
+* 아래 필드가 deprecated되었습니다.
+    * TCGBWebViewConfiguration.orientationMask
+* 콘솔에 등록되지 않은 IdP로 로그인을 시도할 경우 TCGB_ERROR_AUTH_IDP_LOGIN_INVALID_IDP_INFO(3202) 오류가 발생하도록 수정하였습니다.
+* 롤링 이미지 공지의 웹뷰 내부에서 에러가 발생한 경우, 기존에 성공 콜백 호출 대신 실패 콜백이 호출되도록 수정하였습니다.
+* 내부 로직 개선
+
 ### 2.66.0 (2024. 07. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.0/GamebaseSDK-iOS.zip)
 
@@ -12,11 +25,11 @@
 ### 2.65.1 (2024. 06. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.1/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 특정 클라이언트에서 보여줄 이미지가 없는 경우, 에러 대신 성공 콜백이 호출되도록 수정하였습니다.
+#### Feature Updates
+* Fixed so that if there are no images to show on a particular client, a success callback is called instead of an error.
 
-#### 버그 수정  
-* 등록된 이미지 공지가 없는 경우, 빈 이미지 공지가 노출되는 이슈를 수정하였습니다.
+#### Bug Fixes  
+* Fixed an issue where an empty image notice is displayed if no registered image announcement is available.
 
 ### 2.65.0 (2024. 06. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.0/GamebaseSDK-iOS.zip)
