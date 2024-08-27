@@ -63,7 +63,7 @@ Gamebase에서 기본으로 제공되는 SMS/Email 외에 별도로 알람을 �
 
 #### (2) 등록
 ![management_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Management/ko/management_05_kr_240103.png)
-**등록** 버튼을 클릭해 외부 시스템에서 발급받은 Webhook 정보를 등록할 수 있습니다.
+**등록** 버튼을 클릭해 외부 시스템에서 발급 받은 Webhook 정보를 등록할 수 있습니다.
 현재는 Dooray와 Slack만 등록할 수 있으며 추후 요청이 있을 때 새로운 목록을 추가할 예정입니다.
 
 #### (2) 상세조회/수정/삭제
