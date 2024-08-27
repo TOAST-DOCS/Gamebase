@@ -40,33 +40,34 @@ void RegisterPush(const FGamebasePushConfiguration& configuration, const FGameba
 
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
 | ------------- | ------------- | ---------------------------------- | ------------------ |
-| pushEnabled                   | M             | bool         | 푸시 동의 여부 |
-| adAgreement                   | M             | bool         | 광고성 푸시 동의 여부 |
-| ADAgreemadAgreementNightentNight | M          | bool         | 야간 광고성 푸시 동의 여부 |
-| requestNotificationPermission | O             | bool         | Android 13 이상의 OS에서 RegisterPush API를 호출했을 때 Push 권한 요청 팝업 자동 출력 여부<br>**default**: true<br/>**Android에 한함** |
-| alwaysAllowTokenRegistration  | O             | bool         | 사용자가 푸시 권한을 거부해도 토큰을 등록할지 여부<br>true로 설정할 경우 푸시 권한을 획득하지 못하더라도 토큰을 등록합니다.<br>**default**: false<br/>**iOS에 한함** |
+| bPushEnabled                   | M             | bool         | 푸시 동의 여부 |
+| bAdAgreement                   | M             | bool         | 광고성 푸시 동의 여부 |
+| bAdAgreementNight | M          | bool         | 야간 광고성 푸시 동의 여부 |
+| bRequestNotificationPermission | O             | bool         | Android 13 이상의 OS에서 RegisterPush API를 호출했을 때 Push 권한 요청 팝업 자동 출력 여부<br>**default**: true<br/>**Android에 한함** |
+| bAlwaysAllowTokenRegistration  | O             | bool         | 사용자가 푸시 권한을 거부해도 토큰을 등록할지 여부<br>true로 설정할 경우 푸시 권한을 획득하지 못하더라도 토큰을 등록합니다.<br>**default**: false<br/>**iOS에 한함** |
 
 **Example**
 
 ```cpp
-void Sample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNight)
+void USample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNight)
 {
     FGamebasePushConfiguration Configuration;
-    Configuration.pushEnabled = pushEnabled;
-    Configuration.adAgreement = adAgreement;
-    Configuration.adAgreementNight = adAgreementNight;
-    Configuration.requestNotificationPermission = bRequestNotificationPermission;
-    Configuration.alwaysAllowTokenRegistration = bAlwaysAllowTokenRegistration;
+    Configuration.bPushEnabled = pushEnabled;
+    Configuration.bAdAgreement = adAgreement;
+    Configuration.bAdAgreementNight = adAgreementNight;
+    Configuration.bRequestNotificationPermission = bRequestNotificationPermission;
+    Configuration.bAlwaysAllowTokenRegistration = bAlwaysAllowTokenRegistration;
     
-    IGamebase::Get().GetPush().RegisterPush(Configuration, FGamebasePushConfigurationDelegate::CreateLambda([](const FGamebaseError* error)
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPush()->RegisterPush(Configuration, FGamebasePushConfigurationDelegate::CreateLambda([](const FGamebaseError* Error)
     {
-        if (Gamebase::IsSuccess(error))
+        if (Gamebase::IsSuccess(Error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("RegisterPush succeeded"));
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RegisterPush failed. (error: %d)"), error->code);
+            UE_LOG(GamebaseTestResults, Display, TEXT("RegisterPush failed. (Error: %d)"), Error->Code);
         }
     }));
 }
@@ -80,48 +81,49 @@ void Sample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNi
 #### Set Notification Options with RegisterPush in Runtime
 
 RegisterPush API 호출 시 FGamebaseNotificationOptions 인자를 추가하여 알림 옵션을 설정할 수 있습니다.
-FGamebaseNotificationOptions 의 생성자에 IGamebase::Get().GetPush().GetNotificationOptions() 호출 결과를 전달하면, 현재의 알림 옵션으로 초기화 된 오브젝트가 생성되므로, 필요한 값만 변경할 수 있습니다.<br/>
+FGamebaseNotificationOptions 의 생성자에 GamebaseSubsystem->GetPush()->GetNotificationOptions() 호출 결과를 전달하면, 현재의 알림 옵션으로 초기화 된 오브젝트가 생성되므로, 필요한 값만 변경할 수 있습니다.<br/>
 설정 가능한 값은 아래와 같습니다.
 
 | API                    | Parameter       | Description        |
 | ---------------------  | ------------ | ------------------ |
-| foregroundEnabled      | bool         | 앱이 포그라운드 상태일 때의 알림 노출 여부<br/>**default**: false |
-| badgeEnabled           | bool         | 배지 아이콘 사용 여부<br/>**default**: true |
-| soundEnabled           | bool         | 알림음 사용 여부<br/>**default**: true<br/>**iOS에 한함** |
-| priority               | int32        | 알림 우선 순위. 아래 5가지 값을 설정할 수 있습니다.<br/>GamebaseNotificationPriority::Min : -2<br/> GamebaseNotificationPriority::Low : -1<br/>GamebaseNotificationPriority::Default : 0<br/>GamebaseNotificationPriority::High : 1<br/>GamebaseNotificationPriority::Max : 2<br/>**default**: GamebaseNotificationPriority::High<br/>**Android에 한함** |
-| smallIconName          | FString       | 알림용 작은 아이콘 파일 이름.<br/>설정하지 않을 경우 앱 아이콘이 사용됩니다.<br/>**default**: null<br/>**Android에 한함** |
-| soundFileName          | FString       | 알림음 파일 이름. 안드로이드 8.0 미만 OS 에서만 동작합니다.<br/>'res/raw' 폴더의 mp3, wav 파일명을 지정하면 알림음이 변경됩니다.<br/>**default**: null<br/>**Android에 한함** |
+| bForegroundEnabled      | bool         | 앱이 포그라운드 상태일 때의 알림 노출 여부<br/>**default**: false |
+| bBadgeEnabled           | bool         | 배지 아이콘 사용 여부<br/>**default**: true |
+| bSoundEnabled           | bool         | 알림음 사용 여부<br/>**default**: true<br/>**iOS에 한함** |
+| Priority               | int32        | 알림 우선 순위. 아래 5가지 값을 설정할 수 있습니다.<br/>GamebaseNotificationPriority::Min : -2<br/> GamebaseNotificationPriority::Low : -1<br/>GamebaseNotificationPriority::Default : 0<br/>GamebaseNotificationPriority::High : 1<br/>GamebaseNotificationPriority::Max : 2<br/>**default**: GamebaseNotificationPriority::High<br/>**Android에 한함** |
+| SmallIconName          | FString       | 알림용 작은 아이콘 파일 이름.<br/>설정하지 않을 경우 앱 아이콘이 사용됩니다.<br/>**default**: null<br/>**Android에 한함** |
+| SoundFileName          | FString       | 알림음 파일 이름. 안드로이드 8.0 미만 OS 에서만 동작합니다.<br/>'res/raw' 폴더의 mp3, wav 파일명을 지정하면 알림음이 변경됩니다.<br/>**default**: null<br/>**Android에 한함** |
 
 **Example**
 
 ```cpp
-void Sample::RegisterPushWithOption(bool pushEnabled, bool adAgreement, bool adAgreementNight, const FString& displayLanguage, bool foregroundEnabled, bool badgeEnabled, bool soundEnabled, int32 priority, const FString& smallIconName, const FString& soundFileName)
+void USample::RegisterPushWithOption(bool pushEnabled, bool adAgreement, bool adAgreementNight, const FString& displayLanguage, bool foregroundEnabled, bool badgeEnabled, bool soundEnabled, int32 priority, const FString& smallIconName, const FString& soundFileName)
 {
     FGamebasePushConfiguration Configuration;
-    Configuration.pushEnabled = pushEnabled;
-    Configuration.adAgreement = adAgreement;
-    Configuration.adAgreementNight = adAgreementNight;
-    Configuration.requestNotificationPermission = bRequestNotificationPermission;
-    Configuration.alwaysAllowTokenRegistration = bAlwaysAllowTokenRegistration;
+    Configuration.bPushEnabled = pushEnabled;
+    Configuration.bAdAgreement = adAgreement;
+    Configuration.bAdAgreementNight = adAgreementNight;
+    Configuration.bRequestNotificationPermission = bRequestNotificationPermission;
+    Configuration.bAlwaysAllowTokenRegistration = bAlwaysAllowTokenRegistration;
     
     FGamebaseNotificationOptions NotificationOptions;
-    NotificationOptions.foregroundEnabled = bForegroundEnabled;
-    NotificationOptions.badgeEnabled = bBadgeEnabled;
-    NotificationOptions.soundEnabled = bSoundEnabled;
-    NotificationOptions.priority = Priority;
-    NotificationOptions.smallIconName = SmallIconName;
-    NotificationOptions.soundFileName = SoundFileName;
+    NotificationOptions.bForegroundEnabled = bForegroundEnabled;
+    NotificationOptions.bBadgeEnabled = bBadgeEnabled;
+    NotificationOptions.bSoundEnabled = bSoundEnabled;
+    NotificationOptions.Priority = Priority;
+    NotificationOptions.SmallIconName = SmallIconName;
+    NotificationOptions.SoundFileName = SoundFileName;
 
-    IGamebase::Get().GetPush().RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPush()->RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error)
     {
-        if (Gamebase::IsSuccess(error))
+        if (Gamebase::IsSuccess(Error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("RegisterPush succeeded"));
         }
         else
         {
-            // Check the error code and handle the error appropriately.
-            UE_LOG(GamebaseTestResults, Display, TEXT("RegisterPush failed. (error: %d)"), error->code);
+            // Check the Error code and handle the Error appropriately.
+            UE_LOG(GamebaseTestResults, Display, TEXT("RegisterPush failed. (Error: %d)"), Error->Code);
         }
     }));
 }
@@ -145,17 +147,19 @@ FGamebaseNotificationOptionsPtr GetNotificationOptions();
 **Example**
 
 ```cpp
-void Sample::GetNotificationOptions()
+void USample::GetNotificationOptions()
 {
-    auto NotificationOptions = IGamebase::Get().GetPush().GetNotificationOptions();
+    auto NotificationOptions = UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPush()->GetNotificationOptions();
     if (result.IsValid())
     {
-        NotificationOptions->foregroundEnabled = true;
-        NotificationOptions->smallIconName = TEXT("notification_icon_name");
+        NotificationOptions->ForegroundEnabled = true;
+        NotificationOptions->SmallIconName = TEXT("notification_icon_name");
         
         FGamebasePushConfiguration Configuration;
         
-        IGamebase::Get().GetPush().RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) { }));
+        UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPush()->RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) { }));
     }
     else
     {
@@ -186,21 +190,22 @@ void QueryPush(const FGamebasePushConfigurationDelegate& onCallback);
 **Example**
 
 ```cpp
-void Sample::QueryTokenInfo()
+void USample::QueryTokenInfo()
 {
-    IGamebase::Get().GetPush().QueryTokenInfo(FGamebasePushTokenInfoDelegate::CreateLambda([=](const FGamebasePushTokenInfo* tokenInfo, const FGamebaseError* error)
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPush()->QueryTokenInfo(FGamebasePushTokenInfoDelegate::CreateLambda([=](const FGamebasePushTokenInfo* tokenInfo, const FGamebaseError* Error)
     {
-        if (Gamebase::IsSuccess(error))
+        if (Gamebase::IsSuccess(Error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("QueryTokenInfo succeeded. (pushEnabled= %s, adAgreement= %s, adAgreementNight= %s, tokenInfo= %s)"),
-                tokenInfo->pushEnabled ? TEXT("true") : TEXT("false"),
-                tokenInfo->adAgreement ? TEXT("true") : TEXT("false"),
-                tokenInfo->adAgreementNight ? TEXT("true") : TEXT("false"),
+                tokenInfo->PushEnabled ? TEXT("true") : TEXT("false"),
+                tokenInfo->bAdAgreement ? TEXT("true") : TEXT("false"),
+                tokenInfo->bAdAgreementNight ? TEXT("true") : TEXT("false"),
                 *tokenInfo->token);
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("QueryTokenInfo failed. (error: %d)"), error->code);
+            UE_LOG(GamebaseTestResults, Display, TEXT("QueryTokenInfo failed. (Error: %d)"), Error->Code);
         }
     }));
 }
@@ -257,9 +262,10 @@ void SetSandboxMode(bool isSandbox);
 **Example**
 
 ```cpp
-void Sample::SetSandboxMode(bool isSandbox)
+void USample::SetSandboxMode(bool isSandbox)
 {
-    IGamebase::Get().GetPush().SetSandboxMode(isSandbox);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPush()->SetSandboxMode(isSandbox);
 }
 ```
 
@@ -273,7 +279,7 @@ void Sample::SetSandboxMode(bool isSandbox)
 | PUSH_UNKNOWN_ERROR             | 5999       | 정의되지 않은 푸시 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [오류 코드](./error-code/#client-sdk)
+    * [오류 코드](./Error-code/#client-sdk)
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 
@@ -281,24 +287,24 @@ void Sample::SetSandboxMode(bool isSandbox)
 * NHN Cloud Push 라이브러리에서 발생한 오류 정보는 상세 오류에 포함되어 있으며 상세한 오류 코드 및 메시지는 다음과 같이 확인할 수 있습니다. 
 
 ```cpp
-GamebaseError* gamebaseError = error; // GamebaseError object via callback
+GamebaseError* gamebaseError = Error; // GamebaseError object via callback
 
-if (Gamebase::IsSuccess(error))
+if (Gamebase::IsSuccess(Error))
 {
     // succeeded
 }
 else
 {
-    UE_LOG(GamebaseTestResults, Display, TEXT("code: %d, message: %s"), error->code, *error->message);
+    UE_LOG(GamebaseTestResults, Display, TEXT("code: %d, message: %s"), Error->Code, *Error->Messsage);
 
-    GamebaseInnerError* moduleError = gamebaseError.error; // GamebaseError.error object from external module
+    GamebaseInnerError* moduleError = gamebaseError.Error; // GamebaseError.Error object from external module
     if (moduleError.code != GamebaseErrorCode::SUCCESS)
     {
-        UE_LOG(GamebaseTestResults, Display, TEXT("moduleErrorCode: %d, moduleErrorMessage: %s"), moduleError->code, *moduleError->message);
+        UE_LOG(GamebaseTestResults, Display, TEXT("moduleErrorCode: %d, moduleErrorMessage: %s"), moduleerror->Code, *moduleerror->Messsage);
     }
 }
 ```
 
 * NHN Cloud Push 오류 코드를 확인하시기 바랍니다.
-    * [Android](aos-push#error-handling)
-    * [iOS](ios-push#error-handling)
+    * [Android](aos-push#Error-handling)
+    * [iOS](ios-push#Error-handling)

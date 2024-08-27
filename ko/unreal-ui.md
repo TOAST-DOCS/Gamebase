@@ -13,8 +13,8 @@
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -25,16 +25,17 @@ void ShowImageNotices(FGamebaseImageNoticeConfiguration& configuration, const FG
 **Example**
 
 ```cpp
-void Sample::ShowImageNotices(int32 colorR, int32 colorG, int32 colorB, int32 colorA, int64 timeOut)
+void USample::ShowImageNotices(int32 colorR, int32 colorG, int32 colorB, int32 colorA, int64 timeOut)
 {
     FGamebaseImageNoticeConfiguration configuration{ colorR, colorG, colorB, colorA, timeOut };
 
-    IGamebase::Get().GetImageNotice().ShowImageNotices(configuration,
-        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) {
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetImageNotice()->ShowImageNotices(configuration,
+        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) {
             // Called when the entire imageNotice is closed.
             ...
         }),
-        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& scheme, const FGamebaseError* error) {
+        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& scheme, const FGamebaseError* Error) {
             // Called when custom event occurred.
             ...
         })
@@ -89,7 +90,7 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 >
 > * FGamebasePushConfiguration은 약관 창이 표시되지 않은 경우에는 null입니다(약관 창이 표시되었다면 항상 유효한 객체가 반환됩니다.).
 > * FGamebasePushConfiguration.pushEnabled 값은 항상 true입니다.
-> * FGamebasePushConfiguration이 null이 아니라면 **로그인 후에** IGamebase::Get().GetPush().RegisterPush()를 호출하세요.
+> * FGamebasePushConfiguration이 null이 아니라면 **로그인 후에** Subsystem->GetPush()->RegisterPush()를 호출하세요.
 
 #### Optional 파라미터
 
@@ -134,13 +135,14 @@ void ShowTermsView(const FGamebaseTermsConfiguration& configuration, const FGame
 **Example**
 
 ```cpp
-void Sample::ShowTermsView()
+void USample::ShowTermsView()
 {
     FGamebaseTermsConfiguration configuration { true };
 
-    IGamebase::Get().GetTerms().ShowTermsView(configuration,
-        FGamebaseDataContainerDelegate::CreateLambda([=](const FGamebaseDataContainer* dataContainer, const FGamebaseError* error) {
-            if (Gamebase::IsSuccess(error))
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetTerms()->ShowTermsView(configuration,
+        FGamebaseDataContainerDelegate::CreateLambda([=](const FGamebaseDataContainer* dataContainer, const FGamebaseError* Error) {
+            if (Gamebase::IsSuccess(Error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView succeeded."));
                 
@@ -153,18 +155,18 @@ void Sample::ShowTermsView()
             }
             else
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView failed. (error: %d)"), error->code);
+                UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView failed. (Error: %d)"), Error->Code);
             }
         })
     );
 }
 
-void Sample::AfterLogin()
+void USample::AfterLogin()
 {
     // Call RegisterPush with saved PushConfiguration.
     if (savedPushConfiguration != null)
     {
-        Gamebase.Push.RegisterPush(savedPushConfiguration, (error) =>
+        Gamebase.Push.RegisterPush(savedPushConfiguration, (Error) =>
         {
             ...
         });
@@ -196,8 +198,8 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cs
@@ -215,17 +217,18 @@ void QueryTerms(const FGamebaseQueryTermsResultDelegate& onCallback);
 **Example**
 
 ```cpp
-void Sample::QueryTerms()
+void USample::QueryTerms()
 {
-    IGamebase::Get().GetTerms().QueryTerms(
-        FGamebaseQueryTermsResultDelegate::CreateLambda([=](const FGamebaseQueryTermsResult* data, const FGamebaseError* error) {
-            if (Gamebase::IsSuccess(error))
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetTerms()->QueryTerms(
+        FGamebaseQueryTermsResultDelegate::CreateLambda([=](const FGamebaseQueryTermsResult* data, const FGamebaseError* Error) {
+            if (Gamebase::IsSuccess(Error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("QueryTerms succeeded."));
             }
             else
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("QueryTerms failed. (error: %d)"), error->code);
+                UE_LOG(GamebaseTestResults, Display, TEXT("QueryTerms failed. (Error: %d)"), Error->Code);
             }
         })
     );
@@ -281,8 +284,8 @@ QueryTerms API로 내려받은 약관 정보로 UI를 직접 제작했다면,
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -301,21 +304,22 @@ void UpdateTerms(const FGamebaseUpdateTermsConfiguration& configuration, const F
 **Example**
 
 ```cpp
-void Sample::UpdateTerms(int32 termsSeq, const FString& termsVersion, int32 termsContentSeq, bool agreed)
+void USample::UpdateTerms(int32 termsSeq, const FString& termsVersion, int32 termsContentSeq, bool agreed)
 {
     TArray<FGamebaseTermsContent> contents;
     contents.Add(FGamebaseTermsContent { termsContentSeq, agreed });
     
-    IGamebase::Get().GetTerms().UpdateTerms(
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetTerms()->UpdateTerms(
         FGamebaseUpdateTermsConfiguration { termsSeq, termsVersion, contents },
-        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) {
-            if (Gamebase::IsSuccess(error))
+        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) {
+            if (Gamebase::IsSuccess(Error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("UpdateTerms succeeded."));
             }
             else
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("UpdateTerms failed. (error: %d)"), error->code);
+                UE_LOG(GamebaseTestResults, Display, TEXT("UpdateTerms failed. (Error: %d)"), Error->Code);
             }
         })
     );
@@ -350,9 +354,10 @@ bool IsShowingTermsView();
 **Example**
 
 ```cpp
-void Sample::IsShowingTermsView()
+void USample::IsShowingTermsView()
 {
-    bool isShowingTermsView = IGamebase::Get().GetTerms().IsShowingTermsView();
+    bool isShowingTermsView = UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetTerms()->IsShowingTermsView();
     UE_LOG(GamebaseTestResults, Display, TEXT("IsShowingTermsView : %s"), isShowingTermsView ? TEXT("true") : TEXT("false"));
 }
 ```
@@ -375,8 +380,8 @@ void Sample::IsShowingTermsView()
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -385,25 +390,26 @@ void ShowWebView(const FString& url, const FGamebaseWebViewConfiguration& config
 
 **Example**
 ```cpp
-void Sample::ShowWebView(const FString& url)
+void USample::ShowWebView(const FString& url)
 {
     FGamebaseWebViewConfiguration configuration{ TEXT("Title"), GamebaseScreenOrientation::Unspecified, 128, 128, 128, 255, 40, true, "", "" };
 
     TArray<FString> schemeList{ TEXT("customScheme://openBrowser") };
 
-    IGamebase::Get().GetWebView().ShowWebView(url, configuration,
-        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) {
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetWebView()->ShowWebView(url, configuration,
+        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) {
             Result(ANSI_TO_TCHAR(__FUNCTION__), TEXT("Close webview"));
         }),
         schemeList,
-        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& scheme, const FGamebaseError* error) {
-        if (Gamebase::IsSuccess(error))
+        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& scheme, const FGamebaseError* Error) {
+        if (Gamebase::IsSuccess(Error))
         {
             Result(ANSI_TO_TCHAR(__FUNCTION__), true, *FString::Printf(TEXT("scheme= %s"), *scheme));
         }
         else
         {
-            Result(ANSI_TO_TCHAR(__FUNCTION__), false, GamebaseJsonUtil::UStructToJsonObjectString(*error));
+            Result(ANSI_TO_TCHAR(__FUNCTION__), false, GamebaseJsonUtil::UStructToJsonObjectString(*Error));
         }
     }));
 }
@@ -458,8 +464,8 @@ Gamebase에서 지정해 놓은 스킴입니다.
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -468,9 +474,10 @@ void CloseWebView();
 
 **Example**CloseWebview
 ```cpp
-void Sample::CloseWebView()
+void USample::CloseWebView()
 {
-    IGamebase::Get().GetWebView().CloseWebView();
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetWebView()->CloseWebView();
 }
 ```
 
@@ -491,9 +498,10 @@ void OpenWebBrowser(const FString& url);
 
 **Example**
 ```cpp
-void Sample::OpenWebBrowser(const FString& url)
+void USample::OpenWebBrowser(const FString& url)
 {
-    IGamebase::Get().GetWebView().OpenWebBrowser(url);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetWebView()->OpenWebBrowser(url);
 }
 ```
 
@@ -516,16 +524,18 @@ void ShowAlert(const FString& title, const FString& message, const FGamebaseAler
 
 **Example**
 ```cpp
-void Sample::ShowAlert(const FString& title, const FString& message)
+void USample::ShowAlert(const FString& title, const FString& message)
 {
-    IGamebase::Get().GetUtil().ShowAlert(title, message);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetUtil()->ShowAlert(title, message);
 }
 
-void Sample::ShowAlertEvent(const FString& title, const FString& message)
+void USample::ShowAlertEvent(const FString& title, const FString& message)
 {
-    IGamebase::Get().GetUtil().ShowAlert(title, message, FGamebaseAlertCloseDelegate::CreateLambda([=]()
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetUtil()->ShowAlert(title, message, FGamebaseAlertCloseDelegate::CreateLambda([=]()
     {
-            UE_LOG(GamebaseTestResults, Display, TEXT("ShowAlert ButtonClick."));
+        UE_LOG(GamebaseTestResults, Display, TEXT("ShowAlert ButtonClick."));
     }));
 }
 ```
@@ -546,9 +556,10 @@ void ShowToast(const FString& message, EGamebaseToastExposureTime exposureTimeTy
 
 **Example**
 ```cpp
-void Sample::ShowToast(const FString& message, EGamebaseToastExposureTime exposureTimeType)
+void USample::ShowToast(const FString& message, EGamebaseToastExposureTime exposureTimeType)
 {
-    IGamebase::Get().GetUtil().ShowToast(message, exposureTimeType);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetUtil()->ShowToast(message, exposureTimeType);
 }
 ```
 
@@ -560,4 +571,4 @@ void Sample::ShowToast(const FString& message, EGamebaseToastExposureTime exposu
 | UI\_UNKNOWN\_ERROR | 6999       | 알수 없는 오류입니다(정의되지 않은 오류입니다). |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [오류 코드](./error-code/#client-sdk)
+    * [오류 코드](./Error-code/#client-sdk)

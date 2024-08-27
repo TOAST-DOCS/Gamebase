@@ -186,7 +186,7 @@ Facebook 개발자 사이트에 등록한 앱의 {앱 아이디}와 {앱 시크�
 
 **입력 필드**
 
-- ClientID: {AppID}
+- Client ID: {AppID}
 - Secret Key: {App Secret Code}
 - 추가정보: Facebook Permission & Facebook Client Token (json format)
 
@@ -259,7 +259,7 @@ Apple 개발자 사이트에 등록된 BundleID를 Gamebase Console에 입력합
 
 **입력 필드**<br />
 
-- ClientID: {Bundle ID}<br />
+- Client ID: {Bundle ID}<br />
 
 ![gamebase_app_08_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_08_201812.png)
 
@@ -270,11 +270,11 @@ Apple 개발자 사이트에 등록된 BundleID를 Gamebase Console에 입력합
 
 
 #### 4. PAYCO
-PAYCO Client ID를 신청해서 발급받은 {client_id} 및 {client_secret}을 Gamebase Console에 입력합니다.
+PAYCO Client ID를 신청해서 발급 받은 {client_id} 및 {client_secret}을 Gamebase Console에 입력합니다.
 
 **입력 필드**<br />
 
-- ClientID: {PAYCO client_id}
+- Client ID: {PAYCO client_id}
 - Secret Key: {PAYCO client_secret}
 - 추가정보: PAYCO Service Code & Service Name (JSON format)
 
@@ -293,8 +293,8 @@ PAYCO Client ID를 신청해서 발급받은 {client_id} 및 {client_secret}을 
 * [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings > PAYCO](./ios-started/#payco)
 
 #### 5. NAVER
-NAVER Developers 사이트에서 신청하여 발급받은 {client_id} 및 {client_secret}을 Gamebase Console에 입력합니다.
-이때, 로그인 동의 창에서 표시할 애플리케이션 이름인 **service_name** 을 설정해야 합니다.
+NAVER Developers 사이트에서 신청하여 발급 받은 {client_id} 및 {client_secret}을 Gamebase Console에 입력합니다.
+이때, 로그인 동의 창에서 표시할 애플리케이션 이름인 **service_name**을 설정해야 합니다.
 
 **입력 필드**
 
@@ -320,7 +320,7 @@ NAVER Developers 사이트에서 신청하여 발급받은 {client_id} 및 {clie
 * [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings > Naver](./ios-started/#naver)
 
 #### 6. Twitter
-Twitter Application Management 사이트에서 앱을 등록하고 발급받은 {Consumer Key} 및 {Consumer Secret}을 Gamebase Console에 입력합니다.
+Twitter Application Management 사이트에서 앱을 등록하고 발급 받은 {Consumer Key} 및 {Consumer Secret}을 Gamebase Console에 입력합니다.
 
 **입력 필드**
 
@@ -410,7 +410,7 @@ Sign In with Apple 기능을 사용하려면 App Store Connect, Gamebase 콘솔,
 ###### Additional Info Settings
 [Sign In with Apple 의 AuthorizationScope 알아보기](https://developer.apple.com/documentation/authenticationservices/asauthorizationscope?language=occ)
 
-Gamebase 콘솔 **App**에서 Apple을 추가하면 기본으로 아래의 JSON값이 설정됩니다.
+Gamebase 콘솔 **App**에서 Apple을 추가하면 기본으로 아래의 JSON 값이 설정됩니다.
 2019년 11월 기준으로 Scope의 종류는 `full_name`, `email`만 있으며, Gamebase에서는 이 두 가지 값을 기본값으로 설정합니다.
 
 ```json
@@ -481,7 +481,7 @@ Gamebase 콘솔 **App**에서 Apple을 추가하면 기본으로 아래의 JSON�
 
 ##### Weibo Console
 
-1. Weibo Developers 사이트에서 신청하여 발급받은 {client_id} 및 {client_secret}을 Gamebase Console에 입력합니다.
+1. Weibo Developers 사이트에서 신청하여 발급 받은 {client_id} 및 {client_secret}을 Gamebase Console에 입력합니다.
 이때, 로그인 시 필요한 {scope} 또한 JSON String 형태로 추가 정보란에 입력해야 합니다.
 
 
@@ -496,7 +496,7 @@ Gamebase 콘솔 **App**에서 Apple을 추가하면 기본으로 아래의 JSON�
 
 - Client ID: {App Key}
 - Secret Key: {App Secret}
-- 추가정보: scope (json format)
+- 추가 정보: scope(json format)
 
 
 **Additional Info Settings**
@@ -523,11 +523,11 @@ Weibo 가이드 문서에 따라 universalLink를 설정할 수 있습니다.
 **Reference URL**
 - [Weibo Developer](https://open.weibo.com/)
 
-#### 10. Kakao games
+#### 10. Kakaogames
 
-Kakao 인증 정보는 퍼블리싱 계약 관계에 따라 카카오 디벨로퍼즈, 카카오 게임센터(채널링 게임), 카카오게임 3.0 어드민 등 다양한 곳에서 설정/확인이 가능합니다.
+Kakao 인증 정보는 퍼블리싱 계약 관계에 따라 카카오 디벨로퍼스, 카카오 게임센터(채널링 게임), 카카오게임 3.0 어드민 등 다양한 곳에서 설정/확인이 가능합니다.
 
-* 카카오 디벨로퍼즈(https://developers.kakao.com/)
+* 카카오 디벨로퍼스(https://developers.kakao.com/)
     * ![gamebase_console_app_kakaogames_01_20240723.png](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/ko/gamebase_console_app_kakaogames_01_20240723.png)
 * 카카오 게임센터(https://gamecenter.kakao.com/)
     * ![gamebase_console_app_kakaogames_02_20240723.png](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/ko/gamebase_console_app_kakaogames_02_20240723.png)
@@ -535,15 +535,15 @@ Kakao 인증 정보는 퍼블리싱 계약 관계에 따라 카카오 디벨로�
     * ![gamebase_console_app_kakaogames_03_20240723.png](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/ko/gamebase_console_app_kakaogames_03_20240723.png)
 
 <br />
-Kakao games에서 발급받은 {App ID}, {Native App Key} 및 {Admin Key}를 Gamebase Console에 입력합니다.
+Kakaogames에서 발급 받은 {App ID}, {Native App Key} 및 {Admin Key}를 Gamebase Console에 입력합니다.
 ![gamebase_console_app_kakaogames_04_20240723.png](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/ko/gamebase_console_app_kakaogames_04_20240723.png)
 
 ##### Client ID Settings
 App ID를 설정합니다.
 
 ##### Secret Key Settings
-Gamebase 인증 정보로 Kakao games를 추가하면 'Secret Key'에 아래의 JSON값이 설정됩니다.
-각각의 값을 Kakao games 콘솔에서 발급 받은 값으로 변경하세요.
+Gamebase 인증 정보로 Kakaogames를 추가하면 'Secret Key'에 아래의 JSON 값이 설정됩니다.
+각각의 값을 Kakaogames 콘솔에서 발급 받은 값으로 변경하세요.
 
 * **appSecret**: Native App Key
 * **adminKey**: Admin Key
@@ -556,7 +556,7 @@ Gamebase 인증 정보로 Kakao games를 추가하면 'Secret Key'에 아래의 
 ```
 
 ##### Additional Info Settings
-Gamebase 인증 정보로 Kakao games를 추가하면 '추가 정보'에 아래의 JSON값이 설정됩니다.
+Gamebase 인증 정보로 Kakaogames를 추가하면 '추가 정보'에 아래의 JSON 값이 설정됩니다.
 Unity 빌드인 경우 **AppDelegate**를 **UnityAppController**로 변경하세요.
 
 ```json
@@ -565,7 +565,7 @@ Unity 빌드인 경우 **AppDelegate**를 **UnityAppController**로 변경하세
 
 #### 11. GPGS v2
 
-GPGS(Google Play Games Services) v2 인증을 위해서는 Google 인증 타입 추가 방법과 동일하게 Google Cloud Console에서 **Web Application Client ID**를 발급받고 승인된 리디렉션 URI란에 Gamebase Callback URL을 입력해야 합니다.
+GPGS(Google Play Games Services) v2 인증을 위해서는 Google 인증 타입 추가 방법과 동일하게 Google Cloud Console에서 **Web Application Client ID**를 발급 받고 승인된 리디렉션 URI란에 Gamebase Callback URL을 입력해야 합니다.
 [Game > Gamebase > 콘솔 사용 가이드 > 앱 > App > Authentication Information > 2. Google](./oper-app/#2-google)
 
 **입력 필드**
