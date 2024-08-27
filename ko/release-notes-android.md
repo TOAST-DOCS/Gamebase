@@ -4,7 +4,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.2/GamebaseSDK-Android.zip)
 
 #### 기능 개선/변경
-* 외부 SDK 업데이트: NHN Cloud SDK(1.9.1), Kakaogame SDK(3.19.3), PAYCO SDK(1.5.14)
+* 외부 SDK 업데이트: NHN Cloud SDK(1.9.1), Kakaogame SDK(3.19.3), PAYCO SDK(1.5.15)
 * Amazon 스토어 결제시 문제가 생겨 재처리가 동작할 때 처음 결제를 시도했던 User ID로 아이템을 지급하도록 하는 보완 로직이 추가되었습니다.
 * Twitter 로그인 타이틀 바 색상과 이름이 변경되었습니다.
 * 롤링 이미지 공지의 웹뷰 내부에서 에러가 발생한 경우, 기존에 성공 콜백 호출 대신 실패 콜백이 호출되도록 수정하였습니다.
