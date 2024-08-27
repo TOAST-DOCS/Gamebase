@@ -137,32 +137,31 @@ void USample::Initialize(const FString& AppID, const FString& AppVersion)
     Configuration.AppID = AppID;
     Configuration.AppVersion = AppVersion;
     Configuration.StoreCode = GamebaseStoreCode.Google;
-    Configuration.DisplayLanguageCode = GamebaseDisplayLanguageCode.Korean;
     Configuration.bEnablePopup = true;
     Configuration.bEnableLaunchingStatusPopup = true;
     Configuration.bEnableBanPopup = true;
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->Initialize(Configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* launchingInfo, const FGamebaseError* Error)
+    Subsystem->Initialize(Configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* LaunchingInfo, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("Initialize succeeded."));
         
             // Following notices are registered in the Gamebase Console
-            auto notice = launchingInfo->launching.notice;
-            if (notice != null)
+            auto Notice = LaunchingInfo->Launching.Notice;
+            if (Notice != null)
             {
-                if (string.IsNullOrEmpty(notice.message) == false)
+                if (string.IsNullOrEmpty(Notice.message) == false)
                 {
-                    UE_LOG(GamebaseTestResults, Display, TEXT("title: %s"), notice.title);
-                    UE_LOG(GamebaseTestResults, Display, TEXT("message: %s"), notice.message);
-                    UE_LOG(GamebaseTestResults, Display, TEXT("url: %s"), notice.url);
+                    UE_LOG(GamebaseTestResults, Display, TEXT("title: %s"), Notice.title);
+                    UE_LOG(GamebaseTestResults, Display, TEXT("message: %s"), Notice.message);
+                    UE_LOG(GamebaseTestResults, Display, TEXT("url: %s"), Notice.url);
                 }
             }
             
             // Status information of game app version set in the Gamebase Unreal SDK initialization.
-            auto Status = launchingInfo->Launching.Status;
+            auto Status = LaunchingInfo->Launching.Status;
     
             // Game status code (e.g. Under maintenance, Update is required, Service has been terminated)
             // refer to GamebaseLaunchingStatus
@@ -272,7 +271,7 @@ Gamebase Console에 등록된 공지 정보입니다.
 * title: 타이틀
 * url: 점검 URL
 
-[Game > Gamebase > 콘솔 사용 가이드 > 운영 > Notice](./oper-operation/#notice)
+[Game > Gamebase > 콘솔 사용 가이드 > 운영 > Notice](./oper-operation/#Notice)
 
 #### 2. tcProduct
 

@@ -21,7 +21,7 @@ void Initialize(const FGamebaseLoggerConfiguration& loggerConfiguration);
 void USample::InitializeLogger()
 {
     FGamebaseLoggerConfiguration Configuration;
-    Configuration.Appkey = TEXT("USER_LOGGER_APP_KEY");
+    Configuration.AppKey = TEXT("USER_LOGGER_APP_KEY");
     Configuration.bEnableCrashReporter = true;
     
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
@@ -51,11 +51,11 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void Debug(const FString& message, const TMap<FString, FString>& userFields = TMap<FString, FString>());
-void Info(const FString& message, const TMap<FString, FString>& userFields = TMap<FString, FString>());
-void Warn(const FString& message, const TMap<FString, FString>& userFields = TMap<FString, FString>());
-void Error(const FString& message, const TMap<FString, FString>& userFields = TMap<FString, FString>());
-void Fatal(const FString& message, const TMap<FString, FString>& userFields = TMap<FString, FString>());
+void Debug(const FString& Message, const TMap<FString, FString>& UserFields = TMap<FString, FString>());
+void Info(const FString& Message, const TMap<FString, FString>& UserFields = TMap<FString, FString>());
+void Warn(const FString& Message, const TMap<FString, FString>& UserFields = TMap<FString, FString>());
+void Error(const FString& Message, const TMap<FString, FString>& UserFields = TMap<FString, FString>());
+void Fatal(const FString& Message, const TMap<FString, FString>& UserFields = TMap<FString, FString>());
 ```
 
 **Example**
@@ -63,52 +63,52 @@ void Fatal(const FString& message, const TMap<FString, FString>& userFields = TM
 ```cpp
 void USample::DebugLogger()
 {
-    TMap<FString, FString> userFields;
-    userFields.Add("KEY_1", "VALUE_1");
-    userFields.Add("KEY_2", "VALUE_2");
+    TMap<FString, FString> UserFields;
+    UserFields.Add("KEY_1", "VALUE_1");
+    UserFields.Add("KEY_2", "VALUE_2");
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetLogger()->Debug("MESSAGE", userFields);
+    Subsystem->GetLogger()->Debug("MESSAGE", UserFields);
 }
 
 void USample::InfoLogger()
 {
-    TMap<FString, FString> userFields;
-    userFields.Add("KEY_1", "VALUE_1");
-    userFields.Add("KEY_2", "VALUE_2");
+    TMap<FString, FString> UserFields;
+    UserFields.Add("KEY_1", "VALUE_1");
+    UserFields.Add("KEY_2", "VALUE_2");
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetLogger()->Info("MESSAGE", userFields);
+    Subsystem->GetLogger()->Info("MESSAGE", UserFields);
 }
 
 void USample::WarnLogger()
 {
-    TMap<FString, FString> userFields;
-    userFields.Add("KEY_1", "VALUE_1");
-    userFields.Add("KEY_2", "VALUE_2");
+    TMap<FString, FString> UserFields;
+    UserFields.Add("KEY_1", "VALUE_1");
+    UserFields.Add("KEY_2", "VALUE_2");
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetLogger()->Warn("MESSAGE", userFields);
+    Subsystem->GetLogger()->Warn("MESSAGE", UserFields);
 }
 
 void USample::ErrorLogger()
 {
-    TMap<FString, FString> userFields;
-    userFields.Add("KEY_1", "VALUE_1");
-    userFields.Add("KEY_2", "VALUE_2");
+    TMap<FString, FString> UserFields;
+    UserFields.Add("KEY_1", "VALUE_1");
+    UserFields.Add("KEY_2", "VALUE_2");
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetLogger()->Error("MESSAGE", userFields);
+    Subsystem->GetLogger()->Error("MESSAGE", UserFields);
 }
 
 void USample::FatalLogger()
 {
-    TMap<FString, FString> userFields;
-    userFields.Add("KEY_1", "VALUE_1");
-    userFields.Add("KEY_2", "VALUE_2");
+    TMap<FString, FString> UserFields;
+    UserFields.Add("KEY_1", "VALUE_1");
+    UserFields.Add("KEY_2", "VALUE_2");
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetLogger()->Fatal("MESSAGE", userFields);
+    Subsystem->GetLogger()->Fatal("MESSAGE", UserFields);
 }
 ```
 

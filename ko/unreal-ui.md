@@ -18,24 +18,26 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void ShowImageNotices(FGamebaseImageNoticeConfiguration& configuration, const FGamebaseErrorDelegate& onCloseCallback);
-void ShowImageNotices(FGamebaseImageNoticeConfiguration& configuration, const FGamebaseErrorDelegate& onCloseCallback, const FGamebaseImageNoticeEventDelegate& onEventCallback);
+void ShowImageNotices(FGamebaseImageNoticeConfiguration& Configuration, const FGamebaseErrorDelegate& onCloseCallback);
+void ShowImageNotices(FGamebaseImageNoticeConfiguration& Configuration, const FGamebaseErrorDelegate& onCloseCallback, const FGamebaseImageNoticeEventDelegate& onEventCallback);
 ```
 
 **Example**
 
 ```cpp
-void USample::ShowImageNotices(int32 colorR, int32 colorG, int32 colorB, int32 colorA, int64 timeOut)
+void USample::ShowImageNotices(int32 ColorR, int32 ColorG, int32 ColorB, int32 ColorA, int64 TimeOut)
 {
-    FGamebaseImageNoticeConfiguration configuration{ colorR, colorG, colorB, colorA, timeOut };
+    FGamebaseImageNoticeConfiguration Configuration;
+    Configuration.BackgroundColor = FColor(ColorR, ColorG, colorB, colorA);
+    Configuration.TimeOut = TimeOut;
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetImageNotice()->ShowImageNotices(configuration,
+    Subsystem->GetImageNotice()->ShowImageNotices(Configuration,
         FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) {
             // Called when the entire imageNotice is closed.
             ...
         }),
-        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& scheme, const FGamebaseError* Error) {
+        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& Scheme, const FGamebaseError* Error) {
             // Called when custom event occurred.
             ...
         })
@@ -47,11 +49,8 @@ void USample::ShowImageNotices(int32 colorR, int32 colorG, int32 colorB, int32 c
 
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
-| colorR                   | 0~255                                    | 백그라운드 배경 색상 R            |
-| colorG                   | 0~255                                    | 백그라운드 배경 색상 G                |
-| colorB                   | 0~255                                    | 백그라운드 배경 색상 B                |
-| colorA                   | 0~255                                    | 백그라운드 배경 색상 Alpha                |
-| timeOut                  | int64        | 이미지 공지 최대 로딩 시간 (단위 : millisecond)<br/>**default**: 5000                     |
+| BackgroundColor          | 0~255                                    | 백그라운드 배경 색상           |
+| TimeOut                  | int64        | 이미지 공지 최대 로딩 시간 (단위 : millisecond)<br/>**default**: 5000                     |
 
 
 ### Close ImageNotices
@@ -89,7 +88,7 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 > <font color="red">[주의]</font><br/>
 >
 > * FGamebasePushConfiguration은 약관 창이 표시되지 않은 경우에는 null입니다(약관 창이 표시되었다면 항상 유효한 객체가 반환됩니다.).
-> * FGamebasePushConfiguration.pushEnabled 값은 항상 true입니다.
+> * FGamebasePushConfiguration.bPushEnabled 값은 항상 true입니다.
 > * FGamebasePushConfiguration이 null이 아니라면 **로그인 후에** Subsystem->GetPush()->RegisterPush()를 호출하세요.
 
 #### Optional 파라미터
@@ -101,14 +100,14 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
  
 | API | Mandatory(M) / Optional(O) | Description | 
 | --- | --- | --- | 
-| forceShow | O | 약관에 동의했다면 ShowTermsView API를 다시 호출해도 약관 창이 표시되지 않지만, 이를 무시하고 강제로 약관 창을 표시합니다.<br>**default**: false | 
-| enableFixedFontSize | O | 약관 창의 폰트 사이즈를 고정할지 결정합니다.<br>**default** : false<br/>**Android에 한함** |
+| bForceShow | O | 약관에 동의했다면 ShowTermsView API를 다시 호출해도 약관 창이 표시되지 않지만, 이를 무시하고 강제로 약관 창을 표시합니다.<br>**default**: false | 
+| bEnableFixedFontSize | O | 약관 창의 폰트 사이즈를 고정할지 결정합니다.<br>**default** : false<br/>**Android에 한함** |
  
 **FGamebaseShowTermsViewResult**
 
 | Parameter              | Values                          | Description         |
 | ---------------------- | --------------------------------| ------------------- |
-| isTermsUIOpened        | bool                            | **true** : 약관 창이 표시되어 유저가 동의하여 약관 창이 종료되었습니다.<br>**false** : 이미 약관에 동의하여 약관 창이 표시되지 않고 약관 창이 종료되었습니다.        |
+| bIsTermsUIOpened        | bool                            | **true** : 약관 창이 표시되어 유저가 동의하여 약관 창이 종료되었습니다.<br>**false** : 이미 약관에 동의하여 약관 창이 표시되지 않고 약관 창이 종료되었습니다.        |
 
 **API**
 
@@ -118,7 +117,7 @@ Supported Platforms
 
 ```cpp
 void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
-void ShowTermsView(const FGamebaseTermsConfiguration& configuration, const FGamebaseDataContainerDelegate& onCallback);
+void ShowTermsView(const FGamebaseTermsConfiguration& Configuration, const FGamebaseDataContainerDelegate& onCallback);
 ```
 
 **ErrorCode**
@@ -137,20 +136,20 @@ void ShowTermsView(const FGamebaseTermsConfiguration& configuration, const FGame
 ```cpp
 void USample::ShowTermsView()
 {
-    FGamebaseTermsConfiguration configuration { true };
+    FGamebaseTermsConfiguration Configuration { true };
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetTerms()->ShowTermsView(configuration,
-        FGamebaseDataContainerDelegate::CreateLambda([=](const FGamebaseDataContainer* dataContainer, const FGamebaseError* Error) {
+    Subsystem->GetTerms()->ShowTermsView(Configuration,
+        FGamebaseDataContainerDelegate::CreateLambda([=](const FGamebaseDataContainer* DataContainer, const FGamebaseError* Error) {
             if (Gamebase::IsSuccess(Error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView succeeded."));
                 
-                const auto result = FGamebaseShowTermsResult::From(dataContainer);
+                const auto result = FGamebaseShowTermsResult::From(DataContainer);
                 if (result.IsValid())
                 {
                     // Save the 'PushConfiguration' and use it for RegisterPush() after Login().
-                    savedPushConfiguration = FGamebasePushConfiguration::From(dataContainer);
+                    SavedPushConfiguration = FGamebasePushConfiguration::From(DataContainer);
                 }
             }
             else
@@ -164,9 +163,9 @@ void USample::ShowTermsView()
 void USample::AfterLogin()
 {
     // Call RegisterPush with saved PushConfiguration.
-    if (savedPushConfiguration != null)
+    if (SavedPushConfiguration != null)
     {
-        Gamebase.Push.RegisterPush(savedPushConfiguration, (Error) =>
+        Gamebase.Push.RegisterPush(SavedPushConfiguration, (Error) =>
         {
             ...
         });
@@ -184,9 +183,9 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 
 > <font color="red">[주의]</font><br/>
 >
-> * GamebaseResponse.Terms.ContentDetail.required가 true 인 필수 항목은 Gamebase 서버에 저장되지 않으므로 agreed 값은 항상 false로 반환됩니다.
+> * GamebaseResponse.Terms.ContentDetail.required가 true 인 필수 항목은 Gamebase 서버에 저장되지 않으므로 bAgreed 값은 항상 false로 반환됩니다.
 >     * 필수 항목은 항상 true로 저장될 수 밖에 없어서 저장하는 의미가 없기 때문입니다.
-> * 푸시 수신 동의 여부도 Gamebase 서버에 저장되지 않으므로 agreed 값은 항상 false로 반환됩니다.
+> * 푸시 수신 동의 여부도 Gamebase 서버에 저장되지 않으므로 bAgreed 값은 항상 false로 반환됩니다.
 >     * 유저의 푸시 수신 동의 여부는 Gamebase.Push.QueryPush API 를 통해 확인하시기 바랍니다.
 > * 콘솔에서 '기본 약관 설정' 을 하지 않는 경우, 약관 언어와 다른 국가코드로 설정된 단말기에서 queryTerms API 를 호출하면 **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** 에러가 발생합니다.
 >     * 콘솔에서 '기본 약관 설정' 을 하거나, **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** 에러가 발생했을때는 약관을 표시하지 않도록 처리하시기 바랍니다.
@@ -203,7 +202,7 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cs
-void QueryTerms(const FGamebaseQueryTermsResultDelegate& onCallback);
+void QueryTerms(const FGamebaseQueryTermsResultDelegate& Callback);
 ```
 
 **ErrorCode**
@@ -221,7 +220,7 @@ void USample::QueryTerms()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->GetTerms()->QueryTerms(
-        FGamebaseQueryTermsResultDelegate::CreateLambda([=](const FGamebaseQueryTermsResult* data, const FGamebaseError* Error) {
+        FGamebaseQueryTermsResultDelegate::CreateLambda([=](const FGamebaseQueryTermsResult* Data, const FGamebaseError* Error) {
             if (Gamebase::IsSuccess(Error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("QueryTerms succeeded."));
@@ -239,24 +238,24 @@ void USample::QueryTerms()
 
 | Parameter            | Values                          | Description         |
 | -------------------- | --------------------------------| ------------------- |
-| termsSeq             | int32                           | 약관 전체 KEY.<br/>updateTerms API 호출 시 필요한 값입니다.          |
-| termsVersion         | FString                         | 약관 버전.<br/>updateTerms API 호출 시 필요한 값입니다.              |
+| TermsSeq             | int32                           | 약관 전체 KEY.<br/>updateTerms API 호출 시 필요한 값입니다.          |
+| TermsVersion         | FString                         | 약관 버전.<br/>updateTerms API 호출 시 필요한 값입니다.              |
 | termsCountryType     | FString                         | 약관 타입.<br/> - KOREAN : 한국 약관 <br/> - GDPR : 유럽 약관 <br/> - ETC : 기타 약관         |
-| contents             | TArray<FGamebaseTermsContent>   | 약관 항목 정보          |
+| Contents             | TArray<FGamebaseTermsContent>   | 약관 항목 정보          |
 
 
 #### GamebaseResponse.Terms.ContentDetail
 
 | Parameter            | Values                | Description         |
 | -------------------- | ----------------------| ------------------- |
-| termsContentSeq      | int32                 | 약관 항목 KEY         | 
-| name                 | FString               | 약관 항목 이름         |
-| required             | bool                  | 필수 동의 여부         |
-| agreePush            | FString               | 광고성 푸시 동의 여부.<br/> - NONE : 동의 안함 <br/> - ALL : 전체 동의 <br/> - DAY : 주간 푸시 동의<br/> - NIGHT : 야간 푸시 동의          |
-| agreed               | bool                  | 해당 약관 항목에 대한 유저 동의 여부           |
-| node1DepthPosition   | int32                 | 1단계 항목 노출 순서.           |
-| node2DepthPosition   | int32                 | 2단계 항목 노출 순서.<br/> 없을 경우 -1           |
-| detailPageUrl        | FString               | 약관 자세히 보기 URL.<br/> 없을 경우 null. |
+| TermsContentSeq      | int32                 | 약관 항목 KEY         | 
+| Name                 | FString               | 약관 항목 이름         |
+| Required             | bool                  | 필수 동의 여부         |
+| AgreePush            | FString               | 광고성 푸시 동의 여부.<br/> - NONE : 동의 안함 <br/> - ALL : 전체 동의 <br/> - DAY : 주간 푸시 동의<br/> - NIGHT : 야간 푸시 동의          |
+| bAgreed               | bool                  | 해당 약관 항목에 대한 유저 동의 여부           |
+| Node1DepthPosition   | int32                 | 1단계 항목 노출 순서.           |
+| Node2DepthPosition   | int32                 | 2단계 항목 노출 순서.<br/> 없을 경우 -1           |
+| DetailPageUrl        | FString               | 약관 자세히 보기 URL.<br/> 없을 경우 null. |
 
 
 ### UpdateTerms
@@ -274,7 +273,7 @@ QueryTerms API로 내려받은 약관 정보로 UI를 직접 제작했다면,
 >
 
 #### Required 파라미터
-* configuration : 서버에 등록할 유저의 선택 약관 정보입니다.
+* Configuration : 서버에 등록할 유저의 선택 약관 정보입니다.
  
 #### Optional 파라미터
 
@@ -289,7 +288,7 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void UpdateTerms(const FGamebaseUpdateTermsConfiguration& configuration, const FGamebaseErrorDelegate onCallback);
+void UpdateTerms(const FGamebaseUpdateTermsConfiguration& Configuration, const FGamebaseErrorDelegate onCallback);
 ```
 
 **ErrorCode**
@@ -304,14 +303,14 @@ void UpdateTerms(const FGamebaseUpdateTermsConfiguration& configuration, const F
 **Example**
 
 ```cpp
-void USample::UpdateTerms(int32 termsSeq, const FString& termsVersion, int32 termsContentSeq, bool agreed)
+void USample::UpdateTerms(int32 TermsSeq, const FString& TermsVersion, int32 TermsContentSeq, bool bAgreed)
 {
-    TArray<FGamebaseTermsContent> contents;
-    contents.Add(FGamebaseTermsContent { termsContentSeq, agreed });
+    TArray<FGamebaseTermsContent> Contents;
+    Contents.Add(FGamebaseTermsContent { TermsContentSeq, bAgreed });
     
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->GetTerms()->UpdateTerms(
-        FGamebaseUpdateTermsConfiguration { termsSeq, termsVersion, contents },
+        FGamebaseUpdateTermsConfiguration { TermsSeq, TermsVersion, Contents },
         FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) {
             if (Gamebase::IsSuccess(Error))
             {
@@ -330,16 +329,16 @@ void USample::UpdateTerms(int32 termsSeq, const FString& termsVersion, int32 ter
 
 | Parameter            | Mandatory(M) / Optional(O) | Values                    | Description         |
 | -------------------- | -------------------------- | ------------------------- | ------------------- |
-| termsVersion         | **M**                      | FString                    | 약관 버전.<br/>queryTerms API를 호출해서 내려받았던 값을 전달해야 합니다.   |
-| termsSeq             | **M**                      | int32                       | 약관 전체 KEY.<br/>queryTerms API를 호출해서 내려받았던 값을 전달해야 합니다.             |
-| contents             | **M**                      | List< Content > | 선택 약관 유저 동의 정보  |
+| TermsVersion         | **M**                      | FString                    | 약관 버전.<br/>queryTerms API를 호출해서 내려받았던 값을 전달해야 합니다.   |
+| TermsSeq             | **M**                      | int32                       | 약관 전체 KEY.<br/>queryTerms API를 호출해서 내려받았던 값을 전달해야 합니다.             |
+| Contents             | **M**                      | List< Content > | 선택 약관 유저 동의 정보  |
 
 #### GamebaseRequest.Terms.Content
 
 | Parameter            | Mandatory(M) / Optional(O) | Values             | Description         |
 | -------------------- | -------------------------- | ------------------ | ------------------- |
-| termsContentSeq      | **M**                      | int32                | 선택 약관 항목 KEY      |
-| agreed               | **M**                      | bool               | 선택 약관 항목 동의 여부  |
+| TermsContentSeq      | **M**                      | int32                | 선택 약관 항목 KEY      |
+| bAgreed               | **M**                      | bool               | 선택 약관 항목 동의 여부  |
 
 ### IsShowingTermsView
 
@@ -369,12 +368,12 @@ void USample::IsShowingTermsView()
 웹뷰를 표시합니다.<br/>
 
 ##### Required 파라미터
-* url: 파라미터로 전송되는 url은 유효한 값이어야 합니다.
+* Url: 파라미터로 전송되는 url은 유효한 값이어야 합니다.
 
 ##### Optional 파라미터 (현재는 Require 파라미터지만, 이후 버전에서 Optional로 변경 예정)
-* configuration: GamebaseWebViewConfiguration으로 웹뷰의 레이아웃을 변경할 수 있습니다.
+* Configuration: GamebaseWebViewConfiguration으로 웹뷰의 레이아웃을 변경할 수 있습니다.
 * closeCallback: 웹뷰가 종료될 때 사용자에게 콜백으로 알려 줍니다.
-* schemeList: 사용자가 받고 싶은 커스텀 스킴 목록을 지정합니다.
+* SchemeList: 사용자가 받고 싶은 커스텀 스킴 목록을 지정합니다.
 * schemeEvent: schemeList로 지정한 커스텀 스킴을 포함하는 url을 콜백으로 알려 줍니다.
 
 **API**
@@ -385,27 +384,28 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void ShowWebView(const FString& url, const FGamebaseWebViewConfiguration& configuration, FGamebaseErrorDelegate& onCloseCallback, const TArray<FString>& schemeList, const FGamebaseSchemeEventDelegate& onSchemeEvent);
+void ShowWebView(const FString& Url, const FGamebaseWebViewConfiguration& Configuration, FGamebaseErrorDelegate& onCloseCallback, const TArray<FString>& SchemeList, const FGamebaseSchemeEventDelegate& onSchemeEvent);
 ```
 
 **Example**
 ```cpp
-void USample::ShowWebView(const FString& url)
+void USample::ShowWebView(const FString& Url)
 {
-    FGamebaseWebViewConfiguration configuration{ TEXT("Title"), GamebaseScreenOrientation::Unspecified, 128, 128, 128, 255, 40, true, "", "" };
+    FGamebaseWebViewConfiguration Configuration;
+    Configuration.Title = TEXT("Title");
 
-    TArray<FString> schemeList{ TEXT("customScheme://openBrowser") };
+    TArray<FString> SchemeList{ TEXT("customScheme://openBrowser") };
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetWebView()->ShowWebView(url, configuration,
+    Subsystem->GetWebView()->ShowWebView(Url, Configuration,
         FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) {
             Result(ANSI_TO_TCHAR(__FUNCTION__), TEXT("Close webview"));
         }),
-        schemeList,
-        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& scheme, const FGamebaseError* Error) {
+        SchemeList,
+        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& Scheme, const FGamebaseError* Error) {
         if (Gamebase::IsSuccess(Error))
         {
-            Result(ANSI_TO_TCHAR(__FUNCTION__), true, *FString::Printf(TEXT("scheme= %s"), *scheme));
+            Result(ANSI_TO_TCHAR(__FUNCTION__), true, *FString::Printf(TEXT("Scheme= %s"), *Scheme));
         }
         else
         {
@@ -420,25 +420,22 @@ void USample::ShowWebView(const FString& url)
 
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
-| title                    | FString                                   | 웹뷰의 제목                 |
-| orientation              | GamebaseScreenOrientation::Unspecified    | 미지정(**default**)            |
+| Title                    | FString                                   | 웹뷰의 제목                 |
+| Orientation              | GamebaseScreenOrientation::Unspecified    | 미지정(**default**)            |
 |                          | GamebaseScreenOrientation::Portrait       | 세로 모드                       |
 |                          | GamebaseScreenOrientation::Landscape      | 가로 모드                       |
 |                          | GamebaseScreenOrientation::LandscapeReverse | 가로 모드를 180도 회전              |
-| contentMode              | GamebaseWebViewContentMode::Recommended        | 현재 플랫폼 추천 브라우저(**default**)   |
+| ContentMode              | GamebaseWebViewContentMode::Recommended        | 현재 플랫폼 추천 브라우저(**default**)   |
 |                          | GamebaseWebViewContentMode::Mobile             | 모바일 브라우저            |
 |                          | GamebaseWebViewContentMode::Desktop            | 데스크톱 브라우저          |
-| colorR                   | 0~255                                    | 내비게이션 바 색상 R<br>**default**: 18               |
-| colorG                   | 0~255                                    | 내비게이션 바 색상 G<br>**default**: 93               |
-| colorB                   | 0~255                                    | 내비게이션 바 색상 B<br>**default**: 230              |
-| colorA                   | 0~255                                    | 내비게이션 바 색상 Alpha<br>**default**: 255          |
-| barHeight                | height                                   | 내비게이션 바 높이<br>**Android에 한함**                 |
-| isNavigationBarVisible   | true or false                            | 내비게이션 바 활성 또는 비활성<br>**default**: true    |
-| isBackButtonVisible      | true or false                            | 뒤로 가기 버튼 활성 또는 비활성<br>**default**: true   |
-| backButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지         |
-| closeButtonImageResource | ID of resource                           | 닫기 버튼 이미지             |
-| enableFixedFontSize      | true or false                            | 약관 창의 글자 크기 고정 여부를 결정합니다.<br>**default**: false<br>**Android에 한함**     |
-| renderOutSideSafeArea    | true or false                            | Safe Area 영역 밖 렌더링 여부를 결정합니다.<br>**default**: false<br>**Android에 한함**   |
+| NavigationColor          | FColor                                   | 내비게이션 바 색상<br>**default**: FColor(18, 93, 230, 255)               |
+| NavigationBarHeight      | height                                   | 내비게이션 바 높이<br>**Android에 한함**                 |
+| bIsNavigationBarVisible   | true or false                            | 내비게이션 바 활성 또는 비활성<br>**default**: true    |
+| bIsBackButtonVisible      | true or false                            | 뒤로 가기 버튼 활성 또는 비활성<br>**default**: true   |
+| BackButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지         |
+| CloseButtonImageResource | ID of resource                           | 닫기 버튼 이미지             |
+| bEnableFixedFontSize      | true or false                            | 약관 창의 글자 크기 고정 여부를 결정합니다.<br>**default**: false<br>**Android에 한함**     |
+| bRenderOutSideSafeArea    | true or false                            | Safe Area 영역 밖 렌더링 여부를 결정합니다.<br>**default**: false<br>**Android에 한함**   |
 
 > [TIP]
 >
@@ -449,7 +446,7 @@ void USample::ShowWebView(const FString& url)
 
 Gamebase에서 지정해 놓은 스킴입니다.
 
-| scheme | 용도 |
+| Scheme | 용도 |
 | ----------------------------- | ------------------------------ |
 | gamebase://dismiss | 웹뷰 닫기 |
 | gamebase://getMaintenanceInfo | 점검 내용을 WebPage에 표시 |
@@ -493,15 +490,15 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void OpenWebBrowser(const FString& url);
+void OpenWebBrowser(const FString& Url);
 ```
 
 **Example**
 ```cpp
-void USample::OpenWebBrowser(const FString& url)
+void USample::OpenWebBrowser(const FString& Url)
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetWebView()->OpenWebBrowser(url);
+    Subsystem->GetWebView()->OpenWebBrowser(Url);
 }
 ```
 
@@ -518,22 +515,22 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void ShowAlert(const FString& title, const FString& message);
-void ShowAlert(const FString& title, const FString& message, const FGamebaseAlertCloseDelegate& onCloseCallback);
+void ShowAlert(const FString& Title, const FString& Message);
+void ShowAlert(const FString& Title, const FString& Message, const FGamebaseAlertCloseDelegate& onCloseCallback);
 ```
 
 **Example**
 ```cpp
-void USample::ShowAlert(const FString& title, const FString& message)
+void USample::ShowAlert(const FString& Title, const FString& Message)
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetUtil()->ShowAlert(title, message);
+    Subsystem->GetUtil()->ShowAlert(Title, Message);
 }
 
-void USample::ShowAlertEvent(const FString& title, const FString& message)
+void USample::ShowAlertEvent(const FString& Title, const FString& Message)
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetUtil()->ShowAlert(title, message, FGamebaseAlertCloseDelegate::CreateLambda([=]()
+    Subsystem->GetUtil()->ShowAlert(Title, Message, FGamebaseAlertCloseDelegate::CreateLambda([=]()
     {
         UE_LOG(GamebaseTestResults, Display, TEXT("ShowAlert ButtonClick."));
     }));
@@ -551,15 +548,15 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void ShowToast(const FString& message, EGamebaseToastExposureTime exposureTimeType);
+void ShowToast(const FString& Message, EGamebaseToastExposureTime ExposureTimeType);
 ```
 
 **Example**
 ```cpp
-void USample::ShowToast(const FString& message, EGamebaseToastExposureTime exposureTimeType)
+void USample::ShowToast(const FString& Message, EGamebaseToastExposureTime ExposureTimeType)
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetUtil()->ShowToast(message, exposureTimeType);
+    Subsystem->GetUtil()->ShowToast(Message, ExposureTimeType);
 }
 ```
 
