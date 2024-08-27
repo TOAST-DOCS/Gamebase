@@ -48,13 +48,12 @@ Supported Platforms
 
 ### Module Settings
 
-* Gamebase 코드를 사용하려면 모듈의 Build.cs 파일에서 의존 모듈 설정 시 아래와 같이 2개의 모듈을 추가해야 합니다.
+* Gamebase 코드를 사용하려면 모듈의 Build.cs 파일에서 의존 모듈 설정 시 아래와 같이 모듈을 추가해야 합니다.
 
         PrivateDependencyModuleNames.AddRange(
             new[]
             {
-                "Gamebase",
-                "GamebaseInterface"
+                "Gamebase"
             }
         );
 

@@ -17,13 +17,13 @@ Gamebase API를 사용하기 위해서는 다음의 헤더 파일을 가져옵�
 
 | Setting value              | Supported Platform | Mandatory(M) / Optional(O) |
 | -------------------------- | ------------------ | -------------------------- |
-| appID | ALL | M |
-| appVersion | ALL | M |
-| storeCode | ALL | M |
-| displayLanguageCode | ALL | O |
-| enablePopup | ALL | O |
-| enableLaunchingStatusPopup | ALL | O |
-| enableBanPopup | ALL | O |
+| AppID | ALL | M |
+| AppVersion | ALL | M |
+| StoreCode | ALL | M |
+| DisplayLanguageCode | ALL | O |
+| bEnablePopup | ALL | O |
+| bEnableLaunchingStatusPopup | ALL | O |
+| bEnableBanPopup | ALL | O |
 
 #### 1. App ID
 
@@ -134,18 +134,18 @@ void Initialize(const FGamebaseConfiguration& Configuration, const FGamebaseLaun
 void USample::Initialize(const FString& AppID, const FString& AppVersion)
 {
     FGamebaseConfiguration Configuration;
-    Configuration.appID = AppID;
-    Configuration.appVersion = AppVersion;
-    Configuration.storeCode = GamebaseStoreCode.Google;
-    Configuration.displayLanguageCode = GamebaseDisplayLanguageCode.Korean;
-    Configuration.enablePopup = true;
-    Configuration.enableLaunchingStatusPopup = true;
-    Configuration.enableBanPopup = true;
+    Configuration.AppID = AppID;
+    Configuration.AppVersion = AppVersion;
+    Configuration.StoreCode = GamebaseStoreCode.Google;
+    Configuration.DisplayLanguageCode = GamebaseDisplayLanguageCode.Korean;
+    Configuration.bEnablePopup = true;
+    Configuration.bEnableLaunchingStatusPopup = true;
+    Configuration.bEnableBanPopup = true;
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->Initialize(Configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* launchingInfo, const FGamebaseError* error)
+    Subsystem->Initialize(Configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* launchingInfo, const FGamebaseError* Error)
     {
-        if (Gamebase::IsSuccess(error))
+        if (Gamebase::IsSuccess(Error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("Initialize succeeded."));
         
@@ -162,17 +162,17 @@ void USample::Initialize(const FString& AppID, const FString& AppVersion)
             }
             
             // Status information of game app version set in the Gamebase Unreal SDK initialization.
-            auto Status = launchingInfo->launching.status;
+            auto Status = launchingInfo->Launching.Status;
     
             // Game status code (e.g. Under maintenance, Update is required, Service has been terminated)
             // refer to GamebaseLaunchingStatus
-            if (Status.code == GamebaseLaunchingStatus::IN_SERVICE)
+            if (Status.Code == GamebaseLaunchingStatus::IN_SERVICE)
             {
                 // Service is now normally provided.
             }
             else
             {
-                switch (Status.code)
+                switch (Status.Code)
                 {
                     case GamebaseLaunchingStatus::RECOMMEND_UPDATE:
                     {
@@ -190,7 +190,7 @@ void USample::Initialize(const FString& AppID, const FString& AppVersion)
         }
         else
         {
-            // Check the error code and handle the error appropriately.
+            // Check the Error code and handle the Error appropriately.
             UE_LOG(GamebaseTestResults, Display, TEXT("Initialize failed."));
         }
     }));
@@ -351,4 +351,4 @@ void USample::GetLaunchingInformations()
 | NOT\_SUPPORTED        | 10         | 지원하지 않는 기능입니다.         |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [오류 코드](./error-code/#client-sdk)
+    * [오류 코드](./Error-code/#client-sdk)

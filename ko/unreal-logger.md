@@ -20,9 +20,12 @@ void Initialize(const FGamebaseLoggerConfiguration& loggerConfiguration);
 ```cpp
 void USample::InitializeLogger()
 {
-    FGamebaseLoggerConfiguration configuration{ "USER_LOGGER_APP_KEY", enableCrashReporter };
+    FGamebaseLoggerConfiguration Configuration;
+    Configuration.Appkey = TEXT("USER_LOGGER_APP_KEY");
+    Configuration.bEnableCrashReporter = true;
+    
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetLogger()->Initialize(configuration);
+    Subsystem->GetLogger()->Initialize(Configuration);
 }
 ```
 

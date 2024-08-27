@@ -31,11 +31,11 @@ void USample::ShowImageNotices(int32 colorR, int32 colorG, int32 colorB, int32 c
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->GetImageNotice()->ShowImageNotices(configuration,
-        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) {
+        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) {
             // Called when the entire imageNotice is closed.
             ...
         }),
-        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& scheme, const FGamebaseError* error) {
+        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& scheme, const FGamebaseError* Error) {
             // Called when custom event occurred.
             ...
         })
@@ -141,8 +141,8 @@ void USample::ShowTermsView()
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->GetTerms()->ShowTermsView(configuration,
-        FGamebaseDataContainerDelegate::CreateLambda([=](const FGamebaseDataContainer* dataContainer, const FGamebaseError* error) {
-            if (Gamebase::IsSuccess(error))
+        FGamebaseDataContainerDelegate::CreateLambda([=](const FGamebaseDataContainer* dataContainer, const FGamebaseError* Error) {
+            if (Gamebase::IsSuccess(Error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView succeeded."));
                 
@@ -155,7 +155,7 @@ void USample::ShowTermsView()
             }
             else
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView failed. (error: %d)"), error->code);
+                UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView failed. (Error: %d)"), Error->Code);
             }
         })
     );
@@ -166,7 +166,7 @@ void USample::AfterLogin()
     // Call RegisterPush with saved PushConfiguration.
     if (savedPushConfiguration != null)
     {
-        Gamebase.Push.RegisterPush(savedPushConfiguration, (error) =>
+        Gamebase.Push.RegisterPush(savedPushConfiguration, (Error) =>
         {
             ...
         });
@@ -221,14 +221,14 @@ void USample::QueryTerms()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->GetTerms()->QueryTerms(
-        FGamebaseQueryTermsResultDelegate::CreateLambda([=](const FGamebaseQueryTermsResult* data, const FGamebaseError* error) {
-            if (Gamebase::IsSuccess(error))
+        FGamebaseQueryTermsResultDelegate::CreateLambda([=](const FGamebaseQueryTermsResult* data, const FGamebaseError* Error) {
+            if (Gamebase::IsSuccess(Error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("QueryTerms succeeded."));
             }
             else
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("QueryTerms failed. (error: %d)"), error->code);
+                UE_LOG(GamebaseTestResults, Display, TEXT("QueryTerms failed. (Error: %d)"), Error->Code);
             }
         })
     );
@@ -312,14 +312,14 @@ void USample::UpdateTerms(int32 termsSeq, const FString& termsVersion, int32 ter
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->GetTerms()->UpdateTerms(
         FGamebaseUpdateTermsConfiguration { termsSeq, termsVersion, contents },
-        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) {
-            if (Gamebase::IsSuccess(error))
+        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) {
+            if (Gamebase::IsSuccess(Error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("UpdateTerms succeeded."));
             }
             else
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("UpdateTerms failed. (error: %d)"), error->code);
+                UE_LOG(GamebaseTestResults, Display, TEXT("UpdateTerms failed. (Error: %d)"), Error->Code);
             }
         })
     );
@@ -398,18 +398,18 @@ void USample::ShowWebView(const FString& url)
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->GetWebView()->ShowWebView(url, configuration,
-        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) {
+        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) {
             Result(ANSI_TO_TCHAR(__FUNCTION__), TEXT("Close webview"));
         }),
         schemeList,
-        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& scheme, const FGamebaseError* error) {
-        if (Gamebase::IsSuccess(error))
+        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& scheme, const FGamebaseError* Error) {
+        if (Gamebase::IsSuccess(Error))
         {
             Result(ANSI_TO_TCHAR(__FUNCTION__), true, *FString::Printf(TEXT("scheme= %s"), *scheme));
         }
         else
         {
-            Result(ANSI_TO_TCHAR(__FUNCTION__), false, GamebaseJsonUtil::UStructToJsonObjectString(*error));
+            Result(ANSI_TO_TCHAR(__FUNCTION__), false, GamebaseJsonUtil::UStructToJsonObjectString(*Error));
         }
     }));
 }
@@ -571,4 +571,4 @@ void USample::ShowToast(const FString& message, EGamebaseToastExposureTime expos
 | UI\_UNKNOWN\_ERROR | 6999       | 알수 없는 오류입니다(정의되지 않은 오류입니다). |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [오류 코드](./error-code/#client-sdk)
+    * [오류 코드](./Error-code/#client-sdk)

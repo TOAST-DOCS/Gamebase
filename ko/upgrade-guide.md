@@ -8,6 +8,30 @@
 
 * 다음 필드가 deprecated 되었습니다.
     * **TCGBWebViewConfiguration.orientationMask**
+    
+## 2.66.0
+
+### Unreal
+
+* API 사용방식이 변경되었습니다.
+    * IModuleInterface를 상속받은 **IGamebase**에서 제공하던 API를 UGameInstanceSubsystem을 상속받은 **UGamebaseSubsytem**애서 제공하도록 변경되었습니다.
+    * **UGamebaseSubsytem**은 GameInstance의 서브시스템이므로 GameInstance 생명주기를 따르며 SDK API 호출 시 사용하는 GameInstance를 통해 해당 서브시스템을 찾아서 API를 사용해야 합니다.
+
+```cpp
+if (UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance()))
+{
+    GamebaseSubsystem->Initialize(...);
+}
+```
+
+* **GamebaseInterace** 모듈이 제거되었으므로 Gamebase 사용 시 모듈 의존성에서 제거해야 합니다.
+
+        PrivateDependencyModuleNames.AddRange(
+            new[]
+            {
+                "Gamebase"
+            }
+        );
 
 ## 2.65.0
 
@@ -29,18 +53,6 @@
     * Gamebase SDK를 다운로드하여 Xcode에 직접 설정하는 경우, Facebook SDK를 Embeded Frameworks에 추가해야 합니다.
     * 자세한 내용은 [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > Setting > Xcode Settings](./ios-started/#xcode-settings) 가이드를 참고하시기 바랍니다.
 
-### Unreal
-
-* API 사용방식이 변경되었습니다.
-    * IModuleInterface를 상속받은 **IGamebase**에서 제공하던 API를 UGameInstanceSubsystem을 상속받은 **UGamebaseSubsytem**애서 제공하도록 변경되었습니다.
-    * **UGamebaseSubsytem**은 GameInstance의 서브시스템이므로 GameInstance 생명주기를 따르며 SDK API 호출 시 사용하는 GameInstance를 통해 해당 서브시스템을 찾아서 API를 사용해야 합니다.
-
-```cpp
-if (UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance()))
-{
-    GamebaseSubsystem->Initialize(...);
-}
-```
 
 ## 2.64.0
 

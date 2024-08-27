@@ -107,9 +107,9 @@ void USample::Initialize(const FString& appID, const FString& appVersion)
     ...
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->Initialize(configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* launchingInfo, const FGamebaseError* error)
+    Subsystem->Initialize(configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* launchingInfo, const FGamebaseError* Error)
     {
-        if (Gamebase::IsSuccess(error))
+        if (Gamebase::IsSuccess(Error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("Initialize succeeded."));
             FString displayLanguage = Subsystem->GetDisplayLanguageCode();
@@ -394,7 +394,7 @@ void USample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
         // 유저에게 현재 계정이 탈퇴 처리된 것을 알려 주세요.
         case GamebaseIdPRevokeCode::Withdraw:
         {
-            Subsystem->Withdraw(FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+            Subsystem->Withdraw(FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error)
             {
                 ...
             }));
@@ -408,11 +408,11 @@ void USample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
             auto additionalInfo = NewObject<UGamebaseJsonObject>();
             additionalInfo->SetBoolField(GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn, true);
 
-            Subsystem->Login(selectedIdP, *additionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+            Subsystem->Login(selectedIdP, *additionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
             {
-                if (Gamebase::IsSuccess(error))
+                if (Gamebase::IsSuccess(Error))
                 {
-                    Subsystem->RemoveMapping(revokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+                    Subsystem->RemoveMapping(revokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error)
                     {
                         ...
                     }));
@@ -424,7 +424,7 @@ void USample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
         {
             // 현재 계정에 매핑된 IdP 중 사용 중지된 IdP가 있을 경우를 의미합니다.
             // 유저에게 현재 계정에서 사용 중지된 IdP가 연동 해제됨을 알려 주세요.
-            Subsystem->RemoveMapping(revokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+            Subsystem->RemoveMapping(revokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error)
             {
                 ...
             }));
@@ -974,17 +974,17 @@ void OpenContact(const FGamebaseContactConfiguration& configuration, const FGame
 void USample::OpenContact()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetContact()->OpenContact(FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+    Subsystem->GetContact()->OpenContact(FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error)
     {
-        if (Gamebase::IsSuccess(error))
+        if (Gamebase::IsSuccess(Error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("OpenContact succeeded."));
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("OpenContact failed. (errorCode: %d, errorMessage: %s)"), error->code, *error->message);
+            UE_LOG(GamebaseTestResults, Display, TEXT("OpenContact failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Messsage);
 
-            if (error->code == GamebaseErrorCode::WEBVIEW_INVALID_URL)
+            if (Error->Code == GamebaseErrorCode::WEBVIEW_INVALID_URL)
             {
                 // Gamebase Console Service Center URL is invalid.
                 // Please check the url field in the TOAST Gamebase Console.
@@ -1041,25 +1041,25 @@ void USample::RequestContactURL(const FString& userName)
     FGamebaseContactConfiguration configuration{ userName };
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetContact()->RequestContactURL(configuration, FGamebaseContactUrlDelegate::CreateLambda([=](FString url, const FGamebaseError* error)
+    Subsystem->GetContact()->RequestContactURL(configuration, FGamebaseContactUrlDelegate::CreateLambda([=](FString url, const FGamebaseError* Error)
     {
-        if (Gamebase::IsSuccess(error))
+        if (Gamebase::IsSuccess(Error))
         {
             // Open webview with 'contactUrl'
             UE_LOG(GamebaseTestResults, Display, TEXT("RequestContactURL succeeded. (url = %s)"), *url);
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RequestContactURL failed. (errorCode: %d, errorMessage: %s)"), error->code, *error->message);
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestContactURL failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Messsage);
 
-            if (error->code == GamebaseErrorCode::UI_CONTACT_FAIL_INVALID_URL)
+            if (Error->Code == GamebaseErrorCode::UI_CONTACT_FAIL_INVALID_URL)
             {
                 // Gamebase Console Service Center URL is invalid.
                 // Please check the url field in the TOAST Gamebase Console.
             }
             else
             {
-                // An error occur when requesting the contact web view url.
+                // An Error occur when requesting the contact web view url.
             }
         }
     }));
