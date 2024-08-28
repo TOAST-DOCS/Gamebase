@@ -16,6 +16,7 @@
 * API 사용방식이 변경되었습니다.
     * IModuleInterface를 상속받은 **IGamebase**에서 제공하던 API를 UGameInstanceSubsystem을 상속받은 **UGamebaseSubsytem**애서 제공하도록 변경되었습니다.
     * **UGamebaseSubsytem**은 GameInstance의 서브시스템이므로 GameInstance 생명주기를 따르며 SDK API 호출 시 사용하는 GameInstance를 통해 해당 서브시스템을 찾아서 API를 사용해야 합니다.
+    * 언리얼 코딩 표준에 명명 규칙을 따르도록 변경되었습니다.
 
 ```cpp
 if (UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance()))

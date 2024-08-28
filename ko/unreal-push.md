@@ -32,8 +32,8 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void RegisterPush(const FGamebasePushConfiguration& configuration, const FGamebaseErrorDelegate& onCallback);
-void RegisterPush(const FGamebasePushConfiguration& configuration, const FGamebaseNotificationOptions& notificationOptions, const FGamebaseErrorDelegate& onCallback);
+void RegisterPush(const FGamebasePushConfiguration& Configuration, const FGamebaseErrorDelegate& Callback);
+void RegisterPush(const FGamebasePushConfiguration& Configuration, const FGamebaseNotificationOptions& notificationOptions, const FGamebaseErrorDelegate& Callback);
 ```
 
 #### FGamebasePushConfiguration
@@ -159,7 +159,7 @@ void USample::GetNotificationOptions()
         FGamebasePushConfiguration Configuration;
         
         UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetPush()->RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) { }));
+        Subsystem->GetPush()->RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) { }));
     }
     else
     {
@@ -181,10 +181,10 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void QueryTokenInfo(const FGamebasePushTokenInfoDelegate& onCallback);
+void QueryTokenInfo(const FGamebasePushTokenInfoDelegate& Callback);
 
 // Legacy API
-void QueryPush(const FGamebasePushConfigurationDelegate& onCallback);
+void QueryPush(const FGamebasePushConfigurationDelegate& Callback);
 ```
 
 **Example**
@@ -193,15 +193,15 @@ void QueryPush(const FGamebasePushConfigurationDelegate& onCallback);
 void USample::QueryTokenInfo()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetPush()->QueryTokenInfo(FGamebasePushTokenInfoDelegate::CreateLambda([=](const FGamebasePushTokenInfo* tokenInfo, const FGamebaseError* Error)
+    Subsystem->GetPush()->QueryTokenInfo(FGamebasePushTokenInfoDelegate::CreateLambda([=](const FGamebasePushTokenInfo* TokenInfo, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("QueryTokenInfo succeeded. (pushEnabled= %s, adAgreement= %s, adAgreementNight= %s, tokenInfo= %s)"),
-                tokenInfo->PushEnabled ? TEXT("true") : TEXT("false"),
-                tokenInfo->bAdAgreement ? TEXT("true") : TEXT("false"),
-                tokenInfo->bAdAgreementNight ? TEXT("true") : TEXT("false"),
-                *tokenInfo->token);
+            UE_LOG(GamebaseTestResults, Display, TEXT("QueryTokenInfo succeeded. (pushEnabled= %s, adAgreement= %s, adAgreementNight= %s, TokenInfo= %s)"),
+                TokenInfo->PushEnabled ? TEXT("true") : TEXT("false"),
+                TokenInfo->bAdAgreement ? TEXT("true") : TEXT("false"),
+                TokenInfo->bAdAgreementNight ? TEXT("true") : TEXT("false"),
+                *TokenInfo->Token);
         }
         else
         {
@@ -216,23 +216,23 @@ void USample::QueryTokenInfo()
 
 | Parameter           | Values                 | Description         |
 | --------------------| -----------------------| ------------------- |
-| pushType            | FString                | Push 토큰 타입       |
-| token               | FString                | 토큰                 |
-| userId              | FString                | 사용자 아이디         |
-| deviceCountryCode   | FString                | 국가 코드           |
-| timezone            | FString                | 표준시간대           |
-| registeredDateTime  | FString                | 토큰 업데이트 시간    |
-| languageCode        | FString                | 언어 설정            |
-| agreement           | FGamebasePushAgreement | 수신 동의 여부        |
-| sandbox             | bool                   | sandbox 여부(iOS에 한함)        |
+| PushType            | FString                | Push 토큰 타입       |
+| Token               | FString                | 토큰                 |
+| UserId              | FString                | 사용자 아이디         |
+| DeviceCountryCode   | FString                | 국가 코드           |
+| Timezone            | FString                | 표준시간대           |
+| RegisteredDateTime  | FString                | 토큰 업데이트 시간    |
+| LanguageCode        | FString                | 언어 설정            |
+| Agreement           | FGamebasePushAgreement | 수신 동의 여부        |
+| bSandbox             | bool                   | sandbox 여부(iOS에 한함)        |
 
 #### FGamebasePushAgreement
 
 | Parameter        | Values  | Description               |
 | -----------------| --------| ------------------------- |
-| pushEnabled      | bool | 알림 표시 동의 여부           |
-| adAgreement      | bool | 광고성 알림 표시 동의 여부      |
-| adAgreementNight | bool | 야간 광고성 알림 표시 동의 여부  |
+| bPushEnabled      | bool | 알림 표시 동의 여부           |
+| bAdAgreement      | bool | 광고성 알림 표시 동의 여부      |
+| bAdAgreementNight | bool | 야간 광고성 알림 표시 동의 여부  |
 
 
 ### Event Handling
