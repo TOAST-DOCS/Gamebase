@@ -18,6 +18,7 @@ To execute Gamebase in Android, the following system environment is required.
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Support Sign In With Apple login | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-16.1.2 | Support Facebook login | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Support Google login | - |
+|  | gamebase-adapter-auth-gpgs-v2 | play-services-games-v2-20.1.2 | Support GPGS(Google Play Games Services) V2 login | API 21(Lollipop, OS 5.0) |
 |  | gamebase-adapter-auth-hangame | hangame-id-1.13.0 | Support Hangame login | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | Support LINE login | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.8.0 | Support NAVER login | API 21(Lollipop, OS 5.0) |
@@ -218,6 +219,7 @@ dependencies {
 
     // >>> Gamebase - Add Auth Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-google:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-auth-gpgs-v2:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-facebook:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-appleid:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-twitter:$GAMEBASE_SDK_VERSION"
@@ -360,6 +362,34 @@ android {
     <!-- [Facebook] Facebook APP ID & Client Token -->
     <string name="facebook_app_id">123456789012345</string>
     <string name="facebook_client_token">a01234bc56de7fg89012hi3j45k67890</string>
+</resources>
+```
+
+#### GPGS v2 IdP
+
+* Declare an App ID for GPGS v2 SDK initialization.
+    * Instead of declaring that value directly, set it to reference resources as shown in the example below.
+
+**AndroidManifest.xml**
+
+```xml
+<manifest ...>
+    <application ...>
+        ...
+        <!-- [GPGS v2] Configurations begin -->
+        <meta-data android:name="com.google.android.gms.games.APP_ID" android:value="@string/game_services_project_id" />
+        <!-- [GPGS v2] Configurations end -->
+        ...
+    </application>
+</manifest>
+```
+
+**res/values/strings.xml**
+
+```xml
+<resources>
+    <!-- [GPGS v2] GPGS v2 APP ID -->
+    <string name="game_services_project_id">1234567890</string>
 </resources>
 ```
 

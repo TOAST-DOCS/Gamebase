@@ -1,11 +1,17 @@
 ## Game > Gamebase > 릴리스 노트 > Unity
 
+### 2.66.3 (2024. 09. 05.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-Unity.zip)
+
+#### 버그 수정
+* (iOS) iOS 12 에서 결제 후 크래시가 발생하는 문제를 수정했습니다.
+
 ### 2.66.2 (2024. 08. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.2/GamebaseSDK-Unity.zip)
 
 #### 기능 개선/변경
 * 아래 필드가 iOS에서 deprecated 되었습니다. Android에서만 사용할 수 있습니다.
-    * GamebaseWebViewConfiguration.orientation deprecated
+    * `GamebaseWebViewConfiguration.orientation`
 
 ### 2.66.1 (2024. 07. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.1/GamebaseSDK-Unity.zip)
