@@ -16,11 +16,11 @@
 ### 2.66.0 (2024. 07. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* External SDK update
     * Facebook iOS SDK (17.0.2)
     * Hangame iOS SDK (1.15.0)
-* 앱 추적을 허용하지 않아도 Hangame-Facebook 로그인이 가능하도록 수정하였습니다.
+* Fixed to allow Hangame-Facebook login even if you don't allow app tracking.
 
 ### 2.65.1 (2024. 06. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.1/GamebaseSDK-iOS.zip)
