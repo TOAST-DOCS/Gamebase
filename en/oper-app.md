@@ -529,9 +529,9 @@ Kakao authentication information can be set/checked in various places, including
 * Kakao Developers(https://developers.kakao.com/)
     * ![gamebase_console_app_kakaogames_01_20240723.png](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/ko/gamebase_console_app_kakaogames_01_20240723.png)
 * Kakao Gamecenter(https://gamecenter.kakao.com/)
-	* ![gamebase_console_app_kakaogames_02_20240723.png](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/ko/gamebase_console_app_kakaogames_02_20240723.png)
+    * ![gamebase_console_app_kakaogames_02_20240723.png](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/ko/gamebase_console_app_kakaogames_02_20240723.png)
 * Kakaogames 3.0 Admin(https://admin-zinny3.game.kakao.com)
-	* ![gamebase_console_app_kakaogames_03_20240723.png](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/ko/gamebase_console_app_kakaogames_03_20240723.png)
+    * ![gamebase_console_app_kakaogames_03_20240723.png](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/ko/gamebase_console_app_kakaogames_03_20240723.png)
 
 <br />
 Enter the {App ID}, {Native App Key}, and {Admin Key} issued by Kakaogames into the Gamebase Console.
