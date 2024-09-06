@@ -544,7 +544,7 @@ class MyApplication: GamebaseMyCardApplication() {
 | com.toast.sdk.push.notification.default_light_on_ms | int | LED 불이 들어올 때의 시간. |
 | com.toast.sdk.push.notification.default_light_off_ms | int | LED 불이 나갈 때의 시간. |
 | com.toast.sdk.push.notification.default_small_icon | resource id | 작은 아이콘의 리소스 식별자. |
-| com.toast.sdk.push.notification.default_sound | String | 알림음 파일 이름.<br/>안드로이드 8.0 미만 OS 에서만 동작합니다.<br/>'res/raw' 폴더의 mp3, wav 파일명을 지정하면 알림음이 변경됩니다. |
+| com.toast.sdk.push.notification.default_sound | String | 알림음 파일 이름.<br/>Android 8.0 미만 OS에서만 동작합니다.<br/>'res/raw' 폴더의 mp3, wav 파일명을 지정하면 알림음이 변경됩니다. |
 | com.toast.sdk.push.notification.default_vibrate_pattern | long[] | 진동의 패턴. |
 | com.toast.sdk.push.notification.badge_enabled | boolean | 배지 아이콘 사용 여부. |
 | com.toast.sdk.push.notification.foreground_enabled | boolean | 포그라운드 알림 사용 여부. |

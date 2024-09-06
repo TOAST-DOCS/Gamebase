@@ -476,7 +476,7 @@
     * Gamebase.Terms.IsShowingTermsView()
 * 웹뷰에서 내비게이션 바를 숨길 수 있는 옵션이 추가되었습니다.
     * GamebaseRequest.Webview.GamebaseWebViewConfiguration.isNavigationBarVisible
-* (Android) 웹뷰에서 폰트 사이즈를 고정할 수 있는 옵션이 추가되었습니다
+* (Android) 웹뷰에서 폰트 사이즈를 고정할 수 있는 옵션이 추가되었습니다.
     * GamebaseRequest.Webview.GamebaseWebViewConfiguration.enableFixedFontSize
 * (Android) 약관 창에서 글자 크기를 고정할 수 있는 옵션이 추가되었습니다.
     * GamebaseRequest.Terms.GamebaseTermsConfiguration.enableFixedFontSize

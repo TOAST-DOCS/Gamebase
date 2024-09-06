@@ -1066,7 +1066,7 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 
 > `주의`
 >
-> 탈퇴 유예 기능을 사용하는 경우에는 **Gamebase.Withdraw()** API 를 사용하지 마세요.
+> 탈퇴 유예 기능을 사용하는 경우에는 **Gamebase.Withdraw()** API를 사용하지 마세요.
 > **Gamebase.Withdraw()** API 는 즉시 계정을 탈퇴합니다.
 
 로그인이 성공하면 AuthToken.member.temporaryWithdrawal로 탈퇴 유예 상태인 유저인지 판단할 수 있습니다.
