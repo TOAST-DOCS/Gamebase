@@ -16,15 +16,15 @@
 ### 2.66.1 (2024. 07. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.1/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
+#### Added Features
 
-* (macOS) 개인정보 보호 정책이 대응되었습니다.
+* (macOS) Responeded to the privacy policy.
 
-#### 기능 개선
+#### Feature Updates
 
-* 내부 로직을 개선했습니다.
+* Improved internal logic.
 
-#### 플랫폼별 변경 사항
+#### Platform-Specific Changes
 * [Gamebase Android SDK 2.66.1](./release-notes-android/#2661-2024-07-23)
 * [Gamebase iOS SDK 2.66.0](./release-notes-ios/#2660-2024-07-23)
 
