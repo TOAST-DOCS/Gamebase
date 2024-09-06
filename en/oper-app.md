@@ -293,7 +293,7 @@ Enter {client_id} and {client_secret} issued from PAYCO ID application in the TO
 ##### iOS
 * [Gamebase > iOS SDK User Guide > Getting Started > IdP Settings > PAYCO](./ios-started/#payco)
 
-#### 5.NAVER
+#### 5. NAVER
 Enter {client_id} and {client_secret} issued by the NAVER Developers website in the Gamebase Console.
 Here, **service_name**, which is the name of an application to be displayed in the Agree to Login window, needs to be configured.
 
@@ -527,7 +527,7 @@ If not entered, it is set to a random value.
 Kakao authentication information can be set/checked in various places, including Kakao Developers, Kakao Game Center (channeled games), Kakao Game 3.0 Admin, etc. depending on the publishing contract relationship.
 
 * Kakao Developers(https://developers.kakao.com/)
-	* ![gamebase_console_app_kakaogames_01_20240723.png](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/ko/gamebase_console_app_kakaogames_01_20240723.png)
+    * ![gamebase_console_app_kakaogames_01_20240723.png](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/ko/gamebase_console_app_kakaogames_01_20240723.png)
 * Kakao Gamecenter(https://gamecenter.kakao.com/)
 	* ![gamebase_console_app_kakaogames_02_20240723.png](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/ko/gamebase_console_app_kakaogames_02_20240723.png)
 * Kakaogames 3.0 Admin(https://admin-zinny3.game.kakao.com)
@@ -549,8 +549,8 @@ Change each value to the value issued by the Kakaogames console.
 
 ```json
 {
-	"appSecret":"...",
-	"adminKey":"..."
+    "appSecret":"...",
+    "adminKey":"..."
 }
 ```
 
