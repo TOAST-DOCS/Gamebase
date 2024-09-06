@@ -1,5 +1,27 @@
 ## Game > Gamebase > Release Notes > Console
 
+### July 23, 2024
+
+#### Added Features
+* App > App
+	* Added authentication for Google Play Game Service V2(GPGS2)
+
+#### Bug Fixes
+* App > Deploy Terms and Conditions
+    * Fixed an error that caused terms to deploy even if no country was set
+
+### July 9, 2024
+
+#### Added Features
+* Operation > Image Notice
+    * Added the feature to set up image notice
+
+### June 25, 2024
+
+#### Feature Updates
+* Purchase (IAP) > Payment Information
+	* Added support for Apple Notification V2's receipt verification feature
+
 ### March 26, 2024
 
 #### Added Features

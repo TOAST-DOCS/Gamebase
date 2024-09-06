@@ -17,6 +17,7 @@
 - Added `marketIds` to the `List Active Subscriptions` API request to perform querying against N stores at once.
 - Added the `Get Ban Members` API to retrieve users who are banned from using the service
 - Added the `Get Subscription Status` API to retrieve the current status of subscriptions
+- Added a `paymentToken` to the `Get Payment Transaction` API request body, representing the ONEStore's purchaseId or purchaseToken value.
 
 ## Advance Notice
 
@@ -1708,6 +1709,7 @@ N/A
         "marketId": "AS",
         "accessToken": "-Fr8Y7_dvv5qhdd6qVHbs7gKnkX0r7EKPvuK6CI-UBBekc1rE9CVbMKVCNuw6ZtwkBGlzeIHg6DdjaRVeaW7GYlPF4vRa50L8umB6tdBvk8",
         "paymentId" : "Store Reference Key",
+        "paymentToken" : "19062709124410111299",
         "productType": "CONSUMABLE",
         "userId": "AS@QW4M1GM7W97YJDCN",
         "gamebaseProductId": "qa_ksw_prod_as_001",
@@ -1730,6 +1732,7 @@ N/A
 | result.accessToken | String | Payment authentication token |
 | result.productType | String  | Product (item) type<br>- One-time: CONSUMABLE<br>- Consumable Subscription: CONSUMABLE_AUTO_RENEWABLE<br>- Subscription: AUTO_RENEWABLE |
 | result.paymentId | String | Payment ID issued by the store |
+| result.paymentToken | String | Payment token issued by the store and only exists for ONEStore payments<br>- ONEStore V5: purchaseId<br> - ONEStore V6,7: purchaseToken |
 | result.userId | String  | User ID  |
 | result.gamebaseProductId | String | Gamebase product ID<br>The value entered by the user when registering a product in the console |
 | result.purchaseTime | String | Time and date of payment |
