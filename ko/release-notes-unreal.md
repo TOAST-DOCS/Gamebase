@@ -1,5 +1,15 @@
 ## Game > Gamebase > 릴리스 노트 > Unreal
 
+### 2.66.1 (2024. 09. 10.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.1/GamebaseSDK-Unreal.zip)
+
+#### 기능 개선
+* 내부 로직을 개선했습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.66.3](./release-notes-android/#2663-2024-09-10)
+* [Gamebase iOS SDK 2.66.2](./release-notes-ios/#2662-2024-08-27)
+
 ### 2.66.0 (2024. 08. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.0/GamebaseSDK-Unreal.zip)
 
@@ -177,10 +187,10 @@
 
 #### 기능 개선/변경
 * 킥아웃 팝업 창 표시 여부는 Gamebase 콘솔에서 킥아웃 등록 시 설정할 수 있으므로 다음 필드는 더 이상 사용하지 않습니다
-    * **FGamebaseConfiguration.enableKickoutPopup**
+    * **FGamebaseConfiguration.bEnableKickoutPopup**
 * FGamebaseConfiguration 내 일부 필드에 기본값이 추가되었습니다.
-    * enableLaunchingStatusPopup의 기본값이 true로 설정되었습니다.
-    * enableBanPopup의 기본값이 true로 설정되었습니다.
+    * bEnableLaunchingStatusPopup의 기본값이 true로 설정되었습니다.
+    * bEnableBanPopup의 기본값이 true로 설정되었습니다.
 * 웹뷰에서 고정 폰트 사이즈 사용 여부를 설정하는 필드는 더 이상 사용되지 않습니다.
     * **FGamebaseWebViewConfiguration.enableFixedFontSize**
 * FGamebaseWebViewConfiguratio 내 일부 필드에 기본값이 추가되었습니다.
