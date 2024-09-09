@@ -81,7 +81,7 @@ Display Language에 입력하는 언어 코드는 반드시 아래의 표(**Game
 | zh-CN | Chinese-Simplified |
 | zh-TW | Chinese-Traditional |
 
-해당 언어코드는 `TCGBConstants.h`에 정의되어 있습니다.
+해당 언어 코드는 `TCGBConstants.h`에 정의되어 있습니다.
 
 
 ```objectivec
@@ -654,7 +654,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 
 #### Push Click Message
 
-* 수신한 Push 메시지를 클릭했을때 발생하는 이벤트입니다.
+* 수신한 Push 메시지를 클릭했을 때 발생하는 이벤트입니다.
 
 **Example**
 

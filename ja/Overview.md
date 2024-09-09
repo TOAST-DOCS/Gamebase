@@ -41,18 +41,18 @@ Gamebaseは、様々なIdP(アイデンティティプロバイダー)のアカ�
 
 以下は、Gamebaseで提供している外部認証リストです。
 
-| 外部認証            | Android | iOS | Windows(based Unity) |
-| ----------------- | ------------ | ------------ | ------------ |
-| Facebook          | O | O | O |
-| Sign In with Apple | O  | O | |
-| Apple Game Center |  | O | |
-| Google            | O | O | O |
-| Twitter			| O | O | |
-| LINE				| O | O | O  |
-| PAYCO             | O | O | O |
-| NAVER             | O | O | O |
-| Hangame			| O | O | O  |
-| Weibo | O  | O  | |
+| 外部認証           | Android | iOS | Unity(Windows, macOS) | Unreal(Windows) | 
+| ----------------- | ------------ | ------------ | ------------ | ------------ |
+| Facebook          | O | O | O | O |
+| Sign In with Apple | O  | O | | O |
+| Apple Game Center |  | O | | |
+| Google            | O | O | O | O |
+| PAYCO             | O | O | O | |
+| NAVER             | O | O | O | |
+| Twitter			| O | O | | O | |
+| LINE				| O | O | O  | |
+| Hangame			| O | O | O  | |
+| Weibo | O  | O  | | |
 
 * **ゲストログインを提供します。**
   ゲストログインを利用すれば、ユーザーは何も入力しなくてもすぐにゲームにログインして簡単にゲームを始めることができます。ゲストログインをするだけでもGamebaseのユーザーIDが発行されるため、ゲームはOAuthログインユーザーかゲストログインユーザーかに関係なく同じようにユーザーのゲームデータを管理することができます。

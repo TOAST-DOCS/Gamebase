@@ -782,10 +782,10 @@ TransferAccountInfo 정보를 갱신 할 수 있습니다.
 
 > <font color="red">[주의]</font><br/>
 >
-> 탈퇴 유예 기능을 사용하는 경우에는 **[TCGBGamebase withdrawWithViewController:completion:]** API 를 사용하지 마세요.
+> 탈퇴 유예 기능을 사용하는 경우에는 **[TCGBGamebase withdrawWithViewController:completion:]** API를 사용하지 마세요.
 > **[TCGBGamebase withdrawWithViewController:completion:]** API 는 즉시 계정을 탈퇴합니다.
 
-로그인이 성공하면 AuthToken.getTemporaryWithdrawalInfo() API 를 호출하여 탈퇴 유예 상태인 유저인지 판단할 수 있습니다.
+로그인이 성공하면 AuthToken.getTemporaryWithdrawalInfo() API를 호출하여 탈퇴 유예 상태인 유저인지 판단할 수 있습니다.
 
 ### Request TemporaryWithdrawal
 

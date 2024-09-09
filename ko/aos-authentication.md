@@ -1060,10 +1060,10 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 
 > `주의`
 >
-> 탈퇴 유예 기능을 사용하는 경우에는 **Gamebase.withdraw()** API 를 사용하지 마세요.
+> 탈퇴 유예 기능을 사용하는 경우에는 **Gamebase.withdraw()** API를 사용하지 마세요.
 > **Gamebase.withdraw()** API 는 즉시 계정을 탈퇴합니다.
 
-로그인이 성공하면 AuthToken.getTemporaryWithdrawalInfo() API 를 호출하여 탈퇴 유예 상태인 유저인지 판단할 수 있습니다.
+로그인이 성공하면 AuthToken.getTemporaryWithdrawalInfo() API를 호출하여 탈퇴 유예 상태인 유저인지 판단할 수 있습니다.
 
 ### Request TemporaryWithdrawal
 
@@ -1107,7 +1107,7 @@ public static void testRequestWithdraw() {
 
 ### Check TemporaryWithdrawal User
 
-탈퇴 유예를 사용하는 게임은 로그인 후 항상 AuthToken.getTemporaryWithdrawalInfo() API 를 호출하여, 결과가 null 이 아닌 유효한 TemporaryWithdrawalInfo 객체를 반환한다면 해당 유저에게 탈퇴 진행중이라는 사실을 알려주어야 합니다.
+탈퇴 유예를 사용하는 게임은 로그인 후 항상 AuthToken.getTemporaryWithdrawalInfo() API를 호출하여, 결과가 null 이 아닌 유효한 TemporaryWithdrawalInfo 객체를 반환한다면 해당 유저에게 탈퇴 진행중이라는 사실을 알려주어야 합니다.
 
 **Example**
 
