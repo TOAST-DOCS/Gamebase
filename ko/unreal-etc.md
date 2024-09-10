@@ -25,7 +25,7 @@ FString GetDeviceLanguageCode() const;
 * Gamebase에서 제공하는 UI 및 SystemDialog에 표시되는 언어를 단말기에 설정된 언어가 아닌 다른 언어로 변경할 수 있습니다.
 * Gamebase는 클라이언트에 포함되어 있는 메시지를 표시하거나 서버에서 받은 메시지를 표시합니다.
 * DisplayLanguage를 설정하면 사용자가 설정한 언어코드(ISO-639)에 적합한 언어로 메시지를 표시합니다.
-* 원하는 언어셋을 추가할 수 있습니다. 추가할 수 있는 언어코드는 다음과 같습니다.
+* 원하는 언어셋을 추가할 수 있습니다. 추가할 수 있는 언어 코드는 다음과 같습니다.
 
 > [참고]
 >
@@ -52,11 +52,11 @@ FString GetDeviceLanguageCode() const;
 | zh-CN | Chinese-Simplified |
 | zh-TW | Chinese-Traditional |
 
-해당 언어코드는 `GamebaseDisplayLanguageCode` 클래스에 정의되어 있습니다.
+해당 언어 코드는 `GamebaseDisplayLanguageCode` 클래스에 정의되어 있습니다.
 
 > <font color="red">[주의]</font><br/>
 >
-> Gamebase에서 지원하는 언어코드는 대소문자를 구분합니다.
+> Gamebase에서 지원하는 언어 코드는 대소문자를 구분합니다.
 > 'EN'이나 'zh-cn'과 같이 설정하면 문제가 발생할 수 있습니다.
 
 
@@ -732,7 +732,7 @@ void USample::AddEventHandler()
 
 #### Push Click Message
 
-* 수신한 Push 메시지를 클릭했을때 발생하는 이벤트입니다.
+* 수신한 Push 메시지를 클릭했을 때 발생하는 이벤트입니다.
 * 'GamebaseEventCategory::PushReceivedMessage'와는 다르게 Android에서 extras 필드에 **isForeground** 정보가 존재하지 않습니다.
 
 **Example**
@@ -758,8 +758,8 @@ void USample::AddEventHandler()
 
 #### Push Click Action
 
-* Rich Message 기능을 통해 생성한 버튼을 클릭했을때 발생하는 이벤트입니다.
-* ActionType 은 다음 항목이 제공됩니다.
+* Rich Message 기능을 통해 생성한 버튼을 클릭했을 때 발생하는 이벤트입니다.
+* ActionType은 다음 항목이 제공됩니다.
     * "OPEN_APP"
     * "OPEN_URL"
     * "REPLY"
@@ -948,7 +948,7 @@ ContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니다.
 | ------------- | ------------- | ---------------------------------- | ------------------ |
 | UserName      | O             | FString                            | 사용자 이름(닉네임) <br>**default**: ""   |
 | AdditionalURL | O             | FString                            | 개발사 자체 고객 센터 URL 뒤에 붙는 추가적인 URL <br>**default**: ""    |
-| AdditionalParameters | O      | TMap<string, string>               | 고객 센터 URL 뒤에 붙는 추가적인 파라미터<br>**default** : EmptyMap |
+| AdditionalParameters | O      | TMap<string, string>               | 고객 센터 URL 뒤에 붙는 추가적인 파라미터<br>**default**: EmptyMap |
 | ExtraData     | O             | TMap<FString, FString>             | 개발사가 원하는 extra data를 고객 센터 오픈 시에 전달<br>**default**: EmptyMap |
 
 **API**

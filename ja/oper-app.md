@@ -223,9 +223,9 @@ Facebookの開発サイトに登録したアプリの{アプリID}と{アプリ�
 
 Google認証を行うには、Google Cloud Consoleで**Web Application Client ID**を発行し、Gamebase Consoleに入力する必要があります。
 承認されたリダイレクトURI欄に次の値を入力します。
-	* https://alpha-id-gamebase.toast.com/oauth/callback
-	* https://beta-id-gamebase.toast.com/oauth/callback
-	* https://id-gamebase.toast.com/oauth/callback
+* https://alpha-id-gamebase.toast.com/oauth/callback
+* https://beta-id-gamebase.toast.com/oauth/callback
+* https://id-gamebase.toast.com/oauth/callback
 
 <br/>
 
@@ -290,7 +290,7 @@ PAYCO Client IDを申請して発行された{client_id}及び{client_secret}を
 ##### iOS
 * [Gamebase > iOS SDK使用ガイド > 始める > IdP settings > PAYCO](./ios-started/#payco)
 
-#### 5.NAVER
+#### 5. NAVER
 NAVER Developersサイトで申請して発行された{client_id}および{client_secret}をGamebase Consoleに入力します。
 この時、ログイン同意ウィンドウで表示するアプリケーション名である**service_name**を設定する必要があります。
 
@@ -484,7 +484,7 @@ Gamebase Console > AppでAppleを追加すると、基本値に下記のJSON値�
 
 **入力フィールド**
 
- -  ClientID：{App Key}
+ -  Client ID：{App Key}
  -  Secret Key：{App Secret}
  - 追加情報：scope（json format）
 
@@ -513,6 +513,58 @@ Weiboガイド文書に従ってuniversalLinkを設定できます。
 **Reference URL**
 - [Weibo Developer](https://open.weibo.com/)
 
+#### 10. Kakaogames
+
+Kakao認証情報は、パブリッシング契約関係により、カカオデベロッパーズ、カカオゲームセンター(チャネリングゲーム)、カカオゲーム3.0 Adminなど様々な場所で設定/確認が可能です。
+
+* カカオデベロッパーズ(https://developers.kakao.com/)
+    * ![gamebase_console_app_kakaogames_01_20240723.png](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/ko/gamebase_console_app_kakaogames_01_20240723.png)
+* カカオゲームセンター(https://gamecenter.kakao.com/)
+    * ![gamebase_console_app_kakaogames_02_20240723.png](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/ko/gamebase_console_app_kakaogames_02_20240723.png)
+* カカオゲーム3.0 Admin(https://admin-zinny3.game.kakao.com)
+    * ![gamebase_console_app_kakaogames_03_20240723.png](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/ko/gamebase_console_app_kakaogames_03_20240723.png)
+
+<br />
+Kakaogamesから発行された{App ID}、{Native App Key}及び{Admin Key}をGamebase Consoleに入力します。
+![gamebase_console_app_kakaogames_04_20240723.png](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/ko/gamebase_console_app_kakaogames_04_20240723.png)
+
+##### Client ID Settings
+App IDを設定します。
+
+##### Secret Key Settings
+Gamebase認証情報でKakaogamesを追加すると、'Secret Key'に下記のJSON値が設定されます。
+それぞれの値をKakaogamesコンソールで発行された値に変更してください。
+
+* **appSecret**: Native App Key
+* **adminKey**: Admin Key
+
+```json
+{
+    "appSecret":"...",
+    "adminKey":"..."
+}
+```
+
+##### Additional Info Settings
+Gamebase認証情報でKakaogamesを追加すると、「追加情報」に下記のJSON値が設定されます。
+Unityビルドの場合、**AppDelegate**を**UnityAppController**に変更してください。
+
+```json
+{"AppDelegateClassName" : "AppDelegate"}
+```
+
+#### 11. GPGS v2
+
+GPGS(Google Play Games Services)v2認証のためには、Google認証タイプを追加する方法と同じようにGoogle Cloud Consoleで**Web Application Client ID**を発行し、承認されたリダイレクトURI欄にGamebase Callback URLを入力する必要があります。
+[Game > Gamebase > コンソール使用ガイド > アプリ > App > Authentication Information > 2. Google](./oper-app/#2-google)
+
+**入力フィールド**
+
+- Client ID: {Google Web Application Client ID}
+- Secret Key: {Google Web Application Client secret}
+
+##### Android
+* [Gamebase > Android SDK使用ガイド > はじめる > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#gpgs-v2-idp)
 
 ## Client
 

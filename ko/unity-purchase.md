@@ -163,7 +163,7 @@ public class PurchasableReceipt
 
     /// <summary>
     /// 결제 식별자입니다.
-    /// purchaseToken 과 함께 'Consume' 서버 API 를 호출하는데 사용하는 중요한 정보입니다.
+    /// purchaseToken과 함께 'Consume' 서버 API를 호출하는 데 사용하는 중요한 정보입니다.
     ///    
     /// 주의: Consume API 는 게임 서버에서 호출하세요!
     /// <para/><see href="https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
@@ -172,7 +172,7 @@ public class PurchasableReceipt
 
     /// <summary>
     /// 결제 식별자입니다.
-    /// paymentSeq 와 함께 'Consume' 서버 API 를 호출하는데 사용하는 중요한 정보입니다.
+    /// paymentSeq 와 함께 'Consume' 서버 API를 호출하는데 사용하는 중요한 정보입니다.
     /// Consume API 에서는 'accessToken' 라는 이름의 파라메터로 전달해야 합니다.
     ///    
     /// 주의: Consume API 는 게임 서버에서 호출하세요!

@@ -9,7 +9,7 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 > 
 > Unity対応バージョン
 >
-> * 2018.4.0～6000.0.17
+> * 2020.3.0 ~ 6000.0.17
 
 #### Android
 > <font color="red">[注意]</font>
@@ -105,7 +105,7 @@ Gamebase SDKを手軽にインストールすることができるように、Se
             * CocoaPods 1.10.xバージョンをインストールします。
             * Unityで作成したXcodeプロジェクトから**pod install**を直接呼び出します。
     * Link frameworks statically：無効
-
+    
 > <font color="red">[注意]</font>
 >
 > iOSプラットフォームをサービスする場合は、CocoaPodsがインストールされている必要があります。CocoaPodsのインストールおよび詳細については[cocoapods.org](https://cocoapods.org/)を参照してください。

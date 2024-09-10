@@ -1,31 +1,39 @@
 ## Game > Gamebase > リリースノート > Android
 
+### 2.66.3 (2024. 09. 10.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: NHN Cloud SDK(1.9.2)
+    * Android 13 이상 특정 디바이스에서 간헐적으로 Native Crash 로그가 리포팅되지 않는 문제가 수정되었습니다.
+    * Amazon 결제 재처리가 개선되었습니다.
+
 ### 2.66.2 (2024. 08. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.2/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: NHN Cloud SDK(1.9.1), Kakaogame SDK(3.19.3), PAYCO SDK(1.5.15)
-* Amazon 스토어 결제시 문제가 생겨 재처리가 동작할 때 처음 결제를 시도했던 User ID로 아이템을 지급하도록 하는 보완 로직이 추가되었습니다.
-* Twitter 로그인 타이틀 바 색상과 이름이 변경되었습니다.
-* 롤링 이미지 공지의 웹뷰 내부에서 에러가 발생한 경우, 기존에 성공 콜백 호출 대신 실패 콜백이 호출되도록 수정하였습니다.
+#### 機能改善/変更
+* 外部SDKアップデート: NHN Cloud SDK(1.9.1), Kakaogame SDK(3.19.3), PAYCO SDK(1.5.15)
+* Amazonストア決済時に問題が発生し、再処理が動作する場合、最初に決済を試みたUser IDでアイテムを支給するようにする補完ロジックを追加しました。
+* Twitterログインのタイトルバーの色と名前を変更しました。
+* ローリングイメージ告知のWebビュー内部でエラーが発生した場合、従来の成功コールバック呼び出しの代わりに失敗コールバックが呼び出されるように修正しました。
 
-#### 버그 수정
-* Activity가 파괴된 경우, 파괴된 Activity위에 떠 있는 WebView가 close되며 이 때 close event callback이 누락되는 이슈가 수정되었습니다.
-* Hangame 로그인 어댑터에서 외부 idP 로그인 시 callback이 중복으로 오는 경우 already resumed 에러가 나지 않도록 방어 로직을 추가하였습니다.
+#### バグ修正
+* Activityが破壊された場合、破壊されたActivity上に浮遊しているWebViewがcloseされ、この時close event callbackが欠落する問題を修正しました。
+* Hangameログインアダプタで外部idPログイン時にcallbackが重複して来る場合、already resumedエラーが出ないように防御ロジックを追加しました。
 
 ### 2.66.1 (2024. 07. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.1/GamebaseSDK-Android.zip)
 
-#### 버그 수정
-* targetSdk 34로 빌드했을 때 Android 14 단말기에서 `gamebase://dismiss` 스킴이 동작하지 않아 커스텀 스킴으로 웹뷰를 종료할 수 없는 이슈를 수정했습니다.
+#### バグ修正
+* targetSdk 34でビルドした時、Android 14端末で`gamebase://dismiss`スキームが動作せず、カスタムスキームでWebビューを終了できない問題を修正しました。
 
 ### 2.66.0 (2024. 07. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.0/GamebaseSDK-Android.zip)
 
 #### 機能追加
 * GPGS v2認証を追加
-    * 설정 방법은 다음 가이드 문서를 참고하시기 바랍니다.
-        * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#gpgs-v2-idp)
+    * 設定方法は次のガイドを参照してください。
+        * [Game > Gamebase > Android SDK使用ガイド > はじめる > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#gpgs-v2-idp)
 
 ### 2.65.1 (2024. 06. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.1/GamebaseSDK-Android.zip)

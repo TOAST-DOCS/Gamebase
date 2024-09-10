@@ -1,5 +1,11 @@
 ## Game > Gamebase > 릴리스 노트 > Unity
 
+### 2.66.3 (2024. 09. 10.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* Unity 최소지원 버전 변경: 2020.3.0f1
+
 ### 2.66.3 (2024. 09. 05.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-Unity.zip)
 
@@ -476,7 +482,7 @@
     * Gamebase.Terms.IsShowingTermsView()
 * 웹뷰에서 내비게이션 바를 숨길 수 있는 옵션이 추가되었습니다.
     * GamebaseRequest.Webview.GamebaseWebViewConfiguration.isNavigationBarVisible
-* (Android) 웹뷰에서 폰트 사이즈를 고정할 수 있는 옵션이 추가되었습니다
+* (Android) 웹뷰에서 폰트 사이즈를 고정할 수 있는 옵션이 추가되었습니다.
     * GamebaseRequest.Webview.GamebaseWebViewConfiguration.enableFixedFontSize
 * (Android) 약관 창에서 글자 크기를 고정할 수 있는 옵션이 추가되었습니다.
     * GamebaseRequest.Terms.GamebaseTermsConfiguration.enableFixedFontSize

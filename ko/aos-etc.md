@@ -61,7 +61,7 @@ Display Language에 입력하는 언어 코드는 반드시 아래의 표(**Game
 | zh-CN | Chinese-Simplified |
 | zh-TW | Chinese-Traditional |
 
-해당 언어코드는 `DisplayLanguage` 클래스에 정의되어 있습니다.
+해당 언어 코드는 `DisplayLanguage` 클래스에 정의되어 있습니다.
 
 ```cs
 package com.toast.android.gamebase.base.ui;
@@ -690,7 +690,7 @@ void eventHandlerSample(Activity activity) {
 
 #### Push Click Message
 
-* 수신한 Push 메시지를 클릭했을때 발생하는 이벤트입니다.
+* 수신한 Push 메시지를 클릭했을 때 발생하는 이벤트입니다.
 * 'GamebaseEventCategory.PUSH_RECEIVED_MESSAGE'와는 다르게 **isForeground** 필드가 존재하지 않습니다.
 
 **Example**
@@ -717,7 +717,7 @@ void eventHandlerSample(Activity activity) {
 
 #### Push Click Action
 
-* Rich Message 기능을 통해 생성한 버튼을 클릭했을때 발생하는 이벤트입니다.
+* Rich Message 기능을 통해 생성한 버튼을 클릭했을 때 발생하는 이벤트입니다.
 * actionType은 다음 항목이 제공됩니다.
 	* "OPEN_APP"
 	* "OPEN_URL"

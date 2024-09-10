@@ -1,5 +1,14 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.66.3
+
+### Unity
+
+#### Changed Minimum Support Version
+
+* 최소 지원 Unity 버전이 2018.4.0 에서 2020.3.0 으로 변경되었습니다.
+* 하위 버전의 Unity 지원이 필요하다면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
+
 ## 2.66.2
 
 ### iOS
@@ -13,9 +22,9 @@
 
 ### Unreal
 
-* API 사용방식이 변경되었습니다.
-    * IModuleInterface를 상속받은 **IGamebase**에서 제공하던 API를 UGameInstanceSubsystem을 상속받은 **UGamebaseSubsytem**애서 제공하도록 변경되었습니다.
-    * **UGamebaseSubsytem**은 GameInstance의 서브시스템이므로 GameInstance 생명주기를 따르며 SDK API 호출 시 사용하는 GameInstance를 통해 해당 서브시스템을 찾아서 API를 사용해야 합니다.
+* API 사용 방식이 변경되었습니다.
+    * `IModuleInterface`를 상속 받은 **IGamebase**에서 제공하던 API를 `UGameInstanceSubsystem`을 상속 받은 **UGamebaseSubsytem**에서 제공하도록 변경했습니다.
+    * **UGamebaseSubsytem**은 GameInstance의 서브시스템이므로 GameInstance 생명 주기를 따르며 SDK API 호출 시 사용하는 GameInstance를 통해 해당 서브시스템을 찾아서 API를 사용해야 합니다.
     * 언리얼 코딩 표준에 명명 규칙을 따르도록 변경되었습니다.
 
 ```cpp
@@ -716,7 +725,7 @@ android {
 
 ### Android
 
-* Gamebase Android SDK 2.17.0 에서 Gamebase.ImageNotice.showImageNotices API 를 호출하면 크래시가 발생합니다.
+* Gamebase Android SDK 2.17.0 에서 Gamebase.ImageNotice.showImageNotices API를 호출하면 크래시가 발생합니다.
     * 2.17.0 의 크래시 및 OS 5.0~6.0 에서 커스텀 스킴 이벤트가 동작하지 않는 이슈가 수정된 Gamebase Android SDK 2.17.4 를 사용하시기 바랍니다.
 
 ## 2.15.1

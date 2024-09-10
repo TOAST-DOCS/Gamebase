@@ -1,5 +1,11 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.66.3 (2024. 09. 10.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+* Unity 최소지원 버전 변경: 2020.3.0f1
+
 ### 2.66.3 (2024. 09. 05.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-Unity.zip)
 
@@ -9,22 +15,22 @@
 ### 2.66.2 (2024. 08. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.2/GamebaseSDK-Unity.zip)
 
-#### 기능 개선/변경
-* 아래 필드가 iOS에서 deprecated 되었습니다. Android에서만 사용할 수 있습니다.
+#### 機能改善/変更
+* 以下のフィールドはiOSでは非推奨となりました。Androidでのみ使用できます。
     * GamebaseWebViewConfiguration.orientation deprecated
 
 ### 2.66.1 (2024. 07. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.1/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
+#### 機能追加
 
-* (macOS) 개인정보 보호 정책이 대응되었습니다.
+* (macOS)個人情報保護ポリシーに対応しました。
 
-#### 기능 개선
+#### 機能改善
 
-* 내부 로직을 개선했습니다.
+* 内部ロジックを改善しました。
 
-#### 플랫폼별 변경 사항
+#### プラットフォームごとの変更事項
 * [Gamebase Android SDK 2.66.1](./release-notes-android/#2661-2024-07-23)
 * [Gamebase iOS SDK 2.66.0](./release-notes-ios/#2660-2024-07-23)
 

@@ -509,7 +509,7 @@ Weibo 가이드 문서에 따라 기본값으로 모든 권한이 선언되어 �
 
 * oauthApiUrl
 
-내부적으로 Weibo Open API 를 호출하기 위한 도메인입니다.
+내부적으로 Weibo Open API를 호출하기 위한 도메인입니다.
 변경해서는 안됩니다.
 
 * universalLink

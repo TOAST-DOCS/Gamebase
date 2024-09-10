@@ -72,7 +72,7 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 ### Notification Options
 
 * 단말기에 표시하는 알림을 어떤 형태로 표시할 것인지 Notification Options 를 통해 변경할 수 있습니다.
-* Notification Options 는 AndroidManifest.xml 에 설정하거나 런타임에 registerPush API 를 호출하여 변경할 수 있습니다.
+* Notification Options 는 AndroidManifest.xml 에 설정하거나 런타임에 registerPush API를 호출하여 변경할 수 있습니다.
 
 #### Set Notification Options with AndroidManifest.xml
 
@@ -94,7 +94,7 @@ GamebaseNotificationOptions.newBuilder() 의 인자로 Gamebase.Push.getNotifica
 | enableBadge           | boolean      | 배지 아이콘 사용 여부<br/>**default**: true |
 | setPriority           | int          | 알림 우선 순위. 아래 5가지 값을 설정할 수 있습니다.<br/>NoticationComapt.PRIORITY_MIN : -2<br/> NoticationComapt.PRIORITY_LOW : -1<br/>NoticationComapt.PRIORITY_DEFAULT : 0<br/>NoticationComapt.PRIORITY_HIGH : 1<br/>NoticationComapt.PRIORITY_MAX : 2<br/>**default**: NoticationComapt.HIGH |
 | setSmallIconName         | String       | 알림용 작은 아이콘 파일 이름.<br/>설정하지 않을 경우 앱 아이콘이 사용됩니다.<br/>**default**: null |
-| setSoundFileName      | String       | 알림음 파일 이름. 안드로이드 8.0 미만 OS 에서만 동작합니다.<br/>'res/raw' 폴더의 mp3, wav 파일명을 지정하면 알림음이 변경됩니다.<br/>**default**: null |
+| setSoundFileName      | String       | 알림음 파일 이름. Android 8.0 미만 OS에서만 동작합니다.<br/>'res/raw' 폴더의 mp3, wav 파일명을 지정하면 알림음이 변경됩니다.<br/>**default**: null |
 
 **Example**
 

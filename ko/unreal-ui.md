@@ -50,7 +50,7 @@ void USample::ShowImageNotices(int32 ColorR, int32 ColorG, int32 ColorB, int32 C
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
 | BackgroundColor          | 0~255                                    | 백그라운드 배경 색상           |
-| TimeOut                  | int64        | 이미지 공지 최대 로딩 시간 (단위 : millisecond)<br/>**default**: 5000                     |
+| TimeOut                  | int64        | 이미지 공지 최대 로딩 시간(단위 : millisecond)<br/>**default**: 5000                     |
 
 
 ### Close ImageNotices
@@ -75,8 +75,8 @@ Gamebase 콘솔에 설정한 약관을 표시합니다.
 ![TermsView Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/termsView-guide-ui-001_2.20.0.png)
 
 ShowTermsView API는 웹뷰로 약관 창을 표시해줍니다.
-Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 QueryTerms API 를 호출하여, Gamebase 콘솔에 설정한 약관 항목을 불러올 수 있습니다.
-유저가 약관에 동의했다면 각 항목별 동의 여부를 UpdateTerms API 를 통해 Gamebase 서버로 전송하시기 바랍니다.
+Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 QueryTerms API를 호출하여, Gamebase 콘솔에 설정한 약관 항목을 불러올 수 있습니다.
+유저가 약관에 동의했다면 각 항목별 동의 여부를 UpdateTerms API를 통해 Gamebase 서버로 전송하시기 바랍니다.
 
 ### ShowTermsView
 
@@ -107,7 +107,7 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 
 | Parameter              | Values                          | Description         |
 | ---------------------- | --------------------------------| ------------------- |
-| bIsTermsUIOpened        | bool                            | **true** : 약관 창이 표시되어 유저가 동의하여 약관 창이 종료되었습니다.<br>**false** : 이미 약관에 동의하여 약관 창이 표시되지 않고 약관 창이 종료되었습니다.        |
+| bIsTermsUIOpened        | bool                            | **true** : 유저가 약관에 동의하여 약관 창이 종료되었습니다.<br>**false** : 이미 약관에 동의하여 약관 창이 표시되지 않고 종료되었습니다.        |
 
 **API**
 
@@ -183,12 +183,12 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 
 > <font color="red">[주의]</font><br/>
 >
-> * GamebaseResponse.Terms.ContentDetail.required가 true 인 필수 항목은 Gamebase 서버에 저장되지 않으므로 bAgreed 값은 항상 false로 반환됩니다.
->     * 필수 항목은 항상 true로 저장될 수 밖에 없어서 저장하는 의미가 없기 때문입니다.
+> * GamebaseResponse.Terms.ContentDetail.required가 true인 필수 항목은 Gamebase 서버에 저장되지 않으므로 bAgreed 값은 항상 false로 반환됩니다.
+>     * 필수 항목은 항상 true로만 저장되기 때문입니다.
 > * 푸시 수신 동의 여부도 Gamebase 서버에 저장되지 않으므로 bAgreed 값은 항상 false로 반환됩니다.
->     * 유저의 푸시 수신 동의 여부는 Gamebase.Push.QueryPush API 를 통해 확인하시기 바랍니다.
-> * 콘솔에서 '기본 약관 설정' 을 하지 않는 경우, 약관 언어와 다른 국가코드로 설정된 단말기에서 queryTerms API 를 호출하면 **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** 에러가 발생합니다.
->     * 콘솔에서 '기본 약관 설정' 을 하거나, **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** 에러가 발생했을때는 약관을 표시하지 않도록 처리하시기 바랍니다.
+>     * 유저의 푸시 수신 동의 여부는 Gamebase.Push.QueryPush API를 통해 확인하시기 바랍니다.
+> * 콘솔에서 '기본 약관 설정'을 하지 않는 경우 약관 언어와 다른 국가 코드로 설정된 단말기에서 queryTerms API를 호출하면 `UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)` 오류가 발생합니다.
+>     * 콘솔에서 '기본 약관 설정'을 하거나, `UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)` 오류가 발생했을 때는 약관을 표시하지 않도록 처리하시기 바랍니다.
 
 #### Required 파라미터
 * callback : API 호출 결과를 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseResponse.Terms.QueryTermsResult 로 콘솔에 설정된 약관 정보를 얻을 수 있습니다.
@@ -240,7 +240,7 @@ void USample::QueryTerms()
 | -------------------- | --------------------------------| ------------------- |
 | TermsSeq             | int32                           | 약관 전체 KEY.<br/>updateTerms API 호출 시 필요한 값입니다.          |
 | TermsVersion         | FString                         | 약관 버전.<br/>updateTerms API 호출 시 필요한 값입니다.              |
-| termsCountryType     | FString                         | 약관 타입.<br/> - KOREAN : 한국 약관 <br/> - GDPR : 유럽 약관 <br/> - ETC : 기타 약관         |
+| termsCountryType     | FString                         | 약관 타입.<br/> - KOREAN: 한국 약관 <br/> - GDPR: 유럽 약관 <br/> - ETC: 기타 약관         |
 | Contents             | TArray<FGamebaseTermsContent>   | 약관 항목 정보          |
 
 
@@ -251,7 +251,7 @@ void USample::QueryTerms()
 | TermsContentSeq      | int32                 | 약관 항목 KEY         | 
 | Name                 | FString               | 약관 항목 이름         |
 | Required             | bool                  | 필수 동의 여부         |
-| AgreePush            | FString               | 광고성 푸시 동의 여부.<br/> - NONE : 동의 안함 <br/> - ALL : 전체 동의 <br/> - DAY : 주간 푸시 동의<br/> - NIGHT : 야간 푸시 동의          |
+| AgreePush            | FString               | 광고성 푸시 동의 여부.<br/> - NONE: 동의 안 함 <br/> - ALL: 전체 동의 <br/> - DAY: 주간 푸시 동의<br/> - NIGHT: 야간 푸시 동의          |
 | bAgreed               | bool                  | 해당 약관 항목에 대한 유저 동의 여부           |
 | Node1DepthPosition   | int32                 | 1단계 항목 노출 순서.           |
 | Node2DepthPosition   | int32                 | 2단계 항목 노출 순서.<br/> 없을 경우 -1           |
@@ -269,11 +269,11 @@ QueryTerms API로 내려받은 약관 정보로 UI를 직접 제작했다면,
 > <font color="red">[주의]</font><br/>
 >
 > 푸시 수신 동의 여부는 Gamebase 서버에 저장되지 않습니다.
-> 푸시 수신 동의 여부는 **로그인 후에** Gamebase.Push.RegisterPush API 를 호출해서 저장하세요.
+> 푸시 수신 동의 여부는 **로그인 후에** Gamebase.Push.RegisterPush API를 호출해서 저장하세요.
 >
 
 #### Required 파라미터
-* Configuration : 서버에 등록할 유저의 선택 약관 정보입니다.
+* Configuration: 서버에 등록할 유저의 선택 약관 정보입니다.
  
 #### Optional 파라미터
 
@@ -329,8 +329,8 @@ void USample::UpdateTerms(int32 TermsSeq, const FString& TermsVersion, int32 Ter
 
 | Parameter            | Mandatory(M) / Optional(O) | Values                    | Description         |
 | -------------------- | -------------------------- | ------------------------- | ------------------- |
-| TermsVersion         | **M**                      | FString                    | 약관 버전.<br/>queryTerms API를 호출해서 내려받았던 값을 전달해야 합니다.   |
-| TermsSeq             | **M**                      | int32                       | 약관 전체 KEY.<br/>queryTerms API를 호출해서 내려받았던 값을 전달해야 합니다.             |
+| TermsVersion         | **M**                      | FString                    | 약관 버전.<br/>queryTerms API를 호출해 내려받은 값을 전달해야 합니다.   |
+| TermsSeq             | **M**                      | int32                       | 약관 전체 KEY.<br/>queryTerms API를 호출해 내려받은 값을 전달해야 합니다.             |
 | Contents             | **M**                      | List< Content > | 선택 약관 유저 동의 정보  |
 
 #### GamebaseRequest.Terms.Content
@@ -370,7 +370,7 @@ void USample::IsShowingTermsView()
 ##### Required 파라미터
 * Url: 파라미터로 전송되는 url은 유효한 값이어야 합니다.
 
-##### Optional 파라미터 (현재는 Require 파라미터지만, 이후 버전에서 Optional로 변경 예정)
+##### Optional 파라미터(현재는 Required 파라미터지만, 이후 버전에서 Optional로 변경 예정)
 * Configuration: GamebaseWebViewConfiguration으로 웹뷰의 레이아웃을 변경할 수 있습니다.
 * closeCallback: 웹뷰가 종료될 때 사용자에게 콜백으로 알려 줍니다.
 * SchemeList: 사용자가 받고 싶은 커스텀 스킴 목록을 지정합니다.

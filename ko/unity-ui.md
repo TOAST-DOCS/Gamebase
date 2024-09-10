@@ -92,7 +92,7 @@ public void ShowImageNotices(int colorR = 0 , int colorG = 0, int colorB = 0, in
 | colorG                   | 0~255                                    | 백그라운드 배경 색상 G                |
 | colorB                   | 0~255                                    | 백그라운드 배경 색상 B                |
 | colorA                   | 0~255                                    | 백그라운드 배경 색상 Alpha                |
-| timeoutMS                | long        | 이미지 공지 최대 로딩 시간 (단위 : millisecond)<br/>**default**: 5000                     |
+| timeoutMS                | long        | 이미지 공지 최대 로딩 시간(단위 : millisecond)<br/>**default**: 5000                     |
 
 
 ### Close ImageNotices
@@ -117,14 +117,14 @@ Gamebase 콘솔에 설정한 약관을 표시합니다.
 ![TermsView Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/termsView-guide-ui-001_2.20.0.png)
 
 ShowTermsView API 는 웹뷰로 약관 창을 표시해줍니다.
-Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 QueryTerms API 를 호출하여, Gamebase 콘솔에 설정한 약관 항목을 불러올 수 있습니다.
-유저가 약관에 동의했다면 각 항목별 동의 여부를 UpdateTerms API 를 통해 Gamebase 서버로 전송하시기 바랍니다.
+Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 QueryTerms API를 호출하여, Gamebase 콘솔에 설정한 약관 항목을 불러올 수 있습니다.
+유저가 약관에 동의했다면 각 항목별 동의 여부를 UpdateTerms API를 통해 Gamebase 서버로 전송하시기 바랍니다.
 
 ### ShowTermsView
 
 약관 창을 화면에 띄워 줍니다.
 유저가 약관에 동의를 했을 경우, 동의 여부를 서버에 등록합니다.
-약관에 동의했다면 ShowTermsView API 를 다시 호출해도 약관 창이 표시되지 않고 바로 성공 콜백이 반환됩니다.
+약관에 동의했다면 ShowTermsView API를 다시 호출해도 약관 창이 표시되지 않고 바로 성공 콜백이 반환됩니다.
 단, Gamebase 콘솔에서 약관 재동의 항목을 **필요** 로 변경했다면 유저가 다시 약관에 동의할 때까지는 약관 창이 표시됩니다.
 
 #### Optional 파라미터
@@ -156,7 +156,7 @@ static void ShowTermsView(GamebaseRequest.Terms.GamebaseTermsConfiguration confi
 
 | Parameter              | Values                          | Description         |
 | ---------------------- | --------------------------------| ------------------- |
-| isTermsUIOpened        | bool                            | **true** : 약관 창이 표시되어 유저가 동의하여 약관 창이 종료되었습니다.<br>**false** : 이미 약관에 동의하여 약관 창이 표시되지 않고 약관 창이 종료되었습니다.        |
+| isTermsUIOpened        | bool                            | **true** : 유저가 약관에 동의하여 약관 창이 종료되었습니다.<br>**false** : 이미 약관에 동의하여 약관 창이 표시되지 않고 종료되었습니다.        |
 | pushConfiguration      | GamebaseResponse.Push.PushConfiguration           | isTermsUIOpened가 **true**이고, 약관에 푸시 수신 동의 여부를 추가했다면 pushConfiguration은 항상 유효한 객체를 가집니다.<br>그렇지 않을 경우에는 **null**입니다.<br>pushConfiguration이 유효할 때 pushConfiguration.pushEnabled 값은 항상 **true**입니다. |
 
 **ErrorCode**
@@ -219,18 +219,18 @@ public void AfterLogin()
 ### QueryTerms
 
 Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
-게임UI에 맞는 약관을 직접 제작하고자 하신다면, QueryTerms API 를 호출하여 Gamebase 콘솔에 설정한 약관 정보를 내려받아 활용하실 수 있습니다.
+게임UI에 맞는 약관을 직접 제작하고자 하신다면, QueryTerms API를 호출하여 Gamebase 콘솔에 설정한 약관 정보를 내려받아 활용하실 수 있습니다.
 
 로그인 후에 호출하신다면 게임유저가 약관에 동의했는지 여부도 함께 확인할 수 있습니다.
 
 > <font color="red">[주의]</font><br/>
 >
-> * GamebaseResponse.Terms.ContentDetail.required 가 true 인 필수 항목은 Gamebase 서버에 저장되지 않으므로 agreed 값은 항상 false로 반환됩니다.
->     * 필수 항목은 항상 true로 저장될 수 밖에 없어서 저장하는 의미가 없기 때문입니다.
+> * GamebaseResponse.Terms.ContentDetail.required 가 true인 필수 항목은 Gamebase 서버에 저장되지 않으므로 agreed 값은 항상 false로 반환됩니다.
+>     * 필수 항목은 항상 true로만 저장되기 때문입니다.
 > * 푸시 수신 동의 여부도 Gamebase 서버에 저장되지 않으므로 agreed 값은 항상 false로 반환됩니다.
->     * 유저의 푸시 수신 동의 여부는 Gamebase.Push.QueryPush API 를 통해 확인하시기 바랍니다.
-> * 콘솔에서 '기본 약관 설정' 을 하지 않는 경우, 약관 언어와 다른 국가코드로 설정된 단말기에서 queryTerms API 를 호출하면 **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** 에러가 발생합니다.
->     * 콘솔에서 '기본 약관 설정' 을 하거나, **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** 에러가 발생했을때는 약관을 표시하지 않도록 처리하시기 바랍니다.
+>     * 유저의 푸시 수신 동의 여부는 Gamebase.Push.QueryPush API를 통해 확인하시기 바랍니다.
+> * 콘솔에서 '기본 약관 설정'을 하지 않는 경우 약관 언어와 다른 국가 코드로 설정된 단말기에서 queryTerms API를 호출하면 `UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)` 오류가 발생합니다.
+>     * 콘솔에서 '기본 약관 설정'을 하거나, `UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)` 오류가 발생했을 때는 약관을 표시하지 않도록 처리하시기 바랍니다.
 > * Standalone 플랫폼에서는 푸시와 관련된 기능을 지원하지 않으므로, 게임 UI에 해당 약관이 노출되지 않도록 주의합니다.
 
 #### Required 파라미터
@@ -281,7 +281,7 @@ public void SampleQueryTerms()
 | -------------------- | --------------------------------| ------------------- |
 | termsSeq             | int                             | 약관 전체 KEY.<br/>updateTerms API 호출 시 필요한 값입니다.          |
 | termsVersion         | string                          | 약관 버전.<br/>updateTerms API 호출 시 필요한 값입니다.              |
-| termsCountryType     | string                          | 약관 타입.<br/> - KOREAN : 한국 약관 <br/> - GDPR : 유럽 약관 <br/> - ETC : 기타 약관         |
+| termsCountryType     | string                          | 약관 타입.<br/> - KOREAN: 한국 약관 <br/> - GDPR: 유럽 약관 <br/> - ETC: 기타 약관         |
 | contents             | List< ContentDetail > | 약관 항목 정보          |
 
 
@@ -292,7 +292,7 @@ public void SampleQueryTerms()
 | termsContentSeq      | int                   | 약관 항목 KEY         | 
 | name                 | string                | 약관 항목 이름         |
 | required             | bool                  | 필수 동의 여부         |
-| agreePush            | string                | 광고성 푸시 동의 여부.<br/> - NONE : 동의 안함 <br/> - ALL : 전체 동의 <br/> - DAY : 주간 푸시 동의<br/> - NIGHT : 야간 푸시 동의          |
+| agreePush            | string                | 광고성 푸시 동의 여부.<br/> - NONE: 동의 안 함 <br/> - ALL: 전체 동의 <br/> - DAY: 주간 푸시 동의<br/> - NIGHT: 야간 푸시 동의          |
 | agreed               | bool                  | 해당 약관 항목에 대한 유저 동의 여부           |
 | node1DepthPosition   | int                   | 1단계 항목 노출 순서.           |
 | node2DepthPosition   | int                   | 2단계 항목 노출 순서.<br/> 없을 경우 -1           |
@@ -302,7 +302,7 @@ public void SampleQueryTerms()
 ### UpdateTerms
 
 QueryTerms API 로 내려받은 약관 정보로 UI 를 직접 제작했다면,
-게임유저가 약관에 동의한 내역을 UpdateTerms API 를 통해 Gamebase 서버로 전송하시기 바랍니다.
+게임유저가 약관에 동의한 내역을 UpdateTerms API를 통해 Gamebase 서버로 전송하시기 바랍니다.
 
 선택 약관 동의를 취소하는 것과 같이, 약관에 동의했던 내역을 변경하는 목적으로도 활용하실 수 있습니다.
 
@@ -310,7 +310,7 @@ QueryTerms API 로 내려받은 약관 정보로 UI 를 직접 제작했다면,
 > <font color="red">[주의]</font><br/>
 >
 > 푸시 수신 동의 여부는 Gamebase 서버에 저장되지 않습니다.
-> 푸시 수신 동의 여부는 **로그인 후에** Gamebase.Push.RegisterPush API 를 호출해서 저장하세요.
+> 푸시 수신 동의 여부는 **로그인 후에** Gamebase.Push.RegisterPush API를 호출해서 저장하세요.
 > Standalone 플랫폼에서는 로그인 후, 해당 API를 호출해야 합니다. 로그인을 하지 않고 호출할 경우 NOT_LOGGED_IN 오류가 전달됩니다.
 >
 
@@ -382,8 +382,8 @@ public void SampleUpdateTerms()
 
 | Parameter            | Mandatory(M) / Optional(O) | Values                    | Description         |
 | -------------------- | -------------------------- | ------------------------- | ------------------- |
-| termsVersion         | **M**                      | string                    | 약관 버전.<br/>queryTerms API를 호출해서 내려받았던 값을 전달해야 합니다.   |
-| termsSeq             | **M**                      | int                       | 약관 전체 KEY.<br/>queryTerms API를 호출해서 내려받았던 값을 전달해야 합니다.             |
+| termsVersion         | **M**                      | string                    | 약관 버전.<br/>queryTerms API를 호출해 내려받은 값을 전달해야 합니다.   |
+| termsSeq             | **M**                      | int                       | 약관 전체 KEY.<br/>queryTerms API를 호출해 내려받은 값을 전달해야 합니다.             |
 | contents             | **M**                      | List< Content > | 선택 약관 유저 동의 정보  |
 
 #### GamebaseRequest.Terms.Content
