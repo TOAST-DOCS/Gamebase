@@ -135,8 +135,8 @@ void USample::RequestPurchaseWithPayload(const FString& GamebaseProductId)
         if (Gamebase::IsSuccess(Error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase succeeded. (GamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s)"),
-                *PurchasableReceipt->GamebaseProductId, PurchasableReceipt->price, *PurchasableReceipt->currency,
-                *PurchasableReceipt->paymentSeq, *PurchasableReceipt->purchaseToken);
+                *PurchasableReceipt->GamebaseProductId, PurchasableReceipt->price, *PurchasableReceipt->Currency,
+                *PurchasableReceipt->PaymentSeq, *PurchasableReceipt->PurchaseToken);
 
             FString payload = PurchasableReceipt->payload;
         }

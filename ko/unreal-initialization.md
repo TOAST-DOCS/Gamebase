@@ -42,7 +42,7 @@ Gamebase Console에 등록한 클라이언트 버전입니다.
 NHN Cloud 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 초기화하기 위해 필요한 스토어 정보입니다.
 
 | Store       | Code | GamebaseStoreCode | Description  |
-| ----------- | ---- | ------------ |
+| ----------- | ---- | ------------ | ------------ |
 | App Store | AS | GamebaseStoreCode::AppStore | iOS에 한함 |
 | Google Play | GG | GamebaseStoreCode::Google | Android에 한함 |
 | One Store | ONESTORE | GamebaseStoreCode::OneStore | Android에 한함 |
@@ -50,7 +50,6 @@ NHN Cloud 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 초기화하
 | Amazon Appstore | AMAZON | GamebaseStoreCode::Amazon | Android에 한함 |
 | Huawei AppGallery | HUAWEI | GamebaseStoreCode::Huawei | Android에 한함 |
 | MyCard | MYCARD | GamebaseStoreCode::MyCard | Android에 한함 |
-| Windows | WIN | GamebaseStoreCode::Windows | Windows에 한함<br>(Store 미사용 시) |
 | Epic Store | EPIC | GamebaseStoreCode::Epic | Windows에 한함 |
 
 #### 4. bEnablePopup
