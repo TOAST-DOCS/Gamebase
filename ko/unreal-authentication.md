@@ -46,7 +46,7 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 
 * IdP 유형을 직접 지정하여 인증을 시도합니다.
     * 인증 가능한 유형은 **GamebaseAuthProvider** 클래스에 선언돼 있습니다.
-* **Login(providerName, callback) API**를 호출합니다.
+* **Login(ProviderName, callback) API**를 호출합니다.
 
 #### 2-1. 인증에 성공한 경우
 
@@ -56,7 +56,7 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 #### 2-2. 인증에 실패한 경우
 
 * 네트워크 오류
-    * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증에 실패한 것이므로 **Login(providerName, callback) API**를 다시 호출하거나, 잠시 후 다시 시도합니다.
+    * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)**인 경우, 일시적인 네트워크 문제로 인증에 실패한 것이므로 **Login(ProviderName, callback) API**를 다시 호출하거나, 잠시 후 다시 시도합니다.
 * 이용 정지 게임 유저
     * 오류 코드가 **BANNED_MEMBER(7)**인 경우, 이용 정지 게임 유저이므로 인증에 실패한 것입니다.
     * **FGamebaseBanInfo::From API**로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려 주시기 바랍니다.
@@ -74,7 +74,7 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 
 | keyname                                  | a use                                    | 값 종류                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API 호출이 끝날 때까지 로딩 애니메이션을 표시<br>**Android에 한함** | **bool**<br>**default**: true |
+| GamebaseAuthProviderCredential::ShowLoadingAnimation | API 호출이 끝날 때까지 로딩 애니메이션을 표시<br>**Android에 한함** | **bool**<br>**default**: true |
 
 **API**
 
@@ -83,8 +83,8 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void LoginForLastLoggedInProvider(const FGamebaseAuthTokenDelegate& onCallback);
-void LoginForLastLoggedInProvider(const UGamebaseJsonObject& additionalInfo, const FGamebaseAuthTokenDelegate& onCallback);
+void LoginForLastLoggedInProvider(const FGamebaseAuthTokenDelegate& Callback);
+void LoginForLastLoggedInProvider(const UGamebaseJsonObject& AdditionalInfo, const FGamebaseAuthTokenDelegate& Callback);
 ```
 
 **Example**
@@ -107,10 +107,10 @@ void USample::LoginForLastLoggedInProvider()
             }
             else if (Error->Code == GamebaseErrorCode::BANNED_MEMBER)
             {
-                auto banInfo = FGamebaseBanInfo::From(Error);
-                if (banInfo.IsValid())
+                auto BanInfo = FGamebaseBanInfo::From(Error);
+                if (BanInfo.IsValid())
                 {
-                    UE_LOG(GamebaseTestResults, Display, TEXT("This user has been banned. Gamebase userId is %s"), *banInfo->UserId);
+                    UE_LOG(GamebaseTestResults, Display, TEXT("This user has been banned. Gamebase userId is %s"), *BanInfo->UserId);
                 }
             }
             else
@@ -137,7 +137,7 @@ Gamebase는 게스트 로그인을 지원합니다.
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void Login(const FString& providerName, const FGamebaseAuthTokenDelegate& onCallback);
+void Login(const FString& ProviderName, const FGamebaseAuthTokenDelegate& Callback);
 ```
 
 **Example**
@@ -162,10 +162,10 @@ void USample::Login()
             }
             else if (Error->Code == GamebaseErrorCode::BANNED_MEMBER)
             {
-                auto banInfo = FGamebaseBanInfo::From(Error);
-                if (banInfo.IsValid())
+                auto BanInfo = FGamebaseBanInfo::From(Error);
+                if (BanInfo.IsValid())
                 {
-                    UE_LOG(GamebaseTestResults, Display, TEXT("This user has been banned. Gamebase userId is %s"), *banInfo->userId);
+                    UE_LOG(GamebaseTestResults, Display, TEXT("This user has been banned. Gamebase userId is %s"), *BanInfo->userId);
                 }
             }
         }
@@ -181,16 +181,16 @@ void USample::Login()
 > [참고]
 >
 > 로그인할 때 추가정보를 필요로 하는 IdP도 있습니다.
-> 이러한 추가 정보들을 설정할 수 있게 void Login(const FString& providerName, const UGamebaseJsonObject& additionalInfo, const FGamebaseAuthTokenDelegate& onCallback) API를 제공합니다.
->additionalInfo 파라미터에 필수 정보들을 dictionary 형태로 입력하시면 됩니다.
->additionalInfo 값이 있을 경우에는 해당 값을 사용하고 null 일 경우에는 [NHN Cloud Console](./oper-app/#authentication-information)에 등록된 값을 사용합니다.
+> 이러한 추가 정보들을 설정할 수 있게 void Login(const FString& ProviderName, const UGamebaseJsonObject& AdditionalInfo, const FGamebaseAuthTokenDelegate& Callback) API를 제공합니다.
+>AdditionalInfo 파라미터에 필수 정보들을 dictionary 형태로 입력하시면 됩니다.
+>AdditionalInfo 값이 있을 경우에는 해당 값을 사용하고 null 일 경우에는 [NHN Cloud Console](./oper-app/#authentication-information)에 등록된 값을 사용합니다.
 
 > [참고]
 >
 > LINE IdP는 Gamebase SDK 2.43.0부터 LINE 서비스 제공 지역을 설정할 수 있습니다.
 > 해당 지역은 AdditionalInfo에 설정할 수 있습니다. 
 
-* additionalInfo 파라미터 설정 방법
+* AdditionalInfo 파라미터 설정 방법
 
 | keyname                                  | a use                                    | 값 종류                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
@@ -205,8 +205,8 @@ void USample::Login()
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void Login(const FString& providerName, const FGamebaseAuthTokenDelegate& onCallback);
-void Login(const FString& providerName, const UGamebaseJsonObject& additionalInfo, const FGamebaseAuthTokenDelegate& onCallback);
+void Login(const FString& ProviderName, const FGamebaseAuthTokenDelegate& Callback);
+void Login(const FString& ProviderName, const UGamebaseJsonObject& AdditionalInfo, const FGamebaseAuthTokenDelegate& Callback);
 ```
 
 **Example**
@@ -231,10 +231,10 @@ void USample::Login()
             }
             else if (Error->Code == GamebaseErrorCode::BANNED_MEMBER)
             {
-                auto banInfo = FGamebaseBanInfo::From(Error);
-                if (banInfo.IsValid())
+                auto BanInfo = FGamebaseBanInfo::From(Error);
+                if (BanInfo.IsValid())
                 {
-                    UE_LOG(GamebaseTestResults, Display, TEXT("This user has been banned. Gamebase userId is %s"), *banInfo->UserId);
+                    UE_LOG(GamebaseTestResults, Display, TEXT("This user has been banned. Gamebase userId is %s"), *BanInfo->UserId);
                 }
             }
         }
@@ -243,11 +243,11 @@ void USample::Login()
 
 void USample::LoginWithAdditionalInfo()
 {
-    UGamebaseJsonObject* additionalInfo = NewObject<UGamebaseJsonObject>();
-    additionalInfo->SetStringField(TEXT("Key"), TEXT("Value"));
+    UGamebaseJsonObject* AdditionalInfo = NewObject<UGamebaseJsonObject>();
+    AdditionalInfo->SetStringField(TEXT("Key"), TEXT("Value"));
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->Login(GamebaseAuthProvider::Facebook, *additionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
+    Subsystem->Login(GamebaseAuthProvider::Facebook, *AdditionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
@@ -296,7 +296,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void Login(const UGamebaseJsonObject& credentialInfo, const FGamebaseAuthTokenDelegate& onCallback);
+void Login(const UGamebaseJsonObject& CredentialInfo, const FGamebaseAuthTokenDelegate& Callback);
 ```
 
 **Example**
@@ -304,18 +304,18 @@ void Login(const UGamebaseJsonObject& credentialInfo, const FGamebaseAuthTokenDe
 ```cpp
 void USample::LoginWithCredential()
 {
-    UGamebaseJsonObject* credentialInfo = NewObject<UGamebaseJsonObject>();
+    UGamebaseJsonObject* CredentialInfo = NewObject<UGamebaseJsonObject>();
 
     // google
-    //credentialInfo->SetStringField(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Google);
-    //credentialInfo->SetStringField(GamebaseAuthProviderCredential::AuthorizationCode, TEXT("google auchorization code"));
+    //CredentialInfo->SetStringField(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Google);
+    //CredentialInfo->SetStringField(GamebaseAuthProviderCredential::AuthorizationCode, TEXT("google auchorization code"));
 
     // facebook
-    credentialInfo->SetStringField(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Facebook);
-    credentialInfo->SetStringField(GamebaseAuthProviderCredential::AccessToken, TEXT("facebook access token"));
+    CredentialInfo->SetStringField(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Facebook);
+    CredentialInfo->SetStringField(GamebaseAuthProviderCredential::AccessToken, TEXT("facebook access token"));
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->Login(*credentialInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
+    Subsystem->Login(*CredentialInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
@@ -344,7 +344,7 @@ void USample::LoginWithCredential()
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void Logout(const FGamebaseErrorDelegate& onCallback);
+void Logout(const FGamebaseErrorDelegate& Callback);
 ```
 
 **Example**
@@ -392,7 +392,7 @@ void USample::Logout()
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void Withdraw(const FGamebaseErrorDelegate& onCallback);
+void Withdraw(const FGamebaseErrorDelegate& Callback);
 ```
 
 **Example**
@@ -494,17 +494,17 @@ void USample::Withdraw()
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void AddMapping(const FString& providerName, const FGamebaseAuthTokenDelegate& onCallback);
-void AddMapping(const FString& providerName, const UGamebaseJsonObject& additionalInfo, const FGamebaseAuthTokenDelegate& onCallback)
+void AddMapping(const FString& ProviderName, const FGamebaseAuthTokenDelegate& Callback);
+void AddMapping(const FString& ProviderName, const UGamebaseJsonObject& AdditionalInfo, const FGamebaseAuthTokenDelegate& Callback)
 ```
 
 **Example**
 
 ```cpp
-void USample::AddMapping(const FString& providerName)
+void USample::AddMapping(const FString& ProviderName)
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddMapping(providerName, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
+    Subsystem->AddMapping(ProviderName, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
@@ -549,7 +549,7 @@ void USample::AddMapping(const FString& providerName)
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void AddMapping(const UGamebaseJsonObject& credentialInfo, const FGamebaseAuthTokenDelegate& onCallback);
+void AddMapping(const UGamebaseJsonObject& CredentialInfo, const FGamebaseAuthTokenDelegate& Callback);
 ```
 
 **Example**
@@ -557,18 +557,18 @@ void AddMapping(const UGamebaseJsonObject& credentialInfo, const FGamebaseAuthTo
 ```cpp
 void USample::AddMappingWithCredential()
 {
-    UGamebaseJsonObject* credentialInfo = NewObject<UGamebaseJsonObject>();
+    UGamebaseJsonObject* CredentialInfo = NewObject<UGamebaseJsonObject>();
 
     // google
-    //credentialInfo->SetStringField(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Google);
-    //credentialInfo->SetStringField(GamebaseAuthProviderCredential::AuthorizationCode, TEXT("google auchorization code"));
+    //CredentialInfo->SetStringField(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Google);
+    //CredentialInfo->SetStringField(GamebaseAuthProviderCredential::AuthorizationCode, TEXT("google auchorization code"));
 
     // facebook
-    credentialInfo->SetStringField(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Facebook);
-    credentialInfo->SetStringField(GamebaseAuthProviderCredential::AccessToken, TEXT("facebook access token"));
+    CredentialInfo->SetStringField(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Facebook);
+    CredentialInfo->SetStringField(GamebaseAuthProviderCredential::AccessToken, TEXT("facebook access token"));
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddMapping(*credentialInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
+    Subsystem->AddMapping(*CredentialInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
@@ -592,21 +592,21 @@ void USample::AddMappingWithCredential()
 **API**
 
 ```cpp
-void AddMappingForcibly(const FGamebaseForcingMappingTicket& forcingMappingTicket, const FGamebaseAuthTokenDelegate& onCallback);
+void AddMappingForcibly(const FGamebaseForcingMappingTicket& ForcingMappingTicket, const FGamebaseAuthTokenDelegate& Callback);
 
 // Legacy API
-void AddMappingForcibly(const FString& providerName, const FString& forcingMappingKey, const FGamebaseAuthTokenDelegate& onCallback);
-void AddMappingForcibly(const FString& providerName, const FString& forcingMappingKey, const UGamebaseJsonObject& additionalInfo, const FGamebaseAuthTokenDelegate& onCallback);
-void AddMappingForcibly(const UGamebaseJsonObject& credentialInfo, const FString& forcingMappingKey, const FGamebaseAuthTokenDelegate& onCallback);
+void AddMappingForcibly(const FString& ProviderName, const FString& ForcingMappingKey, const FGamebaseAuthTokenDelegate& Callback);
+void AddMappingForcibly(const FString& ProviderName, const FString& ForcingMappingKey, const UGamebaseJsonObject& AdditionalInfo, const FGamebaseAuthTokenDelegate& Callback);
+void AddMappingForcibly(const UGamebaseJsonObject& CredentialInfo, const FString& ForcingMappingKey, const FGamebaseAuthTokenDelegate& Callback);
 ```
 
 **Example**
 
 ```cpp
-void USample::AddMappingForcibly(const FString& providerName)
+void USample::AddMappingForcibly(const FString& ProviderName)
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddMapping(providerName, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
+    Subsystem->AddMapping(ProviderName, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
@@ -618,14 +618,14 @@ void USample::AddMappingForcibly(const FString& providerName)
             if (Error->Code == GamebaseErrorCode::AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER)
             {
                 // ForcingMappingTicket 클래스의 From() 메서드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
-                auto forcingMappingTicket = FGamebaseForcingMappingTicket::From(Error);
-                if (forcingMappingTicket.IsValid() == false)
+                auto ForcingMappingTicket = FGamebaseForcingMappingTicket::From(Error);
+                if (ForcingMappingTicket.IsValid() == false)
                 {
                     // Unexpected Error occurred. Contact Administrator.
                 }
                 
                 // 강제 매핑을 시도합니다.
-                Subsystem->AddMappingForcibly(forcingMappingTicket, forcingMappingTicket->forcingMappingKey,
+                Subsystem->AddMappingForcibly(ForcingMappingTicket, ForcingMappingTicket->ForcingMappingKey,
                     FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* innerAuthToken, const FGamebaseError* innerError)
                 {
                     if (Gamebase::IsSuccess(Error))
@@ -660,7 +660,7 @@ Change Login API 호출이 실패하는 경우, Gamebase 로그인 상태는 기
 **API**
 
 ```cs
-void ChangeLogin(const FGamebaseForcingMappingTicket& forcingMappingTicket, const FGamebaseAuthTokenDelegate& onCallback);
+void ChangeLogin(const FGamebaseForcingMappingTicket& ForcingMappingTicket, const FGamebaseAuthTokenDelegate& Callback);
 ```
 
 **Example**
@@ -668,7 +668,7 @@ void ChangeLogin(const FGamebaseForcingMappingTicket& forcingMappingTicket, cons
 다음은 Facebook으로 매핑 시도 후 Facebook에 이미 매핑된 계정이 존재하자, 해당 계정으로 로그인을 변경하는 예시입니다.
 
 ```cpp
-void USample::ChangeLoginWithFacebook(const FString& providerName)
+void USample::ChangeLoginWithFacebook(const FString& ProviderName)
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->AddMapping(GamebaseAuthProvider::Facebook, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
@@ -683,14 +683,14 @@ void USample::ChangeLoginWithFacebook(const FString& providerName)
             if (Error->Code == GamebaseErrorCode::AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER)
             {
                 // ForcingMappingTicket 클래스의 From() 메서드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
-                auto forcingMappingTicket = FGamebaseForcingMappingTicket::From(Error);
-                if (forcingMappingTicket.IsValid())
+                auto ForcingMappingTicket = FGamebaseForcingMappingTicket::From(Error);
+                if (ForcingMappingTicket.IsValid())
                 {   
                     // 강제 매핑을 시도합니다.
-                    Subsystem->ChangeLogin(forcingMappingTicket, forcingMappingTicket->ForcingMappingKey,
-                        FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* authTokenForcibly, const FGamebaseError* innerError)
+                    Subsystem->ChangeLogin(ForcingMappingTicket, ForcingMappingTicket->ForcingMappingKey,
+                        FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* AuthTokenForcibly, const FGamebaseError* ChangeLoginError)
                     {
-                        if (Gamebase::IsSuccess(Error))
+                        if (Gamebase::IsSuccess(ChangeLoginError))
                         {
                             // 로그인 변경 성공
                         }
@@ -729,16 +729,16 @@ void USample::ChangeLoginWithFacebook(const FString& providerName)
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void RemoveMapping(const FString& providerName, const FGamebaseErrorDelegate& onCallback);
+void RemoveMapping(const FString& ProviderName, const FGamebaseErrorDelegate& Callback);
 ```
 
 **Example**
 
 ```cpp
-void USample::RemoveMapping(const FString& providerName)
+void USample::RemoveMapping(const FString& ProviderName)
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->RemoveMapping(providerName, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error)
+    Subsystem->RemoveMapping(ProviderName, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
@@ -807,8 +807,8 @@ FString GetUserID() const;
 ```cpp
 void USample::GetUserID()
 {
-    FString userID = UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetUserID();
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    FString UserID = Subsystem->GetUserID();
 }
 ```
 
@@ -831,8 +831,8 @@ FString GetAccessToken() const;
 ```cpp
 void USample::GetAccessToken()
 {
-    FString accessToken = UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetAccessToken();
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    FString AccessToken = Subsystem->GetAccessToken();
 }
 ```
 
@@ -855,8 +855,8 @@ FString GetLastLoggedInProvider() const;
 ```cpp
 void USample::GetLastLoggedInProvider()
 {
-    FString lastLoggedInProvider = UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetLastLoggedInProvider();
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    FString LastLoggedInProvider = Subsystem->GetLastLoggedInProvider();
 }
 ```
 
@@ -897,7 +897,7 @@ Gamebase Console에 제재된 게임 유저로 등록될 경우, 로그인을 �
 **API**
 
 ```cpp
-void IssueTransferAccount(const FGamebaseTransferAccountDelegate& onCallback);
+void IssueTransferAccount(const FGamebaseTransferAccountDelegate& Callback);
 ```
 
 **Example**
@@ -906,7 +906,7 @@ void IssueTransferAccount(const FGamebaseTransferAccountDelegate& onCallback);
 void USample::IssueTransferAccount()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->IssueTransferAccount(FGamebaseTransferAccountDelegate::CreateLambda([=](const FGamebaseTransferAccountInfo* transferAccountInfo, const FGamebaseError* Error)
+    Subsystem->IssueTransferAccount(FGamebaseTransferAccountDelegate::CreateLambda([=](const FGamebaseTransferAccountInfo* TransferAccountInfo, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
@@ -926,7 +926,7 @@ void USample::IssueTransferAccount()
 **API**
 
 ```cpp
-void QueryTransferAccount(const FGamebaseTransferAccountDelegate& onCallback);
+void QueryTransferAccount(const FGamebaseTransferAccountDelegate& Callback);
 ```
 
 **Example**
@@ -935,7 +935,7 @@ void QueryTransferAccount(const FGamebaseTransferAccountDelegate& onCallback);
 void USample::QueryTransferAccount()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->IssueTransferAccount(FGamebaseTransferAccountDelegate::CreateLambda([=](const FGamebaseTransferAccountInfo* transferAccountInfo, const FGamebaseError* Error)
+    Subsystem->IssueTransferAccount(FGamebaseTransferAccountDelegate::CreateLambda([=](const FGamebaseTransferAccountInfo* TransferAccountInfo, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
@@ -955,23 +955,25 @@ void USample::QueryTransferAccount()
 TransferAccountInfo 정보를 갱신할 수 있습니다.
 
 ```cpp
-void RenewTransferAccount(const FGamebaseTransferAccountRenewConfiguration& configuration, const FGamebaseTransferAccountDelegate& onCallback);
+void RenewTransferAccount(const FGamebaseTransferAccountRenewConfiguration& Configuration, const FGamebaseTransferAccountDelegate& Callback);
 ```
 
 **Example**
 
 ```cpp
-void USample::RenewTransferAccount(const FString& accountId, const FString& accountPassword)
+void USample::RenewTransferAccount(const FString& AccountId, const FString& AccountPassword)
 {
     // 수동 설정
-    FGamebaseTransferAccountRenewConfiguration configuration{ accountId, accountPassword };
-    //FGamebaseTransferAccountRenewConfiguration configuration{ accountPassword };
+    FGamebaseTransferAccountRenewConfiguration Configuration;
+    Configuration.AccountId = AccountId;
+    Configuration.AccountPassword = AccountPassword;
+    //FGamebaseTransferAccountRenewConfiguration Configuration { AccountPassword };
 
     // 자동 설정
-    //FGamebaseTransferAccountRenewConfiguration configuration{ type };
+    //FGamebaseTransferAccountRenewConfiguration Configuration{ type };
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->RenewTransferAccount(configuration, FGamebaseTransferAccountDelegate::CreateLambda([=](const FGamebaseTransferAccountInfo* transferAccountInfo, const FGamebaseError* Error)
+    Subsystem->RenewTransferAccount(Configuration, FGamebaseTransferAccountDelegate::CreateLambda([=](const FGamebaseTransferAccountInfo* TransferAccountInfo, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
@@ -997,16 +999,16 @@ void USample::RenewTransferAccount(const FString& accountId, const FString& acco
 **API**
 
 ```cpp
-void TransferAccountWithIdPLogin(const FString& accountId, const FString& accountPassword, const FGamebaseAuthTokenDelegate& onCallback);
+void TransferAccountWithIdPLogin(const FString& AccountId, const FString& AccountPassword, const FGamebaseAuthTokenDelegate& Callback);
 ```
 
 **Example**
 
 ```cpp
-void USample::TransferAccountWithIdPLogin(const FString& accountId, const FString& accountPassword)
+void USample::TransferAccountWithIdPLogin(const FString& AccountId, const FString& AccountPassword)
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->TransferAccountWithIdPLogin(accountId, accountPassword, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
+    Subsystem->TransferAccountWithIdPLogin(AccountId, AccountPassword, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
@@ -1043,7 +1045,7 @@ void USample::TransferAccountWithIdPLogin(const FString& accountId, const FStrin
 **API**
 
 ```cpp
-void RequestWithdrawal(const FGamebaseTemporaryWithdrawalDelegate& onCallback);
+void RequestWithdrawal(const FGamebaseTemporaryWithdrawalDelegate& Callback);
 ```
 
 **Example**
@@ -1052,11 +1054,11 @@ void RequestWithdrawal(const FGamebaseTemporaryWithdrawalDelegate& onCallback);
 void USample::RequestWithdrawal()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetTemporaryWithdrawal()->RequestWithdrawal(FGamebaseTemporaryWithdrawalDelegate::CreateLambda([=](const FGamebaseTemporaryWithdrawalInfo* info, const FGamebaseError* Error)
+    Subsystem->GetTemporaryWithdrawal()->RequestWithdrawal(FGamebaseTemporaryWithdrawalDelegate::CreateLambda([=](const FGamebaseTemporaryWithdrawalInfo* Info, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RequestWithdrawal succeeded. The date when you can withdraw your withdrawal is %d"), info->gracePeriodDate);
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestWithdrawal succeeded. The date when you can withdraw your withdrawal is %d"), Info->GracePeriodDate);
         }
         else
         {
@@ -1080,11 +1082,11 @@ void USample::Login()
     {
         if (Gamebase::IsSuccess(Error))
         {
-            if (AuthToken->member.temporaryWithdrawal.IsSet())
+            if (AuthToken->Member.TemporaryWithdrawal.IsSet())
             {
-                const auto temporaryWithdrawal = AuthToken->member.temporaryWithdrawal.GetValue();
-                // gracePeriodDate: epoch time in milliseconds
-                const FDateTime PeriodDate = FDateTime(1970, 1, 1) + FTimespan::FromMilliseconds(temporaryWithdrawal.gracePeriodDate);
+                const auto TemporaryWithdrawal = AuthToken->Member.TemporaryWithdrawal.GetValue();
+                // GracePeriodDate: epoch time in milliseconds
+                const FDateTime PeriodDate = FDateTime(1970, 1, 1) + FTimespan::FromMilliseconds(TemporaryWithdrawal.GracePeriodDate);
                 UE_LOG(GamebaseTestResults, Display, TEXT("User is under temporary withdrawa. GracePeriodDate : %s"), *PeriodDate.ToString());
             }
             else
@@ -1108,7 +1110,7 @@ void USample::Login()
 **API**
 
 ```cpp
-void CancelWithdrawal(const FGamebaseErrorDelegate& onCallback);
+void CancelWithdrawal(const FGamebaseErrorDelegate& Callback);
 ```
 **Example**
 
@@ -1140,7 +1142,7 @@ void USample::CancelTemporaryWithdrawal()
 **API**
 
 ```cpp
-void WithdrawImmediately(const FGamebaseErrorDelegate& onCallback);
+void WithdrawImmediately(const FGamebaseErrorDelegate& Callback);
 ```
 
 **Example**
@@ -1186,28 +1188,28 @@ void USample::Login()
             return;
         }
         
-        if (AuthToken->member.graceBan.IsSet())
+        if (AuthToken->Member.GraceBan.IsSet())
         {
-            const auto graceBan = AuthToken->Member.raceBan.GetValue();
+            const auto GraceBan = AuthToken->Member.raceBan.GetValue();
 
-            // gracePeriodDate: epoch time in milliseconds
-            const FDateTime PeriodDate = FDateTime(1970, 1, 1) + FTimespan::FromMilliseconds(graceBan.GracePeriodDate);
+            // GracePeriodDate: epoch time in milliseconds
+            const FDateTime PeriodDate = FDateTime(1970, 1, 1) + FTimespan::FromMilliseconds(GraceBan.GracePeriodDate);
 
-            if (graceBan.releaseRuleCondition.IsSet())
+            if (GraceBan.ReleaseRuleCondition.IsSet())
             {
-                const auto releaseRuleCondition = graceBan.ReleaseRuleCondition.GetValue();
+                const auto ReleaseRuleCondition = GraceBan.ReleaseRuleCondition.GetValue();
 
                 // condition type: "AND", "OR"
-                FString releaseRule = FString::Printf(TEXT("%lld%s %s %dtime(s)"), releaseRuleCondition.Amount,
-                    *releaseRuleCondition.Currency, *releaseRuleCondition.ConditionType, releaseRuleCondition.Count);
+                FString releaseRule = FString::Printf(TEXT("%lld%s %s %dtime(s)"), ReleaseRuleCondition.Amount,
+                    *ReleaseRuleCondition.Currency, *ReleaseRuleCondition.ConditionType, ReleaseRuleCondition.Count);
             }
 
-            if (graceBan.PaymentStatus.IsSet())
+            if (GraceBan.PaymentStatus.IsSet())
             {
-                const auto paymentStatus = graceBan.PaymentStatus.GetValue();
+                const auto paymentStatus = GraceBan.PaymentStatus.GetValue();
 
-                FString paidAmount = FString::Printf(TEXT("%lld%s"), paymentStatus.Amount, *paymentStatus.Currency);
-                FString paidCount = paymentStatus.count + "time(s)";
+                FString paidAmount = FString::Printf(TEXT("%lld%s"), PaymentStatus.Amount, *PaymentStatus.Currency);
+                FString paidCount = PaymentStatus.count + "time(s)";
             }
         }
         else

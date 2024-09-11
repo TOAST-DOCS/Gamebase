@@ -93,7 +93,7 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void Initialize(const FGamebaseConfiguration& Configuration, const FGamebaseLaunchingInfoDelegate& onCallback);
+void Initialize(const FGamebaseConfiguration& Configuration, const FGamebaseLaunchingInfoDelegate& Callback);
 ```
 
 **Example**
@@ -258,7 +258,7 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cs
-FDelegateHandle AddHandler(const FGamebaseEventDelegate::FDelegate& onCallback);
+FDelegateHandle AddHandler(const FGamebaseEventDelegate::FDelegate& Callback);
 void RemoveHandler(const FDelegateHandle& handle);
 void RemoveAllHandler();
 ```
@@ -297,23 +297,23 @@ void USample::AddEventHandler()
                  Message.Category.Equals(GamebaseEventCategory::ServerPushAppKickOutMessageReceived) ||
                  Message.Category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
         {
-            auto serverPushData = FGamebaseEventServerPushData::From(Message.Data);
+            auto ServerPushData = FGamebaseEventServerPushData::From(Message.Data);
         }
         else if (Message.Category.Equals(GamebaseEventCategory::ObserverLaunching))
         {
-            auto observerData = FGamebaseEventObserverData::From(Message.Data);
+            auto ObserverData = FGamebaseEventObserverData::From(Message.Data);
         }
         else if (Message.Category.Equals(GamebaseEventCategory::ObserverNetwork))
         {
-            auto observerData = FGamebaseEventObserverData::From(Message.Data);
+            auto ObserverData = FGamebaseEventObserverData::From(Message.Data);
         }
         else if (Message.Category.Equals(GamebaseEventCategory::ObserverHeartbeat))
         {
-            auto observerData = FGamebaseEventObserverData::From(Message.Data);
+            auto ObserverData = FGamebaseEventObserverData::From(Message.Data);
         }
         else if (Message.Category.Equals(GamebaseEventCategory::PurchaseUpdated))
         {
-            auto purchasableReceipt = FGamebaseEventPurchasableReceipt::From(Message.Data);
+            auto PurchasableReceipt = FGamebaseEventPurchasableReceipt::From(Message.Data);
         }
         else if (Message.Category.Equals(GamebaseEventCategory::PushReceivedMessage))
         {
@@ -553,13 +553,13 @@ void USample::CheckServerPush(const FString& Category, const FGamebaseEventServe
 struct GAMEBASE_API FGamebaseEventObserverData
 {
     // 상태값을 나타내는 정보입니다.
-    int32 code;
+    int32 Code;
 
     // 추가 정보용 예비 필드입니다.
     FString Message;
 
     // 상태에 관련된 메시지 정보입니다.
-    FString extras;
+    FString Extras;
 }
 ```
 
@@ -864,7 +864,7 @@ void USample::SetGameUserData(int32 UserLevel, const FString& ChannelId, const F
     GameUserData.CharacterClassId = CharacterClassId;
     
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetAnalytics().SetGameUserData(GameUserData);
+    Subsystem->GetAnalytics()->SetGameUserData(GameUserData);
 }
 
 ```
@@ -900,7 +900,7 @@ void USample::TraceLevelUpNow(int32 UserLevel)
 {
     FGamebaseAnalyticesLevelUpData levelUpData{ UserLevel, FDateTime::Now().ToUnixTimestamp() };
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetAnalytics().TraceLevelUp(levelUpData);
+    Subsystem->GetAnalytics()->TraceLevelUp(levelUpData);
 }
 ```
 
@@ -1025,8 +1025,8 @@ void USample::OpenContact()
 **API**
 
 ```cs
-void RequestContactURL(const FGamebaseContactUrlDelegate& onCallback);
-void RequestContactURL(const FGamebaseContactConfiguration& Configuration, const FGamebaseContactUrlDelegate& onCallback);
+void RequestContactURL(const FGamebaseContactUrlDelegate& Callback);
+void RequestContactURL(const FGamebaseContactConfiguration& Configuration, const FGamebaseContactUrlDelegate& Callback);
 ```
 
 **ErrorCode**
