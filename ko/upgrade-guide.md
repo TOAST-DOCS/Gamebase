@@ -1,5 +1,14 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.66.3
+
+### Unity
+
+#### Changed Minimum Support Version
+
+* 최소 지원 Unity 버전이 2018.4.0 에서 2020.3.0 으로 변경되었습니다.
+* 하위 버전의 Unity 지원이 필요하다면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
+
 ## 2.66.2
 
 ### iOS

@@ -8,7 +8,7 @@ Gamebase Unreal SDK를 사용하려면 먼저 초기화를 진행해야 합니�
 Gamebase API를 사용하기 위해서는 다음의 헤더 파일을 가져옵니다.
 
 ```cpp
-#include "Gamebase.h"
+#include "GamebaseSubsystem.h"
 ```
 
 ### FGamebaseConfiguration 
@@ -17,45 +17,42 @@ Gamebase API를 사용하기 위해서는 다음의 헤더 파일을 가져옵�
 
 | Setting value              | Supported Platform | Mandatory(M) / Optional(O) |
 | -------------------------- | ------------------ | -------------------------- |
-| AppID | ALL | M |
+| AppID | ALL | M | 
 | AppVersion | ALL | M |
 | StoreCode | ALL | M |
-| DisplayLanguageCode | ALL | O |
 | bEnablePopup | ALL | O |
 | bEnableLaunchingStatusPopup | ALL | O |
 | bEnableBanPopup | ALL | O |
 
-#### 1. App ID
+#### 1. AppID
 
 Gamebase Console에 등록된 프로젝트 ID입니다.
 
 [Game > Gamebase > 콘솔 사용 가이드 > 앱 > App](./oper-app/#app)
 
 
-#### 2. appVersion
+#### 2. AppVersion
 
 Gamebase Console에 등록한 클라이언트 버전입니다.
 
 [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Client](./oper-app/#client)
 
-#### 3. storeCode
+#### 3. StoreCode
 
 NHN Cloud 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 초기화하기 위해 필요한 스토어 정보입니다.
 
-| Store       | Code | Description  |
-| ----------- | ---- | ------------ |
-| App Store | AS | iOS에 한함 |
-| Google Play | GG | Android에 한함 |
-| One Store | ONESTORE | Android에 한함 |
-| Galaxy Store | GALAXY | Android에 한함 |
+| Store       | Code | GamebaseStoreCode | Description  |
+| ----------- | ---- | ------------ | ------------ |
+| App Store | AS | GamebaseStoreCode::AppStore | iOS에 한함 |
+| Google Play | GG | GamebaseStoreCode::Google | Android에 한함 |
+| One Store | ONESTORE | GamebaseStoreCode::OneStore | Android에 한함 |
+| Galaxy Store | GALAXY | GamebaseStoreCode::Galaxy | Android에 한함 |
+| Amazon Appstore | AMAZON | GamebaseStoreCode::Amazon | Android에 한함 |
+| Huawei AppGallery | HUAWEI | GamebaseStoreCode::Huawei | Android에 한함 |
+| MyCard | MYCARD | GamebaseStoreCode::MyCard | Android에 한함 |
+| Epic Store | EPIC | GamebaseStoreCode::Epic | Windows에 한함 |
 
-#### 4. displayLanguageCode
-
-Gamebase에서 제공하는 UI 및 SystemDialog에 표시되는 언어를 단말기에 설정된 언어가 아닌 다른 언어로 변경할 수 있습니다.
-
-[Game > Gamebase > Unreal SDK 사용 가이드 > ETC > Additional Features > Display Language](./unreal-etc/#display-language)
-
-#### 5. enablePopup
+#### 4. bEnablePopup
 
 시스템 점검, 이용 제재(ban) 등 게임 유저가 게임을 플레이할 수 없는 상황에서 팝업 창 등으로 사유를 표시해야 할 때가 있습니다.
 Gamebase에서 제공하는 기본 팝업 창을 사용할 것인지에 대한 설정입니다.
@@ -64,14 +61,14 @@ Gamebase에서 제공하는 기본 팝업 창을 사용할 것인지에 대한 �
 * false: Gamebase에서 제공하는 모든 팝업 창이 노출되지 않습니다.
 * 기본값: false
 
-#### 6. enableLaunchingStatusPopup
+#### 5. bEnableLaunchingStatusPopup
 
 LaunchingStatus가 게임을 할 수 없는 상태일 경우, Gamebase에서 제공하는 기본 팝업 창을 사용할 것인지에 대한 설정입니다.
 LaunchingStatus는 아래 Launching 절 아래 State, Code 부분을 참고하십시오.
 
 * 기본값: true
 
-#### 7. enableBanPopup
+#### 6. bEnableBanPopup
 
 로그인 시 해당 게임 유저가 이용 정지 상태인 경우, Gamebase에서 제공하는 기본 팝업 창을 사용할 것인지에 대한 설정입니다.
 
@@ -100,16 +97,16 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void SetDebugMode(bool isDebugMode);
+void SetDebugMode(bool bIsDebugMode);
 ```
 
 **Example**
 
 ```cpp
-void USample::SetDebugMode(bool isDebugMode)
+void USample::SetDebugMode(bool bIsDebugMode)
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->SetDebugMode(isDebugMode);
+    Subsystem->SetDebugMode(bIsDebugMode);
 }
 ```
 
