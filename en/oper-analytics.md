@@ -108,6 +108,7 @@ User indicators are available on each environment.
 ![analytics_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_05_kr_240103.png)
 
 You can find a day-by-day trend of app user inflow and outflow.
+Weekly and monthly inflow/outflow metrics are updated and reflected as of 10 am.
 
 * Incoming users (new + returning): Incoming users are the sum of new and returning users (new + returning).
 * Newly registered users
