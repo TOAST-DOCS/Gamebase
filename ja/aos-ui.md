@@ -37,6 +37,7 @@
 | UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | イメージ告知ポップアップウィンドウの表示中にタイムアウトが発生してすべてのポップアップを強制終了します。 |
 | UI\_IMAGE\_NOTICE\_NOT\_SUPPORTED\_OS | 6902 | ローリングタイプの場合、 API 19以下の端末では画像イメージ告知をサポートしません。 |
 | SERVER\_INVALID\_RESPONSE | 8003 | サーバーから無効なレスポンスが返されました。|
+| WEBVIEW\_HTTP\_ERROR | 7003 | ローリングタイプ画像告知Webビューを開く最中にHTTPエラーが発生しました。 |
 
 **Example**
 

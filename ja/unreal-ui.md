@@ -13,28 +13,31 @@
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void ShowImageNotices(FGamebaseImageNoticeConfiguration& configuration, const FGamebaseErrorDelegate& onCloseCallback);
-void ShowImageNotices(FGamebaseImageNoticeConfiguration& configuration, const FGamebaseErrorDelegate& onCloseCallback, const FGamebaseImageNoticeEventDelegate& onEventCallback);
+void ShowImageNotices(FGamebaseImageNoticeConfiguration& Configuration, const FGamebaseErrorDelegate& onCloseCallback);
+void ShowImageNotices(FGamebaseImageNoticeConfiguration& Configuration, const FGamebaseErrorDelegate& onCloseCallback, const FGamebaseImageNoticeEventDelegate& onEventCallback);
 ```
 
 **Example**
 
 ```cpp
-void Sample::ShowImageNotices(int32 colorR, int32 colorG, int32 colorB, int32 colorA, int64 timeOut)
+void USample::ShowImageNotices(int32 ColorR, int32 ColorG, int32 ColorB, int32 ColorA, int64 TimeOut)
 {
-    FGamebaseImageNoticeConfiguration configuration{ colorR, colorG, colorB, colorA, timeOut };
+    FGamebaseImageNoticeConfiguration Configuration;
+    Configuration.BackgroundColor = FColor(ColorR, ColorG, colorB, colorA);
+    Configuration.TimeOut = TimeOut;
 
-    IGamebase::Get().GetImageNotice().ShowImageNotices(configuration,
-        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) {
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetImageNotice()->ShowImageNotices(Configuration,
+        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) {
             // Called when the entire imageNotice is closed.
             ...
         }),
-        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& scheme, const FGamebaseError* error) {
+        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& Scheme, const FGamebaseError* Error) {
             // Called when custom event occurred.
             ...
         })
@@ -46,10 +49,7 @@ void Sample::ShowImageNotices(int32 colorR, int32 colorG, int32 colorB, int32 co
 
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
-| colorR                   | 0～255                                    | バックグラウンドの色R            |
-| colorG                   | 0～255                                    | バックグラウンドの色G                |
-| colorB                   | 0～255                                    | バックグラウンドの色B                |
-| colorA                   | 0～255                                    | バックグラウンドの色Alpha                |
+| BackgroundColor          | 0~255                                    | バックグラウンド背景色          |
 | timeOut                  | int64        | イメージ告知最大ローディング時間(単位: millisecond)<br/>**default**: 5000                     |
 
 
@@ -88,8 +88,8 @@ GameのUIに合った約款ウィンドウを直接製作したい場合には�
 > <font color="red">[注意]</font><br/>
 >
 > * FGamebasePushConfigurationは、約款ウィンドウが表示されていない場合にはnullです(約款ウィンドウが表示された場合、常に有効なオブジェクトが返されます。)。
-> * FGamebasePushConfiguration.pushEnabled値は常にtrueです。
-> * FGamebasePushConfigurationがnullではない場合、**ログイン後に** IGamebase::Get().GetPush().RegisterPush()を呼び出してください。
+> * FGamebasePushConfiguration.bPushEnabled 値は常にtrueです。
+> * FGamebasePushConfigurationがnullではない場合、**ログイン後に** Subsystem->GetPush()->RegisterPush()を呼び出してください。
 
 #### Optionalパラメータ
 
@@ -100,14 +100,14 @@ GameのUIに合った約款ウィンドウを直接製作したい場合には�
 
 | API | Mandatory(M) / Optional(O) | Description | 
 | --- | --- | --- | 
-| forceShow | O | 約款に同意した場合、showTermsView APIを再度呼び出しても約款ウィンドウが表示されませんが、これを無視して強制的に約款ウィンドウを表示します。<br>**default** : false |
-| enableFixedFontSize | O | 約款ウィンドウのフォントサイズを固定するかどうかを決定します。<br>**default**：false<br/>**Android Only** |
+| bForceShow | O | 約款に同意した場合、showTermsView APIを再度呼び出しても約款ウィンドウが表示されませんが、これを無視して強制的に約款ウィンドウを表示します。<br>**default** : false |
+| bEnableFixedFontSize | O | 約款ウィンドウのフォントサイズを固定するかどうかを決定します。<br>**default**：false<br/>**Android Only** |
 
 **FGamebaseShowTermsViewResult**
 
 | Parameter              | Values                          | Description         |
 | ---------------------- | --------------------------------| ------------------- |
-| isTermsUIOpened        | bool                            | **true**：約款ウィンドウが表示され、ユーザーが同意して約款ウィンドウが終了しました。<br>**false**：すでに約款に同意していて、約款ウィンドウが表示されずに約款ウィンドウが終了しました。        |
+| bIsTermsUIOpened        | bool                            | **true**：約款ウィンドウが表示され、ユーザーが同意して約款ウィンドウが終了しました。<br>**false**：すでに約款に同意していて、約款ウィンドウが表示されずに約款ウィンドウが終了しました。        |
 
 **API**
 
@@ -117,7 +117,7 @@ Supported Platforms
 
 ```cpp
 void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
-void ShowTermsView(const FGamebaseTermsConfiguration& configuration, const FGamebaseDataContainerDelegate& onCallback);
+void ShowTermsView(const FGamebaseTermsConfiguration& Configuration, const FGamebaseDataContainerDelegate& onCallback);
 ```
 
 **ErrorCode**
@@ -134,37 +134,38 @@ void ShowTermsView(const FGamebaseTermsConfiguration& configuration, const FGame
 **Example**
 
 ```cpp
-void Sample::ShowTermsView()
+void USample::ShowTermsView()
 {
-    FGamebaseTermsConfiguration configuration { true };
+    FGamebaseTermsConfiguration Configuration { true };
 
-    IGamebase::Get().GetTerms().ShowTermsView(configuration,
-        FGamebaseDataContainerDelegate::CreateLambda([=](const FGamebaseDataContainer* dataContainer, const FGamebaseError* error) {
-            if (Gamebase::IsSuccess(error))
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetTerms()->ShowTermsView(Configuration,
+        FGamebaseDataContainerDelegate::CreateLambda([=](const FGamebaseDataContainer* DataContainer, const FGamebaseError* Error) {
+            if (Gamebase::IsSuccess(Error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView succeeded."));
                 
-                const auto result = FGamebaseShowTermsResult::From(dataContainer);
+                const auto result = FGamebaseShowTermsResult::From(DataContainer);
                 if (result.IsValid())
                 {
                     // Save the 'PushConfiguration' and use it for RegisterPush() after Login().
-                    savedPushConfiguration = FGamebasePushConfiguration::From(dataContainer);
+                    SavedPushConfiguration = FGamebasePushConfiguration::From(DataContainer);
                 }
             }
             else
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView failed. (error: %d)"), error->code);
+                UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView failed. (Error: %d)"), Error->Code);
             }
         })
     );
 }
 
-void Sample::AfterLogin()
+void USample::AfterLogin()
 {
     // Call RegisterPush with saved PushConfiguration.
-    if (savedPushConfiguration != null)
+    if (SavedPushConfiguration != null)
     {
-        Gamebase.Push.RegisterPush(savedPushConfiguration, (error) =>
+        Gamebase.Push.RegisterPush(SavedPushConfiguration, (Error) =>
         {
             ...
         });
@@ -182,9 +183,9 @@ Gamebaseは、単純な形式のWebビューで約款を表示します。
 
 > <font color="red">[注意]</font><br/>
 >
-> * GamebaseResponse.Terms.ContentDetail.requiredがtrueの必須項目はGamebaseサーバーに保存されないため、agreed値は常にfalseが返されます。
+> * GamebaseResponse.Terms.ContentDetail.requiredがtrueの必須項目はGamebaseサーバーに保存されないため、bAgreed 値は常にfalseが返されます。
 >     * 必須項目は常にtrueで保存されるので、保存する意味がないためです。
-> * プッシュ受信同意状況もGamebaseサーバーに保存されないため、agreed値は常にfalseが返されます。
+> * プッシュ受信同意状況もGamebaseサーバーに保存されないため、bAgreed 値は常にfalseが返されます。
 >     * ユーザーのプッシュ受信同意状況は、Gamebase.Push.QueryPush APIを通して確認してください。
 > * コンソールで「基本約款設定」を行わない場合、約款言語と異なる国コードに設定された端末でqueryTerms APIを呼び出すと、**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**エラーが発生します。
 >     * コンソールで「基本約款設定」を行ったり、**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**エラーが発生した時は、約款を表示しないように処理してください。
@@ -195,12 +196,12 @@ Gamebaseは、単純な形式のWebビューで約款を表示します。
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cs
-void QueryTerms(const FGamebaseQueryTermsResultDelegate& onCallback);
+void QueryTerms(const FGamebaseQueryTermsResultDelegate& Callback);
 ```
 
 **ErrorCode**
@@ -214,17 +215,18 @@ void QueryTerms(const FGamebaseQueryTermsResultDelegate& onCallback);
 **Example**
 
 ```cpp
-void Sample::QueryTerms()
+void USample::QueryTerms()
 {
-    IGamebase::Get().GetTerms().QueryTerms(
-        FGamebaseQueryTermsResultDelegate::CreateLambda([=](const FGamebaseQueryTermsResult* data, const FGamebaseError* error) {
-            if (Gamebase::IsSuccess(error))
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetTerms()->QueryTerms(
+        FGamebaseQueryTermsResultDelegate::CreateLambda([=](const FGamebaseQueryTermsResult* Data, const FGamebaseError* Error) {
+            if (Gamebase::IsSuccess(Error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("QueryTerms succeeded."));
             }
             else
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("QueryTerms failed. (error: %d)"), error->code);
+                UE_LOG(GamebaseTestResults, Display, TEXT("QueryTerms failed. (Error: %d)"), Error->Code);
             }
         })
     );
@@ -235,24 +237,24 @@ void Sample::QueryTerms()
 
 | Parameter            | Values                          | Description         |
 | -------------------- | --------------------------------| ------------------- |
-| termsSeq             | int32                           | 約款全体KEY.<br/>updateTerms APIの呼び出し時に必要な値です。          |
-| termsVersion         | FString                         | 約款バージョン。<br/>updateTerms APIの呼び出し時に必要な値です。              |
+| TermsSeq             | int32                           | 約款全体KEY.<br/>updateTerms APIの呼び出し時に必要な値です。          |
+| TermsVersion         | FString                         | 約款バージョン。<br/>updateTerms APIの呼び出し時に必要な値です。              |
 | termsCountryType     | FString                         | 約款タイプ。<br/> - KOREAN：韓国約款 <br/> - GDPR：EU約款 <br/> - ETC：その他約款       |
-| contents             | TArray<FGamebaseTermsContent>   | 約款項目情報        |
+| Contents             | TArray<FGamebaseTermsContent>   | 約款項目情報        |
 
 
 #### GamebaseResponse.Terms.ContentDetail
 
 | Parameter            | Values                | Description         |
 | -------------------- | ----------------------| ------------------- |
-| termsContentSeq      | int32                 | 約款項目KEY         | 
-| name                 | FString               | 約款項目名       |
-| required             | bool                  | 同意必須かどうか        |
-| agreePush            | FString               | 広告性プッシュ同意状況<br/> - NONE：同意しない<br/> - ALL：全て同意 <br/> - DAY：1週間プッシュ同意<br/> - NIGHT：夜間プッシュ同意        |
-| agreed               | bool                  | 該当約款項目に対するユーザーの同意有無          |
-| node1DepthPosition   | int32                 | 1段階項目表示順序。           |
-| node2DepthPosition   | int32                 | 2段階項目表示順序。<br/> ない場合 -1           |
-| detailPageUrl        | FString               | 約款詳細表示URL。<br/> ない場合null |
+| TermsContentSeq      | int32                 | 約款項目KEY         | 
+| Name                 | FString               | 約款項目名       |
+| Required             | bool                  | 同意必須かどうか        |
+| AgreePush            | FString               | 広告性プッシュ同意状況<br/> - NONE：同意しない<br/> - ALL：全て同意 <br/> - DAY：1週間プッシュ同意<br/> - NIGHT：夜間プッシュ同意        |
+| bAgreed               | bool                  | 該当約款項目に対するユーザーの同意有無          |
+| Node1DepthPosition   | int32                 | 1段階項目表示順序。           |
+| Node2DepthPosition   | int32                 | 2段階項目表示順序。<br/> ない場合 -1           |
+| DetailPageUrl        | FString               | 約款詳細表示URL。<br/> ない場合null |
 
 
 ### UpdateTerms
@@ -269,7 +271,7 @@ QueryTerms APIで取得した約款情報でUIを直接製作した場合、
 > プッシュ受信同意状況は**ログイン後に** Gamebase.Push.RegisterPush APIを呼び出して保存してください。
 >
 #### Requiredパラメータ
-* configuration：サーバーに登録するユーザーの選択約款情報です。
+* Configuration サーバーに登録するユーザーの選択約款情報です。
 
 #### Optionalパラメータ
 
@@ -279,12 +281,12 @@ QueryTerms APIで取得した約款情報でUIを直接製作した場合、
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void UpdateTerms(const FGamebaseUpdateTermsConfiguration& configuration, const FGamebaseErrorDelegate onCallback);
+void UpdateTerms(const FGamebaseUpdateTermsConfiguration& Configuration, const FGamebaseErrorDelegate onCallback);
 ```
 
 **ErrorCode**
@@ -299,21 +301,22 @@ void UpdateTerms(const FGamebaseUpdateTermsConfiguration& configuration, const F
 **Example**
 
 ```cpp
-void Sample::UpdateTerms(int32 termsSeq, const FString& termsVersion, int32 termsContentSeq, bool agreed)
+void USample::UpdateTerms(int32 TermsSeq, const FString& TermsVersion, int32 TermsContentSeq, bool bAgreed)
 {
-    TArray<FGamebaseTermsContent> contents;
-    contents.Add(FGamebaseTermsContent { termsContentSeq, agreed });
+    TArray<FGamebaseTermsContent> Contents;
+    Contents.Add(FGamebaseTermsContent { TermsContentSeq, bAgreed });
     
-    IGamebase::Get().GetTerms().UpdateTerms(
-        FGamebaseUpdateTermsConfiguration { termsSeq, termsVersion, contents },
-        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) {
-            if (Gamebase::IsSuccess(error))
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetTerms()->UpdateTerms(
+        FGamebaseUpdateTermsConfiguration { TermsSeq, TermsVersion, Contents },
+        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) {
+            if (Gamebase::IsSuccess(Error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("UpdateTerms succeeded."));
             }
             else
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("UpdateTerms failed. (error: %d)"), error->code);
+                UE_LOG(GamebaseTestResults, Display, TEXT("UpdateTerms failed. (Error: %d)"), Error->Code);
             }
         })
     );
@@ -324,16 +327,16 @@ void Sample::UpdateTerms(int32 termsSeq, const FString& termsVersion, int32 term
 
 | Parameter            | Mandatory(M) / Optional(O) | Values                    | Description         |
 | -------------------- | -------------------------- | ------------------------- | ------------------- |
-| termsVersion         | **M**                      | FString                    | 約款バージョン。<br/>queryTerms APIを呼び出して取得した値を伝達する必要があります。   |
-| termsSeq             | **M**                      | int32                       | 約款全体KEY.<br/>queryTerms APIを呼び出して取得した値を伝達する必要があります。             |
-| contents             | **M**                      | List< Content > | 選択約款ユーザー同意情報 |
+| TermsVersion         | **M**                      | FString                    | 約款バージョン。<br/>queryTerms APIを呼び出して取得した値を伝達する必要があります。   |
+| TermsSeq             | **M**                      | int32                       | 約款全体KEY.<br/>queryTerms APIを呼び出して取得した値を伝達する必要があります。             |
+| Contents             | **M**                      | List< Content > | 選択約款ユーザー同意情報 |
 
 #### GamebaseRequest.Terms.Content
 
 | Parameter            | Mandatory(M) / Optional(O) | Values             | Description         |
 | -------------------- | -------------------------- | ------------------ | ------------------- |
-| termsContentSeq      | **M**                      | int32                | 選択約款項目KEY      |
-| agreed               | **M**                      | bool               | 選択約款項目同意状況 |
+| TermsContentSeq      | **M**                      | int32                | 選択約款項目KEY      |
+| bAgreed               | **M**                      | bool               | 選択約款項目同意状況 |
 
 ### IsShowingTermsView
 
@@ -348,9 +351,10 @@ bool IsShowingTermsView();
 **Example**
 
 ```cpp
-void Sample::IsShowingTermsView()
+void USample::IsShowingTermsView()
 {
-    bool isShowingTermsView = IGamebase::Get().GetTerms().IsShowingTermsView();
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    bool isShowingTermsView = Subsystem->GetTerms()->IsShowingTermsView();
     UE_LOG(GamebaseTestResults, Display, TEXT("IsShowingTermsView : %s"), isShowingTermsView ? TEXT("true") : TEXT("false"));
 }
 ```
@@ -362,46 +366,48 @@ void Sample::IsShowingTermsView()
 WebViewを表示します。<br/>
 
 ##### Requiredパラメータ
-* url：パラメータに転送されるurlは、有効な値である必要があります。
+* Url：パラメータに転送されるurlは、有効な値である必要があります。
 
 ##### Optionalパラメータ(現在はRequireパラメータですが、今後のバージョンでOptionalに変更予定)
-* configuration：GamebaseWebViewConfigurationでWebViewのレイアウトを変更できます。
+* Configuration：GamebaseWebViewConfigurationでWebViewのレイアウトを変更できます。
 * closeCallback：WebViewが終了する時、ユーザーにコールバックで伝えます。
-* schemeList：ユーザーが受け取りたいカスタムSchemeリストを指定します。
-* schemeEvent：schemeListに指定したカスタムスキームを含むurlをコールバックで伝えます。
+* SchemeList：ユーザーが受け取りたいカスタムSchemeリストを指定します。
+* SchemeEvent：schemeListに指定したカスタムスキームを含むurlをコールバックで伝えます。
 
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void ShowWebView(const FString& url, const FGamebaseWebViewConfiguration& configuration, FGamebaseErrorDelegate& onCloseCallback, const TArray<FString>& schemeList, const FGamebaseSchemeEventDelegate& onSchemeEvent);
+void ShowWebView(const FString& Url, const FGamebaseWebViewConfiguration& Configuration, FGamebaseErrorDelegate& onCloseCallback, const TArray<FString>& SchemeList, const FGamebaseSchemeEventDelegate& onSchemeEvent);
 ```
 
 **Example**
 ```cpp
-void Sample::ShowWebView(const FString& url)
+void USample::ShowWebView(const FString& Url)
 {
-    FGamebaseWebViewConfiguration configuration{ TEXT("Title"), GamebaseScreenOrientation::Unspecified, 128, 128, 128, 255, 40, true, "", "" };
+    FGamebaseWebViewConfiguration Configuration;
+    Configuration.Title = TEXT("Title");
 
-    TArray<FString> schemeList{ TEXT("customScheme://openBrowser") };
+    TArray<FString> SchemeList{ TEXT("customScheme://openBrowser") };
 
-    IGamebase::Get().GetWebView().ShowWebView(url, configuration,
-        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) {
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetWebView()->ShowWebView(Url, Configuration,
+        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) {
             Result(ANSI_TO_TCHAR(__FUNCTION__), TEXT("Close webview"));
         }),
-        schemeList,
-        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& scheme, const FGamebaseError* error) {
-        if (Gamebase::IsSuccess(error))
+        SchemeList,
+        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& Scheme, const FGamebaseError* Error) {
+        if (Gamebase::IsSuccess(Error))
         {
-            Result(ANSI_TO_TCHAR(__FUNCTION__), true, *FString::Printf(TEXT("scheme= %s"), *scheme));
+            Result(ANSI_TO_TCHAR(__FUNCTION__), true, *FString::Printf(TEXT("Scheme= %s"), *Scheme));
         }
         else
         {
-            Result(ANSI_TO_TCHAR(__FUNCTION__), false, GamebaseJsonUtil::UStructToJsonObjectString(*error));
+            Result(ANSI_TO_TCHAR(__FUNCTION__), false, GamebaseJsonUtil::UStructToJsonObjectString(*Error));
         }
     }));
 }
@@ -412,25 +418,22 @@ void Sample::ShowWebView(const FString& url)
 
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
-| title                    | FString                                   | WebViewのタイトル               |
-| orientation              | GamebaseScreenOrientation::Unspecified   | 未指定(**default**)            |
+| Title                    | FString                                   | WebViewのタイトル               |
+| Orientation              | GamebaseScreenOrientation::Unspecified   | 未指定(**default**)            |
 |                          | GamebaseScreenOrientation::Portrait      | 縦モード                     |
 |                          | GamebaseScreenOrientation::Landscape     | 横モード                     |
 |                          | GamebaseScreenOrientation::LandscapeReverse | 横モードを180度回転              |
-| contentMode              | GamebaseWebViewContentMode::Recommended        | 現在のプラットフォームの推薦ブラウザ(**default**)   |
+| ContentMode              | GamebaseWebViewContentMode::Recommended        | 現在のプラットフォームの推薦ブラウザ(**default**)   |
 |                          | GamebaseWebViewContentMode::Mobile             | モバイルブラウザ         |
 |                          | GamebaseWebViewContentMode::Desktop            | デスクトップブラウザ       |
-| colorR                   | 0～255                                    | ナビゲーションバーの色相R<br>**default** : 18               |
-| colorG                   | 0～255                                    | ナビゲーションバーの色相G<br>**default** : 93               |
-| colorB                   | 0～255                                    | ナビゲーションバーの色相B<br>**default** : 230              |
-| colorA                   | 0～255                                    | ナビゲーションバーの色相Alpha<br>**default** : 255          |
-| barHeight                | height                                   | ナビゲーションバーの高さ<br>**Android Only**                 |
-| isNavigationBarVisible   | true or false                            | ナビゲーションバー有効/無効<br>**default** : true    |
-| isBackButtonVisible      | true or false                            | 戻るボタン有効/無効<br>**default** : true   |
-| backButtonImageResource  | ID of resource                           | 戻るボタンのイメージ       |
-| closeButtonImageResource | ID of resource                           | 閉じるボタンのイメージ           |
-| enableFixedFontSize      | true or false                            | 約款ウィンドウの文字サイズを固定するかどうかを決定します。<br>**default**: false<br>**Android限定**     |
-| renderOutSideSafeArea    | true or false                            | Safe Area領域外までレンダリングするかどうかを決定します。<br>**default**: false<br>**Android限定**   |
+| NavigationColor          | FColor                                   | ナビゲーションバーの色<br>**default**: FColor(18, 93, 230, 255)               |
+| NavigationBarHeight      | height                                   | ナビゲーションバーの高さ<br>**Androidのみ**                 |
+| bIsNavigationBarVisible   | true or false                            | ナビゲーションバー有効または無効<br>**default**: true    |
+| bIsBackButtonVisible      | true or false                            | 戻るボタンの有効または無効<br>**default**: true   |
+| BackButtonImageResource  | ID of resource                           | 戻るボタンの画像        |
+| CloseButtonImageResource | ID of resource                           | 閉じるボタンの画像            |
+| bEnableFixedFontSize      | true or false                            | 約款ウィンドウの文字サイズを固定するかどうかを決定します。<br>**default**: false<br>**Androidのみ**     |
+| bRenderOutSideSafeArea    | true or false                            | Safe Area領域外でレンダリングするかどうかを決定します。<br>**default**: false<br>**Androidのみ**   |
 
 > [TIP]
 >
@@ -441,7 +444,7 @@ void Sample::ShowWebView(const FString& url)
 
 Gamebaseで指定しておいたスキームです。
 
-| scheme | 用途 |
+| Scheme | 用途 |
 | ----------------------------- | ------------------------------ |
 | gamebase://dismiss | WebViewを閉じる |
 | gamebase://getMaintenanceInfo | メンテナンス内容をWebPageに表示 |
@@ -456,8 +459,8 @@ Gamebaseで指定しておいたスキームです。
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -466,9 +469,10 @@ void CloseWebView();
 
 **Example**CloseWebview
 ```cpp
-void Sample::CloseWebView()
+void USample::CloseWebView()
 {
-    IGamebase::Get().GetWebView().CloseWebView();
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetWebView()->CloseWebView();
 }
 ```
 
@@ -484,14 +488,15 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void OpenWebBrowser(const FString& url);
+void OpenWebBrowser(const FString& Url);
 ```
 
 **Example**
 ```cpp
-void Sample::OpenWebBrowser(const FString& url)
+void USample::OpenWebBrowser(const FString& Url)
 {
-    IGamebase::Get().GetWebView().OpenWebBrowser(url);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetWebView()->OpenWebBrowser(Url);
 }
 ```
 
@@ -508,22 +513,24 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void ShowAlert(const FString& title, const FString& message);
-void ShowAlert(const FString& title, const FString& message, const FGamebaseAlertCloseDelegate& onCloseCallback);
+void ShowAlert(const FString& Title, const FString& Message);
+void ShowAlert(const FString& Title, const FString& Message, const FGamebaseAlertCloseDelegate& CloseCallback);
 ```
 
 **Example**
 ```cpp
-void Sample::ShowAlert(const FString& title, const FString& message)
+void USample::ShowAlert(const FString& Title, const FString& Message)
 {
-    IGamebase::Get().GetUtil().ShowAlert(title, message);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetUtil()->ShowAlert(Title, Message);
 }
 
-void Sample::ShowAlertEvent(const FString& title, const FString& message)
+void USample::ShowAlertEvent(const FString& Title, const FString& Message)
 {
-    IGamebase::Get().GetUtil().ShowAlert(title, message, FGamebaseAlertCloseDelegate::CreateLambda([=]()
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetUtil()->ShowAlert(Title, Message, FGamebaseAlertCloseDelegate::CreateLambda([=]()
     {
-            UE_LOG(GamebaseTestResults, Display, TEXT("ShowAlert ButtonClick."));
+        UE_LOG(GamebaseTestResults, Display, TEXT("ShowAlert ButtonClick."));
     }));
 }
 ```
@@ -539,14 +546,15 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void ShowToast(const FString& message, EGamebaseToastExposureTime exposureTimeType);
+void ShowToast(const FString& Message, EGamebaseToastExposureTime ExposureTimeType);
 ```
 
 **Example**
 ```cpp
-void Sample::ShowToast(const FString& message, EGamebaseToastExposureTime exposureTimeType)
+void USample::ShowToast(const FString& Message, EGamebaseToastExposureTime ExposureTimeType)
 {
-    IGamebase::Get().GetUtil().ShowToast(message, exposureTimeType);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetUtil()->ShowToast(Message, ExposureTimeType);
 }
 ```
 
@@ -558,4 +566,4 @@ void Sample::ShowToast(const FString& message, EGamebaseToastExposureTime exposu
 | UI\_UNKNOWN\_ERROR | 6999       | 不明なエラーです(定義されていないエラーです)。 |
 
 * エラーコードの一覧は、次の文書を参照してください。
-    * [エラーコード](./error-code/#client-sdk)
+    * [エラーコード](./Error-code/#client-sdk)
