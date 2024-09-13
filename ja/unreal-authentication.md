@@ -107,10 +107,10 @@ void USample::LoginForLastLoggedInProvider()
             }
             else if (Error->Code == GamebaseErrorCode::BANNED_MEMBER)
             {
-                auto BanInfo = FGamebaseBanInfo::From(Error);
-                if (BanInfo.IsValid())
+                auto banInfo = FGamebaseBanInfo::From(Error);
+                if (banInfo.IsValid())
                 {
-                    UE_LOG(GamebaseTestResults, Display, TEXT("This user has been banned. Gamebase userId is %s"), *BanInfo->UserId);
+                    UE_LOG(GamebaseTestResults, Display, TEXT("This user has been banned. Gamebase userId is %s"), *banInfo->UserId);
                 }
             }
             else
@@ -163,9 +163,9 @@ void USample::Login()
             else if (Error->Code == GamebaseErrorCode::BANNED_MEMBER)
             {
                 auto BanInfo = FGamebaseBanInfo::From(Error);
-                if (BanInfo.IsValid())
+                if (banInfo.IsValid())
                 {
-                    UE_LOG(GamebaseTestResults, Display, TEXT("This user has been banned. Gamebase userId is %s"), *BanInfo->userId);
+                    UE_LOG(GamebaseTestResults, Display, TEXT("This user has been banned. Gamebase userId is %s"), *banInfo->userId);
                 }
             }
         }
@@ -230,10 +230,10 @@ void USample::Login()
             }
             else if (Error->Code == GamebaseErrorCode::BANNED_MEMBER)
             {
-                auto BanInfo = FGamebaseBanInfo::From(Error);
-                if (BanInfo.IsValid())
+                auto banInfo = FGamebaseBanInfo::From(Error);
+                if (banInfo.IsValid())
                 {
-                    UE_LOG(GamebaseTestResults, Display, TEXT("This user has been banned. Gamebase userId is %s"), *BanInfo->UserId);
+                    UE_LOG(GamebaseTestResults, Display, TEXT("This user has been banned. Gamebase userId is %s"), *banInfo->UserId);
                 }
             }
         }
@@ -242,8 +242,8 @@ void USample::Login()
 
 void USample::LoginWithAdditionalInfo()
 {
-    UGamebaseJsonObject* AdditionalInfo = NewObject<UGamebaseJsonObject>();
-    AdditionalInfo->SetStringField(TEXT("Key"), TEXT("Value"));
+    UGamebaseJsonObject* additionalInfo = NewObject<UGamebaseJsonObject>();
+    additionalInfo->SetStringField(TEXT("Key"), TEXT("Value"));
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->Login(GamebaseAuthProvider::Facebook, *AdditionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
@@ -495,7 +495,7 @@ void AddMapping(const FString& providerName, const UGamebaseJsonObject& addition
 **Example**
 
 ```cpp
-void USample::AddMapping(const FString& ProviderName)
+void USample::AddMapping(const FString& providerName)
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->AddMapping(ProviderName, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
@@ -729,7 +729,7 @@ void RemoveMapping(const FString& providerName, const FGamebaseErrorDelegate& on
 **Example**
 
 ```cpp
-void USample::RemoveMapping(const FString& ProviderName)
+void USample::RemoveMapping(const FString& providerName)
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->RemoveMapping(ProviderName, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error)
@@ -766,7 +766,8 @@ TArray<FString> GetAuthMappingList() const;
 ```cpp
 void USample::GetAuthMappingList()
 {
-    auto mappingList = IGamebase::Get().GetAuthMappingList();
+    auto MappingList = UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetAuthMappingList();
     
     for (FString provider : MappingList)
     {
@@ -959,7 +960,7 @@ void USample::RenewTransferAccount(const FString& accountId, const FString& acco
     //FGamebaseTransferAccountRenewConfiguration configuration{ accountPassword };
 
     // 自動設定
-    //FGamebaseTransferAccountRenewConfiguration Configuration{ type };
+    //FGamebaseTransferAccountRenewConfiguration configuration{ type };
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->RenewTransferAccount(Configuration, FGamebaseTransferAccountDelegate::CreateLambda([=](const FGamebaseTransferAccountInfo* TransferAccountInfo, const FGamebaseError* Error)
@@ -973,7 +974,6 @@ void USample::RenewTransferAccount(const FString& accountId, const FString& acco
             // Renewing TransferAccount failed.
         }
     }));
-}));
 }
 ```
 
@@ -1041,28 +1041,18 @@ void RequestWithdrawal(const FGamebaseTemporaryWithdrawalDelegate& onCallback);
 **Example**
 
 ```cpp
-void USample::Login()
+void USample::RequestWithdrawal()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->Login(GamebaseAuthProvider::Guest, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
+    Subsystem->GetTemporaryWithdrawal()->RequestWithdrawal(FGamebaseTemporaryWithdrawalDelegate::CreateLambda([=](const FGamebaseTemporaryWithdrawalInfo* Info, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
-            if (AuthToken->Member.TemporaryWithdrawal.IsSet())
-            {
-                const auto TemporaryWithdrawal = AuthToken->Member.TemporaryWithdrawal.GetValue();
-                // GracePeriodDate: epoch time in milliseconds
-                const FDateTime PeriodDate = FDateTime(1970, 1, 1) + FTimespan::FromMilliseconds(TemporaryWithdrawal.GracePeriodDate);
-                UE_LOG(GamebaseTestResults, Display, TEXT("User is under temporary withdrawa. GracePeriodDate : %s"), *PeriodDate.ToString());
-            }
-            else
-            {
-                UE_LOG(GamebaseTestResults, Display, TEXT("Login succeeded. Gamebase userId is %s"), *AuthToken->Member.UserId);
-            }
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestWithdrawal succeeded. The date when you can withdraw your withdrawal is %d"), Info->GracePeriodDate);
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("Login failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Messsage);
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestWithdrawal failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Messsage);
         }
     }));
 }

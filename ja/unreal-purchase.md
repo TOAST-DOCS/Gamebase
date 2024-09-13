@@ -58,9 +58,9 @@ AndroidまたはiOSでアプリ内決済機能を設定する方法は、次の�
     * 2-1. まだアイテムを支給していなければGamebaseサーバーのPayment Transaction APIを呼び出してpurchaseTokenが有効か、レスポンスフィールドのpaymentSeqと一致するか検証します。
         * [Game > Gamebase > APIガイド > Purchase(IAP) > Get Payment Transaction](./api-guide/#get-payment-transaction)
         * purchaseTokenがサーバーAPIガイド文書の**accessToken**に該当します。
-    * 2-2. GamebaseProductIdはサーバーのPayment Transaction APIのレスポンスフィールドで確認できます。
-        * クライアントの未消費決済履歴リストにもGamebaseProductIdが存在しますが、再処理時にはその値がない場合もありますので、サーバーのPayment Transaction APIから取得したGamebaseProductIdの値を使用してください。
-    * 2-3. Payment Transaction APIの呼び出しが成功し、purchaseTokenが正常であることが確認されると、UserIDにGamebaseProductIdに該当するアイテムを支給します。
+    * 2-2. gamebaseProductIdはサーバーのPayment Transaction APIのレスポンスフィールドで確認できます。
+        * クライアントの未消費決済履歴リストにもgamebaseProductIdが存在しますが、再処理時にはその値がない場合もありますので、サーバーのPayment Transaction APIから取得したGamebaseProductIdの値を使用してください。
+    * 2-3. Payment Transaction APIの呼び出しが成功し、purchaseTokenが正常であることが確認されると、UserIDにgamebaseProductIdに該当するアイテムを支給します。
     * 2-4. アイテム支給後、ゲームDBにUserID、GamebaseProductId、paymentSeq、purchaseTokenを保存して重複支給防止または再支給ができるようにします。
 3. アイテム支給有無に関係なく、ゲームサーバーは未消費履歴が返されないようにGamebaseサーバーのconsume(消費) APIを呼び出してアイテムの支給を完了します。
     * [Game > Gamebase > APIガイド > Purchase(IAP) > Consume](./api-guide/#consume)
@@ -85,8 +85,8 @@ AndroidまたはiOSでアプリ内決済機能を設定する方法は、次の�
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp

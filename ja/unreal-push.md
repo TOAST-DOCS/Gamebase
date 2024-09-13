@@ -103,7 +103,7 @@ void USample::RegisterPushWithOption(bool pushEnabled, bool adAgreement, bool ad
     Configuration.bAdAgreementNight = adAgreementNight;
     Configuration.bRequestNotificationPermission = bRequestNotificationPermission;
     Configuration.bAlwaysAllowTokenRegistration = bAlwaysAllowTokenRegistration;
-    
+
     FGamebaseNotificationOptions NotificationOptions;
     NotificationOptions.bForegroundEnabled = bForegroundEnabled;
     NotificationOptions.bBadgeEnabled = bBadgeEnabled;

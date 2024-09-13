@@ -36,7 +36,7 @@ FString GetDeviceLanguageCode() const;
 | Code | Name |
 | --- | --- |
 | de | German |
-| en | English   |
+| en | English |
 | es | Spanish |
 | fi | Finnish |
 | fr | French |
@@ -697,7 +697,6 @@ void USample::AddEventHandler()
             {
                 // If the user got item by 'Promotion Code',
                 // this event will be occurred.
-            }
             }
         }
     }));
