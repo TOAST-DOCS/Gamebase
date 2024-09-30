@@ -1,13 +1,47 @@
 ## Game > Gamebase > Upgrade Guide
 
-## 2.65.1
+## 2.66.3
 
-### Android, iOS, Unity
+### Unity
 
-* When using the image notice feature in Gamebase SDK 2.65.0, the following issues occur.
-    * An error callback is called if there are no image notices to show on a particular client.
-    * If there are no registered image notices, an empty image notice is displayed.
-    * Please use Gamebase SDK 2.65.1 or later, where the issue has been resolved.
+#### Changed Minimum Support Version
+
+* 최소 지원 Unity 버전이 2018.4.0 에서 2020.3.0 으로 변경되었습니다.
+* 하위 버전의 Unity 지원이 필요하다면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
+
+## 2.66.2
+
+### iOS
+
+#### Changed/Deprecated APIs
+
+* Deprecated the following field.
+    * **TCGBWebViewConfiguration.orientationMask**
+    
+## 2.66.0
+
+### Unreal
+
+* Made changes to how to use APIs.
+    * Changed the API from being provided by **IGamebase**, which inherits from `IModuleInterface`, to being provided by **UGamebaseSubsystem**, which inherits from `UGameInstanceSubsystem`.
+    * As a subsystem of GameInstance, **UGamebaseSubsystem** follows the GameInstance lifecycle and you must find the subsystem through the GameInstance you use when calling the SDK APIs for use.
+    * Changed to conform to naming conventions in the Unreal Coding Standard.
+
+```cpp
+if (UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance()))
+{
+    GamebaseSubsystem->Initialize(...);
+}
+```
+
+* As the **GamebaseInterface** module has been removed, you need to remove it from your module dependencies when using Gamebase.
+
+        PrivateDependencyModuleNames.AddRange(
+            new[]
+            {
+                "Gamebase"
+            }
+        );
 
 ## 2.65.0
 
