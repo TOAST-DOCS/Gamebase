@@ -6,8 +6,8 @@
 
 #### Changed Minimum Support Version
 
-* 최소 지원 Unity 버전이 2018.4.0 에서 2020.3.0 으로 변경되었습니다.
-* 하위 버전의 Unity 지원이 필요하다면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
+* Changed the minimum supported Unity version from 2018.4.0 to 2020.3.0.
+* If you need support for a lower version of Unity, contact [Customer Center](https://toast.com/support/inquiry).
 
 ## 2.66.2
 
