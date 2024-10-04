@@ -294,7 +294,7 @@ android {
 #### Huawei Store
 
 * You must add the AppGallery Connection configuration file (agconnect-services.json) to the assets folder.
-    * Log in to [AppGallery Connect](https://developer.huawei.com/consumer/en/ervice/josp/agc/index.html) and click on **My Projects**.
+    * Log in to [AppGallery Connect](https://developer.huawei.com/consumer/en/service/josp/agc/index.html) and click on **My Projects**.
     * Select an app from your project.
     * Go to **Project settings** > **General information**.
     * Download the **agconnect-services.json** file from **App information**.
