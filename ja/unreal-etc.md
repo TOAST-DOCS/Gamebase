@@ -587,7 +587,7 @@ void Sample::AddEventHandler()
     {
         if (message.category.Equals(GamebaseEventCategory::ObserverLaunching))
         {
-            auto ObserverData = FGamebaseEventObserverData::From(message.data);
+            auto observerData = FGamebaseEventObserverData::From(message.data);
             if (observerData.IsVaild())
             {
                 CheckLaunchingStatus(*observerData);
@@ -595,7 +595,7 @@ void Sample::AddEventHandler()
         }
         else if (message.category.Equals(GamebaseEventCategory::ObserverNetwork))
         {
-            auto ObserverData = FGamebaseEventObserverData::From(message.data);
+            auto observerData = FGamebaseEventObserverData::From(message.data);
             if (observerData.IsVaild())
             {
                 CheckNetwork(*observerData);
@@ -603,7 +603,7 @@ void Sample::AddEventHandler()
         }
         else if (message.category.Equals(GamebaseEventCategory::ObserverHeartbeat))
         {
-            auto ObserverData = FGamebaseEventObserverData::From(message.data);
+            auto observerData = FGamebaseEventObserverData::From(message.data);
             if (observerData.IsVaild())
             {
                 CheckHeartbeat(*observerData);
@@ -682,7 +682,7 @@ void Sample::AddEventHandler()
     {
         if (message.category.Equals(GamebaseEventCategory::PurchaseUpdated))
         {
-            auto PurchasableReceipt = FGamebaseEventPurchasableReceipt::From(message.data);
+            auto purchasableReceipt = FGamebaseEventPurchasableReceipt::From(message.data);
             if (purchasableReceipt.IsVaild())
             {
                 // If the user got item by 'Promotion Code',

@@ -67,7 +67,7 @@ LaunchingStatusは、下記Launching項目下のState、Code部分を参照し�
 
 * デフォルト値：true
 
-#### 7. enableBanPopup
+#### 6. bEnableBanPopup
 
 ログイン時、該当ゲームユーザーが利用停止状態の場合、Gamebaseで提供する基本ポップアップを使用するかどうかの設定です。
 

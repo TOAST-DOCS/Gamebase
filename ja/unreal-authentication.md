@@ -74,7 +74,7 @@ Gamebaseではゲストログインをデフォルトでサポートします。
 
 | keyname                                  | a use                                    | 値の種類                                    |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| GamebaseAuthProviderCredential::SHOW_LOADING_ANIMATION | API呼び出しが終わるまでローディングアニメーションを表示<br>**Androidに限る** | **bool**<br>**default**: true |
+| GamebaseAuthProviderCredential::ShowLoadingAnimation | API呼び出しが終わるまでローディングアニメーションを表示<br>**Androidに限る** | **bool**<br>**default**: true |
 
 **API**
 
@@ -834,6 +834,7 @@ FString GetLastLoggedInProvider() const;
 ```cpp
 void Sample::GetLastLoggedInProvider()
 {
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     FString LastLoggedInProvider = Subsystem->GetLastLoggedInProvider();
 }
 ```
