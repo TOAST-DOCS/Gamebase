@@ -92,7 +92,7 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void Initialize(const FGamebaseConfiguration& configuration, const FGamebaseLaunchingInfoDelegate& onCallback);
+void Initialize(const FGamebaseConfiguration& configuration, const FGamebaseLaunchingInfoDelegate& Callback);
 ```
 
 **Example**
@@ -256,7 +256,7 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cs
-FDelegateHandle AddHandler(const FGamebaseEventDelegate::FDelegate& onCallback);
+FDelegateHandle AddHandler(const FGamebaseEventDelegate::FDelegate& Callback);
 void RemoveHandler(const FDelegateHandle& handle);
 void RemoveAllHandler();
 ```
@@ -295,23 +295,23 @@ void Sample::AddEventHandler()
                  message.category.Equals(GamebaseEventCategory::ServerPushAppKickOutMessageReceived) ||
                  message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
         {
-            auto serverPushData = FGamebaseEventServerPushData::From(message.data);
+            auto ServerPushData = FGamebaseEventServerPushData::From(message.data);
         }
         else if (message.category.Equals(GamebaseEventCategory::ObserverLaunching))
         {
-            auto observerData = FGamebaseEventObserverData::From(message.data);
+            auto ObserverData = FGamebaseEventObserverData::From(message.data);
         }
         else if (message.category.Equals(GamebaseEventCategory::ObserverNetwork))
         {
-            auto observerData = FGamebaseEventObserverData::From(message.data);
+            auto ObserverData = FGamebaseEventObserverData::From(message.data);
         }
         else if (message.category.Equals(GamebaseEventCategory::ObserverHeartbeat))
         {
-            auto observerData = FGamebaseEventObserverData::From(message.data);
+            auto ObserverData = FGamebaseEventObserverData::From(message.data);
         }
         else if (message.category.Equals(GamebaseEventCategory::PurchaseUpdated))
         {
-            auto purchasableReceipt = FGamebaseEventPurchasableReceipt::From(message.data);
+            auto PurchasableReceipt = FGamebaseEventPurchasableReceipt::From(message.data);
         }
         else if (message.category.Equals(GamebaseEventCategory::PushReceivedMessage))
         {
@@ -500,7 +500,7 @@ void Sample::AddEventHandler()
             message.category.Equals(GamebaseEventCategory::ServerPushAppKickOutMessageReceived) ||
             message.category.Equals(GamebaseEventCategory::ServerPushTransferKickout))
         {
-            auto serverPushData = FGamebaseEventServerPushData::From(message.data);
+            auto ServerPushData = FGamebaseEventServerPushData::From(message.data);
             if (serverPushData.IsVaild())
             {
                 CheckServerPush(message.category, *serverPushData);
@@ -568,13 +568,13 @@ void Sample::CheckServerPush(const FString& category, const FGamebaseEventServer
 struct GAMEBASE_API FGamebaseEventObserverData
 {
 	// 状態値を表す情報です。
-    int32 code;
+    int32 Code;
 
     // 状態に関連するメッセージ情報です。
     FString message;
 
     // 追加情報用の予備フィールドです。
-    FString extras;
+    FString Extras;
 }
 ```
 
@@ -587,7 +587,7 @@ void Sample::AddEventHandler()
     {
         if (message.category.Equals(GamebaseEventCategory::ObserverLaunching))
         {
-            auto observerData = FGamebaseEventObserverData::From(message.data);
+            auto ObserverData = FGamebaseEventObserverData::From(message.data);
             if (observerData.IsVaild())
             {
                 CheckLaunchingStatus(*observerData);
@@ -595,7 +595,7 @@ void Sample::AddEventHandler()
         }
         else if (message.category.Equals(GamebaseEventCategory::ObserverNetwork))
         {
-            auto observerData = FGamebaseEventObserverData::From(message.data);
+            auto ObserverData = FGamebaseEventObserverData::From(message.data);
             if (observerData.IsVaild())
             {
                 CheckNetwork(*observerData);
@@ -603,7 +603,7 @@ void Sample::AddEventHandler()
         }
         else if (message.category.Equals(GamebaseEventCategory::ObserverHeartbeat))
         {
-            auto observerData = FGamebaseEventObserverData::From(message.data);
+            auto ObserverData = FGamebaseEventObserverData::From(message.data);
             if (observerData.IsVaild())
             {
                 CheckHeartbeat(*observerData);
@@ -682,7 +682,7 @@ void Sample::AddEventHandler()
     {
         if (message.category.Equals(GamebaseEventCategory::PurchaseUpdated))
         {
-            auto purchasableReceipt = FGamebaseEventPurchasableReceipt::From(message.data);
+            auto PurchasableReceipt = FGamebaseEventPurchasableReceipt::From(message.data);
             if (purchasableReceipt.IsVaild())
             {
                 // If the user got item by 'Promotion Code',
@@ -1025,8 +1025,8 @@ void Sample::OpenContact()
 **API**
 
 ```cs
-void RequestContactURL(const FGamebaseContactUrlDelegate& onCallback);
-void RequestContactURL(const FGamebaseContactConfiguration& configuration, const FGamebaseContactUrlDelegate& onCallback);
+void RequestContactURL(const FGamebaseContactUrlDelegate& Callback);
+void RequestContactURL(const FGamebaseContactConfiguration& configuration, const FGamebaseContactUrlDelegate& Callback);
 ```
 
 **ErrorCode**
