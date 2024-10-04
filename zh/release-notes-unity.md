@@ -22,44 +22,44 @@
 ### 2.66.1 (2024. 07. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.1/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
+#### Added Features
 
-* (macOS) 개인정보 보호 정책이 대응되었습니다.
+* (macOS) Responeded to the privacy policy.
 
-#### 기능 개선
+#### Feature Updates
 
-* 내부 로직을 개선했습니다.
+* Improved internal logic.
 
-#### 플랫폼별 변경 사항
+#### Platform-Specific Changes
 * [Gamebase Android SDK 2.66.1](./release-notes-android/#2661-2024-07-23)
 * [Gamebase iOS SDK 2.66.0](./release-notes-ios/#2660-2024-07-23)
 
 ### 2.66.0 (2024. 07. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
+#### Added Features
 
-* (Android) GPGS V2 인증이 추가되었습니다.
+* (Android) Added GPGS v2 authentication.
 
-#### 플랫폼별 변경 사항
+#### Platform-Specific Changes
 * [Gamebase Android SDK 2.66.0](./release-notes-android/#2660-2024-07-10)
 * [Gamebase iOS SDK 2.65.1](./release-notes-ios/#2651-2024-06-25)
 
 #### Setting Tool (v2.9.0)
 
-* GPGS V2 인증이 추가되었습니다. (Android에 한함)
+* Added GPGS v2 authentication.GPGS V2. (Only for Android)
 
 ### 2.65.1 (2024. 06. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.1/GamebaseSDK-Unity.zip)
 
-#### 기능 개선/변경
-* 특정 클라이언트에서 보여줄 이미지가 없는 경우, 에러 대신 성공 콜백이 호출되도록 수정하였습니다.
+#### Feature Updates
+* Fixed so that if there are no images to show on a particular client, a success callback is called instead of an error.
 
-#### 버그 수정
-* 등록된 이미지 공지가 없는 경우, 빈 이미지 공지가 노출되는 이슈를 수정하였습니다.
-* (macOS) UnityEditor에서 GamebaseUtils.bundle 파일이 참조되지 않는 오류를 수정하였습니다.
+#### Bug Fixes
+* Fixed an issue where an empty image notice is displayed when there is no registered image notice.
+* (macOS) Fixed an error in UnityEditor where the GamebaseUtils.bundle file was not referenced.
 
-#### 플랫폼별 변경 사항
+#### Platform-Specific Changes
 * [Gamebase Android SDK 2.65.1](./release-notes-android/#2651-2024-06-25)
 * [Gamebase iOS SDK 2.65.1](./release-notes-ios/#2651-2024-06-25)
 

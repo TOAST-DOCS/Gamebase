@@ -24,20 +24,20 @@
 ### 2.66.0 (2024. 07. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* External SDK update
     * Facebook iOS SDK (17.0.2)
     * Hangame iOS SDK (1.15.0)
-* 앱 추적을 허용하지 않아도 Hangame-Facebook 로그인이 가능하도록 수정하였습니다.
+* Fixed to allow Hangame-Facebook login even if you don't allow app tracking.
 
 ### 2.65.1 (2024. 06. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.1/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 특정 클라이언트에서 보여줄 이미지가 없는 경우, 에러 대신 성공 콜백이 호출되도록 수정하였습니다.
+#### Feature Updates
+* Fixed so that if there are no images to show on a particular client, a success callback is called instead of an error.
 
-#### 버그 수정  
-* 등록된 이미지 공지가 없는 경우, 빈 이미지 공지가 노출되는 이슈를 수정하였습니다.
+#### Bug Fixes  
+* Fixed an issue where an empty image notice is displayed if no registered image announcement is available.
 
 ### 2.65.0 (2024. 06. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.0/GamebaseSDK-iOS.zip)
