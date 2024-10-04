@@ -249,10 +249,23 @@ Google iOS 인증을 위해서는 Google Cloud Console에서 **iOS Client ID**�
 - Web Application ID: {Google Web Application Client ID}
 - iOS Client ID: {Google iOS Client ID}
 - Secret Key: {Google Web Application Client secret}
+- 추가정보: OAuth 2.0 Scopes (json format)
+
+##### Additional Info Settings
+* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정할 수 있습니다.
+* Google의 경우, OAuth 인증 후 프로필 정보에서 email 정보를 획득하고자 한다면 인증 권한 범위인 **scope**를 설정해야 합니다.
+* email 외에 선언할 수 있는 다양한 scope는 다음 문서에서 확인할 수 있습니다.
+    * https://developers.google.com/identity/protocols/oauth2/scopes#google-sign-in
+    * https://developers.google.com/identity/protocols/oauth2/scopes
+
+* Google 추가 인증 정보 입력 예제
+
+```json
+{ "scope": ["email","myscope1","myscope2",...] }
+```
 
 ##### iOS
 * [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP Settings > Google](./ios-started/#google)
-
 
 #### 3. Apple Game Center
 Apple 개발자 사이트에 등록된 BundleID를 Gamebase Console에 입력합니다.
@@ -311,9 +324,12 @@ NAVER Developers 사이트에서 신청하여 발급 받은 {client_id} 및 {cli
 
 * **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야 합니다.
 * NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
+* 또한 NAVER Login SDK는 로그아웃 후에도 자동 로그인으로 인해 계정을 변경할 수 없는데, NAVER 자동 로그인을 사용하지 않으려면 **logout_and_delete_token**을 **true**로 설정해야 합니다.
+
+* NAVER 추가 인증 정보 입력 예제
 
 ```json
-{"service_name": "Your Service Name" }
+{ "service_name": "Your Service Name", "logout_and_delete_token": true }
 ```
 
 ##### iOS
