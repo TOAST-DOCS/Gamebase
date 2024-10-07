@@ -1,5 +1,14 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.66.3
+
+### Unity
+
+#### Changed Minimum Support Version
+
+* Changed the minimum supported version of Unity from 2018.4.0 to 2020.3.0.
+* If you need support for a lower version of Unity, contact [Customer Center](https://toast.com/support/inquiry).
+
 ## 2.65.1
 
 ### Android, iOS, Unity
