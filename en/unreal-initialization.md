@@ -8,7 +8,7 @@ To use Unreal Gamebase SDK, initialization is required. In addition, app ID, and
 To enable Gamebase API, import the following header file. 
 
 ```cpp
-#include "Gamebase.h"
+#include "GamebaseSubsystem.h"
 ```
 
 ### FGamebaseConfiguration 
@@ -17,44 +17,42 @@ Following settings are required for initialization.
 
 | Setting value              | Supported Platform | Mandatory(M) / Optional(O) |
 | -------------------------- | ------------------ | -------------------------- |
-| appID | ALL | M |
+| appID | ALL | M | 
 | appVersion | ALL | M |
 | storeCode | ALL | M |
-| displayLanguageCode | ALL | O |
 | enablePopup | ALL | O |
 | enableLaunchingStatusPopup | ALL | O |
 | enableBanPopup | ALL | O |
 
-#### 1. App ID
+#### 1. AppID
 
 Refers to Project ID registered on Gamebase Console.
 
 [Game > Gamebase > Console Guide > App > App](./oper-app/#app)
 
-#### 2. appVersion
+
+#### 2. AppVersion
 
 Refers to Client Version registered on Gamebase Console. 
 
 [Game > Gamebase > Console Guide > App > Client](./oper-app/#client)
 
-#### 3. storeCode
+#### 3. StoreCode
 
 Find store information as below, required to initialize NHN Cloud In-App Purchase. 
 
-| Store       | Code | Description  |
-| ----------- | ---- | ------------ |
-| App Store | AS | only iOS |
-| Google Play | GG | only Android |
-| One Store | ONESTORE | only Android |
-| Galaxy Store | GALAXY | only Android |
+| Store       | Code | GamebaseStoreCode | Description  |
+| ----------- | ---- | ------------ | ------------ |
+| App Store | AS | GamebaseStoreCode::AppStore | Only iOS |
+| Google Play | GG | GamebaseStoreCode::Google | Only Android |
+| One Store | ONESTORE | GamebaseStoreCode::OneStore | Only Android |
+| Galaxy Store | GALAXY | GamebaseStoreCode::Galaxy | Only Android |
+| Amazon Appstore | AMAZON | GamebaseStoreCode::Amazon | Only Android |
+| Huawei AppGallery | HUAWEI | GamebaseStoreCode::Huawei | Only Android |
+| MyCard | MYCARD | GamebaseStoreCode::MyCard | Only Android |
+| Epic Store | EPIC | GamebaseStoreCode::Epic | Only Windows |
 
-#### 4. displayLanguageCode
-
-The language displayed on Gamebase UI and SystemDialog can be changed to languages other than language set on device.  
-
-[Game > Gamebase > Unreal SDK User Guide > ETC > Additional Features > Display Language](./unreal-etc/#display-language)
-
-#### 5. enablePopup
+#### 4. benablePopup
 
 Game users may be required to show reasons for not being able to play games due to system maintenance or user banned on a popup.  
 This setting allows to enable default Gamebase popups. 
@@ -63,14 +61,14 @@ This setting allows to enable default Gamebase popups.
 * False: Do not show all Gamebase popups.
 * Default: false
 
-#### 6. enableLaunchingStatusPopup
+#### 6. bEnableLaunchingStatusPopup
 
 This setting regards to using default Gamebase popups, when game is unavailable by LaunchingStatus.
 See State, Code below the Launching paragraph to check LaunchingStatus. 
 
 * Default: true
 
-#### 7. enableBanPopup
+#### 7. bEnableBanPopup
 
 This setting regards to using default Gamebase popups, when a game user is found, with login, to have been banned.  
 
@@ -99,15 +97,16 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void SetDebugMode(bool isDebugMode);
+void SetDebugMode(bool bIsDebugMode);
 ```
 
 **Example**
 
 ```cpp
-void Sample::SetDebugMode(bool isDebugMode)
+void USample::SetDebugMode(bool bIsDebugMode)
 {
-    IGamebase::Get().SetDebugMode(isDebugMode);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->SetDebugMode(bIsDebugMode);
 }
 ```
 
