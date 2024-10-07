@@ -324,7 +324,7 @@ NAVER Developers 사이트에서 신청하여 발급 받은 {client_id} 및 {cli
 
 * **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야 합니다.
 * NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
-* 또한 NAVER Login SDK는 로그아웃 후에도 자동 로그인으로 인해 계정을 변경할 수 없는데, NAVER 자동 로그인을 사용하지 않으려면 **logout_and_delete_token**을 **true**로 설정해야 합니다.
+* 또한 NAVER Login SDK는 로그아웃 후에도 자동으로 로그인이 되어 계정을 변경할 수 없는데, 로그아웃 후 다른 NAVER 계정으로 로그인하려면 **logout_and_delete_token**을 **true**로 설정해야 합니다.
 
 * NAVER 추가 인증 정보 입력 예제
 
