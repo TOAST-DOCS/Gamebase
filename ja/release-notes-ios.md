@@ -6,7 +6,7 @@
 #### 機能改善/変更
 * 外部SDKアップデート
     * NHN Cloud iOS SDK (1.8.4)
-        * iOS 18でアプリがフォアグラウンド(foreground)状態のときにNotificationを重複して受信しないように修正しました。
+        * iOS 18でアプリがForeground状態のときにNotificationを重複して受信しないように修正しました。
         
 ### 2.66.2 (2024. 08. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.2/GamebaseSDK-iOS.zip)
