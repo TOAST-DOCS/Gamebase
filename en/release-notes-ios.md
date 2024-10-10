@@ -3,23 +3,23 @@
 ### 2.66.3 (2024. 09. 13.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* External SDK update
     * NHN Cloud iOS SDK (1.8.4)
-        * iOS 18에서 앱이 포그라운드(foreground) 상태일 때 Notification이 중복 수신되지 않도록 수정되었습니다.
+        * Made modifications so that duplicate notifications are not received when the app is in the foreground state in iOS 18.
         
 ### 2.66.2 (2024. 08. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.2/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* External SDK update
     * NHN Cloud iOS SDK (1.8.3)
-        * 앱 스토어 심사에서 PrivacyInfo manifest 관련 경고 메일이 오지 않도록 수정되었습니다.
-* 아래 필드가 deprecated되었습니다.
-    * TCGBWebViewConfiguration.orientationMask
-* 콘솔에 등록되지 않은 IdP로 로그인을 시도할 경우 TCGB_ERROR_AUTH_IDP_LOGIN_INVALID_IDP_INFO(3202) 오류가 발생하도록 수정하였습니다.
-* 롤링 이미지 공지의 웹뷰 내부에서 에러가 발생한 경우, 기존에 성공 콜백 호출 대신 실패 콜백이 호출되도록 수정하였습니다.
-* 내부 로직 개선
+        * Made modifications so that the app store review does not warn about PrivacyInfo manifest.
+* Deprecated the following field.
+    * `TCGBWebViewConfiguration.orientationMask`
+* Made modifications so that `TCGB_ERROR_AUTH_IDP_LOGIN_INVALID_IDP_INFO (3202)` error occurs when attempting to log in with an IdP that is not registered in the console.
+* Fixed a failure callback to be called instead of the previous success callback when an error occurs inside the webview of a rolling image announcement.
+* Improved internal logic
 
 ### 2.66.0 (2024. 07. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.0/GamebaseSDK-iOS.zip)

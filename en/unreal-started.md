@@ -13,25 +13,25 @@ This document describes the environment and initial setting to enable Unreal Gam
 
 #### Supported Platforms
 
-* iOS
 * Android
+* iOS
 * Windows
 
 When unsupported Gamebase API is called on a selected platform, errors like below are returned as callback; if a callback is not available, warning logs show as output.  
 
 * GamebaseErrorCode::NOT_SUPPORTED
-* GamebaseErrorCode::NOT_SUPPORTED_IOS
 * GamebaseErrorCode::NOT_SUPPORTED_ANDROID
-* GamebaseErrorCode::NOT_SUPPORTED_UE4_STANDALONE
-* GamebaseErrorCode::NOT_SUPPORTED_UE4_EDITOR
+* GamebaseErrorCode::NOT_SUPPORTED_IOS
+* GamebaseErrorCode::NOT_SUPPORTED_UE_STANDALONE
+* GamebaseErrorCode::NOT_SUPPORTED_UE_EDITOR
 
 Platforms supported by each API can be categorized by the following icon: 
 
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 #### Dependencies
@@ -48,13 +48,12 @@ Supported Platforms
 
 ### Module Settings
 
-* To use the Gamebase code, you need to add 2 modules as shown below when setting up dependencies in the module's Build.cs file.
+* To use the Gamebase code, you need to add modules as shown below when setting up dependencies in the module's Build.cs file.
 
         PrivateDependencyModuleNames.AddRange(
             new[]
             {
                 "Gamebase",
-                "GamebaseInterface"
             }
         );
 

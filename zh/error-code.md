@@ -4,101 +4,104 @@
 
 | Category        | Platform           | Error                                    | Error Code | Description                                    |
 | --------------- | ------------------ | ---------------------------------------- | ---------- | ---------------------------------------- |
-| Common          | Android, UNITY<br/>IOS | NOT_INITIALIZED<br/>TCGB\_ERROR\_NOT\_INITIALIZED | 1          | Gamebase is not initialized.               |
-|                 | Android, UNITY<br/>IOS | NOT\_LOGGED\_IN<br/>TCGB\_ERROR\_NOT\_LOGGED\_IN | 2          | Login is required.                              |
-|                 | Android, UNITY<br/>IOS | INVALID_PARAMETER<br/>TCGB\_ERROR\_INVALID\_PARAMETER | 3          | Invalid parameter                             |
-|                 | Android, UNITY<br/>IOS | INVALID\_JSON\_FORMAT<br/>TCGB\_ERROR\_INVALID\_JSON\_FORMAT | 4          | Invalid JSON format                           |
-|                 | Android, UNITY<br/>IOS | USER_PERMISSION<br/>TCGB\_ERROR\_USER\_PERMISSION | 5          | User is not authorized.                               |
-|                 | Android, UNITY<br/>IOS | INVALID\_MEMBER<br/>TCGB\_ERROR\_INVALID\_MEMBER  | 6          | Request for invalid member.                              |
-|                 | Android, UNITY<br/>IOS | BANNED\_MEMBER<br/>TCGB\_ERROR\_BANNED\_MEMBER   | 7         | Named member has been banned.                                |
-|                 | Android, UNITY<br/>IOS | NOT_SUPPORTED<br/>TCGB\_ERROR\_NOT\_SUPPORTED | 10         | The function is not supported.                         |
-|                 | UNITY<br/>IOS          | NOT\_SUPPORTED\_ANDROID<br/>TCGB\_ERROR\_NOT\_SUPPORTED\_ANDROID | 11         | The function is not supported by Android.                |
-|                 | UNITY<br/>IOS          | NOT\_SUPPORTED\_IOS<br/>TCGB\_ERROR\_NOT\_SUPPORTED\_IOS | 12         | The function is not supported by iOS.                    |
-|                 | UNITY                  | NOT\_SUPPORTED\_UNITY\_EDITOR            | 13         | The function is not supported by Editor.                 |
-|                 | UNITY                  | NOT\_SUPPORTED\_UNITY\_STANDALONE        | 14         | The function is not supported by Standalone.              |
-|                 | UNITY                  | NOT\_SUPPORTED\_UNITY\_WEBGL             | 15         | The function is not supported by WebGL.               |
-|                 | Android                | ANDROID\_ACTIVITY\_DESTROYED             | 31         | Activity was terminated by force.                       |
-|                 | Android                | ANDROID\_ACTIVEAPP\_NOT\_CALLED          | 32         | The activeApp API has not been called.                 |
-|                 | IOS                    | TCGB_ERROR_IOS_GAMECENTER_DENIED                    | 51         | Gamecenter login has been denied.                 |
-|                 | IOS                    | TCGB_ERROR_IOS_CANNOT_OPEN_URL                    | 52         | The URL scheme cannot be processed by the app.                 |
-| Network(Socket) | Android, UNITY<br/>IOS | SOCKET\_RESPONSE\_TIMEOUT<br/>TCGB\_ERROR\_SOCKET\_RESPONSE\_TIMEOUT | 101        | There is no response due to bad network connection.              |
-|                 | Android, UNITY<br/>IOS | SOCKET_ERROR<br/>TCGB\_ERROR\_SOCKET\_ERROR | 110        | Socket error                                  |
-|                 | Android, UNITY<br/>IOS | SOCKET\_UNKNOWN_ERROR<br/>TCGB\_ERROR\_SOCKET\_UNKNOWN\_ERROR | 999        | Unknown socket error                          |
-| Launching       | Android, UNITY<br/>IOS | LAUNCHING\_SERVER\_ERROR<br/>TCGB\_ERROR\_LAUNCHING\_SERVER\_ERROR | 2001       | Launching server error                           |
-|                 | Android, UNITY<br/>IOS | LAUNCHING\_NOT\_EXIST\_CLIENT\_ID<br/>TCGB\_ERROR\_LAUNCHING\_NOT\_EXIST\_CLIENT\_ID | 2002       | Named client ID does not exist.                 |
-|                 | Android, UNITY<br/>IOS | LAUNCHING\_UNREGISTERED\_APP<br/>TCGB\_ERROR\_LAUNCHING\_UNREGISTERED\_APP | 2003       | Named app is not registered.                       |
-|                 | Android, UNITY<br/>IOS | LAUNCHING\_UNREGISTERED\_CLIENT<br/>TCGB\_ERROR\_LAUNCHING\_UNREGISTERED\_CLIENT | 2004       | Named client (version) is not registered.           |
-| Auth            | Android, UNITY<br/>IOS | AUTH\_USER\_CANCELED<br/>TCGB\_ERROR\_AUTH\_USER\_CANCELED | 3001       | Login is cancelled.                          |
-|                 | Android, UNITY<br/>IOS | AUTH\_NOT\_SUPPORTED\_PROVIDER<br/>TCGB\_ERROR\_AUTH\_NOT\_SUPPORTED\_PROVIDER | 3002       | The authentication is not supported.                    |
-|                 | Android, UNITY<br/>IOS | AUTH\_NOT\_EXIST\_MEMBER<br/>TCGB\_ERROR\_AUTH\_NOT\_EXIST\_MEMBER | 3003       | Named member does not exist or has withdrawn.                    |
-|                 | Android, UNITY<br/>IOS | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR<br/>TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006       | Failed to initialize the external authentication library.                       |
-|                 | Android, UNITY<br/>IOS | AUTH\_EXTERNAL\_LIBRARY\_ERROR<br/>TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | Error in external authentication library                    |
-|                 | Android, UNITY<br/>IOS | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR<br/>TCGB\_ERROR\_AUTH\_ALREADY\_IN\_PROGRESS\_ERROR | 3010       | The previous authentication process has not been completed.                 |
-|                 | Android, UNITY<br/>IOS | AUTH\_INVALID\_GAMEBASE\_TOKEN<br/>TCGB\_ERROR\_AUTH\_INVALID\_GAMEBASE\_TOKEN | 3011       | You have been logged out due to an invalid Gamebase Access Token.<br/>Please try logging in again. |
-| TransferAccount | Android, UNITY<br/>IOS | SAME\_REQUESTOR<br/>TCGB\_ERROR\_SAME\_REQUESTOR | 8 | The issued TransferKey has been used on the same device.  |
-|                 | Android, UNITY<br/>IOS | NOT\_GUEST\_OR\_HAS\_OTHERS<br/>TCGB\_ERROR\_NOT\_GUEST\_OR\_HAS\_OTHERS | 9          | You have tried transferring with a non-guest account or the account is linked with a non-guest IdP. |
-|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_EXPIRED<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_EXPIRED | 3041 | TransferAccount has expired. |
-|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_BLOCK<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_BLOCK | 3042 | The account transfer feature is locked because invalid TransferAccount is attempted multiple times. |
-|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_INVALID\_ID<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_INVALID\_ID | 3043 | Invalid TransferAccount ID. |
-|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_INVALID\_PASSWORD<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_INVALID\_PASSWORD | 3044 | Invalid password for TransferAccount. |
-|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_CONSOLE\_NO\_CONDITION<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_CONSOLE\_NO\_CONDITION | 3045 | TransferAccount is not configured. <br/> Configure it in the NHN Cloud Gamebase Console first. |
-|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_NOT\_EXIST<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_NOT\_EXIST | 3046 | TransferAccount doesn't exist. Get the issued TransferAccount first. |
-|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_ALREADY\_EXIST\_ID<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_ALREADY\_EXIST\_ID | 3047 | TransferAccount already exist. |
-|                 | Android, UNITY<br/>IOS | AUTH\_TRANSFERACCOUNT\_ALREADY\_USED<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_ALREADY\_USED | 3048 | TransferAccount has already been used. |
-| Auth (Login)    | Android, UNITY<br/>IOS | AUTH\_TOKEN\_LOGIN\_FAILED<br/>TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED | 3101       | Token login has failed.                       |
-|                 | Android, UNITY<br/>IOS | AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO<br/>TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | Invalid token information                        |
-|                 | Android, UNITY<br/>IOS | AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP<br/>TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | Invalid last login IdP information                    |
-| IDP Login       | Android, UNITY<br/>IOS | AUTH\_IDP\_LOGIN\_FAILED<br/>TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_FAILED | 3201       | IdP login has failed.                       |
-|                 | Android, UNITY<br/>IOS | AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO<br/>TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_INVALID\_IDP\_INFO | 3202       | Invalid IdP information(IdP information does not exist in the Console.). |
-|                 | UNITY<br/>IOS | AUTH\_IDP\_LOGIN\_EXTERNAL\_AUTHENTICATION\_REQUIRED<br/>TCGB\_ERROR\_AUTH\_IDP\_LOGIN\_EXTERNAL\_AUTHENTICATION\_REQUIRED | 3203       | You must be logged into your IdP before requesting a Gamebase login. |
-| Add Mapping     | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_FAILED<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FAILED | 3301       | Add mapping has failed.                       |
-|                 | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER | 3302       | Already mapped to another member.                     |
-|                 | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_ALREADY\_HAS\_SAME\_IDP | 3303       | Already mapped to same IdP.                   |
-|                 | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_INVALID\_IDP\_INFO | 3304       | Invalid IdP information (IdP information does not exist in the Console.) |
-|                 | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_CANNOT\_ADD\_GUEST\_IDP<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_CANNOT\_ADD\_GUEST\_IDP | 3305       | AddMapping is not available with Guest IdP. |
-| Add Mapping Forcibly | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_FORCIBLY\_NOT\_EXIST\_KEY<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FORCIBLY\_NOT\_EXIST\_KEY | 3311       | ForcingMappingKey does not exist. <br/>Check ForcingMappingTicket again. |
-|                      | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_FORCIBLY\_ALREADY\_USED\_KEY<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FORCIBLY\_ALREADY\_USED\_KEY | 3312       | ForcingMappingKey has already been used. |
-|                      | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_FORCIBLY\_EXPIRED\_KEY<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FORCIBLY\_EXPIRED\_KEY | 3313       | ForcingMappingKey has expired. |
-|                      | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_FORCIBLY\_DIFFERENT\_IDP<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FORCIBLY\_DIFFERENT\_IDP | 3314       | ForcingMappingKey is used from a different IdP. <br/>The issued ForcingMappingKey is used to forcibly map to the same IdP. |
-|                      | Android, UNITY<br/>IOS | AUTH\_ADD\_MAPPING\_FORCIBLY\_DIFFERENT\_AUTHKEY<br/>TCGB\_ERROR\_AUTH\_ADD\_MAPPING\_FORCIBLY\_DIFFERENT\_AUTHKEY | 3315       | ForcingMappingKey is used from a different account. <br/>The issued ForcingMappingKey is used to forcibly map to the same IdP and account. |
-| Remove Mapping  | Android, UNITY<br/>IOS | AUTH\_REMOVE\_MAPPING\_FAILED<br/>TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_FAILED | 3401       | Remove mapping has failed.                         |
-|                 | Android, UNITY<br/>IOS | AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP<br/>TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LAST\_MAPPED\_IDP | 3402       | Cannot delete last mapped IdP.              |
-|                 | Android, UNITY<br/>IOS | AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP<br/>TCGB\_ERROR\_AUTH\_REMOVE\_MAPPING\_LOGGED\_IN\_IDP | 3403       | Currently logged-in IdP                  |
-| Logout          | Android, UNITY<br/>IOS | AUTH\_LOGOUT\_FAILED<br/>TCGB\_ERROR\_AUTH\_LOGOUT\_FAILED | 3501       | Logout has failed.                          |
-| Withdrawal      | Android, UNITY<br/>IOS | AUTH\_WITHDRAW\_FAILED<br/>TCGB\_ERROR\_AUTH\_WITHDRAW\_FAILED | 3601       | Withdrawal has failed.                             |
-|                 | Android, UNITY<br/>IOS | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW<br/>TCGB\_ERROR\_AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | The user is already in the process of temporary withdrawal. |
-|                 | Android, UNITY<br/>IOS | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW<br/>TCGB\_ERROR\_AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | The user is not in the process of temporary withdrawal. |
-| Not Playable    | Android, UNITY<br/>IOS | AUTH\_NOT\_PLAYABLE<br/>TCGB\_ERROR\_AUTH\_NOT\_PLAYABLE | 3701       | Not playable(due to maintenance or service closed)        |
-| Auth(Unknown)   | Android, UNITY<br/>IOS | AUTH\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_AUTH\_UNKNOWN\_ERROR | 3999       | Unknown error(Undefined error)           |
-| Purchase        | Android, UNITY<br/>IOS | PURCHASE\_NOT\_INITIALIZED<br/>TCGB\_ERROR\_PURCHASE\_NOT\_INITIALIZED | 4001       | Gamebase PurchaseAdapter has not been initialized.   |
-|                 | Android, UNITY<br/>IOS | PURCHASE\_USER\_CANCELED<br/>TCGB\_ERROR\_PURCHASE\_USER\_CANCELED | 4002       | Purchase has been cancelled.                           |
-|                 | Android, UNITY<br/>IOS | PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING<br/>TCGB\_ERROR\_PURCHASE\_NOT\_FINISHED\_PREVIOUS\_PURCHASING | 4003       | Previous purchase is not completed.                      |
-|                 | UNITY                  | PURCHASE\_NOT\_ENOUGH\_CASH                                        | 4004       | Cannot purchase due to shortage of cash of the store.             |
-|                 | Android, UNITY<br/>IOS | PURCHASE\_INACTIVE\_PRODUCT\_ID<br/>TCGB\_ERROR\_PURCHASE\_INACTIVE\_PRODUCT\_ID | 4005       | The status of the product is not active. |
-|                 | Android, UNITY<br/>IOS | PURCHASE\_NOT\_EXIST\_PRODUCT\_ID<br/>TCGB\_ERROR\_PURCHASE\_NOT\_EXIST\_PRODUCT\_ID | 4006       | Payment is requested with a non-existent GamebaseProductID. |
-|                 | Android, UNITY<br/>IOS | PURCHASE\_LIMIT\_EXCEEDED<br/>TCGB\_ERROR\_PURCHASE\_LIMIT\_EXCEEDED | 4007       | You have exceeded your monthly purchase limit. |
-|                 | Android, UNITY<br/>IOS | PURCHASE\_NOT\_SUPPORTED\_MARKET<br/>TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET | 4010       | The store is not supported.                         |
-|                 | Android, UNITY<br/>IOS | PURCHASE\_EXTERNAL\_LIBRARY\_ERROR<br/>TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR | 4201       | Error in external IAP library                   |
-|                 | Android, UNITY<br/>IOS | PURCHASE\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR | 4999       | Unknown error in purchase                         |
-| Push            | Android, UNITY<br/>IOS | PUSH\_EXTERNAL\_LIBRARY\_ERROR<br/>TCGB\_ERROR\_PUSH\_EXTERNAL\_LIBRARY\_ERROR | 5101       | Error in external library                      |
-|                 | Android, UNITY<br/>IOS | PUSH\_ALREADY\_IN\_PROGRESS\_ERROR<br/>TCGB\_ERROR\_PUSH\_ALREADY\_IN\_PROGRESS\_ERROR | 5102       | Previous PUSH API call is not completed.             |
-|                 | Android, UNITY<br/>IOS | PUSH\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_PUSH\_UNKNOWN\_ERROR | 5999       | Unknown push error(Undefined push error)     |
-| UI              | Android, UNITY<br/>IOS | UI\_IMAGE\_NOTICE\_TIMEOUT<br/>TCGB\_ERROR\_UI\_IMAGE\_NOTICE\_TIMEOUT | 6901       | Timed out while displaying image notice.            |
-|                 | Android, UNITY<br/>IOS | UI\_CONTACT\_FAIL\_INVALID\_URL<br/>TCGB\_ERROR\_UI\_CONTACT\_FAIL\_INVALID\_URL | 6911       | Failed to create a Customer Center webview URL.            |
-|                 | Android, UNITY<br/>IOS | UI\_CONTACT\_FAIL\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET<br/>TCGB\_ERROR\_UI\_CONTACT\_FAIL\_ISSUE\_SHORT\_TERM\_TICKET | 6912       | Failed to issue a temporary ticket for user identification.            |
-|                 | Android, UNITY<br/>IOS | UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE<br/>TCGB\_ERROR\_UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE | 6921       | Terms & conditions information is not registered with the console. |
-|                 | Android, UNITY<br/>IOS | UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY<br/>TCGB\_ERROR\_UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY | 6922       | Terms & conditions information appropriate for the device's country code is not registered with the console. |
-|                 | Android, UNITY<br/>IOS | UI\_TERMS\_UNREGISTERED\_SEQ<br/>TCGB\_ERROR\_UI\_TERMS\_UNREGISTERED\_SEQ | 6923       | Unregistered terms and conditions Seq value.            |
-|                 | Android, UNITY<br/>IOS | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR<br/>TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924       | The Terms API call has not been completed yet.<br/>Please try again later. |
-|                 | Android, UNITY         | UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925       | Unfinished terms & conditions WebView has been called again. |
-| WebView         | Android, UNITY<br/>IOS | WEBVIEW\_INVALID\_URL<br/>TCGB\_ERROR\_WEBVIEW\_INVALID\_URL   		| 7001       | Invalid URL.            |
-|                 | Android, UNITY<br/>IOS | WEBVIEW\_TIMEOUT<br/>TCGB\_ERROR\_WEBVIEW\_TIMEOUT 	    	        | 7002       | Timed out while displaying WebView.            |
-|                 | Android, UNITY<br/>IOS | WEBVIEW\_HTTP\_ERROR<br/>TCGB\_ERROR\_WEBVIEW\_HTTP\_ERROR 	     	| 7003       | Failed to display WebView due to an HTTP error.            |
-|                 | Android, UNITY         | WEBVIEW\_OPENED\_NEW\_BROWSER\_BEFORE\_CLOSE                           | 7004       | A new webview was displayed before closing the browser type webview. |
-|                 | UNITY                  | WEBVIEW\_UNKNOWN\_ERROR 								| 7999       | An unknown error has occurred while calling the WebView (Undefined error).            |
-| Server          | Android, UNITY<br/>IOS | SERVER\_INTERNAL\_ERROR<br/>TCGB\_ERROR\_SERVER\_INTERNAL\_ERROR | 8001       | Error in internal server                               |
-|                 | Android, UNITY<br/>IOS | SERVER\_REMOTE\_SYSTEM\_ERROR<br/>TCGB\_ERROR\_SERVER\_REMOTE\_SYSTEM\_ERROR | 8002       | Error occurred in server during remote integration.                     |
-|                 | Android, UNITY<br/>IOS | SERVER\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_SERVER\_UNKNOWN\_ERROR | 8999       | Unknown error in server                   |
+| Common          | Android<br/>Unity<br/>iOS | NOT_INITIALIZED<br/>TCGB_ERROR_NOT_INITIALIZED | 1          | Gamebase is not initialized.                 |
+|                 | Android<br/>Unity<br/>iOS | NOT_LOGGED_IN<br/>TCGB_ERROR_NOT_LOGGED_IN | 2          | Sign in is required.                              |
+|                 | Android<br/>Unity<br/>iOS | INVALID_PARAMETER<br/>TCGB_ERROR_INVALID_PARAMETER | 3          | Invalid parameter.                             |
+|                 | Android<br/>Unity<br/>iOS | INVALID_JSON_FORMAT<br/>TCGB_ERROR_INVALID_JSON_FORMAT | 4          | JSON format error.                           |
+|                 | Android<br/>Unity<br/>iOS | USER_PERMISSION<br/>TCGB_ERROR_USER_PERMISSION | 5          | You don't have permission.                                |
+|                 | Android<br/>Unity<br/>iOS | INVALID_MEMBER<br/>TCGB_ERROR_INVALID_MEMBER  | 6          | The request is for the wrong member.                              |
+|                 | Android<br/>Unity<br/>iOS | BANNED_MEMBER<br/>TCGB_ERROR_BANNED_MEMBER   | 7         | Sanctioned member.                                |
+|                 | Android<br/>Unity<br/>iOS | NOT_SUPPORTED<br/>TCGB_ERROR_NOT_SUPPORTED | 10         | This feature is not supported.                           |
+|                 | Unity<br/>iOS             | NOT_SUPPORTED_ANDROID<br/>TCGB_ERROR_NOT_SUPPORTED_ANDROID | 11         | This feature is not supported on Android.                 |
+|                 | Unity<br/>iOS             | NOT_SUPPORTED_IOS<br/>TCGB_ERROR_NOT_SUPPORTED_IOS | 12         | This feature is not supported on iOS.                     |
+|                 | Unity                     | NOT_SUPPORTED_UNITY_EDITOR            | 13         | This feature is not supported by the Editor.                  |
+|                 | Unity                     | NOT_SUPPORTED_UNITY_STANDALONE        | 14         | This feature is not supported in Standalone.              |
+|                 | Unity                     | NOT_SUPPORTED_UNITY_WEBGL             | 15         | This feature is not supported by WebGL.                   |
+|                 | Android                   | ANDROID_ACTIVITY_DESTROYED             | 31         | The activity was force terminated.                       |
+|                 | Android                   | ANDROID_ACTIVEAPP_NOT_CALLED          | 32         | The activeApp API was not called.                 |
+|                 | iOS                       | TCGB_ERROR_IOS_GAMECENTER_DENIED                    | 51         | Gamecenter login was denied.                 |
+|                 | iOS                       | TCGB_ERROR_IOS_CANNOT_OPEN_URL                    | 52         | Your app can't handle URL schemes.                 |
+| Network(Socket) | Android<br/>Unity<br/>iOS | SOCKET_RESPONSE_TIMEOUT<br/>TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT | 101        | No response due to unstable network conditions.                 |
+|                 | Android<br/>Unity<br/>iOS | SOCKET_ERROR<br/>TCGB_ERROR_SOCKET_ERROR | 110        | Socket error.                                    |
+|                 | Android<br/>Unity<br/>iOS | SOCKET_UNKNOWN_ERROR<br/>TCGB_ERROR_SOCKET_UNKNOWN_ERROR | 999        | Unknown socket error.                             |
+| Launching       | Android<br/>Unity<br/>iOS | LAUNCHING_SERVER_ERROR<br/>TCGB_ERROR_LAUNCHING_SERVER_ERROR | 2001       | Launch server error.                             |
+|                 | Android<br/>Unity<br/>iOS | LAUNCHING_NOT_EXIST_CLIENT_ID<br/>TCGB_ERROR_LAUNCHING_NOT_EXIST_CLIENT_ID | 2002       | Client ID is missing.                    |
+|                 | Android<br/>Unity<br/>iOS | LAUNCHING_UNREGISTERED_APP<br/>TCGB_ERROR_LAUNCHING_UNREGISTERED_APP | 2003       | This is an unregistered app.                         |
+|                 | Android<br/>Unity<br/>iOS | LAUNCHING_UNREGISTERED_CLIENT<br/>TCGB_ERROR_LAUNCHING_UNREGISTERED_CLIENT | 2004       | Unregistered client (version).            |
+| Auth            | Android<br/>Unity<br/>iOS | AUTH_USER_CANCELED<br/>TCGB_ERROR_AUTH_USER_CANCELED | 3001       | Your login has been canceled.                            |
+|                 | Android<br/>Unity<br/>iOS | AUTH_NOT_SUPPORTED_PROVIDER<br/>TCGB_ERROR_AUTH_NOT_SUPPORTED_PROVIDER | 3002       | This authentication method is not supported.                        |
+|                 | Android<br/>Unity<br/>iOS | AUTH_NOT_EXIST_MEMBER<br/>TCGB_ERROR_AUTH_NOT_EXIST_MEMBER | 3003       | A member that doesn't exist or has left.                      |
+|                 | Android<br/>Unity<br/>iOS | AUTH_EXTERNAL_LIBRARY_INITIALIZATION_ERROR<br/>TCGB_ERROR_AUTH_EXTERNAL_LIBRARY_INITIALIZATION_ERROR | 3006       | Failed to initialize external authentication library.                       |
+|                 | Android<br/>Unity<br/>iOS | AUTH_EXTERNAL_LIBRARY_ERROR<br/>TCGB_ERROR_AUTH_EXTERNAL_LIBRARY_ERROR | 3009       | External authentication library error.                       |
+|                 | Android<br/>Unity<br/>iOS | AUTH_ALREADY_IN_PROGRESS_ERROR<br/>TCGB_ERROR_AUTH_ALREADY_IN_PROGRESS_ERROR | 3010       | The previous authentication process did not complete.                 |
+|                 | Android<br/>Unity<br/>iOS | AUTH_INVALID_GAMEBASE_TOKEN<br/>TCGB_ERROR_AUTH_INVALID_GAMEBASE_TOKEN | 3011       | You were logged out because your Gamebase Access Token is invalid.<br/>Try signing in again. |
+| TransferAccount | Android<br/>Unity<br/>iOS | SAME_REQUESTOR<br/>TCGB_ERROR_SAME_REQUESTOR | 8 | The issued TransferAccount was used on the same terminal. |
+|                 | Android<br/>Unity<br/>iOS | NOT_GUEST_OR_HAS_OTHERS<br/>TCGB_ERROR_NOT_GUEST_OR_HAS_OTHERS | 9 | You tried to transfer from a non-Guest account, or your account is associated with a non-Guest IdP. |
+|                 | Android<br/>Unity<br/>iOS | AUTH_TRANSFERACCOUNT_EXPIRED<br/>TCGB_ERROR_AUTH_TRANSFERACCOUNT_EXPIRED | 3041 | The TransferAccount has expired. |
+|                 | Android<br/>Unity<br/>iOS | AUTH_TRANSFERACCOUNT_BLOCK<br/>TCGB_ERROR_AUTH_TRANSFERACCOUNT_BLOCK | 3042 | The account transfer feature is locked because you entered an invalid TransferAccount multiple times. |
+|                 | Android<br/>Unity<br/>iOS | AUTH_TRANSFERACCOUNT_INVALID_ID<br/>iCGB_ERROR_AUTH_TRANSFERACCOUNT_INVALID_ID | 3043 | TransferAccount's Id is invalid. |
+|                 | Android<br/>Unity<br/>iOS | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD<br/>TCGB_ERROR_AUTH_TRANSFERACCOUNT_INVALID_PASSWORD | 3044 | The Password for TransferAccount is invalid. |
+|                 | Android<br/>Unity<br/>iOS | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION<br/>TCGB_ERROR_AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045 | TransferAccount is not set. <br/> Set up TransferAccount in the NHN Cloud Gamebase console first. |
+|                 | Android<br/>Unity<br/>iOS | AUTH_TRANSFERACCOUNT_NOT_EXIST<br/>TCGB_ERROR_AUTH_TRANSFERACCOUNT_NOT_EXIST | 3046 | The TransferAccount doesn't exist, please get a TransferAccount first. |
+|                 | Android<br/>Unity<br/>iOS | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID<br/>TCGB_ERROR_AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID | 3047 | TransferAccount already exists. |
+|                 | Android<br/>Unity<br/>iOS | AUTH_TRANSFERACCOUNT_ALREADY_USED<br/>TCGB_ERROR_AUTH_TRANSFERACCOUNT_ALREADY_USED | 3048 | TransferAccount is already used. |
+| Auth (Login)    | Android<br/>Unity<br/>iOS | AUTH_TOKEN_LOGIN_FAILED<br/>TCGB_ERROR_AUTH_TOKEN_LOGIN_FAILED | 3101       | Token login failed.                         |
+|                 | Android<br/>Unity<br/>iOS | AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO<br/>TCGB_ERROR_AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO | 3102       | The token information is invalid.                        |
+|                 | Android<br/>Unity<br/>iOS | AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP<br/>TCGB_ERROR_AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103       | I don't have the IdP information for the last time I signed in.                   |
+| IDP Login       | Android<br/>Unity<br/>iOS | AUTH_IDP_LOGIN_FAILED<br/>TCGB_ERROR_AUTH_IDP_LOGIN_FAILED | 3201       | IdP login failed.                        |
+|                 | Android<br/>Unity<br/>iOS | AUTH_IDP_LOGIN_INVALID_IDP_INFO<br/>TCGB_ERROR_AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3202       | The IdP information is invalid (there is no corresponding IdP information in the console). |
+|                 | Unity<br/>iOS             | AUTH_IDP_LOGIN_EXTERNAL_AUTHENTICATION_REQUIRED<br/>TCGB_ERROR_AUTH_IDP_LOGIN_EXTERNAL_AUTHENTICATION_REQUIRED | 3203       | You must be logged in to your IdP before requesting a Gamebase login. |
+| Add Mapping     | Android<br/>Unity<br/>iOS | AUTH_ADD_MAPPING_FAILED<br/>TCGB_ERROR_AUTH_ADD_MAPPING_FAILED | 3301       | Adding a mapping failed.                          |
+|                 | Android<br/>Unity<br/>iOS | AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER<br/>TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302       | It's already mapped to another member.                      |
+|                 | Android<br/>Unity<br/>iOS | AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP<br/>TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP | 3303       | It's already mapped to the same IdP.                     |
+|                 | Android<br/>Unity<br/>iOS | AUTH_ADD_MAPPING_INVALID_IDP_INFO<br/>TCGB_ERROR_AUTH_ADD_MAPPING_INVALID_IDP_INFO | 3304       | The IdP information is invalid (there is no corresponding IdP information in the console). |
+|                 | Android<br/>Unity<br/>iOS | AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP<br/>TCGB_ERROR_AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP | 3305       | AddMapping is not possible with guest IdPs. |
+| Add Mapping Forcibly | Android<br/>Unity<br/>iOS | AUTH_ADD_MAPPING_FORCIBLY_NOT_EXIST_KEY<br/>TCGB_ERROR_AUTH_ADD_MAPPING_FORCIBLY_NOT_EXIST_KEY | 3311       | The ForcingMappingKey does not exist. <br/>ForcingMappingTicket again. |
+|                 | Android<br/>Unity<br/>iOS | AUTH_ADD_MAPPING_FORCIBLY_ALREADY_USED_KEY<br/>TCGB_ERROR_AUTH_ADD_MAPPING_FORCIBLY_ALREADY_USED_KEY | 3312       | The ForcingMappingKey has already been used. |
+|                 | Android<br/>Unity<br/>iOS | AUTH_ADD_MAPPING_FORCIBLY_EXPIRED_KEY<br/>TCGB_ERROR_AUTH_ADD_MAPPING_FORCIBLY_EXPIRED_KEY | 3313       | The ForcingMappingKey has expired. |
+|                 | Android<br/>Unity<br/>iOS | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_IDP<br/>TCGB_ERROR_AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_IDP | 3314       | The ForcingMappingKey was used for a different IdP. <br/>The ForcingMappingKey issued is used to attempt to force mapping to the same IdP. |
+|                 | Android<br/>Unity<br/>iOS | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_AUTHKEY<br/>TCGB_ERROR_AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_AUTHKEY | 3315       | The ForcingMappingKey was used for a different account. <br/>The ForcingMappingKey issued is used to attempt to force mapping to the same IdP and account. |
+| Remove Mapping  | Android<br/>Unity<br/>iOS | AUTH_REMOVE_MAPPING_FAILED<br/>TCGB_ERROR_AUTH_REMOVE_MAPPING_FAILED | 3401       | Deleting a mapping failed.                          |
+|                 | Android<br/>Unity<br/>iOS | AUTH_REMOVE_MAPPING_LAST_MAPPED_IDP<br/>TCGB_ERROR_AUTH_REMOVE_MAPPING_LAST_MAPPED_IDP | 3402       | You can't delete the last mapped IdP.                |
+|                 | Android<br/>Unity<br/>iOS | AUTH_REMOVE_MAPPING_LOGGED_IN_IDP<br/>TCGB_ERROR_AUTH_REMOVE_MAPPING_LOGGED_IN_IDP | 3403       | The IdP you're currently logged into.                      |
+| Logout          | Android<br/>Unity<br/>iOS | AUTH_LOGOUT_FAILED<br/>TCGB_ERROR_AUTH_LOGOUT_FAILED | 3501       | Logout failed.                           |
+| Withdrawal      | Android<br/>Unity<br/>iOS | AUTH_WITHDRAW_FAILED<br/>TCGB_ERROR_AUTH_WITHDRAW_FAILED | 3601       | Unsubscribe failed.                             |
+|                 | Android<br/>Unity<br/>iOS | AUTH_WITHDRAW_ALREADY_TEMPORARY_WITHDRAW<br/>TCGB_ERROR_AUTH_WITHDRAW_ALREADY_TEMPORARY_WITHDRAW | 3602   | The user has already requested a temporary withdrawal.                    |
+|                 | Android<br/>Unity<br/>iOS | AUTH_WITHDRAW_NOT_TEMPORARY_WITHDRAW<br/>TCGB_ERROR_AUTH_WITHDRAW_NOT_TEMPORARY_WITHDRAW | 3603       | You are not the user who requested temporary withdrawal.                     |
+| Not Playable    | Android<br/>Unity<br/>iOS | AUTH_NOT_PLAYABLE<br/>TCGB_ERROR_AUTH_NOT_PLAYABLE | 3701       | Unplayable state (such as maintenance or out of service).        |
+| Auth(Unknown)   | Android<br/>Unity<br/>iOS | AUTH_UNKNOWN_ERROR<br/>TCGB_ERROR_AUTH_UNKNOWN_ERROR | 3999       | Unknown error (undefined error).           |
+| Purchase        | Android<br/>Unity<br/>iOS | PURCHASE_NOT_INITIALIZED<br/>TCGB_ERROR_PURCHASE_NOT_INITIALIZED | 4001       | The Gamebase PurchaseAdapter was not initialized.   |
+|                 | Android<br/>Unity<br/>iOS | PURCHASE_USER_CANCELED<br/>TCGB_ERROR_PURCHASE_USER_CANCELED | 4002       | Your purchase has been canceled.                             |
+|                 | Android<br/>Unity<br/>iOS | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING<br/>TCGB_ERROR_PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | The previous purchase was not completed.                       |
+|                 | Unity                     | PURCHASE_NOT_ENOUGH_CASH                                        | 4004       | Unable to checkout because the store is low on cache (Unity only) |
+|                 | Android<br/>Unity<br/>iOS | PURCHASE_INACTIVE_PRODUCT_ID<br/>TCGB_ERROR_PURCHASE_INACTIVE_PRODUCT_ID | 4005       | The product is not active.  |
+|                 | Android<br/>Unity<br/>iOS | PURCHASE_NOT_EXIST_PRODUCT_ID<br/>TCGB_ERROR_PURCHASE_NOT_EXIST_PRODUCT_ID | 4006       | Payment was requested with a GamebaseProductID that doesn't exist. |
+|                 | Android<br/>Unity<br/>iOS | PURCHASE_LIMIT_EXCEEDED<br/>TCGB_ERROR_PURCHASE_LIMIT_EXCEEDED | 4007       | You've exceeded your monthly purchase limit. |
+|                 | Android<br/>Unity<br/>iOS | PURCHASE_NOT_SUPPORTED_MARKET<br/>TCGB_ERROR_PURCHASE_NOT_SUPPORTED_MARKET | 4010       | This store is not supported.                          |
+|                 | Android<br/>Unity<br/>iOS | PURCHASE_EXTERNAL_LIBRARY_ERROR<br/>TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR | 4201       | External IAP library error.                      |
+|                 | Android<br/>Unity<br/>iOS | PURCHASE_UNKNOWN_ERROR<br/>TCGB_ERROR_PURCHASE_UNKNOWN_ERROR | 4999       | Unknown purchase error.                           |
+| Push            | Android<br/>Unity<br/>iOS | PUSH_EXTERNAL_LIBRARY_ERROR<br/>TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR | 5101       | External library error.                          |
+|                 | Android<br/>Unity<br/>iOS | PUSH_ALREADY_IN_PROGRESS_ERROR<br/>TCGB_ERROR_PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | The previous push API call did not complete.              |
+|                 | Android<br/>Unity<br/>iOS | PUSH_UNKNOWN_ERROR<br/>TCGB_ERROR_PUSH_UNKNOWN_ERROR | 5999       | Unknown push error (undefined push error).      |
+| UI              | Android<br/>Unity<br/>iOS | UI_IMAGE_NOTICE_TIMEOUT<br/>TCGB_ERROR_UI_IMAGE_NOTICE_TIMEOUT | 6901       | Image announcement timed out while displaying.            |
+|                 | Android<br/>Unity         | UI_IMAGE_NOTICE_NOT_SUPPORTED_OS | 6902       | For rolling types, image announcements are not supported on devices with API 19 or lower.            |
+|                 | Android<br/>Unity<br/>iOS | UI_CONTACT_FAIL_INVALID_URL<br/>TCGB_ERROR_UI_CONTACT_FAIL_INVALID_URL | 6911       | Failed to generate the contact center webview URL.            |
+|                 | Android<br/>Unity<br/>iOS | UI_CONTACT_FAIL_FAIL_ISSUE_SHORT_TERM_TICKET<br/>TCGB_ERROR_UI_CONTACT_FAIL_ISSUE_SHORT_TERM_TICKET | 6912       | Failed to issue a temporary ticket to identify the user.            |
+|                 | Android<br/>Unity<br/>iOS | UI_TERMS_NOT_EXIST_IN_CONSOLE<br/>TCGB_ERROR_UI_TERMS_NOT_EXIST_IN_CONSOLE | 6921       | Terms information is not registered in the console. |
+|                 | Android<br/>Unity<br/>iOS | UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY<br/>TCGB_ERROR_UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY | 6922       | The terms and conditions information for your device's country code is not registered in the console. |
+|                 | Android<br/>Unity<br/>iOS | UI_TERMS_UNREGISTERED_SEQ<br/>TCGB_ERROR_UI_TERMS_UNREGISTERED_SEQ | 6923       | The value of the unregistered terms Seq.            |
+|                 | Android<br/>Unity<br/>iOS | UI_TERMS_ALREADY_IN_PROGRESS_ERROR<br/>TCGB_ERROR_UI_TERMS_ALREADY_IN_PROGRESS_ERROR | 6924       | The Terms API call has not yet completed.<br/>Try again in a few minutes. |
+|                 | Android<br/>Unity         | UI_TERMS_ANDROID_DUPLICATED_VIEW | 6925       | The Terms webview was invoked again without exiting. |
+|                 | Android<br/>Unity<br/>iOS | UI_UNKNOWN_ERROR<br/>TCGB_ERROR_UI_UNKNOWN_ERROR | 6999       | Unknown error (undefined error).            |
+| WebView         | Android<br/>Unity<br/>iOS | WEBVIEW_INVALID_URL<br/>TCGB_ERROR_WEBVIEW_INVALID_URL           | 7001       | Invalid URL.            |
+|                 | Android<br/>Unity<br/>iOS | WEBVIEW_TIMEOUT<br/>TCGB_ERROR_WEBVIEW_TIMEOUT                     | 7002       | The webview timed out while displaying.            |
+|                 | Android<br/>Unity<br/>iOS | WEBVIEW_HTTP_ERROR<br/>TCGB_ERROR_WEBVIEW_HTTP_ERROR 	        | 7003       | Failed to display the webview due to an HTTP error.            |
+|                 | Android<br/>Unity         | WEBVIEW_OPENED_NEW_BROWSER_BEFORE_CLOSE                           | 7004       | Displayed a new webview before exiting the Browser-like webview. |
+|                 | Unity                     | WEBVIEW_UNKNOWN_ERROR | 7999       | An unknown error occurred when calling the webview (undefined error).            |
+| Server          | Android<br/>Unity<br/>iOS | SERVER_INTERNAL_ERROR<br/>TCGB_ERROR_SERVER_INTERNAL_ERROR | 8001       | Server internal errors                                 |
+|                 | Android<br/>Unity<br/>iOS | SERVER_REMOTE_SYSTEM_ERROR<br/>TCGB_ERROR_SERVER_REMOTE_SYSTEM_ERROR | 8002       | The server encountered an error during external integration.                        |
+|                 | Android<br/>Unity<br/>iOS | SERVER_INVALID_RESPONSE<br/>TCGB_ERROR_SERVER_INVALID_RESPONSE | 8003       | The server returned an invalid response.                        |
+|                 | Android<br/>Unity<br/>iOS | SERVER_UNKNOWN_ERROR<br/>TCGB_ERROR_SERVER_UNKNOWN_ERROR | 8999       | An unknown error occurred on the server.                           |
 
 <br/>
 <br/>

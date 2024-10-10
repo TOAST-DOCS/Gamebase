@@ -186,7 +186,7 @@
 * [iOS 설정 툴](./unreal-started/#ios-settings)에서 Xcode의 경로를 지정할 수 있도록 **Xcode Path** 설정이 추가되었습니다.
 
 #### 기능 개선/변경
-* 킥아웃 팝업 창 표시 여부는 Gamebase 콘솔에서 킥아웃 등록 시 설정할 수 있으므로 다음 필드는 더 이상 사용하지 않습니다
+* 킥아웃 팝업 창 표시 여부는 Gamebase 콘솔에서 킥아웃 등록 시 설정할 수 있으므로 다음 필드는 더 이상 사용하지 않습니다.
     * **FGamebaseConfiguration.bEnableKickoutPopup**
 * FGamebaseConfiguration 내 일부 필드에 기본값이 추가되었습니다.
     * bEnableLaunchingStatusPopup의 기본값이 true로 설정되었습니다.

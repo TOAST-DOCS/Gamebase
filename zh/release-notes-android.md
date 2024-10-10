@@ -24,25 +24,25 @@
 ### 2.66.1 (2024. 07. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.1/GamebaseSDK-Android.zip)
 
-#### 버그 수정
-* targetSdk 34로 빌드했을 때 Android 14 단말기에서 `gamebase://dismiss` 스킴이 동작하지 않아 커스텀 스킴으로 웹뷰를 종료할 수 없는 이슈를 수정했습니다.
+#### Bug Fixes
+* Fixed an issue where the `gamebase://dismiss` scheme did not work on Android 14 devices when built with targetSdk 34, preventing custom schemes from exiting the webview.
 
 ### 2.66.0 (2024. 07. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.0/GamebaseSDK-Android.zip)
 
 #### Added Features
 * Added GPGS v2 authentication
-    * 설정 방법은 다음 가이드 문서를 참고하시기 바랍니다.
-        * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#gpgs-v2-idp)
+    * For more details on how to set, see the following document.
+        * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#gpgs-v2-idp)
 
 ### 2.65.1 (2024. 06. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.1/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 특정 클라이언트에서 보여줄 이미지가 없는 경우, 에러 대신 성공 콜백이 호출되도록 수정하였습니다.
+#### Feature Updates
+* Fixed so that if there are no images to show on a particular client, a success callback is called instead of an error.
 
-#### 버그 수정  
-* 등록된 이미지 공지가 없는 경우, 빈 이미지 공지가 노출되고, 이 때 오늘은 그만보기 체크 후 닫기 시 crash가 발생되는 오류를 수정하였습니다.
+#### Bug Fixes  
+* Fixed an error where, when an empty image notice is exposed if there were no registered image notices, a crash occurs on closing after checking the Show less for today.
 
 ### 2.65.0 (2024. 06. 11.)
 
