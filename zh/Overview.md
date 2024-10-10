@@ -40,18 +40,18 @@ Gamebase supports OAuth login based on ID and passwords, using accounts of many 
 
 Following is the list of external authentication supported by Gamebase.
 
-| External Authentication             | Android | iOS | Windows(based Unity) |
-| ----------------- | ------------ | ------------ | ------------ |
-| Facebook          | O | O | O |
-| Sign In with Apple | O  | O | |
-| Apple Game Center |  | O | |
-| Google            | O | O | O |
-| PAYCO             | O | O | O |
-| NAVER             | O | O | O |
-| Twitter			| O | O | |
-| LINE				| O | O | O  |
-| Hangame			| O | O | O  |
-| Weibo				| O | O |   |
+| External Authentication       | Android | iOS | Unity(Windows, macOS) | Unreal(Windows) | 
+| ----------------- | ------------ | ------------ | ------------ | ------------ |
+| Facebook          | O | O | O | O |
+| Sign In with Apple | O  | O | | O |
+| Apple Game Center |  | O | | |
+| Google            | O | O | O | O |
+| PAYCO             | O | O | O | |
+| NAVER             | O | O | O | |
+| Twitter			| O | O | | O | |
+| LINE				| O | O | O  | |
+| Hangame			| O | O | O  | |
+| Weibo | O  | O  | | |
 
 * **Provides guest logins.**
   With guest login, users can log in and start a game without any authentication required. As Gamebase user ID is issued even to guest users, game data can be managed for all users, regardless of OAuth or guest login

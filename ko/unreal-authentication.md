@@ -36,9 +36,9 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 * 네트워크 오류
     * 오류 코드가 **SOCKET_ERROR(110)** 또는 **SOCKET_RESPONSE_TIMEOUT(101)** 인 경우, 일시적인 네트워크 문제로 인증이 실패한 것이므로 **LoginForLastLoggedInProvider API**를 다시 호출하거나, 잠시 후 다시 시도합니다.
 * 이용 정지 게임 유저
-    * 오류 코드가 **BANNED_MEMBER(7)** 인 경우, 이용 정지 게임 유저이므로 인증에 실패한 것입니다.
+    * 오류 코드가 **BANNED_MEMBER(7)**인 경우, 이용 정지 게임 유저이므로 인증에 실패한 것입니다.
     * **FGamebaseBanInfo::From API**로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려주시기 바랍니다.
-    * Gamebase 초기화 시 **FGamebaseConfiguration.bEnablePopup** 및 **FGamebaseConfiguration.bEnableBanPopup**값을 true로 한다면 Gamebase가 이용 정지에 관한 팝업 창을 자동으로 띄웁니다.
+    * Gamebase 초기화 시 **FGamebaseConfiguration.bEnablePopup** 및 **FGamebaseConfiguration.bEnableBanPopup** 값을 true로 한다면 Gamebase가 이용 정지에 관한 팝업 창을 자동으로 띄웁니다.
 * 그 외 오류
     * 이전 로그인 유형으로 인증에 실패했습니다. **'2. 지정된 IdP로 인증'**을 진행합니다.
 
@@ -60,7 +60,7 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 * 이용 정지 게임 유저
     * 오류 코드가 **BANNED_MEMBER(7)**인 경우, 이용 정지 게임 유저이므로 인증에 실패한 것입니다.
     * **FGamebaseBanInfo::From API**로 제재 정보를 확인하여 게임 유저에게 게임을 플레이할 수 없는 이유를 알려 주시기 바랍니다.
-    * Gamebase 초기화 시 **FGamebaseConfiguration.bEnablePopup** 및 **FGamebaseConfiguration.bEnableBanPopup**값을 **true**로 지정하면 Gamebase가 이용 정지에 관한 팝업 창을 자동으로 표시합니다.
+    * Gamebase 초기화 시 **FGamebaseConfiguration.bEnablePopup** 및 **FGamebaseConfiguration.bEnableBanPopup** 값을 **true**로 지정하면 Gamebase가 이용 정지에 관한 팝업 창을 자동으로 표시합니다.
 * 그 외의 오류
     * 오류가 발생했다는 것을 게임 유저에게 알리고, 게임 유저가 인증 IdP 유형을 선택할 수 있는 상태(주로 타이틀 화면 또는 로그인 화면)로 되돌아갑니다.
 
@@ -180,10 +180,10 @@ void USample::Login()
 
 > [참고]
 >
-> 로그인할 때 추가정보를 필요로 하는 IdP도 있습니다.
+> 로그인할 때 추가 정보를 필요로 하는 IdP도 있습니다.
 > 이러한 추가 정보들을 설정할 수 있게 void Login(const FString& ProviderName, const UGamebaseJsonObject& AdditionalInfo, const FGamebaseAuthTokenDelegate& Callback) API를 제공합니다.
 >AdditionalInfo 파라미터에 필수 정보들을 dictionary 형태로 입력하시면 됩니다.
->AdditionalInfo 값이 있을 경우에는 해당 값을 사용하고 null 일 경우에는 [NHN Cloud Console](./oper-app/#authentication-information)에 등록된 값을 사용합니다.
+>AdditionalInfo 값이 있을 경우에는 해당 값을 사용하고 null일 경우에는 [NHN Cloud Console](./oper-app/#authentication-information)에 등록된 값을 사용합니다.
 
 > [참고]
 >
