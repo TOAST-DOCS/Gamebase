@@ -342,6 +342,20 @@ Twitter Application Management 사이트에서 앱을 등록하고 발급 받은
 
 - Client ID: {Twitter Consumer Key}
 - Secret Key: {Twitter Consumer Secret}
+- 추가정보: Twitter Authentication method (json format)
+
+##### Additional Info Settings
+* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
+* Twitter의 경우, 로그인에 사용할 인증 프로토콜인 **auth_protocol**을 설정해야 합니다.
+
+* Twitter 추가 인증 정보 입력 예제
+
+```json
+{ "auth_protocol": "oauth2" }
+```
+
+> [참고]
+> 추가 인증 정보에서 **auth_protocol** 필드가 비어있거나 "oauth1a"로 설정한 경우, Twitter 로그인은 OAuth 1.0a 방식으로 진행됩니다.
 
 **Reference URL**
 - [Twitter Application Management](https://apps.twitter.com/)
