@@ -657,7 +657,6 @@ class MyApplication: GamebaseMyCardApplication() {
 * [Facebook for developers](https://developers.facebook.com/docs/android)
 * [Google APIs for Android](https://developers.google.com/android/guides/overview)
 * [NAVER for developers](https://developers.naver.com/docs/login/android/)
-* [Twitter Android Developer's guide - Log in with Twitter](https://dev.twitter.com/web/sign-in/implementing)
 * [Twitter Android Developer's guide - Authentication](https://developer.twitter.com/en/docs/authentication/overview)
 * [LINE for developers](https://developers.line.biz/en/docs/android-sdk/integrate-line-login/)
 * [PAYCO Login SDK for developers](https://developers.payco.com/guide/development/apply/android)

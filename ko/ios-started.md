@@ -340,7 +340,6 @@ end
 
 * [Facebook for developers](https://developers.facebook.com/docs/ios)
 * [NAVER for developers](https://developers.naver.com/docs/login/ios/ios.md)
-* [Twitter Developer's guide - Log in with Twitter](https://developer.twitter.com/en/docs/authentication/guides/log-in-with-twitter)
 * [Twitter Developer's guide - Authentication](https://developer.twitter.com/en/docs/authentication/overview)
 * [LINE for developers](https://developers.line.biz/en/docs/line-login-sdks/ios-sdk/swift/overview/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/ios)

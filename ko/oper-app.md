@@ -336,29 +336,29 @@ NAVER Developers 사이트에서 신청하여 발급 받은 {client_id} 및 {cli
 * [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings > Naver](./ios-started/#naver)
 
 #### 6. Twitter
-Twitter Application Management 사이트에서 앱을 등록하고 발급 받은 {Consumer Key} 및 {Consumer Secret}을 Gamebase Console에 입력합니다.
+
+##### Developer Portal
+
+![gamebase_app_twitter_02_ko_241024](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/ko/gamebase_app_twitter_02_ko_241024.png)
+
+![gamebase_app_twitter_03_ko_241024](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/ko/gamebase_app_twitter_03_ko_241024.png)
+
+Twitter 인증을 위해서는 Developer Portal에서 Callback URI란에 다음 값을 입력합니다.
+* https://id-gamebase.toast.com/oauth/callback
+
+##### Gamebase Console
+
+Developer Portal에서 앱을 등록하고 **OAuth 2.0 Client ID와 Client Secret**을 발급받아 Gamebase Console에 입력합니다.
 
 **입력 필드**
 
-- Client ID: {Twitter Consumer Key}
-- Secret Key: {Twitter Consumer Secret}
-- 추가정보: Twitter Authentication method (json format)
+- Client ID: {OAuth 2.0 Client ID}
+- Secret Key: {OAuth 2.0 Client Secret}
 
-##### Additional Info Settings
-* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
-* Twitter의 경우, 로그인에 사용할 인증 프로토콜인 **auth_protocol**을 설정해야 합니다.
-
-* Twitter 추가 인증 정보 입력 예제
-
-```json
-{ "auth_protocol": "oauth2" }
-```
-
-> [참고]
-> 추가 인증 정보에서 **auth_protocol** 필드가 비어있거나 "oauth1a"로 설정한 경우, Twitter 로그인은 OAuth 1.0a 방식으로 진행됩니다.
+![gamebase_app_twitter_01_ko_241024](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/ko/gamebase_app_twitter_01_ko_241024.png)
 
 **Reference URL**
-- [Twitter Application Management](https://apps.twitter.com/)
+- [Twitter Application Management](https://developer.x.com/)
 
 ##### Android
  > <font color="red">[주의]</font><br/>
