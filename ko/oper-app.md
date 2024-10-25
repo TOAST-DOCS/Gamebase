@@ -339,9 +339,9 @@ NAVER Developers 사이트에서 신청하여 발급 받은 {client_id} 및 {cli
 
 ##### Developer Portal
 
-![gamebase_app_twitter_02_ko_241024](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/ko/gamebase_app_twitter_02_ko_241024.png)
+![gamebase_app_twitter_02_ko_241024](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_twitter_02_en_241024.png)
 
-![gamebase_app_twitter_03_ko_241024](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/ko/gamebase_app_twitter_03_ko_241024.png)
+![gamebase_app_twitter_03_ko_241024](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_twitter_03_en_241024.png)
 
 Twitter 인증을 위해서는 Developer Portal에서 Callback URI란에 다음 값을 입력합니다.
 * https://id-gamebase.toast.com/oauth/callback
@@ -355,7 +355,7 @@ Developer Portal에서 앱을 등록하고 **OAuth 2.0 Client ID와 Client Secre
 - Client ID: {OAuth 2.0 Client ID}
 - Secret Key: {OAuth 2.0 Client Secret}
 
-![gamebase_app_twitter_01_ko_241024](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/ko/gamebase_app_twitter_01_ko_241024.png)
+![gamebase_app_twitter_01_ko_241024](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_twitter_01_en_241024.png)
 
 **Reference URL**
 - [Twitter Application Management](https://developer.x.com/)
@@ -605,6 +605,19 @@ GPGS(Google Play Games Services) v2 인증을 위해서는 Google 인증 타입 
 
 ##### Android
 * [Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#gpgs-v2-idp)
+
+#### 12. Steam
+
+Steam 인증을 위해서는 Steamworks에서 **App ID**와 **Web API**를 발급받아 Gamebase Console에 입력해야 합니다.
+
+**입력 필드**
+
+- Client ID: {App ID}
+- Secret Key: {Web API}
+
+![gamebase_app_steam_01_en_241025.png](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_steam_01_en_241025.png)
+
+![gamebase_app_steam_02_en_241025.png](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_steam_02_en_241025.png)
 
 ## Client
 
