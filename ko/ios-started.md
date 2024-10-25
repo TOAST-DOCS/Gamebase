@@ -105,11 +105,13 @@ Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
 * 5) **Target > Build Settings > Linking > Other Linker Flags**에 **-ObjC**를 추가해야 합니다.
 ![Other Linker Flags](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
 * 6) NaverAuthAdapter를 사용하는 경우에는 NAVER SDK에서 제공하는 **NaverThirdPartyLogin.xcframework** 파일을 **Target > Build Phases > Embeded Frameworks**에 추가해야 합니다.
- ![Naver Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_2.59.0.png)
- * 7) LineAuthAdapter를 사용하는 경우에는 LINE SDK에서 제공하는 **LineSDK.xcframework** 파일을 **Target > Build Phases > Embeded Frameworks**에 추가해야 합니다.
- ![LINE Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.9.1.png)
- * 8) FacebookAuthAdapter를 사용하는 경우에는 Facebook SDK를 **Target > Build Phases > Embeded Frameworks**에 추가해야 합니다.
- ![Facebook Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_2.65.0-facebook-embeded.png)
+![Naver Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_2.59.0.png)
+* 7) LineAuthAdapter를 사용하는 경우에는 LINE SDK에서 제공하는 **LineSDK.xcframework** 파일을 **Target > Build Phases > Embeded Frameworks**에 추가해야 합니다.
+![LINE Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.9.1.png)
+* 8) FacebookAuthAdapter를 사용하는 경우에는 Facebook SDK를 **Target > Build Phases > Embeded Frameworks**에 추가해야 합니다.
+![Facebook Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_2.65.0-facebook-embeded.png)
+* 9) PaycoAuthAdapter를 사용하는 경우에는 PAYCO SDK를 **Target > Build Phases > Embeded Frameworks**에 추가해야 합니다.
+![PAYCO Embeded Frameworks](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/iOSDevelopersGuide/started-xcode-settings-payco-embeded-20241025.png)
 
 > [INFO]
 >
