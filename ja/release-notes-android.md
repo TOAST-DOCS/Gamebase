@@ -5,9 +5,9 @@
 
 #### 기능 추가
 * Steam 인증 어댑터가 추가되었습니다.
-* 외부 SDK 업데이트: NHN Cloud SDK(1.9.3)
 
 #### 기능 개선/변경
+* 외부 SDK 업데이트: NHN Cloud SDK(1.9.3)
 * Twitter 인증 방식을 OAuth 2.0으로 변경하여, 아래의 설정 변경 없이는 로그인이 동작하지 않습니다.
     * OAuth 2.0 Client ID 및 Client Secret 발급
         * Twitter Developer Portal에서 OAuth 2.0 Client ID와 Client Secret을 생성한 후, Gamebase 콘솔에 등록합니다.
