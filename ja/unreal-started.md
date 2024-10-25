@@ -13,25 +13,25 @@ Gamebase Unreal SDKの使用環境および初期設定の説明を行います�
 
 #### Supported Platforms
 
-* iOS
 * Android
+* iOS
 * Windows
 
 選択したプラットフォームでサポートしないGamebase APIを呼び出す時は、下記のエラーがコールバックで返り、コールバックがない場合はWarningログが出力されます。
 
 * GamebaseErrorCode::NOT_SUPPORTED
-* GamebaseErrorCode::NOT_SUPPORTED_IOS
 * GamebaseErrorCode::NOT_SUPPORTED_ANDROID
-* GamebaseErrorCode::NOT_SUPPORTED_UE4_STANDALONE
-* GamebaseErrorCode::NOT_SUPPORTED_UE4_EDITOR
+* GamebaseErrorCode::NOT_SUPPORTED_IOS
+* GamebaseErrorCode::NOT_SUPPORTED_UE_STANDALONE
+* GamebaseErrorCode::NOT_SUPPORTED_UE_EDITOR
 
 各APIでサポートするプラットフォームは、下記のアイコンで区別します。
 
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 #### Dependencies
@@ -48,14 +48,13 @@ Supported Platforms
 
 ### Module Settings
 
-* Gamebaseコードを使用するには、モジュールのBuild.csファイルの依存モジュール設定時に、下記のように2つのモジュールを追加する必要があります。
+* Gamebaseコードを使用するには、モジュールのBuild.csファイルの依存モジュール設定時に、下記のようにモジュールを追加する必要があります。
 lurim-nhn marked this conversation as resolved.
 
         PrivateDependencyModuleNames.AddRange(
             new[]
             {
                 "Gamebase",
-                "GamebaseInterface"
             }
         );
 

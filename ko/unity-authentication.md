@@ -182,10 +182,10 @@ public void Login()
 
 > [참고]
 >
-> 로그인할 때 추가정보를 필요로 하는 IdP도 있습니다.
+> 로그인할 때 추가 정보를 필요로 하는 IdP도 있습니다.
 > 이러한 추가 정보들을 설정할 수 있게 static void Login(string providerName, Dictionary additionalInfo, GamebaseCallback.GamebaseDelegate callback) API를 제공합니다.
 >additionalInfo 파라미터에 필수 정보들을 dictionary 형태로 입력하시면 됩니다.
->additionalInfo 값이 있을 경우에는 해당 값을 사용하고 null 일 경우에는 [NHN Cloud Console](./oper-app/#authentication-information)에 등록된 값을 사용합니다.
+>additionalInfo 값이 있을 경우에는 해당 값을 사용하고 null일 경우에는 [NHN Cloud Console](./oper-app/#authentication-information)에 등록된 값을 사용합니다.
 
 > [참고]
 >
@@ -805,7 +805,7 @@ public void GetAuthMappingList()
     List<string> mappingList = Gamebase.GetAuthMappingList();
 }
 ```
-## Gamebase User`s Information
+## Gamebase User's Information
 
 Gamebase를 통하여 인증절차를 진행 후, 앱을 제작할 때 필요한 정보를 획득할 수 있습니다.
 
