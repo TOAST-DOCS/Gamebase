@@ -346,6 +346,8 @@ NAVER Developers 사이트에서 신청하여 발급 받은 {client_id} 및 {cli
 Twitter 인증을 위해서는 Developer Portal에서 Callback URI란에 다음 값을 입력합니다.
 * https://id-gamebase.toast.com/oauth/callback
 
+<br/>
+
 ##### Gamebase Console
 
 Developer Portal에서 앱을 등록하고 **OAuth 2.0 Client ID와 Client Secret**을 발급받아 Gamebase Console에 입력합니다.
@@ -359,6 +361,8 @@ Developer Portal에서 앱을 등록하고 **OAuth 2.0 Client ID와 Client Secre
 
 **Reference URL**
 - [Twitter Application Management](https://developer.x.com/)
+
+<br/>
 
 ##### Android
  > <font color="red">[주의]</font><br/>

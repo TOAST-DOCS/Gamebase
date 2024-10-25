@@ -248,13 +248,6 @@ end
 * Gamebase iOS SDK 1.12.1 이하는 추가 설정이 필요합니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
-#### Twitter
-
-* URL Scheme을 설정해야 합니다.
-    * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.twitter**를 추가해야 합니다.
-* Twitter 의 Developer 사이트의 Apps > 대상 프로젝트 > App Details > Callback URL 항목을 설정해야 합니다.
-    *  **tcgb.{Bundle ID}.twitter://** 를 추가합니다.
-
 #### LINE
 
 * URL Scheme을 설정해야 합니다.
@@ -335,6 +328,14 @@ end
     <string>{Issued LINE ChannleID}</string>
 </dict>
 ```
+
+**Twitter**
+
+* Gamebase iOS SDK 2.66.3 이하
+    * URL Scheme을 설정해야 합니다.
+        * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.twitter**를 추가해야 합니다.
+    * Twitter 의 Developer 사이트의 Apps > 대상 프로젝트 > App Details > Callback URL 항목을 설정해야 합니다.
+        *  **tcgb.{Bundle ID}.twitter://** 를 추가합니다.
 
 ## 3rd-Party Provider SDK Guide
 
