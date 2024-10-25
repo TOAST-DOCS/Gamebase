@@ -249,10 +249,23 @@ Google iOS 인증을 위해서는 Google Cloud Console에서 **iOS Client ID**�
 - Web Application ID: {Google Web Application Client ID}
 - iOS Client ID: {Google iOS Client ID}
 - Secret Key: {Google Web Application Client secret}
+- 추가정보: OAuth 2.0 Scopes (json format)
+
+##### Additional Info Settings
+* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정할 수 있습니다.
+* Google의 경우, OAuth 인증 후 프로필 정보에서 email 정보를 획득하고자 한다면 인증 권한 범위인 **scope**를 설정해야 합니다.
+* email 외에 선언할 수 있는 다양한 scope는 다음 문서에서 확인할 수 있습니다.
+    * https://developers.google.com/identity/protocols/oauth2/scopes#google-sign-in
+    * https://developers.google.com/identity/protocols/oauth2/scopes
+
+* Google 추가 인증 정보 입력 예제
+
+```json
+{ "scope": ["email","myscope1","myscope2",...] }
+```
 
 ##### iOS
 * [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP Settings > Google](./ios-started/#google)
-
 
 #### 3. Apple Game Center
 Apple 개발자 사이트에 등록된 BundleID를 Gamebase Console에 입력합니다.
@@ -311,24 +324,41 @@ NAVER Developers 사이트에서 신청하여 발급 받은 {client_id} 및 {cli
 
 * **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보 & Callback URL**의 **추가 정보** 항목에 JSON String 형태의 정보를 설정해야 합니다.
 * NAVER의 경우, 로그인 동의 창에 표시할 앱 이름인 **service_name**을 설정해야 합니다.
+* 또한 NAVER Login SDK는 로그아웃 후에도 자동으로 로그인이 되어 계정을 변경할 수 없는데, 로그아웃 후 다른 NAVER 계정으로 로그인하려면 **logout_and_delete_token**을 **true**로 설정해야 합니다.
+
+* NAVER 추가 인증 정보 입력 예제
 
 ```json
-{"service_name": "Your Service Name" }
+{ "service_name": "Your Service Name", "logout_and_delete_token": true }
 ```
 
 ##### iOS
 * [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings > Naver](./ios-started/#naver)
 
 #### 6. Twitter
-Twitter Application Management 사이트에서 앱을 등록하고 발급 받은 {Consumer Key} 및 {Consumer Secret}을 Gamebase Console에 입력합니다.
+
+##### Developer Portal
+
+![gamebase_app_twitter_02_ko_241024](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_twitter_02_en_241024.png)
+
+![gamebase_app_twitter_03_ko_241024](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_twitter_03_en_241024.png)
+
+Twitter 인증을 위해서는 Developer Portal에서 Callback URI란에 다음 값을 입력합니다.
+* https://id-gamebase.toast.com/oauth/callback
+
+##### Gamebase Console
+
+Developer Portal에서 앱을 등록하고 **OAuth 2.0 Client ID와 Client Secret**을 발급받아 Gamebase Console에 입력합니다.
 
 **입력 필드**
 
-- Client ID: {Twitter Consumer Key}
-- Secret Key: {Twitter Consumer Secret}
+- Client ID: {OAuth 2.0 Client ID}
+- Secret Key: {OAuth 2.0 Client Secret}
+
+![gamebase_app_twitter_01_ko_241024](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_twitter_01_en_241024.png)
 
 **Reference URL**
-- [Twitter Application Management](https://apps.twitter.com/)
+- [Twitter Application Management](https://developer.x.com/)
 
 ##### Android
  > <font color="red">[주의]</font><br/>
@@ -575,6 +605,19 @@ GPGS(Google Play Games Services) v2 인증을 위해서는 Google 인증 타입 
 
 ##### Android
 * [Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#gpgs-v2-idp)
+
+#### 12. Steam
+
+Steam 인증을 위해서는 Steamworks에서 **App ID**와 **Web API**를 발급받아 Gamebase Console에 입력해야 합니다.
+
+**입력 필드**
+
+- Client ID: {App ID}
+- Secret Key: {Web API}
+
+![gamebase_app_steam_01_en_241025.png](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_steam_01_en_241025.png)
+
+![gamebase_app_steam_02_en_241025.png](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_steam_02_en_241025.png)
 
 ## Client
 
