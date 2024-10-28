@@ -39,16 +39,17 @@ Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
 | --- | --- | --- | --- | --- |
 | Gamebase | Gamebase.xcframework<br/>Gamebase.bundle | NHNCloudSDK 1.8.4 | Gamebase의 Interface 및 핵심 로직을 포함 | iOS 12 이상 |
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.xcframework | FacebookSDK 17.0.2 | Facebook 로그인을 지원 | iOS 12 이상 |
-|  | GamebaseAuthPaycoAdapter.xcframework | PaycoID Login 3rd SDK v1.5.11 | PAYCO 로그인을 지원 | iOS 12 이상 |
-|  | GamebaseAuthNaverAdapter.xcframework | naveridlogin-sdk-ios-4.2.1 | NAVER 로그인을 지원 | iOS 12 이상 |
+|  | GamebaseAuthPaycoAdapter.xcframework | PaycoID Login 3rd SDK v1.5.12 | PAYCO 로그인을 지원 | iOS 12 이상 |
+|  | GamebaseAuthNaverAdapter.xcframework | naveridlogin-sdk-ios-4.2.3 | NAVER 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthGamecenterAdapter.xcframework | GameKit | Gamecenter 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthGoogleAdapter.xcframework | GoogleSignIn 7.1.0 | Google 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthTwitterAdapter.xcframework | | Twitter 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.11.0 | LINE 로그인을 지원 | iOS 13 이상 |
 |  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 12 이상 |
-|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.15.0 | Hangame 로그인을 지원 | iOS 12 이상 |
+|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.16.2 | Hangame 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.3.8 | Weibo 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.19.0 | Kakao 로그인을 지원 | iOS 13 이상 |
+|  | GamebaseAuthSteamAdapter.xcframework |  | Steam 로그인을 지원 | iOS 14 이상 |
 | Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit<br/>NHNCloudIAP 1.8.4 | 게임 내 결제 지원 | iOS 12 이상 |
 | Gamebase Push Adapters | GamebasePushAdapter.xcframework | NHNCloudPush 1.8.4 | Push를 지원 | iOS 12 이상 |
 
@@ -104,11 +105,13 @@ Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
 * 5) **Target > Build Settings > Linking > Other Linker Flags**에 **-ObjC**를 추가해야 합니다.
 ![Other Linker Flags](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-006_1.0.0.png)
 * 6) NaverAuthAdapter를 사용하는 경우에는 NAVER SDK에서 제공하는 **NaverThirdPartyLogin.xcframework** 파일을 **Target > Build Phases > Embeded Frameworks**에 추가해야 합니다.
- ![Naver Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_2.59.0.png)
- * 7) LineAuthAdapter를 사용하는 경우에는 LINE SDK에서 제공하는 **LineSDK.xcframework** 파일을 **Target > Build Phases > Embeded Frameworks**에 추가해야 합니다.
- ![LINE Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.9.1.png)
- * 8) FacebookAuthAdapter를 사용하는 경우에는 Facebook SDK를 **Target > Build Phases > Embeded Frameworks**에 추가해야 합니다.
- ![Facebook Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_2.65.0-facebook-embeded.png)
+![Naver Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_2.59.0.png)
+* 7) LineAuthAdapter를 사용하는 경우에는 LINE SDK에서 제공하는 **LineSDK.xcframework** 파일을 **Target > Build Phases > Embeded Frameworks**에 추가해야 합니다.
+![LINE Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.9.1.png)
+* 8) FacebookAuthAdapter를 사용하는 경우에는 Facebook SDK를 **Target > Build Phases > Embeded Frameworks**에 추가해야 합니다.
+![Facebook Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_2.65.0-facebook-embeded.png)
+* 9) PaycoAuthAdapter를 사용하는 경우에는 PAYCO SDK를 **Target > Build Phases > Embeded Frameworks**에 추가해야 합니다.
+![PAYCO Embeded Frameworks](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/iOSDevelopersGuide/started-xcode-settings-payco-embeded-20241025.png)
 
 > [INFO]
 >
@@ -150,6 +153,7 @@ target 'SampleApplication' do
     pod 'GamebaseAuthLineAdapter'
     pod 'GamebaseAuthAppleidAdapter'
     pod 'GamebaseAuthWeiboAdapter'
+    pod 'GamebaseAuthSteamAdapter'
     pod 'GamebasePushAdapter'
     pod 'GamebasePurchaseIAPAdapter'
 
@@ -246,13 +250,6 @@ end
 * Gamebase iOS SDK 1.12.1 이하는 추가 설정이 필요합니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
-#### Twitter
-
-* URL Scheme을 설정해야 합니다.
-    * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.twitter**를 추가해야 합니다.
-* Twitter 의 Developer 사이트의 Apps > 대상 프로젝트 > App Details > Callback URL 항목을 설정해야 합니다.
-    *  **tcgb.{Bundle ID}.twitter://** 를 추가합니다.
-
 #### LINE
 
 * URL Scheme을 설정해야 합니다.
@@ -334,11 +331,18 @@ end
 </dict>
 ```
 
+**Twitter**
+
+* Gamebase iOS SDK 2.66.3 이하
+    * URL Scheme을 설정해야 합니다.
+        * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.twitter**를 추가해야 합니다.
+    * Twitter 의 Developer 사이트의 Apps > 대상 프로젝트 > App Details > Callback URL 항목을 설정해야 합니다.
+        *  **tcgb.{Bundle ID}.twitter://** 를 추가합니다.
+
 ## 3rd-Party Provider SDK Guide
 
 * [Facebook for developers](https://developers.facebook.com/docs/ios)
 * [NAVER for developers](https://developers.naver.com/docs/login/ios/ios.md)
-* [Twitter Developer's guide - Log in with Twitter](https://developer.twitter.com/en/docs/authentication/guides/log-in-with-twitter)
 * [Twitter Developer's guide - Authentication](https://developer.twitter.com/en/docs/authentication/overview)
 * [LINE for developers](https://developers.line.biz/en/docs/line-login-sdks/ios-sdk/swift/overview/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/ios)

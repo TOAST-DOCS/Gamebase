@@ -428,9 +428,6 @@ WebViewを表示します。<br/>
     NSString* urlString = @"https://www.toast.com/";
     TCGBWebViewConfiguration* config = [[TCGBWebViewConfiguration alloc] init];
     
-    // Webview is fixed to Landscape mode
-    config.orientationMask = TCGBWebViewOrientationLandscapeLeft | TCGBWebViewOrientationLandscapeRight;
-    
     void(^closeCompletion)(TCGBError *) = ^(TCGBError *error) {
         NSLog(@"WebView Close Event occured");
     };
@@ -445,8 +442,6 @@ WebViewを表示します。<br/>
     // After this method is called, every webview(TCGBWebView) is shown with Landscape mode
 
     TCGBWebViewConfiguration *config = [[TCGBWebViewConfiguration alloc] init];
-    config.orientationMask = TCGBWebViewOrientationLandscapeLeft | TCGBWebViewOrientationLandscapeRight;
-
     [TCGBWebView sharedTCGBWebView].defaultWebConfiguration = config;
 }
 ```
@@ -505,11 +500,6 @@ Gamebaseにスキーム名とブロックを指定し、任意の機能を追加
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
 | navigationBarTitle                     | string                                   | WebViewのタイトル |
-| orientationMask                        | TCGBWebViewOrientationUnspecified        | 指定なし                |
-|                                        | TCGBWebViewOrientationPortrait           | 縦モード              |
-|                                        | TCGBWebViewOrientationPortraitUpsideDown | 縦モードを180度回転      |
-|                                        | TCGBWebViewOrientationLandscapeRight     | 横モード              |
-|                                        | TCGBWebViewOrientationLandscapeLeft      | 横モードを180度回転    |
 | contentMode                            | TCGBWebViewContentModeRecommended        | 現在プラットフォーム推薦ブラウザ (**default**)    |
 |                                        | TCGBWebViewContentModeMobile             | モバイルブラウザ         |
 |                                        | TCGBWebViewContentModeDesktop            | デスクトップブラウザ       |

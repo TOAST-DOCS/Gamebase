@@ -8,7 +8,7 @@ Gamebase Unreal SDKを使用するには、初期化を行う必要がありま�
 Gamebase APIを使用するには、次のヘッダファイルをインクルードします。
 
 ```cpp
-#include "Gamebase.h"
+#include "GamebaseSubsystem.h"
 ```
 
 ### FGamebaseConfiguration 
@@ -17,43 +17,41 @@ Gamebase APIを使用するには、次のヘッダファイルをインクル�
 
 | Setting value              | Supported Platform | Mandatory(M) / Optional(O) |
 | -------------------------- | ------------------ | -------------------------- |
-| appID | ALL | M |
-| appVersion | ALL | M |
-| storeCode | ALL | M |
-| displayLanguageCode | ALL | O |
-| enablePopup | ALL | O |
-| enableLaunchingStatusPopup | ALL | O |
-| enableBanPopup | ALL | O |
+| AppID | ALL | M |
+| AppVersion | ALL | M |
+| StoreCode | ALL | M |
+| DisplayLanguageCode | ALL | O |
+| bEnablePopup | ALL | O |
+| bEnableLaunchingStatusPopup | ALL | O |
+| bEnableBanPopup | ALL | O |
 
-#### 1. App ID
+#### 1. AppID
 
 Gamebase Consoleに登録されたプロジェクトIDです。
 
 [Game > Gamebase > コンソール使用ガイド > アプリ > App](./oper-app/#app)
 
-#### 2. appVersion
+#### 2. AppVersion
 
 Gamebase Consoleに登録したクライアントバージョンです。
 
 [Game > Gamebase > コンソール使用ガイド > アプリ > Client](./oper-app/#client)
 
-#### 3. storeCode
+#### 3. StoreCode
 NHN Cloud統合アプリ内決済サービスであるIAP(In-App Purchase)を初期化するために必要なストア情報です。
 
-| Store       | Code | Description  |
-| ----------- | ---- | ------------ |
-| App Store | AS | only iOS |
-| Google Play | GG | only Android |
-| One Store | ONESTORE | only Android |
-| Galaxy Store | GALAXY | only Android |
+| Store       | Code | GamebaseStoreCode | Description  |
+| ----------- | ---- | ------------ | ------------ |
+| App Store | AS | GamebaseStoreCode::AppStore | only iOS |
+| Google Play | GG | GamebaseStoreCode::Google | only Android |
+| One Store | ONESTORE | GamebaseStoreCode::OneStore | only Android |
+| Galaxy Store | GALAXY | GamebaseStoreCode::Galaxy | only Android |
+| Amazon Appstore | AMAZON | GamebaseStoreCode::Amazon | only Android |
+| Huawei AppGallery | HUAWEI | GamebaseStoreCode::Huawei | only Android |
+| MyCard | MYCARD | GamebaseStoreCode::MyCard | only Android |
+| Epic Store | EPIC | GamebaseStoreCode::Epic | only Windows |
 
-#### 4. displayLanguageCode
-
-Gamebaseで提供するUIおよびSystemDialogに表示される言語を、端末に設定された言語ではない別の言語に変更できます。
-
-[Game > Gamebase > Unreal SDK使用ガイド > ETC > Additional Features > Display Language](./unreal-etc/#display-language)
-
-#### 5. enablePopup
+#### 4. bEnablePopup
 
 システムメンテナンス、利用制裁(ban)など、ゲームユーザーがゲームをプレイできない状況で、ポップアップなどで理由を表示する必要がある時があります。
 Gamebaseで提供する基本ポップアップを使用するかの設定です。
@@ -62,14 +60,14 @@ Gamebaseで提供する基本ポップアップを使用するかの設定です
 * false：Gamebaseで提供するすべてのポップアップが表示されません。
 * デフォルト値：false
 
-#### 6. enableLaunchingStatusPopup
+#### 5. bEnableLaunchingStatusPopup
 
 LaunchingStatusがゲームをできない状態の場合、Gamebaseで提供する基本ポップアップを使用するかの設定です。
 LaunchingStatusは、下記Launching項目下のState、Code部分を参照してください。
 
 * デフォルト値：true
 
-#### 7. enableBanPopup
+#### 6. bEnableBanPopup
 
 ログイン時、該当ゲームユーザーが利用停止状態の場合、Gamebaseで提供する基本ポップアップを使用するかどうかの設定です。
 
@@ -78,7 +76,7 @@ LaunchingStatusは、下記Launching項目下のState、Code部分を参照し�
 ### Debug Mode
 
 * Gamebaseは警告(warning)とエラーログのみを表示します。
-* 開発の参考にできるシステムログをオンにするには、**IGamebase::Get().SetDebugMode(true)**を呼び出してください。
+* 開発の参考にできるシステムログをオンにするには、**GamebaseSubsystem->SetDebugMode(true)**を呼び出してください。
 
 > <font color="red">[注意]</font><br/>
 >
@@ -93,20 +91,21 @@ Console設定方法は、以下のガイドを参考にしてください。
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void SetDebugMode(bool isDebugMode);
+void SetDebugMode(bool bIsDebugMode);
 ```
 
 **Example**
 
 ```cpp
-void Sample::SetDebugMode(bool isDebugMode)
+void USample::SetDebugMode(bool isDebugMode)
 {
-    IGamebase::Get().SetDebugMode(isDebugMode);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->SetDebugMode(isDebugMode);
 }
 ```
 
@@ -117,58 +116,58 @@ SDKを初期化します。
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void Initialize(const FGamebaseConfiguration& configuration, const FGamebaseLaunchingInfoDelegate& onCallback);
+void Initialize(const FGamebaseConfiguration& Configuration, const FGamebaseLaunchingInfoDelegate& Callback);
 ```
 
 **Example**
 
 ```cpp
-void Sample::Initialize(const FString& appID, const FString& appVersion)
+void USample::Initialize(const FString& AppID, const FString& AppVersion)
 {
-    FGamebaseConfiguration configuration;
-    configuration.appID = appID;
-    configuration.appVersion = appVersion;
-    configuration.storeCode = GamebaseStoreCode.Google;
-    configuration.displayLanguageCode = GamebaseDisplayLanguageCode.Korean;
-    configuration.enablePopup = true;
-    configuration.enableLaunchingStatusPopup = true;
-    configuration.enableBanPopup = true;
+    FGamebaseConfiguration Configuration;
+    Configuration.AppID = AppID;
+    Configuration.AppVersion = AppVersion;
+    Configuration.StoreCode = GamebaseStoreCode.Google;
+    Configuration.bEnablePopup = true;
+    Configuration.bEnableLaunchingStatusPopup = true;
+    Configuration.bEnableBanPopup = true;
 
-    IGamebase::Get().Initialize(configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* launchingInfo, const FGamebaseError* error)
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->Initialize(Configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* LaunchingInfo, const FGamebaseError* Error)
     {
-        if (Gamebase::IsSuccess(error))
+        if (Gamebase::IsSuccess(Error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("Initialize succeeded."));
         
             // Following notices are registered in the Gamebase Console
-            auto notice = launchingInfo->launching.notice;
-            if (notice != null)
+            auto Notice = LaunchingInfo->Launching.Notice;
+            if (Notice != null)
             {
-                if (string.IsNullOrEmpty(notice.message) == false)
+                if (string.IsNullOrEmpty(Notice.message) == false)
                 {
-                    UE_LOG(GamebaseTestResults, Display, TEXT("title: %s"), notice.title);
-                    UE_LOG(GamebaseTestResults, Display, TEXT("message: %s"), notice.message);
-                    UE_LOG(GamebaseTestResults, Display, TEXT("url: %s"), notice.url);
+                    UE_LOG(GamebaseTestResults, Display, TEXT("title: %s"), Notice.title);
+                    UE_LOG(GamebaseTestResults, Display, TEXT("message: %s"), Notice.message);
+                    UE_LOG(GamebaseTestResults, Display, TEXT("url: %s"), Notice.url);
                 }
             }
             
             // Status information of game app version set in the Gamebase Unreal SDK initialization.
-            auto status = launchingInfo->launching.status;
+            auto Status = LaunchingInfo->Launching.Status;
     
             // Game status code (e.g. Under maintenance, Update is required, Service has been terminated)
             // refer to GamebaseLaunchingStatus
-            if (status.code == GamebaseLaunchingStatus::IN_SERVICE)
+            if (Status.Code == GamebaseLaunchingStatus::IN_SERVICE)
             {
                 // Service is now normally provided.
             }
             else
             {
-                switch (status.code)
+                switch (Status.Code)
                 {
                     case GamebaseLaunchingStatus::RECOMMEND_UPDATE:
                     {
@@ -186,7 +185,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
         }
         else
         {
-                // Check the error code and handle the error appropriately.
+            // Check the Error code and handle the Error appropriately.
             UE_LOG(GamebaseTestResults, Display, TEXT("Initialize failed."));
         }
     }));
@@ -267,7 +266,7 @@ Gamebase Consoleに登録された告知情報です。
 * title：タイトル
 * url：メンテナンスURL
 
-[Game > Gamebase > コンソール使用ガイド > 運営 > Notice](./oper-operation/#notice)
+[Game > Gamebase > コンソール使用ガイド > 運営 > Notice](./oper-operation/#Notice)
 
 #### 2. tcProduct
 
@@ -322,9 +321,10 @@ const FGamebaseLaunchingInfoPtr GetLaunchingInformations() const;
 **Example**
 
 ```cpp
-void Sample::GetLaunchingInformations()
+void USample::GetLaunchingInformations()
 {
-    auto launchingInformation = IGamebase::Get().GetLaunching().GetLaunchingInformations();
+    auto launchingInformation = UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetLaunching().GetLaunchingInformations();
     if (launchingInformation.IsValid() == false)
     {
         UE_LOG(GamebaseTestResults, Display, TEXT("Not found launching info."));
@@ -345,4 +345,4 @@ void Sample::GetLaunchingInformations()
 | NOT\_SUPPORTED        | 10         | サポートしない機能です。         |
 
 * エラーコードの一覧は、次の文書を参照してください。
-    * [エラーコード](./error-code/#client-sdk)
+    * [エラーコード](./Error-code/#client-sdk)

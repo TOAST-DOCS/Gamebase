@@ -1,5 +1,25 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.67.0 (2024. 10. 29.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.67.0/GamebaseSDK-Android.zip)
+
+#### 기능 추가
+* Steam 인증 어댑터가 추가되었습니다.
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: NHN Cloud SDK(1.9.3)
+* Twitter 인증 방식을 OAuth 2.0으로 변경하여, 아래의 설정 변경 없이는 로그인이 동작하지 않습니다.
+    * OAuth 2.0 Client ID 및 Client Secret 발급
+        * Twitter Developer Portal에서 OAuth 2.0 Client ID와 Client Secret을 생성한 후, Gamebase 콘솔에 등록합니다.
+    * Callback URL 설정
+        * Gamebase 콘솔에 Callback URL(https://id-gamebase.toast.com/oauth/callback)을 설정합니다. 
+        * 동일한 Callback URL을 Twitter Developer Portal에 추가합니다.
+    * 자세한 내용은 다음 링크를 참고 부탁드립니다.
+        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information](./oper-app/#authentication-information)
+
+#### 버그 수정
+* 약관 화면 노출 상태에서 네트워크를 단절 후 detail 터치 시, 약관 팝업이 종료되는 이슈가 수정되었습니다.
+
 ### 2.66.3 (2024. 09. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-Android.zip)
 
@@ -11,15 +31,15 @@
 ### 2.66.2 (2024. 08. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.2/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: NHN Cloud SDK(1.9.1), Kakaogame SDK(3.19.3), PAYCO SDK(1.5.15)
-* Amazon 스토어 결제시 문제가 생겨 재처리가 동작할 때 처음 결제를 시도했던 User ID로 아이템을 지급하도록 하는 보완 로직이 추가되었습니다.
-* Twitter 로그인 타이틀 바 색상과 이름이 변경되었습니다.
-* 롤링 이미지 공지의 웹뷰 내부에서 에러가 발생한 경우, 기존에 성공 콜백 호출 대신 실패 콜백이 호출되도록 수정하였습니다.
+#### Feature Updates
+* External SDK update: NHN Cloud SDK(1.9.1), Kakaogame SDK(3.19.3), PAYCO SDK(1.5.15)
+* Added supplemental logic to ensure that when a problem occurs with an Amazon store checkout and reprocessing is triggered, the item is awarded to the User ID that first attempted the payment.
+* Changed the color and name of Twitter login title bar.
+* Fixed a failure callback to be called instead of the previous success callback when an error occurs inside the webview of a rolling image announcement.
 
-#### 버그 수정
-* Activity가 파괴된 경우, 파괴된 Activity위에 떠 있는 WebView가 close되며 이 때 close event callback이 누락되는 이슈가 수정되었습니다.
-* Hangame 로그인 어댑터에서 외부 idP 로그인 시 callback이 중복으로 오는 경우 already resumed 에러가 나지 않도록 방어 로직을 추가하였습니다.
+#### Bug Fixes
+* Fixed an issue where, when an Activity is destroyed, the WebView floating on top of the destroyed Activity is closed and the close event callback is missing.
+* Added defensive logic to prevent the Hangame Login Adapter from causing an already resumed error if a duplicate callback is received when logging into an external idP.
 
 ### 2.66.1 (2024. 07. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.1/GamebaseSDK-Android.zip)

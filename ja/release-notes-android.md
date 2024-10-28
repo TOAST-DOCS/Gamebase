@@ -1,12 +1,32 @@
 ## Game > Gamebase > リリースノート > Android
 
+### 2.67.0 (2024. 10. 29.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.67.0/GamebaseSDK-Android.zip)
+
+#### 기능 추가
+* Steam 인증 어댑터가 추가되었습니다.
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: NHN Cloud SDK(1.9.3)
+* Twitter 인증 방식을 OAuth 2.0으로 변경하여, 아래의 설정 변경 없이는 로그인이 동작하지 않습니다.
+    * OAuth 2.0 Client ID 및 Client Secret 발급
+        * Twitter Developer Portal에서 OAuth 2.0 Client ID와 Client Secret을 생성한 후, Gamebase 콘솔에 등록합니다.
+    * Callback URL 설정
+        * Gamebase 콘솔에 Callback URL(https://id-gamebase.toast.com/oauth/callback)을 설정합니다. 
+        * 동일한 Callback URL을 Twitter Developer Portal에 추가합니다.
+    * 자세한 내용은 다음 링크를 참고 부탁드립니다.
+        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information](./oper-app/#authentication-information)
+
+#### 버그 수정
+* 약관 화면 노출 상태에서 네트워크를 단절 후 detail 터치 시, 약관 팝업이 종료되는 이슈가 수정되었습니다.
+
 ### 2.66.3 (2024. 09. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: NHN Cloud SDK(1.9.2)
-    * Android 13 이상 특정 디바이스에서 간헐적으로 Native Crash 로그가 리포팅되지 않는 문제가 수정되었습니다.
-    * Amazon 결제 재처리가 개선되었습니다.
+#### 機能改善/変更
+* 外部SDKアップデート: NHN Cloud SDK(1.9.2)
+    * Android 13以降の特定のデバイスでNative Crashログが断続的に報告されない問題を修正しました。
+    * Amazon決済の再処理が改善されました。
 
 ### 2.66.2 (2024. 08. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.2/GamebaseSDK-Android.zip)
