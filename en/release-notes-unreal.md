@@ -3,10 +3,10 @@
 ### 2.66.1 (2024. 09. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.1/GamebaseSDK-Unreal.zip)
 
-#### 기능 개선
-* 내부 로직을 개선했습니다.
+#### Feature Updates
+* Improved internal logic.
 
-#### 플랫폼별 변경 사항
+#### Platform-Specific Changes
 * [Gamebase Android SDK 2.66.3](./release-notes-android/#2663-2024-09-10)
 * [Gamebase iOS SDK 2.66.2](./release-notes-ios/#2662-2024-08-27)
 
@@ -187,10 +187,10 @@
 
 #### Feature Updates
 * The following field has been deprecated because whether to display the kickout popup window can be set during kickout registration in the Gamebase console.
-    * **FGamebaseConfiguration.enableKickoutPopup**
+    * **FGamebaseConfiguration.bEnableKickoutPopup**
 * Default values have been added to some fields in FGamebaseConfiguration.
-    * The default value of enableLaunchingStatusPopup is set to true.
-    * The default value of enableBanPopup is set to true.
+    * The default value of bEnableLaunchingStatusPopup is set to true.
+    * The default value of bEnableBanPopup is set to true.
 * The field to set whether to use the fixed font size in FWebView is no longer used.
     * **FGamebaseWebViewConfiguration.enableFixedFontSize**
 * Default values have been added to some fields in FGamebaseWebViewConfiguration.
