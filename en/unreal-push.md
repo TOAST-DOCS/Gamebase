@@ -34,41 +34,42 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void RegisterPush(const FGamebasePushConfiguration& configuration, const FGamebaseErrorDelegate& onCallback);
-void RegisterPush(const FGamebasePushConfiguration& configuration, const FGamebaseNotificationOptions& notificationOptions, const FGamebaseErrorDelegate& onCallback);
+void RegisterPush(const FGamebasePushConfiguration& Configuration, const FGamebaseErrorDelegate& Callback);
+void RegisterPush(const FGamebasePushConfiguration& Configuration, const FGamebaseNotificationOptions& notificationOptions, const FGamebaseErrorDelegate& Callback);
 ```
 
 #### FGamebasePushConfiguration
 
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
 | ------------- | ------------- | ---------------------------------- | ------------------ |
-| pushEnabled                   | M             | bool         | Consent to receiving push |
-| adAgreement                   | M             | bool         | Consent to receiving advertisement push |
-| ADAgreemadAgreementNightentNight | M          | bool         | Consent to receiving night-time advertisement push |
-| requestNotificationPermission | O             | bool         | Whether to automatically display a Push permission request pop-up when calling the RegisterPush API on Android 13 or higher OS<br>**default**: true<br/>**Only for Android** |
-| alwaysAllowTokenRegistration  | O             | bool         | Whether to register a token even if the user denies push permission<br>If set to true, the token will be registered even if push permission is not obtained.<br>**default**: false<br/>**Only for iOS** |
+| bPushEnabled                   | M             | bool         | Consent to receiving push |
+| bAdAgreement                   | M             | bool         | Consent to receiving advertisement push |
+| bAdAgreementNight              | M          | bool         | Consent to receiving night-time advertisement push |
+| bRequestNotificationPermission | O             | bool         | Whether to automatically display a Push permission request pop-up when calling the RegisterPush API on Android 13 or higher OS<br>**default**: true<br/>**Only for Android** |
+| bAlwaysAllowTokenRegistration  | O             | bool         | Whether to register a token even if the user denies push permission<br>If set to true, the token will be registered even if push permission is not obtained.<br>**default**: false<br/>**Only for iOS** |
 
 **Example**
 
 ```cpp
-void Sample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNight)
+void USample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNight)
 {
-       FGamebasePushConfiguration Configuration;
-    Configuration.pushEnabled = pushEnabled;
-    Configuration.adAgreement = adAgreement;
-    Configuration.adAgreementNight = adAgreementNight;
-    Configuration.requestNotificationPermission = bRequestNotificationPermission;
-    Configuration.alwaysAllowTokenRegistration = bAlwaysAllowTokenRegistration;
-       
-        IGamebase::Get().GetPush().RegisterPush(Configuration, FGamebasePushConfigurationDelegate::CreateLambda([](const FGamebaseError* error)
+    FGamebasePushConfiguration Configuration;
+    Configuration.bPushEnabled = pushEnabled;
+    Configuration.bAdAgreement = adAgreement;
+    Configuration.bAdAgreementNight = adAgreementNight;
+    Configuration.bRequestNotificationPermission = bRequestNotificationPermission;
+    Configuration.bAlwaysAllowTokenRegistration = bAlwaysAllowTokenRegistration;
+    
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPush()->RegisterPush(Configuration, FGamebasePushConfigurationDelegate::CreateLambda([](const FGamebaseError* Error)
     {
-        if (Gamebase::IsSuccess(error))
+        if (Gamebase::IsSuccess(Error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("RegisterPush succeeded"));
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RegisterPush failed. (error: %d)"), error->code);
+            UE_LOG(GamebaseTestResults, Display, TEXT("RegisterPush failed. (Error: %d)"), Error->Code);
         }
     }));
 }
@@ -87,43 +88,44 @@ The following settings are available:
 
 | API                    | Parameter       | Description        |
 | ---------------------  | ------------ | ------------------ |
-| foregroundEnabled      | bool         | Expose the notifications when the app is in the foreground status<br/>**default**: false |
-| badgeEnabled           | bool         | Use the badge icon<br/>**default**: true |
-| soundEnabled           | bool         | Whether to use the notification sound<br/>**default**: true<br/>**iOS Only** |
-| priority               | int32        | Notification priority. You can set the following five values:<br/>GamebaseNotificationPriority::Min : -2<br/> GamebaseNotificationPriority::Low : -1<br/>GamebaseNotificationPriority::Default : 0<br/>GamebaseNotificationPriority::High : 1<br/>GamebaseNotificationPriority::Max : 2<br/>**default**: GamebaseNotificationPriority::High<br/>**Android Only** |
-| smallIconName          | FString       | Small icon file name for notification.<br/>If disabled, the app icon is used.<br/>**default**: null<br/>**Android Only** |
-| soundFileName          | FString       | Notification sound file name. Works only in OS with Android 8.0 or less.<br/>The notification sound changes if you specify the mp3, wav file name in the 'res/raw' folder.<br/>**default**: null<br/>**Android Only** |
+| bForegroundEnabled      | bool         | Expose the notifications when the app is in the foreground status<br/>**default**: false |
+| bBadgeEnabled           | bool         | Use the badge icon<br/>**default**: true |
+| bSoundEnabled           | bool         | Whether to use the notification sound<br/>**default**: true<br/>**iOS Only** |
+| Priority               | int32        | Notification priority. You can set the following five values:<br/>GamebaseNotificationPriority::Min : -2<br/> GamebaseNotificationPriority::Low : -1<br/>GamebaseNotificationPriority::Default : 0<br/>GamebaseNotificationPriority::High : 1<br/>GamebaseNotificationPriority::Max : 2<br/>**default**: GamebaseNotificationPriority::High<br/>**Android Only** |
+| SmallIconName          | FString       | Small icon file name for notification.<br/>If disabled, the app icon is used.<br/>**default**: null<br/>**Android Only** |
+| SoundFileName          | FString       | Notification sound file name. Works only in OS with Android 8.0 or less.<br/>The notification sound changes if you specify the mp3, wav file name in the 'res/raw' folder.<br/>**default**: null<br/>**Android Only** |
 
 **Example**
 
 ```cpp
-void Sample::RegisterPushWithOption(bool pushEnabled, bool adAgreement, bool adAgreementNight, const FString& displayLanguage, bool foregroundEnabled, bool badgeEnabled, bool soundEnabled, int32 priority, const FString& smallIconName, const FString& soundFileName)
+void USample::RegisterPushWithOption(bool pushEnabled, bool adAgreement, bool adAgreementNight, const FString& displayLanguage, bool foregroundEnabled, bool badgeEnabled, bool soundEnabled, int32 priority, const FString& smallIconName, const FString& soundFileName)
 {
-     FGamebasePushConfiguration Configuration;
-    Configuration.pushEnabled = pushEnabled;
-    Configuration.adAgreement = adAgreement;
-    Configuration.adAgreementNight = adAgreementNight;
-    Configuration.requestNotificationPermission = bRequestNotificationPermission;
-    Configuration.alwaysAllowTokenRegistration = bAlwaysAllowTokenRegistration;
-
+    FGamebasePushConfiguration Configuration;
+    Configuration.bPushEnabled = pushEnabled;
+    Configuration.bAdAgreement = adAgreement;
+    Configuration.bAdAgreementNight = adAgreementNight;
+    Configuration.bRequestNotificationPermission = bRequestNotificationPermission;
+    Configuration.bAlwaysAllowTokenRegistration = bAlwaysAllowTokenRegistration;
+    
     FGamebaseNotificationOptions NotificationOptions;
-    NotificationOptions.foregroundEnabled = bForegroundEnabled;
-    NotificationOptions.badgeEnabled = bBadgeEnabled;
-    NotificationOptions.soundEnabled = bSoundEnabled;
-    NotificationOptions.priority = Priority;
-    NotificationOptions.smallIconName = SmallIconName;
-    NotificationOptions.soundFileName = SoundFileName;
+    NotificationOptions.bForegroundEnabled = bForegroundEnabled;
+    NotificationOptions.bBadgeEnabled = bBadgeEnabled;
+    NotificationOptions.bSoundEnabled = bSoundEnabled;
+    NotificationOptions.Priority = Priority;
+    NotificationOptions.SmallIconName = SmallIconName;
+    NotificationOptions.SoundFileName = SoundFileName;
 
-    IGamebase::Get().GetPush().RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPush()->RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error)
     {
-        if (Gamebase::IsSuccess(error))
+        if (Gamebase::IsSuccess(Error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("RegisterPush succeeded"));
         }
         else
         {
-            // Check the error code and handle the error appropriately.
-            UE_LOG(GamebaseTestResults, Display, TEXT("RegisterPush failed. (error: %d)"), error->code);
+            // Check the Error code and handle the Error appropriately.
+            UE_LOG(GamebaseTestResults, Display, TEXT("RegisterPush failed. (Error: %d)"), Error->Code);
         }
     }));
 }
@@ -147,17 +149,19 @@ FGamebaseNotificationOptionsPtr GetNotificationOptions();
 **Example**
 
 ```cpp
-void Sample::GetNotificationOptions()
+void USample::GetNotificationOptions()
 {
-    auto NotificationOptions = IGamebase::Get().GetPush().GetNotificationOptions();
+    auto NotificationOptions = UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPush()->GetNotificationOptions();
     if (result.IsValid())
     {
-        NotificationOptions->foregroundEnabled = true;
-        NotificationOptions->smallIconName = TEXT("notification_icon_name");
+        NotificationOptions->ForegroundEnabled = true;
+        NotificationOptions->SmallIconName = TEXT("notification_icon_name");
         
         FGamebasePushConfiguration Configuration;
         
-        IGamebase::Get().GetPush().RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) { }));
+        UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+        Subsystem->GetPush()->RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) { }));
     }
     else
     {
@@ -179,30 +183,31 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void QueryTokenInfo(const FGamebasePushTokenInfoDelegate& onCallback);
+void QueryTokenInfo(const FGamebasePushTokenInfoDelegate& Callback);
 
 // Legacy API
-void QueryPush(const FGamebasePushConfigurationDelegate& onCallback);
+void QueryPush(const FGamebasePushConfigurationDelegate& Callback);
 ```
 
 **Example**
 
 ```cpp
-void Sample::QueryTokenInfo()
+void USample::QueryTokenInfo()
 {
-    IGamebase::Get().GetPush().QueryTokenInfo(FGamebasePushTokenInfoDelegate::CreateLambda([=](const FGamebasePushTokenInfo* tokenInfo, const FGamebaseError* error)
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPush()->QueryTokenInfo(FGamebasePushTokenInfoDelegate::CreateLambda([=](const FGamebasePushTokenInfo* TokenInfo, const FGamebaseError* Error)
     {
-        if (Gamebase::IsSuccess(error))
+        if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("QueryTokenInfo succeeded. (pushEnabled= %s, adAgreement= %s, adAgreementNight= %s, tokenInfo= %s)"),
-                tokenInfo->pushEnabled ? TEXT("true") : TEXT("false"),
-                tokenInfo->adAgreement ? TEXT("true") : TEXT("false"),
-                tokenInfo->adAgreementNight ? TEXT("true") : TEXT("false"),
-                *tokenInfo->token);
+            UE_LOG(GamebaseTestResults, Display, TEXT("QueryTokenInfo succeeded. (pushEnabled= %s, adAgreement= %s, adAgreementNight= %s, TokenInfo= %s)"),
+                TokenInfo->PushEnabled ? TEXT("true") : TEXT("false"),
+                TokenInfo->bAdAgreement ? TEXT("true") : TEXT("false"),
+                TokenInfo->bAdAgreementNight ? TEXT("true") : TEXT("false"),
+                *TokenInfo->Token);
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("QueryTokenInfo failed. (error: %d)"), error->code);
+            UE_LOG(GamebaseTestResults, Display, TEXT("QueryTokenInfo failed. (Error: %d)"), Error->Code);
         }
     }));
 }
@@ -213,23 +218,23 @@ void Sample::QueryTokenInfo()
 
 | Parameter           | Values                 | Description         |
 | --------------------| -----------------------| ------------------- |
-| pushType            | FString                | Push token type       |
-| token               | FString                | Token                 |
-| userId              | FString                | User ID         |
-| deviceCountryCode   | FString                | Country code           |
-| timezone            | FString                | Standard timezone           |
-| registeredDateTime  | FString                | Token update time    |
-| languageCode        | FString                | Language settings            |
-| agreement           | FGamebasePushAgreement | Opt in        |
-| sandbox             | bool                   | Whether to use sandbox (iOS Only)        |
+| PushType            | FString                | Push token type       |
+| Token               | FString                | Token                 |
+| UserId              | FString                | User ID         |
+| DeviceCountryCode   | FString                | Country code           |
+| Timezone            | FString                | Standard timezone           |
+| RegisteredDateTime  | FString                | Token update time    |
+| LanguageCode        | FString                | Language settings            |
+| Agreement           | FGamebasePushAgreement | Opt in        |
+| bSandbox             | bool                   | Whether to use sandbox (iOS Only)        |
 
 #### FGamebasePushAgreement
 
 | Parameter        | Values  | Description               |
 | -----------------| --------| ------------------------- |
-| pushEnabled      | bool | Opt in to display notifications           |
-| adAgreement      | bool | Opt in to display advertisement notifications      |
-| adAgreementNight | bool | Opt in to display night advertisement notifications  |
+| bPushEnabled      | bool | Opt in to display notifications           |
+| bAdAgreement      | bool | Opt in to display advertisement notifications      |
+| bAdAgreementNight | bool | Opt in to display night advertisement notifications  |
 
 
 ### Event Handling
@@ -259,9 +264,10 @@ void SetSandboxMode(bool isSandbox);
 **Example**
 
 ```cpp
-void Sample::SetSandboxMode(bool isSandbox)
+void USample::SetSandboxMode(bool isSandbox)
 {
-    IGamebase::Get().GetPush().SetSandboxMode(isSandbox);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPush()->SetSandboxMode(isSandbox);
 }
 ```
 
@@ -284,20 +290,20 @@ void Sample::SetSandboxMode(bool isSandbox)
 
 
 ```cpp
-GamebaseError* gamebaseError = error; // GamebaseError object via callback
+GamebaseError* gamebaseError = Error; // GamebaseError object via callback
 
-if (Gamebase::IsSuccess(error))
+if (Gamebase::IsSuccess(Error))
 {
     // succeeded
 }
 else
 {
-    UE_LOG(GamebaseTestResults, Display, TEXT("code: %d, message: %s"), error->code, *error->message);
+    UE_LOG(GamebaseTestResults, Display, TEXT("code: %d, message: %s"), Error->Code, *Error->Messsage);
 
-    GamebaseInnerError* moduleError = gamebaseError.error; // GamebaseError.error object from external module
+    GamebaseInnerError* moduleError = gamebaseError.Error; // GamebaseError.Error object from external module
     if (moduleError.code != GamebaseErrorCode::SUCCESS)
     {
-        UE_LOG(GamebaseTestResults, Display, TEXT("moduleErrorCode: %d, moduleErrorMessage: %s"), moduleError->code, *moduleError->message);
+        UE_LOG(GamebaseTestResults, Display, TEXT("moduleErrorCode: %d, moduleErrorMessage: %s"), moduleerror->Code, *moduleerror->Messsage);
     }
 }
 ```

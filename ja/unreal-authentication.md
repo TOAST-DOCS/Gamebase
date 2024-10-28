@@ -520,9 +520,9 @@ void USample::AddMapping(const FString& ProviderName)
 
 | keyname | a use | 値種類 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential::PROVIDER_NAME | IdPタイプ設定 | GamebaseAuthProvider::Google<br> GamebaseAuthProvider::Facebook<br>GamebaseAuthProvider::Naver<br>GamebaseAuthProvider::Twitter<br>GamebaseAuthProvider::Line<br>GamebaseAuthProvider::Hangame<br>GamebaseAuthProvider::AppleId<br>GamebaseAuthProvider::Weibo<br>GamebaseAuthProvider::GameCenter<br>GamebaseAuthProvider::Payco |
-| GamebaseAuthProviderCredential::ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)設定<br/>Google認証時には使用しない |                                |
-| GamebaseAuthProviderCredential::AUTHORIZATION_CODE | Googleログイン後に取得した認証情報(Authorization Code)設定 |    
+| GamebaseAuthProviderCredential::ProviderName | IdPタイプ設定 | GamebaseAuthProvider::Google<br> GamebaseAuthProvider::Facebook<br>GamebaseAuthProvider::Naver<br>GamebaseAuthProvider::Twitter<br>GamebaseAuthProvider::Line<br>GamebaseAuthProvider::Hangame<br>GamebaseAuthProvider::AppleId<br>GamebaseAuthProvider::Weibo<br>GamebaseAuthProvider::GameCenter<br>GamebaseAuthProvider::Payco |
+| GamebaseAuthProviderCredential::AccessToken | IdPログイン後に取得した認証情報(アクセストークン)設定<br/>Google認証時には使用しない |                                |
+| GamebaseAuthProviderCredential::AuthorizationCode | Googleログイン後に取得した認証情報(Authorization Code)設定 |    
 
 > [TIP]
 >
