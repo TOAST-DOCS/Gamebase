@@ -427,10 +427,7 @@ Shows a customized WebView.<br/>Can configure a customzed WebView by using TCGBW
 - (void)showFixedOrientationWebView:(id)sender {
     NSString* urlString = @"https://www.toast.com/";
     TCGBWebViewConfiguration* config = [[TCGBWebViewConfiguration alloc] init];
-    
-    // Webview is fixed to Landscape mode
-    config.orientationMask = TCGBWebViewOrientationLandscapeLeft | TCGBWebViewOrientationLandscapeRight;
-    
+
     void(^closeCompletion)(TCGBError *) = ^(TCGBError *error) {
         NSLog(@"WebView Close Event occured");
     };
@@ -445,8 +442,6 @@ Shows a customized WebView.<br/>Can configure a customzed WebView by using TCGBW
     // After this method is called, every webview(TCGBWebView) is shown with Landscape mode
 
     TCGBWebViewConfiguration *config = [[TCGBWebViewConfiguration alloc] init];
-    config.orientationMask = TCGBWebViewOrientationLandscapeLeft | TCGBWebViewOrientationLandscapeRight;
-
     [TCGBWebView sharedTCGBWebView].defaultWebConfiguration = config;
 }
 ```
@@ -506,11 +501,6 @@ Can add customized functions by specifying scheme names and blocks in Gamebase.
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
 | navigationBarTitle                     | string                                   | Title of WebView        |
-| orientationMask                        | TCGBWebViewOrientationUnspecified        | Unspecified                |
-|                                        | TCGBWebViewOrientationPortrait           | Portrait mode              |
-|                                        | TCGBWebViewOrientationPortraitUpsideDown | Reverse portrait      |
-|                                        | TCGBWebViewOrientationLandscapeRight     | Landscape mode              |
-|                                        | TCGBWebViewOrientationLandscapeLeft      | Reverse landscape     |
 | contentMode                            | TCGBWebViewContentModeRecommended        | Browser recommended by the current platform (**default**)    |
 |                                        | TCGBWebViewContentModeMobile             | Mobile browser            |
 |                                        | TCGBWebViewContentModeDesktop            | Desktop browser          |

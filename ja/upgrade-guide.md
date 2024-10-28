@@ -12,11 +12,14 @@
 ## 2.66.2
 
 ### iOS
+
 #### Changed/Deprecated APIs
+
 * 以下のフィールドは非推奨となりました。
     * **TCGBWebViewConfiguration.orientationMask**
     
 ## 2.66.0
+
 ### Unreal
 * APIの使用方法を変更しました。
     * `IModuleInterface`を継承した**IGamebase**で提供していたAPIを`UGameInstanceSubsystem`を継承した**UGamebaseSubsytem**で提供するように変更しました。
@@ -28,6 +31,7 @@ if (UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebas
     GamebaseSubsystem->Initialize(...);
 }
 ```
+
 * **GamebaseInterace** モジュールが削除されたため、Gamebaseを使用する場合は、モジュールの依存関係から削除する必要があります。
         PrivateDependencyModuleNames.AddRange(
             new[]
@@ -35,7 +39,7 @@ if (UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebas
                 "Gamebase"
             }
         );
-
+        
 ## 2.65.0
 
 ### Common

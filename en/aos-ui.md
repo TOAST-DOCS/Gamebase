@@ -37,6 +37,7 @@ Show the image notice on the screen.
 | UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | Performs a force shutdown of all popup windows because timeout has occurred while displaying the image notice popup. |
 | UI\_IMAGE\_NOTICE\_NOT\_SUPPORTED\_OS | 6902 | For rolling type, image notice is not supported on devices with API 19 or lower. |
 | SERVER\_INVALID\_RESPONSE | 8003 | Invalid response is returned from the server. |
+| WEBVIEW\_HTTP\_ERROR | 7003 | An HTTP error occurred while opening the rolling type image announcement webview. |
 
 **Example**
 
