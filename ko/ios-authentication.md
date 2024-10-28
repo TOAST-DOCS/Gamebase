@@ -180,7 +180,7 @@ Gamebase를 통하여 로그인을 처음 시도하거나, 로그인 정보(Acce
 ```objectivec
 - (void)loginLineButtonClick {
     NSDictionary *additionalInfo = @{ 
-        @"key" : @"value" 
+        kTCGBAuthLoginWithCredentialLineChannelRegionKeyname : @"japan" 
     };
 
     [TCGBGamebase loginWithType:kTCGBAuthLine additionalInfo:additionalInfo viewController:viewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
