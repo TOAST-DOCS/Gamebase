@@ -13,28 +13,31 @@ Show the image notice on the screen.
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void ShowImageNotices(FGamebaseImageNoticeConfiguration& configuration, const FGamebaseErrorDelegate& onCloseCallback);
-void ShowImageNotices(FGamebaseImageNoticeConfiguration& configuration, const FGamebaseErrorDelegate& onCloseCallback, const FGamebaseImageNoticeEventDelegate& onEventCallback);
+void ShowImageNotices(FGamebaseImageNoticeConfiguration& Configuration, const FGamebaseErrorDelegate& CloseCallback);
+void ShowImageNotices(FGamebaseImageNoticeConfiguration& Configuration, const FGamebaseErrorDelegate& CloseCallback, const FGamebaseImageNoticeEventDelegate& EventCallback);
 ```
 
 **Example**
 
 ```cpp
-void Sample::ShowImageNotices(int32 colorR, int32 colorG, int32 colorB, int32 colorA, int64 timeOut)
+void USample::ShowImageNotices(int32 ColorR, int32 ColorG, int32 ColorB, int32 ColorA, int64 TimeOut)
 {
-    FGamebaseImageNoticeConfiguration configuration{ colorR, colorG, colorB, colorA, timeOut };
+    FGamebaseImageNoticeConfiguration Configuration;
+    Configuration.BackgroundColor = FColor(ColorR, ColorG, colorB, colorA);
+    Configuration.TimeOut = TimeOut;
 
-    IGamebase::Get().GetImageNotice().ShowImageNotices(configuration,
-        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) {
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetImageNotice()->ShowImageNotices(Configuration,
+        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) {
             // Called when the entire imageNotice is closed.
             ...
         }),
-        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& scheme, const FGamebaseError* error) {
+        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& Scheme, const FGamebaseError* Error) {
             // Called when custom event occurred.
             ...
         })
@@ -46,11 +49,8 @@ void Sample::ShowImageNotices(int32 colorR, int32 colorG, int32 colorB, int32 co
 
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
-| colorR                   | 0~255                                    | Background color R            |
-| colorG                   | 0~255                                    | Backgrouond color G                |
-| colorB                   | 0~255                                    | Background color B                |
-| colorA                   | 0~255                                    | Background color Alpha                |
-| timeOut                  | int64        | Image notice max loading time (in millisecond)<br/>**default**: 5000                     |
+| BackgroundColor          | Color                                    | Background color           |
+| TimeOut                  | int64        | Image notice max loading time (in millisecond)<br/>**default**: 5000                     |
 
 
 ### Close ImageNotices
@@ -100,14 +100,14 @@ However, if the Terms and Conditions reconsent requirement has been changed to *
  
 | API | Mandatory(M) / Optional(O) | Description | 
 | --- | --- | --- | 
-| forceShow | O | If the user agreed to the terms, calling the showTermsView API again will not display the terms and conditions window, but ignore it and force the display of the terms and conditions window.<br>**default** : false | 
-| enableFixedFontSize | O | Determines whether to fix the font size of the terms and conditions window.<br>**default** : false<br/>**Android Only** |
+| bForceShow | O | If the user agreed to the terms, calling the showTermsView API again will not display the terms and conditions window, but ignore it and force the display of the terms and conditions window.<br>**default** : false | 
+| bEnableFixedFontSize | O | Determines whether to fix the font size of the terms and conditions window.<br>**default** : false<br/>**Android Only** |
  
 **FGamebaseShowTermsViewResult**
 
 | Parameter              | Values                          | Description         |
 | ---------------------- | --------------------------------| ------------------- |
-| isTermsUIOpened        | bool                            | **true** : The terms window was displayed and the user agreed, and the terms window has been closed.<br>**false** : The terms window was not displayed and the terms window has been closed because the user has already agreed to the terms.        |
+| bIsTermsUIOpened        | bool                            | **true** : The terms window was displayed and the user agreed, and the terms window has been closed.<br>**false** : The terms window was not displayed and the terms window has been closed because the user has already agreed to the terms.        |
 
 **API**
 
@@ -116,8 +116,8 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
-void ShowTermsView(const FGamebaseTermsConfiguration& configuration, const FGamebaseDataContainerDelegate& onCallback);
+void ShowTermsView(const FGamebaseDataContainerDelegate& Callback);
+void ShowTermsView(const FGamebaseTermsConfiguration& Configuration, const FGamebaseDataContainerDelegate& Callback);
 ```
 
 **ErrorCode**
@@ -134,37 +134,38 @@ void ShowTermsView(const FGamebaseTermsConfiguration& configuration, const FGame
 **Example**
 
 ```cpp
-void Sample::ShowTermsView()
+void USample::ShowTermsView()
 {
-    FGamebaseTermsConfiguration configuration { true };
+    FGamebaseTermsConfiguration Configuration { true };
 
-    IGamebase::Get().GetTerms().ShowTermsView(configuration,
-        FGamebaseDataContainerDelegate::CreateLambda([=](const FGamebaseDataContainer* dataContainer, const FGamebaseError* error) {
-            if (Gamebase::IsSuccess(error))
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetTerms()->ShowTermsView(Configuration,
+        FGamebaseDataContainerDelegate::CreateLambda([=](const FGamebaseDataContainer* DataContainer, const FGamebaseError* Error) {
+            if (Gamebase::IsSuccess(Error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView succeeded."));
                 
-                const auto result = FGamebaseShowTermsResult::From(dataContainer);
+                const auto result = FGamebaseShowTermsResult::From(DataContainer);
                 if (result.IsValid())
                 {
                     // Save the 'PushConfiguration' and use it for RegisterPush() after Login().
-                    savedPushConfiguration = FGamebasePushConfiguration::From(dataContainer);
+                    SavedPushConfiguration = FGamebasePushConfiguration::From(DataContainer);
                 }
             }
             else
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView failed. (error: %d)"), error->code);
+                UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView failed. (Error: %d)"), Error->Code);
             }
         })
     );
 }
 
-void Sample::AfterLogin()
+void USample::AfterLogin()
 {
     // Call RegisterPush with saved PushConfiguration.
-    if (savedPushConfiguration != null)
+    if (SavedPushConfiguration != null)
     {
-        Gamebase.Push.RegisterPush(savedPushConfiguration, (error) =>
+        Gamebase.Push.RegisterPush(SavedPushConfiguration, (Error) =>
         {
             ...
         });
@@ -196,12 +197,12 @@ Calling it after login also lets you see if the game user has agreed to the term
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cs
-void QueryTerms(const FGamebaseQueryTermsResultDelegate& onCallback);
+void QueryTerms(const FGamebaseQueryTermsResultDelegate& Callback);
 ```
 
 **ErrorCode**
@@ -215,17 +216,18 @@ void QueryTerms(const FGamebaseQueryTermsResultDelegate& onCallback);
 **Example**
 
 ```cpp
-void Sample::QueryTerms()
+void USample::QueryTerms()
 {
-    IGamebase::Get().GetTerms().QueryTerms(
-        FGamebaseQueryTermsResultDelegate::CreateLambda([=](const FGamebaseQueryTermsResult* data, const FGamebaseError* error) {
-            if (Gamebase::IsSuccess(error))
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetTerms()->QueryTerms(
+        FGamebaseQueryTermsResultDelegate::CreateLambda([=](const FGamebaseQueryTermsResult* Data, const FGamebaseError* Error) {
+            if (Gamebase::IsSuccess(Error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("QueryTerms succeeded."));
             }
             else
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("QueryTerms failed. (error: %d)"), error->code);
+                UE_LOG(GamebaseTestResults, Display, TEXT("QueryTerms failed. (Error: %d)"), Error->Code);
             }
         })
     );
@@ -236,24 +238,24 @@ void Sample::QueryTerms()
 
 | Parameter            | Values                          | Description         |
 | -------------------- | --------------------------------| ------------------- |
-| termsSeq             | int32                           | KEY for the entire terms and conditions.<br/>This value is required when calling updateTerms API.          |
-| termsVersion         | FString                         | T&C version.<br/>This value is required when calling updateTerms API.              |
-| termsCountryType     | FString                         | Terms and conditions type.<br/> - KOREAN: Korean terms and conditions <br/> - GDPR: European terms and conditions <br/> - ETC: Other countries' terms and conditions         |
-| contents             | TArray<FGamebaseTermsContent>   | Terms and conditions info          |
+| TermsSeq             | int32                           | KEY for the entire terms and conditions.<br/>This value is required when calling updateTerms API.          |
+| TermsVersion         | FString                         | T&C version.<br/>This value is required when calling updateTerms API.              |
+| TermsCountryType     | FString                         | Terms and conditions type.<br/> - KOREAN: Korean terms and conditions <br/> - GDPR: European terms and conditions <br/> - ETC: Other countries' terms and conditions         |
+| Contents             | TArray<FGamebaseTermsContent>   | Terms and conditions info          |
 
 
 #### GamebaseResponse.Terms.ContentDetail
 
 | Parameter            | Values                | Description         |
 | -------------------- | ----------------------| ------------------- |
-| termsContentSeq      | int32                 | T&C KEY         | 
-| name                 | FString               | T&C Name         |
-| required             | bool                  | Whether agreement is required         |
-| agreePush            | FString               | Whether to accept advertisement push.<br/> - NONE: Do not accept <br/> - ALL: Accept all <br/> - DAY: Accept push notification during daytime<br/> - NIGHT: Accept push notification during night time          |
-| agreed               | bool                  | User's consent to the terms and conditions           |
-| node1DepthPosition   | int32                 | Primary item exposure sequence.           |
-| node2DepthPosition   | int32                 | Secondary item exposure sequence.<br/> If none, -1           |
-| detailPageUrl        | FString               | URL for the full terms and conditions.<br/> If none, null. |
+| TermsContentSeq      | int32                 | T&C KEY         | 
+| Name                 | FString               | T&C Name         |
+| bRequired             | bool                  | Whether agreement is required         |
+| AgreePush            | FString               | Whether to accept advertisement push.<br/> - NONE: Do not accept <br/> - ALL: Accept all <br/> - DAY: Accept push notification during daytime<br/> - NIGHT: Accept push notification during night time          |
+| bAgreed               | bool                  | User's consent to the terms and conditions           |
+| Node1DepthPosition   | int32                 | Primary item exposure sequence.           |
+| Node2DepthPosition   | int32                 | Secondary item exposure sequence.<br/> If none, -1           |
+| DetailPageUrl        | FString               | URL for the full terms and conditions.<br/> If none, null. |
 
 
 ### UpdateTerms
@@ -271,22 +273,23 @@ It can be used to terminate the agreement to optional terms and conditions as we
 >
 
 #### Required parameter
-* configuration: Information of optional T&C of users who will be registered on the server.
+
+* Configuration: Information of optional T&C of users who will be registered on the server.
  
 #### Optional parameter
 
-* callback: Registers the information of optional terms and conditions on the server, and uses the callback to inform the user.
+* Callback: Registers the information of optional terms and conditions on the server, and uses the callback to inform the user.
 
 
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void UpdateTerms(const FGamebaseUpdateTermsConfiguration& configuration, const FGamebaseErrorDelegate onCallback);
+void UpdateTerms(const FGamebaseUpdateTermsConfiguration& Configuration, const FGamebaseErrorDelegate Callback);
 ```
 
 **ErrorCode**
@@ -301,21 +304,22 @@ void UpdateTerms(const FGamebaseUpdateTermsConfiguration& configuration, const F
 **Example**
 
 ```cpp
-void Sample::UpdateTerms(int32 termsSeq, const FString& termsVersion, int32 termsContentSeq, bool agreed)
+void USample::UpdateTerms(int32 TermsSeq, const FString& TermsVersion, int32 TermsContentSeq, bool bAgreed)
 {
-    TArray<FGamebaseTermsContent> contents;
-    contents.Add(FGamebaseTermsContent { termsContentSeq, agreed });
+    TArray<FGamebaseTermsContent> Contents;
+    Contents.Add(FGamebaseTermsContent { TermsContentSeq, bAgreed });
     
-    IGamebase::Get().GetTerms().UpdateTerms(
-        FGamebaseUpdateTermsConfiguration { termsSeq, termsVersion, contents },
-        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) {
-            if (Gamebase::IsSuccess(error))
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetTerms()->UpdateTerms(
+        FGamebaseUpdateTermsConfiguration { TermsSeq, TermsVersion, Contents },
+        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) {
+            if (Gamebase::IsSuccess(Error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("UpdateTerms succeeded."));
             }
             else
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("UpdateTerms failed. (error: %d)"), error->code);
+                UE_LOG(GamebaseTestResults, Display, TEXT("UpdateTerms failed. (Error: %d)"), Error->Code);
             }
         })
     );
@@ -326,16 +330,16 @@ void Sample::UpdateTerms(int32 termsSeq, const FString& termsVersion, int32 term
 
 | Parameter            | Mandatory(M) / Optional(O) | Values                    | Description         |
 | -------------------- | -------------------------- | ------------------------- | ------------------- |
-| termsVersion         | **M**                      | FString                    | T&C version.<br/>The queryTerms API must be called to pass the downloaded value.   |
-| termsSeq             | **M**                      | int32                       | KEY for the entire terms and conditions.<br/>The queryTerms API must be called to pass the downloaded value.             |
-| contents             | **M**                      | List< Content > | Info on whether user agrees to the optional terms and conditions  |
+| TermsVersion         | **M**                      | FString                    | T&C version.<br/>The queryTerms API must be called to pass the downloaded value.   |
+| TermsSeq             | **M**                      | int32                       | KEY for the entire terms and conditions.<br/>The queryTerms API must be called to pass the downloaded value.             |
+| Contents             | **M**                      | List< Content > | Info on whether user agrees to the optional terms and conditions  |
 
 #### GamebaseRequest.Terms.Content
 
 | Parameter            | Mandatory(M) / Optional(O) | Values             | Description         |
 | -------------------- | -------------------------- | ------------------ | ------------------- |
-| termsContentSeq      | **M**                      | int32                | KEY for optional terms and conditions      |
-| agreed               | **M**                      | bool               | Info on whether user agrees to optional terms and conditions  |
+| TermsContentSeq      | **M**                      | int32                | KEY for optional terms and conditions      |
+| bAgreed               | **M**                      | bool               | Info on whether user agrees to optional terms and conditions  |
 
 ### IsShowingTermsView
 
@@ -350,9 +354,10 @@ bool IsShowingTermsView();
 **Example**
 
 ```cpp
-void Sample::IsShowingTermsView()
+void USample::IsShowingTermsView()
 {
-    bool isShowingTermsView = IGamebase::Get().GetTerms().IsShowingTermsView();
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    bool isShowingTermsView = Subsystem->GetTerms()->IsShowingTermsView();
     UE_LOG(GamebaseTestResults, Display, TEXT("IsShowingTermsView : %s"), isShowingTermsView ? TEXT("true") : TEXT("false"));
 }
 ```
@@ -375,35 +380,37 @@ Shows WebView.<br/>
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void ShowWebView(const FString& url, const FGamebaseWebViewConfiguration& configuration, FGamebaseErrorDelegate& onCloseCallback, const TArray<FString>& schemeList, const FGamebaseSchemeEventDelegate& onSchemeEvent);
+void ShowWebView(const FString& Url, const FGamebaseWebViewConfiguration& Configuration, FGamebaseErrorDelegate& CloseCallback, const TArray<FString>& SchemeList, const FGamebaseSchemeEventDelegate& onSchemeEvent);
 ```
 
 **Example**
 ```cpp
-void Sample::ShowWebView(const FString& url)
+void USample::ShowWebView(const FString& Url)
 {
-    FGamebaseWebViewConfiguration configuration{ TEXT("Title"), GamebaseScreenOrientation::Unspecified, 128, 128, 128, 255, 40, true, "", "" };
+    FGamebaseWebViewConfiguration Configuration;
+    Configuration.Title = TEXT("Title");
 
-    TArray<FString> schemeList{ TEXT("customScheme://openBrowser") };
+    TArray<FString> SchemeList{ TEXT("customScheme://openBrowser") };
 
-    IGamebase::Get().GetWebView().ShowWebView(url, configuration,
-        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) {
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetWebView()->ShowWebView(Url, Configuration,
+        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) {
             Result(ANSI_TO_TCHAR(__FUNCTION__), TEXT("Close webview"));
         }),
-        schemeList,
-        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& scheme, const FGamebaseError* error) {
-        if (Gamebase::IsSuccess(error))
+        SchemeList,
+        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& Scheme, const FGamebaseError* Error) {
+        if (Gamebase::IsSuccess(Error))
         {
-            Result(ANSI_TO_TCHAR(__FUNCTION__), true, *FString::Printf(TEXT("scheme= %s"), *scheme));
+            Result(ANSI_TO_TCHAR(__FUNCTION__), true, *FString::Printf(TEXT("Scheme= %s"), *Scheme));
         }
         else
         {
-            Result(ANSI_TO_TCHAR(__FUNCTION__), false, GamebaseJsonUtil::UStructToJsonObjectString(*error));
+            Result(ANSI_TO_TCHAR(__FUNCTION__), false, GamebaseJsonUtil::UStructToJsonObjectString(*Error));
         }
     }));
 }
@@ -414,25 +421,22 @@ void Sample::ShowWebView(const FString& url)
 
 | Parameter | Values | Description |
 | ------------------------ | ---------------------------------------- | --------------------------- |
-| title                    | FString                                   | Title of WebView                  |
-| orientation              | GamebaseScreenOrientation::Unspecified    | Unspecified (**default**)            |
+| Title                    | FString                                   | Title of WebView                  |
+| Orientation              | GamebaseScreenOrientation::Unspecified    | Unspecified (**default**)            |
 |                          | GamebaseScreenOrientation::Portrait       | Portrait mode                       |
 |                          | GamebaseScreenOrientation::Landscape      | Landscape mode                       |
 |                          | GamebaseScreenOrientation::LandscapeReverse | Rotate portrait mode 180 degrees            |
-| contentMode              | GamebaseWebViewContentMode::Recommended        | Browser recommended by the current platform (**default**)   |
+| ContentMode              | GamebaseWebViewContentMode::Recommended        | Browser recommended by the current platform (**default**)   |
 |                          | GamebaseWebViewContentMode::Mobile             | Mobile browser            |
 |                          | GamebaseWebViewContentMode::Desktop            | Desktop browser          |
-| colorR                   | 0~255                                    | Color R of Navigation Bar<br>**default**: 18               |
-| colorG                   | 0~255                                    | Color G of Navigation Bar<br>**default**: 93               |
-| colorB                   | 0~255                                    | Color B of Navigation Bar<br>**default**: 230              |
-| colorA                   | 0~255                                    | Color alpha of Navigation Bar<br>**default**: 255          |
-| barHeight                | height                                   | Height of Navigation Bar<br>**Android Only**                 |
-| isNavigationBarVisible   | true or false                            | Activate or deactivate Navigation Bar<br>**default**: true    |
-| isBackButtonVisible      | true or false                            | Activate or deactivate Go Back button<br>**default**: true   |
-| backButtonImageResource  | ID of resource                           | Image of Go Back button         |
-| closeButtonImageResource | ID of resource                           | Image of Close button            |
-| enableFixedFontSize      | true or false                            | Fix the font size for the terms and condtion window .<br>**default**: false<br>**Only for Android**     |
-| renderOutSideSafeArea    | true or false                            | Render outside Safe Area.<br>**default**: false<br>**Only for Android**   |
+| NavigationColor          | FColor                                   | Color of Navigation Bar<br>**default**: FColor(18, 93, 230, 255)        |
+| NavigationBarHeight      | height                                   | Height of Navigation Bar<br>**Android Only**                 |
+| bIsNavigationBarVisible   | true or false                            | Activate or deactivate Navigation Bar<br>**default**: true    |
+| bIsBackButtonVisible      | true or false                            | Activate or deactivate Go Back button<br>**default**: true   |
+| BackButtonImageResource  | ID of resource                           | Image of Go Back button         |
+| CloseButtonImageResource | ID of resource                           | Image of Close button            |
+| bEnableFixedFontSize      | true or false                            | Fix the font size for the terms and condtion window .<br>**default**: false<br>**Only for Android**     |
+| bRenderOutSideSafeArea    | true or false                            | Render outside Safe Area.<br>**default**: false<br>**Only for Android**   |
 
 > [TIP]
 >
@@ -458,8 +462,8 @@ With the following API, you can close the Webview of the current display.
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -468,9 +472,10 @@ void CloseWebView();
 
 **Example**CloseWebview
 ```cpp
-void Sample::CloseWebView()
+void USample::CloseWebView()
 {
-    IGamebase::Get().GetWebView().CloseWebView();
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetWebView()->CloseWebView();
 }
 ```
 
@@ -491,9 +496,10 @@ void OpenWebBrowser(const FString& url);
 
 **Example**
 ```cpp
-void Sample::OpenWebBrowser(const FString& url)
+void USample::OpenWebBrowser(const FString& Url)
 {
-    IGamebase::Get().GetWebView().OpenWebBrowser(url);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetWebView()->OpenWebBrowser(Url);
 }
 ```
 
@@ -510,22 +516,24 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void ShowAlert(const FString& title, const FString& message);
-void ShowAlert(const FString& title, const FString& message, const FGamebaseAlertCloseDelegate& onCloseCallback);
+void ShowAlert(const FString& Title, const FString& Message);
+void ShowAlert(const FString& Title, const FString& Message, const FGamebaseAlertCloseDelegate& CloseCallback);
 ```
 
 **Example**
 ```cpp
-void Sample::ShowAlert(const FString& title, const FString& message)
+void USample::ShowAlert(const FString& Title, const FString& Message)
 {
-    IGamebase::Get().GetUtil().ShowAlert(title, message);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetUtil()->ShowAlert(Title, Message);
 }
 
-void Sample::ShowAlertEvent(const FString& title, const FString& message)
+void USample::ShowAlertEvent(const FString& Title, const FString& Message)
 {
-    IGamebase::Get().GetUtil().ShowAlert(title, message, FGamebaseAlertCloseDelegate::CreateLambda([=]()
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetUtil()->ShowAlert(Title, Message, FGamebaseAlertCloseDelegate::CreateLambda([=]()
     {
-            UE_LOG(GamebaseTestResults, Display, TEXT("ShowAlert ButtonClick."));
+        UE_LOG(GamebaseTestResults, Display, TEXT("ShowAlert ButtonClick."));
     }));
 }
 ```
@@ -541,14 +549,15 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void ShowToast(const FString& message, EGamebaseToastExposureTime exposureTimeType);
+void ShowToast(const FString& Message, EGamebaseToastExposureTime ExposureTimeType);
 ```
 
 **Example**
 ```cpp
-void Sample::ShowToast(const FString& message, EGamebaseToastExposureTime exposureTimeType)
+void USample::ShowToast(const FString& Message, EGamebaseToastExposureTime ExposureTimeType)
 {
-    IGamebase::Get().GetUtil().ShowToast(message, exposureTimeType);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetUtil()->ShowToast(Message, ExposureTimeType);
 }
 ```
 

@@ -15,9 +15,9 @@
 
 #### 機能改善
 * APIの使用方法を変更しました。
-    * `IModuleInterface`を継承した**IGamebase**で提供していたAPIを、`UGameInstanceSubsystem`を継承した**UGamebaseSubsytem**で提供するように変更しました。
-    * **UGamebaseSubsytem**はGameInstanceのサブシステムであるため、GameInstanceのライフサイクルに従い、SDK API呼び出し時に使用するGameInstanceを通じて該当サブシステムを検索してAPIを使用する必要があります。
-* GamebaseInterface モジュールが削除されました。Gamebaseプラグインを使用する場合、GamebaseInterfaceモジュールを削除してから使用してください。
+    * `IModuleInterface`を継承した**IGamebase**で提供していたAPIを`UGameInstanceSubsystem`を継承した**UGamebaseSubsytem**で提供するように変更しました。
+    * **UGamebaseSubsytem**はGameInstanceのサブシステムであるため、GameInstanceライフサイクルに従い、SDK API呼び出し時に使用するGameInstanceを通じて該当サブシステムを検索してAPIを使用する必要があります。
+* GamebaseInterfaceモジュールが削除されました。 Gamebaseプラグイン使用時GamebaseInterfaceモジュールを削除してから使用してください。
 * (Windows) GameInstanceが複数ある環境で使用できます。
 
 #### プラットフォーム別の変更事項
@@ -187,10 +187,10 @@
 
 #### 機能改善/変更
 * キックアウトポップアップウィンドウを表示するかどうかはGamebaseコンソールでキックアウト登録時に設定できるため、次のフィールドは今後は使用しません。
-    * **FGamebaseConfiguration.enableKickoutPopup**
+    * **FGamebaseConfiguration.bEnableKickoutPopup**
 * FGamebaseConfiguration内の一部フィールドにデフォルト値が追加されました。
-    * enableLaunchingStatusPopupのデフォルト値がtrueに設定されました。
-    * enableBanPopupのデフォルト値がtrueに設定されました。
+    * bEnableLaunchingStatusPopupのデフォルト値がtrueに設定されました。
+    * bEnableBanPopupのデフォルト値がtrueに設定されました。
 * FWebViewで固定フォントサイズを使用するかどうかを設定するフィールドは、今後は使用しません。
     * **FGamebaseWebViewConfiguration.enableFixedFontSize**
 * FGamebaseWebViewConfiguratio内の一部フィールドに基本値が追加されました。

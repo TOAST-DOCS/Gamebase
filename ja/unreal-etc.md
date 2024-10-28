@@ -93,7 +93,7 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void Initialize(const FGamebaseConfiguration& Configuration, const FGamebaseLaunchingInfoDelegate& onCallback);
+void Initialize(const FGamebaseConfiguration& configuration, const FGamebaseLaunchingInfoDelegate& Callback);
 ```
 
 **Example**
@@ -260,7 +260,7 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cs
-FDelegateHandle AddHandler(const FGamebaseEventDelegate::FDelegate& onCallback);
+FDelegateHandle AddHandler(const FGamebaseEventDelegate::FDelegate& Callback);
 void RemoveHandler(const FDelegateHandle& handle);
 void RemoveAllHandler();
 ```
@@ -576,13 +576,13 @@ void Sample::CheckServerPush(const FString& category, const FGamebaseEventServer
 struct GAMEBASE_API FGamebaseEventObserverData
 {
 	// 状態値を表す情報です。
-    int32 code;
+    int32 Code;
 
     // 状態に関連するメッセージ情報です。
     FString Message;
 
     // 追加情報用の予備フィールドです。
-    FString extras;
+    FString Extras;
 }
 ```
 
@@ -1047,8 +1047,8 @@ void USample::OpenContact()
 **API**
 
 ```cs
-void RequestContactURL(const FGamebaseContactUrlDelegate& onCallback);
-void RequestContactURL(const FGamebaseContactConfiguration& Configuration, const FGamebaseContactUrlDelegate& onCallback);
+void RequestContactURL(const FGamebaseContactUrlDelegate& Callback);
+void RequestContactURL(const FGamebaseContactConfiguration& configuration, const FGamebaseContactUrlDelegate& Callback);
 ```
 
 **ErrorCode**

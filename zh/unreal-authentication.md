@@ -514,9 +514,9 @@ This interface allows to authenticate with SDK provided by IdP of a game to enab
 
 | Keyname | Usage | Value Type |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential::PROVIDER_NAME |Set IdP type | GamebaseAuthProvider::Google<br> GamebaseAuthProvider::Facebook<br>GamebaseAuthProvider::Naver<br>GamebaseAuthProvider::Twitter<br>GamebaseAuthProvider::Line<br>GamebaseAuthProvider::Hangame<br>GamebaseAuthProvider::AppleId<br>GamebaseAuthProvider::Weibo<br>GamebaseAuthProvider::GameCenter<br>GamebaseAuthProvider::Payco |
-| GamebaseAuthProviderCredential::ACCESS_TOKEN | Set authentication information (Access Token) given after IdP login<br/>Disabled for Google authentication |                                |
-| GamebaseAuthProviderCredential::AUTHORIZATION_CODE | Set authorization code given after Google login |                                          |
+| GamebaseAuthProviderCredential::ProviderName |Set IdP type | GamebaseAuthProvider::Google<br> GamebaseAuthProvider::Facebook<br>GamebaseAuthProvider::Naver<br>GamebaseAuthProvider::Twitter<br>GamebaseAuthProvider::Line<br>GamebaseAuthProvider::Hangame<br>GamebaseAuthProvider::AppleId<br>GamebaseAuthProvider::Weibo<br>GamebaseAuthProvider::GameCenter<br>GamebaseAuthProvider::Payco |
+| GamebaseAuthProviderCredential::AccessToken | Set authentication information (Access Token) given after IdP login<br/>Disabled for Google authentication |                                |
+| GamebaseAuthProviderCredential::AuthorizationCode | Set authorization code given after Google login |                       
 
 > [TIP]
 >
@@ -600,7 +600,7 @@ void Sample::AddMappingForcibly(const FString& providerName)
         }
         else
         {
-            // Call addMapping API and map to an account already integrated, and get ForcingMappingTicket, like below.
+            // Call AddMapping API and map to an account already integrated, and get ForcingMappingTicket, like below.
             if (error->code == GamebaseErrorCode::AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER)
             {
                 // Use the From() method of the ForcingMappingTicket class to get an ForcingMappingTicket instance. 
@@ -664,7 +664,7 @@ void Sample::ChangeLoginWithFacebook(const FString& providerName)
         }
         else
         {
-            // Call addMapping API and map to an account already integrated, and get ForcingMappingTicket, like below.
+            // Call AddMapping API and map to an account already integrated, and get ForcingMappingTicket, like below.
             if (error->code == GamebaseErrorCode::AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER)
             {
                 // Use the From() method of the ForcingMappingTicket class to get an ForcingMappingTicket instance.

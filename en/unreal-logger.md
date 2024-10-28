@@ -8,8 +8,8 @@ Initialize NHN Cloud Logger SDK with appkey issued from Log & Crash Search.
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -18,10 +18,14 @@ void Initialize(const FGamebaseLoggerConfiguration& loggerConfiguration);
 
 **Example**
 ```cpp
-void Sample::InitializeLogger()
+void USample::InitializeLogger()
 {
-    FGamebaseLoggerConfiguration configuration{ "USER_LOGGER_APP_KEY", enableCrashReporter };
-    IGamebase::Get().GetLogger().Initialize(configuration);
+    FGamebaseLoggerConfiguration Configuration;
+    Configuration.AppKey = TEXT("USER_LOGGER_APP_KEY");
+    Configuration.bEnableCrashReporter = true;
+    
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetLogger()->Initialize(Configuration);
 }
 ```
 
@@ -42,63 +46,69 @@ Logs are levelled as follows:
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void Debug(const FString& message, const TMap<FString, FString>& userFields = TMap<FString, FString>());
-void Info(const FString& message, const TMap<FString, FString>& userFields = TMap<FString, FString>());
-void Warn(const FString& message, const TMap<FString, FString>& userFields = TMap<FString, FString>());
-void Error(const FString& message, const TMap<FString, FString>& userFields = TMap<FString, FString>());
-void Fatal(const FString& message, const TMap<FString, FString>& userFields = TMap<FString, FString>());
+void Debug(const FString& Message, const TMap<FString, FString>& UserFields = TMap<FString, FString>());
+void Info(const FString& Message, const TMap<FString, FString>& UserFields = TMap<FString, FString>());
+void Warn(const FString& Message, const TMap<FString, FString>& UserFields = TMap<FString, FString>());
+void Error(const FString& Message, const TMap<FString, FString>& UserFields = TMap<FString, FString>());
+void Fatal(const FString& Message, const TMap<FString, FString>& UserFields = TMap<FString, FString>());
 ```
 
 **Example**
+
 ```cpp
-void Sample::DebugLogger()
+void USample::DebugLogger()
 {
-    TMap<FString, FString> userFields;
-    userFields.Add("KEY_1", "VALUE_1");
-    userFields.Add("KEY_2", "VALUE_2");
+    TMap<FString, FString> UserFields;
+    UserFields.Add("KEY_1", "VALUE_1");
+    UserFields.Add("KEY_2", "VALUE_2");
 
-    IGamebase::Get().GetLogger().Debug("MESSAGE", userFields);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetLogger()->Debug("MESSAGE", UserFields);
 }
 
-void Sample::InfoLogger()
+void USample::InfoLogger()
 {
-    TMap<FString, FString> userFields;
-    userFields.Add("KEY_1", "VALUE_1");
-    userFields.Add("KEY_2", "VALUE_2");
+    TMap<FString, FString> UserFields;
+    UserFields.Add("KEY_1", "VALUE_1");
+    UserFields.Add("KEY_2", "VALUE_2");
 
-    IGamebase::Get().GetLogger().Info("MESSAGE", userFields);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetLogger()->Info("MESSAGE", UserFields);
 }
 
-void Sample::WarnLogger()
+void USample::WarnLogger()
 {
-    TMap<FString, FString> userFields;
-    userFields.Add("KEY_1", "VALUE_1");
-    userFields.Add("KEY_2", "VALUE_2");
+    TMap<FString, FString> UserFields;
+    UserFields.Add("KEY_1", "VALUE_1");
+    UserFields.Add("KEY_2", "VALUE_2");
 
-    IGamebase::Get().GetLogger().Warn("MESSAGE", userFields);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetLogger()->Warn("MESSAGE", UserFields);
 }
 
-void Sample::ErrorLogger()
+void USample::ErrorLogger()
 {
-    TMap<FString, FString> userFields;
-    userFields.Add("KEY_1", "VALUE_1");
-    userFields.Add("KEY_2", "VALUE_2");
+    TMap<FString, FString> UserFields;
+    UserFields.Add("KEY_1", "VALUE_1");
+    UserFields.Add("KEY_2", "VALUE_2");
 
-    IGamebase::Get().GetLogger().Error("MESSAGE", userFields);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetLogger()->Error("MESSAGE", UserFields);
 }
 
-void Sample::FatalLogger()
+void USample::FatalLogger()
 {
-    TMap<FString, FString> userFields;
-    userFields.Add("KEY_1", "VALUE_1");
-    userFields.Add("KEY_2", "VALUE_2");
+    TMap<FString, FString> UserFields;
+    UserFields.Add("KEY_1", "VALUE_1");
+    UserFields.Add("KEY_2", "VALUE_2");
 
-    IGamebase::Get().GetLogger().Fatal("MESSAGE", userFields);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetLogger()->Fatal("MESSAGE", UserFields);
 }
 ```
 
@@ -109,8 +119,8 @@ With user-defined field setting, set value is sent to server along with logs eve
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -119,8 +129,9 @@ void SetUserField(const FString& key, const FString& value);
 
 **Example**
 ```cpp
-void Sample::SetLoggerUserField()
+void USample::SetLoggerUserField()
 {
-    IGamebase::Get().GetLogger().SetUserField("KEY", "VALUE");
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetLogger()->SetUserField("KEY", "VALUE");
 }
 ```

@@ -85,69 +85,71 @@ If a game user cancels purchase, the **PURCHASE_USER_CANCELED** error is returne
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void RequestPurchase(const FString& gamebaseProductId, const FGamebasePurchasableReceiptDelegate& Callback);
-void RequestPurchase(const FString& gamebaseProductId, const FString& payload, const FGamebasePurchasableReceiptDelegate& Callback);
+void RequestPurchase(const FString& GamebaseProductId, const FGamebasePurchasableReceiptDelegate& Callback);
+void RequestPurchase(const FString& GamebaseProductId, const FString& payload, const FGamebasePurchasableReceiptDelegate& Callback);
 ```
 
 **Example**
 ```cpp
-void Sample::RequestPurchase(const FString& gamebaseProductId)
+void USample::RequestPurchase(const FString& GamebaseProductId)
 {
-    IGamebase::Get().GetPurchase().RequestPurchase(gamebaseProductId, FGamebasePurchasableReceiptDelegate::CreateLambda(
-        [](const FGamebasePurchasableReceipt* purchasableReceipt, const FGamebaseError* error)
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPurchase()->RequestPurchase(GamebaseProductId, FGamebasePurchasableReceiptDelegate::CreateLambda(
+        [](const FGamebasePurchasableReceipt* PurchasableReceipt, const FGamebaseError* Error)
     {
-        if (Gamebase::IsSuccess(error))
+        if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase succeeded. (gamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s)"),
-                *purchasableReceipt->gamebaseProductId, purchasableReceipt->price, *purchasableReceipt->currency,
-                *purchasableReceipt->paymentSeq, *purchasableReceipt->purchaseToken);
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase succeeded. (GamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s)"),
+                *PurchasableReceipt->GamebaseProductId, PurchasableReceipt->Price, *PurchasableReceipt->Currency,
+                *PurchasableReceipt->PaymentSeq, *PurchasableReceipt->PurchaseToken);
         }
         else
         {
-            if (error->code == GamebaseErrorCode::PURCHASE_USER_CANCELED)
+            if (Error->Code == GamebaseErrorCode::PURCHASE_USER_CANCELED)
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("User canceled purchase."));
             }
             else
             {
-                // Check the error code and handle the error appropriately.
-                UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase failed. (error: %d)"), error->code);
+                // Check the Error code and handle the Error appropriately.
+                UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase failed. (Error: %d)"), Error->Code);
             }
 
         }
     }));
 }
 
-void Sample::RequestPurchaseWithPayload(const FString& gamebaseProductId)
+void USample::RequestPurchaseWithPayload(const FString& GamebaseProductId)
 {
-    FString userPayload = TEXT("{\"description\":\"This is example\",\"channelId\":\"delta\",\"characterId\":\"abc\"}");
+    FString UserPayload = TEXT("{\"description\":\"This is example\",\"channelId\":\"delta\",\"characterId\":\"abc\"}");
     
-    IGamebase::Get().GetPurchase().RequestPurchase(gamebaseProductId, userPayload, FGamebasePurchasableReceiptDelegate::CreateLambda(
-        [](const FGamebasePurchasableReceipt* purchasableReceipt, const FGamebaseError* error)
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPurchase()->RequestPurchase(GamebaseProductId, UserPayload, FGamebasePurchasableReceiptDelegate::CreateLambda(
+        [](const FGamebasePurchasableReceipt* PurchasableReceipt, const FGamebaseError* Error)
     {
-        if (Gamebase::IsSuccess(error))
+        if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase succeeded. (gamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s)"),
-                *purchasableReceipt->gamebaseProductId, purchasableReceipt->price, *purchasableReceipt->currency,
-                *purchasableReceipt->paymentSeq, *purchasableReceipt->purchaseToken);
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase succeeded. (GamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s)"),
+                *PurchasableReceipt->GamebaseProductId, PurchasableReceipt->price, *PurchasableReceipt->Currency,
+                *PurchasableReceipt->PaymentSeq, *PurchasableReceipt->PurchaseToken);
 
-            FString payload = purchasableReceipt->payload;
+            FString payload = PurchasableReceipt->payload;
         }
         else
         {
-            if (error->code == GamebaseErrorCode::PURCHASE_USER_CANCELED)
+            if (Error->Code == GamebaseErrorCode::PURCHASE_USER_CANCELED)
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("User canceled purchase."));
             }
             else
             {
-                // Check the error code and handle the error appropriately.
-                UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase failed. (error: %d)"), error->code);
+                // Check the Error code and handle the Error appropriately.
+                UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase failed. (Error: %d)"), Error->Code);
             }
         }
     }));
@@ -158,76 +160,76 @@ void Sample::RequestPurchaseWithPayload(const FString& gamebaseProductId)
 
 ```cpp
 struct FGamebasePurchasableReceipt
-{    
+{   
     // The product ID of a purchased item.
-    FString gamebaseProductId;
+    FString GamebaseProductId;
 
     // An identifier for Legacy API that purchases products with itemSeq.
-    int64 itemSeq;
+    int64 ItemSeq;
 
     // The price of purchased product.
-    float price;
+    float Price;
 
     // Currency code.
-    FString currency;
+    FString Currency;
 
     // Payment identifier.
     // This is an important piece of information used to call 'Consume' server API with purchaseToken.
     // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // Caution: Call Consume API from game server!
-    FString paymentSeq;
+    FString PaymentSeq;
 
     // Payment identifier.
     // This is an important piece of information used to call 'Consume' server API with paymentSeq.
     // In Consume API, the parameter must be named 'accessToken' to be passed.
     // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // Caution: Call Consume API from game server!
-    FString purchaseToken;
+    FString PurchaseToken;
 
     // The product ID that is registered to store console such as Google or Apple.
-    FString marketItemId;
+    FString MarketItemId;
 
     // The product type which can have the following values:
     // * UNKNOWN: An unknown type. Either update Gamebase SDK or contact Gamebase Customer Center.
     // * CONSUMABLE: A consumable product.
     // * AUTO_RENEWABLE: A subscription product.
     // * CONSUMABLE_AUTO_RENEWABLE: This 'consumable subscription product' is used when providing a subscribed user a subscription product that can be consumed periodically.
-    FString productType;
+    FString ProductType;
 
     // This is a user ID with which a product is purchased.
     // If a user logs in with a user ID that is not used to purchase a product, the user cannot obtain the product they purchased.
-    FString userId;
+    FString UserId;
 
     // The payment identifier of a store.
-    FString paymentId;
+    FString PaymentId;
 
     // paymentId is changed whenever product subscription is renewed.
     // This field shows the paymentId that was used when a subscription product was first purchased.
     // This value does not guarantee to be always valid, as it can have no value depending on the store
     // the user made a purchase and the status of the payment server.
-    FString originalPaymentId;
+    FString OriginalPaymentId;
     
     // The time when the product was purchased.(epoch time)
-    int64 purchaseTime;
+    int64 PurchaseTime;
     
     // The time when the subscription expires.(epoch time)
-    int64 expiryTime;
-
+    int64 ExpiryTime;
+    
     // This is a code for store where purchase is made.
     // The store code list can be found in the GamebaseStoreCode class.  
-    FString storeCode;
+    FString StoreCode;
     
     // The value sent to payload when callign the RequestPurchase API.
     // Not guarantee to use due to possible loss of information depending on the store server status.
-    FString payload;
+    FString Payload;
     
     // Whether it is promotion or not
     // - (Android) If the validation logic is temporarily turned off in the Gamebase payment server, a valid value is not guaranteed because this value will be output as false only.
-    bool isPromotion;
+    bool bIsPromotion;
 
     // Whether it is test purchase or not
     // - (Android) If the validation logic is temporarily turned off in the Gamebase payment server, a valid value is not guaranteed because this value will be output as false only.
-    bool isTestPurchase;
+    bool bIsTestPurchase;
 };
 ```
 
@@ -240,8 +242,8 @@ The list of callback returns includes information of each item.
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -250,24 +252,25 @@ void RequestItemListPurchasable(const FGamebasePurchasableItemListDelegate& Call
 
 **Example**
 ```cpp
-void Sample::RequestItemListPurchasable()
+void USample::RequestItemListPurchasable()
 {
-    IGamebase::Get().GetPurchase().RequestItemListPurchasable(FGamebasePurchasableItemListDelegate::CreateLambda(
-        [](const TArray<FGamebasePurchasableItem>* purchasableItemList, const FGamebaseError* error)
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPurchase()->RequestItemListPurchasable(FGamebasePurchasableItemListDelegate::CreateLambda(
+        [](const TArray<FGamebasePurchasableItem>* PurchasableItemList, const FGamebaseError* Error)
     {
-        if (Gamebase::IsSuccess(error))
+        if (Gamebase::IsSuccess(Error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("RequestItemListPurchasable succeeded."));
 
-            for (const FGamebasePurchasableItem& purchasableItem : *purchasableItemList)
+            for (const FGamebasePurchasableItem& PurchasableItem : *PurchasableItemList)
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT(" - gamebaseProductId= %s, price= %f, itemName= %s, itemName= %s, marketItemId= %s"),
-                    *purchasableItem.gamebaseProductId, purchasableItem.price, *purchasableItem.currency, *purchasableItem.itemName, *purchasableItem.marketItemId);
+                UE_LOG(GamebaseTestResults, Display, TEXT(" - GamebaseProductId= %s, price= %f, itemName= %s, itemName= %s, marketItemId= %s"),
+                    *PurchasableItem.GamebaseProductId, PurchasableItem.Price, *PurchasableItem.Currency, *PurchasableItem.ItemName, *PurchasableItem.MarketItemId);
             }
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RequestItemListPurchasable failed. (error: %d)"), error->code);
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestItemListPurchasable failed. (Error: %d)"), Error->Code);
         }
     }));
 }
@@ -280,41 +283,41 @@ struct FGamebasePurchasableItem
 {
     // The product ID that is registered with the Gamebase console.
     // Used when a product is purchased using Gamebase.Purchase.requestPurchase API.
-    FString gamebaseProductId;
+    FString GamebaseProductId;
 
     // An identifier for Legacy API that purchases products with itemSeq.
-    int64 itemSeq;
+    int64 ItemSeq;
 
     // The price of a product.
-    float price;
+    float Price;
 
     // Currency code.
-    FString currency;
+    FString Currency;
 
     // The name of a product registered in the Gamebase console.
-    FString itemName;
+    FString ItemName;
 
     // The product ID that is registered to store console such as Google or Apple.
-    FString marketItemId;
+    FString MarketItemId;
 
     // The product type which can have the following values:
     // * UNKNOWN: An unknown type. Either update Gamebase SDK or contact Gamebase Customer Center.
     // * CONSUMABLE: A consumable product.
     // * AUTO_RENEWABLE: A subscription product.
     // * CONSUMABLE_AUTO_RENEWABLE: This 'consumable subscription product' is used when providing a subscribed user a subscription product that can be consumed periodically.
-    FString productType;
+    FString ProductType;
     
     // Localized price information with currency symbol.
-    FString localizedPrice;
+    FString LocalizedPrice;
     
     // The name of a localized product registered with the store console.
-    FString localizedTitle;
+    FString LocalizedTitle;
 
     // The description of a localized product registered with the store console.
-    FString localizedDescription;
+    FString LocalizedDescription;
 
     // Shows whether the product is 'used or not' in the Gamebase console.
-    bool isActive;
+    bool bIsActive;
 };
 ```
 
@@ -329,13 +332,13 @@ When there's an unconsumed purchase, send a request to the game server (item ser
 
 | API                             | Mandatory(M) / Optional(O) | Description                                                                    |
 | ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
-| allStores                       | O                          | Return unconsumed lists purchased with the same UserID from a different store.<br/>Default is **false**. |
+| bAllStores                       | O                          | Return unconsumed lists purchased with the same UserID from a different store.<br/>Default is **false**. |
 
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -344,30 +347,31 @@ void RequestItemListOfNotConsumed(const FGamebasePurchasableConfiguration& Confi
 
 **Example**
 ```cpp
-void Sample::RequestItemListOfNotConsumed(bool allStores)
+void USample::RequestItemListOfNotConsumed(bool bAllStores)
 {
     FGamebasePurchasableConfiguration Configuration;
-    Configuration.allStores = allStores;
+    Configuration.bAllStores = bAllStores;
 
-    IGamebase::Get().GetPurchase().RequestItemListOfNotConsumed(Configuration, FGamebasePurchasableItemListDelegate::CreateLambda(
-        [](const TArray<FGamebasePurchasableItem>* purchasableItemList, const FGamebaseError* error)
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPurchase()->RequestItemListOfNotConsumed(Configuration, FGamebasePurchasableItemListDelegate::CreateLambda(
+        [](const TArray<FGamebasePurchasableItem>* PurchasableItemList, const FGamebaseError* Error)
     {
-        if (Gamebase::IsSuccess(error))
+        if (Gamebase::IsSuccess(Error))
         {
             // Should Deal With This non-consumed Items.
             // Send this item list to the game(item) server for consuming item.
 
             UE_LOG(GamebaseTestResults, Display, TEXT("RequestItemListOfNotConsumed succeeded."));
 
-            for (const FGamebasePurchasableItem& purchasableItem : *purchasableItemList)
+            for (const FGamebasePurchasableItem& PurchasableItem : *PurchasableItemList)
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT(" - gamebaseProductId= %s, price= %f, itemName= %s, itemName= %s, marketItemId= %s"),
-                    *purchasableReceipt.gamebaseProductId, purchasableItem.price, *purchasableItem.currency, *purchasableItem.itemName, *purchasableItem.marketItemId);
+                UE_LOG(GamebaseTestResults, Display, TEXT(" - GamebaseProductId= %s, price= %f, itemName= %s, itemName= %s, marketItemId= %s"),
+                    *PurchasableReceipt.GamebaseProductId, PurchasableItem.Price, *PurchasableItem.Currency, *PurchasableItem.ItemName, *PurchasableItem.MarketItemId);
             }
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RequestItemListOfNotConsumed failed. (error: %d)"), error->code);
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestItemListOfNotConsumed failed. (Error: %d)"), Error->Code);
         }
     }));
 }
@@ -401,27 +405,28 @@ void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configur
 
 **Example**
 ```cpp
-void Sample::RequestActivatedPurchases(bool allStores)
+void USample::RequestActivatedPurchases(bool bAllStores)
 {
-     FGamebasePurchasableConfiguration Configuration;
-     Configuration.allStores = allStores;
+    FGamebasePurchasableConfiguration Configuration;
+    Configuration.bAllStores = bAllStores;
 
-     IGamebase::Get().GetPurchase().RequestActivatedPurchases(Configuration, FGamebasePurchasableReceiptListDelegate::CreateLambda(
-        [](const TArray<FGamebasePurchasableReceipt>* purchasableReceiptList, const FGamebaseError* error)
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPurchase()->RequestActivatedPurchases(Configuration, FGamebasePurchasableReceiptListDelegate::CreateLambda(
+        [](const TArray<FGamebasePurchasableReceipt>* purchasableReceiptList, const FGamebaseError* Error)
     {
-        if (Gamebase::IsSuccess(error))
+        if (Gamebase::IsSuccess(Error))
         {
             UE_LOG(GamebaseTestResults, Display, TEXT("RequestActivatedPurchases succeeded."));
 
-            for (const FGamebasePurchasableReceipt& purchasableReceipt : *purchasableReceiptList)
+            for (const FGamebasePurchasableReceipt& PurchasableReceipt : *purchasableReceiptList)
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT(" - gamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s"),
-                    *purchasableReceipt.gamebaseProductId, purchasableReceipt.price, *purchasableReceipt.currency, *purchasableReceipt.paymentSeq, *purchasableReceipt.purchaseToken);
+                UE_LOG(GamebaseTestResults, Display, TEXT(" - GamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s"),
+                    *PurchasableReceipt.GamebaseProductId, PurchasableReceipt.Price, *PurchasableReceipt.Currency, *PurchasableReceipt.PaymentSeq, *PurchasableReceipt.PurchaseToken);
             }
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RequestActivatedPurchases failed. (error: %d)"), error->code);
+            UE_LOG(GamebaseTestResults, Display, TEXT("RequestActivatedPurchases failed. (Error: %d)"), Error->Code);
         }
     }));
 }
@@ -444,7 +449,7 @@ The list returned in the callback contains information about the subscription pr
 
 | API                             | Mandatory(M) / Optional(O) | Description                                                 |
 | ------------------------------- | -------------------------- | ----------------------------------------------------------- |
-|  includeExpiredSubscriptions    | O                          | Retrieves including expired subscription products.<br/>Default value is **false**.   |
+|  bIncludeExpiredSubscriptions    | O                          | Retrieves including expired subscription products.<br/>Default value is **false**.   |
 
 **API**
 
@@ -488,72 +493,72 @@ void Sample::RequestSubscriptionsStatus(bool includeExpiredSubscriptions)
 struct FGamebasePurchasableSubscriptionStatus
 {
     // This is the code defined internally by Gamebase for the store where your app is installed.
-    FString storeCode;
+    FString StoreCode;
     
     // The payment identifier of a store
-    FString paymentId;
+    FString PaymentId;
 
     // The paymentId is changed every time subscription product is renewed.
     // This field provides the paymentId of the first time the subscription is paid for. 
     // This value does not guarantee to be always valid, 
     // because the value may not exist depending on the status of the store or payment server.
-    FString originalPaymentId;
+    FString OriginalPaymentId;
 
     // Payment identifier
     // This is important information used to call the ‘Consume’ server API along with purchaseToken.
     //    
     // Caution: Call the Consume API from the game server! (https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap)
-    FString paymentSeq;
+    FString PaymentSeq;
 
     // Product ID for the purchased product.
-    FString marketItemId;
+    FString MarketItemId;
     
     // Item unique identifier in the IAP web console
-    int64 itemSeq;
+    int64 ItemSeq;
 
     // Contains one of the following values.
     // * UNKNOWN: Unknown type. Update Gamebase SDK or contact Gamebase customer center.
     // * CONSUMABLE: a consumable.
     // * AUTO_RENEWABLE: a subscription product.
-    FString productType;
+    FString ProductType;
 
     // User ID that purchased the product.
     // If you log in not with a user ID that purchased the product, you cannot get the purchased product.
-    FString userId;
+    FString UserId;
     
     // Product price.
-    float price;
+    float Price;
 
     // Currency information.
-    FString currency;
+    FString Currency;
 
     // Payment identifier.
     // As paymentSeq, important information to call the 'Consume' server API.
     // It is sent only when the parameter name is set to ‘access_Token’ from Consume API.
     // Note: https://docs.toast.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap
-    FString purchaseToken;
+    FString PurchaseToken;
 
     // Time of product purchase .(epoch time)
-    int64 purchaseTime;
+    int64 PurchaseTime;
     
     // Time the subscription expires.(epoch time)
-    int64 expiryTime;
+    int64 ExpiryTime;
     
     // A value sent to payload when calling the RequestPurchase API.
     // Not guarantee to use due to possible loss of information depending on the store server status.
-    FString payload;
+    FString Payload;
     
     // Subscription status
     // For all status codes, see the following documentation.
     // - https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-unity/#iapsubscriptionstatus
-    int32 statusCode;
+    int32 StatusCode;
     
     // Description for subscription status.
-    FString statusDescription;
+    FString StatusDescription;
     
     // Product ID registered in Gamebase console.
     // It is used to purchase products with the RequestPurchase API.
-    FString gamebaseProductId;
+    FString GamebaseProductId;
     
     // This value is used when purchasing from Google and can have the following values.
      // However, if the authentication logic is temporarily disabled on the Gamebase payment server due to an error in the Google server,
@@ -561,7 +566,7 @@ struct FGamebasePurchasableSubscriptionStatus
      // * null: normal payment
      // * test: test payment
      // * Promotion: promotion payment
-    FString purchaseType;
+    FString PurchaseType;
 };
 ```
 
@@ -590,20 +595,20 @@ struct FGamebasePurchasableSubscriptionStatus
 * The information on the error in NHN Cloud IAP library is included in the error details, and you can find detailed error code and message as follows.
 
 ```cpp
-GamebaseError* gamebaseError = error; // GamebaseError object via callback
+GamebaseError* gamebaseError = Error; // GamebaseError object via callback
 
-if (Gamebase::IsSuccess(error))
+if (Gamebase::IsSuccess(Error))
 {
     // succeeded
 }
 else
 {
-    UE_LOG(GamebaseTestResults, Display, TEXT("code: %d, message: %s"), error->code, *error->message);
+    UE_LOG(GamebaseTestResults, Display, TEXT("code: %d, message: %s"), Error->Code, *Error->Messsage);
 
-    GamebaseInnerError* moduleError = gamebaseError.error; // GamebaseError.error object from external module
+    GamebaseInnerError* moduleError = gamebaseError.Error; // GamebaseError.Error object from external module
     if (moduleError.code != GamebaseErrorCode::SUCCESS)
     {
-        UE_LOG(GamebaseTestResults, Display, TEXT("moduleErrorCode: %d, moduleErrorMessage: %s"), moduleError->code, *moduleError->message);
+        UE_LOG(GamebaseTestResults, Display, TEXT("moduleErrorCode: %d, moduleErrorMessage: %s"), moduleerror->Code, *moduleerror->Messsage);
     }
 }
 ```

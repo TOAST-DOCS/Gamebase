@@ -1,5 +1,14 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.66.3
+
+### Unity
+
+#### Changed Minimum Support Version
+
+* 最小サポートUnityバージョンを2018.4.0から2020.3.0に変更しました。
+* 下下位バージョンのUnityのサポートが必要な場合は、[サポート](https://toast.com/support/inquiry)にお問い合わせください。
+
 ## 2.66.2
 
 ### iOS
@@ -12,12 +21,10 @@
 ## 2.66.0
 
 ### Unreal
-
-* APIの使用方式が変更されました。
-    * `IModuleInterface` を継承した **IGamebase** で提供していた API を `UGameInstanceSubsystem` を継承した **UGamebaseSubsytem** で提供するように変更しました。
-    * **UGamebaseSubsytemはGameInstanceのサブシステムであるため、GameInstanceのライフサイクルに従い、SDK API呼び出し時に使用するGameInstanceを通じてそのサブシステムを検索してAPIを使用する必要があります。
-    * Unreal Coding Standard の命名規則に従うように変更されました。
-
+* APIの使用方法を変更しました。
+    * `IModuleInterface`を継承した**IGamebase**で提供していたAPIを`UGameInstanceSubsystem`を継承した**UGamebaseSubsytem**で提供するように変更しました。
+    * **UGamebaseSubsytem**はGameInstanceのサブシステムであるため、GameInstanceライフサイクルに従い、SDK API呼び出し時に使用するGameInstanceを通じて該当サブシステムを検索してAPIを使用する必要があります。
+    * Unreal Coding Standardの命名規則に準拠するように変更しました。
 ```cpp
 if (UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance()))
 {
@@ -25,8 +32,7 @@ if (UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebas
 }
 ```
 
-* **GamebaseInterace** モジュールが削除されたため、Gamebase を使用する場合は、モジュールの依存関係から削除する必要があります。
-
+* **GamebaseInterace** モジュールが削除されたため、Gamebaseを使用する場合は、モジュールの依存関係から削除する必要があります。
         PrivateDependencyModuleNames.AddRange(
             new[]
             {
@@ -38,9 +44,9 @@ if (UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebas
 
 ### Common
 
-* Gamebase SDK 2.65.0で画像告知機能使用する際に発生する問題を修正しました。
+* Gamebase SDK 2.65.0で画像告知機能を使用する際に発生する問題を修正しました。
     * 表示する画像告知がない場合、エラーの代わりに成功コールバックが呼び出されるように変更しました。
-    * 登録された画像告知がない場合、空白の告知画面が表示され、この時、Androidで「今日は表示しない」をチェックしてから閉じるとcrashが発生します。
+    * 登録された画像告知がない場合、空白の告知画面が表示され、この時、Androidでは「今日は表示しない」をチェックした後、閉じるとcrashが発生する問題を修正しました。
     * 問題が解決されたGamebase SDK 2.65.1以上を使用してください。
 
 ### Android
