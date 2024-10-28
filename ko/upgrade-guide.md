@@ -2,6 +2,13 @@
 
 ## 2.67.0
 
+### Unity
+
+#### Changed Minimum Support Version
+
+* 최소 지원 Unity 버전이 2020.3.0에서 2020.3.16으로 변경되었습니다.
+* 하위 버전의 Unity 지원이 필요하다면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
+
 ### Android, iOS
 
 * Twitter 인증 방식을 OAuth 2.0으로 변경하여 아래의 설정 변경 없이는 로그인이 동작하지 않습니다.
