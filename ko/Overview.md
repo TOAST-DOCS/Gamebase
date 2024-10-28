@@ -40,7 +40,7 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 
 다음은 Gamebase에서 지원하는 외부 인증 목록입니다.
 
-| 외부 인증             | Android | iOS | Unity(Windows, macOS) | Unreal(Windows) | 
+| 외부 인증             | Android | iOS | Unity(Windows, macOS) | Unreal(Windows) |
 | ----------------- | ------------ | ------------ | ------------ | ------------ |
 | Facebook          | O | O | O | O |
 | Sign In with Apple | O  | O | | O |
@@ -48,8 +48,8 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 | Google            | O | O | O | O |
 | PAYCO             | O | O | O | |
 | NAVER             | O | O | O | |
-| Twitter			| O | O | | O | |
-| LINE				| O | O | O  | |
+| Twitter			| O | O | | O |
+| LINE				| O | O | | |
 | Hangame			| O | O | O  | |
 | Weibo | O  | O  | | |
 | Steam | O  | O  | | O |
