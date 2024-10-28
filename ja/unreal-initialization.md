@@ -8,7 +8,7 @@ Gamebase Unreal SDKを使用するには、初期化を行う必要がありま�
 Gamebase APIを使用するには、次のヘッダファイルをインクルードします。
 
 ```cpp
-#include "Gamebase.h"
+#include "GamebaseSubsystem.h"
 ```
 
 ### FGamebaseConfiguration 
@@ -25,36 +25,33 @@ Gamebase APIを使用するには、次のヘッダファイルをインクル�
 | bEnableLaunchingStatusPopup | ALL | O |
 | bEnableBanPopup | ALL | O |
 
-#### 1. App ID
+#### 1. AppID
 
 Gamebase Consoleに登録されたプロジェクトIDです。
 
 [Game > Gamebase > コンソール使用ガイド > アプリ > App](./oper-app/#app)
 
-
-#### 2. appVersion
+#### 2. AppVersion
 
 Gamebase Consoleに登録したクライアントバージョンです。
 
 [Game > Gamebase > コンソール使用ガイド > アプリ > Client](./oper-app/#client)
 
-#### 3. storeCode
+#### 3. StoreCode
 NHN Cloud統合アプリ内決済サービスであるIAP(In-App Purchase)を初期化するために必要なストア情報です。
 
-| Store       | Code | Description  |
-| ----------- | ---- | ------------ |
-| App Store | AS | only iOS |
-| Google Play | GG | only Android |
-| One Store | ONESTORE | only Android |
-| Galaxy Store | GALAXY | only Android |
+| Store       | Code | GamebaseStoreCode | Description  |
+| ----------- | ---- | ------------ | ------------ |
+| App Store | AS | GamebaseStoreCode::AppStore | only iOS |
+| Google Play | GG | GamebaseStoreCode::Google | only Android |
+| One Store | ONESTORE | GamebaseStoreCode::OneStore | only Android |
+| Galaxy Store | GALAXY | GamebaseStoreCode::Galaxy | only Android |
+| Amazon Appstore | AMAZON | GamebaseStoreCode::Amazon | only Android |
+| Huawei AppGallery | HUAWEI | GamebaseStoreCode::Huawei | only Android |
+| MyCard | MYCARD | GamebaseStoreCode::MyCard | only Android |
+| Epic Store | EPIC | GamebaseStoreCode::Epic | only Windows |
 
-#### 4. displayLanguageCode
-
-Gamebaseで提供するUIおよびSystemDialogに表示される言語を、端末に設定された言語ではない別の言語に変更できます。
-
-[Game > Gamebase > Unreal SDK使用ガイド > ETC > Additional Features > Display Language](./unreal-etc/#display-language)
-
-#### 5. enablePopup
+#### 4. bEnablePopup
 
 システムメンテナンス、利用制裁(ban)など、ゲームユーザーがゲームをプレイできない状況で、ポップアップなどで理由を表示する必要がある時があります。
 Gamebaseで提供する基本ポップアップを使用するかの設定です。
@@ -63,14 +60,14 @@ Gamebaseで提供する基本ポップアップを使用するかの設定です
 * false：Gamebaseで提供するすべてのポップアップが表示されません。
 * デフォルト値：false
 
-#### 6. enableLaunchingStatusPopup
+#### 5. bEnableLaunchingStatusPopup
 
 LaunchingStatusがゲームをできない状態の場合、Gamebaseで提供する基本ポップアップを使用するかの設定です。
 LaunchingStatusは、下記Launching項目下のState、Code部分を参照してください。
 
 * デフォルト値：true
 
-#### 7. enableBanPopup
+#### 6. bEnableBanPopup
 
 ログイン時、該当ゲームユーザーが利用停止状態の場合、Gamebaseで提供する基本ポップアップを使用するかどうかの設定です。
 
@@ -99,7 +96,7 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void SetDebugMode(bool isDebugMode);
+void SetDebugMode(bool bIsDebugMode);
 ```
 
 **Example**

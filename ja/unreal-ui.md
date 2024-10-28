@@ -18,8 +18,8 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void ShowImageNotices(FGamebaseImageNoticeConfiguration& configuration, const FGamebaseErrorDelegate& onCloseCallback);
-void ShowImageNotices(FGamebaseImageNoticeConfiguration& configuration, const FGamebaseErrorDelegate& onCloseCallback, const FGamebaseImageNoticeEventDelegate& onEventCallback);
+void ShowImageNotices(FGamebaseImageNoticeConfiguration& configuration, const FGamebaseErrorDelegate& CloseCallback);
+void ShowImageNotices(FGamebaseImageNoticeConfiguration& configuration, const FGamebaseErrorDelegate& CloseCallback, const FGamebaseImageNoticeEventDelegate& onEventCallback);
 ```
 
 **Example**
@@ -116,8 +116,8 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void ShowTermsView(const FGamebaseDataContainerDelegate& onCallback);
-void ShowTermsView(const FGamebaseTermsConfiguration& Configuration, const FGamebaseDataContainerDelegate& onCallback);
+void ShowTermsView(const FGamebaseDataContainerDelegate& Callback);
+void ShowTermsView(const FGamebaseTermsConfiguration& configuration, const FGamebaseDataContainerDelegate& Callback);
 ```
 
 **ErrorCode**
@@ -286,7 +286,7 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void UpdateTerms(const FGamebaseUpdateTermsConfiguration& Configuration, const FGamebaseErrorDelegate onCallback);
+void UpdateTerms(const FGamebaseUpdateTermsConfiguration& Configuration, const FGamebaseErrorDelegate Callback);
 ```
 
 **ErrorCode**
@@ -382,7 +382,7 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void ShowWebView(const FString& Url, const FGamebaseWebViewConfiguration& Configuration, FGamebaseErrorDelegate& onCloseCallback, const TArray<FString>& SchemeList, const FGamebaseSchemeEventDelegate& onSchemeEvent);
+void ShowWebView(const FString& Url, const FGamebaseWebViewConfiguration& Configuration, FGamebaseErrorDelegate& CloseCallback, const TArray<FString>& SchemeList, const FGamebaseSchemeEventDelegate& SchemeEvent);
 ```
 
 **Example**

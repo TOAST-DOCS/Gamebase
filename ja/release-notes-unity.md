@@ -4,7 +4,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-Unity.zip)
 
 #### 機能改善/変更
-* Unity 最小サポートバージョンの変更: 2020.3.0f1
+* Unity最小サポートバージョン変更: 2020.3.0f1
 
 ### 2.66.3 (2024. 09. 05.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-Unity.zip)
