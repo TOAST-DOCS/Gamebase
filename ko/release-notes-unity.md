@@ -1,7 +1,7 @@
 ## Game > Gamebase > 릴리스 노트 > Unity
 
 ### 2.67.0 (2024. 10. 29.)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.0/GamebaseSDK-Unity.zip)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.67.0/GamebaseSDK-Unity.zip)
 
 #### 기능 추가
 
