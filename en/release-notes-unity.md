@@ -3,20 +3,21 @@
 ### 2.66.3 (2024. 09. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-Unity.zip)
 
-#### 기능 개선/변경
-* Unity 최소지원 버전 변경: 2020.3.0f1
+#### Feature Updates
+* Changed the minimum supported version of Unity to 2020.3.0f1
 
 ### 2.66.3 (2024. 09. 05.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-Unity.zip)
 
-#### 버그 수정
-* (iOS) iOS 12 에서 결제 후 크래시가 발생하는 문제를 수정했습니다.
+#### Bug Fixes
+* (iOS) Fixed an issue where crash occurs after payment on iOS 12.
 
 ### 2.66.2 (2024. 08. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.2/GamebaseSDK-Unity.zip)
 
-#### 기능 개선/변경
-* 아래 필드가 iOS에서 deprecated 되었습니다. Android에서만 사용할 수 있습니다.
+#### Feature Updates
+
+* Deprecated the following field from iOS. The field is only available in Android.
     * GamebaseWebViewConfiguration.orientation deprecated
 
 ### 2.66.1 (2024. 07. 23.)

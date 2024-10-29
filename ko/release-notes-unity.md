@@ -1,10 +1,31 @@
 ## Game > Gamebase > 릴리스 노트 > Unity
 
+### 2.67.0 (2024. 10. 29.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+
+* (Android, iOS) Steam 인증 추가
+
+#### 기능 개선/변경
+
+* Unity 최소 지원 버전 변경: 2020.3.16f1
+* 롤링 이미지 공지의 WebView 내부에서 exception이 발생한 경우, 실패 콜백이 호출되도록 변경되었습니다.
+* 내부 로직을 개선하였습니다.
+
+#### 버그 수정
+
+* storeCodeStandalone 코드로 인해 발생하는 오류가 수정되었습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.67.0](./release-notes-android/#2670-2024-10-29)
+* [Gamebase iOS SDK 2.67.0](./release-notes-ios/#2670-2024-10-29)
+
 ### 2.66.3 (2024. 09. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-Unity.zip)
 
 #### 기능 개선/변경
-* Unity 최소지원 버전 변경: 2020.3.0f1
+* Unity 최소 지원 버전 변경: 2020.3.0f1
 
 ### 2.66.3 (2024. 09. 05.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-Unity.zip)
@@ -684,7 +705,7 @@
     * 약관 UI에서 Push 수신 동의를 하지 않을 경우 Gamebase.Terms.ShowTermsView API 호출 결과로 생성되는 PushConfiguration이 null이었으나, 약관에 Push 항목이 존재한다면 PushConfiguration 객체가 항상 반환되도록 변경되었습니다.
     * Push 수신 거부 시 PushConfiguration 객체는 (푸시 동의 여부 = false, 광고성 푸시 동의 여부 = false, 야간 광고성 푸시 동의 여부 = false)로 생성됩니다.
     * 약관에 Push 항목이 존재하지 않는다면 PushConfiguration 객체는 null입니다.
-* Unity 최소지원 버전 변경: 2018.4.0f1
+* Unity 최소 지원 버전 변경: 2018.4.0f1
 * 외부 SDK 업데이트: TOAST Unity SDK(0.23.0)
 
 ### 2.24.0 (2021.06.29)

@@ -224,9 +224,10 @@ Enter {App ID} and {App Secret Code} of an app registered in the Facebook develo
 
 For Google authentication, you must obtain a **Web Application Client ID** from Google Cloud Console and enter it into Gamebase Console.
 Enter these URIs in the **Authorized redirect URIs** field.
-	* https://alpha-id-gamebase.toast.com/oauth/callback
-	* https://beta-id-gamebase.toast.com/oauth/callback
-	* https://id-gamebase.toast.com/oauth/callback
+* https://alpha-id-gamebase.toast.com/oauth/callback
+* https://beta-id-gamebase.toast.com/oauth/callback
+* https://id-gamebase.toast.com/oauth/callback
+
 
 <br/>
 
@@ -292,7 +293,7 @@ Enter {client_id} and {client_secret} issued from PAYCO ID application in the TO
 ##### iOS
 * [Gamebase > iOS SDK User Guide > Getting Started > IdP Settings > PAYCO](./ios-started/#payco)
 
-#### 5.NAVER
+#### 5. NAVER
 Enter {client_id} and {client_secret} issued by the NAVER Developers website in the Gamebase Console.
 Here, **service_name**, which is the name of an application to be displayed in the Agree to Login window, needs to be configured.
 
@@ -493,7 +494,7 @@ As of November 2019, there are only two types of scope, `full_name` and `email`,
 
 **Input field**
 
-- ClientID: {App Key}
+- Client ID: {App Key}
 - Secret Key: {App Secret}
 - Additional Info: scope (json format)
 
@@ -521,6 +522,58 @@ If not entered, it is set to a random value.
 **Reference URL**
 - [Weibo Developer](https://open.weibo.com/)
 
+#### 10. Kakaogames
+
+Kakao authentication information can be set/checked in various places, including Kakao Developers, Kakao Game Center (channeled games), Kakao Game 3.0 Admin, etc. depending on the publishing contract relationship.
+
+* Kakao Developers(https://developers.kakao.com/)
+    * ![gamebase_console_app_kakaogames_01_20240723.png](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/ko/gamebase_console_app_kakaogames_01_20240723.png)
+* Kakao Gamecenter(https://gamecenter.kakao.com/)
+    * ![gamebase_console_app_kakaogames_02_20240723.png](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/ko/gamebase_console_app_kakaogames_02_20240723.png)
+* Kakaogames 3.0 Admin(https://admin-zinny3.game.kakao.com)
+    * ![gamebase_console_app_kakaogames_03_20240723.png](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/ko/gamebase_console_app_kakaogames_03_20240723.png)
+
+<br />
+Enter the {App ID}, {Native App Key}, and {Admin Key} issued by Kakaogames into the Gamebase Console.
+![gamebase_console_app_kakaogames_04_20240723.png](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/ko/gamebase_console_app_kakaogames_04_20240723.png)
+
+##### Client ID Settings
+Set an App ID.
+
+##### Secret Key Settings
+When you add Kakaogames as your Gamebase credentials, the 'Secret Key' is set to the JSON value below.
+Change each value to the value issued by the Kakaogames console.
+
+* **appSecret**: Native App Key
+* **adminKey**: Admin Key
+
+```json
+{
+    "appSecret":"...",
+    "adminKey":"..."
+}
+```
+
+##### Additional Info Settings
+Adding Kakaogames with Gamebase credentials will set the JSON values below in the 'Additional Information'. 
+If you have a Unity build, change **AppDelegate** to **UnityAppController**.
+
+```json
+{"AppDelegateClassName" : "AppDelegate"}
+```
+
+#### 11. GPGS v2
+
+For Google Play Games Services (GPGS) v2 authentication, you need to obtain a **Web Application Client ID** from Google Cloud Console and enter the Gamebase Callback URL in the Authorised Redirect URI field, the same as how to add Google authentication type.
+[Game > Gamebase > Console User Guide > Apps > App > Authentication Information > 2. Google](./oper-app/#2-google)
+
+**Input Field**
+
+- Client ID: {Google Web Application Client ID}
+- Secret Key: {Google Web Application Client secret}
+
+##### Android
+* [Gamebase > Android SDK User Guide > Get Started > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#gpgs-v2-idp)
 
 
 ## Client

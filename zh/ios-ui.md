@@ -18,6 +18,27 @@ Show the image notice on the screen.
 * closeCompletion: Informs the user with callback when the entire image notice ends.
 * schemeEvent: Informs the payload which is registered in the console as callback when clicking the image.
 
+**API**
+
+```objectivec
++ (void)showImageNoticesWithViewController:(nullable UIViewController *)viewController
+                            closeCompletion:(void(^ _Nullable)(TCGBError * _Nullable error))closeCompletion;
+
++ (void)showImageNoticesWithViewController:(nullable UIViewController *)viewController
+                             configuration:(nullable TCGBImageNoticeConfiguration *)configuration
+                           closeCompletion:(void(^ _Nullable)(TCGBError * _Nullable error))closeCompletion
+                               schemeEvent:(void(^ _Nullable)(NSString * _Nullable payload, TCGBError * _Nullable error))schemeEvent;
+```
+
+**ErrorCode**
+
+| Error | Error Code | Description |
+| --- | --- | --- |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebase is not initialized. |
+| TCGB\_ERROR\_UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | Force all popup windows to close due to a timeout while displaying an image notice popup window. |
+| TCGB\_ERROR\_SERVER\_INVALID\_RESPONSE | 8003 | Invalid response is returned from the server. | 
+
+**Example**
 
 ```objectivec
 - (void)showImageNotices {
@@ -35,12 +56,12 @@ Show the image notice on the screen.
 }
 ```
 
-
 ### Custom ImageNotices
 
 Pops up a customized image notice on the screen.
 You can use TCGBImageNoticeConfiguration to create a customized image notice.
 
+**Example**
 
 ```objectivec
 - (void)showImageNotices {
@@ -77,20 +98,19 @@ You can use TCGBImageNoticeConfiguration to create a customized image notice.
 
 You can call the closeImageNotices API to terminate all image notices currently being displayed.
 
+**API**
+
+```objecgivec
++ (void)closeImageNoticesWithViewController:(nullable UIViewController *)viewController;
+```
+
+**Example**
+
 ```objectivec
 - (void)closeImageNotices {
     [TCGBImageNotice closeImageNoticesWithViewController:self];
 }
 ```
-
-**ErrorCode**
-
-| Error | Error Code | Description |
-| --- | --- | --- |
-| TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebase not initialized. |
-| TCGB\_ERROR\_UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | Performs a force shutdown of all popup windows because timeout has occurred while displaying the image notice popup. |
-
-
 
 ## Terms
 

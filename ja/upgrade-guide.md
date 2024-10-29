@@ -1,13 +1,53 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.66.3
+
+### Unity
+
+#### Changed Minimum Support Version
+
+* 最小サポートUnityバージョンを2018.4.0から2020.3.0に変更しました。
+* 下下位バージョンのUnityのサポートが必要な場合は、[サポート](https://toast.com/support/inquiry)にお問い合わせください。
+
+## 2.66.2
+
+### iOS
+
+#### Changed/Deprecated APIs
+
+* 以下のフィールドは非推奨となりました。
+    * **TCGBWebViewConfiguration.orientationMask**
+    
+## 2.66.0
+
+### Unreal
+* APIの使用方法を変更しました。
+    * `IModuleInterface`を継承した**IGamebase**で提供していたAPIを`UGameInstanceSubsystem`を継承した**UGamebaseSubsytem**で提供するように変更しました。
+    * **UGamebaseSubsytem**はGameInstanceのサブシステムであるため、GameInstanceライフサイクルに従い、SDK API呼び出し時に使用するGameInstanceを通じて該当サブシステムを検索してAPIを使用する必要があります。
+    * Unreal Coding Standardの命名規則に準拠するように変更しました。
+```cpp
+if (UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance()))
+{
+    GamebaseSubsystem->Initialize(...);
+}
+```
+
+* **GamebaseInterace** モジュールが削除されたため、Gamebaseを使用する場合は、モジュールの依存関係から削除する必要があります。
+        PrivateDependencyModuleNames.AddRange(
+            new[]
+            {
+                "Gamebase"
+            }
+        );
+        
 ## 2.65.0
 
 ### Common
 
-* Gamebase SDK 2.65.0에서 이미지 공지 기능 사용 시 발생하는 문제를 수정하였습니다.
-    * 표시할 이미지 공지가 없는 경우 오류 대신 성공 콜백이 호출되도록 변경하였습니다.
-    * 등록된 이미지 공지가 없을 경우 빈 공지 화면이 노출되고 이 때 Android에서는 오늘은 그만보기를 체크한 뒤 닫으면 crash가 발생합니다.
-    * 이슈가 해결된 Gamebase SDK 2.65.1 이상을 사용하세요.
+* Gamebase SDK 2.65.0で画像告知機能を使用する際に発生する問題を修正しました。
+    * 表示する画像告知がない場合、エラーの代わりに成功コールバックが呼び出されるように変更しました。
+    * 登録された画像告知がない場合、空白の告知画面が表示され、この時、Androidでは「今日は表示しない」をチェックした後、閉じるとcrashが発生する問題を修正しました。
+    * 問題が解決されたGamebase SDK 2.65.1以上を使用してください。
 
 ### Android
 

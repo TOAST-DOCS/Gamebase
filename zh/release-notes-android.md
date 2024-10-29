@@ -1,5 +1,25 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.67.0 (2024. 10. 29.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.67.0/GamebaseSDK-Android.zip)
+
+#### 기능 추가
+* Steam 인증 어댑터가 추가되었습니다.
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: NHN Cloud SDK(1.9.3)
+* Twitter 인증 방식을 OAuth 2.0으로 변경하여, 아래의 설정 변경 없이는 로그인이 동작하지 않습니다.
+    * OAuth 2.0 Client ID 및 Client Secret 발급
+        * Twitter Developer Portal에서 OAuth 2.0 Client ID와 Client Secret을 생성한 후, Gamebase 콘솔에 등록합니다.
+    * Callback URL 설정
+        * Gamebase 콘솔에 Callback URL(https://id-gamebase.toast.com/oauth/callback)을 설정합니다. 
+        * 동일한 Callback URL을 Twitter Developer Portal에 추가합니다.
+    * 자세한 내용은 다음 링크를 참고 부탁드립니다.
+        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information](./oper-app/#authentication-information)
+
+#### 버그 수정
+* 약관 화면 노출 상태에서 네트워크를 단절 후 detail 터치 시, 약관 팝업이 종료되는 이슈가 수정되었습니다.
+
 ### 2.66.3 (2024. 09. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-Android.zip)
 
@@ -24,25 +44,25 @@
 ### 2.66.1 (2024. 07. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.1/GamebaseSDK-Android.zip)
 
-#### 버그 수정
-* targetSdk 34로 빌드했을 때 Android 14 단말기에서 `gamebase://dismiss` 스킴이 동작하지 않아 커스텀 스킴으로 웹뷰를 종료할 수 없는 이슈를 수정했습니다.
+#### Bug Fixes
+* Fixed an issue where the `gamebase://dismiss` scheme did not work on Android 14 devices when built with targetSdk 34, preventing custom schemes from exiting the webview.
 
 ### 2.66.0 (2024. 07. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.0/GamebaseSDK-Android.zip)
 
 #### Added Features
 * Added GPGS v2 authentication
-    * 설정 방법은 다음 가이드 문서를 참고하시기 바랍니다.
-        * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#gpgs-v2-idp)
+    * For more details on how to set, see the following document.
+        * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#gpgs-v2-idp)
 
 ### 2.65.1 (2024. 06. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.1/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 특정 클라이언트에서 보여줄 이미지가 없는 경우, 에러 대신 성공 콜백이 호출되도록 수정하였습니다.
+#### Feature Updates
+* Fixed so that if there are no images to show on a particular client, a success callback is called instead of an error.
 
-#### 버그 수정  
-* 등록된 이미지 공지가 없는 경우, 빈 이미지 공지가 노출되고, 이 때 오늘은 그만보기 체크 후 닫기 시 crash가 발생되는 오류를 수정하였습니다.
+#### Bug Fixes  
+* Fixed an error where, when an empty image notice is exposed if there were no registered image notices, a crash occurs on closing after checking the Show less for today.
 
 ### 2.65.0 (2024. 06. 11.)
 
