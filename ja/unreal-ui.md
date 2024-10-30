@@ -60,8 +60,8 @@ closeImageNotices APIを呼び出して現在表示中のイメージ告知を�
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void CloseImageNotices();
@@ -112,8 +112,8 @@ GameのUIに合った約款ウィンドウを直接製作したい場合には�
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void ShowTermsView(const FGamebaseDataContainerDelegate& Callback);
@@ -484,8 +484,8 @@ void USample::CloseWebView()
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void OpenWebBrowser(const FString& Url);
@@ -509,8 +509,8 @@ void USample::OpenWebBrowser(const FString& Url)
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void ShowAlert(const FString& Title, const FString& Message);
@@ -542,8 +542,8 @@ void USample::ShowAlertEvent(const FString& Title, const FString& Message)
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void ShowToast(const FString& Message, EGamebaseToastExposureTime ExposureTimeType);

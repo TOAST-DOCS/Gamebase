@@ -78,9 +78,9 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 
 **API**
 
-지원 플랫폼
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void LoginForLastLoggedInProvider(const FGamebaseAuthTokenDelegate& Callback);
@@ -131,9 +131,9 @@ Gamebase는 게스트 로그인을 지원합니다.
 
 **API**
 
-지원 플랫폼
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -198,10 +198,10 @@ void USample::Login()
 
 **API**
 
-지원 플랫폼
+Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -289,10 +289,10 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 **API**
 
-지원 플랫폼
+Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -337,10 +337,10 @@ void USample::LoginWithCredential()
 
 **API**
 
-지원 플랫폼
+Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -385,10 +385,10 @@ void USample::Logout()
 
 **API**
 
-지원 플랫폼
+Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -488,10 +488,10 @@ void USample::Withdraw()
 
 **API**
 
-지원 플랫폼
+Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void AddMapping(const FString& ProviderName, const FGamebaseAuthTokenDelegate& Callback);
@@ -543,10 +543,10 @@ void USample::AddMapping(const FString& ProviderName)
 
 **API**
 
-지원 플랫폼
+Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void AddMapping(const UGamebaseJsonObject& CredentialInfo, const FGamebaseAuthTokenDelegate& Callback);
@@ -723,10 +723,10 @@ void USample::ChangeLoginWithFacebook(const FString& ProviderName)
 
 **API**
 
-지원 플랫폼
+Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void RemoveMapping(const FString& ProviderName, const FGamebaseErrorDelegate& Callback);
@@ -758,10 +758,10 @@ void USample::RemoveMapping(const FString& ProviderName)
 
 **API**
 
-지원 플랫폼
+Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 TArray<FString> GetAuthMappingList() const;
@@ -794,10 +794,10 @@ Gamebase를 통하여 인증절차를 진행 후, 앱을 제작할 때 필요한
 Gamebase에서 발급한 UserID를 가져올 수 있습니다.
 **API**
 
-지원 플랫폼
+Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 FString GetUserID() const;
@@ -818,10 +818,10 @@ Gamebase에서 발급한 Access Token을 가져올 수 있습니다.
 
 **API**
 
-지원 플랫폼
+Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 FString GetAccessToken() const;
@@ -842,10 +842,10 @@ Gamebase에서 마지막 로그인에 성공한 ProviderName을 가져올 수 �
 
 **API**
 
-지원 플랫폼
+Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 FString GetLastLoggedInProvider() const;
