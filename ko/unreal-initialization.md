@@ -51,6 +51,7 @@ NHN Cloud 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 초기화하
 | Huawei AppGallery | HUAWEI | GamebaseStoreCode::Huawei | Android에 한함 |
 | MyCard | MYCARD | GamebaseStoreCode::MyCard | Android에 한함 |
 | Epic Store | EPIC | GamebaseStoreCode::Epic | Windows에 한함 |
+| Steam | STEAM | GamebaseStoreCode::Steam | Windows에 한함 |
 
 #### 4. bEnablePopup
 
@@ -312,8 +313,8 @@ GetLaunchingInformations API를 이용하면 Initialize 이후에도 LaunchingIn
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#B60205; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -325,9 +326,9 @@ const FGamebaseLaunchingInfoPtr GetLaunchingInformations() const;
 ```cpp
 void USample::GetLaunchingInformations()
 {
-    auto launchingInformation = UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    auto LaunchingInformation = UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->GetLaunching().GetLaunchingInformations();
-    if (launchingInformation.IsValid() == false)
+    if (LaunchingInformation.IsValid() == false)
     {
         UE_LOG(GamebaseTestResults, Display, TEXT("Not found launching info."));
         return;

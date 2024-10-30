@@ -28,8 +28,8 @@ AndroidやiOSでプッシュを設定する方法は、次の文書を参照し�
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void RegisterPush(const FGamebasePushConfiguration& Configuration, const FGamebaseErrorDelegate& Callback);
@@ -136,8 +136,8 @@ void USample::RegisterPushWithOption(bool pushEnabled, bool adAgreement, bool ad
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 FGamebaseNotificationOptionsPtr GetNotificationOptions();
@@ -176,8 +176,8 @@ void USample::GetNotificationOptions()
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void QueryTokenInfo(const FGamebasePushTokenInfoDelegate& Callback);

@@ -8,8 +8,8 @@ Gamebase Unreal SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 >
 > Unreal 지원 버전
 >
-> * UE 4.26 ~ UE 5.0
-> * 하위 버전의 Unreal 지원이 필요하면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
+> * UE 4.27 ~ UE 5.4
+> * 다른 버전의 지원이 필요하면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
 
 #### Supported Platforms
 
@@ -226,6 +226,8 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
     * 사용하려는 스토어를 선택합니다.
     * Epic Store
         * EOS 서비스 정보를 각 항목에 맞게 입력합니다.
+    * Steamworks
+        * Steamworks 서비스 정보를 각 항목에 맞게 입력합니다.
 
 #### Epic Store 서비스
 
@@ -236,7 +238,7 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
 * 게임 시작 시 EOS Handle 설정이 필요합니다.
     * 엔진에 포함된 Online Subsystem EOS를 사용하는 경우 아래 코드와 같이 설정이 가능합니다.
 
-            #include "OnlineSubsystemEOS.h" 
+            #include "OnlineSubsystemEOS.h"
             #include "IEOSSDKManager.h"
             #include "GamebaseStandalonePurchaseEpicAdapterModule.h"
 
@@ -257,6 +259,19 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
         > - EOSHelpers.h
         > - [Platform]/[Platform]EOSHelpers.h
 
+#### Steamworks 서비스
+
+* Windows에서 Steam 인증 및 결제는 Steamworks SDK를 통해 진행됩니다.
+* Gamebase에서 사용하는 Steamworks의 버전은 **1.57 이상**으로 UE 5.3 이하를 사용하시는 경우 Steamworks를 업데이트 하셔야 합니다.
+    * Online Subsystem Steam을 사용하시는 경우 최신 버전의 Online Subsystem과 Online Subsystem Steam의 최신 버전 적용 코드를 참조하시어 업데이트가 필요합니다.
+        * [참고: Online Subsystem Steam 엔진 최신 버전 커밋](https://github.com/EpicGames/UnrealEngine/commit/f6fd8dcf34a0cc31412dd473c1309c8e507981f3#diff-cd0b8c3bbdff4546195efef417923e90acead93b3625d8d82afe82fe0939b8a6)
+    * Online Subsystem Steam을 사용하지 않는 경우 엔진 가이드를 확인하여 Steamworks SDK 1.57 버전 이상 다운로드 받은 후 엔진의 Steamworks 모듈을 해당 버전으로 업데이트 바랍니다.
+        * [참고: 엔진 내 Steamworks 업그레이드 가이드](https://dev.epicgames.com/documentation/en-us/unreal-engine?application_version=4.27)
+* 내부에서는 Online Subsystem 설정 옵션 중 DefaultPlatformService의 값이 Steam인 경우 자동으로 Online Subsystem Steam을 사용하는 것으로 간주하고 해당 값이 없는 경우 엔진 내부에 Steamworks 모듈의 설치 버전을 확인하여 1.57 이상인 경우 Gamebase 내 Steam 기능이 동작합니다.
+
+> [주의]
+> Online Subsystem Steam 없이 Steamworks만 사용 시 Gamebase 내부에서 Steamwork를 사용한 인증 정보를 받아오는 작업만 진행하며 Steamworks SDK 프로세스를 진행하지 않습니다.
+> Steamworks SDK를 직접 적용 시 초기화, 업데이트, 종료 등 필수적인 처리에 대해서는 직접 구현하셔야 합니다.
 
 ## API Deprecate Governance
 
