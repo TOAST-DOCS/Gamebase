@@ -79,8 +79,8 @@ To that end, it is required to implement [Login for IdP](#login-with-idp).
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void LoginForLastLoggedInProvider(const FGamebaseAuthTokenDelegate& Callback);
@@ -132,8 +132,8 @@ Gamebase supports guest login.
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -200,8 +200,8 @@ The types of IdPs that can be used for login can be found in the **GamebaseAuthP
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -291,8 +291,8 @@ This interface allows login to Gamebase with SDKs provided by IdP and authentica
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -340,8 +340,8 @@ When it is successfully logged out, authentication records with IdP are removed,
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -387,8 +387,8 @@ Attempts account withdrawal while logged in.
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
@@ -486,8 +486,8 @@ Mapping simply adds IdP integration.
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void AddMapping(const FString& ProviderName, const FGamebaseAuthTokenDelegate& Callback);
@@ -541,8 +541,8 @@ This interface allows to authenticate with SDK provided by IdP of a game to enab
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void AddMapping(const UGamebaseJsonObject& CredentialInfo, const FGamebaseAuthTokenDelegate& Callback);
@@ -721,8 +721,8 @@ After mapping is removed, log out from the IdP within Gamebase.
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void RemoveMapping(const FString& ProviderName, const FGamebaseErrorDelegate& Callback);
@@ -756,8 +756,8 @@ Return the list of IdPs mapped with user ID. <br/>
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 TArray<FString> GetAuthMappingList() const;
@@ -791,8 +791,8 @@ Get UserID issued from Gamebase.
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 FString GetUserID() const;
@@ -815,8 +815,8 @@ Get access token issued from Gamebase.
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 FString GetAccessToken() const;
@@ -839,8 +839,8 @@ Get ProviderName that was successful with the last login from Gamebase.
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 FString GetLastLoggedInProvider() const;

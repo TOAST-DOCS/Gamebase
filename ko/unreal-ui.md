@@ -18,8 +18,7 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void ShowImageNotices(FGamebaseImageNoticeConfiguration& Configuration, const FGamebaseErrorDelegate& CloseCallback);
-void ShowImageNotices(FGamebaseImageNoticeConfiguration& Configuration, const FGamebaseErrorDelegate& CloseCallback, const FGamebaseImageNoticeEventDelegate& EventCallback);
+void ShowImageNotices(FGamebaseImageNoticeConfiguration& Configuration, const FGamebaseErrorDelegate& CloseCallback, const FGamebaseImageNoticeEventDelegate& EventCallback = {});
 ```
 
 **Example**
@@ -49,19 +48,19 @@ void USample::ShowImageNotices(int32 ColorR, int32 ColorG, int32 ColorB, int32 C
 
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
-| BackgroundColor          | 0~255                                    | 백그라운드 배경 색상           |
-| TimeOut                  | int64        | 이미지 공지 최대 로딩 시간(단위 : millisecond)<br/>**default**: 5000                     |
+| BackgroundColor          | FColor       | 백그라운드 색상           |
+| TimeOut                  | int64        | 이미지 공지 최대 로딩 시간(단위 : millisecond)<br/>**default**: 5000 |
 
 
 ### Close ImageNotices
 
-closeImageNotices API를 호출하여 현재 표시 중인 이미지 공지를 모두 종료할 수 있습니다.
+CloseImageNotices API를 호출하여 현재 표시 중인 이미지 공지를 모두 종료할 수 있습니다.
 
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void CloseImageNotices();
@@ -94,7 +93,7 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 #### Optional 파라미터
 
 * GamebaseTermsConfiguration : GamebaseTermsConfiguration 객체를 통해 강제 약관 동의 창 표시 여부와 같은 설정을 변경할 수 있습니다.
-* callback : 약관 동의 후 약관 창이 종료될 때 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseResponse.DataContainer 객체는 GamebaseResponse.Push.PushConfiguration 변환해서 로그인 후 Gamebase.Push.RegisterPush API 에 사용할 수 있습니다.
+* Callback : 약관 동의 후 약관 창이 종료될 때 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseResponse.DataContainer 객체는 GamebaseResponse.Push.PushConfiguration 변환해서 로그인 후 Gamebase.Push.RegisterPush API 에 사용할 수 있습니다.
 
 **FGamebaseTermsConfiguration** 
  
@@ -112,8 +111,8 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void ShowTermsView(const FGamebaseDataContainerDelegate& Callback);
@@ -191,7 +190,7 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 >     * 콘솔에서 '기본 약관 설정'을 하거나, `UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)` 오류가 발생했을 때는 약관을 표시하지 않도록 처리하시기 바랍니다.
 
 #### Required 파라미터
-* callback : API 호출 결과를 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseResponse.Terms.QueryTermsResult 로 콘솔에 설정된 약관 정보를 얻을 수 있습니다.
+* Callback : API 호출 결과를 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseResponse.Terms.QueryTermsResult 로 콘솔에 설정된 약관 정보를 얻을 수 있습니다.
  
 
 **API**
@@ -252,7 +251,7 @@ void USample::QueryTerms()
 | Name                 | FString               | 약관 항목 이름         |
 | Required             | bool                  | 필수 동의 여부         |
 | AgreePush            | FString               | 광고성 푸시 동의 여부.<br/> - NONE: 동의 안 함 <br/> - ALL: 전체 동의 <br/> - DAY: 주간 푸시 동의<br/> - NIGHT: 야간 푸시 동의          |
-| bAgreed               | bool                  | 해당 약관 항목에 대한 유저 동의 여부           |
+| bAgreed              | bool                  | 해당 약관 항목에 대한 유저 동의 여부           |
 | Node1DepthPosition   | int32                 | 1단계 항목 노출 순서.           |
 | Node2DepthPosition   | int32                 | 2단계 항목 노출 순서.<br/> 없을 경우 -1           |
 | DetailPageUrl        | FString               | 약관 자세히 보기 URL.<br/> 없을 경우 null. |
@@ -486,8 +485,8 @@ void USample::CloseWebView()
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void OpenWebBrowser(const FString& Url);
@@ -511,8 +510,8 @@ void USample::OpenWebBrowser(const FString& Url)
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void ShowAlert(const FString& Title, const FString& Message);
@@ -544,8 +543,8 @@ void USample::ShowAlertEvent(const FString& Title, const FString& Message)
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void ShowToast(const FString& Message, EGamebaseToastExposureTime ExposureTimeType);

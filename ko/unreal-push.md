@@ -28,12 +28,12 @@ Android나 iOS에서 푸시를 설정하는 방법은 다음 문서를 참고하
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void RegisterPush(const FGamebasePushConfiguration& Configuration, const FGamebaseErrorDelegate& Callback);
-void RegisterPush(const FGamebasePushConfiguration& Configuration, const FGamebaseNotificationOptions& notificationOptions, const FGamebaseErrorDelegate& Callback);
+void RegisterPush(const FGamebasePushConfiguration& Configuration, const FGamebaseNotificationOptions& NotificationOptions, const FGamebaseErrorDelegate& Callback);
 ```
 
 #### FGamebasePushConfiguration
@@ -137,8 +137,8 @@ void USample::RegisterPushWithOption(bool pushEnabled, bool adAgreement, bool ad
 
 Supported Platforms
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 FGamebaseNotificationOptionsPtr GetNotificationOptions();
@@ -177,8 +177,8 @@ void USample::GetNotificationOptions()
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void QueryTokenInfo(const FGamebasePushTokenInfoDelegate& Callback);
@@ -298,7 +298,7 @@ else
     UE_LOG(GamebaseTestResults, Display, TEXT("code: %d, message: %s"), Error->Code, *Error->Messsage);
 
     GamebaseInnerError* moduleError = gamebaseError.Error; // GamebaseError.Error object from external module
-    if (moduleError.code != GamebaseErrorCode::SUCCESS)
+    if (moduleError.Code != GamebaseErrorCode::SUCCESS)
     {
         UE_LOG(GamebaseTestResults, Display, TEXT("moduleErrorCode: %d, moduleErrorMessage: %s"), moduleerror->Code, *moduleerror->Messsage);
     }
