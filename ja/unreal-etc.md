@@ -89,8 +89,8 @@ Gamebase初期化時のDisplay Languageを設定できます。
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 void Initialize(const FGamebaseConfiguration& configuration, const FGamebaseLaunchingInfoDelegate& Callback);
@@ -201,8 +201,8 @@ Unreal Android、iOSプラットフォームでの新規言語セット追加方
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 FString GetCountryCodeOfUSIM() const;
@@ -218,8 +218,8 @@ FString GetCountryCodeOfUSIM() const;
 **API**
 
 Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 FString GetCountryCodeOfDevice() const;
@@ -238,8 +238,8 @@ FString GetCountryCodeOfDevice() const;
 
 **API**
 
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
 FString GetCountryCode() const;
