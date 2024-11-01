@@ -28,7 +28,7 @@ static void ShowImageNotices(GamebaseRequest.ImageNotice.Configuration configura
 | NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
 | UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | 이미지 공지 팝업 창 표시 중 시간이 초과되어 모든 팝업 창을 강제 종료합니다. |
 | UI\_IMAGE\_NOTICE\_NOT\_SUPPORTED\_OS | 6902 | 롤링 타입의 경우 API 19 이하의 단말기에서는 이미지 공지를 지원하지 않습니다. |
-| WEBVIEW\_HTTP\_ERROR | 7003 | 롤링 타입 이미지 공지 웹뷰 오픈 중 HTTP 에러가 발생하였습니다. |
+| WEBVIEW\_HTTP\_ERROR | 7003 | 롤링 타입 이미지 공지 웹뷰 오픈 중 HTTP 오류가 발생했습니다. |
 | SERVER\_INVALID\_RESPONSE | 8003 | 서버가 유효하지 않은 응답을 반환했습니다. |
 
 **Example**
@@ -169,7 +169,7 @@ static void ShowTermsView(GamebaseRequest.Terms.GamebaseTermsConfiguration confi
 | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | Terms API 호출이 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
 | UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925 | 약관 웹뷰가 아직 종료되지 않았는데 다시 호출되었습니다. |
 | WEBVIEW\_TIMEOUT | 7002 | 약관 웹뷰 표시 중 타임아웃이 발생했습니다. |
-| WEBVIEW\_HTTP\_ERROR | 7003 | 약관 웹뷰 오픈 중 HTTP 에러가 발생하였습니다. |
+| WEBVIEW\_HTTP\_ERROR | 7003 | 약관 웹뷰 오픈 중 HTTP 오류가 발생했습니다. |
 
 **Example**
 
