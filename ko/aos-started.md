@@ -14,7 +14,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 용도 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk | nhncloud-core-1.9.2<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 19(Kitkat, OS 4.4) |
+| Gamebase | gamebase-sdk | nhncloud-core-1.9.3<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 19(Kitkat, OS 4.4) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Apple 로그인을 지원 | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-16.1.2 | Facebook 로그인을 지원 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Google 로그인을 지원 | - |
@@ -23,10 +23,11 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | LINE 로그인을 지원 | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.8.0 | NAVER 로그인을 지원 | API 21(Lollipop, OS 5.0) |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.15 | PAYCO 로그인을 지원 | - |
-|  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Twitter 로그인을 지원 | API 21(Lollipop, OS 5.0) |
+|  | gamebase-adapter-auth-twitter | - | Twitter 로그인을 지원 | API 21(Lollipop, OS 5.0) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.5.0 | Weibo 로그인을 지원 | - |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Weibo 로그인을 지원 | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.19.3<br>kakaogame.gamesdk-3.19.3<br>kakaogame.common-3.19.3<br>kakao.sdk.v2-auth-2.17.0<br>kakao.sdk.v2-partner-auth-2.17.0<br>kakao.sdk.v2-common-2.17.0<br>play-services-ads-identifier-17.0.0 | Kakao 로그인을 지원 | API 23(Marshmallow, OS 6.0) |
+|  | gamebase-adapter-auth-steam | - | Steam 로그인을 지원 | API 25(Nougat, OS 7.1.1) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | 게임 내 결제 지원 | - |
 |  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Amazon Appstore를 지원 | - |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Samsung Galaxy Store를 지원 | API 21(Lollipop, OS 5.0)<br>Galaxy IAP SDK의 minSdkVersion은 18이지만, 실제 결제를 위해 설치해야 하는 Checkout 서비스 앱의 minSdkVersion은 21입니다. |
@@ -105,19 +106,8 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
             # >>> [AndroidX]
             android.useAndroidX=true
             android.enableJetifier=true
-        
-    * Unity 2019.2 이하
             
-            // mainTemplate.gradle
-            ([rootProject] + (rootProject.subprojects as List)).each {
-                ext {
-                    // >>> [AndroidX]
-                    it.setProperty("android.useAndroidX", true)
-                    it.setProperty("android.enableJetifier", true)
-                }
-            }
-            
-    * Unity 2019.3 이상
+    * Unity
             
             # gradleTemplate.properties
             # >>> [AndroidX]
@@ -132,7 +122,6 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
                 android.enableJetifier=true
               </insert>
             </gradleProperties>
-            
         
 #### Under AGP 3.4.0
 
@@ -142,17 +131,6 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
         # >>> Fix for AGP under 3.4.0
         android.enableD8.desugaring=true
         android.enableIncrementalDesugaring=false
-    
-* Unity의 경우 Editor 버전이 2018.4.3 이하이거나, 2019.1.6 이하인 경우 이에 해당됩니다.(AGP 버전이 3.2.0)
-        
-        // mainTemplate.gradle
-        ([rootProject] + (rootProject.subprojects as List)).each {
-            ext {
-                // >>> Fix for AGP under 3.4.0
-                it.setProperty("android.enableD8.desugaring", true)
-                it.setProperty("android.enableIncrementalDesugaring", false)
-            }
-        }
         
 #### Root level build.gradle
 
@@ -560,7 +538,6 @@ class MyApplication: GamebaseMyCardApplication() {
 > * 'queries' 태그는 기존 Android Gradle Plugin(AGP)에서는 인식하지 못하여 빌드가 실패합니다.
 > * 아래 가이드 및 표를 참고해 'queries' 태그 빌드가 가능한 AGP 버전으로 업그레이드하시기 바랍니다.
 >     * [https://android-developers.googleblog.com/2020/07/preparing-your-build-for-package-visibility-in-android-11.html](https://android-developers.googleblog.com/2020/07/preparing-your-build-for-package-visibility-in-android-11.html)
->     * AGP 3.2.* 이하의 버전을 사용한다면 3.3.3 이상으로 업그레이드해야 합니다.
 >     * AGP 4.1.0 이상의 버전을 사용한다면 AGP 업그레이드는 하지 않아도 무방합니다.
 
 | If you are using<br>the Android Gradle<br>plugin version... | ...upgrade to: | Unity Editor |
@@ -568,13 +545,6 @@ class MyApplication: GamebaseMyCardApplication() {
 | 4.1.* | N/A (no upgrade needed)| \- |
 | 4.0.* | 4.0.1 | \- |
 | 3.6.* | 3.6.4 | 2020.1 ~ |
-| 3.5.* | 3.5.4 | \- |
-| 3.4.* | 3.4.3 | 2018.4.4 ~<br>2019.1.7 ~ |
-| 3.3.* | 3.3.3 | \- |
-| 3.2.* | Not supported | 2017.4.17 ~<br>2018.3 ~ 2018.4.3<br>2019.1.0 ~ 2019.1.6 |
-| 3.0.* | Not supported | 2018.2 |
-| 2.3.* | Not supported | 2017.3 ~ 2017.4.16<br>2018.1 |
-| 2.1.* | Not supported | Unity 5<br>2017.1 ~ 2017.2 |
 
 ```xml
 <manifest>
@@ -688,12 +658,11 @@ class MyApplication: GamebaseMyCardApplication() {
 * [Facebook for developers](https://developers.facebook.com/docs/android)
 * [Google APIs for Android](https://developers.google.com/android/guides/overview)
 * [NAVER for developers](https://developers.naver.com/docs/login/android/)
-* [Twitter Android Developer's guide - Log in with Twitter](https://dev.twitter.com/web/sign-in/implementing)
 * [Twitter Android Developer's guide - Authentication](https://developer.twitter.com/en/docs/authentication/overview)
 * [LINE for developers](https://developers.line.biz/en/docs/android-sdk/integrate-line-login/)
 * [PAYCO Login SDK for developers](https://developers.payco.com/guide/development/apply/android)
 * [Sign in with Apple JS guide](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js)
-* [Weibo for developers](https://github.com/sinaweibosdk/weibo_android_sdk/blob/master/2019SDK/文档)
+* [Weibo for developers](https://github.com/sinaweibosdk/weibo_android_sdk/tree/master/doc)
 * [Kakaogame SDK 3.0 Guide for Channeling](https://kakaogames.atlassian.net/wiki/spaces/KS3GFC/overview)
 
 ## API Reference
