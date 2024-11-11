@@ -18,8 +18,7 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void ShowImageNotices(FGamebaseImageNoticeConfiguration& configuration, const FGamebaseErrorDelegate& CloseCallback);
-void ShowImageNotices(FGamebaseImageNoticeConfiguration& configuration, const FGamebaseErrorDelegate& CloseCallback, const FGamebaseImageNoticeEventDelegate& onEventCallback);
+void ShowImageNotices(FGamebaseImageNoticeConfiguration& Configuration, const FGamebaseErrorDelegate& CloseCallback, const FGamebaseImageNoticeEventDelegate& EventCallback = {});
 ```
 
 **Example**
@@ -49,13 +48,13 @@ void USample::ShowImageNotices(int32 ColorR, int32 ColorG, int32 ColorB, int32 C
 
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
-| BackgroundColor          | 0~255                                    | バックグラウンド背景色          |
-| timeOut                  | int64        | イメージ告知最大ローディング時間(単位: millisecond)<br/>**default**: 5000                     |
+| BackgroundColor          | FColor       | バックグラウンド背景色           |
+| timeOut                  | int64        | イメージ告知最大ローディング時間(単位: millisecond)<br/>**default**: 5000 |
 
 
 ### Close ImageNotices
 
-closeImageNotices APIを呼び出して現在表示中のイメージ告知を全て終了できます。
+CloseImageNotices APIを呼び出して現在表示中のイメージ告知を全て終了できます。
 
 **API**
 
@@ -94,7 +93,7 @@ GameのUIに合った約款ウィンドウを直接製作したい場合には�
 #### Optionalパラメータ
 
 * GamebaseTermsConfiguration : GamebaseTermsConfigurationオブジェクトを介して強制的に約款同意ウィンドウを表示するかどうかなどの設定を変更できます。
-* callback：約款同意後、約款ウィンドウが終了する時、ユーザーにコールバックで伝えます。コールバックで来るGamebaseResponse.DataContainerオブジェクトはGamebaseResponse.Push.PushConfiguration変換してログイン後、Gamebase.Push.RegisterPush APIに使用できます。
+* Callback ：約款同意後、約款ウィンドウが終了する時、ユーザーにコールバックで伝えます。コールバックで来るGamebaseResponse.DataContainerオブジェクトはGamebaseResponse.Push.PushConfiguration変換してログイン後、Gamebase.Push.RegisterPush APIに使用できます。
 
 **FGamebaseTermsConfiguration** 
 
@@ -190,7 +189,7 @@ Gamebaseは、単純な形式のWebビューで約款を表示します。
 > * コンソールで「基本約款設定」を行わない場合、約款言語と異なる国コードに設定された端末でqueryTerms APIを呼び出すと、**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**エラーが発生します。
 >     * コンソールで「基本約款設定」を行ったり、**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**エラーが発生した時は、約款を表示しないように処理してください。
 #### Requiredパラメータ
-* callback：API呼び出し結果をユーザーにコールバックで伝えます。コールバックで来るGamebaseResponse.Terms.QueryTermsResultでコンソールに設定された約款情報を取得できます。
+* Callback：API呼び出し結果をユーザーにコールバックで伝えます。コールバックで来るGamebaseResponse.Terms.QueryTermsResultでコンソールに設定された約款情報を取得できます。
 
 
 **API**

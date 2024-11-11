@@ -50,6 +50,7 @@ NHN Cloud統合アプリ内決済サービスであるIAP(In-App Purchase)を初
 | Huawei AppGallery | HUAWEI | GamebaseStoreCode::Huawei | only Android |
 | MyCard | MYCARD | GamebaseStoreCode::MyCard | only Android |
 | Epic Store | EPIC | GamebaseStoreCode::Epic | only Windows |
+| Steam | STEAM | GamebaseStoreCode::Steam | only Windows |
 
 #### 4. bEnablePopup
 
@@ -323,9 +324,9 @@ const FGamebaseLaunchingInfoPtr GetLaunchingInformations() const;
 ```cpp
 void USample::GetLaunchingInformations()
 {
-    auto launchingInformation = UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    auto LaunchingInformation = UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->GetLaunching().GetLaunchingInformations();
-    if (launchingInformation.IsValid() == false)
+    if (LaunchingInformation.IsValid() == false)
     {
         UE_LOG(GamebaseTestResults, Display, TEXT("Not found launching info."));
         return;

@@ -33,7 +33,7 @@ Supported Platforms
 
 ```cpp
 void RegisterPush(const FGamebasePushConfiguration& Configuration, const FGamebaseErrorDelegate& Callback);
-void RegisterPush(const FGamebasePushConfiguration& Configuration, const FGamebaseNotificationOptions& notificationOptions, const FGamebaseErrorDelegate& Callback);
+void RegisterPush(const FGamebasePushConfiguration& Configuration, const FGamebaseNotificationOptions& NotificationOptions, const FGamebaseErrorDelegate& Callback);
 ```
 
 #### FGamebasePushConfiguration
@@ -297,7 +297,7 @@ else
     UE_LOG(GamebaseTestResults, Display, TEXT("code: %d, message: %s"), Error->Code, *Error->Messsage);
 
     GamebaseInnerError* moduleError = gamebaseError.Error; // GamebaseError.Error object from external module
-    if (moduleError.code != GamebaseErrorCode::SUCCESS)
+    if (moduleError.Code != GamebaseErrorCode::SUCCESS)
     {
         UE_LOG(GamebaseTestResults, Display, TEXT("moduleErrorCode: %d, moduleErrorMessage: %s"), moduleerror->Code, *moduleerror->Messsage);
     }

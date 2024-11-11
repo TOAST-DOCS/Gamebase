@@ -9,6 +9,12 @@
 * 最小サポートUnityバージョンが2020.3.0から2020.3.16に変更されました。
 * 下位バージョンのUnityサポートが必要な場合は[サポート](https://toast.com/support/inquiry)にお問い合わせください。
 
+### Unreal
+
+#### Changed Minimum Support Version
+
+* 最小サポートバージョンがUE 4.26からUE 4.27に変更されました。
+
 ### Android, iOS
 
 * Twitter認証方式をOAuth 2.0に変更し、以下の設定を変更しないとログインが動作しません。
