@@ -50,7 +50,7 @@ Find store information as below, required to initialize NHN Cloud In-App Purchas
 | Amazon Appstore | AMAZON | GamebaseStoreCode::Amazon | Only Android |
 | Huawei AppGallery | HUAWEI | GamebaseStoreCode::Huawei | Only Android |
 | MyCard | MYCARD | GamebaseStoreCode::MyCard | Only Android |
-| Epic Store | EPIC | GamebaseStoreCode::Epic | Only Windows |
+| Epic Games Store | EPIC | GamebaseStoreCode::Epic | Only Windows |
 
 #### 4. bEnablePopup
 

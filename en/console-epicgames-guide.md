@@ -40,7 +40,7 @@ The environments Epic provides for product release are as follows.
 
 * Register the **deploy ID**, **client ID**, **client secret key**, and **sandbox ID** in the Gamebase store information.
 
-![Epic Store Registration](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/epic_games_store_console_guide_en_01_registration.png)
+![Epic Games Store Registration](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/epic_games_store_console_guide_en_01_registration.png)
 
 ## Connect Item (Offers)
 * Epic items are managed through offers.

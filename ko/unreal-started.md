@@ -224,12 +224,12 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
     * 사용하려는 IdP를 활성화합니다.
 * Purchase
     * 사용하려는 스토어를 선택합니다.
-    * Epic Store
+    * Epic Games Store
         * EOS 서비스 정보를 각 항목에 맞게 입력합니다.
     * Steamworks
         * Steamworks 서비스 정보를 각 항목에 맞게 입력합니다.
 
-#### Epic Store 서비스
+#### Epic Games Store 서비스
 
 * UE 4.27 이상 버전에서 지원하며 엔진 내부에 EOSSDK 모듈이 사용되고 있습니다.
 * 에픽 스토어를 사용하기 위해서는 EOSSDK를 사용하여 로그인되어야 합니다.
