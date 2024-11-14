@@ -11,7 +11,7 @@
     * 기존의 이미지 공지는 팝업 타입으로 표기되며, Windows에서는 지원되지 않습니다.
 * (Windows) LINE 인증이 추가되었습니다.
 
-#### 기능 개선
+#### 기능 개선/변경
 * 엔진의 지원 버전이 4.27~5.4로 변경되었습니다.
 * 내부 로직을 개선했습니다.
 
@@ -25,7 +25,7 @@
 ### 2.66.1 (2024. 09. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.1/GamebaseSDK-Unreal.zip)
 
-#### 기능 개선
+#### 기능 개선/변경
 * 내부 로직을 개선했습니다.
 
 #### 플랫폼별 변경 사항
@@ -35,7 +35,7 @@
 ### 2.66.0 (2024. 08. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 개선
+#### 기능 개선/변경
 * API 사용 방식이 변경되었습니다.
     * `IModuleInterface`를 상속 받은 **IGamebase**에서 제공하던 API를 `UGameInstanceSubsystem`을 상속 받은 **UGamebaseSubsytem**에서 제공하도록 변경했습니다.
     * **UGamebaseSubsytem**은 GameInstance의 서브시스템이므로 GameInstance 생명 주기를 따르며 SDK API 호출 시 사용하는 GameInstance를 통해 해당 서브시스템을 찾아서 API를 사용해야 합니다.
@@ -49,7 +49,7 @@
 ### 2.64.0 (2024. 06. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.64.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 개선
+#### 기능 개선/변경
 * 내부 로직을 개선했습니다.
 
 #### 버그 수정
@@ -67,7 +67,7 @@
 * (Android) Firebase Notification 설정 방식이 변경되어 플러그인 내부에 google-services-json.xml 파일 수정이 아닌 [Android 설정 툴](./unreal-started/#android-settings)에서 google-services.json 파일 경로를 지정하도록 변경되었습니다.
 * (iOS) Gamebase Unreal SDK에 Privacy manifest와 서명을 적용했습니다.
 
-#### 기능 개선
+#### 기능 개선/변경
 * (iOS) 빌드 시 오류가 발생하지 않도록 수정되었습니다.
 
 #### 플랫폼별 변경 사항
@@ -80,7 +80,7 @@
 #### 기능 추가
 * (iOS) Gamebase SDK 내부 iOS 프레임워크에 Privacy manifest와 서명을 적용했습니다.
 
-#### 기능 개선
+#### 기능 개선/변경
 * 내부 로직을 개선했습니다.
 
 #### 플랫폼별 변경 사항
@@ -90,7 +90,7 @@
 ### 2.60.0 (2024. 02. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.60.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 개선
+#### 기능 개선/변경
 * 내부 로직을 개선했습니다.
 
 #### 플랫폼별 변경 사항
@@ -111,7 +111,7 @@
 ### 2.57.0 (2023. 11. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.57.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 추가
+#### 기능 개선/변경
 * Windows 플랫폼 지원 추가
     * [Windows 설정 툴](./unreal-started/#windows-settings)이 추가되었습니다.
     * 플랫폼에서 지원하는 API는 각 문서에 `UNREAL_WINDOWS` 항목을 확인하시기 바랍니다.

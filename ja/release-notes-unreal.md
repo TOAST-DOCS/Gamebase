@@ -25,7 +25,7 @@
 ### 2.66.1 (2024. 09. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.1/GamebaseSDK-Unreal.zip)
 
-#### 機能改善
+#### 機能改善/変更
 * 内部ロジックを改善しました。
 
 #### プラットフォーム別の変更事項
@@ -35,7 +35,7 @@
 ### 2.66.0 (2024. 08. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.0/GamebaseSDK-Unreal.zip)
 
-#### 機能改善
+#### 機能改善/変更
 * APIの使用方法を変更しました。
     * `IModuleInterface`を継承した**IGamebase**で提供していたAPIを`UGameInstanceSubsystem`を継承した**UGamebaseSubsytem**で提供するように変更しました。
     * **UGamebaseSubsytem**はGameInstanceのサブシステムであるため、GameInstanceライフサイクルに従い、SDK API呼び出し時に使用するGameInstanceを通じて該当サブシステムを検索してAPIを使用する必要があります。
@@ -49,7 +49,7 @@
 ### 2.64.0 (2024. 06. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.64.0/GamebaseSDK-Unreal.zip)
 
-#### 機能改善
+#### 機能改善/変更
 * 内部ロジックを改善しました。
 
 #### バグ修正
@@ -67,7 +67,7 @@
 * (Android) Firebase Notificationの設定方法が変更され、プラグイン内でgoogle-services-json.xmlファイルを修正するのではなく、[Android設定ツール](./unreal-started/#android-settings)でgoogle-services.jsonファイルのパスを指定するように変更されました。
 * (iOS) Gamebase Unreal SDKにPrivacy manifestと署名を適用しました。
 
-#### 機能改善
+#### 機能改善/変更
 * (iOS)ビルド時にエラーが発生しないように修正しました。
 
 #### プラットフォーム別の変更事項
@@ -80,7 +80,7 @@
 #### 機能追加
 * (iOS) Gamebase SDK内部iOSフレームワークにPrivacy manifestと署名を適用しました。
 
-#### 機能改善
+#### 機能改善/変更
 * 内部ロジックを改善しました。
 
 #### プラットフォーム別の変更事項
@@ -90,7 +90,7 @@
 ### 2.60.0 (2024. 02. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.60.0/GamebaseSDK-Unreal.zip)
 
-#### 機能改善
+#### 機能改善/変更
 * 内部ロジックを改善しました。
 
 #### プラットフォーム別の変更事項
