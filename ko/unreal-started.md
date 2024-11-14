@@ -8,7 +8,7 @@ Gamebase Unreal SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 >
 > Unreal 지원 버전
 >
-> * UE 4.27 ~ UE 5.4
+> * UE 4.27~UE 5.4
 > * 다른 버전의 지원이 필요하면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
 
 #### Supported Platforms
@@ -218,42 +218,34 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
 1. 에디터의 메뉴 **Edit > Project Settings**를 선택합니다.
 2. Project Settings 창의 Plugin 카테고리에서 **Gamebase - Windows**를 선택합니다.
 
-![Unreal Project Settings - Windows](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-windows-setttings-2.57.0.png)
+![Unreal Project Settings - Windows](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-windows-setttings-2.67.1.png)
 
 * Authentication
     * 사용하려는 IdP를 활성화합니다.
 * Purchase
     * 사용하려는 스토어를 선택합니다.
-    * Epic Store
+    * Epic Games Store
         * EOS 서비스 정보를 각 항목에 맞게 입력합니다.
-    * Steamworks
-        * Steamworks 서비스 정보를 각 항목에 맞게 입력합니다.
 
-#### Epic Store 서비스
+#### Epic Games Store 서비스
 
-* UE 4.27 이상 버전에서 지원하며 엔진 내부에 EOSSDK 모듈이 사용되고 있습니다.
-* 에픽 스토어를 사용하기 위해서는 EOSSDK를 사용하여 로그인되어야 합니다.
-* Gamebase에서 사용하는 EOS 버전은 1.15.5.0으로 엔진 경로 `Engine\Source\ThirdParty\EOSSDK\SDK`에 해당 버전을 설치하여 업그레이드가 필요합니다.
-    * [참고: EOS SDK 업그레이드 가이드](https://docs.unrealengine.com/5.2/en/upgrading-the-eos-sdk-in-unreal-engine/)
-* 게임 시작 시 EOS Handle 설정이 필요합니다.
-    * 엔진에 포함된 Online Subsystem EOS를 사용하는 경우 아래 코드와 같이 설정이 가능합니다.
+* Epic Games Store를 사용하기 위해서는 Epic Online Services(EOS) SDK를 사용하여 로그인되어야 합니다.
+* Gamebase에서 사용하는 EOS의 최소 버전은 1.15.5으로 1.16.3 버전까지 확인이 완료되었습니다.
+    * 엔진에 포함된 EOSSDK 모듈 내 포함되어 있는 SDK의 버전을 확인하여 제시된 버전으로 업데이트가 필요합니다.
+        * [참고: EOS SDK 업그레이드 가이드](https://docs.unrealengine.com/5.2/en/upgrading-the-eos-sdk-in-unreal-engine/)
+    * Online Subsystem EOS를 사용하지 않고 EOSSDK 모듈을 이용해 따로 EOS 초기화를 진행한 경우 EOS의 핸들을 설정해야 합니다.
 
-            #include "OnlineSubsystemEOS.h"
-            #include "IEOSSDKManager.h"
             #include "GamebaseStandalonePurchaseEpicAdapterModule.h"
 
-            void UGamebasePurchaseEpicSupportTestCase::SetEosPlatformInstance()
+            void USample::SetEosPlatformHandle(EOS_HPlatform PlatformHandle)
             {
-                IOnlineSubsystem* Subsystem = Online::GetSubsystem(GetWorld());
-
-                if (const FOnlineSubsystemEOS* EosSubsystem = static_cast<FOnlineSubsystemEOS*>(Subsystem))
-                {
-                    EOS_HPlatform PlatformHandle = *EosSubsystem->EOSPlatformHandle;
-                    FGamebaseStandalonePurchaseEpicAdapterModule::SetEosPlatformInstance(*Handle);
-                }
+                // EOS SDK 초기화 후 핸들을 가져와 Gamebase SDK로 전달
+                FGamebaseStandalonePurchaseEpicAdapterModule::SetEOSPlatformHandle(PlatformHandle);
             }
 
-        > `OnlineSubsystemEOS.h` 헤더를 포함하면 빌드 오류가 발생하므로 OnlineSubsystemEOS 플러그인의 Private 폴더 안 Header 파일을 Public 폴더로 이동해 주는 과정이 필요합니다. (참고: [EOS 오류 관련 문의](https://eoshelp.epicgames.com/s/question/0D54z00007QIJjhCAH/cant-call-get-voice-chat-user-interface-from-game-instance-using-the-eos-plugin-and-eos-voice-plugins-on-unreal-engine4?language=en_US))
+    * UE 4.27에서 Online Subsystem EOS를 사용 시 빌드 오류가 발생하므로 수정이 필요합니다.
+
+        > EOS SDK의 핸들을 가져오기 위해 `OnlineSubsystemEOS.h` 헤더를 포함하게 되어 빌드 오류가 발생하므로 OnlineSubsystemEOS 플러그인의 Private 폴더 내 헤더 파일을 Public 폴더로 이동해 주는 과정이 필요합니다. (참고: [EOS 오류 관련 문의](https://eoshelp.epicgames.com/s/question/0D54z00007QIJjhCAH/cant-call-get-voice-chat-user-interface-from-game-instance-using-the-eos-plugin-and-eos-voice-plugins-on-unreal-engine4?language=en_US))
         > - SocketSubsystemEOS.h 
         > - EOSSettings.h
         > - EOSHelpers.h
@@ -262,16 +254,19 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
 #### Steamworks 서비스
 
 * Windows에서 Steam 인증 및 결제는 Steamworks SDK를 통해 진행됩니다.
-* Gamebase에서 사용하는 Steamworks의 버전은 **1.57 이상**으로 UE 5.3 이하를 사용하시는 경우 Steamworks를 업데이트 하셔야 합니다.
-    * Online Subsystem Steam을 사용하시는 경우 최신 버전의 Online Subsystem과 Online Subsystem Steam의 최신 버전 적용 코드를 참조하시어 업데이트가 필요합니다.
+* Gamebase에서 지원하는 Steamworks의 버전은 1.59 입니다. UE 5.3 이하를 사용하는 경우 Steamworks를 업데이트해야 합니다.
+    * 엔진 가이드를 확인하여 엔진의 Steamworks 모듈을 해당 버전으로 업데이트하세요.
+        * [참고: 엔진 내 Steamworks 업그레이드 가이드](https://dev.epicgames.com/documentation/en-us/unreal-engine/online-subsystem-steam?application_version=4.27)
+    * Online Subsystem Steam을 사용하는 경우 최신 버전의 Online Subsystem과 Online Subsystem Steam의 최신 버전 적용 코드를 참조하여 업데이트해야 합니다.
         * [참고: Online Subsystem Steam 엔진 최신 버전 커밋](https://github.com/EpicGames/UnrealEngine/commit/f6fd8dcf34a0cc31412dd473c1309c8e507981f3#diff-cd0b8c3bbdff4546195efef417923e90acead93b3625d8d82afe82fe0939b8a6)
-    * Online Subsystem Steam을 사용하지 않는 경우 엔진 가이드를 확인하여 Steamworks SDK 1.57 버전 이상 다운로드 받은 후 엔진의 Steamworks 모듈을 해당 버전으로 업데이트 바랍니다.
-        * [참고: 엔진 내 Steamworks 업그레이드 가이드](https://dev.epicgames.com/documentation/en-us/unreal-engine?application_version=4.27)
-* 내부에서는 Online Subsystem 설정 옵션 중 DefaultPlatformService의 값이 Steam인 경우 자동으로 Online Subsystem Steam을 사용하는 것으로 간주하고 해당 값이 없는 경우 엔진 내부에 Steamworks 모듈의 설치 버전을 확인하여 1.57 이상인 경우 Gamebase 내 Steam 기능이 동작합니다.
+* 내부에서는 Engine.ini의 OnlineSubsystemSteam의 bEnabled이 활성화 된 경우 Online Subsystem Steam을 사용하는 것으로 간주합니다. 그 외의 경우 Gamebase에서 사용하는 Steamworks 지원버전을 충족하면 자동으로 Steamworks 모듈을 사용합니다.
+
+        [OnlineSubsystemSteam]
+		bEnabled=true
 
 > [주의]
-> Online Subsystem Steam 없이 Steamworks만 사용 시 Gamebase 내부에서 Steamwork를 사용한 인증 정보를 받아오는 작업만 진행하며 Steamworks SDK 프로세스를 진행하지 않습니다.
-> Steamworks SDK를 직접 적용 시 초기화, 업데이트, 종료 등 필수적인 처리에 대해서는 직접 구현하셔야 합니다.
+> Online Subsystem Steam 없이 Steamworks만 사용 시 Gamebase 내부에서 Steamworks를 사용한 인증 정보를 받아 오는 작업만 진행하며 Steamworks SDK 프로세스를 진행하지 않습니다.
+> Steamworks SDK를 직접 적용 시 초기화, 업데이트, 종료 등 필수적인 처리에 대해서는 직접 구현해야 합니다.
 
 ## API Deprecate Governance
 

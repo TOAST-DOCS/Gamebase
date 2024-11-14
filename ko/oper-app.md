@@ -222,7 +222,7 @@ Facebook 개발자 사이트에 등록한 앱의 {앱 아이디}와 {앱 시크�
 
 ![gamebase_app_06_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_06_201812.png)
 
-Google 인증을 위해서는 Google Cloud Console에서 **Web Application Client ID**를 발급받아 Gamebase Console에 입력해야 합니다.
+Google 인증을 위해서는 Google Cloud Console에서 **Web Application Client ID**를 발급 받아 Gamebase Console에 입력해야 합니다.
 승인된 리디렉션 URI란에 다음 값을 입력합니다.
 * https://alpha-id-gamebase.toast.com/oauth/callback
 * https://beta-id-gamebase.toast.com/oauth/callback
@@ -230,7 +230,7 @@ Google 인증을 위해서는 Google Cloud Console에서 **Web Application Clien
 
 <br/>
 
-Google iOS 인증을 위해서는 Google Cloud Console에서 **iOS Client ID**를 발급받아 Gamebase Console에 입력해야 합니다.
+Google iOS 인증을 위해서는 Google Cloud Console에서 **iOS Client ID**를 발급 받아 Gamebase Console에 입력해야 합니다.
 
 **APIs & Services > CREATE CREDENTIALS > OAuth client ID**를 선택한 뒤,
 
@@ -253,7 +253,7 @@ Google iOS 인증을 위해서는 Google Cloud Console에서 **iOS Client ID**�
 
 ##### Additional Info Settings
 * **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정할 수 있습니다.
-* Google의 경우, OAuth 인증 후 프로필 정보에서 email 정보를 획득하고자 한다면 인증 권한 범위인 **scope**를 설정해야 합니다.
+* Google의 경우 OAuth 인증 후 프로필 정보에서 email 정보를 획득하려면 인증 권한 범위인 **scope**를 설정해야 합니다.
 * email 외에 선언할 수 있는 다양한 scope는 다음 문서에서 확인할 수 있습니다.
     * https://developers.google.com/identity/protocols/oauth2/scopes#google-sign-in
     * https://developers.google.com/identity/protocols/oauth2/scopes
@@ -350,7 +350,7 @@ Twitter 인증을 위해서는 Developer Portal에서 Callback URI란에 다음 
 
 ##### Gamebase Console
 
-Developer Portal에서 앱을 등록하고 **OAuth 2.0 Client ID와 Client Secret**을 발급받아 Gamebase Console에 입력합니다.
+Developer Portal에서 앱을 등록하고 **OAuth 2.0 Client ID와 Client Secret**을 발급 받아 Gamebase Console에 입력합니다.
 
 **입력 필드**
 
@@ -612,7 +612,7 @@ GPGS(Google Play Games Services) v2 인증을 위해서는 Google 인증 타입 
 
 #### 12. Steam
 
-Steam 인증을 위해서는 Steamworks에서 **App ID**와 **Web API**를 발급받아 Gamebase Console에 입력해야 합니다.
+Steam 인증을 위해 Steamworks에서 **App ID**와 **Web API**를 발급 받아 Gamebase Console에 입력해야 합니다.
 
 **입력 필드**
 

@@ -336,8 +336,8 @@ end
 * Gamebase iOS SDK 2.66.3 이하
     * URL Scheme을 설정해야 합니다.
         * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.twitter**를 추가해야 합니다.
-    * Twitter 의 Developer 사이트의 Apps > 대상 프로젝트 > App Details > Callback URL 항목을 설정해야 합니다.
-        *  **tcgb.{Bundle ID}.twitter://** 를 추가합니다.
+    * Twitter Developer 사이트의 Apps > 대상 프로젝트 > App Details > Callback URL 항목을 설정해야 합니다.
+        *  **tcgb.{Bundle ID}.twitter://**를 추가합니다.
 
 ## 3rd-Party Provider SDK Guide
 

@@ -49,7 +49,7 @@ NHN Cloud統合アプリ内決済サービスであるIAP(In-App Purchase)を初
 | Amazon Appstore | AMAZON | GamebaseStoreCode::Amazon | only Android |
 | Huawei AppGallery | HUAWEI | GamebaseStoreCode::Huawei | only Android |
 | MyCard | MYCARD | GamebaseStoreCode::MyCard | only Android |
-| Epic Store | EPIC | GamebaseStoreCode::Epic | only Windows |
+| Epic Games Store | EPIC | GamebaseStoreCode::Epic | only Windows |
 
 #### 4. bEnablePopup
 
