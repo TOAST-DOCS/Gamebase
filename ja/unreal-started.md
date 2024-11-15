@@ -8,8 +8,8 @@ Gamebase Unreal SDKの使用環境および初期設定の説明を行います�
 >
 > Unrealサポートバージョン
 >
-> * UE 4.26 ~ UE 5.0
-> * 下位バージョンのUnrealのサポートが必要な場合は[サポート](https://toast.com/support/inquiry)へお問い合わせください。
+> * UE 4.27~UE 5.4
+> * 他のバージョンのサポートが必要な場合は[サポート](https://toast.com/support/inquiry)へお問い合わせください。
 
 #### Supported Platforms
 
@@ -220,19 +220,19 @@ NHN Cloud Log & Crash Searchでクラッシュ分析を行うゲーム開発会�
     * 使用する IdP を有効にします。
 * Purchase
     * 使用したいストアを選択します。
-    * Epic Store
+    * Epic Games Store
         * EOSサービス情報を各項目に合わせて入力します。
 
-#### Epic Storeサービス
+#### Epic Games Storeサービス
 
 * UE 4.27以降のバージョンでサポートされ、エンジン内部にEOSSDKモジュールが使用されています。
-* Epic Storeを使用するためには、EOSSDKを使用してログインする必要があります。
+* Epic Games Storeを使用するためには、EOSSDKを使用してログインする必要があります。
 * Gamebase で使用する EOS のバージョンは 1.15.5.0 で、エンジンパス `Engine\Source\ThirdParty\EOSSDK\SDK` に該当バージョンをインストールしてアップグレードする必要があります。
     * [参考: EOS SDKアップグレードガイド](https://docs.unrealengine.com/5.2/en/upgrading-the-eos-sdk-in-unreal-engine/)
 * ゲーム起動時にEOS Handleの設定が必要です。
     * エンジンに含まれているOnline Subsystem EOSを使用する場合、下記のコードのように設定できます。
 
-            #include "OnlineSubsystemEOS.h" 
+            #include "OnlineSubsystemEOS.h"
             #include "IEOSSDKManager.h"
             #include "GamebaseStandalonePurchaseEpicAdapterModule.h"
 
@@ -253,6 +253,19 @@ NHN Cloud Log & Crash Searchでクラッシュ分析を行うゲーム開発会�
         > - EOSHelpers.h
         > - [Platform]/[Platform]EOSHelpers.h
 
+#### Steamworksサービス
+
+* WindowsでSteam認証と決済はSteamworks SDKを通じて行われます。
+* Gamebaseで使用するSteamworksのバージョンは1.57以上です。 UE 5.3以下を使用する場合Steamworksをアップデートする必要があります。
+    * Online Subsystem Steamを使用する場合、最新バージョンのOnline SubsystemとOnline Subsystem Steamの最新バージョン適用コードを参照してアップデートする必要があります。
+        * [参考: Online Subsystem Steamエンジン最新バージョンコミット](https://github.com/EpicGames/UnrealEngine/commit/f6fd8dcf34a0cc31412dd473c1309c8e507981f3#diff-cd0b8c3bbdff4546195efef417923e90acead93b3625d8d82afe82fe0939b8a6)
+    * Online Subsystem Steamを使用しない場合は、エンジンガイドを確認してSteamworks SDK 1.57バージョン以上をダウンロードし、エンジンのSteamworksモジュールをそのバージョンにアップデートしてください。
+        * [参考:エンジン内Steamworksアップグレードガイド](https://dev.epicgames.com/documentation/en-us/unreal-engine?application_version=4.27)
+* 内部では、Online Subsystem設定オプションのDefaultPlatformServiceの値がSteamの場合、自動的にOnline Subsystem Steamを使用しているものとみなされます。この値がない場合、エンジン内部にSteamworksモジュールのインストールバージョンを確認し、1.57以上の場合、Gamebase内のSteam機能が動作します。
+
+> [注意]
+> Online Subsystem Steamを使用せずにSteamworksのみを使用する場合、Gamebase内部でSteamworksを使用した認証情報を受け取る作業のみを行い、Steamworks SDKプロセスは行われません。
+> Steamworks SDKを直接適用する場合、初期化、アップデート、終了などの必須的な処理については直接実装する必要があります。
 
 ## API Deprecate Governance
 

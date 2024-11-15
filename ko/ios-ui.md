@@ -286,9 +286,9 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 | required             | BOOL                  | 필수 동의 여부         |
 | agreePush            | String                | 광고성 푸시 동의 여부.<br/> - NONE: 동의 안함 <br/> - ALL: 전체 동의 <br/> - DAY: 주간 푸시 동의<br/> - NIGHT: 야간 푸시 동의          |
 | agreed               | BOOL                  | 해당 약관 항목에 대한 유저 동의 여부           |
-| node1DepthPosition   | int                   | 1단계 항목 노출 순서.           |
-| node2DepthPosition   | int                   | 2단계 항목 노출 순서.<br/> 없을 경우 -1           |
-| detailPageUrl        | String                | 약관 자세히 보기 URL.<br/> 설정되어 있지 않으면 필드 없음           |
+| node1DepthPosition   | int                   | 1단계 항목 노출 순서           |
+| node2DepthPosition   | int                   | 2단계 항목 노출 순서<br/> 없을 경우 -1           |
+| detailPageUrl        | String                | 약관 자세히 보기 URL<br/> 설정되어 있지 않으면 필드 없음           |
 
 
 ### updateTerms

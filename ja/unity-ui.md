@@ -29,6 +29,7 @@ static void ShowImageNotices(GamebaseRequest.ImageNotice.Configuration configura
 | UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | イメージ告知ポップアップウィンドウの表示中にタイムアウトし、すべてのポップアップウィンドウを強制終了します。 |
 | UI\_IMAGE\_NOTICE\_NOT\_SUPPORTED\_OS | 6902 | ローリングタイプの場合、API 19以下の端末では、イメージ告知をサポートしません。 |
 | SERVER\_INVALID\_RESPONSE | 8003 | サーバーが無効なレスポンスを返しました。 |
+| WEBVIEW\_HTTP\_ERROR | 7003 | ローリングタイプ画像告知Webビューを開いている最中にHTTPエラーが発生しました。 |
 
 **Example**
 

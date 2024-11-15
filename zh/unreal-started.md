@@ -224,13 +224,13 @@ Game developers using the crash analysis of the NHN Cloud Log & Crash Search mus
     * Activate the IdP to use.
 * Purchase
     * Select the store to use.
-    * Epic Store
+    * Epic Games Store
         * Enter the EOS service information as appropriate for each field.
 
-#### Epic Store Services
+#### Epic Games Store Services
 
 * Supported by UE 4.27 and later, the EOSSDK module is used inside the engine.
-* To use the Epic Store, you must be logged in using the EOSSDK.
+* To use the Epic Games Store, you must be logged in using the EOSSDK.
 * The EOS version used by Gamebase is 1.15.5.0, which requires an upgrade by installing it in the engine path `Engine\Source\ThirdParty\EOSSDK\SDK`.
     * [Note: EOS SDK Upgrade Guide](https://docs.unrealengine.com/5.2/en/upgrading-the-eos-sdk-in-unreal-engine/)
 * EOS Handle settings are required when starting the game.

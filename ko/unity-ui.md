@@ -28,7 +28,7 @@ static void ShowImageNotices(GamebaseRequest.ImageNotice.Configuration configura
 | NOT\_INITIALIZED | 1 | Gamebase가 초기화되어 있지 않습니다. |
 | UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | 이미지 공지 팝업 창 표시 중 시간이 초과되어 모든 팝업 창을 강제 종료합니다. |
 | UI\_IMAGE\_NOTICE\_NOT\_SUPPORTED\_OS | 6902 | 롤링 타입의 경우 API 19 이하의 단말기에서는 이미지 공지를 지원하지 않습니다. |
-| WEBVIEW\_HTTP\_ERROR | 7003 | 롤링 타입 이미지 공지 웹뷰 오픈 중 HTTP 에러가 발생하였습니다. |
+| WEBVIEW\_HTTP\_ERROR | 7003 | 롤링 타입 이미지 공지 웹뷰 오픈 중 HTTP 오류가 발생했습니다. |
 | SERVER\_INVALID\_RESPONSE | 8003 | 서버가 유효하지 않은 응답을 반환했습니다. |
 
 **Example**
@@ -93,7 +93,7 @@ public void ShowImageNotices(int colorR = 0 , int colorG = 0, int colorB = 0, in
 | colorG                   | 0~255                                    | 백그라운드 배경 색상 G                |
 | colorB                   | 0~255                                    | 백그라운드 배경 색상 B                |
 | colorA                   | 0~255                                    | 백그라운드 배경 색상 Alpha                |
-| timeoutMS                | long        | 이미지 공지 최대 로딩 시간(단위 : millisecond)<br/>**default**: 5000                     |
+| timeoutMS                | long        | 이미지 공지 최대 로딩 시간(단위: millisecond)<br/>**default**: 5000                     |
 
 
 ### Close ImageNotices
@@ -131,7 +131,7 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 #### Optional 파라미터
 
 * GamebaseTermsConfiguration : GamebaseTermsConfiguration 객체를 통해 강제 약관 동의창 표시여부와 같은 설정을 변경할 수 있습니다. 
-* callback : 약관 동의 후 약관 창이 종료될 때 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseResponse.DataContainer 객체는 GamebaseResponse.Push.PushConfiguration 변환해서 로그인 후 Gamebase.Push.RegisterPush API 에 사용할 수 있습니다.
+* Callback: 약관 동의 후 약관 창이 종료될 때 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseResponse.DataContainer 객체는 GamebaseResponse.Push.PushConfiguration 변환해서 로그인 후 Gamebase.Push.RegisterPush API에 사용할 수 있습니다.
 
 
 **API**
@@ -169,7 +169,7 @@ static void ShowTermsView(GamebaseRequest.Terms.GamebaseTermsConfiguration confi
 | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | Terms API 호출이 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
 | UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925 | 약관 웹뷰가 아직 종료되지 않았는데 다시 호출되었습니다. |
 | WEBVIEW\_TIMEOUT | 7002 | 약관 웹뷰 표시 중 타임아웃이 발생했습니다. |
-| WEBVIEW\_HTTP\_ERROR | 7003 | 약관 웹뷰 오픈 중 HTTP 에러가 발생하였습니다. |
+| WEBVIEW\_HTTP\_ERROR | 7003 | 약관 웹뷰 오픈 중 HTTP 오류가 발생했습니다. |
 
 **Example**
 
@@ -235,7 +235,7 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 > * Standalone 플랫폼에서는 푸시와 관련된 기능을 지원하지 않으므로, 게임 UI에 해당 약관이 노출되지 않도록 주의합니다.
 
 #### Required 파라미터
-* callback : API 호출 결과를 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseResponse.Terms.QueryTermsResult 로 콘솔에 설정된 약관 정보를 얻을 수 있습니다.
+* Callback: API 호출 결과를 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseResponse.Terms.QueryTermsResult로 콘솔에 설정된 약관 정보를 얻을 수 있습니다.
  
 
 **API**
@@ -293,11 +293,11 @@ public void SampleQueryTerms()
 | termsContentSeq      | int                   | 약관 항목 KEY         | 
 | name                 | string                | 약관 항목 이름         |
 | required             | bool                  | 필수 동의 여부         |
-| agreePush            | string                | 광고성 푸시 동의 여부.<br/> - NONE: 동의 안 함 <br/> - ALL: 전체 동의 <br/> - DAY: 주간 푸시 동의<br/> - NIGHT: 야간 푸시 동의          |
+| agreePush            | string                | 광고성 푸시 동의 여부<br/> - NONE: 동의 안 함 <br/> - ALL: 전체 동의 <br/> - DAY: 주간 푸시 동의<br/> - NIGHT: 야간 푸시 동의          |
 | agreed               | bool                  | 해당 약관 항목에 대한 유저 동의 여부           |
-| node1DepthPosition   | int                   | 1단계 항목 노출 순서.           |
-| node2DepthPosition   | int                   | 2단계 항목 노출 순서.<br/> 없을 경우 -1           |
-| detailPageUrl        | string                | 약관 자세히 보기 URL.<br/> 없을 경우 null. |
+| node1DepthPosition   | int                   | 1단계 항목 노출 순서           |
+| node2DepthPosition   | int                   | 2단계 항목 노출 순서<br/> 없을 경우 -1           |
+| detailPageUrl        | string                | 약관 자세히 보기 URL<br/> 없을 경우 null. |
 
 
 ### UpdateTerms

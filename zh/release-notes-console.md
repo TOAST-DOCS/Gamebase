@@ -62,7 +62,7 @@
 
 #### Feature Updates
 * Purchase (IAP) > Store
-    * Added Epic store
+    * Added Epic Games Store
 
 ### September 26, 2023
 

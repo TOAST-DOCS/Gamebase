@@ -1,5 +1,26 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.67.0 (2024. 10. 29.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.67.0/GamebaseSDK-Unity.zip)
+
+#### 機能追加
+
+* (Android, iOS) Steam認証追加
+
+#### 機能改善/変更
+
+* Unity最小サポートバージョン変更: 2020.3.16f1
+* ローリング画像告知のWebView内部で例外が発生した場合、失敗コールバックが呼び出されるように変更しました。
+* 内部ロジックを改善しました。
+
+#### バグ修正
+
+* storeCodeStandaloneコードにより発生するエラーを修正しました。
+
+#### プラットフォーム別の変更事項
+* [Gamebase Android SDK 2.67.0](./release-notes-android/#2670-2024-10-29)
+* [Gamebase iOS SDK 2.67.0](./release-notes-ios/#2670-2024-10-29)
+
 ### 2.66.3 (2024. 09. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-Unity.zip)
 
