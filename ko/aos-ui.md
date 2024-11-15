@@ -82,7 +82,7 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 | newBuilder() | **M** | ImageNoticeConfiguration.Builder 객체는 newBuilder() 함수를 통해 생성할 수 있습니다. |
 | build() | **M** | 설정을 마친 Builder 를 Configuration 객체로 변환합니다. |
 | setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | 이미지 공지 뒷 배경색.<br>String 은 android.graphics.Color.parseColor(String) API로 변환한 값을 사용합니다.<br>**default**: #80000000 |
-| setTimeout(long timeoutMs) | O | 이미지 공지 최대 로딩 시간(단위 : millisecond)<br>**default**: 5000L (5s) |
+| setTimeout(long timeoutMs) | O | 이미지 공지 최대 로딩 시간(단위: millisecond)<br>**default**: 5000L (5s) |
 | enableAutoCloseByCustomScheme(boolean enable) | O | 커스텀 스킴 이벤트가 발생하면 이미지 공지를 강제종료 할지 여부를 결정합니다.<br>**default**: true |
 
 
@@ -265,11 +265,11 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | getTermsContentSeq      | int                   | 약관 항목 KEY         | 
 | getName                 | String                | 약관 항목 이름         |
 | getRequired             | boolean                  | 필수 동의 여부         |
-| getAgreePush            | String                | 광고성 푸시 동의 여부.<br/> - NONE: 동의 안 함 <br/> - ALL: 전체 동의 <br/> - DAY: 주간 푸시 동의<br/> - NIGHT: 야간 푸시 동의          |
+| getAgreePush            | String                | 광고성 푸시 동의 여부<br/> - NONE: 동의 안 함 <br/> - ALL: 전체 동의 <br/> - DAY: 주간 푸시 동의<br/> - NIGHT: 야간 푸시 동의          |
 | getAgreed               | boolean                  | 해당 약관 항목에 대한 유저 동의 여부.<br/> - 로그인 전에는 항상 false.<br/> - 푸시 항목은 항상 false. |
-| getNode1DepthPosition   | int                   | 1단계 항목 노출 순서.           |
-| getNode2DepthPosition   | int                   | 2단계 항목 노출 순서.<br/> 없을 경우 -1           |
-| getDetailPageUrl        | String                | 약관 자세히 보기 URL.<br/> 없을 경우 null. |
+| getNode1DepthPosition   | int                   | 1단계 항목 노출 순서           |
+| getNode2DepthPosition   | int                   | 2단계 항목 노출 순서<br/> 없을 경우 -1           |
+| getDetailPageUrl        | String                | 약관 자세히 보기 URL<br/> 없을 경우 null. |
 
 ### updateTerms
 
