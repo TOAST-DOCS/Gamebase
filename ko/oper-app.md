@@ -372,9 +372,6 @@ Developer Portal에서 앱을 등록하고 **OAuth 2.0 Client ID와 Client Secre
  >
  > 즉, Android 4.4 이상(KitKat, API Level 19)인 기기에서만 Twitter 로그인을 사용할 수 있습니다.
 
-##### iOS
-* [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings > Twitter](./ios-started/#twitter)
-
 #### 7. LINE
 
 **입력 필드**
