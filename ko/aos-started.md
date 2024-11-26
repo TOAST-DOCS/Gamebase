@@ -323,6 +323,9 @@ android {
 </resources>
 ```
 
+* GPGS 자동 로그인 기능을 사용하기 위해서는 콘솔에 Google 서비스 계정 설정도 필요합니다.
+    * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > GPGS Automatic Login Settings](./oper-app/#gpgs-automatic-login-settings)
+
 #### Weibo IdP
 
 * Weibo IdP가 정상 동작 하기 위해서는 **application** 태그에 **android:networkSecurityConfig** attribute 를 추가하고, weibo, sina 관련 URL 을 선언한 xml 파일 이름을 설정해야 합니다.
