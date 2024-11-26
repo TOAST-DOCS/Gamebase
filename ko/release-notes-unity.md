@@ -5,11 +5,11 @@
 
 #### 지원 종료
 
-* FacebookAdapter for Unity 지원 종료
+* FacebookAdapter for Unity 지원이 종료됩니다.
 
 #### 기능 추가
 
-* GameActivity 지원 추가
+* (Android) GameActivity를 지원합니다.
 
 #### 기능 개선/변경
 
@@ -17,7 +17,7 @@
 
 #### 버그 수정
 
-* NHN Cloud Console에서 네트워크 인사이트 설정을 활성화하면 JsonParsing 오류가 발생하는 현상 개선
+* NHN Cloud Console에서 네트워크 인사이트 설정을 활성화하면 JSON 파싱 오류가 발생하는 현상이 개선되었습니다.
 
 #### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.68.0](./release-notes-android/#2680-2024-11-26)
