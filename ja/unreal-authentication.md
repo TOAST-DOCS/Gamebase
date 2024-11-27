@@ -777,7 +777,7 @@ void USample::GetAuthMappingList()
 }
 ```
 
-## Gamebase User`s Information
+## Gamebase User's Information
 
 Gamebaseを通して認証手順を進行した後、アプリを製作する時に必要な情報を取得できます。
 

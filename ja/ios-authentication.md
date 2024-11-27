@@ -180,7 +180,7 @@ Gamebaseを通じてログインを初めて試みたり、ログイン情報(�
 ```objectivec
 - (void)loginLineButtonClick {
     NSDictionary *additionalInfo = @{ 
-        @"key" : @"value" 
+        kTCGBAuthLoginWithCredentialLineChannelRegionKeyname : @"japan" 
     };
 
     [TCGBGamebase loginWithType:kTCGBAuthLine additionalInfo:additionalInfo viewController:viewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {    
@@ -585,7 +585,7 @@ NSArray* authMappingList = [TCGBGamebase authMappingList];
 ```
 
 
-## Gamebase User`s Information
+## Gamebase User's Information
 Gamebaseで認証フローを進めた後、アプリを制作する際に必要な情報を得ることができます。
 
 > <font color="red">[注意]</font><br/>

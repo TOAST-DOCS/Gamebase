@@ -29,22 +29,22 @@
 ### 2.67.0 (2024. 10. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.67.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* Steam 인증 어댑터가 추가되었습니다.
+#### 機能追加
+* Steam認証アダプタが追加されました。
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: NHN Cloud SDK(1.9.3)
-* Twitter 인증 방식을 OAuth 2.0으로 변경하여, 아래의 설정 변경 없이는 로그인이 동작하지 않습니다.
-    * OAuth 2.0 Client ID 및 Client Secret 발급
-        * Twitter Developer Portal에서 OAuth 2.0 Client ID와 Client Secret을 생성한 후, Gamebase 콘솔에 등록합니다.
-    * Callback URL 설정
-        * Gamebase 콘솔에 Callback URL(https://id-gamebase.toast.com/oauth/callback)을 설정합니다. 
-        * 동일한 Callback URL을 Twitter Developer Portal에 추가합니다.
-    * 자세한 내용은 다음 링크를 참고 부탁드립니다.
-        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information](./oper-app/#authentication-information)
+#### 機能改善/変更
+* 外部SDKアップデート: NHN Cloud SDK(1.9.3)
+* Twitter認証方式をOAuth 2.0に変更し、以下の設定を変更しないとログインが動作しません。
+    * OAuth 2.0 Client ID及びClient Secret発行
+        * Twitter Developer PortalでOAuth 2.0 Client IDとClient Secretを作成した後、 Gamebaseコンソールに登録します。
+    * Callback URL設定
+        * GamebaseコンソールにCallback URL(https://id-gamebase.toast.com/oauth/callback)を設定します。 
+        * 同じCallback URLをTwitter Developer Portalに追加します。
+    * 詳細は以下のリンクをご覧ください。
+        * [Game > Gamebase > コンソール使用ガイド > アプリ > Authentication Information](./oper-app/#authentication-information)
 
-#### 버그 수정
-* 약관 화면 노출 상태에서 네트워크를 단절 후 detail 터치 시, 약관 팝업이 종료되는 이슈가 수정되었습니다.
+#### バグ修正
+* 約款画面表示状態でネットワークを切断した後、detailをタッチすると、約款ポップアップが終了する問題を修正しました。
 
 ### 2.66.3 (2024. 09. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-Android.zip)
