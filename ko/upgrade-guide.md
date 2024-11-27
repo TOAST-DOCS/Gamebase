@@ -6,7 +6,7 @@
 
 #### Changed Minimum Support Version
 
-* 최소 지원 버전이 Android 5.0 이상으로 상향되었습니다.(minSdk 19 -> 21)
+* 최소 지원 버전이 Android 5.0 이상으로 상향되었습니다.(minSdk 19 → 21)
 
 ## 2.67.1
 
