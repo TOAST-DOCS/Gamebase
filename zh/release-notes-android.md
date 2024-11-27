@@ -1,5 +1,31 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.68.0 (2024. 11. 26.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.0/GamebaseSDK-Android.zip)
+
+```
+최소 지원 버전이 Android 5.0 이상으로 상향되었습니다.(minSdk 19 -> 21)
+```
+
+#### 기능 추가
+* Google Play 게임즈 서비스 계정을 통한 자동 로그인 연동 기능이 추가되었습니다.
+    * 이 기능을 사용하려면 빌드 의존성에 **gamebase-adapter-auth-gpgs-autologin** 모듈 선언을 추가해야 합니다.
+
+            dependencies {
+                ...
+                implementation "com.toast.android.gamebase:gamebase-adapter-auth-gpgs-autologin:$GAMEBASE_SDK_VERSION"
+            }
+            
+    * 또한 다음 가이드 문서를 참고하여 추가 정보를 설정하세요.
+        * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > GPGS IdP](./aos-started/#gpgs-idp)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트: Hangame Android SDK(1.17.0)
+* Google 인증 라이브러리가 업데이트 되었습니다.
+    * Google Sign-In for Android가 deprecated 되어 Google Credential Manager로 전환했습니다.
+    * 인증 방법이 AuthCode 방식에서 OIDC 토큰 방식으로 변경되었습니다.
+* 웹뷰에서 등록한 커스텀 스킴이 매칭되었을 때 URL을 리다이렉트 하지 않도록 수정했습니다.
+
 ### 2.67.0 (2024. 10. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.67.0/GamebaseSDK-Android.zip)
 
@@ -23,23 +49,23 @@
 ### 2.66.3 (2024. 09. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: NHN Cloud SDK(1.9.2)
-    * Android 13 이상 특정 디바이스에서 간헐적으로 Native Crash 로그가 리포팅되지 않는 문제가 수정되었습니다.
-    * Amazon 결제 재처리가 개선되었습니다.
+#### Feature Updates
+* External SDK update: NHN Cloud SDK(1.9.2)
+    * Fixed an issue where Native Crash logs are intermittently not reported on Android 13 and above devices.
+    * Improved Amazon payment reprocessing.
 
 ### 2.66.2 (2024. 08. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.2/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: NHN Cloud SDK(1.9.1), Kakaogame SDK(3.19.3), PAYCO SDK(1.5.15)
-* Amazon 스토어 결제시 문제가 생겨 재처리가 동작할 때 처음 결제를 시도했던 User ID로 아이템을 지급하도록 하는 보완 로직이 추가되었습니다.
-* Twitter 로그인 타이틀 바 색상과 이름이 변경되었습니다.
-* 롤링 이미지 공지의 웹뷰 내부에서 에러가 발생한 경우, 기존에 성공 콜백 호출 대신 실패 콜백이 호출되도록 수정하였습니다.
+#### Feature Updates
+* External SDK update: NHN Cloud SDK(1.9.1), Kakaogame SDK(3.19.3), PAYCO SDK(1.5.15)
+* Added supplemental logic to ensure that when a problem occurs with an Amazon store checkout and reprocessing is triggered, the item is awarded to the User ID that first attempted the payment.
+* Changed the color and name of Twitter login title bar.
+* Fixed a failure callback to be called instead of the previous success callback when an error occurs inside the webview of a rolling image announcement.
 
-#### 버그 수정
-* Activity가 파괴된 경우, 파괴된 Activity위에 떠 있는 WebView가 close되며 이 때 close event callback이 누락되는 이슈가 수정되었습니다.
-* Hangame 로그인 어댑터에서 외부 idP 로그인 시 callback이 중복으로 오는 경우 already resumed 에러가 나지 않도록 방어 로직을 추가하였습니다.
+#### Bug Fixes
+* Fixed an issue where, when an Activity is destroyed, the WebView floating on top of the destroyed Activity is closed and the close event callback is missing.
+* Added defensive logic to prevent the Hangame Login Adapter from causing an already resumed error if a duplicate callback is received when logging into an external idP.
 
 ### 2.66.1 (2024. 07. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.1/GamebaseSDK-Android.zip)

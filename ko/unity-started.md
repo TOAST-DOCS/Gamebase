@@ -9,7 +9,7 @@ Gamebase Unity SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 >
 > Unity 지원 버전
 >
-> * 2020.3.16 ~ 6000.0.23
+> * 2020.3.16 ~ 6000.0.28
 
 #### Android
 > <font color="red">[주의]</font>
@@ -224,38 +224,50 @@ SettingTool은 이와 같은 오류를 차단하기 위해 **Unity 설정**과 *
 
 ### Android Lifecycle
 
-Lifecycle 관리를 위해 "com.toast.android.gamebase.activity.GamebaseMainActivity"를 MainActivity로 해야 합니다.
-"com.toast.android.gamebase.activity.GamebaseMainActivity"는 "com.unity3d.player.UnityPlayerActivity"를 상속받아 구현되어 있습니다.
+Lifecycle 관리를 위해 Gamebase에서 제공하는 Activity를 MainActivity로 설정해야 합니다.
+
+* Unity 2022 이하
+    * MainActivity : com.toast.android.gamebase.activity.GamebaseMainActivity
+        * "com.unity3d.player.UnityPlayerActivity"를 상속 받아 구현되어 있습니다.
+* Unity 2023 이상
+    * 설정된 Entry Point에 따라 적절한 MainActivity로 설정해야 합니다.
+        * Activity를 활성화한 경우
+            * MainActivity : com.toast.android.gamebase.activity.GamebaseMainActivity
+                * "com.unity3d.player.UnityPlayerActivity"를 상속 받아 구현되어 있습니다.
+        * GameActivity를 활성화한 경우
+            * MainActivity : com.toast.android.gamebase.activity.GamebaseMainGameActivity
+                * "com.unity3d.player.UnityPlayerGameActivity"를 상속 받아 구현되어 있습니다.
 
 > <font color="red">[주의]</font>
 >
-> AndroidPlugin 개발에도 GamebaseMainActivity를 상속받아 만들어야 합니다.
-> GamebaseMainActivity는 GamebasePlugin.jar에 포함되어 있습니다.
+> AndroidPlugin 개발에도 Gamebase에서 제공되는 Activity를 상속 받아 만들어야 합니다.
+> Gamebase Activity(GamebaseMainActivity, GamebaseMainGameActivity)는 GamebasePlugin.jar에 포함되어 있습니다.
 > launchMode는 singleTask로 해야 합니다.(Unity 기본 Activity도 singleTask로 고정됩니다.) 그렇지 않을 경우 앱을 처음 시작할 때 크래시가 발생할 수 있습니다.
 >
-> 해당 Lifecycle을 변경 시에는 Project Settings > Settings for Android > Publish Settings > Build > Custom Main Manifest를 활성화 하여 해당 AndroidManifest.xml에 수정해야 합니다.
+> 해당 Lifecycle을 변경 시에는 Project Settings > Settings for Android > Publish Settings > Build > Custom Main Manifest를 활성화하여 해당 AndroidManifest.xml에 수정해야 합니다.
 
 > <font color="red">[주의]</font>
 > 
 > Android의 targetSdkVersion을 31 이상으로 설정하는 경우, intent-filter가 존재하는 태그에는 반드시 android:exported 특성을 선언해야 합니다.
-> Gamebase에서 Lifecycle을 관리하기 위해 제공하는 **GamebaseMainActivity**를 MainActivity로 설정할 때에도 특성에 **android:exported="true"**가 추가되어야 합니다.
+> Gamebase에서 Lifecycle을 관리하기 위해 제공하는 Gamebase Activity(GamebaseMainActivity, GamebaseMainGameActivity)를 MainActivity로 설정할 때에도 특성에 android:exported="true"가 추가되어야 합니다.
 
 ```xml
 <manifest>
 	...
     <application>
-    ...
+        ... // 2022 이하 또는 Activity일 경우
     	<activity android:name="com.toast.android.gamebase.activity.GamebaseMainActivity"
-        	android:launchMode="singleTask"
-        	android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name"
-            android:exported="true">
-            <intent-filter>
-            	<action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                  android:exported="true"
+                  ...>
+            ...
         </activity>
-    ...
+        ... // 2023 이상 GameActivity일 경우
+        <activity android:name="com.toast.android.gamebase.activity.GamebaseMainGameActivity"
+                  android:exported="true"
+                  ...>
+            ...
+        </activity>
+        ...
     </application>
     ...
 </manifest>
