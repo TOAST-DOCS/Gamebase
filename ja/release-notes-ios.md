@@ -1,5 +1,11 @@
 ## Game > Gamebase > リリースノート > iOS
 
+### 2.68.1 (2024. 12. 10.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.1/GamebaseSDK-iOS.zip)
+
+#### 버그 수정  
+* Swift 파일에서 Gamebase SDK를 import할 때 발생하던 오류를 수정하였습니다.
+
 ### 2.68.0 (2024. 11. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.0/GamebaseSDK-iOS.zip)
 
