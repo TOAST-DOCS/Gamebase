@@ -39,16 +39,17 @@ Then, include corresponding SDK files to a target of your project.
 | --- | --- | --- | --- | --- |
 | Gamebase | Gamebase.xcframework<br/>Gamebase.bundle | NHNCloudSDK 1.8.4 | Includes the interface and key logic of Gamebase | iOS 12 or later |
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.xcframework | FacebookSDK 17.0.2 | Supports Facebook login | iOS 12 or later |
-|  | GamebaseAuthPaycoAdapter.xcframework | PaycoID Login 3rd SDK v1.5.11 | Supports PAYCO login | iOS 12 or later |
-|  | GamebaseAuthNaverAdapter.xcframework | naveridlogin-sdk-ios-4.2.1 | Supports NAVER login | iOS 12 or later |
+|  | GamebaseAuthPaycoAdapter.xcframework | PaycoID Login 3rd SDK v1.5.12 | Supports PAYCO login | iOS 12 or later |
+|  | GamebaseAuthNaverAdapter.xcframework | naveridlogin-sdk-ios-4.2.3 | Supports NAVER login | iOS 12 or later |
 |  | GamebaseAuthGamecenterAdapter.xcframework | GameKit.framework | Supports Game Center login | iOS 12 or later |
 |  | GamebaseAuthGoogleAdapter.xcframework | GoogleSignIn 7.0.0 | Supports Google login | iOS 12 or later |
 |  | GamebaseAuthTwitterAdapter.xcframework | | Supports Twitter login | iOS 12 or later |
 |  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.11.0 | Supports LINE login  | iOS 13 or later |
 |  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 12 or later |
-|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.15.0 | Supports Hangame login | iOS 12 or later |
+|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.16.2 | Supports Hangame login | iOS 12 or later |
 |  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.3.4 | Supports Weibo login | iOS 12 or later |
 |  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.19.0 | Supports Kakao login | iOS 13 or later |
+|  | GamebaseAuthSteamAdapter.xcframework |  | Supports Steam login | iOS 14 or later |
 | Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit<br/>NHNCloudIAP 1.8.4 | Supports in-game purchase | iOS 12 or later |
 | Gamebase Push Adapters | GamebasePushAdapter.xcframework | NHNCloudPush 1.8.4 | Supports Push | iOS 12 or later |
 
@@ -109,6 +110,8 @@ By decompression, following SDKs will show, including Gamebase.xcframework.
  ![LINE Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_1.9.1.png)
  * 8) If you are using the FacebookAuthAdapter, you must add the Facebook SDK to **Target > Build Phases > Embedded Frameworks**.
 ![Facebook Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_2.65.0-facebook-embeded.png)
+* 9) If you are using the PaycoAuthAdapter, you must add the PAYCO SDK to **Target > Build Phases > Embeded Frameworks**.
+![PAYCO Embeded Frameworks](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/iOSDevelopersGuide/started-xcode-settings-payco-embeded-20241025.png)
 
 > [INFO]
 >
@@ -150,6 +153,7 @@ target 'SampleApplication' do
     pod 'GamebaseAuthLineAdapter'
     pod 'GamebaseAuthAppleidAdapter'
     pod 'GamebaseAuthWeiboAdapter'
+    pod 'GamebaseAuthSteamAdapter'
     pod 'GamebasePushAdapter'
     pod 'GamebasePurchaseIAPAdapter'
 
@@ -246,13 +250,6 @@ end
 * An additional setting is required for Gamebase iOS SDK 1.12.1 or earlier versions.
     * [Game > Gamebase > iOS SDK User Guide > Getting Started > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
-#### Twitter
-
-* URL Scheme must be configured.
-    * Go to **Xcode > Target > Info > URL Types** and add **tcgb.{Bundle ID}.twitter**
-* Need to configure Apps > Target Project > App Details > Callback URL on the Developer site of Twitter.
-    *  Add **tcgb.{Bundle ID}.twitter://**.
-
 #### LINE
 
 * URL Scheme must be configured.
@@ -333,12 +330,19 @@ end
     <string>{Issued LINE ChannleID}</string>
 </dict>
 ```
+#### Twitter
+
+* Gamebase iOS SDK 2.66.3 or below
+    * URL Scheme must be configured.
+        * Go to **Xcode > Target > Info > URL Types** and add **tcgb.{Bundle ID}.twitter**
+    * Need to configure Apps > Target Project > App Details > Callback URL on the Developer site of Twitter.
+        *  Add **tcgb.{Bundle ID}.twitter://**.
+
 
 ## 3rd-Party Provider SDK Guide
 
 * [Facebook for developers](https://developers.facebook.com/docs/ios)
 * [NAVER for developers](https://developers.naver.com/docs/login/ios/ios.md)
-* [Twitter Developer's guide - Log in with Twitter](https://developer.twitter.com/en/docs/authentication/guides/log-in-with-twitter)
 * [Twitter Developer's guide - Authentication](https://developer.twitter.com/en/docs/authentication/overview)
 * [LINE for developers](https://developers.line.biz/en/docs/line-login-sdks/ios-sdk/swift/overview/)
 * [PaycoID SDK for developers](https://developers.payco.com/guide/development/apply/ios)
