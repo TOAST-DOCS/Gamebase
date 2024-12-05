@@ -860,7 +860,7 @@ private static void removeMappingForFacebook(final Activity activity) {
 ```
 
 
-## Gamebase User`s Information
+## Gamebase User's Information
 Process authentication with Gamebase, in order to get information required to create an app.
 
 ### Get Authentication Information for Gamebase
