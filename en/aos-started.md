@@ -14,7 +14,7 @@ To execute Gamebase in Android, the following system environment is required.
 
 | Gamebase SDK | Gamebase Adapter | External SDK | Purpose | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk | nhncloud-core-1.9.2<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include the interface and core logic of Gamebase | API 19(KitKat, OS 4.4) |
+| Gamebase | gamebase-sdk | nhncloud-core-1.9.3<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include the interface and core logic of Gamebase | API 19(KitKat, OS 4.4) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Support Sign In With Apple login | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-16.1.2 | Support Facebook login | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Support Google login | - |
@@ -23,10 +23,11 @@ To execute Gamebase in Android, the following system environment is required.
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | Support LINE login | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.8.0 | Support NAVER login | API 21(Lollipop, OS 5.0) |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.15| Support PAYCO login | - |
-|  | gamebase-adapter-auth-twitter | signpost-core-1.2.1.2 | Support Twitter login | API 21 (Lollipop, OS 5.0) |
+|  | gamebase-adapter-auth-twitter | - | Support Twitter login | API 21 (Lollipop, OS 5.0) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.5.0 | Support Weibo login | - |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Support Weibo login | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.19.3<br>kakaogame.gamesdk-3.19.3<br>kakaogame.common-3.19.3<br>kakao.sdk.v2-auth-2.17.0<br>kakao.sdk.v2-partner-auth-2.17.0<br>kakao.sdk.v2-common-2.17.0<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 23(Marshmallow, OS 6.0) |
+|  | gamebase-adapter-auth-steam | - | Support Steam login | API 25(Nougat, OS 7.1.1) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | Support in-app purchase | - |
 |  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Support Amazon Appstore | - |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Support Samsung Galaxy Store | API 21(Lollipop, OS 5.0)<br>Although minSdkVersion of Galaxy IAP SDK is 18, the minSdkVersion of Checkout service app that must be installed for actual purchase is 21. |
@@ -105,19 +106,8 @@ To execute Gamebase in Android, the following system environment is required.
             # >>> [AndroidX]
             android.useAndroidX=true
             android.enableJetifier=true
-        
-    * Unity 2019.2 or earlier
-            
-            // mainTemplate.gradle
-            ([rootProject] + (rootProject.subprojects as List)).each {
-                ext {
-                    // >>> [AndroidX]
-                    it.setProperty("android.useAndroidX", true)
-                    it.setProperty("android.enableJetifier", true)
-                }
-            }
-            
-    * Unity 2019.3 or later
+
+    * Unity
             
             # gradleTemplate.properties
             # >>> [AndroidX]
@@ -133,7 +123,6 @@ To execute Gamebase in Android, the following system environment is required.
               </insert>
             </gradleProperties>
             
-        
 #### Under AGP 3.4.0
 
 * If the Android Gradle Plugin version is lower than 3.4.0, the build will fail, so the following declaration is required:
@@ -142,18 +131,7 @@ To execute Gamebase in Android, the following system environment is required.
         # >>> Fix for AGP under 3.4.0
         android.enableD8.desugaring=true
         android.enableIncrementalDesugaring=false
-    
-* For Unity, the following declaration is required if the Editor version is 2018.4.3 or lower or 2019.1.6 or lower. (AGP version is 3.2.0)
-        
-        // mainTemplate.gradle
-        ([rootProject] + (rootProject.subprojects as List)).each {
-            ext {
-                // >>> Fix for AGP under 3.4.0
-                it.setProperty("android.enableD8.desugaring", true)
-                it.setProperty("android.enableIncrementalDesugaring", false)
-            }
-        }
-        
+          
 #### Root level build.gradle
 
 * If you are using Google Play Billing Library (PBL) 6.x with R8, the library may not work with Android 4.4 (API level 19) 
@@ -560,7 +538,6 @@ class MyApplication: GamebaseMyCardApplication() {
 > * “queries” tag cannot be recognized by the existing Android Gradle Plugin(AGP), so the build fails.
 > * Refer to the guide and table below and upgrade to the AGP version, which allows “queries” tag build.
 >     * [https://android-developers.googleblog.com/2020/07/preparing-your-build-for-package-visibility-in-android-11.html](https://android-developers.googleblog.com/2020/07/preparing-your-build-for-package-visibility-in-android-11.html)
->     * If using a version lower than AGP 3.2.*, it needs to be upgraded to 3.3.3 or higher.
 >     * If using a version higher than AGP 4.1.0, the AGP does not need to be upgraded. 
 
 | If you are using<br>the Android Gradle<br>plugin version... | ...upgrade to: | Unity Editor |
@@ -568,13 +545,6 @@ class MyApplication: GamebaseMyCardApplication() {
 | 4.1.* | N/A (no upgrade needed)| \- |
 | 4.0.* | 4.0.1 | \- |
 | 3.6.* | 3.6.4 | 2020.1 ~ |
-| 3.5.* | 3.5.4 | \- |
-| 3.4.* | 3.4.3 | 2018.4.4 ~<br>2019.1.7 ~ |
-| 3.3.* | 3.3.3 | \- |
-| 3.2.* | Not supported | 2017.4.17 ~<br>2018.3 ~ 2018.4.3<br>2019.1.0 ~ 2019.1.6 |
-| 3.0.* | Not supported | 2018.2 |
-| 2.3.* | Not supported | 2017.3 ~ 2017.4.16<br>2018.1 |
-| 2.1.* | Not supported | Unity 5<br>2017.1 ~ 2017.2 |
 
 ```xml
 <manifest>
@@ -688,12 +658,11 @@ class MyApplication: GamebaseMyCardApplication() {
 * [Facebook for developers](https://developers.facebook.com/docs/android)
 * [Google APIs for Android](https://developers.google.com/android/guides/overview)
 * [NAVER for developers](https://developers.naver.com/docs/login/android/)
-* [Twitter Android Developer's guide - Log in with Twitter](https://dev.twitter.com/web/sign-in/implementing)
 * [Twitter Android Developer's guide - Authentication](https://developer.twitter.com/en/docs/authentication/overview)
 * [LINE for developers](https://developers.line.biz/en/docs/android-sdk/integrate-line-login/)
 * [PAYCO Login SDK for developers](https://developers.payco.com/guide/development/apply/android)
 * [Sign in with Apple JS guide](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js)
-* [Weibo for developers](https://github.com/sinaweibosdk/weibo_android_sdk/blob/master/2019SDK/文档)
+* [Weibo for developers](https://github.com/sinaweibosdk/weibo_android_sdk/tree/master/doc)
 * [Kakaogame SDK 3.0 Guide for Channeling](https://kakaogames.atlassian.net/wiki/spaces/KS3GFC/overview)
 
 ## API Reference
