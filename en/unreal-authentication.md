@@ -778,7 +778,7 @@ void USample::GetAuthMappingList()
 }
 ```
 
-## Gamebase User`s Information
+## Gamebase User's Information
 
 Execute authentication via Gamebase, to obtain information required to produce an app. 
 
