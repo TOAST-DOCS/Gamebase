@@ -297,7 +297,7 @@ android {
 
 #### GPGS IdP
 
-* GPGS v2認証やGPGS自動ログインに必要なライブラリを初期化するために、App IDを宣言します。
+* GPGS v2認証やGPGS自動ログインに必要なライブラリを初期化するためにApp IDを宣言します。
     * この値を直接宣言せず、下記の例のようにresourcesを参照するように設定してください。
 
 **AndroidManifest.xml**
