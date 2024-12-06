@@ -37,7 +37,7 @@ Gamebase.xcframework及び必要なadapterをダウンロードします。<br/>
 
 | Gamebase SDK | Gamebase Auth Adapter | External SDK & Compatible Version | 用途 | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.xcframework<br/>Gamebase.bundle | NHNCloudSDK 1.8.4 | GamebaseのInterfaceおよびコアロジックを含む | iOS 12以上 |
+| Gamebase | Gamebase.xcframework<br/>Gamebase.bundle | NHNCloudSDK 1.8.5 | GamebaseのInterfaceおよびコアロジックを含む | iOS 12以上 |
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.xcframework | FacebookSDK 17.0.2 | Facebookログインをサポート | iOS 12以上 |
 |  | GamebaseAuthPaycoAdapter.xcframework | PaycoID Login 3rd SDK v1.5.12 | PAYCOログインをサポート | iOS 12以上 |
 |  | GamebaseAuthNaverAdapter.xcframework | naveridlogin-sdk-ios-4.2.3 | NAVERログインをサポート | iOS 12以上 |
@@ -46,12 +46,12 @@ Gamebase.xcframework及び必要なadapterをダウンロードします。<br/>
 |  | GamebaseAuthTwitterAdapter.xcframework | | Twitterログインをサポート | iOS 12以上 |
 |  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.11.0 | LINEログインをサポート | iOS 13以上 |
 |  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 12以上<br/>arm64サポート<br/> |
-|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.16.2 | Hangameログインをサポート | iOS 12以上 |
+|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.17.0 | Hangameログインをサポート | iOS 12以上 |
 |  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.3.8 | Weiboログインをサポート | iOS 12以上 |
 |  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.19.0 | Kakaoログインをサポート | iOS 13以上 |
 |  | GamebaseAuthSteamAdapter.xcframework |  | Steamログインをサポート | iOS 14以上 |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit.xcframework<br/>NHNCloudIAP 1.8.4 | ゲーム内決済をサポート | iOS 12以上 |
-| Gamebase Push Adapters | GamebasePushAdapter.xcframework | NHNCloudPush 1.8.4 | Pushをサポート | iOS 12以上 |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit.xcframework<br/>NHNCloudIAP 1.8.5 | ゲーム内決済をサポート | iOS 12以上 |
+| Gamebase Push Adapters | GamebasePushAdapter.xcframework | NHNCloudPush 1.8.5 | Pushをサポート | iOS 12以上 |
 
 
 > <font color="red">[注意]</font><br/>

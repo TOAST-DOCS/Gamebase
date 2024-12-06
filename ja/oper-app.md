@@ -370,9 +370,6 @@ Developer Portalでアプリを登録し、 **OAuth 2.0 Client IDとClient Secre
  >
  > すなわち、Android 4.4以上(KitKat、API Level 19)の端末でのみTwitterログインを使用できます。
 
-##### iOS
-* [Gamebase > iOS SDK使用ガイド > 始める > IdP settings > Twitter](./ios-started/#twitter)
-
 #### 7. LINE
 
 **入力フィールド**
@@ -613,6 +610,26 @@ Steam認証のためにSteamworksから**App ID**と**Web API**を発行し、Ga
 ![gamebase_app_steam_01_en_241025.png](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_steam_01_en_241025.png)
 
 ![gamebase_app_steam_02_en_241025.png](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_steam_02_en_241025.png)
+
+### GPGS Automatic Login Settings
+
+* [GPGS(Google Play Games Services)を利用した自動ログイン(Automatic sign-in)](https://developer.android.com/games/pgs/signin#automatic-sign-in)機能をサポートします。
+    * この機能を使用するためには、Androidビルド依存関係に**gamebase-adapter-auth-gpgs-autologin**モジュール宣言および[追加設定](./aos-started/#gpgs-idp)が必要です。
+    * また、*GPGS自動ログイン設定*項目に*サービスアカウントjson*情報を入力する必要があります。
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_001_2.68.0.png)
+* Googleサービスアカウント作成方法を紹介します。
+    1. `Google Cloud Console > IAM & Admin > IAM > VIEW BY PRINCIPALS`メニューで｢サービスアカウントユーザー｣権限を持つユーザーが存在するか検索します。
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_002_2.68.0.png)
+    2. ｢サービスアカウントユーザー｣権限を持つユーザーがいない場合は、`Google Cloud Console > IAM & Admin > Service Accounts > + CREATE SERVICE ACCOUNT`を選択してサービスアカウントを作成します。
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_003_2.68.0.png)
+    3. ロールで｢サービスアカウントユーザー｣を探して付与します。
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_004_2.68.0.png)
+    4. 作成したサービスアカウントに移動してKeyを作成します。
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_005_2.68.0.png)
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_006_2.68.0.png)
+    5. JSON形式を選択すると、キーの作成と同時にjsonファイルが自動的にダウンロードされます。
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_007_2.68.0.png)
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_008_2.68.0.png)
 
 ## Client
 
