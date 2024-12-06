@@ -24,7 +24,7 @@
 * Google認証ライブラリがアップデートされました。
     * Google Sign-In for Androidがdeprecatedされ、Google Credential Managerに切り替えました。
     * 認証方法がAuthCode方式からOIDCトークン方式に変更されました。
-* Webビューで登録したカスタムスキームがマッチングされた時にURLをリダイレクト しないよう修正しました。
+* Webビューで登録したカスタムスキームがマッチングされた時にURLをリダイレクトしないよう修正しました。
 
 ### 2.67.0 (2024. 10. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.67.0/GamebaseSDK-Android.zip)
