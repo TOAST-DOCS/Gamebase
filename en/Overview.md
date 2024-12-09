@@ -49,7 +49,7 @@ Following is the list of external authentication supported by Gamebase.
 | PAYCO             | O | O | O | |
 | NAVER             | O | O | O | |
 | Twitter			| O | O | | O |
-| LINE				| O | O | | |
+ | LINE				| O | O | | O |
 | Hangame			| O | O | O  | |
 | Weibo | O  | O  | | |
 | Steam | O  | O  | | O |
