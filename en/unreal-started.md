@@ -8,8 +8,8 @@ This document describes the environment and initial setting to enable Unreal Gam
 >
 > Support Versions for Unreal 
 >
-> * UE 4.26 ~ UE 5.0
-> * To get support for a lower version of Unreal, please contact [Customer Center](https://toast.com/support/inquiry).
+> * UE 4.27 ~ UE 5.4
+> * To get support for another version of Unreal, please contact [Customer Center](https://www.nhncloud.com/kr/support/inquiry).
 
 #### Supported Platforms
 
@@ -225,6 +225,8 @@ Game developers using the crash analysis of the NHN Cloud Log & Crash Search mus
     * Select the store to use.
     * Epic Games Store
         * Enter the EOS service information as appropriate for each field.
+    * Steamworks
+        * Enter the Steamworks service information as appropriate for each field.
 
 #### Epic Games Store Services
 
@@ -235,7 +237,7 @@ Game developers using the crash analysis of the NHN Cloud Log & Crash Search mus
 * EOS Handle settings are required when starting the game.
     * If you're using the Online Subsystem EOS included in the engine, you can set it up like the code below.
  
-            #include "OnlineSubsystemEOS.h" 
+            #include "OnlineSubsystemEOS.h"
             #include "IEOSSDKManager.h"
             #include "GamebaseStandalonePurchaseEpicAdapterModule.h"
 
@@ -256,6 +258,20 @@ Game developers using the crash analysis of the NHN Cloud Log & Crash Search mus
         > - EOSHelpers.h
         > - [Platform]/[Platform]EOSHelpers.h
 
+
+#### Steamworks Services
+
+* Steam authentication and payment on Windows is proceeded through the Steamworks SDK.
+* The version of Steamworks used by Gamebase is **1.57 or later**, so if you are using UE 5.3 or earlier, you need to update Steamworks.
+    * If you're using Online Subsystem Steam, see the latest version of Online Subsystem and the latest version of Online Subsystem Steam enforcement code for updates.
+        * [Note: The commit of the latest version of the Online Subsystem Steam engine](https://github.com/EpicGames/UnrealEngine/commit/f6fd8dcf34a0cc31412dd473c1309c8e507981f3#diff-cd0b8c3bbdff4546195efef417923e90acead93b3625d8d82afe82fe0939b8a6)
+    * If you are not using Online Subsystem Steam, check the Engine Guide to download the Steamworks SDK version 1.57 or later, and update the Steamworks module in your engine to that version.
+        * [Note: Steamworks upgrade guide in the engine](https://dev.epicgames.com/documentation/en-us/unreal-engine?application_version=4.27)
+* Internally, if the value of DefaultPlatformService in the Online Subsystem settings option is Steam, it is automatically assumed to be using the Online Subsystem Steam, otherwise the engine checks the installed version of the Steamworks module inside the engine and if it is 1.57 or higher, the Steam in Gamebase feature will work.
+
+> [Caution]
+> When using Steamworks alone without the Online Subsystem Steam, Gamebase will only get the credentials for using Steamworks inside Gamebase and will not go through the Steamworks SDK process.
+> When applying the Steamworks SDK directly, you need to implement your own processing for required processes like initialization, updates, and shutdowns.
 
 ## API Deprecate Governance
 
