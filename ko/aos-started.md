@@ -6,9 +6,9 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 > [최소 사양]
 >
-> * 사용자 실행 환경 : Android API 21 (Lollipop, OS 5.0) 이상
-> * 빌드 환경 : Android Gradle Plugin 4.0.1 이상
-> * 개발 환경 : Android Studio
+> * 사용자 실행 환경: Android API 21(Lollipop, OS 5.0) 이상
+> * 빌드 환경: Android Gradle Plugin 4.0.1 이상
+> * 개발 환경: Android Studio
 
 ### Dependencies
 
@@ -297,7 +297,7 @@ android {
 
 #### GPGS IdP
 
-* GPGS v2 인증이나 GPGS 자동 로그인에 필요한 라이브러리를 초기화 하기 위해 App ID를 선언합니다.
+* GPGS v2 인증이나 GPGS 자동 로그인에 필요한 라이브러리를 초기화하기 위해 App ID를 선언합니다.
     * 해당 값을 직접 선언하지 말고 아래 예시와 같이 resources를 참조하도록 설정하세요.
 
 **AndroidManifest.xml**
