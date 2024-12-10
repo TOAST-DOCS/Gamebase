@@ -4,7 +4,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.0/GamebaseSDK-Android.zip)
 
 ```
-최소 지원 버전이 Android 5.0 이상으로 상향되었습니다.(minSdk 19 -> 21)
+최소 지원 버전이 Android 5.0 이상으로 상향되었습니다.(minSdk 19 → 21)
 ```
 
 #### 기능 추가
@@ -21,10 +21,10 @@
 
 #### 기능 개선/변경
 * 외부 SDK 업데이트: Hangame Android SDK(1.17.0)
-* Google 인증 라이브러리가 업데이트 되었습니다.
+* Google 인증 라이브러리가 업데이트되었습니다.
     * Google Sign-In for Android가 deprecated 되어 Google Credential Manager로 전환했습니다.
     * 인증 방법이 AuthCode 방식에서 OIDC 토큰 방식으로 변경되었습니다.
-* 웹뷰에서 등록한 커스텀 스킴이 매칭되었을 때 URL을 리다이렉트 하지 않도록 수정했습니다.
+* 웹뷰에서 등록한 커스텀 스킴이 매칭되었을 때 URL을 리다이렉트하지 않도록 수정했습니다.
 
 ### 2.67.0 (2024. 10. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.67.0/GamebaseSDK-Android.zip)

@@ -1,5 +1,11 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.68.1 (2024. 12. 10.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.1/GamebaseSDK-iOS.zip)
+
+#### 버그 수정  
+* Swift 파일에서 Gamebase SDK를 import할 때 발생하던 오류를 수정하였습니다.
+
 ### 2.68.0 (2024. 11. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.0/GamebaseSDK-iOS.zip)
 
@@ -13,30 +19,30 @@
 ### 2.67.0 (2024. 10. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.67.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* Steam 인증이 추가되었습니다.
-* Twitter 인증 방식을 OAuth 2.0으로 변경하여 아래의 설정 변경 없이는 로그인이 동작하지 않습니다.
-    * OAuth 2.0 Client ID 및 Client Secret 발급
-        * Twitter Developer Portal에서 OAuth 2.0 Client ID와 Client Secret을 생성한 후, Gamebase 콘솔에 등록합니다.
-    * Callback URL 설정
-        * Gamebase 콘솔에 Callback URL(https://id-gamebase.toast.com/oauth/callback)을 설정합니다. 
-        * 동일한 Callback URL을 Twitter Developer Portal에 추가합니다.
-    * 자세한 내용은 다음 링크를 참고 부탁드립니다.
-        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information](./oper-app/#authentication-information)
+#### Added Features
+* Added Steam authentication.
+* Twitter has changed its authentication method to OAuth 2.0, so login will not work without changing the settings below.
+    * Issue OAuth 2.0 Client ID and Client Secret
+        * Create an OAuth 2.0 Client ID and Client Secret in the Twitter Developer Portal, then register them in the Gamebase console.
+    * Callback URL Settings
+        * Set the Callback URL (https://id-gamebase.toast.com/oauth/callback) in the Gamebase console.
+        * Add the same Callback URL to the Twitter Developer Portal.
+    * For more information, see the following link.
+        * [Game > Gamebase > Console User Guide > App > Authentication Information](./oper-app/#authentication-information)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* External SDK Update
     * PAYCO iOS SDK (1.5.12)
-        * PAYCO SDK가 Dynamic Framework로 변경되었습니다.
+        * Changed the PAYCO SDK to Dynamic Framework.
     * NAVER iOS SDK (4.2.3)
-        * Xcode 16과 iOS 18 환경에서 정상 동작하도록 수정되었습니다.
+        * Fixed to run correctly in Xcode 16 and iOS 18 environments.
     * Hangame iOS SDK (1.16.2)
-        * Apple Silicon Mac에서 로그인이 실패하는 버그가 수정되었습니다.
-* Gamebase SDK가 외부 SDK의 리소스를 포함하지 않도록 수정하였습니다.
-* 내부 로직 개선
+        * Fixed a bug that caused login to fail on Apple Silicon Macs.
+* Fixed the Gamebase SDK to not include resources from external SDKs.
+* Improved internal logic
 
-#### 버그 수정  
-* 시스템 팝업 창 위에 Gamebase 론칭 팝업 창이 표시될 때 화면이 검게 변하는 버그를 수정하였습니다.
+#### Bug Fixes  
+* Fixed a bug where the screen would go black when the Gamebase launch popup window was displayed on top of the system popup window.
 
 ### 2.66.3 (2024. 09. 13.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-iOS.zip)

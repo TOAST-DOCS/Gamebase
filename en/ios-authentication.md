@@ -180,7 +180,7 @@ However, access token of each IdP is managed by SDK of each IdP.<br/>
 ```objectivec
  - (void)loginLineButtonClick {
      NSDictionary *additionalInfo = @{ 
-        @"key" : @"value" 
+        kTCGBAuthLoginWithCredentialLineChannelRegionKeyname : @"japan" 
     };
     
      [TCGBGamebase loginWithType:kTCGBAuthLine additionalInfo:additionalInfo viewController:viewController completion:^(TCGBAuthToken *authToken, TCGBError *error) {
@@ -587,7 +587,7 @@ NSArray* authMappingList = [TCGBGamebase authMappingList];
 ```
 
 
-## Gamebase User`s Information
+## Gamebase User's Information
 Process authentication with Gamebase, in order to get information required to create an app.
 
 > <font color="red">[Caution]</font><br/>

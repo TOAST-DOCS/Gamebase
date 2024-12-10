@@ -28,6 +28,7 @@ static void ShowImageNotices(GamebaseRequest.ImageNotice.Configuration configura
 | NOT\_INITIALIZED | 1 | Gamebase is not initialized. |
 | UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | For all popup screens to close due to a timeout while displaying an image notice popup screen. |
 | UI\_IMAGE\_NOTICE\_NOT\_SUPPORTED\_OS | 6902 | For rolling type, image notices are not supported on devices with API 19 or lower. |
+| WEBVIEW\_HTTP\_ERROR | 7003 | An HTTP error occurred while opening the rolling type image announcement webview. |
 | SERVER\_INVALID\_RESPONSE | 8003 | Invalid response was returned from the server. |
 
 **Example**
