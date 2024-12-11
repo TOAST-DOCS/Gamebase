@@ -7,24 +7,24 @@
 최소 지원 버전이 Android 5.0 이상으로 상향되었습니다.(minSdk 19 -> 21)
 ```
 
-#### 기능 추가
-* Google Play 게임즈 서비스 계정을 통한 자동 로그인 연동 기능이 추가되었습니다.
-    * 이 기능을 사용하려면 빌드 의존성에 **gamebase-adapter-auth-gpgs-autologin** 모듈 선언을 추가해야 합니다.
+#### Added Features
+* Added auto sign-in integration with Google Play Games Services accounts.
+    * To enable this feature, you must add the **gamebase-adapter-auth-gpgs-autologin** module declaration to your build dependencies.
 
             dependencies {
                 ...
                 implementation "com.toast.android.gamebase:gamebase-adapter-auth-gpgs-autologin:$GAMEBASE_SDK_VERSION"
             }
             
-    * 또한 다음 가이드 문서를 참고하여 추가 정보를 설정하세요.
-        * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > GPGS IdP](./aos-started/#gpgs-idp)
+    * You can also refer to the following guides to set up additional information
+        * [Game > Gamebase > Android SDK User Guide > Get Started > Setting > AndroidManifest.xml > GPGS IdP](./aos-started/#gpgs-idp)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Hangame Android SDK(1.17.0)
-* Google 인증 라이브러리가 업데이트 되었습니다.
-    * Google Sign-In for Android가 deprecated 되어 Google Credential Manager로 전환했습니다.
-    * 인증 방법이 AuthCode 방식에서 OIDC 토큰 방식으로 변경되었습니다.
-* 웹뷰에서 등록한 커스텀 스킴이 매칭되었을 때 URL을 리다이렉트 하지 않도록 수정했습니다.
+#### Feature Updates
+* External SDK update: Hangame Android SDK(1.17.0)
+* Updated Google authentication libraries.
+    * Google Sign-In for Android has been deprecated and switched to Google Credential Manager.
+    * Authentication method changed from AuthCode to OIDC token.
+* Fixed webview not redirecting URLs when a registered custom scheme is matched.
 
 ### 2.67.0 (2024. 10. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.67.0/GamebaseSDK-Android.zip)
@@ -79,7 +79,7 @@
 #### Added Features
 * Added GPGS v2 authentication
     * For more details on how to set, see the following document.
-        * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#gpgs-v2-idp)
+        * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > GPGS IdP](./aos-started/#gpgs-idp)
 
 ### 2.65.1 (2024. 06. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.1/GamebaseSDK-Android.zip)
@@ -257,7 +257,7 @@
 #### Added Features
 * Added ONE store v21 Adapter.
 * Added custom push receiver with the feature to suppress notifications with certain messages.
-    * To enable this feature, add the gamebase-adapter-push-notification module declaration to your build dependencies.
+    * To enable this feature, add the **gamebase-adapter-push-notification** module declaration to your build dependencies.
     
             dependencies {
                 ...
