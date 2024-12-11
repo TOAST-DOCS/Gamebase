@@ -9,7 +9,7 @@ This guide describes the environments and initial setting of Gamebase Unity SDK.
 > 
 > Supported Unity versions
 >
-> * 2020.3.16 ~ 6000.0.23
+> * 2020.3.16 ~ 6000.0.28
 
 #### Android
 > <font color="red">[Caution]</font>
@@ -224,13 +224,24 @@ Refer to the table below for SettingTool settings for each game company.
 
 ### Android Lifecycle
 
-To manage lifecycle, set "com.toast.gamebase.activity.GamebaseMainActivity" as the MainActivity.
-"com.toast.gamebase.activity.GamebaseMainActivity" has been inherited from "com.unity3d.player.UnityPlayerNativeActivity".
+For lifecycle management, you need to set the Activity provided by Gamebase as MainActivity.
+
+* Unity 2022 or earlier
+    * MainActivity : com.toast.android.gamebase.activity.GamebaseMainActivity
+        * Implemented by inheriting from "com.unity3d.player.UnityPlayerActivity".
+* Unity 2023 or later
+    * Must set to the appropriate MainActivity based on the Entry Point set up.
+        * When Activity is enabled
+            * MainActivity : com.toast.android.gamebase.activity.GamebaseMainActivity
+                * Implemented by inheriting from "com.unity3d.player.UnityPlayerActivity".
+        * When GameActivity is enabled
+            * MainActivity : com.toast.android.gamebase.activity.GamebaseMainGameActivity
+                * Implemented by inheriting from "com.unity3d.player.UnityPlayerGameActivity".
 
 > <font color="red">[Caution]</font>
 >
-> AndroidPlugin should be developed in inheritance of GamebaseMainActivity.
-> GamebaseMainActivity is included to GamebasePlugin.jar.
+> AndroidPlugin development also requires you to inherit and create an Activity that is provided by Gamebase.
+> Gamebase Activities (GamebaseMainActivity, GamebaseMainGameActivity) are included in the GamebasePlugin.jar.
 > The launchMode should be a singleTask (Unity&'s default activity will also be fixed as singleTask). Otherwise, crash may occur when an app starts.
 > 
 > To change the Lifecycle, you need to activate Project Settings > Settings for Android > Publish Settings > Build > Custom Main Manifest and edit the AndroidManifest.xml.
@@ -238,24 +249,26 @@ To manage lifecycle, set "com.toast.gamebase.activity.GamebaseMainActivity" as t
 > <font color="red">[Caution]</font>
 > 
 > When setting Android's targetSdkVersion to 31 or higher, you must declare the android:exported attribute in the tag where the intent-filter exists.
-> Even when setting **GamebaseMainActivity**, which is provided by Gamebase to manage lifecycle, as MainActivity, **android:exported="true"** must be added to the attribute.
+> When setting the Gamebase Activity (GamebaseMainActivity, GamebaseMainGameActivity) provided by Gamebase to manage the lifecycle to MainActivity, android:exported="true" should also be added to the attribute.
 
 ```xml
 <manifest>
 	...
     <application>
-    ...
-    	<activity android:name="com.toast.android.gamebase.activity.GamebaseMainActivity"
-        	android:launchMode="singleTask"
-        	android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name"
-            android:exported="true">
-            <intent-filter>
-            	<action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        ... // If Unity 2022 or earlier or Activity is enabled
+    	<activity android:name="com.toast.android.gamebase.activity.GamebaseMainActivity" 
         </activity>
-    ...
+                   android:exported="true"
+                  ...>
+            ...  
+    </activity>
+            ... // If Unity 2023 or later or GameActivity is enabled
+        <activity android:name="com.toast.android.gamebase.activity.GamebaseMainGameActivity"
+                  android:exported="true"
+                  ...>
+            ...
+        </activity>
+        ...
     </application>
     ...
 </manifest>
