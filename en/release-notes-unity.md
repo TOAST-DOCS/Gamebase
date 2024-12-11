@@ -14,23 +14,23 @@
 ### 2.68.0 (2024. 11. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.0/GamebaseSDK-Unity.zip)
 
-#### 지원 종료
+#### Ended Support
 
-* FacebookAdapter for Unity 지원이 종료됩니다.
+* Ended support for FacebookAdapter for Unity.
 
-#### 기능 추가
+#### Added Features
 
-* (Android) GameActivity를 지원합니다.
+* (Android) Support GameActivity.
 
-#### 기능 개선/변경
+#### Feature Updates
 
-* 내부 로직을 개선하였습니다.
+* Improved internal logic.
 
-#### 버그 수정
+#### Bug Fixes
 
-* NHN Cloud Console에서 네트워크 인사이트 설정을 활성화하면 JSON 파싱 오류가 발생하는 현상이 개선되었습니다.
+* Improved an issue that caused a JSON parsing error when enabling Network Insights settings in NHN Cloud Console.
 
-#### 플랫폼별 변경 사항
+#### Platform-Specific Changes
 * [Gamebase Android SDK 2.68.0](./release-notes-android/#2680-2024-11-26)
 * [Gamebase iOS SDK 2.68.0](./release-notes-ios/#2680-2024-11-26)
 

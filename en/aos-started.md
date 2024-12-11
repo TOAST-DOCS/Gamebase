@@ -6,31 +6,32 @@ To execute Gamebase in Android, the following system environment is required.
 
 > [Minimum Specifications]
 >
-> * User execution environment: Android API 19 (KitKat, OS 4.4) or higher
-> * Build environment: Android Gradle Plugin 3.2.0 or higher
+> * User execution environment: Android API 21 (Lollipop, OS 5.0) or higher
+> * Build environment: Android Gradle Plugin 4.0.1 or higher
 > * Development environment: Android Studio
 
 ### Dependencies
 
 | Gamebase SDK | Gamebase Adapter | External SDK | Purpose | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk | nhncloud-core-1.9.3<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include the interface and core logic of Gamebase | API 19(KitKat, OS 4.4) |
+| Gamebase | gamebase-sdk | nhncloud-core-1.9.3<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Include the interface and core logic of Gamebase | API 21(Lollipop, OS 5.0) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Support Sign In With Apple login | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-16.1.2 | Support Facebook login | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Support Google login | - |
-|  | gamebase-adapter-auth-gpgs-v2 | play-services-games-v2-20.1.2 | Support GPGS(Google Play Games Services) V2 login | API 21(Lollipop, OS 5.0) |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.13.0 | Support Hangame login | - |
+|  | gamebase-adapter-auth-gpgs-v2 | play-services-games-v2-20.1.2 | Support GPGS(Google Play Games Services) V2 login<br>Based on Player ID | - |
+|  | gamebase-adapter-auth-gpgs-autologin | play-services-games-v2-20.1.2 | Support Google Play Games Services (GPGS) auto-sign-in | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.17.0 | Support Hangame login | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | Support LINE login | - |
-|  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.8.0 | Support NAVER login | API 21(Lollipop, OS 5.0) |
+|  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.8.0 | Support NAVER login  | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.15| Support PAYCO login | - |
-|  | gamebase-adapter-auth-twitter | - | Support Twitter login | API 21 (Lollipop, OS 5.0) |
+|  | gamebase-adapter-auth-twitter | - | Support Twitter login | - |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.5.0 | Support Weibo login | - |
 |  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Support Weibo login | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.19.3<br>kakaogame.gamesdk-3.19.3<br>kakaogame.common-3.19.3<br>kakao.sdk.v2-auth-2.17.0<br>kakao.sdk.v2-partner-auth-2.17.0<br>kakao.sdk.v2-common-2.17.0<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 23(Marshmallow, OS 6.0) |
 |  | gamebase-adapter-auth-steam | - | Support Steam login | API 25(Nougat, OS 7.1.1) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | Support in-app purchase | - |
 |  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Support Amazon Appstore | - |
-|  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Support Samsung Galaxy Store | API 21(Lollipop, OS 5.0)<br>Although minSdkVersion of Galaxy IAP SDK is 18, the minSdkVersion of Checkout service app that must be installed for actual purchase is 21. |
+|  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Support Samsung Galaxy Store |  - |
 |  | gamebase-adapter-purchase-google | billingclient.billing-5.0.0<br>nhncloud-iap-google | Support Google Play | - |
 |  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | Support Huawei AppGallery | - |
 |  | gamebase-adapter-purchase-onestore | nhncloud-iap-onestore | Support ONE store v17 | - |
@@ -97,61 +98,9 @@ To execute Gamebase in Android, the following system environment is required.
 
 ### Gradle
 
-#### Using AndroidX
-
-* Add the terms of use for AndroidX to build settings.
-    * Android Studio
-        
-            # gradle.properties
-            # >>> [AndroidX]
-            android.useAndroidX=true
-            android.enableJetifier=true
-
-    * Unity
-            
-            # gradleTemplate.properties
-            # >>> [AndroidX]
-            android.useAndroidX=true
-            android.enableJetifier=true
-            
-    * Unreal
-            
-            <gradleProperties>
-              <insert>
-                android.useAndroidX=true
-                android.enableJetifier=true
-              </insert>
-            </gradleProperties>
-            
-#### Under AGP 3.4.0
-
-* If the Android Gradle Plugin version is lower than 3.4.0, the build will fail, so the following declaration is required:
-    
-        # gradle.properties
-        # >>> Fix for AGP under 3.4.0
-        android.enableD8.desugaring=true
-        android.enableIncrementalDesugaring=false
-          
 #### Root level build.gradle
 
-* If you are using Google Play Billing Library (PBL) 6.x with R8, the library may not work with Android 4.4 (API level 19) 
-    * Use PBL 6.2.1 starting with the Gamebase Android SDK 2.65.0 
-    * To resolve this issue and support Android 4.4 (API level 19), add the following declaration to your project-level (root level) build.gradle or settings.gradle (AGP 7.1 or later)
-
-            buildscript {
-                repositories {
-                    // Raw R8 releases.
-                    maven {
-                        url("https://storage.googleapis.com/r8-releases/raw")
-                    }
-                }
-
-                dependencies {
-                    classpath("com.android.tools:r8:8.1.46")
-                }
-            }
-
-* To use Huawei IAP, add the following declaration to build.gradle or settings.gradle (AGP 7.1 or later) at the project level (root level).
+* To enable Huawei IAP, add the following declaration to your project-level (root level) settings.gradle
 
         buildscript {
             repositories {
@@ -205,6 +154,7 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-line:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-payco:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-weibo:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-auth-steam:$GAMEBASE_SDK_VERSION"
 
     // >>> Gamebase - Select Purchase Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
@@ -236,6 +186,8 @@ dependencies {
     // https://github.com/ONE-store/onestore_iap_release/tree/iap19-release/android_app_sample/app/libs
     implementation files('libs/iap_sdk-v19.01.00.aar')
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v19:$GAMEBASE_SDK_VERSION"
+    // >>> [GPGS Auto Login]
+    implementation "com.toast.android.gamebase:gamebase-adapter-auth-gpgs-autologin:$GAMEBASE_SDK_VERSION"
     // >>> [Push Custom Receiver]
     implementation "com.toast.android.gamebase:gamebase-adapter-push-notification:$GAMEBASE_SDK_VERSION"
 }
@@ -343,9 +295,9 @@ android {
 </resources>
 ```
 
-#### GPGS v2 IdP
+#### GPGS IdP
 
-* Declare an App ID for GPGS v2 SDK initialization.
+* Declare an App ID to initialize the libraries needed for GPGS v2 authentication or GPGS auto-login.
     * Instead of declaring that value directly, set it to reference resources as shown in the example below.
 
 **AndroidManifest.xml**
@@ -354,9 +306,9 @@ android {
 <manifest ...>
     <application ...>
         ...
-        <!-- [GPGS v2] Configurations begin -->
-        <meta-data android:name="com.google.android.gms.games.APP_ID" android:value="@string/game_services_project_id" />
-        <!-- [GPGS v2] Configurations end -->
+        <!-- [GPGS] Configurations begin -->
+        <meta-data android:name="com.google.android.gms.games.APP_ID" android:value="@string/google_play_game_services_project_id" />
+        <!-- [GPGS] Configurations end -->
         ...
     </application>
 </manifest>
@@ -366,10 +318,13 @@ android {
 
 ```xml
 <resources>
-    <!-- [GPGS v2] GPGS v2 APP ID -->
-    <string name="game_services_project_id">1234567890</string>
+    <!-- [GPGS] Google Play Games Application ID -->
+    <string name="google_play_game_services_project_id">1234567890</string>
 </resources>
 ```
+
+* To use the GPGS auto-sign-in feature, you also need to set up a Google Services account in the console.
+    * [Game > Gamebase > Console User Guide > App > GPGS Automatic Login Settings](./oper-app/#gpgs-automatic-login-settings)
 
 #### Weibo IdP
 
@@ -625,14 +580,6 @@ class MyApplication: GamebaseMyCardApplication() {
     * To use Proguard with Amazon Device Messaging (ADM), you must apply Proguard by referring to the following guide.
         * [NHN Cloud > SDK User Guide > Push > Android > Amazon Device Messaging Settings > Download the ADM SDK](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#adm-sdk)
         * [NHN Cloud > SDK User Guide > Push > Android > Amazon Device Messaging Settings > Proguard Settings](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#proguard)
-* For Gamebase versions earlier than 2.21.0, calling Payment API without adding a declaration at the end of Proguard Rule when applying Proguard would result in a crash.
-    * This issue has been fixed in Gamebase 2.21.0 version.
-
-            # ---------------------- [Gamebase TOAST IAP] defines start ----------------------
-            # For using reflection
-            -keep class com.toast.android.toastgb.iap.ToastGbStoreCode { *; }
-            # ---------------------- [Gamebase TOAST IAP] defines end ----------------------
-
 
 ## Recommended Flow
 
@@ -657,6 +604,7 @@ class MyApplication: GamebaseMyCardApplication() {
 
 * [Facebook for developers](https://developers.facebook.com/docs/android)
 * [Google APIs for Android](https://developers.google.com/android/guides/overview)
+* [Google Play Games Services](https://developer.android.com/games/pgs/start)
 * [NAVER for developers](https://developers.naver.com/docs/login/android/)
 * [Twitter Android Developer's guide - Authentication](https://developer.twitter.com/en/docs/authentication/overview)
 * [LINE for developers](https://developers.line.biz/en/docs/android-sdk/integrate-line-login/)

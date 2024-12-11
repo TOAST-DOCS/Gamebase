@@ -375,9 +375,6 @@ Register your app in the Developer Portal and get an **OAuth 2.0 Client ID and C
 >
 > In short, only Android 4.4 and higher devices (KitKat, API Level 19) allow logins to Twitter.
 
-##### iOS
-* [Gamebase > iOS SDK User Guide > Getting Started > IdP settings > Twitter](./ios-started/#twitter)
-
 #### 7. LINE
 
 **Input Fields**
@@ -623,6 +620,26 @@ For Steam authentication, you must obtain an **App ID** and **Web API** from Ste
 ![gamebase_app_steam_01_en_241025.png](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_steam_01_en_241025.png)
 
 ![gamebase_app_steam_02_en_241025.png](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_steam_02_en_241025.png)
+
+### GPGS Automatic Login Settings
+
+* Supports the [Automatic sign-in using Google Play Games Services (GPGS)](https://developer.android.com/games/pgs/signin#automatic-sign-in) feature.
+    * This feature requires the **gamebase-adapter-auth-gpgs-autologin** module declaration and [additional settings](./aos-started/#gpgs-idp) in the Android build dependencies.
+    * You also must your *service account json* information in the *GPGS auto login settings* field.
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_001_2.68.0.png)
+* Introduces how to create Google service accounts.
+    1. In the `Google Cloud Console > IAM & Admin > IAM > VIEW BY PRINCIPALS` menu, find the user with the `Service account user` permission.
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_002_2.68.0.png)
+    2. If you don't have a user with the "Service Account User" permission, create a service account by selecting `Google Cloud Console > IAM & Admin > Service Accounts > + CREATE SERVICE ACCOUNT`.
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_003_2.68.0.png)
+    3. Find and grant 'Service Account User' as the role.
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_004_2.68.0.png)
+    4. Create a key by moving to the created service account.
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_005_2.68.0.png)
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_006_2.68.0.png)
+    5. If you select the JSON format, the json file is automatically downloaded along with the key generation.
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_007_2.68.0.png)
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_008_2.68.0.png)
 
 ## Client
 
