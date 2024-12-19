@@ -6,7 +6,7 @@
 
 #### Changed Minimum Support Version
 
-* Raised the minimum supported version to Android 5.0 or later (minSdk 19 -> 21).
+* Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
 
 ## 2.67.1
 
