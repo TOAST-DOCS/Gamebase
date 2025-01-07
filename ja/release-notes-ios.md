@@ -4,7 +4,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.1/GamebaseSDK-iOS.zip)
 
 #### バグ修正 
-* SwiftファイルでGamebase SDKをimportした場合に発生していたエラーを修正しました。
+* SwiftファイルからGamebase SDKをimportする時に発生していたエラーを修正しました。
 
 ### 2.68.0 (2024. 11. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.0/GamebaseSDK-iOS.zip)
@@ -13,7 +13,7 @@
 * 外部SDKアップデート
     * NHN Cloud iOS SDK (1.8.5)
     * Hangame iOS SDK (1.17.0)
-* Googleログイン方式を既存OAuth 2.0からOpenID Connectに変更しました。
+* Googleログイン方式を既存のOAuth 2.0からOpenID Connectに変更しました。
 * 内部ロジック改善
 
 ### 2.67.0 (2024. 10. 29.)

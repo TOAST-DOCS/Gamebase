@@ -3,11 +3,11 @@
 ### 2.68.1 (2024. 12. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.1/GamebaseSDK-Unity.zip)
 
-#### 기능 개선/변경
+#### 機能改善/変更
 
-* 내부 로직을 개선하였습니다.
+* 内部ロジックを改善しました。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 
 * [Gamebase iOS SDK 2.68.1](./release-notes-ios/#2681-2024-12-10)
 
@@ -16,7 +16,7 @@
 
 #### サポート終了
 
-* FacebookAdapter for Unityサポートが終了します。
+* FacebookAdapter for Unityサポートが終了されます。
 
 #### 機能追加
 
@@ -28,9 +28,9 @@
 
 #### バグ修正
 
-* NHN Cloud Consoleでネットワークでインサイト設定を有効にすると、JSON解析エラーが発生する現象を改善しました。
+* NHN Cloud Consoleでネットワークインサイト設定を有効にするとJSON解析エラーが発生する現象を改善しました。
 
-#### プラットフォーム別の変更内容
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.68.0](./release-notes-android/#2680-2024-11-26)
 * [Gamebase iOS SDK 2.68.0](./release-notes-ios/#2680-2024-11-26)
 
