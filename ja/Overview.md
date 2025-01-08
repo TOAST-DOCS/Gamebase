@@ -50,7 +50,7 @@ Gamebaseは、様々なIdP(アイデンティティプロバイダー)のアカ�
 | PAYCO             | O | O | O | |
 | NAVER             | O | O | O | |
 | Twitter			| O | O | | O | |
-| LINE				| O | O | O  | |
+| LINE				| O | O | | O |
 | Hangame			| O | O | O  | |
 | Weibo | O  | O  | | |
 

@@ -346,7 +346,8 @@ void Sample::RequestItemListOfNotConsumed(bool allStores)
     FGamebasePurchasableConfiguration Configuration;
     Configuration.allStores = allStores;
 
-    IGamebase::Get().GetPurchase().RequestItemListOfNotConsumed(Configuration, FGamebasePurchasableItemListDelegate::CreateLambda(
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPurchase()->RequestItemListOfNotConsumed(Configuration, FGamebasePurchasableReceiptListDelegate::CreateLambda(
         [](const TArray<FGamebasePurchasableItem>* purchasableItemList, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
@@ -356,10 +357,10 @@ void Sample::RequestItemListOfNotConsumed(bool allStores)
 
             UE_LOG(GamebaseTestResults, Display, TEXT("RequestItemListOfNotConsumed succeeded."));
 
-            for (const FGamebasePurchasableItem& purchasableItem : *purchasableItemList)
+            for (const FGamebasePurchasableReceipt& PurchasableReceipt : *purchasableReceiptList)
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT(" - gamebaseProductId= %s, price= %f, itemName= %s, itemName= %s, marketItemId= %s"),
-                    *purchasableReceipt.gamebaseProductId, purchasableItem.price, *purchasableItem.currency, *purchasableItem.itemName, *purchasableItem.marketItemId);
+                UE_LOG(GamebaseTestResults, Display, TEXT(" - GamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s"),
+                    *PurchasableReceipt.GamebaseProductId, PurchasableReceipt.Price, *PurchasableReceipt.Currency, *PurchasableReceipt.PaymentSeq, *PurchasableReceipt.PurchaseToken);
             }
         }
         else
