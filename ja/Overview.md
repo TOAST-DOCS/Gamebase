@@ -3,7 +3,7 @@
 ゲームプラットフォーム企業NHNの10年のノウハウを詰め込んだGamebaseを自信を持って推薦します。 
 Gamebase SDKを適用すれば、ゲームに必要な共通サービスを簡単に利用できます。 
 
-![Gamebase_summary](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_01_201903_jp.png)
+![Gamebase_summary](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/ko/Gamebase_overview_00_kr_202501.png)
 
 
 ## Gamebase Sample App
@@ -83,8 +83,10 @@ Gamebaseは、様々なIdP(アイデンティティプロバイダー)のアカ�
 * App Store
 * Galaxy Store
 * ONE Store
-* Facebook
-* Amazon
+* Steam
+* Epic Games Store
+* Amazon Appstore
+* MyCard
 
 * **複数のストアのアプリ内決済を単一インターフェイスで提供します。**
   単一インターフェイスでAPIを提供し、より簡単かつ迅速にストアの追加が可能になるため、開発コストを抑えることができます。開発者は複雑な決済連携方法を学ばなくても簡単に決済機能を実装できます。
@@ -282,3 +284,13 @@ NHN Cloudの基本的なメンバーポリシーと権限については、次�
 | Gamebase | OPERATION VIEWER | |  |● |
 | Gamebase | PUSH ADMIN | | ● | |
 | Gamebase | PUSH VIEWER | |  | ● |
+
+## Privacy Policy
+### 個人情報処理及び法令遵守の案内
+Gamebaseサービスを利用する過程で、お客様は関連法令(情報通信網法、個人情報保護法、電子商取引法、個人情報保護法など)に基づく義務を熟知し、遵守する必要があります。<br>
+NHN Cloudはサービス提供会社として、お客様がGamebaseサービスを安全に利用できるように積極的に支援するパートナーであり、お客様が管理する投稿、利用者の個人情報などについては責任を負いません。<br>
+また、顧客が利用者の個人情報を収集する過程で、顧客とNHNクラウド間の個人情報処理に関する業務委託関係が発生する場合があります。
+委託者の地位にある顧客は、受託者であるNHN Cloudと別途書面による委託契約を締結することができ、顧客が運営する個人情報処理方針に下記の内容を参考にして告知することができます。
+
+* 受託業者：NHN Cloud(株)
+* 委託業務の内容：Gamebase提供業務
