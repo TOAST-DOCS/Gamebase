@@ -1,9 +1,9 @@
 ## Game > Gamebase > 개요
 
-게임플랫폼 선두기업 NHN 의 10년 노하우를 담은 Gamebase, 자신있게 추천합니다. 
-Gamebase SDK 만 적용하면,  모든 서비스를 손쉽게 이용 가능합니다. 
+게임플랫폼 선두 기업 NHN의 10년 노하우를 담은 Gamebase, 자신 있게 추천합니다. 
+Gamebase SDK만 적용하면 모든 서비스를 손쉽게 이용 가능합니다. 
 
-![Gamebase_summary](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_01_201903.png)
+![Gamebase_summary](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/ko/Gamebase_overview_00_kr_202501.png)
 
 ## Gamebase Sample App
 
@@ -81,9 +81,11 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 * Google Play
 * App Store
 * Galaxy Store
-* 원스토어
-* Facebook
-* Amazon
+* ONE Store
+* Steam
+* Epic Games Store
+* Amazon Appstore
+* MyCard
 
 * **여러 스토어의 인앱 결제를 단일 인터페이스로 제공합니다.**
   단일 인터페이스로 API를 제공해 보다 쉽고 빠르게 스토어를 추가 개발할 수 있어 개발 비용이 절감됩니다. 개발자는 복잡한 결제 연동 방법을 학습하지 않고 쉽게 결제 기능을 구현할 수 있습니다.  
@@ -285,3 +287,13 @@ NHN Cloud의 기본적인 멤버 정책과 권한에 대해서는 다음 가이�
 | Gamebase | OPERATION VIEWER | |  |● |
 | Gamebase | PUSH ADMIN | | ● | |
 | Gamebase | PUSH VIEWER | |  | ● |
+
+## Privacy Policy
+### 개인정보 처리 및 준법에 대한 안내
+Gamebase 서비스를 이용하는 과정에서 고객은 관련 법령(정보통신망법, 개인정보보호법, 전자상거래법, 개인정보보호법 등)에 따른 의무를 숙지하고 준수하여야 합니다.<br>
+NHN Cloud는 서비스 제공사로서 고객께서 Gamebase 서비스를 안전하게 이용하실 수 있도록 적극적으로 지원하는 파트너이며, 고객이 관리하는 게시물, 이용자의 개인정보 등에 대해서는 책임지지 않습니다.<br>
+또한 고객이 이용자의 개인정보를 수집하는 과정에서 고객과 NHN Cloud 간 개인정보 처리에 관한 업무 위수탁 관계가 발생할 수 있습니다. 
+위탁자의 지위에 있는 고객은 수탁자인 NHN Cloud와 별도 서면에 의한 위탁 계약을 체결할 수 있으며 고객이 운영하는 개인정보 처리 방침에 아래의 내용을 참고하여 고지할 수 있습니다.
+
+* 수탁 업체: 엔에이치클라우드㈜
+* 위탁 업무의 내용: Gamebase 제공 업무
