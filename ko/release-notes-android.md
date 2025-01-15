@@ -20,7 +20,7 @@
 
 * **gamebase-adapter-auth-gpgs-autologin** 모듈을 빌드에 포함하는 경우 Gamebase 초기화와 동시에 **Gamebase.getLastLoggedInProvider() 동기 API**를 호출하면 내부 데이터가 초기화가 완료되지 않아 null이 반환되었으나, 이 경우 **'NOT\_INITIALIZED\_YET'** 이라는 문자열을 반환하도록 내부 로직을 변경했습니다.
 * **GamebaseWebViewConfiguration.Builder.renderOutsideSafeArea() API**를 **false**로 설정한 경우에도 cutout 영역까지 웹뷰를 모두 표시하도록(**edge-to-edge**) 내부 로직을 변경했습니다.
-    * 그 대신 자동으로 padding 여백을 추가하여 컨텐츠가 가리지 않도록 했습니다.
+    * 그 대신 자동으로 padding 여백을 추가하여 컨텐츠가 가려지지 않도록 했습니다.
 
 #### 버그 수정
  
