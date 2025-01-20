@@ -2,6 +2,10 @@
 
 ## 2.69.0
 
+### Unity
+
+* GPGS AutoLogin를 사용하는 경우, **GetLastLoggedInProvider()** 동기 API 대신 신규 추가된 **RequestLastLoggedInProvider(GamebaseCallback.GamebaseDelegate\<string> callback)** 비동기 API를 사용하세요.
+
 ### Android
 
 * **gamebase-adapter-auth-gpgs-autologin** 모듈을 빌드에 포함하는 경우, **getLastLoggedInProvider()** 동기 API 대신 신규 추가된 **requestLastLoggedInProvider(GamebaseDataCallback\<String>)** 비동기 API를 사용하세요.

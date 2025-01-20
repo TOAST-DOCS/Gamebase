@@ -1,5 +1,31 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.69.0 (2025. 1. 21.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.69.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+
+* RequestLastLoggedInProvider API 추가
+* (Android) WebView Cutout color 기능 추가
+* (Windows, macOS) X(Twitter) 로그인 지원
+
+#### 기능 개선/변경
+
+* 내부 로직을 개선하였습니다.
+* WebView 색상 설정 관련 코드 개선
+  * Configuration 내부에 필드 추가
+    * WebView.Configuration navigationColor
+    * Community.Configuration backgroundColor
+    * ImageNotice.Configuration backgroundColor
+
+#### 버그 수정
+
+* NHN Cloud Console에서 네트워크 인사이트 설정을 활성화하면 JSON 파싱 오류가 발생하는 현상이 개선되었습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.69.0](./release-notes-android/#2690-2025-01-21)
+* [Gamebase iOS SDK 2.69.0](./release-notes-ios/#2690-2025-01-21)
+
 ### 2.68.1 (2024. 12. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.1/GamebaseSDK-Unity.zip)
 

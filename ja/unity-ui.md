@@ -60,14 +60,11 @@ GamebaseRequest.ImageNotice.Configurationでユーザー設定イメージ告知
 **Example**
 
 ```cs
-public void ShowImageNotices(int colorR = 0 , int colorG = 0, int colorB = 0, int colorA = 128, long timeOut = 5000)
+public void ShowImageNotices()
 {
     GamebaseRequest.ImageNotice.Configuration configuration = new GamebaseRequest.ImageNotice.Configuration();
-    configuration.colorR = colorR;
-    configuration.colorG = colorG;
-    configuration.colorB = colorB;
-    configuration.colorA = colorA;
-    configuration.timeOut = timeOut;
+    configuration.backgroundColor = new Color(0, 0, 0, 0.5f);
+    configuration.timeOut = 5000;
 
     Gamebase.ImageNotice.ShowImageNotices(
         configuration,
@@ -89,11 +86,8 @@ public void ShowImageNotices(int colorR = 0 , int colorG = 0, int colorB = 0, in
 
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
-| colorR                   | 0～255                                    | バックグラウンドの色R            |
-| colorG                   | 0～255                                    | バックグラウンドの色G                |
-| colorB                   | 0～255                                    | バックグラウンドの色B                |
-| colorA                   | 0～255                                    | バックグラウンドの色Alpha                |
-| timeoutMS                | long        | イメージ告知最大ローディング時間(単位：millisecond)<br/>**default**：5000                     |
+| backgroundColor          | Color       | バックグラウンドの色 <br>**default**: GamebaseColor.RGB255(0, 0, 0, 128) |
+| timeoutMS                | long        | イメージ告知最大ローディング時間(単位：millisecond)<br/>**default**：5000 |
 
 
 ### Close ImageNotices
@@ -421,7 +415,7 @@ WebViewを表示します。<br/>
 * url:パラメーターで送信されるurlは、有効な値でなければなりません。
 
 ##### Optionalパラメーター
-* configuration:GamebaseWebViewConfigurationでWebViewのレイアウトを変更することができます。
+* configuration:ConfigurationでWebViewのレイアウトを変更することができます。
 * closeCallback:WebViewが終了する際に、ユーザーにコールバックで知らせます。
 * schemeList:ユーザーの求めるカスタムSchemeのリストを指定します。
 * schemeEvent:schemeListに指定したカスタムスキームを含むurlをコールバックで知らせます。
@@ -434,7 +428,7 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 ```cs
-static void ShowWebView(string url, GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = null, GamebaseCallback.ErrorDelegate closeCallback = null, List<string> schemeList = null, GamebaseCallback.GamebaseDelegate<string> schemeEvent = null)
+static void ShowWebView(string url, GamebaseRequest.Webview.Configuration configuration = null, GamebaseCallback.ErrorDelegate closeCallback = null, List<string> schemeList = null, GamebaseCallback.GamebaseDelegate<string> schemeEvent = null)
 ```
 
 > スタンドアローン(standalone)では、WebViewAdapterでログインをサポートし、WebViewが開かれている時は、UIで入力されるイベントをブロッキング(blocking)しません。
@@ -454,13 +448,10 @@ private void CloseCallback(GamebaseError error)
     
 public void ShowWebView()
 {
-    GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = new GamebaseRequest.Webview.GamebaseWebViewConfiguration();
+    GamebaseRequest.Webview.Configuration configuration = new GamebaseRequest.Webview.Configuration();
      configuration.title = "Title";
      configuration.orientation = GamebaseScreenOrientation.Portrait;
-     configuration.colorR = 128;
-     configuration.colorG = 128;
-     configuration.colorB = 128;
-     configuration.colorA = 255;
+     configuration.navigationColor = new Color(0.5f, 0.5f, 0.5f, 1);
      configuration.barHeight = 40;
      configuration.buttonVisible = true;
     
@@ -470,29 +461,27 @@ public void ShowWebView()
 }
 ```
 
-#### GamebaseWebViewConfiguration
+#### Configuration
 
-| Parameter | Values | Description |
-| ------------------------ | ---------------------------------------- | --------------------------- |
-| title                    | string                                   | WebViewのタイトル             |
-| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | 未指定(**default**)            |
-|                          | GamebaseScreenOrientation.PORTRAIT       | 縦モード                  |
-|                          | GamebaseScreenOrientation.LANDSCAPE      | 横モード                  |
-|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 横モードを180度回転    |
-| contentMode<br>(iOS専用) | GamebaseWebViewContentMode.RECOMMENDED      | 現在プラットフォーム推薦ブラウザ(**default**)  |
-|                          | GamebaseWebViewContentMode.MOBILE           | モバイルブラウザ          |
-|                          | GamebaseWebViewContentMode.DESKTOP          | デスクトップブラウザ        |
-| colorR                   | 0～255                                    | ナビゲーションバーの色相R<br>**default** : 18               |
-| colorG                   | 0～255                                    | ナビゲーションバーの色相G<br>**default** : 93               |
-| colorB                   | 0～255                                    | ナビゲーションバーの色相B<br>**default** : 230              |
-| colorA                   | 0～255                                    | ナビゲーションバーの色相Alpha<br>**default** : 255          |
-| barHeight                | height                                   | ナビゲーションバーの高さ<br>**Android Only**                 |
-| isNavigationBarVisible   | true or false                            | ナビゲーションバー有効/無効<br>**default** : true    |
-| isBackButtonVisible      | true or false                            | 戻るボタン有効/無効<br>**default** : true   |
-| backButtonImageResource  | ID of resource                           | 戻るボタンのイメージ       |
-| closeButtonImageResource | ID of resource                           | 閉じるボタンのイメージ           |
+| Parameter                            | Values | Description |
+|--------------------------------------| ---------------------------------------- | --------------------------- |
+| title                                | string                                   | WebViewのタイトル             |
+| orientation                          | GamebaseScreenOrientation.UNSPECIFIED    | 未指定(**default**)            |
+|                                      | GamebaseScreenOrientation.PORTRAIT       | 縦モード                  |
+|                                      | GamebaseScreenOrientation.LANDSCAPE      | 横モード                  |
+|                                      | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 横モードを180度回転    |
+| contentMode<br>(iOS専用)               | GamebaseWebViewContentMode.RECOMMENDED      | 現在プラットフォーム推薦ブラウザ(**default**)  |
+|                                      | GamebaseWebViewContentMode.MOBILE           | モバイルブラウザ          |
+|                                      | GamebaseWebViewContentMode.DESKTOP          | デスクトップブラウザ        |
+| navigationColor                      | Color                                       | ナビゲーションバーの色相<br>**default**: GamebaseColor.RGB255(18, 93, 230) |
+| barHeight                            | height                                   | ナビゲーションバーの高さ<br>**Android Only**                 |
+| isNavigationBarVisible               | true or false                            | ナビゲーションバー有効/無効<br>**default** : true    |
+| isBackButtonVisible                  | true or false                            | 戻るボタン有効/無効<br>**default** : true   |
+| backButtonImageResource              | ID of resource                           | 戻るボタンのイメージ       |
+| closeButtonImageResource             | ID of resource                           | 閉じるボタンのイメージ           |
 | enableFixedFontSize<br>(Android専用)   | true or false              | 約款ウィンドウの文字サイズを固定するかどうかを決定します。<br>**default**: false |
 | renderOutSideSafeArea<br>(Android専用) | true or false              | Safe Area領域の外までレンダリングするかどうかを決定します。<br>**default**: false |
+| cutoutColor<br>(Android専用)           | Color                      | SafeArea 外の Cutout 領域の背景色<br>**default**: null                              |
 
 > [TIP]
 >
