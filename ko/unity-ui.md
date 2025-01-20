@@ -60,14 +60,11 @@ GamebaseRequest.ImageNotice.Configuration으로 사용자 설정 이미지 공�
 **Example**
 
 ```cs
-public void ShowImageNotices(int colorR = 0 , int colorG = 0, int colorB = 0, int colorA = 128, long timeOut = 5000)
+public void ShowImageNotices()
 {
     GamebaseRequest.ImageNotice.Configuration configuration = new GamebaseRequest.ImageNotice.Configuration();
-    configuration.colorR = colorR;
-    configuration.colorG = colorG;
-    configuration.colorB = colorB;
-    configuration.colorA = colorA;
-    configuration.timeOut = timeOut;
+    configuration.backgroundColor = new Color(0, 0, 0, 0.5f);
+    configuration.timeOut = 5000;
 
     Gamebase.ImageNotice.ShowImageNotices(
         configuration,
@@ -87,13 +84,10 @@ public void ShowImageNotices(int colorR = 0 , int colorG = 0, int colorB = 0, in
 
 #### GamebaseRequest.ImageNotice.Configuration
 
-| Parameter                              | Values                                   | Description        |
-| -------------------------------------- | ---------------------------------------- | ------------------ |
-| colorR                   | 0~255                                    | 백그라운드 배경 색상 R            |
-| colorG                   | 0~255                                    | 백그라운드 배경 색상 G                |
-| colorB                   | 0~255                                    | 백그라운드 배경 색상 B                |
-| colorA                   | 0~255                                    | 백그라운드 배경 색상 Alpha                |
-| timeoutMS                | long        | 이미지 공지 최대 로딩 시간(단위: millisecond)<br/>**default**: 5000                     |
+| Parameter                              | Values                                  | Description                                                      |
+| -------------------------------------- | --------------------------------------- |------------------------------------------------------------------|
+| backgroundColor          | Color       | 백그라운드 배경 색상 <br>**default**: GamebaseColor.RGB255(0, 0, 0, 128) |
+| timeoutMS                | long        | 이미지 공지 최대 로딩 시간(단위: millisecond)<br/>**default**: 5000           |
 
 
 ### Close ImageNotices
@@ -425,7 +419,7 @@ public void SampleIsShowingTermsView()
 * url : 파라미터로 전송되는 url은 유효한 값이어야 합니다.
 
 ##### Optional 파라미터
-* configuration : GamebaseWebViewConfiguration으로 웹뷰의 레이아웃을 변경 할 수 있습니다.
+* configuration : Configuration으로 웹뷰의 레이아웃을 변경 할 수 있습니다.
 * closeCallback : 웹뷰가 종료될 때 사용자에게 콜백으로 알려 줍니다.
 * schemeList : 사용자가 받고 싶은 커스텀 스킴 목록을 지정합니다.
 * schemeEvent : schemeList로 지정한 커스텀 스킴을 포함하는 url을 콜백으로 알려 줍니다.
@@ -438,7 +432,7 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 ```cs
-static void ShowWebView(string url, GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = null, GamebaseCallback.ErrorDelegate closeCallback = null, List<string> schemeList = null, GamebaseCallback.GamebaseDelegate<string> schemeEvent = null)
+static void ShowWebView(string url, GamebaseRequest.Webview.Configuration configuration = null, GamebaseCallback.ErrorDelegate closeCallback = null, List<string> schemeList = null, GamebaseCallback.GamebaseDelegate<string> schemeEvent = null)
 ```
 
 > Standalone에서는 WebViewAdapter를 통해서 웹뷰를 지원하며 웹뷰가 열려 있을 때 UI로 입력되는 Event를 Blocking하지 않습니다.
@@ -457,13 +451,10 @@ private void CloseCallback(GamebaseError error)
     
 public void ShowWebView()
 {
-    GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = new GamebaseRequest.Webview.GamebaseWebViewConfiguration();
+    GamebaseRequest.Webview.Configuration configuration = new GamebaseRequest.Webview.Configuration();
      configuration.title = "Title";
      configuration.orientation = GamebaseScreenOrientation.Portrait;
-     configuration.colorR = 128;
-     configuration.colorG = 128;
-     configuration.colorB = 128;
-     configuration.colorA = 255;
+     configuration.navigationColor = new Color(0.5f, 0.5f, 0.5f, 1);
      configuration.barHeight = 40;
      configuration.isBackButtonVisible = true;
     
@@ -473,29 +464,27 @@ public void ShowWebView()
 }
 ```
 
-#### GamebaseWebViewConfiguration
+#### Configuration
 
-| Parameter | Values | Description |
-| ------------------------ | ---------------------------------------- | --------------------------- |
-| title                    | string                                   | 웹뷰의 제목               |
-| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | 미지정(**default**)            |
-|                          | GamebaseScreenOrientation.PORTRAIT       | 세로 모드                    |
-|                          | GamebaseScreenOrientation.LANDSCAPE      | 가로 모드                    |
-|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 가로 모드를 180도 회전     |
-| contentMode<br>(iOS 전용) | GamebaseWebViewContentMode.RECOMMENDED      | 현재 플랫폼 추천 브라우저(**default**)  |
-|                          | GamebaseWebViewContentMode.MOBILE           | 모바일 브라우저            |
-|                          | GamebaseWebViewContentMode.DESKTOP          | 데스크톱 브라우저          |
-| colorR                   | 0~255                                    | 내비게이션 바 색상 R<br>**default**: 18               |
-| colorG                   | 0~255                                    | 내비게이션 바 색상 G<br>**default**: 93               |
-| colorB                   | 0~255                                    | 내비게이션 바 색상 B<br>**default**: 230              |
-| colorA                   | 0~255                                    | 내비게이션 바 색상 Alpha<br>**default**: 255          |
-| barHeight                | height                                   | 내비게이션 바 높이<br>**Android에 한함**                 |
-| isNavigationBarVisible   | true or false                            | 내비게이션 바 활성 또는 비활성<br>**default**: true    |
-| isBackButtonVisible      | true or false                            | 뒤로 가기 버튼 활성 또는 비활성<br>**default**: true   |
-| backButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지         |
-| closeButtonImageResource | ID of resource                           | 닫기 버튼 이미지             |
-| enableFixedFontSize<br>(Android 전용)   | true or false              | 약관 창의 글자 크기 고정 여부를 결정합니다.<br>**default**: false |
-| renderOutSideSafeArea<br>(Android 전용) | true or false              | Safe Area 영역 밖 렌더링 여부를 결정합니다.<br>**default**: false |
+| Parameter                             | Values                                      | Description                                                   |
+|---------------------------------------|---------------------------------------------|---------------------------------------------------------------|
+| title                                 | string                                      | 웹뷰의 제목                                                        |
+| orientation                           | GamebaseScreenOrientation.UNSPECIFIED       | 미지정(**default**)                                              |
+|                                       | GamebaseScreenOrientation.PORTRAIT          | 세로 모드                                                         |
+|                                       | GamebaseScreenOrientation.LANDSCAPE         | 가로 모드                                                         |
+|                                       | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 가로 모드를 180도 회전                                                |
+| contentMode<br>(iOS 전용)               | GamebaseWebViewContentMode.RECOMMENDED      | 현재 플랫폼 추천 브라우저(**default**)                                   |
+|                                       | GamebaseWebViewContentMode.MOBILE           | 모바일 브라우저                                                      |
+|                                       | GamebaseWebViewContentMode.DESKTOP          | 데스크톱 브라우저                                                     |
+| navigationColor                       | Color                                       | 내비게이션 바 색상 <br>**default**: GamebaseColor.RGB255(18, 93, 230) |
+| barHeight                             | height                                      | 내비게이션 바 높이<br>**Android에 한함**                                 |
+| isNavigationBarVisible                | true or false                               | 내비게이션 바 활성 또는 비활성<br>**default**: true                        |
+| isBackButtonVisible                   | true or false                               | 뒤로 가기 버튼 활성 또는 비활성<br>**default**: true                       |
+| backButtonImageResource               | ID of resource                              | 뒤로 가기 버튼 이미지                                                  |
+| closeButtonImageResource              | ID of resource                              | 닫기 버튼 이미지                                                     |
+| enableFixedFontSize<br>(Android 전용)   | true or false                               | 약관 창의 글자 크기 고정 여부를 결정합니다.<br>**default**: false               |
+| renderOutSideSafeArea<br>(Android 전용) | true or false                               | Safe Area 영역 밖 렌더링 여부를 결정합니다.<br>**default**: false           |
+| cutoutColor<br>(Android 전용)           | Color                                       | SafeArea 밖의 Cutout 영역 바탕 색상 <br>**default**: null                              |
 
 > [TIP]
 >
