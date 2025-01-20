@@ -6,10 +6,10 @@
 
 #### 기능 추가
 
-* **Gamebase.requestLastLoggedInProvider(GamebaseDataCallback\<String\>) 비동기 API**를 추가했습니다.
+* **Gamebase.requestLastLoggedInProvider(GamebaseDataCallback&lt;String&gt;) 비동기 API**를 추가했습니다.
     * **Gamebase.getLastLoggedInProvider() 동기 API**가 타이밍 상 정상적인 값을 반환하지 못할 때가 있습니다.
     * **gamebase-adapter-auth-gpgs-autologin** 모듈을 빌드에 포함하는 경우 GPGS 서버에서 데이터를 획득하는 시간이 필요하므로 Gamebase 초기화 직후 getLastLoggedInProvider() 동기 API를 호출하면 정상적인 값을 획득할 수 없습니다.
-    * 이때 requestLastLoggedInProvider(GamebaseDataCallback\<String\>) 비동기 API는 정확한 값을 보장합니다.
+    * 이때 requestLastLoggedInProvider(GamebaseDataCallback&lt;String&gt;) 비동기 API는 정확한 값을 보장합니다.
     * gamebase-adapter-auth-gpgs-autologin 모듈이 빌드에 포함되지 않은 경우에는 계속해서 getLastLoggedInProvider() 동기 API를 사용해도 무방합니다.
 * **GamebaseWebViewConfiguration.Builder.setCutoutAreaColor() API**를 추가했습니다.
     * GamebaseWebView의 **GamebaseWebViewConfiguration.Builder.renderOutsideSafeArea() API**를 **false**로 설정한 경우, cutout 영역에 자동으로 padding 여백을 추가합니다.
