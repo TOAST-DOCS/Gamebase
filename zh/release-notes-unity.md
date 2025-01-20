@@ -18,10 +18,6 @@
     * Community.Configuration backgroundColor
     * ImageNotice.Configuration backgroundColor
 
-#### 버그 수정
-
-* NHN Cloud Console에서 네트워크 인사이트 설정을 활성화하면 JSON 파싱 오류가 발생하는 현상이 개선되었습니다.
-
 #### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.69.0](./release-notes-android/#2690-2025-01-21)
 * [Gamebase iOS SDK 2.69.0](./release-notes-ios/#2690-2025-01-21)
