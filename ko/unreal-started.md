@@ -227,6 +227,27 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
     * Epic Games Store
         * EOS 서비스 정보를 각 항목에 맞게 입력합니다.
 
+#### WebView 플러그인 안내
+
+* WebView 사용 컨텐츠를 사용 시 플러그인 활성화가 필요합니다.
+    * Login with IdP
+        * GUEST 이외의 IdP를 지원하시는 경우 웹뷰를 통해 로그인 프로세스를 진행합니다.
+    * ImageNotices
+    * WebView
+* 별도의 엔진 수정없이 WebView 관련 기능을 사용하실 경우 Unreal 에디터에서 **Settings > Plugins** 창을 띄우고, **Project > NHN Cloud > NHNWebView** 플러그인을 찾아 활성화합니다.
+* 엔진에서 제공하는 Web Browser Widget 플러그인을 사용하실 경우 UE 5.4 이상 필요하며 그 이하 버전에서는 CEF 버전이 낮아 정상적으로 웹 기능이 동작하지 않으므로 Web Browser Widget 플러그인과 연관된 모듈의 업데이트가 필요합니다.
+    * ThirdParty
+        * CEF3
+    * Runtime
+        * CEF3Utils
+        * WebBrowser
+        * WebBrowserTexture
+    * Program
+        * EpicWebHelper
+
+> [주의]
+> NHNWebView 플러그인과 Web Browser Widget 플러그인은 동시의 사용이 불가능하며, 두 플러그인이 모두 활성화 되어 있는 경우 빌드 시 오류가 발생합니다.
+
 #### Epic Games Store 서비스
 
 * Epic Games Store를 사용하기 위해서는 Epic Online Services(EOS) SDK를 사용하여 로그인되어야 합니다.
