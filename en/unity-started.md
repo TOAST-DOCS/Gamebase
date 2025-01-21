@@ -71,7 +71,7 @@ Select **Tools > Gamebase > Setup Wizard** menu.
 
 > [Note]
 >
-> * can check the **required settings** through [Required Settings](#Required Settings).
+> * can check the **required settings** through [Required Settings](#required-settings).
 
 ## Updating the SDK to the Latest Version
 
@@ -93,7 +93,7 @@ Select **Tools > Gamebase > Customize...** menu.
 
 > [Note]
 >
-> * can check the **required settings** through [Required Settings](#Required Settings).
+> * can check the **required settings** through [Required Settings](#required-settings).
 
 ## Required Settings
 

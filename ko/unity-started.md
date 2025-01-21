@@ -71,7 +71,7 @@ Unity Editor의 상단 메뉴 바에서 **Tools > Gamebase**를 선택하여 Set
 
 > [참고]
 >
-> * [Required Settings](#Required Settings)를 통해 설치에 **필수적인 설정**을 확인할 수 있습니다.
+> * [Required Settings](#required-settings)를 통해 설치에 **필수적인 설정**을 확인할 수 있습니다.
 
 ## SDK 최신 버전 업데이트
 
@@ -93,7 +93,7 @@ Unity Editor의 상단 메뉴 바에서 **Tools > Gamebase**를 선택하여 Set
 
 > [참고]
 >
-> * [Required Settings](#Required Settings)를 통해 설치에 **필수적인 설정**을 확인할 수 있습니다.
+> * [Required Settings](#required-settings)를 통해 설치에 **필수적인 설정**을 확인할 수 있습니다.
 
 ## Required Settings
 
