@@ -1,5 +1,24 @@
 ## Game > Gamebase > 릴리스 노트 > Unreal
 
+### 2.68.1 (2025. 01. 21.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.1/GamebaseSDK-Unreal.zip)
+
+#### 기능 개선/변경
+
+* (Windows) WebView 플러그인을 옵션으로 선택할 수 있도록 변경되었습니다.* (Windows) WebView 플러그인을 옵션으로 선택할 수 있도록 변경되었습니다.
+    * [WebView 플러그인 가이드](./unreal-started/#windows-settings)를 확인하여 업데이트가 필요합니다.
+* (Windows) 크래시 로그 전송 시 프로젝트 바이너리 경로에 심벌 파일을 압축한 파일이 생성되도록 추가되었습니다.
+    * [크래시 로그 전송 가이드](./unreal-logger/#crash-reporter)
+* 내부 로직을 개선했습니다.
+
+#### 버그 수정
+
+* (Windows) 내부 로그 전송 시 크래시가 발생할 수 있는 로직이 수정되었습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.68.0](./release-notes-android/#2680-2024-11-26)
+* [Gamebase iOS SDK 2.68.1](./release-notes-ios/#2681-2024-12-10)
+
 ### 2.68.0 (2024. 12. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.0/GamebaseSDK-Unreal.zip)
 
