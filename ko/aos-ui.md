@@ -196,12 +196,12 @@ public void afterLogin(Activity activity) {
 Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 게임UI에 맞는 약관을 직접 제작하고자 하신다면, queryTerms API를 호출하여 Gamebase 콘솔에 설정한 약관 정보를 내려받아 활용하실 수 있습니다.
 
-로그인 후에 호출하신다면 게임유저가 약관에 동의했는지 여부도 함께 확인할 수 있습니다.
+'선택' 약관 항목은 로그인 후에 호출하면 동의 여부도 함께 알 수 있습니다. 단, '필수' 항목의 동의 여부는 항상 false로 반환됩니다.
 
 > <font color="red">[주의]</font><br/>
 >
-> * GamebaseTermsContentDetail.getRequired()가 true인 필수 항목은 Gamebase 서버에 저장되지 않으므로 agreed 값은 항상 false로 반환됩니다.
->     * 필수 항목은 항상 true 로 저장될 수 밖에 없어서 저장하는 의미가 없기 때문입니다.
+> * GamebaseTermsContentDetail.getRequired()가 true인 필수 항목은 동의 여부를 Gamebase 서버에 저장하지 않으므로 agreed 값은 항상 false로 반환됩니다.
+>     * 약관 필수 항목에 동의하지 않은 경우 게임 진행 또는 게임 로그인을 시켜서는 안되므로, 약관 팝업이 닫혀 있고 로그인 되어 있는 상태 라면 자연스럽게 약관 필수 항목에 동의한 것과 같습니다. 그래서 로그인 한 유저는 이미 필수 항목에 모두 동의한 상태이므로, 굳이 동의 여부를 저장할 필요가 없기 때문입니다.
 > * 푸시 수신 동의 여부도 Gamebase 서버에 저장되지 않으므로 agreed 값은 항상 false로 반환됩니다.
 >     * 푸시 수신 동의 여부는 Gamebase.Push.queryTokenInfo API를 통해 조회하시기 바랍니다.
 > * 콘솔에서 '기본 약관 설정'을 하지 않는 경우 약관 언어와 다른 국가 코드로 설정된 단말기에서 queryTerms API를 호출하면 `UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)` 오류가 발생합니다.
@@ -515,6 +515,7 @@ showWebView(activity, urlString, configuration,
 | enableAutoCloseByCustomScheme(boolean enable) | true or false | 커스텀 스킴 동작 시 자동으로 웹뷰 종료.<br>**default**: true |
 | enableFixedFontSize(boolean enable)      | true or false | 시스템 글자 크기를 무시하고 고정된 크기로 웹뷰를 표시.<br>**default**: false |
 | setRenderOutsideSafeArea(boolean render) | true or false | SafeArea를 무시하고 Cutout 영역에도 렌더링.<br>**default**: false |
+| setCutoutAreaColor(int color) | Color.argb(a, r, b, b) | SafeArea 밖의 Cutout 영역 바탕 색상 |
 
 ### Close WebView
 다음 API를 통해 현재 보여지는 웹뷰를 닫을 수 있습니다.

@@ -1,12 +1,22 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.69.0
+
+### Unity
+
+* GPGS AutoLogin를 사용하는 경우, **GetLastLoggedInProvider()** 동기 API 대신 신규 추가된 **RequestLastLoggedInProvider(GamebaseCallback.GamebaseDelegate\<string> callback)** 비동기 API를 사용하세요.
+
+### Android
+
+* **gamebase-adapter-auth-gpgs-autologin** 모듈을 빌드에 포함하는 경우, **getLastLoggedInProvider()** 동기 API 대신 신규 추가된 **requestLastLoggedInProvider(GamebaseDataCallback&lt;String&gt;)** 비동기 API를 사용하세요.
+
 ## 2.68.0
 
 ### Android
 
 #### Changed Minimum Support Version
 
-* 최소 지원 버전이 Android 5.0 이상으로 상향되었습니다.(minSdk 19 -> 21)
+* Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
 
 ## 2.67.1
 

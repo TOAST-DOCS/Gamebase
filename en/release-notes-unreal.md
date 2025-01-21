@@ -3,49 +3,35 @@
 ### 2.68.0 (2024. 12. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 개선/변경
-* 내부 로직을 개선했습니다.
-* (Windows) Twitter 인증 방식을 OAuth 2.0으로 변경하여, 아래의 설정 변경 없이는 로그인이 동작하지 않습니다.
-    * OAuth 2.0 Client ID 및 Client Secret 발급
-        * Twitter Developer Portal에서 OAuth 2.0 Client ID와 Client Secret을 생성한 후, Gamebase 콘솔에 등록합니다.
-    * Callback URL 설정
-        * Gamebase 콘솔에 Callback URL(https://id-gamebase.toast.com/oauth/callback)을 설정합니다. 
-        * 동일한 Callback URL을 Twitter Developer Portal에 추가합니다.
-    * 자세한 내용은 다음 링크를 참고하세요.
-        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information](./oper-app/#authentication-information)
+#### Feature Updates
+* Improved internal logic.
+* (Windows) Twitter changed its authentication method to OAuth 2.0, so login will not work without changing the settings below.
+    * Issue OAuth 2.0 Client ID and Client Secret
+        * Create an OAuth 2.0 Client ID and Client Secret in the Twitter Developer Portal, then register them in the Gamebase console.
+    * Set Callback URL
+        * Set the Callback URL (https://id-gamebase.toast.com/oauth/callback) in the Gamebase console.
+        * Add the same Callback URL to the Twitter Developer Portal.
+    * For more information, see the link below.
+        * [Game > Gamebase > Console User Guide > App > Authentication Information](./oper-app/#authentication-information)
 
-#### 버그 수정
-* (Windows) 결제 프로세스에서 크래시가 발생하지 않도록 수정했습니다.
-* (Windows) Steam 결제 중 ESC 키로 결제를 종료하는 경우 다음 결제 API가 동작하지 않는 이슈를 수정했습니다.
+#### Bug Fixes
+* (Windows) Fixed so that crash would not occur when making payment.
+* (Windows) Fixed an issue where, when exiting the payment with an ESC key on Steam payment, the following payment APIs would not work.
 
-#### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.68.0](./release-notes-android/#2680-2024-11-26)
-* [Gamebase iOS SDK 2.68.1](./release-notes-ios/#2681-2024-12-10)
-
-### 2.68.0 (2024. 12. 10.)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.0/GamebaseSDK-Unreal.zip)
-
-#### 기능 개선/변경
-* 내부 로직을 개선했습니다.
-
-#### 버그 수정
-* (Windows) 결제 프로세스에서 크래시가 발생하지 않도록 수정했습니다.
-* (Windows) Steam 결제 중 ESC 키로 결제를 종료하는 경우 다음 결제 API가 동작하지 않는 이슈를 수정했습니다.
-
-#### 플랫폼별 변경 사항
+#### Platform-Specific Changes
 * [Gamebase Android SDK 2.68.0](./release-notes-android/#2680-2024-11-26)
 * [Gamebase iOS SDK 2.68.1](./release-notes-ios/#2681-2024-12-10)
 
 ### 2.67.2 (2024. 11. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.67.2/GamebaseSDK-Unreal.zip)
 
-#### 기능 개선/변경
-* 내부 로직을 개선했습니다.
+#### Feature Updates
+* Improved internal logic.
 
-#### 버그 수정
-* (Windows) Apple ID 로그인을 정상적으로 진행하지 못하는 문제가 수정되었습니다.
+#### Bug Fixes
+* (Windows) Fixed an issue that prevented Apple ID sign-in from proceeding properly.
 
-#### 플랫폼별 변경 사항
+#### Platform-Specific Changes
 * [Gamebase Android SDK 2.67.0](./release-notes-android/#2670-2024-10-29)
 * [Gamebase iOS SDK 2.67.0](./release-notes-ios/#2670-2024-10-29)
 
@@ -72,22 +58,22 @@
 ### 2.67.0 (2024. 10. 30.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.67.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 추가
-* Steam 인증이 추가되었습니다.
-* Steam 결제가 추가되었습니다.
-* 이미지 공지 기능에 신규 타입이 추가되었습니다.
-    * 롤링 팝업 타입이 추가되었습니다.
-    * 기존의 이미지 공지는 팝업 타입으로 표기되며, Windows에서는 지원되지 않습니다.
-* (Windows) LINE 인증이 추가되었습니다.
+#### Added Features
+* Added the Steam authentication.
+* Added Steam payments.
+* Added a new type to the image notice feature.
+    * Added the rolling popup type.
+    * Existing image notices appear as pop-ups and are not supported on Windows.
+* (Windows) Added the LINE authentication.
 
-#### 기능 개선
-* 엔진의 지원 버전이 4.27~5.4로 변경되었습니다.
-* 내부 로직을 개선했습니다.
+#### Feature Updates
+* Changed the supported version of the engine from 4.27 to 5.4.
+* Improved internal logic.
 
-#### 버그 수정
-* 크래시 로그 발생 시 크래시가 발생할 수 있는 로직을 수정했습니다.
+#### Bug Fixes
+* Fixed logic that could cause a crash when a crash log is generated.
 
-#### 플랫폼별 변경 사항
+#### Platform-Specific Changes
 * [Gamebase Android SDK 2.67.0](./release-notes-android/#2670-2024-10-29)
 * [Gamebase iOS SDK 2.67.0](./release-notes-ios/#2670-2024-10-29)
 

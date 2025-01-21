@@ -1,24 +1,34 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.69.0
+
+### Unity
+
+* GPGS AutoLogin를 사용하는 경우, **GetLastLoggedInProvider()** 동기 API 대신 신규 추가된 **RequestLastLoggedInProvider(GamebaseCallback.GamebaseDelegate\<string> callback)** 비동기 API를 사용하세요.
+
+### Android
+
+* **gamebase-adapter-auth-gpgs-autologin** 모듈을 빌드에 포함하는 경우, **getLastLoggedInProvider()** 동기 API 대신 신규 추가된 **requestLastLoggedInProvider(GamebaseDataCallback&lt;String&gt;)** 비동기 API를 사용하세요.
+
 ## 2.68.0
 
 ### Android
 
 #### Changed Minimum Support Version
 
-* 최소 지원 버전이 Android 5.0 이상으로 상향되었습니다.(minSdk 19 -> 21)
+* 最小サポートバージョンがAndroid 5.0以上に引き上げられました。(minSdk 19→21)
 
 ## 2.67.1
 
 ### Unreal
 
-* (Windows) Purchase 설정 시 스토어를 하나만 선택할 수 있도록 변경되었습니다.
-    * 스토어 재설정이 필요합니다.
-* (Windows) Epic Games Store 사용 시 EOS SDK의 핸들을 등록하는 과정이 변경되었습니다.
-    * Online Subsystem EOS를 사용하는 경우 Gamebase 초기화 시 StoreCode가 Epic Games Store의 해당하는 값이면 자동으로 핸들을 등록합니다.
-    * Online Subsystem EOS를 사용하지 않는 경우 [Windows Settings](./unreal-started/#windows-settings) 가이드를 참고하여 EOS의 핸들을 등록하는 과정이 필요합니다.
-* (Windows) Steamworks SDK 지원 버전이 1.59로 변경되었습니다.
-    * [Steamworks 업그레이드 가이드](./unreal-started/#windows-settings)를 확인하여 업데이트가 필요합니다.
+* (Windows) Purchase設定時にストアを一つだけ選択できるように変更されました。
+    * ストアの再設定が必要です。
+* (Windows) Epic Games Store使用時にEOS SDKのハンドルを登録するプロセスが変更されました。
+    * Online Subsystem EOSを使用する場合、Gamebase初期化時にStoreCodeがEpic Games Storeの該当する値であれば自動的にハンドルを登録します。
+    * Online Subsystem EOSを使用しない場合、[Windows Settings](./unreal-started/#windows-settings)ガイドを参考にしてEOSのハンドルを登録するプロセスが必要です。
+* (Windows) Steamworks SDKサポートバージョンが1.59に変更されました。
+    * [Steamworksアップグレードガイド](./unreal-started/#windows-settings)を確認してアップデートが必要です。
 
 ## 2.67.0
 
