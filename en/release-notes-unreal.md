@@ -4,15 +4,15 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.1/GamebaseSDK-Unreal.zip)
 
 #### 기능 개선/변경
-
-* (Windows) WebView 플러그인을 옵션으로 선택할 수 있도록 변경되었습니다.* (Windows) WebView 플러그인을 옵션으로 선택할 수 있도록 변경되었습니다.
-    * [WebView 플러그인 가이드](./unreal-started/#windows-settings)를 확인하여 업데이트가 필요합니다.
-* (Windows) 크래시 로그 전송 시 프로젝트 바이너리 경로에 심벌 파일을 압축한 파일이 생성되도록 추가되었습니다.
-    * [크래시 로그 전송 가이드](./unreal-logger/#crash-reporter)
 * 내부 로직을 개선했습니다.
+* (Windows) WebView 플러그인을 옵션으로 선택할 수 있도록 변경되었습니다.
+    * 자세한 내용은 다음 링크를 참고하세요.
+        * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > Windows Settings > WebView 플러그인 안내](./unreal-started/#windows-settings)
+* (Windows) 크래시 로그 전송 시 프로젝트 바이너리 경로에 심벌 파일을 압축한 파일이 생성되도록 추가되었습니다.
+    * 자세한 내용은 다음 링크를 참고하세요.
+        * [Game > Gamebase > Unreal SDK 사용 가이드 > Logger > Crash Reporter](./unreal-logger/#crash-reporter)
 
 #### 버그 수정
-
 * (Windows) 내부 로그 전송 시 크래시가 발생할 수 있는 로직이 수정되었습니다.
 
 #### 플랫폼별 변경 사항
@@ -63,6 +63,9 @@
 * (Windows) Epic Games Store 사용 시 EOS SDK의 핸들을 등록하는 과정이 변경되었습니다.
     * Online Subsystem EOS를 사용하는 경우 Gamebase 초기화 시 StoreCode가 Epic Games Store의 해당하는 값이면 자동으로 핸들을 등록합니다.
     * Online Subsystem EOS를 사용하지 않는 경우 [Windows Settings](./unreal-started/#windows-settings) 가이드를 참고하여 EOS의 핸들을 등록하는 과정이 필요합니다.
+* (Windows) Steamworks SDK 지원 버전이 1.59로 변경되었습니다.
+    * 자세한 내용은 다음 링크를 참고하세요.
+        * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > Windows Settings > Steamworks 서비스](./unreal-started/#windows-settings)
 
 #### 버그 수정
 * 헤더 파일을 정상적으로 참조할 수 있도록 수정했습니다.
