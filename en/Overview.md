@@ -1,9 +1,10 @@
 ## Game > Gamebase > Overview
 
-Gamebase is a strongly recommended service as it embraces a decade's operational knowhow of NHN Entertainment, which is the leading game platform provider. 
-It only takes Gamebase SDK to make easy use of common game services.  
+Gamebase is a strongly recommended service as it embraces a decade's operational knowhow of NHN, a leading game platform provider. 
+It only takes Gamebase SDK to make easy use of all game services.  
+All you need to do is apply the Gamebase SDK and all services are at your fingertips.
 
-![Gamebase_summary](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_01_201903_en.png)
+![Gamebase_summary](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/ko/Gamebase_overview_00_kr_202501.png)
 
 ## Gamebase Sample App
 
@@ -82,8 +83,10 @@ Gamebase supports the following stores:
 * App Store
 * Galaxy Store
 * ONE Store
-* Facebook
-* Amazon
+* Steam
+* Epic Games Store
+* Amazon Appstore
+* MyCard
 
 * **In-app purchase of many stores on a single interface** 
   Since further store development gets easy and fast via single-interface API, you can save development costs. Developers can easily implement purchase without having to learn the complexity of integration.  
@@ -287,3 +290,12 @@ On the Organization Admin screen, you can manage the permission group commonly u
 | Gamebase | PUSH ADMIN | | ● | |
 | Gamebase | PUSH VIEWER | |  | ● |
 
+## Privacy Policy
+### Information on Privacy and Compliance
+In the process of using the Gamebase service, the Customer shall be aware of and comply with its obligations under relevant laws and regulations (Information and Communications Network Act, Personal Information Protection Act, E-commerce Act, etc.)
+As a service provider, NHN Cloud is a partner that actively supports customers to use the Gamebase service safely, and NHN Cloud is not responsible for posts managed by customers, personal information of users, etc.
+In addition, in the process of collecting users' personal information, a delegation relationship may arise between the customer and NHN Cloud regarding the processing of personal information.
+Customers who are in the position of a trustor may enter into a separate written consignment agreement with NHN Cloud as a trustee, and may notify the following in the privacy policy operated by the customer.
+
+* Trustee: NHN Cloud Corp.
+* Duties of Trustee: Provision of Gamebase
