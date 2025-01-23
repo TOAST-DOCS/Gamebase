@@ -15,7 +15,7 @@
 
 #### 버그 수정
 * SceneDelegate를 사용하는 앱에서 NAVER 로그인 취소 시 callback이 오지 않는 버그를 수정하였습니다.
-* Gamebase 콘솔에 LINE old clientId를 설정하지 않았을 때, LINE 로그인이 실패하는 버그를 수정하였습니다.
+* Gamebase 콘솔에 LINE old clientId를 설정하지 않았을 때 LINE 로그인에 실패하는 버그를 수정하였습니다.
 
 ### 2.68.1 (2024. 12. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.1/GamebaseSDK-iOS.zip)
