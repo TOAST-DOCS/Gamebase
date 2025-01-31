@@ -1,22 +1,19 @@
 ## Game > Gamebase > Release Notes > Unreal
 
-### 2.68.0 (2024. 12. 10.)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.0/GamebaseSDK-Unreal.zip)
+### 2.68.1 (2025. 01. 21.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.1/GamebaseSDK-Unreal.zip)
 
 #### 기능 개선/변경
 * 내부 로직을 개선했습니다.
-* (Windows) Twitter 인증 방식을 OAuth 2.0으로 변경하여, 아래의 설정 변경 없이는 로그인이 동작하지 않습니다.
-    * OAuth 2.0 Client ID 및 Client Secret 발급
-        * Twitter Developer Portal에서 OAuth 2.0 Client ID와 Client Secret을 생성한 후, Gamebase 콘솔에 등록합니다.
-    * Callback URL 설정
-        * Gamebase 콘솔에 Callback URL(https://id-gamebase.toast.com/oauth/callback)을 설정합니다. 
-        * 동일한 Callback URL을 Twitter Developer Portal에 추가합니다.
+* (Windows) WebView 플러그인을 옵션으로 선택할 수 있도록 변경되었습니다.
     * 자세한 내용은 다음 링크를 참고하세요.
-        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information](./oper-app/#authentication-information)
+        * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > Windows Settings > WebView 플러그인 안내](./unreal-started/#windows-settings)
+* (Windows) 크래시 로그 전송 시 프로젝트 바이너리 경로에 심벌 파일을 압축한 파일이 생성되도록 추가되었습니다.
+    * 자세한 내용은 다음 링크를 참고하세요.
+        * [Game > Gamebase > Unreal SDK 사용 가이드 > Logger > Crash Reporter](./unreal-logger/#crash-reporter)
 
 #### 버그 수정
-* (Windows) 결제 프로세스에서 크래시가 발생하지 않도록 수정했습니다.
-* (Windows) Steam 결제 중 ESC 키로 결제를 종료하는 경우 다음 결제 API가 동작하지 않는 이슈를 수정했습니다.
+* (Windows) 내부 로그 전송 시 크래시가 발생할 수 있는 로직이 수정되었습니다.
 
 #### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.68.0](./release-notes-android/#2680-2024-11-26)
@@ -25,14 +22,22 @@
 ### 2.68.0 (2024. 12. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 개선/변경
-* 내부 로직을 개선했습니다.
+#### Feature Updates
+* Improved internal logic.
+* (Windows) Twitter changed its authentication method to OAuth 2.0, so login will not work without changing the settings below.
+    * Issue OAuth 2.0 Client ID and Client Secret
+        * Create an OAuth 2.0 Client ID and Client Secret in the Twitter Developer Portal, then register them in the Gamebase console.
+    * Set Callback URL
+        * Set the Callback URL (https://id-gamebase.toast.com/oauth/callback) in the Gamebase console.
+        * Add the same Callback URL to the Twitter Developer Portal.
+    * For more information, see the link below.
+        * [Game > Gamebase > Console User Guide > App > Authentication Information](./oper-app/#authentication-information)
 
-#### 버그 수정
-* (Windows) 결제 프로세스에서 크래시가 발생하지 않도록 수정했습니다.
-* (Windows) Steam 결제 중 ESC 키로 결제를 종료하는 경우 다음 결제 API가 동작하지 않는 이슈를 수정했습니다.
+#### Bug Fixes
+* (Windows) Fixed so that crash would not occur when making payment.
+* (Windows) Fixed an issue where, when exiting the payment with an ESC key on Steam payment, the following payment APIs would not work.
 
-#### 플랫폼별 변경 사항
+#### Platform-Specific Changes
 * [Gamebase Android SDK 2.68.0](./release-notes-android/#2680-2024-11-26)
 * [Gamebase iOS SDK 2.68.1](./release-notes-ios/#2681-2024-12-10)
 
@@ -58,6 +63,9 @@
 * (Windows) Epic Games Store 사용 시 EOS SDK의 핸들을 등록하는 과정이 변경되었습니다.
     * Online Subsystem EOS를 사용하는 경우 Gamebase 초기화 시 StoreCode가 Epic Games Store의 해당하는 값이면 자동으로 핸들을 등록합니다.
     * Online Subsystem EOS를 사용하지 않는 경우 [Windows Settings](./unreal-started/#windows-settings) 가이드를 참고하여 EOS의 핸들을 등록하는 과정이 필요합니다.
+* (Windows) Steamworks SDK 지원 버전이 1.59로 변경되었습니다.
+    * 자세한 내용은 다음 링크를 참고하세요.
+        * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > Windows Settings > Steamworks 서비스](./unreal-started/#windows-settings)
 
 #### 버그 수정
 * 헤더 파일을 정상적으로 참조할 수 있도록 수정했습니다.

@@ -1,13 +1,35 @@
 ## Game > Gamebase > リリースノート > Unity
 
-### 2.68.1 (2024. 12. 10.)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.1/GamebaseSDK-Unity.zip)
+### 2.69.0 (2025. 1. 21.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.69.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+
+* RequestLastLoggedInProvider API 추가
+* (Android) WebView Cutout color 기능 추가
+* (Windows, macOS) X(Twitter) 로그인 지원
 
 #### 기능 개선/변경
 
 * 내부 로직을 개선하였습니다.
+* WebView 색상 설정 관련 코드 개선
+  * Configuration 내부에 필드 추가
+    * WebView.Configuration navigationColor
+    * Community.Configuration backgroundColor
+    * ImageNotice.Configuration backgroundColor
 
 #### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.69.0](./release-notes-android/#2690-2025-01-21)
+* [Gamebase iOS SDK 2.69.0](./release-notes-ios/#2690-2025-01-21)
+
+### 2.68.1 (2024. 12. 10.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.1/GamebaseSDK-Unity.zip)
+
+#### 機能改善/変更
+
+* 内部ロジックを改善しました。
+
+#### プラットフォーム別の変更事項
 
 * [Gamebase iOS SDK 2.68.1](./release-notes-ios/#2681-2024-12-10)
 
@@ -16,7 +38,7 @@
 
 #### サポート終了
 
-* FacebookAdapter for Unityサポートが終了します。
+* FacebookAdapter for Unityサポートが終了されます。
 
 #### 機能追加
 
@@ -28,9 +50,9 @@
 
 #### バグ修正
 
-* NHN Cloud Consoleでネットワークでインサイト設定を有効にすると、JSON解析エラーが発生する現象を改善しました。
+* NHN Cloud Consoleでネットワークインサイト設定を有効にするとJSON解析エラーが発生する現象を改善しました。
 
-#### プラットフォーム別の変更内容
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.68.0](./release-notes-android/#2680-2024-11-26)
 * [Gamebase iOS SDK 2.68.0](./release-notes-ios/#2680-2024-11-26)
 

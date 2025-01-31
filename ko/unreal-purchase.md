@@ -17,7 +17,7 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 >
 > 외부 플러그인에서 결제 관련 처리가 있는 경우, Gamebase 결제 기능이 정상적으로 동작하지 않을 수 있습니다.
 
-* Unreal에서 기본으로 활성화 되어있는 Online SubSystem 플러그인을 비활성화 혹은 스토어 기능을 이용하지 못하도록 변경해야 합니다.
+* Unreal에서 기본으로 활성화되어있는 Online SubSystem 플러그인을 비활성화 혹은 스토어 기능을 이용하지 못하도록 변경해야 합니다.
     * Online SubSystem GooglePlay 플러그인 사용 시 /Config/Android/AndroidEngine.ini 파일을 편집합니다.
             
             [OnlineSubsystemGooglePlay.Store]

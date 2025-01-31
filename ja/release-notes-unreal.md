@@ -1,24 +1,43 @@
 ## Game > Gamebase > リリースノート > Unreal
 
-### 2.68.0 (2024. 12. 10.)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.0/GamebaseSDK-Unreal.zip)
+### 2.68.1 (2025. 01. 21.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.1/GamebaseSDK-Unreal.zip)
 
 #### 기능 개선/변경
 * 내부 로직을 개선했습니다.
-* (Windows) Twitter 인증 방식을 OAuth 2.0으로 변경하여, 아래의 설정 변경 없이는 로그인이 동작하지 않습니다.
-    * OAuth 2.0 Client ID 및 Client Secret 발급
-        * Twitter Developer Portal에서 OAuth 2.0 Client ID와 Client Secret을 생성한 후, Gamebase 콘솔에 등록합니다.
-    * Callback URL 설정
-        * Gamebase 콘솔에 Callback URL(https://id-gamebase.toast.com/oauth/callback)을 설정합니다. 
-        * 동일한 Callback URL을 Twitter Developer Portal에 추가합니다.
+* (Windows) WebView 플러그인을 옵션으로 선택할 수 있도록 변경되었습니다.
     * 자세한 내용은 다음 링크를 참고하세요.
-        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information](./oper-app/#authentication-information)
+        * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > Windows Settings > WebView 플러그인 안내](./unreal-started/#windows-settings)
+* (Windows) 크래시 로그 전송 시 프로젝트 바이너리 경로에 심벌 파일을 압축한 파일이 생성되도록 추가되었습니다.
+    * 자세한 내용은 다음 링크를 참고하세요.
+        * [Game > Gamebase > Unreal SDK 사용 가이드 > Logger > Crash Reporter](./unreal-logger/#crash-reporter)
 
 #### 버그 수정
-* (Windows) 결제 프로세스에서 크래시가 발생하지 않도록 수정했습니다.
-* (Windows) Steam 결제 중 ESC 키로 결제를 종료하는 경우 다음 결제 API가 동작하지 않는 이슈를 수정했습니다.
+* (Windows) 내부 로그 전송 시 크래시가 발생할 수 있는 로직이 수정되었습니다.
 
 #### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.68.0](./release-notes-android/#2680-2024-11-26)
+* [Gamebase iOS SDK 2.68.1](./release-notes-ios/#2681-2024-12-10)
+
+### 2.68.0 (2024. 12. 10.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.0/GamebaseSDK-Unreal.zip)
+
+#### 機能改善/変更
+* 内部ロジックを改善しました。
+* (Windows) Twitter認証方式をOAuth 2.0に変更し、以下の設定を変更しないとログインが動作しません。
+    * OAuth 2.0 Client ID及びClient Secret発行
+        * Twitter Developer PortalでOAuth 2.0 Client IDとClient Secretを作成した後、 Gamebaseコンソールに登録します。
+    * Callback URL設定
+        * GamebaseコンソールにCallback URL(https://id-gamebase.toast.com/oauth/callback)を設定します。 
+        * 同じCallback URLをTwitter Developer Portalに追加します。
+    * 詳細は次のリンクを参照してください。
+        * [Game > Gamebase > コンソール使用ガイド > アプリ > Authentication Information](./oper-app/#authentication-information)
+
+#### バグ修正
+* (Windows)決済プロセスでクラッシュが発生しないように修正しました。
+* (Windows)Steam決済中にESCキーで決済を終了した場合、次の決済APIが動作しない問題を修正しました。
+
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.68.0](./release-notes-android/#2680-2024-11-26)
 * [Gamebase iOS SDK 2.68.1](./release-notes-ios/#2681-2024-12-10)
 
@@ -29,9 +48,9 @@
 * 内部ロジックを改善しました。
 
 #### バグ修正
-* (Windows) Apple IDログインを正常に実行できない問題を修正しました。
+* (Windows) Apple IDのログインが正常に行われない問題を修正しました。
 
-#### プラットフォーム別の変更内容
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.67.0](./release-notes-android/#2670-2024-10-29)
 * [Gamebase iOS SDK 2.67.0](./release-notes-ios/#2670-2024-10-29)
 
@@ -39,17 +58,20 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.67.1/GamebaseSDK-Unreal.zip)
 
 #### 機能改善/変更
-* (Windows) Purchase設定時にストアを一つだけ選択できるように変更しました。
-    * ストアの再設定が必要です。
-* (Windows) Epic Games Store使用時にEOS SDKのハンドルを登録するプロセスが変更されました。
+* (Windows)Purchase設定時にストアを一つだけ選択できるように変更しました。
+    * ストア再設定が必要です。
+* (Windows) Epic Games Storeを使用する場合、EOS SDKのハンドルを登録するプロセスを変更しました。
     * Online Subsystem EOSを使用する場合、Gamebase初期化時にStoreCodeがEpic Games Storeの該当する値であれば自動的にハンドルを登録します。
-    * Online Subsystem EOSを使用しない場合、[Windows Settings](./unreal-started/#windows-settings)ガイドを参考にしてEOSのハンドルを登録するプロセスが必要です。
+    * Online Subsystem EOSを使用しない場合は、[Windows Settings](./unreal-started/#windows-settings)ガイドを参照してEOSのハンドルを登録する必要があります。
+* (Windows) Steamworks SDK 지원 버전이 1.59로 변경되었습니다.
+    * 자세한 내용은 다음 링크를 참고하세요.
+        * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > Windows Settings > Steamworks 서비스](./unreal-started/#windows-settings)
 
 #### バグ修正
 * ヘッダファイルを正常に参照できるように修正しました。
-* (Windows)初期化を複数回試行した場合にクラッシュが発生していた問題を修正しました。
-* (Windows)初期化時にStoreCodeがSteamまたは、Epic Games Storeに該当するコードを入力すると、クラッシュが発生していた問題を修正しました。
-* (Windows)外部ブラウザを利用したログイン時にクラッシュが発生する可能性のあるロジックが修正されました。
+* (Windows)初初期化を複数回試行する際にクラッシュが発生しないように修正しました。
+* (Windows)初期化時にStoreCodeがSteamまたはEpic Games Storeに該当するコードを入力するとクラッシュが発生しないように修正しました。
+* (Windows)外部ブラウザでログインしようとするとクラッシュが発生する可能性があるロジックを修正しました。
 
 #### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.67.0](./release-notes-android/#2670-2024-10-29)

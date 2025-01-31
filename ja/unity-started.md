@@ -9,13 +9,7 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 > 
 > Unity対応バージョン
 >
-> * 2020.3.16～6000.0.28
-
-#### Android
-> <font color="red">[注意]</font>
->
-> 2019年8月1日から、Google Playに公開する新規アプリは64bitアーキテクチャをサポートする必要があります。
-> [Google Playポリシーおよび64bitをサポートするUnityバージョン確認](https://developer.android.com/games/optimize/64-bit?#unity-developers)
+> * 2020.3.16 ~ 6000.0.30
 
 #### Dependencies
 
@@ -34,237 +28,150 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 * Editor
     * 一部の機能のみ対応しています。
 
-選択したプラットフォームで対応していないGamebaseAPIを呼び出すときは、次のようなエラーがコールバックで返され、コールバックがない場合、Warningログが出力されます。
+## Gamebase SDK SettingTool
 
-* GamebaseErrorCode.NOT_SUPPORTED
-* GamebaseErrorCode.NOT_SUPPORTED_IOS
-* GamebaseErrorCode.NOT_SUPPORTED_ANDROID
-* GamebaseErrorCode.NOT_SUPPORTED_UNITY_STANDALONE
-* GamebaseErrorCode.NOT_SUPPORTED_UNITY_WEBGL
-* GamebaseErrorCode.NOT_SUPPORTED_UNITY_EDITOR
-
-APIごとの対応プラットフォームは、次のようなアイコンで区別します。
-
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-
-## Installation
-
-Gamebase SDKを手軽にインストールすることができるように、Setting Toolを提供しています。
-
-* [Download Gamebase Unity SDK](/Download/#game-gamebase)
+SettingToolを使用して、Gamebase SDKを簡単にインストールできます。
 
 ### Specification of Setting Tool
 
-1. SDKダウンロード
-    * 最新バージョンのSDKのダウンロードに対応しています。
-2. SDKインストール
-    * ダウンロードされたSDKのインストールに対応しています。
-        * Unity：Unitypackage
-        * Android：Gradle
-        * iOS：CocoaPods
-3. SDK削除
-    * インストールされたSDKの削除に対応しています。
-4. SDKアップデート
-    * アップデート機能には対応しておりません。
-    * SDKを削除した後、再設定でアップデート機能を置き換えます。
+1. Gamebase SDKのインストール
+2. Gamebase SDKのアップデート
+3. Gamebase SDKの設定管理
+4. Gamebase SDKのアンインストール
 
-### Using the Setting Tool
+### SettingToolのインストール
 
-* Gamebase SettingTool **v2.0.0**が配布されました。 
-    * 従来のv1.5.0とは互換性がありませんので、完全に削除してv2.0.0以上をご利用ください。
-    
-**AS-IS**
+1. SettingToolをダウンロードします。
+     * [Download Gamebase Setting Tool](/Download/#game-gamebase)
+2. Unityプロジェクトを開き、GamebaseUnitySettingTool_{version}.unitypackageファイルをインポートします。
 
-1. UnityプロジェクトにGamebase SDK for Android、iOSを含めてビルドを行います。
-2. Gradle、CocoaPodsがサポートされません。
+### SettingToolの使用
 
-**TO-BE**
+Unityエディタの上部メニューバーで**Tools > Gamebase**を選択してSettingToolの機能を使用できます。
 
-1. Gradle, CocoaPodsをサポートします。
-2. EDM4U(External Dependency Manager for Unity)が必須ライブラリとして選ばれました。
-    * [EDM4U Github](https://github.com/googlesamples/unity-jar-resolver)からEDM4Uをダウンロードしてインストールする必要があります。
-    * EDM4Uがない場合はGamebase SDK for Android、iOSの設定ができません。
-    * プロジェクトですでにEDM4Uが含まれている場合にはEDM4Uをダウンロードする必要はありません。
-3. Androidプラットフォームをサービスする場合にはメニュー上部 > **Assets > External Dependency Manager > Android Resolver > Settings**を選択してAndroid Resolver Settingsウィンドウを開き、以下のように設定してください。
-    * Enable Auto-Resolution：無効
-    * Explode AARs：無効
-    * Patch mainTemplate.gradle：有効
-    * Use Jetifier：有効
-    * ![Android Resolver Settings](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-edm4u-settings-1_2.0.0.png)
-4. iOSプラットフォームをサービスする場合はメニュー上部 > **Assets > External Dependency Manager > iOS Resolver > Settings**を選択してiOS Resolver Settingsウィンドウを開き、以下のように設定してください。
-    * Use Shell to Execute Cocoapod Tool：無効
-        * この機能が有効になっている場合、UnityでiOSビルドすると、xcworkspaceが作成されないエラーが発生します。 (CocoaPods 1.11.xバグ)
-        * この機能を有効にする必要があるユーザーは、次の2つの方法のいずれかでエラーを解決してください。
-            * CocoaPods 1.10.xバージョンをインストールします。
-            * Unityで作成したXcodeプロジェクトから**pod install**を直接呼び出します。
-    * Link frameworks statically：無効
-    
-> <font color="red">[注意]</font>
->
-> iOSプラットフォームをサービスする場合は、CocoaPodsがインストールされている必要があります。CocoaPodsのインストールおよび詳細については[cocoapods.org](https://cocoapods.org/)を参照してください。
+![unity-developers-guide-started-settingtool-3.0.0-menu](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-3.0.0-menu.png)
 
-#### SDKインストール
+1. Setup Wizard
+    * Gamebase SDKのインストールを段階的に進めます。
+2. Update Latest Version
+    * Gamebase SDKを簡単に最新バージョンにアップデートできます。
+3. Customize...
+    * Gamebase SDKを自由にインストールおよび編集できます。
+4. Refresh SettingTool
+    * SettingToolのデータを更新します。
 
-1. Unityプロジェクトを開きます。
-2. GamebaseUnitySettingTool_{version}.unitypackageをインポートします。
-3. メニュー上部 > **Tools > NhnCloud > Gamebase > SettingTool > Settings**を選択します。
-4. SDK Download項目から[Gamebase SDK]ボタンをクリックして最新SDKをダウンロードします。
-5. 使用するプラットフォームを選択します。
-    * Android
-    * iOS
-6. プラットフォームごとに使用するモジュールを選択します。
-    * authenticationは、Googleと同じID Provider(以下、IDP)との連携に対応しています。
-    * pushは、FCM(Firebase)、Tencent Push、APNS Pushサービスに対応しています。
-    * pruchaseは、NHN Cloudの決済サービスであるIAP(In-App Purchase)を使用して決済に対応しています。
-7. [Settings]ボタンをクリックしてSDKをインストールします。
-8. Android、iOSモジュールを選択した場合は、EDM4Uのresolveを実行する必要があります。
-    * Android：メニュー上部 > **Assets > External Dependency Manager > Android Resolver > Force Resolve**を選択します。
-    * Ios：メニュー上部 > **Assets > External Dependency Manager > iOS Resolver > install Cocoapods**を選択します。
+## Gamebase SDKのインストール
 
-> <font color="red">[注意]</font>
->
-> EDM4Uがない場合は、Gamebase SDK for Android、Iosの設定ができません。<br/>
-> EDM4Uのresolveを実行する前に、**Build Settings**ウィンドウでSwitch Platformボタンをクリックしてビルドするプラットフォームに切り替える必要があります。Androidプラットフォームが選択されている場合は、**Player Settings > Publishing Settings**でCustom Gradle Templateを有効にしてmainTemplate.gradleファイルを作成する必要があります。<br/>
-> `Unity 2019.3以降を`使用時、**Player Settings > Publishing Settings**でCustom Gradle Properties Templateを有効にしてgradleTemplate.propertiesファイルを作成する必要があります。
+**Tools > Gamebase > Setup Wizard**メニューを選択します。
 
+1. プラットフォーム、認証、決済、プッシュなどの機能を順番に選択してインストールを進めます。
+2. インストールする機能を選択後、**インストール**ボタンをクリックしてインストールを実行します。
 
-#### SDKアップデート
-1. メニュー上部 > **Tools > NhnCloud > Gamebase > SettingTool > Settings**を選択します。
-2. **SDK Download**項目から[Gamebase SDK]ボタンをクリックして最新SDKをダウンロードします。
-    * すでに最新SDKがダウンロードされている場合はボタンが無効になります。
-3. [Settings]ボタンクリックしてSDKをインストールします。
-    * 既に選択したプラットフォーム別モジュールは変更が可能です。
+![unity-developers-guide-started-settingtool-3.0.0-setupwizard](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-3.0.0-setupwizard-ja.png)
 
-#### SDK削除
-1. メニュー上部 > **Tools > NhnCloud > Gamebase > SettingTool > Settings**を選択します。
-2. [Remove]ボタンをクリックしてインストールされたSDKを削除します。
-
-<br/>
 > [参考]
-> 
-> Setting Toolで予期しないエラーが発生した場合、ウィンドウを閉じて再度実行してください。 <br/>
-> 再度実行してもエラーが解決しない場合は、**Assets/NhnCloud/GamebaseTools/SettingTool/Editor/Scripts**でSettingToolWindow.csファイルを開き、ShowWindowメソッドでSettingTool.SetDebugMode(true);コードをコメント解除した後、ログをお送りください。<br/><br/>
+>
+> * [Required Settings](#required-settings)を通じてインストールに**必須設定**を確認できます。
 
-### Video of Setting Tool Usage
+## SDKの最新バージョンのアップデート
 
-<iframe src="https://www.youtube.com/embed/kZ3Z1Kfr7Zw" frameborder="0" allowfullscreen="" wmode="Opaque" allow="encrypted-media" style="
-    margin: auto;
-    position: relative;
-    width: 560px;
-    height: 315px;
-"></iframe>
+**Tools > Gamebase > Update Latest Version**メニューを選択します。
 
+1. 最新バージョンにアップデートできる場合、最新バージョンと**最新バージョンアップデート**ボタンが表示されます。
+2. 右下の**最新バージョンアップデート**ボタンをクリックして、最新SDKにアップデートします。
 
-### Setting Tool Update
+![unity-developers-guide-started-settingtool-3.0.0-latestupdate](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-3.0.0-latestupdate-ja.png)
 
-Setting Toolのアップデートが必要な場合、Setting Toolでアップデートするかどうかをお知らせします。
-アップデートの種類によって、Setting Toolで提供する一部機能に制限がかかる場合があります。
+## Gamebase SDKの機能編集
 
-#### 強制アップデート
+**Tools > Gamebase > Customize...**メニューを選択します。
 
-* アップデート必須
-* SDKダウンロード制限
-	* 既にダウンロードしたSDKを利用してインストール、削除可能
+1. 必要な設定を自由に選択してインストールを進めます。
+2. 右下の**設定適用**ボタンをクリックすると、その設定でインストールが進行します。
 
-![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-1_1.13.0.png)
+![unity-developers-guide-started-settingtool-3.0.0-customize](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-3.0.0-customize-ja.png)
 
-#### 選択アップデート
+> [参考]
+>
+> * [Required Settings](#required-settings)を通じてインストールに**必須設定**を確認できます。
 
-* アップデート選択
-* SDKダウンロード可能
+## Required Settings
 
-![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-update-2_1.13.0.png)
+SettingToolでは**必須設定**を確認および修正できるUIを提供しています。 
+**Setup Wizard**と**Customize**メニューで確認でき、すべての設定が完了すると、該当項目は消えます。
 
-### Facebook認証追加
+> <font color="red">[注意]</font>
+> * 必須設定を解決しないと、実行またはビルド時に**エラーが発生**する可能性があります。
 
-Facebook SDK for UnityはFacebook SDK for iOS、Androidが含まれています。
+### EDM4Uのインストール
 
-![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-facebook_001.jpg)
+Android、iOSプラットフォームを使用する場合、[EDM4U(External Dependency Manager)](https://github.com/googlesamples/unity-jar-resolver)が必要です。
 
-Unity設定でFacebook認証を有効にした後、
+> [参考]
+>
+> * プロジェクトにEDM4Uがインストールされていない場合, まず [ダウンロード](https://github.com/googlesamples/unity-jar-resolver/raw/refs/heads/master/external-dependency-manager-latest.unitypackage)してからUnityPackageファイルをインポートしてインストールします。
 
-![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-facebook_002.png)
+### Android Publishing Settings
 
-Android、iOS設定でFacebook認証を有効にする場合、
+GamebaseのAndroid SDK設定を行うために、必要なファイルを生成する必要があります。
 
-![Select Build System](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-facebook_003.png)
+1. Android Player Settingを開きます。
+    * **Player Settings > Player > Android**
+2. **Publishing Settings**で必要なファイルを生成します。
+    * AndroidManifest.xml: 生成
+        * **Custom Main Manifest**: 有効
+    * mainTemplate.gradle: 生成
+        * **Custom Gradle Template**: 有効
+    * gradleTemplate.properties: 生成
+        * **Custom Gradle Properties Template**: 有効
 
-プロジェクトにFacebook SDKが重複して含まれる現象が発生し、これにより認証失敗またはビルド失敗などのエラーが発生します。
-SettingToolは、このようなエラーをブロックするために**Unity設定**と**Android && iOS設定**でFacebook認証を重複して有効にできないように処理されています。
+### Android Activity設定
 
-> `[注意]`
-> Unity設定とAndroid && iOS設定でFacebook認証を重複して有効にできません。
-> Unity設定でFacebook認証を有効にする場合、[Facebook SDK for Unityを直接ダウンロード](https://developers.facebook.com/docs/unity/)する必要があります。
+Android Lifecycle管理のため、Gamebaseが提供するActivityをMainActivityとして設定する必要があります。
 
-各ゲーム会社の状況に合ったSettingTool設定は、以下の表を参考にしてください。
+Application Entry Pointにより、設定するMainActivityが異なります。
 
-| | **SettingTool > Unity** 設定 > Facebook認証の有効化 | **SettingTool > Android、iOS** 設定 > Facebook認証の有効化 |
-| --- | --- | --- |
-| ゲームに必要な機能 | Gamebase Facebookログイン(Android、iOS)<br>ShareLinkやFeedShareなどの機能を使用 | Gamebase Facebookログイン(Android, iOS) |
-| Android, iOS Login API | [Gamebase Login with Credential](https://docs.toast.com/ko/Game/Gamebase/ko/unity-authentication/#login-with-credential) | [Gamebase Login with ID Provider](https://docs.toast.com/ko/Game/Gamebase/ko/unity-authentication/#login-with-idp) |
-| Facebook SDK for Unityダウンロード | O | X |
-
-* Case 1. Android、iOSプラットフォームでGamebase Facebookログインのみ使用します。
-    * **SettingTool > Android、iOS**設定でFacebook認証を有効にします。
-* Case 2. UnityプロジェクトでGamebase FacebookログインとFacebookのFeedShare機能を使用する必要があります。
-    * **SettingTool > Unity**設定でFacebook認証を有効にします。
-    * GamebaseはFacebook認証以外の機能をサポートしないため、Facebook SDK for Unityを使用して直接実装する必要があります。
-* Case 3. **SettingTool > Android、iOS**設定でFacebook認証を有効にしましたがFacebook SDK for Unityをプロジェクトに含めています。
-    * Gamebase Facebookログインのみ使用している場合は、プロジェクトに含まれているFacebook SDK for Unityをプロジェクトから削除してください。
-    * Gamebase Facebookログイン以外のFacebookのFeedShare機能を使用している場合は、**SettingTool > Unity**設定でFacebook認証を有効にします。
-        * この場合、Android、iOS設定になっていれば自動的に解除されます。
-
-### Android Lifecycle
-
-Lifecycleを管理するために、Gamebaseが提供するActivityをMainActivityに設定する必要があります。
-
-* Unity 2022以下
-    * MainActivity : com.toast.android.gamebase.activity.GamebaseMainActivity
-        * "com.unity3d.player.UnityPlayerActivity"を受け継いで実装されています。
-* Unity 2023以上
-    * 設定されたEntry Pointに応じて、適切なMainActivityに設定する必要があります。
-        * Activityを有効にした場合
-            * MainActivity : com.toast.android.gamebase.activity.GamebaseMainActivity
-                * "com.unity3d.player.UnityPlayerActivity"を受け継いで実装されています。
-        * GameActivityを有効にした場合
-            * MainActivity : com.toast.android.gamebase.activity.GamebaseMainGameActivity
-                * "com.unity3d.player.UnityPlayerGameActivity"を受け継いで実装されています。
+* Unity 2022以下の場合
+    1. Application Entry Point設定はありません。値がActivityのように動作します。
+    2. AndroidManifest.xmlでMainActivityを設定します。
+        * com.toast.android.gamebase.activity.GamebaseMainActivity
+* Unity 2023以上の場合
+    1. Android Player Settingを開きます。
+        * **Player Settings > Player > Android**
+    2. Application Entry Point設定を確認または設定します。
+        * **Other Settings > Application Entry Point**
+            * ![unity-developers-guide-started-settingtool-application-entry-point](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-application-entry-point.png)
+    3. 設定されたApplication Entry Pointに従い、適切なMainActivityを設定します。
+        * Activityを有効化した場合
+            * com.toast.android.gamebase.activity.GamebaseMainActivity
+        * GameActivityを有効化した場合
+            * com.toast.android.gamebase.activity.GamebaseMainGameActivity
 
 > <font color="red">[注意]</font>
 >
-> AndroidPluginを開発する際にもGamebaseが提供するActivityを受け継いで制作しなければなりません。
-> Gamebase Activity(GamebaseMainActivity、GamebaseMainGameActivity)は、GamebasePlugin.jarに含まれています。 
-> launchModeは、singleTaskにする必要があります。(Unityの基本ActivityもsingleTaskで固定されます。) そうでない場合、アプリを初めて始める際にクラッシュが発生することがあります。
->
-> 該当Lifecycleを変更する時はProject Settings > Settings for Android > Publish Settings > Build > Custom Main Manifestを有効にして該当AndroidManifest.xmlに修正する必要があります。
+> * MainActivityは必ずGamebaseが提供するActivityを使用するか、継承する必要があります。
 
-> <font color="red">[注意]</font>
-> 
-> AndroidのtargetSdkVersionを31以上に設定する場合、intent-filterが存在するタグには必ずandroid:exported特性を宣言する必要があります。
-> GamebaseでLifecycleを管理するために提供するGamebase Activity(GamebaseMainActivity、GamebaseMainGameActivity)をMainActivityに設定する時にも特性にandroid:exported="true"が追加されている必要があります。
-
+### AndroidManifest.xml設定
 
 ```xml
 <manifest>
-	...
+    ...
     <application>
-        ... // 2022以下またはActivityの場合
+        ... 
+        <!-- 2022以下またはActivityの場合 -->
+        <!-- android:exportedが無い場合、追加が必要 -->
     	<activity android:name="com.toast.android.gamebase.activity.GamebaseMainActivity"
-                  android:exported="true"
-                  ...>
+                  android:exported="true" 
+                ...>
             ...
         </activity>
-        ... // 2023以上のGameActivityの場合
-        <activity android:name="com.toast.android.gamebase.activity.GamebaseMainGameActivity"
-                  android:exported="true"
-                  ...>
+
+        ... 
+        <!-- 2023以上の場合GameActivity -->
+        <!-- android:exportedが無い場合、追加が必要 -->
+    	<activity android:name="com.toast.android.gamebase.activity.GamebaseMainGameActivity"
+                  android:exported="true" 
+                ...>
             ...
         </activity>
         ...
@@ -272,6 +179,60 @@ Lifecycleを管理するために、Gamebaseが提供するActivityをMainActivi
     ...
 </manifest>
 ```
+
+### Android EDM4U設定
+
+**Assets > External Dependency Manager > Android Resolver > Settings > Android Resolver Settings**
+
+* Android Resolver Settings
+    * Enable Auto-Resolution: 無効
+    * Explode AARs: 無効
+    * Patch mainTemplate.gradle: 有効
+    * Patch gradleTemplate.properties: 有効
+    * ![unity-developers-guide-started-settingtool-edm4u-settings-android-1.2.182](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-edm4u-settings-android-1.2.182.png)
+
+### Android EDM4U手動Resolve
+
+Setting ToolでGamebase SDKをインストールする際に、EDM4Uがインストールされている場合はResolveが自動で実行され設定されます。
+
+EDM4Uがインストールされていない場合や別途変更が必要な場合は、手動でResolveを実行できます。
+
+**Assets > External Dependency Manager > Android Resolver > Force Resolve**
+
+### iOS CocoaPodsインストール
+
+iOSプラットフォームをサービスする場合、CocoaPodsがインストールされている必要があり、インストール方法については[CocoaPods公式サイト](https://cocoapods.org/)を参照してください。
+
+EDM4UからCocoaPodsをインストールすることもできます。
+
+**Assets > External Dependency Manager > iOS Resolver > install Cocoapods**
+
+### iOS EDM4U設定
+
+> **Assets > External Dependency Manager > iOS Resolver > Settings > iOS Resolver Settings**
+
+* iOS Resolver Settings
+    * Use Shell to Execute Cocoapod Tool: 無効
+        * この機能が有効になっている場合、UnityでiOSビルドすると、xcworkspaceが作成されないエラーが発生します。 (CocoaPods 1.11.xバグ)
+        * この機能を有効にする必要があるユーザーは、次の2つの方法のいずれかでエラーを解決してください。
+            * CocoaPods 1.10.xバージョンをインストールします。
+            * Unityで作成したXcodeプロジェクトから**pod install**を直接呼び出します。
+    * Link frameworks statically: 無効
+    * ![unity-developers-guide-started-settingtool-edm4u-settings-ios-1.2.182](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-edm4u-settings-ios-1.2.182.png)
+
+#### iOSモジュールごとの追加設定
+
+* 選択したモジュールに応じてXcodeで直接設定を行う必要があります。
+
+1. UnityプロジェクトでiOSビルドを行います。
+2.生成されたXcodeプロジェクトを開きます。
+3. TARGETS > UnityFrameworkにiOS SDK設定を追加します。
+    * [iOS SDK設定ガイド](./ios-started)
+
+## エラー発生時
+
+* Setting Toolで予期しないエラーが発生した場合、ウィンドウを閉じて再度実行してください。
+* 再度実行してもエラーが解決しない場合は、Assets/NhnCloud/GamebaseTools/SettingTool/Editor/ScriptsでSettingToolWindow.csファイルを開き、ShowWindowメソッドでSettingTool.SetDebugMode(true);コードをコメント解除した後、ログをお送りください。
 
 ### iOS Settings
 
@@ -288,6 +249,29 @@ Lifecycleを管理するために、Gamebaseが提供するActivityをMainActivi
 ## API Reference
 
 API Referenceは、GamebaseUnitySDKの中に含まれています。
+
+## API Supported Platforms
+
+APIごとの対応プラットフォームは、次のようなアイコンで区別します。
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE_WIN
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE_OSX
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
+選択したプラットフォームで対応していないGamebaseAPIを呼び出すときは、次のようなエラーがコールバックで返され、コールバックがない場合、Warningログが出力されます。
+
+* GamebaseErrorCode.NOT_SUPPORTED
+* GamebaseErrorCode.NOT_SUPPORTED_IOS
+* GamebaseErrorCode.NOT_SUPPORTED_ANDROID
+* GamebaseErrorCode.NOT_SUPPORTED_UNITY_STANDALONE
+* GamebaseErrorCode.NOT_SUPPORTED_UNITY_WEBGL
+* GamebaseErrorCode.NOT_SUPPORTED_UNITY_EDITOR
 
 ## API Deprecate Governance
 
