@@ -28,6 +28,7 @@ static void ShowImageNotices(GamebaseRequest.ImageNotice.Configuration configura
 | NOT\_INITIALIZED | 1 | Gamebase is not initialized. |
 | UI\_IMAGE\_NOTICE\_TIMEOUT | 6901 | For all popup screens to close due to a timeout while displaying an image notice popup screen. |
 | UI\_IMAGE\_NOTICE\_NOT\_SUPPORTED\_OS | 6902 | For rolling type, image notices are not supported on devices with API 19 or lower. |
+| WEBVIEW\_HTTP\_ERROR | 7003 | An HTTP error occurred while opening the rolling type image announcement webview. |
 | SERVER\_INVALID\_RESPONSE | 8003 | Invalid response was returned from the server. |
 
 **Example**
@@ -59,14 +60,11 @@ You can use GamebaseRequest.ImageNotice.Configuration to create the customized i
 **Example**
 
 ```cs
-public void ShowImageNotices(int colorR = 0 , int colorG = 0, int colorB = 0, int colorA = 128, long timeOut = 5000)
+public void ShowImageNotices()
 {
     GamebaseRequest.ImageNotice.Configuration configuration = new GamebaseRequest.ImageNotice.Configuration();
-    configuration.colorR = colorR;
-    configuration.colorG = colorG;
-    configuration.colorB = colorB;
-    configuration.colorA = colorA;
-    configuration.timeOut = timeOut;
+    configuration.backgroundColor = new Color(0, 0, 0, 0.5f);
+    configuration.timeOut = 5000;
 
     Gamebase.ImageNotice.ShowImageNotices(
         configuration,
@@ -88,11 +86,8 @@ public void ShowImageNotices(int colorR = 0 , int colorG = 0, int colorB = 0, in
 
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
-| colorR                   | 0~255                                    | Background color R            |
-| colorG                   | 0~255                                    | Background color G                |
-| colorB                   | 0~255                                    | Background color B                |
-| colorA                   | 0~255                                    | Background color Alpha                |
-| timeoutMS                | long        | Image notice max loading time (in millisecond)<br/>**default**: 5000                     |
+| backgroundColor          | Color       | Background color <br>**default**: GamebaseColor.RGB255(0, 0, 0, 128) |
+| timeoutMS                | long        | Image notice max loading time (in millisecond)<br/>**default**: 5000 |
 
 
 ### Close ImageNotices
@@ -424,7 +419,7 @@ Shows a WebView.<br/>
 * URL: The url delivered as a parameter should be valid.
 
 ##### Optional Parameters
-* configuration: Changes WebView layout by using GamebaseWebViewConfiguration.
+* configuration: Changes WebView layout by using Configuration.
 * closeCallback: Notifies users when a WebView is closed.
 * schemeList: Specifies the list of customized schemes a user wants.
 * schemeEvent: Notifies url including customized scheme specified by the schemeList with a callback.
@@ -437,7 +432,7 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 ```cs
-static void ShowWebView(string url, GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = null, GamebaseCallback.ErrorDelegate closeCallback = null, List<string> schemeList = null, GamebaseCallback.GamebaseDelegate<string> schemeEvent = null)
+static void ShowWebView(string url, GamebaseRequest.Webview.Configuration configuration = null, GamebaseCallback.ErrorDelegate closeCallback = null, List<string> schemeList = null, GamebaseCallback.GamebaseDelegate<string> schemeEvent = null)
 ```
 
 > (Standalone) supports login with WebViewAdapter and does not block events entered through UI when WebView is open.
@@ -456,13 +451,10 @@ private void CloseCallback(GamebaseError error)
     
 public void ShowWebView()
 {
-    GamebaseRequest.Webview.GamebaseWebViewConfiguration configuration = new GamebaseRequest.Webview.GamebaseWebViewConfiguration();
+    GamebaseRequest.Webview.Configuration configuration = new GamebaseRequest.Webview.Configuration();
      configuration.title = "Title";
      configuration.orientation = GamebaseScreenOrientation.Portrait;
-     configuration.colorR = 128;
-     configuration.colorG = 128;
-     configuration.colorB = 128;
-     configuration.colorA = 255;
+     configuration.navigationColor = new Color(0.5f, 0.5f, 0.5f, 1);
      configuration.barHeight = 40;
      configuration.isBackButtonVisible = true;
     
@@ -474,27 +466,25 @@ public void ShowWebView()
 
 #### GamebaseWebViewConfiguration
 
-| Parameter | Values | Description |
-| ------------------------ | ---------------------------------------- | --------------------------- |
-| title                    | string                                   | Title of WebView               |
-| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | Unspecified (**default**)            |
-|                          | GamebaseScreenOrientation.PORTRAIT       | Portait mode                    |
-|                          | GamebaseScreenOrientation.LANDSCAPE      | Landscape mode                    |
-|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | Reverse landscape     |
-| contentMode<br>(Only for iOS )           | GamebaseWebViewContentMode.RECOMMENDED      | Browser recommended by the current platform (**default**)  |
-|                          | GamebaseWebViewContentMode.MOBILE           | Mobile browser            |
-|                          | GamebaseWebViewContentMode.DESKTOP          | Desktop browser          |
-| colorR                   | 0~255                                    | Color of Navigation Bar: R<br>**default**: 18               |
-| colorG                   | 0~255                                    | Color of Navigation Bar: G<br>**default**: 93               |
-| colorB                   | 0~255                                    | Color of Navigation Bar: B<br>**default**: 230              |
-| colorA                   | 0~255                                    | Color of Navigation Bar: Alpha<br>**default**: 255          |
-| barHeight                | height                                   | Height of Navigation Bar<br>**Android Only**                 |
-| isNavigationBarVisible   | true or false                            | Activate or deactivate Navigation Bar<br>**default**: true    |
-| isBackButtonVisible      | true or false                            | Activate or deactivate Go Back Button<br>**default**: true   |
-| backButtonImageResource  | ID of resource                           | Image of Go Back Button         |
-| closeButtonImageResource | ID of resource                           | Image of Close Button             |
+| Parameter | Values | Description                                                                        |
+| ------------------------ | ---------------------------------------- |------------------------------------------------------------------------------------|
+| title                    | string                                   | Title of WebView                                                                   |
+| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | Unspecified (**default**)                                                          |
+|                          | GamebaseScreenOrientation.PORTRAIT       | Portait mode                                                                       |
+|                          | GamebaseScreenOrientation.LANDSCAPE      | Landscape mode                                                                     |
+|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | Reverse landscape                                                                  |
+| contentMode<br>(Only for iOS )           | GamebaseWebViewContentMode.RECOMMENDED      | Browser recommended by the current platform (**default**)                          |
+|                          | GamebaseWebViewContentMode.MOBILE           | Mobile browser                                                                     |
+|                          | GamebaseWebViewContentMode.DESKTOP          | Desktop browser                                                                    |
+| navigationColor          | Color                                       | Color of Navigation Bar <br>**default**: GamebaseColor.RGB255(18, 93, 230)         |
+| barHeight                | height                                   | Height of Navigation Bar<br>**Android Only**                                       |
+| isNavigationBarVisible   | true or false                            | Activate or deactivate Navigation Bar<br>**default**: true                         |
+| isBackButtonVisible      | true or false                            | Activate or deactivate Go Back Button<br>**default**: true                         |
+| backButtonImageResource  | ID of resource                           | Image of Go Back Button                                                            |
+| closeButtonImageResource | ID of resource                           | Image of Close Button                                                              |
 | enableFixedFontSize<br>(Only for Android)   | true or false              | Decide if the font size of the Terms window should be fixed.<br>**default**: false |
-| renderOutSideSafeArea<br>(Only for Android) | true or false              | Decide whether to render outside Safe Area.<br>**default**: false |
+| renderOutSideSafeArea<br>(Only for Android) | true or false              | Decide whether to render outside Safe Area.<br>**default**: false                  |
+| cutoutColor<br>(Only for Android)           | Color                      | Background color of the cutout area outside the SafeArea <br>**default**: null     |
 
 > [TIP]
 >

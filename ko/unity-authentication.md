@@ -872,6 +872,7 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
+static string RequestLastLoggedInProvider()
 static string GetLastLoggedInProvider()
 ```
 
@@ -879,7 +880,19 @@ static string GetLastLoggedInProvider()
 ```cs
 public void GetLastLoggedInProvider()
 {
-    string lastLoggedInProvider = Gamebase.GetLastLoggedInProvider();
+    // Obtaining Last Logged In Provider - Sync
+    string lastLoggedInProviderSync = Gamebase.GetLastLoggedInProvider();
+    
+    // Obtaining Last Logged In Provider - Async
+    // If Gamebase.GetLastLoggedInProvider() returns 'NOT_INITIALIZED_YET',
+    // use the following async function instead:
+    Gamebase.RequestLastLoggedInProvider(lastLoggedInProviderAsync, error)=> 
+    {
+        if (Gamebase.IsSuccess(error) == true) 
+        {
+            Debug.Log(string.Format("lastLoggedInProvider:{0}", lastLoggedInProviderAsync));
+        }
+    });
 }
 ```
 

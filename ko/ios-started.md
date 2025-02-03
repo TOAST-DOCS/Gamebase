@@ -39,15 +39,15 @@ Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
 | --- | --- | --- | --- | --- |
 | Gamebase | Gamebase.xcframework<br/>Gamebase.bundle | NHNCloudSDK 1.8.5 | Gamebase의 Interface 및 핵심 로직을 포함 | iOS 12 이상 |
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.xcframework | FacebookSDK 17.0.2 | Facebook 로그인을 지원 | iOS 12 이상 |
-|  | GamebaseAuthPaycoAdapter.xcframework | PaycoID Login 3rd SDK v1.5.12 | PAYCO 로그인을 지원 | iOS 12 이상 |
+|  | GamebaseAuthPaycoAdapter.xcframework | PaycoID Login 3rd SDK v1.5.13 | PAYCO 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthNaverAdapter.xcframework | naveridlogin-sdk-ios-4.2.3 | NAVER 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthGamecenterAdapter.xcframework | GameKit | Gamecenter 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthGoogleAdapter.xcframework | GoogleSignIn 7.1.0 | Google 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthTwitterAdapter.xcframework | | Twitter 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.11.0 | LINE 로그인을 지원 | iOS 13 이상 |
 |  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 12 이상 |
-|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.17.0 | Hangame 로그인을 지원 | iOS 12 이상 |
-|  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.3.8 | Weibo 로그인을 지원 | iOS 12 이상 |
+|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.17.1 | Hangame 로그인을 지원 | iOS 12 이상 |
+|  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.4.0 | Weibo 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.19.0 | Kakao 로그인을 지원 | iOS 13 이상 |
 |  | GamebaseAuthSteamAdapter.xcframework |  | Steam 로그인을 지원 | iOS 14 이상 |
 | Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit<br/>NHNCloudIAP 1.8.5 | 게임 내 결제 지원 | iOS 12 이상 |
