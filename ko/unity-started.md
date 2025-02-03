@@ -102,7 +102,7 @@ SettingTool에서는 **필수적인 설정**을 확인하고 수정할 수 있�
 
 > <font color="red">[주의]</font>
 >
-> * Required Settings를 해결하지 않으면 실행하거나 빌드 할 때 **오류가 발생**할 수 있습니다.
+> * Required Settings를 해결하지 않으면 실행하거나 빌드할 때 오류가 발생할 수 있습니다.
 
 ### EDM4U 설치
 
@@ -139,10 +139,10 @@ Application Entry Point에 따라 설정하는 MainActivity가 다릅니다.
 * Unity 2023 이상 버전
     1. Android Player Setting을 엽니다.
         * **Player Settings > Player > Android**
-    2. Application Entry Point 설정을 확인하거나 설정합니다
+    2. Application Entry Point 설정을 확인하거나 설정합니다.
         * **Other Settings > Application Entry Point**
             * ![unity-developers-guide-started-settingtool-application-entry-point](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-application-entry-point.png)
-     3. 설정된 Application Entry Point 따라 적절한 MainActivity로 설정합니다.
+     3. 설정된 Application Entry Point에 따라 적절한 MainActivity로 설정합니다.
         * Activity를 활성화한 경우
             * com.toast.android.gamebase.activity.GamebaseMainActivity
         * GameActivity를 활성화한 경우
@@ -150,7 +150,7 @@ Application Entry Point에 따라 설정하는 MainActivity가 다릅니다.
 
 > <font color="red">[주의]</font>
 >
-> * MainActivity는 반드시 Gamebase에서 제공되는 Activity를 사용하거나 상속받아야 합니다.
+> * MainActivity는 반드시 Gamebase에서 제공되는 Activity를 사용하거나 상속 받아야 합니다.
 
 ### AndroidManifest.xml 설정
 
@@ -214,14 +214,14 @@ EDM4U에서 CocoaPods 설치할 수도 있습니다.
 
 * iOS Resolver Settings
     * Use Shell to Execute Cocoapod Tool: 비활성화
-        * 이 기능이 활성화되면 Unity에서 iOS 빌드를 할 때, xcworkspace가 생성되지 않는 오류가 발생합니다 (CocoaPods 1.11.x 버그)
-        * 활성화해야 하는 사용자는 아래 두 가지 방법 중 하나로 오류를 해결하십시오
+        * 이 기능이 활성화되면 Unity에서 iOS 빌드를 할 때, xcworkspace가 생성되지 않는 오류가 발생합니다. (CocoaPods 1.11.x 버그)
+        * 활성화해야 하는 사용자는 아래 두 가지 방법 중 하나로 오류를 해결하세요.
             * CocoaPods 1.10.x 버전을 설치합니다.
             * Unity에서 생성한 Xcode 프로젝트에서 **pod install**을 직접 호출합니다.
     * Link frameworks statically: 비활성화
   * ![unity-developers-guide-started-settingtool-edm4u-settings-ios-1.2.182](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-edm4u-settings-ios-1.2.182.png)
 
-#### iOS 모듈 별 추가 설정
+#### iOS 모듈별 추가 설정
 
 * 선택한 모듈에 따라 Xcode를 통해 직접 설정해야 합니다.
 
@@ -232,7 +232,7 @@ EDM4U에서 CocoaPods 설치할 수도 있습니다.
 
 ## 오류 발생 시
 
-* Setting Tool에서 예기치 않은 오류가 발생하면, 창을 닫고 다시 실행해 주세요.
+* Setting Tool에서 예기치 않은 오류가 발생하면 창을 닫고 다시 실행하세요.
 * 다시 실행해도 오류가 해결되지 않을 경우, **Assets/NhnCloud/GamebaseTools/SettingTool/Editor/Scripts**에서 SettingToolWindow.cs 파일을 열고, ShowWindow 메서드에서 SettingTool.SetDebugMode(true); 코드를 주석 해제 후, 로그를 전달해 주시기 바랍니다.
 
 ## API Reference
@@ -241,7 +241,7 @@ API Reference는 GamebaseUnitySDK 내에 포함돼 있습니다.
 
 ## API Supported Platforms
 
-API 별 지원하는 플랫폼은 아래와 같은 아이콘으로 구분합니다.
+API별 지원하는 플랫폼은 아래와 같은 아이콘으로 구분합니다.
 
 **API**
 
@@ -252,7 +252,7 @@ Supported Platforms
 <span style="color:#5319E7;">■</span> UNITY\_WEBGL
 <span style="color:#B60205;">■</span> UNITY\_EDITOR
 
-플랫폼에서 지원되지 않는 Gamebase API를 사용하면, 다음과 같은 오류가 콜백으로 반환되거나 Warning 로그가 출력됩니다.
+플랫폼에서 지원되지 않는 Gamebase API를 사용하면 다음과 같은 오류가 콜백으로 반환되거나 Warning 로그가 출력됩니다.
 
 * GamebaseErrorCode.NOT\_SUPPORTED
 * GamebaseErrorCode.NOT\_SUPPORTED\_ANDROID
