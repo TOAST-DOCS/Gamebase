@@ -3,7 +3,7 @@
 ゲームプラットフォーム企業NHNの10年のノウハウを詰め込んだGamebaseを自信を持って推薦します。 
 Gamebase SDKを適用すれば、ゲームに必要な共通サービスを簡単に利用できます。 
 
-![Gamebase_summary]https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/jp/Gamebase_overview_00_jp_202501.png)
+![Gamebase_summary](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/jp/Gamebase_overview_00_jp_202501.png)
 
 
 ## Gamebase Sample App
