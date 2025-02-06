@@ -3,7 +3,7 @@
 Gamebase is a strongly recommended service as it embraces a decade's operational knowhow of NHN, a leading game platform provider. 
 All you need to do is apply the Gamebase SDK and all services are at your fingertips.
 
-![Gamebase_summary](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/ko/Gamebase_overview_00_kr_202501.png)
+![Gamebase_summary](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/en/Gamebase_overview_00_en_202501.png)
 
 ## Gamebase Sample App
 
