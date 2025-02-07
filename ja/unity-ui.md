@@ -448,7 +448,7 @@ private void CloseCallback(GamebaseError error)
     
 public void ShowWebView()
 {
-    GamebaseRequest.Webview.Configuration configuration = new GamebaseRequest.Webview.Configuration();    
+    GamebaseRequest.Webview.Configuration configuration = new GamebaseRequest.Webview.Configuration();
      configuration.title = "Title";
      configuration.orientation = GamebaseScreenOrientation.Portrait;
      configuration.navigationColor = new Color(0.5f, 0.5f, 0.5f, 1);
