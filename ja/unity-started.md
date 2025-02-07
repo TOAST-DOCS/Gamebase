@@ -9,12 +9,7 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 > 
 > Unity対応バージョン
 >
-> * 2020.3.16 ~ 6000.0.30
-
-#### Dependencies
-
-* [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
-* [Gamebase iOS SDK - Dependencies](./ios-started/#setting)
+> * 2020.3.16f1 ~ 6000.0.33f1
 
 #### Supported Platforms
 

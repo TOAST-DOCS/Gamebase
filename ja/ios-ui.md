@@ -215,12 +215,12 @@ GameのUIに合った約款ウィンドウを直接作成したい場合は、qu
 Gamebaseは単純な形式のWebビューで約款を表示します。
 ゲームUIに合った約款を直接作成したい場合は、queryTerms APIを呼び出してGamebaseコンソールに設定した約款情報をダウンロードして活用できます。
 
-ログイン後に呼び出す場合は、ゲームユーザーが約款に同意したかどうかも一緒に確認できます。
+'「選択」約款項目はログイン後に呼び出すと、同意の有無も一緒に知ることができます。ただし、「必須」項目の同意有無は常にfalseで返されます。
 
 > <font color="red">[注意]</font><br/>
 >
-> * TCGBTermsContentDetail.requiredがtrueの必須項目は、Gamebaseサーバーに保存されないため、agreed値は常にfalseが返されます。
->     * 必須項目は、常にtrueで保存されるしかないので、保存する意味がないためです。
+> * TCGBTermsContentDetail.requiredがtrueの必須項目は同意有無をGamebaseサーバーに保存しないため、agreed値は常にfalseが返されます。
+>     * 約款必須項目に同意していない場合、ゲーム進行やゲームログインができないため、約款ポップアップが閉じていてログインしている状態であれば、当然、約款必須項目に同意したのと同じです。そのため、ログインしたユーザーはすでに必須項目に全て同意した状態なので、同意の有無を保存する必要はありません。
 > * プッシュ受信同意有無もGamebaseサーバーに保存されないため、agreed値は常にfalseが返されます。
 >     * ユーザーのプッシュ受信同意有無は、[TCGBPush queryTokenInfoWithCompletion:] APIを介して確認してください。
 > * コンソールで「基本約款設定」をしない場合、約款言語と異なる国コードで設定された端末からqueryTerms APIを呼び出した場合、**TCGB_ERROR_UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**エラーが発生します。
