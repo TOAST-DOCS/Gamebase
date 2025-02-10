@@ -15,7 +15,7 @@
 
 #### 버그 수정
 * SceneDelegate를 사용하는 앱에서 NAVER 로그인 취소 시 callback이 오지 않는 버그를 수정하였습니다.
-* Gamebase 콘솔에 LINE old clientId를 설정하지 않았을 때, LINE 로그인이 실패하는 버그를 수정하였습니다.
+* Gamebase 콘솔에 LINE old clientId를 설정하지 않았을 때 LINE 로그인에 실패하는 버그를 수정하였습니다.
 
 ### 2.68.1 (2024. 12. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.1/GamebaseSDK-iOS.zip)
@@ -45,7 +45,7 @@
         * Gamebase 콘솔에 Callback URL(https://id-gamebase.toast.com/oauth/callback)을 설정합니다. 
         * 동일한 Callback URL을 Twitter Developer Portal에 추가합니다.
     * 자세한 내용은 다음 링크를 참고하세요.
-        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information](./oper-app/#authentication-information)
+        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information > 6. Twitter](./oper-app/#6-twitter)
 
 #### 기능 개선/변경
 * 외부 SDK 업데이트

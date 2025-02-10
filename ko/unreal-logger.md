@@ -2,6 +2,15 @@
 
 여기에서는 Log & Crash Search 전송 API를 사용하는 방법을 알아보겠습니다.
 
+### Settings
+
+* Windows
+    * Log & Crash에서 ProjectVersion의 값을 설정하려면 DefaultGame.ini에서 GeneralProjectSettings의 ProjectVersion에 알맞은 버전을 입력해주셔야 합니다.
+            
+            [/Script/EngineSettings.GeneralProjectSettings]
+            ProjectVersion=1.0.0
+    
+
 ### Initialize
 Log & Crash Search에서 발급 받은 앱키로 NHN Cloud Logger SDK를 초기화합니다.
 
@@ -141,4 +150,4 @@ void USample::SetLoggerUserField()
 * Windows
     * Log & Crash Search에서 SDK에서 발생한 크래시를 해석하려면 심벌 파일을 콘솔에 업로드해야 합니다.
     * 빌드 시 프로젝트의 바이너리 생성 경로에 .sym 파일과 해당 파일을 압축한 .zip 파일 생성됩니다.
-    * [Log & Crash Search 콘솔 가이드](https://docs.nhncloud.com/ko/Data%20&%20Analytics/Log%20&%20Crash%20Search/ko/console-guide/#_21)를 확인하여 업로드 합니다.
+    * [Log & Crash Search 콘솔 가이드](https://docs.nhncloud.com/ko/Data%20&%20Analytics/Log%20&%20Crash%20Search/ko/console-guide/#_21)를 확인하여 업로드합니다.

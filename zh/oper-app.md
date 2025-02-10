@@ -250,10 +250,23 @@ Select **Application type** as **iOS** and input the Bundle ID.
 - Web Application ID: {Google Web Application Client ID}
 - iOS Client ID: {Google iOS Client ID}
 - Secret Key: {Google Web Application Client secret}
+- Additional info: OAuth 2.0 Scopes (json format)
+
+##### Additional Info Settings
+* You can set information in the form of a JSON string in the **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info**.
+* For Google, if you want to get email information from profile information after OAuth authentication, you must set **scope**, which is the scope of authentication permissions.
+* The different scopes you can declare in addition to email can be found in the following documents
+    * https://developers.google.com/identity/protocols/oauth2/scopes#google-sign-in
+    * https://developers.google.com/identity/protocols/oauth2/scopes
+
+* Example of entering Google additional authentication information
+
+```json
+{ "scope": ["email","myscope1","myscope2",...] }
+```
 
 ##### iOS
 * [Gamebase > iOS SDK User Guide > Getting Started > IdP Settings > Google](./ios-started/#google)
-
 
 #### 3. Apple Game Center
 Enter Bundle ID registered on Apple Developer's Site in the TOAST Cloud Gamebase Console.
@@ -312,24 +325,47 @@ Here, **service_name**, which is the name of an application to be displayed in t
 
 * You need to provide JSON String-type data in the **Additional Info** field in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info & Callback URL**.
 * For NAVER, **service_name**, which is the app name to be displayed on the Agree to Login window, needs to be configured.
+* For NAVER login SDK, you cannot chagne your account becasue you are automatically logged in  after logging out. You must set **logout_and_delete_token** to **true** to log in with a different NAVER account after logging out.
+
+* Example of entering the additional authentication information for NAVER
 
 ```json
-{"service_name": "Your Service Name" }
+{ "service_name": "Your Service Name", "logout_and_delete_token": true }
 ```
 
 ##### iOS
 * [Gamebase > iOS SDK User Guide > Getting Started > IdP settings > NAVER](./ios-started/#naver)
 
 #### 6. Twitter
-You need to provide {Consumer Key} and {consumer Secret} acquired from Twitter Applicaiton Management Website.
+
+##### Developer Portal
+
+![gamebase_app_twitter_02_ko_241024](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_twitter_02_en_241024.png)
+
+![gamebase_app_twitter_03_ko_241024](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_twitter_03_en_241024.png)
+
+Twitter 인증을 위해서는 Developer Portal에서 Callback URI란에 다음 값을 입력합니다.
+* https://id-gamebase.toast.com/oauth/callback
+
+<br/>
+
+##### Gamebase Console
+
+Register your app in the Developer Portal and get an **OAuth 2.0 Client ID and Client Secret** to enter into the Gamebase Console.
+
 
 **Input Fields**
 
-- Client ID: {Twitter Consumer Key}
-- Secret Key: {Twitter Consumer Secret}
+
+- Client ID: {OAuth 2.0 Client ID}
+- Secret Key: {OAuth 2.0 Client Secret}
+
+![gamebase_app_twitter_01_ko_241024](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_twitter_01_en_241024.png)
 
 **Reference URL**
-- [Twitter Application Management](https://apps.twitter.com/)
+- [Twitter Application Management](https://developer.x.com/)
+
+<br/>
 
 ##### Android
 > <font color="red">[Caution]</font><br/>
@@ -338,9 +374,6 @@ You need to provide {Consumer Key} and {consumer Secret} acquired from Twitter A
 > Therefore, Android 4.3 (Jellybean, API Level 18) or lower devices do not support logins to Twitter via Android WebView.
 >
 > In short, only Android 4.4 and higher devices (KitKat, API Level 19) allow logins to Twitter.
-
-##### iOS
-* [Gamebase > iOS SDK User Guide > Getting Started > IdP settings > Twitter](./ios-started/#twitter)
 
 #### 7. LINE
 
@@ -575,6 +608,38 @@ For Google Play Games Services (GPGS) v2 authentication, you need to obtain a **
 ##### Android
 * [Gamebase > Android SDK User Guide > Get Started > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#gpgs-v2-idp)
 
+#### 12. Steam
+
+For Steam authentication, you must obtain an **App ID** and **Web API** from Steamworks and enter them into the Gamebase Console.
+
+**Input Field**
+
+- Client ID: {App ID}
+- Secret Key: {Web API}
+
+![gamebase_app_steam_01_en_241025.png](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_steam_01_en_241025.png)
+
+![gamebase_app_steam_02_en_241025.png](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_steam_02_en_241025.png)
+
+### GPGS Automatic Login Settings
+
+* Supports the [Automatic sign-in using Google Play Games Services (GPGS)](https://developer.android.com/games/pgs/signin#automatic-sign-in) feature.
+    * This feature requires the **gamebase-adapter-auth-gpgs-autologin** module declaration and [additional settings](./aos-started/#gpgs-idp) in the Android build dependencies.
+    * You also must your *service account json* information in the *GPGS auto login settings* field.
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_001_2.68.0.png)
+* Introduces how to create Google service accounts.
+    1. In the `Google Cloud Console > IAM & Admin > IAM > VIEW BY PRINCIPALS` menu, find the user with the `Service account user` permission.
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_002_2.68.0.png)
+    2. If you don't have a user with the "Service Account User" permission, create a service account by selecting `Google Cloud Console > IAM & Admin > Service Accounts > + CREATE SERVICE ACCOUNT`.
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_003_2.68.0.png)
+    3. Find and grant 'Service Account User' as the role.
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_004_2.68.0.png)
+    4. Create a key by moving to the created service account.
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_005_2.68.0.png)
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_006_2.68.0.png)
+    5. If you select the JSON format, the json file is automatically downloaded along with the key generation.
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_007_2.68.0.png)
+        * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_008_2.68.0.png)
 
 ## Client
 
