@@ -218,31 +218,48 @@ Facebook 개발자 사이트에 등록한 앱의 {앱 아이디}와 {앱 시크�
 
 #### 2. Google
 
-##### Google Cloud Console
+##### Google Cloud Console - Common
 
-![gamebase_app_06_201812.png](https://static.toastoven.net/prod_gamebase/gamebase_app_06_201812.png)
+* Gamebase에서 Google 인증을 하기 위한 준비로 우선 **Google Cloud Console > APIs & Services > Credentials > + CREATE CREDENTIALS > OAuth client ID** 메뉴에서 **Web application** 유형의 Client id를 생성합니다.
+    * 이미 생성된 Web application 유형의 Client id가 존재한다면 해당 Client id를 사용해도 됩니다.
+    * ![](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_001_en_20250122.png) 
+    * ![](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_002_en_20250122.png) 
+* **승인된 리디렉션 URI** 란에는 다음 값을 입력해야 합니다. 
+    * https://id-gamebase.toast.com/oauth/callback 
+    * https://alpha-id-gamebase.toast.com/oauth/callback
+    * ![](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_003_en_20250122.png)
+* 생성한 Client id 정보를 **NHN Cloud Console > Game > Gamebase > 앱 > 인증 정보 > Google > Client ID > Web Application ID** 란에 입력합니다. 
+    * ![](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_004_en_20250122.png)
+    * ![](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_012_en_20250122.png) 
+* **NHN Cloud Console > Game > Gamebase > 앱 > 인증 정보 > Google > Secret Key** 란에는 Web application 유형의 Client secret을 입력합니다. 
+    * ![](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_013_en_20250122.png)
 
-Google 인증을 위해서는 Google Cloud Console에서 **Web Application Client ID**를 발급 받아 Gamebase Console에 입력해야 합니다.
-승인된 리디렉션 URI란에 다음 값을 입력합니다.
-* https://alpha-id-gamebase.toast.com/oauth/callback
-* https://beta-id-gamebase.toast.com/oauth/callback
-* https://id-gamebase.toast.com/oauth/callback
+##### Google Cloud Console - Android
 
-<br/>
+* Android 단말기에서 Google 인증을 하기 위해서는 Google Cloud Console에서 추가적으로 Android 유형의 Client id를 생성해야 합니다.
+* **Google Cloud Console > APIs & Services > Credentials > + CREATE CREDENTIALS > OAuth client ID** 메뉴에서 **Android** 유형의 Client id를 생성합니다. 
+    * ![](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_005_en_20250122.png)
+* Android 유형은 Package name과 SHA-1 서명 정보가 필요합니다.
+    * ![](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_006_en_20250122.png)
+* Android 빌드는 업로드 서명과 앱 서명이 다르므로 두 종류의 SHA-1 값을 모두 등록해줘야 빌드 테스트가 원활하게 진행됩니다.
+    * Firebase나 GPGS와 같은 일부 Google 플랫폼을 사용하는 경우 자동으로 Android 유형의 Client id 설정이 추가되는 경우도 있습니다.
+    * ![all type created](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_007_en_20250122.png)
+* 여기서 주의할 점은, Gamebase Console에는 Web application 유형의 Client id만 입력해야 하므로 Android 유형의 Client id는 입력하지 않아야 합니다.
+    * ![](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_012_en_20250122.png)
 
-Google iOS 인증을 위해서는 Google Cloud Console에서 **iOS Client ID**를 발급 받아 Gamebase Console에 입력해야 합니다.
+##### Google Cloud Console - iOS
+ 
+* iOS 단말기에서 Google 인증을 하기 위해서는 Google Cloud Console에서 추가적으로 iOS 유형의 Client id를 생성해야 합니다.  
+* **Google Cloud Console > APIs & Services > Credentials > + CREATE CREDENTIALS > OAuth client ID** 메뉴에서 **iOS** 유형의 Client id를 생성합니다. 
+    * ![ios 1](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_009_en_20250122.png)
+* Bundle ID를 입력합니다.
+    * ![ios 2](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_010_en_20250122.png)
+* iOS는 Android와 다르게 **NHN Cloud Console > Game > Gamebase > 앱 > 인증 정보 > Google > Client ID > iOS Client ID** 란에 iOS 유형으로 발급받은 Client id를 입력해줘야 합니다.
+    * ![gamebase console](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_014_en_20250122.png)
 
-**APIs & Services > CREATE CREDENTIALS > OAuth client ID**를 선택한 뒤,
+##### Gamebase Console
 
-![gamebase_app_google_ios_1.png](https://static.toastoven.net/prod_gamebase/gamebase_app_google_ios_1.png)
-
-**Application type**을 **iOS**로 선택하고 Bundle ID를 입력합니다.
-
-![gamebase_app_google_ios_2.png](https://static.toastoven.net/prod_gamebase/gamebase_app_google_ios_2.png)
-
-#### Gamebase Console
-
-![gamebase_app_21_ko_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/ko/gamebase_app_21_ko_240105.png)
+![gamebase console](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_008_en_20250122.png)
 
 **입력 필드**<br />
 
@@ -252,19 +269,18 @@ Google iOS 인증을 위해서는 Google Cloud Console에서 **iOS Client ID**�
 - 추가정보: OAuth 2.0 Scopes (json format)
 
 ##### Additional Info Settings
-* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정할 수 있습니다.
+
+* **NHN Cloud Console > Game > Gamebase > 앱 > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정할 수 있습니다.
 * Google의 경우 OAuth 인증 후 프로필 정보에서 email 정보를 획득하려면 인증 권한 범위인 **scope**를 설정해야 합니다.
 * email 외에 선언할 수 있는 다양한 scope는 다음 문서에서 확인할 수 있습니다.
     * https://developers.google.com/identity/protocols/oauth2/scopes#google-sign-in
     * https://developers.google.com/identity/protocols/oauth2/scopes
-
 * Google 추가 인증 정보 입력 예제
 
-```json
-{ "scope": ["email","myscope1","myscope2",...] }
-```
+        { "scope": ["email","myscope1","myscope2",...] }
 
 ##### iOS
+
 * [Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP Settings > Google](./ios-started/#google)
 
 #### 3. Apple Game Center

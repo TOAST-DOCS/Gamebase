@@ -424,17 +424,18 @@ void USample::ShowWebView(const FString& Url)
 |                          | GamebaseScreenOrientation::Portrait       | 세로 모드                       |
 |                          | GamebaseScreenOrientation::Landscape      | 가로 모드                       |
 |                          | GamebaseScreenOrientation::LandscapeReverse | 가로 모드를 180도 회전              |
-| ContentMode              | GamebaseWebViewContentMode::Recommended        | 현재 플랫폼 추천 브라우저(**default**)   |
-|                          | GamebaseWebViewContentMode::Mobile             | 모바일 브라우저            |
-|                          | GamebaseWebViewContentMode::Desktop            | 데스크톱 브라우저          |
+| ContentMode              | GamebaseWebViewContentMode::Recommended     | 현재 플랫폼 추천 브라우저(**default**)   |
+|                          | GamebaseWebViewContentMode::Mobile          | 모바일 브라우저            |
+|                          | GamebaseWebViewContentMode::Desktop         | 데스크톱 브라우저          |
 | NavigationColor          | FColor                                   | 내비게이션 바 색상<br>**default**: FColor(18, 93, 230, 255)               |
 | NavigationBarHeight      | height                                   | 내비게이션 바 높이<br>**Android에 한함**                 |
-| bIsNavigationBarVisible   | true or false                            | 내비게이션 바 활성 또는 비활성<br>**default**: true    |
-| bIsBackButtonVisible      | true or false                            | 뒤로 가기 버튼 활성 또는 비활성<br>**default**: true   |
+| bIsNavigationBarVisible  | true or false                            | 내비게이션 바 활성 또는 비활성<br>**default**: true    |
+| bIsBackButtonVisible     | true or false                            | 뒤로 가기 버튼 활성 또는 비활성<br>**default**: true   |
 | BackButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지         |
 | CloseButtonImageResource | ID of resource                           | 닫기 버튼 이미지             |
-| bEnableFixedFontSize      | true or false                            | 약관 창의 글자 크기 고정 여부를 결정합니다.<br>**default**: false<br>**Android에 한함**     |
-| bRenderOutSideSafeArea    | true or false                            | Safe Area 영역 밖 렌더링 여부를 결정합니다.<br>**default**: false<br>**Android에 한함**   |
+| bEnableFixedFontSize     | true or false                            | 약관 창의 글자 크기 고정 여부를 결정합니다.<br>**default**: false<br>**Android에 한함**     |
+| bRenderOutSideSafeArea   | true or false                            | SafeArea를 무시하고 Cutout 영역에도 렌더링<br>**default**: false<br>**Android에 한함**   |
+| CutoutColor              | TOptional<FColor>                        | SafeArea 밖의 Cutout 영역 바탕 색상<br>**Android에 한함**                            |
 
 > [TIP]
 >
