@@ -63,7 +63,7 @@
         * Gamebase 콘솔에 Callback URL(https://id-gamebase.toast.com/oauth/callback)을 설정합니다. 
         * 동일한 Callback URL을 Twitter Developer Portal에 추가합니다.
     * 자세한 내용은 다음 링크를 참고하세요.
-        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information](./oper-app/#authentication-information)
+        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information > 6. Twitter](./oper-app/#6-twitter)
 
 ## 2.66.3
 
