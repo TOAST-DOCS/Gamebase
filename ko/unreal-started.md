@@ -67,6 +67,8 @@ Supported Platforms
 * Authentication
     * 사용하려는 IdP를 활성화합니다.
     * Hangame IdP 사용 시 고객 센터로 별도로 문의 바랍니다.
+    * GPGS(Google Play Games Services)
+        * Auto Login - GPGS 자동 로그인을 지원 
 * Push
     * 사용하려는 푸시 서비스를 활성화합니다.
     * FCM
@@ -84,6 +86,15 @@ Google Play 서비스에 인증과 결제를 진행하려면 Distribution 설정
 상세한 내용은 아래 문서를 참고하시기 바랍니다. 
 
 * [Signing Projects for Release](https://docs.unrealengine.com/en-US/Platforms/Mobile/Android/DistributionSigning/index.html)
+
+#### GPGS(Google Play Games Services) 설정
+
+Sign in with Apple 사용 시 프로젝트에서 /Config/Android/AndroidEngine.ini 파일에 아래 내용을 추가하여 GPGS의 Application ID를 입력합니다.
+
+```ini
+[/Script/AndroidRuntimeSettings.AndroidRuntimeSettings]
+GamesAppID=
+```
 
 #### AndroidX 적용
 
@@ -235,7 +246,7 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
     * ImageNotices
     * WebView
 * 별도의 엔진 수정 없이 WebView 관련 기능을 사용할 경우 Unreal 에디터에서 **Settings > Plugins** 창을 띄우고, **Project > NHN Cloud > NHNWebView** 플러그인을 찾아 활성화합니다.
-* 엔진에서 제공하는 Web Browser Widget 플러그인을 사용할 경우 UE 5.4 이상이 필요하며, 그 이하 버전에서는 CEF 버전이 낮아 정상적으로 웹 기능이 동작하지 않으므로 Web Browser Widget 플러그인과 연관된 모듈의 업데이트가 필요합니다.
+* 엔진에서 제공하는 Web Browser 플러그인을 사용할 경우 UE 5.4 이상이 필요하며, 그 이하 버전에서는 CEF 버전이 낮아 정상적으로 웹 기능이 동작하지 않으므로 Web Browser 플러그인과 연관된 모듈의 업데이트가 필요합니다.
     * ThirdParty
         * CEF3
     * Runtime
@@ -246,7 +257,7 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
         * EpicWebHelper
 
 > [주의]
-> NHNWebView 플러그인과 Web Browser Widget 플러그인은 동시의 사용이 불가능하며, 두 플러그인이 모두 활성화되어 있는 경우 빌드 시 오류가 발생합니다.
+> NHNWebView 플러그인과 Web Browser 플러그인은 동시의 사용이 불가능하며, 두 플러그인이 모두 활성화되어 있는 경우 빌드 시 오류가 발생합니다.
 
 #### Epic Games Store 서비스
 
