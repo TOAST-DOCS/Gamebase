@@ -67,6 +67,8 @@ Supported Platforms
 * Authentication
     * 사용하려는 IdP를 활성화합니다.
     * Hangame IdP 사용 시 고객 센터로 별도로 문의 바랍니다.
+    * GPGS(Google Play Games Services)
+        * Auto Login - GPGS 자동 로그인을 지원 
 * Push
     * 사용하려는 푸시 서비스를 활성화합니다.
     * FCM
@@ -84,6 +86,15 @@ Google Play 서비스에 인증과 결제를 진행하려면 Distribution 설정
 상세한 내용은 아래 문서를 참고하시기 바랍니다. 
 
 * [Signing Projects for Release](https://docs.unrealengine.com/en-US/Platforms/Mobile/Android/DistributionSigning/index.html)
+
+#### GPGS(Google Play Games Services) 설정
+
+Sign in with Apple 사용 시 프로젝트에서 /Config/Android/AndroidEngine.ini 파일에 아래 내용을 추가하여 GPGS의 Application ID를 입력합니다.
+
+```ini
+[/Script/AndroidRuntimeSettings.AndroidRuntimeSettings]
+GamesAppID=
+```
 
 #### AndroidX 적용
 
@@ -193,7 +204,7 @@ bEnableSignInWithAppleSupport=True
 다음과 같은 이슈로 인해 Rich Push Notification 기능을 사용할 수 없습니다.
 
 * Unreal은 프로젝트에 [Notification Service Extension](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension?language=objc)을 추가할 수 있는 방법을 제공하지 않습니다.
-    * [NHN Cloud Push Notification Service Extension 생성](https://docs.toast.com/en/TOAST/en/toast-sdk/push-ios/#notification-service-extension)
+    * [NHN Cloud Push Notification Service Extension 생성](https://docs.toast.com/e  n/TOAST/en/toast-sdk/push-ios/#notification-service-extension)
 
 #### iOS SDK의 Warning 메시지로 인한 Unreal 빌드 오류
 
@@ -209,7 +220,7 @@ UE4에서 사용 중인 PLCrashReporter가 `arm64e` architecture를 지원하지
 
 NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개발사는 다음 가이드를 참고하여 UE4 내부 PLCrashReporter를 수정해야 합니다.
 
-1. GamebaseSDK-Unreal/Source/Gamebase/ThirdParty/IOS/GamebaseSDK-iOS/externals/plcrashreporter.zip 파일을 압축 해제합니다.
+1. GamebaseSDK-Unreal/Source/Gamebase/ThirdParty/IOS/plcrashreporter.zip 파일을 압축 해제합니다.
 2. UE4 내부 PLCrashReporter의 a 파일과 header 파일을 압축 해제한 파일로 교체합니다.
     * Engine/Source/ThirdParty/PLCrashReporter/plcrashreporter-master-xxxxxxx
 
@@ -229,13 +240,13 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
 
 #### WebView 플러그인 안내
 
-* WebView 사용 컨텐츠를 사용 시 플러그인 활성화가 필요합니다.
+* WebView 사용 콘텐츠를 사용 시 플러그인 활성화가 필요합니다.
     * Login with IdP
         * GUEST 이외의 IdP를 지원하시는 경우 웹뷰를 통해 로그인 프로세스를 진행합니다.
     * ImageNotices
     * WebView
-* 별도의 엔진 수정없이 WebView 관련 기능을 사용하실 경우 Unreal 에디터에서 **Settings > Plugins** 창을 띄우고, **Project > NHN Cloud > NHNWebView** 플러그인을 찾아 활성화합니다.
-* 엔진에서 제공하는 Web Browser Widget 플러그인을 사용하실 경우 UE 5.4 이상 필요하며 그 이하 버전에서는 CEF 버전이 낮아 정상적으로 웹 기능이 동작하지 않으므로 Web Browser Widget 플러그인과 연관된 모듈의 업데이트가 필요합니다.
+* 별도의 엔진 수정 없이 WebView 관련 기능을 사용할 경우 Unreal 에디터에서 **Settings > Plugins** 창을 띄우고, **Project > NHN Cloud > NHNWebView** 플러그인을 찾아 활성화합니다.
+* 엔진에서 제공하는 Web Browser 플러그인을 사용할 경우 UE 5.4 이상이 필요하며, 그 이하 버전에서는 CEF 버전이 낮아 정상적으로 웹 기능이 동작하지 않으므로 Web Browser 플러그인과 연관된 모듈의 업데이트가 필요합니다.
     * ThirdParty
         * CEF3
     * Runtime
@@ -246,7 +257,7 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
         * EpicWebHelper
 
 > [주의]
-> NHNWebView 플러그인과 Web Browser Widget 플러그인은 동시의 사용이 불가능하며, 두 플러그인이 모두 활성화 되어 있는 경우 빌드 시 오류가 발생합니다.
+> NHNWebView 플러그인과 Web Browser 플러그인은 동시의 사용이 불가능하며, 두 플러그인이 모두 활성화되어 있는 경우 빌드 시 오류가 발생합니다.
 
 #### Epic Games Store 서비스
 

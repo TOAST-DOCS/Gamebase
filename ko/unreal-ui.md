@@ -183,7 +183,7 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 > <font color="red">[주의]</font><br/>
 >
 > * GamebaseResponse.Terms.ContentDetail.required가 true인 필수 항목은 동의 여부를 Gamebase 서버에 저장하지 않으므로 bAgreed 값은 항상 false로 반환됩니다.
->     * 약관 필수 항목에 동의하지 않은 경우 게임 진행 또는 게임 로그인을 시켜서는 안되므로, 약관 팝업이 닫혀 있고 로그인 되어 있는 상태 라면 자연스럽게 약관 필수 항목에 동의한 것과 같습니다. 그래서 로그인 한 유저는 이미 필수 항목에 모두 동의한 상태이므로, 굳이 동의 여부를 저장할 필요가 없기 때문입니다.
+>     * 약관 필수 항목에 동의하지 않은 경우 게임 진행 또는 게임 로그인이 불가능하므로 약관 팝업이 닫혀 있고 로그인되어 있는 상태라면 자연스럽게 약관 필수 항목에 동의한 것과 같습니다. 그래서 로그인한 유저는 이미 필수 항목에 모두 동의한 상태이므로 굳이 동의 여부를 저장할 필요가 없습니다.
 > * 푸시 수신 동의 여부도 Gamebase 서버에 저장되지 않으므로 bAgreed 값은 항상 false로 반환됩니다.
 >     * 유저의 푸시 수신 동의 여부는 Gamebase.Push.QueryPush API를 통해 확인하시기 바랍니다.
 > * 콘솔에서 '기본 약관 설정'을 하지 않는 경우 약관 언어와 다른 국가 코드로 설정된 단말기에서 queryTerms API를 호출하면 `UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)` 오류가 발생합니다.
@@ -424,17 +424,18 @@ void USample::ShowWebView(const FString& Url)
 |                          | GamebaseScreenOrientation::Portrait       | 세로 모드                       |
 |                          | GamebaseScreenOrientation::Landscape      | 가로 모드                       |
 |                          | GamebaseScreenOrientation::LandscapeReverse | 가로 모드를 180도 회전              |
-| ContentMode              | GamebaseWebViewContentMode::Recommended        | 현재 플랫폼 추천 브라우저(**default**)   |
-|                          | GamebaseWebViewContentMode::Mobile             | 모바일 브라우저            |
-|                          | GamebaseWebViewContentMode::Desktop            | 데스크톱 브라우저          |
+| ContentMode              | GamebaseWebViewContentMode::Recommended     | 현재 플랫폼 추천 브라우저(**default**)   |
+|                          | GamebaseWebViewContentMode::Mobile          | 모바일 브라우저            |
+|                          | GamebaseWebViewContentMode::Desktop         | 데스크톱 브라우저          |
 | NavigationColor          | FColor                                   | 내비게이션 바 색상<br>**default**: FColor(18, 93, 230, 255)               |
 | NavigationBarHeight      | height                                   | 내비게이션 바 높이<br>**Android에 한함**                 |
-| bIsNavigationBarVisible   | true or false                            | 내비게이션 바 활성 또는 비활성<br>**default**: true    |
-| bIsBackButtonVisible      | true or false                            | 뒤로 가기 버튼 활성 또는 비활성<br>**default**: true   |
+| bIsNavigationBarVisible  | true or false                            | 내비게이션 바 활성 또는 비활성<br>**default**: true    |
+| bIsBackButtonVisible     | true or false                            | 뒤로 가기 버튼 활성 또는 비활성<br>**default**: true   |
 | BackButtonImageResource  | ID of resource                           | 뒤로 가기 버튼 이미지         |
 | CloseButtonImageResource | ID of resource                           | 닫기 버튼 이미지             |
-| bEnableFixedFontSize      | true or false                            | 약관 창의 글자 크기 고정 여부를 결정합니다.<br>**default**: false<br>**Android에 한함**     |
-| bRenderOutSideSafeArea    | true or false                            | Safe Area 영역 밖 렌더링 여부를 결정합니다.<br>**default**: false<br>**Android에 한함**   |
+| bEnableFixedFontSize     | true or false                            | 약관 창의 글자 크기 고정 여부를 결정합니다.<br>**default**: false<br>**Android에 한함**     |
+| bRenderOutSideSafeArea   | true or false                            | SafeArea를 무시하고 Cutout 영역에도 렌더링<br>**default**: false<br>**Android에 한함**   |
+| CutoutColor              | TOptional<FColor>                        | SafeArea 밖의 Cutout 영역 바탕 색상<br>**Android에 한함**                            |
 
 > [TIP]
 >

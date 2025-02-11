@@ -86,7 +86,7 @@ public void ShowImageNotices()
 
 | Parameter                              | Values                                  | Description                                                      |
 | -------------------------------------- | --------------------------------------- |------------------------------------------------------------------|
-| backgroundColor          | Color       | 백그라운드 배경 색상 <br>**default**: GamebaseColor.RGB255(0, 0, 0, 128) |
+| backgroundColor          | Color       | 배경 색상 <br>**default**: GamebaseColor.RGB255(0, 0, 0, 128) |
 | timeoutMS                | long        | 이미지 공지 최대 로딩 시간(단위: millisecond)<br/>**default**: 5000           |
 
 
@@ -221,7 +221,7 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 > <font color="red">[주의]</font><br/>
 >
 > * GamebaseResponse.Terms.ContentDetail.required가 true인 필수 항목은 동의 여부를 Gamebase 서버에 저장하지 않으므로 agreed 값은 항상 false로 반환됩니다.
->     * 약관 필수 항목에 동의하지 않은 경우 게임 진행 또는 게임 로그인을 시켜서는 안되므로, 약관 팝업이 닫혀 있고 로그인 되어 있는 상태 라면 자연스럽게 약관 필수 항목에 동의한 것과 같습니다. 그래서 로그인 한 유저는 이미 필수 항목에 모두 동의한 상태이므로, 굳이 동의 여부를 저장할 필요가 없기 때문입니다.
+>     * 약관 필수 항목에 동의하지 않은 경우 게임 진행 또는 게임 로그인이 불가능하므로 약관 팝업이 닫혀 있고 로그인되어 있는 상태라면 자연스럽게 약관 필수 항목에 동의한 것과 같습니다. 그래서 로그인한 유저는 이미 필수 항목에 모두 동의한 상태이므로 굳이 동의 여부를 저장할 필요가 없습니다.
 > * 푸시 수신 동의 여부도 Gamebase 서버에 저장되지 않으므로 agreed 값은 항상 false로 반환됩니다.
 >     * 유저의 푸시 수신 동의 여부는 Gamebase.Push.QueryPush API를 통해 확인하시기 바랍니다.
 > * 콘솔에서 '기본 약관 설정'을 하지 않는 경우 약관 언어와 다른 국가 코드로 설정된 단말기에서 queryTerms API를 호출하면 `UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)` 오류가 발생합니다.
