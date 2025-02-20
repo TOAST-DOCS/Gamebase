@@ -8,7 +8,7 @@
 * **RequestLastLoggedInProvider 비동기 API**를 추가했습니다.
     * **GetLastLoggedInProvider() 동기 API**가 타이밍상 정상적인 값을 반환하지 못할 때가 있습니다.
     * (Android) GPGS의 Auto Login 기능을 사용 시 GPGS 서버에서 데이터를 획득하는 시간이 필요하므로 Gamebase 초기화 직후 GetLastLoggedInProvider() 동기 API를 호출하면 정상적인 값을 획득할 수 없습니다.
-        이때 RequestLastLoggedInProvider 비동기(GamebaseDataCallback&lt;String&gt;) 비동기 API는 정확한 값을 보장합니다.
+        이때 RequestLastLoggedInProvider(GamebaseDataCallback&lt;String&gt;) 비동기 API는 정확한 값을 보장합니다.
         Auto Login을 사용하지 않는다면 GetLastLoggedInProvider() 동기 API를 사용해도 무방합니다.
 * (Android) GPGS v2 인증 추가되었습니다.
     * 자세한 내용은 다음 링크를 참고하세요.
