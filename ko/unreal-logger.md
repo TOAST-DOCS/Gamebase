@@ -5,7 +5,7 @@
 ### Settings
 
 * Windows
-    * Log & Crash에서 ProjectVersion의 값을 설정하려면 DefaultGame.ini에서 GeneralProjectSettings의 ProjectVersion에 알맞은 버전을 입력해주셔야 합니다.
+    * Log & Crash Search에서 ProjectVersion의 값을 설정하려면 DefaultGame.ini에서 GeneralProjectSettings의 ProjectVersion에 알맞은 버전을 입력해야 합니다.
             
             [/Script/EngineSettings.GeneralProjectSettings]
             ProjectVersion=1.0.0
