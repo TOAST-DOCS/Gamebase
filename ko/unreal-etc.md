@@ -405,8 +405,8 @@ void USample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& Data)
             // 현재 사용 중지된 IdP로 로그인되어 있고, 사용 중지된 IdP 외에 다른 IdP가 매핑되어 있는 경우를 의미합니다.
             // 유저가 authMappingList 중 다시 로그인할 IdP를 선택하도록 하고, 선택한 IdP로 로그인한 뒤에는 사용 중지된 IdP의 연동을 해제해 주세요.
             auto SelectedIdP = "유저가 선택한 IdP";
-            auto AdditionalInfo = NewObject<UGamebaseJsonObject>();
-            AdditionalInfo->SetBoolField(GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn, true);
+            FGamebaseVariantMap AdditionalInfo;
+            AdditionalInfo.Add(GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn, true);
 
             Subsystem->Login(SelectedIdP, *AdditionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
             {
