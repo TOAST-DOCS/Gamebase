@@ -178,12 +178,12 @@ void USample::AfterLogin()
 Gamebaseは、単純な形式のWebビューで約款を表示します。
 ゲームのUIに合った約款を直接製作したい場合、QueryTerms APIを呼び出してGamebaseコンソールに設定した約款情報を取得して活用できます。
 
-ログイン後に呼び出す場合は、ゲームユーザーが約款に同意したかどうかも一緒に確認できます。
+'「選択」約款項目はログイン後に呼び出すと、同意の有無も一緒に知ることができます。ただし、「必須」項目の同意有無は常にfalseで返されます。
 
 > <font color="red">[注意]</font><br/>
 >
-> * GamebaseResponse.Terms.ContentDetail.requiredがtrueの必須項目はGamebaseサーバーに保存されないため、bAgreed 値は常にfalseが返されます。
->     * 必須項目は常にtrueで保存されるので、保存する意味がないためです。
+> * GamebaseResponse.Terms.ContentDetail.requiredがtrueの必須項目は同意有無をGamebaseサーバーに保存しないため、bAgreed値は常にfalseが返されます。
+>     * 約款必須項目に同意していない場合、ゲーム進行またはゲームログインをさせてはいけないので、約款ポップアップが閉じていてログインしている状態であれば、当然約款必須項目に同意したのと同じです。そのため、ログインしたユーザーはすでに必須項目にすべて同意した状態なので、あえて同意の有無を保存する必要がないためです。
 > * プッシュ受信同意状況もGamebaseサーバーに保存されないため、bAgreed 値は常にfalseが返されます。
 >     * ユーザーのプッシュ受信同意状況は、Gamebase.Push.QueryPush APIを通して確認してください。
 > * コンソールで「基本約款設定」を行わない場合、約款言語と異なる国コードに設定された端末でqueryTerms APIを呼び出すと、**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**エラーが発生します。
