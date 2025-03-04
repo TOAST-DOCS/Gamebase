@@ -872,6 +872,7 @@ Gamebaseから発行された認証情報を取得することができます。
 + (String)Gamebase.getUserID();
 + (String)Gamebase.getAccessToken();
 + (String)Gamebase.getLastLoggedInProvider();
++ (String)Gamebase.requestLastLoggedInProvider(GamebaseDataCallback<String> callback);
 ```
 
 **Example**
@@ -884,8 +885,13 @@ String userId = Gamebase.getUserID();
 // Obtaining Gamebase AccessToken
 String accessToken = Gamebase.getAccessToken();
 
-// Obtaining Last Logged In Provider
+// Obtaining Last Logged In Provider - Sync
 String lastLoggedInProvider = Gamebase.getLastLoggedInProvider();
+
+// Obtaining Last Logged In Provider - Async
+// If Gamebase.getLastLoggedInProvider() returns 'NOT_INITIALIZED_YET',
+// use the following async function instead:
+Gamebase.requestLastLoggedInProvider((lastLoggedInProvider, exception) -> ...);
 ```
 
 ### Get Authentication Information for External IdP

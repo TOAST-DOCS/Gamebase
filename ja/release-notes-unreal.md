@@ -1,5 +1,31 @@
 ## Game > Gamebase > リリースノート > Unreal
 
+### 2.69.1 (2025. 3. 4.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.69.1/GamebaseSDK-Unreal.zip)
+
+#### 기능 추가
+
+* (Windows) 런칭 정보에서 약관 정보를 확인할 수 있도록 추가했습니다.
+    * FGamebaseLaunchingInfo::FApp::FTermsService
+
+#### 기능 개선/변경
+
+* 내부 로직을 개선하였습니다.
+* 로그인 API에서 UGamebaseJsonObject 대신 FGamebaseVariantMap(TMap<FName, FVariant>) 형태로 변경되었습니다.
+
+#### 버그 수정
+
+* (Windows) 게스트 로그인에서 UUID 발급과정 오류로 인해 모두 동일한 값이 생성되는 문제를 수정했습니다.
+* (Windows) Line IDP 로그인 시 region 설정이 동작하지 않는 문제를 수정했습니다.
+* (Windows) 킥아웃 시 ServerPushAppKickOut 이벤트 발생과 팝업이 노출되지 않는 문제를 수정했습니다.
+* (Windows) 심볼 생성 시 엔진의 Build Configuration이 Development가 아닌 경우 오류가 발생하는 문제를 수정했습니다.
+* (Android) RegisterPush가 동작하지 않는 문제를 수정했습니다.
+
+#### 플랫폼별 변경 사항
+
+* [Gamebase Android SDK 2.69.0](./release-notes-android/#2690-2025-01-21)
+* [Gamebase iOS SDK 2.69.0](./release-notes-ios/#2690-2025-01-21)
+
 ### 2.69.0 (2025. 2. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.69.0/GamebaseSDK-Unreal.zip)
 
@@ -36,19 +62,19 @@
 ### 2.68.1 (2025. 01. 21.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.1/GamebaseSDK-Unreal.zip)
 
-#### 기능 개선/변경
-* 내부 로직을 개선했습니다.
-* (Windows) WebView 플러그인을 옵션으로 선택할 수 있도록 변경되었습니다.
-    * 자세한 내용은 다음 링크를 참고하세요.
-        * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > Windows Settings > WebView 플러그인 안내](./unreal-started/#windows-settings)
-* (Windows) 크래시 로그 전송 시 프로젝트 바이너리 경로에 심벌 파일을 압축한 파일이 생성되도록 추가되었습니다.
-    * 자세한 내용은 다음 링크를 참고하세요.
-        * [Game > Gamebase > Unreal SDK 사용 가이드 > Logger > Crash Reporter](./unreal-logger/#crash-reporter)
+#### 機能改善/変更
+* 内部ロジックを改善しました。
+* (Windows) WebViewプラグインをオプションで選択できるように変更しました。
+    * 詳細は以下のリンクを参照してください。
+        * [Game > Gamebase > Unreal SDK使用ガイド > はじめる > Windows Settings > WebViewプラグイン案内](./unreal-started/#windows-settings)
+* (Windows)クラッシュログを送信する際に、プロジェクトバイナリパスにシンボルファイルを圧縮したファイルが作成されるように追加されました。
+    * 詳細は以下のリンクを参照してください。
+        * [Game > Gamebase > Unreal SDK使用ガイド > Logger > Crash Reporter](./unreal-logger/#crash-reporter)
 
-#### 버그 수정
-* (Windows) 내부 로그 전송 시 크래시가 발생할 수 있는 로직이 수정되었습니다.
+#### バグ修正
+* (Windows)内部ログ送信時にクラッシュが発生する可能性があるロジックを修正しました。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.68.0](./release-notes-android/#2680-2024-11-26)
 * [Gamebase iOS SDK 2.68.1](./release-notes-ios/#2681-2024-12-10)
 
@@ -96,9 +122,9 @@
 * (Windows) Epic Games Storeを使用する場合、EOS SDKのハンドルを登録するプロセスを変更しました。
     * Online Subsystem EOSを使用する場合、Gamebase初期化時にStoreCodeがEpic Games Storeの該当する値であれば自動的にハンドルを登録します。
     * Online Subsystem EOSを使用しない場合は、[Windows Settings](./unreal-started/#windows-settings)ガイドを参照してEOSのハンドルを登録する必要があります。
-* (Windows) Steamworks SDK 지원 버전이 1.59로 변경되었습니다.
-    * 자세한 내용은 다음 링크를 참고하세요.
-        * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > Windows Settings > Steamworks 서비스](./unreal-started/#windows-settings)
+* (Windows) Steamworks SDKサポートバージョンが1.59に変更されました。
+    * 詳細は以下のリンクを参照してください。
+        * [Game > Gamebase > Unreal SDK使用ガイド > はじめに > Windows Settings > Steamworksサービス](./unreal-started/#windows-settings)
 
 #### バグ修正
 * ヘッダファイルを正常に参照できるように修正しました。

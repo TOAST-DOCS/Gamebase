@@ -44,7 +44,6 @@ Supported Platforms
 ### Module Settings
 
 * Gamebaseコードを使用するには、モジュールのBuild.csファイルの依存モジュール設定時に、下記のようにモジュールを追加する必要があります。
-lurim-nhn marked this conversation as resolved.
 
         PrivateDependencyModuleNames.AddRange(
             new[]
@@ -222,6 +221,27 @@ NHN Cloud Log & Crash Searchでクラッシュ分析を行うゲーム開発会�
     * 使用したいストアを選択します。
     * Epic Games Store
         * EOSサービス情報を各項目に合わせて入力します。
+
+#### WebViewプラグイン案内
+
+* WebViewを使用するコンテンツを使用する場合、プラグインの有効化が必要です。
+    * Login with IdP
+        * GUEST以外のIdPをサポートする場合、WebViewでログイン処理を行います。
+    * ImageNotices
+    * WebView
+* エンジンを修正せずにWebView関連機能を使用する場合、Unrealエディタで**Settings > Plugins**ウィンドウを開き、**Project > NHN Cloud > NHNWebView**プラグインを見つけて有効にします。
+* エンジンが提供するWeb Browser Widgetプラグインを使用する場合、UE 5.4以上が必要であり、それ以下のバージョンではCEFのバージョンが低いため、Web Browser Widgetプラグインが正常に動作しないため、Web Browser Widgetプラグインと関連するモジュールのアップデートが必要です。
+    * ThirdParty
+        * CEF3
+    * Runtime
+        * CEF3Utils
+        * WebBrowser
+        * WebBrowserTexture
+    * Program
+        * EpicWebHelper
+
+> [注意]
+> NHNWebViewプラグインとWeb Browser Widgetプラグインは同時に使用することができず、両方のプラグインが有効になっている場合、ビルド時にエラーが発生します。
 
 #### Epic Games Storeサービス
 

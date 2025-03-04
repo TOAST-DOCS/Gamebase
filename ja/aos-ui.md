@@ -196,12 +196,13 @@ public void afterLogin(Activity activity) {
 Gamebaseは単純な形式のWebビューで約款を表示します。
 ゲームUIに合った約款を直接作成したい場合は、queryTerms APIを呼び出してGamebaseコンソールに設定した約款情報をダウンロードして活用できます。
 
-ログイン後に呼び出す場合は、ゲームユーザーが約款に同意したかどうかも一緒に確認できます。
+'「選択」約款項目はログイン後に呼び出すと、同意の有無も一緒に知ることができます。ただし、「必須」項目の同意有無は常にfalseで返されます。
 
 > <font color="red">[注意]</font><br/>
 >
-> * GamebaseTermsContentDetail.getRequired()がtrueの必須項目は、Gamebaseサーバーに保存されないため、agreed値は常にfalseが返されます。
->     * 必須項目は、常にtrueで保存されるしかないので、保存する意味がないためです。
+> * GamebaseTermsContentDetail.getRequired()がtrueの必須項目は同意有無をGamebaseサーバーに保存しないため、agreed値は常にfalseが返されます。
+>     * 約款必須項目に同意していない場合、ゲーム進行やゲームログインができないため、約款ポップアップが閉じていてログインしている状態であれば、当然、約款必須項目に同意したのと同じです。そのため、ログインしたユーザーはすでに必須項目に全て同意した状態なので、同意の有無を保存する必要はありません。
+
 > * プッシュ受信同意有無もGamebaseサーバーに保存されないため、agreed値は常にfalseが返されます。
 >     * プッシュ受信同意有無は、Gamebase.Push.queryTokenInfo APIを介して照会してください。
 > * コンソールで「基本約款設定」をしない場合、約款言語と異なる国コードで設定された端末からqueryTerms APIを呼び出した場合、**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**エラーが発生します。
@@ -515,6 +516,7 @@ showWebView(activity, urlString, configuration,
 | enableAutoCloseByCustomScheme(boolean enable) | true or false | カスタムScheme動作時、自動的にWebビュー終了。<br>**default**: true |
 | enableFixedFontSize(boolean enable)      | true or false | システム文字サイズを無視し、固定されたサイズでWebビューを表示。<br>**default**: false |
 | setRenderOutsideSafeArea(boolean render) | true or false | safe areaを無視し、cutout領域にもrender。<br>**default**: false |
+| setCutoutAreaColor(int color) | Color.argb(a, r, b, b) | SafeArea外のCutout領域の背景色 |
 
 ### Close WebView
 次のAPIを通じて、表示されているWebViewを閉じることができます。
