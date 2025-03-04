@@ -10,8 +10,8 @@
 
 #### 기능 개선/변경
 
+* API 호출 시 매개변수로 전달받는 `UGamebaseJsonObject`를 `FGamebaseVariantMap(TMap&lt;FName, FVariant&gt;)`으로 변경했습니다.
 * 내부 로직을 개선하였습니다.
-* 로그인 API에서 UGamebaseJsonObject 대신 FGamebaseVariantMap(TMap<FName, FVariant>) 형태로 변경되었습니다.
 
 #### 버그 수정
 
@@ -19,7 +19,7 @@
 * (Windows) Line IDP 로그인 시 region 설정이 동작하지 않는 문제를 수정했습니다.
 * (Windows) 킥아웃 시 ServerPushAppKickOut 이벤트 발생과 팝업이 노출되지 않는 문제를 수정했습니다.
 * (Windows) 심볼 생성 시 엔진의 Build Configuration이 Development가 아닌 경우 오류가 발생하는 문제를 수정했습니다.
-* (Android) RegisterPush가 동작하지 않는 문제를 수정했습니다.
+* (Android) 환경에 따라 RegisterPush가 동작하지 않는 문제를 수정했습니다.
 
 #### 플랫폼별 변경 사항
 
