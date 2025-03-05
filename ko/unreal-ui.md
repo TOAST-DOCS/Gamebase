@@ -435,7 +435,7 @@ void USample::ShowWebView(const FString& Url)
 | CloseButtonImageResource | ID of resource                           | 닫기 버튼 이미지             |
 | bEnableFixedFontSize     | true or false                            | 약관 창의 글자 크기 고정 여부 결정<br>**default**: false<br>**Android에 한함**     |
 | bRenderOutSideSafeArea   | true or false                            | SafeArea를 무시하고 Cutout 영역에도 렌더링<br>**default**: false<br>**Android에 한함**   |
-| CutoutColor              | TOptional<FColor>                        | SafeArea 밖의 Cutout 영역 바탕 색상<br>**Android에 한함**                            |
+| CutoutColor              | TOptional&lt;FColor&gt;                  | SafeArea 밖의 Cutout 영역 바탕 색상<br>**Android에 한함**                            |
 
 > [TIP]
 >
