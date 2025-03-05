@@ -70,7 +70,7 @@
         * GamebaseコンソールにCallback URL(https://id-gamebase.toast.com/oauth/callback)を設定します。 
         * 同じCallback URLをTwitter Developer Portalに追加します。
     * 詳細は以下のリンクをご覧ください。
-        * [Game > Gamebase > コンソール使用ガイド > アプリ > Authentication Information](./oper-app/#authentication-information)
+        * [Game > Gamebase > コンソール使用ガイド > アプリ > Authentication Information > 6. Twitter](./oper-app/#6-twitter)
 
 ## 2.66.3
 
