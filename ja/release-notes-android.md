@@ -14,10 +14,14 @@
     * false로 설정하면 앱 최초 실행시에만 GPGS 로그인 창이 한번 표시됩니다.
 * 로그인 시 IdP 서버로부터 에러가 발생했음을 나타내는 신규 에러 코드가 추가되었습니다.
     * AUTH_AUTHENTICATION_SERVER_ERROR(3012)
+* GamebaseWebView에 네비게이션 바 title 컬러와 icon tint 컬러 설정 옵션을 추가했습니다.
+    * **GamebaseWebViewConfiguration.Builder.setNavigationBarTitleColor(int)**
+    * **GamebaseWebViewConfiguration.Builder.setNavigationBarIconTintColor(int)**
 
 #### 기능 개선/변경
 
 * 'GPGS 자동 로그인' 기능 연동시 유저가 GPGS 로그인을 하지 않으면 Gamebase 초기화, 로그인, 로그아웃 시 GPGS 로그인을 계속 시도하던 동작을 Gamebase 초기화 때만 시도하도록 변경했습니다.
+* Apple ID, Steam, Twitter로그인 네비게이션 바에 title과 같은 색으로 X버튼을 표시하도록 변경했습니다.
 
 #### 버그 수정
 
