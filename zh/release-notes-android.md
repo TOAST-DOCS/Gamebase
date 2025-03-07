@@ -1,5 +1,33 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.70.0 (2025. 03. 11.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.0/GamebaseSDK-Android.zip)
+
+#### 기능 추가
+
+* 외부 SDK 업데이트: NHN Cloud SDK(1.9.5)
+    * Google billing client version 7.1.1이 적용되었습니다.
+* 'GPGS 자동 로그인' 기능 연동시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 초기화 옵션을 추가했습니다.
+    * **GamebaseConfiguration.Builder.enableGPGSSignInCheck(boolean)**
+    * 기본 설정은 true로, 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.
+    * false로 설정하면 앱 최초 실행시에만 GPGS 로그인 창이 한번 표시됩니다.
+* 로그인 시 IdP 서버로부터 에러가 발생했음을 나타내는 신규 에러 코드가 추가되었습니다.
+    * AUTH_AUTHENTICATION_SERVER_ERROR(3012)
+* GamebaseWebView에 네비게이션 바 title 컬러와 icon tint 컬러 설정 옵션을 추가했습니다.
+    * **GamebaseWebViewConfiguration.Builder.setNavigationBarTitleColor(int)**
+    * **GamebaseWebViewConfiguration.Builder.setNavigationBarIconTintColor(int)**
+
+#### 기능 개선/변경
+
+* 'GPGS 자동 로그인' 기능 연동시 유저가 GPGS 로그인을 하지 않으면 Gamebase 초기화, 로그인, 로그아웃 시 GPGS 로그인을 계속 시도하던 동작을 Gamebase 초기화 때만 시도하도록 변경했습니다.
+* Apple ID, Steam, Twitter로그인 네비게이션 바에 title과 같은 색으로 X버튼을 표시하도록 변경했습니다.
+
+#### 버그 수정
+
+* LaunchingInfo data가 유저 Event Handler에서 업데이트 되지 않는 이슈를 수정했습니다.
+* Unity 빌드에서 이미지 공지 비율이 원본 이미지 비율과 다르게 표시되는 문제를 수정했습니다.
+
 ### 2.69.0 (2025. 01. 21.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.69.0/GamebaseSDK-Android.zip)
@@ -32,47 +60,47 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.0/GamebaseSDK-Android.zip)
 
 ```
-최소 지원 버전이 Android 5.0 이상으로 상향되었습니다.(minSdk 19 -> 21)
+Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
 ```
 
-#### 기능 추가
-* Google Play 게임즈 서비스 계정을 통한 자동 로그인 연동 기능이 추가되었습니다.
-    * 이 기능을 사용하려면 빌드 의존성에 **gamebase-adapter-auth-gpgs-autologin** 모듈 선언을 추가해야 합니다.
+#### Added Features
+* Added auto sign-in integration with Google Play Games Services accounts.
+    * To enable this feature, you must add the **gamebase-adapter-auth-gpgs-autologin** module declaration to your build dependencies.
 
             dependencies {
                 ...
                 implementation "com.toast.android.gamebase:gamebase-adapter-auth-gpgs-autologin:$GAMEBASE_SDK_VERSION"
             }
             
-    * 또한 다음 가이드 문서를 참고하여 추가 정보를 설정하세요.
-        * [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > GPGS IdP](./aos-started/#gpgs-idp)
+    * You can also refer to the following guides to set up additional information
+        * [Game > Gamebase > Android SDK User Guide > Get Started > Setting > AndroidManifest.xml > GPGS IdP](./aos-started/#gpgs-idp)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: Hangame Android SDK(1.17.0)
-* Google 인증 라이브러리가 업데이트 되었습니다.
-    * Google Sign-In for Android가 deprecated 되어 Google Credential Manager로 전환했습니다.
-    * 인증 방법이 AuthCode 방식에서 OIDC 토큰 방식으로 변경되었습니다.
-* 웹뷰에서 등록한 커스텀 스킴이 매칭되었을 때 URL을 리다이렉트 하지 않도록 수정했습니다.
+#### Feature Updates
+* External SDK update: Hangame Android SDK(1.17.0)
+* Updated Google authentication libraries.
+    * Google Sign-In for Android has been deprecated and switched to Google Credential Manager.
+    * Authentication method changed from AuthCode to OIDC token.
+* Fixed webview not redirecting URLs when a registered custom scheme is matched.
 
 ### 2.67.0 (2024. 10. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.67.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* Steam 인증 어댑터가 추가되었습니다.
+#### Added Features
+* Added Steam authentication adapter.
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트: NHN Cloud SDK(1.9.3)
-* Twitter 인증 방식을 OAuth 2.0으로 변경하여, 아래의 설정 변경 없이는 로그인이 동작하지 않습니다.
-    * OAuth 2.0 Client ID 및 Client Secret 발급
-        * Twitter Developer Portal에서 OAuth 2.0 Client ID와 Client Secret을 생성한 후, Gamebase 콘솔에 등록합니다.
-    * Callback URL 설정
-        * Gamebase 콘솔에 Callback URL(https://id-gamebase.toast.com/oauth/callback)을 설정합니다. 
-        * 동일한 Callback URL을 Twitter Developer Portal에 추가합니다.
-    * 자세한 내용은 다음 링크를 참고 부탁드립니다.
-        * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information](./oper-app/#authentication-information)
+#### Feature Updates
+* External SDK update: NHN Cloud SDK(1.9.3)
+* Twitter has changed its authentication method to OAuth 2.0, so login will not work without changing the settings below.
+    * Issue OAuth 2.0 Client ID and Client Secret
+        * Create an OAuth 2.0 Client ID and Client Secret in the Twitter Developer Portal, then register in the Gamebase console.
+    * Callback URL Settings
+        * Set the Callback URL (https://id-gamebase.toast.com/oauth/callback) in the Gamebase console.
+        * Add the same Callback URL to the Twitter Developer Portal.
+    * For more information, see the following link.
+        * [Game > Gamebase > Consolue User Guide > App > Authentication Information](./oper-app/#authentication-information)
 
-#### 버그 수정
-* 약관 화면 노출 상태에서 네트워크를 단절 후 detail 터치 시, 약관 팝업이 종료되는 이슈가 수정되었습니다.
+#### Bug Fixes
+* Fixed an issue where touching Detail after disconnecting from the network while the terms screen was exposed would cause the terms popup to exit.
 
 ### 2.66.3 (2024. 09. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-Android.zip)
@@ -107,7 +135,7 @@
 #### Added Features
 * Added GPGS v2 authentication
     * For more details on how to set, see the following document.
-        * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#gpgs-v2-idp)
+        * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > GPGS IdP](./aos-started/#gpgs-idp)
 
 ### 2.65.1 (2024. 06. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.1/GamebaseSDK-Android.zip)
@@ -285,7 +313,7 @@
 #### Added Features
 * Added ONE store v21 Adapter.
 * Added custom push receiver with the feature to suppress notifications with certain messages.
-    * To enable this feature, add the gamebase-adapter-push-notification module declaration to your build dependencies.
+    * To enable this feature, add the **gamebase-adapter-push-notification** module declaration to your build dependencies.
     
             dependencies {
                 ...
