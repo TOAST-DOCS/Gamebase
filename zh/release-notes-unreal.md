@@ -10,12 +10,12 @@
 
 #### 기능 개선/변경
 
-* API 호출 시 매개변수로 전달받는 `UGamebaseJsonObject`를 `FGamebaseVariantMap(TMap&lt;FName, FVariant&gt;)`으로 변경했습니다.
-* 내부 로직을 개선하였습니다.
+* API 호출 시 매개변수로 전달 받는 `UGamebaseJsonObject`를 `FGamebaseVariantMap(TMap&lt;FName, FVariant&gt;)`으로 변경했습니다.
+* 내부 로직을 개선했습니다.
 
 #### 버그 수정
 
-* (Windows) 게스트 로그인에서 UUID 발급과정 오류로 인해 모두 동일한 값이 생성되는 문제를 수정했습니다.
+* (Windows) 게스트 로그인 시 UUID 발급 과정 오류로 인해 모두 동일한 값이 생성되는 문제를 수정했습니다.
 * (Windows) Line IDP 로그인 시 region 설정이 동작하지 않는 문제를 수정했습니다.
 * (Windows) 킥아웃 시 ServerPushAppKickOut 이벤트 발생과 팝업이 노출되지 않는 문제를 수정했습니다.
 * (Windows) 심볼 생성 시 엔진의 Build Configuration이 Development가 아닌 경우 오류가 발생하는 문제를 수정했습니다.
