@@ -67,6 +67,8 @@ Supported Platforms
 * Authentication
     * 使用するIdPを有効にします。
     * Hangame IdPを使用する時は、サポートへお問い合わせください。
+    * GPGS(Google Play Games Services)
+        * Auto Login - GPGS自動ログインをサポート  
 * Push
     * 使用したいプッシュサービスを有効にします。
     * FCM
@@ -84,6 +86,15 @@ Google Playサービスに認証と決済を行うには、Distributionの設定
 詳細な内容は、以下の文書を参照してください。 
 
 * [Signing Projects for Release](https://docs.unrealengine.com/en-US/Platforms/Mobile/Android/DistributionSigning/index.html)
+
+#### GPGS(Google Play Games Services)設定
+
+Sign in with Apple使用時、プロジェクトで/Config/Android/AndroidEngine.iniファイルに下記の内容を追加してGPGSのApplication IDを入力します。
+
+```ini
+[/Script/AndroidRuntimeSettings.AndroidRuntimeSettings]
+GamesAppID=
+```
 
 #### AndroidX適用
 
@@ -193,7 +204,7 @@ bEnableSignInWithAppleSupport=True
 次のようなイシューによりRich Push Notification機能を使用できません。
 
 * Unrealはプロジェクトに[Notification Service Extension](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension?language=objc)を追加できる方法を提供しません。
-    * [NHN Cloud Push Notification Service Extension作成](https://docs.toast.com/en/TOAST/en/toast-sdk/push-ios/#notification-service-extension)
+    * [NHN Cloud Push Notification Service Extension作成](https://docs.toast.com/e  n/TOAST/en/toast-sdk/push-ios/#notification-service-extension)
 
 #### iOS SDKのWarningメッセージによるUnrealビルドエラー
 
@@ -209,7 +220,7 @@ UE4で使用中のPLCrashReporterが`arm64e` architectureをサポートして�
 
 NHN Cloud Log & Crash Searchでクラッシュ分析を行うゲーム開発会社は、次のガイドを参照してUE4内部PLCrashReporterを修正する必要があります。
 
-1. GamebaseSDK-Unreal/Source/Gamebase/ThirdParty/IOS/GamebaseSDK-iOS/externals/plcrashreporter.zipファイルを解凍します。
+1. GamebaseSDK-Unreal/Source/Gamebase/ThirdParty/IOS/plcrashreporter.zipファイルを解凍します。
 2. UE4内部PLCrashReporterのaファイルとheaderファイルを解凍したファイルと交換します。
     * Engine/Source/ThirdParty/PLCrashReporter/plcrashreporter-master-xxxxxxx
 
@@ -235,7 +246,7 @@ NHN Cloud Log & Crash Searchでクラッシュ分析を行うゲーム開発会�
     * ImageNotices
     * WebView
 * エンジンを修正せずにWebView関連機能を使用する場合、Unrealエディタで**Settings > Plugins**ウィンドウを開き、**Project > NHN Cloud > NHNWebView**プラグインを見つけて有効にします。
-* エンジンが提供するWeb Browser Widgetプラグインを使用する場合、UE 5.4以上が必要であり、それ以下のバージョンではCEFのバージョンが低いため、Web Browser Widgetプラグインが正常に動作しないため、Web Browser Widgetプラグインと関連するモジュールのアップデートが必要です。
+* エンジンが提供するWeb Browserプラグインを使用する場合、UE 5.4以上が必要であり、それ以下のバージョンではCEFのバージョンが低いため、Web Browserプラグインが正常に動作しないため、Web Browserプラグインと関連するモジュールのアップデートが必要です。
     * ThirdParty
         * CEF3
     * Runtime
@@ -246,7 +257,7 @@ NHN Cloud Log & Crash Searchでクラッシュ分析を行うゲーム開発会�
         * EpicWebHelper
 
 > [注意]
-> NHNWebViewプラグインとWeb Browser Widgetプラグインは同時に使用することができず、両方のプラグインが有効になっている場合、ビルド時にエラーが発生します。
+> NHNWebViewプラグインとWeb Browserプラグインは同時に使用することができず、両方のプラグインが有効になっている場合、ビルド時にエラーが発生します。
 
 #### Epic Games Storeサービス
 
