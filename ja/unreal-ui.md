@@ -433,6 +433,7 @@ void USample::ShowWebView(const FString& Url)
 | CloseButtonImageResource | ID of resource                           | 閉じるボタンの画像            |
 | bEnableFixedFontSize      | true or false                            | 約款ウィンドウの文字サイズを固定するかどうかを決定します。<br>**default**: false<br>**Androidのみ**     |
 | bRenderOutSideSafeArea    | true or false                            | Safe Area領域外でレンダリングするかどうかを決定します。<br>**default**: false<br>**Androidのみ**   |
+| CutoutColor              | TOptional&lt;FColor&gt;                  | SafeArea外のCutout領域の背景色<br>**Android限定**                            |
 
 > [TIP]
 >
