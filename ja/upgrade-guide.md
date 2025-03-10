@@ -8,10 +8,10 @@
 
 ### Unreal
 
-* 약관 조회 결과 API인 FGamebaseQueryTermsResult가 수정되었습니다.
-    * TermsCountryType의 값이 설정되지 않는 문제를 수정했습니다.
-    * bPushEnabled, bAdAgreement, bAdAgreementNight가 제거되었습니다.
-* GPGS AutoLogin을 사용하는 경우, **GetLastLoggedInProvider()** 동기 API 대신 신규 추가된 **RequestLastLoggedInProvider(GamebaseCallback.GamebaseDelegate\<string> callback)** 비동기 API를 사용하세요.
+* 約款照会結果APIであるFGamebaseQueryTermsResultを修正しました。
+    * TermsCountryTypeの値が設定されない問題を修正しました。
+    * bPushEnabled, bAdAgreement, bAdAgreementNightを削除しました。
+* GPGS AutoLoginを使用する場合、**GetLastLoggedInProvider()**同期APIの代わりに新しく追加された**RequestLastLoggedInProvider(GamebaseCallback.GamebaseDelegate\<string> callback)**非同期APIを使用してください。
 
 ### Android
 
@@ -70,7 +70,7 @@
         * GamebaseコンソールにCallback URL(https://id-gamebase.toast.com/oauth/callback)を設定します。 
         * 同じCallback URLをTwitter Developer Portalに追加します。
     * 詳細は以下のリンクをご覧ください。
-        * [Game > Gamebase > コンソール使用ガイド > アプリ > Authentication Information](./oper-app/#authentication-information)
+        * [Game > Gamebase > コンソール使用ガイド > アプリ > Authentication Information > 6. Twitter](./oper-app/#6-twitter)
 
 ## 2.66.3
 

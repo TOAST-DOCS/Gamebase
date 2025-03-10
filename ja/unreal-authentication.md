@@ -842,6 +842,7 @@ Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
+void RequestLastLoggedInProvider(const FGamebaseLastLoggedInProviderDelegate& Callback) const;
 FString GetLastLoggedInProvider() const;
 ```
 
@@ -850,7 +851,20 @@ FString GetLastLoggedInProvider() const;
 void USample::GetLastLoggedInProvider()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    
+    // Obtaining Last Logged In Provider - Sync
     FString LastLoggedInProvider = Subsystem->GetLastLoggedInProvider();
+    
+    // Obtaining Last Logged In Provider - Async
+    // If GetLastLoggedInProvider() returns 'NOT_INITIALIZED_YET',
+    // use the following async function instead:
+    Subsystem->RequestLastLoggedInProvider(FGamebaseLastLoggedInProviderDelegate::CreateLambda([=](const FString& lastLoggedInProviderAsync, const FGamebaseError* Error)
+    {
+        if (Gamebase::IsSuccess(Error))
+        {
+            UE_LOG(GamebaseTestResults, Display, TEXT("LastLoggedInProvider: %s"), *lastLoggedInProviderAsync);
+        }
+    }));    
 }
 ```
 
