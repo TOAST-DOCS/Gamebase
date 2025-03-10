@@ -84,7 +84,7 @@ Supported Platforms
 
 ```cpp
 void LoginForLastLoggedInProvider(const FGamebaseAuthTokenDelegate& Callback);
-void LoginForLastLoggedInProvider(const UGamebaseJsonObject& AdditionalInfo, const FGamebaseAuthTokenDelegate& Callback);
+void LoginForLastLoggedInProvider(const FGamebaseVariantMap& AdditionalInfo, const FGamebaseAuthTokenDelegate& Callback);
 ```
 
 **Example**
@@ -181,7 +181,7 @@ void USample::Login()
 > [参考]
 >
 > ログインする時に追加情報を必要とするIdPもあります。
-> このような追加情報を設定できるようにvoid Login(const FString& ProviderName, const UGamebaseJsonObject& AdditionalInfo, const FGamebaseAuthTokenDelegate& Callback) APIを提供します。
+> このような追加情報を設定できるようにvoid Login(const FString& ProviderName, const FGamebaseVariantMap& AdditionalInfo, const FGamebaseAuthTokenDelegate& Callback) APIを提供します。
 >AdditionalInfoパラメータに必須情報をdictionary形式で入力してください。
 >AdditionalInfo値がある場合にはその値を使用し、nullの場合には[NHN Cloud Console](./oper-app/#authentication-information)に登録された値を使用します。
 
@@ -205,7 +205,7 @@ Supported Platforms
 
 ```cpp
 void Login(const FString& ProviderName, const FGamebaseAuthTokenDelegate& Callback);
-void Login(const FString& ProviderName, const UGamebaseJsonObject& AdditionalInfo, const FGamebaseAuthTokenDelegate& Callback);
+void Login(const FString& ProviderName, const FGamebaseVariantMap& AdditionalInfo, const FGamebaseAuthTokenDelegate& Callback);
 ```
 
 **Example**
@@ -242,11 +242,10 @@ void USample::Login()
 
 void USample::LoginWithAdditionalInfo()
 {
-    UGamebaseJsonObject* AdditionalInfo = NewObject<UGamebaseJsonObject>();
-    AdditionalInfo->SetStringField(TEXT("Key"), TEXT("Value"));
+    FGamebaseVariantMap AdditionalInfo;
+    AdditionalInfo.Add(TEXT("Key"), TEXT("Value"));
 
-    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->Login(GamebaseAuthProvider::Facebook, *AdditionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
+    Subsystem->Login(GamebaseAuthProvider::Facebook, AdditionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
@@ -294,7 +293,7 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
-void Login(const UGamebaseJsonObject& CredentialInfo, const FGamebaseAuthTokenDelegate& Callback);
+void Login(const FGamebaseVariantMap& CredentialInfo, const FGamebaseAuthTokenDelegate& Callback);
 ```
 
 **Example**
@@ -302,15 +301,15 @@ void Login(const UGamebaseJsonObject& CredentialInfo, const FGamebaseAuthTokenDe
 ```cpp
 void USample::LoginWithCredential()
 {
-    UGamebaseJsonObject* CredentialInfo = NewObject<UGamebaseJsonObject>();
+    FGamebaseVariantMap CredentialInfo;
 
     // google
-    //CredentialInfo->SetStringField(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Google);
-    //CredentialInfo->SetStringField(GamebaseAuthProviderCredential::AuthorizationCode, TEXT("google auchorization code"));
+    //CredentialInfo.Add(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Google);
+    //CredentialInfo.Add(GamebaseAuthProviderCredential::AuthorizationCode, TEXT("google auchorization code"));
 
     // facebook
-    CredentialInfo->SetStringField(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Facebook);
-    CredentialInfo->SetStringField(GamebaseAuthProviderCredential::AccessToken, TEXT("facebook access token"));
+    CredentialInfo.Add(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Facebook);
+    CredentialInfo.Add(GamebaseAuthProviderCredential::AccessToken, TEXT("facebook access token"));
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->Login(*CredentialInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
@@ -489,7 +488,7 @@ Supported Platforms
 
 ```cpp
 void AddMapping(const FString& ProviderName, const FGamebaseAuthTokenDelegate& Callback);
-void AddMapping(const FString& ProviderName, const UGamebaseJsonObject& AdditionalInfo, const FGamebaseAuthTokenDelegate& Callback)
+void AddMapping(const FString& ProviderName, const FGamebaseVariantMap& AdditionalInfo, const FGamebaseAuthTokenDelegate& Callback)
 ```
 
 **Example**
@@ -543,7 +542,7 @@ Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
-void AddMapping(const UGamebaseJsonObject& CredentialInfo, const FGamebaseAuthTokenDelegate& Callback);
+void AddMapping(const FGamebaseVariantMap& CredentialInfo, const FGamebaseAuthTokenDelegate& Callback);
 ```
 
 **Example**
@@ -551,15 +550,15 @@ void AddMapping(const UGamebaseJsonObject& CredentialInfo, const FGamebaseAuthTo
 ```cpp
 void USample::AddMappingWithCredential()
 {
-    UGamebaseJsonObject* CredentialInfo = NewObject<UGamebaseJsonObject>();
+    FGamebaseVariantMap CredentialInfo;
 
     // google
-    //CredentialInfo->SetStringField(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Google);
-    //CredentialInfo->SetStringField(GamebaseAuthProviderCredential::AuthorizationCode, TEXT("google auchorization code"));
+    //CredentialInfo.Add(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Google);
+    //CredentialInfo.Add(GamebaseAuthProviderCredential::AuthorizationCode, TEXT("google auchorization code"));
 
     // facebook
-    CredentialInfo->SetStringField(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Facebook);
-    CredentialInfo->SetStringField(GamebaseAuthProviderCredential::AccessToken, TEXT("facebook access token"));
+    CredentialInfo.Add(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Facebook);
+    CredentialInfo.Add(GamebaseAuthProviderCredential::AccessToken, TEXT("facebook access token"));
 
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
@@ -591,8 +590,8 @@ void AddMappingForcibly(const FGamebaseForcingMappingTicket& ForcingMappingTicke
 
 // Legacy API
 void AddMappingForcibly(const FString& ProviderName, const FString& ForcingMappingKey, const FGamebaseAuthTokenDelegate& Callback);
-void AddMappingForcibly(const FString& ProviderName, const FString& ForcingMappingKey, const UGamebaseJsonObject& AdditionalInfo, const FGamebaseAuthTokenDelegate& Callback);
-void AddMappingForcibly(const UGamebaseJsonObject& CredentialInfo, const FString& ForcingMappingKey, const FGamebaseAuthTokenDelegate& Callback);
+void AddMappingForcibly(const FString& ProviderName, const FString& ForcingMappingKey, const FGamebaseVariantMap& AdditionalInfo, const FGamebaseAuthTokenDelegate& Callback);
+void AddMappingForcibly(const FGamebaseVariantMap& CredentialInfo, const FString& ForcingMappingKey, const FGamebaseAuthTokenDelegate& Callback);
 ```
 
 **Example**
