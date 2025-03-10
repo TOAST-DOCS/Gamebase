@@ -16,6 +16,7 @@ Gamebase Unity SDK를 사용하려면 먼저 초기화를 진행해야 합니다
 | enableLaunchingStatusPopup | ALL | O |
 | enableBanPopup | ALL | O |
 | useWebViewLogin | Standalone | O |
+| enableGPGSSignInCheck | Android | O |
 
 #### 1. App ID
 
@@ -76,6 +77,14 @@ LaunchingStatus는 아래 Launching 절 아래 State, Code 부분을 참고하�
 #### 8. useWebViewLogin
 
 Standalone 플랫폼에서 웹뷰를 통해서 로그인을 할 것인지에 대한 설정입니다. 
+
+#### 9. enableGPGSSignInCheck
+
+Android 플랫폼에서 'GPGS 자동 로그인' 기능 연동시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 설정입니다.
+
+* true : 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.
+* false : 앱 최초 실행시에만 GPGS 로그인 창이 한번 표시됩니다.
+* 기본값: true
 
 ### Debug Mode
 * Gamebase는 경고(warning)와 오류 로그만을 표시합니다.
