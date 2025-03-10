@@ -407,8 +407,8 @@ void USample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& Data)
             // 現在使用停止しているIdPでログインしていて、使用停止したIdP以外の他のIdPがマッピングされている場合を意味します。
             // ユーザーがauthMappingListのうちどのIdPで再度ログインするか選択し、選択したIdPでログインした後、使用停止したIdPについては連動を解除してください。
             auto SelectedIdP = "ユーザーが選択したIdP";
-            auto AdditionalInfo = NewObject<UGamebaseJsonObject>();
-            AdditionalInfo->SetBoolField(GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn, true);
+            FGamebaseVariantMap AdditionalInfo;
+            AdditionalInfo.Add(GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn, true);
 
             Subsystem->Login(SelectedIdP, *AdditionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
             {
