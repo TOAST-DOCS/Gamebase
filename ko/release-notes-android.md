@@ -8,6 +8,31 @@
 
 * 외부 SDK 업데이트: NHN Cloud SDK(1.9.5)
     * Google billing client version 7.1.1이 적용되었습니다.
+    * NHN Cloud Android SDK 1.9.5에서는 Android 7.0(API Level 24) 미만 단말기에서 결제를 시도하는 경우 크래시가 발생합니다.
+        * 이 문제를 해결하기 위해서는 Gradle에 하위 OS를 위한 [Java 8+ API 디슈가링 지원](https://developer.android.com/studio/write/java8-support#library-desugaring) 선언을 추가해야 합니다.
+        * 앱 모듈의 Gradle, Unity의 경우 launcherTemplate.gradle에 다음 선언을 추가하세요.
+        
+                android {
+                    compileOptions {
+                        // Flag to enable support for the new language APIs
+
+                        // For AGP 4.1+
+                        isCoreLibraryDesugaringEnabled = true
+                        // For AGP 4.0
+                        // coreLibraryDesugaringEnabled = true
+                    }
+                }
+
+                dependencies {
+                    // For AGP 7.4+
+                    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+                    // For AGP 7.3
+                    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.3")
+                    // For AGP 4.0 to 7.2
+                    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.9")
+                }
+        
+        * Unity Editor 버전에 따라 AGP 버전이 다르므로 올바른 버전을 확인하세요.
 * 'GPGS 자동 로그인' 기능 연동시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 초기화 옵션을 추가했습니다.
     * **GamebaseConfiguration.Builder.enableGPGSSignInCheck(boolean)**
     * 기본 설정은 true로, 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.
