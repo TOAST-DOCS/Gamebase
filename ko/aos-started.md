@@ -156,6 +156,14 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-weibo:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-steam:$GAMEBASE_SDK_VERSION"
 
+    // >>> [Purchase Support under Android 7.0(API Level 24)]
+    // If AGP 7.4+
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+    // If AGP 7.3
+    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.3")
+    // If AGP 4.0 to 7.2
+    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.9")
+    
     // >>> Gamebase - Select Purchase Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v21:$GAMEBASE_SDK_VERSION"
@@ -194,6 +202,12 @@ dependencies {
 
 android {
     compileOptions {
+        // >>> [Purchase Support under Android 7.0(API Level 24)]
+        // If AGP 4.1+
+        isCoreLibraryDesugaringEnabled = true
+        // If AGP 4.0
+        // coreLibraryDesugaringEnabled = true
+        
         // >>> [AndroidX]
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -482,6 +496,7 @@ class MyApplication: GamebaseMyCardApplication() {
 | com.toast.sdk.push.notification.default_small_icon | resource id | 작은 아이콘의 리소스 식별자. |
 | com.toast.sdk.push.notification.default_sound | String | 알림음 파일 이름.<br/>Android 8.0 미만 OS에서만 동작합니다.<br/>'res/raw' 폴더의 mp3, wav 파일명을 지정하면 알림음이 변경됩니다. |
 | com.toast.sdk.push.notification.default_vibrate_pattern | long[] | 진동의 패턴. |
+| com.toast.sdk.push.notification.vibration_enabled | boolean | 진동 사용 여부. |
 | com.toast.sdk.push.notification.badge_enabled | boolean | 배지 아이콘 사용 여부. |
 | com.toast.sdk.push.notification.foreground_enabled | boolean | 포그라운드 알림 사용 여부. |
 
