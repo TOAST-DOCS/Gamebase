@@ -1,5 +1,58 @@
 ## Game > Gamebase > 릴리스 노트 > Android
 
+### 2.70.0 (2025. 03. 11.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.0/GamebaseSDK-Android.zip)
+
+#### 기능 추가
+
+* 외부 SDK 업데이트: NHN Cloud SDK(1.9.5)
+    * Google billing client version 7.1.1이 적용되었습니다.
+    * NHN Cloud Android SDK 1.9.5에서는 Android 7.0(API Level 24) 미만 단말기에서 결제를 시도하는 경우 크래시가 발생합니다.
+        * 이 문제를 해결하기 위해서는 Gradle에 하위 OS를 위한 [Java 8+ API 디슈가링 지원](https://developer.android.com/studio/write/java8-support#library-desugaring) 선언을 추가해야 합니다.
+        * 앱 모듈의 Gradle, Unity의 경우 launcherTemplate.gradle에 다음 선언을 추가하세요.
+        
+                android {
+                    compileOptions {
+                        // Flag to enable support for the new language APIs
+
+                        // For AGP 4.1+
+                        isCoreLibraryDesugaringEnabled = true
+                        // For AGP 4.0
+                        // coreLibraryDesugaringEnabled = true
+                    }
+                }
+
+                dependencies {
+                    // For AGP 7.4+
+                    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+                    // For AGP 7.3
+                    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.3")
+                    // For AGP 4.0 to 7.2
+                    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.9")
+                }
+        
+        * Unity Editor 버전에 따라 AGP 버전이 다르므로 올바른 버전을 확인하세요.
+* 'GPGS 자동 로그인' 기능 연동시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 초기화 옵션을 추가했습니다.
+    * **GamebaseConfiguration.Builder.enableGPGSSignInCheck(boolean)**
+    * 기본 설정은 true로, 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.
+    * false로 설정하면 앱 최초 실행시에만 GPGS 로그인 창이 한번 표시됩니다.
+* 로그인 시 IdP 서버로부터 에러가 발생했음을 나타내는 신규 에러 코드가 추가되었습니다.
+    * AUTH_AUTHENTICATION_SERVER_ERROR(3012)
+* GamebaseWebView에 네비게이션 바 title 컬러와 icon tint 컬러 설정 옵션을 추가했습니다.
+    * **GamebaseWebViewConfiguration.Builder.setNavigationBarTitleColor(int)**
+    * **GamebaseWebViewConfiguration.Builder.setNavigationBarIconTintColor(int)**
+
+#### 기능 개선/변경
+
+* 'GPGS 자동 로그인' 기능 연동시 유저가 GPGS 로그인을 하지 않으면 Gamebase 초기화, 로그인, 로그아웃 시 GPGS 로그인을 계속 시도하던 동작을 Gamebase 초기화 때만 시도하도록 변경했습니다.
+* Apple ID, Steam, Twitter로그인 네비게이션 바에 title과 같은 색으로 X버튼을 표시하도록 변경했습니다.
+
+#### 버그 수정
+
+* LaunchingInfo data가 유저 Event Handler에서 업데이트 되지 않는 이슈를 수정했습니다.
+* Unity 빌드에서 이미지 공지 비율이 원본 이미지 비율과 다르게 표시되는 문제를 수정했습니다.
+
 ### 2.69.0 (2025. 01. 21.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.69.0/GamebaseSDK-Android.zip)
@@ -8,7 +61,6 @@
 
 * **Gamebase.requestLastLoggedInProvider(GamebaseDataCallback&lt;String&gt;) 비동기 API**를 추가했습니다.
     * **Gamebase.getLastLoggedInProvider() 동기 API**가 타이밍상 정상적인 값을 반환하지 못할 때가 있습니다.
-
     * **gamebase-adapter-auth-gpgs-autologin** 모듈을 빌드에 포함하는 경우 GPGS 서버에서 데이터를 획득하는 시간이 필요하므로 Gamebase 초기화 직후 getLastLoggedInProvider() 동기 API를 호출하면 정상적인 값을 획득할 수 없습니다.
     * 이때 requestLastLoggedInProvider(GamebaseDataCallback&lt;String&gt;) 비동기 API는 정확한 값을 보장합니다.
     * gamebase-adapter-auth-gpgs-autologin 모듈이 빌드에 포함되지 않은 경우에는 계속해서 getLastLoggedInProvider() 동기 API를 사용해도 무방합니다.

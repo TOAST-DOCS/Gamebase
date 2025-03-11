@@ -14,7 +14,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 용도 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk | nhncloud-core-1.9.3<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 21(Lollipop, OS 5.0) |
+| Gamebase | gamebase-sdk | nhncloud-core-1.9.5<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-jdk8<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 21(Lollipop, OS 5.0) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Apple 로그인을 지원 | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-16.1.2 | Facebook 로그인을 지원 | - |
 |  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Google 로그인을 지원 | - |
@@ -32,7 +32,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | 게임 내 결제 지원 | - |
 |  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Amazon Appstore를 지원 | - |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Samsung Galaxy Store를 지원 | - |
-|  | gamebase-adapter-purchase-google | billingclient.billing-5.0.0<br>nhncloud-iap-google | Google Play를 지원 | - |
+|  | gamebase-adapter-purchase-google | billing-7.1.1<br>nhncloud-iap-google | Google Play를 지원 | - |
 |  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | Huawei AppGallery를 지원 | - |
 |  | gamebase-adapter-purchase-onestore | nhncloud-iap-onestore | ONE store v17을 지원 | - |
 |  | gamebase-adapter-purchase-onestore-v19 | nhncloud-iap-onestore-v19 | ONE store v19를 지원 | - |
@@ -156,6 +156,14 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-weibo:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-steam:$GAMEBASE_SDK_VERSION"
 
+    // >>> [Purchase Support under Android 7.0(API Level 24)]
+    // If AGP 7.4+
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+    // If AGP 7.3
+    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.3")
+    // If AGP 4.0 to 7.2
+    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.9")
+    
     // >>> Gamebase - Select Purchase Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v21:$GAMEBASE_SDK_VERSION"
@@ -194,6 +202,12 @@ dependencies {
 
 android {
     compileOptions {
+        // >>> [Purchase Support under Android 7.0(API Level 24)]
+        // If AGP 4.1+
+        isCoreLibraryDesugaringEnabled = true
+        // If AGP 4.0
+        // coreLibraryDesugaringEnabled = true
+        
         // >>> [AndroidX]
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -460,6 +474,9 @@ class MyApplication: GamebaseMyCardApplication() {
 <!-- Vibrate pattern -->
 <meta-data android:name="com.toast.sdk.push.notification.default_vibrate_pattern"
            android:resource="@array/default_vibrate_pattern"/>
+<!-- Vibration setup -->
+<meta-data android:name="com.toast.sdk.push.notification.vibration_enabled"
+           android:resource="true"/>
 <!-- Use badge icon or not -->
 <meta-data android:name="com.toast.sdk.push.notification.badge_enabled"
            android:value="true"/>
