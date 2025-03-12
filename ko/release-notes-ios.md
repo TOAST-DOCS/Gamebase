@@ -1,5 +1,15 @@
 ## Game > Gamebase > 릴리스 노트 > iOS
 
+### 2.70.0 (2025. 03. 11.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.0/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 로그인 시 IdP 서버로부터 에러가 발생했음을 나타내는 신규 에러 코드가 추가되었습니다.
+    * TCGB_ERROR_AUTH_AUTHENTICATION_SERVER_ERROR(3012)
+* TCGBWebViewConfiguration에 내비게이션 바 타이틀 색상과 아이콘 색상을 설정할 수 있는 옵션을 추가했습니다.
+    * **TCGBWebViewConfiguration.navigationBarTitleColor**
+    * **TCGBWebViewConfiguration.navigationBarIconTintColor**
+
 ### 2.69.0 (2025. 01. 21.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.69.0/GamebaseSDK-iOS.zip)
 

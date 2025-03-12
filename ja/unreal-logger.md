@@ -2,6 +2,15 @@
 
 ここではLog & Crash Search転送APIを使用する方法を説明します。
 
+### Settings
+
+* Windows
+    * Log & Crash SearchでProjectVersionの値を設定するには、DefaultGame.iniでGeneralProjectSettingsのProjectVersionに合ったバージョンを入力する必要があります。
+
+            [/Script/EngineSettings.GeneralProjectSettings]
+            ProjectVersion=1.0.0
+            
+            
 ### Initialize
 Log & Crash Searchで発行されたAppKeyで、NHN Cloud Logger SDKを初期化します。
 

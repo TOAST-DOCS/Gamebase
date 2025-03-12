@@ -477,6 +477,8 @@ public void ShowWebView()
 |                          | GamebaseWebViewContentMode.MOBILE           | Mobile browser                                                                     |
 |                          | GamebaseWebViewContentMode.DESKTOP          | Desktop browser                                                                    |
 | navigationColor          | Color                                       | Color of Navigation Bar <br>**default**: GamebaseColor.RGB255(18, 93, 230)         |
+| navigationTitleColor     | Color                                       | 내비게이션 바 제목 색상 <br>**default**: GamebaseColor.RGB255(255, 255, 255) |
+| navigationIconTintColor  | Color                                       | 내비게이션 바 아이콘 색상 <br>**default**: null                               |
 | barHeight                | height                                   | Height of Navigation Bar<br>**Android Only**                                       |
 | isNavigationBarVisible   | true or false                            | Activate or deactivate Navigation Bar<br>**default**: true                         |
 | isBackButtonVisible      | true or false                            | Activate or deactivate Go Back Button<br>**default**: true                         |

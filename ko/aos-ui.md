@@ -436,6 +436,8 @@ GamebaseWebViewConfiguration configuration
             .setTitleText("title")                              // 웹뷰 제목을 설정
             .setScreenOrientation(ScreenOrientation.PORTRAIT)   // 웹뷰 스크린 방향 설정
             .setNavigationBarColor(Color.RED)                   // 내비게이션바 색상 설정
+            .setNavigationBarTitleColor(Color.BLACK)            // 네비게이션바 타이틀 색상 설정
+            .setNavigationBarIconTintColor(Color.BLACK)         // 네비게이션바 아이콘 tint 색상 설정
             .setNavigationBarHeight(40)                         // 내비게이션바 높이 설정
             .setBackButtonVisible(true)                         // 뒤로 가기 버튼 활성화 여부 설정
             .setBackButtonImageResource(R.id.back_button)       // 뒤로 가기 버튼 이미지 설정
@@ -508,7 +510,9 @@ showWebView(activity, urlString, configuration,
 |                                          | ScreenOrientation.LANDSCAPE         | 가로 모드          |
 |                                          | ScreenOrientation.LANDSCAPE_REVERSE | 가로 모드를 180도 회전 |
 | setNavigationBarVisible(boolean enable)  | true or false                       | 내비게이션 바 활성 또는 비활성.<br>**default**: true |
-| setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | 내비게이션 바 색상     |
+| setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | 내비게이션 바 색상<br>**default**:#125DE6  |
+| setNavigationBarTitleColor(int color)    | Color.argb(a, r, b, b)              | 내비게이션 바 타이틀 색상<br>**default**: Color.WHITE  |
+| setNavigationBarIconTintColor(int color) | Color.argb(a, r, b, b)              | 내비게이션 바 아이콘 틴트 색상<br>**default**: 틴트 설정하지 않음   |
 | setNavigationBarHeight(int height)       | height                              | 내비게이션 바 높이     |
 | setBackButtonVisible(boolean visible)    | true or false                       | 뒤로 가기 버튼 활성 또는 비활성.<br>**default**: true |
 | setBackButtonImageResource(int resourceId) | ID of resource                      | 뒤로 가기 버튼 이미지       |

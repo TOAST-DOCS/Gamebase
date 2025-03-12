@@ -422,17 +422,18 @@ void USample::ShowWebView(const FString& Url)
 |                          | GamebaseScreenOrientation::Portrait      | 縦モード                     |
 |                          | GamebaseScreenOrientation::Landscape     | 横モード                     |
 |                          | GamebaseScreenOrientation::LandscapeReverse | 横モードを180度回転              |
-| ContentMode              | GamebaseWebViewContentMode::Recommended        | 現在のプラットフォームの推薦ブラウザ(**default**)   |
-|                          | GamebaseWebViewContentMode::Mobile             | モバイルブラウザ         |
-|                          | GamebaseWebViewContentMode::Desktop            | デスクトップブラウザ       |
+| ContentMode              | GamebaseWebViewContentMode::Recommended     | 現在のプラットフォームの推薦ブラウザ(**default**)   |
+|                          | GamebaseWebViewContentMode::Mobile          | モバイルブラウザ         |
+|                          | GamebaseWebViewContentMode::Desktop         | デスクトップブラウザ       |
 | NavigationColor          | FColor                                   | ナビゲーションバーの色<br>**default**: FColor(18, 93, 230, 255)               |
 | NavigationBarHeight      | height                                   | ナビゲーションバーの高さ<br>**Androidのみ**                 |
-| bIsNavigationBarVisible   | true or false                            | ナビゲーションバー有効または無効<br>**default**: true    |
-| bIsBackButtonVisible      | true or false                            | 戻るボタンの有効または無効<br>**default**: true   |
+| bIsNavigationBarVisible  | true or false                            | ナビゲーションバー有効または無効<br>**default**: true    |
+| bIsBackButtonVisible     | true or false                            | 戻るボタンの有効または無効<br>**default**: true   |
 | BackButtonImageResource  | ID of resource                           | 戻るボタンの画像        |
 | CloseButtonImageResource | ID of resource                           | 閉じるボタンの画像            |
-| bEnableFixedFontSize      | true or false                            | 約款ウィンドウの文字サイズを固定するかどうかを決定します。<br>**default**: false<br>**Androidのみ**     |
-| bRenderOutSideSafeArea    | true or false                            | Safe Area領域外でレンダリングするかどうかを決定します。<br>**default**: false<br>**Androidのみ**   |
+| bEnableFixedFontSize     | true or false                            | 約款ウィンドウの文字サイズを固定するかどうか決定<br>**default**: false<br>**Android限定**     |
+| bRenderOutSideSafeArea   | true or false                            | SafeAreaを無視し、Cutout領域にもレンダリング<br>**default**: false<br>**Android限定**   |
+| CutoutColor              | TOptional<FColor>                        | SafeArea以外のCutout領域背景色<br>**Android限定**                            |
 
 > [TIP]
 >
