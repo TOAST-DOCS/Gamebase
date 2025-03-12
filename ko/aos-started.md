@@ -157,12 +157,12 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-steam:$GAMEBASE_SDK_VERSION"
 
     // >>> [Purchase Support under Android 7.0(API Level 24)]
-    // If AGP 7.4+
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+    // If AGP 4.0 to 7.2
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.9")
     // If AGP 7.3
     // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.3")
-    // If AGP 4.0 to 7.2
-    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.9")
+    // If AGP 7.4+
+    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
     
     // >>> Gamebase - Select Purchase Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
@@ -203,10 +203,7 @@ dependencies {
 android {
     compileOptions {
         // >>> [Purchase Support under Android 7.0(API Level 24)]
-        // If AGP 4.1+
-        isCoreLibraryDesugaringEnabled = true
-        // If AGP 4.0
-        // coreLibraryDesugaringEnabled = true
+        coreLibraryDesugaringEnabled true
         
         // >>> [AndroidX]
         sourceCompatibility JavaVersion.VERSION_1_8

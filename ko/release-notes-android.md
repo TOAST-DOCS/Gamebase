@@ -15,21 +15,17 @@
                 android {
                     compileOptions {
                         // Flag to enable support for the new language APIs
-
-                        // For AGP 4.1+
-                        isCoreLibraryDesugaringEnabled = true
-                        // For AGP 4.0
-                        // coreLibraryDesugaringEnabled = true
+                        coreLibraryDesugaringEnabled true
                     }
                 }
 
                 dependencies {
-                    // For AGP 7.4+
-                    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
-                    // For AGP 7.3
+                    // If AGP 4.0 to 7.2
+                    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.9")
+                    // If AGP 7.3
                     // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.3")
-                    // For AGP 4.0 to 7.2
-                    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.9")
+                    // If AGP 7.4+
+                    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
                 }
         
         * Unity Editor 버전에 따라 AGP 버전이 다르므로 올바른 버전을 확인하세요.
