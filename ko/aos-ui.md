@@ -435,10 +435,14 @@ GamebaseWebViewConfiguration configuration
         = new GamebaseWebViewConfiguration.Builder()
             .setTitleText("title")                              // 웹뷰 제목을 설정
             .setScreenOrientation(ScreenOrientation.PORTRAIT)   // 웹뷰 스크린 방향 설정
-            .setNavigationBarColor(Color.RED)                   // 내비게이션바 색상 설정
-            .setNavigationBarTitleColor(Color.BLACK)            // 네비게이션바 타이틀 색상 설정
-            .setNavigationBarIconTintColor(Color.BLACK)         // 네비게이션바 아이콘 tint 색상 설정
-            .setNavigationBarHeight(40)                         // 내비게이션바 높이 설정
+            .setNavigationBarColor(Color.RED)                   // 내비게이션 바 색상 설정
+
+            .setNavigationBarTitleColor(Color.BLACK)            // 내비게이션 바 타이틀 색상 설정
+
+            .setNavigationBarIconTintColor(Color.BLACK)         // 내비게이션 바 아이콘 틴트 색상 설정
+
+            .setNavigationBarHeight(40)                         // 내비게이션 바 높이 설정
+
             .setBackButtonVisible(true)                         // 뒤로 가기 버튼 활성화 여부 설정
             .setBackButtonImageResource(R.id.back_button)       // 뒤로 가기 버튼 이미지 설정
             .setCloseButtonImageResource(R.id.close_button)     // 닫기 버튼 이미지 설정
