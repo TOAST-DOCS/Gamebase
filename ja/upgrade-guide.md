@@ -4,9 +4,9 @@
 
 ### Android
 
-* Gamebase Android SDK 2.70.0에서 사용하는 NHN Cloud Android SDK 1.9.5에서는 Android 7.0(API Level 24) 미만 단말기에서 결제를 시도하는 경우 크래시가 발생합니다.
-    * 이 문제를 해결하기 위해서는 Gradle에 하위 OS를 위한 [Java 8+ API 디슈가링 지원](https://developer.android.com/studio/write/java8-support#library-desugaring) 선언을 추가해야 합니다.
-    * 앱 모듈의 Gradle, Unity의 경우 launcherTemplate.gradle에 다음 선언을 추가하세요.
+* Gamebase Android SDK 2.70.0で使用するNHN Cloud Android SDK 1.9.5ではAndroid 7.0(API Level 24)未満の端末で決済を試行する場合、クラッシュが発生します。
+    * この問題を解決するためには、Gradleに下位OSのための[Java 8+ APIデシュガーリングサポート](https://developer.android.com/studio/write/java8-support#library-desugaring)宣言を追加する必要があります。
+    * アプリモジュールのGradle、Unityの場合、launcherTemplate.gradleに次の宣言を追加してください。
     
             android {
                 compileOptions {
@@ -24,7 +24,7 @@
                 // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
             }
     
-    * Unity Editor 버전에 따라 AGP 버전이 다르므로 올바른 버전을 확인하세요.
+    * Unity EditorのバージョンによってAGPのバージョンが異なるため、正しいバージョンをご確認ください。
 
 ## 2.69.0
 
