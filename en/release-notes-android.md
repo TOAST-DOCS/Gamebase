@@ -16,8 +16,8 @@
 #### 기능 추가
 
 * 외부 SDK 업데이트: NHN Cloud SDK(1.9.5)
-    * Google billing client version 7.1.1이 적용되었습니다.
-    * NHN Cloud Android SDK 1.9.5에서는 Android 7.0(API Level 24) 미만 단말기에서 결제를 시도하는 경우 크래시가 발생합니다.
+    * Google Play Billing Library 7.1.1이 적용되었습니다.
+    * Android 7.0(API Level 24) 미만 단말기에서 결제를 시도하는 경우 Google Play Billing Library에서 크래시가 발생합니다.
         * 이 문제를 해결하기 위해서는 Gradle에 하위 OS를 위한 [Java 8+ API 디슈가링 지원](https://developer.android.com/studio/write/java8-support#library-desugaring) 선언을 추가해야 합니다.
         * 앱 모듈의 Gradle, Unity의 경우 launcherTemplate.gradle에 다음 선언을 추가하세요.
         

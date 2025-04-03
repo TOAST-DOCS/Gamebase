@@ -5,7 +5,7 @@
 
 #### 버그 수정
 
-* (Android) ShowWebView, ShowTermsView 호출 시 Configuration가 없으면 크래시가 발생하는 문제를 수정했습니다.
+* (Android) ShowWebView, ShowTermsView 호출 시 Configuration이 없으면 크래시가 발생하는 문제를 수정했습니다.
 
 #### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.70.1](./release-notes-android/#2701-2025-03-13)
