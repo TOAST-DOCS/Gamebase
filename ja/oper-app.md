@@ -241,7 +241,6 @@ Facebookの開発サイトに登録したアプリの{アプリID}と{アプリ�
 * AndroidタイプはPackage nameとSHA-1署名情報が必要です。
     * ![](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_006_en_20250122.png)
 * Androidビルドはアップロード署名とアプリ署名が異なるため、両方の種類のSHA-1値を登録するとビルドテストがスムーズに行われます。
-
     * FirebaseやGPGSのような一部のGoogleプラットフォームを使う場合、自動的にAndroidタイプのClient id設定が追加される場合もあります。
     * ![all type created](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_007_en_20250122.png)
 * ここで注意する点は、Gamebase ConsoleにはWeb applicationタイプのClient idのみ入力しなければならないので、AndroidタイプのClient idは入力してはいけません。
@@ -255,7 +254,6 @@ Facebookの開発サイトに登録したアプリの{アプリID}と{アプリ�
 * Bundle IDを入力します。
     * ![ios 2](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_010_en_20250122.png)
 * iOSはAndroidとは異なり、**NHN Cloud Console > Game > Gamebase > アプリ > 認証情報 > Google > Client ID > iOS Client ID**欄にiOSタイプで発行されたClient idを入力する必要があります。
-
     * ![gamebase console](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_014_en_20250122.png)
     
 ##### Gamebase Console
