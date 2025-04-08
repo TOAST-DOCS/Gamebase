@@ -16,8 +16,8 @@
 #### 機能追加
 
 * 外部SDKアップデート：NHN Cloud SDK(1.9.5)
-    * Google billing client version 7.1.1が適用されました。
-    * NHN Cloud Android SDK 1.9.5では、Android 7.0(API Level 24)未満の端末で決済を試みる場合、クラッシュが発生します。
+    * Google Play Billing Library version 7.1.1が適用されました。
+    * Android 7.0(API Level 24)未満の端末で決済を試みる場合、Google Play Billing Libraryでクラッシュが発生します。
         * この問題を解決するためには、Gradleに下位OSのための[Java 8+ APIデシュガーリングサポート](https://developer.android.com/studio/write/java8-support#library-desugaring)宣言を追加する必要があります。
         * アプリモジュールのGradle、Unityの場合、launcherTemplate.gradleに次の宣言を追加してください。
         

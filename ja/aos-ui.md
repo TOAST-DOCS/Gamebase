@@ -434,6 +434,7 @@ GamebaseWebViewConfigurationでユーザーが指定したWebViewを作成する
 GamebaseWebViewConfiguration configuration
         = new GamebaseWebViewConfiguration.Builder()
             .setTitleText("title")                              // WebViewタイトルを設定
+            .setScreenOrientation(ScreenOrientation.PORTRAIT)   // WebViewのスクリーン方向を設定            
             .setNavigationBarColor(Color.RED)                   // ナビゲーションバーの色設定
 
             .setNavigationBarTitleColor(Color.BLACK)            // ナビゲーションバータイトル色設定
@@ -513,9 +514,9 @@ showWebView(activity, urlString, configuration,
 |                                          | ScreenOrientation.LANDSCAPE         | 横モード          |
 |                                          | ScreenOrientation.LANDSCAPE_REVERSE | 横モードを180度回転 |
 | setNavigationBarVisible(boolean enable)  | true or false                       | ナビゲーションバーの有効または無効<br>**default**: true |
-| setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | ナビゲーションバーの色<br>**default**:#125DE6  |
-| setNavigationBarTitleColor(int color)    | Color.argb(a, r, b, b)              | ナビゲーションバータイトル色<br>**default**: Color.WHITE  |
-| setNavigationBarIconTintColor(int color) | Color.argb(a, r, b, b)              | ナビゲーションバーアイコンティントカラー<br>**default**:ティントを設定しない  |
+| setNavigationBarColor(int color)         | Color.argb(a, r, g, b)              | ナビゲーションバーの色<br>**default**:#125DE6  |
+| setNavigationBarTitleColor(int color)    | Color.argb(a, r, g, b)              | ナビゲーションバータイトル色<br>**default**: Color.WHITE  |
+| setNavigationBarIconTintColor(int color) | Color.argb(a, r, g, b)              | ナビゲーションバーアイコンティントカラー<br>**default**:ティントを設定しない  |
 | setNavigationBarHeight(int height)       | height                              | ナビゲーションバーの高さ     |
 | setBackButtonVisible(boolean visible)    | true or false                       | 戻るボタンの有効または無効<br>**default**: true |
 | setBackButtonImageResource(int resourceId) | ID of resource                      | 戻るボタンの画像       |
