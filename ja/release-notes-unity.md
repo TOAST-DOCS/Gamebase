@@ -1,15 +1,26 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.70.1 (2025. 03. 13.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.1/GamebaseSDK-Unity.zip)
+
+#### バグ修正
+
+* (Android) ShowWebView、ShowTermsViewの呼び出し時にConfigurationがないとクラッシュが発生する問題を修正しました。
+
+#### プラットフォーム別の変更事項
+* [Gamebase Android SDK 2.70.1](./release-notes-android/#2701-2025-03-13)
+* [Gamebase iOS SDK 2.70.0](./release-notes-ios/#2700-2025-03-11)
+
 ### 2.70.0 (2025. 03. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.0/GamebaseSDK-Unity.zip)
 
 #### 機能追加
 
-* (Android) 「GPGS自動ログイン」機能連動時にユーザーにGPGSログインをアプリインストール後に一度だけ確認する初期化オプションを追加しました。
+* (Android) 「GPGS自動ログイン」機能連動時、ユーザーにGPGSログインをアプリインストール後に一度だけ確認する初期化オプションを追加しました。
   * GamebaseRequest.GamebaseConfiguration enableGPGSSignInCheck
     * 基本設定はtrueで、ユーザーがGPGSログインを拒否してもGamebase初期化時にGPGSログインウィンドウを再度表示します。
-    * falseに設定すると、アプリ初回実行時にのみGPGSログインウィンドウが一度表示されます。
-* GamebaseWebViewにナビゲーションバーtitleカラーとicon tintカラー設定オプションを追加しました。
+    * falseに設定すると、アプリ初回実行時のみGPGSログインウィンドウが一度表示されます。
+* GamebaseWebViewにナビゲーションバーのtitleカラーとicon tintカラー設定オプションを追加しました。
     * WebView.Configuration navigationTitleColor
     * WebView.Configuration navigationIconTintColor
 

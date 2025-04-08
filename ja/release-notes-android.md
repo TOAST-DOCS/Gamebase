@@ -6,7 +6,7 @@
 
 #### バグ修正
 
-* Apple ID, Steam, TwitterログインナビゲーションバーのXボタンサイズを再調整しました。
+* Apple ID、Steam、TwitterログインナビゲーションバーのXボタンサイズを再調整しました。
 * KotlinファイルでAuthProviderのIdP constant(例：AuthProvider.GUESTなど)を参照できない問題を修正しました。
 
 ### 2.70.0 (2025. 03. 11.)
@@ -15,10 +15,10 @@
 
 #### 機能追加
 
-* 外部SDKアップデート: NHN Cloud SDK(1.9.5)
+* 外部SDKアップデート：NHN Cloud SDK(1.9.5)
     * Google billing client version 7.1.1が適用されました。
-    * NHN Cloud Android SDK 1.9.5ではAndroid 7.0(API Level 24)未満の端末で決済を試みる場合、クラッシュが発生します。
-        * この問題を解決するためにはGradleに下位OSのための[Java 8+ APIデシュガーリングサポート](https://developer.android.com/studio/write/java8-support#library-desugaring)宣言を追加する必要があります。
+    * NHN Cloud Android SDK 1.9.5では、Android 7.0(API Level 24)未満の端末で決済を試みる場合、クラッシュが発生します。
+        * この問題を解決するためには、Gradleに下位OSのための[Java 8+ APIデシュガーリングサポート](https://developer.android.com/studio/write/java8-support#library-desugaring)宣言を追加する必要があります。
         * アプリモジュールのGradle、Unityの場合、launcherTemplate.gradleに次の宣言を追加してください。
         
                 android {
@@ -38,10 +38,10 @@
                 }
         
         * Unity EditorバージョンによってAGPバージョンが異なるため、正しいバージョンをご確認ください。
-* 「GPGS自動ログイン」機能連動時、ユーザーにGPGSログインをアプリインストール後に一度だけ確認する初期化オプションを追加しました。
+* 「GPGS自動ログイン」機能連動時ユーザーにGPGSログインをアプリインストール後に一度だけ確認する初期化オプションを追加しました。
     * **GamebaseConfiguration.Builder.enableGPGSSignInCheck(boolean)**
-    * 基本設定はtrueで、ユーザーがGPGSログインを拒否してもGamebase初期化時にGPGSログインウィンドウを再度表示します。
-    * falseに設定すると、アプリ初回実行にのみGPGSログインウィンドウが一度表示されます。
+    * デフォルト設定はtrueで、ユーザーがGPGSログインを拒否してもGamebase初期化時にGPGSログインウィンドウを再度表示します。
+    * falseに設定すると、アプリ初回実行時のみGPGSログインウィンドウが一度表示されます。
 * ログイン時にIdPサーバーでエラーが発生したことを示す新規エラーコードが追加されました。
     * AUTH_AUTHENTICATION_SERVER_ERROR(3012)
 * GamebaseWebViewにナビゲーションバーtitleカラーとicon tintカラー設定オプションを追加しました。
@@ -50,13 +50,13 @@
 
 #### 機能改善/変更
 
-* 「GPGS自動ログイン」機能連動時ユーザーがGPGSログインを行わない場合、Gamebase初期化、ログイン、ログアウト時にGPGSログインを継続的に試行していた動作をGamebase初期化時のみ試行するように変更しました。
+* 「GPGS自動ログイン」機能連動時、ユーザーがGPGSログインをしない場合、Gamebase初期化、ログイン、ログアウト時にGPGSログインを継続的に試行する動作をGamebase初期化時のみ試行するように変更しました。
 * Apple ID、Steam、Twitterログインのナビゲーションバーにタイトルと同じ色のXボタンを表示するように変更しました。
 
 #### バグ修正
 
 * LaunchingInfo dataがユーザーEvent Handlerで更新されない問題を修正しました。
-* Unityビルドで画像告知の比率が元画像の比率と異なって表示される問題を修正しました。
+* Unityビルドで画像告知の比率が原本画像比率と異なって表示される問題を修正しました。
 
 ### 2.69.0 (2025. 01. 21.)
 

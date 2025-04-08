@@ -4,7 +4,7 @@
 
 ### Android
 
-* Gamebase Android SDK 2.70.0で使用するNHN Cloud Android SDK 1.9.5ではAndroid 7.0(API Level 24)未満の端末で決済を試行する場合、クラッシュが発生します。
+* Gamebase Android SDK 2.70.0で使用するGoogle Play Billing Library 7.1.1は、Android 7.0(API Level 24未満の端末で決済を試みる場合、クラッシュが発生します。
     * この問題を解決するためには、Gradleに下位OSのための[Java 8+ APIデシュガーリングサポート](https://developer.android.com/studio/write/java8-support#library-desugaring)宣言を追加する必要があります。
     * アプリモジュールのGradle、Unityの場合、launcherTemplate.gradleに次の宣言を追加してください。
     
@@ -24,7 +24,7 @@
                 // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
             }
     
-    * Unity EditorのバージョンによってAGPのバージョンが異なるため、正しいバージョンをご確認ください。
+    * Unity EditorバージョンによってAGPバージョンが異なるため、正しいバージョンをご確認ください。
 
 ## 2.69.0
 
