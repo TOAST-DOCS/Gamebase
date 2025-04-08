@@ -6,8 +6,8 @@
 
 #### 버그 수정
 
-* Apple ID, Steam, Twitter로그인 네비게이션 바의 X버튼 사이즈를 재조정하였습니다.
-* Kotlin 파일에서 AuthProvider의 IdP constant(예. AuthProvider.GUEST 등)를 참조할 수 없는 이슈를 수정하였습니다.
+* Apple ID, Steam, Twitter 로그인 내비게이션 바의 X 버튼 사이즈를 재조정했습니다.
+* Kotlin 파일에서 AuthProvider의 IdP constant(예: AuthProvider.GUEST 등)를 참조할 수 없는 문제를 수정했습니다.
 
 ### 2.70.0 (2025. 03. 11.)
 
@@ -16,8 +16,8 @@
 #### 기능 추가
 
 * 외부 SDK 업데이트: NHN Cloud SDK(1.9.5)
-    * PBL(Google Play Billing Library) 7.1.1이 적용되었습니다.
-    * Android 7.0(API Level 24) 미만 단말기에서 결제를 시도하는 경우 PBL에서 크래시가 발생합니다.
+    * Google Play Billing Library 7.1.1이 적용되었습니다.
+    * Android 7.0(API Level 24) 미만 단말기에서 결제를 시도하는 경우 Google Play Billing Library에서 크래시가 발생합니다.
         * 이 문제를 해결하기 위해서는 Gradle에 하위 OS를 위한 [Java 8+ API 디슈가링 지원](https://developer.android.com/studio/write/java8-support#library-desugaring) 선언을 추가해야 합니다.
         * 앱 모듈의 Gradle, Unity의 경우 launcherTemplate.gradle에 다음 선언을 추가하세요.
         
@@ -83,18 +83,14 @@
 #### 기능 개선/변경
 
 * **gamebase-adapter-auth-gpgs-autologin** 모듈을 빌드에 포함하는 경우 Gamebase 초기화와 동시에 **Gamebase.getLastLoggedInProvider() 동기 API**를 호출하면 내부 데이터가 초기화가 완료되지 않아 null이 반환되었으나, 이 경우 **'NOT\_INITIALIZED\_YET'**이라는 문자열을 반환하도록 내부 로직을 변경했습니다.
-
 * **GamebaseWebViewConfiguration.Builder.renderOutsideSafeArea() API**를 **false**로 설정한 경우에도 cutout 영역까지 웹뷰를 모두 표시하도록(**edge-to-edge**) 내부 로직을 변경했습니다.
     * 그 대신 자동으로 padding 여백을 추가하여 콘텐츠가 가려지지 않도록 했습니다.
-
 
 #### 버그 수정
  
 * 로그인 전에 Gamebase.Push.getNotificationOptions() API를 호출하는 경우 크래시가 발생하지 않도록 수정했습니다.
 * Loading Progress가 간헐적으로 사라지지 않거나 크래시가 발생하는 이슈에 대한 방어 코드를 추가했습니다.
-
 * WebSocket에서 간헐적으로 내부 콜백 함수가 중복으로 호출되어 발생하는 크래시에 대한 방어 코드를 추가했습니다.
-
 
 ### 2.68.0 (2024. 11. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.0/GamebaseSDK-Android.zip)
