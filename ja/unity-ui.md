@@ -463,27 +463,27 @@ public void ShowWebView()
 
 #### Configuration
 
-| Parameter                            | Values | Description |
-|--------------------------------------| ---------------------------------------- | --------------------------- |
-| title                                | string                                   | WebViewのタイトル             |
-| orientation                          | GamebaseScreenOrientation.UNSPECIFIED    | 未指定(**default**)            |
-|                                      | GamebaseScreenOrientation.PORTRAIT       | 縦モード                  |
-|                                      | GamebaseScreenOrientation.LANDSCAPE      | 横モード                  |
-|                                      | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 横モードを180度回転    |
-| contentMode<br>(iOS専用)               | GamebaseWebViewContentMode.RECOMMENDED      | 現在プラットフォーム推薦ブラウザ(**default**)  |
-|                                      | GamebaseWebViewContentMode.MOBILE           | モバイルブラウザ          |
-|                                      | GamebaseWebViewContentMode.DESKTOP          | デスクトップブラウザ        |
-| navigationColor                      | Color                                       | ナビゲーションバーの色相<br>**default**: GamebaseColor.RGB255(18, 93, 230) |
-| navigationTitleColor                 | Color                                       | 내비게이션 바 제목 색상 <br>**default**: GamebaseColor.RGB255(255, 255, 255) |
-| navigationIconTintColor              | Color                                       | 내비게이션 바 아이콘 색상 <br>**default**: null                               |
-| barHeight                            | height                                   | ナビゲーションバーの高さ<br>**Android Only**                 |
-| isNavigationBarVisible               | true or false                            | ナビゲーションバー有効/無効<br>**default** : true    |
-| isBackButtonVisible                  | true or false                            | 戻るボタン有効/無効<br>**default** : true   |
-| backButtonImageResource              | ID of resource                           | 戻るボタンのイメージ       |
-| closeButtonImageResource             | ID of resource                           | 閉じるボタンのイメージ           |
-| enableFixedFontSize<br>(Android専用)   | true or false              | 約款ウィンドウの文字サイズを固定するかどうかを決定します。<br>**default**: false |
-| renderOutSideSafeArea<br>(Android専用) | true or false              | Safe Area領域の外までレンダリングするかどうかを決定します。<br>**default**: false |
-| cutoutColor<br>(Android専用)           | Color                      | SafeArea 外の Cutout 領域の背景色<br>**default**: null                              |
+| Parameter                             | Values                                      | Description                                                        |
+|---------------------------------------|---------------------------------------------|--------------------------------------------------------------------|
+| title                                 | string                                      | Webビューのタイトル                                                           |
+| orientation                           | GamebaseScreenOrientation.UNSPECIFIED       | 未指定(**default**)                                                   |
+|                                       | GamebaseScreenOrientation.PORTRAIT          | 縦モード                                                            |
+|                                       | GamebaseScreenOrientation.LANDSCAPE         | 横モード                                                            |
+|                                       | GamebaseScreenOrientation.LANDSCAPE_REVERSE | 横モードを180度回転                                                    |
+| contentMode<br>(iOS専用)               | GamebaseWebViewContentMode.RECOMMENDED      | 現在プラットフォーム推薦ブラウザ(**default**)                                        |
+|                                       | GamebaseWebViewContentMode.MOBILE           | モバイルブラウザ                                                         |
+|                                       | GamebaseWebViewContentMode.DESKTOP          | デスクトップブラウザ                                                        |
+| navigationColor                       | Color                                       | ナビゲーションバーの色 <br>**default**: GamebaseColor.RGB255(18, 93, 230)      |
+| navigationTitleColor                  | Color                                       | ナビゲーションバータイトルの色 <br>**default**: GamebaseColor.RGB255(255, 255, 255) |
+| navigationIconTintColor               | Color                                       | ナビゲーションバーアイコンの色 <br>**default**: null                               |
+| barHeight                             | height                                      | ナビゲーションバーの高さ<br>**Android限定**                                      |
+| isNavigationBarVisible                | true or false                               | ナビゲーションバー有効または無効<br>**default**: true                             |
+| isBackButtonVisible                   | true or false                               | 戻るボタン有効または無効<br>**default**: true                            |
+| backButtonImageResource               | ID of resource                              | 戻るボタンの画像                                                     |
+| closeButtonImageResource              | ID of resource                              | 閉じるボタンの画像                                                        |
+| enableFixedFontSize<br>(Android専用)   | true or false                               | 約款ウィンドウの文字サイズを固定するかどうかを決定します。<br>**default**: false                    |
+| renderOutSideSafeArea<br>(Android専用) | true or false                               | Safe Area外でレンダリングするかどうかを決定します。<br>**default**: false                |
+| cutoutColor<br>(Android専用)           | Color                                       | SafeAreaの外側のCutout領域の背景色 <br>**default**: null                  |
 
 > [TIP]
 >

@@ -3,32 +3,32 @@
 ### 2.70.1 (2025. 03. 13.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.1/GamebaseSDK-Unity.zip)
 
-#### 버그 수정
+#### バグ修正
 
-* (Android) ShowWebView, ShowTermsView 호출 시 Configuration가 없으면 크래시가 발생하는 문제를 수정했습니다.
+* (Android) ShowWebView、ShowTermsViewの呼び出し時にConfigurationがないとクラッシュが発生する問題を修正しました。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.70.1](./release-notes-android/#2701-2025-03-13)
 * [Gamebase iOS SDK 2.70.0](./release-notes-ios/#2700-2025-03-11)
 
 ### 2.70.0 (2025. 03. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
+#### 機能追加
 
-* (Android) 'GPGS 자동 로그인' 기능 연동시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 초기화 옵션을 추가했습니다.
+* (Android) 「GPGS自動ログイン」機能連動時、ユーザーにGPGSログインをアプリインストール後に一度だけ確認する初期化オプションを追加しました。
   * GamebaseRequest.GamebaseConfiguration enableGPGSSignInCheck
-    * 기본 설정은 true로, 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.
-    * false로 설정하면 앱 최초 실행시에만 GPGS 로그인 창이 한번 표시됩니다.
-* GamebaseWebView에 네비게이션 바 title 컬러와 icon tint 컬러 설정 옵션을 추가했습니다.
+    * 基本設定はtrueで、ユーザーがGPGSログインを拒否してもGamebase初期化時にGPGSログインウィンドウを再度表示します。
+    * falseに設定すると、アプリ初回実行時のみGPGSログインウィンドウが一度表示されます。
+* GamebaseWebViewにナビゲーションバーのtitleカラーとicon tintカラー設定オプションを追加しました。
     * WebView.Configuration navigationTitleColor
     * WebView.Configuration navigationIconTintColor
 
-#### 기능 개선/변경
+#### 機能改善/変更
 
-* 내부 로직을 개선하였습니다.
+* 内部ロジックを改善しました。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.70.0](./release-notes-android/#2700-2025-03-11)
 * [Gamebase iOS SDK 2.70.0](./release-notes-ios/#2700-2025-03-11)
 
