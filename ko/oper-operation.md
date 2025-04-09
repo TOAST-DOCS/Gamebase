@@ -184,7 +184,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_01_ko_250415.png)
 
 (1) **상태**: 게임 내 게임 공지의 게시 상태를 기준으로 게임 공지 목록 검색이 가능합니다.
-  - 예정 : 게임 공지가 노출될 예정
+  - 예정: 게임 공지가 노출될 예정
   - 노출 중 : 게임 공지 노출중
   - 종료 : 게임 공지 노출시간 종료
 
