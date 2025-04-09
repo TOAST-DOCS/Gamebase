@@ -166,7 +166,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 
 
 #### 긴급 공지 팝업 예시
-닫기버튼(왼쪽), 닫기+자세히보기 (오른쪽)
+**닫기**를 선택할 경우 왼쪽 이미지와 같이 '닫기(CLOSE)' 버튼만 노출되며, **닫기+자세히 보기**를 선택할 경우 오른쪽 이미지와 같이 '닫기(CLOSE)'와 '자세히 보기(SHOW DETAIL)' 버튼이 노출됩니다. 
 ![gamebase_op_img](https://static.toastoven.net/prod_gamebase/gamebase_op_08_201812.png)
 
 ### Modify Notice
