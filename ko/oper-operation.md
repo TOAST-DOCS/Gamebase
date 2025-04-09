@@ -165,7 +165,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
   - 고객 센터 연결: Gamebase 제공 고객 센터 설정 시 사용자가 **자세히 보기**를 클릭하면 고객 센터를 웹뷰로 오픈합니다.
 
 
-#### 긴급공지 팝업 예시
+#### 긴급 공지 팝업 예시
 닫기버튼(왼쪽), 닫기+자세히보기 (오른쪽)
 ![gamebase_op_img](https://static.toastoven.net/prod_gamebase/gamebase_op_08_201812.png)
 
