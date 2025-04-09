@@ -178,7 +178,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 ## Game notice
 
 콘솔에 게임 공지를 등록하여 게임 내에 이미지와 공지를 같이 제공할 수 있습니다.
-등록된 게임 공지 정보를 한눈에 확인이 가능하고 노출 중 상태인 게임 공지의 등록 일자 기준으로 게임 내에 게임 공지 목록이 표시됩니다.
+등록된 게임 공지 정보를 한눈에 확인할 수 있으며, **노출 중** 상태인 게임 공지의 등록 일자 기준으로 게임 내에 게임 공지 목록이 표시됩니다.
 게임 공지 메시지의 게시 상태와 제목으로 게임 공지 검색이 가능합니다. 
 
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_01_ko_250415.png)
