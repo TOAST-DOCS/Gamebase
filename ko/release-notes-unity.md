@@ -5,7 +5,7 @@
 
 #### 버그 수정
 
-* (Android) ShowWebView, ShowTermsView 호출 시 Configuration가 없으면 크래시가 발생하는 문제를 수정했습니다.
+* (Android) ShowWebView, ShowTermsView 호출 시 Configuration이 없으면 크래시가 발생하는 문제를 수정했습니다.
 
 #### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.70.1](./release-notes-android/#2701-2025-03-13)
@@ -16,11 +16,11 @@
 
 #### 기능 추가
 
-* (Android) 'GPGS 자동 로그인' 기능 연동시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 초기화 옵션을 추가했습니다.
+* (Android) 'GPGS 자동 로그인' 기능 연동 시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 초기화 옵션을 추가했습니다.
   * GamebaseRequest.GamebaseConfiguration enableGPGSSignInCheck
     * 기본 설정은 true로, 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.
-    * false로 설정하면 앱 최초 실행시에만 GPGS 로그인 창이 한번 표시됩니다.
-* GamebaseWebView에 네비게이션 바 title 컬러와 icon tint 컬러 설정 옵션을 추가했습니다.
+    * false로 설정하면 앱 최초 실행 시에만 GPGS 로그인 창이 한번 표시됩니다.
+* GamebaseWebView에 내비게이션 바 타이틀과 아이콘 틴트 컬러 설정 옵션을 추가했습니다.
     * WebView.Configuration navigationTitleColor
     * WebView.Configuration navigationIconTintColor
 

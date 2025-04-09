@@ -202,7 +202,6 @@ Gamebaseは単純な形式のWebビューで約款を表示します。
 >
 > * GamebaseTermsContentDetail.getRequired()がtrueの必須項目は同意有無をGamebaseサーバーに保存しないため、agreed値は常にfalseが返されます。
 >     * 約款必須項目に同意していない場合、ゲーム進行やゲームログインができないため、約款ポップアップが閉じていてログインしている状態であれば、当然、約款必須項目に同意したのと同じです。そのため、ログインしたユーザーはすでに必須項目に全て同意した状態なので、同意の有無を保存する必要はありません。
-
 > * プッシュ受信同意有無もGamebaseサーバーに保存されないため、agreed値は常にfalseが返されます。
 >     * プッシュ受信同意有無は、Gamebase.Push.queryTokenInfo APIを介して照会してください。
 > * コンソールで「基本約款設定」をしない場合、約款言語と異なる国コードで設定された端末からqueryTerms APIを呼び出した場合、**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**エラーが発生します。
