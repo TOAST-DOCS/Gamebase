@@ -13,7 +13,7 @@
 
 #### 기능 개선/변경
 
-* storeCode를 null로 설정하여 Gamebase 초기화를 호출했을때 예외가 발생하는 대신 **INVALID_PARAMETER(3)** 에러를 리턴하도록 동작을 변경했습니다.
+* storeCode를 null로 설정하여 Gamebase 초기화를 호출했을 때 예외가 발생하는 대신 **INVALID_PARAMETER(3)** 에러를 리턴하도록 동작을 변경했습니다.
 
 ### 2.70.1 (2025. 03. 13.)
 
