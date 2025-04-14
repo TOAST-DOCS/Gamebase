@@ -130,6 +130,11 @@ Gamebase는 게스트 로그인을 지원합니다.
 * 디바이스의 유일한 키를 생성하여 Gamebase에 로그인을 시도합니다.
 * 게스트 로그인은 디바이스 키는 초기화될 수 있고 디바이스 키의 초기화 시에 계정이 삭제될 수 있으므로 IdP를 활용한 로그인 방식을 권장합니다.
 
+> <font color="red">[주의]</font><br/>
+>
+> Standalone(Windows, macOS) 환경에서는 GUEST 로그인은 개발 용도로 제공되었기 때문에 실제 게임에서 사용하실 때 주의하셔야 합니다.
+>
+
 **API**
 
 Supported Platforms
