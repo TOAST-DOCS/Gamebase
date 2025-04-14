@@ -1,25 +1,40 @@
 ## Game > Gamebase > リリースノート > Android
 
+### 2.71.0 (2025. 04. 15.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.0/GamebaseSDK-Android.zip)
+
+#### 기능 추가
+
+* '게임 공지' 신규 기능이 추가되었습니다.
+    * Gamebase.GameNotice.openGameNotice(Activity activity, GamebaseCallback onCloseCallback);
+    * API 호출 방법은 다음 가이드 문서를 참고하시기 바랍니다.
+        * [Game > Gamebase > Android SDK 사용 가이드 > UI > GameNotice](./aos-ui/#gamenotice)
+
+#### 기능 개선/변경
+
+* storeCode를 null로 설정하여 Gamebase 초기화를 호출했을 때 예외가 발생하는 대신 **INVALID_PARAMETER(3)** 에러를 리턴하도록 동작을 변경했습니다.
+
 ### 2.70.1 (2025. 03. 13.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.1/GamebaseSDK-Android.zip)
 
-#### 버그 수정
+#### バグ修正
 
-* Apple ID, Steam, Twitter로그인 네비게이션 바의 X버튼 사이즈를 재조정하였습니다.
-* Kotlin 파일에서 AuthProvider의 IdP constant(예. AuthProvider.GUEST 등)를 참조할 수 없는 이슈를 수정하였습니다.
+* Apple ID、Steam、TwitterログインナビゲーションバーのXボタンサイズを再調整しました。
+* KotlinファイルでAuthProviderのIdP constant(例：AuthProvider.GUESTなど)を参照できない問題を修正しました。
 
 ### 2.70.0 (2025. 03. 11.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
+#### 機能追加
 
-* 외부 SDK 업데이트: NHN Cloud SDK(1.9.5)
-    * Google billing client version 7.1.1이 적용되었습니다.
-    * NHN Cloud Android SDK 1.9.5에서는 Android 7.0(API Level 24) 미만 단말기에서 결제를 시도하는 경우 크래시가 발생합니다.
-        * 이 문제를 해결하기 위해서는 Gradle에 하위 OS를 위한 [Java 8+ API 디슈가링 지원](https://developer.android.com/studio/write/java8-support#library-desugaring) 선언을 추가해야 합니다.
-        * 앱 모듈의 Gradle, Unity의 경우 launcherTemplate.gradle에 다음 선언을 추가하세요.
+* 外部SDKアップデート：NHN Cloud SDK(1.9.5)
+    * Google Play Billing Library version 7.1.1が適用されました。
+    * Android 7.0(API Level 24)未満の端末で決済を試みる場合、Google Play Billing Libraryでクラッシュが発生します。
+        * この問題を解決するためには、Gradleに下位OSのための[Java 8+ APIデシュガーリングサポート](https://developer.android.com/studio/write/java8-support#library-desugaring)宣言を追加する必要があります。
+        * アプリモジュールのGradle、Unityの場合、launcherTemplate.gradleに次の宣言を追加してください。
         
                 android {
                     compileOptions {
@@ -37,26 +52,26 @@
                     // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
                 }
         
-        * Unity Editor 버전에 따라 AGP 버전이 다르므로 올바른 버전을 확인하세요.
-* 'GPGS 자동 로그인' 기능 연동시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 초기화 옵션을 추가했습니다.
+        * Unity EditorバージョンによってAGPバージョンが異なるため、正しいバージョンをご確認ください。
+* 「GPGS自動ログイン」機能連動時ユーザーにGPGSログインをアプリインストール後に一度だけ確認する初期化オプションを追加しました。
     * **GamebaseConfiguration.Builder.enableGPGSSignInCheck(boolean)**
-    * 기본 설정은 true로, 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.
-    * false로 설정하면 앱 최초 실행시에만 GPGS 로그인 창이 한번 표시됩니다.
-* 로그인 시 IdP 서버로부터 에러가 발생했음을 나타내는 신규 에러 코드가 추가되었습니다.
+    * デフォルト設定はtrueで、ユーザーがGPGSログインを拒否してもGamebase初期化時にGPGSログインウィンドウを再度表示します。
+    * falseに設定すると、アプリ初回実行時のみGPGSログインウィンドウが一度表示されます。
+* ログイン時にIdPサーバーでエラーが発生したことを示す新規エラーコードが追加されました。
     * AUTH_AUTHENTICATION_SERVER_ERROR(3012)
-* GamebaseWebView에 네비게이션 바 title 컬러와 icon tint 컬러 설정 옵션을 추가했습니다.
+* GamebaseWebViewにナビゲーションバーtitleカラーとicon tintカラー設定オプションを追加しました。
     * **GamebaseWebViewConfiguration.Builder.setNavigationBarTitleColor(int)**
     * **GamebaseWebViewConfiguration.Builder.setNavigationBarIconTintColor(int)**
 
-#### 기능 개선/변경
+#### 機能改善/変更
 
-* 'GPGS 자동 로그인' 기능 연동시 유저가 GPGS 로그인을 하지 않으면 Gamebase 초기화, 로그인, 로그아웃 시 GPGS 로그인을 계속 시도하던 동작을 Gamebase 초기화 때만 시도하도록 변경했습니다.
-* Apple ID, Steam, Twitter로그인 네비게이션 바에 title과 같은 색으로 X버튼을 표시하도록 변경했습니다.
+* 「GPGS自動ログイン」機能連動時、ユーザーがGPGSログインをしない場合、Gamebase初期化、ログイン、ログアウト時にGPGSログインを継続的に試行する動作をGamebase初期化時のみ試行するように変更しました。
+* Apple ID、Steam、Twitterログインのナビゲーションバーにタイトルと同じ色のXボタンを表示するように変更しました。
 
-#### 버그 수정
+#### バグ修正
 
-* LaunchingInfo data가 유저 Event Handler에서 업데이트 되지 않는 이슈를 수정했습니다.
-* Unity 빌드에서 이미지 공지 비율이 원본 이미지 비율과 다르게 표시되는 문제를 수정했습니다.
+* LaunchingInfo dataがユーザーEvent Handlerで更新されない問題を修正しました。
+* Unityビルドで画像告知の比率が原本画像比率と異なって表示される問題を修正しました。
 
 ### 2.69.0 (2025. 01. 21.)
 

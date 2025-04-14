@@ -504,6 +504,8 @@ Gamebaseにスキーム名とブロックを指定し、任意の機能を追加
 |                                        | TCGBWebViewContentModeMobile             | モバイルブラウザ         |
 |                                        | TCGBWebViewContentModeDesktop            | デスクトップブラウザ       |
 | navigationBarColor                     | UIColor                                  | ナビゲーションバーの色<br/>**default**: [UIColor colorWithRed: 0.07 green: 0.36 blue: 0.90 alpha: 1.00]   |
+| navigationBarTitleColor                | UIColor                                  | ナビゲーションバータイトル色<br/>**default**: UIColor.whiteColor   |
+| navigationBarIconTintColor             | UIColor                                  | ナビゲーションバーアイコン色<br/>値を設定しないと、アイコン原本画像が表示されます。<br/>**default**: nil   |
 | isBackButtonVisible                    | YES or NO                                | 戻るボタンの有効化または無効化<br/>**default**: YES |
 | isNavigationBarVisible                 | YES or NO                                | ナビゲーションバーの表示/非表示<br/>**default**：YES    |
 | goBackImagePathForFullScreenNavigation | file name in Gamebase.bundle             | 戻るボタンの画像        |

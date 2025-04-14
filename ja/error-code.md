@@ -35,6 +35,7 @@
 |                 | Android<br/>Unity<br/>iOS | AUTH\_EXTERNAL\_LIBRARY\_ERROR<br/>TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | 外部認証ライブラリエラーです。                       |
 |                 | Android<br/>Unity<br/>iOS | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR<br/>TCGB\_ERROR\_AUTH\_ALREADY\_IN\_PROGRESS\_ERROR | 3010       | 以移行認証プロセスが完了しませんでした。                 |
 |                 | Android<br/>Unity<br/>iOS | AUTH\_INVALID\_GAMEBASE\_TOKEN<br/>TCGB\_ERROR\_AUTH\_INVALID\_GAMEBASE\_TOKEN | 3011       | Gamebase Access Tokenが有効ではないためログアウトしました。<br/>ログインを再試行してください。 |
+|                 | Android<br/>Unity<br/>iOS | AUTH\_AUTHENTICATION\_SERVER\_ERROR<br/>TCGB\_ERROR\_AUTH\_AUTHENTICATION\_SERVER\_ERROR | 3012       | 認証サーバーでエラーが発生しました。|
 | TransferAccount | Android<br/>Unity<br/>iOS | SAME\_REQUESTOR<br/>TCGB\_ERROR\_SAME\_REQUESTOR | 8 | 発行したTransferKeyを同じ端末で使用しました。  |
 |                 | Android<br/>Unity<br/>iOS | NOT\_GUEST\_OR\_HAS\_OTHERS<br/>TCGB\_ERROR\_NOT\_GUEST\_OR\_HAS\_OTHERS | 9 | ゲストではないアカウントから移行しようとしたか、アカウントにゲスト以外のIdPが連携されています。 |
 |                 | Android<br/>Unity<br/>iOS | AUTH\_TRANSFERACCOUNT\_EXPIRED<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_EXPIRED | 3041 | TransferAccountの有効期限が切れました。 |

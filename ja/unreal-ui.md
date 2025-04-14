@@ -425,7 +425,9 @@ void USample::ShowWebView(const FString& Url)
 | ContentMode              | GamebaseWebViewContentMode::Recommended     | 現在のプラットフォームの推薦ブラウザ(**default**)   |
 |                          | GamebaseWebViewContentMode::Mobile          | モバイルブラウザ         |
 |                          | GamebaseWebViewContentMode::Desktop         | デスクトップブラウザ       |
-| NavigationColor          | FColor                                   | ナビゲーションバーの色<br>**default**: FColor(18, 93, 230, 255)               |
+| NavigationColor          | FColor                                   | ナビゲーションバーの色<br>**default**: FColor(18, 93, 230, 255)   |
+| NavigationTitleColor     | FColor                                   | ナビゲーションバータイトルの色<br>**default**: FColor::White          |
+| NavigationIconTintColor  | TOptional&lt;FColor&gt;                  | ナビゲーションバーアイコンティントカラー |
 | NavigationBarHeight      | height                                   | ナビゲーションバーの高さ<br>**Androidのみ**                 |
 | bIsNavigationBarVisible  | true or false                            | ナビゲーションバー有効または無効<br>**default**: true    |
 | bIsBackButtonVisible     | true or false                            | 戻るボタンの有効または無効<br>**default**: true   |
