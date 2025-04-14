@@ -27,7 +27,7 @@ public static void OpenGameNotice(GamebaseCallback.ErrorDelegate callback)
 | Error                                | Error Code | Description |
 |--------------------------------------| --- | --- |
 | NOT\_INITIALIZED                     | 1 | Gamebase가 초기화되어 있지 않습니다. |
-| UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL            | 6941 | 게임 공지 URL에 생성에 실패했습니다 |
+| UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL            | 6941 | 게임 공지 URL 생성에 실패했습니다 |
 | UI\_GAME\_NOTICE\_FAIL\_ANDROID\_DUPLICATED\_VIEW | 6942 | 게임 공지 팝업을 종료하기 전에 다시 게임 공지를 호출했습니다 |
 | WEBVIEW\_TIMEOUT                | 7002 | 웹뷰 표시 시간이 초과되었습니다.(10초) |
 | WEBVIEW\_HTTP\_ERROR                 | 7003 |  웹뷰 내부에서 HTTP 에러가 발생했습니다. |
