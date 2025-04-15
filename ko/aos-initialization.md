@@ -29,7 +29,7 @@ Gamebase를 초기화할 때, GamebaseConfiguration.Builder 객체로 Gamebase �
 | enablePopup(boolean enable)              | O                          | **[UI]**<br/>시스템 점검, 이용 제재(ban) 등 게임 유저가 게임을 플레이할 수 없는 상황에서 팝업 창 등으로 사유를 표시해야 할 때가 있습니다.<br/>**true**로 설정하면 Gamebase가 해당 상황에서 정보 팝업 창을 자동으로 표시합니다.<br/>기본값은 **false**입니다.<br/>**false** 상태에서는 론칭 결과를 통해 정보를 획득한 후 자체 UI를 구현해 게임을 플레이할 수 없는 이유를 표시해 주시기 바랍니다. |
 | enableLaunchingStatusPopup(boolean enable) | O                          | **[UI]**<br/>론칭 결과에 따라 로그인할 수 없는 상태에서(주로 점검 상태) Gamebase가 자동으로 팝업 창을 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup(true)** 상태에서만 동작합니다.<br/>기본값은 **true**입니다. |
 | enableBanPopup(boolean enable)           | O                          | **[UI]**<br/>게임 유저가 이용 제재를 당한 상태일 때 Gamebase가 자동으로 제재 사유를 팝업 창으로 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup(true)** 상태에서만 동작합니다.<br/>기본값은 **true**입니다. |
-| enableGPGSSignInCheck(boolean enable)    | O                          | 'GPGS 자동 로그인' 기능 연동시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어볼지, Gamebase 초기화 때마다 확인할지 선택합니다.<br/>**true**로 설정하면 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.<br/>**false**로 설정하면 앱 최초 실행시에만 GPGS 로그인 창이 한번 표시되고, 거부하더라도 다시 표시되지 않습니다. GPGS 로그인을 다시 하기 위해서는 **Play 게임즈** 어플리케이션에서 설정해야 합니다.<br/>기본값은 **true**입니다. |
+| enableGPGSSignInCheck(boolean enable)    | O                          | 'GPGS 자동 로그인' 기능 연동 시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어볼지, Gamebase 초기화 때마다 확인할지 선택합니다.<br/>**true**로 설정하면 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.<br/>**false**로 설정하면 앱 최초 실행 시에만 GPGS 로그인 창이 한번 표시되고, 거부하더라도 다시 표시되지 않습니다. GPGS 로그인을 다시 하기 위해서는 **Google Play Games** 애플리케이션에서 설정해야 합니다.<br/>기본값은 **true**입니다. |
 
 ### Debug Mode
 * Gamebase는 경고(warning)와 오류 로그만을 표시합니다.

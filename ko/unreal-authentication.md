@@ -129,6 +129,11 @@ Gamebase는 게스트 로그인을 지원합니다.
 * 디바이스의 유일한 키를 생성하여 Gamebase에 로그인을 시도합니다.
 * 게스트 로그인은 디바이스 키는 초기화될 수 있고 디바이스 키의 초기화 시에 계정이 삭제될 수 있으므로 IdP를 활용한 로그인 방식을 권장합니다.
 
+> <font color="red">[주의]</font><br/>
+>
+> Windows 환경에서는 GUEST 로그인은 개발 용도로 제공되었기 때문에 실제 게임에서 사용하실 때 주의하셔야 합니다.
+>
+
 **API**
 
 Supported Platforms
@@ -1247,7 +1252,7 @@ void USample::Login()
 |                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 외부 인증 라이브러리 오류입니다. <br/>상세 오류를 확인하십시오. |
 |                | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR       | 3010       | 이전 인증 프로세스가 완료되지 않았습니다. |
 |                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | Gamebase Access Token이 유효하지 않아 로그아웃되었습니다.<br/>로그인을 다시 시도하십시오. |
-|                | AUTH\_AUTHENTICATION\_SERVER\_ERROR      | 3012       | 인증 서버로부터 에러가 발생했습니다. |
+|                | AUTH\_AUTHENTICATION\_SERVER\_ERROR      | 3012       | 인증 서버로부터 오류가 발생했습니다. |
 | TransferAccount| SAME\_REQUESTOR                          | 8          | 발급한 TransferAccount를 동일한 단말기에서 사용했습니다. |
 |                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IdP가 연동되어 있습니다. |
 |                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | TransferAccount의 유효 기간이 만료됐습니다. |

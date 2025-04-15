@@ -1,29 +1,57 @@
 ## Game > Gamebase > リリースノート > Unreal
 
-### 2.70.0 (2025. 3. 11.)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.0/GamebaseSDK-Unreal.zip)
+### 2.71.0 (2025. 4. 15.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.0/GamebaseSDK-Unreal.zip)
 
 #### 기능 추가
 
-* 로그인 시 IdP 서버로부터 에러가 발생했음을 나타내는 신규 에러 코드가 추가되었습니다.
-    * AUTH_AUTHENTICATION_SERVER_ERROR(3012)
-* WebView에 네비게이션 바 title 컬러와 icon tint 컬러 설정 옵션을 추가했습니다.
-    * `FGamebaseWebViewConfiguration::NavigationBarTitleColor`
-    * `FGamebaseWebViewConfiguration::NavigationBarIconTintColor`
-* (Android) 'GPGS 자동 로그인' 기능 연동시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 초기화 옵션을 추가했습니다.
-    * `FGamebaseConfiguration::bEnableGPGSSignInCheck`
-    * 기본 설정은 true로, 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.
-    * false로 설정하면 앱 최초 실행시에만 GPGS 로그인 창이 한번 표시됩니다.
+* '게임 공지' 신규 기능이 추가되었습니다.
+    * API 호출 방법은 다음 가이드 문서를 참고하시기 바랍니다.
+        * [Game > Gamebase > Unreal SDK 사용 가이드 > UI > GameNotice](./unreal-ui/#gamenotice)
+* (Windows) Google Play Games 지원을 위한 Google 결제 기능이 추가되었습니다.
+    * [Windows 설정 툴](./unreal-started/#windows-settings) 내 Windows Store 설정에서 `Google Play Store`가 추가되었습니다.
 
 #### 기능 개선/변경
 
-* 내부 로직을 개선하였습니다.
+* (Windows) 시스템 설정에서 '지역 > 국가 또는 지역'를 바탕으로 CountryCode를 생성하도록 수정했습니다.
+    * 변경 전에는 엔진에서 제공하는 `FInternationalization::Get().GetDefaultCulture()`를 통해 '지역 > 사용지역 언어' 정보를 가져왔습니다.
 
 #### 버그 수정
 
-* (Windows) 로그인 시 FGamebaseVariantMap로 추가 정보를 받는 경우 크래시가 발생하지 않도록 수정했습니다.
+* (Windows) WebView를 열고 프로그램 종료 시 크래시가 발생하지 않도록 수정했습니다.
+* (Windows) 엔진에 포함된 Steamworks 모듈을 에디터에서 사용할 수 없으므로 Steam 인증 및 결제 기능을 에디터에서 사용할 수 없도록 수정했습니다.
+* (Windows) 로그 전송 필터링이 정상적으로 동작하지 않는 문제가 수정되었습니다.
+* 내부 로직을 개선했습니다.
 
 #### 플랫폼별 변경 사항
+
+* [Gamebase Android SDK 2.71.0](./release-notes-android/#2710-2025-04-15)
+* [Gamebase iOS SDK 2.71.0](./release-notes-ios/#2710-2025-04-15)
+
+### 2.70.0 (2025. 3. 11.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.0/GamebaseSDK-Unreal.zip)
+
+#### 機能追加
+
+* ログイン時にIdPサーバーでエラーが発生したことを示す新規エラーコードが追加されました。
+    * AUTH_AUTHENTICATION_SERVER_ERROR(3012)
+* WebViewにナビゲーションバーtitleカラーとicon tintカラー設定オプションを追加しました。
+    * `FGamebaseWebViewConfiguration::NavigationBarTitleColor`
+    * `FGamebaseWebViewConfiguration::NavigationBarIconTintColor`
+* (Android) 「GPGS自動ログイン」機能連動時、ユーザーにGPGSログインをアプリインストール後に一度だけ確認する初期化オプションを追加しました。
+    * `FGamebaseConfiguration::bEnableGPGSSignInCheck`
+    * 基本設定はtrueで、ユーザーがGPGSログインを拒否してもGamebase初期化時にGPGSログインウィンドウを再度表示します。
+    * falseに設定すると、アプリ初回実行時にのみGPGSログインウィンドウが一度表示されます。
+
+#### 機能改善/変更
+
+* 内部ロジックを改善しました。
+
+#### バグ修正
+
+* (Windows)ログイン時にFGamebaseVariantMapで追加情報を受け取る場合、クラッシュが発生しないように修正しました。
+
+#### プラットフォーム別の変更事項
 
 * [Gamebase Android SDK 2.70.0](./release-notes-android/#2700-2025-03-11)
 * [Gamebase iOS SDK 2.70.0](./release-notes-ios/#2700-2025-03-11)
@@ -31,25 +59,25 @@
 ### 2.69.1 (2025. 3. 4.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.69.1/GamebaseSDK-Unreal.zip)
 
-#### 기능 추가
+#### 機能追加
 
-* 런칭 정보에서 약관 정보를 확인할 수 있도록 추가했습니다.
+* ローンチ情報で約款情報を確認できるように追加しました。
     * FGamebaseLaunchingInfo::FApp::FTermsService
 
-#### 기능 개선/변경
+#### 機能改善/変更
 
-* API 호출 시 매개변수로 전달받는 `UGamebaseJsonObject`를 `FGamebaseVariantMap(TMap<FName, FVariant>)`으로 변경했습니다.
-* 내부 로직을 개선하였습니다.
+* API呼び出し時にパラメータとして渡す`UGamebaseJsonObject`を`FGamebaseVariantMap(TMap<FName, FVariant>)`に変更しました。
+* 内部ロジックを改善しました。
 
-#### 버그 수정
+#### バグ修正
 
-* (Windows) 게스트 로그인 시 UUID 발급 과정 오류로 인해 모두 동일한 값이 생성되는 문제를 수정했습니다.
-* (Windows) Line IDP 로그인 시 region 설정이 동작하지 않는 문제를 수정했습니다.
-* (Windows) 킥아웃 시 ServerPushAppKickOut 이벤트 발생과 팝업이 노출되지 않는 문제를 수정했습니다.
-* (Windows) 심볼 생성 시 엔진의 Build Configuration이 Development가 아닌 경우 오류가 발생하는 문제를 수정했습니다.
-* (Android) 환경에 따라 RegisterPush가 동작하지 않는 문제를 수정했습니다.
+* (Windows)ゲストログイン時、UUID発行過程のエラーにより全て同じ値が作成される問題を修正しました。
+* (Windows) Line IDPログイン時にregion設定が動作しない問題を修正しました。
+* (Windows)キックアウト時にServerPushAppKickOutイベントが発生し、ポップアップが表示されない問題を修正しました。
+* (Windows)シンボル作成時エンジンのBuild ConfigurationがDevelopmentではない場合、エラーが発生する問題を修正しました。
+* (Android)環境によってRegisterPushが動作しない問題を修正しました。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 
 * [Gamebase Android SDK 2.69.0](./release-notes-android/#2690-2025-01-21)
 * [Gamebase iOS SDK 2.69.0](./release-notes-ios/#2690-2025-01-21)

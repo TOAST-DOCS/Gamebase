@@ -24,6 +24,7 @@ Gamebase APIを使用するには、次のヘッダファイルをインクル�
 | bEnablePopup | ALL | O |
 | bEnableLaunchingStatusPopup | ALL | O |
 | bEnableBanPopup | ALL | O |
+| bEnableGPGSSignInCheck | Android | O |
 
 #### 1. AppID
 
@@ -74,12 +75,13 @@ LaunchingStatusは、下記Launching項目下のState、Code部分を参照し�
 
 * デフォルト値：true
 
-#### 8. enableKickoutPopup
+#### 7. bEnableGPGSSignInCheck
 
-Gamebase ServerからKickoutイベントを受け取った場合、Gamebaseで提供する基本ポップアップを使用するかどうかの設定です。
+Androidプラットフォームで「GPGS自動ログイン」機能連動時、ユーザーにGPGSログインをアプリインストール後に一度だけ確認する設定です。
 
-* デフォルト値：true
-
+* true:ユーザーがGPGSログインを拒否してもGamebase初期化時にGPGSログインウィンドウを再度表示します。
+* false:アプリ初回実行時にのみGPGSログインウィンドウが一度表示されます。
+* デフォルト値: true
 
 ### Debug Mode
 
