@@ -50,6 +50,7 @@
         
         * desugar_jdk_libs 1.x 버전은 Kakaogame 로그인시 크래시가 발생하므로 2.x 버전 적용을 권장합니다.
             * Unity Editor 버전에 따라 AGP 버전이 다르므로 AGP 및 Gradle 버전 업데이트가 필요할 수 있습니다.
+
 * 'GPGS 자동 로그인' 기능 연동 시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 초기화 옵션을 추가했습니다.
     * **GamebaseConfiguration.Builder.enableGPGSSignInCheck(boolean)**
     * 기본 설정은 true로, 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.
