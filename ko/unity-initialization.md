@@ -157,7 +157,7 @@ public class SampleInitialization
          */
         var configuration = new GamebaseRequest.GamebaseConfiguration();
         configuration.appID = "appID";
-        configuration.appVersion = "appVersion;"
+        configuration.appVersion = "appVersion";
         configuration.displayLanguageCode = GamebaseDisplayLanguageCode.English;
     #if UNITY_ANDROID
         configuration.storeCode = GamebaseStoreCode.GOOGLE;

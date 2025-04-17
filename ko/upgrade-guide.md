@@ -16,15 +16,12 @@
             }
 
             dependencies {
-                // If AGP 4.0 to 7.2
-                coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.9")
-                // If AGP 7.3
-                // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.3")
-                // If AGP 7.4+
-                // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+                // desugar_jdk_libs 2.+ needs AGP 7.4+
+                coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
             }
     
-    * Unity Editor 버전에 따라 AGP 버전이 다르므로 올바른 버전을 확인하세요.
+    * desugar_jdk_libs 1.x 버전은 Kakaogame 로그인시 크래시가 발생하므로 2.x 버전 적용을 권장합니다.
+        * Unity Editor 버전에 따라 AGP 버전이 다르므로 AGP 및 Gradle 버전 업데이트가 필요할 수 있습니다.
 
 ## 2.69.0
 

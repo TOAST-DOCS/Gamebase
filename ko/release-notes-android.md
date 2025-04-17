@@ -1,5 +1,20 @@
 ## Game > Gamebase > 릴리스 노트 > Android
 
+### 2.71.0 (2025. 04. 15.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.0/GamebaseSDK-Android.zip)
+
+#### 기능 추가
+
+* '게임 공지' 신규 기능이 추가되었습니다.
+    * Gamebase.GameNotice.openGameNotice(Activity activity, GamebaseCallback onCloseCallback);
+    * API 호출 방법은 다음 가이드 문서를 참고하시기 바랍니다.
+        * [Game > Gamebase > Android SDK 사용 가이드 > UI > GameNotice](./aos-ui/#gamenotice)
+
+#### 기능 개선/변경
+
+* storeCode를 null로 설정하여 Gamebase 초기화를 호출했을 때 예외가 발생하는 대신 **INVALID_PARAMETER(3)** 에러를 리턴하도록 동작을 변경했습니다.
+
 ### 2.70.1 (2025. 03. 13.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.1/GamebaseSDK-Android.zip)
@@ -29,26 +44,20 @@
                 }
 
                 dependencies {
-                    // If AGP 4.0 to 7.2
-                    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.9")
-                    // If AGP 7.3
-                    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.3")
-                    // If AGP 7.4+
-                    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+                    // desugar_jdk_libs 2.+ needs AGP 7.4+
+                    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
                 }
         
-        * Unity Editor 버전에 따라 AGP 버전이 다르므로 올바른 버전을 확인하세요.
-* 'GPGS 자동 로그인' 기능 연동 시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 초기화 옵션을 추가했습니다.
+        * desugar_jdk_libs 1.x 버전은 Kakaogame 로그인시 크래시가 발생하므로 2.x 버전 적용을 권장합니다.
+            * Unity Editor 버전에 따라 AGP 버전이 다르므로 AGP 및 Gradle 버전 업데이트가 필요할 수 있습니다.
 
+* 'GPGS 자동 로그인' 기능 연동 시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 초기화 옵션을 추가했습니다.
     * **GamebaseConfiguration.Builder.enableGPGSSignInCheck(boolean)**
     * 기본 설정은 true로, 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.
     * false로 설정하면 앱 최초 실행 시에만 GPGS 로그인 창이 한번 표시됩니다.
-
 * 로그인 시 IdP 서버로부터 오류가 발생했음을 나타내는 신규 오류 코드가 추가되었습니다.
-
     * AUTH_AUTHENTICATION_SERVER_ERROR(3012)
 * GamebaseWebView에 내비게이션 바 타이틀과 아이콘 틴트 컬러 설정 옵션을 추가했습니다.
-
     * **GamebaseWebViewConfiguration.Builder.setNavigationBarTitleColor(int)**
     * **GamebaseWebViewConfiguration.Builder.setNavigationBarIconTintColor(int)**
 
@@ -61,7 +70,6 @@
 #### 버그 수정
 
 * LaunchingInfo data가 유저 Event Handler에서 업데이트되지 않는 이슈를 수정했습니다.
-
 * Unity 빌드에서 이미지 공지 비율이 원본 이미지 비율과 다르게 표시되는 문제를 수정했습니다.
 
 ### 2.69.0 (2025. 01. 21.)

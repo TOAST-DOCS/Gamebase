@@ -94,6 +94,8 @@
 |                 | Android<br/>Unity<br/>iOS | UI\_TERMS\_UNREGISTERED\_SEQ<br/>TCGB\_ERROR\_UI\_TERMS\_UNREGISTERED\_SEQ | 6923       | 등록되지 않은 약관 Seq 값입니다.            |
 |                 | Android<br/>Unity<br/>iOS | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR<br/>TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924       | Terms API 호출이 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
 |                 | Android<br/>Unity         | UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925       | 약관 웹뷰가 종료되지 않은 상태에서 다시 호출되었습니다. |
+|                 | Android<br/>Unity<br/>iOS | UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL<br/>TCGB\_ERROR\_UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL       | 6941 | 게임 공지 URL에 생성에 실패했습니다. |
+|                 | Android<br/>Unity         | UI\_GAME\_NOTICE\_FAIL\_ANDROID\_DUPLICATED\_VIEW | 6942       | 게임 공지 팝업을 종료하기 전에 다시 게임 공지를 호출했습니다. |
 |                 | Android<br/>Unity<br/>iOS | UI\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_UI\_UNKNOWN\_ERROR | 6999       | 알 수 없는 오류입니다(정의되지 않은 오류).            |
 | WebView         | Android<br/>Unity<br/>iOS | WEBVIEW\_INVALID\_URL<br/>TCGB\_ERROR\_WEBVIEW\_INVALID\_URL           | 7001       | 잘못된 URL입니다.            |
 |                 | Android<br/>Unity<br/>iOS | WEBVIEW\_TIMEOUT<br/>TCGB\_ERROR\_WEBVIEW\_TIMEOUT                     | 7002       | 웹뷰 표시 중 시간이 초과되었습니다.            |
