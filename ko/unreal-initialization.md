@@ -45,12 +45,13 @@ NHN Cloud 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 초기화하
 | Store       | Code | GamebaseStoreCode | Description  |
 | ----------- | ---- | ------------ | ------------ |
 | App Store | AS | GamebaseStoreCode::AppStore | iOS에 한함 |
-| Google Play | GG | GamebaseStoreCode::Google | Android에 한함 |
+| Google Play | GG | GamebaseStoreCode::Google | Android, Windows에 한함 |
 | One Store | ONESTORE | GamebaseStoreCode::OneStore | Android에 한함 |
 | Galaxy Store | GALAXY | GamebaseStoreCode::Galaxy | Android에 한함 |
 | Amazon Appstore | AMAZON | GamebaseStoreCode::Amazon | Android에 한함 |
 | Huawei AppGallery | HUAWEI | GamebaseStoreCode::Huawei | Android에 한함 |
 | MyCard | MYCARD | GamebaseStoreCode::MyCard | Android에 한함 |
+| Windows Custom | WIN | GamebaseStoreCode::Windows | Windows에 한함 |
 | Epic Games Store | EPIC | GamebaseStoreCode::Epic | Windows에 한함 |
 | Steam | STEAM | GamebaseStoreCode::Steam | Windows에 한함 |
 
