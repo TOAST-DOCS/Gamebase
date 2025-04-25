@@ -9,11 +9,11 @@
     * API 호출 방법은 다음 가이드 문서를 참고하시기 바랍니다.
         * [Game > Gamebase > Unreal SDK 사용 가이드 > UI > GameNotice](./unreal-ui/#gamenotice)
 * (Windows) Google Play Games 지원을 위한 Google 결제 기능이 추가되었습니다.
-    * [Windows 설정 툴](./unreal-started/#windows-settings) 내 Windows Store 설정에서 `Google Play Store`가 추가되었습니다.
+    * [Windows 설정 툴](./unreal-started/#windows-settings) 내 Windows Store 설정에 `Google Play Store`가 추가되었습니다.
 
 #### 기능 개선/변경
 
-* (Windows) 시스템 설정에서 '지역 > 국가 또는 지역'를 바탕으로 CountryCode를 생성하도록 수정했습니다.
+* (Windows) 시스템 설정에서 '지역 > 국가 또는 지역'을 바탕으로 CountryCode를 생성하도록 수정했습니다.
     * 변경 전에는 엔진에서 제공하는 `FInternationalization::Get().GetDefaultCulture()`를 통해 '지역 > 사용지역 언어' 정보를 가져왔습니다.
 
 #### 버그 수정
