@@ -841,6 +841,7 @@ Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
+void RequestLastLoggedInProvider(const FGamebaseLastLoggedInProviderDelegate& Callback) const;
 FString GetLastLoggedInProvider() const;
 ```
 
@@ -849,7 +850,20 @@ FString GetLastLoggedInProvider() const;
 void USample::GetLastLoggedInProvider()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    
+    // Obtaining Last Logged In Provider - Sync
     FString LastLoggedInProvider = Subsystem->GetLastLoggedInProvider();
+    
+    // Obtaining Last Logged In Provider - Async
+    // If GetLastLoggedInProvider() returns 'NOT_INITIALIZED_YET',
+    // use the following async function instead:
+    Subsystem->RequestLastLoggedInProvider(FGamebaseLastLoggedInProviderDelegate::CreateLambda([=](const FString& lastLoggedInProviderAsync, const FGamebaseError* Error)
+    {
+        if (Gamebase::IsSuccess(Error))
+        {
+            UE_LOG(GamebaseTestResults, Display, TEXT("LastLoggedInProvider: %s"), *lastLoggedInProviderAsync);
+        }
+    }));    
 }
 ```
 
@@ -1238,6 +1252,7 @@ void USample::Login()
 |                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | 外部認証ライブラリエラーです。 <br/>詳細エラーを確認してください。 |
 |                | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR       | 3010       | 以前の認証プロセスが完了していません。 |
 |                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | Gamebase Access Tokenが有効ではないためログアウトしました。<br/>もう一度ログインを行ってください。 |
+|                | AUTH\_AUTHENTICATION\_SERVER\_ERROR      | 3012       | 認証サーバーでエラーが発生しました。|
 | TransferAccount| SAME\_REQUESTOR                          | 8          | 発行したTransferAccountを同じ端末で使用しました。 |
 |                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | ゲストではないアカウントで移行を試行したか、アカウントにゲスト以外のIdPが連携されています。 |
 |                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | TransferAccountの有効期限が切れました。 |

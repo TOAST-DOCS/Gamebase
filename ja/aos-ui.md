@@ -202,7 +202,6 @@ Gamebaseは単純な形式のWebビューで約款を表示します。
 >
 > * GamebaseTermsContentDetail.getRequired()がtrueの必須項目は同意有無をGamebaseサーバーに保存しないため、agreed値は常にfalseが返されます。
 >     * 約款必須項目に同意していない場合、ゲーム進行やゲームログインができないため、約款ポップアップが閉じていてログインしている状態であれば、当然、約款必須項目に同意したのと同じです。そのため、ログインしたユーザーはすでに必須項目に全て同意した状態なので、同意の有無を保存する必要はありません。
-
 > * プッシュ受信同意有無もGamebaseサーバーに保存されないため、agreed値は常にfalseが返されます。
 >     * プッシュ受信同意有無は、Gamebase.Push.queryTokenInfo APIを介して照会してください。
 > * コンソールで「基本約款設定」をしない場合、約款言語と異なる国コードで設定された端末からqueryTerms APIを呼び出した場合、**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**エラーが発生します。
@@ -434,9 +433,15 @@ GamebaseWebViewConfigurationでユーザーが指定したWebViewを作成する
 GamebaseWebViewConfiguration configuration
         = new GamebaseWebViewConfiguration.Builder()
             .setTitleText("title")                              // WebViewタイトルを設定
-            .setScreenOrientation(ScreenOrientation.PORTRAIT)   // WebViewのスクリーン方向を設定
-            .setNavigationBarColor(Color.RED)                   // ナビゲーションバーの色を設定
-            .setNavigationBarHeight(40)                         // ナビゲーションバーの高さを設定
+            .setScreenOrientation(ScreenOrientation.PORTRAIT)   // WebViewのスクリーン方向を設定            
+            .setNavigationBarColor(Color.RED)                   // ナビゲーションバーの色設定
+
+            .setNavigationBarTitleColor(Color.BLACK)            // ナビゲーションバータイトル色設定
+
+            .setNavigationBarIconTintColor(Color.BLACK)         // ナビゲーションバーアイコンティントカラー設定
+
+            .setNavigationBarHeight(40)                         // ナビゲーションバーの高さ設定
+            
             .setBackButtonVisible(true)                         // 戻るボタンを有効にするかどうかを設定
             .setBackButtonImageResource(R.id.back_button)       // 戻るボタンの画像を設定
             .setCloseButtonImageResource(R.id.close_button)     // 閉じるボタンの画像を設定
@@ -508,7 +513,9 @@ showWebView(activity, urlString, configuration,
 |                                          | ScreenOrientation.LANDSCAPE         | 横モード          |
 |                                          | ScreenOrientation.LANDSCAPE_REVERSE | 横モードを180度回転 |
 | setNavigationBarVisible(boolean enable)  | true or false                       | ナビゲーションバーの有効または無効<br>**default**: true |
-| setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | ナビゲーションバーの色     |
+| setNavigationBarColor(int color)         | Color.argb(a, r, g, b)              | ナビゲーションバーの色<br>**default**:#125DE6  |
+| setNavigationBarTitleColor(int color)    | Color.argb(a, r, g, b)              | ナビゲーションバータイトル色<br>**default**: Color.WHITE  |
+| setNavigationBarIconTintColor(int color) | Color.argb(a, r, g, b)              | ナビゲーションバーアイコンティントカラー<br>**default**:ティントを設定しない  |
 | setNavigationBarHeight(int height)       | height                              | ナビゲーションバーの高さ     |
 | setBackButtonVisible(boolean visible)    | true or false                       | 戻るボタンの有効または無効<br>**default**: true |
 | setBackButtonImageResource(int resourceId) | ID of resource                      | 戻るボタンの画像       |

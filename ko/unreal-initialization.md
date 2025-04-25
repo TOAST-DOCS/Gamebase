@@ -23,6 +23,7 @@ Gamebase API를 사용하기 위해서는 다음의 헤더 파일을 가져옵�
 | bEnablePopup | ALL | O |
 | bEnableLaunchingStatusPopup | ALL | O |
 | bEnableBanPopup | ALL | O |
+| bEnableGPGSSignInCheck | Android | O |
 
 #### 1. AppID
 
@@ -44,12 +45,13 @@ NHN Cloud 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 초기화하
 | Store       | Code | GamebaseStoreCode | Description  |
 | ----------- | ---- | ------------ | ------------ |
 | App Store | AS | GamebaseStoreCode::AppStore | iOS에 한함 |
-| Google Play | GG | GamebaseStoreCode::Google | Android에 한함 |
+| Google Play | GG | GamebaseStoreCode::Google | Android, Windows에 한함 |
 | One Store | ONESTORE | GamebaseStoreCode::OneStore | Android에 한함 |
 | Galaxy Store | GALAXY | GamebaseStoreCode::Galaxy | Android에 한함 |
 | Amazon Appstore | AMAZON | GamebaseStoreCode::Amazon | Android에 한함 |
 | Huawei AppGallery | HUAWEI | GamebaseStoreCode::Huawei | Android에 한함 |
 | MyCard | MYCARD | GamebaseStoreCode::MyCard | Android에 한함 |
+| Windows Custom | WIN | GamebaseStoreCode::Windows | Windows에 한함 |
 | Epic Games Store | EPIC | GamebaseStoreCode::Epic | Windows에 한함 |
 | Steam | STEAM | GamebaseStoreCode::Steam | Windows에 한함 |
 
@@ -73,6 +75,14 @@ LaunchingStatus는 아래 Launching 절 아래 State, Code 부분을 참고하�
 
 로그인 시 해당 게임 유저가 이용 정지 상태인 경우, Gamebase에서 제공하는 기본 팝업 창을 사용할 것인지에 대한 설정입니다.
 
+* 기본값: true
+
+#### 7. bEnableGPGSSignInCheck
+
+Android 플랫폼에서 'GPGS 자동 로그인' 기능 연동 시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 설정입니다.
+
+* true: 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.
+* false: 앱 최초 실행 시에만 GPGS 로그인 창이 한번 표시됩니다.
 * 기본값: true
 
 ### Debug Mode

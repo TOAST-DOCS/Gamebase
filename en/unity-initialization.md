@@ -16,6 +16,7 @@ Following settings are required for initialization.
 | enableLaunchingStatusPopup | ALL | O |
 | enableBanPopup | ALL | O |
 | useWebViewLogin | Standalone | O |
+| enableGPGSSignInCheck | Android | O | 
 
 #### 1. App ID
 
@@ -76,6 +77,14 @@ This setting is related to applying default pop-ups provided by Gamebase, when t
 #### 8. useWebViewLogin
 
 Set whether or not to log in to WebView on a (Standalone) platform.
+
+#### 9. enableGPGSSignInCheck
+
+Android 플랫폼에서 'GPGS 자동 로그인' 기능 연동시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 설정입니다.
+
+* true : 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.
+* false : 앱 최초 실행시에만 GPGS 로그인 창이 한번 표시됩니다.
+* 기본값: true
 
 ### Debug Mode
 * Gamebase only displays the (warning) and error log.
@@ -148,7 +157,7 @@ public class SampleInitialization
          */
         var configuration = new GamebaseRequest.GamebaseConfiguration();
         configuration.appID = "appID";
-        configuration.appVersion = "appVersion;"
+        configuration.appVersion = "appVersion";
         configuration.displayLanguageCode = GamebaseDisplayLanguageCode.English;
     #if UNITY_ANDROID
         configuration.storeCode = GamebaseStoreCode.GOOGLE;

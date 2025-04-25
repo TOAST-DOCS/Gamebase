@@ -422,13 +422,15 @@ void USample::ShowWebView(const FString& Url)
 |                          | GamebaseScreenOrientation::Portrait      | 縦モード                     |
 |                          | GamebaseScreenOrientation::Landscape     | 横モード                     |
 |                          | GamebaseScreenOrientation::LandscapeReverse | 横モードを180度回転              |
-| ContentMode              | GamebaseWebViewContentMode::Recommended        | 現在のプラットフォームの推薦ブラウザ(**default**)   |
-|                          | GamebaseWebViewContentMode::Mobile             | モバイルブラウザ         |
-|                          | GamebaseWebViewContentMode::Desktop            | デスクトップブラウザ       |
-| NavigationColor          | FColor                                   | ナビゲーションバーの色<br>**default**: FColor(18, 93, 230, 255)               |
+| ContentMode              | GamebaseWebViewContentMode::Recommended     | 現在のプラットフォームの推薦ブラウザ(**default**)   |
+|                          | GamebaseWebViewContentMode::Mobile          | モバイルブラウザ         |
+|                          | GamebaseWebViewContentMode::Desktop         | デスクトップブラウザ       |
+| NavigationColor          | FColor                                   | ナビゲーションバーの色<br>**default**: FColor(18, 93, 230, 255)   |
+| NavigationTitleColor     | FColor                                   | ナビゲーションバータイトルの色<br>**default**: FColor::White          |
+| NavigationIconTintColor  | TOptional&lt;FColor&gt;                  | ナビゲーションバーアイコンティントカラー |
 | NavigationBarHeight      | height                                   | ナビゲーションバーの高さ<br>**Androidのみ**                 |
-| bIsNavigationBarVisible   | true or false                            | ナビゲーションバー有効または無効<br>**default**: true    |
-| bIsBackButtonVisible      | true or false                            | 戻るボタンの有効または無効<br>**default**: true   |
+| bIsNavigationBarVisible  | true or false                            | ナビゲーションバー有効または無効<br>**default**: true    |
+| bIsBackButtonVisible     | true or false                            | 戻るボタンの有効または無効<br>**default**: true   |
 | BackButtonImageResource  | ID of resource                           | 戻るボタンの画像        |
 | CloseButtonImageResource | ID of resource                           | 閉じるボタンの画像            |
 | bEnableFixedFontSize      | true or false                            | 約款ウィンドウの文字サイズを固定するかどうかを決定します。<br>**default**: false<br>**Androidのみ**     |

@@ -1,5 +1,29 @@
 ## Game > Gamebase > 릴리스 노트 > Android
 
+### 2.71.0 (2025. 04. 15.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.0/GamebaseSDK-Android.zip)
+
+#### 기능 추가
+
+* '게임 공지' 신규 기능이 추가되었습니다.
+    * Gamebase.GameNotice.openGameNotice(Activity activity, GamebaseCallback onCloseCallback);
+    * API 호출 방법은 다음 가이드 문서를 참고하시기 바랍니다.
+        * [Game > Gamebase > Android SDK 사용 가이드 > UI > GameNotice](./aos-ui/#gamenotice)
+
+#### 기능 개선/변경
+
+* storeCode를 null로 설정하여 Gamebase 초기화를 호출했을 때 예외가 발생하는 대신 **INVALID_PARAMETER(3)** 에러를 리턴하도록 동작을 변경했습니다.
+
+### 2.70.1 (2025. 03. 13.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.1/GamebaseSDK-Android.zip)
+
+#### 버그 수정
+
+* Apple ID, Steam, Twitter 로그인 내비게이션 바의 X 버튼 사이즈를 재조정했습니다.
+* Kotlin 파일에서 AuthProvider의 IdP constant(예: AuthProvider.GUEST 등)를 참조할 수 없는 문제를 수정했습니다.
+
 ### 2.70.0 (2025. 03. 11.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.0/GamebaseSDK-Android.zip)
@@ -7,25 +31,46 @@
 #### 기능 추가
 
 * 외부 SDK 업데이트: NHN Cloud SDK(1.9.5)
-    * Google billing client version 7.1.1이 적용되었습니다.
-* 'GPGS 자동 로그인' 기능 연동시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 초기화 옵션을 추가했습니다.
+    * Google Play Billing Library 7.1.1이 적용되었습니다.
+    * Android 7.0(API Level 24) 미만 단말기에서 결제를 시도하는 경우 Google Play Billing Library에서 크래시가 발생합니다.
+        * 이 문제를 해결하기 위해서는 Gradle에 하위 OS를 위한 [Java 8+ API 디슈가링 지원](https://developer.android.com/studio/write/java8-support#library-desugaring) 선언을 추가해야 합니다.
+        * 앱 모듈의 Gradle, Unity의 경우 launcherTemplate.gradle에 다음 선언을 추가하세요.
+        
+                android {
+                    compileOptions {
+                        // Flag to enable support for the new language APIs
+                        coreLibraryDesugaringEnabled true
+                    }
+                }
+
+                dependencies {
+                    // desugar_jdk_libs 2.+ needs AGP 7.4+
+                    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
+                }
+        
+        * desugar_jdk_libs 1.x 버전은 Kakaogame 로그인 시 크래시가 발생하므로 2.x 버전 적용을 권장합니다.
+
+            * Unity Editor 버전에 따라 AGP 버전이 다르므로 AGP 및 Gradle 버전 업데이트가 필요할 수 있습니다.
+
+* 'GPGS 자동 로그인' 기능 연동 시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 초기화 옵션을 추가했습니다.
     * **GamebaseConfiguration.Builder.enableGPGSSignInCheck(boolean)**
     * 기본 설정은 true로, 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.
-    * false로 설정하면 앱 최초 실행시에만 GPGS 로그인 창이 한번 표시됩니다.
-* 로그인 시 IdP 서버로부터 에러가 발생했음을 나타내는 신규 에러 코드가 추가되었습니다.
+    * false로 설정하면 앱 최초 실행 시에만 GPGS 로그인 창이 한번 표시됩니다.
+* 로그인 시 IdP 서버로부터 오류가 발생했음을 나타내는 신규 오류 코드가 추가되었습니다.
     * AUTH_AUTHENTICATION_SERVER_ERROR(3012)
-* GamebaseWebView에 네비게이션 바 title 컬러와 icon tint 컬러 설정 옵션을 추가했습니다.
+* GamebaseWebView에 내비게이션 바 타이틀과 아이콘 틴트 컬러 설정 옵션을 추가했습니다.
     * **GamebaseWebViewConfiguration.Builder.setNavigationBarTitleColor(int)**
     * **GamebaseWebViewConfiguration.Builder.setNavigationBarIconTintColor(int)**
 
 #### 기능 개선/변경
 
 * 'GPGS 자동 로그인' 기능 연동시 유저가 GPGS 로그인을 하지 않으면 Gamebase 초기화, 로그인, 로그아웃 시 GPGS 로그인을 계속 시도하던 동작을 Gamebase 초기화 때만 시도하도록 변경했습니다.
-* Apple ID, Steam, Twitter로그인 네비게이션 바에 title과 같은 색으로 X버튼을 표시하도록 변경했습니다.
+* Apple ID, Steam, Twitter 로그인 내비게이션 바에 타이틀과 같은 색으로 X 버튼을 표시하도록 변경했습니다.
+
 
 #### 버그 수정
 
-* LaunchingInfo data가 유저 Event Handler에서 업데이트 되지 않는 이슈를 수정했습니다.
+* LaunchingInfo data가 유저 Event Handler에서 업데이트되지 않는 이슈를 수정했습니다.
 * Unity 빌드에서 이미지 공지 비율이 원본 이미지 비율과 다르게 표시되는 문제를 수정했습니다.
 
 ### 2.69.0 (2025. 01. 21.)
@@ -47,18 +92,14 @@
 #### 기능 개선/변경
 
 * **gamebase-adapter-auth-gpgs-autologin** 모듈을 빌드에 포함하는 경우 Gamebase 초기화와 동시에 **Gamebase.getLastLoggedInProvider() 동기 API**를 호출하면 내부 데이터가 초기화가 완료되지 않아 null이 반환되었으나, 이 경우 **'NOT\_INITIALIZED\_YET'**이라는 문자열을 반환하도록 내부 로직을 변경했습니다.
-
 * **GamebaseWebViewConfiguration.Builder.renderOutsideSafeArea() API**를 **false**로 설정한 경우에도 cutout 영역까지 웹뷰를 모두 표시하도록(**edge-to-edge**) 내부 로직을 변경했습니다.
     * 그 대신 자동으로 padding 여백을 추가하여 콘텐츠가 가려지지 않도록 했습니다.
-
 
 #### 버그 수정
  
 * 로그인 전에 Gamebase.Push.getNotificationOptions() API를 호출하는 경우 크래시가 발생하지 않도록 수정했습니다.
 * Loading Progress가 간헐적으로 사라지지 않거나 크래시가 발생하는 이슈에 대한 방어 코드를 추가했습니다.
-
 * WebSocket에서 간헐적으로 내부 콜백 함수가 중복으로 호출되어 발생하는 크래시에 대한 방어 코드를 추가했습니다.
-
 
 ### 2.68.0 (2024. 11. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.0/GamebaseSDK-Android.zip)

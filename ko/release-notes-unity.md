@@ -1,5 +1,59 @@
 ## Game > Gamebase > 릴리스 노트 > Unity
 
+### 2.71.0 (2025. 04. 15.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* '게임 공지' 신규 기능이 추가되었습니다.
+    * Gamebase.GameNotice.OpenGameNotice(GamebaseCallback.ErrorDelegate callback)
+    * API 호출 방법은 다음 가이드 문서를 참고하시기 바랍니다.
+        * [Game > Gamebase > Unity SDK 사용 가이드 > 공지 > 게임 공지](./unity-ui/#gamenotice)
+
+#### 기능 개선/변경
+
+* 내부 로직을 개선하였습니다.
+* (iOS) ViewController 설정 로직을 개선하여 초기화 실패 오류를 방지합니다.
+
+#### 버그 수정
+
+* macOS 15.4에서 크래시가 발생하는 이슈를 수정하였습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.71.0](./release-notes-android/#2710-2025-04-15)
+* [Gamebase iOS SDK 2.71.0](./release-notes-ios/#2710-2025-04-15)
+
+### 2.70.1 (2025. 03. 13.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.1/GamebaseSDK-Unity.zip)
+
+#### 버그 수정
+
+* (Android) ShowWebView, ShowTermsView 호출 시 Configuration이 없으면 크래시가 발생하는 문제를 수정했습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.70.1](./release-notes-android/#2701-2025-03-13)
+* [Gamebase iOS SDK 2.70.0](./release-notes-ios/#2700-2025-03-11)
+
+### 2.70.0 (2025. 03. 11.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+
+* (Android) 'GPGS 자동 로그인' 기능 연동 시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 초기화 옵션을 추가했습니다.
+  * GamebaseRequest.GamebaseConfiguration enableGPGSSignInCheck
+    * 기본 설정은 true로, 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.
+    * false로 설정하면 앱 최초 실행 시에만 GPGS 로그인 창이 한번 표시됩니다.
+* GamebaseWebView에 내비게이션 바 타이틀과 아이콘 틴트 컬러 설정 옵션을 추가했습니다.
+    * WebView.Configuration navigationTitleColor
+    * WebView.Configuration navigationIconTintColor
+
+#### 기능 개선/변경
+
+* 내부 로직을 개선하였습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.70.0](./release-notes-android/#2700-2025-03-11)
+* [Gamebase iOS SDK 2.70.0](./release-notes-ios/#2700-2025-03-11)
+
 ### 2.69.0 (2025. 1. 21.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.69.0/GamebaseSDK-Unity.zip)
 

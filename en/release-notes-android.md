@@ -1,5 +1,29 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.71.0 (2025. 04. 15.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.0/GamebaseSDK-Android.zip)
+
+#### 기능 추가
+
+* '게임 공지' 신규 기능이 추가되었습니다.
+    * Gamebase.GameNotice.openGameNotice(Activity activity, GamebaseCallback onCloseCallback);
+    * API 호출 방법은 다음 가이드 문서를 참고하시기 바랍니다.
+        * [Game > Gamebase > Android SDK 사용 가이드 > UI > GameNotice](./aos-ui/#gamenotice)
+
+#### 기능 개선/변경
+
+* storeCode를 null로 설정하여 Gamebase 초기화를 호출했을 때 예외가 발생하는 대신 **INVALID_PARAMETER(3)** 에러를 리턴하도록 동작을 변경했습니다.
+
+### 2.70.1 (2025. 03. 13.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.1/GamebaseSDK-Android.zip)
+
+#### 버그 수정
+
+* Apple ID, Steam, Twitter로그인 네비게이션 바의 X버튼 사이즈를 재조정하였습니다.
+* Kotlin 파일에서 AuthProvider의 IdP constant(예. AuthProvider.GUEST 등)를 참조할 수 없는 이슈를 수정하였습니다.
+
 ### 2.70.0 (2025. 03. 11.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.0/GamebaseSDK-Android.zip)
@@ -8,6 +32,27 @@
 
 * 외부 SDK 업데이트: NHN Cloud SDK(1.9.5)
     * Google billing client version 7.1.1이 적용되었습니다.
+    * NHN Cloud Android SDK 1.9.5에서는 Android 7.0(API Level 24) 미만 단말기에서 결제를 시도하는 경우 크래시가 발생합니다.
+        * 이 문제를 해결하기 위해서는 Gradle에 하위 OS를 위한 [Java 8+ API 디슈가링 지원](https://developer.android.com/studio/write/java8-support#library-desugaring) 선언을 추가해야 합니다.
+        * 앱 모듈의 Gradle, Unity의 경우 launcherTemplate.gradle에 다음 선언을 추가하세요.
+        
+                android {
+                    compileOptions {
+                        // Flag to enable support for the new language APIs
+                        coreLibraryDesugaringEnabled true
+                    }
+                }
+
+                dependencies {
+                    // If AGP 4.0 to 7.2
+                    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.9")
+                    // If AGP 7.3
+                    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.3")
+                    // If AGP 7.4+
+                    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+                }
+        
+        * Unity Editor 버전에 따라 AGP 버전이 다르므로 올바른 버전을 확인하세요.
 * 'GPGS 자동 로그인' 기능 연동시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 초기화 옵션을 추가했습니다.
     * **GamebaseConfiguration.Builder.enableGPGSSignInCheck(boolean)**
     * 기본 설정은 true로, 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.

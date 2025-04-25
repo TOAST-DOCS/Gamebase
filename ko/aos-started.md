@@ -32,7 +32,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | 게임 내 결제 지원 | - |
 |  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Amazon Appstore를 지원 | - |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Samsung Galaxy Store를 지원 | - |
-|  | gamebase-adapter-purchase-google | billing-7.1.1<br>nhncloud-iap-google | Google Play를 지원 | - |
+|  | gamebase-adapter-purchase-google | billing-7.1.1<br>nhncloud-iap-google | Google Play를 지원 | API 24(Nougat, OS 7.0)<br>API 23 이하 지원을 위해서는 [desugaring 선언](https://developer.android.com/studio/write/java8-support#library-desugaring) 필요 |
 |  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | Huawei AppGallery를 지원 | - |
 |  | gamebase-adapter-purchase-onestore | nhncloud-iap-onestore | ONE store v17을 지원 | - |
 |  | gamebase-adapter-purchase-onestore-v19 | nhncloud-iap-onestore-v19 | ONE store v19를 지원 | - |
@@ -156,6 +156,10 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-weibo:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-steam:$GAMEBASE_SDK_VERSION"
 
+    // >>> [Purchase Support under Android 7.0(API Level 24)]
+    // desugar_jdk_libs 2.+ needs AGP 7.4+
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
+    
     // >>> Gamebase - Select Purchase Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v21:$GAMEBASE_SDK_VERSION"
@@ -194,9 +198,8 @@ dependencies {
 
 android {
     compileOptions {
-        // >>> [AndroidX]
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        // >>> [Purchase Support under Android 7.0(API Level 24)]
+        coreLibraryDesugaringEnabled true
     }
 
     defaultConfig {
@@ -482,6 +485,7 @@ class MyApplication: GamebaseMyCardApplication() {
 | com.toast.sdk.push.notification.default_small_icon | resource id | 작은 아이콘의 리소스 식별자. |
 | com.toast.sdk.push.notification.default_sound | String | 알림음 파일 이름.<br/>Android 8.0 미만 OS에서만 동작합니다.<br/>'res/raw' 폴더의 mp3, wav 파일명을 지정하면 알림음이 변경됩니다. |
 | com.toast.sdk.push.notification.default_vibrate_pattern | long[] | 진동의 패턴. |
+| com.toast.sdk.push.notification.vibration_enabled | boolean | 진동 사용 여부. |
 | com.toast.sdk.push.notification.badge_enabled | boolean | 배지 아이콘 사용 여부. |
 | com.toast.sdk.push.notification.foreground_enabled | boolean | 포그라운드 알림 사용 여부. |
 

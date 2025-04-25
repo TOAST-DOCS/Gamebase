@@ -1,5 +1,31 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.70.0
+
+### Android
+
+* Gamebase Android SDK 2.70.0で使用するGoogle Play Billing Library 7.1.1は、Android 7.0(API Level 24未満の端末で決済を試みる場合、クラッシュが発生します。
+    * この問題を解決するためには、Gradleに下位OSのための[Java 8+ APIデシュガーリングサポート](https://developer.android.com/studio/write/java8-support#library-desugaring)宣言を追加する必要があります。
+    * アプリモジュールのGradle、Unityの場合、launcherTemplate.gradleに次の宣言を追加してください。
+    
+            android {
+                compileOptions {
+                    // Flag to enable support for the new language APIs
+                    coreLibraryDesugaringEnabled true
+                }
+            }
+
+            dependencies {
+                // If AGP 4.0 to 7.2
+                coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.9")
+                // If AGP 7.3
+                // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.3")
+                // If AGP 7.4+
+                // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+            }
+    
+    * Unity EditorバージョンによってAGPバージョンが異なるため、正しいバージョンをご確認ください。
+
 ## 2.69.0
 
 ### Unity
@@ -8,10 +34,10 @@
 
 ### Unreal
 
-* 약관 조회 결과 API인 FGamebaseQueryTermsResult가 수정되었습니다.
-    * TermsCountryType의 값이 설정되지 않는 문제를 수정했습니다.
-    * bPushEnabled, bAdAgreement, bAdAgreementNight가 제거되었습니다.
-* GPGS AutoLogin을 사용하는 경우, **GetLastLoggedInProvider()** 동기 API 대신 신규 추가된 **RequestLastLoggedInProvider(GamebaseCallback.GamebaseDelegate\<string> callback)** 비동기 API를 사용하세요.
+* 約款照会結果APIであるFGamebaseQueryTermsResultを修正しました。
+    * TermsCountryTypeの値が設定されない問題を修正しました。
+    * bPushEnabled, bAdAgreement, bAdAgreementNightを削除しました。
+* GPGS AutoLoginを使用する場合、**GetLastLoggedInProvider()**同期APIの代わりに新しく追加された**RequestLastLoggedInProvider(GamebaseCallback.GamebaseDelegate\<string> callback)**非同期APIを使用してください。
 
 ### Android
 
@@ -70,7 +96,7 @@
         * GamebaseコンソールにCallback URL(https://id-gamebase.toast.com/oauth/callback)を設定します。 
         * 同じCallback URLをTwitter Developer Portalに追加します。
     * 詳細は以下のリンクをご覧ください。
-        * [Game > Gamebase > コンソール使用ガイド > アプリ > Authentication Information](./oper-app/#authentication-information)
+        * [Game > Gamebase > コンソール使用ガイド > アプリ > Authentication Information > 6. Twitter](./oper-app/#6-twitter)
 
 ## 2.66.3
 

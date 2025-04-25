@@ -35,7 +35,8 @@
 |                 | Android<br/>Unity<br/>iOS | AUTH\_EXTERNAL\_LIBRARY\_ERROR<br/>TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | 외부 인증 라이브러리 오류입니다.                       |
 |                 | Android<br/>Unity<br/>iOS | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR<br/>TCGB\_ERROR\_AUTH\_ALREADY\_IN\_PROGRESS\_ERROR | 3010       | 이전 인증 프로세스가 완료되지 않았습니다.                 |
 |                 | Android<br/>Unity<br/>iOS | AUTH\_INVALID\_GAMEBASE\_TOKEN<br/>TCGB\_ERROR\_AUTH\_INVALID\_GAMEBASE\_TOKEN | 3011       | Gamebase Access Token이 유효하지 않아 로그아웃되었습니다.<br/>로그인을 다시 시도하세요. |
-|                 | Android<br/>Unity<br/>iOS | AUTH\_AUTHENTICATION\_SERVER\_ERROR<br/>TCGB\_ERROR\_AUTH\_AUTHENTICATION\_SERVER\_ERROR | 3012       | 인증 서버로부터 에러가 발생했습니다. |
+|                 | Android<br/>Unity<br/>iOS | AUTH\_AUTHENTICATION\_SERVER\_ERROR<br/>TCGB\_ERROR\_AUTH\_AUTHENTICATION\_SERVER\_ERROR | 3012       | 인증 서버로부터 오류가 발생했습니다. |
+
 | TransferAccount | Android<br/>Unity<br/>iOS | SAME\_REQUESTOR<br/>TCGB\_ERROR\_SAME\_REQUESTOR | 8 | 발급한 TransferAccount를 동일한 단말기에서 사용했습니다. |
 |                 | Android<br/>Unity<br/>iOS | NOT\_GUEST\_OR\_HAS\_OTHERS<br/>TCGB\_ERROR\_NOT\_GUEST\_OR\_HAS\_OTHERS | 9 | 게스트가 아닌 계정에서 이전을 시도했거나, 계정에 게스트 이외의 IdP가 연동되어 있습니다. |
 |                 | Android<br/>Unity<br/>iOS | AUTH\_TRANSFERACCOUNT\_EXPIRED<br/>TCGB\_ERROR\_AUTH\_TRANSFERACCOUNT\_EXPIRED | 3041 | TransferAccount의 유효기간이 만료됐습니다. |
@@ -93,6 +94,8 @@
 |                 | Android<br/>Unity<br/>iOS | UI\_TERMS\_UNREGISTERED\_SEQ<br/>TCGB\_ERROR\_UI\_TERMS\_UNREGISTERED\_SEQ | 6923       | 등록되지 않은 약관 Seq 값입니다.            |
 |                 | Android<br/>Unity<br/>iOS | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR<br/>TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924       | Terms API 호출이 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
 |                 | Android<br/>Unity         | UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925       | 약관 웹뷰가 종료되지 않은 상태에서 다시 호출되었습니다. |
+|                 | Android<br/>Unity<br/>iOS | UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL<br/>TCGB\_ERROR\_UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL       | 6941 | 게임 공지 URL에 생성에 실패했습니다. |
+|                 | Android<br/>Unity         | UI\_GAME\_NOTICE\_FAIL\_ANDROID\_DUPLICATED\_VIEW | 6942       | 게임 공지 팝업을 종료하기 전에 다시 게임 공지를 호출했습니다. |
 |                 | Android<br/>Unity<br/>iOS | UI\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_UI\_UNKNOWN\_ERROR | 6999       | 알 수 없는 오류입니다(정의되지 않은 오류).            |
 | WebView         | Android<br/>Unity<br/>iOS | WEBVIEW\_INVALID\_URL<br/>TCGB\_ERROR\_WEBVIEW\_INVALID\_URL           | 7001       | 잘못된 URL입니다.            |
 |                 | Android<br/>Unity<br/>iOS | WEBVIEW\_TIMEOUT<br/>TCGB\_ERROR\_WEBVIEW\_TIMEOUT                     | 7002       | 웹뷰 표시 중 시간이 초과되었습니다.            |

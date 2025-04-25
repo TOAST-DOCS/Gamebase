@@ -29,6 +29,7 @@ Gamebaseを初期化するとき、GamebaseConfiguration.Builderの客体でGame
 | enablePopup(boolean enable)              | O                          | **[UI]**<br/>システムメンテナンス、利用制限(ban)などゲームユーザーがゲームをプレイすることができない状況の場合、ポップアップなどで理由を表示しなければならないときがあります。<br/>**true**に設定すれば、Gamebaseが該当する状況のとき、案内ポップアップを自動で表示します。<br/>デフォルトは**false**です。<br/>**false**状態では起動結果を通して情報を取得した後に直接UIを設計し、ゲームをプレイすることができない理由を表示してください。|
 | enableLaunchingStatusPopup(boolean enable) | O                          | **[UI]**<br/>起動結果によりログインできない状態の場合(主にメンテナンス状態)、Gamebaseが自動でポップアップを表示するかどうかを変更することができます。<br/>**enablePopup(true)**の状態でのみ動作します。<br/>デフォルトは**true**です。|
 | enableBanPopup(boolean enable)           | O                          | **[UI]**<br/>ゲームユーザーが利用を制限された状態の場合、Gamebaseが自動でbanされた理由をポップアップで表示するかどうかを変更することができます。<br/>**enablePopup(true)**の状態でのみ動作します。<br/>デフォルトは**true**です。|
+| enableGPGSSignInCheck(boolean enable)    | O                          | 「GPGS自動ログイン」機能連動時、ユーザーにGPGSログインをアプリインストール後に一度だけ確認するか、Gamebaseを初期化するたびに確認するかを選択します。<br/>**true**に設定すると、ユーザーがGPGSログインを拒否してもGamebase初期化時にGPGSログインウィンドウを再度表示します。<br/>**false**に設定すると、アプリ初回実行時にのみGPGSログインウィンドウが一度表示され、拒否しても再度表示されません。GPGSログインを再度行うには、**Google Play Games**アプリケーションで設定する必要があります。<br/>デフォルト値は**true**です。|
 
 ### Debug Mode
 * Gamebaseは、警告(warning)とエラーログのみ表示します。
