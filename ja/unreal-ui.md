@@ -433,9 +433,9 @@ void USample::ShowWebView(const FString& Url)
 | bIsBackButtonVisible     | true or false                            | 戻るボタンの有効または無効<br>**default**: true   |
 | BackButtonImageResource  | ID of resource                           | 戻るボタンの画像        |
 | CloseButtonImageResource | ID of resource                           | 閉じるボタンの画像            |
-| bEnableFixedFontSize     | true or false                            | 約款ウィンドウの文字サイズを固定するかどうか決定<br>**default**: false<br>**Android限定**     |
-| bRenderOutSideSafeArea   | true or false                            | SafeAreaを無視し、Cutout領域にもレンダリング<br>**default**: false<br>**Android限定**   |
-| CutoutColor              | TOptional<FColor>                        | SafeArea以外のCutout領域背景色<br>**Android限定**                            |
+| bEnableFixedFontSize      | true or false                            | 約款ウィンドウの文字サイズを固定するかどうかを決定します。<br>**default**: false<br>**Androidのみ**     |
+| bRenderOutSideSafeArea    | true or false                            | Safe Area領域外でレンダリングするかどうかを決定します。<br>**default**: false<br>**Androidのみ**   |
+| CutoutColor              | TOptional&lt;FColor&gt;                  | SafeArea外のCutout領域の背景色<br>**Android限定**                            |
 
 > [TIP]
 >
