@@ -12,11 +12,14 @@
 게임 공지를 화면에 표시합니다.
 
 #### Required 파라미터
-* Activity : 게임 공지가 노출되는 Activity입니다.
+* Activity: 게임 공지가 노출되는 Activity입니다.
+
 
 #### Optional 파라미터
-* GameNoticeConfiguration : 게임 공지 설정을 변경할 수 있습니다.
-* GamebaseCallback : 게임 공지가 정상적으로 종료되거나 에러로 표시하지 못했을 때 사용자에게 콜백으로 알려 줍니다.
+* GameNoticeConfiguration: 게임 공지 설정을 변경할 수 있습니다.
+
+* GamebaseCallback: 게임 공지가 정상적으로 종료되거나 에러로 표시하지 못했을 때 사용자에게 콜백으로 알려 줍니다.
+
 
 **API**
 
@@ -80,8 +83,10 @@ Gamebase.GameNotice.openGameNotice(
 | API | Mandatory(M) / Optional(O) | Description |
 | --- | --- | --- |
 | newBuilder() | **M** | GameNoticeConfiguration.Builder 객체는 newBuilder() 함수를 통해 생성할 수 있습니다. |
-| build() | **M** | 설정을 마친 Builder 를 Configuration 객체로 변환합니다. |
-| setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | 게임 공지 뒷 배경색 입니다.<br>색상은 ARGB 순서입니다.<br>String 은 android.graphics.Color.parseColor(String) API로 변환한 값을 사용합니다.<br>**default**: #CC000000 |
+| build() | **M** | 설정을 마친 Builder를 Configuration 객체로 변환합니다. |
+
+| setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | 게임 공지 배경색입니다.<br>색상은 ARGB 순서입니다.<br>String 은 android.graphics.Color.parseColor(String) API로 변환한 값을 사용합니다.<br>**default**: #CC000000 |
+
 
 ## ImageNotice
 
@@ -696,14 +701,16 @@ showWebView(activity, urlString, configuration,
 | Error                                             | Error Code | Description                                                                                 |
 |---------------------------------------------------|------------|---------------------------------------------------------------------------------------------|
 | NOT\_INITIALIZED                                  | 1          | Gamebase.initialize가 호출되지 않았습니다.                                                            |
-| LAUNCHING\_SERVER\_ERROR                          | 2001       | 론칭 서버에서 전달받은 항목에 약관 관련 내용이 없는 경우에 발생하는 에러입니다.<br/>정상적인 상황이 아니므로 Gamebase 담당자에게 문의해주시기 바랍니다. |
+| LAUNCHING\_SERVER\_ERROR                          | 2001       | 론칭 서버에서 전달 받은 항목에 약관 관련 내용이 없는 경우에 발생하는 에러입니다.<br/>정상적인 상황이 아니므로 Gamebase 담당자에게 문의하세요. |
+
 | UI\_IMAGE\_NOTICE\_TIMEOUT                        | 6901       | 이미지 공지 팝업 창 표시 중 시간이 초과되어 모든 팝업 창을 강제 종료합니다. |
 | UI\_IMAGE\_NOTICE\_NOT\_SUPPORTED\_OS             | 6902       | 롤링 타입의 경우 API 19 이하의 단말기에서는 이미지 공지를 지원하지 않습니다. |
 | UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE                | 6921       | 약관 정보가 콘솔에 등록되어 있지 않습니다. |
 | UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY       | 6922       | 단말기 국가코드에 맞는 약관 정보가 콘솔에 등록되어 있지 않습니다. |
 | UI\_TERMS\_UNREGISTERED\_SEQ                      | 6923       | 등록되지 않은 약관 Seq 값을 설정하였습니다. |
 | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR           | 6924       | Terms API 호출이 아직 완료되지 않았습니다.<br/>잠시 후 다시 시도하세요. |
-| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW              | 6925       | 약관 웹뷰가 아직 종료되지 않았는데 다시 호출되었습니다 |
+| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW              | 6925       | 약관 웹뷰가 아직 종료되지 않은 상태에서 다시 호출되었습니다 |
+
 | UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL              | 6941       | 게임 공지 URL 생성에 실패했습니다. |
 | UI\_GAME\_NOTICE\_FAIL\_ANDROID\_DUPLICATED\_VIEW | 6942       | 게임 공지 팝업을 종료하기 전에 다시 게임 공지를 호출했습니다. |
 | UI\_UNKNOWN\_ERROR                                | 6999       | 알 수 없는 오류입니다(정의되지 않은 오류입니다). |

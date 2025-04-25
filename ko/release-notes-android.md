@@ -48,7 +48,8 @@
                     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
                 }
         
-        * desugar_jdk_libs 1.x 버전은 Kakaogame 로그인시 크래시가 발생하므로 2.x 버전 적용을 권장합니다.
+        * desugar_jdk_libs 1.x 버전은 Kakaogame 로그인 시 크래시가 발생하므로 2.x 버전 적용을 권장합니다.
+
             * Unity Editor 버전에 따라 AGP 버전이 다르므로 AGP 및 Gradle 버전 업데이트가 필요할 수 있습니다.
 
 * 'GPGS 자동 로그인' 기능 연동 시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 초기화 옵션을 추가했습니다.
