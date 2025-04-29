@@ -248,7 +248,7 @@ Game developers using the crash analysis of the NHN Cloud Log & Crash Search mus
                 if (const FOnlineSubsystemEOS* EosSubsystem = static_cast<FOnlineSubsystemEOS*>(Subsystem))
                 {
                     EOS_HPlatform PlatformHandle = *EosSubsystem->EOSPlatformHandle;
-                    FGamebaseStandalonePurchaseEpicAdapterModule::SetEosPlatformInstance(*Handle);
+                    FGamebaseStandalonePurchaseEpicModule::SetEosPlatformInstance(*Handle);
                 }
             }
 

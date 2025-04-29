@@ -274,7 +274,7 @@ NHN Cloud Log & Crash Searchでクラッシュ分析を行うゲーム開発会�
                 if (const FOnlineSubsystemEOS* EosSubsystem = static_cast<FOnlineSubsystemEOS*>(Subsystem))
                 {
                     EOS_HPlatform PlatformHandle = *EosSubsystem->EOSPlatformHandle;
-                    FGamebaseStandalonePurchaseEpicAdapterModule::SetEosPlatformInstance(*Handle);
+                    FGamebaseStandalonePurchaseEpicModule::SetEosPlatformInstance(*Handle);
                 }
             }
 

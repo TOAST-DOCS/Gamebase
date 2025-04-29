@@ -132,7 +132,7 @@ Gamebase는 게스트 로그인을 지원합니다.
 
 > <font color="red">[주의]</font><br/>
 >
-> Standalone(Windows, macOS) 환경에서는 GUEST 로그인은 개발 용도로 제공되었기 때문에 실제 게임에서 사용하실 때 주의하셔야 합니다.
+> Standalone(Windows, macOS) 환경에서는 GUEST 로그인은 개발 용도로 제공되었기 때문에 실제 게임에서 사용 시 주의가 필요합니다.
 >
 
 **API**
