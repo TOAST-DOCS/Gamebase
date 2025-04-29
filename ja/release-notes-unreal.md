@@ -1,9 +1,27 @@
 ## Game > Gamebase > リリースノート > Unreal
 
+### 2.71.1 (2025. 4. 29.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.1/GamebaseSDK-Unreal.zip)
+
+#### 기능 개선/변경
+
+* (Windows) 결제 API 오류 발생 시 디버깅을 돕기 위해 상세 오류 메시지를 보강했습니다.
+* 내부 로직을 개선했습니다.
+
+#### 버그 수정
+
+* (Windows) FGamebaseConfiguration 내 DisplayLanguageCode 적용 시 점검 언어 값을 잘못 가져오는 문제가 수정되었습니다.
+* (Windows) 인증 과정 중 일부 실패 케이스에서 재인증이 불가능했던 문제가 수정되었습니다.
+
+#### 플랫폼별 변경 사항
+
+* [Gamebase Android SDK 2.71.1](./release-notes-android/#2711-2025-04-29)
+* [Gamebase iOS SDK 2.71.0](./release-notes-ios/#2710-2025-04-15)
+
 ### 2.71.0 (2025. 4. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 추가
+#### 機能追加
 
 * '게임 공지' 신규 기능이 추가되었습니다.
     * API 호출 방법은 다음 가이드 문서를 참고하시기 바랍니다.
@@ -11,19 +29,19 @@
 * (Windows) Google Play Games 지원을 위한 Google 결제 기능이 추가되었습니다.
     * [Windows 설정 툴](./unreal-started/#windows-settings) 내 Windows Store 설정에서 `Google Play Store`가 추가되었습니다.
 
-#### 기능 개선/변경
+#### 機能改善/変更
 
 * (Windows) 시스템 설정에서 '지역 > 국가 또는 지역'를 바탕으로 CountryCode를 생성하도록 수정했습니다.
     * 변경 전에는 엔진에서 제공하는 `FInternationalization::Get().GetDefaultCulture()`를 통해 '지역 > 사용지역 언어' 정보를 가져왔습니다.
 
-#### 버그 수정
+#### バグ修正
 
 * (Windows) WebView를 열고 프로그램 종료 시 크래시가 발생하지 않도록 수정했습니다.
 * (Windows) 엔진에 포함된 Steamworks 모듈을 에디터에서 사용할 수 없으므로 Steam 인증 및 결제 기능을 에디터에서 사용할 수 없도록 수정했습니다.
 * (Windows) 로그 전송 필터링이 정상적으로 동작하지 않는 문제가 수정되었습니다.
 * 내부 로직을 개선했습니다.
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 
 * [Gamebase Android SDK 2.71.0](./release-notes-android/#2710-2025-04-15)
 * [Gamebase iOS SDK 2.71.0](./release-notes-ios/#2710-2025-04-15)
@@ -89,8 +107,8 @@
 
 * **RequestLastLoggedInProvider非同期API**を追加しました。
     * **GetLastLoggedInProvider()同期API**がタイミング上、正常な値を返せない場合があります。
-    * (Android) GPGSのAuto Login機能を使用する場合、GPGSサーバーからデータを取得する時間が必要なため、Gamebase初期化直後にGetLastLoggedInProvider()同期APIを呼び出すと正常な値を取得できません。
-      この時、RequestLastLoggedInProvider非同期(GamebaseDataCallback&lt;String&gt;)非同期APIは正確な値を保証します。
+    * (Android) GPGSのAuto Login機能を使用する場合、GPGSサーバーからデータを取得する時間が必要なため、Gamebaseの初期化直後にGetLastLoggedInProvider()同期APIを呼び出すと正常な値を取得できません。
+       この時、RequestLastLoggedInProvider非同期(GamebaseDataCallback&lt;String&gt;)非同期APIは正確な値を保証します。
         Auto Loginを使用しない場合は、GetLastLoggedInProvider()同期APIを使用しても構いません。
 * (Android) GPGS v2認証を追加しました。
     * 詳細は以下のリンクを参照してください。
@@ -98,7 +116,7 @@
 * (Android) **FGamebaseWebViewConfiguration::CutoutColorフィールド**を追加しました。
     * GamebaseWebViewの **FGamebaseWebViewConfiguration::bRenderOutSideSafeAreaフィールド**を**false**に設定した場合、cutout領域に自動的にpadding余白を追加します。
     * CutoutColorフィールドは、このように追加されたpadding領域の色を設定できます。
-    * RenderOutsideSafeAreaフィールドをfalseに設定したが、CutoutColorフィールドは設定しない場合にはWebページ'body'の'background-color'値で自動的にpadding領域の色を決定します。
+    * RenderOutsideSafeAreaフィールドをfalseに設定したが、CutoutColorフィールドは設定しない場合には、Webページ'body'の'background-color'値で自動的にpadding領域の色を決定します。
 
 #### 機能改善/変更
 
