@@ -272,7 +272,7 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
             void USample::SetEosPlatformHandle(EOS_HPlatform PlatformHandle)
             {
                 // EOS SDK 초기화 후 핸들을 가져와 Gamebase SDK로 전달
-                FGamebaseStandalonePurchaseEpicAdapterModule::SetEOSPlatformHandle(PlatformHandle);
+                FGamebaseStandalonePurchaseEpicModule::SetEOSPlatformHandle(PlatformHandle);
             }
 
     * UE 4.27에서 Online Subsystem EOS를 사용 시 빌드 오류가 발생하므로 수정이 필요합니다.
