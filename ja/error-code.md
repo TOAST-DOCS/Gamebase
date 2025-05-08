@@ -93,6 +93,8 @@
 |                 | Android<br/>Unity<br/>iOS | UI\_TERMS\_UNREGISTERED\_SEQ<br/>TCGB\_ERROR\_UI\_TERMS\_UNREGISTERED\_SEQ | 6923       | 登録されていない約款Seq値です。            |
 |                 | Android<br/>Unity<br/>iOS | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR<br/>TCGB\_ERROR\_UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924       | 以前に呼び出されたTerms APIがまだ完了していません。<br/>しばらくしてから再度お試しください。 |
 |                 | Android<br/>Unity         | UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW | 6925       |  約款Webビューが終了していない状態で、再び呼び出されました。 |
+|                 | Android<br/>Unity<br/>iOS | UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL<br/>TCGB\_ERROR\_UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL       | 6941 | ゲーム告知URLの作成に失敗しました。 |
+|                 | Android<br/>Unity         | UI\_GAME\_NOTICE\_FAIL\_ANDROID\_DUPLICATED\_VIEW | 6942       | ゲーム告知ポップアップを終了する前にゲーム告知を再度呼び出しました。 |
 |                 | Android<br/>Unity<br/>iOS | UI\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_UI\_UNKNOWN\_ERROR | 6999       | 不明なエラーです(定義されていないエラー)。            |
 | WebView         | Android<br/>Unity<br/>iOS | WEBVIEW\_INVALID\_URL<br/>TCGB\_ERROR\_WEBVIEW\_INVALID\_URL           | 7001       | 無効なURLです。            |
 |                 | Android<br/>Unity<br/>iOS | WEBVIEW\_TIMEOUT<br/>TCGB\_ERROR\_WEBVIEW\_TIMEOUT                     | 7002       | Webビューの表示中にタイムアウトが発生しました。            |

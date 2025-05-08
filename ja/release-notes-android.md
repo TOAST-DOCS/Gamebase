@@ -4,24 +4,24 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.1/GamebaseSDK-Android.zip)
 
-#### 버그 수정
+#### バグ修正
 
-* 웹뷰 크기 계산 관련 오류를 수정하였습니다.
+* Webビューサイズ計算関連エラーを修正しました。
 
 ### 2.71.0 (2025. 04. 15.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
+#### 機能追加
 
-* '게임 공지' 신규 기능이 추가되었습니다.
+* 「ゲーム告知」新機能を追加しました。
     * Gamebase.GameNotice.openGameNotice(Activity activity, GamebaseCallback onCloseCallback);
-    * API 호출 방법은 다음 가이드 문서를 참고하시기 바랍니다.
-        * [Game > Gamebase > Android SDK 사용 가이드 > UI > GameNotice](./aos-ui/#gamenotice)
+    * API呼び出し方法は次のガイド文書を参照してください。
+        * [Game > Gamebase > Android SDK使用ガイド > UI > GameNotice](./aos-ui/#gamenotice)
 
-#### 기능 개선/변경
+#### 機能改善/変更
 
-* storeCode를 null로 설정하여 Gamebase 초기화를 호출했을 때 예외가 발생하는 대신 **INVALID_PARAMETER(3)** 에러를 리턴하도록 동작을 변경했습니다.
+* storeCodeをnullに設定してGamebaseの初期化を呼び出した際に、例外が発生する代わりに**INVALID_PARAMETER(3)**エラーを返すように動作を変更しました。
 
 ### 2.70.1 (2025. 03. 13.)
 

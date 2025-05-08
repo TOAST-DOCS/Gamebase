@@ -3,17 +3,17 @@
 ### 2.71.1 (2025. 4. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.1/GamebaseSDK-Unreal.zip)
 
-#### 기능 개선/변경
+#### 機能改善/変更
 
-* (Windows) 결제 API 오류 발생 시 디버깅을 돕기 위해 상세 오류 메시지를 보강했습니다.
-* 내부 로직을 개선했습니다.
+* (Windows)決済APIエラー発生時のデバッグを支援するため、詳細なエラーメッセージを強化しました。
+* 内部ロジックを改善しました。
 
-#### 버그 수정
+#### バグ修正
 
-* (Windows) FGamebaseConfiguration 내 DisplayLanguageCode 적용 시 점검 언어 값을 잘못 가져오는 문제가 수정되었습니다.
-* (Windows) 인증 과정 중 일부 실패 케이스에서 재인증이 불가능했던 문제가 수정되었습니다.
+* (Windows) FGamebaseConfiguration内のDisplayLanguageCodeを適用する際、チェック言語の値を誤って取得する問題を修正しました。
+* (Windows)認証過程の一部失敗ケースで再認証ができない問題を修正しました。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 
 * [Gamebase Android SDK 2.71.1](./release-notes-android/#2711-2025-04-29)
 * [Gamebase iOS SDK 2.71.0](./release-notes-ios/#2710-2025-04-15)
@@ -23,23 +23,23 @@
 
 #### 機能追加
 
-* '게임 공지' 신규 기능이 추가되었습니다.
-    * API 호출 방법은 다음 가이드 문서를 참고하시기 바랍니다.
-        * [Game > Gamebase > Unreal SDK 사용 가이드 > UI > GameNotice](./unreal-ui/#gamenotice)
-* (Windows) Google Play Games 지원을 위한 Google 결제 기능이 추가되었습니다.
-    * [Windows 설정 툴](./unreal-started/#windows-settings) 내 Windows Store 설정에서 `Google Play Store`가 추가되었습니다.
+* 「ゲーム告知」新機能を追加しました。
+    * API呼び出し方法は次のガイド文書を参照してください。
+        * [Game > Gamebase > Unreal SDK使用ガイド > UI > GameNotice](./unreal-ui/#gamenotice)
+* (Windows) Google Play GamesをサポートするためのGoogle決済機能を追加しました。
+    * [Windows設定ツール](./unreal-started/#windows-settings)のWindows Store設定に`Google Play Store`を追加しました。
 
 #### 機能改善/変更
 
-* (Windows) 시스템 설정에서 '지역 > 국가 또는 지역'를 바탕으로 CountryCode를 생성하도록 수정했습니다.
-    * 변경 전에는 엔진에서 제공하는 `FInternationalization::Get().GetDefaultCulture()`를 통해 '지역 > 사용지역 언어' 정보를 가져왔습니다.
+* (Windows)システム設定で「地域 > 国または地域」に基づいてCountryCodeを作成するように修正しました。
+    * 変更前にはエンジンが提供する`FInternationalization::Get().GetDefaultCulture()`で「地域 > 使用地域言語」情報を取得していました。
 
 #### バグ修正
 
-* (Windows) WebView를 열고 프로그램 종료 시 크래시가 발생하지 않도록 수정했습니다.
-* (Windows) 엔진에 포함된 Steamworks 모듈을 에디터에서 사용할 수 없으므로 Steam 인증 및 결제 기능을 에디터에서 사용할 수 없도록 수정했습니다.
-* (Windows) 로그 전송 필터링이 정상적으로 동작하지 않는 문제가 수정되었습니다.
-* 내부 로직을 개선했습니다.
+* (Windows) WebViewを開いてプログラム終了時にクラッシュしないように修正しました。
+* (Windows)エンジンに含まれるSteamworksモジュールがエディタで使用できないため、Steam認証と決済機能をエディタで使用できないように修正しました。
+* (Windows)ログ送信フィルタリングが正常に動作しない問題を修正しました。
+* 内部ロジックを改善しました。
 
 #### プラットフォーム別の変更事項
 
