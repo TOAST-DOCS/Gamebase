@@ -1,5 +1,46 @@
 ## Game > Gamebase > iOS SDK ご利用ガイド > UI
 
+## GameNotice
+
+コンソールに画像と一緒に登録した告知事項を表示する機能です。
+
+![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_001.png) 
+![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_002.png)
+
+### Open GameNotice
+
+ゲーム告知を画面に表示します。
+
+#### Requiredパラメータ
+* viewController:ゲーム告知が表示されるViewControllerです。
+
+#### Optionalパラメータ
+* completion:ゲーム告知が終了したときにユーザーにコールバックで通知します。
+
+**API**
+
+```objectivec
++ (void)openGameNoticeWithViewController:(nullable UIViewController *)viewController
+                              completion:(nullable void(^)(TCGBError * _Nullable))completion;
+```
+**ErrorCode**
+| Error | Error Code | Description |
+| --- | --- | --- |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebaseが初期化されていません。 |
+| TCGB\_ERROR\_UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL | 6941 | ゲーム告知URLの作成に失敗しました。 |
+| TCGB\_ERROR\_WEBVIEW\_TIMEOUT | 7002 | 約款Webビュー表示中にタイムアウトが発生しました。 |
+| TCGB\_ERROR\_WEBVIEW\_HTTP\_ERROR | 7003 | 約款Webビューを開いている途中にHTTPエラーが発生しました。 |
+**Example**
+```objectivec
+- (void)openGameNotice {
+    void(^completion)(TCGBError *) = ^(TCGBError *error) {
+        // Called when the entire gameNotice is closed.
+        NSLog(@"GameNotice closed");
+    };
+    [TCGBGameNotice openGameNoticeWithViewController:self completion:completion];
+}
+```
+
 ## ImageNotice
 
 コンソールにイメージを登録した後、ユーザーに告知を表示できます。

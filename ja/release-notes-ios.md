@@ -3,13 +3,13 @@
 ### 2.71.0 (2025. 04. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* '게임 공지' 신규 기능이 추가되었습니다.
-    * API 호출 방법은 다음 가이드 문서를 참고하시기 바랍니다. 
-        * [Game > Gamebase > iOS SDK 사용 가이드 > UI > GameNotice > Open GameNotice](./ios-ui/#open-gamenotice)
+#### 機能追加
+* 「ゲーム告知」新機能を追加しました。
+    * API呼び出し方法は次のガイド文書を参照してください。
+        * [Game > Gamebase > iOS SDK使用ガイド > UI > GameNotice > Open GameNotice](./ios-ui/#open-gamenotice)
 
-#### 기능 개선/변경
-* storeCode를 nil로 설정하여 Gamebase 초기화를 호출했을 때 예외가 발생하는 대신 **TCGB_ERROR_INVALID_PARAMETER(3)** 에러를 리턴하도록 동작을 변경했습니다. 
+#### 機能改善/変更
+* storeCodeをnilに設定してGamebase初期化を呼び出した際に、例外が発生する代わりに**TCGB_ERROR_INVALID_PARAMETER(3)** エラーを返すように動作を変更しました。 
 
 ### 2.70.0 (2025. 03. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.0/GamebaseSDK-iOS.zip)

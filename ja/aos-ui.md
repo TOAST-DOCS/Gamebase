@@ -1,5 +1,93 @@
 ## Game > Gamebase > Android SDK ご利用ガイド > UI
 
+## GameNotice
+
+コンソールに画像と一緒に登録した告知事項を表示する機能です。
+
+![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_001.png)
+![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_002.png)
+
+### Open GameNotice
+
+ゲーム告知を画面に表示します。
+
+#### Requiredパラメータ
+* Activity:ゲーム告知が表示されるActivityです。
+
+
+#### Optionalパラメータ
+* GameNoticeConfiguration:ゲーム告知設定を変更できます。
+
+* GamebaseCallback:ゲーム告知が正常に終了したり、エラーで表示できなかったときにユーザーにコールバックでお知らせします。
+
+
+**API**
+
+```java
++ (void)Gamebase.GameNotice.openGameNotices(@NonNull Activity activity,
+                                            @Nullable GamebaseCallback onCloseCallback);
++ (void)Gamebase.GameNotice.openGameNotices(@NonNull Activity activity,
+                                            @Nullable GameNoticeConfiguration configuration,
+                                            @Nullable GamebaseCallback onCloseCallback);
+```
+
+**ErrorCode**
+
+| Error | Error Code | Description |
+| ---- | ------- | ----------- |
+| - | 0 | 成功 |
+| NOT\_INITIALIZED | 1 | Gamebase.initializeが呼び出されませんでした。 |
+| UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL | 6941 | ゲーム告知URLの作成に失敗しました。 |
+| UI\_GAME\_NOTICE\_FAIL\_ANDROID\_DUPLICATED\_VIEW | 6942 | ゲーム告知ポップアップを終了する前にゲーム告知を再度呼び出しました。 |
+| WEBVIEW\_TIMEOUT | 7002 | Webビュー表示時間が超過しました。(10秒) |
+| WEBVIEW\_HTTP\_ERROR | 7003 | Webビュー内部でHTTPエラーが発生しました。 |
+| WEBVIEW\_UNKNOWN\_ERROR | 7999 | 不明なWebビューエラーが発生しました。 |
+
+**Example**
+
+```java
+Gamebase.GameNotice.openGameNotice(activity, (GamebaseCallback) exception -> {
+    if (Gamebase.isSuccess(exception)) {
+        // Game Notice was opened and closed successfully.
+    } else {
+        // Game Notice did not opened with error.
+    }
+});
+```
+
+### Custom GameNotice
+
+ユーザー設定ゲーム告知を表示します。
+GameNoticeConfigurationで表示設定を変更できます。
+
+**Example**
+
+```java
+GameNoticeConfiguration configuration = GameNoticeConfiguration.newBuilder()
+        .setBackgroundColor("#80FFFF00")
+        .build();
+Gamebase.GameNotice.openGameNotice(
+        activity,
+        configuration,
+        (GamebaseCallback) exception -> {
+            if (Gamebase.isSuccess(exception)) {
+                // Game Notice was opened and closed successfully.
+            } else {
+                // Game Notice did not opened with error.
+            }
+        });
+```
+
+#### GameNoticeConfiguration
+
+| API | Mandatory(M) / Optional(O) | Description |
+| --- | --- | --- |
+| newBuilder() | **M** | GameNoticeConfiguration.BuilderオブジェクトはnewBuilder()関数を使用して作成できます。 |
+| build() | **M** | 設定を終えたBuilderをConfigurationオブジェクトに変換します。 |
+
+| setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | ゲーム告知の背景色です。<br>色はARGB順序です。<br>Stringはandroid.graphics.Color.parseColor(String) APIで変換した値を使用します。<br>**default**: #CC000000 |
+
+
 ## ImageNotice
 
 コンソールにイメージを登録した後、ユーザーに告知を表示できます。
@@ -614,9 +702,26 @@ showWebView(activity, urlString, configuration,
 
 ## Error Handling
 
-| Error              | Error Code | Description                  |
-| ------------------ | ---------- | ---------------------------- |
-| UI\_UNKNOWN\_ERROR | 6999       | 不明なエラーです(定義されていないエラーです)。|
+| Error                                             | Error Code | Description                                                                                 |
+|---------------------------------------------------|------------|---------------------------------------------------------------------------------------------|
+| NOT\_INITIALIZED                                  | 1          | Gamebase.initializeが呼び出されていません。                                                            |
+| LAUNCHING\_SERVER\_ERROR                          | 2001       | ローンチサーバーから渡された項目に約款関連内容がない場合に発生するエラーです。<br/>正常な状況ではないので、 Gamebase担当者にお問い合わせください。 |
+
+| UI\_IMAGE\_NOTICE\_TIMEOUT                        | 6901       | 画像告知ポップアップウィンドウ表示中にタイムアウトし、全てのポップアップウィンドウを強制終了します。 |
+| UI\_IMAGE\_NOTICE\_NOT\_SUPPORTED\_OS             | 6902       | ローリングタイプの場合、API 19以下の端末では画像告知をサポートしません。 |
+| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE                | 6921       | 約款情報がコンソールに登録されていません。 |
+| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY       | 6922       | 端末国家コードに合った約款情報がコンソールに登録されていません。 |
+| UI\_TERMS\_UNREGISTERED\_SEQ                      | 6923       | 登録されていない約款Seq値を設定しました。 |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR           | 6924       | Terms API呼び出しがまだ完了していません。<br/>しばらくしてからもう一度お試しください。 |
+| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW              | 6925       | 約款Webビューがまだ終了していない状態で再度呼び出されました。 |
+
+| UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL              | 6941       | ゲーム告知URLの作成に失敗しました。 |
+| UI\_GAME\_NOTICE\_FAIL\_ANDROID\_DUPLICATED\_VIEW | 6942       | ゲーム告知ポップアップを終了する前に再度ゲーム告知を呼び出しました。 |
+| UI\_UNKNOWN\_ERROR                                | 6999       | 不明なエラーです(定義されていないエラーです)。 |
+| WEBVIEW\_TIMEOUT                                  | 7002       | Webビュー表示時間が超過しました。(10秒) |
+| WEBVIEW\_HTTP\_ERROR                              | 7003       | Webビュー内部でHTTPエラーが発生しました。 |
+| WEBVIEW\_UNKNOWN\_ERROR                           | 7999       | 不明なWebビューエラーが発生しました。 |
+| SERVER\_INVALID\_RESPONSE                         | 8003       | サーバーが有効ではないレスポンスを返しました。 |
 
 * 全体のエラーコードは、次のドキュメントをご参考ください。
     * [エラーコード](./error-code/#client-sdk)

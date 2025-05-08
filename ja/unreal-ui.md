@@ -1,5 +1,53 @@
 ## Game > Gamebase > Unreal SDKご利用ガイド > UI
 
+## GameNotice
+
+コンソールに画像と一緒に登録した告知事項を表示する機能です。
+
+![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_001.png)
+
+### Open GameNotice
+
+ゲーム告知を画面に表示します。
+
+**API**
+
+Supported Platforms
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
+
+
+```cs
+void OpenGameNotice(const FGamebaseErrorDelegate& Callback);
+```
+
+**ErrorCode**
+
+| Error                                | Error Code | Description |
+|--------------------------------------| --- | --- |
+| NOT\_INITIALIZED                     | 1 | Gamebaseが初期化されていません。 |
+| UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL            | 6941 | ゲーム告知URLの作成に失敗しました。 |
+| UI\_GAME\_NOTICE\_FAIL\_ANDROID\_DUPLICATED\_VIEW | 6942 | ゲーム告知ポップアップを終了する前にゲーム告知を再度呼び出しました。 |
+| WEBVIEW\_TIMEOUT                | 7002 | Webビュー表示時間が超過しました。(10秒) |
+| WEBVIEW\_HTTP\_ERROR                 | 7003 |  Webビュー内部でHTTPエラーが発生しました。 |
+| WEBVIEW\_UNKNOWN\_ERROR           | 7999 | 不明なWebビューエラーが発生しました。 |
+
+**Example**
+
+```cs
+void USample::OpenGameNotice()
+{
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetGameNotice()->OpenGameNotice(
+        FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* Error) {
+            // Called when the entire imageNotice is closed.
+            ...
+        })
+    );
+}
+```
+
 ## ImageNotice
 
 コンソールにイメージを登録した後、ユーザーに告知を表示できます。
@@ -32,11 +80,11 @@ void USample::ShowImageNotices(int32 ColorR, int32 ColorG, int32 ColorB, int32 C
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->GetImageNotice()->ShowImageNotices(Configuration,
-        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) {
+        FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* Error) {
             // Called when the entire imageNotice is closed.
             ...
         }),
-        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& Scheme, const FGamebaseError* Error) {
+        FGamebaseSchemeEventDelegate::CreateLambda([](const FString& Scheme, const FGamebaseError* Error) {
             // Called when custom event occurred.
             ...
         })

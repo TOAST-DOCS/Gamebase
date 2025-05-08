@@ -3,22 +3,22 @@
 ### 2.71.0 (2025. 04. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* '게임 공지' 신규 기능이 추가되었습니다.
+#### 機能追加
+* 「ゲーム告知」新機能を追加しました。
     * Gamebase.GameNotice.OpenGameNotice(GamebaseCallback.ErrorDelegate callback)
-    * API 호출 방법은 다음 가이드 문서를 참고하시기 바랍니다.
-        * [Game > Gamebase > Unity SDK 사용 가이드 > 공지 > 게임 공지](./unity-ui/#gamenotice)
+    * API呼び出し方法は次のガイド文書を参照してください。
+        * [Game > Gamebase > Unity SDK使用ガイド > 告知 > ゲーム告知](./unity-ui/#gamenotice)
 
-#### 기능 개선/변경
+#### 機能改善/変更
 
-* 내부 로직을 개선하였습니다.
-* (iOS) ViewController 설정 로직을 개선하여 초기화 실패 오류를 방지합니다.
+* 内部ロジックを改善しました。
+* (iOS) ViewController設定ロジックを改善して初期化失敗エラーを防止します。
 
-#### 버그 수정
+#### バグ修正
 
-* macOS 15.4에서 크래시가 발생하는 이슈를 수정하였습니다.
+* macOS 15.4でクラッシュが発生する問題を修正しました。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.71.0](./release-notes-android/#2710-2025-04-15)
 * [Gamebase iOS SDK 2.71.0](./release-notes-ios/#2710-2025-04-15)
 
