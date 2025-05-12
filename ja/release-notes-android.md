@@ -52,15 +52,15 @@
                 }
 
                 dependencies {
-                    // If AGP 4.0 to 7.2
-                    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.9")
-                    // If AGP 7.3
-                    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.3")
-                    // If AGP 7.4+
-                    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+                    // desugar_jdk_libs 2.+ needs AGP 7.4+
+                    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
                 }
         
-        * Unity EditorバージョンによってAGPバージョンが異なるため、正しいバージョンをご確認ください。
+        * desugar_jdk_libs 1.xバージョンはKakaogameログイン時にクラッシュが発生するため、2.xバージョンの適用を推奨します。
+
+            * Unity EditorのバージョンによってAGPバージョンが異なるため、AGPおよびGradleバージョンのアップデートが必要な場合があります。
+
+* 「GPGS自動ログイン」機能連動時、ユーザーにGPGSログインをアプリインストール後に一度だけ確認する初期化オプションを追加しました。
 * 「GPGS自動ログイン」機能連動時ユーザーにGPGSログインをアプリインストール後に一度だけ確認する初期化オプションを追加しました。
     * **GamebaseConfiguration.Builder.enableGPGSSignInCheck(boolean)**
     * デフォルト設定はtrueで、ユーザーがGPGSログインを拒否してもGamebase初期化時にGPGSログインウィンドウを再度表示します。
