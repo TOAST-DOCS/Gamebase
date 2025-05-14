@@ -1,8 +1,8 @@
 ## Game > Gamebase > リリースノート > Android
 
-### 2.72.0 (2025. 05. 20.)
+### 2.71.2 (2025. 05. 20.)
 
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.0/GamebaseSDK-Android.zip)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.2/GamebaseSDK-Android.zip)
 
 #### 기능 개선/변경
 
