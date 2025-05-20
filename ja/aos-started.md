@@ -32,7 +32,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | toast-gamebase-iap-0.21.0<br>nhncloud-iap-core | ゲーム内決済をサポート | - |
 |  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Amazon Appstoreをサポート | - |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Galaxy Storeをサポート | - |
-|  | gamebase-adapter-purchase-google | billing-7.1.1<br>nhncloud-iap-google | Google Playをサポート | - |
+|  | gamebase-adapter-purchase-google | billing-7.1.1<br>nhncloud-iap-google | Google Playをサポート | API 24(Nougat, OS 7.0)<br>API 23以下のバージョンをサポートするには、[desugaring宣言](https://developer.android.com/studio/write/java8-support#library-desugaring)が必要 |
 |  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | Huawei App Galleryをサポート | - |
 |  | gamebase-adapter-purchase-onestore | nhncloud-iap-onestore | ONE store v17をサポート | - |
 |  | gamebase-adapter-purchase-onestore-v19 | nhncloud-iap-onestore-v19 | ONE store v19をサポート | - |
@@ -156,12 +156,8 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-steam:$GAMEBASE_SDK_VERSION"
 
     // >>> [Purchase Support under Android 7.0(API Level 24)]
-    // If AGP 4.0 to 7.2
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.9")
-    // If AGP 7.3
-    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.3")
-    // If AGP 7.4+
-    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+    // desugar_jdk_libs 2.+ needs AGP 7.4+
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
     
     // >>> Gamebase - Select Purchase Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
@@ -203,10 +199,6 @@ android {
     compileOptions {
         // >>> [Purchase Support under Android 7.0(API Level 24)]
         coreLibraryDesugaringEnabled true
-            
-        // >>> [AndroidX]
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     defaultConfig {

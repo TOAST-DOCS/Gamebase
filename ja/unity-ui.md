@@ -1,5 +1,51 @@
 ## Game > Gamebase > Unity Developer's Guide > UI
 
+## GameNotice
+
+コンソールに画像と一緒に登録した告知事項を表示する機能です。
+
+![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_001.png)
+
+### Open GameNotice
+
+ゲーム告知を画面に表示します。
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+
+
+```cs
+public static void OpenGameNotice(GamebaseCallback.ErrorDelegate callback)
+```
+
+**ErrorCode**
+
+| Error                                | Error Code | Description                         |
+|--------------------------------------| --- |-------------------------------------|
+| NOT\_INITIALIZED                     | 1 | Gamebaseが初期化されていません。            |
+| UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL            | 6941 | ゲーム告知URLの作成に失敗しました。               |
+| UI\_GAME\_NOTICE\_FAIL\_ANDROID\_DUPLICATED\_VIEW | 6942 | ゲーム告知ポップアップを終了する前にゲーム告知を再度呼び出しました。 |
+| WEBVIEW\_TIMEOUT                | 7002 | Webビュー表示時間が超過しました。(10秒)             |
+| WEBVIEW\_HTTP\_ERROR                 | 7003 | Webビュー内部でHTTPエラーが発生しました。            |
+| WEBVIEW\_UNKNOWN\_ERROR           | 7999 | 不明なWebビューエラーが発生しました。               |
+
+**Example**
+
+```cs
+public void SampleOpenGameNotice()
+{
+    Gamebase.GameNotice.OpenGameNotice(
+        (error) =>
+        {
+            // Called when the entire gameNotice is closed.
+        });
+}
+```
+
 ## ImageNotice
 
 コンソールにイメージを登録した後、ユーザーに告知を表示できます。
