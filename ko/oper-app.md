@@ -247,7 +247,8 @@ Facebook 개발자 사이트에 등록한 앱의 {앱 아이디}와 {앱 시크�
 * 여기서 주의할 점은, Gamebase Console에는 Web application 유형의 Client id만 입력해야 하므로 Android 유형의 Client id는 입력하지 않아야 합니다.
     * ![](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_012_en_20250122.png)
 
-* Google Credential Manager로 전환된 이후 버전부터는 (2.68.0) Google Cloud Console에서 아래와 같이 설정해야 합니다.
+* Google Credential Manager로 전환된 이후 버전(2.68.0)부터는 Google Cloud Console에서 아래와 같이 설정해야 합니다.
+
 * **Google Cloud Console > Google 인증 플랫폼 > 대상** 메뉴에서 **사용자 유형**을 **외부**로, **게시 상태**를 **프로덕션 단계**로 설정합니다.
     * 이렇게 설정되지 않은 경우, 로그인 시도 시 무조건 취소가 발생합니다.
     * ![](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/DevelopersGuide/aos-google-oauth-setting-production-en.png)
