@@ -14,13 +14,13 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 用途 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk | nhncloud-core-1.9.3<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-common<br>kotlin-stdlib-jdk7<br>kotlin-stdlib-jdk8<br>kotlin-android-extensions-runtime<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>kotlinx-coroutines-core-jvm | Gamebaseのインターフェイスおよびコアロジックを含む | API 21(Lollipop, OS 5.0) |
+| Gamebase | gamebase-sdk | nhncloud-core-1.9.5<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-jdk8<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android | Gamebaseのインターフェイス及び核心ロジックを含む | API 21(Lollipop, OS 5.0) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Appleログインをサポート | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-16.1.2 | Facebookログインをサポート | - |
-|  | gamebase-adapter-auth-google | play-services-auth-20.3.0 | Googleログインをサポート | - |
+|  | gamebase-adapter-auth-google | credentials-play-services-auth-1.3.0<br>play-services-auth-20.3.0 | Googleログインをサポート | - |
 |  | gamebase-adapter-auth-gpgs-v2 | play-services-games-v2-20.1.2 | GPGS(Google Play Games Services) V2ログインをサポート<br>Player IDベース | - |
 |  | gamebase-adapter-auth-gpgs-autologin | play-services-games-v2-20.1.2 | GPGS(Google Play Games Services)自動ログインをサポート | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.17.0 | Hangameログインをサポート | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.17.2 | Hangameログインをサポート | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | Lineログインをサポート | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.7.0 | NAVERログインをサポート | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.15 | Paycoログインをサポート | - |
@@ -32,7 +32,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | toast-gamebase-iap-0.21.0<br>nhncloud-iap-core | ゲーム内決済をサポート | - |
 |  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Amazon Appstoreをサポート | - |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Galaxy Storeをサポート | - |
-|  | gamebase-adapter-purchase-google | billingclient.billing-5.0.0<br>nhncloud-iap-google | Google Play Storeをサポート | - |
+|  | gamebase-adapter-purchase-google | billing-7.1.1<br>nhncloud-iap-google | Google Playをサポート | API 24(Nougat, OS 7.0)<br>API 23以下のバージョンをサポートするには、[desugaring宣言](https://developer.android.com/studio/write/java8-support#library-desugaring)が必要 |
 |  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | Huawei App Galleryをサポート | - |
 |  | gamebase-adapter-purchase-onestore | nhncloud-iap-onestore | ONE store v17をサポート | - |
 |  | gamebase-adapter-purchase-onestore-v19 | nhncloud-iap-onestore-v19 | ONE store v19をサポート | - |
@@ -155,6 +155,10 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-weibo:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-steam:$GAMEBASE_SDK_VERSION"
 
+    // >>> [Purchase Support under Android 7.0(API Level 24)]
+    // desugar_jdk_libs 2.+ needs AGP 7.4+
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
+    
     // >>> Gamebase - Select Purchase Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v21:$GAMEBASE_SDK_VERSION"
@@ -193,9 +197,8 @@ dependencies {
 
 android {
     compileOptions {
-        // >>> [AndroidX]
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        // >>> [Purchase Support under Android 7.0(API Level 24)]
+        coreLibraryDesugaringEnabled true
     }
 
     defaultConfig {
@@ -460,6 +463,9 @@ class MyApplication: GamebaseMyCardApplication() {
 <!-- Vibrate pattern -->
 <meta-data android:name="com.toast.sdk.push.notification.default_vibrate_pattern"
            android:resource="@array/default_vibrate_pattern"/>
+<!-- Vibration setup -->
+<meta-data android:name="com.toast.sdk.push.notification.vibration_enabled"
+           android:resource="true"/>           
 <!-- Use badge icon or not -->
 <meta-data android:name="com.toast.sdk.push.notification.badge_enabled"
            android:value="true"/>
@@ -479,6 +485,7 @@ class MyApplication: GamebaseMyCardApplication() {
 | com.toast.sdk.push.notification.default_small_icon | resource id | 小さいアイコンのリソース識別子。 |
 | com.toast.sdk.push.notification.default_sound | String | 通知音ファイル名。<br/>Android 8.0未満のOSでのみ動作します。<br/>「res/raw」フォルダのmp3、wavファイル名を指定すると、通知音が変更されます。 |
 | com.toast.sdk.push.notification.default_vibrate_pattern | long[] | 振動のパターン。 |
+| com.toast.sdk.push.notification.vibration_enabled | boolean | バイブレーションの使用有無 |
 | com.toast.sdk.push.notification.badge_enabled | boolean | バッジアイコンの使用有無。 |
 | com.toast.sdk.push.notification.foreground_enabled | boolean | フォアグラウンド通知の使用有無。 |
 

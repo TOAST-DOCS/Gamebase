@@ -1,32 +1,92 @@
 ## Game > Gamebase > リリースノート > Android
 
+### 2.71.2 (2025. 05. 20.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.2/GamebaseSDK-Android.zip)
+
+#### 機能改善/変更
+
+* 外部SDKアップデート: Hangame Android SDK(1.17.2)
+* 旧バージョンのGoogle Play Serviceがインストールされた端末でSign-in with Googleログインをサポート
+* 内部ロジック改善
+
+### 2.71.1 (2025. 04. 29.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.1/GamebaseSDK-Android.zip)
+
+#### バグ修正
+
+* Webビューサイズ計算関連エラーを修正しました。
+
+### 2.71.0 (2025. 04. 15.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.0/GamebaseSDK-Android.zip)
+
+#### 機能追加
+
+* 「ゲーム告知」新機能を追加しました。
+    * Gamebase.GameNotice.openGameNotice(Activity activity, GamebaseCallback onCloseCallback);
+    * API呼び出し方法は次のガイド文書を参照してください。
+        * [Game > Gamebase > Android SDK使用ガイド > UI > GameNotice](./aos-ui/#gamenotice)
+
+#### 機能改善/変更
+
+* storeCodeをnullに設定してGamebaseの初期化を呼び出した際に、例外が発生する代わりに**INVALID_PARAMETER(3)**エラーを返すように動作を変更しました。
+
+### 2.70.1 (2025. 03. 13.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.1/GamebaseSDK-Android.zip)
+
+#### バグ修正
+
+* Apple ID、Steam、TwitterログインナビゲーションバーのXボタンサイズを再調整しました。
+* KotlinファイルでAuthProviderのIdP constant(例：AuthProvider.GUESTなど)を参照できない問題を修正しました。
+
 ### 2.70.0 (2025. 03. 11.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
+#### 機能追加
 
-* 외부 SDK 업데이트: NHN Cloud SDK(1.9.5)
-    * Google billing client version 7.1.1이 적용되었습니다.
-* 'GPGS 자동 로그인' 기능 연동시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 초기화 옵션을 추가했습니다.
+* 外部SDKアップデート：NHN Cloud SDK(1.9.5)
+    * Google Play Billing Library version 7.1.1が適用されました。
+    * Android 7.0(API Level 24)未満の端末で決済を試みる場合、Google Play Billing Libraryでクラッシュが発生します。
+        * この問題を解決するためには、Gradleに下位OSのための[Java 8+ APIデシュガーリングサポート](https://developer.android.com/studio/write/java8-support#library-desugaring)宣言を追加する必要があります。
+        * アプリモジュールのGradle、Unityの場合、launcherTemplate.gradleに次の宣言を追加してください。
+        
+                android {
+                    compileOptions {
+                        // Flag to enable support for the new language APIs
+                        coreLibraryDesugaringEnabled true
+                    }
+                }
+
+                dependencies {
+                    // desugar_jdk_libs 2.+ needs AGP 7.4+
+                    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
+                }
+        
+        * desugar_jdk_libs 1.xバージョンはKakaogameログイン時にクラッシュが発生するため、2.xバージョンの適用を推奨します。
+            * Unity EditorのバージョンによってAGPバージョンが異なるため、AGPおよびGradleバージョンのアップデートが必要な場合があります。
+* 「GPGS自動ログイン」機能連動時、ユーザーにGPGSログインをアプリインストール後に一度だけ確認する初期化オプションを追加しました。
     * **GamebaseConfiguration.Builder.enableGPGSSignInCheck(boolean)**
-    * 기본 설정은 true로, 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.
-    * false로 설정하면 앱 최초 실행시에만 GPGS 로그인 창이 한번 표시됩니다.
-* 로그인 시 IdP 서버로부터 에러가 발생했음을 나타내는 신규 에러 코드가 추가되었습니다.
+    * デフォルト設定はtrueで、ユーザーがGPGSログインを拒否してもGamebase初期化時にGPGSログインウィンドウを再度表示します。
+    * falseに設定すると、アプリ初回実行時のみGPGSログインウィンドウが一度表示されます。
+* ログイン時にIdPサーバーでエラーが発生したことを示す新規エラーコードが追加されました。
     * AUTH_AUTHENTICATION_SERVER_ERROR(3012)
-* GamebaseWebView에 네비게이션 바 title 컬러와 icon tint 컬러 설정 옵션을 추가했습니다.
+* GamebaseWebViewにナビゲーションバーtitleカラーとicon tintカラー設定オプションを追加しました。
     * **GamebaseWebViewConfiguration.Builder.setNavigationBarTitleColor(int)**
     * **GamebaseWebViewConfiguration.Builder.setNavigationBarIconTintColor(int)**
 
-#### 기능 개선/변경
+#### 機能改善/変更
 
-* 'GPGS 자동 로그인' 기능 연동시 유저가 GPGS 로그인을 하지 않으면 Gamebase 초기화, 로그인, 로그아웃 시 GPGS 로그인을 계속 시도하던 동작을 Gamebase 초기화 때만 시도하도록 변경했습니다.
-* Apple ID, Steam, Twitter로그인 네비게이션 바에 title과 같은 색으로 X버튼을 표시하도록 변경했습니다.
+* 「GPGS自動ログイン」機能連動時、ユーザーがGPGSログインをしない場合、Gamebase初期化、ログイン、ログアウト時にGPGSログインを継続的に試行する動作をGamebase初期化時のみ試行するように変更しました。
+* Apple ID、Steam、Twitterログインのナビゲーションバーにタイトルと同じ色のXボタンを表示するように変更しました。
 
-#### 버그 수정
+#### バグ修正
 
-* LaunchingInfo data가 유저 Event Handler에서 업데이트 되지 않는 이슈를 수정했습니다.
-* Unity 빌드에서 이미지 공지 비율이 원본 이미지 비율과 다르게 표시되는 문제를 수정했습니다.
+* LaunchingInfo dataがユーザーEvent Handlerで更新されない問題を修正しました。
+* Unityビルドで画像告知の比率が原本画像比率と異なって表示される問題を修正しました。
 
 ### 2.69.0 (2025. 01. 21.)
 
@@ -97,7 +157,7 @@
         * GamebaseコンソールにCallback URL(https://id-gamebase.toast.com/oauth/callback)を設定します。 
         * 同じCallback URLをTwitter Developer Portalに追加します。
     * 詳細は以下のリンクをご覧ください。
-        * [Game > Gamebase > コンソール使用ガイド > アプリ > Authentication Information](./oper-app/#authentication-information)
+        * [Game > Gamebase > コンソール使用ガイド > アプリ > Authentication Information > 6. Twitter](./oper-app/#6-twitter)
 
 #### バグ修正
 * 約款画面表示状態でネットワークを切断した後、detailをタッチすると、約款ポップアップが終了する問題を修正しました。
