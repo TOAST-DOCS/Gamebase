@@ -245,12 +245,9 @@ Facebookの開発サイトに登録したアプリの{アプリID}と{アプリ�
     * ![all type created](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_007_en_20250122.png)
 * ここで注意する点は、Gamebase ConsoleにはWeb applicationタイプのClient idのみ入力しなければならないので、AndroidタイプのClient idは入力してはいけません。
     * ![](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_012_en_20250122.png)
-
 * Google Credential Managerに移行されたバージョン（2.68.0）以降では、Google Cloud Consoleで以下のように設定する必要があります。
-
 * **Google Cloud Console > Google認証プラットフォーム > 対象** メニューで**ユーザータイプ**を**外部**に、**掲示状態**を**プロダクション段階**に設定します。
     * このように設定されていない状態でログインしようとすると、無条件にキャンセルされます。
-
     * ![](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/DevelopersGuide/aos-google-oauth-setting-production-en.png)
     
 ##### Google Cloud Console - iOS
