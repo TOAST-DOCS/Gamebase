@@ -4,11 +4,11 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.2/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
+#### 機能改善/変更
 
-* 외부 SDK 업데이트: Hangame Android SDK(1.17.2)
-* 구버전 Google Play Service가 설치된 단말기에서 Sign-in with Google 로그인 지원
-* 내부 로직 개선
+* 外部SDKアップデート: Hangame Android SDK(1.17.2)
+* 旧バージョンのGoogle Play Serviceがインストールされた端末でSign-in with Googleログインをサポート
+* 内部ロジック改善
 
 ### 2.71.1 (2025. 04. 29.)
 
