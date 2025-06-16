@@ -1,5 +1,12 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.71.1 (2025. 06. 11.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.1/GamebaseSDK-Unity.zip)
+
+#### 버그 수정
+
+* (macOS) GamebaseUtil의 DllNotFoundException 문제를 수정했습니다.
+
 ### 2.71.0 (2025. 04. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.0/GamebaseSDK-Unity.zip)
 
