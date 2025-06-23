@@ -7,6 +7,9 @@
 * 외부 SDK 업데이트
     * Hangame iOS SDK (1.17.2)
         * 내부 로직 개선
+    * LINE iOS SDK (5.11.2)
+        * bitcode 설정 제거
+        * Xcode 16 컴파일러 경고 수정
 * 내부 로직 개선
 
 #### 버그 수정
