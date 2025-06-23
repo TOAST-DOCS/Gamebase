@@ -44,7 +44,7 @@ Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
 |  | GamebaseAuthGamecenterAdapter.xcframework | GameKit | Gamecenter 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthGoogleAdapter.xcframework | GoogleSignIn 7.1.0 | Google 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthTwitterAdapter.xcframework | | Twitter 로그인을 지원 | iOS 12 이상 |
-|  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.11.0 | LINE 로그인을 지원 | iOS 13 이상 |
+|  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.11.2 | LINE 로그인을 지원 | iOS 13 이상 |
 |  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 12 이상 |
 |  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.17.2 | Hangame 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.4.0 | Weibo 로그인을 지원 | iOS 12 이상 |
