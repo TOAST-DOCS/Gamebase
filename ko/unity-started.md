@@ -9,7 +9,7 @@ Gamebase Unity SDK 사용 환경과 초기 설정 방법을 설명합니다.
 >
 > Unity 지원 버전
 >
-> * 2020.3.16f1 ~ 6001.6f1
+> * 2020.3.16f1 ~ 6000.1.8f1
 
 #### Dependencies
 
