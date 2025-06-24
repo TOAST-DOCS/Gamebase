@@ -52,7 +52,7 @@ NHN Cloud 통합 인앱 결제 서비스인 IAP(In-App Purchase)를 초기화하
 | Huawei AppGallery | HUAWEI | GamebaseStoreCode::Huawei | Android에 한함 |
 | MyCard | MYCARD | GamebaseStoreCode::MyCard | Android에 한함 |
 | Windows Custom | WIN | GamebaseStoreCode::Windows | Windows에 한함 |
-| Epic Games Store | EPIC | GamebaseStoreCode::Epic | Windows에 한함 |
+| Epic Games Store | EPIC | GamebaseStoreCode::EpicGames | Windows에 한함 |
 | Steam | STEAM | GamebaseStoreCode::Steam | Windows에 한함 |
 
 #### 4. bEnablePopup

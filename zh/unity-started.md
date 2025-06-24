@@ -9,7 +9,7 @@ This guide describes the environments and initial setting of Gamebase Unity SDK.
 > 
 > Supported Unity versions
 >
-> * 2020.3.16f1 ~ 6001.6f1
+> * 2020.3.16f1 ~ 6000.1.8f1
 
 #### Dependencies
 
