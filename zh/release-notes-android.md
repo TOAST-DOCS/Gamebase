@@ -1,14 +1,5 @@
 ## Game > Gamebase > Release Notes > Android
 
-### 2.70.1 (2025. 03. 13.)
-
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.1/GamebaseSDK-Android.zip)
-
-#### 버그 수정
-
-* Apple ID, Steam, Twitter로그인 네비게이션 바의 X버튼 사이즈를 재조정하였습니다.
-* Kotlin 파일에서 AuthProvider의 IdP constant(예. AuthProvider.GUEST 등)를 참조할 수 없는 이슈를 수정하였습니다.
-
 ### 2.70.0 (2025. 03. 11.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.0/GamebaseSDK-Android.zip)
