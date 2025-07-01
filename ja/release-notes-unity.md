@@ -1,5 +1,16 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.68.1 (2024. 12. 10.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.1/GamebaseSDK-Unity.zip)
+
+#### 기능 개선/변경
+
+* 내부 로직을 개선하였습니다.
+
+#### 플랫폼별 변경 사항
+
+* [Gamebase iOS SDK 2.68.1](./release-notes-ios/#2681-2024-12-10)
+
 ### 2.68.0 (2024. 11. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.0/GamebaseSDK-Unity.zip)
 
