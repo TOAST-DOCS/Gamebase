@@ -131,8 +131,8 @@ GamesAppID=
 
 #### Epic Games 서비스
 
-* [로그인 인증 타입](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type) 지원은 PersistentAuth, AccountPortal을 지원합니다.
-    * 이전에 로그인하여 PersistentAuth 로그인을 위한 토큰이 저장되었다면 해당 토큰으로 로그인을 시도한 후 로그인을 할 수 없는 경우 AccountPortal 로그인을 시도하여 결과를 전달합니다.
+* [로그인 인증 타입](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type)은 PersistentAuth, AccountPortal을 지원합니다.
+    * 이전에 로그인하여 PersistentAuth 로그인을 위한 토큰이 저장되었다면 해당 토큰으로 로그인을 시도합니다. 해당 토큰으로 로그인을 할 수 없는 경우 AccountPortal 로그인을 시도하여 결과를 전달합니다.
 * 상세 내용은 아래 내용을 참고하시어 진행 바랍니다.
     * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
 
@@ -233,8 +233,8 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
 
 #### Epic Games 서비스
 
-* [로그인 인증 타입](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type) 지원은 PersistentAuth, AccountPortal을 지원합니다.
-    * 이전에 로그인하여 PersistentAuth 로그인을 위한 토큰이 저장되었다면 해당 토큰으로 로그인을 시도한 후 로그인을 할 수 없는 경우 AccountPortal 로그인을 시도하여 결과를 전달합니다.
+* [로그인 인증 타입](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type)은 PersistentAuth, AccountPortal을 지원합니다.
+    * 이전에 로그인하여 PersistentAuth 로그인을 위한 토큰이 저장되었다면 해당 토큰으로 로그인을 시도합니다. 해당 토큰으로 로그인을 할 수 없는 경우 AccountPortal 로그인을 시도하여 결과를 전달합니다.
 * 상세 내용은 아래 내용을 참고하시어 진행 바랍니다.
     * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
 
@@ -275,8 +275,8 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
 
 #### Epic Games 서비스
 
-* [로그인 인증 타입](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type) 지원은 ExchangeCode, AccountPortal을 지원합니다.
-    * 런처에서 게임을 실행하여 ExchangeCode를 사용할 수 있다면 해당 코드로 로그인을 시도한 후 로그인을 할 수 없는 경우 AccountPortal 로그인을 시도하여 결과를 전달합니다.
+* [로그인 인증 타입](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type)은 ExchangeCode, AccountPortal을 지원합니다.
+    * 런처에서 게임을 실행하여 ExchangeCode를 사용할 수 있다면 해당 코드로 로그인을 시도합니다. 해당 코드로 로그인을 할 수 없는 경우 AccountPortal 로그인을 시도하여 결과를 전달합니다.
 * 상세 내용은 아래 내용을 참고하시어 진행 바랍니다.
     * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
 
@@ -288,7 +288,7 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
         * [참고: 엔진 내 Steamworks 업그레이드 가이드](https://dev.epicgames.com/documentation/en-us/unreal-engine/online-subsystem-steam?application_version=4.27)
     * Online Subsystem Steam을 사용하는 경우 최신 버전의 Online Subsystem과 Online Subsystem Steam의 최신 버전 적용 코드를 참조하여 업데이트해야 합니다.
         * [참고: Online Subsystem Steam 엔진 최신 버전 커밋](https://github.com/EpicGames/UnrealEngine/commit/f6fd8dcf34a0cc31412dd473c1309c8e507981f3#diff-cd0b8c3bbdff4546195efef417923e90acead93b3625d8d82afe82fe0939b8a6)
-* 내부에서는 Engine.ini의 OnlineSubsystemSteam의 bEnabled이 활성화 된 경우 Online Subsystem Steam을 사용하는 것으로 간주합니다. 그 외의 경우 Gamebase에서 사용하는 Steamworks 지원버전을 충족하면 자동으로 Steamworks 모듈을 사용합니다.
+* 내부에서는 Engine.ini의 OnlineSubsystemSteam의 bEnabled이 활성화된 경우 Online Subsystem Steam을 사용하는 것으로 간주합니다. 그 외의 경우 Gamebase에서 사용하는 Steamworks 지원 버전을 충족하면 자동으로 Steamworks 모듈을 사용합니다.
 
         [OnlineSubsystemSteam]
 		bEnabled=True
@@ -301,16 +301,16 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
 
 ### Epic Games
 
-* Epic Games의 기능을 사용하기 위해서는 Epic Online Services(EOS) SDK를 사용하여 로그인되어야 합니다.
-* Online Subsystem EOS 플러그인 활성화되고, Engine.ini의 OnlineSubsystemEOS 섹션 내 bEnabled이 활성화 된 경우 Online Subsystem EOS를 사용하는 것으로 간주합니다.
+* Epic Games의 기능을 사용하려면 Epic Online Services(EOS) SDK를 사용하여 로그인해야 합니다.
+* Online Subsystem EOS 플러그인이 활성화되고, Engine.ini의 OnlineSubsystemEOS 섹션 내 bEnabled이 활성화된 경우 Online Subsystem EOS를 사용하는 것으로 간주합니다.
 
         [OnlineSubsystemEOS]
 		bEnabled=True
 
 * EOS SDK는 엔진 경로 내 `Engine/Source/ThirdParty/EOSSDK` 모듈을 사용합니다.
     * EOS SDK 업데이트 시 해당 모듈 내에서 필요한 플랫폼에 맞게 업데이트 바랍니다.
-        * Windows : 최소 버전은 1.15.5으로 1.16.3 버전까지 확인되었습니다.
-        * Android, iOS : 1.17.0-CL39599718 버전까지 확인되었습니다.
+        * Windows: 최소 버전은 1.15.5으로 1.16.3 버전까지 확인되었습니다.
+        * Android, iOS: 1.17.0-CL39599718 버전까지 확인되었습니다.
     * Online Subsystem EOS에서 [로그인 인증 타입](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type) 중 `PersistentAuth` 타입을 지원하려면 UE 4.27에서는 코드 수정이 필요합니다.
         * OnlineSubsystemEOS 모듈 내 UserManagerEOS.cpp 파일을 열어 `FUserManagerEOS::Login` 메서드 내에 AccountCredentials.Type의 스트링을 비교하는 조건문을 찾아 PersistentAuth 로그인을 위한 코드 추가가 필요합니다.
 
@@ -331,7 +331,7 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
         > - [Platform]/[Platform]EOSHelpers.h
 
     * Online Subsystem EOS를 사용하지 않을 시 EOSSDK 모듈을 이용해 따로 EOS 초기화를 진행하여 EOS SDK의 플랫폼 핸들을 설정해야 합니다.
-        * Gamebase에서는 Epic Games 인증 및 스토어 설정에 따라 필요한 기능만 호출하며 EOS SDK의 필수 라이프 사이클은 게임에서 직접 호출해주셔야 합니다. 
+        * Gamebase에서는 Epic Games 인증 및 스토어 설정에 따라 필요한 기능만 호출하며 EOS SDK의 필수 라이프 사이클은 게임에서 직접 호출해야 합니다. 
         * 플랫폼 핸들 설정을 위한 모듈 추가
 
             PrivateDependencyModuleNames.AddRange(
@@ -354,7 +354,7 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
                     }
                 }
     
-    * Android 지원 시, 로그인 응답을 받기 위해 [EOS SDK 가이드](https://dev.epicgames.com/docs/epic-online-services/platforms/android#7-how-to-receive-login-callback)를 참고하여 엔진 내 EOSSDK 모듈 내 `EOSSDK_strings.xml` 파일에 해당하는 값을 등록해주셔야 합니다.
+    * Android 지원 시, 로그인 응답을 받기 위해 [EOS SDK 가이드](https://dev.epicgames.com/docs/epic-online-services/platforms/android#7-how-to-receive-login-callback)를 참고하여 엔진 내 EOSSDK 모듈 내 `EOSSDK_strings.xml` 파일에 해당하는 값을 등록해야 합니다.
 
             <?xml version="1.0" encoding="utf-8"?>
             <resources>
