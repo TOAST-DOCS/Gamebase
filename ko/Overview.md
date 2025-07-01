@@ -49,7 +49,7 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 | PAYCO             | O | O | O | |
 | NAVER             | O | O | O | |
 | Twitter			| O | O | | O |
-| LINE				| O | O | | |
+| LINE				| O | O | | O |
 | Hangame			| O | O | O  | |
 | Weibo | O  | O  | | |
 | Steam | O  | O  | | O |
