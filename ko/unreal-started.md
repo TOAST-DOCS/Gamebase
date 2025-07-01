@@ -288,7 +288,7 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
         * [참고: 엔진 내 Steamworks 업그레이드 가이드](https://dev.epicgames.com/documentation/en-us/unreal-engine/online-subsystem-steam?application_version=4.27)
     * Online Subsystem Steam을 사용하는 경우 최신 버전의 Online Subsystem과 Online Subsystem Steam의 최신 버전 적용 코드를 참조하여 업데이트해야 합니다.
         * [참고: Online Subsystem Steam 엔진 최신 버전 커밋](https://github.com/EpicGames/UnrealEngine/commit/f6fd8dcf34a0cc31412dd473c1309c8e507981f3#diff-cd0b8c3bbdff4546195efef417923e90acead93b3625d8d82afe82fe0939b8a6)
-* 내부에서는 Engine.ini의 OnlineSubsystemSteam의 bEnabled이 활성화 된 경우 Online Subsystem Steam을 사용하는 것으로 간주합니다. 그 외의 경우 Gamebase에서 사용하는 Steamworks 지원버전을 충족하면 자동으로 Steamworks 모듈을 사용합니다.
+* 내부에서는 Engine.ini의 OnlineSubsystemSteam의 bEnabled이 활성화된 경우 Online Subsystem Steam을 사용하는 것으로 간주합니다. 그 외의 경우 Gamebase에서 사용하는 Steamworks 지원 버전을 충족하면 자동으로 Steamworks 모듈을 사용합니다.
 
         [OnlineSubsystemSteam]
 		bEnabled=True
