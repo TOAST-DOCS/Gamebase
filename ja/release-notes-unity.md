@@ -1,5 +1,25 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.72.0 (2025. 06. 24.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+
+* (Windows) 업데이트 팝업에 자세히 보기 버튼을 추가하였습니다.
+* (Windows) 이용 정지 팝업에 고객센터 링크를 추가하였습니다.
+
+#### 기능 개선/변경
+
+* (Windows) 내부 로직을 개선하였습니다.
+
+#### 버그 수정
+
+* (Windows) 점검 상태로 갱신되지 않던 문제를 수정하였습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.72.0](./release-notes-android/#2720-2025-06-24)
+* [Gamebase iOS SDK 2.72.0](./release-notes-ios/#2720-2025-06-24)
+
 ### 2.71.1 (2025. 06. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.1/GamebaseSDK-Unity.zip)
 
@@ -60,6 +80,12 @@
 #### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.70.0](./release-notes-android/#2700-2025-03-11)
 * [Gamebase iOS SDK 2.70.0](./release-notes-ios/#2700-2025-03-11)
+
+#### Setting Tool (v3.0.0)
+
+* 사용 목적에 맞게 사용자 친화적인 UX로 개선했습니다.
+* 직관적인 기능 제공으로 설정 및 업데이트가 더 쉬워졌습니다.
+* 배포 시 유연하게 업데이트할 수 있도록 개선했습니다.
 
 ### 2.69.0 (2025. 1. 21.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.69.0/GamebaseSDK-Unity.zip)

@@ -274,7 +274,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 | keyname | a use | 값 종류 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential::ProviderName | IdP 유형 설정                           | GamebaseAuthProvider::Google<br> GamebaseAuthProvider::Facebook<br>GamebaseAuthProvider::Naver<br>GamebaseAuthProvider::Twitter<br>GamebaseAuthProvider::Line<br>GamebaseAuthProvider::Hangame<br>GamebaseAuthProvider::AppleId<br>GamebaseAuthProvider::Weibo<br>GamebaseAuthProvider::GameCenter<br>GamebaseAuthProvider::Payco<br>GamebaseAuthProvider::Steam |
+| GamebaseAuthProviderCredential::ProviderName | IdP 유형 설정                           | GamebaseAuthProvider::Google<br> GamebaseAuthProvider::Facebook<br>GamebaseAuthProvider::Naver<br>GamebaseAuthProvider::Twitter<br>GamebaseAuthProvider::Line<br>GamebaseAuthProvider::Hangame<br>GamebaseAuthProvider::AppleId<br>GamebaseAuthProvider::Weibo<br>GamebaseAuthProvider::GameCenter<br>GamebaseAuthProvider::Payco<br>GamebaseAuthProvider::Steam<br>GamebaseAuthProvider::EpicGames |
 | GamebaseAuthProviderCredential::AccessToken | IdP 로그인 이후 받은 인증 정보(Access Token) 설정<br/>Google 인증 시에는 사용 안 함 |                                |
 | GamebaseAuthProviderCredential::AuthorizationCode | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                          |
 | GamebaseAuthProviderCredential::GamebaseAccessToken | IdP 인증 정보가 아닌 Gamebase Access Token으로 로그인하는 경우 사용 |  |
@@ -611,7 +611,7 @@ void AddMappingForcibly(const FGamebaseVariantMap& CredentialInfo, const FString
 void USample::AddMappingForcibly(const FString& ProviderName)
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddMapping(ProviderName, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
+    Subsystem->AddMapping(GetProviderName(LoginType), FGamebaseAuthTokenDelegate::CreateLambda([Subsystem](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
@@ -619,29 +619,27 @@ void USample::AddMappingForcibly(const FString& ProviderName)
         }
         else
         {
-            // 우선 AddMapping API를 호출하고 이미 연동된 계정으로 매핑을 시도하여, 다음과 같이 ForcingMappingTicket을 얻을 수 있습니다.
             if (Error->Code == GamebaseErrorCode::AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER)
             {
                 // ForcingMappingTicket 클래스의 From() 메서드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
-                auto ForcingMappingTicket = FGamebaseForcingMappingTicket::From(Error);
-                if (ForcingMappingTicket.IsValid() == false)
+                const FGamebaseForcingMappingTicketPtr ForcingMappingTicket = FGamebaseForcingMappingTicket::From(Error);
+                if (!ForcingMappingTicket.IsValid())
                 {
-                    // Unexpected Error occurred. Contact Administrator.
+                    // Unexpected error occurred. Contact Administrator.
                 }
-                
+
                 // 강제 매핑을 시도합니다.
-                Subsystem->AddMappingForcibly(ForcingMappingTicket, ForcingMappingTicket->ForcingMappingKey,
-                    FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* innerAuthToken, const FGamebaseError* innerError)
+                Subsystem->AddMappingForcibly(*ForcingMappingTicket, FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* InnerAuthToken, const FGamebaseError* InnerError)
                 {
-                    if (Gamebase::IsSuccess(Error))
+                    if (Gamebase::IsSuccess(InnerError))
                     {
                         // 강제 매핑 추가 성공
-                        UE_LOG(GamebaseTestResults, Display, TEXT("AddMappingForcibly succeeded."));
+                        UE_LOG(GamebaseTestResults, Display, TEXT("ChangeLogin succeeded. Gamebase userId is %s"), *InnerAuthToken->Member.UserId);
                     }
                     else
                     {
                         // 오류 코드를 확인하고 적절한 처리를 진행합니다.
-                        UE_LOG(GamebaseTestResults, Display, TEXT("AddMappingForcibly failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Messsage);
+                        UE_LOG(GamebaseTestResults, Display, TEXT("ChangeLogin failed."));
                     }
                 }));
             }
@@ -684,32 +682,30 @@ void USample::ChangeLoginWithFacebook(const FString& ProviderName)
         }
         else
         {
-            // 우선 AddMapping API를 호출하고 이미 연동된 계정으로 매핑을 시도하여, 다음과 같이 ForcingMappingTicket을 얻을 수 있습니다.
             if (Error->Code == GamebaseErrorCode::AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER)
             {
                 // ForcingMappingTicket 클래스의 From() 메서드를 이용하여 ForcingMappingTicket 인스턴스를 얻습니다.
-                auto ForcingMappingTicket = FGamebaseForcingMappingTicket::From(Error);
-                if (ForcingMappingTicket.IsValid())
-                {   
-                    // 강제 매핑을 시도합니다.
-                    Subsystem->ChangeLogin(ForcingMappingTicket, ForcingMappingTicket->ForcingMappingKey,
-                        FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* AuthTokenForcibly, const FGamebaseError* ChangeLoginError)
-                    {
-                        if (Gamebase::IsSuccess(ChangeLoginError))
-                        {
-                            // 로그인 변경 성공
-                        }
-                        else
-                        {
-                            // 로그인 변경 실패
-                            // 오류 코드를 확인하고 적절한 처리를 진행합니다.
-                        }
-                    }));
-                }
-                else
+                const FGamebaseForcingMappingTicketPtr ForcingMappingTicket = FGamebaseForcingMappingTicket::From(Error);
+                if (!ForcingMappingTicket.IsValid())
                 {
-                    // Unexpected Error occurred. Contact Administrator.
+                    // Unexpected error occurred. Contact Administrator.
                 }
+
+                // 로그인 변경을 시도합니다.
+                Subsystem->ChangeLogin(*ForcingMappingTicket, FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* InnerAuthToken, const FGamebaseError* InnerError)
+                {
+                    if (Gamebase::IsSuccess(InnerError))
+                    {
+                        // 로그인 변경 성공
+                        UE_LOG(GamebaseTestResults, Display, TEXT("ChangeLogin succeeded. Gamebase userId is %s"), *InnerAuthToken->Member.UserId);
+                    }
+                    else
+                    {
+                        // 로그인 변경 실패
+                        // 오류 코드를 확인하고 적절한 처리를 진행합니다.
+                        UE_LOG(GamebaseTestResults, Display, TEXT("ChangeLogin failed."));
+                    }
+                }));
             }
             else
             {
