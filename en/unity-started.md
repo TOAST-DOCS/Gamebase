@@ -9,7 +9,7 @@ This guide describes the environments and initial setting of Gamebase Unity SDK.
 > 
 > Supported Unity versions
 >
-> * 2020.3.16 ~ 6000.0.23
+> * 2020.3.16 ~ 6000.0.30
 
 #### Android
 > <font color="red">[Caution]</font>
