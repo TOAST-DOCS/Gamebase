@@ -26,7 +26,6 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 |  | gamebase-adapter-auth-payco | payco-login-1.5.15 | Paycoログインをサポート | - |
 |  | gamebase-adapter-auth-twitter | - | Twitterログインをサポート | - |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.5.0 | Weiboログインをサポート | - |
-|  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Weiboログインをサポート | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.19.3<br>kakaogame.gamesdk-3.19.3<br>kakaogame.common-3.19.3<br>kakao.sdk.v2-auth-2.17.0<br>kakao.sdk.v2-partner-auth-2.17.0<br>kakao.sdk.v2-common-2.17.0<br>play-services-ads-identifier-17.0.0 | Kakaoログインをサポート | API 23(Marshmallow, OS 6.0) |
 |  | gamebase-adapter-auth-steam | - | Steamログインをサポート | API 25(Nougat, OS 7.1.1) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | toast-gamebase-iap-0.21.0<br>nhncloud-iap-core | ゲーム内決済をサポート | - |
@@ -177,10 +176,6 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangamejp:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangamejpemail:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-kakaogame:$GAMEBASE_SDK_VERSION"
-    // >>> [Weibo v4]
-    // https://github.com/nhn/toast.gamebase.android.sample/tree/main/weibo_sdk
-    implementation files('libs/openDefault-4.4.4.aar')
-    implementation "com.toast.android.gamebase:gamebase-adapter-auth-weibo-v4:$GAMEBASE_SDK_VERSION"
     // >>> [ONE store v16]
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v16:$GAMEBASE_SDK_VERSION"
     // >>> [ONE store v17]
@@ -200,29 +195,10 @@ android {
         // >>> [Purchase Support under Android 7.0(API Level 24)]
         coreLibraryDesugaringEnabled true
     }
-
-    defaultConfig {
-        // >>> [Weibo IdP]
-        ndk {
-            abiFilters 'armeabi' // , 'armeabi-v7a', 'arm64-v8a'
-        }
-    }
-    }
 }
 ```
 
 ### Resources
-
-#### Weibo IdP
-
-* ビルドターゲットに応じて次のURLのsoファイルをダウンロードしてプロジェクトにコピーしてください。
-    * https://github.com/sinaweibosdk/weibo_android_sdk/tree/master/so
-* Android Studioビルドの場合
-    * プロジェクトのsrc/main/java/jniLibsフォルダの下にコピーします。
-    * ![Add so file to Android Studio project](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-started-resources-weibo-so-android-studio-2.53.0.png)
-* Unityビルドの場合
-    * soファイルとフォルダをAssets/Plugins/Android/libsフォルダの下にコピーします。
-    * ![Add so file to Unity project](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-started-resources-weibo-so-unity-2.53.0.png)
 
 #### Huawei Store
 

@@ -1,5 +1,17 @@
 ## Game > Gamebase > 릴리스 노트 > Android
 
+### 2.73.0 (2025. 07. 15.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+
+* 내부 로직 개선
+
+#### 버그 수정
+
+* 로그인 웹뷰에서 화면 회전시 여백 크기를 잘못 계산하는 오류를 수정했습니다.
+
 ### 2.72.0 (2025. 06. 24.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.0/GamebaseSDK-Android.zip)

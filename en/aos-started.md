@@ -26,7 +26,6 @@ To execute Gamebase in Android, the following system environment is required.
 |  | gamebase-adapter-auth-payco | payco-login-1.5.15| Support PAYCO login | - |
 |  | gamebase-adapter-auth-twitter | - | Support Twitter login | - |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.5.0 | Support Weibo login | - |
-|  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Support Weibo login | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.19.3<br>kakaogame.gamesdk-3.19.3<br>kakaogame.common-3.19.3<br>kakao.sdk.v2-auth-2.17.0<br>kakao.sdk.v2-partner-auth-2.17.0<br>kakao.sdk.v2-common-2.17.0<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 23(Marshmallow, OS 6.0) |
 |  | gamebase-adapter-auth-steam | - | Support Steam login | API 25(Nougat, OS 7.1.1) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | Support in-app purchase | - |
@@ -156,6 +155,10 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-weibo:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-steam:$GAMEBASE_SDK_VERSION"
 
+    // >>> [Purchase Support under Android 7.0(API Level 24)]
+    // desugar_jdk_libs 2.+ needs AGP 7.4+
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
+    
     // >>> Gamebase - Select Purchase Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-google:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v21:$GAMEBASE_SDK_VERSION"
@@ -174,10 +177,6 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangamejp:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangamejpemail:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-kakaogame:$GAMEBASE_SDK_VERSION"
-    // >>> [Weibo v4]
-    // https://github.com/nhn/toast.gamebase.android.sample/tree/main/weibo_sdk
-    implementation files('libs/openDefault-4.4.4.aar')
-    implementation "com.toast.android.gamebase:gamebase-adapter-auth-weibo-v4:$GAMEBASE_SDK_VERSION"
     // >>> [ONE store v16]
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v16:$GAMEBASE_SDK_VERSION"
     // >>> [ONE store v17]
@@ -194,32 +193,13 @@ dependencies {
 
 android {
     compileOptions {
-        // >>> [AndroidX]
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    defaultConfig {
-        // >>> [Weibo IdP]
-        ndk {
-            abiFilters 'armeabi' // , 'armeabi-v7a', 'arm64-v8a'
-        }
+        // >>> [Purchase Support under Android 7.0(API Level 24)]
+        coreLibraryDesugaringEnabled true
     }
 }
 ```
 
 ### Resources
-
-#### Weibo IdP
-
-* Depending on your build target, download the so files from the following URLs and copy them to your project.
-    * https://github.com/sinaweibosdk/weibo_android_sdk/tree/master/so
-* In case of Android Studio build
-    * Copy under the project's src/main/java/jniLibs folder.
-    * ![Add so file to Android Studio project](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-started-resources-weibo-so-android-studio-2.53.0.png)
-* In case of Unity build
-    * Copy the so and foler under the Assets/Plugins/Android/libs.
-    * ![Add so file to Unity project](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-started-resources-weibo-so-unity-2.53.0.png)
 
 #### Huawei Store
 
