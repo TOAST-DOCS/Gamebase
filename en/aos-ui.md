@@ -196,12 +196,12 @@ public void afterLogin(Activity activity) {
 Gamebase displays the terms and conditions with a simple WebView.
 If you want to create the terms and conditions appropriate for the game UI, call the queryTerms API to download the terms and conditions information set in the Gamebase Console for later use.
 
-Calling it after login also lets you see if the game user has agreed to the terms and conditions.
+The "optional" terms items will return the user's consent status when queried after login. However, the consent status for "required" items will always be returned as false.
 
 > <font color="red">[Caution]</font><br/>
 >
-> * The required items with GamebaseTermsContentDetail.getRequired() set to true are not stored in the Gamebase server; therefore, false is always returned for the agreed value.
->     * It is because there is no point in storing the required items since they are always stored as true.
+> * If a required item has GamebaseTermsContentDetail.getRequired() set to true, the consent status is not stored on the Gamebase server, so the agreed value will always be returned as false.
+>     * Since users cannot proceed with the game or log in without agreeing to the required terms, if the terms popup is closed and the user is logged in, it is considered that they have already agreed to the required items. Therefore, there is no need to store the consent status for required items for logged-in users, as they are assumed to have already provided consent.
 > * The user consent for receiving the push notification is not stored in the Gamebase server either; therefore, the agreed value is always returned as false.
 >     * To see if the user has agreed to receive push, please use the Gamebase.Push.queryTokenInfo API.
 > * If you do not touch the 'Terms and Conditions settings' in the console, **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** error occurs when you call the queryTerms API from the device with the country code different from the terms and conditions language.
@@ -435,7 +435,13 @@ GamebaseWebViewConfiguration configuration
             .setTitleText("title")                              // Set Title
             .setScreenOrientation(ScreenOrientation.PORTRAIT)   // Set Screen Orientation
             .setNavigationBarColor(Color.RED)                   // Set Navigation Bar Color
+
+            .setNavigationBarTitleColor(Color.BLACK)            // Set Navigation Bar Title Color
+
+            .setNavigationBarIconTintColor(Color.BLACK)         // Set Navigation Bar Icon Tint Color
+
             .setNavigationBarHeight(40)                         // Set Navigation Bar Height
+
             .setBackButtonVisible(true)                         // Set Go Back Button Visibility
             .setBackButtonImageResource(R.id.back_button)       // Set Go Back Button Image
             .setCloseButtonImageResource(R.id.close_button)     // Set Close Button Image
@@ -507,7 +513,9 @@ showWebView(activity, urlString, configuration,
 |                                          | ScreenOrientation.LANDSCAPE         | Landscape mode          |
 |                                          | ScreenOrientation.LANDSCAPE_REVERSE | Reverse landscape |
 | setNavigationBarVisible(boolean enable)  | true or false                       | Activate or deactivate Navigation Bar.<br>**default**: true  |
-| setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | Color of Navigation Bar     |
+| setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | Color of Navigation Bar<br>**default**:#125DE6  |
+| setNavigationBarTitleColor(int color)    | Color.argb(a, r, b, b)              | Color of Navigation Bar Title<br>**default**: Color.WHITE  |
+| setNavigationBarIconTintColor(int color) | Color.argb(a, r, b, b)              | Color of Navigation Bar Icon Tint<br>**default**: No tint set   |
 | setNavigationBarHeight(int height)       | height                              | Height of Navigation Bar     |
 | setBackButtonVisible(boolean visible)    | true or false                       | Activate or deactivate Go Back Button.<br>**default**: true |
 | setBackButtonImageResource(int resourceId) | ID of resource                      | Image of Go Back Button       |
@@ -515,6 +523,7 @@ showWebView(activity, urlString, configuration,
 | enableAutoCloseByCustomScheme(boolean enable) | true or false | WebView is automatically closed when the custom scheme works.<br>**default**: true |
 | enableFixedFontSize(boolean enable)      | true or false | Display a webview at a fixed size, ignoring system font size.<br>**default**: false |
 | setRenderOutsideSafeArea(boolean render) | true or false | Ignore safe area and render cutout area.<br>**default**: false |
+| setCutoutAreaColor(int color) | Color.argb(a, r, b, b) | Cutout area background color outside of SafeArea |
 
 ### Close WebView
 Close currently displayed WebView by using the following API.

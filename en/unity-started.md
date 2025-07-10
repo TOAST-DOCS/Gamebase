@@ -103,7 +103,7 @@ Once all required settings are completed, the corresponding item will disappear.
 
 > <font color="red">[Caution]</font>
 >
-> If the Required Settings are not resolved, **errors may occur** when running or building the project.
+> If the Required Settings are not resolved, errors may occur when running or building the project.
 
 ### Installing EDM4U
 
@@ -138,12 +138,12 @@ The MainActivity setting depends on the Application Entry Point.
     2. Set the MainActivity in AndroidManifest.xml.
         * com.toast.android.gamebase.activity.GamebaseMainActivity
 * Unity version 2023 or above
-    1. Open Android Player Setting
+    1. Open Android Player Setting.
         * **Player Settings > Player > Android**
-    2. Check or configure the Application Entry Point setting
+    2. Check or configure the Application Entry Point setting.
         * **Other Settings > Application Entry Point**
             * ![unity-developers-guide-started-settingtool-application-entry-point](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-application-entry-point.png)
-    3. Set the appropriate MainActivity based on the configured Application Entry Point
+    3. Set the appropriate MainActivity based on the configured Application Entry Point.
         * If Activity is enabled:
             * com.toast.android.gamebase.activity.GamebaseMainActivity
         * If GameActivity is enabled:

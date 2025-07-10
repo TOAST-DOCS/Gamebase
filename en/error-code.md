@@ -35,6 +35,7 @@
 |                 | Android<br/>Unity<br/>iOS | AUTH_EXTERNAL_LIBRARY_ERROR<br/>TCGB_ERROR_AUTH_EXTERNAL_LIBRARY_ERROR | 3009       | External authentication library error.                       |
 |                 | Android<br/>Unity<br/>iOS | AUTH_ALREADY_IN_PROGRESS_ERROR<br/>TCGB_ERROR_AUTH_ALREADY_IN_PROGRESS_ERROR | 3010       | The previous authentication process did not complete.                 |
 |                 | Android<br/>Unity<br/>iOS | AUTH_INVALID_GAMEBASE_TOKEN<br/>TCGB_ERROR_AUTH_INVALID_GAMEBASE_TOKEN | 3011       | You were logged out because your Gamebase Access Token is invalid.<br/>Try signing in again. |
+|                 | Android<br/>Unity<br/>iOS | AUTH_AUTHENTICATION_SERVER_ERROR<br/>TCGB_ERROR_AUTH_AUTHENTICATION_SERVER_ERROR | 3012       | An error occurred from the authentication server. |
 | TransferAccount | Android<br/>Unity<br/>iOS | SAME_REQUESTOR<br/>TCGB_ERROR_SAME_REQUESTOR | 8 | The issued TransferAccount was used on the same terminal. |
 |                 | Android<br/>Unity<br/>iOS | NOT_GUEST_OR_HAS_OTHERS<br/>TCGB_ERROR_NOT_GUEST_OR_HAS_OTHERS | 9 | You tried to transfer from a non-Guest account, or your account is associated with a non-Guest IdP. |
 |                 | Android<br/>Unity<br/>iOS | AUTH_TRANSFERACCOUNT_EXPIRED<br/>TCGB_ERROR_AUTH_TRANSFERACCOUNT_EXPIRED | 3041 | The TransferAccount has expired. |

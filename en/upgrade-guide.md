@@ -4,9 +4,9 @@
 
 ### Android
 
-* Gamebase Android SDK 2.70.0에서 사용하는 NHN Cloud Android SDK 1.9.5에서는 Android 7.0(API Level 24) 미만 단말기에서 결제를 시도하는 경우 크래시가 발생합니다.
-    * 이 문제를 해결하기 위해서는 Gradle에 하위 OS를 위한 [Java 8+ API 디슈가링 지원](https://developer.android.com/studio/write/java8-support#library-desugaring) 선언을 추가해야 합니다.
-    * 앱 모듈의 Gradle, Unity의 경우 launcherTemplate.gradle에 다음 선언을 추가하세요.
+* In NHN Cloud Android SDK 1.9.5 used by Gamebase Android SDK 2.70.0, attempting a purchase on devices running Android 7.0 (API Level 24) or lower may cause a crash.
+    * To work around this issue, Gradle needs to add a [Java 8+ API desugaring support](https://developer.android.com/studio/write/java8-support#library-desugaring) declaration for lower OSes.
+    * For the app module's Gradle or in the case of Unity, add the following declaration to launcherTemplate.gradle.
     
             android {
                 compileOptions {
@@ -24,33 +24,33 @@
                 // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
             }
     
-    * Unity Editor 버전에 따라 AGP 버전이 다르므로 올바른 버전을 확인하세요.
+    * The AGP version may vary depending on the Unity Editor version, so verify and use the appropriate version.
 
 ## 2.69.0
 
 ### Unity
 
-* GPGS AutoLogin를 사용하는 경우, **GetLastLoggedInProvider()** 동기 API 대신 신규 추가된 **RequestLastLoggedInProvider(GamebaseCallback.GamebaseDelegate\<string> callback)** 비동기 API를 사용하세요.
+* When using GPGS AutoLogin, use the newly added asynchronous API **RequestLastLoggedInProvider(GamebaseCallback.GamebaseDelegate<string> callback)** instead of the synchronous **GetLastLoggedInProvider()** API.
 
 ### Unreal
 
-* 약관 조회 결과 API인 FGamebaseQueryTermsResult가 수정되었습니다.
-    * TermsCountryType의 값이 설정되지 않는 문제를 수정했습니다.
-    * bPushEnabled, bAdAgreement, bAdAgreementNight가 제거되었습니다.
-* GPGS AutoLogin을 사용하는 경우, **GetLastLoggedInProvider()** 동기 API 대신 신규 추가된 **RequestLastLoggedInProvider(GamebaseCallback.GamebaseDelegate\<string> callback)** 비동기 API를 사용하세요.
+*  Fixed the terms query result API, FGamebaseQueryTermsResult.
+    * Fixed an issue where the value of TermsCountryType was not being set.
+    * bPushEnabled, bAdAgreement, bAdAgreementNight has been removed.
+* When using GPGS AutoLogin, use the newly added asynchronous API **RequestLastLoggedInProvider(GamebaseCallback.GamebaseDelegate<string> callback)** instead of the synchronous **GetLastLoggedInProvider()** API.
 
 ### Android
 
-* **gamebase-adapter-auth-gpgs-autologin** 모듈을 빌드에 포함하는 경우, **getLastLoggedInProvider()** 동기 API 대신 신규 추가된 **requestLastLoggedInProvider(GamebaseDataCallback&lt;String&gt;)** 비동기 API를 사용하세요.
+* When including the **gamebase-adapter-auth-gpgs-autologin** module in the build, use the newly added asynchronous API **requestLastLoggedInProvider(GamebaseDataCallback<String>)** instead of the synchronous **getLastLoggedInProvider()** API.
 
 ## 2.68.1
 
 ### Unreal
 
-* (Windows) WebView 플러그인을 옵션으로 선택할 수 있도록 변경되었습니다.
-    * [WebView 플러그인 가이드](./unreal-started/#windows-settings)를 확인하여 업데이트가 필요합니다.
-* (Windows) 크래시 로그 전송 시 프로젝트 바이너리 경로에 심벌 파일을 압축한 파일이 생성되도록 추가되었습니다.
-    * [크래시 로그 전송 가이드](./unreal-logger/#crash-reporter)
+* (Windows) Changed to allow the WebView plugin to be selected as an optional component.
+    * Refer to the [WebView Plugins guide](./unreal-started/#windows-settings) for updates.
+* (Windows) Added a feature to generate a compressed file containing symbol files in the project binary path when sending crash logs.
+    * [Crash Reporter](./unreal-logger/#crash-reporter)
 
 ## 2.68.0
 
@@ -64,13 +64,13 @@
 
 ### Unreal
 
-* (Windows) Purchase 설정 시 스토어를 하나만 선택할 수 있도록 변경되었습니다.
-    * 스토어 재설정이 필요합니다.
-* (Windows) Epic Games Store 사용 시 EOS SDK의 핸들을 등록하는 과정이 변경되었습니다.
-    * Online Subsystem EOS를 사용하는 경우 Gamebase 초기화 시 StoreCode가 Epic Games Store의 해당하는 값이면 자동으로 핸들을 등록합니다.
-    * Online Subsystem EOS를 사용하지 않는 경우 [Windows Settings](./unreal-started/#windows-settings) 가이드를 참고하여 EOS의 핸들을 등록하는 과정이 필요합니다.
-* (Windows) Steamworks SDK 지원 버전이 1.59로 변경되었습니다.
-    * [Steamworks 업그레이드 가이드](./unreal-started/#windows-settings)를 확인하여 업데이트가 필요합니다.
+* (Windows) Changed the Purchase settings to allow selecting only one store.
+    * The store reset is required.
+* (Windows) The process for registering a handle for the EOS SDK when using the Epic Games Store has changed.
+    * When using Online Subsystem EOS, if the StoreCode corresponds to the Epic Games Store during Gamebase initialization, the handle is automatically registered.
+    * If Online Subsystem EOS is not used, you need to manually register the EOS handle by following the [Windows Settings Guide](./unreal-started/#windows-settings).
+* (Windows) Changed the supported version of the Steamworks SDK to 1.59.
+    * Refer to the [Steamworks upgrade guide](./unreal-started/#windows-settings) for updates.
 
 ## 2.67.0
 
