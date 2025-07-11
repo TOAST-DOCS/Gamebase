@@ -246,12 +246,9 @@ Enter {App ID} and {App Secret Code} of an app registered in the Facebook develo
     * ![all type created](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_007_en_20250122.png)
 * The Gamebase Console only requires you to enter a Client id of the Web application type, so do not enter the Client id of the Android type.
     * ![](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_012_en_20250122.png)
-
 * Starting from version 2.68.0, which uses Google Credential Manager, the following settings must be configured in the Google Cloud Console.
-
 * In **Google Cloud Console > Google Auth Platform > Audience** menu, set **User type** to **External** and **Publishing status** to **In production**.
     * If these settings are not properly configured, all login attempts will be automatically canceled.
-
     * ![](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/DevelopersGuide/aos-google-oauth-setting-production-en.png)
 
 ##### Google Cloud Console - iOS
@@ -276,6 +273,7 @@ Enter {App ID} and {App Secret Code} of an app registered in the Facebook develo
 - Additional info: OAuth 2.0 Scopes (json format)
 
 ##### Additional Info Settings
+
 * You can set information in the form of a JSON string in the **NHN Cloud Console > Game > Gamebase > App > Authentication Information > Additional Info**.
 * For Google, if you want to get email information from profile information after OAuth authentication, you must set **scope**, which is the scope of authentication permissions.
 * The different scopes you can declare in addition to email can be found in the following documents

@@ -435,13 +435,9 @@ GamebaseWebViewConfiguration configuration
             .setTitleText("title")                              // Set Title
             .setScreenOrientation(ScreenOrientation.PORTRAIT)   // Set Screen Orientation
             .setNavigationBarColor(Color.RED)                   // Set Navigation Bar Color
-
             .setNavigationBarTitleColor(Color.BLACK)            // Set Navigation Bar Title Color
-
             .setNavigationBarIconTintColor(Color.BLACK)         // Set Navigation Bar Icon Tint Color
-
             .setNavigationBarHeight(40)                         // Set Navigation Bar Height
-
             .setBackButtonVisible(true)                         // Set Go Back Button Visibility
             .setBackButtonImageResource(R.id.back_button)       // Set Go Back Button Image
             .setCloseButtonImageResource(R.id.close_button)     // Set Close Button Image
@@ -513,9 +509,9 @@ showWebView(activity, urlString, configuration,
 |                                          | ScreenOrientation.LANDSCAPE         | Landscape mode          |
 |                                          | ScreenOrientation.LANDSCAPE_REVERSE | Reverse landscape |
 | setNavigationBarVisible(boolean enable)  | true or false                       | Activate or deactivate Navigation Bar.<br>**default**: true  |
-| setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | Color of Navigation Bar<br>**default**:#125DE6  |
-| setNavigationBarTitleColor(int color)    | Color.argb(a, r, b, b)              | Color of Navigation Bar Title<br>**default**: Color.WHITE  |
-| setNavigationBarIconTintColor(int color) | Color.argb(a, r, b, b)              | Color of Navigation Bar Icon Tint<br>**default**: No tint set   |
+| setNavigationBarColor(int color)         | Color.argb(a, r, g, b)              | Color of Navigation Bar<br>**default**:#125DE6  |
+| setNavigationBarTitleColor(int color)    | Color.argb(a, r, g, b)              | Color of Navigation Bar Title<br>**default**: Color.WHITE  |
+| setNavigationBarIconTintColor(int color) | Color.argb(a, r, g, b)              | Color of Navigation Bar Icon Tint<br>**default**: No tint set   |
 | setNavigationBarHeight(int height)       | height                              | Height of Navigation Bar     |
 | setBackButtonVisible(boolean visible)    | true or false                       | Activate or deactivate Go Back Button.<br>**default**: true |
 | setBackButtonImageResource(int resourceId) | ID of resource                      | Image of Go Back Button       |
@@ -523,7 +519,7 @@ showWebView(activity, urlString, configuration,
 | enableAutoCloseByCustomScheme(boolean enable) | true or false | WebView is automatically closed when the custom scheme works.<br>**default**: true |
 | enableFixedFontSize(boolean enable)      | true or false | Display a webview at a fixed size, ignoring system font size.<br>**default**: false |
 | setRenderOutsideSafeArea(boolean render) | true or false | Ignore safe area and render cutout area.<br>**default**: false |
-| setCutoutAreaColor(int color) | Color.argb(a, r, b, b) | Cutout area background color outside of SafeArea |
+| setCutoutAreaColor(int color) | Color.argb(a, r, g, b) | Cutout area background color outside of SafeArea |
 
 ### Close WebView
 Close currently displayed WebView by using the following API.

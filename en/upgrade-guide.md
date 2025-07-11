@@ -30,18 +30,18 @@
 
 ### Unity
 
-* When using GPGS AutoLogin, use the newly added asynchronous API **RequestLastLoggedInProvider(GamebaseCallback.GamebaseDelegate<string> callback)** instead of the synchronous **GetLastLoggedInProvider()** API.
+* When using GPGS AutoLogin, use the newly added asynchronous API **RequestLastLoggedInProvider(GamebaseCallback.GamebaseDelegate\<string> callback)** instead of the synchronous **GetLastLoggedInProvider()** API.
 
 ### Unreal
 
 *  Fixed the terms query result API, FGamebaseQueryTermsResult.
     * Fixed an issue where the value of TermsCountryType was not being set.
     * bPushEnabled, bAdAgreement, bAdAgreementNight has been removed.
-* When using GPGS AutoLogin, use the newly added asynchronous API **RequestLastLoggedInProvider(GamebaseCallback.GamebaseDelegate<string> callback)** instead of the synchronous **GetLastLoggedInProvider()** API.
+* When using GPGS AutoLogin, use the newly added asynchronous API **RequestLastLoggedInProvider(GamebaseCallback.GamebaseDelegate\<string> callback)** instead of the synchronous **GetLastLoggedInProvider()** API.
 
 ### Android
 
-* When including the **gamebase-adapter-auth-gpgs-autologin** module in the build, use the newly added asynchronous API **requestLastLoggedInProvider(GamebaseDataCallback<String>)** instead of the synchronous **getLastLoggedInProvider()** API.
+* When including the **gamebase-adapter-auth-gpgs-autologin** module in the build, use the newly added asynchronous API **requestLastLoggedInProvider(GamebaseDataCallback&lt;String&gt;)** instead of the synchronous **getLastLoggedInProvider()** API.
 
 ## 2.68.1
 
