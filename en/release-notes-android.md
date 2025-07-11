@@ -4,6 +4,11 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-Android.zip)
 
+```
+최소 지원 버전이 Android 5.1 이상으로 상향되었습니다.(minSdk 21 → 22)
+Android Gradle Plugin 최소 버전이 7.4.2 이상으로 상향되었습니다.(4.0.1 -> 7.4.2)
+```
+
 #### 기능 개선/변경
 
 * 내부 로직 개선

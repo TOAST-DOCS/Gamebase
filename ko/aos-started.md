@@ -6,8 +6,8 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 > [최소 사양]
 >
-> * 사용자 실행 환경: Android API 21(Lollipop, OS 5.0) 이상
-> * 빌드 환경: Android Gradle Plugin 4.0.1 이상
+> * 사용자 실행 환경: Android API 22(Lollipop MR1, OS 5.1) 이상
+> * 빌드 환경: Android Gradle Plugin 7.4.2 이상
 > * 개발 환경: Android Studio
 
 ### Dependencies
