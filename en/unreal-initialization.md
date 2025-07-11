@@ -23,6 +23,7 @@ Following settings are required for initialization.
 | bEnablePopup | ALL | O |
 | bEnableLaunchingStatusPopup | ALL | O |
 | bEnableBanPopup | ALL | O |
+| bEnableGPGSSignInCheck | Android | O |
 
 #### 1. AppID
 
@@ -50,7 +51,7 @@ Find store information as below, required to initialize NHN Cloud In-App Purchas
 | Amazon Appstore | AMAZON | GamebaseStoreCode::Amazon | Only Android |
 | Huawei AppGallery | HUAWEI | GamebaseStoreCode::Huawei | Only Android |
 | MyCard | MYCARD | GamebaseStoreCode::MyCard | Only Android |
-| Epic Store | EPIC | GamebaseStoreCode::Epic | Only Windows |
+| Epic Games Store | EPIC | GamebaseStoreCode::EpicGames | Only Windows |
 | Steam | STEAM | GamebaseStoreCode::Steam | Only Windows |
 
 #### 4. bEnablePopup
@@ -73,6 +74,14 @@ See State, Code below the Launching paragraph to check LaunchingStatus.
 
 This setting regards to using default Gamebase popups, when a game user is found, with login, to have been banned.  
 
+* Default: true
+
+#### 7. bEnableGPGSSignInCheck
+
+When integrating the 'GPGS Auto Login' feature on the Android platform, set whether to display the GPGS login window only once when the app is first run after installation.
+
+* True : Even if the user declines to log in to GPGS, the GPGS login window will be re-displayed when Gamebase initializes.
+* False : The GPGS login window will only appear once when you first launch the app.
 * Default: true
 
 ### Debug Mode

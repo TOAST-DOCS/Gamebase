@@ -215,12 +215,12 @@ However, if the Terms and Conditions reconsent requirement has been changed to *
 Gamebase displays the terms and conditions with a simple WebView.
 If you want to create the terms and conditions appropriate for the game UI, call the queryTerms API to download the terms and conditions information set in the Gamebase Console for later use.
 
-Calling it after login also lets you see if the game user has agreed to the terms and conditions.
+The "optional" terms items will return the user's consent status when queried after login. However, the consent status for "required" items will always be returned as false.
 
 > <font color="red">[Caution]</font><br/>
 >
-> * The required items with TCGBTermsContentDetail.required set to true are not stored in the Gamebase server; therefore, false is always returned for the agreed value.
->     * It is because there is no point in storing the required items since they are always stored as true.
+> * If a required item has TCGBTermsContentDetail.required set to true, the consent status is not stored on the Gamebase server, so the agreed value will always be returned as false.
+>     * Since users cannot proceed with the game or log in without agreeing to the required terms, if the terms popup is closed and the user is logged in, it is considered that they have already agreed to the required items. Therefore, there is no need to store the consent status for required items for logged-in users, as they are assumed to have already provided consent.
 > * The user consent for receiving the push notification is not stored in the Gamebase server either; therefore, the agreed value is always returned as false.
 >     * To see if the user has agreed to receive push, please check the [TCGBPush queryTokenInfoWithCompletion:] API.
 > * If you do not touch the 'Terms and Conditions settings' in the console, **TCGB_ERROR_UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** error occurs when you call the queryTerms API from the device with the country code that is different from the terms and conditions language.
@@ -505,6 +505,8 @@ Can add customized functions by specifying scheme names and blocks in Gamebase.
 |                                        | TCGBWebViewContentModeMobile             | Mobile browser            |
 |                                        | TCGBWebViewContentModeDesktop            | Desktop browser          |
 | navigationBarColor                     | UIColor                                  | Color of Navigation Bar<br/>**default**: [UIColor colorWithRed: 0.07 green: 0.36 blue: 0.90 alpha: 1.00]   |
+| navigationBarTitleColor                | UIColor                                  | Color of Navigation Bar Title<br/>**default**: UIColor.whiteColor   |
+| navigationBarIconTintColor             | UIColor                                  | Color of Navigation Bar Icon<br/>If no value is set, the original image of the icon is displayed.<br/>**default**: nil   |
 | isBackButtonVisible                    | YES or NO                                | Activate or deactivate Go Back Button<br/>**default**: YES |
 | isNavigationBarVisible                 | YES or NO                                | Show or hide Navigation Bar<br/>**default**: YES    |
 | goBackImagePathForFullScreenNavigation | file name in Gamebase.bundle             | Image of Go Back Button       |
