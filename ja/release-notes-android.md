@@ -23,7 +23,8 @@ Android Gradle Plugin 최소 버전이 7.4.2 이상으로 상향되었습니다.
 
 #### 기능 개선/변경
 
-* 웹소켓 모듈이 중복 호출되는 경우 ArrayIndexOutOfBoundsException이 발생할 수 있는 로직 수정
+* 웹소켓 모듈이 중복 호출되는 경우 ArrayIndexOutOfBoundsException이 발생할 수 있는 로직을 수정했습니다.
+    * 이 문제는 Gamebase Android SDK 2.71.2에서만 발생합니다.
 
 #### 버그 수정
 
