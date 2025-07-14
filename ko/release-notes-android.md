@@ -1,12 +1,30 @@
 ## Game > Gamebase > 릴리스 노트 > Android
 
+### 2.73.0 (2025. 07. 15.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-Android.zip)
+
+```
+최소 지원 버전이 Android 5.1 이상으로 상향되었습니다.(minSdk 21 → 22)
+Android Gradle Plugin 최소 버전이 7.4.2 이상으로 상향되었습니다.(4.0.1 -> 7.4.2)
+```
+
+#### 기능 개선/변경
+
+* 내부 로직 개선
+
+#### 버그 수정
+
+* 로그인 웹뷰에서 화면 회전시 여백 크기를 잘못 계산하는 오류를 수정했습니다.
+
 ### 2.72.0 (2025. 06. 24.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.0/GamebaseSDK-Android.zip)
 
 #### 기능 개선/변경
 
-* 웹소켓 모듈이 중복 호출되는 경우 ArrayIndexOutOfBoundsException이 발생할 수 있는 로직 수정
+* 웹소켓 모듈이 중복 호출되는 경우 ArrayIndexOutOfBoundsException이 발생할 수 있는 로직을 수정했습니다.
+    * 이 문제는 Gamebase Android SDK 2.71.2에서만 발생합니다.
 
 #### 버그 수정
 
@@ -82,9 +100,7 @@
                 }
         
         * desugar_jdk_libs 1.x 버전은 Kakaogame 로그인 시 크래시가 발생하므로 2.x 버전 적용을 권장합니다.
-
             * Unity Editor 버전에 따라 AGP 버전이 다르므로 AGP 및 Gradle 버전 업데이트가 필요할 수 있습니다.
-
 * 'GPGS 자동 로그인' 기능 연동 시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 초기화 옵션을 추가했습니다.
     * **GamebaseConfiguration.Builder.enableGPGSSignInCheck(boolean)**
     * 기본 설정은 true로, 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.
@@ -99,7 +115,6 @@
 
 * 'GPGS 자동 로그인' 기능 연동시 유저가 GPGS 로그인을 하지 않으면 Gamebase 초기화, 로그인, 로그아웃 시 GPGS 로그인을 계속 시도하던 동작을 Gamebase 초기화 때만 시도하도록 변경했습니다.
 * Apple ID, Steam, Twitter 로그인 내비게이션 바에 타이틀과 같은 색으로 X 버튼을 표시하도록 변경했습니다.
-
 
 #### 버그 수정
 
