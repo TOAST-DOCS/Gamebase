@@ -197,11 +197,9 @@ public void Login()
 > Line IdPはGamebase SDK 2.43.0からLineサービス提供地域設定をできます。
 > 該当地域はAdditionalInfoに設定できます。 
 
-> <font color="red">[注意]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> StandaloneではWebViewAdapterを通してログインをサポートし、WebViewが開かれている時、UIに入力されるEventをBlockingしません。
->
-> Standalone WebViewAdapterを使用してログインを行うにはIdP開発者サイトで以下のCallbackURLを設定する必要があります。
+> Standalone에서 IdP 로그인을 하기 위해서는 IdP 개발자 사이트에서 아래 CallbackURL을 설정 하여야 합니다.
 > - https://id-gamebase.toast.com/oauth/callback
 >
 
@@ -286,6 +284,59 @@ public void LoginWithAdditionalInfo()
             }
         }
     });
+}
+```
+
+### Login Cancel
+
+**API**
+
+Supported Platforms
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+
+```cs
+static void CancelLoginWithExternalBrowser()
+```
+
+**Example**
+```cs
+public void Login()
+{
+	Gamebase.Login(GamebaseAuthProvider.FACEBOOK, (authToken, error) =>
+    {
+    	if (Gamebase.IsSuccess(error))
+        {
+        	string userId = authToken.member.userId;
+        	Debug.Log(string.Format("Login succeeded. Gamebase userId is {0}", userId));
+        }
+        else
+        {
+            // Check the error code and handle the error appropriately.
+        	Debug.Log(string.Format("Login failed. error is {0}", error));
+            if (error.code == GamebaseErrorCode.AUTH_LOGIN_CANCEL_FAILED)
+            {
+                // TODO: Handle the cancellation...
+            }
+            else if (error.code == (int)GamebaseErrorCode.SOCKET_ERROR || error.code == (int)GamebaseErrorCode.SOCKET_RESPONSE_TIMEOUT)
+            {
+            	Debug.Log(string.Format("Retry Login or notify an error message to the user.: {0}", error.message));
+            }
+            else if (error.code == GamebaseErrorCode.BANNED_MEMBER)
+            {
+                GamebaseResponse.Auth.BanInfo banInfo = GamebaseResponse.Auth.BanInfo.From(error);
+                if (banInfo != null)
+                {
+                }
+            }
+        }
+    });
+}
+
+public void CancelLoginWithExternalBrowser()
+{
+    // This method only initiates an asynchronous request.  
+    // The result of the cancellation is handled in the callback of the Login method.
+    Gamebase.CancelLoginWithExternalBrowser();
 }
 ```
 
