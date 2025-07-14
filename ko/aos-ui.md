@@ -595,9 +595,9 @@ showWebView(activity, urlString, configuration,
 |                                          | ScreenOrientation.LANDSCAPE         | 가로 모드          |
 |                                          | ScreenOrientation.LANDSCAPE_REVERSE | 가로 모드를 180도 회전 |
 | setNavigationBarVisible(boolean enable)  | true or false                       | 내비게이션 바 활성 또는 비활성.<br>**default**: true |
-| setNavigationBarColor(int color)         | Color.argb(a, r, b, b)              | 내비게이션 바 색상<br>**default**:#125DE6  |
-| setNavigationBarTitleColor(int color)    | Color.argb(a, r, b, b)              | 내비게이션 바 타이틀 색상<br>**default**: Color.WHITE  |
-| setNavigationBarIconTintColor(int color) | Color.argb(a, r, b, b)              | 내비게이션 바 아이콘 틴트 색상<br>**default**: 틴트 설정하지 않음   |
+| setNavigationBarColor(int color)         | Color.argb(a, r, g, b)              | 내비게이션 바 색상<br>**default**:#125DE6  |
+| setNavigationBarTitleColor(int color)    | Color.argb(a, r, g, b)              | 내비게이션 바 타이틀 색상<br>**default**: Color.WHITE  |
+| setNavigationBarIconTintColor(int color) | Color.argb(a, r, g, b)              | 내비게이션 바 아이콘 틴트 색상<br>**default**: 틴트 설정하지 않음   |
 | setNavigationBarHeight(int height)       | height                              | 내비게이션 바 높이     |
 | setBackButtonVisible(boolean visible)    | true or false                       | 뒤로 가기 버튼 활성 또는 비활성.<br>**default**: true |
 | setBackButtonImageResource(int resourceId) | ID of resource                      | 뒤로 가기 버튼 이미지       |
@@ -605,7 +605,7 @@ showWebView(activity, urlString, configuration,
 | enableAutoCloseByCustomScheme(boolean enable) | true or false | 커스텀 스킴 동작 시 자동으로 웹뷰 종료.<br>**default**: true |
 | enableFixedFontSize(boolean enable)      | true or false | 시스템 글자 크기를 무시하고 고정된 크기로 웹뷰를 표시.<br>**default**: false |
 | setRenderOutsideSafeArea(boolean render) | true or false | SafeArea를 무시하고 Cutout 영역에도 렌더링.<br>**default**: false |
-| setCutoutAreaColor(int color) | Color.argb(a, r, b, b) | SafeArea 밖의 Cutout 영역 바탕 색상 |
+| setCutoutAreaColor(int color) | Color.argb(a, r, g, b) | SafeArea 밖의 Cutout 영역 바탕 색상 |
 
 ### Close WebView
 다음 API를 통해 현재 보여지는 웹뷰를 닫을 수 있습니다.
