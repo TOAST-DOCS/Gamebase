@@ -1,7 +1,7 @@
 ## Game > Gamebase > Release Notes > iOS
 
 ### 2.73.0 (2025. 07. 15.)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.2/GamebaseSDK-iOS.zip)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-iOS.zip)
 
 #### 기능 개선/변경
 * Xcode 최소 지원 버전이 16.0으로 변경되었습니다. 
