@@ -1196,6 +1196,12 @@ Gamebase 는 고객 문의 대응을 위한 기능을 제공합니다.
 > 자세한 NHN Cloud Contact 서비스 이용법은 아래 가이드를 참고하시기 바랍니다.
 > [NHN Cloud Online Contact Guide](https://docs.nhncloud.com/ko/Contact%20Center/ko/online-contact-overview/)
 
+#### 권한 설정
+
+* [Game > Gamebase > Android SDK 사용 가이드 > ETC > Contact](aos-etc/#contact)
+* [Game > Gamebase > iOS SDK 사용 가이드 > ETC > Contact](ios-etc/#contact)
+
+
 #### Customer Service Type
 
 **Gamebase 콘솔 > App > InApp URL > Service center** 에서는 아래와 같이 3가지 유형의 고객 센터를 선택할 수 있습니다.
@@ -1281,22 +1287,6 @@ public void SampleOpenContact()
     });
 }
 ```
-
-> <font color="red">[주의]</font><br/>
->
-> 고객 센터 문의 시 파일 첨부가 필요할 수 있습니다.
-> 이를 위해 사용자로부터 카메라 촬영이나 Storage 저장에 대한 권한을 런타임에 획득하여야 합니다.
->
-> Android 사용자
->
-> * [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
->
-> * Unity 사용자는 아래 가이드를 참조하여 구현할 수 있습니다.
-> [Unity Guide : Requesting Permissions](https://docs.unity3d.com/2018.4/Documentation/Manual/android-RequestingPermissions.html)
->
-> iOS 사용자
->
-> * info.plist에 'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description' 설정을 해주시기 바랍니다.
 
 #### Request Contact URL
 
