@@ -8,7 +8,7 @@
 #### 기능 개선/변경
 - (Windows, macOS) IdP 로그인 시 웹뷰에서 외부 브라우저로 변경했습니다.
     - 지원 브라우저
-        - Windows : 모든 브라우저
+        - Windows: 모든 브라우저
         - macOS : Chrome, Safari, Firefox, whale
 
 - 외부 브라우저 로그인 취소 API를 추가했습니다.
