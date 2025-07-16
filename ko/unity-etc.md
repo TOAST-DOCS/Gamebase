@@ -1290,7 +1290,7 @@ public void SampleOpenContact()
 
 #### Request Contact URL
 
-고객 센터 웹뷰를 표시하는데 사용되는 URL 을 반환합니다.
+고객 센터 웹뷰를 표시하는 데 사용되는 URL을 반환합니다.
 
 **API**
 
