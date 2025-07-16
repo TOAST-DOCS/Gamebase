@@ -885,7 +885,7 @@ TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니�
 
 #### Request Contact URL
 
-고객 센터 웹뷰를 표시하는데 사용되는 URL을 얻을 수 있습니다.
+고객 센터 웹뷰를 표시하는 데 사용되는 URL을 얻을 수 있습니다.
 
 **API**
 
