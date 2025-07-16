@@ -9,10 +9,10 @@
 - (Windows, macOS) IdP 로그인 시 웹뷰에서 외부 브라우저로 변경했습니다.
     - 지원 브라우저
         - Windows: 모든 브라우저
-        - macOS : Chrome, Safari, Firefox, whale
+        - macOS: Chrome, Safari, Firefox, Whale
 
 - 외부 브라우저 로그인 취소 API를 추가했습니다.
-    - 진행 중인 외부 브라우저 로그인 요청 중 IDP 를 변경하고 싶을 때, 기존 요청을 취소하기 위함.
+    - 진행 중인 외부 브라우저 로그인 요청 중 IdP를 변경하고 싶을 때 기존 요청을 취소하기 위함.
     - CancelLoginWithExternalBrowser()
 
 #### 버그 수정
