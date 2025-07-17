@@ -51,7 +51,7 @@ NHN Cloud統合アプリ内決済サービスであるIAP(In-App Purchase)を初
 | Huawei AppGallery | HUAWEI | GamebaseStoreCode::Huawei | only Android |
 | MyCard | MYCARD | GamebaseStoreCode::MyCard | only Android |
 | Windows Custom | WIN | GamebaseStoreCode::Windows | only Windows |
-| Epic Games Store | EPIC | GamebaseStoreCode::Epic | only Windows |
+| Epic Games Store | EPIC | GamebaseStoreCode::EpicGames | only Windows |
 | Steam | STEAM | GamebaseStoreCode::Steam | only Windows |
 
 #### 4. bEnablePopup

@@ -84,9 +84,7 @@ Gamebase.GameNotice.openGameNotice(
 | --- | --- | --- |
 | newBuilder() | **M** | GameNoticeConfiguration.BuilderオブジェクトはnewBuilder()関数を使用して作成できます。 |
 | build() | **M** | 設定を終えたBuilderをConfigurationオブジェクトに変換します。 |
-
 | setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | ゲーム告知の背景色です。<br>色はARGB順序です。<br>Stringはandroid.graphics.Color.parseColor(String) APIで変換した値を使用します。<br>**default**: #CC000000 |
-
 
 ## ImageNotice
 
@@ -706,7 +704,6 @@ showWebView(activity, urlString, configuration,
 |---------------------------------------------------|------------|---------------------------------------------------------------------------------------------|
 | NOT\_INITIALIZED                                  | 1          | Gamebase.initializeが呼び出されていません。                                                            |
 | LAUNCHING\_SERVER\_ERROR                          | 2001       | ローンチサーバーから渡された項目に約款関連内容がない場合に発生するエラーです。<br/>正常な状況ではないので、 Gamebase担当者にお問い合わせください。 |
-
 | UI\_IMAGE\_NOTICE\_TIMEOUT                        | 6901       | 画像告知ポップアップウィンドウ表示中にタイムアウトし、全てのポップアップウィンドウを強制終了します。 |
 | UI\_IMAGE\_NOTICE\_NOT\_SUPPORTED\_OS             | 6902       | ローリングタイプの場合、API 19以下の端末では画像告知をサポートしません。 |
 | UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE                | 6921       | 約款情報がコンソールに登録されていません。 |
@@ -714,7 +711,6 @@ showWebView(activity, urlString, configuration,
 | UI\_TERMS\_UNREGISTERED\_SEQ                      | 6923       | 登録されていない約款Seq値を設定しました。 |
 | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR           | 6924       | Terms API呼び出しがまだ完了していません。<br/>しばらくしてからもう一度お試しください。 |
 | UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW              | 6925       | 約款Webビューがまだ終了していない状態で再度呼び出されました。 |
-
 | UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL              | 6941       | ゲーム告知URLの作成に失敗しました。 |
 | UI\_GAME\_NOTICE\_FAIL\_ANDROID\_DUPLICATED\_VIEW | 6942       | ゲーム告知ポップアップを終了する前に再度ゲーム告知を呼び出しました。 |
 | UI\_UNKNOWN\_ERROR                                | 6999       | 不明なエラーです(定義されていないエラーです)。 |

@@ -7,7 +7,7 @@
 >
 > 要件
 >
-> * ユーザー実行環境：iOS 12以上
+> * ユーザー実行環境：iOS 12以上、 Swift 5以上
 > * ビルド環境：Xcode 16.0 (iOS 18 SDK)以上
 >
 
@@ -44,9 +44,9 @@ Gamebase.xcframework及び必要なadapterをダウンロードします。<br/>
 |  | GamebaseAuthGamecenterAdapter.xcframework | GameKit.xcframework | Gamecenterログインをサポート | iOS 12以上 |
 |  | GamebaseAuthGoogleAdapter.xcframework | GoogleSignIn 7.1.0 | Googleログインをサポート | iOS 12以上 |
 |  | GamebaseAuthTwitterAdapter.xcframework | | Twitterログインをサポート | iOS 12以上 |
-|  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.11.0 | LINEログインをサポート | iOS 13以上 |
+|  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.11.2 | LINEログインをサポート | iOS 13以上 |
 |  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 12以上<br/>arm64サポート<br/> |
-|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.17.1 | Hangameログインをサポート | iOS 12以上 |
+|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.17.2 | Hangameログインをサポート | iOS 12以上 |
 |  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.4.0 | Weiboログインをサポート | iOS 12以上 |
 |  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.19.0 | Kakaoログインをサポート | iOS 13以上 |
 |  | GamebaseAuthSteamAdapter.xcframework |  | Steamログインをサポート | iOS 14以上 |
