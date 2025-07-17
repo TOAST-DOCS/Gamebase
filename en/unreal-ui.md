@@ -1,5 +1,53 @@
 ## Game > Gamebase > User Guide for Unreal SDK > UI
 
+## GameNotice
+
+This feature displays registered notices with images on the console.
+
+![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_001.png)
+
+### Open GameNotice
+
+Show the game notice on the screen.
+
+**API**
+
+Supported Platforms
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
+
+
+```cs
+void OpenGameNotice(const FGamebaseErrorDelegate& Callback);
+```
+
+**ErrorCode**
+
+| Error                                | Error Code | Description |
+|--------------------------------------| --- | --- |
+| NOT\_INITIALIZED                     | 1 | Gamebase is not initialized. |
+| UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL            | 6941 | Failed to generate the game notice URL. |
+| UI\_GAME\_NOTICE\_FAIL\_ANDROID\_DUPLICATED\_VIEW | 6942 | The game notice was called again before the previous popup was closed.  |
+| WEBVIEW\_TIMEOUT                | 7002 | Webview display timed out (10 seconds). |
+| WEBVIEW\_HTTP\_ERROR                 | 7003 |  An HTTP error occurred in the WebView. |
+| WEBVIEW\_UNKNOWN\_ERROR           | 7999 | Unknown WebView error occurred. |
+
+**Example**
+
+```cs
+void USample::OpenGameNotice()
+{
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetGameNotice()->OpenGameNotice(
+        FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* Error) {
+            // Called when the entire imageNotice is closed.
+            ...
+        })
+    );
+}
+```
+
 ## ImageNotice
 
 You can pop up a notice to users after registering an image to the console.

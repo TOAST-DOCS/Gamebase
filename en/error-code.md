@@ -93,6 +93,8 @@
 |                 | Android<br/>Unity<br/>iOS | UI_TERMS_UNREGISTERED_SEQ<br/>TCGB_ERROR_UI_TERMS_UNREGISTERED_SEQ | 6923       | The value of the unregistered terms Seq.            |
 |                 | Android<br/>Unity<br/>iOS | UI_TERMS_ALREADY_IN_PROGRESS_ERROR<br/>TCGB_ERROR_UI_TERMS_ALREADY_IN_PROGRESS_ERROR | 6924       | The Terms API call has not yet completed.<br/>Try again in a few minutes. |
 |                 | Android<br/>Unity         | UI_TERMS_ANDROID_DUPLICATED_VIEW | 6925       | The Terms webview was invoked again without exiting. |
+|                 | Android<br/>Unity<br/>iOS | UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL<br/>TCGB\_ERROR\_UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL       | 6941 | Failed to generate the game notice URL. |
+|                 | Android<br/>Unity         | UI\_GAME\_NOTICE\_FAIL\_ANDROID\_DUPLICATED\_VIEW | 6942       | The game notice was called again before the previous popup was closed. |
 |                 | Android<br/>Unity<br/>iOS | UI_UNKNOWN_ERROR<br/>TCGB_ERROR_UI_UNKNOWN_ERROR | 6999       | Unknown error (undefined error).            |
 | WebView         | Android<br/>Unity<br/>iOS | WEBVIEW_INVALID_URL<br/>TCGB_ERROR_WEBVIEW_INVALID_URL           | 7001       | Invalid URL.            |
 |                 | Android<br/>Unity<br/>iOS | WEBVIEW_TIMEOUT<br/>TCGB_ERROR_WEBVIEW_TIMEOUT                     | 7002       | The webview timed out while displaying.            |

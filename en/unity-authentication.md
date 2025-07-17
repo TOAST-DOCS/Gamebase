@@ -130,6 +130,11 @@ Gamebase supports Guest logins.
 * Create an only key of device to try to log in Gamebase. 
 * As the device key may be initialized and account may be deleted, it is recommended to use IdP for a Guest login.
 
+> <font color="red">[Caution]</font><br/>
+>
+> GUEST login is provided for development purposes only in Standalone (Windows, macOS) environments, so please use caution when using it in an actual game.
+>
+
 **API**
 
 Supported Platforms

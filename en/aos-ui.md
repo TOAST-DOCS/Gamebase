@@ -1,5 +1,94 @@
 ## Game > Gamebase > Android Developer's Guide > UI
 
+## GameNotice
+
+This feature displays registered notices with images on the console.
+
+![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_001.png)
+![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_002.png)
+
+### Open GameNotice
+
+Show the game notice on the screen.
+
+#### Required parameter
+* Activity: An activity where the game notice is exposed.
+
+
+#### Optional parameter
+* GameNoticeConfiguration: Can change the game notice settings.
+
+* GamebaseCallback: Informs the user with callback when the game notice is either closed normally or fails to display due to an error.
+
+
+**API**
+
+```java
++ (void)Gamebase.GameNotice.openGameNotices(@NonNull Activity activity,
+                                            @Nullable GamebaseCallback onCloseCallback);
++ (void)Gamebase.GameNotice.openGameNotices(@NonNull Activity activity,
+                                            @Nullable GameNoticeConfiguration configuration,
+                                            @Nullable GamebaseCallback onCloseCallback);
+```
+
+**ErrorCode**
+
+| Error | Error Code | Description |
+| ---- | ------- | ----------- |
+| - | 0 | Success |
+| NOT\_INITIALIZED | 1 | Gamebase.initialize has not been called. |
+| UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL | 6941 | Failed to generate the game notice URL. |
+| UI\_GAME\_NOTICE\_FAIL\_ANDROID\_DUPLICATED\_VIEW | 6942 | The game notice was called again before the previous popup was closed. |
+| WEBVIEW\_TIMEOUT | 7002 | Webview display timed out (10 seconds). |
+| WEBVIEW\_HTTP\_ERROR | 7003 | An HTTP error occurred in the WebView. |
+| WEBVIEW\_UNKNOWN\_ERROR | 7999 | Unknown WebView error occurred. |
+
+**Example**
+
+```java
+Gamebase.GameNotice.openGameNotice(activity, (GamebaseCallback) exception -> {
+    if (Gamebase.isSuccess(exception)) {
+        // Game Notice was opened and closed successfully.
+    } else {
+        // Game Notice did not opened with error.
+    }
+});
+```
+
+### Custom GameNotice
+
+Show user-configured game notices.
+You can use ImageNoticeConfiguration to change the display settings.
+
+**Example**
+
+```java
+GameNoticeConfiguration configuration = GameNoticeConfiguration.newBuilder()
+        .setBackgroundColor("#80FFFF00")
+        .build();
+Gamebase.GameNotice.openGameNotice(
+        activity,
+        configuration,
+        (GamebaseCallback) exception -> {
+            if (Gamebase.isSuccess(exception)) {
+                // Game Notice was opened and closed successfully.
+            } else {
+                // Game Notice did not opened with error.
+            }
+        });
+```
+
+#### GameNoticeConfiguration
+
+| API | Mandatory(M) / Optional(O) | Description |
+| --- | --- | --- |
+| newBuilder() | **M** | GameNoticeConfiguration.Builder object can be created using the newBuilder() function. |
+| build() | **M** | Converts the configured builder into a Configuration object. |
+
+| setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | Game notice background color.<br>Colors are in ARGB order.
+<br>Use the string value converted by the android.graphics.Color.parseColor(String) API.<br>**default**: #CC000000 |
+
+
 ## ImageNotice
 
 You can pop up a notice to users after registering an image to the console.
@@ -610,9 +699,26 @@ Click 'Detail' in maintenance status to change maintenance page.
 
 ## Error Handling
 
-| Error              | Error Code | Description                  |
-| ------------------ | ---------- | ---------------------------- |
-| UI\_UNKNOWN\_ERROR | 6999       | Unknown error (Undefined error). |
+| Error                                             | Error Code | Description                                                                                 |
+|---------------------------------------------------|------------|---------------------------------------------------------------------------------------------|
+| NOT\_INITIALIZED                                  | 1          | Gamebase.initialize has not been called.                                                    |
+| LAUNCHING\_SERVER\_ERROR                          | 2001       | This error occurs when the items downloaded from the launching server do not have any information about the terms and conditions.<br/>This is not a usual case, and you should contact the Gamebase personnel. |
+
+| UI\_IMAGE\_NOTICE\_TIMEOUT                        | 6901       | Performs a force shutdown of all popup windows because timeout has occurred while displaying the image notice popup. |
+| UI\_IMAGE\_NOTICE\_NOT\_SUPPORTED\_OS             | 6902       | For rolling type, image notice is not supported on devices with API 19 or lower. |
+| UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE                | 6921       | Terms & conditions information is not registered with the console. |
+| UI\_TERMS\_NOT\_EXIST\_FOR\_DEVICE\_COUNTRY       | 6922       | Terms & conditions information appropriate for the device's country code is not registered with the console. |
+| UI\_TERMS\_UNREGISTERED\_SEQ                      | 6923       | Unregistered terms and conditions Seq value has been set.  |
+| UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR           | 6924       | The Terms API call has not been completed yet.<br/>Please try again later. |
+| UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW              | 6925       | Unfinished terms & conditions WebView has been called again. |
+
+| UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL              | 6941       | Failed to generate the game notice URL. |
+| UI\_GAME\_NOTICE\_FAIL\_ANDROID\_DUPLICATED\_VIEW | 6942       | The game notice was called again before the previous popup was closed. |
+| UI\_UNKNOWN\_ERROR                                | 6999       | Unknown error (undefined error). |
+| WEBVIEW\_TIMEOUT                                  | 7002       | Webview display timed out (10 seconds). |
+| WEBVIEW\_HTTP\_ERROR                              | 7003       | An HTTP error occurred in the WebView. |
+| WEBVIEW\_UNKNOWN\_ERROR                           | 7999       | Unknown WebView error occurred. |
+| SERVER\_INVALID\_RESPONSE                         | 8003       | Invalid response is returned from the server.  | 
 
 * Refer to the following document for the entire error codes:
     * [Entire Error Codes](./error-codes#client-sdk)

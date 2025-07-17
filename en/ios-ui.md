@@ -1,5 +1,47 @@
 ## Game > Gamebase > iOS Developer's Guide > UI
 
+## GameNotice
+
+This feature displays registered notices with images on the console.
+
+![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_001.png) 
+![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_002.png)
+
+### Open GameNotice
+
+Show the game notice on the screen.
+
+#### Required parameter
+* viewController: The ViewController where the game notice will be displayed.
+
+#### Optional parameter
+* completion: A callback that notifies the user when the game notice is closed.
+
+**API**
+
+```objectivec
++ (void)openGameNoticeWithViewController:(nullable UIViewController *)viewController
+                              completion:(nullable void(^)(TCGBError * _Nullable))completion;
+```
+**ErrorCode**
+| Error | Error Code | Description |
+| --- | --- | --- |
+| TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebase is not initialized. |
+| TCGB\_ERROR\_UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL | 6941 | Failed to generate the game notice URL. |
+| TCGB\_ERROR\_WEBVIEW\_TIMEOUT | 7002 | Terms WebView display timed out. |
+| TCGB\_ERROR\_WEBVIEW\_HTTP\_ERROR | 7003 | An HTTP error occurred while opening the Terms WebView. |
+
+**Example**
+```objectivec
+- (void)openGameNotice {
+    void(^completion)(TCGBError *) = ^(TCGBError *error) {
+        // Called when the entire gameNotice is closed.
+        NSLog(@"GameNotice closed");
+    };
+    [TCGBGameNotice openGameNoticeWithViewController:self completion:completion];
+}
+```
+
 ## ImageNotice
 
 You can pop up a notice to users after registering an image to the console.

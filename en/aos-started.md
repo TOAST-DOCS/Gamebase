@@ -31,7 +31,7 @@ To execute Gamebase in Android, the following system environment is required.
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | Support in-app purchase | - |
 |  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Support Amazon Appstore | - |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Support Samsung Galaxy Store |  - |
-|  | gamebase-adapter-purchase-google | billing-7.1.1<br>nhncloud-iap-google | Support Google Play | - |
+|  | gamebase-adapter-purchase-google | billing-7.1.1<br>nhncloud-iap-google | Support Google Play | API 24(Nougat, OS 7.0)<br>[Desugaring declaration](https://developer.android.com/studio/write/java8-support#library-desugaring) required for API 23 or lower support |
 |  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | Support Huawei AppGallery | - |
 |  | gamebase-adapter-purchase-onestore | nhncloud-iap-onestore | Support ONE store v17 | - |
 |  | gamebase-adapter-purchase-onestore-v19 | nhncloud-iap-onestore-v19 | Support ONE store v19| - |

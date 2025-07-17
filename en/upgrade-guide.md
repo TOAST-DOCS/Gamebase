@@ -24,15 +24,13 @@
             }
 
             dependencies {
-                // If AGP 4.0 to 7.2
-                coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.9")
-                // If AGP 7.3
-                // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.3")
-                // If AGP 7.4+
-                // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+                // desugar_jdk_libs 2.+ needs AGP 7.4+
+                coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
             }
     
-    * The AGP version may vary depending on the Unity Editor version, so verify and use the appropriate version.
+    * Using desugar_jdk_libs version 1.x may cause a crash during Kakaogame login. We recommend using version 2.x instead.
+
+        * The required AGP (Android Gradle Plugin) and Gradle versions may vary depending on the Unity Editor version. You may need to update them accordingly. 
 
 ## 2.69.0
 
@@ -104,7 +102,7 @@
         * Set the Callback URL (https://id-gamebase.toast.com/oauth/callback) in the Gamebase console. 
         * Set the same Callback URL in the Twitter Developer Portal.
     * For more information, see the following link.
-        * [Game > Gamebase > Console User Guide > App > Authentication Information](./oper-app/#authentication-information)
+        * [Game > Gamebase > Console User Guide > App > Authentication Information > 6. Twitter](./oper-app/#6-twitter)
 
 ## 2.66.3
 

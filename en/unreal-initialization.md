@@ -45,12 +45,13 @@ Find store information as below, required to initialize NHN Cloud In-App Purchas
 | Store       | Code | GamebaseStoreCode | Description  |
 | ----------- | ---- | ------------ | ------------ |
 | App Store | AS | GamebaseStoreCode::AppStore | Only iOS |
-| Google Play | GG | GamebaseStoreCode::Google | Only Android |
+| Google Play | GG | GamebaseStoreCode::Google | Only Android, Windows |
 | One Store | ONESTORE | GamebaseStoreCode::OneStore | Only Android |
 | Galaxy Store | GALAXY | GamebaseStoreCode::Galaxy | Only Android |
 | Amazon Appstore | AMAZON | GamebaseStoreCode::Amazon | Only Android |
 | Huawei AppGallery | HUAWEI | GamebaseStoreCode::Huawei | Only Android |
 | MyCard | MYCARD | GamebaseStoreCode::MyCard | Only Android |
+| Windows Custom | WIN | GamebaseStoreCode::Windows | Only Windows |
 | Epic Games Store | EPIC | GamebaseStoreCode::EpicGames | Only Windows |
 | Steam | STEAM | GamebaseStoreCode::Steam | Only Windows |
 

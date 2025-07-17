@@ -95,15 +95,14 @@ Android Gradle Plugin 최소 버전이 7.4.2 이상으로 상향되었습니다.
                 }
 
                 dependencies {
-                    // If AGP 4.0 to 7.2
-                    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.9")
-                    // If AGP 7.3
-                    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.3")
-                    // If AGP 7.4+
-                    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+                    // desugar_jdk_libs 2.+ needs AGP 7.4+
+                    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
                 }
         
-        * The AGP version may vary depending on the Unity Editor version, so verify and use the appropriate version.
+        * Using desugar_jdk_libs version 1.x may cause a crash during Kakaogame login. We recommend using version 2.x instead.
+
+            * The required AGP (Android Gradle Plugin) and Gradle versions may vary depending on the Unity Editor version. You may need to update them accordingly.  
+
 * Added an initialization option for the GPGS Auto Login feature that prompts the user to log in to GPGS only once after installing the app.
     * **GamebaseConfiguration.Builder.enableGPGSSignInCheck(boolean)**
     * By default, this is set to true, which means the GPGS login prompt will appear again during Gamebase initialization even if the user previously declined.
@@ -193,7 +192,7 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
         * Set the Callback URL (https://id-gamebase.toast.com/oauth/callback) in the Gamebase console.
         * Add the same Callback URL to the Twitter Developer Portal.
     * For more information, see the following link.
-        * [Game > Gamebase > Consolue User Guide > App > Authentication Information](./oper-app/#authentication-information)
+        * [Game > Gamebase > Consolue User Guide > App > Authentication Information > 6. Twitter](./oper-app/#6-twitter)
 
 #### Bug Fixes
 * Fixed an issue where touching Detail after disconnecting from the network while the terms screen was exposed would cause the terms popup to exit.

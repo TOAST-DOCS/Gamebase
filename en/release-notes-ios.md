@@ -96,7 +96,7 @@
         * Set the Callback URL (https://id-gamebase.toast.com/oauth/callback) in the Gamebase console.
         * Add the same Callback URL to the Twitter Developer Portal.
     * For more information, see the following link.
-        * [Game > Gamebase > Console User Guide > App > Authentication Information](./oper-app/#authentication-information)
+        * [Game > Gamebase > Console User Guide > App > Authentication Information > 6. Twitter](./oper-app/#6-twitter)
 
 #### Feature Updates
 * External SDK Update
