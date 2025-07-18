@@ -872,6 +872,7 @@ Get authentication information issued by Gamebase.
 + (String)Gamebase.getUserID();
 + (String)Gamebase.getAccessToken();
 + (String)Gamebase.getLastLoggedInProvider();
++ (String)Gamebase.requestLastLoggedInProvider(GamebaseDataCallback<String> callback);
 ```
 
 **Example**
@@ -884,8 +885,13 @@ String userId = Gamebase.getUserID();
 // Obtaining Gamebase AccessToken
 String accessToken = Gamebase.getAccessToken();
 
-// Obtaining Last Logged In Provider
+// Obtaining Last Logged In Provider - Sync
 String lastLoggedInProvider = Gamebase.getLastLoggedInProvider();
+
+// Obtaining Last Logged In Provider - Async
+// If Gamebase.getLastLoggedInProvider() returns 'NOT_INITIALIZED_YET',
+// use the following async function instead:
+Gamebase.requestLastLoggedInProvider((lastLoggedInProvider, exception) -> ...);
 ```
 
 ### Get Authentication Information for External IdP
@@ -1268,6 +1274,7 @@ public static void testLogin() {
 |                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | Error in external authentication library. <br/>Check the details of the error. |
 |                | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR       | 3010       | The previous authentication process has not been completed. |
 |                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | You have been logged out due to an invalid Gamebase Access Token.<br/>Please try logging in again. |
+|                | AUTH\_AUTHENTICATION\_SERVER\_ERROR      | 3012       | An error occurred from the authentication server. |
 | TransferAccount| SAME\_REQUESTOR                          | 8          | The issued TransferAccount has been used on the same device. |
 |                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | You have tried transferring with a non-guest account or the account is linked with a non-guest IdP. |
 |                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | The date of TransferAccount has expired. |

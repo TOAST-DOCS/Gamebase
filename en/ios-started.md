@@ -7,7 +7,7 @@
 >
 > Minimum specifications
 >
-> * User run environment : iOS 12 or later
+> * User run environment : iOS 12 or later, Swift 5 or later
 > * Build environment : Xcode 16 (iOS 18 SDK) or later
 >
 
@@ -39,15 +39,15 @@ Then, include corresponding SDK files to a target of your project.
 | --- | --- | --- | --- | --- |
 | Gamebase | Gamebase.xcframework<br/>Gamebase.bundle | NHNCloudSDK 1.8.5 | Includes the interface and key logic of Gamebase | iOS 12 or later |
 | Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.xcframework | FacebookSDK 17.0.2 | Supports Facebook login | iOS 12 or later |
-|  | GamebaseAuthPaycoAdapter.xcframework | PaycoID Login 3rd SDK v1.5.12 | Supports PAYCO login | iOS 12 or later |
+|  | GamebaseAuthPaycoAdapter.xcframework | PaycoID Login 3rd SDK v1.5.13 | Supports PAYCO login | iOS 12 or later |
 |  | GamebaseAuthNaverAdapter.xcframework | naveridlogin-sdk-ios-4.2.3 | Supports NAVER login | iOS 12 or later |
 |  | GamebaseAuthGamecenterAdapter.xcframework | GameKit.framework | Supports Game Center login | iOS 12 or later |
 |  | GamebaseAuthGoogleAdapter.xcframework | GoogleSignIn 7.0.0 | Supports Google login | iOS 12 or later |
 |  | GamebaseAuthTwitterAdapter.xcframework | | Supports Twitter login | iOS 12 or later |
-|  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.11.0 | Supports LINE login  | iOS 13 or later |
+|  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.11.2 | Supports LINE login  | iOS 13 or later |
 |  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 12 or later |
-|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.17.0 | Supports Hangame login | iOS 12 or later |
-|  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.3.4 | Supports Weibo login | iOS 12 or later |
+|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.17.2 | Supports Hangame login | iOS 12 or later |
+|  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.4.0 | Supports Weibo login | iOS 12 or later |
 |  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.19.0 | Supports Kakao login | iOS 13 or later |
 |  | GamebaseAuthSteamAdapter.xcframework |  | Supports Steam login | iOS 14 or later |
 | Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit<br/>NHNCloudIAP 1.8.5 | Supports in-game purchase | iOS 12 or later |

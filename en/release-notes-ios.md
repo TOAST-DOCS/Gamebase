@@ -18,55 +18,55 @@
 ### 2.72.0 (2025. 06. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* External SDK update
     * Hangame iOS SDK (1.17.2)
-        * 내부 로직 개선
+        * Improved internal logic
     * LINE iOS SDK (5.11.2)
-        * bitcode 설정 제거
-        * Xcode 16 컴파일러 경고 수정
-* 내부 로직 개선
+        * Removed bitcode settings
+        * Fixed Xcode 16 compiler warnings
+* Improved internal logic
 
-#### 버그 수정
-* LINE IdP의 Region 추가 정보 대응이 되지 않아 매핑 및 loginForLastLoggedInProvider 로그인 관련 동작에서 발생하는 문제를 수정했습니다. 
+#### Bug Fixes
+* Fixed an issue where additional region information from LINE IdP was not applied, causing problems in mapping and loginForLastLoggedInProvider login operations.
 
 ### 2.71.0 (2025. 04. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.0/GamebaseSDK-iOS.zip)
 
-#### 기능 추가
-* '게임 공지' 신규 기능이 추가되었습니다.
-    * API 호출 방법은 다음 가이드 문서를 참고하시기 바랍니다. 
-        * [Game > Gamebase > iOS SDK 사용 가이드 > UI > GameNotice > Open GameNotice](./ios-ui/#open-gamenotice)
+#### Added Features
+* Added a new feature: Game Notice
+    * To learn how to call the API, see the following link.
+        * [Game > Gamebase > iOS SDK User Guide > UI > GameNotice > Open GameNotice](./ios-ui/#open-gamenotice)
 
-#### 기능 개선/변경
-* storeCode를 nil로 설정하여 Gamebase 초기화를 호출했을 때 예외가 발생하는 대신 **TCGB_ERROR_INVALID_PARAMETER(3)** 에러를 리턴하도록 동작을 변경했습니다. 
+#### Feature Updates
+* Changed behavior to return an **TCGB_ERROR_INVALID_PARAMETER(3)** error instead of throwing an exception when calling Gamebase initialization with storeCode set to nil.
 
 ### 2.70.0 (2025. 03. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 로그인 시 IdP 서버로부터 에러가 발생했음을 나타내는 신규 에러 코드가 추가되었습니다.
+#### Feature Updates
+* Added a new error code to indicate that an error was received from the IdP server at sign-in.
     * TCGB_ERROR_AUTH_AUTHENTICATION_SERVER_ERROR(3012)
-* TCGBWebViewConfiguration에 내비게이션 바 타이틀 색상과 아이콘 색상을 설정할 수 있는 옵션을 추가했습니다.
+* Added the option to set the navigation bar title color and icon color to the TCGBWebViewConfiguration.
     * **TCGBWebViewConfiguration.navigationBarTitleColor**
     * **TCGBWebViewConfiguration.navigationBarIconTintColor**
 
 ### 2.69.0 (2025. 01. 21.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.69.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* External SDK update
     * PAYCO iOS SDK (1.5.13)
-        * iOS 18에서 정상적인 PAYCO 간편로그인 이용을 위한 openURL 관련 함수 수정
+        * Modified openURL-related functions to ensure proper operation of PAYCO simple login on iOS 18
     * Hangame iOS SDK (1.17.1)
-        * 내부 로직 개선
+        * Improved internal logic
     * Weibo iOS SDK (3.4.0)
-        * iOS 18 최적화
-* completion block이 main thread에서 실행되도록 수정하였습니다.
+        * iOS 18 optimizations
+* Fixed completion block to run in the main thread.
 
-#### 버그 수정
-* SceneDelegate를 사용하는 앱에서 NAVER 로그인 취소 시 callback이 오지 않는 버그를 수정하였습니다.
-* Gamebase 콘솔에 LINE old clientId를 설정하지 않았을 때, LINE 로그인이 실패하는 버그를 수정하였습니다.
+#### Bug Fixes
+* Fixed an issue where the callback was not triggered when NAVER login was canceled in apps using SceneDelegate.
+* Fixed a bug where LINE login would fail if the LINE old clientId was not configured in the Gamebase Console.
 
 ### 2.68.1 (2024. 12. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.1/GamebaseSDK-iOS.zip)
@@ -96,7 +96,7 @@
         * Set the Callback URL (https://id-gamebase.toast.com/oauth/callback) in the Gamebase console.
         * Add the same Callback URL to the Twitter Developer Portal.
     * For more information, see the following link.
-        * [Game > Gamebase > Console User Guide > App > Authentication Information](./oper-app/#authentication-information)
+        * [Game > Gamebase > Console User Guide > App > Authentication Information > 6. Twitter](./oper-app/#6-twitter)
 
 #### Feature Updates
 * External SDK Update

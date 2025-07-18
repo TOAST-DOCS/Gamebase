@@ -130,6 +130,11 @@ Gamebase supports Guest logins.
 * Create an only key of device to try to log in Gamebase. 
 * As the device key may be initialized and account may be deleted, it is recommended to use IdP for a Guest login.
 
+> <font color="red">[Caution]</font><br/>
+>
+> GUEST login is provided for development purposes only in Standalone (Windows, macOS) environments, so please use caution when using it in an actual game.
+>
+
 **API**
 
 Supported Platforms
@@ -924,6 +929,7 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
 ```cs
+static string RequestLastLoggedInProvider()
 static string GetLastLoggedInProvider()
 ```
 
@@ -931,7 +937,19 @@ static string GetLastLoggedInProvider()
 ```cs
 public void GetLastLoggedInProvider()
 {
-    string lastLoggedInProvider = Gamebase.GetLastLoggedInProvider();
+    // Obtaining Last Logged In Provider - Sync
+    string lastLoggedInProviderSync = Gamebase.GetLastLoggedInProvider();
+
+    // Obtaining Last Logged In Provider - Async
+    // If Gamebase.GetLastLoggedInProvider() returns 'NOT_INITIALIZED_YET',
+    // use the following async function instead:
+    Gamebase.RequestLastLoggedInProvider(lastLoggedInProviderAsync, error)=> 
+    {
+        if (Gamebase.IsSuccess(error) == true) 
+        {
+            Debug.Log(string.Format("lastLoggedInProvider:{0}", lastLoggedInProviderAsync));
+        }
+    });
 }
 ```
 

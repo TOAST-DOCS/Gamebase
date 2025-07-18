@@ -21,71 +21,71 @@ Android Gradle Plugin 최소 버전이 7.4.2 이상으로 상향되었습니다.
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
+#### Feature Updates
 
-* 웹소켓 모듈이 중복 호출되는 경우 ArrayIndexOutOfBoundsException이 발생할 수 있는 로직을 수정했습니다.
-    * 이 문제는 Gamebase Android SDK 2.71.2에서만 발생합니다.
+* Fixed logic that could cause an ArrayIndexOutOfBoundsException to be thrown if the websocket module is called multiple times.
+    * This bug only occurs in Gamebase Android SDK 2.71.2.
 
-#### 버그 수정
+#### Bug Fixes
 
-* LINE IdP의 Region 추가 정보 대응이 되지 않아 매핑 관련 동작에서 발생하는 문제를 수정했습니다.
-    * Gamebase.login("guest") -&gt; Gamebase.addMapping("line") -&gt; Gamebase.loginForLastLoggedInProvider() 호출 실패 이슈
-    * Gamebase.login(idp) -&gt; Gamebase.addMapping("line") -&gt; AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER(3302) -&gt; Gamebase.changeLogin(ForcingMappingTicket) 호출 실패 이슈
-    * Gamebase.login("line") -&gt; Gamebase.addMapping(idP) -&gt; AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER(3302) -&gt; Gamebase.changeLogin(ForcingMappingTicket) 호출 실패 이슈
+* Fixed an issue where additional region information from LINE IdP was not applied, causing problems in mapping operations.
+    * Issues that fail to call Gamebase.login("guest") -&gt; Gamebase.addMapping("line") -&gt; Gamebase.loginForLastLoggedInProvider()
+    * Issues that fail to call Gamebase.login(idp) -&gt; Gamebase.addMapping("line") -&gt; AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER(3302) -&gt; Gamebase.changeLogin(ForcingMappingTicket)
+    * Issues that fail to call Gamebase.login("line") -&gt; Gamebase.addMapping(idP) -&gt; AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER(3302) -&gt; Gamebase.changeLogin(ForcingMappingTicket)
 
 ### 2.71.2 (2025. 05. 20.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.2/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
+#### Feature Updates
 
-* 외부 SDK 업데이트: Hangame Android SDK(1.17.2)
-* 구버전 Google Play Service가 설치된 단말기에서 Sign-in with Google 로그인 지원
-* 내부 로직 개선
+* External SDK update: Hangame Android SDK(1.17.2)
+* Added Sign-in with Google login on devices with older versions of Google Play Services
+* Improved internal logic
 
 ### 2.71.1 (2025. 04. 29.)
 
 [SDK Download](https://static.toaㄴㄴstoven.net/toastcloud/sdk_download/gamebase/v2.71.1/GamebaseSDK-Android.zip)
 
-#### 버그 수정
+#### Bug Fixes
 
-* 웹뷰 크기 계산 관련 오류를 수정하였습니다.
+* Fixed an error related to webview size calculation
 
 ### 2.71.0 (2025. 04. 15.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
+#### Added Features
 
-* '게임 공지' 신규 기능이 추가되었습니다.
+* Added a new feature: Game Notice
     * Gamebase.GameNotice.openGameNotice(Activity activity, GamebaseCallback onCloseCallback);
-    * API 호출 방법은 다음 가이드 문서를 참고하시기 바랍니다.
-        * [Game > Gamebase > Android SDK 사용 가이드 > UI > GameNotice](./aos-ui/#gamenotice)
+    * To learn how to call the API, see the following link.
+        * [Game > Gamebase > Android SDK User Guide > UI > GameNotice](./aos-ui/#gamenotice)
 
-#### 기능 개선/변경
+#### Feature Updates
 
-* storeCode를 null로 설정하여 Gamebase 초기화를 호출했을 때 예외가 발생하는 대신 **INVALID_PARAMETER(3)** 에러를 리턴하도록 동작을 변경했습니다.
+* Changed behavior to return an **INVALID_PARAMETER(3)** error instead of throwing an exception when calling Gamebase initialization with storeCode set to null.
 
 ### 2.70.1 (2025. 03. 13.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.1/GamebaseSDK-Android.zip)
 
-#### 버그 수정
+#### Bug Fixes
 
-* Apple ID, Steam, Twitter로그인 네비게이션 바의 X버튼 사이즈를 재조정하였습니다.
-* Kotlin 파일에서 AuthProvider의 IdP constant(예. AuthProvider.GUEST 등)를 참조할 수 없는 이슈를 수정하였습니다.
+* Resized the X-buttons in the Apple ID, Steam, and Twitter login navigation bars.
+* Fixed an issue that prevented Kotlin files from referencing AuthProvider's IdP constant (e.g. AuthProvider.GUEST).
 
 ### 2.70.0 (2025. 03. 11.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
+#### Added Features
 
-* 외부 SDK 업데이트: NHN Cloud SDK(1.9.5)
-    * Google billing client version 7.1.1이 적용되었습니다.
-    * NHN Cloud Android SDK 1.9.5에서는 Android 7.0(API Level 24) 미만 단말기에서 결제를 시도하는 경우 크래시가 발생합니다.
-        * 이 문제를 해결하기 위해서는 Gradle에 하위 OS를 위한 [Java 8+ API 디슈가링 지원](https://developer.android.com/studio/write/java8-support#library-desugaring) 선언을 추가해야 합니다.
-        * 앱 모듈의 Gradle, Unity의 경우 launcherTemplate.gradle에 다음 선언을 추가하세요.
+* External SDK update: NHN Cloud SDK(1.9.5)
+    * Applied Google billing client version 7.1.1.
+    * In NHN Cloud Android SDK 1.9.5, a crash occurs when attempting to make a payment on a device running Android 7.0 (API Level 24) or lower.
+        * To work around this issue, Gradle needs to add a [Java 8+ API desugaring support](https://developer.android.com/studio/write/java8-support#library-desugaring) declaration for lower OSes.
+        * For the app module's Gradle or in the case of Unity, add the following declaration to launcherTemplate.gradle.
         
                 android {
                     compileOptions {
@@ -95,62 +95,59 @@ Android Gradle Plugin 최소 버전이 7.4.2 이상으로 상향되었습니다.
                 }
 
                 dependencies {
-                    // If AGP 4.0 to 7.2
-                    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.9")
-                    // If AGP 7.3
-                    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.3")
-                    // If AGP 7.4+
-                    // coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+                    // desugar_jdk_libs 2.+ needs AGP 7.4+
+                    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
                 }
         
-        * Unity Editor 버전에 따라 AGP 버전이 다르므로 올바른 버전을 확인하세요.
-* 'GPGS 자동 로그인' 기능 연동시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 초기화 옵션을 추가했습니다.
+        * Using desugar_jdk_libs version 1.x may cause a crash during Kakaogame login. We recommend using version 2.x instead.
+            * The required AGP (Android Gradle Plugin) and Gradle versions may vary depending on the Unity Editor version. You may need to update them accordingly.  
+* Added an initialization option for the GPGS Auto Login feature that prompts the user to log in to GPGS only once after installing the app.
     * **GamebaseConfiguration.Builder.enableGPGSSignInCheck(boolean)**
-    * 기본 설정은 true로, 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.
-    * false로 설정하면 앱 최초 실행시에만 GPGS 로그인 창이 한번 표시됩니다.
-* 로그인 시 IdP 서버로부터 에러가 발생했음을 나타내는 신규 에러 코드가 추가되었습니다.
+    * By default, this is set to true, which means the GPGS login prompt will appear again during Gamebase initialization even if the user previously declined.
+    * If set to false, the GPGS login prompt is shown only once when the app is launched for the first time.
+* Added a new error code indicating that an error occurred on the IdP server during login.
     * AUTH_AUTHENTICATION_SERVER_ERROR(3012)
-* GamebaseWebView에 네비게이션 바 title 컬러와 icon tint 컬러 설정 옵션을 추가했습니다.
+* Added options to configure the navigation bar title color and icon tint color in GamebaseWebView.
     * **GamebaseWebViewConfiguration.Builder.setNavigationBarTitleColor(int)**
     * **GamebaseWebViewConfiguration.Builder.setNavigationBarIconTintColor(int)**
 
-#### 기능 개선/변경
+#### Feature Updates
 
-* 'GPGS 자동 로그인' 기능 연동시 유저가 GPGS 로그인을 하지 않으면 Gamebase 초기화, 로그인, 로그아웃 시 GPGS 로그인을 계속 시도하던 동작을 Gamebase 초기화 때만 시도하도록 변경했습니다.
-* Apple ID, Steam, Twitter로그인 네비게이션 바에 title과 같은 색으로 X버튼을 표시하도록 변경했습니다.
+* When integrating the 'GPGS Auto Login' feature, if the user does not log in to GPGS, the behavior where Gamebase kept attempting GPGS login during initialization, login, and logout has been changed to attempt it only during Gamebase initialization.
+* Updated the navigation bar for Apple ID, Steam, and Twitter login screens to display the close (X) button in the same color as the title.
 
-#### 버그 수정
+#### Bug Fixes
 
-* LaunchingInfo data가 유저 Event Handler에서 업데이트 되지 않는 이슈를 수정했습니다.
-* Unity 빌드에서 이미지 공지 비율이 원본 이미지 비율과 다르게 표시되는 문제를 수정했습니다.
+* Fixed an issue where LaunchingInfo data was not updated in the user event handler.
+* Fixed an issue where the aspect ratio of image notices was displayed differently from the original image ratio in Unity builds.
 
 ### 2.69.0 (2025. 01. 21.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.69.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
+#### Added Features
 
-* **Gamebase.requestLastLoggedInProvider(GamebaseDataCallback&lt;String&gt;) 비동기 API**를 추가했습니다.
-    * **Gamebase.getLastLoggedInProvider() 동기 API**가 타이밍 상 정상적인 값을 반환하지 못할 때가 있습니다.
-    * **gamebase-adapter-auth-gpgs-autologin** 모듈을 빌드에 포함하는 경우 GPGS 서버에서 데이터를 획득하는 시간이 필요하므로 Gamebase 초기화 직후 getLastLoggedInProvider() 동기 API를 호출하면 정상적인 값을 획득할 수 없습니다.
-    * 이때 requestLastLoggedInProvider(GamebaseDataCallback&lt;String&gt;) 비동기 API는 정확한 값을 보장합니다.
-    * gamebase-adapter-auth-gpgs-autologin 모듈이 빌드에 포함되지 않은 경우에는 계속해서 getLastLoggedInProvider() 동기 API를 사용해도 무방합니다.
-* **GamebaseWebViewConfiguration.Builder.setCutoutAreaColor() API**를 추가했습니다.
-    * GamebaseWebView의 **GamebaseWebViewConfiguration.Builder.renderOutsideSafeArea() API**를 **false**로 설정한 경우, cutout 영역에 자동으로 padding 여백을 추가합니다.
-    * setCutoutAreaColor()는 이렇게 추가된 padding 영역의 색을 설정할 수 있습니다.
-    * renderOutsideSafeArea()를 false로 설정했지만 setCutoutAreaColor()는 설정하지 않는 경우에는 웹 페이지 'body'의 'background-color' 값으로 자동으로 padding 영역의 색상을 결정합니다.
+* Added the **Gamebase.requestLastLoggedInProvider(GamebaseDataCallback&lt;String&gt;) asynchronous API**.
+    * **Gamebase.getLastLoggedInProvider() synchronous API** may sometimes fail to return the correct value due to timing issues.
+    * When including the **gamebase-adapter-auth-gpgs-autologin** module in the build, it takes some time to fetch data from the GPGS server. Therefore, calling the synchronous getLastLoggedInProvider() API immediately after Gamebase initialization may not return the correct value.
+    * In this case, the asynchronous API requestLastLoggedInProvider(GamebaseDataCallback&lt;String&gt;) guarantees the correct value.
+    * If the gamebase-adapter-auth-gpgs-autologin module is not included in the build, it is safe to continue using the synchronous getLastLoggedInProvider() API.
+* Added the **GamebaseWebViewConfiguration.Builder.setCutoutAreaColor() API**.
+    * When **GamebaseWebViewConfiguration.Builder.renderOutsideSafeArea() API** is set to **false**, padding is automatically added to the cutout area.
+    * The setCutoutAreaColor() API allows you to set the color of this added padding area.
+    * If renderOutsideSafeArea() is set to false but setCutoutAreaColor() is not specified, the padding area's color will be automatically determined by the web page body's background-color value.
 
-#### 기능 개선/변경
+#### Feature Updates
 
-* **gamebase-adapter-auth-gpgs-autologin** 모듈을 빌드에 포함하는 경우 Gamebase 초기화와 동시에 **Gamebase.getLastLoggedInProvider() 동기 API**를 호출하면 내부 데이터가 초기화가 완료되지 않아 null이 반환되었으나, 이 경우 **'NOT\_INITIALIZED\_YET'** 이라는 문자열을 반환하도록 내부 로직을 변경했습니다.
-* **GamebaseWebViewConfiguration.Builder.renderOutsideSafeArea() API**를 **false**로 설정한 경우에도 cutout 영역까지 웹뷰를 모두 표시하도록(**edge-to-edge**) 내부 로직을 변경했습니다.
-    * 그 대신 자동으로 padding 여백을 추가하여 컨텐츠가 가려지지 않도록 했습니다.
+* When the **gamebase-adapter-auth-gpgs-autologin** module is included in the build, calling the **Gamebase.getLastLoggedInProvider() synchronous API** immediately after Gamebase initialization previously returned null because the internal data had not yet been initialized. This logic has been changed to return the string **"NOT_INITIALIZED_YET"** instead.
+* Updated the internal logic so that when **GamebaseWebViewConfiguration.Builder.renderOutsideSafeArea() API** is to **false**, the webview is now displayed **edge-to-edge**, including the cutout area.
+    * Padding is automatically added to prevent content from being obscured.
 
-#### 버그 수정
+#### Bug Fixes
  
-* 로그인 전에 Gamebase.Push.getNotificationOptions() API를 호출하는 경우 크래시가 발생하지 않도록 수정했습니다.
-* Loading Progress가 간헐적으로 사라지지 않거나 크래시가 발생하는 이슈에 대한 방어코드를 추가했습니다.
-* WebSocket에서 간헐적으로 내부 콜백 함수가 중복으로 호출되어 발생하는 크래시에 대한 방어코드를 추가했습니다.
+* Fixed an issue where calling the Gamebase.Push.getNotificationOptions() API before login could cause a crash.
+* Added defensive code to address an issue where the loading progress bar occasionally did not disappear or caused a crash.
+* Added defensive code to prevent crashes caused by duplicate callback invocations in WebSocket under certain conditions.
 
 ### 2.68.0 (2024. 11. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.0/GamebaseSDK-Android.zip)
@@ -193,7 +190,7 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
         * Set the Callback URL (https://id-gamebase.toast.com/oauth/callback) in the Gamebase console.
         * Add the same Callback URL to the Twitter Developer Portal.
     * For more information, see the following link.
-        * [Game > Gamebase > Consolue User Guide > App > Authentication Information](./oper-app/#authentication-information)
+        * [Game > Gamebase > Consolue User Guide > App > Authentication Information > 6. Twitter](./oper-app/#6-twitter)
 
 #### Bug Fixes
 * Fixed an issue where touching Detail after disconnecting from the network while the terms screen was exposed would cause the terms popup to exit.
