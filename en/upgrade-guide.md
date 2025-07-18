@@ -29,7 +29,6 @@
             }
     
     * Using desugar_jdk_libs version 1.x may cause a crash during Kakaogame login. We recommend using version 2.x instead.
-
         * The required AGP (Android Gradle Plugin) and Gradle versions may vary depending on the Unity Editor version. You may need to update them accordingly. 
 
 ## 2.69.0

@@ -14,12 +14,9 @@ Show the game notice on the screen.
 #### Required parameter
 * Activity: An activity where the game notice is exposed.
 
-
 #### Optional parameter
 * GameNoticeConfiguration: Can change the game notice settings.
-
 * GamebaseCallback: Informs the user with callback when the game notice is either closed normally or fails to display due to an error.
-
 
 **API**
 
@@ -84,10 +81,8 @@ Gamebase.GameNotice.openGameNotice(
 | --- | --- | --- |
 | newBuilder() | **M** | GameNoticeConfiguration.Builder object can be created using the newBuilder() function. |
 | build() | **M** | Converts the configured builder into a Configuration object. |
-
 | setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | Game notice background color.<br>Colors are in ARGB order.
 <br>Use the string value converted by the android.graphics.Color.parseColor(String) API.<br>**default**: #CC000000 |
-
 
 ## ImageNotice
 
@@ -703,7 +698,6 @@ Click 'Detail' in maintenance status to change maintenance page.
 |---------------------------------------------------|------------|---------------------------------------------------------------------------------------------|
 | NOT\_INITIALIZED                                  | 1          | Gamebase.initialize has not been called.                                                    |
 | LAUNCHING\_SERVER\_ERROR                          | 2001       | This error occurs when the items downloaded from the launching server do not have any information about the terms and conditions.<br/>This is not a usual case, and you should contact the Gamebase personnel. |
-
 | UI\_IMAGE\_NOTICE\_TIMEOUT                        | 6901       | Performs a force shutdown of all popup windows because timeout has occurred while displaying the image notice popup. |
 | UI\_IMAGE\_NOTICE\_NOT\_SUPPORTED\_OS             | 6902       | For rolling type, image notice is not supported on devices with API 19 or lower. |
 | UI\_TERMS\_NOT\_EXIST\_IN\_CONSOLE                | 6921       | Terms & conditions information is not registered with the console. |
@@ -711,7 +705,6 @@ Click 'Detail' in maintenance status to change maintenance page.
 | UI\_TERMS\_UNREGISTERED\_SEQ                      | 6923       | Unregistered terms and conditions Seq value has been set.  |
 | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR           | 6924       | The Terms API call has not been completed yet.<br/>Please try again later. |
 | UI\_TERMS\_ANDROID\_DUPLICATED\_VIEW              | 6925       | Unfinished terms & conditions WebView has been called again. |
-
 | UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL              | 6941       | Failed to generate the game notice URL. |
 | UI\_GAME\_NOTICE\_FAIL\_ANDROID\_DUPLICATED\_VIEW | 6942       | The game notice was called again before the previous popup was closed. |
 | UI\_UNKNOWN\_ERROR                                | 6999       | Unknown error (undefined error). |

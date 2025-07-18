@@ -100,9 +100,7 @@ Android Gradle Plugin 최소 버전이 7.4.2 이상으로 상향되었습니다.
                 }
         
         * Using desugar_jdk_libs version 1.x may cause a crash during Kakaogame login. We recommend using version 2.x instead.
-
             * The required AGP (Android Gradle Plugin) and Gradle versions may vary depending on the Unity Editor version. You may need to update them accordingly.  
-
 * Added an initialization option for the GPGS Auto Login feature that prompts the user to log in to GPGS only once after installing the app.
     * **GamebaseConfiguration.Builder.enableGPGSSignInCheck(boolean)**
     * By default, this is set to true, which means the GPGS login prompt will appear again during Gamebase initialization even if the user previously declined.
