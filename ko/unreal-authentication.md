@@ -266,6 +266,31 @@ void USample::LoginWithAdditionalInfo()
 }
 ```
 
+#### Cancel Login with External Browser
+
+Windows 환경에서 SDK를 사용하지 않는 IdP의 경우 외부 브라우저를 통해 로그인을 진행합니다.
+로그인 과정 중 외부 브라우저를 통한 로그인 플로우인 경우 해당 API를 호출하여 Login 과정을 중단하고 결과를 전달할 수 있습니다.
+
+**API**
+
+Supported Platforms
+
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
+
+```cpp
+void CancelLoginWithExternalBrowser();
+```
+
+**Example**
+
+```cpp
+void USample::CancelLogin()
+{
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->CancelLoginWithExternalBrowser();
+}
+```
+
 ### Login with Credential
 
 IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급 받은 Access Token 등을 이용하여, Gamebase에 로그인할 수 있는 인터페이스입니다.

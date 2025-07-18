@@ -6,8 +6,8 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 > [최소 사양]
 >
-> * 사용자 실행 환경: Android API 21(Lollipop, OS 5.0) 이상
-> * 빌드 환경: Android Gradle Plugin 4.0.1 이상
+> * 사용자 실행 환경: Android API 22(Lollipop MR1, OS 5.1) 이상
+> * 빌드 환경: Android Gradle Plugin 7.4.2 이상
 > * 개발 환경: Android Studio
 
 ### Dependencies
@@ -26,7 +26,6 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 |  | gamebase-adapter-auth-payco | payco-login-1.5.15 | PAYCO 로그인을 지원 | - |
 |  | gamebase-adapter-auth-twitter | - | Twitter 로그인을 지원 | - |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.5.0 | Weibo 로그인을 지원 | - |
-|  | gamebase-adapter-auth-weibo-v4 | openDefault-4.4.4 | Weibo 로그인을 지원 | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.19.3<br>kakaogame.gamesdk-3.19.3<br>kakaogame.common-3.19.3<br>kakao.sdk.v2-auth-2.17.0<br>kakao.sdk.v2-partner-auth-2.17.0<br>kakao.sdk.v2-common-2.17.0<br>play-services-ads-identifier-17.0.0 | Kakao 로그인을 지원 | API 23(Marshmallow, OS 6.0) |
 |  | gamebase-adapter-auth-steam | - | Steam 로그인을 지원 | API 25(Nougat, OS 7.1.1) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | 게임 내 결제 지원 | - |
@@ -42,7 +41,6 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 | Gamebase Push Adapters | gamebase-adapter-toastpush | nhncloud-push-analytics<br>nhncloud-push-core<br>nhncloud-push-notification | Push를 지원 | - |
 |  | gamebase-adapter-push-adm | nhncloud-push-adm | Amazon Device Messaging을 지원 | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>nhncloud-push-fcm | Firebase Cloud Messaging을 지원 | - |
-
 
 ## Setting
 
@@ -178,10 +176,6 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangamejp:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangamejpemail:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-kakaogame:$GAMEBASE_SDK_VERSION"
-    // >>> [Weibo v4]
-    // https://github.com/nhn/toast.gamebase.android.sample/tree/main/weibo_sdk
-    implementation files('libs/openDefault-4.4.4.aar')
-    implementation "com.toast.android.gamebase:gamebase-adapter-auth-weibo-v4:$GAMEBASE_SDK_VERSION"
     // >>> [ONE store v16]
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v16:$GAMEBASE_SDK_VERSION"
     // >>> [ONE store v17]
@@ -201,28 +195,10 @@ android {
         // >>> [Purchase Support under Android 7.0(API Level 24)]
         coreLibraryDesugaringEnabled true
     }
-
-    defaultConfig {
-        // >>> [Weibo IdP]
-        ndk {
-            abiFilters 'armeabi' // , 'armeabi-v7a', 'arm64-v8a'
-        }
-    }
 }
 ```
 
 ### Resources
-
-#### Weibo IdP
-
-* 빌드 타깃에 따라 다음 URL의 so 파일들을 다운로드하여 프로젝트로 복사하세요.
-    * https://github.com/sinaweibosdk/weibo_android_sdk/tree/master/so
-* Android Studio 빌드인 경우
-    * 프로젝트의 src/main/java/jniLibs 폴더 하위로 복사합니다.
-    * ![Add so file to Android Studio project](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-started-resources-weibo-so-android-studio-2.53.0.png)
-* Unity 빌드인 경우
-    * so 파일 및 폴더를 Assets/Plugins/Android/libs 폴더 하위로 복사합니다.
-    * ![Add so file to Unity project](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-started-resources-weibo-so-unity-2.53.0.png)
 
 #### Huawei Store
 

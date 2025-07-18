@@ -1,5 +1,14 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.71.2
+
+### Android
+
+* Gamebase Android SDK 2.71.2는 다음 이슈가 발생합니다.
+    * 네트워크 연결이 끊어진 후 복구되거나, 앱을 백그라운드로 내렸다가 포그라운드로 활성화한 경우 간헐적으로 웹소켓 모듈에서 ArrayIndexOutOfBoundsException으로 인한 크래시가 발생할 수 있습니다.
+
+    * 이슈가 해결된 Gamebase Android SDK 2.72.0을 사용하세요.
+
 ## 2.70.0
 
 ### Android
@@ -21,7 +30,6 @@
             }
     
     * desugar_jdk_libs 1.x 버전은 Kakaogame 로그인 시 크래시가 발생하므로 2.x 버전 적용을 권장합니다.
-
         * Unity Editor 버전에 따라 AGP 버전이 다르므로 AGP 및 Gradle 버전 업데이트가 필요할 수 있습니다.
 
 ## 2.69.0
