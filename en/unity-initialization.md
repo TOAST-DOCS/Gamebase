@@ -80,11 +80,11 @@ Set whether or not to log in to WebView on a (Standalone) platform.
 
 #### 9. enableGPGSSignInCheck
 
-Android 플랫폼에서 'GPGS 자동 로그인' 기능 연동시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어보는 설정입니다.
+When integrating the 'GPGS Auto Login' feature on the Android platform, set whether to display the GPGS login window only once when the app is first run after installation.
 
-* true : 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.
-* false : 앱 최초 실행시에만 GPGS 로그인 창이 한번 표시됩니다.
-* 기본값: true
+* True : Even if the user declines to log in to GPGS, the GPGS login window will be re-displayed when Gamebase initializes.
+* False : The GPGS login window will only appear once when you first launch the app.
+* Default: true
 
 ### Debug Mode
 * Gamebase only displays the (warning) and error log.

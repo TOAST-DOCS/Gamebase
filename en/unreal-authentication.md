@@ -129,6 +129,11 @@ Gamebase supports guest login.
 * Create a unique key of device to try a login to Gamebase. 
 * With guest login, device key might be initialized, which may cause your account to be deleted; therefore, it is recommended to use IdP for a login. 
 
+> <font color="red">[Caution]</font><br/>
+>
+> GUEST login is provided for development purposes only in Windows environments, so please use caution when using it in an actual game.
+>
+
 **API**
 
 Supported Platforms
@@ -269,7 +274,7 @@ This interface allows login to Gamebase with SDKs provided by IdP and authentica
 
 | Keyname | Usage | Value Type |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential::ProviderName | Set IdP type                          | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential::ProviderName | Set IdP type                          | GamebaseAuthProvider::Google<br> GamebaseAuthProvider::Facebook<br>GamebaseAuthProvider::Naver<br>GamebaseAuthProvider::Twitter<br>GamebaseAuthProvider::Line<br>GamebaseAuthProvider::Hangame<br>GamebaseAuthProvider::AppleId<br>GamebaseAuthProvider::Weibo<br>GamebaseAuthProvider::GameCenter<br>GamebaseAuthProvider::Payco<br>GamebaseAuthProvider::Steam<br>GamebaseAuthProvider::EpicGames |
 | GamebaseAuthProviderCredential::AccessToken | Set authentication information (e.g. access token) given after IdP login <br/> Disabled for Google authentication |                                |
 | GamebaseAuthProviderCredential::AuthorizationCode | Set authorization code given after Google login |                                          |
 | GamebaseAuthProviderCredential::GamebaseAccessToken | Used when logging in with Gamebase Access Token instead of IdP authentication information |  |
@@ -602,7 +607,7 @@ void AddMappingForcibly(const UGamebaseJsonObject& CredentialInfo, const FString
 void USample::AddMappingForcibly(const FString& ProviderName)
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddMapping(ProviderName, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
+    Subsystem->AddMapping(GetProviderName(LoginType), FGamebaseAuthTokenDelegate::CreateLambda([Subsystem](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
@@ -610,29 +615,27 @@ void USample::AddMappingForcibly(const FString& ProviderName)
         }
         else
         {
-            // Call AddMapping API and map to an account already integrated, and get ForcingMappingTicket, like below.
             if (Error->Code == GamebaseErrorCode::AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER)
             {
                 // Use the From() method of the ForcingMappingTicket class to get an ForcingMappingTicket instance. 
-                auto ForcingMappingTicket = FGamebaseForcingMappingTicket::From(Error);
-                if (ForcingMappingTicket.IsValid() == false)
+                const FGamebaseForcingMappingTicketPtr ForcingMappingTicket = FGamebaseForcingMappingTicket::From(Error);
+                if (!ForcingMappingTicket.IsValid())
                 {
-                    // Unexpected Error occurred. Contact Administrator.
+                    // Unexpected error occurred. Contact Administrator.
                 }
                 
                 // Attempt force mapping. 
-                Subsystem->AddMappingForcibly(ForcingMappingTicket, ForcingMappingTicket->ForcingMappingKey,
-                    FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* innerAuthToken, const FGamebaseError* innerError)
+                Subsystem->AddMappingForcibly(*ForcingMappingTicket, FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* InnerAuthToken, const FGamebaseError* InnerError)
                 {
-                    if (Gamebase::IsSuccess(Error))
+                    if (Gamebase::IsSuccess(InnerError))
                     {
                         // Successfully added force mapping
-                        UE_LOG(GamebaseTestResults, Display, TEXT("AddMappingForcibly succeeded."));
+                        UE_LOG(GamebaseTestResults, Display, TEXT("ChangeLogin succeeded. Gamebase userId is %s"), *InnerAuthToken->Member.UserId);
                     }
                     else
                     {
                         // Check error code and take an appropriate processing. 
-                        UE_LOG(GamebaseTestResults, Display, TEXT("AddMappingForcibly failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Messsage);
+                        UE_LOG(GamebaseTestResults, Display, TEXT("ChangeLogin failed."));
                     }
                 }));
             }
@@ -675,32 +678,30 @@ void USample::ChangeLoginWithFacebook(const FString& ProviderName)
         }
         else
         {
-            // Call AddMapping API and map to an account already integrated, and get ForcingMappingTicket, like below.
             if (Error->Code == GamebaseErrorCode::AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER)
             {
                 // Use the From() method of the ForcingMappingTicket class to get an ForcingMappingTicket instance.
-                auto ForcingMappingTicket = FGamebaseForcingMappingTicket::From(Error);
-                if (ForcingMappingTicket.IsValid())
-                {   
-                    // Attempt force mapping.
-                    Subsystem->ChangeLogin(ForcingMappingTicket, ForcingMappingTicket->ForcingMappingKey,
-                        FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* AuthTokenForcibly, const FGamebaseError* ChangeLoginError)
-                    {
-                        if (Gamebase::IsSuccess(ChangeLoginError))
-                        {
-                            // Successfully changed login
-                        }
-                        else
-                        {
-                            // Failed to change login
-                            // Check the error code and resolve the error.
-                        }
-                    }));
-                }
-                else
+                const FGamebaseForcingMappingTicketPtr ForcingMappingTicket = FGamebaseForcingMappingTicket::From(Error);
+                if (!ForcingMappingTicket.IsValid())
                 {
-                    // Unexpected Error occurred. Contact Administrator.
+                    // Unexpected error occurred. Contact Administrator.
                 }
+                
+                // Attempting to change login.
+                Subsystem->ChangeLogin(*ForcingMappingTicket, FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* InnerAuthToken, const FGamebaseError* InnerError)
+                {
+                    if (Gamebase::IsSuccess(InnerError))
+                    {
+                        // Login change successful
+                        UE_LOG(GamebaseTestResults, Display, TEXT("ChangeLogin succeeded. Gamebase userId is %s"), *InnerAuthToken->Member.UserId);
+                    }
+                    else
+                    {
+                        // Login change failed
+                        // Check the error code and handle accordingly.
+                        UE_LOG(GamebaseTestResults, Display, TEXT("ChangeLogin failed."));
+                    }
+                }));
             }
             else
             {
@@ -843,6 +844,7 @@ Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 
 ```cpp
+void RequestLastLoggedInProvider(const FGamebaseLastLoggedInProviderDelegate& Callback) const;
 FString GetLastLoggedInProvider() const;
 ```
 
@@ -851,7 +853,20 @@ FString GetLastLoggedInProvider() const;
 void USample::GetLastLoggedInProvider()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+
+    // Obtaining Last Logged In Provider - Sync
     FString LastLoggedInProvider = Subsystem->GetLastLoggedInProvider();
+
+    // Obtaining Last Logged In Provider - Async
+    // If GetLastLoggedInProvider() returns 'NOT_INITIALIZED_YET',
+    // use the following async function instead:
+    Subsystem->RequestLastLoggedInProvider(FGamebaseLastLoggedInProviderDelegate::CreateLambda([=](const FString& lastLoggedInProviderAsync, const FGamebaseError* Error)
+    {
+        if (Gamebase::IsSuccess(Error))
+        {
+            UE_LOG(GamebaseTestResults, Display, TEXT("LastLoggedInProvider: %s"), *lastLoggedInProviderAsync);
+        }
+    }));    
 }
 ```
 
@@ -1228,6 +1243,7 @@ void USample::Login()
 |                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | Error occurred in the external authentication library. <br/> Check the error details.  |
 |                | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR       | 3010       | The previous authentication process has not been completed. |
 |                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | Logged out because the Gamebase Access Token is not valid.<br/>Please try logging in again. |
+|                | AUTH\_AUTHENTICATION\_SERVER\_ERROR      | 3012       | An error occurred from the authentication server. |
 | TransferAccount| SAME\_REQUESTOR                          | 8          | Used TransferAccount on a same device.  |
 |                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | Attempted to transfer on a non-guest account, or mapped a non-guest IdP to account.  |
 |                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | TransferAccount has been expired.  |

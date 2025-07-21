@@ -1,5 +1,51 @@
 ## Game > Gamebase > Unity Developer's Guide > UI
 
+## GameNotice
+
+This feature displays registered notices with images on the console.
+
+![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_001.png)
+
+### Open GameNotice
+
+Show the game notice on the screen.
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+
+
+```cs
+public static void OpenGameNotice(GamebaseCallback.ErrorDelegate callback)
+```
+
+**ErrorCode**
+
+| Error                                | Error Code | Description                         |
+|--------------------------------------| --- |-------------------------------------|
+| NOT\_INITIALIZED                     | 1 | Gamebase is not initialized.            |
+| UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL            | 6941 | Failed to generate the game notice URL.               |
+| UI\_GAME\_NOTICE\_FAIL\_ANDROID\_DUPLICATED\_VIEW | 6942 | The game notice was called again before the previous popup was closed. |
+| WEBVIEW\_TIMEOUT                | 7002 | Webview display timed out (10 seconds).             |
+| WEBVIEW\_HTTP\_ERROR                 | 7003 | An HTTP error occurred in the WebView.            |
+| WEBVIEW\_UNKNOWN\_ERROR           | 7999 | Unknown WebView error occurred.               |
+
+**Example**
+
+```cs
+public void SampleOpenGameNotice()
+{
+    Gamebase.GameNotice.OpenGameNotice(
+        (error) =>
+        {
+            // Called when the entire gameNotice is closed.
+        });
+}
+```
+
 ## ImageNotice
 
 You can pop up a notice to users after registering an image to the console.
@@ -216,12 +262,12 @@ public void AfterLogin()
 Gamebase displays the terms and conditions with a simple WebView.
 If you want to create the terms and conditions appropriate for the game UI, call the QueryTerms API to download the terms and conditions information set in the Gamebase Console for later use.
 
-Calling it after login also lets you see if the game user has agreed to the terms and conditions.
+The "optional" terms items will return the user's consent status when queried after login. However, the consent status for "required" items will always be returned as false.
 
 > <font color="red">[Caution]</font><br/>
 >
-> * The required items with GamebaseResponse.Terms.ContentDetail.required set to true are not stored in the Gamebase server; therefore, false is always returned for the agreed value.
->     * It is because there is no point in storing the required items since they are always stored as true.
+> * If a required item has GamebaseResponse.Terms.ContentDetail.required set to true, the consent status is not stored on the Gamebase server, so the agreed value will always be returned as false.
+>     * Since users cannot proceed with the game or log in without agreeing to the required terms, if the terms popup is closed and the user is logged in, it is considered that they have already agreed to the required items. Therefore, there is no need to store the consent status for required items for logged-in users, as they are assumed to have already provided consent.
 > * The user consent for receiving the push notification is not stored in the Gamebase server either; therefore, the agreed value is always returned as false.
 >     * To see if the user has agreed to receive push, use the Gamebase.Push.QueryPush API.
 > * If you do not touch the 'Terms and Conditions settings' in the console, **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** error occurs when you call the queryTerms API from the device with the country code different from the terms and conditions language.
@@ -464,7 +510,7 @@ public void ShowWebView()
 }
 ```
 
-#### GamebaseWebViewConfiguration
+#### Configuration
 
 | Parameter | Values | Description                                                                        |
 | ------------------------ | ---------------------------------------- |------------------------------------------------------------------------------------|
@@ -477,8 +523,6 @@ public void ShowWebView()
 |                          | GamebaseWebViewContentMode.MOBILE           | Mobile browser                                                                     |
 |                          | GamebaseWebViewContentMode.DESKTOP          | Desktop browser                                                                    |
 | navigationColor          | Color                                       | Color of Navigation Bar <br>**default**: GamebaseColor.RGB255(18, 93, 230)         |
-| navigationTitleColor     | Color                                       | 내비게이션 바 제목 색상 <br>**default**: GamebaseColor.RGB255(255, 255, 255) |
-| navigationIconTintColor  | Color                                       | 내비게이션 바 아이콘 색상 <br>**default**: null                               |
 | barHeight                | height                                   | Height of Navigation Bar<br>**Android Only**                                       |
 | isNavigationBarVisible   | true or false                            | Activate or deactivate Navigation Bar<br>**default**: true                         |
 | isBackButtonVisible      | true or false                            | Activate or deactivate Go Back Button<br>**default**: true                         |

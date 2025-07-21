@@ -218,32 +218,52 @@ Enter {App ID} and {App Secret Code} of an app registered in the Facebook develo
 
 #### 2. Google
 
-##### Google Cloud Console
+##### Google Cloud Console - Common
 
-![gamebase_app_06_201812](https://static.toastoven.net/prod_gamebase/gamebase_app_06_201812.png)
+* To prepare for Google authentication in Gamebase, first create a Client ID of the **Web application** type in the **Google Cloud Console > APIs & Services > Credentials > + CREATE CREDENTIALS > OAuth client ID** menu.
+    * If there is a Client ID for a Web application type that has already been created, you can use that Client ID.
+    * ![](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_001_en_20250122.png) 
+    * ![](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_002_en_20250122.png) 
+* In the **Authorized redirect URIs** field, you must enter the following values:
+    * https://id-gamebase.toast.com/oauth/callback
+    * https://alpha-id-gamebase.toast.com/oauth/callback
+    * ![](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_003_en_20250122.png)
+* Enter the created Client ID information in **NHN Cloud Console > Game > Gamebase > App > Authentication Information > Google > Client ID > Web Application ID** field.
+    * ![](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_004_en_20250122.png)
+    * ![](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_012_en_20250122.png)
+* Enter the Client secret for a Web application type in ****NHN Cloud Console > Game > Gamebase > App > Authentication Information > Google > Secret Key** field.
+    * ![](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_013_en_20250122.png)
 
-For Google authentication, you must obtain a **Web Application Client ID** from Google Cloud Console and enter it into Gamebase Console.
-Enter these URIs in the **Authorized redirect URIs** field.
-* https://alpha-id-gamebase.toast.com/oauth/callback
-* https://beta-id-gamebase.toast.com/oauth/callback
-* https://id-gamebase.toast.com/oauth/callback
+##### Google Cloud Console - Android
 
+* To authenticate with Google on Android devices, you must additionally create an Android-type client id in Google Cloud Console.
+* Create the **Android** type client id in **Google Cloud Console > APIs & Services > Credentials > + CREATE CREDENTIALS > OAuth client ID** menu.
+    * ![](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_005_en_20250122.png)
+* The Android type requires the package name and SHA-1 signature information.
+    * ![](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_006_en_20250122.png)
+* Android builds have different upload signatures and app signatures, so you need to register both kinds of SHA-1 values to ensure that your build tests go smoothly.
+    * If you are using some Google platforms, such as Firebase or GPGS, they may automatically add an Android-type Client id setting.
+    * ![all type created](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_007_en_20250122.png)
+* The Gamebase Console only requires you to enter a Client id of the Web application type, so do not enter the Client id of the Android type.
+    * ![](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_012_en_20250122.png)
+* Starting from version 2.68.0, which uses Google Credential Manager, the following settings must be configured in the Google Cloud Console.
+* In **Google Cloud Console > Google Auth Platform > Audience** menu, set **User type** to **External** and **Publishing status** to **In production**.
+    * If these settings are not properly configured, all login attempts will be automatically canceled.
+    * ![](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/DevelopersGuide/aos-google-oauth-setting-production-en.png)
 
-<br/>
+##### Google Cloud Console - iOS
 
-For Google iOS authentication, you must obtain an **iOS Client ID** from Google Cloud Console and enter it into Gamebase Console.
+* To authenticate with Google on iOS devices, you must additionally create an iOS-type client id in Google Cloud Console.
+* reate the **iOS** type client id in **Google Cloud Console > APIs & Services > Credentials > + CREATE CREDENTIALS > OAuth client ID** menu.
+    * ![ios 1](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_009_en_20250122.png)
+* Enter the Bundle ID.
+    * ![ios 2](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_010_en_20250122.png)
+* For iOS, unlike Android, you need to enter the Client ID issued for the iOS type in the **NHN Cloud Console > Game > Gamebase > App > Authentication Information > Google > Client ID > iOS Client ID** field.
+    * ![gamebase console](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_014_en_20250122.png)
 
-After selecting **APIs & Services > CREATE CREDENTIALS > OAuth client ID**,
+##### Gamebase Console
 
-![gamebase_app_google_ios_1.png](https://static.toastoven.net/prod_gamebase/gamebase_app_google_ios_1.png)
-
-Select **Application type** as **iOS** and input the Bundle ID.
-
-![gamebase_app_google_ios_2.png](https://static.toastoven.net/prod_gamebase/gamebase_app_google_ios_2.png)
-
-#### Gamebase Console
-
-![gamebase_app_21_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_21_en_240105.png)
+![gamebase console](https://static.toastoven.net/prod_gamebase/ConsoleGuide/App/en/gamebase_console_app_google_008_en_20250122.png)
 
 **Input field**<br />
 
@@ -253,19 +273,18 @@ Select **Application type** as **iOS** and input the Bundle ID.
 - Additional info: OAuth 2.0 Scopes (json format)
 
 ##### Additional Info Settings
-* You can set information in the form of a JSON string in the **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info**.
+
+* You can set information in the form of a JSON string in the **NHN Cloud Console > Game > Gamebase > App > Authentication Information > Additional Info**.
 * For Google, if you want to get email information from profile information after OAuth authentication, you must set **scope**, which is the scope of authentication permissions.
 * The different scopes you can declare in addition to email can be found in the following documents
     * https://developers.google.com/identity/protocols/oauth2/scopes#google-sign-in
     * https://developers.google.com/identity/protocols/oauth2/scopes
-
 * Example of entering Google additional authentication information
 
-```json
-{ "scope": ["email","myscope1","myscope2",...] }
-```
+        { "scope": ["email","myscope1","myscope2",...] }
 
 ##### iOS
+
 * [Gamebase > iOS SDK User Guide > Getting Started > IdP Settings > Google](./ios-started/#google)
 
 #### 3. Apple Game Center
