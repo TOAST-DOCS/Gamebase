@@ -5,33 +5,33 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-Android.zip)
 
 ```
-최소 지원 버전이 Android 5.1 이상으로 상향되었습니다.(minSdk 21 → 22)
-Android Gradle Plugin 최소 버전이 7.4.2 이상으로 상향되었습니다.(4.0.1 -> 7.4.2)
+最小サポートバージョンがAndroid 5.1以上に引き上げられました。(minSdk 21 → 22)
+Android Gradle Plugin最小バージョンが7.4.2以上に引き上げられました。(4.0.1 -> 7.4.2)
 ```
 
-#### 기능 개선/변경
+#### 機能改善/変更
 
-* 내부 로직 개선
+* 内部ロジック改善
 
-#### 버그 수정
+#### バグ修正
 
-* 로그인 웹뷰에서 화면 회전시 여백 크기를 잘못 계산하는 오류를 수정했습니다.
+* ログインWebビューで画面回転時に余白のサイズを誤って計算するエラーを修正しました。
 
 ### 2.72.0 (2025. 06. 24.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
+#### 機能改善/変更
 
-* 웹소켓 모듈이 중복 호출되는 경우 ArrayIndexOutOfBoundsException이 발생할 수 있는 로직을 수정했습니다.
-    * 이 문제는 Gamebase Android SDK 2.71.2에서만 발생합니다.
+* Webソケットモジュールが重複して呼び出される場合にArrayIndexOutOfBoundsExceptionが発生する可能性のあるロジックを修正しました。
+    * この問題はGamebase Android SDK 2.71.2でのみ発生します。
 
-#### 버그 수정
+#### バグ修正
 
-* LINE IdP의 Region 추가 정보 대응이 되지 않아 매핑 관련 동작에서 발생하는 문제를 수정했습니다.
-    * Gamebase.login("guest") -&gt; Gamebase.addMapping("line") -&gt; Gamebase.loginForLastLoggedInProvider() 호출 실패 이슈
-    * Gamebase.login(idp) -&gt; Gamebase.addMapping("line") -&gt; AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER(3302) -&gt; Gamebase.changeLogin(ForcingMappingTicket) 호출 실패 이슈
-    * Gamebase.login("line") -&gt; Gamebase.addMapping(idP) -&gt; AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER(3302) -&gt; Gamebase.changeLogin(ForcingMappingTicket) 호출 실패 이슈
+* LINE IdPのRegion追加情情報に対応していなかったため、マッピング関連の動作で発生していた問題を修正しました。
+    * Gamebase.login("guest") -&gt; Gamebase.addMapping("line") -&gt; Gamebase.loginForLastLoggedInProvider()呼び出し失敗イシュー
+    * Gamebase.login(idp) -&gt; Gamebase.addMapping("line") -&gt; AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER(3302) -&gt; Gamebase.changeLogin(ForcingMappingTicket)呼び出し失敗イシュー
+    * Gamebase.login("line") -&gt; Gamebase.addMapping(idP) -&gt; AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER(3302) -&gt; Gamebase.changeLogin(ForcingMappingTicket)呼び出し失敗イシュー
 
 ### 2.71.2 (2025. 05. 20.)
 

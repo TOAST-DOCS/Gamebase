@@ -35,6 +35,7 @@
 |                 | Android<br/>Unity<br/>iOS | AUTH_EXTERNAL_LIBRARY_ERROR<br/>TCGB_ERROR_AUTH_EXTERNAL_LIBRARY_ERROR | 3009       | External authentication library error.                       |
 |                 | Android<br/>Unity<br/>iOS | AUTH_ALREADY_IN_PROGRESS_ERROR<br/>TCGB_ERROR_AUTH_ALREADY_IN_PROGRESS_ERROR | 3010       | The previous authentication process did not complete.                 |
 |                 | Android<br/>Unity<br/>iOS | AUTH_INVALID_GAMEBASE_TOKEN<br/>TCGB_ERROR_AUTH_INVALID_GAMEBASE_TOKEN | 3011       | You were logged out because your Gamebase Access Token is invalid.<br/>Try signing in again. |
+|                 | Android<br/>Unity<br/>iOS | AUTH_AUTHENTICATION_SERVER_ERROR<br/>TCGB_ERROR_AUTH_AUTHENTICATION_SERVER_ERROR | 3012       | An error occurred from the authentication server. |
 | TransferAccount | Android<br/>Unity<br/>iOS | SAME_REQUESTOR<br/>TCGB_ERROR_SAME_REQUESTOR | 8 | The issued TransferAccount was used on the same terminal. |
 |                 | Android<br/>Unity<br/>iOS | NOT_GUEST_OR_HAS_OTHERS<br/>TCGB_ERROR_NOT_GUEST_OR_HAS_OTHERS | 9 | You tried to transfer from a non-Guest account, or your account is associated with a non-Guest IdP. |
 |                 | Android<br/>Unity<br/>iOS | AUTH_TRANSFERACCOUNT_EXPIRED<br/>TCGB_ERROR_AUTH_TRANSFERACCOUNT_EXPIRED | 3041 | The TransferAccount has expired. |
@@ -92,6 +93,8 @@
 |                 | Android<br/>Unity<br/>iOS | UI_TERMS_UNREGISTERED_SEQ<br/>TCGB_ERROR_UI_TERMS_UNREGISTERED_SEQ | 6923       | The value of the unregistered terms Seq.            |
 |                 | Android<br/>Unity<br/>iOS | UI_TERMS_ALREADY_IN_PROGRESS_ERROR<br/>TCGB_ERROR_UI_TERMS_ALREADY_IN_PROGRESS_ERROR | 6924       | The Terms API call has not yet completed.<br/>Try again in a few minutes. |
 |                 | Android<br/>Unity         | UI_TERMS_ANDROID_DUPLICATED_VIEW | 6925       | The Terms webview was invoked again without exiting. |
+|                 | Android<br/>Unity<br/>iOS | UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL<br/>TCGB\_ERROR\_UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL       | 6941 | Failed to generate the game notice URL. |
+|                 | Android<br/>Unity         | UI\_GAME\_NOTICE\_FAIL\_ANDROID\_DUPLICATED\_VIEW | 6942       | The game notice was called again before the previous popup was closed. |
 |                 | Android<br/>Unity<br/>iOS | UI_UNKNOWN_ERROR<br/>TCGB_ERROR_UI_UNKNOWN_ERROR | 6999       | Unknown error (undefined error).            |
 | WebView         | Android<br/>Unity<br/>iOS | WEBVIEW_INVALID_URL<br/>TCGB_ERROR_WEBVIEW_INVALID_URL           | 7001       | Invalid URL.            |
 |                 | Android<br/>Unity<br/>iOS | WEBVIEW_TIMEOUT<br/>TCGB_ERROR_WEBVIEW_TIMEOUT                     | 7002       | The webview timed out while displaying.            |

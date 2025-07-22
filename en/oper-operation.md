@@ -4,6 +4,7 @@ This menu provides functions that are required for an app operation.
 
 * (Maintenance): Manage app maintenance
 * (Notice): Manage urgent notices by showing a popup window to game users
+* (Game notice): Manage game notices that pop up to game users
 * (Image notice): Manage image notices which is provided as an image to game users
 * (Kick out): Disconnect the app user
 
@@ -43,8 +44,8 @@ Select the maintenance target.
 
 - Entire game : Select it when maintenance is required for all client versions.
 - Some clients : Select it when maintenance is required only for certain client versions. Click the 'Select version' button to display the list of the client versions registered from the client menu.
-  **[Example of selecting Some clients]**
-  Select All is possible by client status and by store. Just select the client version to perform maintenance, and click the Confirm button.
+<br>**Example of selecting Some clients**
+<br>Select All is possible by client status and by store. Just select the client version to perform maintenance, and click the Confirm button.
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
 
 #### (2) Reason
@@ -119,8 +120,8 @@ Clicking the 'Register' button on the main screen of Notice redirects you to the
 Select a target to show notification.
 - All Games: When maintenance is required for all client version.
 - Some Clients: When only a particular client version requires maintenance. Click 'Select a Version' to show the list of client versions registered in the client menu.
-  **Example of selecting particular clients**
-  Can select a client status and all for each store, and select a client version for maintenance and press OK.
+  <br>**Example of selecting particular clients**
+  <br>Can select a client status and all for each store, and select a client version for maintenance and press OK.
   ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
 
 
@@ -162,12 +163,95 @@ Specify the type of the buttons which will be exposed at the bottom of the notic
 
 
 #### Example of a Notice Pop-up
-Close (left), Close+More (right)
+Selecting **Close** will only expose the ‘CLOSE’ button, as shown in the image on the left, while selecting **Close+Show Detail** will expose the ‘CLOSE’ and ‘SHOW DETAIL’ buttons, as shown in the image on the right.
 ![gamebase_op_img](https://static.toastoven.net/prod_gamebase/gamebase_op_08_201812.png)
+
+### Modify Notice
 
 You can read, edit, or delete the details of the registered notice.
 By default, the input items are identical to those of the registration screen. You can also delete the notice by clicking the 'Delete' button if the notice has been entered incorrectly.
 If you want reregister the maintenance with similar details, you can use the copy function to easily register the notice.
+
+
+## Game Notice
+
+You can register a game notice on the console to display both images and messages in the game.
+You can view all registered game notices at a glance. Game notices with the status set to **Exposing** are displayed in the in-game notice list based on their registration date.
+You can also search for game notices by their posting status and title.
+
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_01_ko_250415.png)
+
+(1) **Status**: You can search for game notices by their posting status.
+  - Scheduled: Game notice scheduled for exposure
+  - Exposing: Game notice currently being exposed
+  - End: Game notice exposure ended
+
+ (2) **Title**: You can search the list of game notices that include titles in the default selected language.
+
+#### properties
+The information displayed for each item is as follows:
+
+- **Status**: Shows the current exposure status of the game notice as shown in the game.
+- **Title**: Shows the game notice title in the default selected language.
+- **Posting Time**: Shows the time when the game notice is set to be exposed, including the time and time zone selected by the registrant.
+- **Posting Time(+09:00)**: Displays the exposure time of the game notice converted to Korea Standard Time (KST, +09:00).
+- **Modified Date**: Shows the last modified time of the game notice.
+
+### Register Game notice
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_02_ko_250415.png)
+
+Click the **Register** button in the **Game Notice** list to rsgister the game notice.
+
+#### (1) Target
+
+Select the target to expose the game notice to.
+
+- Entire game : Select it when exposure is required for all client versions.
+- Some clients : Select it when exposure is required only for certain client versions. Click the **Select version** button to display the list of the client versions registered from the client menu.
+  <br>**Example of selecting Some clients**
+  <br>Select All is possible by client status and by store. Just select the client version to expose, and click the **Confirm** button.
+  ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240611.png)
+
+
+#### (2) Target country
+Select the country to expose the notice to.
+
+- All countries : Exposed to all game users
+- Some countries : Exposed to users from the selected countries only
+  Entering the country code that you want to add will autocomplete the spelling. If you cannot find the particular country code, please contact our [Customer Center](https://toast.com/support/inquiry).
+
+> [Note]
+>
+> Criteria for determining the country
+> This is determined based on the criteria of **USIM** country code. If there is no USIM, the notice is exposed based on the country setting of the **device**.
+#### (3) Time of exposure
+Set the time when the registered notice will be exposed within the game.
+As for timezone, 'UTC+09:00' is selected by default, and you can also register maintenance by selecting the timezone of the country you are providing service to.
+
+#### (4) Notice & Image
+Register the notices and images to be displayed in the game.
+You can set notices and images for each language, and they will be displayed based on the device's language settings.
+Registrable file formats are **PNG, JPG, JPEG**, and **JPE**. The file size must not exceed 1MB, and the allowed image dimensions are **1020x300** (Landscape or Portrait).
+The registered image is displayed in its entirety within the game while maintaining its original landscape or portrait aspect ratio.
+
+> [Note]
+>
+> The uploaded image is automatically deleted 14 days after the exposure date of the game notice ends.
+### Modify Game notice
+
+You can read, edit, or delete the details of the registered game notice.
+You can also register the image from the Edit screen again to replace the previous image, and edit the time and target to expose the game notice.
+If you want to register the game notice again with the similar details to the already registered notice, you can use the copy function to register by uploading a new image only.
+
+> [Note]
+>
+> The uploaded image is automatically deleted 14 days after the exposure date of the game notice ends.
+### Modify Game notice Setting
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_03_ko_250415.png)
+
+You can configure the basic settings for game notices, and the configured information will be applied to all notices uniformly.
+- Use Image List: When enabled, the images registered in the game notice will also be displayed on the in-game list screen.
+
 
 ## Image Notice
 
@@ -180,7 +264,7 @@ The exposure sequence can be set by directly moving the row in the list of the c
 
 > [Note]
 >
-> Basic settings to bulk apply image notice popups can be found in **Gamebase > App > Image Notice**.
+> Basic settings to bulk apply image notice popups can be found in **Gamebase > Image Notice > Settings**.
 
 #### properties
 What's displayed on each item is as follows:
@@ -212,8 +296,8 @@ Select the target to expose the image notice to.
 
 - Entire game : Select it when exposure is required for all client versions.
 - Some clients : Select it when exposure is required only for certain client versions. Click the 'Select version' button to display the list of the client versions registered from the client menu.
-  **Example of selecting Some clients**
-  Select All is possible by client status and by store. Just select the client version to expose, and click the Confirm button.
+<br>**Example of selecting Some clients**
+<br>Select All is possible by client status and by store. Just select the client version to expose, and click the Confirm button.
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
 
 
@@ -239,7 +323,7 @@ Set the time when the registered image will be exposed within the game.
 As for timezone, 'UTC+09:00' is selected by default, and you can also register maintenance by selecting the timezone of the country you are providing service to.
 
 #### (5) Image
-Register the image to expose within the game.
+Register the image to expose within the game. When a memo is entered, the specified text will appear over the image in the image notice. The memo can contain up to 60 characters.
 You can set the image that you want to expose per language, and the image is exposed according to the language of the device.
 Registrable file formats are JPEG, JPG, and PNG, and the maximum size is 512 KB.
 Recommended image size is 1200x900 (Landscape) and 900x1200 (Portrait). It maintains the aspect ratio of the image to display the entire image, but if the width or height is too long, the image can be cropped when displayed.
@@ -297,8 +381,8 @@ Clicking the **Register** button on the **Kickout** tab redirects you to the scr
 Select the target client to kick out.
 - Entire client : Select it when kickout is required for all client versions.
 - Some clients : Select it when kickout is required only for certain client versions. Click the 'Select Version' button to display the list of the client versions registered from the client menu.
-  **[Example of selecting Some clients]**
-  Select All is possible by client status and by store. Just select the client version to perform maintenance, and click the Confirm button.
+<br>**[Example of selecting Some clients]**
+<br>Select All is possible by client status and by store. Just select the client version to perform maintenance, and click the Confirm button.
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
 
 ### (2) Reason

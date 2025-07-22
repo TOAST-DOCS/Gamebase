@@ -57,7 +57,7 @@ Supported Platforms
 1. エディタのメニュー **Edit > Project Settings**を選択します。
 2. Project SettingsウィンドウでPluginカテゴリーから**Gamebase**を選択します。
 
-![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-settings-2.63.0.png)
+![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.72.0.png)
 
 * Android - Authentication
     * 使用するIdPを有効にします。
@@ -124,6 +124,13 @@ GamesAppID=
 </androidManifestUpdates>
 ```
 
+#### Epic Gamesサービス
+
+* [ログイン認証タイプ](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type)はPersistentAuth, AccountPortalをサポートします。
+    * 以前にログインしてPersistentAuthログイン用のトークンが保存されている場合、そのトークンでログインを試みます。トークンでログインできない場合は、AccountPortalログインを試行し、結果を返します。
+* 詳細については、以下の内容をご確認のうえ、進めてください。
+    * [Game > Gamebase > Unreal SDK使用ガイド > はじめる > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
+    
 ### iOS Settings
 
 Gamebase SDK for Unrealを使用するには`UE4 Githubソースコード`を使用する必要があり、Epic gamesに会員登録した後、Githubアカウントを接続するとUnrealEngine repositoryが表示されます。
@@ -140,7 +147,7 @@ See below for relevant guides.
 1. エディタのメニュー**Edit > Project Settings**を選択します。
 2. Project SettingsウィンドウでPluginカテゴリーから**Gamebase - iOS**を選択します。
 
-![Unreal Project Settings - iOS](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-ios-setttings-2.57.0.png)
+![Unreal Project Settings - iOS](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-ios-setttings-2.72.0.png)
 
 * Path
     * Xcode Path：Xcodeのパスを入力します。 (デフォルト値： /Applications/Xcode.app)
@@ -188,12 +195,13 @@ bEnableSignInWithAppleSupport=True
 
    次のように修正する必要があります。
         
-            // AS-IS
-            completionHandler(UNNotificationPresentationOptionNone);
-            
-            // TO-BE
-            completionHandler(UNNotificationPresentationOptionAlert);
+        // AS-IS
+        completionHandler(UNNotificationPresentationOptionNone);
 
+        // TO-BE
+        completionHandler(UNNotificationPresentationOptionAlert);
+        
+        
 #### Rich Push Notification
 
 次のようなイシューによりRich Push Notification機能を使用できません。
@@ -219,12 +227,19 @@ NHN Cloud Log & Crash Searchでクラッシュ分析を行うゲーム開発会�
 2. UE4内部PLCrashReporterのaファイルとheaderファイルを解凍したファイルと交換します。
     * Engine/Source/ThirdParty/PLCrashReporter/plcrashreporter-master-xxxxxxx
 
+#### Epic Gamesサービス
+
+* [ログイン認証タイプ](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type)はPersistentAuth, AccountPortalをサポートします。
+    * 以前にログインしてPersistentAuthログイン用のトークンが保存されている場合、そのトークンでログインを試みます。トークンでログインできない場合は、AccountPortalログインを試行し、結果を返します。
+* 詳細については、以下の内容をご確認のうえ、進めてください。
+    * [Game > Gamebase > Unreal SDK使用ガイド > はじめる > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
+    
 ### Windows Settings
 
 1. エディタのメニュー **Edit > Project Settings**を選択します。
 2. Project SettingsウィンドウでPluginカテゴリーから**Gamebase - Windows**を選択します。
 
-![Unreal Project Settings - Windows](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-windows-setttings-2.57.0.png)
+![Unreal Project Settings - Windows](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-windows-setttings-2.72.0.png)
 
 * Authentication
     * 使用する IdP を有効にします。
@@ -254,35 +269,12 @@ NHN Cloud Log & Crash Searchでクラッシュ分析を行うゲーム開発会�
 > [注意]
 > NHNWebViewプラグインとWeb Browserプラグインは同時に使用することができず、両方のプラグインが有効になっている場合、ビルド時にエラーが発生します。
 
-#### Epic Games Storeサービス
+#### Epic Gamesサービス
 
-* UE 4.27以降のバージョンでサポートされ、エンジン内部にEOSSDKモジュールが使用されています。
-* Epic Games Storeを使用するためには、EOSSDKを使用してログインする必要があります。
-* Gamebase で使用する EOS のバージョンは 1.15.5.0 で、エンジンパス `Engine\Source\ThirdParty\EOSSDK\SDK` に該当バージョンをインストールしてアップグレードする必要があります。
-    * [参考: EOS SDKアップグレードガイド](https://docs.unrealengine.com/5.2/en/upgrading-the-eos-sdk-in-unreal-engine/)
-* ゲーム起動時にEOS Handleの設定が必要です。
-    * エンジンに含まれているOnline Subsystem EOSを使用する場合、下記のコードのように設定できます。
-
-            #include "OnlineSubsystemEOS.h"
-            #include "IEOSSDKManager.h"
-            #include "GamebaseStandalonePurchaseEpicAdapterModule.h"
-
-            void UGamebasePurchaseEpicSupportTestCase::SetEosPlatformInstance()
-            {
-                IOnlineSubsystem* Subsystem = Online::GetSubsystem(GetWorld());
-
-                if (const FOnlineSubsystemEOS* EosSubsystem = static_cast<FOnlineSubsystemEOS*>(Subsystem))
-                {
-                    EOS_HPlatform PlatformHandle = *EosSubsystem->EOSPlatformHandle;
-                    FGamebaseStandalonePurchaseEpicModule::SetEosPlatformInstance(*Handle);
-                }
-            }
-
-        > `OnlineSubsystemEOS.h`ヘッダーを含めるとビルドエラーが発生するので、OnlineSubsystemEOSプラグインのPrivateフォルダ内のHeaderファイルをPublicフォルダへ移動する必要があります。 (参考： [EOSエラーに関するお問い合わせ](https://eoshelp.epicgames.com/s/question/0D54z00007QIJjhCAH/cant-call-get-voice-chat-user-interface-from-game-instance-using-the-eos-plugin-and-eos-voice-plugins-on-unreal-engine4?language=en_US))
-        > - SocketSubsystemEOS.h 
-        > - EOSSettings.h
-        > - EOSHelpers.h
-        > - [Platform]/[Platform]EOSHelpers.h
+* [ログイン認証タイプ](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type)はExchangeCode, AccountPortalをサポートします。
+    * ランチャーからゲームを実行し、ExchangeCodeを使用できる場合、そのコードでログインを試みます。そのコードでログインできない場合、AccountPortalログインを試行し、結果を返します。
+* 詳細については、以下の内容をご確認のうえ、進めてください。
+    * [Game > Gamebase > Unreal SDK使用ガイド > はじめる > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
 
 #### Steamworksサービス
 
@@ -298,6 +290,73 @@ NHN Cloud Log & Crash Searchでクラッシュ分析を行うゲーム開発会�
 > Online Subsystem Steamを使用せずにSteamworksのみを使用する場合、Gamebase内部でSteamworksを使用した認証情報を受け取る作業のみを行い、Steamworks SDKプロセスは行われません。
 > Steamworks SDKを直接適用する場合、初期化、アップデート、終了などの必須的な処理については直接実装する必要があります。
 
+## 3rd-Party Provider SDK Settings
+
+### Epic Games
+
+* Epic Gamesの機能を使用するには、Epic Online Services(EOS) SDKを使用してログインする必要があります。
+* Online Subsystem EOSプラグインが有効であり、Engine.iniのOnlineSubsystemEOSセクション内のbEnabledが有効になっている場合、Online Subsystem EOSを使用していると見なします。
+
+        [OnlineSubsystemEOS]
+		bEnabled=True
+
+* EOS SDKはエンジンパス内の`Engine/Source/ThirdParty/EOSSDK`モジュールを使用します。
+    * EOS SDKを更新する際は、該当モジュール内で必要なプラットフォームに合わせて更新してください。
+        * Windows:最小バージョンは1.15.5で、1.16.3バージョンまで確認されています。
+        * Android, iOS: 1.17.0-CL39599718バージョンまで確認されています。
+    * Online Subsystem EOSで[ログイン認証タイプ](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type)の`PersistentAuth`タイプをサポートするには、UE 4.27ではコードの修正が必要です。
+        * OnlineSubsystemEOSモジュール内のUserManagerEOS.cppファイルを開き、`FUserManagerEOS::Login`メソッド内のAccountCredentials.Typeの文字列を比較する条件文を探し、PersistentAuthログイン用のコードを追加する必要があります。
+
+                else if (AccountCredentials.Type == TEXT("persistentauth"))
+                {
+                    // Use locally stored token managed by EOSSDK keyring to attempt login.
+                    Credentials.Type = EOS_ELoginCredentialType::EOS_LCT_PersistentAuth;
+                    Credentials.Id = nullptr;
+                    Credentials.Token = nullptr;
+                }
+
+    * UE 4.27でOnline Subsystem EOSを使用する場合、ビルドエラーが発生するため修正が必要です。
+
+        > EOS SDKのハンドルを取得するために`OnlineSubsystemEOS.h`ヘッダーをインクルードするとビルドエラーが発生するため、OnlineSubsystemEOSプラグインのPrivateフォルダ内のヘッダーファイルをPublicフォルダへ移動する必要があります。 (参考: [EOSエラーに関するお問い合わせ](https://eoshelp.epicgames.com/s/question/0D54z00007QIJjhCAH/cant-call-get-voice-chat-user-interface-from-game-instance-using-the-eos-plugin-and-eos-voice-plugins-on-unreal-engine4?language=en_US))
+        > - SocketSubsystemEOS.h 
+        > - EOSSettings.h
+        > - EOSHelpers.h
+        > - [Platform]/[Platform]EOSHelpers.h
+    * Online Subsystem EOSを使用しない場合、EOSSDKモジュールを使用して別途EOSの初期化を行い、EOS SDKのプラットフォームハンドルを設定する必要があります。
+        * Gamebaseでは、Epic Gamesの認証およびストア設定に応じて必要な機能のみを呼び出し、EOS SDKの必須ライフサイクルはゲーム内で直接呼び出す必要があります。
+        * プラットフォームハンドル設定用のモジュール追加
+
+            PrivateDependencyModuleNames.AddRange(
+                new[]
+                {
+                    "GamebaseSharedEOS"
+                }
+            );
+
+        * プラットフォームハンドル設定
+
+                #include "GamebaseSharedEOS.h"
+
+                void USample::SetEosPlatformHandle(UGameInstance* GameInstance, EOS_HPlatform PlatformHandle)
+                {
+                    if (const auto GamebaseSharedEOS = UGameInstance::GetSubsystem<UGamebaseSharedEOS>(GameInstance))
+                    {
+                        // EOS SDK初期化後、プラットフォームハンドルを取得し、Gamebase SDKに渡す
+                        GamebaseSharedEOS->SetPlatformHandle(PlatformHandle);
+                    }
+                }
+
+    * Androidサポート時、ログインレスポンスを受け取るため、[EOS SDKガイド](https://dev.epicgames.com/docs/epic-online-services/platforms/android#7-how-to-receive-login-callback)を参考にしてエンジン内のEOSSDKモジュール内の`EOSSDK_strings.xml`ファイルに該当する値を登録する必要があります。
+
+            <?xml version="1.0" encoding="utf-8"?>
+            <resources>
+                <!-- EOS SDK requires the Client ID to be in lowercase. -->
+                <string name="eos_login_protocol_scheme">eos.yourclientidhere</string>
+            </resources>
+            
+            
+            
+            
 ## API Deprecate Governance
 
 GamebaseでサポートしないAPIはDeprecate処理します。

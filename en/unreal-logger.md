@@ -2,6 +2,15 @@
 
 This document describes how to Log & Crach Search API.
 
+### Settings
+
+* Windows
+    * To set the value of ProjectVersion in Log & Crash Search, you must enter the appropriate version for ProjectVersion in GeneralProjectSettings in DefaultGame.ini.
+
+            [/Script/EngineSettings.GeneralProjectSettings]
+            ProjectVersion=1.0.0
+            
+                
 ### Initialize
 Initialize NHN Cloud Logger SDK with appkey issued from Log & Crash Search. 
 
@@ -135,3 +144,10 @@ void USample::SetLoggerUserField()
     Subsystem->GetLogger()->SetUserField("KEY", "VALUE");
 }
 ```
+
+### Crash Reporter
+
+* Windows
+    * To interpret crashes that occur in your SDK in Log & Crash Search, you need to upload a symbol file to the console
+    * During the build process, a .sym file and a .zip file containing the compressed .sym file are generated in the project's binary output path.
+    * Check out the [Log & Crash Search console guide](https://docs.nhncloud.com/en/Data%20&%20Analytics/Log%20&%20Crash%20Search/en/console-guide/#symbol-file) to upload.
