@@ -272,7 +272,7 @@ IdPで提供するSDKを使用して、ゲームで直接認証した後、発�
 
 | keyname | a use | 値種類 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
-| GamebaseAuthProviderCredential::ProviderName | IdPタイプ設定                         | google, facebook, payco, iosgamecenter, naver, twitter, line |
+| GamebaseAuthProviderCredential::ProviderName | IdPタイプ設定                         | GamebaseAuthProvider::Google<br> GamebaseAuthProvider::Facebook<br>GamebaseAuthProvider::Naver<br>GamebaseAuthProvider::Twitter<br>GamebaseAuthProvider::Line<br>GamebaseAuthProvider::Hangame<br>GamebaseAuthProvider::AppleId<br>GamebaseAuthProvider::Weibo<br>GamebaseAuthProvider::GameCenter<br>GamebaseAuthProvider::Payco<br>GamebaseAuthProvider::Steam<br>GamebaseAuthProvider::EpicGames |
 | GamebaseAuthProviderCredential::AccessToken | IdPログイン後に取得した認証情報(Access Token)設定<br/>Google認証時には使用しない |  
 | GamebaseAuthProviderCredential::AuthorizationCode | Googleログイン後に取得した認証情報(Authorization Code)設定 |                                          |
 | GamebaseAuthProviderCredential::GamebaseAccessToken | IdP認証情報ではなくGamebase Access Tokenでログインを行いたい場合に使用 |  |
@@ -605,7 +605,7 @@ void AddMappingForcibly(const FGamebaseVariantMap& CredentialInfo, const FString
 void USample::AddMappingForcibly(const FString& providerName)
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddMapping(providerName, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
+    Subsystem->AddMapping(GetProviderName(LoginType), FGamebaseAuthTokenDelegate::CreateLambda([Subsystem](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
@@ -613,29 +613,27 @@ void USample::AddMappingForcibly(const FString& providerName)
         }
         else
         {
-            // まず、addMapping APIを呼び出し、すでに連携されているアカウントでマッピングを試行し、次のようにForcingMappingTicketを取得できます。
             if (Error->Code == GamebaseErrorCode::AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER)
             {
                 // ForcingMappingTicketクラスのFrom()メソッドを利用してForcingMappingTicketインスタンスを取得します。
-                auto forcingMappingTicket = FGamebaseForcingMappingTicket::From(Error);
-                if (forcingMappingTicket.IsValid() == false)
+                const FGamebaseForcingMappingTicketPtr ForcingMappingTicket = FGamebaseForcingMappingTicket::From(Error);
+                if (!ForcingMappingTicket.IsValid())
                 {
-                    // Unexpected Error occurred. Contact Administrator.
+                    // Unexpected error occurred. Contact Administrator.
                 }
-                
+
                 // 強制マッピングを試行します。
-                Subsystem->AddMappingForcibly(forcingMappingTicket, forcingMappingTicket->forcingMappingKey,
-                    FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* innerAuthToken, const FGamebaseError* innerError)
+                Subsystem->AddMappingForcibly(*ForcingMappingTicket, FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* InnerAuthToken, const FGamebaseError* InnerError)
                 {
-                    if (Gamebase::IsSuccess(Error))
+                    if (Gamebase::IsSuccess(InnerError))
                     {
                         // 強制マッピング追加成功
-                        UE_LOG(GamebaseTestResults, Display, TEXT("AddMappingForcibly succeeded."));
+                        UE_LOG(GamebaseTestResults, Display, TEXT("ChangeLogin succeeded. Gamebase userId is %s"), *InnerAuthToken->Member.UserId);
                     }
                     else
                     {
                         // エラーコードを確認し、適切な処理を行います。
-                        UE_LOG(GamebaseTestResults, Display, TEXT("AddMappingForcibly failed. (errorCode: %d, errorMessage: %s)"), Error > Code, *Error > Messsage);
+                        UE_LOG(GamebaseTestResults, Display, TEXT("ChangeLogin failed."));
                     }
                 }));
             }
@@ -679,32 +677,30 @@ void USample::ChangeLoginWithFacebook(const FString& ProviderName)
         }
         else
         {
-            // まずAddMapping APIの呼び出しと、すでに連動されているアカウントにマッピングを試行して、次のようにForcingMappingTicketを取得できます。
             if (Error->Code == GamebaseErrorCode::AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER)
             {
                 // ForcingMappingTicketクラスのFrom()メソッドを利用してForcingMappingTicketインスタンスを取得します。
-                auto ForcingMappingTicket = FGamebaseForcingMappingTicket::From(Error);
-                if (ForcingMappingTicket.IsValid())
-                {   
-                    // 強制マッピングを試行します。
-                    IGamebase::Get().ChangeLogin(ForcingMappingTicket, ForcingMappingTicket->ForcingMappingKey,
-                        FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* AuthTokenForcibly, const FGamebaseError* ChangeLoginError)
-                    {
-                        if (Gamebase::IsSuccess(ChangeLoginError))
-                        {
-                            // ログイン変更成功
-                        }
-                        else
-                        {
-                            // ログイン変更失敗
-                            // エラーコードを確認し、適切な処理を行います。
-                        }
-                    }));
-                }
-                else
+                const FGamebaseForcingMappingTicketPtr ForcingMappingTicket = FGamebaseForcingMappingTicket::From(Error);
+                if (!ForcingMappingTicket.IsValid())
                 {
-                    // Unexpected Error occurred. Contact Administrator.
+                    // Unexpected error occurred. Contact Administrator.
                 }
+                
+                // ログイン変更を試行します。
+                Subsystem->ChangeLogin(*ForcingMappingTicket, FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* InnerAuthToken, const FGamebaseError* InnerError)
+                {
+                    if (Gamebase::IsSuccess(InnerError))
+                    {
+                        // ログイン変更成功
+                        UE_LOG(GamebaseTestResults, Display, TEXT("ChangeLogin succeeded. Gamebase userId is %s"), *InnerAuthToken->Member.UserId);
+                    }
+                    else
+                    {
+                        // ログイン変更失敗
+                        // エラーコードを確認し、適切な処理を行います。
+                        UE_LOG(GamebaseTestResults, Display, TEXT("ChangeLogin failed."));
+                    }
+                }));                
             }
             else
             {

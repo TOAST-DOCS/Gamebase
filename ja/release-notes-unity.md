@@ -1,52 +1,59 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.73.1 (2025. 07. 22.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.1/GamebaseSDK-Unity.zip)
+
+#### 버그 수정
+- (iOS) 빌드 오류 수정
+- (macOS) 웹뷰 어댑터 빌드 오류 수정
+
 ### 2.73.0 (2025. 07. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
+#### 機能追加
 
-#### 기능 개선/변경
-- (Windows, macOS) IdP 로그인 시 웹뷰에서 외부 브라우저로 변경했습니다.
-	- 지원 브라우저
-		- Windows : 모든 브라우저
+#### 機能改善/変更
+- (Windows, macOS) IdPログイン時にWebビューから外部ブラウザに変更しました。
+	- サポートブラウザ
+		- Windows :全てのブラウザ
 		- macOS : Chrome, Safari, Firefox, whale
 
-- 외부 브라우저 로그인 취소 API를 추가했습니다.
-	- 진행 중인 외부 브라우저 로그인 요청 중 IDP 를 변경하고 싶을 때, 기존 요청을 취소하기 위함.
+- 外部ブラウザログインキャンセルAPIを追加しました。
+- 進行中の外部ブラウザログインリクエスト中にIDPを変更したい場合、既存のリクエストをキャンセルするため。
 	- CancelLoginWithExternalBrowser()
 
-#### 버그 수정
+#### バグ修正
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.73.0](./release-notes-android/#2730-2025-07-15)
 * [Gamebase iOS SDK 2.73.0](./release-notes-ios/#2730-2025-07-15)
 
 ### 2.72.0 (2025. 06. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
+#### 機能追加
 
-* (Windows) 업데이트 팝업에 자세히 보기 버튼을 추가하였습니다.
-* (Windows) 이용 정지 팝업에 고객센터 링크를 추가하였습니다.
+* (Windows)アップデートポップアップに詳細表示ボタンを追加しました。
+* (Windows)利用停止ポップアップにサポートリンクを追加しました。
 
-#### 기능 개선/변경
+#### 機能改善/変更
 
-* (Windows) 내부 로직을 개선하였습니다.
+* (Windows)内部ロジックを改善しました。
 
-#### 버그 수정
+#### バグ修正
 
-* (Windows) 점검 상태로 갱신되지 않던 문제를 수정하였습니다.
+* (Windows)点検状態に更新されない問題を修正しました。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.72.0](./release-notes-android/#2720-2025-06-24)
 * [Gamebase iOS SDK 2.72.0](./release-notes-ios/#2720-2025-06-24)
 
 ### 2.71.1 (2025. 06. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.1/GamebaseSDK-Unity.zip)
 
-#### 버그 수정
+#### バグ修正
 
-* (macOS) GamebaseUtil의 DllNotFoundException 문제를 수정했습니다.
+* (macOS) GamebaseUtilのDllNotFoundException問題を修正しました。
 
 ### 2.71.0 (2025. 04. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.0/GamebaseSDK-Unity.zip)
@@ -104,9 +111,9 @@
 
 #### Setting Tool (v3.0.0)
 
-* 사용 목적에 맞게 사용자 친화적인 UX로 개선했습니다.
-* 직관적인 기능 제공으로 설정 및 업데이트가 더 쉬워졌습니다.
-* 배포 시 유연하게 업데이트할 수 있도록 개선했습니다.
+* 使用目的に合わせてユーザーフレンドリーなUXに改善しました。
+* 直感的な機能提供により、設定とアップデートがより簡単になりました。
+* 配布時に柔軟にアップデートできるように改善しました。
 
 ### 2.69.0 (2025. 1. 21.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.69.0/GamebaseSDK-Unity.zip)
