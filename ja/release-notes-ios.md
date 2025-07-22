@@ -3,32 +3,32 @@
 ### 2.73.0 (2025. 07. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* Xcode 최소 지원 버전이 16.0으로 변경되었습니다. 
+#### 機能改善/変更
+* Xcode最小サポートバージョンが16.0に変更されました。 
 
-#### 버그 수정
-* 로그인 후 updateTerms 호출 시, 동의한 약관 정보가 저장되지 않는 버그를 수정하였습니다.
+#### バグ修正
+* ログイン後にupdateTermsを呼び出した際、同意した利用規約情報が保存されないバグを修正しました。
 
 ### 2.72.1 (2025. 07. 01.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.1/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* iOS 14 특정 기기에서 GameCenter 로그인 시 크래시가 발생하는 버그를 수정하였습니다.
+#### 機能改善/変更
+* iOS 14の特定のデバイスでGameCenterログイン時にクラッシュが発生するバグを修正しました。
 
 ### 2.72.0 (2025. 06. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### 機能改善/変更
+* 外部SDKアップデート
     * Hangame iOS SDK (1.17.2)
-        * 내부 로직 개선
+        * 内部ロジック改善
     * LINE iOS SDK (5.11.2)
-        * bitcode 설정 제거
-        * Xcode 16 컴파일러 경고 수정
-* 내부 로직 개선
+        * bitcode設定除去
+        * Xcode 16コンパイラ警告修正
+* 内部ロジック改善
 
-#### 버그 수정
-* LINE IdP의 Region 추가 정보 대응이 되지 않아 매핑 및 loginForLastLoggedInProvider 로그인 관련 동작에서 발생하는 문제를 수정했습니다. 
+#### バグ修正
+* LINE IdPのRegion追加情情報に対応していなかったため、マッピング及びloginForLastLoggedInProviderログイン関連動作で発生していた問題を修正しました。
 
 ### 2.71.0 (2025. 04. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.0/GamebaseSDK-iOS.zip)

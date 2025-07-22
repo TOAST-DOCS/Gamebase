@@ -62,17 +62,20 @@ Supported Platforms
 1. Select **Edit > Project Settings** from the editor menu.
 2. In the Project Settings window, under Plugin category, select **Gamebase - Android**.
 
-![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.58.0.png)
+![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.72.0.png)
 
 * Authentication
     * Activate the IdP to use.
     * To use Hangame IdP, please contact our Customer Center.
+    * GPGS(Google Play Games Services)
+        * Auto Login - Supports GPGS auto-login
 * Purchase
     * Select the store to use.
     * ONE Store
         * Select View Option - Full payment screen (Full) or Payment popup window (Popup).
 * Push
     * Enable the push service to use.
+    * FCM
 
 
 #### An issue where Google Play authentication and payment does not complete
@@ -81,6 +84,15 @@ Processing the authentication and payment for the Google Play service requires D
 To find out more, see the following document. 
 
 * [Signing Projects for Release](https://docs.unrealengine.com/en-US/Platforms/Mobile/Android/DistributionSigning/index.html)
+
+#### GPGS (Google Play Services) Settings
+
+When using Sign in with Apple, enter the Application ID of GPGS by adding the following to the /Config/Android/AndroidEngine.ini file in the project.
+
+```ini
+[/Script/AndroidRuntimeSettings.AndroidRuntimeSettings]
+GamesAppID=
+```
 
 #### Enable AndroidX
 
@@ -115,6 +127,13 @@ To find out more, see the following document.
 </androidManifestUpdates>
 ```
 
+#### Epic Games Service
+
+* [Login Credential Type](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type) supports PersistentAuth and AccountPortal.
+    * If a token for PersistentAuth sign-in was saved from a previous sign-in, it tries to sign in with that token. If it can't sign in with that token, it tries to sign in to AccountPortal and passes the result.
+* Refer to the details below.
+    * [Game > Gamebase > Unreal SDK User Guide > Getting Started > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
+
 ### iOS Settings
 
 To use the Gamebase SDK for Unreal, `UE4 Github source code` has to be used, and the Github account must be linked after joining the Epic games in order to expose the UnrealEngine repository.
@@ -131,7 +150,7 @@ See below for relevant guides.
 1. Select the editor menu **Edit > Project Settings**.
 2. In the Project Settings window, select **Gamebase - iOS** from the Plugin category.
 
-![Unreal Project Settings - iOS](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-ios-setttings-2.57.0.png)
+![Unreal Project Settings - iOS](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-ios-setttings-2.72.0.png)
 
 * Path
     * Xcode Path: Enter the path of Xcode. (default: /Applications/Xcode.app)
@@ -180,11 +199,11 @@ bEnableSignInWithAppleSupport=True
 
     modify it as follows:
         
-            // AS-IS
-            completionHandler(UNNotificationPresentationOptionNone);
+        // AS-IS
+        completionHandler(UNNotificationPresentationOptionNone);
             
-            // TO-BE
-            completionHandler(UNNotificationPresentationOptionAlert);
+        // TO-BE
+        completionHandler(UNNotificationPresentationOptionAlert);
 
 #### Rich Push Notification
 
@@ -207,17 +226,24 @@ There is an issue where the device using the architecture cannot get the memory 
 
 Game developers using the crash analysis of the NHN Cloud Log & Crash Search must refer to the following guide to modify the UE4 internal PLCrashReporter:
 
-1. Unzip the GamebaseSDK-Unreal/Source/Gamebase/ThirdParty/IOS/GamebaseSDK-iOS/externals/plcrashreporter.zip file.
+1. Unzip the GamebaseSDK-Unreal/Source/Gamebase/ThirdParty/IOS/plcrashreporter.zip file.
 2. Replace the file and header file of the UE4 internal PLCrashReporter with the unzipped file.
     * Engine/Source/ThirdParty/PLCrashReporter/plcrashreporter-master-xxxxxxx
+
+#### Epic Games Service
+
+* [Login Credential Type](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type) supports PersistentAuth and AccountPortal.
+    * If a token for PersistentAuth sign-in was saved from a previous sign-in, it tries to sign in with that token. If it can't sign in with that token, it tries to sign in to AccountPortal and passes the result.
+* Refer to the details below.
+    * [Game > Gamebase > Unreal SDK User Guide > Getting Started > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
 
 
 ### Windows Settings
 
-1. 1. Select **Edit > Project Settings** from the editor menu.
+1. Select **Edit > Project Settings** from the editor menu.
 2. In the Project Settings window, in the Plugin category, select **Gamebase - Windows**.
 
-![Unreal Project Settings - Windows](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-windows-setttings-2.57.0.png)
+![Unreal Project Settings - Windows](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-windows-setttings-2.72.0.png)
 
 * Authentication
     * Activate the IdP to use.
@@ -228,50 +254,117 @@ Game developers using the crash analysis of the NHN Cloud Log & Crash Search mus
     * Steamworks
         * Enter the Steamworks service information as appropriate for each field.
 
-#### Epic Games Store Services
+#### WebView Plugin
 
-* Supported by UE 4.27 and later, the EOSSDK module is used inside the engine.
-* To use the Epic Games Store, you must be logged in using the EOSSDK.
-* The EOS version used by Gamebase is 1.15.5.0, which requires an upgrade by installing it in the engine path `Engine\Source\ThirdParty\EOSSDK\SDK`.
-    * [Note: EOS SDK Upgrade Guide](https://docs.unrealengine.com/5.2/en/upgrading-the-eos-sdk-in-unreal-engine/)
-* EOS Handle settings are required when starting the game.
-    * If you're using the Online Subsystem EOS included in the engine, you can set it up like the code below.
- 
-            #include "OnlineSubsystemEOS.h"
-            #include "IEOSSDKManager.h"
-            #include "GamebaseStandalonePurchaseEpicAdapterModule.h"
+* Plugin activation is required when using content that utilizes WebView.
+    * Login with IdP
+        * If you support an IdP other than GUEST, the login process will be carried out via a webview.
+    * ImageNotices
+    * WebView
+* To use WebView-related features without modifying the engine, open the **Settings > Plugins** window in the Unreal Editor, find the **Project > NHN Cloud > NHNWebView** plugin, and activate it.
+* UE 5.4 or later is required to use the Web Browser plugin provided by the engine; lower versions will not work correctly with web features due to low CEF versions and will need to update the modules associated with the Web Browser plugin.
+    * ThirdParty
+        * CEF3
+    * Runtime
+        * CEF3Utils
+        * WebBrowser
+        * WebBrowserTexture
+    * Program
+        * EpicWebHelper
 
-            void UGamebasePurchaseEpicSupportTestCase::SetEosPlatformInstance()
-            {
-                IOnlineSubsystem* Subsystem = Online::GetSubsystem(GetWorld());
+> [Note]
+> The NHNWebView plugin and the Web Browser plugin cannot be used concurrently, and if both are enabled, an error will occur at build time.
 
-                if (const FOnlineSubsystemEOS* EosSubsystem = static_cast<FOnlineSubsystemEOS*>(Subsystem))
-                {
-                    EOS_HPlatform PlatformHandle = *EosSubsystem->EOSPlatformHandle;
-                    FGamebaseStandalonePurchaseEpicModule::SetEosPlatformInstance(*Handle);
-                }
-            }
+#### Epic Games Service
 
-        > Including the `OnlineSubsystemEOS.h` header causes a build error, so you must move the header file from the OnlineSubsystemEOS plugin's private folder to the public folder. (Reference: [EOS Error-related Inquiry](https://eoshelp.epicgames.com/s/question/0D54z00007QIJjhCAH/cant-call-get-voice-chat-user-interface-from-game-instance-using-the-eos-plugin-and-eos-voice-plugins-on-unreal-engine4?language=en_US))
-        > - SocketSubsystemEOS.h 
-        > - EOSSettings.h
-        > - EOSHelpers.h
-        > - [Platform]/[Platform]EOSHelpers.h
-
+* [Login Credential Type](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type) supports ExchangeCode and AccountPortal.
+    * If an ExchangeCode is available by launching the game in the launcher, it tries to sign in with that code. If it can't sign in with that token, it tries to sign in to AccountPortal and passes the result.
+* Refer to the details below.
+    * [Game > Gamebase > Unreal SDK User Guide > Getting Started > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
 
 #### Steamworks Services
 
 * Steam authentication and payment on Windows is proceeded through the Steamworks SDK.
 * The version of Steamworks used by Gamebase is **1.57 or later**, so if you are using UE 5.3 or earlier, you need to update Steamworks.
-    * If you're using Online Subsystem Steam, see the latest version of Online Subsystem and the latest version of Online Subsystem Steam enforcement code for updates.
-        * [Note: The commit of the latest version of the Online Subsystem Steam engine](https://github.com/EpicGames/UnrealEngine/commit/f6fd8dcf34a0cc31412dd473c1309c8e507981f3#diff-cd0b8c3bbdff4546195efef417923e90acead93b3625d8d82afe82fe0939b8a6)
     * If you are not using Online Subsystem Steam, check the Engine Guide to download the Steamworks SDK version 1.57 or later, and update the Steamworks module in your engine to that version.
         * [Note: Steamworks upgrade guide in the engine](https://dev.epicgames.com/documentation/en-us/unreal-engine?application_version=4.27)
-* Internally, if the value of DefaultPlatformService in the Online Subsystem settings option is Steam, it is automatically assumed to be using the Online Subsystem Steam, otherwise the engine checks the installed version of the Steamworks module inside the engine and if it is 1.57 or higher, the Steam in Gamebase feature will work.
+    * If you're using Online Subsystem Steam, see the latest version of Online Subsystem and the latest version of Online Subsystem Steam enforcement code for updates.
+        * [Note: The commit of the latest version of the Online Subsystem Steam engine](https://github.com/EpicGames/UnrealEngine/commit/f6fd8dcf34a0cc31412dd473c1309c8e507981f3#diff-cd0b8c3bbdff4546195efef417923e90acead93b3625d8d82afe82fe0939b8a6)
+* Internally, if OnlineSubsystemSteam.bEnabled is set to true in Engine.ini, it is considered that Online Subsystem Steam is being used. In all other cases, if the Steamworks version required by Gamebase is met, the Steamworks module will be used automatically.
+
+        [OnlineSubsystemSteam]
+		bEnabled=True
 
 > [Caution]
 > When using Steamworks alone without the Online Subsystem Steam, Gamebase will only get the credentials for using Steamworks inside Gamebase and will not go through the Steamworks SDK process.
 > When applying the Steamworks SDK directly, you need to implement your own processing for required processes like initialization, updates, and shutdowns.
+
+## 3rd-Party Provider SDK Settings
+
+### Epic Games
+
+* To use Epic Games features, you must log in using the Epic Online Services (EOS) SDK.
+* If the Online Subsystem EOS plugin is enabled and OnlineSubsystemEOS.bEnabled is set to true in Engine.ini, the system will consider that Online Subsystem EOS is being used.
+
+        [OnlineSubsystemEOS]
+		bEnabled=True
+
+* The EOS SDK uses the module located at `Engine/Source/ThirdParty/EOSSDK` within the engine path.
+    * When updating the EOS SDK, make sure to update it appropriately for each required platform within this module.
+        * Windows: The minimum supported version is 1.15.5, and up to version 1.16.3 has been verified.
+        * Android, iOS: Verified up to version 1.17.0-CL39599718.
+    * To support `PersistentAuth` type among [Login Credential Type](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type) in Online Subsystem EOS, code modification is required in UE 4.27.
+        * Open the UserManagerEOS.cpp file within the OnlineSubsystemEOS module, and locate the conditional statement that compares the string value of AccountCredentials.Type inside the `FUserManagerEOS::Login` method. You need to add code to support PersistentAuth login in that section.
+
+                else if (AccountCredentials.Type == TEXT("persistentauth"))
+                {
+                    // Use locally stored token managed by EOSSDK keyring to attempt login.
+                    Credentials.Type = EOS_ELoginCredentialType::EOS_LCT_PersistentAuth;
+                    Credentials.Id = nullptr;
+                    Credentials.Token = nullptr;
+                }
+
+    * A build error occurs when using Online Subsystem EOS with Unreal Engine 4.27, so modifications are required.
+
+        > A build error occurs because including the `OnlineSubsystemEOS.h` header to obtain the EOS SDK handle causes issues. Therefore, it is necessary to move the header file from the Private folder to the Public folder within the OnlineSubsystemEOS plugin. (Note: [Inquiry regarding EOS error](https://eoshelp.epicgames.com/s/question/0D54z00007QIJjhCAH/cant-call-get-voice-chat-user-interface-from-game-instance-using-the-eos-plugin-and-eos-voice-plugins-on-unreal-engine4?language=en_US))
+        > - SocketSubsystemEOS.h 
+        > - EOSSettings.h
+        > - EOSHelpers.h
+        > - [Platform]/[Platform]EOSHelpers.h
+    * If Online Subsystem EOS is not used, you must initialize EOS using the EOSSDK module and configure the platform handle for the EOS SDK.
+        * Gamebase only calls the necessary functions based on Epic Games authentication and store settings, so the required EOS SDK lifecycle must be managed directly in the game.
+        * Add a module for setting platform handles
+
+            PrivateDependencyModuleNames.AddRange(
+                new[]
+                {
+                    "GamebaseSharedEOS"
+                }
+            );
+
+        * Setting platform handles
+
+                #include "GamebaseSharedEOS.h"
+
+                void USample::SetEosPlatformHandle(UGameInstance* GameInstance, EOS_HPlatform PlatformHandle)
+                {
+                    if (const auto GamebaseSharedEOS = UGameInstance::GetSubsystem<UGamebaseSharedEOS>(GameInstance))
+                    {
+                        // After initializing the EOS SDK, retrieve the platform handle and pass it to the Gamebase SDK
+                        GamebaseSharedEOS->SetPlatformHandle(PlatformHandle);
+                    }
+                }
+
+    * When supporting Android, you must register the corresponding values in the `EOSSDK_strings.xml` file within the EOSSDK module in the engine, referring to the [EOS SDK Guide](https://dev.epicgames.com/docs/epic-online-services/platforms/android#7-how-to-receive-login-callback) in order to receive login responses.
+
+
+            <?xml version="1.0" encoding="utf-8"?>
+            <resources>
+                <!-- EOS SDK requires the Client ID to be in lowercase. -->
+                <string name="eos_login_protocol_scheme">eos.yourclientidhere</string>
+            </resources>
+
+
 
 ## API Deprecate Governance
 

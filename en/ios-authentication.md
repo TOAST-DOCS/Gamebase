@@ -977,6 +977,7 @@ Instant withdrawal cannot be undone, so it is important to ask the user several 
 |                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR    | 3006       | Failed to initialize the external authentication library.                      |
 |                | TCGB\_ERROR\_AUTH\_EXTERNAL\_LIBRARY\_ERROR | 3009       | An external authentication library error. <br/> Please check the error details. |
 |                | TCGB\_ERROR\_AUTH\_INVALID\_GAMEBASE\_TOKEN | 3011       | You have been logged out due to an invalid Gamebase Access Token.<br/>Please try logging in again. |
+|                | AUTH\_AUTHENTICATION\_SERVER\_ERROR | 3012       | An error occurred from the authentication server.  |
 | Auth (Login)   | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_FAILED  | 3101       | Token login failed.                          |
 |                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_TOKEN\_INFO | 3102       | Invalid token information.                        |
 |                | TCGB\_ERROR\_AUTH\_TOKEN\_LOGIN\_INVALID\_LAST\_LOGGED\_IN\_IDP | 3103       | No recent login IdP information.                   |
