@@ -3,9 +3,9 @@
 ### 2.73.1 (2025. 07. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.1/GamebaseSDK-Unity.zip)
 
-#### 버그 수정
-- (iOS) 빌드 오류 수정
-- (macOS) 웹뷰 어댑터 빌드 오류 수정
+#### バグ修正
+- (iOS)ビルドエラー修正
+- (macOS) Webビューアダプタビルドエラーの修正
 
 ### 2.73.0 (2025. 07. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-Unity.zip)
