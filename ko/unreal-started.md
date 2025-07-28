@@ -334,12 +334,12 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
         * Gamebase에서는 Epic Games 인증 및 스토어 설정에 따라 필요한 기능만 호출하며 EOS SDK의 필수 라이프 사이클은 게임에서 직접 호출해야 합니다. 
         * 플랫폼 핸들 설정을 위한 모듈 추가
 
-            PrivateDependencyModuleNames.AddRange(
-                new[]
-                {
-                    "GamebaseSharedEOS"
-                }
-            );
+                PrivateDependencyModuleNames.AddRange(
+                    new[]
+                    {
+                        "GamebaseSharedEOS"
+                    }
+                );
 
         * 플랫폼 핸들 설정
 
