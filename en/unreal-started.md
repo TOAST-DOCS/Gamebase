@@ -335,12 +335,12 @@ Game developers using the crash analysis of the NHN Cloud Log & Crash Search mus
         * Gamebase only calls the necessary functions based on Epic Games authentication and store settings, so the required EOS SDK lifecycle must be managed directly in the game.
         * Add a module for setting platform handles
 
-            PrivateDependencyModuleNames.AddRange(
-                new[]
-                {
-                    "GamebaseSharedEOS"
-                }
-            );
+                PrivateDependencyModuleNames.AddRange(
+                    new[]
+                    {
+                        "GamebaseSharedEOS"
+                    }
+                );
 
         * Setting platform handles
 
