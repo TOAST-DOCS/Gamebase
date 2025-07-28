@@ -1,5 +1,11 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.73.2 (2025. 07. 29.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.2/GamebaseSDK-Unity.zip)
+
+#### 기능 개선
+- IDP 로그인 추가: Twitter, Apple, Line
+
 ### 2.73.1 (2025. 07. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.1/GamebaseSDK-Unity.zip)
 
@@ -479,20 +485,20 @@
 
 #### Added Features
 * Make sure to update to a new API due to changes to the Query Unconsumed Purcahses API. 
- 
+
         // Deprecated API 
         Gamebase.Purchase.RequestItemListOfNotConsumed(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
          
         // New API 
         Gamebase.Purchase.RequestItemListOfNotConsumed(GamebaseRequest.Purchase.PurchasableConfiguration configuration,
                                                        GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
- 
+
 * Make sure to update to a new API due to changes to the Query Activated Subscription API.
     * To get the same result as the existing API, set the value of **GamebaseRequest.Purchase.PurchasableConfiguration.allStores** to **true**.
- 
+
             // Deprecated API 
             Gamebase.Purchase.RequestActivatedPurchases(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
- 
+             
             // New API
             Gamebase.Purchase.RequestActivatedPurchases(GamebaseRequest.Purchase.PurchasableConfiguration configuration,
                                                         GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
@@ -1115,7 +1121,7 @@ you may encounter an issue during reprocessing if a different billing client ver
 #### Bug Fixes
 * [SDK] 2.10.1
 	* (Unity) Fixed failed login calls since ViewController is not configured at iOS Plugin 
- 
+
 ### 2.10.0 (May 26, 2020)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.10.0/GamebaseSDK-Unity.zip)
 
@@ -1470,7 +1476,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 버그수정
 * [SDK] 1.13.0
     * (Unity)Unity 2017.2 이상 버전에서 Editor Play Mode 종료 시 websocke close 처리에서 발생하던 오류 수정
-        
+      
 ### 1.12.1 (2018.08.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.12.1/GamebaseSDK-Unity.zip)
 
@@ -1501,6 +1507,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * (Unity)IssueTransferKey API 호출시 exception 발생하던 버그 수정
     * (Unity)Unity Google Adapter 제거 : 기존에 GoogleAdapter 사용중인 개발사는 아래 업데이트 가이드 참고
     
+
 **Unity Google Adapter 업데이트 가이드**
 
 * Unity SDK 1.6.0이상 1.11.0 이상 버전을 사용하는 경우 1.12.0 버전으로 업데이트 하기 전에 아래 내용을 필히 숙지하셔야 합니다.(1.6.0 미만 버전 사용중인 경우에는 GoogleAdapter를 미사용하기 때문에 영향이 없습니다.)
@@ -1524,7 +1531,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * iOS Google IdP 추가 : iOS
 * Twitter IdP 추가 : Android, iOS
 * LINE IdP 추가 : Android만 제공. iOS는 2018년 7월 제공 예정입니다.
-    
+  
 #### 기능 개선/변경
 * [SDK] 1.11.0
     * (공통)LocalizedString 일본어 번역 추가
