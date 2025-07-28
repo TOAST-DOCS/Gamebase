@@ -4,7 +4,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.2/GamebaseSDK-Unity.zip)
 
 #### 기능 개선
-- IDP 로그인 추가: Twitter, Apple, Line
+- (Standalone) 로그인 IDP 추가 지원: Twitter, Apple, Line
 
 ### 2.73.1 (2025. 07. 22.)
 
