@@ -327,16 +327,17 @@ NHN Cloud Log & Crash Searchでクラッシュ分析を行うゲーム開発会�
         > - EOSSettings.h
         > - EOSHelpers.h
         > - [Platform]/[Platform]EOSHelpers.h
+
     * Online Subsystem EOSを使用しない場合、EOSSDKモジュールを使用して別途EOSの初期化を行い、EOS SDKのプラットフォームハンドルを設定する必要があります。
         * Gamebaseでは、Epic Gamesの認証およびストア設定に応じて必要な機能のみを呼び出し、EOS SDKの必須ライフサイクルはゲーム内で直接呼び出す必要があります。
         * プラットフォームハンドル設定用のモジュール追加
 
-            PrivateDependencyModuleNames.AddRange(
-                new[]
-                {
-                    "GamebaseSharedEOS"
-                }
-            );
+                PrivateDependencyModuleNames.AddRange(
+                    new[]
+                    {
+                        "GamebaseSharedEOS"
+                    }
+                );
 
         * プラットフォームハンドル設定
 

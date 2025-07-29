@@ -1,5 +1,14 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.73.2 (2025. 07. 29.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.2/GamebaseSDK-Unity.zip)
+
+#### 기능 개선
+- (Standalone) 로그인 IDP 추가 지원: Twitter, Apple, Line
+
+#### 지원 종료
+- 아마존 앱스토어 지원이 종료됩니다.
+
 ### 2.73.1 (2025. 07. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.1/GamebaseSDK-Unity.zip)
 
@@ -476,20 +485,20 @@
 
 #### 機能追加
 * 未消費履歴照会APIが変更されましたので新規APIに変更してください。 
- 
+
         // Deprecated API 
         Gamebase.Purchase.RequestItemListOfNotConsumed(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
          
         // New API 
         Gamebase.Purchase.RequestItemListOfNotConsumed(GamebaseRequest.Purchase.PurchasableConfiguration configuration,
                                                        GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
- 
+
 * 有効化購読照会APIが変更されましたので新規APIに変更してください。 
     * 既存APIと同じ結果を受け取るには**GamebaseRequest.Purchase.PurchasableConfiguration.allStores**の値を**true**に設定してください。 
- 
+
             // Deprecated API 
             Gamebase.Purchase.RequestActivatedPurchases(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
- 
+             
             // New API
             Gamebase.Purchase.RequestActivatedPurchases(GamebaseRequest.Purchase.PurchasableConfiguration configuration,
                                                         GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
@@ -1075,7 +1084,7 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
 * [SDK] 2.13.0
     * (Android)イメージ告知のポップアップイメージ比率計算ロジックを修正
     * (iOS) Sign In With Apple認証：iOS 12以下をサポート
-  
+
 ### 2.12.0 (2020.07.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.12.0/GamebaseSDK-Unity.zip)
 

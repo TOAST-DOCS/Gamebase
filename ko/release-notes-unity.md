@@ -1,5 +1,14 @@
 ## Game > Gamebase > 릴리스 노트 > Unity
 
+### 2.73.2 (2025. 07. 29.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.2/GamebaseSDK-Unity.zip)
+
+#### 기능 개선
+- (Standalone) 로그인 IDP 추가 지원: Twitter, Apple, Line
+
+#### 지원 종료
+- 아마존 앱스토어 지원이 종료됩니다.
+
 ### 2.73.1 (2025. 07. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.1/GamebaseSDK-Unity.zip)
 
@@ -480,20 +489,20 @@
 
 #### 기능 추가
 * 미소비 내역 조회 API가 변경되어 신규 API로 변경해야 합니다.
- 
+
         // Deprecated API 
         Gamebase.Purchase.RequestItemListOfNotConsumed(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
          
         // New API 
         Gamebase.Purchase.RequestItemListOfNotConsumed(GamebaseRequest.Purchase.PurchasableConfiguration configuration,
                                                        GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
- 
+
 * 활성화 구독 조회 API가 변경되어 신규 API로 변경해야 합니다.
     * 기존 API와 동일한 결과를 받으려면 **GamebaseRequest.Purchase.PurchasableConfiguration.allStores**의 값을 **true**로 설정해야 합니다.
- 
+
             // Deprecated API 
             Gamebase.Purchase.RequestActivatedPurchases(GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
- 
+             
             // New API
             Gamebase.Purchase.RequestActivatedPurchases(GamebaseRequest.Purchase.PurchasableConfiguration configuration,
                                                         GamebaseCallback.GamebaseDelegate<List<GamebaseResponse.Purchase.PurchasableReceipt>> callback);
@@ -1035,7 +1044,7 @@
     * [SDK] 2.16.0
     * (공통) API 추가(Gamebase.Contact.requestContactURL): 고객 센터 URL 반환
     * (공통) 고객 센터 API 에 userName 을 설정할 수 있도록 ContactConfiguration 파라미터 추가 
-        
+      
 ### 2.15.0 (2020.08.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.15.0/GamebaseSDK-Unity.zip)
 
@@ -1058,7 +1067,7 @@ Gamebase SDK 2.15.0 버전에서 Google Billing Client 모듈이 업데이트 �
 * [SDK] 2.15.0
     * (공통) TOAST SDK 업데이트: Android(0.23.0), iOS(0.26.0), Unity(0.21.0)
     * (iOS) 결제 payload의 null check 로직 추가
- 
+
 ### 2.14.0 (2020.08.11)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.14.0/GamebaseSDK-Unity.zip)
 
@@ -1281,7 +1290,7 @@ Gamebase SDK 2.6.0 미만 버전에서 2.6.0으로 업그레이드 하는 경우
     * 기능 추가: 게임리소스 다운로드, Leaderboard, TAA 지표 연동, 단말기 이전 기능, 강제 매핑 기능
     * 개선/변경: ServerPush 리스너 추가, Observer 점검 여부 감지 추가
     * 게임 리뉴얼
-        
+      
 ### 2.5.0 (2019.08.27)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.5.0/GamebaseSDK-Unity.zip)
 
@@ -1381,7 +1390,7 @@ Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
 #### 버그수정
 * [SDK] 2.2.1
     * (Unity) Unity Editor에서 Android 플랫폼을 선택하고 플레이를 하면 initialize시 서버에서 에러가 발생하는 이슈 수정
- 
+
 ### 2.2.0 (2019.03.26)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.2.0/GamebaseSDK-Unity.zip)
 #### 기능 추가
@@ -1470,7 +1479,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 버그수정
 * [SDK] 1.13.0
     * (Unity)Unity 2017.2 이상 버전에서 Editor Play Mode 종료 시 websocke close 처리에서 발생하던 오류 수정
-        
+      
 ### 1.12.1 (2018.08.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.12.1/GamebaseSDK-Unity.zip)
 
@@ -1501,6 +1510,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * (Unity)IssueTransferKey API 호출 시 exception 발생하던 버그 수정
     * (Unity)Unity Google Adapter 제거 : 기존에 GoogleAdapter 사용중인 개발사는 아래 업데이트 가이드 참고
     
+
 **Unity Google Adapter 업데이트 가이드**
 
 * Unity SDK 1.6.0이상 1.11.0 이상 버전을 사용하는 경우 1.12.0 버전으로 업데이트 하기 전에 아래 내용을 필히 숙지하셔야 합니다.(1.6.0 미만 버전 사용중인 경우에는 GoogleAdapter를 미사용하기 때문에 영향이 없습니다.)
@@ -1524,7 +1534,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * iOS Google IdP 추가 : iOS
 * Twitter IdP 추가 : Android, iOS
 * LINE IdP 추가 : Android만 제공. iOS는 2018년 7월 제공 예정입니다.
-    
+  
 #### 기능 개선/변경
 * [SDK] 1.11.0
     * (공통)LocalizedString 일본어 번역 추가
