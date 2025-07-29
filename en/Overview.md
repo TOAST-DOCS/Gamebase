@@ -43,13 +43,13 @@ Following is the list of external authentication supported by Gamebase.
 | External Authentication       | Android | iOS | Unity(Windows, macOS) | Unreal(Windows) |
 | ----------------- | ------------ | ------------ | ------------ | ------------ |
 | Facebook          | O | O | O | O |
-| Sign In with Apple | O  | O | | O |
+| Sign In with Apple | O  | O | O | O |
 | Apple Game Center |  | O | | |
 | Google            | O | O | O | O |
 | PAYCO             | O | O | O | |
 | NAVER             | O | O | O | |
-| Twitter			| O | O | | O |
- | LINE				| O | O | | O |
+| Twitter			| O | O | O | O |
+| LINE				| O | O | O | O |
 | Hangame			| O | O | O  | |
 | Weibo | O  | O  | | |
 | Steam | O  | O  | | O |
