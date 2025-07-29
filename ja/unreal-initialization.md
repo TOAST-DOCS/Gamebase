@@ -47,7 +47,6 @@ NHN Cloud統合アプリ内決済サービスであるIAP(In-App Purchase)を初
 | Google Play | GG | GamebaseStoreCode::Google | only Android, Windows |
 | One Store | ONESTORE | GamebaseStoreCode::OneStore | only Android |
 | Galaxy Store | GALAXY | GamebaseStoreCode::Galaxy | only Android |
-| Amazon Appstore | AMAZON | GamebaseStoreCode::Amazon | only Android |
 | Huawei AppGallery | HUAWEI | GamebaseStoreCode::Huawei | only Android |
 | MyCard | MYCARD | GamebaseStoreCode::MyCard | only Android |
 | Windows Custom | WIN | GamebaseStoreCode::Windows | only Windows |
