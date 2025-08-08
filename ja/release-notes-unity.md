@@ -1,5 +1,12 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.73.1 (2025. 07. 22.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.1/GamebaseSDK-Unity.zip)
+
+#### バグ修正
+- (iOS)ビルドエラー修正
+- (macOS) Webビューアダプタビルドエラーの修正
+
 ### 2.73.0 (2025. 07. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-Unity.zip)
 
