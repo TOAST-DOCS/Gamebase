@@ -15,8 +15,6 @@
 	- 진행 중인 외부 브라우저 로그인 요청 중 IDP 를 변경하고 싶을 때, 기존 요청을 취소하기 위함.
 	- CancelLoginWithExternalBrowser()
 
-#### 버그 수정
-
 #### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.73.0](./release-notes-android/#2730-2025-07-15)
 * [Gamebase iOS SDK 2.73.0](./release-notes-ios/#2730-2025-07-15)
