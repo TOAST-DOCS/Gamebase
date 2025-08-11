@@ -1,5 +1,19 @@
 ## Game > Gamebase > 릴리스 노트 > Android
 
+### 2.73.1 (2025. 08. 12.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.1/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+
+* 외부 SDK 업데이트: Facebook Android SDK(18.0.0)
+* 내부 로직 개선
+
+#### 버그 수정
+
+* AGP 8.5로 빌드 시 네이버 로그인이 실패하는 이슈를 수정하였습니다.
+* 약관 -> 더보기 시 펀치홀이 있는 단말기에서 dialog의 크기가 화면을 넘어가는 이슈를 수정하였습니다.
+
 ### 2.73.0 (2025. 07. 15.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-Android.zip)
