@@ -38,7 +38,7 @@ Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
 | Gamebase SDK | Gamebase Auth Adapter | External SDK & Compatible Version | 용도  | Support iOS Version |
 | --- | --- | --- | --- | --- |
 | Gamebase | Gamebase.xcframework<br/>Gamebase.bundle | NHNCloudSDK 1.8.5 | Gamebase의 Interface 및 핵심 로직을 포함 | iOS 12 이상 |
-| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.xcframework | FacebookSDK 17.0.2 | Facebook 로그인을 지원 | iOS 12 이상 |
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.xcframework | FacebookSDK 18.0.0 | Facebook 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthPaycoAdapter.xcframework | PaycoID Login 3rd SDK v1.5.13 | PAYCO 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthNaverAdapter.xcframework | naveridlogin-sdk-ios-4.2.3 | NAVER 로그인을 지원 | iOS 12 이상 |
 |  | GamebaseAuthGamecenterAdapter.xcframework | GameKit | Gamecenter 로그인을 지원 | iOS 12 이상 |
