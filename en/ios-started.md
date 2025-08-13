@@ -38,7 +38,7 @@ Then, include corresponding SDK files to a target of your project.
 | Gamebase SDK | Gamebase Auth Adapter | External SDK & Compatible Version | Usage  | Support iOS Version |
 | --- | --- | --- | --- | --- |
 | Gamebase | Gamebase.xcframework<br/>Gamebase.bundle | NHNCloudSDK 1.8.5 | Includes the interface and key logic of Gamebase | iOS 12 or later |
-| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.xcframework | FacebookSDK 17.0.2 | Supports Facebook login | iOS 12 or later |
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.xcframework | FacebookSDK 18.0.0 | Supports Facebook login | iOS 12 or later |
 |  | GamebaseAuthPaycoAdapter.xcframework | PaycoID Login 3rd SDK v1.5.13 | Supports PAYCO login | iOS 12 or later |
 |  | GamebaseAuthNaverAdapter.xcframework | naveridlogin-sdk-ios-4.2.3 | Supports NAVER login | iOS 12 or later |
 |  | GamebaseAuthGamecenterAdapter.xcframework | GameKit.framework | Supports Game Center login | iOS 12 or later |
