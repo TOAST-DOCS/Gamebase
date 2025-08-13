@@ -6,7 +6,8 @@
 
 #### 기능 개선/변경
 
-* 외부 SDK 업데이트: Facebook Android SDK(18.0.0)
+* 외부 SDK 업데이트: Facebook Android SDK (18.0.0)
+
 * 내부 로직 개선
 
 #### 버그 수정
