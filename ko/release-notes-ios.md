@@ -8,7 +8,7 @@
     * Facebook iOS SDK (18.0.0)
 
 #### 버그 수정
-* Twitter 로그인 시 에러가 발생하는 버그를 수정하였습니다.
+* Twitter 로그인 시 오류가 발생하는 버그를 수정했습니다.
 
 ### 2.73.0 (2025. 07. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-iOS.zip)
