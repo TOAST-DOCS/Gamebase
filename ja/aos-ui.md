@@ -609,7 +609,7 @@ showWebView(activity, urlString, configuration,
 | enableAutoCloseByCustomScheme(boolean enable) | true or false | カスタムScheme動作時、自動的にWebビュー終了。<br>**default**: true |
 | enableFixedFontSize(boolean enable)      | true or false | システム文字サイズを無視し、固定されたサイズでWebビューを表示。<br>**default**: false |
 | setRenderOutsideSafeArea(boolean render) | true or false | safe areaを無視し、cutout領域にもrender。<br>**default**: false |
-| setCutoutAreaColor(int color) | Color.argb(a, r, b, b) | SafeArea外のCutout領域の背景色 |
+| setCutoutAreaColor(int color) | Color.argb(a, r, g, b) | SafeArea外のCutout領域の背景色 |
 
 ### Close WebView
 次のAPIを通じて、表示されているWebViewを閉じることができます。

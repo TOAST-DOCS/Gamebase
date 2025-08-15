@@ -809,9 +809,14 @@ Gamebaseでは顧客からの問い合わせに対応するための機能を提
 > 詳細なNHN Cloud Contactサービスの利用方法は以下のガイドを参照してください。
 > [NHN Cloud Online Contact Guide](https://docs.nhncloud.com/ja/Contact%20Center/ja/online-contact-overview/)
 
+> <font color="red">[注意]</font><br/>
+>
+> サポートへのお問い合わせの際、ファイルを添付するために、カメラまたはアルバムへのアクセスが必要な場合があります。
+> info.plistに'Privacy - Camera Usage Description', 'Privacy — Microphone Usage Description'設定をしてください。
+
 #### Customer Service Type
 
-**Gamebaseコンソール > App > InApp URL > Service center** では、以下のように3つのタイプのサポートを選択できます。
+**Gamebaseコンソール > App > InApp URL > Service center**では、以下のように3つのタイプのサポートを選択できます。
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
 
 | Customer Service Type     | Required Login |
@@ -880,11 +885,6 @@ TCGBContactConfigurationでURLに追加情報を伝達できます。
     }
 }];
 ```
-
-> <font color="red">[注意]</font><br/>
->
-> サポートへのお問い合わせの際、ファイルを添付するために、カメラまたはアルバムへのアクセスが必要な場合があります。
-> info.plistに'Privacy - Camera Usage Description', 'Privacy — Microphone Usage Description'設定をしてください。
 
 #### Request Contact URL
 

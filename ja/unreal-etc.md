@@ -937,6 +937,12 @@ Gamebaseは、顧客からの問い合わせに対応するための機能を提
 > 詳しいNHN Cloud Contactサービス利用方法は、下記のガイドを参照してください。
 > [NHN Cloud Online Contact Guide](https://docs.nhncloud.com/ja/Contact%20Center/ja/online-contact-overview/)
 
+
+#### 権限設定
+
+* [Game > Gamebase > Android SDK使用ガイド > ETC > Contact](aos-etc/#contact)
+* [Game > Gamebase > iOS SDK使用ガイド > ETC > Contact](ios-etc/#contact)
+
 #### Customer Service Type
 
 **Gamebaseコンソール > App > InApp URL > Service center**では、以下の3つのタイプのサポートを選択できます。
@@ -1023,22 +1029,6 @@ void USample::OpenContact()
     }));
 }
 ```
-
-> <font color="red">[注意]</font><br/>
->
-> サポートへお問い合わせする時、ファイルの添付が必要な場合があります。
-> そのため、ユーザーからカメラ撮影やStorage保存の権限をランタイムに取得する必要があります。
->
-> Androidユーザー
->
-> * [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
->
-> * Unrealの場合エンジンに内蔵されている **Android Runtime Permission**プラグインを有効にした後、以下のAPI Referenceを確認して必要な権限を取得してください。
-> [Unreal API Reference : AndroidPermission](https://docs.unrealengine.com/en-US/API/Plugins/AndroidPermission/index.html)
->
-> iOSユーザー
->
-> * info.plistに'Privacy - Camera Usage Description'、'Privacy - Photo Library Usage Description'の設定を行ってください。
 
 #### Request Contact URL
 

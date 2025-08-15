@@ -199,7 +199,7 @@ public void Login()
 
 > <font color="red">[Caution]</font><br/>
 >
-> Standalone에서 IdP 로그인을 하기 위해서는 IdP 개발자 사이트에서 아래 CallbackURL을 설정 하여야 합니다.
+> StandaloneでIdPログインを行うには、IdPの開発者サイトで以下のCallbackURLを設定する必要があります。
 > - https://id-gamebase.toast.com/oauth/callback
 >
 

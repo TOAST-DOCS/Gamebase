@@ -3,32 +3,32 @@
 ### 2.73.1 (2025. 08. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.1/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### 機能改善・変更
+* 外部SDKのアップデート
     * Facebook iOS SDK (18.0.0)
 
-#### 버그 수정
-* Twitter 로그인 시 에러가 발생하는 버그를 수정하였습니다.
+#### 不具合の修正
+* Twitterログイン時にエラーが発生する不具合を修正しました。
 
 ### 2.73.0 (2025. 07. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * Xcode最小サポートバージョンが16.0に変更されました。 
 
-#### バグ修正
+#### 不具合修正
 * ログイン後にupdateTermsを呼び出した際、同意した利用規約情報が保存されないバグを修正しました。
 
 ### 2.72.1 (2025. 07. 01.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.1/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * iOS 14の特定のデバイスでGameCenterログイン時にクラッシュが発生するバグを修正しました。
 
 ### 2.72.0 (2025. 06. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * Hangame iOS SDK (1.17.2)
         * 内部ロジック改善
@@ -37,7 +37,7 @@
         * Xcode 16コンパイラ警告修正
 * 内部ロジック改善
 
-#### バグ修正
+#### 不具合修正
 * LINE IdPのRegion追加情情報に対応していなかったため、マッピング及びloginForLastLoggedInProviderログイン関連動作で発生していた問題を修正しました。
 
 ### 2.71.0 (2025. 04. 15.)
@@ -48,13 +48,13 @@
     * API呼び出し方法は次のガイド文書を参照してください。
         * [Game > Gamebase > iOS SDK使用ガイド > UI > GameNotice > Open GameNotice](./ios-ui/#open-gamenotice)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * storeCodeをnilに設定してGamebase初期化を呼び出した際に、例外が発生する代わりに**TCGB_ERROR_INVALID_PARAMETER(3)** エラーを返すように動作を変更しました。 
 
 ### 2.70.0 (2025. 03. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * ログイン時にIdPサーバーでエラーが発生したことを示す新規エラーコードが追加されました。
     * TCGB_ERROR_AUTH_AUTHENTICATION_SERVER_ERROR(3012)
 * TCGBWebViewConfigurationにナビゲーションバータイトル色とアイコン色を設定できるオプションを追加しました。
@@ -64,7 +64,7 @@
 ### 2.69.0 (2025. 01. 21.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.69.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * PAYCO iOS SDK (1.5.13)
         * iOS 18で正常なPAYCO簡単ログインを利用するためのopenURL関連関数を修正
@@ -74,20 +74,20 @@
         * iOS 18最適化
 * completion blockがmain threadで実行されるように修正しました。
 
-#### バグ修正
+#### 不具合修正
 * SceneDelegateを使用するアプリでNAVERログインキャンセル時にcallbackが来ないバグを修正しました。
 * GamebaseコンソールにLINE old clientIdを設定していない場合、LINEログインが失敗するバグを修正しました。
 
 ### 2.68.1 (2024. 12. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.1/GamebaseSDK-iOS.zip)
 
-#### バグ修正 
+#### 不具合修正 
 * SwiftファイルからGamebase SDKをimportする時に発生していたエラーを修正しました。
 
 ### 2.68.0 (2024. 11. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * NHN Cloud iOS SDK (1.8.5)
     * Hangame iOS SDK (1.17.0)
@@ -108,7 +108,7 @@
     * 詳細は以下のリンクをご覧ください。
         * [Game > Gamebase > コンソール使用ガイド > アプリ > Authentication Information > 6. Twitter](./oper-app/#6-twitter)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * PAYCO iOS SDK (1.5.12)
         * PAYCO SDKがDynamic Frameworkに変更されました。
@@ -119,13 +119,13 @@
 * Gamebase SDKが外部SDKのリソースを含まないように修正しました。
 * 内部ロジック改善
 
-#### バグ修正 
+#### 不具合修正 
 * システムポップアップウィンドウの上にGamebaseローンチポップアップウィンドウが表示されると画面が黒くなるバグを修正しました。
 
 ### 2.66.3 (2024. 09. 13.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * NHN Cloud iOS SDK (1.8.4)
         * iOS 18でアプリがForeground状態のときにNotificationを重複して受信しないように修正しました。
@@ -133,7 +133,7 @@
 ### 2.66.2 (2024. 08. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.2/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * NHN Cloud iOS SDK (1.8.3)
         * アプリストア審査でPrivacyInfo manifest関連の警告メールが来ないように修正しました。
@@ -146,7 +146,7 @@
 ### 2.66.0 (2024. 07. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * Facebook iOS SDK (17.0.2)
     * Hangame iOS SDK (1.15.0)
@@ -155,10 +155,10 @@
 ### 2.65.1 (2024. 06. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.1/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 特定のクライアントで表示する画像がない場合、エラーの代わりに成功コールバックが呼び出されるように修正しました。
 
-#### バグ修正 
+#### 不具合修正 
 * 登録されたイメージ告知がない場合、空白のイメージ告知が表示されるイシューを修正しました。
 
 ### 2.65.0 (2024. 06. 11.)
@@ -169,7 +169,7 @@
     * `ローリングポップアップ`タイプが追加されました。
     * 既存のイメージ告知は`個別ポップアップ`タイプと表記されます。
 
-#### 機能改善/変更
+#### 機能改善・変更
 * アプリの追跡を許可しなくてもFacebookログインができるように修正しました。
 * 外部SDKアップデート
     * Facebook iOS SDK (17.0.1)
@@ -180,7 +180,7 @@
 ### 2.64.0 (2024. 05. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.64.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * PAYCO iOS SDK (1.5.11)
     * Kakaogame iOS SDK (3.19.0)
@@ -190,7 +190,7 @@
 ### 2.63.1 (2024. 05. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.63.1/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * Hangame iOS SDK (1.13.1)
 * 内部ロジック改善
@@ -198,7 +198,7 @@
 ### 2.63.0 (2024. 04. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.63.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * Google iOS SDK (7.1.0)
     * Facebook iOS SDK (17.0.0)
@@ -213,7 +213,7 @@
 * Gamebase初期化後に返されるLaunchingInfo VOでテスト端末であることを知らせるためのフィールドが追加されました。
     * **launchingInfo.user.testDevice**
 
-#### 機能改善/変更
+#### 機能改善・変更
 * Xcodeの最小サポートバージョンが15.0に変更されました。
 * iOSの最小サポートバージョンが12.0に変更されました。
 * 外部SDKアップデート
@@ -228,7 +228,7 @@
 ### 2.61.0 (2024. 02. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.61.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * NHN Cloud iOS SDK (1.8.0)
 * SDK内部ロジック改善
@@ -236,13 +236,13 @@
 ### 2.60.1 (2024. 02. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.60.1/GamebaseSDK-iOS.zip)
 
-#### バグ修正
+#### 不具合修正
 * 特定のIdPでログインした後、GameCenterアカウントに変更されるバグを修正しました。
 
 ### 2.60.0 (2024. 01. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.60.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * PAYCO iOS SDKがxcframeworkに変更されました。
 * SDK内部ロジック改善
@@ -250,26 +250,26 @@
 ### 2.59.1 (2023. 12. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.59.1/GamebaseSDK-iOS.zip)
 
-#### バグ修正
+#### 不具合修正
 * Hangame ログイン時にエラーが発生するバグを修正しました。
 
 ### 2.59.0 (2023. 12. 19.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.59.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * NAVER iOS SDK (4.2.0)
         * NAVER iOS SDKがxcframeworkに変更されました。
 * 約款ウィンドウがタブレット環境で固定サイズで表示されるように修正しました。
 * Launching Status CodeがINTERNAL_SERVER_ERROR(500)の時にエラーポップアップを表示するように修正しました。
 
-#### バグ修正
+#### 不具合修正
 * LINE ログインを重複して呼び出すとクラッシュが発生するバグを修正しました。
 
 ### 2.58.0 (2023. 11. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.58.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * PAYCO iOS SDK (1.5.9)
         * PAYCO iOS SDKがxcframeworkに変更されました。
@@ -280,7 +280,7 @@
 ### 2.57.0 (2023. 10. 31.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.57.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * Privacy manifestファイルを追加しました。
 * Gamebase GameCenterログインスペックが変更されました。
     * GameCenterログインキャンセル後、再リクエストすると、エラーポップアップウィンドウが表示され、TCGB_ERROR_AUTH_IDP_LOGIN_EXTERNAL_AUTHENTICATION_REQUIRED(3203)エラーが発生するように修正しました。
@@ -288,11 +288,11 @@
 ### 2.55.2 (2023. 09. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.55.2/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * Weibo iOS SDK (3.3.4)
 
-#### バグ修正
+#### 不具合修正
 * アプリを初めてインストールした後、Weiboログインをしようとすると、コールバックが正常に動作しないバグを修正しました。
 
 ### 2.55.0 (2023. 09. 12.)
@@ -301,14 +301,14 @@
 #### 機能追加
 * ユーザーがプッシュ権限を拒否してもトークンを登録できるようにTCGBPushConfiguration.alwaysAllowTokenRegistrationフィールドを追加
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * NHN Cloud iOS SDK (1.6.2)
     
 ### 2.54.0 (2023. 08. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.54.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * SDKをxcframeworkに変更
 * 外部SDKアップデート
     * Facebook iOS SDK (14.1.0)
@@ -318,7 +318,7 @@
 ### 2.53.0 (2023. 07. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.53.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * Hangame iOS SDK (1.8.6)
 * 以下のフィールドがdeprecatedされました。
@@ -326,14 +326,14 @@
 * iPadで[TCGBUtil showActionSheetWithTitle:message:blocks:]API呼び出し時、ActionSheetが画面中央に来るように修正しました。
 * プロジェクトに追加していない認証Adapterを使用する場合、**TCGB_ERROR_AUTH_NOT_SUPPORTED_PROVIDER(3002)**エラーを返すように修正しました。
 
-#### バグ修正
+#### 不具合修正
 * 特定状況で利用停止ポップアップウィンドウが表示されないバグを修正しました。
 * Apple Silicon MacでWebビューが正常に表示されないバグを修正しました。
 
 ### 2.52.0 (2023. 06. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * NHN Cloud iOS SDK (1.4.0)
     * Weibo iOS SDK (3.3.3)
@@ -351,7 +351,7 @@
 ### 2.51.0 (2023. 05. 30.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.51.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * NHN Cloud iOS SDK (1.3.1)
     * PAYCO iOS SDK (1.5.8)
@@ -360,26 +360,26 @@
 ### 2.49.2 (2023. 04. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.2/GamebaseSDK-iOS.zip)
 
-#### バグ修正
+#### 不具合修正
 * 変更事項漏れによる再配布
 
 ### 2.49.1 (2023. 04. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.1/GamebaseSDK-iOS.zip)
 
-#### バグ修正
+#### 不具合修正
 * ログイン後に外部認証IdPの認証情報を取得できないバグを修正しました。
 
 ### 2.49.0 (2023. 04. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * Hangame iOS SDK (1.8.5)
 
 ### 2.48.0 (2023. 03. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.48.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * Xcode最小サポートバージョンが14.1に変更されました。 
 * iOS最小サポートバージョンが11.0に変更されました。
 * armv7、armv7s、i386アーキテクチャのサポートを中断しました。
@@ -389,21 +389,21 @@
     * PAYCO iOS SDK (1.5.6)
 * DNS障害に備えたGamebaseサーバー予備ドメイン適用
 
-#### バグ修正
+#### 不具合修正
 * 特定状況でキックアウトイベントが発生しないバグを修正しました。
 * Webビューカスタムスキームコールバックが呼び出されないバグを修正しました。
 
 ### 2.47.0 (2023. 02. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.47.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * Hangame iOS SDK (1.8.4)
     
 ### 2.46.0 (2023. 01. 31.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.46.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * Hangame iOS SDK (1.8.2)
     * Kakaogame iOS SDK (3.14.14)
@@ -422,7 +422,7 @@
 * **TCGBPurchasableConfiguration**をパラメータとして受け取る新規有効化購読照会APIを追加しました。
     * **[TCGBPurchase requestActivatedPurchasesWithConfiguration:completion:]**
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * NHN Cloud iOS SDK (1.2.0)
     * Hangame iOS SDK (1.8.0)
@@ -434,31 +434,31 @@
 ### 2.44.0 (2022. 10. 25.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * LINE iOS SDK依存関係を変更
 
 ### 2.43.3 (2022. 10. 04.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.3/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * SDK内部ロジック改善
 
 ### 2.43.2 (2022. 09. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.2/GamebaseSDK-iOS.zip)
 
-#### バグ修正
+#### 不具合修正
 * Game Centerログイン時にエラーが発生するバグを修正しました。
 
 ### 2.43.1 (2022. 09. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.1/GamebaseSDK-iOS.zip)
 
-#### バグ修正
+#### 不具合修正
 * CocoaPodsを通じて配布されるLine Auth AdpaterがLINE SDK依存関係エラーでRegionを設定できないバグを修正しました。
 
 ### 2.43.0 (2022. 09. 07.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート
     * NHN Cloud iOS SDK (1.0.0)
     * ToastGamebaseIAP iOS SDK (0.14.0)
@@ -473,13 +473,13 @@
 ### 2.42.2 (2022. 08. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.2/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * Webビューで使用するスキームリストのうち"itms-services"がAppleの審査でリジェクトされる場合があり削除しました。
 
 ### 2.42.1 (2022. 08. 09.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-iOS.zip)
 
-#### バグ修正
+#### 不具合修正
 * コントラスト増加オプションを有効にした場合、Gamebaseポップアップウィンドウが正常に表示されないバグを修正しました。
 * SceneDelegateを使用するプロジェクトでGamebaseポップアップウィンドウが表示されないバグを修正しました。
 
@@ -492,17 +492,17 @@
     * mappedUserValidに保存された値の意味は以下を参照してください。
         * [Game > Gamebase > APIガイド > API v1.3ガイド > Others > Mamber Vaild Code](./api-guide/#member-valid-code)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート: Hangame iOS SDK (1.7.0)
 
-#### バグ修正
+#### 不具合修正
 * 無効なAppIDでGamebaseを初期化したときにコールバックが呼び出されないバグを修正しました。
 * ハンゲームIdPでログインした状態でGamebaseのEventHandlerの **kTCGBIdPRevoked**イベントが発生しないバグを修正しました。
 
 ### 2.41.1 (2022. 07. 20.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.1/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 約款ウィンドウが完全に閉じたあとにコールバックを呼び出すように修正しました。
 
 ### 2.41.0 (2022. 07. 05.)
@@ -512,25 +512,25 @@
 * GamebaseEventHandlerのGamebaseEventCategoryに**kTCGBIdPRevoked**タイプが追加されました。
     * [Game > Gamebase > iOS SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > IdP Revoked](./ios-etc/#idp-revoked)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 画像告知が表示中のとき、画面の向きに応じて回転するように変更しました。
 
 ### 2.40.0 (2022. 05. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * SDK内部ロジック改善
 
 ### 2.39.0 (2022. 05. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.39.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート：Hangame iOS SDK (1.6.4)
 
 ### 2.38.0 (2022. 05. 03.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.38.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * Display Languageの中国語繁体字(zh-TW)言語セットで不自然な文章を修正
 
 ### 2.37.0 (2022. 04. 26.)
@@ -548,7 +548,7 @@
     * **TCGBPurchasableReceipt.sandboxPayment**
     * **TCGBPurchasableReceipt.promotionPayment**
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート：TOAST iOS SDK(0.30.0)、ToastGamebaseIAP SDK(0.13.0)、Hangame iOS SDK (1.6.3)
 
 ### 2.35.0 (2022. 03. 29.)
@@ -558,7 +558,7 @@
 * 現在約款ウィンドウが画面に表示されているかどうかを知ることができるAPIを追加しました。
     * **[TCGBTerms isShowingTermsView]**
 
-#### 機能改善/変更
+#### 機能改善・変更
 * Google Webログイン方式からGoogle SDKログイン方式に変更しました。
 * ハンゲームログインを途中でキャンセルした場合、**TCGB_ERROR_AUTH_USER_CANCELED(3001)**エラーを返すように修正しました。
 
@@ -568,7 +568,7 @@
 #### 機能追加
 * SwiftプロジェクトユーザーのためにPublic APIにNS_SWIFT_NAME設定を追加しました。
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート：Hangame iOS SDK (1.6.2)
 * デバイスが横モードの状態でshowWebView APIを呼び出したとき、下部に黒い空スペースが表示されるエラーを修正しました。
 
@@ -582,7 +582,7 @@
 * 共通約款API呼び出し後、約款UIが表示されたかどうかを知ることができるVOクラスが追加されました。
     * **TCGBShowTermsViewResult**
 
-#### 機能改善/変更
+#### 機能改善・変更
 * イメージ告知APIを呼び出したときに表示するイメージ告知がない場合、背景が少しの間暗くなる現象を修正しました。
 * キックアウトポップアップの表示有無はGamebaseコンソールでキックアウト登録時に設定することができるため、次のAPIがdeprecatedになりました。
     * **[TCGBConfiguration enableKickoutPopup:]**
@@ -595,7 +595,7 @@
 * 共通約款ウィンドウの設定を変更できる新規APIが追加されました。
     * [Game > Gamebase > iOS SDK使用ガイド > UI > Terms > showTermsView](./ios-ui/#showtermsview)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート: PAYCO iOS SDK (1.5.5)
 * エラーコード追加および変更
     * TCGB_ERROR_UNKNOWN_ERRORエラーにマッピングされたエラーコードを999から9999に変更しました。
@@ -604,7 +604,7 @@
 ### 2.32.1 (2022.01.11)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.1/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * アップデート推奨ポップアップの**今アップデート**ボタンクリックしたとき、ポップアップが終了しないように修正しました。
 * SDKの安定性を改善しました。
 
@@ -617,10 +617,10 @@
 * GamebaseEventHandlerのGamebaseEventCategoryに**kTCGBLoggedOut**タイプが追加されました。
     * [Game > Gamebase > iOS SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Logged Out](./ios-etc/#logged-out)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * WebビューnavigationBarの基本タイトル色を**UIColor.whiteColor**に変更しました。
 
-#### バグ修正
+#### 不具合修正
 * Hangameログアウトを呼び出した時、thirdIdPもログアウトするように修正しました。
 
 ### 2.31.0 (2021.12.14)
@@ -629,7 +629,7 @@
 #### 機能追加
 * メンテナンスポップアップでメンテナンス時間を表示するかどうかを動的に設定できるようにしました。
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート：TOAST iOS SDK (0.29.2), PAYCO iOS SDK (1.5.4)
 * 利用停止Webビュー内のサポートリンクから利用停止ユーザー情報でお問い合わせを登録することができない問題を修正しました。
 * メンテナンスポップアップ、利用停止詳細表示Webビューで戻るボタンが表示されるように修正しました。
@@ -637,7 +637,7 @@
 ### 2.30.1 (2021.11.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.1/GamebaseSDK-iOS.zip)
 
-#### バグ修正
+#### 不具合修正
 * Unity 2019.3以上でCocoapodsをインストールした時、決済とプッシュAPIでエラーが発生するバグを修正しました。
 
 ### 2.30.0 (2021.11.23)
@@ -649,18 +649,18 @@
 * 特定IdPでマッピング試行後、**TCGB_ERROR_AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER(3302)**エラーが発生した時、該当IdPにアカウントを変更することができるAPIが追加されました。
     * [Game > Gamebase > iOS SDK使用ガイド > 認証 > Change Login with ForcingMappingTicket](./ios-authentication/#change-login-with-forcingmappingticket)
 
-#### バグ修正
+#### 不具合修正
 * loginForLastLoggedInProviderログイン後、特定IdPでログアウトまたは退会機能が動作しないバグを修正しました。
 
 ### 2.29.0 (2021.11.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * Xcode最小サポートバージョンが12から13に変更されました。
 * 外部SDKアップデート：TOAST iOS SDK(0.29.1), ToastGamebaseIAP SDK(0.12.1)
 * コンソールに登録したメンテナンスおよび告知詳細表示のURLをエンコードせずに画面に表示するように変更しました。
 
-#### バグ修正
+#### 不具合修正
 * TCGBPushMessage.extrasをjson解析する時にエラーが発生する問題を修正しました。
 
 ### 2.28.0 (2021.09.28)
@@ -676,30 +676,30 @@
 * 決済アビューズ自動解除機能を使用するゲームはログイン後、常にTCGBAuthToken.tcgbMember.graceBanInfo値を確認し、nullではない有効なTCGBGraceBanInfoオブジェクトを返した場合、該当ユーザーに利用停止解除条件、期間などを案内する必要があります。
     * 利用停止猶予状態のユーザーのゲーム内アクセス制御はゲームで処理する必要があります。
 
-#### 機能改善/変更
+#### 機能改善・変更
 * PAYCO iOS SDKアップデート(1.5.2)
 
 ### 2.27.1 (2021.09.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * PAYCO iOS SDKアップデート(1.5.1)
     * 認証フローおよびUI改善
 * Hangame iOS SDKアップデート(1.6.1)
     * 本人認証でエラーが発生した時、コールバックの呼び出しができないイシューを修正
     * iOS 15 betaでナビゲーションバーが正常に表示されないイシューを修正
 
-#### バグ修正
+#### 不具合修正
 * すでに約款に同意して約款UIが表示されない場合、 PushConfigurationがnilでリターンされないイシューを修正しました。
 
 ### 2.27.0 (2021.08.24) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * PAYCO iOS SDKアップデート(1.5.0)
     * PAYCOアプリがない時、以前は手動ログインのみ可能でしたが、Safariにログインしている場合は、簡単ログイン機能を使用できるようにしました。
 
-#### バグ修正
+#### 不具合修正
 * Unityで画像告知が表示されない問題を修正しました。
     * Gamebase iOS SDK 2.27.0未満を使用する場合、Unityで画像告知が表示されないことがあります。
     * 画像告知を使用する場合は、Gamebase iOS SDK 2.27.0以上を使用してください。
@@ -707,7 +707,7 @@
 ### 2.26.0 (2021.08.10) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * Display Language機能が改善されました。
     * これまでは言語セットを追加するためにGamebase.bundle内にあるファイルを直接修正する必要がありました。
         * それをXcodeプロジェクトのCopy Bundle Resourcesにlocalizedstring.jsonファイルを追加する方法に変更しました。
@@ -724,7 +724,7 @@
     * 変更されない点
         * すでに約款に同意して約款UIが表示されない場合はPushConfigurationはnilで返されます。
 
-#### バグ修正
+#### 不具合修正
 * Push言語設定は特別な補助処理なしで端末の言語コードがそのまま適用され、Pushコンソールから送信したメッセージの言語コードが一致しない問題を修正しました。
 
 ### 2.25.0 (2021.07.27) 
@@ -734,7 +734,7 @@
 * 月間決済限度機能を追加
     * 月間決済限度を超える場合、**PURCHASE_LIMIT_EXCEEDED(4007)** エラーが発生します。
 
-#### 機能改善/変更
+#### 機能改善・変更
 * Push項目が存在する約款で PushConfigurationオブジェクト保証
     * 約款UIでPush受信に同意しない場合、Gamebase.Terms.showTermsView API呼び出し結果として作成されるTCGBPushConfigurationがnullだったが、約款にPush項目が存在する場合、TCGBPushConfigurationオブジェクトが常にリターンされるように変更しました。
     * Push受信を拒否すると、TCGBPushConfigurationオブジェクトは(プッシュ同意 = false、広告性プッシュ同意 = false、夜間広告性プッシュ同意 = false)で作成されます。
@@ -742,43 +742,43 @@
 * 外部SDKアップデート：TOAST iOS SDK(0.29.0)
 * Sign In with AppleのASAuthorizationErrorUnknownエラーが発生した場合、 TCGB_ERROR_AUTH_EXTERNAL_LIBRARY_ERRORエラーをリターンするように変更
 
-#### バグ修正
+#### 不具合修正
 * registerPushを利用して登録したTCGBPushConfiguration値とTCGBPushTokenInfo値が変わるバグを修正
 
 ### 2.24.0 (2021.06.29) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.24.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 内部ローンチURL変更
 
-#### バグ修正
+#### 不具合修正
 * 約款詳細表示後、約款ポップアップが閉じないバグを修正
 
 ### 2.23.0 (2021.06.14) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.23.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート: TOAST iOS SDK(0.28.0), ToastGamebaseIAP SDK(0.12.0)
 
 ### 2.22.0 (2021.05.25) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * 外部SDKアップデート: TOAST iOS SDK(0.27.2), Hangame iOS SDK(1.6.0)
 
 ### 2.21.2 (2021.04.27) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.2/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * Facebook iOS SDKアップデート(9.2.0)
 
-#### バグ修正
+#### 不具合修正
 * アーカイブビルドを行うと、bitcode関連エラーが発生する問題を修正
 
 ### 2.21.1 (2021.04.19) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.1/GamebaseSDK-iOS.zip)
 
-#### バグ修正
+#### 不具合修正
 * bitcodeをサポートできるように 設定しても設定値が反映されない問題を修正
 
 ### 2.21.0 (2021.04.13) 
@@ -787,21 +787,21 @@
 #### 機能追加
 * Hangame日本認証を追加
 
-#### 機能改善/変更
+#### 機能改善・変更
 * bitcodeをサポートできるように変更
 * showWebView呼び出し時、閉じるボタンが最初に画面に表示されるように修正
 
 ### 2.20.2 (2021.03.23) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.20.2/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * Facebook iOS SDKアップデート(9.1.0)
 * 特定の場合においてGamebaseAuthFacebookAdapterでopenURL delegateが呼び出されないイシューを修正
 
 ### 2.20.1 (2021.03.09) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.20.1/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * iOS 14に対応し、IDFA取得ロジックを修正：info.plistにNSUserTrackingUsageDescriptionフィールドを追加
 
 ### 2.20.0 (2021.02.09) 
@@ -813,13 +813,13 @@
     * 約款リストおよびユーザーごとに同意の有無を照会するAPIを追加
     * ユーザーごとに約款の同意有無をGamebaseサーバーに保存するAPIを追加
 
-#### 機能改善/変更
+#### 機能改善・変更
 * サポートタイプがTOAST組織商品(Online Contact)の場合、ログインしなくてもサポートが表示されるように変更
 
 ### 2.19.1 (2021.01.26) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.1/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * Weibo IdPAdapterの構造を変更
 
 ### 2021. 01. 12.
@@ -835,11 +835,11 @@ GamebaseのXcodeの最低サポートバージョンを10から11に変更しま
 * [SDK] 2.19.0
     * (共通) Weibo認証を追加
     
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.19.0
     * (共通)ローンチステータスコード追加：ベータサービス(205)
 
-#### バグ修正 
+#### 不具合修正 
 * [SDK] 2.19.0
     * (Unity) WebSocketで再試行した時、 OutOfMemoryExceptionが発生する問題を修正
 * [SDK] 2.19.1
@@ -855,7 +855,7 @@ GamebaseのXcodeの最低サポートバージョンを10から11に変更しま
     * (共通)開発会社が独自のサポートをオープンする時、additionalURLフィールドを追加
     * (共通)決済アイテム情報にローカライズされた商品情報を追加：localizedTitle, localizedDescription
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.18.2
     * (共通) TOAST SDKアップデート: [Android(0.24.2)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0242-20201124), [iOS(0.27.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0271-20201124), [Unity(0.21.3)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-unity/#0213-20201124)
     * (iOS) showWebView：無効なURLを伝達した場合、エラーを返されたURLはエンコードせず、そのまま使用
@@ -864,14 +864,14 @@ GamebaseのXcodeの最低サポートバージョンを10から11に変更しま
 ### 2.18.0 (2020.11.10)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.18.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.18.0
     * (iOS) iOS 13以上から提供されるSceneDelegate対応APIを追加
 
 ### 2.17.1 (2020.10.27)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.17.1/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.17.1
     * (iOS)特定指標の転送時にエラーメッセージを追加して転送：プッシュ登録に失敗した時、ゲーム指標を転送する時
     
@@ -885,14 +885,14 @@ GamebaseのXcodeの最低サポートバージョンを10から11に変更しま
 #### 機能追加
 * Hangame IdP認証追加：SDK 2.17.0
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.17.0
     * (共通)サポート添付イメージクリック時、ダウンロードサポート
     * (共通) TOAST SDKアップデート：Android(0.23.2), Unity(0.21.2)
     * (iOS) TCGBMember.regDate、TCGBMember.lastLoginDateのタイプをlong longに変更
     * (iOS) WebビューからURLおよびタイトルを変更した時、タイトルを再出力できるようにロジックを変更
 
-#### バグ修正
+#### 不具合修正
 * [SDK] 2.17.0
     * (iOS) PAYCO認証：lastLoggedInProviderログイン後、ログアウトを呼び出した時、ログアウトコールバックが来ない問題を修正
     
@@ -909,7 +909,7 @@ GamebaseのXcodeの最低サポートバージョンを10から11に変更しま
 ### 2.15.1 (2020.09.16)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.15.1/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.15.1
     * (iOS) TOAST SDKアップデート：iOS(0.27.0)
     * iOS 14 beta変更事項を対応したIAP SDK新規バージョンが適用されました。 [TOAST SDK Release Notes](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0270-20200911)
@@ -932,7 +932,7 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
     * (共通)プッシュトークン登録時に、アプリのNotificationOption設定がForeground状態でもプッシュ通知を受け取れるように機能追加
     * (共通)プッシュAPI追加：Pushトークン情報確認(Gamebase.Push.queryTokenInfo API)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.15.0
     * (共通) TOAST SDKアップデート: Android(0.23.0)、iOS(0.26.0)、Unity(0.21.0)
     * (iOS)決済payloadのnull checkロジック追加
@@ -940,7 +940,7 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
 ### 2.14.0 (2020.08.11)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.14.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.14.0
     * (iOS) PAYCO IdPの定数値を削除：PAYCO文字列によるApple検収がリジェクトされる場合があり削除
     * (iOS、Unity) TCGBWebViewConfigurationにcontentMode設定を追加
@@ -948,7 +948,7 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
 ### 2.13.0 (2020.07.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.13.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.13.0
     * (iOS) Sign In With Apple認証：iOS 12以下をサポート
    
@@ -959,7 +959,7 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
 * イメージ告知：表示期間と優先順位に応じてゲーム内でイメージをポップアップ表示
     * [SDK] 2.12.0：イメージ告知表示APIを追加
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.12.0
     * (iOS)Facebook SDKアップデート(7.1.1)
     * (iOS)configuartionに設定されたstoreCode(default=AS)でGamebaseの初期化を試行
@@ -975,7 +975,7 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
 ### 2.10.1 (2020.06.09)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.10.1/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.10.1
     * (iOS)ユーザープッシュ設定の初期化時、言語コードが設定されていない場合、デバイス言語で設定されるように変更
 
@@ -990,7 +990,7 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
 ### 2.9.1 (2020.05.12)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.9.1/GamebaseSDK-iOS.zip)
 
-#### バグ修正
+#### 不具合修正
 * [SDK] 2.9.1
     * (iOS) Unrealエンジンでビルドすると、警告(warning)をビルドエラーと判定してビルドができない問題を修正
 
@@ -1002,7 +1002,7 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
     * [SDK] 2.9.0
         *(共通)API追加：退会猶予申請、退会猶予申請キャンセル、退会猶予状態から即時退会、ユーザーの退会猶予状態を確認
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.9.0
     * (共通) TOAST SDKアップデート： Android(v0.21.0)、iOS(v0.23.0)、Unity(0.20.1)
     * (共通) PAYCO Login SDKアップデート： Android(v1.5.0)、iOS(v1.4.0)
@@ -1010,7 +1010,7 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
 ### 2.8.1 (2020.04.14)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.8.1/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.8.1 
     * (共通) Analytics転送結果を確認するための内部指標を追加
     
@@ -1021,7 +1021,7 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
 * [SDK] 2.8.0
     * (共通)決済および商品情報に商品タイプおよび地域価格などの情報を追加
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.8.0 
     * (共通)コンソールに登録されていないアプリバージョンで初期化に失敗した時、ストアに移動できるポップアップが表示されるように改善
     * (Android)ログイン直後に決済関連APIを呼び出す時、初期化タイミングの問題で失敗する場合があるコードを修正
@@ -1029,7 +1029,7 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
 ### 2.7.1 (2020.02.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.7.1/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.7.1
     * (Common) GuestでLoginしてGetAuthProviderUserIDを呼び出した時、値を返すように修正
     
@@ -1037,7 +1037,7 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.6.2/GamebaseSDK-iOS.zip)
 #### 機能追加
 * クーポン > クーポン発行：キーワードクーポン機能を追加
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.6.2
     * (共通) TOAST SDKアップデート: Android(0.19.4), iOS(0.20.1), Unity(0.18.0)
     * (iOS) NAVER SDKバージョンをアップデート(4.1.0)
@@ -1048,7 +1048,7 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
 #### 機能追加
 * アプリ > アプリ：メンテナンス中にQAテスト端末を登録すると、IPでも登録できる機能を追加
 
-#### バグ修正
+#### 不具合修正
 * [SDK] 2.6.1
     * (iOS)AddMapping(強制、Forcibly)使用時、マッピングされない問題を修正
     * (iOS)Unity PluginにPushConfigurationのdisplayLanguageCodeを設定していない場合、NSNullオブジェクトによりクラッシュが発生する問題を修正
@@ -1069,14 +1069,14 @@ Gamebase SDK 2.6.0未満バージョンから2.6.0にアップグレードする
 ### 2.5.2 (2019.10.15)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.5.2/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.5.2
     * (iOS) UIWebViewをWKWebViewに変更
 
 ### 2.5.1 (2019.09.10)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.5.1/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.5.1
     * (iOS) GamebasePushAdapterで使用中のTCPushSDKを1.7.0にアップデート
         * TCPushSDKが、Static LibraryからFrameworkファイルに変更されたため、プロジェクトにTCPushSDK.frameworkを追加する必要があります。
@@ -1098,14 +1098,14 @@ Gamebase SDK 2.6.0未満バージョンから2.6.0にアップグレードする
 ### 2.4.2 (2019.06.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.4.2/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.4.2
     * (共通)LaunchingInfoにJSON string形式のTOAST Launching情報を追加
     * (iOS)LINE SDKアップデート(v5.0.1)
         * LINE Adpaterの対応OSバージョンがiOS 10以上に変更
         * LINEアプリによるログイン機能追加
 
-#### バグ修正
+#### 不具合修正
 * [SDK] 2.4.2
     * (共通)Analyticsのバグを修正：ログアウト、退会、アカウント移行時に保存された指標データを初期化するように修正
     * (iOS)ネットワーク接続問題により、断続的にクラッシュが発生する現象を修正
@@ -1113,14 +1113,14 @@ Gamebase SDK 2.6.0未満バージョンから2.6.0にアップグレードする
 ### 2.4.1 (2019.06.13)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.4.1/GamebaseSDK-iOS.zip)
 
-#### バグ修正
+#### 不具合修正
 * [SDK] 2.4.1
     * (iOS)Analytics指標転送時、一部パラメータが抜けて指標が正常に出力されない問題を修正
     
 ### 2.4.0 (2019.05.28)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.4.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.4.0
     * (共通)指標関連Class変更
         * LevelUpData Class：userLevel、levelUpTimeパラメータが必須に変更 / その他フィールド削除[詳細表示[Android](./aos-etc/#game-user-data-settings) / [iOS](./ios-etc/#game-user-data-settings) / [Unity](./unity-etc/#game-user-data-settings) / [JavaScript](./js-etc/#game-user-data-settings)]
@@ -1136,14 +1136,14 @@ Gamebaseを使用すると、10数個の中国ストアと連携が可能です�
 中国でのリリースに関心がある方は、サポートへご連絡ください。
 ```
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.3.0
     * (共通)Launching Status Code追加："審査中(204)"、"テスト中(203)"
 
 ### 2.2.2 (2019.04.11)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.2.2/GamebaseSDK-iOS.zip)
 
-#### バグ修正
+#### 不具合修正
 * [SDK] 2.2.2
     * (iOS)showBlockingPopupをNOに設定した場合、Gamebase初期化コールバックが呼び出されない問題を修正
 
@@ -1160,7 +1160,7 @@ Gamebaseを使用すると、10数個の中国ストアと連携が可能です�
     * (SDK共通)追加されたAPI 
         * 強制マッピングするAPI (addMappingForcibly)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.2.0
     * (iOS)LINE SDKのAppログイン機能が無効化
         * LINE SDK v4の問題により、iOS 12でアプリログインが失敗する問題があり、Gamebase Line AdatperでWebログインのみサポートするように変更
@@ -1168,13 +1168,13 @@ Gamebaseを使用すると、10数個の中国ストアと連携が可能です�
 ### 2.1.0 (2019.02.26)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.1.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.1.0
     * (共通)TransferKey API削除
         * issueTransferKey：TransferKey発行
         * requestTransfer：TransferKey検証
         
-#### バグ修正
+#### 不具合修正
 * [SDK] 2.1.0
     * (iOS)GamecenterをGamebaseではない別のロジックによりログインした後、Gamebaseを通してGamecenterログインを試行した時、反応がない問題を修正
 
@@ -1191,19 +1191,19 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
         * setGameUserData：ゲームログイン後、ゲームユーザーレベル情報を伝送
         * traceLevelUpData：レベルアップ追跡のために、ゲームユーザーがレベルアップした時に呼び出す
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 2.0.0
     * (iOS)IAP SDKアップデート
         * 決済失敗時、断続的にクラッシュが発生する現象を修正
 
-#### バグ修正
+#### 不具合修正
 * [SDK] 2.0.0
     * (iOS)iOS 12以上のシミュレータでdebugMode Onの状態でGamebaseを初期化すると、クラッシュが発生する現象を修正
 
 ### 1.14.2 (2018.11.15)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.14.2/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 1.14.2
     * (iOS)Provider Profile取得メソッドを呼び出した時に返されるTCGBAuthProviderProfileオブジェクトのdescriptionメソッドのJSON文字列構造変更により、Gamebase iOS SDK 1.14.0とUnity Plugin 1.14.0適用時にcrashが発生することがある構造を修正
 
@@ -1214,7 +1214,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 * [SDK] 1.14.0
     * (共通)Gamebase Webviewでファイル添付機能を追加：AndroidのAPI 19、Kitcatでは正常に動作しません。
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 1.14.0
     * (共通)利用停止/メンテナンスについて、ユーザーがコンソールに作成したメッセージをURLエンコードして伝送し、クライアントでデコードして処理するように修正
     * (iOS)PAYCO SDKのバージョンを1.2.4にアップデート
@@ -1239,7 +1239,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 * [SDK] 1.13.0
     * (iOS)App Store Promotion IAPをサポートするためのAPIを追加
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 1.13.0
     * (共通)IAP SDK最新バージョン適用(android:1.5.1、iOS:1.6.0)
     * (iOS)authProviderProfileWithIDPCode apiの呼び出し結果の構造が1depthに変更(Android、Unityと同じ)
@@ -1247,7 +1247,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 ### 1.12.2 (2018.08.28) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.12.2/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 1.12.2
     * (iOS)Google Auth Adapter、NAVER Auth AdapterのCallback URL Scheme設定を改善
         * コンソールに"url_scheme_ios_only"値を設定しない場合、Default URL Schemeを設定するように改善：Default URL Schemeを使用するためには、XCode > Target > Info > URL Typesにtcgb.{Bundle ID}.googleまたはtcgb.{Bundle ID}.naver登録が必要
@@ -1257,7 +1257,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 ### 1.12.1 (2018.08.09) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.12.1/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 1.12.1
     * (共通)IAP SDK最新バージョン適用(1.5.0)
     * (共通)Gamebaseメンテナンスページで、メンテナンス時間を端末設定国時間に合わせて表示するように改善
@@ -1266,14 +1266,14 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
     * (共通)認証APIを重複して呼び出した時、エラー発生(AUTH_ALREADY_IN_PROGRESS_ERROR)
     * (iOS)エラーコード追加：Gamecenterログイン拒否(TCGB_ERROR_IOS_GAMECENTER_DENIED)
 
-#### バグ修正
+#### 不具合修正
 * [SDK] 1.12.1
     * (iOS)NAVERログイン時、プロフィール情報照会失敗により、ログインできない問題を修正：プロフィール情報の照会に失敗してもログインは成功するように変更    
     
 ### 1.12.0 (2018.07.24) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.12.0/GamebaseSDK-iOS.zip)
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 1.12.0
     * (iOS)Gamebaseの初期化時、Debug Logに使用中のAdapterのバージョン情報、アプリのビルド情報を出力する機能を追加
     * (iOS)CocoaPodsを通して配布されるNAVER Auth Adapterに含まれていたNAVER ID Login SDKのバイナリが削除され、依存性設定方式に変更
@@ -1284,11 +1284,11 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 #### 機能追加
 * LINE IdP追加：iOS
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 1.11.1
     * (共通)ゲストログイン後にAddMapping成功時、loginForLastLoggedInPrivderをすると、AddMapping成功したIdPアカウントを使用してログインするように変更
     
-#### バグ修正
+#### 不具合修正
 * [SDK] 1.11.1
     * (共通)メンテナンス解除後にAPI進行(login/push/purchaseなど)ができない問題を修正
 
@@ -1302,7 +1302,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 * Server API追加
     * getSimpleLaunching：クライアントアプリ起動時に提供されるLaunching情報の確認用API
     
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 1.11.0
     * (共通)LocalizedString日本語翻訳を追加
     * (共通)認証APIを呼び出した時に初期化、ログインをしない場合は明確にエラーコードを区別するように内部ロジックを改善
@@ -1314,7 +1314,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 ### 1.9.1 (2018.05.29) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.9.1/GamebaseSDK-iOS.zip)
 
-#### バグ修正
+#### 不具合修正
 * [SDK] 1.9.1
     * (iOS) Gamebase WebView NavigationBar領域にタイトル、戻る、閉じるボタンが表示されない現象を修正
   
@@ -1330,14 +1330,14 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 * 利用停止の登録時、ユーザーのリーダーボード(ランキング)データを削除できるオプションを追加(TOAST Leaderboardを使用する場合に限る)
     * 利用停止登録メニューまたは、App Guard連携ページで使用可能
 
-#### バグ修正
+#### 不具合修正
 * [SDK] 1.9.0
     * (iOS) NAVERアカウントを利用してログイン中にApp to Webログインを試行時、サーバーから受け取ったSchemeの形式が変更され、ログインされない現象を修正
     * (iOS) AdapterからUnderlyingErrorオブジェクトを受け取ってゲームユーザーに伝達するエラーオブジェクトを作成するロジックで、メッセージおよびUnderlying Errorの設定ができていない問題を修正
 
 ### 1.8.1 (2018.04.12) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.8.1/GamebaseSDK-iOS.zip)
-#### バグ修正
+#### 不具合修正
 * [SDK] 1.8.1
     * (Android. iOS)registerPushを呼び出す時、displayLanguageCodeをnullで渡すと、registerPushが失敗する問題を修正
 
@@ -1354,13 +1354,13 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 * Observer機能の開発およびAPI追加
     * (SDK共通)メンテナンスなど、アプリ状態/ネットワーク状態/ゲームユーザー状態(利用停止)変更事項に対するListenerを、Observerの登録を通して一括処理できるAPIを追加
 
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 1.8.0
     * (共通)Observer機能追加に伴い、次のAPIがDeprecated：LaunchingStatus Listener、Network Listener(既存ユーザーは継続して使用可能)
     * (iOS)PAYCO簡単ログイン3rd SDK v1.2.2適用：ログイン成功時、トークン有効期限切れ情報(expires_in)を提供、iPhoneXログインUI改善
     * (iOS)iPhoneXをサポートするために、Webviewを使用したインターフェイスを修正
 
-#### バグ修正
+#### 不具合修正
 * 国コード(contry code)が10文字以上の場合、同時接続データが保存されない現象を修正
 
 ### 1.7.0 (2018.02.22) 
@@ -1372,7 +1372,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 
 ### 1.6.0 (2018.01.25) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.6.0/GamebaseSDK-iOS.zip)
-#### バグ修正
+#### 不具合修正
 * [SDK] 1.6.0
     * (iOS)WebViewを呼び出した時、クラッシュが発生することがある部分に対する防御ロジック処理
 
@@ -1386,11 +1386,11 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 
 ### 1.4.0 (2017.11.23) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.4.0/GamebaseSDK-iOS.zip)
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 1.4.0アップデート
     * (iOS)close/backボタンリソースがない時、'x', '<'などのテキストが表示されていた問題をデフォルト値に変更
 
-#### バグ修正
+#### 不具合修正
 * [SDK] 1.4.0アップデート
     * (iOS)WebViewローンチ後、端末の回転時にNavigationBar Titleがresetされるエラーを修正
     * (iOS)WebViewのNavigationBar Heightをカスタマイズする時、NavigationBarの背景部分が重なって表示されるエラーを修正
@@ -1410,7 +1410,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 
 ### 1.1.5 (2017.07.20) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.5/GamebaseSDK-iOS.zip)
-#### 機能改善/変更
+#### 機能改善・変更
 * Gamebaseサービスの利用を中止した時、関連データを削除するためのバッチ機能を追加
 * [SDK] 1.1.5アップデート
     * システムポップアップAPIを追加(showAlertWithTitle)
@@ -1420,21 +1420,21 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 
 ### 1.1.4 (2017.05.25) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.4/GamebaseSDK-iOS.zip)
-#### 機能改善/変更
+#### 機能改善・変更
 * Gamebaseサービスの利用を中止した時、関連データを削除するためのバッチ機能を追加
 * [SDK] 1.1.4アップデート
     * ランタイムのうち、決済Storeを変更できるAPIを提供
 
 ### 1.1.2 (2017.04.04) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.2/GamebaseSDK-iOS.zip)
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 1.1.2アップデート
     * ゲームローンチ時、メンテナンス、緊急告知ポップアップを改善
     * Unity Pluginデバッグログ追加および例外詳細処理
 
 ### 1.1.0 (2017.03.21) 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.0/GamebaseSDK-iOS.zip)
-#### 機能改善/変更
+#### 機能改善・変更
 * [SDK] 1.1.0アップデート
     * 外部AccessTokenを受け取って、idPLoginするインターフェイスを追加
     * [UI機能追加](./aos-ui)：Custom Webview、AlertDialog
