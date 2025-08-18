@@ -1,5 +1,15 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.73.1 (2025. 08. 12.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.1/GamebaseSDK-iOS.zip)
+
+#### Feature Updates
+* External SDK update
+    * Facebook iOS SDK (18.0.0)
+
+#### Bug Fixes
+* Fixed an issue that caused an error when signing in Twitter.
+
 ### 2.73.0 (2025. 07. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-iOS.zip)
 

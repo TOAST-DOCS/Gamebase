@@ -16,7 +16,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 | --- | --- | --- | --- | --- |
 | Gamebase | gamebase-sdk | nhncloud-core-1.9.5<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-jdk8<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android | Gamebaseのインターフェイス及び核心ロジックを含む | API 21(Lollipop, OS 5.0) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Appleログインをサポート | - |
-|  | gamebase-adapter-auth-facebook | facebook-login-16.1.2 | Facebookログインをサポート | - |
+|  | gamebase-adapter-auth-facebook | facebook-login-18.0.0 | Facebookログインをサポート | - |
 |  | gamebase-adapter-auth-google | credentials-play-services-auth-1.3.0<br>play-services-auth-20.3.0 | Googleログインをサポート | - |
 |  | gamebase-adapter-auth-gpgs-v2 | play-services-games-v2-20.1.2 | GPGS(Google Play Games Services) V2ログインをサポート<br>Player IDベース | - |
 |  | gamebase-adapter-auth-gpgs-autologin | play-services-games-v2-20.1.2 | GPGS(Google Play Games Services)自動ログインをサポート | - |

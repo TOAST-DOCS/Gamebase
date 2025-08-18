@@ -1,5 +1,20 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.73.1 (2025. 08. 12.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.1/GamebaseSDK-Android.zip)
+
+### Feature Updates
+
+* External SDK update: Facebook Android SDK(18.0.0)
+* Improved internal logic
+
+#### Bug Fixes
+
+* Fixed an issue where Naver login would fail when building with AGP 8.5.
+* Fixed an issue where the size of the dialog exceeds the screen size on devices with punch holes when selecting Terms and Conditions ->  Learn More.
+
+
 ### 2.73.0 (2025. 07. 15.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-Android.zip)
