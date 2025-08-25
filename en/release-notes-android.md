@@ -4,15 +4,16 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.1/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
+### Feature Updates
 
-* 외부 SDK 업데이트: Facebook Android SDK(18.0.0)
-* 내부 로직 개선
+* External SDK update: Facebook Android SDK(18.0.0)
+* Improved internal logic
 
-#### 버그 수정
+#### Bug Fixes
 
-* AGP 8.5로 빌드 시 네이버 로그인이 실패하는 이슈를 수정하였습니다.
-* 약관 -> 더보기 시 펀치홀이 있는 단말기에서 dialog의 크기가 화면을 넘어가는 이슈를 수정하였습니다.
+* Fixed an issue where Naver login would fail when building with AGP 8.5.
+* Fixed an issue where the size of the dialog exceeds the screen size on devices with punch holes when selecting Terms and Conditions ->  Learn More.
+
 
 ### 2.73.0 (2025. 07. 15.)
 

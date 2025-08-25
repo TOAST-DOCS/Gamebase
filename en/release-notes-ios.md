@@ -3,12 +3,12 @@
 ### 2.73.1 (2025. 08. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.1/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* External SDK update
     * Facebook iOS SDK (18.0.0)
 
-#### 버그 수정
-* Twitter 로그인 시 에러가 발생하는 버그를 수정하였습니다.
+#### Bug Fixes
+* Fixed an issue that caused an error when signing in Twitter.
 
 ### 2.73.0 (2025. 07. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-iOS.zip)
