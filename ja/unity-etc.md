@@ -1198,9 +1198,15 @@ Gamebaseは、顧客の問い合わせに対応するための機能を提供し
 > 詳細はNHN Cloud Contactサービスの利用ガイドを参照してください。
 > [NHN Cloud Online Contact Guide](https://docs.nhncloud.com/ja/Contact%20Center/ja/online-contact-overview/)
 
+#### 権限設定
+
+* [Game > Gamebase > Android SDK使用ガイド > ETC > Contact](aos-etc/#contact)
+* [Game > Gamebase > iOS SDK使用ガイド > ETC > Contact](ios-etc/#contact)
+
+
 #### Customer Service Type
 
-**Gamebaseコンソール > App > InApp URL > Service center**では、以下の3つのタイプのサポートを選択できます。
+**Gamebaseコンソール > App > InApp URL > Service center**で、以下の3つのタイプのサポートを選択できます。
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
 
 | Customer Service Type     | Required Login |
@@ -1283,22 +1289,6 @@ public void SampleOpenContact()
     });
 }
 ```
-
-> <font color="red">[注意]</font><br/>
->
-> サポートへお問い合わせする時、ファイルの添付が必要な場合があります。
-> そのため、ユーザーからカメラ撮影やStorage保存の権限をランタイムに取得する必要があります。
->
-> Androidユーザー
->
-> * [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
->
-> * Unityユーザーは、以下のガイドを参照して実装できます。
-> [Unity Guide : Requesting Permissions](https://docs.unity3d.com/2018.4/Documentation/Manual/android-RequestingPermissions.html)
->
-> iOSユーザー
->
-> * info.plistに'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description'を設定してください。
 
 #### Request Contact URL
 

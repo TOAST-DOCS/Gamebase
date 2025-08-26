@@ -1,5 +1,15 @@
 ## Game > Gamebase > 릴리스 노트 > Unity
 
+### 2.74.0 (2025. 08. 26.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.74.0/GamebaseSDK-Unity.zip)
+
+#### 버그 수정
+- (iOS) ChangeLogin 시 발생하던 크래시 이슈를 수정했습니다.
+- (macOS) GamebaseUtil에서 발생하던 DllNotFoundException 문제를 수정했습니다.
+
+#### 기타
+- 최소 지원 버전이 Unity 2022.3.10으로 상향되었습니다.
+
 ### 2.73.2 (2025. 07. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.2/GamebaseSDK-Unity.zip)
 
