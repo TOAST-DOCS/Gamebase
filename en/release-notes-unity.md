@@ -3,19 +3,19 @@
 ### 2.73.0 (2025. 07. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
+#### Added Features
 
-#### 기능 개선/변경
-- (Windows, macOS) IdP 로그인 시 웹뷰에서 외부 브라우저로 변경했습니다.
-    - 지원 브라우저
-        - Windows : 모든 브라우저
+#### Feature Updates
+- (Windows, macOS) Changed from webview to external browser when logging in to IdP.
+    - Supported Browsers
+        - Windows : every browser
         - macOS : Chrome, Safari, Firefox, whale
 
-- 외부 브라우저 로그인 취소 API를 추가했습니다.
-    - 진행 중인 외부 브라우저 로그인 요청 중 IDP 를 변경하고 싶을 때, 기존 요청을 취소하기 위함.
+- Added external browser login cancellation API.
+    - To change the IDP during an ongoing external browser login request, cancel the existing request.
     - CancelLoginWithExternalBrowser()
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.73.0](./release-notes-android/#2730-2025-07-15)
 * [Gamebase iOS SDK 2.73.0](./release-notes-ios/#2730-2025-07-15)
 
