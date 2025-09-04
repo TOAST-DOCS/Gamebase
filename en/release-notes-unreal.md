@@ -1,5 +1,28 @@
 ## Game > Gamebase > Release Notes > Unreal
 
+### 2.73.0 (2025. 07. 15.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-Unreal.zip)
+
+#### Feature Updates
+
+* (Windows) For IdPs that do not use SDKs, the process has been changed to proceed with external browser login.
+    * An API has been added to cancel login when an external browser login is in progress.
+        * CancelLoginWithExternalBrowser
+        * Please refer to the following guide document for how to call the API.
+            * [Game > Gamebase > Unreal SDK User Guide > Authentication> Login > Login with IdP > Cancel Login with External Browser](./unreal-authentication/#cancel-login-with-external-browser)
+* (Windows) Added a message when logging into Steam to indicate Steamworks initialization failure to help identify the cause.
+* Improved internal logic.
+
+#### Bug Fixes
+
+* Fixed EOSSDK module not being included when not using Epic Games-related features.
+* (Windows) Fixed a crash when using an unconfigured store in the console.
+
+#### Platform-specific Changes
+
+* [Gamebase Android SDK 2.73.0](./release-notes-android/#2730-2025-07-15)
+* [Gamebase iOS SDK 2.73.0](./release-notes-ios/#2730-2025-07-15)
+
 ### 2.72.0 (2025. 06. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.0/GamebaseSDK-Unreal.zip)
 

@@ -806,9 +806,14 @@ Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
 > [NHN Cloud Online Contact Guide](https://docs.nhncloud.com/ko/Contact%20Center/ko/online-contact-overview/)
 >
 
+> <font color="red">[주의]</font><br/>
+>
+> 고객 센터 문의 시 파일 첨부를 위해 카메라 또는 앨범 접근이 필요할 수 있습니다.
+> info.plist에 'Privacy - Camera Usage Description', 'Privacy — Microphone Usage Description'을 설정하십시오.
+
 #### Customer Service Type
 
-**Gamebase 콘솔 > App > InApp URL > Service center** 에서는 아래와 같이 3가지 유형의 고객 센터를 선택할 수 있습니다.
+**Gamebase 콘솔 > App > InApp URL > Service center**에서는 아래와 같이 3가지 유형의 고객 센터를 선택할 수 있습니다.
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
 
 | Customer Service Type     | Required Login |
@@ -878,14 +883,9 @@ TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니�
 }];
 ```
 
-> <font color="red">[주의]</font><br/>
->
-> 고객 센터 문의 시 파일 첨부를 위해 카메라 또는 앨범 접근이 필요할 수 있습니다.
-> info.plist에 'Privacy - Camera Usage Description', 'Privacy — Microphone Usage Description'을 설정하십시오.
-
 #### Request Contact URL
 
-고객 센터 웹뷰를 표시하는데 사용되는 URL을 얻을 수 있습니다.
+고객 센터 웹뷰를 표시하는 데 사용되는 URL을 얻을 수 있습니다.
 
 **API**
 

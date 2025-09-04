@@ -1,5 +1,24 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.73.0 (2025. 07. 15.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-Unity.zip)
+
+#### Added Features
+
+#### Feature Updates
+- (Windows, macOS) Changed from webview to external browser when logging in to IdP.
+    - Supported Browsers
+        - Windows : every browser
+        - macOS : Chrome, Safari, Firefox, whale
+
+- Added external browser login cancellation API.
+    - To change the IDP during an ongoing external browser login request, cancel the existing request.
+    - CancelLoginWithExternalBrowser()
+
+#### Platform-specific Changes
+* [Gamebase Android SDK 2.73.0](./release-notes-android/#2730-2025-07-15)
+* [Gamebase iOS SDK 2.73.0](./release-notes-ios/#2730-2025-07-15)
+
 ### 2.72.0 (2025. 06. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.0/GamebaseSDK-Unity.zip)
 

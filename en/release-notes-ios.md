@@ -1,5 +1,20 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.73.0 (2025. 07. 15.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-iOS.zip)
+
+#### Feature Updates
+* The minimum supported version of Xcode has been changed to 16.0. 
+
+#### Bug Fixes
+* Fixed a bug where the agreed terms and conditions information was not saved when calling updateTerms after logging in.
+
+### 2.72.1 (July 1, 2025)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.1/GamebaseSDK-iOS.zip)
+
+#### Feature Updates
+* Fixed a bug that caused GameCenter to crash when logging in on certain iOS 14 devices.
+
 ### 2.72.0 (2025. 06. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.0/GamebaseSDK-iOS.zip)
 

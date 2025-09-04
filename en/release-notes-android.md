@@ -1,12 +1,30 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.73.0 (2025. 07. 15.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-Android.zip)
+
+```
+The minimum supported version has been increased to Android 5.1 or later. (minSdk 21 → 22)
+The minimum Android Gradle Plugin version has been increased to 7.4.2 or later. (4.0.1 -> 7.4.2)
+```
+
+#### Feature Updates
+
+* Improved internal logic
+
+#### Bug Fixes
+
+* Fixed an issue where the login webview would incorrectly calculate margin sizes when rotating the screen.
+
 ### 2.72.0 (2025. 06. 24.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.0/GamebaseSDK-Android.zip)
 
 #### 기능 개선/변경
 
-* 웹소켓 모듈이 중복 호출되는 경우 ArrayIndexOutOfBoundsException이 발생할 수 있는 로직 수정
+* Fixed logic that could cause ArrayIndexOutOfBoundsException when the websocket module was called multiple times.
+    * This issue only occurs in Gamebase Android SDK 2.71.2.
 
 #### 버그 수정
 

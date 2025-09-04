@@ -1,5 +1,13 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.71.2
+
+### Android
+
+* Gamebase Android SDK 2.71.2 has the following issues:
+    * The WebSocket module may intermittently crash with an ArrayIndexOutOfBoundsException when the network connection is lost and then recovered, or when the app is moved to the background and then brought back to the foreground.    
+    * Use Gamebase Android SDK 2.72.0, which has fixed this issue.
+
 ## 2.70.0
 
 ### Android
