@@ -3,22 +3,22 @@
 ### 2.73.0 (2025. 07. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 개선/변경
+#### Feature Updates
 
-* (Windows) SDK를 사용하지 않는 IdP의 경우 외부 브라우저 로그인으로 진행되도록 변경되었습니다.
-    * 외부 브라우저 로그인을 진행 중일 때, 로그인을 취소할 수 있는 API가 추가되었습니다.
+* (Windows) For IdPs that do not use SDKs, the process has been changed to proceed with external browser login.
+    * An API has been added to cancel login when an external browser login is in progress.
         * CancelLoginWithExternalBrowser
-        * API 호출 방법은 다음 가이드 문서를 참고하시기 바랍니다.
-            * [Game > Gamebase > Unreal SDK 사용 가이드 > 인증 > Login > Login with IdP > Cancel Login with External Browser](./unreal-authentication/#cancel-login-with-external-browser)
-* (Windows) Steam 로그인 시 Steamworks 초기화 실패 여부 메세지를 추가하여 원인을 파악하기 쉽도록 변경했습니다.
-* 내부 로직을 개선했습니다.
+        * Please refer to the following guide document for how to call the API.
+            * [Game > Gamebase > Unreal SDK User Guide > Authentication> Login > Login with IdP > Cancel Login with External Browser](./unreal-authentication/#cancel-login-with-external-browser)
+* (Windows) Added a message when logging into Steam to indicate Steamworks initialization failure to help identify the cause.
+* Improved internal logic.
 
-#### 버그 수정
+#### Bug Fixes
 
-* Epic Games 관련 기능을 사용하지 않을 때는 EOSSDK 모듈이 포함되지 않도록 수정되었습니다.
-* (Windows) 콘솔에서 설정되지 않은 스토어를 사용할 때 크래시가 발생하지 않도록 수정되었습니다.
+* Fixed EOSSDK module not being included when not using Epic Games-related features.
+* (Windows) Fixed a crash when using an unconfigured store in the console.
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 
 * [Gamebase Android SDK 2.73.0](./release-notes-android/#2730-2025-07-15)
 * [Gamebase iOS SDK 2.73.0](./release-notes-ios/#2730-2025-07-15)
