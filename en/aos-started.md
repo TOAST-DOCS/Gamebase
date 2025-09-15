@@ -14,7 +14,7 @@ To execute Gamebase in Android, the following system environment is required.
 
 | Gamebase SDK | Gamebase Adapter | External SDK | Purpose | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk | nhncloud-core-1.9.5<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-jdk8<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android | Include the interface and core logic of Gamebase | API 21(Lollipop, OS 5.0) |
+| Gamebase | gamebase-sdk | nhncloud-core-1.12.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-jdk8<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android | Include the interface and core logic of Gamebase | API 21(Lollipop, OS 5.0) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Support Sign In With Apple login | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-18.0.0 | Support Facebook login | - |
 |  | gamebase-adapter-auth-google | credentials-play-services-auth-1.3.0<br>play-services-auth-20.3.0 | Support Google login | - |
@@ -23,13 +23,12 @@ To execute Gamebase in Android, the following system environment is required.
 |  | gamebase-adapter-auth-hangame | hangame-id-1.17.2 | Support Hangame login | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | Support LINE login | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.8.0 | Support NAVER login  | - |
-|  | gamebase-adapter-auth-payco | payco-login-1.5.15| Support PAYCO login | - |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.17 | Support PAYCO login | - |
 |  | gamebase-adapter-auth-twitter | - | Support Twitter login | - |
-|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.5.0 | Support Weibo login | - |
+|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.10.5 | Support Weibo login | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.19.3<br>kakaogame.gamesdk-3.19.3<br>kakaogame.common-3.19.3<br>kakao.sdk.v2-auth-2.17.0<br>kakao.sdk.v2-partner-auth-2.17.0<br>kakao.sdk.v2-common-2.17.0<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 23(Marshmallow, OS 6.0) |
 |  | gamebase-adapter-auth-steam | - | Support Steam login | API 25(Nougat, OS 7.1.1) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | Support in-app purchase | - |
-|  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Support Amazon Appstore | - |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Support Samsung Galaxy Store |  - |
 |  | gamebase-adapter-purchase-google | billing-7.1.1<br>nhncloud-iap-google | Support Google Play | API 24(Nougat, OS 7.0)<br>[Desugaring declaration](https://developer.android.com/studio/write/java8-support#library-desugaring) required for API 23 or lower support |
 |  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | Support Huawei AppGallery | - |
@@ -39,7 +38,6 @@ To execute Gamebase in Android, the following system environment is required.
 |  | gamebase-adapter-purchase-onestore-external | nhncloud-iap-onestore-external | Support ONE store external payment function | - |
 |  | gamebase-adapter-purchase-mycard | nhncloud-iap-mycard | Support MyCard payment function | - |
 | Gamebase Push Adapters | gamebase-adapter-toastpush | nhncloud-push-analytics<br>nhncloud-push-core<br>nhncloud-push-notification | Support Push | - |
-|  | gamebase-adapter-push-adm | nhncloud-push-adm | Support Amazon Device Messaging | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>nhncloud-push-fcm | Support Firebase Cloud Messaging | - |
 
 
@@ -59,7 +57,6 @@ To execute Gamebase in Android, the following system environment is required.
     * [Game > Gamebase > Store Console Guide > Google Console Guide](./console-google-guide)
     * [Game > Gamebase > Store Console Guide > ONE store Console Guide](./console-onestore-guide)
     * [Game > Gamebase > Store Console Guide > GALAXY Store Console Guide](./console-galaxy-guide)
-    * [Game > Gamebase > Store Console Guide > Amazon Appstore Console Guide](./console-amazon-guide)
     * [Game > Gamebase > Store Console Guide > Huawei App Gallery Console Guide](./console-huawei-guide)
     * [Game > Gamebase > Store Console Guide > MyCard Console Guide](./console-mycard-guide)
     * See the following guide to register items.
@@ -90,8 +87,6 @@ To execute Gamebase in Android, the following system environment is required.
         * [Samsung Developers > Samsung IAP > Technical Documents > Test Guide > 3. IAP Testing > 3.2 Test Type > (3) Production Closed Beta Test](https://developer.samsung.com/iap/iap-test-guide.html)
         * [GALAXY Store > App > Registered Apps > Binary > Beta Test > Tester Settings](https://seller.samsungapps.com/application)
         * Payment test is available only on Samsung devices.
-    * Amazon Appstore
-        * [Amazon Appstore > In-App Purchasing > Test IAP Apps > IAP Testing Overview](https://developer.amazon.com/docs/in-app-purchasing/iap-testing-overview.html)
     * Huawei App Gallery
         * [Huawei Developers > HMS Core > App Services > In-App Purchases > Guides > Sandbox Testing](https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/sandbox-testing-0000001050035039)
 
@@ -164,13 +159,11 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v21:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-external:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
-    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-amazon:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-huawei:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-mycard:$GAMEBASE_SDK_VERSION"
 
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
-    implementation "com.toast.android.gamebase:gamebase-adapter-push-adm:$GAMEBASE_SDK_VERSION"
     
     // >>> Regarding how to use the following modules, please contact the Customer Center.
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangame:$GAMEBASE_SDK_VERSION"
@@ -542,28 +535,9 @@ class MyApplication: GamebaseMyCardApplication() {
         <!-- [Galaxy store] Configurations end -->
     </queries>
     
-    <!-- [Amazon Appstore] Configuration begin -->
-    <uses-permission
-        android:name="android.permission.QUERY_ALL_PACKAGES"
-        tools:ignore="QueryAllPackagesPermission" />
-    <!-- [Amazon Appstore] Configuration end -->
-    
     <!-- [Android11] settings end -->
 </manifest>
 ```
-
-* For Amazon Appstore, add the **QUERY_ALL_PACKAGES** permission instead of the 'queries' element.
-
-> <font color="red">[Caution]</font><br/>
->
-> * The **QUERY_ALL_PACKAGES** permission is declared exclusively for Amazon Appstore, so be careful not to apply it when running Google Play builds.
-
-### Proguard
-
-* Amazon Device Messaging
-    * To use Proguard with Amazon Device Messaging (ADM), you must apply Proguard by referring to the following guide.
-        * [NHN Cloud > SDK User Guide > Push > Android > Amazon Device Messaging Settings > Download the ADM SDK](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#adm-sdk)
-        * [NHN Cloud > SDK User Guide > Push > Android > Amazon Device Messaging Settings > Proguard Settings](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#proguard)
 
 ## Recommended Flow
 

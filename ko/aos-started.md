@@ -14,7 +14,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 용도 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk | nhncloud-core-1.9.5<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-jdk8<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 21(Lollipop, OS 5.0) |
+| Gamebase | gamebase-sdk | nhncloud-core-1.12.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-jdk8<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 21(Lollipop, OS 5.0) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Apple 로그인을 지원 | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-18.0.0 | Facebook 로그인을 지원 | - |
 |  | gamebase-adapter-auth-google | credentials-play-services-auth-1.3.0<br>play-services-auth-20.3.0 | Google 로그인을 지원 | - |
@@ -23,13 +23,12 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 |  | gamebase-adapter-auth-hangame | hangame-id-1.17.2 | Hangame 로그인을 지원 | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | LINE 로그인을 지원 | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.8.0 | NAVER 로그인을 지원 | - |
-|  | gamebase-adapter-auth-payco | payco-login-1.5.15 | PAYCO 로그인을 지원 | - |
+|  | gamebase-adapter-auth-payco | payco-login-1.5.17 | PAYCO 로그인을 지원 | - |
 |  | gamebase-adapter-auth-twitter | - | Twitter 로그인을 지원 | - |
-|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.5.0 | Weibo 로그인을 지원 | - |
+|  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.10.5 | Weibo 로그인을 지원 | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.19.3<br>kakaogame.gamesdk-3.19.3<br>kakaogame.common-3.19.3<br>kakao.sdk.v2-auth-2.17.0<br>kakao.sdk.v2-partner-auth-2.17.0<br>kakao.sdk.v2-common-2.17.0<br>play-services-ads-identifier-17.0.0 | Kakao 로그인을 지원 | API 23(Marshmallow, OS 6.0) |
 |  | gamebase-adapter-auth-steam | - | Steam 로그인을 지원 | API 25(Nougat, OS 7.1.1) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | 게임 내 결제 지원 | - |
-|  | gamebase-adapter-purchase-amazon | nhncloud-iap-amazon | Amazon Appstore를 지원 | - |
 |  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Samsung Galaxy Store를 지원 | - |
 |  | gamebase-adapter-purchase-google | billing-7.1.1<br>nhncloud-iap-google | Google Play를 지원 | API 24(Nougat, OS 7.0)<br>API 23 이하 지원을 위해서는 [desugaring 선언](https://developer.android.com/studio/write/java8-support#library-desugaring) 필요 |
 |  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | Huawei AppGallery를 지원 | - |
@@ -39,7 +38,6 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 |  | gamebase-adapter-purchase-onestore-external | nhncloud-iap-onestore-external | ONE store 외부 결제 기능을 지원 | - |
 |  | gamebase-adapter-purchase-mycard | nhncloud-iap-mycard | MyCard 결제 기능을 지원 | - |
 | Gamebase Push Adapters | gamebase-adapter-toastpush | nhncloud-push-analytics<br>nhncloud-push-core<br>nhncloud-push-notification | Push를 지원 | - |
-|  | gamebase-adapter-push-adm | nhncloud-push-adm | Amazon Device Messaging을 지원 | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>nhncloud-push-fcm | Firebase Cloud Messaging을 지원 | - |
 
 ## Setting
@@ -58,7 +56,6 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
     * [Game > Gamebase > 스토어 콘솔 가이드 > Google 콘솔 가이드](./console-google-guide)
     * [Game > Gamebase > 스토어 콘솔 가이드 > ONE Store 콘솔 가이드](./console-onestore-guide)
     * [Game > Gamebase > 스토어 콘솔 가이드 > GALAXY 콘솔 가이드](./console-galaxy-guide)
-    * [Game > Gamebase > 스토어 콘솔 가이드 > Amazon 콘솔 가이드](./console-amazon-guide)
     * [Game > Gamebase > 스토어 콘솔 가이드 > Huawei 콘솔 가이드](./console-huawei-guide)
     * [Game > Gamebase > 스토어 콘솔 가이드 > MyCard 콘솔 가이드](./console-mycard-guide)
     * 아래 가이드를 참고하여 아이템을 등록합니다.
@@ -89,8 +86,6 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
         * [Samsung Developers > Samsung IAP > Technical Documents > Test Guide > 3. IAP Testing > 3.2 Test Type > (3) Production Closed Beta Test](https://developer.samsung.com/iap/iap-test-guide.html)
         * [GALAXY store > 앱 > 등록한 앱 > 바이너리 > Beta Test > Tester 설정](https://seller.samsungapps.com/application)
         * 삼성 단말기에서만 결제 테스트가 가능합니다.
-    * Amazon Appstore
-        * [Amazon Appstore > In-App Purchasing > Test IAP Apps > IAP Testing Overview](https://developer.amazon.com/docs/in-app-purchasing/iap-testing-overview.html)
     * Huawei App Gallery
         * [Huawei Developers > HMS Core > App Services > In-App Purchases > Guides > Sandbox Testing](https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/sandbox-testing-0000001050035039)
 
@@ -163,13 +158,11 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v21:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-external:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-galaxy:$GAMEBASE_SDK_VERSION"
-    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-amazon:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-huawei:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-mycard:$GAMEBASE_SDK_VERSION"
 
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
-    implementation "com.toast.android.gamebase:gamebase-adapter-push-adm:$GAMEBASE_SDK_VERSION"
     
     // >>> 다음 모듈의 사용 방법은 고객 센터로 문의 하시기 바랍니다.
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangame:$GAMEBASE_SDK_VERSION"
@@ -541,28 +534,9 @@ class MyApplication: GamebaseMyCardApplication() {
         <!-- [Galaxy store] Configurations end -->
     </queries>
     
-    <!-- [Amazon Appstore] Configuration begin -->
-    <uses-permission
-        android:name="android.permission.QUERY_ALL_PACKAGES"
-        tools:ignore="QueryAllPackagesPermission" />
-    <!-- [Amazon Appstore] Configuration end -->
-    
     <!-- [Android11] settings end -->
 </manifest>
 ```
-
-* Amazon Appstore에서는 'queries' 요소 대신 **QUERY_ALL_PACKAGES** 권한을 추가합니다.
-
-> <font color="red">[주의]</font><br/>
->
-> * **QUERY_ALL_PACKAGES** 권한은 Amazon Appstore 전용 선언이므로 Google Play 빌드시에는 적용하지 않도록 주의하시기 바랍니다.
-
-### Proguard
-
-* Amazon Device Messaging
-    * Amazon Device Messaging(ADM)에서 Proguard를 사용하는 경우, 다음 가이드를 확인하여 적용하셔야 합니다.
-        * [NHN Cloud > SDK 사용 가이드 > Push > Android > Amazon Device Messaging 설정 > ADM SDK 다운로드](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#adm-sdk)
-        * [NHN Cloud > SDK 사용 가이드 > Push > Android > Amazon Device Messaging 설정 > Proguard 설정](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-android/#proguard)
 
 ## Recommended Flow
 
