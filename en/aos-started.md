@@ -24,7 +24,7 @@ To execute Gamebase in Android, the following system environment is required.
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | Support LINE login | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.8.0 | Support NAVER login  | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.17 | Support PAYCO login | - |
-|  | gamebase-adapter-auth-twitter | - | Support Twitter login | - |
+|  | gamebase-adapter-auth-twitter | - | Support Twitter login | API 25(Nougat, OS 7.1.1) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.10.5 | Support Weibo login | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.19.3<br>kakaogame.gamesdk-3.19.3<br>kakaogame.common-3.19.3<br>kakao.sdk.v2-auth-2.17.0<br>kakao.sdk.v2-partner-auth-2.17.0<br>kakao.sdk.v2-common-2.17.0<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 23(Marshmallow, OS 6.0) |
 |  | gamebase-adapter-auth-steam | - | Support Steam login | API 25(Nougat, OS 7.1.1) |

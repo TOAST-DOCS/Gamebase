@@ -24,7 +24,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | Lineログインをサポート | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.7.0 | NAVERログインをサポート | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.17 | Paycoログインをサポート | - |
-|  | gamebase-adapter-auth-twitter | - | Twitterログインをサポート | - |
+|  | gamebase-adapter-auth-twitter | - | Twitterログインをサポート | API 25(Nougat, OS 7.1.1) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.10.5 | Weiboログインをサポート | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.19.3<br>kakaogame.gamesdk-3.19.3<br>kakaogame.common-3.19.3<br>kakao.sdk.v2-auth-2.17.0<br>kakao.sdk.v2-partner-auth-2.17.0<br>kakao.sdk.v2-common-2.17.0<br>play-services-ads-identifier-17.0.0 | Kakaoログインをサポート | API 23(Marshmallow, OS 6.0) |
 |  | gamebase-adapter-auth-steam | - | Steamログインをサポート | API 25(Nougat, OS 7.1.1) |
