@@ -14,7 +14,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 用途 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk | nhncloud-core-1.12.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-jdk8<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android | Gamebaseのインターフェイス及び核心ロジックを含む | API 21(Lollipop, OS 5.0) |
+| Gamebase | gamebase-sdk | nhncloud-core-1.12.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-jdk8<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android | Gamebaseのインターフェイス及び核心ロジックを含む | API 22(Lollipop MR1, OS 5.1) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Appleログインをサポート | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-18.0.0 | Facebookログインをサポート | - |
 |  | gamebase-adapter-auth-google | credentials-play-services-auth-1.3.0<br>play-services-auth-20.3.0 | Googleログインをサポート | - |
@@ -24,7 +24,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | Lineログインをサポート | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.7.0 | NAVERログインをサポート | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.17 | Paycoログインをサポート | - |
-|  | gamebase-adapter-auth-twitter | - | Twitterログインをサポート | - |
+|  | gamebase-adapter-auth-twitter | - | Twitterログインをサポート | API 25(Nougat, OS 7.1.1) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.10.5 | Weiboログインをサポート | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.19.3<br>kakaogame.gamesdk-3.19.3<br>kakaogame.common-3.19.3<br>kakao.sdk.v2-auth-2.17.0<br>kakao.sdk.v2-partner-auth-2.17.0<br>kakao.sdk.v2-common-2.17.0<br>play-services-ads-identifier-17.0.0 | Kakaoログインをサポート | API 23(Marshmallow, OS 6.0) |
 |  | gamebase-adapter-auth-steam | - | Steamログインをサポート | API 25(Nougat, OS 7.1.1) |
@@ -126,10 +126,10 @@ repositories {
 
     // >>> [Huawei App Gallery]
     maven { url 'https://developer.huawei.com/repo/' }
-}
 
     // >>> [ONE store v21]
     maven { url 'https://repo.onestore.co.kr/repository/onestore-sdk-public' }
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -150,7 +150,6 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-steam:$GAMEBASE_SDK_VERSION"
 
     // >>> [Purchase Support under Android 7.0(API Level 24)]
-    // desugar_jdk_libs 2.+ needs AGP 7.4+
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
     
     // >>> Gamebase - Select Purchase Adapter

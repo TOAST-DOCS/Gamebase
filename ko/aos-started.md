@@ -14,7 +14,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 용도 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk | nhncloud-core-1.12.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-jdk8<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 21(Lollipop, OS 5.0) |
+| Gamebase | gamebase-sdk | nhncloud-core-1.12.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-jdk8<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android | Gamebase의 인터페이스 및 핵심 로직을 포함 | API 22(Lollipop MR1, OS 5.1) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Apple 로그인을 지원 | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-18.0.0 | Facebook 로그인을 지원 | - |
 |  | gamebase-adapter-auth-google | credentials-play-services-auth-1.3.0<br>play-services-auth-20.3.0 | Google 로그인을 지원 | - |
@@ -24,7 +24,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | LINE 로그인을 지원 | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.8.0 | NAVER 로그인을 지원 | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.17 | PAYCO 로그인을 지원 | - |
-|  | gamebase-adapter-auth-twitter | - | Twitter 로그인을 지원 | - |
+|  | gamebase-adapter-auth-twitter | - | Twitter 로그인을 지원 | API 25(Nougat, OS 7.1.1) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.10.5 | Weibo 로그인을 지원 | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.19.3<br>kakaogame.gamesdk-3.19.3<br>kakaogame.common-3.19.3<br>kakao.sdk.v2-auth-2.17.0<br>kakao.sdk.v2-partner-auth-2.17.0<br>kakao.sdk.v2-common-2.17.0<br>play-services-ads-identifier-17.0.0 | Kakao 로그인을 지원 | API 23(Marshmallow, OS 6.0) |
 |  | gamebase-adapter-auth-steam | - | Steam 로그인을 지원 | API 25(Nougat, OS 7.1.1) |
@@ -150,7 +150,6 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-steam:$GAMEBASE_SDK_VERSION"
 
     // >>> [Purchase Support under Android 7.0(API Level 24)]
-    // desugar_jdk_libs 2.+ needs AGP 7.4+
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5")
     
     // >>> Gamebase - Select Purchase Adapter
