@@ -1,5 +1,12 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.75.0 (2025. 09. 23.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 외부 SDK 업데이트
+    * Kakaogame iOS SDK (3.20.0)
+    
 ### 2.73.1 (2025. 08. 12.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.1/GamebaseSDK-iOS.zip)
 
@@ -13,17 +20,17 @@
 ### 2.73.0 (2025. 07. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* Xcode 최소 지원 버전이 16.0으로 변경되었습니다. 
+#### Feature Updates
+* The minimum supported version of Xcode has been changed to 16.0. 
 
-#### 버그 수정
-* 로그인 후 updateTerms 호출 시, 동의한 약관 정보가 저장되지 않는 버그를 수정하였습니다.
+#### Bug Fixes
+* Fixed a bug where the agreed terms and conditions information was not saved when calling updateTerms after logging in.
 
-### 2.72.1 (2025. 07. 01.)
+### 2.72.1 (July 1, 2025)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.1/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* iOS 14 특정 기기에서 GameCenter 로그인 시 크래시가 발생하는 버그를 수정하였습니다.
+#### Feature Updates
+* Fixed a bug that caused GameCenter to crash when logging in on certain iOS 14 devices.
 
 ### 2.72.0 (2025. 06. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.0/GamebaseSDK-iOS.zip)
