@@ -48,7 +48,7 @@ Then, include corresponding SDK files to a target of your project.
 |  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 12 or later |
 |  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.17.2 | Supports Hangame login | iOS 12 or later |
 |  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.4.0 | Supports Weibo login | iOS 12 or later |
-|  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.19.0 | Supports Kakao login | iOS 13 or later |
+|  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.20.0 | Supports Kakao login | iOS 13 or later<br/>Xcode 16.2 이상 |
 |  | GamebaseAuthSteamAdapter.xcframework |  | Supports Steam login | iOS 14 or later |
 | Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit<br/>NHNCloudIAP 1.8.5 | Supports in-game purchase | iOS 12 or later |
 | Gamebase Push Adapters | GamebasePushAdapter.xcframework | NHNCloudPush 1.8.5 | Supports Push | iOS 12 or later |
