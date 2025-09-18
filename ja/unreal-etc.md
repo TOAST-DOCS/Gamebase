@@ -945,7 +945,7 @@ Gamebaseは、顧客からの問い合わせに対応するための機能を提
 
 #### Customer Service Type
 
-**Gamebaseコンソール > App > InApp URL > Service center**では、以下の3つのタイプのサポートを選択できます。
+**Gamebase コンソール > App > Customer service**では、以下の3つのタイプのサポートを選択できます。
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
 
 | Customer Service Type     | Required Login |
