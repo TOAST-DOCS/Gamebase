@@ -1,12 +1,18 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.75.0
+
+### iOS
+
+* Kakaogame 인증의 Xcode 최소 지원 버전이 16.0에서 16.2로 변경되었습니다.
+
 ## 2.71.2
 
 ### Android
 
-* Gamebase Android SDK 2.71.2는 다음 이슈가 발생합니다.
-    * 네트워크 연결이 끊어진 후 복구되거나 앱을 백그라운드로 내렸다가 포그라운드로 활성화 시킨 경우, 간헐적으로 웹소켓 모듈에서 ArrayIndexOutOfBoundsException으로 인한 크래시가 발생할 수 있습니다.
-    * 이슈가 해결된 Gamebase Android SDK 2.72.0을 사용하세요.
+* Gamebase Android SDK 2.71.2 has the following issues:
+    * The WebSocket module may intermittently crash with an ArrayIndexOutOfBoundsException when the network connection is lost and then recovered, or when the app is moved to the background and then brought back to the foreground.    
+    * Use Gamebase Android SDK 2.72.0, which has fixed this issue.
 
 ## 2.70.0
 
