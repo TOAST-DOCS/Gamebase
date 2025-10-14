@@ -163,7 +163,7 @@ dependencies {
     // >>> Gamebase - Select Push Adapter
     implementation "com.toast.android.gamebase:gamebase-adapter-push-fcm:$GAMEBASE_SDK_VERSION"
     
-    // >>> 다음 모듈의 사용 방법은 고객 센터로 문의 하시기 바랍니다.
+    // >>> 다음 모듈의 사용 방법은 고객 센터로 문의하시기 바랍니다.
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangame:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangamejp:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangamejpemail:$GAMEBASE_SDK_VERSION"
