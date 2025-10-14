@@ -1,30 +1,39 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.75.0 (2025. 09. 23.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* (Windows) Mapping 기능 추가
+
+#### 기능 개선/변경
+* 내부 로직을 개선하였습니다.
+
 ### 2.74.0 (2025. 08. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.74.0/GamebaseSDK-Unity.zip)
 
 #### 버그 수정
-- (iOS) ChangeLogin 시 발생하던 크래시 이슈를 수정했습니다.
-- (macOS) GamebaseUtil에서 발생하던 DllNotFoundException 문제를 수정했습니다.
+* (iOS) ChangeLogin 시 발생하던 크래시 이슈를 수정했습니다.
+* (macOS) GamebaseUtil에서 발생하던 DllNotFoundException 문제를 수정했습니다.
 
 #### 기타
-- 최소 지원 버전이 Unity 2022.3.10으로 상향되었습니다.
+* 최소 지원 버전이 Unity 2022.3.10으로 상향되었습니다.
 
 ### 2.73.2 (2025. 07. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.2/GamebaseSDK-Unity.zip)
 
 #### 機能改善
-- (Standalone)ログインIDPの追加サポート: Twitter、Apple、LINE
+* (Standalone)ログインIDPの追加サポート: Twitter、Apple、LINE
 
 #### サポート終了
-- Amazon Appstoreのサポートを終了します。
+* Amazon Appstoreのサポートを終了します。
 
 ### 2.73.1 (2025. 07. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.1/GamebaseSDK-Unity.zip)
 
 #### 不具合修正
-- (iOS)ビルドエラー修正
-- (macOS) Webビューアダプタビルドエラーの修正
+* (iOS)ビルドエラー修正
+* (macOS) Webビューアダプタビルドエラーの修正
 
 ### 2.73.0 (2025. 07. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-Unity.zip)
@@ -32,14 +41,14 @@
 #### 機能追加
 
 #### 機能改善・変更
-- (Windows, macOS) IdPログイン時にWebビューから外部ブラウザに変更しました。
-	- サポートブラウザ
-		- Windows :全てのブラウザ
-		- macOS : Chrome, Safari, Firefox, whale
+* (Windows, macOS) IdPログイン時にWebビューから外部ブラウザに変更しました。
+	* サポートブラウザ
+		* Windows :全てのブラウザ
+		* macOS : Chrome, Safari, Firefox, whale
 
-- 外部ブラウザログインキャンセルAPIを追加しました。
-- 進行中の外部ブラウザログインリクエスト中にIDPを変更したい場合、既存のリクエストをキャンセルするため。
-	- CancelLoginWithExternalBrowser()
+* 外部ブラウザログインキャンセルAPIを追加しました。
+* 進行中の外部ブラウザログインリクエスト中にIDPを変更したい場合、既存のリクエストをキャンセルするため。
+	* CancelLoginWithExternalBrowser()
 
 #### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.73.0](./release-notes-android/#2730-2025-07-15)

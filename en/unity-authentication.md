@@ -372,7 +372,6 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 > May require when original functions of external services (such as Facebook) are in need within a game.
 >
 
-
 > <font color="red">[Caution]</font><br/>
 >
 > Development items external SDK requires to support need to be implemented by using external SDK's API, which Gamebase does not support.
@@ -474,8 +473,6 @@ public void Logout()
 }
 ```
 
-
-
 ## Withdraw
 
 Attempts account withdrawal while logged in.
@@ -547,6 +544,11 @@ Below shows an example.<br/>
 
 Mapping API includes Add Mapping API and Remove Mapping API.
 
+> <font color="red">[주의]</font><br/>
+>
+> Guest 로그인 중에 매핑을 성공하면 Guest IdP는 사라집니다.
+>
+
 ### Add Mapping Flow
 
 Implement mapping in the following order.
@@ -580,7 +582,6 @@ Call **Gamebase.AddMapping()** to try mapping.
 * Other errors
     * The mapping attempt has failed.
 
-
 ### Add Mapping
 
 Try mapping to another IdP while logged-in to a specific IdP.
@@ -602,6 +603,8 @@ Mapping simply adds IdP integration.
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
 static void AddMapping(string providerName, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
@@ -630,7 +633,6 @@ public void AddMapping(string providerName)
 
 This game interface allows authentication to be made with SDK provided by IdP, before applying Gamebase AddMapping with provided access token.
 
-
 * How to Set Credential Parameters
 
 | keyname | Usage | Value Type |
@@ -656,6 +658,8 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
 static void AddMapping(Dictionary<string, object> credentialInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
@@ -698,9 +702,21 @@ The following is an example of force mapping to Facebook:
 
 **API**
 
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
 ```cs
 static void AddMappingForcibly(GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+```
 
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+
+```cs
 // Legacy API
 static void AddMappingForcibly(string providerName, string forcingMappingKey, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
 static void AddMappingForcibly(string providerName, string forcingMappingKey, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
@@ -757,6 +773,12 @@ At this time, you need the `ForcingMappingTicket` obtained from the AddMapping A
 If the Change Login API call fails, the Gamebase login status remains as the existing UserID.
 
 **API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
 static void ChangeLogin(GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
@@ -816,6 +838,8 @@ After mapping is removed, Gamebase processes logout of the IdP.
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
 static void RemoveMapping(string providerName, GamebaseCallback.ErrorDelegate callback)
@@ -849,6 +873,9 @@ Return the list of IdPs mapped to user IDs.<br/>
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
 static List<string> GetAuthMappingList()
@@ -967,57 +994,6 @@ public void GetLastLoggedInProvider()
 > * When logged in with the "Gamebase.LoginForLastLoggedInProvider()” API, the authentication info cannot be retrieved.
 >     * If you need the user info, instead of "Gamebase.LoginForLastLoggedInProvider()” , use the {IDP_CODE} identical to the IDPCode that you want to use as the parameter to log in as the "Gamebase.Login(IDP_CODE, callback)" API.
 
-
-#### AccessToken
-
-Get Access Token from externally authentication SDK.
-
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-
-```cs
-static string GetAuthProviderAccessToken(string providerName)
-```
-
-**Example**
-```cs
-public void GetAuthProviderAccessToken(string providerName)
-{
-    string authProviderAccessToken = Gamebase.GetAuthProviderAccessToken(providerName);
-}
-```
-
-#### Profile
-
-Get Profile from externally authenticated SDK.
-
-**API**
-
-Supported Platforms
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
-<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-
-```cs
-static GamebaseResponse.Auth.AuthProviderProfile GetAuthProviderProfile(string providerName)
-```
-
-**Example**
-```cs
-public void GetAuthProviderProfile(string providerName)
-{
-    GamebaseRequest.AuthProviderProfile profile = Gamebase.GetAuthProviderProfile(providerName);
-}
-```
-
 ### Get Banned User Information
 
 If a user is registered while being banned in Gamebase Console,
@@ -1092,7 +1068,6 @@ public void QueryTransferAccount()
 }
 ```
 
-
 ### Renew TransferAccount
 Renews the issued TransferAccountInfo information.
 There are two types of renewal: **Auto Renew** and **Manual Renew**. You can select either **Renew Password Only** or **Renew Both ID and Password** to renew the TransferAccountInfo information.
@@ -1126,9 +1101,6 @@ public void RenewTransferAccountManualIdPassword(string accountId, string accoun
     });
 }
 ```
-
-
-
 
 ### Transfer Guest Account to Another Device
 Transfers the account with TransferAccount issued with **issueTransfer** API.

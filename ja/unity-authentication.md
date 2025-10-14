@@ -524,8 +524,8 @@ public void Withdraw()
 
 マッピングは、既にログインされているアカウントに他のIdPアカウントを連携させたり、解除する機能です。
 
-ほとんどのゲームにおいて、一つのアカウントに複数のIdPを連携(Mapping)させることができるようになっています。
-GamebaseのMappingAPIを使用して既にログインされているアカウントに他のIdPのアカウントを連携させたり、解除することができます。<br/>
+ほとんどのゲームにおいて、一つのアカウントに複数のIdPを連携(Mapping)させることができるようになっています。<br/>
+GamebaseのMappingAPIを使用して既にログインされているアカウントに他のIdPのアカウントを連携させたり、解除することができます。
 
 このように、一つのGamebaseユーザーIDに様々なIdPアカウントを連携することができます。
 つまり、連携中のIdPアカウントでログインを試みる場合、常に同じユーザーIDでログインされることになります。<br/>
@@ -543,6 +543,11 @@ GamebaseのMappingAPIを使用して既にログインされているアカウ�
 	* Google ID: ff **-> すでにGoogleのeeアカウントに連携されているため、Googleアカウントを追加で連携させることができません。**
 
 Mappingには、Mapping追加APIと解除APIの2つがあります。
+
+> <font color="red">[주의]</font><br/>
+>
+> Guest 로그인 중에 매핑을 성공하면 Guest IdP는 사라집니다.
+>
 
 ### Add Mapping Flow
 
@@ -598,6 +603,8 @@ Mappingは、 単にIdP連携だけを追加する機能です。
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
 static void AddMapping(string providerName, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
@@ -626,7 +633,6 @@ public void AddMapping(string providerName)
 
 ゲームで直接ID Providerに提供するSDKで、予め認証を行い発行されたアクセストークンなどを利用してGamebase AddMappingをすることができるインターフェースです。
 
-
 * Credentialパラメーターの設定方法
 
 | keyname | a use | 値の種類 |
@@ -642,17 +648,18 @@ public void AddMapping(string providerName)
 > ゲーム内で外部サービス(Facebookなど)の固有機能を使用しなければならないとき、必要になることがあります。
 >
 
-
 > <font color="red">[注意]</font><br/>
 >
 > 外部のSDKで対応を求める開発事項は外部SDKのAPIを使用して設計する必要があり、Gamebaseでは対応しておりません。
-
+>
 
 **API**
 
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
 static void AddMapping(Dictionary<string, object> credentialInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
@@ -695,8 +702,21 @@ public void AddMappingWithCredential()
 
 **API**
 
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+
 ```cs
 static void AddMappingForcibly(GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
+```
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+
+```cs
 // Legacy API
 static void AddMappingForcibly(string providerName, string forcingMappingKey, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
 static void AddMappingForcibly(string providerName, string forcingMappingKey, Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
@@ -753,6 +773,12 @@ public void AddMappingForcibly(string idPName)
 Change Login APIの呼び出しが失敗した場合、Gamebaseログイン状態は既存のUserIDで維持されます。
 
 **API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
 static void ChangeLogin(GamebaseResponse.Auth.ForcingMappingTicket forcingMappingTicket, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback)
@@ -812,6 +838,8 @@ public void ChangeLoginWithFacebook()
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
 static void RemoveMapping(string providerName, GamebaseCallback.ErrorDelegate callback)
@@ -845,6 +873,9 @@ public void RemoveMapping(string providerName)
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
+<span style="color:#5319E7; font-size: 10pt">■</span> UNITY_WEBGL
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 
 ```cs
 static List<string> GetAuthMappingList()
@@ -1037,7 +1068,6 @@ public void QueryTransferAccount()
 }
 ```
 
-
 ### Renew TransferAccount
 すでに発行されたTransferAccountInfo情報を更新します。
 更新方法には**自動更新**と**手動更新**があり、**パスワードのみ更新**、**IDとパスワードを更新**を選択してTransferAccountInfo情報を更新できます。
@@ -1071,9 +1101,6 @@ public void RenewTransferAccountManualIdPassword(string accountId, string accoun
     });
 }
 ```
-
-
-
 
 ### Transfer Guest Account to Another Device
 **issueTransfer**APIで発行したTransferAccountでアカウントを移行する機能です。
@@ -1140,8 +1167,6 @@ public void TransferAccountWithIdPLogin(string accountId, string accountPassword
 
 一時退会をリクエストします。
 コンソールに指定した期間が過ぎると自動的に退会進行が完了します。
-
-> 退会猶予機能を使用する場合には**Gamebase.withdraw()**APIを使用しないでください。
 
 **API**
 
@@ -1369,7 +1394,6 @@ public void Login()
 
 * 全体のエラーコードは、次のドキュメントをご参考ください。
     * [エラーコード](./error-code/#client-sdk)
-
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
