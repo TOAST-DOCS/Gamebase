@@ -20,7 +20,7 @@ To execute Gamebase in Android, the following system environment is required.
 |  | gamebase-adapter-auth-google | credentials-play-services-auth-1.3.0<br>play-services-auth-20.3.0 | Support Google login | - |
 |  | gamebase-adapter-auth-gpgs-v2 | play-services-games-v2-20.1.2 | Support GPGS(Google Play Games Services) V2 login<br>Based on Player ID | - |
 |  | gamebase-adapter-auth-gpgs-autologin | play-services-games-v2-20.1.2 | Support Google Play Games Services (GPGS) auto-sign-in | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.17.2 | Support Hangame login | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.17.3 | Support Hangame login | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | Support LINE login | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.8.0 | Support NAVER login  | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.17 | Support PAYCO login | - |

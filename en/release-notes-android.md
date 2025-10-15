@@ -1,5 +1,14 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.75.1 (2025. 10. 17.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.1/GamebaseSDK-Android.zip)
+
+#### Feature Updates
+
+* External SDK update: Hangame Android SDK(1.17.3)
+* Improved internal logic
+
 ### 2.75.0 (2025. 09. 23.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-Android.zip)
