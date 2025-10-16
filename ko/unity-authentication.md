@@ -437,7 +437,7 @@ public void LoginWithCredential()
 
 ## Logout
 
-로그인 된 IdP에서 로그아웃을 시도합니다. 주로 게임의 설정 화면에 로그아웃 버튼을 두고, 버튼을 [unity-authentication.md](..%2Fen%2Funity-authentication.md)클릭하면 실행되도록 구현하는 경우가 많습니다.
+로그인 된 IdP에서 로그아웃을 시도합니다. 주로 게임의 설정 화면에 로그아웃 버튼을 두고, 버튼을 클릭하면 실행되도록 구현하는 경우가 많습니다.
 로그아웃이 성공하더라도, 게임 유저 데이터는 유지됩니다.
 로그아웃에 성공 하면 해당 IdP로 인증했던 기록을 제거하므로 다음에 로그인할 때 ID, 비밀번호 입력 창이 노출됩니다.<br/><br/>
 
@@ -1070,7 +1070,7 @@ public void QueryTransferAccount()
 
 ### Renew TransferAccount
 이미 발급 받은 TransferAccountInfo 정보를 갱신합니다.
-"자동 갱신", "수동 갱신"의 방법이 있으며, "Password만 갱신", "ID와 Password 모두 갱신" 등의 설정을 통해 TransferAccountInfo 정보를 갱신 할 수 있습니다.
+**자동 갱신**, **수동 갱신**의 방법이 있으며, **Password만 갱신**, **ID와 Password 모두 갱신** 등의 설정을 통해 TransferAccountInfo 정보를 갱신할 수 있습니다.
 
 ```cs
 static void RenewTransferAccount(GamebaseRequest.Auth.TransferAccountRenewConfiguration configuration, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.TransferAccountInfo> callback)
