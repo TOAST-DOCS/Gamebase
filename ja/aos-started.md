@@ -20,7 +20,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 |  | gamebase-adapter-auth-google | credentials-play-services-auth-1.3.0<br>play-services-auth-20.3.0 | Googleログインをサポート | - |
 |  | gamebase-adapter-auth-gpgs-v2 | play-services-games-v2-20.1.2 | GPGS(Google Play Games Services) V2ログインをサポート<br>Player IDベース | - |
 |  | gamebase-adapter-auth-gpgs-autologin | play-services-games-v2-20.1.2 | GPGS(Google Play Games Services)自動ログインをサポート | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.17.2 | Hangameログインをサポート | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.17.3 | Hangameログインをサポート | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | Lineログインをサポート | - |
 |  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.7.0 | NAVERログインをサポート | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.17 | Paycoログインをサポート | - |
