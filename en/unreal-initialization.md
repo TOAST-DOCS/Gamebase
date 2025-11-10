@@ -143,7 +143,7 @@ void USample::Initialize(const FString& AppID, const FString& AppVersion)
     FGamebaseConfiguration Configuration;
     Configuration.AppID = AppID;
     Configuration.AppVersion = AppVersion;
-    Configuration.StoreCode = GamebaseStoreCode.Google;
+    Configuration.StoreCode = GamebaseStoreCode::Google;
     Configuration.bEnablePopup = true;
     Configuration.bEnableLaunchingStatusPopup = true;
     Configuration.bEnableBanPopup = true;
