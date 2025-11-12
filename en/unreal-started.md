@@ -257,8 +257,7 @@ Game developers using the crash analysis of the NHN Cloud Log & Crash Search mus
 #### WebView Plugin
 
 * Plugin activation is required when using content that utilizes WebView.
-    * Login with IdP
-        * If you support an IdP other than GUEST, the login process will be carried out via a webview.
+    * GameNotics
     * ImageNotices
     * WebView
 * To use WebView-related features without modifying the engine, open the **Settings > Plugins** window in the Unreal Editor, find the **Project > NHN Cloud > NHNWebView** plugin, and activate it.

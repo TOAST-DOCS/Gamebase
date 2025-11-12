@@ -254,8 +254,7 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
 #### WebView 플러그인 안내
 
 * WebView 사용 콘텐츠를 사용 시 플러그인 활성화가 필요합니다.
-    * Login with IdP
-        * GUEST 이외의 IdP를 지원하시는 경우 웹뷰를 통해 로그인 프로세스를 진행합니다.
+    * GameNotices
     * ImageNotices
     * WebView
 * 별도의 엔진 수정 없이 WebView 관련 기능을 사용할 경우 Unreal 에디터에서 **Settings > Plugins** 창을 띄우고, **Project > NHN Cloud > NHNWebView** 플러그인을 찾아 활성화합니다.
