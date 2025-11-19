@@ -1420,8 +1420,9 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 
 #### SIWA Account Webhook
 
-유저가 **Sign In with Apple (SIWA)**을 통해 가입 후 계정 연동을 해제하거나 Apple 측에서 계정을 영구 삭제했을 때 발생하는 탈퇴 이벤트를 서버에서 처리하는 Webhook API입니다.
+**Sign In with Apple (SIWA)** 유저의 계정 상태 변경을 Apple 서버로부터 알림받아 처리하는 Webhook API입니다.
 이 Webhook의 URI를 Apple Developer Site의 Sign In with Apple 서비스 설정에 등록해야 합니다.
+</br>
 
 ##### 지원 이벤트 및 처리 로직
 해당 Webhook 이벤트는 동의 철회(consent-revoked)와 계정 삭제(account-delete) 두 가지를 지원하며, 이벤트에 따라 다음과 같이 처리됩니다.
