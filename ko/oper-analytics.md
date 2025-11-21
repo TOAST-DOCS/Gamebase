@@ -67,7 +67,7 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 
 ## User Statistics
 ### User
-![analytics_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_03_kr_240103.png)
+![analytics_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_03_kr_251119.png)
 
 이용자의 기본 지표들을 확인할 수 있습니다.
 
