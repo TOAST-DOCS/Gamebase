@@ -2426,7 +2426,6 @@ X-Secret-Key: IgsaAP
 | WAGE | 유예 기간 만료에 따른 시스템 자동 탈퇴 |
 <br/>
 
-
 ### Support
 
 API 호출 실패 원인에 대한 문의 사항이 있을 경우, **API 호출 URL(HTTP body가 있는 경우는 body와 함께)과 그에 대한 응답 결과**를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다.
