@@ -1004,7 +1004,7 @@ Gamebase는 Google Play Age Signals API를 래핑하여 이러한 요구사항�
 #### Dependencies
 
 SDK 내부적으로 아래 의존성을 갖고 있습니다.
-`implementation 'com.google.android.play:age-signals:0.0.1-beta02'`
+`implementation 'com.google.android.play:age-signals'`
 
 #### Requirements
 
@@ -1017,12 +1017,12 @@ SDK 내부적으로 아래 의존성을 갖고 있습니다.
 
 > <font color="red">[주의]</font><br/>
 >
-> Play 연령 신호 API (베타)는 2026년 1월 1일까지 예외를 발생시킵니다. 1월 1일부터 API는 실시간 응답을 반환합니다.
+> Play Age Signals API (베타)는 2026년 1월 1일까지 예외를 발생시킵니다. 1월 1일부터 API는 실시간 응답을 반환합니다.
 >
 
 #### Check age signal
 
-**Gamebase#AgeSignals#checkAgeSignals(Context, GamebaseAgeSignalsRequest)**를 호출하여 연령 정보를 확인합니다.
+**Gamebase.AgeSignals.checkAgeSignals(Context, GamebaseAgeSignalsRequest)**를 호출하여 연령 정보를 확인합니다.
 
 **GamebaseAgeSignalsRequest**
 
@@ -1077,7 +1077,7 @@ Gamebase.AgeSignals.checkAgeSignals(context, request) { result, exception ->
 
 #### Handle results
 
-**GamebaseAgeSignalsResult#userStatus()**로 유저의 상태를 확인할 수 있습니다.
+**GamebaseAgeSignalsResult.userStatus()**로 유저의 상태를 확인할 수 있습니다.
 Status 값에 따라 사용자 규제 여부를 판단하시기 바랍니다.
 
 **GamebaseAgeSignalsVerificationStatus**
@@ -1115,7 +1115,6 @@ private fun handleAgeSignalsResult(result: GamebaseAgeSignalsResult) {
         GamebaseAgeSignalsVerificationStatus.SUPERVISED -> {
             // 보호자 동의가 있는 미성년자
             // Texas SB 2420에 따라 미성년자를 위한 제한된 기능 제공
-            // 예: 특정 콘텐츠 제한, 제한된 소셜 기능 등
 
             // 연령대를 확인할 수 있습니다.
             val ageLower = result.ageLower() // 예: 13
@@ -1134,8 +1133,7 @@ private fun handleAgeSignalsResult(result: GamebaseAgeSignalsResult) {
             handleApprovalDenied(result)
         }
         GamebaseAgeSignalsVerificationStatus.UNKNOWN -> {
-            // 해당 관할 지역에서 검증되지 않은 사용자
-            // 또는 연령 확인 정보를 사용할 수 없는 경우
+            // 해당 관할 지역에서 검증되지 않은 사용자 또는 연령 확인 정보를 사용할 수 없는 경우
             // 사용자에게 Play 스토어를 방문하여 상태를 해결하도록 요청하세요.
             handleUnknownUser(result)
         }
