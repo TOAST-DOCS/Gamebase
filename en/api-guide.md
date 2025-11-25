@@ -1331,6 +1331,9 @@ Check common items.
 
 **Sign In with Apple (SIWA)** 유저의 계정 상태 변경을 Apple 서버로부터 알림받아 처리하는 Webhook API입니다.
 이 Webhook의 URI를 Apple Developer Site의 Sign In with Apple 서비스 설정에 등록해야 합니다.
+
+> [참고]
+> 해당 API는 Apple 서버가 직접 호출하므로 헤더에 별도의 인증 키(Secret Key) 설정이 필요하지 않습니다.
 </br>
 
 ##### 지원 이벤트 및 처리 로직
