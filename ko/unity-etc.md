@@ -1336,13 +1336,13 @@ public void SampleRequestContactURL()
 }
 ```
 
-### Age Siganals support
+### Age Signals Support
 
 Texas SB 2420 및 유사한 주 법률은 미성년자 보호를 위해 앱에서 사용자의 연령 확인을 요구합니다.
 Gamebase는 Google Play Age Signals API를 래핑하여 이러한 요구사항을 충족할 수 있는 API를 제공합니다.
 
-Android에서 Age Siganals 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.<br/>
-* [Android Age Siganals](aos-etc#age)<br/>
+Android에서 Age Signals 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.<br/>
+* [Android Age Signals](./aos-etc/#age-signals-support)<br/>
   
 Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
