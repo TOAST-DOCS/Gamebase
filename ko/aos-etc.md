@@ -996,7 +996,7 @@ Gamebase.Contact.requestContactURL(configuration, new GamebaseDataCallback<Strin
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_002_2.53.0.png)
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_003_2.53.0.png)
 
-### Age Siganals support
+### Age Signals Support
 
 Texas SB 2420 및 유사한 주 법률은 미성년자 보호를 위해 앱에서 사용자의 연령 확인을 요구합니다.
 Gamebase는 Google Play Age Signals API를 래핑하여 이러한 요구사항을 충족할 수 있는 API를 제공합니다.
