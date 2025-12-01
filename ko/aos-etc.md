@@ -1061,7 +1061,8 @@ Gamebase.AgeSignals.checkAgeSignals(context, request) { result, exception ->
         // 성공: 연령 확인 정보 처리
         handleAgeSignalsResult(result)
     } else {
-        // 실패: 에러 처리
+        // 실패: 오류 처리
+
         val errorCode = exception?.code
         val errorMessage = exception?.message
         when (errorCode) {
