@@ -1046,7 +1046,8 @@ SDK 내부적으로 아래 의존성을 갖습니다.
 | Error Code | Description |
 | --- | --- |
 | NOT\_SUPPORTED(10)                   | Android API 23 미만 기기에서 호출되었습니다. |
-| AUTH\_EXTERNAL\_LIBRARY\_ERROR(3009) | Google Play Age Signals API에서 에러를 리턴하였습니다. |
+| AUTH\_EXTERNAL\_LIBRARY\_ERROR(3009) | Google Play Age Signals API에서 오류를 반환했습니다. |
+
 
 **Example**
 
