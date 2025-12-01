@@ -24,7 +24,7 @@
 #### 기능 개선
 * The additional support for (Standalone) login IDP: Twitter, Apple, Line
 
-#### 지원 종료
+#### End of Support
 * Amazon Appstore support is ending.
 
 ### 2.73.1 (2025. 07. 22.)
