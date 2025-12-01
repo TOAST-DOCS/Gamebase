@@ -12,7 +12,7 @@
 ### 2.74.0 (2025. 08. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.74.0/GamebaseSDK-Unity.zip)
 
-#### 버그 수정
+#### Bug Fixes
 * (iOS) ChangeLogin 시 발생하던 크래시 이슈를 수정했습니다.
 * (macOS) GamebaseUtil에서 발생하던 DllNotFoundException 문제를 수정했습니다.
 
