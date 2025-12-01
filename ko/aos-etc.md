@@ -1152,4 +1152,5 @@ private fun handleAgeSignalsResult(result: GamebaseAgeSignalsResult) {
 
 **GamebaseAgeSignalsResult**
 
-자세한 내용은 [https://developer.android.com/google/play/age-signals/use-age-signals-api#age-signals-responses](https://developer.android.com/google/play/age-signals/use-age-signals-api#age-signals-responses)를 참고하시기 바랍니다.
+자세한 내용은 Play Age Signals 가이드의 [연령 신호 응답](https://developer.android.com/google/play/age-signals/use-age-signals-api#age-signals-responses)을 참고하세요.
+
