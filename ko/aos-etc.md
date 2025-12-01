@@ -1014,7 +1014,8 @@ SDK 내부적으로 아래 의존성을 갖습니다.
 
 #### Google guide
 
-자세한 내용은 [https://developer.android.com/google/play/age-signals](https://developer.android.com/google/play/age-signals) 를 참고하세요.
+자세한 내용은 Play Age Signals 가이드의 [개요](https://developer.android.com/google/play/age-signals)를 참고하세요.
+
 
 > <font color="red">[주의]</font><br/>
 >
