@@ -1114,7 +1114,8 @@ private fun handleAgeSignalsResult(result: GamebaseAgeSignalsResult) {
         GamebaseAgeSignalsVerificationStatus.VERIFIED -> {
             // 18세 이상 성인 사용자
             // 모든 기능에 대한 접근 허용
-            // ageLower와 ageUpper는 null입니다
+            // ageLower와 ageUpper는 null입니다.
+
             handleAdultUser(result)
         }
         GamebaseAgeSignalsVerificationStatus.SUPERVISED -> {
