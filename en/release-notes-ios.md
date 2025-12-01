@@ -1,6 +1,6 @@
 ## Game > Gamebase > Release Notes > iOS
 
-### 2.75.0 (September 23, 2025)
+### 2.75.0 (2025. 09. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-iOS.zip)
 
 #### Feature Updates
