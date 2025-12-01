@@ -4,7 +4,7 @@
 
 ### iOS
 
-* Kakaogame 인증의 Xcode 최소 지원 버전이 16.0에서 16.2로 변경되었습니다.
+* The minimum supported version of Xcode for Kakaogame authentication has changed from 16.0 to 16.2.
 
 ## 2.71.2
 
