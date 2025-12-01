@@ -23,7 +23,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.2/GamebaseSDK-Unity.zip)
 
 #### 기능 개선
-* (Standalone) 로그인 IDP 추가 지원: Twitter, Apple, Line
+* The additional support for (Standalone) login IDP: Twitter, Apple, Line
 
 #### 지원 종료
 * 아마존 앱스토어 지원이 종료됩니다.
