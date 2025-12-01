@@ -21,7 +21,7 @@
 ### 2.73.2 (2025. 07. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.2/GamebaseSDK-Unity.zip)
 
-#### 기능 개선
+#### Feature Updates
 * The additional support for (Standalone) login IDP: Twitter, Apple, Line
 
 #### End of Support
