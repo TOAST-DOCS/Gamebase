@@ -1071,7 +1071,8 @@ Gamebase.AgeSignals.checkAgeSignals(context, request) { result, exception ->
                 Log.e(TAG, "Age Signals API is not supported on this device")
             }
             GamebaseError.AUTH_EXTERNAL_LIBRARY_ERROR -> {
-                // Google Play 서비스에서 에러가 발생하였습니다.
+                // Google Play 서비스에서 오류가 발생하였습니다.
+
                 Log.e(TAG, "Google Play Age Signals error: $errorMessage")
             }
         }
