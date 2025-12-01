@@ -3,7 +3,6 @@
 ### 2.75.0 (2025. 09. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
 #### Added Features
 * Added (Windows) Mapping feature
 #### Feature Updates
