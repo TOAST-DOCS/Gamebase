@@ -1003,7 +1003,8 @@ Gamebase는 Google Play Age Signals API를 래핑하여 이러한 요구사항�
 
 #### Dependencies
 
-SDK 내부적으로 아래 의존성을 갖고 있습니다.
+SDK 내부적으로 아래 의존성을 갖습니다.
+
 `implementation 'com.google.android.play:age-signals'`
 
 #### Requirements
