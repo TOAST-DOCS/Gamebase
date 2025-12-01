@@ -17,7 +17,7 @@
 * (macOS) GamebaseUtil에서 발생하던 DllNotFoundException 문제를 수정했습니다.
 
 #### 기타
-* 최소 지원 버전이 Unity 2022.3.10으로 상향되었습니다.
+* The minimum supported version has been increased to Unity 2022.3.10.
 
 ### 2.73.2 (2025. 07. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.2/GamebaseSDK-Unity.zip)
