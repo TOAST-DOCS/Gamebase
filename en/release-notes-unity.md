@@ -15,7 +15,7 @@
 * Fixed a crash issue that occurred when performing (iOS) ChangeLogin .
 * Fixed a DllNotFoundException issue that occurred in (macOS) GamebaseUtil.
 
-#### 기타
+#### Others
 * The minimum supported version has been increased to Unity 2022.3.10.
 
 ### 2.73.2 (2025. 07. 29.)
