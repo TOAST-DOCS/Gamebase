@@ -3,11 +3,12 @@
 ### 2.75.0 (2025. 09. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* (Windows) Mapping 기능 추가
+#### 機能追加
+* (Windows) Mapping機能追加
 
-#### 기능 개선/변경
-* 내부 로직을 개선하였습니다.
+#### 機能改善・変更
+* (Android) Google Playの16KBページ制限対応
+* 内部ロジックを改善しました。
 
 ### 2.74.0 (2025. 08. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.74.0/GamebaseSDK-Unity.zip)
