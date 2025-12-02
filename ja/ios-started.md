@@ -48,7 +48,7 @@ Gamebase.xcframework及び必要なadapterをダウンロードします。<br/>
 |  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 12以上<br/>arm64サポート<br/> |
 |  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.17.2 | Hangameログインをサポート | iOS 12以上 |
 |  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.4.0 | Weiboログインをサポート | iOS 12以上 |
-|  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.20.0 | Kakaoログインをサポート | iOS 13以上<br/>Xcode 16.2 이상 |
+|  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.20.0 | Kakaoログインをサポート | iOS 13以上<br/>Xcode 16.2以上 |
 |  | GamebaseAuthSteamAdapter.xcframework |  | Steamログインをサポート | iOS 14以上 |
 | Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit.xcframework<br/>NHNCloudIAP 1.8.5 | ゲーム内決済をサポート | iOS 12以上 |
 | Gamebase Push Adapters | GamebasePushAdapter.xcframework | NHNCloudPush 1.8.5 | Pushをサポート | iOS 12以上 |
