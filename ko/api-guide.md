@@ -19,7 +19,7 @@
 - 구독의 현재 상태를 조회하는 `Get Subscriptions Status` API 추가
 - `Get Payment Transaction` API request body에 ONEStore의 purchaseId 혹은 purchaseToken 값을 나타내는 `paymentToken` 추가
 - `Withdraw Histories` API의 요청 파라미터에 eventLogType 추가
-- `SIWA Account Webhook`API 추가
+- `SIWA Account Webhook` API 추가
 
 ## Advance Notice
 
@@ -1420,7 +1420,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 
 #### SIWA Account Webhook
 
-**Sign In with Apple (SIWA)** 유저의 계정 상태 변경을 Apple 서버로부터 알림받아 처리하는 Webhook API입니다.
+**Sign In with Apple (SIWA)** 유저의 계정 상태 변경을 Apple 서버로부터 알림 받아 처리하는 Webhook API입니다.
 이 Webhook의 URI를 Apple Developer Site의 Sign In with Apple 서비스 설정에 등록해야 합니다. 
 
 > [참고]
@@ -1430,9 +1430,9 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 ##### 지원 이벤트 및 처리 로직
 해당 Webhook 이벤트는 동의 철회(consent-revoked)와 계정 삭제(account-delete) 두 가지를 지원하며, 이벤트에 따라 다음과 같이 처리됩니다.
 
-- 동의 철회 (consent-revoked)
+- 동의 철회(consent-revoked)
     - 처리: 유저의 계정은 유지되지만, 현재 발급된 Gamebase Access Token은 즉시 만료됩니다.
-- 계정 삭제 (account-delete)
+- 계정 삭제(account-delete)
     - 처리: 유저의 계정은 즉시 탈퇴 처리됩니다.
     - 탈퇴된 계정은 **Withdraw Histories** API에서 **eventLogType=WAAI** 파라미터로 조회할 수 있습니다.
 
