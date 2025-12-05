@@ -29,10 +29,10 @@
 #### 기능 개선/변경
  
 * 外部SDKのアップデート: NHN Cloud Android SDK(1.12.0), PAYCO Android SDK(1.5.17), Weibo Android SDK(13.10.5)
-* Google Play의 16KB 페이지 제약 대응을 위한 외부 SDK 업데이트
-    * NHN Cloud SDK / Weibo SDK 업데이트
-    * 16KB 미대응 gamebase-adapter-auth-weibo-v4 모듈 제거
-* 미사용 모듈 제거
+* Google Playの16KBページ制限対応のための外部SDKアップデート
+    * NHN Cloud SDK / Weibo SDKアップデート
+    * 16KB未対応のgamebase-adapter-auth-weibo-v4モジュール削除
+* 未使用モジュールの削除
     * gamebase-adapter-purchase-amazon, gamebase-adapter-push-adm
 * 内部ロジックの改善
 

@@ -3,8 +3,8 @@
 ### 2.75.0 (2025. 09. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### 機能改善・変更
+* 外部SDKアップデート
     * Kakaogame iOS SDK (3.20.0)
 
 ### 2.73.1 (2025. 08. 12.)
