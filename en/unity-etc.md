@@ -1348,6 +1348,101 @@ public void SampleRequestContactURL()
 }
 ```
 
+### App Tracking AuthorizationStatus
+
+* ATT 활성화 여부를 확인합니다.
+
+* AUTHORIZED : 앱의 추적 요청 허용 동의, iOS 14 미만 기기에서는 항상 AUTHORIZED를 반환
+* DENIED: 앱의 추적 요청 허용 거부
+* NOT_DETERMINED : 앱의 추적 요청 허용 미결정
+* RESTRICTED : 앱의 추적 요청 제한
+* UNKNOWN : 다른 os 이거나 os에서 정의되지 않은 경우
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+namespace Toast.Gamebase
+{
+    public enum GamebaseAppTrackingAuthorizationStatus
+    {
+        AUTHORIZED,
+        DENIED,
+        NOT_DETERMINED,
+        RESTRICTED,
+        UNKNOWN
+    }
+}
+
+static Toast.Gamebase.GamebaseAppTrackingAuthorizationStatus GetAppTrackingAuthorizationStatus();
+```
+
+**Example**
+
+``` cs
+public void GetAppTrackingAuthorizationStatusSample()
+{
+#if UNITY_IOS
+    switch (Gamebase.Util.GetAppTrackingAuthorizationStatus() ) iOS only
+    {
+        case GamebaseAppTrackingAuthorizationStatus.AUTHORIZED:
+        {
+        }
+        break; 
+        
+        case GamebaseAppTrackingAuthorizationStatus.DENIED:
+        {
+        }
+        break;
+        
+        case GamebaseAppTrackingAuthorizationStatus.NOT_DETERMINED:
+        {
+        }
+        break;
+        
+        case GamebaseAppTrackingAuthorizationStatus.RESTRICTED:
+        {
+        }
+        break;
+        
+        case GamebaseAppTrackingAuthorizationStatus.UNKNOWN:
+        {
+        }
+        break;
+    }
+#endif
+}
+```
+
+### IDFA
+
+* 단말기의 광고식별자 값을 반환합니다.
+
+iOS에서 IDFA 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.<br/>
+* [iOS IDFA](./ios-etc/#idfa)<br/>
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+static void GetIdfa();
+```
+
+**Example**
+
+``` cs
+public void SampleGetIdfa()
+{
+#if UNITY_IOS
+    string idfa = Gamebase.Util.GetIdfa(); iOS only
+#endif
+}
+```
+
 ### Age Signals Support
 
 Texas SB 2420 및 유사한 주 법률은 미성년자 보호를 위해 앱에서 사용자의 연령 확인을 요구합니다.
