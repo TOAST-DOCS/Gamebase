@@ -1,5 +1,18 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.77.0 (2025. 12. 09.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.77.0/GamebaseSDK-Unity.zip)
+
+####  기능 추가
+* (WebGL) 브라우저 로그인 지원
+
+#### 기능 개선
+* Gamebase.Purchase.RequestItemListAtIAPConsole() API가 deprecated 되었습니다.
+  * Gamebase.Purchase.RequestItemListPurchasable() API 사용을 권장합니다.
+
+#### 버그 수정
+* (WebGL) 게스트 로그인 실패 문제를 수정했습니다.
+  
 ### 2.76.0 (2025. 11. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.76.0/GamebaseSDK-Unity.zip)
 
@@ -18,31 +31,31 @@
 ### 2.75.0 (2025. 09. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* (Windows) Mapping 기능 추가
+#### Added Features
+* Added (Windows) Mapping feature
 
-#### 기능 개선/변경
+#### Feature Updates
 * (Android) Google Play의 16KB 페이지 제약 대응
-* 내부 로직을 개선하였습니다.
+* Improved internal logic.
 
 ### 2.74.0 (2025. 08. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.74.0/GamebaseSDK-Unity.zip)
 
-#### 버그 수정
-* (iOS) ChangeLogin 시 발생하던 크래시 이슈를 수정했습니다.
-* (macOS) GamebaseUtil에서 발생하던 DllNotFoundException 문제를 수정했습니다.
+#### Bug Fixes
+* Fixed a crash issue that occurred when performing (iOS) ChangeLogin .
+* Fixed a DllNotFoundException issue that occurred in (macOS) GamebaseUtil.
 
-#### 기타
-* 최소 지원 버전이 Unity 2022.3.10으로 상향되었습니다.
+#### Others
+* The minimum supported version has been increased to Unity 2022.3.10.
 
 ### 2.73.2 (2025. 07. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.2/GamebaseSDK-Unity.zip)
 
-#### 기능 개선
-* (Standalone) 로그인 IDP 추가 지원: Twitter, Apple, Line
+#### Feature Updates
+* The additional support for (Standalone) login IDP: Twitter, Apple, Line
 
-#### 지원 종료
-* 아마존 앱스토어 지원이 종료됩니다.
+#### End of Support
+* Amazon Appstore support is ending.
 
 ### 2.73.1 (2025. 07. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.1/GamebaseSDK-Unity.zip)

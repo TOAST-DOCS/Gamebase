@@ -1,10 +1,18 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.77.0 (2025. 12. 09.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.77.0/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 결제 관련 내부 로직 개선
+* 아래 API가 deprecated 되었습니다.
+    * **[TCGBPurchase requestItemListAtIAPConsoleWithCompletion:]**
+    
 ### 2.75.0 (2025. 09. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 외부 SDK 업데이트
+#### Feature Updates
+* Updated external SDK
     * Kakaogame iOS SDK (3.20.0)
     
 ### 2.73.1 (2025. 08. 12.)
