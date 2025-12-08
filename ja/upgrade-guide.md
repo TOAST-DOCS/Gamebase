@@ -1,5 +1,17 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.77.0
+
+### iOS
+
+* **TCGBPurchase.requestItemListAtIAPConsoleWithCompletion:** API가 deprecated 되었습니다.
+    * **TCGBPurchase.requestItemListPurchasableWithCompletion** API를 사용하세요.
+
+### Unity
+
+* **Gamebase.Purchase.RequestItemListAtIAPConsole():** API가 deprecated 되었습니다.
+    * **Gamebase.Purchase.RequestItemListPurchasable()** API를 사용하세요.
+
 ## 2.76.0
 
 ### Android
@@ -16,7 +28,7 @@
 
 ### iOS
 
-* Kakaogame 인증의 Xcode 최소 지원 버전이 16.0에서 16.2로 변경되었습니다.
+* Kakaogame認証のXcode最小サポートバージョンが16.0から16.2に変更されました。
 
 ## 2.71.2
 

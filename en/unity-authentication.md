@@ -544,9 +544,9 @@ Below shows an example.<br/>
 
 Mapping API includes Add Mapping API and Remove Mapping API.
 
-> <font color="red">[주의]</font><br/>
+> <font color="red">[Caution]</font><br/>
 >
-> Guest 로그인 중에 매핑을 성공하면 Guest IdP는 사라집니다.
+> If the mapping is successful during a Guest login, the Guest IdP disappears.
 >
 
 ### Add Mapping Flow

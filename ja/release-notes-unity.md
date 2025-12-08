@@ -1,5 +1,18 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.77.0 (2025. 12. 09.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.77.0/GamebaseSDK-Unity.zip)
+
+####  기능 추가
+* (WebGL) 브라우저 로그인 지원
+
+#### 기능 개선
+* Gamebase.Purchase.RequestItemListAtIAPConsole() API가 deprecated 되었습니다.
+  * Gamebase.Purchase.RequestItemListPurchasable() API 사용을 권장합니다.
+
+#### 버그 수정
+* (WebGL) 게스트 로그인 실패 문제를 수정했습니다.
+
 ### 2.76.0 (2025. 11. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.76.0/GamebaseSDK-Unity.zip)
 
@@ -18,12 +31,12 @@
 ### 2.75.0 (2025. 09. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* (Windows) Mapping 기능 추가
+#### 機能追加
+* (Windows) Mapping機能追加
 
-#### 기능 개선/변경
-* (Android) Google Play의 16KB 페이지 제약 대응
-* 내부 로직을 개선하였습니다.
+#### 機能改善・変更
+* (Android) Google Playの16KBページ制限対応
+* 内部ロジックを改善しました。
 
 ### 2.74.0 (2025. 08. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.74.0/GamebaseSDK-Unity.zip)

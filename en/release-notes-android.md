@@ -1,5 +1,13 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.77.0 (2025. 12. 09.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.77.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+
+* 결제 관련 내부 로직 개선
+
 ### 2.76.0 (2025. 11. 28.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.76.0/GamebaseSDK-Android.zip)
@@ -26,13 +34,13 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
+#### Feature Updates
  
 * External SDK update: NHN Cloud Android SDK(1.12.0), PAYCO Android SDK(1.5.17), Weibo Android SDK(13.10.5)
-* Google Play의 16KB 페이지 제약 대응을 위한 외부 SDK 업데이트
-    * NHN Cloud SDK / Weibo SDK 업데이트
-    * 16KB 미대응 gamebase-adapter-auth-weibo-v4 모듈 제거
-* 미사용 모듈 제거
+* Updated external SDK  to address Google Play's 16KB page constraint
+    * Updated NHN Cloud SDK / Weibo SDK
+    * Removed 16KB unresponsive gamebase-adapter-auth-weibo-v4 module
+* Removed unused module
     * gamebase-adapter-purchase-amazon, gamebase-adapter-push-adm
 * Improved internal logic
 
