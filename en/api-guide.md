@@ -18,8 +18,8 @@
 - Added the `Get Ban Members` API to retrieve users who are banned from using the service
 - Added the `Get Subscription Status` API to retrieve the current status of subscriptions
 - Added a `paymentToken` to the `Get Payment Transaction` API request body, representing the ONEStore's purchaseId or purchaseToken value.
-- Added eventLogType to the request parameter of `Withdraw Histories` API
-- Added the `SIWA Account Webhook`API
+- `Withdraw Histories` API의 요청 파라미터에 eventLogType 추가
+- `SIWA Account Webhook`API 추가
 
 ## Advance Notice
 
@@ -1270,7 +1270,7 @@ Check common items.
 | page | String | Optional | Page to retrieve, starting from 0 |
 | size | String | Optional | Number of data per page |
 | order | String | Optional | Sorting method for queried data. ASC or DESC |
-| eventLogType | Enum | Optional | [Withdrawal event type](#withdrawal-event-type) |
+| eventLogType | Enum | Optional | [탈퇴 이벤트 발생 경로](#withdrawal-event-type) |
 
 **[Response Body]**
 
@@ -1329,21 +1329,21 @@ Check common items.
 
 #### SIWA Account Webhook
 
-**Sign In with Apple (SIWA)** is a webhook API that receives and processes notifications from Apple servers about changes in a user's account status.
-You must register the URI of this webhook in the Sign In with Apple service settings on the Apple Developer Site.
+**Sign In with Apple (SIWA)** 유저의 계정 상태 변경을 Apple 서버로부터 알림받아 처리하는 Webhook API입니다.
+이 Webhook의 URI를 Apple Developer Site의 Sign In with Apple 서비스 설정에 등록해야 합니다.
 
-> [Note]
-> Since this API is called directly by the Apple server, there is no need to set a separate authentication key (Secret Key) in the header.
+> [참고]
+> 해당 API는 Apple 서버가 직접 호출하므로 헤더에 별도의 인증 키(Secret Key) 설정이 필요하지 않습니다.
 </br>
 
-##### Support Events and Processing Logics
-This webhook event supports two events: consent-revoked and account-delete, and is handled as follows, depending on the event:
+##### 지원 이벤트 및 처리 로직
+해당 Webhook 이벤트는 동의 철회(consent-revoked)와 계정 삭제(account-delete) 두 가지를 지원하며, 이벤트에 따라 다음과 같이 처리됩니다.
 
-- Consent revoked (consent-revoked)
-    - Action: the user's account will remain active, but any currently issued Gamebase Access Tokens will expire immediately.
-- Account deletion (account-delete)
-    - Action: the user's account will be immediately deleted.
-    - The withdrawn account can be retrieved from **Withdraw Histories** API with **eventLogType=WAAI** parameter.
+- 동의 철회 (consent-revoked)
+    - 처리: 유저의 계정은 유지되지만, 현재 발급된 Gamebase Access Token은 즉시 만료됩니다.
+- 계정 삭제 (account-delete)
+    - 처리: 유저의 계정은 즉시 탈퇴 처리됩니다.
+    - 탈퇴된 계정은 **Withdraw Histories** API에서 **eventLogType=WAAI** 파라미터로 조회할 수 있습니다.
 
 **[Method, URI]**
 
@@ -1356,7 +1356,7 @@ This webhook event supports two events: consent-revoked and account-delete, and 
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud project ID |
+| appId | String | NHN Cloud 프로젝트 ID |
 
 </br>
 </br>
@@ -2251,7 +2251,6 @@ The code defined internally by Gamebase for the OS of the user device.
 | IOS | iOS |
 | WEB | Web |
 | WINDOWS | Windows |
-| MACOS | macOS |
 <br/>
 
 ### Store Code
@@ -2267,8 +2266,6 @@ The code defined internally by Gamebase for the store where the app is installed
 | AMAZON | Amazon Appstore |
 | HUAWEI | Huawei AppGallery |
 | MYCARD | Global MyCard |
-| EPIC | Epic Games Store |
-| STEAM | STEAM Store |
 <br/>
 
 ### Identity Provider Code
@@ -2305,16 +2302,16 @@ The code defined internally by Gamebase for the user's current status.
 
 ### Withdrawal Event Type
 
-An event occurrence path that indicates where the user withdrawal occurred.
+유저 탈퇴가 어디서 발생했는지를 나타내는 이벤트 발생 경로입니다.
 
-| Type | Description |
+| Type | 설명 |
 | --- | --- |
-| WAA | Withdrawal by app (client) request |
-| WACS | Withdrawal by console/manager request |
-| WAES | Withdrawl by external server (game server)<br>- Server withdrawl API call |
-| WAAI | Withdrawal by Apple ID link deletion |
-| WAHI | Withdrawal by Hangame account deletion |
-| WAGE | Automatic withdrawal from the system upon expiration of the grace period |
+| WAA | 앱(클라이언트) 요청에 의해 계정 탈퇴 |
+| WACS | 콘솔/관리자 요청에 의해 계정 탈퇴 |
+| WAES | 외부 서버(게임 서버)에 의해 탈퇴<br>- 서버 탈퇴 API 호출 |
+| WAAI | Apple ID 연동 삭제에 의해 탈퇴 |
+| WAHI | 한게임 계정 삭제로 인한 탈퇴 |
+| WAGE | 유예 기간 만료에 따른 시스템 자동 탈퇴 |
 <br/>
 
 ### Store Reference Status

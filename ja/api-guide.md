@@ -18,8 +18,8 @@
 - 利用停止状態のユーザーを照会する`Get Ban Members` API追加
 - 購読の現在状態を照会する`Get Subscriptions Status` APIを追加
 - `Get Payment Transaction` API request bodyにONEStoreのpurchaseIdまたはpurchaseTokenの値を表す`paymentToken`を追加
-- `Withdraw Histories` APIのリクエストパラメータにeventLogTypeを追加
-- `SIWA Account Webフック` APIを追加
+- `Withdraw Histories` API의 요청 파라미터에 eventLogType 추가
+- `SIWA Account Webhook`API 추가
 
 ## Advance Notice
 
@@ -1333,7 +1333,7 @@ Check common requirements.
 | page | String | Optional | 照会したいページ。 0から開始 |
 | size | String | Optional | 1ページ当たりのデータ数 |
 | order | String | Optional | 照会データのソート方法。 ASC or DESC |
-| eventLogType | Enum | Optional | [退会イベント発生経路](#withdrawal-event-type) |
+| eventLogType | Enum | Optional | [탈퇴 이벤트 발생 경로](#withdrawal-event-type) |
 
 **[Response Body]**
 
@@ -1392,21 +1392,21 @@ Check common requirements.
 
 #### SIWA Account Webhook
 
-**Sign In with Apple (SIWA)** ユーザーのアカウント状態変更をAppleサーバーから通知を受け取り処理するWebフック APIです。
-このWebフックのURIをApple Developer SiteのSign In with Appleサービス設定に登録する必要があります。
+**Sign In with Apple (SIWA)** 유저의 계정 상태 변경을 Apple 서버로부터 알림받아 처리하는 Webhook API입니다.
+이 Webhook의 URI를 Apple Developer Site의 Sign In with Apple 서비스 설정에 등록해야 합니다.
 
-> [参考]
-> 該当APIはAppleサーバーが直接呼び出すため、ヘッダに別途認証キー(Secret Key)の設定は必要ありません。
+> [참고]
+> 해당 API는 Apple 서버가 직접 호출하므로 헤더에 별도의 인증 키(Secret Key) 설정이 필요하지 않습니다.
 </br>
 
-##### 対応イベント及び処理ロジック
-該当Webフックイベントは、同意撤回(consent-revoked)とアカウント削除(account-delete)の2つをサポートし、イベントに応じて次のように処理されます。
+##### 지원 이벤트 및 처리 로직
+해당 Webhook 이벤트는 동의 철회(consent-revoked)와 계정 삭제(account-delete) 두 가지를 지원하며, 이벤트에 따라 다음과 같이 처리됩니다.
 
-- 同意撤回 (consent-revoked)
-    - 処理: ユーザーのアカウントは維持されますが,現在発行されているGamebase Access Tokenは即時失効します。
-- アカウント削除 (account-delete)
-    - 処理: ユーザーのアカウントは即時退会処理されます。
-    - 退会したアカウントは**Withdraw Histories** APIにて**eventLogType=WAAI**パラメータで照会できます。
+- 동의 철회 (consent-revoked)
+    - 처리: 유저의 계정은 유지되지만, 현재 발급된 Gamebase Access Token은 즉시 만료됩니다.
+- 계정 삭제 (account-delete)
+    - 처리: 유저의 계정은 즉시 탈퇴 처리됩니다.
+    - 탈퇴된 계정은 **Withdraw Histories** API에서 **eventLogType=WAAI** 파라미터로 조회할 수 있습니다.
 
 **[Method, URI]**
 
@@ -1419,7 +1419,7 @@ Check common requirements.
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN CloudプロジェクトID |
+| appId | String | NHN Cloud 프로젝트 ID |
 
 </br>
 </br>
@@ -2310,7 +2310,6 @@ X-Secret-Key: IgsaAP
 | IOS | iOS |
 | WEB | Web |
 | WINDOWS | Windows |
-| MACOS | macOS |
 <br/>
 
 ### Store Code
@@ -2324,8 +2323,6 @@ X-Secret-Key: IgsaAP
 | ONESTORE | ONE store |
 | GALAXY | Galaxy Store |
 | MYCARD | Global MyCard |
-| EPIC | Epic Games Store |
-| STEAM | STEAM Store |
 <br/>
 
 ### Identity Provider Code
@@ -2386,16 +2383,16 @@ X-Secret-Key: IgsaAP
 
 ### Withdrawal Event Type
 
-ユーザー退会がどこで発生したかを示すイベント発生経路です。
+유저 탈퇴가 어디서 발생했는지를 나타내는 이벤트 발생 경로입니다.
 
-| Type | 説明 |
+| Type | 설명 |
 | --- | --- |
-| WAA | アプリ(クライアント)リクエストによるアカウント退会 |
-| WACS | コンソール/管理者リクエストによるアカウント退会 |
-| WAES | 外部サーバー(ゲームサーバー)による退会<br>- サーバー退会API呼び出し |
-| WAAI | Apple ID連携削除による退会 |
-| WAHI | ハンゲームアカウント削除による退会 |
-| WAGE | 猶予期間満了に伴うシステム自動退会 |
+| WAA | 앱(클라이언트) 요청에 의해 계정 탈퇴 |
+| WACS | 콘솔/관리자 요청에 의해 계정 탈퇴 |
+| WAES | 외부 서버(게임 서버)에 의해 탈퇴<br>- 서버 탈퇴 API 호출 |
+| WAAI | Apple ID 연동 삭제에 의해 탈퇴 |
+| WAHI | 한게임 계정 삭제로 인한 탈퇴 |
+| WAGE | 유예 기간 만료에 따른 시스템 자동 탈퇴 |
 <br/>
 
 ### Support
