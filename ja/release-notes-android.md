@@ -4,7 +4,7 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
+#### 機能改善・変更
  
 * 外部SDKのアップデート: NHN Cloud Android SDK(1.12.0), PAYCO Android SDK(1.5.17), Weibo Android SDK(13.10.5)
 * Google Playの16KBページ制限対応のための外部SDKアップデート
