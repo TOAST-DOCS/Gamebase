@@ -1065,7 +1065,7 @@ void USample::RequestContactURL(const FString& userName)
 Texas SB 2420 및 유사한 주 법률은 미성년자 보호를 위해 앱에서 사용자의 연령 확인을 요구합니다.
 Gamebase는 Google Play Age Signals API를 래핑하여 이러한 요구사항을 충족할 수 있는 API를 제공합니다.
 
-Android에서 Age Signals 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.
+Android에서 Age Signals 기능을 설정하는 방법은 다음 문서를 참고하세요.
 
 * [Android Age Signals](./aos-etc/#age-signals-support)
 
@@ -1087,7 +1087,7 @@ void GetAgeSignal(const FGamebaseAgeSignalResultDelegate& Callback);
 | Error Code | Description |
 | --- | --- |
 | NOT\_SUPPORTED(10)                   | Android API 23 미만 기기에서 호출되었습니다. |
-| AUTH\_EXTERNAL\_LIBRARY\_ERROR(3009) | Google Play Age Signals API에서 에러를 리턴하였습니다. |
+| AUTH\_EXTERNAL\_LIBRARY\_ERROR(3009) | Google Play Age Signals API에서 오류를 반환했습니다. |
 
 **Handle results**
 
@@ -1198,7 +1198,7 @@ void USample::GetAgeSignal()
                 }
                 else if (Error->Code == GamebaseErrorCode::AUTH_EXTERNAL_LIBRARY_ERROR)
                 {
-                    // Google Play 서비스에서 에러가 발생하였습니다.
+                    // Google Play 서비스에서 오류가 발생했습니다.
                     UE_LOG(GamebaseTestResults, Display, TEXT("Google Play Age Signals error"));
                 }
             }
