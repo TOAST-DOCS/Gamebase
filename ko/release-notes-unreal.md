@@ -12,7 +12,7 @@
 
 #### 기능 개선/변경
 
-* `IGamebasePurchase::RequestItemListAtIAPConsole()` API가 deprecated 되었습니다.
+* `IGamebasePurchase::RequestItemListAtIAPConsole()` API가 deprecated되었습니다.
     * `IGamebasePurchase::RequestItemListPurchasable()` API를 사용하세요.
 * 내부 로직을 개선했습니다.
 

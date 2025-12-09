@@ -18,7 +18,8 @@
 
 #### 기능 개선/변경
 
-* **Gamebase.Purchase.requestItemListAtIAPConsole()** API가 deprecated 되었습니다.
+* **Gamebase.Purchase.requestItemListAtIAPConsole()** API가 deprecated되었습니다.
+
     * **Gamebase.Purchase.requestItemListPurchasable()** API를 사용하세요.
 
 ### 2.75.1 (2025. 10. 17.)
