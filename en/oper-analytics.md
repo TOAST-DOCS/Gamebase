@@ -78,7 +78,7 @@ Basic user indicators during a selected period are available.
 * Cumulative MAU: Sum of monthly active users. With monthly indicators, MAU items are substituted for DAU items. 
 * Maximum Concurrent Users (MCU): The maximum number of concurrent users around the clock. The largest CCU value of each minute is collected on a daily basis. 
 * Newly Registered Users (NRU): New subscribers whose first login logs are collected around the clock of the day (by member number)
-* 고유 신규 가입자(UNU): 고유 신규 가입자. 당일 0시~24시까지 로그인 로그가 최초 수집된 순수한 신규 유저 (memberno, device 기준)
+* Unique new user (UNU): a unique new user. A complete new user whose login log was first collected from 00:00 to 24:00 on the same day (based on memberno, device)
 * Withdrawer: Number of users whose member numbers are deleted around the clock.  
 * Average CCU: Average of CCU during a selected period. 
 * Avg.Playtime(/DAU) : Average play time during query period (sum of play time of DAU/DAU) 
