@@ -2251,6 +2251,7 @@ The code defined internally by Gamebase for the OS of the user device.
 | IOS | iOS |
 | WEB | Web |
 | WINDOWS | Windows |
+| MACOS | macOS |
 <br/>
 
 ### Store Code
@@ -2266,6 +2267,8 @@ The code defined internally by Gamebase for the store where the app is installed
 | AMAZON | Amazon Appstore |
 | HUAWEI | Huawei AppGallery |
 | MYCARD | Global MyCard |
+| EPIC | Epic Games Store |
+| STEAM | STEAM Store |
 <br/>
 
 ### Identity Provider Code

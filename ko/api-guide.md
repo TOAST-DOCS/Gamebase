@@ -2342,6 +2342,7 @@ X-Secret-Key: IgsaAP
 | IOS | iOS |
 | WEB | Web |
 | WINDOWS | Windows |
+| MACOS | macOS |
 <br/>
 
 ### Store Code
@@ -2357,6 +2358,8 @@ X-Secret-Key: IgsaAP
 | AMAZON | Amazon Appstore |
 | HUAWEI | Huawei AppGallery |
 | MYCARD | Global MyCard |
+| EPIC | Epic Games Store |
+| STEAM | STEAM Store |
 <br/>
 
 ### Identity Provider Code
