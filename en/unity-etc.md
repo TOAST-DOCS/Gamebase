@@ -1368,7 +1368,23 @@ Check the age information.
 ```cs
 static void GetAgeSignal(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Util.AgeSignalResult> callback)
             HandleUnknownUser(result);
-            break;
+Texas SB 2420 and similar state laws require apps to verify users' ages to protect minors.
+Gamebase provides an API that wraps the Google Play Age Signals API to meet these requirements.
+
+Please refer to the following article for how to set up the Age Signals feature on Android:<br/>
+* [Android Age Signals](./aos-etc/#age-signals-support)<br/>
+
+Supported Platforms
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+
+#### GetAgeSignal
+
+Check the age information.
+
+**API**
+
+```cs
+static void GetAgeSignal(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Util.AgeSignalResult> callback)
     }
 }
 ```
