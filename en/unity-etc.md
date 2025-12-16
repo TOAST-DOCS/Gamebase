@@ -1200,7 +1200,7 @@ Gamebase provides features to respond to customer inquiries.
 
 #### Customer Service Type
 
-In the **Gamebase Console > App > InApp URL > Service Center**, you can choose from three different types of Customer Centers.
+In the **Gamebase Console > App > Customer service**, you can choose from three different types of Customer Centers.
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
 
 | Customer Service Type     | Required Login |

@@ -1,30 +1,38 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.75.0 (2025. 09. 23.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-Unity.zip)
+
+#### Added Features
+* Added (Windows) Mapping feature
+#### Feature Updates
+* Improved internal logic.
+
 ### 2.74.0 (2025. 08. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.74.0/GamebaseSDK-Unity.zip)
 
-#### 버그 수정
-- (iOS) ChangeLogin 시 발생하던 크래시 이슈를 수정했습니다.
-- (macOS) GamebaseUtil에서 발생하던 DllNotFoundException 문제를 수정했습니다.
+#### Bug Fixes
+* Fixed a crash issue that occurred when performing (iOS) ChangeLogin .
+* Fixed a DllNotFoundException issue that occurred in (macOS) GamebaseUtil.
 
-#### 기타
-- 최소 지원 버전이 Unity 2022.3.10으로 상향되었습니다.
+#### Others
+* The minimum supported version has been increased to Unity 2022.3.10.
 
 ### 2.73.2 (2025. 07. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.2/GamebaseSDK-Unity.zip)
 
-#### 기능 개선
-- (Standalone) 로그인 IDP 추가 지원: Twitter, Apple, Line
+#### Feature Updates
+* The additional support for (Standalone) login IDP: Twitter, Apple, Line
 
-#### 지원 종료
-- 아마존 앱스토어 지원이 종료됩니다.
+#### End of Support
+* Amazon Appstore support is ending.
 
 ### 2.73.1 (2025. 07. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.1/GamebaseSDK-Unity.zip)
 
 #### Bug Fixes
-- (iOS) Fixed build error
-- (macOS) Fixed build error for WebView adapter
+* (iOS) Fixed build error
+* (macOS) Fixed build error for WebView adapter
 
 ### 2.73.0 (2025. 07. 15.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-Unity.zip)
@@ -32,14 +40,14 @@
 #### Added Features
 
 #### Feature Updates
-- (Windows, macOS) Changed from webview to external browser when logging in to IdP.
-    - Supported Browsers
-        - Windows : every browser
-        - macOS : Chrome, Safari, Firefox, whale
+* (Windows, macOS) Changed from webview to external browser when logging in to IdP.
+    * Supported Browsers
+        * Windows : every browser
+        * macOS : Chrome, Safari, Firefox, whale
 
-- Added external browser login cancellation API.
-    - To change the IDP during an ongoing external browser login request, cancel the existing request.
-    - CancelLoginWithExternalBrowser()
+* Added external browser login cancellation API.
+    * To change the IDP during an ongoing external browser login request, cancel the existing request.
+    * CancelLoginWithExternalBrowser()
 
 #### Platform-specific Changes
 * [Gamebase Android SDK 2.73.0](./release-notes-android/#2730-2025-07-15)

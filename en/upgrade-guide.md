@@ -1,5 +1,11 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.75.0
+
+### iOS
+
+* The minimum supported version of Xcode for Kakaogame authentication has changed from 16.0 to 16.2.
+
 ## 2.71.2
 
 ### Android

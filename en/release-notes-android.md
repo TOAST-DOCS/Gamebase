@@ -1,5 +1,19 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.75.0 (2025. 09. 23.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-Android.zip)
+
+#### Feature Updates
+ 
+* External SDK update: NHN Cloud Android SDK(1.12.0), PAYCO Android SDK(1.5.17), Weibo Android SDK(13.10.5)
+* Updated external SDK  to address Google Play's 16KB page constraint
+    * Updated NHN Cloud SDK / Weibo SDK
+    * Removed 16KB unresponsive gamebase-adapter-auth-weibo-v4 module
+* Removed unused module
+    * gamebase-adapter-purchase-amazon, gamebase-adapter-push-adm
+* Improved internal logic
+
 ### 2.73.1 (2025. 08. 12.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.1/GamebaseSDK-Android.zip)

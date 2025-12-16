@@ -1204,7 +1204,7 @@ Gamebase 는 고객 문의 대응을 위한 기능을 제공합니다.
 
 #### Customer Service Type
 
-**Gamebase 콘솔 > App > InApp URL > Service center**에서 아래와 같이 3가지 유형의 고객 센터를 선택할 수 있습니다.
+**Gamebase 콘솔 > App > Customer service**에서 아래와 같이 3가지 유형의 고객 센터를 선택할 수 있습니다.
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_001_2.16.0.png)
 
 | Customer Service Type     | Required Login |
