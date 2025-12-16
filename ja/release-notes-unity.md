@@ -22,7 +22,7 @@
 * (Windows) Mapping 기능 추가
 
 #### 기능 개선/변경
-* (Android) Google Play의 16KB 페이지 제약 대응
+* (Android) Google Playの16KBページ制限対応
 * 내부 로직을 개선하였습니다.
 
 ### 2.74.0 (2025. 08. 26.)
