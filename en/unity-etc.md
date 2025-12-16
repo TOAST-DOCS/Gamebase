@@ -1367,24 +1367,102 @@ Check the age information.
 
 ```cs
 static void GetAgeSignal(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Util.AgeSignalResult> callback)
-            HandleUnknownUser(result);
-Texas SB 2420 and similar state laws require apps to verify users' ages to protect minors.
-Gamebase provides an API that wraps the Google Play Age Signals API to meet these requirements.
-
-Please refer to the following article for how to set up the Age Signals feature on Android:<br/>
-* [Android Age Signals](./aos-etc/#age-signals-support)<br/>
-
-Supported Platforms
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-
-#### GetAgeSignal
-
-Check the age information.
-
-**API**
-
-```cs
-static void GetAgeSignal(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Util.AgeSignalResult> callback)
-    }
-}
 ```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_SUPPORTED(10)                   | Called on devices with Android API lower than version 23. | 
+| AUTH\_EXTERNAL\_LIBRARY\_ERROR(3009) | Google Play Age Signals API returned an error. | 
+
+
+**Handle results**
+
+You can check a user's status with AgeSignalResult.userStatus.
+Please determine whether to restrict the user based on the Status value.
+
+**GamebaseAgeSignalsVerificationStatus**
+
+A user verification status constant.
+
+| Status | Code | Description |
+| ----------------------------- | ---- | -------------------- |
+| VERIFIED | 0 | Adult (18 years or older) |
+| SUPERVISED | 1 | Minor with parental consent |
+| SUPERVISED\_APPROVAL\_PENDING | 2 | Pending parental approval |
+| SUPERVISED\_APPROVAL\_DENIED | 3 | Parental approval denied |
+| UNKNOWN | 4 | Unverified user |
+
+
+**Example**
+
+``` cs
+public static void SampleGetAgeSignal()
+{
+    Gamebase.Util.GetAgeSignal((data, error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            HandleAgeSignalsResult(data);
+        }
+        else
+        {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            switch (errorCode)
+            {
+                case GamebaseErrorCode.NOT_SUPPORTED:
+                    // Not supported on devices with Android API lower than version 23.
+                    Debug.LogError("Age Signals API is not supported on this device");
+                    break;
+                case GamebaseErrorCode.AUTH_EXTERNAL_LIBRARY_ERROR:
+                    // An error occurred in Google Play Services.
+                    Debug.LogErrorFormat("Google Play Age Signals error: {0}", errorMessage);
+                    break;
+            }
+        }
+    });
+}
+
+private static void HandleAgeSignalsResult(GamebaseResponse.Util.AgeSignalResult result)
+{
+    if(result.userStatus.HasValue == false)
+    {
+        // It means the user is not in a regulated area (Texas, Utah, Louisiana).
+       // You can proceed with your app's logic for non-regulated users.
+        return;
+    }
+    
+    GamebaseAgeSignalsVerificationStatus userStatus = (GamebaseAgeSignalsVerificationStatus)result.userStatus.Value;
+    switch (userStatus)
+    {
+        case GamebaseAgeSignalsVerificationStatus.VERIFIED:
+           // Adult users 18 years or older
+           // Allow access to all features
+           // ageLower and ageUpper are null
+            HandleAdultUser(result);
+            break;
+        case GamebaseAgeSignalsVerificationStatus.SUPERVISED:
+           // Minors with parental consent
+           // Limited functionality available for minors under Texas SB 2420
+
+            // You can check the age range.
+            var ageLower = result.ageLower.Value; // e.g. 13
+            var ageUpper = result.ageUpper.Value; // e.g. 17
+            var installId = result.installId;
+            HandleSupervisedMinor(result);
+            break;
+        case GamebaseAgeSignalsVerificationStatus.SUPERVISED_APPROVAL_PENDING:
+            // Limited feature is available while waiting for parental approval.
+            // Notify the user that approval is pending.
+            HandleApprovalPending(result);
+            break;
+        case GamebaseAgeSignalsVerificationStatus.SUPERVISED_APPROVAL_DENIED:
+            // If your guardian refuses permission,
+            // you will be notified that only limited features are available or the service is unavailable.
+            HandleApprovalDenied(result);
+            break;
+        case GamebaseAgeSignalsVerificationStatus.UNKNOWN:
+            // If the user is unverified or age verification information is unavailable in your jurisdiction,
+            // ask the user to visit the Play Store to resolve the issue.
