@@ -1090,7 +1090,97 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
-void GetAgeSignal(const FGamebaseAgeSignalResultDelegate& Callback);
+void USample::GetAgeSignal()
+{
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetUtil()->GetAgeSignal(
+        FGamebaseAgeSignalResultDelegate::CreateLambda([=](const FGamebaseAgeSignalResult* AgeSignalResult, const FGamebaseError* Error)
+        {
+            if (Gamebase::IsSuccess(Error))
+            {
+                if (!AgeSignalResult->UserStatus.IsSet())
+                {
+                    // It means that the user is not located in a regulated area (Texas, Utah, and Louisiana).
+                    // You can proceed with your app's logic for non-regulated users.
+                    UE_LOG(GamebaseTestResults, Display, TEXT("Not legally applicable"));
+                }
+                else
+                {
+                    EGamebaseAgeSignalsVerificationStatus UserStatus =
+                        static_cast<EGamebaseAgeSignalsVerificationStatus>(AgeSignalResult->UserStatus.GetValue());
+                    
+                    switch (UserStatus)
+                    {
+                        case EGamebaseAgeSignalsVerificationStatus::Verified:
+                        {
+                            // Adult users 18 years of age or older
+                            // Allow access to all features
+                            // AgeLower and AgeUpper are not set
+                            UE_LOG(GamebaseTestResults, Display, TEXT("Age 18 or older"));
+                            break;
+                        }
+                        case EGamebaseAgeSignalsVerificationStatus::Supervised:
+                        {
+                            // Minors with parental consent
+                            // Limited features for minors under Texas SB 2420
+                            
+                            // You can check the age range.
+                            if (AgeSignalResult->AgeLower.IsSet() && AgeSignalResult->AgeUpper.IsSet())
+                            {
+                                int32 AgeLower = AgeSignalResult->AgeLower.GetValue(); // e.g. 13
+                                int32 AgeUpper = AgeSignalResult->AgeUpper.GetValue(); // e.g.17
+                                UE_LOG(GamebaseTestResults, Display, TEXT("Supervised user, age range: %d - %d"), AgeLower, AgeUpper);
+                            }
+
+                            if (AgeSignalResult->InstallId.IsSet())
+                            {
+                                FString InstallId = AgeSignalResult->InstallId.GetValue();
+                                UE_LOG(GamebaseTestResults, Display, TEXT("InstallId: %s"), *InstallId);
+                            }
+                            
+                            break;
+                        }
+                        case EGamebaseAgeSignalsVerificationStatus::SupervisedApprovalPending:
+                        {
+                            // Limited feature is available while waiting for parental approval.
+                            // Notify the user that approval is pending.
+                            if (AgeSignalResult->MostRecentApprovalDate.IsSet())
+                            {
+                                int64 ApprovalDate = AgeSignalResult->MostRecentApprovalDate.GetValue();
+                                UE_LOG(GamebaseTestResults, Display, TEXT("Approval pending since: %lld"), ApprovalDate);
+                            }
+                            break;
+                        }
+                        case EGamebaseAgeSignalsVerificationStatus::SupervisedApprovalDenied:
+                        {
+                            // If your guardian refuses permission,
+                            // you will be notified that only limited features are available or the service is unavailable.
+                            UE_LOG(GamebaseTestResults, Display, TEXT("Parent or guardian has denied changes"));
+                            break;
+                        }
+                        case EGamebaseAgeSignalsVerificationStatus::Unknown:
+                        {
+                            // If the user is not verified in your jurisdiction, or age verification information is unavailable,
+                            // ask the user to visit the Play Store to resolve the issue.
+                            UE_LOG(GamebaseTestResults, Display, TEXT("User is not verified or supervised"));
+                            break;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                UE_LOG(GamebaseTestResults, Display, TEXT("GetAgeSignal failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Message);
+                
+                if (Error->Code == GamebaseErrorCode::NOT_SUPPORTED)
+                {
+                    // Not supported on devices with Android API lower than version 23.
+                    UE_LOG(GamebaseTestResults, Display, TEXT("Age Signals API is not supported on this device"));
+                }
+                else if (Error->Code == GamebaseErrorCode::AUTH_EXTERNAL_LIBRARY_ERROR)
+                {
+                    // An error occurred in Google Play Services.
+                    UE_LOG(GamebaseTestResults, Display, TEXT("Google Play Age Signals error"));
                 }
             }
         }));
