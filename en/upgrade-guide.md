@@ -9,8 +9,8 @@
 
 ### Unreal
 
-* `IGamebasePurchase::RequestItemListAtIAPConsole()` API가 deprecated 되었습니다.
-    * `IGamebasePurchase::RequestItemListPurchasable()` API를 사용하세요.
+* `IGamebasePurchase::RequestItemListAtIAPConsole()` API has been deprecated.
+    * Use `IGamebasePurchase::RequestItemListPurchasable()` API
 
 ## 2.75.0
 
