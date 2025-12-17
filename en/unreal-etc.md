@@ -1090,6 +1090,36 @@ Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 
 ```cpp
+void GetAgeSignal(const FGamebaseAgeSignalResultDelegate& Callback);
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_SUPPORTED(10)                   | Called on devices with Android API lower than version 23. |
+| AUTH\_EXTERNAL\_LIBRARY\_ERROR(3009) | The Google Play Age Signals API returned an error. |
+
+**Handle results**
+
+You can check a user's status using the UserStatus property of FGamebaseAgeSignalResult.
+Please determine whether to restrict the user based on the Status value.
+
+**EGamebaseAgeSignalsVerificationStatus**
+
+A user validation status constant.
+
+| Status                      | Description          |
+| --------------------------- | -------------------- |
+| Verified | Adults 18 years of age or older |
+| Supervised | Minors with parental consent |
+| SupervisedApprovalPending | Pending parental approval |
+| SupervisedApprovalDenied | Parental approval denied |
+| Unknown | Unverified user |
+
+**Example**
+
+```cpp
 void USample::GetAgeSignal()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
