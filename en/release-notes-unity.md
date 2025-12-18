@@ -47,7 +47,11 @@
 * (Standalone) 로그인 IDP 추가 지원: Twitter, Apple, Line
 
 #### 지원 종료
-* 아마존 앱스토어 지원이 종료됩니다.
+#### Feature Updates
+* (Standalone) Added support for log IDP: Twitter, Apple, Line
+
+#### End of Support
+* Supporting Amazon Appstore ends.
 
 ### 2.73.1 (2025. 07. 22.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.1/GamebaseSDK-Unity.zip)
