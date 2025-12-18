@@ -7,7 +7,7 @@
 * (WebGL) 브라우저 로그인 지원
 
 #### 기능 개선
-* Gamebase.Purchase.RequestItemListAtIAPConsole() API가 deprecated 되었습니다.
+* Gamebase.Purchase.RequestItemListAtIAPConsole() API가 deprecated되었습니다.
   * Gamebase.Purchase.RequestItemListPurchasable() API 사용을 권장합니다.
 
 #### 버그 수정
