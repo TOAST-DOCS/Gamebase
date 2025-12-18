@@ -16,13 +16,13 @@
 
 ### Android
 
-* **Gamebase.Purchase.requestItemListAtIAPConsole()** API가 deprecated 되었습니다.
-    * **Gamebase.Purchase.requestItemListPurchasable()** API를 사용하세요.
+* **Gamebase.Purchase.requestItemListAtIAPConsole()** API has been deprecated.
+    * Use **Gamebase.Purchase.requestItemListPurchasable()** API.
 
 ### Unreal
 
-* `IGamebasePurchase::RequestItemListAtIAPConsole()` API가 deprecated 되었습니다.
-    * `IGamebasePurchase::RequestItemListPurchasable()` API를 사용하세요.
+* `IGamebasePurchase::RequestItemListAtIAPConsole()` API has been deprecated.
+    * Use `IGamebasePurchase::RequestItemListPurchasable()` API
 
 ## 2.75.0
 

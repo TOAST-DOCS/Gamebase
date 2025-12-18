@@ -1085,16 +1085,16 @@ void USample::RequestContactURL(const FString& userName)
 
 ### Age Signals Support
 
-Texas SB 2420 및 유사한 주 법률은 미성년자 보호를 위해 앱에서 사용자의 연령 확인을 요구합니다.
-Gamebase는 Google Play Age Signals API를 래핑하여 이러한 요구사항을 충족할 수 있는 API를 제공합니다.
+Texas SB 2420及び類似する州の法律は、未成年者の保護のためにアプリでユーザーの年齢確認を求めています。
+Gamebaseは、Google Play Age Signals APIをラッピングし、このような要件を満たすAPIを提供します。
 
-Android에서 Age Signals 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.
+AndroidでAge Signals機能を設定する方法は、次のドキュメントを参照してください。
 
 * [Android Age Signals](./aos-etc/#age-signals-support)
 
 #### GetAgeSignal
 
-연령 정보를 확인합니다.
+年齢情報を確認します。
 
 **API**
 
@@ -1109,25 +1109,25 @@ void GetAgeSignal(const FGamebaseAgeSignalResultDelegate& Callback);
 
 | Error Code | Description |
 | --- | --- |
-| NOT\_SUPPORTED(10)                   | Android API 23 미만 기기에서 호출되었습니다. |
-| AUTH\_EXTERNAL\_LIBRARY\_ERROR(3009) | Google Play Age Signals API에서 에러를 리턴하였습니다. |
+| NOT\_SUPPORTED(10)                     | Android API 23未満のデバイスで呼び出されました。 |
+| AUTH\_EXTERNAL\_LIBRARY\_ERROR(3009) | Google Play Age Signals APIでエラーを返しました。 |
 
 **Handle results**
 
-FGamebaseAgeSignalResult의 UserStatus로 유저의 상태를 확인할 수 있습니다.
-Status 값에 따라 사용자 규제 여부를 판단하시기 바랍니다.
+FGamebaseAgeSignalResultのUserStatusでユーザーの状態を確認できます。
+Status値に従ってユーザー規制の有無を判断してください。
 
 **EGamebaseAgeSignalsVerificationStatus**
 
-사용자 검증 상태 상수입니다.
+ユーザー検証状態定数です。
 
 | Status                      | Description          |
 | --------------------------- | -------------------- |
-| Verified                    | 18세 이상 성인          |
-| Supervised                  | 보호자 동의가 있는 미성년자 |
-| SupervisedApprovalPending   | 보호자 승인 대기 중       |
-| SupervisedApprovalDenied    | 보호자 승인 거부됨        |
-| Unknown                     | 검증되지 않은 사용자       |
+| Verified                    | 18歳以上の成人          |
+| Supervised                  | 保護者の同意がある未成年者 |
+| SupervisedApprovalPending   | 保護者承認待機中        |
+| SupervisedApprovalDenied    | 保護者承認拒否済み         |
+| Unknown                     | 検証されていないユーザー        |
 
 **Example**
 
@@ -1142,8 +1142,8 @@ void USample::GetAgeSignal()
             {
                 if (!AgeSignalResult->UserStatus.IsSet())
                 {
-                    // 사용자가 규제 지역(텍사스, 유타, 루이지애나)에 있지 않음을 의미합니다.
-                    // 규제 대상이 아닌 사용자에 대한 앱의 로직을 진행할 수 있습니다.
+                    // ユーザーが規制地域(テキサス、ユタ、ルイジアナ)にいないことを意味します。
+                    // 規制対象ではないユーザーに対するアプリのロジックを進行できます。
                     UE_LOG(GamebaseTestResults, Display, TEXT("Not legally applicable"));
                 }
                 else
@@ -1155,22 +1155,22 @@ void USample::GetAgeSignal()
                     {
                         case EGamebaseAgeSignalsVerificationStatus::Verified:
                         {
-                            // 18세 이상 성인 사용자
-                            // 모든 기능에 대한 접근 허용
-                            // AgeLower와 AgeUpper는 설정되지 않음
+                            // 18歳以上の成人ユーザー
+                            // 全ての機能に対するアクセス許可
+                            // AgeLowerとAgeUpperは設定されていません
                             UE_LOG(GamebaseTestResults, Display, TEXT("Age 18 or older"));
                             break;
                         }
                         case EGamebaseAgeSignalsVerificationStatus::Supervised:
                         {
-                            // 보호자 동의가 있는 미성년자
-                            // Texas SB 2420에 따라 미성년자를 위한 제한된 기능 제공
+                            // 保護者の同意がある未成年者
+                            // Texas SB 2420に従い未成年者のための制限された機能を提供
                             
-                            // 연령대를 확인할 수 있습니다.
+                            // 年齢帯を確認できます。
                             if (AgeSignalResult->AgeLower.IsSet() && AgeSignalResult->AgeUpper.IsSet())
                             {
-                                int32 AgeLower = AgeSignalResult->AgeLower.GetValue(); // 예: 13
-                                int32 AgeUpper = AgeSignalResult->AgeUpper.GetValue(); // 예: 17
+                                int32 AgeLower = AgeSignalResult->AgeLower.GetValue(); // 例: 13
+                                int32 AgeUpper = AgeSignalResult->AgeUpper.GetValue(); // 例: 17
                                 UE_LOG(GamebaseTestResults, Display, TEXT("Supervised user, age range: %d - %d"), AgeLower, AgeUpper);
                             }
 
@@ -1184,8 +1184,8 @@ void USample::GetAgeSignal()
                         }
                         case EGamebaseAgeSignalsVerificationStatus::SupervisedApprovalPending:
                         {
-                            // 보호자 승인을 기다리는 동안 제한된 기능만 제공
-                            // 사용자에게 승인 대기 중임을 알림
+                            // 保護者の承認を待つ間、制限された機能のみ提供
+                            // ユーザーに承認待機中であることを通知
                             if (AgeSignalResult->MostRecentApprovalDate.IsSet())
                             {
                                 int64 ApprovalDate = AgeSignalResult->MostRecentApprovalDate.GetValue();
@@ -1195,15 +1195,15 @@ void USample::GetAgeSignal()
                         }
                         case EGamebaseAgeSignalsVerificationStatus::SupervisedApprovalDenied:
                         {
-                            // 보호자가 승인을 거부한 경우
-                            // 제한된 기능만 제공하거나 서비스 이용 불가 안내
+                            // 保護者が承認を拒否した場合
+                            // 制限された機能のみ提供するか、サービス利用不可を案内
                             UE_LOG(GamebaseTestResults, Display, TEXT("Parent or guardian has denied changes"));
                             break;
                         }
                         case EGamebaseAgeSignalsVerificationStatus::Unknown:
                         {
-                            // 해당 관할 지역에서 검증되지 않은 사용자 또는 연령 확인 정보를 사용할 수 없는 경우
-                            // 사용자에게 Play 스토어를 방문하여 상태를 해결하도록 요청하세요.
+                            // 該当管轄地域で検証されていないユーザーまたは年齢確認情報を使用できない場合
+                            // ユーザーにPlayストアを訪問して状態を解決するようにリクエストしてください。
                             UE_LOG(GamebaseTestResults, Display, TEXT("User is not verified or supervised"));
                             break;
                         }
@@ -1216,12 +1216,12 @@ void USample::GetAgeSignal()
                 
                 if (Error->Code == GamebaseErrorCode::NOT_SUPPORTED)
                 {
-                    // Android API 23 미만 기기에서는 지원되지 않습니다.
+                    // Android API 23未満のデバイスではサポートされません。
                     UE_LOG(GamebaseTestResults, Display, TEXT("Age Signals API is not supported on this device"));
                 }
                 else if (Error->Code == GamebaseErrorCode::AUTH_EXTERNAL_LIBRARY_ERROR)
                 {
-                    // Google Play 서비스에서 에러가 발생하였습니다.
+                    // Google Playサービスでエラーが発生しました。
                     UE_LOG(GamebaseTestResults, Display, TEXT("Google Play Age Signals error"));
                 }
             }

@@ -12,14 +12,14 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.76.0/GamebaseSDK-Android.zip)
 
-#### 기능 추가
-* 미국 텍사스, 유타, 루이지애나와 같은 관할권의 특정 연령 확인 법률에 따른 준수 의무를 충족하는 데 도움이 되도록 Google Play Age Signals 기반의 연령 확인 API가 추가되었습니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Age Signals Support](./aos-etc/#age-signals-support)
+#### 機能追加
+* 米国テキサス、ユタ、ルイジアナのような管轄権の特定年齢確認法律による遵守義務を満たすのに役立つよう、Google Play Age Signalsベースの年齢確認APIが追加されました。
+    * [Game > Gamebase > Android SDK使用ガイド > ETC > Age Signals Support](./aos-etc/#age-signals-support)
 
-#### 기능 개선/변경
+#### 機能改善・変更
 
-* **Gamebase.Purchase.requestItemListAtIAPConsole()** API가 deprecated 되었습니다.
-    * **Gamebase.Purchase.requestItemListPurchasable()** API를 사용하세요.
+* **Gamebase.Purchase.requestItemListAtIAPConsole()** APIが非推奨になりました。
+    * **Gamebase.Purchase.requestItemListPurchasable()** APIを使用してください。
 
 ### 2.75.1 (2025. 10. 17.)
 
