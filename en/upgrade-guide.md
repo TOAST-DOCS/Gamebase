@@ -2,6 +2,10 @@
 
 ## 2.77.0
 
+### Common
+* Appleid 계정을 revoke 시켰을 때 발생하는 GamebaseEventHandler의 IdP Revoked 이벤트의 권장 가이드를 변경하였습니다.
+    * 유저에게 IdP가 사용 중지된 것을 알리고, 탈퇴 대신 로그아웃 후 다시 로그인 할 수 있도록 변경하시기 바립니다.
+    
 ### iOS
 
 * **TCGBPurchase.requestItemListAtIAPConsoleWithCompletion:** API가 deprecated 되었습니다.
