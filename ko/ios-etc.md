@@ -359,19 +359,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 > iOS Appleid 로그인을 사용하는 경우에만 발생할 수 있는 이벤트입니다.
 
 * IdP에서 해당 서비스를 삭제하였을 때 발생하는 이벤트입니다.
-* 유저에게 IdP가 사용 중지된 것을 알리고, 동일한 IdP로 로그인할 때 userID를 새로 발급 받을 수 있도록 구현해야 합니다.
-* TCGBGamebaseEventIdPRevokedData.code: TCGBIdPRevokedCode 값을 의미합니다.
-    * IDP_REVOKED_WITHDRAW: 600
-        * 현재 사용 중지된 IdP로 로그인되어 있고, 매핑된 IdP 목록이 없을 때를 의미합니다.
-        * withdraw API를 호출하여 현재 계정을 탈퇴 처리해야 합니다.
-    * IDP_REVOKED_OVERWRITE_LOGIN_AND_REMOVE_MAPPING: 601
-        * 현재 사용 중지된 IdP로 로그인되어 있고, 사용 중지된 IdP 외에 다른 IdP가 매핑되어 있는 경우를 의미합니다.
-        * 매핑된 IdP 중 하나의 IdP로 로그인을 하고 removeMapping API를 호출하여 사용 중지된 IdP에 대해 연동을 해제해야 합니다.
-    * IDP_REVOKED_REMOVE_MAPPING: 602
-        * 현재 계정에 매핑된 IdP 중 사용 중지된 IdP가 있을 경우를 의미합니다.
-        * removeMapping API를 호출하여 사용 중지된 IdP에 대해 연동을 해제해야 합니다.
-* TCGBGamebaseEventIdPRevokedData.idpType: 사용 중지된 IdP 타입을 의미합니다.
-* TCGBGamebaseEventIdPRevokedData.authMappingList: 현재 계정에 매핑되어 있는 IdP 목록을 의미합니다.
+* 유저에게 IdP가 사용 중지된 것을 알리고, 로그아웃 후 다시 로그인 하도록 구현해야 합니다.
 
 ```objectivec
 @interface TCGBGamebaseEventIdPRevokedData : NSObject <TCGBValueObject>
@@ -390,46 +378,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 - (void)eventHandler_addEventHandler {
     void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
         if ([message.category isEqualToString:kTCGBIdPRevoked] == YES) {
-            TCGBGamebaseEventIdPRevokedData *idPRevokedData = [TCGBGamebaseEventIdPRevokedData gamebaseEventIdPRevokedDataFromJsonString:message.data];
-            if (idPRevokedData == nil) { return; }   
-
-            NSString *revokedIdP = idPRevokedData.idPType;
-            switch (idPRevokedData.code) {
-                case IDP_REVOKED_WITHDRAW:
-                {
-                    // 현재 사용 중지된 IdP로 로그인되어 있고, 매핑된 IdP 목록이 없을 때를 의미합니다.
-                    // 유저에게 현재 계정이 탈퇴 처리된 것을 알려 주세요.
-                    [TCGBGamebase withdrawWithViewController:nil completion:^(TCGBError *error) {
-                        ...
-                    }];
-                    break;
-                }   
-                case IDP_REVOKED_OVERWRITE_LOGIN_AND_REMOVE_MAPPING:
-                {
-                    // 현재 사용 중지된 IdP로 로그인되어 있고, 사용 중지된 IdP 외에 다른 IdP가 매핑되어 있는 경우를 의미합니다.
-                    // 유저가 authMappingList 중 다시 로그인할 IdP를 선택하도록 하고, 선택한 IdP로 로그인한 뒤에는 사용 중지된 IdP의 연동을 해제해 주세요.
-                    NSString *selectedIdPType = "유저가 선택한 IdP";
-                    NSMutableDictionary *additionalInfo = [NSMutableDictionary dictionary];
-                    additionalInfo[kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname] = @(YES);
-                    [TCGBGamebase loginWithType:selectedIdPType additionalInfo:additionalInfo viewController:viewController completion:^(TCGBAuthToken *authToken, TCGBError *loginError) {
-                        if ([TCGBGamebase isSuccessWithError:loginError]) {
-                            [TCGBGamebase removeMappingWithType:revokedIdP viewController:nil completion:^(TCGBError * _Nullable removeMappingError) {
-                                ...
-                            }];
-                        }
-                    }];
-                    break;
-                }
-                case IDP_REVOKED_REMOVE_MAPPING:
-                {
-                    // 현재 계정에 매핑된 IdP 중 사용 중지된 IdP가 있을 경우를 의미합니다.
-                    // 유저에게 현재 계정에서 사용 중지된 IdP가 연동 해제됨을 알려 주세요.
-                    [TCGBGamebase removeMappingWithType:revokedIdP viewController:nil completion:^(TCGBError *error) {
-                        ...
-                    }];   
-                    break;
-                }
-            }
+            // TODO: process logout, then login again.
         }
     };
     
