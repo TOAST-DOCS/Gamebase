@@ -521,17 +521,8 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 > This is an event that only occur when using iOS Appleid login.
 
 * This event occurs when the service is deleted from the IdP.
-* Notifies the user that the IdP has been revoked, and issues a new userID when the user logs in with the same IdP.
-* GamebaseEventIdPRevokedData.code:  Indicates the GamebaseIdPRevokedCode value.
-    * WITHDRAW : 600
-        * Indicates that the user is logged in with a revoked IdP, and there is no list of mapped IdPs.
-        * You need to call the Withdraw API to remove the current account.
-    * OVERWRITE_LOGIN_AND_REMOVE_MAPPING : 601
-        * Indicates that the user is logged in with a revoked IdP and IdPs other than the revoked IdP are mapped.
-        * You need to log in with one of the mapped IdPs and call the RemoveMapping API to remove mapping with the revoked IdP.
-    * REMOVE_MAPPING : 602
-        * Indicates that there is a revoked IdP among IdPs mapped to the current account.
-        * You need to call the RemoveMapping API to remove mapping with the revoked IdP.
+* 유저에게 IdP가 사용 중지된 것을 알리고, 로그아웃 후 다시 로그인 하도록 구현해야 합니다.
+
 * GamebaseEventIdPRevokedData.idpType: Indicates the revoked IdP type.
 * GamebaseEventIdPRevokedData.authMappingList: Indicates the list of IdPs mapped to the current account.
 
@@ -552,62 +543,12 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
                 GamebaseResponse.Event.GamebaseEventIdPRevokedData idPRevokedData = GamebaseResponse.Event.GamebaseEventIdPRevokedData.From(message.data);
                 if (idPRevokedData != null)
                 {
-                    ProcessIdPRevoked(idPRevokedData);
+                    // Call logout, then login again.
                 }
                 break;
             }
         default:
             {
-                break;
-            }
-    }
-}
-
-private void ProcessIdPRevoked(string category, GamebaseResponse.Event.GamebaseEventIdPRevokedData data)
-{
-    var revokedIdP = data.idPType;
-    switch (data.code)
-    {
-        case GamebaseIdPRevokedCode.WITHDRAW:
-            {
-                // The user is logged in with a revoked IdP and there is no list of mapped IdPs. 
-                // Notifies the user that the current account has been removed.
-                Gamebase.Withdraw((error) =>
-                {
-                    ...
-                });
-                break;
-            }
-        case GamebaseIdPRevokedCode.OVERWRITE_LOGIN_AND_REMOVE_MAPPING:
-            {
-                // The user is logged in with a revoked IdP and IdPs other than the revoked IdP are mapped.
-                // Allows the user to select an IdP to login in to among the authMappingList, and removes mapping with the revoked IdP after login with the selected IdP.
-                var selectedIdP = "the IdP selected by the user";
-                var additionalInfo = new Dictionary<string, object>()
-                {
-                    { GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN, true }
-                };
-
-                Gamebase.Login(selectedIdP, additionalInfo, (authToken, loginError) =>
-                {
-                    if (Gamebase.IsSuccess(loginError) == true)
-                    {
-                        Gamebase.RemoveMapping(revokedIdP, (mappingError) =>
-                        {
-                            ...
-                        });
-                    }
-                });
-                break;
-            }
-        case GamebaseIdPRevokedCode.REMOVE_MAPPING:
-            {
-                // There is a revoked IdP among IdPs mapped to the current account.
-                // Notifies the user that mapping with the revoked IdP is removed from the current account.
-                Gamebase.RemoveMapping(revokedIdP, (error) =>
-                {
-                    ...
-                });
                 break;
             }
     }

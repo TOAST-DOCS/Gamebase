@@ -41,7 +41,7 @@ Gamebaseは、様々なIdP(アイデンティティプロバイダー)のアカ�
 
 以下は、Gamebaseで提供している外部認証リストです。
 
-| 外部認証           | Android | iOS | Unity(Windows, macOS) | Unreal(Windows) |
+| 外部認証           | Android | iOS | Unity(Windows, macOS, WebGL) | Unreal(Windows) |
 | ----------------- | ------------ | ------------ | ------------ | ------------ |
 | Facebook          | O | O | O | O |
 | Sign In with Apple | O  | O | O | O |
