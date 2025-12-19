@@ -1340,11 +1340,11 @@ public void SampleRequestContactURL()
 
 * ATT 활성화 여부를 확인합니다.
 
-* AUTHORIZED : 앱의 추적 요청 허용 동의, iOS 14 미만 기기에서는 항상 AUTHORIZED를 반환
+* AUTHORIZED: 앱의 추적 요청 허용 동의, iOS 14 미만 기기에서는 항상 AUTHORIZED를 반환
 * DENIED: 앱의 추적 요청 허용 거부
-* NOT_DETERMINED : 앱의 추적 요청 허용 미결정
-* RESTRICTED : 앱의 추적 요청 제한
-* UNKNOWN : 다른 os 이거나 os에서 정의되지 않은 경우
+* NOT_DETERMINED: 앱의 추적 요청 허용 미결정
+* RESTRICTED: 앱의 추적 요청 제한
+* UNKNOWN: 다른 OS이거나 OS에서 정의되지 않은 경우
 
 **API**
 
@@ -1406,7 +1406,7 @@ public void GetAppTrackingAuthorizationStatusSample()
 
 ### IDFA
 
-* 단말기의 광고식별자 값을 반환합니다.
+* 단말기의 광고 식별자 값을 반환합니다.
 
 iOS에서 IDFA 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.<br/>
 * [iOS IDFA](./ios-etc/#idfa)<br/>
@@ -1436,7 +1436,7 @@ public void SampleGetIdfa()
 Texas SB 2420 및 유사한 주 법률은 미성년자 보호를 위해 앱에서 사용자의 연령 확인을 요구합니다.
 Gamebase는 Google Play Age Signals API를 래핑하여 이러한 요구사항을 충족할 수 있는 API를 제공합니다.
 
-Android에서 Age Signals 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.<br/>
+Android에서 Age Signals 기능을 설정하는 방법은 다음 문서를 참고하세요.<br/>
 * [Android Age Signals](./aos-etc/#age-signals-support)<br/>
   
 Supported Platforms
@@ -1457,7 +1457,7 @@ static void GetAgeSignal(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Util
 | Error Code | Description |
 | --- | --- |
 | NOT\_SUPPORTED(10)                   | Android API 23 미만 기기에서 호출되었습니다. | 
-| AUTH\_EXTERNAL\_LIBRARY\_ERROR(3009) | Google Play Age Signals API에서 에러를 리턴하였습니다. | 
+| AUTH\_EXTERNAL\_LIBRARY\_ERROR(3009) | Google Play Age Signals API에서 오류를 반환했습니다. | 
 
 
 **Handle results**
@@ -1500,7 +1500,7 @@ public static void SampleGetAgeSignal()
                     Debug.LogError("Age Signals API is not supported on this device");
                     break;
                 case GamebaseErrorCode.AUTH_EXTERNAL_LIBRARY_ERROR:
-                    // Google Play 서비스에서 에러가 발생하였습니다. 
+                    // Google Play 서비스에서 오류가 발생했습니다. 
                     Debug.LogErrorFormat("Google Play Age Signals error: {0}", errorMessage);
                     break;
             }
@@ -1523,7 +1523,7 @@ private static void HandleAgeSignalsResult(GamebaseResponse.Util.AgeSignalResult
         case GamebaseAgeSignalsVerificationStatus.VERIFIED:
             // 18세 이상 성인 사용자
             // 모든 기능에 대한 접근 허용
-            // ageLower와 ageUpper는 null입니다
+            // ageLower와 ageUpper는 null입니다.
             HandleAdultUser(result);
             break;
         case GamebaseAgeSignalsVerificationStatus.SUPERVISED:

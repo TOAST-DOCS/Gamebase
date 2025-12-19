@@ -1003,17 +1003,19 @@ Gamebase는 Google Play Age Signals API를 래핑하여 이러한 요구사항�
 
 #### Dependencies
 
-SDK 내부적으로 아래 의존성을 갖고 있습니다.
+SDK 내부적으로 아래 의존성을 갖습니다.
+
 `implementation 'com.google.android.play:age-signals'`
 
 #### Requirements
 
 * 최소 Android API Level: API 23 (Android 6.0) 이상
-* Gamebase SDK 버전: 2.76.0 이상
+* Gamebase SDK 버전: 2.78.0 이상
 
 #### Google guide
 
-자세한 내용은 [https://developer.android.com/google/play/age-signals](https://developer.android.com/google/play/age-signals) 를 참고하세요.
+자세한 내용은 Play Age Signals 가이드의 [개요](https://developer.android.com/google/play/age-signals)를 참고하세요.
+
 
 > <font color="red">[주의]</font><br/>
 >
@@ -1044,7 +1046,8 @@ SDK 내부적으로 아래 의존성을 갖고 있습니다.
 | Error Code | Description |
 | --- | --- |
 | NOT\_SUPPORTED(10)                   | Android API 23 미만 기기에서 호출되었습니다. |
-| AUTH\_EXTERNAL\_LIBRARY\_ERROR(3009) | Google Play Age Signals API에서 에러를 리턴하였습니다. |
+| AUTH\_EXTERNAL\_LIBRARY\_ERROR(3009) | Google Play Age Signals API에서 오류를 반환했습니다. |
+
 
 **Example**
 
@@ -1058,7 +1061,8 @@ Gamebase.AgeSignals.checkAgeSignals(context, request) { result, exception ->
         // 성공: 연령 확인 정보 처리
         handleAgeSignalsResult(result)
     } else {
-        // 실패: 에러 처리
+        // 실패: 오류 처리
+
         val errorCode = exception?.code
         val errorMessage = exception?.message
         when (errorCode) {
@@ -1067,7 +1071,8 @@ Gamebase.AgeSignals.checkAgeSignals(context, request) { result, exception ->
                 Log.e(TAG, "Age Signals API is not supported on this device")
             }
             GamebaseError.AUTH_EXTERNAL_LIBRARY_ERROR -> {
-                // Google Play 서비스에서 에러가 발생하였습니다.
+                // Google Play 서비스에서 오류가 발생하였습니다.
+
                 Log.e(TAG, "Google Play Age Signals error: $errorMessage")
             }
         }
@@ -1109,7 +1114,8 @@ private fun handleAgeSignalsResult(result: GamebaseAgeSignalsResult) {
         GamebaseAgeSignalsVerificationStatus.VERIFIED -> {
             // 18세 이상 성인 사용자
             // 모든 기능에 대한 접근 허용
-            // ageLower와 ageUpper는 null입니다
+            // ageLower와 ageUpper는 null입니다.
+
             handleAdultUser(result)
         }
         GamebaseAgeSignalsVerificationStatus.SUPERVISED -> {
@@ -1146,4 +1152,5 @@ private fun handleAgeSignalsResult(result: GamebaseAgeSignalsResult) {
 
 **GamebaseAgeSignalsResult**
 
-자세한 내용은 [https://developer.android.com/google/play/age-signals/use-age-signals-api#age-signals-responses](https://developer.android.com/google/play/age-signals/use-age-signals-api#age-signals-responses)를 참고하시기 바랍니다.
+자세한 내용은 Play Age Signals 가이드의 [연령 신호 응답](https://developer.android.com/google/play/age-signals/use-age-signals-api#age-signals-responses)을 참고하세요.
+

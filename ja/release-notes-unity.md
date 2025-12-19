@@ -16,17 +16,17 @@
 ### 2.76.0 (2025. 11. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.76.0/GamebaseSDK-Unity.zip)
 
-####  기능 추가
-* 가장 최근 게시된 게임 공지의 게시 시간을 제공하기 위해 launching.app.gameNotice.latestNoticeTimeMillis 필드를 추가했습니다.
-* (Android)미국 텍사스, 유타, 루이지애나 등 특정 관할권의 연령 확인 관련 법률 준수를 지원하기 위해 Google Play Age Signals 기반의 연령 확인 API가 추가되었습니다.
-    * [Game > Gamebase > Unity SDK 사용 가이드 > 참고사항 > Age Signals Support](./unity-etc/#age-signals-support)
+#### 機能追加
+* 最近投稿されたゲーム告知の投稿時間を提供するために、launching.app.gameNotice.latestNoticeTimeMillisフィールドを追加しました。
+* (Android) 米国テキサス、ユタ、ルイジアナなど特定管轄権の年齢確認関連法律遵守を支援するために、Google Play Age Signalsベースの年齢確認APIが追加されました。
+    * [Game > Gamebase > Unity SDK使用ガイド > 参考事項 > Age Signals Support](./unity-etc/#age-signals-support)
 
 ### 2.75.1 (2025. 10. 17.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.1/GamebaseSDK-Unity.zip)
 
-#### 버그 수정
-* (Windows) AdditionalInfo가 null인 경우 발생하던 예외를 수정했습니다.
-* (macOS) GamebaseUtil에서 발생하던 DllNotFoundException 문제를 수정했습니다.
+#### 不具合の修正
+* (Windows) AdditionalInfoがnullの場合に発生していた例外を修正しました。
+* (macOS) GamebaseUtilで発生していたDllNotFoundException問題を修正しました。
 
 ### 2.75.0 (2025. 09. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-Unity.zip)
@@ -41,12 +41,12 @@
 ### 2.74.0 (2025. 08. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.74.0/GamebaseSDK-Unity.zip)
 
-#### 버그 수정
-* (iOS) ChangeLogin 시 발생하던 크래시 이슈를 수정했습니다.
-* (macOS) GamebaseUtil에서 발생하던 DllNotFoundException 문제를 수정했습니다.
+#### 不具合の修正
+* (iOS) ChangeLogin時に発生していたクラッシュ問題を修正しました。
+* (macOS) GamebaseUtilで発生していたDllNotFoundException問題を修正しました。
 
-#### 기타
-* 최소 지원 버전이 Unity 2022.3.10으로 상향되었습니다.
+#### その他
+* 最小サポートバージョンがUnity 2022.3.10に引き上げられました。
 
 ### 2.73.2 (2025. 07. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.2/GamebaseSDK-Unity.zip)
