@@ -359,19 +359,7 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 > This is an event that only occur when using the iOS Appleid login.
 
 * This event occurs when the service is deleted from the IdP.
-* Notifies the user that the IdP has been revoked, and issues a new userID when the user logs in with the same IdP.
-* TCGBGamebaseEventIdPRevokedData.code: Indicates the TCGBIdPRevokedCode value.
-    * IDP_REVOKED_WITHDRAW: 600
-        * Indicates that the user is logged in with a revoked IdP, and there is no list of mapped IdPs.
-        * You need to call the Withdraw API to remove the current account.
-    * IDP_REVOKED_OVERWRITE_LOGIN_AND_REMOVE_MAPPING: 601
-        * Indicates that the user is logged in with a revoked IdP and IdPs other than the revoked IdP are mapped.
-        * You need to log in with one of the mapped IdPs and call the removeMapping API to remove mapping with the revoked IdP.
-    * IDP_REVOKED_REMOVE_MAPPING: 602
-        * Indicates that there is a revoked IdP among IdPs mapped to the current account.
-        * You need to call the removeMapping API to remove mapping with the revoked IdP.
-* TCGBGamebaseEventIdPRevokedData.idpType: Indicates the revoked IdP type.
-* TCGBGamebaseEventIdPRevokedData.authMappingList: Indicates the list of IdPs mapped to the current account.
+* 유저에게 IdP가 사용 중지된 것을 알리고, 로그아웃 후 다시 로그인 하도록 구현해야 합니다.
 
 ```objectivec
 @interface TCGBGamebaseEventIdPRevokedData : NSObject <TCGBValueObject>
@@ -390,46 +378,7 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 - (void)eventHandler_addEventHandler {
     void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
         if ([message.category isEqualToString:kTCGBIdPRevoked] == YES) {
-            TCGBGamebaseEventIdPRevokedData *idPRevokedData = [TCGBGamebaseEventIdPRevokedData gamebaseEventIdPRevokedDataFromJsonString:message.data];
-            if (idPRevokedData == nil) { return; }   
-
-            NSString *revokedIdP = idPRevokedData.idPType;
-            switch (idPRevokedData.code) {
-                case IDP_REVOKED_WITHDRAW:
-                {
-                    // The user is logged in with a revoked IdP, and there is no list of mapped IdPs.
-                    // Notifies the user that the current account has been removed.
-                    [TCGBGamebase withdrawWithViewController:nil completion:^(TCGBError *error) {
-                        ...
-                    }];
-                    break;
-                }   
-                case IDP_REVOKED_OVERWRITE_LOGIN_AND_REMOVE_MAPPING:
-                {
-                    // The user is logged in with a revoked IdP and IdPs other than the revoked IdP are mapped.
-                    // Allows the user to select a IdP to log in to among the authMappingList, and remove mapping with the revoked IdP after login with the selected IdP.
-                    NSString *selectedIdPType = "The IdP selected by the user";
-                    NSMutableDictionary *additionalInfo = [NSMutableDictionary dictionary];
-                    additionalInfo[kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname] = @(YES);
-                    [TCGBGamebase loginWithType:selectedIdPType additionalInfo:additionalInfo viewController:viewController completion:^(TCGBAuthToken *authToken, TCGBError *loginError) {
-                        if ([TCGBGamebase isSuccessWithError:loginError]) {
-                            [TCGBGamebase removeMappingWithType:revokedIdP viewController:nil completion:^(TCGBError * _Nullable removeMappingError) {
-                                ...
-                            }];
-                        }
-                    }];
-                    break;
-                }
-                case IDP_REVOKED_REMOVE_MAPPING:
-                {
-                    // There is a revoked IdP among IdPs mapped to the current account.
-                    // Notifies the user that mapping with the revoked IdP is removed from the current account.
-                    [TCGBGamebase removeMappingWithType:revokedIdP viewController:nil completion:^(TCGBError *error) {
-                        ...
-                    }];   
-                    break;
-                }
-            }
+            // TODO: process logout, then login again.
         }
     };
     
