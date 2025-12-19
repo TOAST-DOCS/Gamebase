@@ -1010,7 +1010,7 @@ SDK内部的に以下の依存関係を持っています。
 #### Requirements
 
 * 最小Android API Level: API 23 (Android 6.0)以上
-* Gamebase SDKバージョン: 2.76.0以上
+* Gamebase SDKバージョン: 2.78.0以上
 
 #### Google guide
 

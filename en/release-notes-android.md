@@ -1,5 +1,14 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.78.0 (2025. 12. 23.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.77.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+
+* 외부 SDK 업데이트: Play Age Signals 라이브러리(0.0.2)
+    * Play Age Signals 라이브러리가 업데이트 되어, 2026년 1월 1일부터 정상적인 결과가 리턴됩니다.
+
 ### 2.77.0 (2025. 12. 09.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.77.0/GamebaseSDK-Android.zip)
@@ -15,6 +24,8 @@
 #### Added Features
 * Added the API to verify the age based on Google Play Age Signals to assist with compliance with age verification laws in certain jurisdictions, including Texas, Utah, and Louisiana, USA.
     * [Game > Gamebase > Android SDK User Guide > ETC > Age Signals Support](./aos-etc/#age-signals-support)
+    * Play Age Signals 라이브러리 버전이 베타(0.0.1-beta02) 상태이므로 API는 항상 예외가 발생합니다.
+        * 정상 동작을 위해서는 Play Age Signals 라이브러리 0.0.2 버전이 적용된 Gamebase Android SDK 2.78.0을 사용하세요.
 
 #### Feature Updates
 

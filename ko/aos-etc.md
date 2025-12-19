@@ -1010,7 +1010,7 @@ SDK 내부적으로 아래 의존성을 갖습니다.
 #### Requirements
 
 * 최소 Android API Level: API 23 (Android 6.0) 이상
-* Gamebase SDK 버전: 2.76.0 이상
+* Gamebase SDK 버전: 2.78.0 이상
 
 #### Google guide
 
