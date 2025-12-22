@@ -5,7 +5,7 @@
 
 #### 기능 개선/변경
 * 결제 관련 내부 로직 개선
-* 아래 API가 deprecated 되었습니다.
+* 아래 API가 deprecated되었습니다.
     * **[TCGBPurchase requestItemListAtIAPConsoleWithCompletion:]**
 
 ### 2.75.0 (2025. 09. 23.)

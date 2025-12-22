@@ -7,7 +7,7 @@
 * (WebGL) 브라우저 로그인 지원
 
 #### 기능 개선
-* Gamebase.Purchase.RequestItemListAtIAPConsole() API가 deprecated 되었습니다.
+* Gamebase.Purchase.RequestItemListAtIAPConsole() API가 deprecated되었습니다.
   * Gamebase.Purchase.RequestItemListPurchasable() API 사용을 권장합니다.
 
 #### 버그 수정
@@ -18,7 +18,7 @@
 
 ####  기능 추가
 * 가장 최근 게시된 게임 공지의 게시 시간을 제공하기 위해 launching.app.gameNotice.latestNoticeTimeMillis 필드를 추가했습니다.
-* (Android)미국 텍사스, 유타, 루이지애나 등 특정 관할권의 연령 확인 관련 법률 준수를 지원하기 위해 Google Play Age Signals 기반의 연령 확인 API가 추가되었습니다.
+* (Android) 미국 텍사스, 유타, 루이지애나 등 특정 관할권의 연령 확인 관련 법률 준수를 지원하기 위해 Google Play Age Signals 기반의 연령 확인 API가 추가되었습니다.
     * [Game > Gamebase > Unity SDK 사용 가이드 > 참고사항 > Age Signals Support](./unity-etc/#age-signals-support) 
 
 ### 2.75.1 (2025. 10. 17.)

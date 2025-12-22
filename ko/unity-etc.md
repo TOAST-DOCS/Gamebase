@@ -521,17 +521,8 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 > iOS Appleid 로그인을 사용하는 경우에만 발생할 수 있는 이벤트입니다.
 
 * IdP에서 해당 서비스를 삭제하였을 때 발생하는 이벤트입니다.
-* 유저에게 IdP가 사용 중지된 것을 알리고, 동일한 IdP로 로그인할 때 userID를 새로 발급 받을 수 있도록 구현해야 합니다.
-* GamebaseEventIdPRevokedData.code: GamebaseIdPRevokedCode 값을 의미합니다.
-    * WITHDRAW : 600
-        * 현재 사용 중지된 IdP로 로그인되어 있고, 매핑된 IdP 목록이 없을 때를 의미합니다.
-        * Withdraw API를 호출하여 현재 계정을 탈퇴 처리해야 합니다.
-    * OVERWRITE_LOGIN_AND_REMOVE_MAPPING : 601
-        * 현재 사용 중지된 IdP로 로그인되어 있고, 사용 중지된 IdP 외에 다른 IdP가 매핑되어 있는 경우를 의미합니다.
-        * 매핑된 IdP 중 하나의 IdP로 로그인을 하고 RemoveMapping API를 호출하여 사용 중지된 IdP에 대해 연동을 해제해야 합니다.
-    * REMOVE_MAPPING : 602
-        * 현재 계정에 매핑된 IdP 중 사용 중지된 IdP가 있을 경우를 의미합니다.
-        * RemoveMapping API를 호출하여 사용 중지된 IdP에 대해 연동을 해제해야 합니다.
+* 유저에게 IdP가 사용 중지된 것을 알리고, 로그아웃 후 다시 로그인 하도록 구현해야 합니다.
+ 
 * GamebaseEventIdPRevokedData.idpType: 사용 중지된 IdP 타입을 의미합니다.
 * GamebaseEventIdPRevokedData.authMappingList: 현재 계정에 매핑되어 있는 IdP 목록을 의미합니다.
 
@@ -552,62 +543,12 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
                 GamebaseResponse.Event.GamebaseEventIdPRevokedData idPRevokedData = GamebaseResponse.Event.GamebaseEventIdPRevokedData.From(message.data);
                 if (idPRevokedData != null)
                 {
-                    ProcessIdPRevoked(idPRevokedData);
+                    // Call logout, then login again.
                 }
                 break;
             }
         default:
             {
-                break;
-            }
-    }
-}
-
-private void ProcessIdPRevoked(string category, GamebaseResponse.Event.GamebaseEventIdPRevokedData data)
-{
-    var revokedIdP = data.idPType;
-    switch (data.code)
-    {
-        case GamebaseIdPRevokedCode.WITHDRAW:
-            {
-                // 현재 사용 중지된 IdP로 로그인되어 있고, 매핑된 IdP 목록이 없을 때를 의미합니다.
-                // 유저에게 현재 계정이 탈퇴 처리된 것을 알려 주세요.
-                Gamebase.Withdraw((error) =>
-                {
-                    ...
-                });
-                break;
-            }
-        case GamebaseIdPRevokedCode.OVERWRITE_LOGIN_AND_REMOVE_MAPPING:
-            {
-                // 현재 사용 중지된 IdP로 로그인되어 있고, 사용 중지된 IdP 외에 다른 IdP가 매핑되어 있는 경우를 의미합니다.
-                // 유저가 authMappingList 중 다시 로그인할 IdP를 선택하도록 하고, 선택한 IdP로 로그인한 뒤에는 사용 중지된 IdP의 연동을 해제해 주세요.
-                var selectedIdP = "유저가 선택한 IdP";
-                var additionalInfo = new Dictionary<string, object>()
-                {
-                    { GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN, true }
-                };
-
-                Gamebase.Login(selectedIdP, additionalInfo, (authToken, loginError) =>
-                {
-                    if (Gamebase.IsSuccess(loginError) == true)
-                    {
-                        Gamebase.RemoveMapping(revokedIdP, (mappingError) =>
-                        {
-                            ...
-                        });
-                    }
-                });
-                break;
-            }
-        case GamebaseIdPRevokedCode.REMOVE_MAPPING:
-            {
-                // 현재 계정에 매핑된 IdP 중 사용 중지된 IdP가 있을 경우를 의미합니다.
-                // 유저에게 현재 계정에서 사용 중지된 IdP가 연동 해제됨을 알려 주세요.
-                Gamebase.RemoveMapping(revokedIdP, (error) =>
-                {
-                    ...
-                });
                 break;
             }
     }
@@ -1340,11 +1281,11 @@ public void SampleRequestContactURL()
 
 * ATT 활성화 여부를 확인합니다.
 
-* AUTHORIZED : 앱의 추적 요청 허용 동의, iOS 14 미만 기기에서는 항상 AUTHORIZED를 반환
+* AUTHORIZED: 앱의 추적 요청 허용 동의, iOS 14 미만 기기에서는 항상 AUTHORIZED를 반환
 * DENIED: 앱의 추적 요청 허용 거부
-* NOT_DETERMINED : 앱의 추적 요청 허용 미결정
-* RESTRICTED : 앱의 추적 요청 제한
-* UNKNOWN : 다른 os 이거나 os에서 정의되지 않은 경우
+* NOT_DETERMINED: 앱의 추적 요청 허용 미결정
+* RESTRICTED: 앱의 추적 요청 제한
+* UNKNOWN: 다른 OS이거나 OS에서 정의되지 않은 경우
 
 **API**
 
@@ -1406,7 +1347,7 @@ public void GetAppTrackingAuthorizationStatusSample()
 
 ### IDFA
 
-* 단말기의 광고식별자 값을 반환합니다.
+* 단말기의 광고 식별자 값을 반환합니다.
 
 iOS에서 IDFA 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.<br/>
 * [iOS IDFA](./ios-etc/#idfa)<br/>
@@ -1436,7 +1377,7 @@ public void SampleGetIdfa()
 Texas SB 2420 및 유사한 주 법률은 미성년자 보호를 위해 앱에서 사용자의 연령 확인을 요구합니다.
 Gamebase는 Google Play Age Signals API를 래핑하여 이러한 요구사항을 충족할 수 있는 API를 제공합니다.
 
-Android에서 Age Signals 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.<br/>
+Android에서 Age Signals 기능을 설정하는 방법은 다음 문서를 참고하세요.<br/>
 * [Android Age Signals](./aos-etc/#age-signals-support)<br/>
   
 Supported Platforms
@@ -1457,7 +1398,7 @@ static void GetAgeSignal(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Util
 | Error Code | Description |
 | --- | --- |
 | NOT\_SUPPORTED(10)                   | Android API 23 미만 기기에서 호출되었습니다. | 
-| AUTH\_EXTERNAL\_LIBRARY\_ERROR(3009) | Google Play Age Signals API에서 에러를 리턴하였습니다. | 
+| AUTH\_EXTERNAL\_LIBRARY\_ERROR(3009) | Google Play Age Signals API에서 오류를 반환했습니다. | 
 
 
 **Handle results**
@@ -1500,7 +1441,7 @@ public static void SampleGetAgeSignal()
                     Debug.LogError("Age Signals API is not supported on this device");
                     break;
                 case GamebaseErrorCode.AUTH_EXTERNAL_LIBRARY_ERROR:
-                    // Google Play 서비스에서 에러가 발생하였습니다. 
+                    // Google Play 서비스에서 오류가 발생했습니다. 
                     Debug.LogErrorFormat("Google Play Age Signals error: {0}", errorMessage);
                     break;
             }
@@ -1523,7 +1464,7 @@ private static void HandleAgeSignalsResult(GamebaseResponse.Util.AgeSignalResult
         case GamebaseAgeSignalsVerificationStatus.VERIFIED:
             // 18세 이상 성인 사용자
             // 모든 기능에 대한 접근 허용
-            // ageLower와 ageUpper는 null입니다
+            // ageLower와 ageUpper는 null입니다.
             HandleAdultUser(result);
             break;
         case GamebaseAgeSignalsVerificationStatus.SUPERVISED:
