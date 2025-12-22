@@ -270,7 +270,6 @@ Gamebaseは単純な形式のWebビューで約款を表示します。
 >     * ユーザーのプッシュ受信同意有無は、Gamebase.Push.QueryPush APIで確認してください。
 > * コンソールで「基本約款設定」をしない場合、約款言語と異なる国コードで設定された端末からqueryTerms APIを呼び出した場合、**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**エラーが発生します。
 >     * コンソールで「基本約款設定」を行ったり、**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**エラーが発生した時は、約款を表示しないように処理してください。
-> * Standaloneプラットフォームでは、プッシュに関連する機能をサポートしないため、ゲームUIにその約款が表示されないように注意します。
 
 #### Requiredパラメータ
 * callback：API呼び出し結果をユーザーにコールバックで伝えます。コールバックで返されたGamebaseResponse.Terms.QueryTermsResultでコンソールに設定された約款情報を取得できます。
@@ -281,7 +280,6 @@ Gamebaseは単純な形式のWebビューで約款を表示します。
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 ```cs
 static void QueryTerms(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Terms.QueryTermsResult> callback)
@@ -350,7 +348,6 @@ queryTerms APIでダウンロードした約款情報でUIを直接作った場�
 >
 > プッシュ受信同意有無は、Gamebaseサーバーに保存されません。
 > プッシュ受信同意有無は、**ログイン後に**Gamebase.Push.registerPush APIを呼び出して保存してください。
-> Standaloneプラットフォームではログイン後に該当APIを呼び出す必要があります。ログインを行わずに呼び出す場合はNOT_LOGGED_INエラーが渡されます。
 >
 
 #### Requiredパラメータ
@@ -366,7 +363,6 @@ queryTerms APIでダウンロードした約款情報でUIを直接作った場�
 Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 ```cs
 static void UpdateTerms(GamebaseRequest.Terms.UpdateTermsConfiguration configuration, GamebaseCallback.ErrorDelegate callback)
@@ -377,7 +373,6 @@ static void UpdateTerms(GamebaseRequest.Terms.UpdateTermsConfiguration configura
 | Error | Error Code | Description |
 | --- | --- | --- |
 | NOT\_INITIALIZED | 1 | Gamebaseが初期化されていません。 |
-| NOT\_LOGGED_IN | 2 | ログインが必要です。 (Only Standalone) |
 | UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | 登録されていない約款Seq値を設定しました。 |
 | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 以前に呼び出されたTerms APIがまだ完了していません。<br/>しばらくしてから再度試行してください。 |
 

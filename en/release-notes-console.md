@@ -3,9 +3,9 @@
 ### Nov 25, 2025
 
 #### Added Features
-* Analytics > 이용자 지표 > 이용자 지표
-    * 고유 신규 가입자 지표 추가
-    * 탈퇴 이용자, 고유 신규 가입자 지표 그래프 추가
+* Analytics > User Metrics > User Metrics
+    * Added the unique new subscriber metric
+    * Added the graphs for withdrawn users, unique new users
 
 ### July 23, 2024
 
