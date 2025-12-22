@@ -2247,6 +2247,14 @@ Gamebaseは、NHN Cloud PushサービスのサーバーAPIで**Wrapping**機能�
 |   | 送信完了照会 | GET | /tcgb-push/v1.3/apps/{appId}/reservations/{reservation-id}/messages | /push/v2.4/appkeys/{appkey}/reservations/{reservation-id}/messages |
 |   | 修正 | PUT | /tcgb-push/v1.3/apps/{appId}/reservations/{reservationId} | /push/v2.4/appkeys/{appkey}/reservations/{reservationId} |
 |   | 削除 | DELETE | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+| タグ | 作成 | POST | /tcgb-push/v1.3/apps/{appId}/tags | /push/v2.4/appkeys/{appkey}/tags |
+|   | 照会 | GET | /tcgb-push/v1.3/apps/{appId}/tags | /push/v2.4/appkeys/{appkey}/tags |
+|   | 修正 | PUT | /tcgb-push/v1.3/apps/{appId}/tags/{tagId} | /push/v2.4/appkeys/{appkey}/tags/{tag-id} |
+|   | 削除 | DELETE | /tcgb-push/v1.3/apps/{appId}/tags/{tagId} | /push/v2.4/appkeys/{appkey}/tags/{tag-id} |
+| UID | 作成 | POST | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
+|   | 照会 | GET | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
+|   | 修正 | PUT | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
+|   | タグ 削除 | DELETE | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
 
 <br/>
 
