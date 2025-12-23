@@ -34,11 +34,6 @@ Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
-#### Dependencies
-
-* [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
-* [Gamebase iOS SDK - Dependencies](./ios-started/#setting)
-
 ## Installation
 
 1. Gamebase Unreal SDKをダウンロードして、プロジェクトパスに`Plugins`フォルダを作成し、ダウンロードしたSDK内部 **NHNCloud**フォルダを追加します。
@@ -60,11 +55,11 @@ Supported Platforms
 ### Android Settings
 
 1. エディタのメニュー **Edit > Project Settings**を選択します。
-2. Project SettingsウィンドウでPluginカテゴリーから**Gamebase - Android**を選択します。
+2. Project SettingsウィンドウでPluginカテゴリーから**Gamebase**を選択します。
 
 ![Unreal Project Settings - Android](https://static.toastoven.net/prod_gamebase/UnrealDevelopersGuide/unreal-developers-guide-started-android-setttings-2.72.0.png)
 
-* Authentication
+* Android - Authentication
     * 使用するIdPを有効にします。
     * Hangame IdPを使用する時は、サポートへお問い合わせください。
     * GPGS(Google Play Games Services)
