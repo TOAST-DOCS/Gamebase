@@ -2279,6 +2279,14 @@ Gamebase는 NHN Cloud Push 서비스의 서버 API에 대해 **Wrapping** 기능
 |   | 발송 완료 조회 | GET | /tcgb-push/v1.3/apps/{appId}/reservations/{reservation-id}/messages | /push/v2.4/appkeys/{appkey}/reservations/{reservation-id}/messages |
 |   | 수정 | PUT | /tcgb-push/v1.3/apps/{appId}/reservations/{reservationId} | /push/v2.4/appkeys/{appkey}/reservations/{reservationId} |
 |   | 삭제 | DELETE | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+| 태그 | 생성 | POST | /tcgb-push/v1.3/apps/{appId}/tags | /push/v2.4/appkeys/{appkey}/tags |
+|   | 조회 | GET | /tcgb-push/v1.3/apps/{appId}/tags | /push/v2.4/appkeys/{appkey}/tags |
+|   | 수정 | PUT | /tcgb-push/v1.3/apps/{appId}/tags/{tagId} | /push/v2.4/appkeys/{appkey}/tags/{tag-id} |
+|   | 삭제 | DELETE | /tcgb-push/v1.3/apps/{appId}/tags/{tagId} | /push/v2.4/appkeys/{appkey}/tags/{tag-id} |
+| UID | 생성 | POST | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
+|   | 조회 | GET | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
+|   | 수정 | PUT | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
+|   | 태그 삭제 | DELETE | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
 
 <br/>
 
