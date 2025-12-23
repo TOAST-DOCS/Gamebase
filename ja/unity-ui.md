@@ -544,14 +544,14 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNITY_STANDALONE
 
 ```cs
-static void CloseWebview()
+static void CloseWebView()
 ```
 
-**Example**CloseWebview
+**Example**CloseWebView
 ```cs
-public void CloseWebview()
+public void CloseWebView()
 {
-    Gamebase.Webview.CloseWebview();
+    Gamebase.Webview.CloseWebView();
 }
 ```
 

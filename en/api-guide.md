@@ -2086,6 +2086,14 @@ Gamebase provides **Wrapping** function for the Server API of the NHN Cloud Push
 |   | View sent ones | GET | /tcgb-push/v1.3/apps/{appId}/reservations/{reservation-id}/messages | /push/v2.4/appkeys/{appkey}/reservations/{reservation-id}/messages |
 |   | Modify | PUT | /tcgb-push/v1.3/apps/{appId}/reservations/{reservationId} | /push/v2.4/appkeys/{appkey}/reservations/{reservationId} |
 |   | Delete | DELETE | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+| Tag | Create | POST | /tcgb-push/v1.3/apps/{appId}/tags | /push/v2.4/appkeys/{appkey}/tags |
+|   | View | GET | /tcgb-push/v1.3/apps/{appId}/tags | /push/v2.4/appkeys/{appkey}/tags |
+|   | Modify | PUT | /tcgb-push/v1.3/apps/{appId}/tags/{tagId} | /push/v2.4/appkeys/{appkey}/tags/{tag-id} |
+|   | Delete | DELETE | /tcgb-push/v1.3/apps/{appId}/tags/{tagId} | /push/v2.4/appkeys/{appkey}/tags/{tag-id} |
+| UID | Create | POST | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
+|   | View | GET | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
+|   | Modify | PUT | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
+|   | Tag Delete | DELETE | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
 
 <br/>
 
