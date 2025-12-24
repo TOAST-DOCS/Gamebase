@@ -4,8 +4,8 @@
 
 ### iOS
 
-* **TCGBPurchase.requestItemListAtIAPConsoleWithCompletion:** API가 deprecated 되었습니다.
-    * **TCGBPurchase.requestItemListPurchasableWithCompletion** API를 사용하세요.
+* **TCGBPurchase.requestItemListAtIAPConsoleWithCompletion:** API is deprecated.
+    * **Use TCGBPurchase.requestItemListPurchasableWithCompletion** API.
 
 ### Unity
 
