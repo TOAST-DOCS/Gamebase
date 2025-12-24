@@ -9,8 +9,8 @@
 
 ### Unity
 
-* **Gamebase.Purchase.RequestItemListAtIAPConsole():** API가 deprecated 되었습니다.
-    * **Gamebase.Purchase.RequestItemListPurchasable()** API를 사용하세요.
+* **Gamebase.Purchase.RequestItemListAtIAPConsole():** API is deprecated.
+    * **Use Gamebase.Purchase.RequestItemListPurchasable()** API.
 
 ## 2.76.0
 
