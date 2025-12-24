@@ -1348,6 +1348,101 @@ public void SampleRequestContactURL()
 }
 ```
 
+### App Tracking AuthorizationStatus
+
+* Check the ATT status.
+
+* AUTHORIZED : tracking permitted. Always returned on versions below iOS 14
+* DENIED: tracking denied by the user
+* NOT_DETERMINED : not decided to allow tracking request from app
+* RESTRICTED : app tracking restricted
+* UNKNOWN : different OS or undefined status
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+namespace Toast.Gamebase
+{
+    public enum GamebaseAppTrackingAuthorizationStatus
+    {
+        AUTHORIZED,
+        DENIED,
+        NOT_DETERMINED,
+        RESTRICTED,
+        UNKNOWN
+    }
+}
+
+static Toast.Gamebase.GamebaseAppTrackingAuthorizationStatus GetAppTrackingAuthorizationStatus();
+```
+
+**Example**
+
+``` cs
+public void GetAppTrackingAuthorizationStatusSample()
+{
+#if UNITY_IOS
+    switch (Gamebase.Util.GetAppTrackingAuthorizationStatus() ) iOS only
+    {
+        case GamebaseAppTrackingAuthorizationStatus.AUTHORIZED:
+        {
+        }
+        break; 
+        
+        case GamebaseAppTrackingAuthorizationStatus.DENIED:
+        {
+        }
+        break;
+        
+        case GamebaseAppTrackingAuthorizationStatus.NOT_DETERMINED:
+        {
+        }
+        break;
+        
+        case GamebaseAppTrackingAuthorizationStatus.RESTRICTED:
+        {
+        }
+        break;
+        
+        case GamebaseAppTrackingAuthorizationStatus.UNKNOWN:
+        {
+        }
+        break;
+    }
+#endif
+}
+```
+
+### IDFA
+
+* Returns the device's Advertising Identifier (IDFA).
+
+To configure IDFA settings on iOS, please refer to the following documentation.<br/>
+* [iOS IDFA](./ios-etc/#idfa)<br/>
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+static void GetIdfa();
+```
+
+**Example**
+
+``` cs
+public void SampleGetIdfa()
+{
+#if UNITY_IOS
+    string idfa = Gamebase.Util.GetIdfa(); iOS only
+#endif
+}
+```
+
 ### Age Signals Support
 
 Texas SB 2420 및 유사한 주 법률은 미성년자 보호를 위해 앱에서 사용자의 연령 확인을 요구합니다.

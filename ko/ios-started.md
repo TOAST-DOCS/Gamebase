@@ -7,7 +7,7 @@
 >
 > 최소 사양
 >
-> * 사용자 실행 환경: iOS 12 이상, Swift 5 이상
+> * 사용자 실행 환경: iOS 15 이상, Swift 5 이상
 > * 빌드 환경: Xcode 16.0(iOS 18 SDK) 이상
 >
 
@@ -37,21 +37,21 @@ Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
 
 | Gamebase SDK | Gamebase Auth Adapter | External SDK & Compatible Version | 용도  | Support iOS Version |
 | --- | --- | --- | --- | --- |
-| Gamebase | Gamebase.xcframework<br/>Gamebase.bundle | NHNCloudSDK 1.8.5 | Gamebase의 Interface 및 핵심 로직을 포함 | iOS 12 이상 |
-| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.xcframework | FacebookSDK 18.0.0 | Facebook 로그인을 지원 | iOS 12 이상 |
-|  | GamebaseAuthPaycoAdapter.xcframework | PaycoID Login 3rd SDK v1.5.13 | PAYCO 로그인을 지원 | iOS 12 이상 |
-|  | GamebaseAuthNaverAdapter.xcframework | naveridlogin-sdk-ios-4.2.3 | NAVER 로그인을 지원 | iOS 12 이상 |
-|  | GamebaseAuthGamecenterAdapter.xcframework | GameKit | Gamecenter 로그인을 지원 | iOS 12 이상 |
-|  | GamebaseAuthGoogleAdapter.xcframework | GoogleSignIn 7.1.0 | Google 로그인을 지원 | iOS 12 이상 |
-|  | GamebaseAuthTwitterAdapter.xcframework | | Twitter 로그인을 지원 | iOS 12 이상 |
-|  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.11.2 | LINE 로그인을 지원 | iOS 13 이상 |
-|  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 12 이상 |
-|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.17.2 | Hangame 로그인을 지원 | iOS 12 이상 |
-|  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.4.0 | Weibo 로그인을 지원 | iOS 12 이상 |
-|  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.20.0 | Kakao 로그인을 지원 | iOS 13 이상<br/>Xcode 16.2 이상 |
-|  | GamebaseAuthSteamAdapter.xcframework |  | Steam 로그인을 지원 | iOS 14 이상 |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit<br/>NHNCloudIAP 1.8.5 | 게임 내 결제 지원 | iOS 12 이상 |
-| Gamebase Push Adapters | GamebasePushAdapter.xcframework | NHNCloudPush 1.8.5 | Push를 지원 | iOS 12 이상 |
+| Gamebase | Gamebase.xcframework<br/>Gamebase.bundle | NHNCloudSDK 1.8.5 | Gamebase의 Interface 및 핵심 로직을 포함 | iOS 15 이상 |
+| Gamebase Auth Adapters | GamebaseAuthFacebookAdapter.xcframework | FacebookSDK 18.0.0 | Facebook 로그인을 지원 | iOS 15 이상 |
+|  | GamebaseAuthPaycoAdapter.xcframework | PaycoID Login 3rd SDK v1.5.13 | PAYCO 로그인을 지원 | iOS 15 이상 |
+|  | GamebaseAuthNaverAdapter.xcframework | naveridlogin-sdk-ios-4.2.3 | NAVER 로그인을 지원 | iOS 15 이상 |
+|  | GamebaseAuthGamecenterAdapter.xcframework | GameKit | Gamecenter 로그인을 지원 | iOS 15 이상 |
+|  | GamebaseAuthGoogleAdapter.xcframework | GoogleSignIn 7.1.0 | Google 로그인을 지원 | iOS 15 이상 |
+|  | GamebaseAuthTwitterAdapter.xcframework | | Twitter 로그인을 지원 | iOS 15 이상 |
+|  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.11.2 | LINE 로그인을 지원 | iOS 15 이상 |
+|  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 15 이상 |
+|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.17.2 | Hangame 로그인을 지원 | iOS 15 이상 |
+|  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.4.0 | Weibo 로그인을 지원 | iOS 15 이상 |
+|  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.20.0 | Kakao 로그인을 지원 | iOS 15 이상<br/>Xcode 16.2 이상 |
+|  | GamebaseAuthSteamAdapter.xcframework |  | Steam 로그인을 지원 | iOS 15 이상 |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit<br/>NHNCloudIAP 1.8.5 | 게임 내 결제 지원 | iOS 15 이상 |
+| Gamebase Push Adapters | GamebasePushAdapter.xcframework | NHNCloudPush 1.8.5 | Push를 지원 | iOS 15 이상 |
 
 
 > <font color="red">[주의]</font><br/>
@@ -95,7 +95,7 @@ Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
     * StoreKit.framework
     * Security.framework
     * AuthenticationServices.framework
-    * AppTrackingTransparency.framework (Optional)
+    * AppTrackingTransparency.framework
 
 ![Link Binary With Libraries](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-installation-005_1.0.0.png)
 
@@ -138,7 +138,7 @@ Gamebase iOS SDK는 CocoaPods를 통해서도 설정할 수 있습니다.
 * 4) 생성된 **Podfile**을 편집기로 열어 다음과 같은 내용을 작성합니다.
 
 ```ruby
-platform :ios, '12.0'
+platform :ios, '15.0'
 
 target 'SampleApplication' do
     use_frameworks!
@@ -166,7 +166,7 @@ end
 > [INFO]
 >
 > **target 'SampleApplication' do** 부분에는 생성한 프로젝트의 타깃 이름을 입력합니다.<br/>
-> **pod 'Gamebase', '2.48.0'**과 같이 작성해 특정 버전을 지정할 수 있습니다. 각각의 pod에 버전을 명시하지 않으면 최신 버전이 설정됩니다.<br/>
+> **pod 'Gamebase', '2.77.0'**과 같이 작성해 특정 버전을 지정할 수 있습니다. 각각의 pod에 버전을 명시하지 않으면 최신 버전이 설정됩니다.<br/>
 > 특정 Adapter만 선택해서 적용할 수 있습니다.
 > 
 

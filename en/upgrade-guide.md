@@ -1,5 +1,17 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.77.0
+
+### iOS
+
+* **TCGBPurchase.requestItemListAtIAPConsoleWithCompletion:** API is deprecated.
+    * **Use TCGBPurchase.requestItemListPurchasableWithCompletion** API.
+
+### Unity
+
+* **Gamebase.Purchase.RequestItemListAtIAPConsole():** API is deprecated.
+    * **Use Gamebase.Purchase.RequestItemListPurchasable()** API.
+
 ## 2.76.0
 
 ### Android

@@ -1,5 +1,18 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.77.0 (2025. 12. 09.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.77.0/GamebaseSDK-Unity.zip)
+
+####  Added Features
+* (WebGL) Added support for browser login
+
+#### Feature Updates
+* Gamebase.Purchase.RequestItemListAtIAPConsole() API is deprecated.
+  * Using Gamebase.Purchase.RequestItemListPurchasable() API is recommended.
+
+#### Bug Fixes
+* (WebGL) Fixed an issue where guest login failed.
+  
 ### 2.76.0 (2025. 11. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.76.0/GamebaseSDK-Unity.zip)
 

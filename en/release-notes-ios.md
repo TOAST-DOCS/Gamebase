@@ -1,5 +1,13 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.77.0 (2025. 12. 09.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.77.0/GamebaseSDK-iOS.zip)
+
+#### Feature Updates
+* Improved internal payment logic
+* The API below is deprecated:
+    * **[TCGBPurchase requestItemListAtIAPConsoleWithCompletion:]**
+    
 ### 2.75.0 (2025. 09. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-iOS.zip)
 

@@ -1,5 +1,17 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.77.0
+
+### iOS
+
+* **TCGBPurchase.requestItemListAtIAPConsoleWithCompletion:** API가 deprecated 되었습니다.
+    * **TCGBPurchase.requestItemListPurchasableWithCompletion** API를 사용하세요.
+
+### Unity
+
+* **Gamebase.Purchase.RequestItemListAtIAPConsole():** API가 deprecated 되었습니다.
+    * **Gamebase.Purchase.RequestItemListPurchasable()** API를 사용하세요.
+
 ## 2.76.0
 
 ### Android
