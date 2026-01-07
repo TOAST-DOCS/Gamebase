@@ -4,13 +4,15 @@
 
 ### iOS
 
-* **TCGBPurchase.requestItemListAtIAPConsoleWithCompletion:** API가 deprecated 되었습니다.
-    * **TCGBPurchase.requestItemListPurchasableWithCompletion** API를 사용하세요.
+* **TCGBPurchase.requestItemListAtIAPConsoleWithCompletion:** APIが非推奨となりました。
+
+    * **TCGBPurchase.requestItemListPurchasableWithCompletion** APIを使用してください。
 
 ### Unity
 
-* **Gamebase.Purchase.RequestItemListAtIAPConsole():** API가 deprecated 되었습니다.
-    * **Gamebase.Purchase.RequestItemListPurchasable()** API를 사용하세요.
+* **Gamebase.Purchase.RequestItemListAtIAPConsole():** APIが非推奨となりました。
+
+    * **Gamebase.Purchase.RequestItemListPurchasable()** APIを使用してください。
 
 ## 2.76.0
 
