@@ -359,7 +359,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 > iOS Appleid 로그인을 사용하는 경우에만 발생할 수 있는 이벤트입니다.
 
 * IdP에서 해당 서비스를 삭제하였을 때 발생하는 이벤트입니다.
-* 유저에게 IdP가 사용 중지된 것을 알리고, 로그아웃 후 다시 로그인 하도록 구현해야 합니다.
+* 유저에게 IdP가 사용 중지된 것을 알리고, 로그아웃 후 다시 로그인하도록 구현해야 합니다.
 
 ```objectivec
 @interface TCGBGamebaseEventIdPRevokedData : NSObject <TCGBValueObject>
