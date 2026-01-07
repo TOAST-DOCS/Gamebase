@@ -4,9 +4,9 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.77.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
+#### 機能改善・変更
 
-* 결제 관련 내부 로직 개선
+* 決済関連の内部ロジックを改善
 
 ### 2.76.0 (2025. 11. 28.)
 
