@@ -521,7 +521,7 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 > iOS Appleid 로그인을 사용하는 경우에만 발생할 수 있는 이벤트입니다.
 
 * IdP에서 해당 서비스를 삭제하였을 때 발생하는 이벤트입니다.
-* 유저에게 IdP가 사용 중지된 것을 알리고, 로그아웃 후 다시 로그인 하도록 구현해야 합니다.
+* 유저에게 IdP가 사용 중지된 것을 알리고, 로그아웃 후 다시 로그인하도록 구현해야 합니다.
  
 * GamebaseEventIdPRevokedData.idpType: 사용 중지된 IdP 타입을 의미합니다.
 * GamebaseEventIdPRevokedData.authMappingList: 현재 계정에 매핑되어 있는 IdP 목록을 의미합니다.
