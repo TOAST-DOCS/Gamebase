@@ -24,7 +24,7 @@
     * Use **Gamebase.Purchase.requestItemListPurchasable()** API.
 * 미국 텍사스, 유타, 루이지애나와 같은 관할권의 특정 연령 확인 법률에 따른 준수를 위해 추가된 연령 확인 API는 Play Age Signals 라이브러리 버전이 베타(0.0.1-beta02) 상태이므로 항상 예외가 발생합니다.
     * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Age Signals Support](./aos-etc/#age-signals-support)
-    * 정상 동작을 위해서는 Play Age Signals 라이브러리 버전이 0.0.2로 업데이트 된 Gamebase Android SDK 2.78.0을 사용하세요.
+    * 향후 정상 동작을 위해서는 Play Age Signals 라이브러리 버전이 0.0.2로 업데이트된 Gamebase Android SDK 2.78.0을 사용하세요.
 
 ### Unreal
 
