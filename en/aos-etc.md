@@ -1010,7 +1010,7 @@ The SDK internally has the following dependencies:
 #### Requirements
 
 * Minimum Android API Level: API 23 (Android 6.0) or later
-* Gamebase SDK version: 2.76.0 or later
+* Gamebase SDK version: 2.78.0 or later
 
 #### Google guide
 
@@ -1147,8 +1147,4 @@ private fun handleAgeSignalsResult(result: GamebaseAgeSignalsResult) {
 
 **GamebaseAgeSignalsResult**
 
-<<<<<<< HEAD
-자세한 내용은 [https://developer.android.com/google/play/age-signals/use-age-signals-api#age-signals-responses](https://developer.android.com/google/play/age-signals/use-age-signals-api#age-signals-responses)를 참고하시기 바랍니다.
-=======
 For more information, refer to the [https://developer.android.com/google/play/age-signals/use-age-signals-api#age-signals-responses](https://developer.android.com/google/play/age-signals/use-age-signals-api#age-signals-responses).
->>>>>>> alpha-client/20251128/pr
