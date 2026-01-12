@@ -140,7 +140,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
     configuration.enableLaunchingStatusPopup = true;
     configuration.enableBanPopup = true;
 
-    IGamebase::Get().Initialize(configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* launchingInfo, const FGamebaseError* error)
+    IGamebase::Get().Initialize(configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([](const FGamebaseLaunchingInfo* launchingInfo, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {

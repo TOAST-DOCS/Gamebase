@@ -107,7 +107,7 @@ void USample::Initialize(const FString& appID, const FString& appVersion)
     ...
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->Initialize(Configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* LaunchingInfo, const FGamebaseError* Error)
+    Subsystem->Initialize(Configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([Subsystem](const FGamebaseLaunchingInfo* LaunchingInfo, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
@@ -283,7 +283,7 @@ struct GAMEBASE_API FGamebaseEventMessage
 void USample::AddEventHandler()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& Message)
+    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([](const FGamebaseEventMessage& Message)
     {
         if (Message.Category.Equals(GamebaseEventCategory::IdPRevoked))
         {
@@ -372,7 +372,7 @@ void USample::AddEventHandler()
 void USample::AddEventHandler()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& Message)
+    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([](const FGamebaseEventMessage& Message)
     {
         if (Message.Category.Equals(GamebaseEventCategory::IdPRevoked))
         {
@@ -394,7 +394,7 @@ void USample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& Data)
         // 유저에게 현재 계정이 탈퇴 처리된 것을 알려 주세요.
         case GamebaseIdPRevokeCode::Withdraw:
         {
-            Subsystem->Withdraw(FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error)
+            Subsystem->Withdraw(FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* Error)
             {
                 ...
             }));
@@ -408,11 +408,11 @@ void USample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& Data)
             FGamebaseVariantMap AdditionalInfo;
             AdditionalInfo.Add(GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn, true);
 
-            Subsystem->Login(SelectedIdP, *AdditionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
+            Subsystem->Login(SelectedIdP, *AdditionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([Subsystem, RevokedIdP](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
             {
                 if (Gamebase::IsSuccess(Error))
                 {
-                    Subsystem->RemoveMapping(RevokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error)
+                    Subsystem->RemoveMapping(RevokedIdP, FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* Error)
                     {
                         ...
                     }));
@@ -424,7 +424,7 @@ void USample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& Data)
         {
             // 현재 계정에 매핑된 IdP 중 사용 중지된 IdP가 있을 경우를 의미합니다.
             // 유저에게 현재 계정에서 사용 중지된 IdP가 연동 해제됨을 알려 주세요.
-            Subsystem->RemoveMapping(RevokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error)
+            Subsystem->RemoveMapping(RevokedIdP, FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* Error)
             {
                 ...
             }));
@@ -444,7 +444,7 @@ void USample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& Data)
 void USample::AddEventHandler()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& Message)
+    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([](const FGamebaseEventMessage& Message)
     {
         if (Message.Category.Equals(GamebaseEventCategory::LoggedOut))
         {
@@ -479,7 +479,7 @@ void USample::AddEventHandler()
 void USample::AddEventHandler()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& Message)
+    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([](const FGamebaseEventMessage& Message)
     {
         if (Message.Category.Equals(GamebaseEventCategory::ServerPushAppKickOut) ||
             Message.Category.Equals(GamebaseEventCategory::ServerPushAppKickOutMessageReceived) ||
@@ -569,7 +569,7 @@ struct GAMEBASE_API FGamebaseEventObserverData
 void USample::AddEventHandler()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& Message)
+    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([](const FGamebaseEventMessage& Message)
     {
         if (Message.Category.Equals(GamebaseEventCategory::ObserverLaunching))
         {
@@ -665,7 +665,7 @@ void USample::CheckHeartbeat(const FGamebaseEventObserverData& Data)
 void USample::AddEventHandler()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& Message)
+    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([](const FGamebaseEventMessage& Message)
     {
         if (Message.Category.Equals(GamebaseEventCategory::PurchaseUpdated))
         {
@@ -712,7 +712,7 @@ struct FGamebaseEventPushMessage
 void USample::AddEventHandler()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& Message)
+    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([](const FGamebaseEventMessage& Message)
     {
         if (Message.Category.Equals(GamebaseEventCategory::PushReceivedMessage))
         {
@@ -741,7 +741,7 @@ void USample::AddEventHandler()
 void USample::AddEventHandler()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& Message)
+    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([](const FGamebaseEventMessage& Message)
     {
         if (Message.Category.Equals(GamebaseEventCategory::PushClickMessage))
         {
@@ -788,7 +788,7 @@ struct FGamebaseEventPushAction
 void USample::AddEventHandler()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& Message)
+    Subsystem->AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([](const FGamebaseEventMessage& Message)
     {
         if (Message.Category.Equals(GamebaseEventCategory::PushClickAction))
         {
@@ -985,7 +985,7 @@ void OpenContact(const FGamebaseContactConfiguration& Configuration, const FGame
 void USample::OpenContact()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetContact()->OpenContact(FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error)
+    Subsystem->GetContact()->OpenContact(FGamebaseErrorDelegate::CreateLambda([Subsystem](const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
@@ -1035,7 +1035,7 @@ void USample::RequestContactURL(const FString& userName)
     FGamebaseContactConfiguration Configuration{ userName };
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetContact()->RequestContactURL(Configuration, FGamebaseContactUrlDelegate::CreateLambda([=](FString url, const FGamebaseError* Error)
+    Subsystem->GetContact()->RequestContactURL(Configuration, FGamebaseContactUrlDelegate::CreateLambda([](FString url, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
@@ -1113,7 +1113,7 @@ void USample::GetAgeSignal()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->GetUtil()->GetAgeSignal(
-        FGamebaseAgeSignalResultDelegate::CreateLambda([=](const FGamebaseAgeSignalResult* AgeSignalResult, const FGamebaseError* Error)
+        FGamebaseAgeSignalResultDelegate::CreateLambda([](const FGamebaseAgeSignalResult* AgeSignalResult, const FGamebaseError* Error)
         {
             if (Gamebase::IsSuccess(Error))
             {
