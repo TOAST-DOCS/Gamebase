@@ -14,7 +14,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 用途 | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk | nhncloud-core-1.12.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-jdk8<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android | Gamebaseのインターフェイス及び核心ロジックを含む | API 22(Lollipop MR1, OS 5.1) |
+| Gamebase | gamebase-sdk | nhncloud-core-1.12.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-jdk8<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>age-signals-0.0.2 | Gamebaseのインターフェイス及び核心ロジックを含む | API 22(Lollipop MR1, OS 5.1) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Sign In With Appleログインをサポート | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-18.0.0 | Facebookログインをサポート | - |
 |  | gamebase-adapter-auth-google | credentials-play-services-auth-1.3.0<br>play-services-auth-20.3.0 | Googleログインをサポート | - |
@@ -168,6 +168,8 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangamejp:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-hangamejpemail:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-kakaogame:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-paychorus-external:$GAMEBASE_SDK_VERSION"
+    implementation "com.toast.android.gamebase:gamebase-adapter-purchase-paychorus-google:$GAMEBASE_SDK_VERSION"
     // >>> [ONE store v16]
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v16:$GAMEBASE_SDK_VERSION"
     // >>> [ONE store v17]
@@ -405,10 +407,6 @@ class MyApplication: GamebaseMyCardApplication() {
 **Example**
 
 ```xml
-<!-- When you have multiple applications sharing an Gamebase project, use this field to identify each application. -->
-<meta-data android:name="com.nhncloud.sdk.push.deviceId.salt"
-           android:value="ApplicationForGoogleStore" />
-
 <!-- Notification priority -->
 <meta-data android:name="com.toast.sdk.push.notification.default_priority"
            android:value="1"/>
@@ -444,7 +442,6 @@ class MyApplication: GamebaseMyCardApplication() {
 
 | meta-data key | value type | description |
 | ------------- | ---------- | ----------- |
-| com.nhncloud.sdk.push.deviceId.salt | String | 別々のアプリケーションが1つのGamebaseプロジェクトを共有する場合、プッシュが正常に動作しません。<br/>各アプリに異なる任意の「salt」値を指定する必要があります。 |
 | com.toast.sdk.push.notification.default_priority | int | 優先順位。<br/>以下の5つの値を設定できます。<br/>NoticationComapt.PRIORITY_MIN : -2<br/> NoticationComapt.PRIORITY_LOW : -1<br/>NoticationComapt.PRIORITY_DEFAULT : 0<br/>NoticationComapt.PRIORITY_HIGH : 1<br/>NoticationComapt.PRIORITY_MAX : 2 |
 | com.toast.sdk.push.notification.default_background_color | int | 背景色。 |
 | com.toast.sdk.push.notification.default_light_color | int | LED色。 |

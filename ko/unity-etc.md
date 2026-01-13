@@ -521,17 +521,8 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 > iOS Appleid 로그인을 사용하는 경우에만 발생할 수 있는 이벤트입니다.
 
 * IdP에서 해당 서비스를 삭제하였을 때 발생하는 이벤트입니다.
-* 유저에게 IdP가 사용 중지된 것을 알리고, 동일한 IdP로 로그인할 때 userID를 새로 발급 받을 수 있도록 구현해야 합니다.
-* GamebaseEventIdPRevokedData.code: GamebaseIdPRevokedCode 값을 의미합니다.
-    * WITHDRAW : 600
-        * 현재 사용 중지된 IdP로 로그인되어 있고, 매핑된 IdP 목록이 없을 때를 의미합니다.
-        * Withdraw API를 호출하여 현재 계정을 탈퇴 처리해야 합니다.
-    * OVERWRITE_LOGIN_AND_REMOVE_MAPPING : 601
-        * 현재 사용 중지된 IdP로 로그인되어 있고, 사용 중지된 IdP 외에 다른 IdP가 매핑되어 있는 경우를 의미합니다.
-        * 매핑된 IdP 중 하나의 IdP로 로그인을 하고 RemoveMapping API를 호출하여 사용 중지된 IdP에 대해 연동을 해제해야 합니다.
-    * REMOVE_MAPPING : 602
-        * 현재 계정에 매핑된 IdP 중 사용 중지된 IdP가 있을 경우를 의미합니다.
-        * RemoveMapping API를 호출하여 사용 중지된 IdP에 대해 연동을 해제해야 합니다.
+* 유저에게 IdP가 사용 중지된 것을 알리고, 로그아웃 후 다시 로그인 하도록 구현해야 합니다.
+ 
 * GamebaseEventIdPRevokedData.idpType: 사용 중지된 IdP 타입을 의미합니다.
 * GamebaseEventIdPRevokedData.authMappingList: 현재 계정에 매핑되어 있는 IdP 목록을 의미합니다.
 
@@ -552,62 +543,12 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
                 GamebaseResponse.Event.GamebaseEventIdPRevokedData idPRevokedData = GamebaseResponse.Event.GamebaseEventIdPRevokedData.From(message.data);
                 if (idPRevokedData != null)
                 {
-                    ProcessIdPRevoked(idPRevokedData);
+                    // Call logout, then login again.
                 }
                 break;
             }
         default:
             {
-                break;
-            }
-    }
-}
-
-private void ProcessIdPRevoked(string category, GamebaseResponse.Event.GamebaseEventIdPRevokedData data)
-{
-    var revokedIdP = data.idPType;
-    switch (data.code)
-    {
-        case GamebaseIdPRevokedCode.WITHDRAW:
-            {
-                // 현재 사용 중지된 IdP로 로그인되어 있고, 매핑된 IdP 목록이 없을 때를 의미합니다.
-                // 유저에게 현재 계정이 탈퇴 처리된 것을 알려 주세요.
-                Gamebase.Withdraw((error) =>
-                {
-                    ...
-                });
-                break;
-            }
-        case GamebaseIdPRevokedCode.OVERWRITE_LOGIN_AND_REMOVE_MAPPING:
-            {
-                // 현재 사용 중지된 IdP로 로그인되어 있고, 사용 중지된 IdP 외에 다른 IdP가 매핑되어 있는 경우를 의미합니다.
-                // 유저가 authMappingList 중 다시 로그인할 IdP를 선택하도록 하고, 선택한 IdP로 로그인한 뒤에는 사용 중지된 IdP의 연동을 해제해 주세요.
-                var selectedIdP = "유저가 선택한 IdP";
-                var additionalInfo = new Dictionary<string, object>()
-                {
-                    { GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN, true }
-                };
-
-                Gamebase.Login(selectedIdP, additionalInfo, (authToken, loginError) =>
-                {
-                    if (Gamebase.IsSuccess(loginError) == true)
-                    {
-                        Gamebase.RemoveMapping(revokedIdP, (mappingError) =>
-                        {
-                            ...
-                        });
-                    }
-                });
-                break;
-            }
-        case GamebaseIdPRevokedCode.REMOVE_MAPPING:
-            {
-                // 현재 계정에 매핑된 IdP 중 사용 중지된 IdP가 있을 경우를 의미합니다.
-                // 유저에게 현재 계정에서 사용 중지된 IdP가 연동 해제됨을 알려 주세요.
-                Gamebase.RemoveMapping(revokedIdP, (error) =>
-                {
-                    ...
-                });
                 break;
             }
     }
@@ -1333,5 +1274,224 @@ public void SampleRequestContactURL()
             // An error occur when requesting the contact web view url.
         }
     });
+}
+```
+
+### App Tracking AuthorizationStatus
+
+* ATT 활성화 여부를 확인합니다.
+
+* AUTHORIZED: 앱의 추적 요청 허용 동의, iOS 14 미만 기기에서는 항상 AUTHORIZED를 반환
+* DENIED: 앱의 추적 요청 허용 거부
+* NOT_DETERMINED: 앱의 추적 요청 허용 미결정
+* RESTRICTED: 앱의 추적 요청 제한
+* UNKNOWN: 다른 OS이거나 OS에서 정의되지 않은 경우
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+namespace Toast.Gamebase
+{
+    public enum GamebaseAppTrackingAuthorizationStatus
+    {
+        AUTHORIZED,
+        DENIED,
+        NOT_DETERMINED,
+        RESTRICTED,
+        UNKNOWN
+    }
+}
+
+static Toast.Gamebase.GamebaseAppTrackingAuthorizationStatus GetAppTrackingAuthorizationStatus();
+```
+
+**Example**
+
+``` cs
+public void GetAppTrackingAuthorizationStatusSample()
+{
+#if UNITY_IOS
+    switch (Gamebase.Util.GetAppTrackingAuthorizationStatus() ) iOS only
+    {
+        case GamebaseAppTrackingAuthorizationStatus.AUTHORIZED:
+        {
+        }
+        break; 
+        
+        case GamebaseAppTrackingAuthorizationStatus.DENIED:
+        {
+        }
+        break;
+        
+        case GamebaseAppTrackingAuthorizationStatus.NOT_DETERMINED:
+        {
+        }
+        break;
+        
+        case GamebaseAppTrackingAuthorizationStatus.RESTRICTED:
+        {
+        }
+        break;
+        
+        case GamebaseAppTrackingAuthorizationStatus.UNKNOWN:
+        {
+        }
+        break;
+    }
+#endif
+}
+```
+
+### IDFA
+
+* 단말기의 광고 식별자 값을 반환합니다.
+
+iOS에서 IDFA 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.<br/>
+* [iOS IDFA](./ios-etc/#idfa)<br/>
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+static void GetIdfa();
+```
+
+**Example**
+
+``` cs
+public void SampleGetIdfa()
+{
+#if UNITY_IOS
+    string idfa = Gamebase.Util.GetIdfa(); iOS only
+#endif
+}
+```
+
+### Age Signals Support
+
+Texas SB 2420 및 유사한 주 법률은 미성년자 보호를 위해 앱에서 사용자의 연령 확인을 요구합니다.
+Gamebase는 Google Play Age Signals API를 래핑하여 이러한 요구사항을 충족할 수 있는 API를 제공합니다.
+
+Android에서 Age Signals 기능을 설정하는 방법은 다음 문서를 참고하세요.<br/>
+* [Android Age Signals](./aos-etc/#age-signals-support)<br/>
+  
+Supported Platforms
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+
+#### GetAgeSignal
+
+연령 정보를 확인합니다.
+
+**API**
+
+```cs
+static void GetAgeSignal(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Util.AgeSignalResult> callback)
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_SUPPORTED(10)                   | Android API 23 미만 기기에서 호출되었습니다. | 
+| AUTH\_EXTERNAL\_LIBRARY\_ERROR(3009) | Google Play Age Signals API에서 오류를 반환했습니다. | 
+
+
+**Handle results**
+
+AgeSignalResult.userStatus로 유저의 상태를 확인할 수 있습니다.
+Status 값에 따라 사용자 규제 여부를 판단하시기 바랍니다.
+
+**GamebaseAgeSignalsVerificationStatus**
+
+사용자 검증 상태 상수입니다.
+
+| Status                        | Code | Description          | 
+| ----------------------------- | ---- | -------------------- | 
+| VERIFIED                      | 0    | 18세 이상 성인          | 
+| SUPERVISED                    | 1    | 보호자 동의가 있는 미성년자 | 
+| SUPERVISED\_APPROVAL\_PENDING | 2    | 보호자 승인 대기 중       | 
+| SUPERVISED\_APPROVAL\_DENIED  | 3    | 보호자 승인 거부됨        | 
+| UNKNOWN                       | 4    | 검증되지 않은 사용자       | 
+
+
+**Example**
+
+``` cs
+public static void SampleGetAgeSignal()
+{
+    Gamebase.Util.GetAgeSignal((data, error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            HandleAgeSignalsResult(data);
+        }
+        else
+        {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            switch (errorCode)
+            {
+                case GamebaseErrorCode.NOT_SUPPORTED:
+                    // Android API 23 미만 기기에서는 지원되지 않습니다.
+                    Debug.LogError("Age Signals API is not supported on this device");
+                    break;
+                case GamebaseErrorCode.AUTH_EXTERNAL_LIBRARY_ERROR:
+                    // Google Play 서비스에서 오류가 발생했습니다. 
+                    Debug.LogErrorFormat("Google Play Age Signals error: {0}", errorMessage);
+                    break;
+            }
+        }
+    });
+}
+
+private static void HandleAgeSignalsResult(GamebaseResponse.Util.AgeSignalResult result)
+{
+    if(result.userStatus.HasValue == false)
+    {
+        // 사용자가 규제 지역(텍사스, 유타, 루이지애나)에 있지 않음을 의미합니다.
+        // 규제 대상이 아닌 사용자에 대한 앱의 로직을 진행할 수 있습니다.
+        return;
+    }
+    
+    GamebaseAgeSignalsVerificationStatus userStatus = (GamebaseAgeSignalsVerificationStatus)result.userStatus.Value;
+    switch (userStatus)
+    {
+        case GamebaseAgeSignalsVerificationStatus.VERIFIED:
+            // 18세 이상 성인 사용자
+            // 모든 기능에 대한 접근 허용
+            // ageLower와 ageUpper는 null입니다.
+            HandleAdultUser(result);
+            break;
+        case GamebaseAgeSignalsVerificationStatus.SUPERVISED:
+            // 보호자 동의가 있는 미성년자
+            // Texas SB 2420에 따라 미성년자를 위한 제한된 기능 제공
+
+            // 연령대를 확인할 수 있습니다.
+            var ageLower = result.ageLower.Value; // 예: 13
+            var ageUpper = result.ageUpper.Value; // 예: 17
+            var installId = result.installId;
+            HandleSupervisedMinor(result);
+            break;
+        case GamebaseAgeSignalsVerificationStatus.SUPERVISED_APPROVAL_PENDING:
+            // 보호자 승인을 기다리는 동안 제한된 기능만 제공
+            // 사용자에게 승인 대기 중임을 알림
+            HandleApprovalPending(result);
+            break;
+        case GamebaseAgeSignalsVerificationStatus.SUPERVISED_APPROVAL_DENIED:
+            // 보호자가 승인을 거부한 경우
+            // 제한된 기능만 제공하거나 서비스 이용 불가 안내
+            HandleApprovalDenied(result);
+            break;
+        case GamebaseAgeSignalsVerificationStatus.UNKNOWN:
+            // 해당 관할 지역에서 검증되지 않은 사용자 또는 연령 확인 정보를 사용할 수 없는 경우
+            // 사용자에게 Play 스토어를 방문하여 상태를 해결하도록 요청하세요.
+            HandleUnknownUser(result);
+            break;
+    }
 }
 ```

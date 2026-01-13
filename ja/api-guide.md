@@ -18,6 +18,8 @@
 - 利用停止状態のユーザーを照会する`Get Ban Members` API追加
 - 購読の現在状態を照会する`Get Subscriptions Status` APIを追加
 - `Get Payment Transaction` API request bodyにONEStoreのpurchaseIdまたはpurchaseTokenの値を表す`paymentToken`を追加
+- `Withdraw Histories` APIのリクエストパラメータにeventLogTypeを追加
+- `SIWA Account Webフック` APIを追加
 
 ## Advance Notice
 
@@ -1331,6 +1333,7 @@ Check common requirements.
 | page | String | Optional | 照会したいページ。 0から開始 |
 | size | String | Optional | 1ページ当たりのデータ数 |
 | order | String | Optional | 照会データのソート方法。 ASC or DESC |
+| eventLogType | Enum | Optional | [退会イベント発生経路](#withdrawal-event-type) |
 
 **[Response Body]**
 
@@ -1384,6 +1387,39 @@ Check common requirements.
 **[Error Code]**
 
 [エラーコード](./error-code/#server)
+
+</br>
+
+#### SIWA Account Webhook
+
+**Sign In with Apple (SIWA)** ユーザーのアカウント状態変更をAppleサーバーから通知を受け取り処理するWebフック APIです。
+このWebフックのURIをApple Developer SiteのSign In with Appleサービス設定に登録する必要があります。
+
+> [参考]
+> 該当APIはAppleサーバーが直接呼び出すため、ヘッダに別途認証キー(Secret Key)の設定は必要ありません。
+</br>
+
+##### 対応イベント及び処理ロジック
+該当Webフックイベントは、同意撤回(consent-revoked)とアカウント削除(account-delete)の2つをサポートし、イベントに応じて次のように処理されます。
+
+- 同意撤回 (consent-revoked)
+    - 処理: ユーザーのアカウントは維持されますが,現在発行されているGamebase Access Tokenは即時失効します。
+- アカウント削除 (account-delete)
+    - 処理: ユーザーのアカウントは即時退会処理されます。
+    - 退会したアカウントは**Withdraw Histories** APIにて**eventLogType=WAAI**パラメータで照会できます。
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-gateway/v1.3/apps/{appId}/webhooks/apple/notifications |
+
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN CloudプロジェクトID |
 
 </br>
 </br>
@@ -2211,6 +2247,14 @@ Gamebaseは、NHN Cloud PushサービスのサーバーAPIで**Wrapping**機能�
 |   | 送信完了照会 | GET | /tcgb-push/v1.3/apps/{appId}/reservations/{reservation-id}/messages | /push/v2.4/appkeys/{appkey}/reservations/{reservation-id}/messages |
 |   | 修正 | PUT | /tcgb-push/v1.3/apps/{appId}/reservations/{reservationId} | /push/v2.4/appkeys/{appkey}/reservations/{reservationId} |
 |   | 削除 | DELETE | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+| タグ | 作成 | POST | /tcgb-push/v1.3/apps/{appId}/tags | /push/v2.4/appkeys/{appkey}/tags |
+|   | 照会 | GET | /tcgb-push/v1.3/apps/{appId}/tags | /push/v2.4/appkeys/{appkey}/tags |
+|   | 修正 | PUT | /tcgb-push/v1.3/apps/{appId}/tags/{tagId} | /push/v2.4/appkeys/{appkey}/tags/{tag-id} |
+|   | 削除 | DELETE | /tcgb-push/v1.3/apps/{appId}/tags/{tagId} | /push/v2.4/appkeys/{appkey}/tags/{tag-id} |
+| UID | 作成 | POST | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
+|   | 照会 | GET | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
+|   | 修正 | PUT | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
+|   | タグ 削除 | DELETE | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
 
 <br/>
 
@@ -2274,6 +2318,7 @@ X-Secret-Key: IgsaAP
 | IOS | iOS |
 | WEB | Web |
 | WINDOWS | Windows |
+| MACOS | macOS |
 <br/>
 
 ### Store Code
@@ -2287,6 +2332,8 @@ X-Secret-Key: IgsaAP
 | ONESTORE | ONE store |
 | GALAXY | Galaxy Store |
 | MYCARD | Global MyCard |
+| EPIC | Epic Games Store |
+| STEAM | STEAM Store |
 <br/>
 
 ### Identity Provider Code
@@ -2343,9 +2390,21 @@ X-Secret-Key: IgsaAP
 | | IN_GRACE | 猶予中 |
 | | EXPIRED | 期限切れ |
 | | NOT_APPOINTED | 適切な特定状態なし |
-
 <br/>
 
+### Withdrawal Event Type
+
+ユーザー退会がどこで発生したかを示すイベント発生経路です。
+
+| Type | 説明 |
+| --- | --- |
+| WAA | アプリ(クライアント)リクエストによるアカウント退会 |
+| WACS | コンソール/管理者リクエストによるアカウント退会 |
+| WAES | 外部サーバー(ゲームサーバー)による退会<br>- サーバー退会API呼び出し |
+| WAAI | Apple ID連携削除による退会 |
+| WAHI | ハンゲームアカウント削除による退会 |
+| WAGE | 猶予期間満了に伴うシステム自動退会 |
+<br/>
 
 ### Support
 

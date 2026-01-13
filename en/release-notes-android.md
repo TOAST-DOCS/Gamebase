@@ -1,5 +1,37 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.78.0 (2025. 12. 23.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.78.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+
+* 외부 SDK 업데이트: Play Age Signals 라이브러리(0.0.2)
+    * Play Age Signals 라이브러리가 업데이트 되어, 2026년 1월 1일부터 정상적인 결과가 리턴됩니다.
+
+### 2.77.0 (2025. 12. 09.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.77.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+
+* 결제 관련 내부 로직 개선
+
+### 2.76.0 (2025. 11. 28.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.76.0/GamebaseSDK-Android.zip)
+
+#### Added Features
+* Added the API to verify the age based on Google Play Age Signals to assist with compliance with age verification laws in certain jurisdictions, including Texas, Utah, and Louisiana, USA.
+    * [Game > Gamebase > Android SDK User Guide > ETC > Age Signals Support](./aos-etc/#age-signals-support)
+    * Play Age Signals 라이브러리 버전이 베타(0.0.1-beta02) 상태이므로 API는 항상 예외가 발생합니다.
+        * 정상 동작을 위해서는 Play Age Signals 라이브러리 0.0.2 버전이 적용된 Gamebase Android SDK 2.78.0을 사용하세요.
+
+#### Feature Updates
+
+* **Gamebase.Purchase.requestItemListAtIAPConsole()** API has been deprecated.
+    * Use **Gamebase.Purchase.requestItemListPurchasable()** API.
+
 ### 2.75.1 (2025. 10. 17.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.1/GamebaseSDK-Android.zip)
@@ -13,13 +45,13 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
+#### Feature Updates
  
 * External SDK update: NHN Cloud Android SDK(1.12.0), PAYCO Android SDK(1.5.17), Weibo Android SDK(13.10.5)
-* Google Play의 16KB 페이지 제약 대응을 위한 외부 SDK 업데이트
-    * NHN Cloud SDK / Weibo SDK 업데이트
-    * 16KB 미대응 gamebase-adapter-auth-weibo-v4 모듈 제거
-* 미사용 모듈 제거
+* Updated external SDK  to address Google Play's 16KB page constraint
+    * Updated NHN Cloud SDK / Weibo SDK
+    * Removed 16KB unresponsive gamebase-adapter-auth-weibo-v4 module
+* Removed unused module
     * gamebase-adapter-purchase-amazon, gamebase-adapter-push-adm
 * Improved internal logic
 

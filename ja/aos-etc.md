@@ -996,3 +996,155 @@ Gamebase.Contact.requestContactURL(configuration, new GamebaseDataCallback<Strin
 サポートのタイプが「NHN Cloud組織商品」の場合、「追加パラメータ」項目のKeyに**from**、Valueに**app**を入力すると、ファイル添付時のタイプ選択ポップアップが表示されます。
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_002_2.53.0.png)
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_003_2.53.0.png)
+
+### Age Signals Support
+
+Texas SB 2420及び類似する州の法律は、未成年者の保護のためにアプリでユーザーの年齢確認を求めています。
+Gamebaseは、Google Play Age Signals APIをラッピングし、このような要件を満たすAPIを提供します。
+
+#### Dependencies
+
+SDK内部的に以下の依存関係を持っています。
+`implementation 'com.google.android.play:age-signals'`
+
+#### Requirements
+
+* 最小Android API Level: API 23 (Android 6.0)以上
+* Gamebase SDKバージョン: 2.78.0以上
+
+#### Google guide
+
+詳細は[https://developer.android.com/google/play/age-signals](https://developer.android.com/google/play/age-signals)を参照してください。
+
+> <font color="red">[注意]</font><br/>
+>
+> Play Age Signals API (ベータ)は、2026年1月1日まで例外を発生させます。1月1日からAPIはリアルタイムレスポンスを返します。
+>
+
+#### Check age signal
+
+**Gamebase.AgeSignals.checkAgeSignals(Context, GamebaseAgeSignalsRequest)**を呼び出し、年齢情報を確認します。
+
+**GamebaseAgeSignalsRequest**
+
+| API | Mandatory(M) / Optional(O) | Description |
+| --- | --- | --- |
+| newBuilder() | **M** | GamebaseAgeSignalsRequestオブジェクトは、newBuilder()関数を通じて生成できます。 |
+| build() | **M** | 設定を終えたBuilderをRequestオブジェクトに変換します。 |
+
+**API**
+
+```java
++ (void)Gamebase.AgeSignals.checkAgeSignals(@NonNull Context context,
+                                            @NonNull GamebaseAgeSignalsRequest request,
+                                            @NonNull GamebaseDataCallback<GamebaseAgeSignalsResult> callback) 
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_SUPPORTED(10)                     | Android API 23未満のデバイスで呼び出されました。 |
+| AUTH\_EXTERNAL\_LIBRARY\_ERROR(3009) | Google Play Age Signals APIでエラーを返しました。 |
+
+**Example**
+
+```kotlin
+// Age Signalsリクエスト生成
+val request = GamebaseAgeSignalsRequest.newbuilder().build()
+
+// Age Signals確認リクエスト
+Gamebase.AgeSignals.checkAgeSignals(context, request) { result, exception ->
+    if (Gamebase.isSuccess(exception)) {
+        // 成功: 年齢確認情報処理
+        handleAgeSignalsResult(result)
+    } else {
+        // 失敗: エラー処理
+        val errorCode = exception?.code
+        val errorMessage = exception?.message
+        when (errorCode) {
+            GamebaseError.NOT_SUPPORTED -> {
+                // Android API 23未満のデバイスではサポートされません。
+                Log.e(TAG, "Age Signals API is not supported on this device")
+            }
+            GamebaseError.AUTH_EXTERNAL_LIBRARY_ERROR -> {
+                // Google Playサービスでエラーが発生しました。
+                Log.e(TAG, "Google Play Age Signals error: $errorMessage")
+            }
+        }
+    }
+}
+```
+
+#### Handle results
+
+**GamebaseAgeSignalsResult.userStatus()**でユーザーの状態を確認できます。
+Status値に従ってユーザー規制の有無を判断してください。
+
+**GamebaseAgeSignalsVerificationStatus**
+
+ユーザー検証状態定数です。
+
+| Status                        | Code | Description          |
+| ----------------------------- | ---- | -------------------- |
+| VERIFIED                      | 0    | 18歳以上の成人          |
+| SUPERVISED                    | 1    | 保護者の同意がある未成年者 |
+| SUPERVISED\_APPROVAL\_PENDING | 2    | 保護者承認待機中        |
+| SUPERVISED\_APPROVAL\_DENIED  | 3    | 保護者承認拒否済み         |
+| UNKNOWN                       | 4    | 検証されていないユーザー        |
+
+
+**Example**
+
+```kotlin
+private fun handleAgeSignalsResult(result: GamebaseAgeSignalsResult) {
+    val userStatus = result.userStatus()
+
+    if (userStatus == null) {
+        // ユーザーが規制地域(テキサス、ユタ、ルイジアナ)にいないことを意味します。
+        // 規制対象ではないユーザーに対するアプリのロジックを進行できます。
+        return
+    }
+
+    when (userStatus) {
+        GamebaseAgeSignalsVerificationStatus.VERIFIED -> {
+            // 18歳以上の成人ユーザー
+            // 全ての機能に対するアクセス許可
+            // ageLowerとageUpperはnullです
+            handleAdultUser(result)
+        }
+        GamebaseAgeSignalsVerificationStatus.SUPERVISED -> {
+            // 保護者の同意がある未成年者
+            // Texas SB 2420に従い未成年者のための制限された機能を提供
+
+            // 年齢帯を確認できます。
+            val ageLower = result.ageLower() // 例: 13
+            val ageUpper = result.ageUpper() // 例: 17
+            val installId = result.installId()
+            handleSupervisedMinor(result)
+        }
+        GamebaseAgeSignalsVerificationStatus.SUPERVISED_APPROVAL_PENDING -> {
+            // 保護者の承認を待つ間、制限された機能のみ提供
+            // ユーザーに承認待機中であることを通知
+            handleApprovalPending(result)
+        }
+        GamebaseAgeSignalsVerificationStatus.SUPERVISED_APPROVAL_DENIED -> {
+            // 保護者が承認を拒否した場合
+            // 制限された機能のみ提供するか、サービス利用不可を案内
+            handleApprovalDenied(result)
+        }
+        GamebaseAgeSignalsVerificationStatus.UNKNOWN -> {
+            // 該当管轄地域で検証されていないユーザーまたは年齢確認情報を使用できない場合
+            // ユーザーにPlayストアを訪問して状態を解決するようにリクエストしてください。
+            handleUnknownUser(result)
+        }
+        else -> {
+          // このケースをロギングして潜在的な未来の状態に対しても柔軟に処理できるようにします。
+        }
+    }
+}
+```
+
+**GamebaseAgeSignalsResult**
+
+詳細は[https://developer.android.com/google/play/age-signals/use-age-signals-api#age-signals-responses](https://developer.android.com/google/play/age-signals/use-age-signals-api#age-signals-responses)を参照してください。

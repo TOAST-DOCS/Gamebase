@@ -1082,3 +1082,149 @@ void USample::RequestContactURL(const FString& userName)
     }));
 }
 ```
+
+### Age Signals Support
+
+Texas SB 2420及び類似する州の法律は、未成年者の保護のためにアプリでユーザーの年齢確認を求めています。
+Gamebaseは、Google Play Age Signals APIをラッピングし、このような要件を満たすAPIを提供します。
+
+AndroidでAge Signals機能を設定する方法は、次のドキュメントを参照してください。
+
+* [Android Age Signals](./aos-etc/#age-signals-support)
+
+#### GetAgeSignal
+
+年齢情報を確認します。
+
+**API**
+
+Supported Platforms
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+
+```cpp
+void GetAgeSignal(const FGamebaseAgeSignalResultDelegate& Callback);
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_SUPPORTED(10)                     | Android API 23未満のデバイスで呼び出されました。 |
+| AUTH\_EXTERNAL\_LIBRARY\_ERROR(3009) | Google Play Age Signals APIでエラーを返しました。 |
+
+**Handle results**
+
+FGamebaseAgeSignalResultのUserStatusでユーザーの状態を確認できます。
+Status値に従ってユーザー規制の有無を判断してください。
+
+**EGamebaseAgeSignalsVerificationStatus**
+
+ユーザー検証状態定数です。
+
+| Status                      | Description          |
+| --------------------------- | -------------------- |
+| Verified                    | 18歳以上の成人          |
+| Supervised                  | 保護者の同意がある未成年者 |
+| SupervisedApprovalPending   | 保護者承認待機中        |
+| SupervisedApprovalDenied    | 保護者承認拒否済み         |
+| Unknown                     | 検証されていないユーザー        |
+
+**Example**
+
+```cpp
+void USample::GetAgeSignal()
+{
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetUtil()->GetAgeSignal(
+        FGamebaseAgeSignalResultDelegate::CreateLambda([=](const FGamebaseAgeSignalResult* AgeSignalResult, const FGamebaseError* Error)
+        {
+            if (Gamebase::IsSuccess(Error))
+            {
+                if (!AgeSignalResult->UserStatus.IsSet())
+                {
+                    // ユーザーが規制地域(テキサス、ユタ、ルイジアナ)にいないことを意味します。
+                    // 規制対象ではないユーザーに対するアプリのロジックを進行できます。
+                    UE_LOG(GamebaseTestResults, Display, TEXT("Not legally applicable"));
+                }
+                else
+                {
+                    EGamebaseAgeSignalsVerificationStatus UserStatus =
+                        static_cast<EGamebaseAgeSignalsVerificationStatus>(AgeSignalResult->UserStatus.GetValue());
+                    
+                    switch (UserStatus)
+                    {
+                        case EGamebaseAgeSignalsVerificationStatus::Verified:
+                        {
+                            // 18歳以上の成人ユーザー
+                            // 全ての機能に対するアクセス許可
+                            // AgeLowerとAgeUpperは設定されていません
+                            UE_LOG(GamebaseTestResults, Display, TEXT("Age 18 or older"));
+                            break;
+                        }
+                        case EGamebaseAgeSignalsVerificationStatus::Supervised:
+                        {
+                            // 保護者の同意がある未成年者
+                            // Texas SB 2420に従い未成年者のための制限された機能を提供
+                            
+                            // 年齢帯を確認できます。
+                            if (AgeSignalResult->AgeLower.IsSet() && AgeSignalResult->AgeUpper.IsSet())
+                            {
+                                int32 AgeLower = AgeSignalResult->AgeLower.GetValue(); // 例: 13
+                                int32 AgeUpper = AgeSignalResult->AgeUpper.GetValue(); // 例: 17
+                                UE_LOG(GamebaseTestResults, Display, TEXT("Supervised user, age range: %d - %d"), AgeLower, AgeUpper);
+                            }
+
+                            if (AgeSignalResult->InstallId.IsSet())
+                            {
+                                FString InstallId = AgeSignalResult->InstallId.GetValue();
+                                UE_LOG(GamebaseTestResults, Display, TEXT("InstallId: %s"), *InstallId);
+                            }
+                            
+                            break;
+                        }
+                        case EGamebaseAgeSignalsVerificationStatus::SupervisedApprovalPending:
+                        {
+                            // 保護者の承認を待つ間、制限された機能のみ提供
+                            // ユーザーに承認待機中であることを通知
+                            if (AgeSignalResult->MostRecentApprovalDate.IsSet())
+                            {
+                                int64 ApprovalDate = AgeSignalResult->MostRecentApprovalDate.GetValue();
+                                UE_LOG(GamebaseTestResults, Display, TEXT("Approval pending since: %lld"), ApprovalDate);
+                            }
+                            break;
+                        }
+                        case EGamebaseAgeSignalsVerificationStatus::SupervisedApprovalDenied:
+                        {
+                            // 保護者が承認を拒否した場合
+                            // 制限された機能のみ提供するか、サービス利用不可を案内
+                            UE_LOG(GamebaseTestResults, Display, TEXT("Parent or guardian has denied changes"));
+                            break;
+                        }
+                        case EGamebaseAgeSignalsVerificationStatus::Unknown:
+                        {
+                            // 該当管轄地域で検証されていないユーザーまたは年齢確認情報を使用できない場合
+                            // ユーザーにPlayストアを訪問して状態を解決するようにリクエストしてください。
+                            UE_LOG(GamebaseTestResults, Display, TEXT("User is not verified or supervised"));
+                            break;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                UE_LOG(GamebaseTestResults, Display, TEXT("GetAgeSignal failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Message);
+                
+                if (Error->Code == GamebaseErrorCode::NOT_SUPPORTED)
+                {
+                    // Android API 23未満のデバイスではサポートされません。
+                    UE_LOG(GamebaseTestResults, Display, TEXT("Age Signals API is not supported on this device"));
+                }
+                else if (Error->Code == GamebaseErrorCode::AUTH_EXTERNAL_LIBRARY_ERROR)
+                {
+                    // Google Playサービスでエラーが発生しました。
+                    UE_LOG(GamebaseTestResults, Display, TEXT("Google Play Age Signals error"));
+                }
+            }
+        }));
+}
+```

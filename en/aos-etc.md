@@ -996,3 +996,155 @@ Gamebase.Contact.requestContactURL(configuration, new GamebaseDataCallback<Strin
 If the customer center type is 'NHN Cloud Organization Product', enter **from** for Key and **app** for Value in the 'Additional parameters' item, and the pop-up for selecting the type when attaching a file will be displayed.
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_002_2.53.0.png)
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_003_2.53.0.png)
+
+### Age Signals Support
+
+Texas SB 2420 and similar state laws require apps to verify users' ages to protect minors.
+Gamebase provides an API that wraps the Google Play Age Signals API to meet these requirements.
+
+#### Dependencies
+
+The SDK internally has the following dependencies:
+`implementation 'com.google.android.play:age-signals'`
+
+#### Requirements
+
+* Minimum Android API Level: API 23 (Android 6.0) or later
+* Gamebase SDK version: 2.78.0 or later
+
+#### Google guide
+
+For more information, refer to the [https://developer.android.com/google/play/age-signals](https://developer.android.com/google/play/age-signals).
+
+> <font color="red">[Caution]</font><br/>
+>
+> The Play Age Signals API (beta) will throw exceptions until January 1, 2026. Starting January 1, the API will return real-time responses.
+>
+
+#### Check age signal
+
+**Check age information by calling Gamebase.AgeSignals.checkAgeSignals(Context, GamebaseAgeSignalsRequest)**.
+
+**GamebaseAgeSignalsRequest**
+
+| API | Mandatory(M) / Optional(O) | Description |
+| --- | --- | --- |
+| newBuilder() | **M** | A GamebaseAgeSignalsRequest object can be created using the newBuilder() function. |
+| build() | **M** | Converts a configured Builder into a Request object. |
+
+**API**
+
+```java
++ (void)Gamebase.AgeSignals.checkAgeSignals(@NonNull Context context,
+                                            @NonNull GamebaseAgeSignalsRequest request,
+                                            @NonNull GamebaseDataCallback<GamebaseAgeSignalsResult> callback) 
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_SUPPORTED(10)                   | Called on a device with Android API lower than 23. |
+| AUTH\_EXTERNAL\_LIBRARY\_ERROR(3009) | The Google Play Age Signals API returned an error. |
+
+**Example**
+
+```kotlin
+// Create Age Signals request
+val request = GamebaseAgeSignalsRequest.newbuilder().build()
+
+// Request Age Signals confirmation
+Gamebase.AgeSignals.checkAgeSignals(context, request) { result, exception ->
+    if (Gamebase.isSuccess(exception)) {
+        // Success: Age verification information processed
+        handleAgeSignalsResult(result)
+    } else {
+        // Failure: error handling
+        val errorCode = exception?.code
+        val errorMessage = exception?.message
+        when (errorCode) {
+            GamebaseError.NOT_SUPPORTED -> {
+                // Not supported on devices with Android API lower than version 23.
+                Log.e(TAG, "Age Signals API is not supported on this device")
+            }
+            GamebaseError.AUTH_EXTERNAL_LIBRARY_ERROR -> {
+                // An error occurred in Google Play service.
+                Log.e(TAG, "Google Play Age Signals error: $errorMessage")
+            }
+        }
+    }
+}
+```
+
+#### Handle results
+
+You can check a user's status with **GamebaseAgeSignalsResult.userStatus()**.
+Please determine whether to restrict the user based on the status value.
+
+**GamebaseAgeSignalsVerificationStatus**
+
+This is a constant for user verification status.
+
+| Status                        | Code | Description          |
+| ----------------------------- | ---- | -------------------- |
+| VERIFIED | 0 | Adult 18 years or older |
+| SUPERVISED | 1 | Minor with parental consent |
+| SUPERVISED\_APPROVAL\_PENDING | 2 | Pending parental approval |
+| SUPERVISED\_APPROVAL\_DENIED | 3 | Parental approval denied |
+| UNKNOWN | 4 | Unverified user |
+
+
+**Example**
+
+```kotlin
+private fun handleAgeSignalsResult(result: GamebaseAgeSignalsResult) {
+    val userStatus = result.userStatus()
+
+    if (userStatus == null) {
+        // It means the user is not in a regulated area (Texas, Utah, Louisiana). 
+        // You can proceed with your app's logic for non-regulated users.
+        return
+    }
+
+    when (userStatus) {
+        GamebaseAgeSignalsVerificationStatus.VERIFIED -> {
+            // Adult users 18 years or older
+            // Allow access to all features
+            // ageLower and ageUpper are null
+            handleAdultUser(result)
+        }
+        GamebaseAgeSignalsVerificationStatus.SUPERVISED -> {
+            // Minors with parental consent
+           // Limited functionality available for minors under Texas SB 2420
+
+            // You can check the age range.
+            val ageLower = result.ageLower() // e.g. 13
+            val ageUpper = result.ageUpper() // e.g. 17
+            val installId = result.installId()
+            handleSupervisedMinor(result)
+        }
+        GamebaseAgeSignalsVerificationStatus.SUPERVISED_APPROVAL_PENDING -> {
+            // Limited functionality is available while waiting for parental approval. 
+            // Notify the user that approval is pending.
+            handleApprovalPending(result)
+        }
+        GamebaseAgeSignalsVerificationStatus.SUPERVISED_APPROVAL_DENIED -> {
+            // If your guardian refuses permission;
+            // You will be notified that only limited features are available or that the service is unavailable.
+            handleApprovalDenied(result)
+        }
+        GamebaseAgeSignalsVerificationStatus.UNKNOWN -> {
+            // If unverified user or age verification information is not available in the jurisdiction in question;
+            // Ask the user to visit the Play Store to resolve the issue.
+            handleUnknownUser(result)
+        }
+        else -> {
+          // Logging this case allows us to be flexible in handling potential future states.
+        }
+    }
+}
+```
+
+**GamebaseAgeSignalsResult**
+
+For more information, refer to the [https://developer.android.com/google/play/age-signals/use-age-signals-api#age-signals-responses](https://developer.android.com/google/play/age-signals/use-age-signals-api#age-signals-responses).

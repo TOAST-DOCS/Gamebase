@@ -523,17 +523,8 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 > iOS Appleidログインを使用する場合にのみ発生するイベントです。
 
 * IdPで該当サービスを削除したときに発生するイベントです。
-* ユーザーにIdPが使用停止したことを知らせ、同じIdPでログインするとき、userIDを新たに発行できるように実装する必要があります。
-* GamebaseEventIdPRevokedData.code: GamebaseIdPRevokedCode値を意味します。
-    * WITHDRAW : 600
-        * 現在使用停止しているIdPでログインしていて、マッピングされたIdPリストがないことを意味します。
-        * withdraw APIを呼び出して現在のアカウントを退会させる必要があります。
-    * OVERWRITE_LOGIN_AND_REMOVE_MAPPING : 601
-        * 現在使用停止しているIdPでログインしていて、使用停止しているIdP以外の他のIdPがマッピングされている場合を意味します。
-        * マッピングされたIdPリストのうちの1つのIdPにログインし、removeMapping APIを呼び出して使用停止しているIdPの連動を解除する必要があります。
-    * REMOVE_MAPPING : 602
-        * 現在アカウントにマッピングされているIdPのうち、使用停止しているIdPがある場合を意味します。
-        * マッピングされたIdPリストのうちの1つのIdPにログインし、removeMapping APIを呼び出して使用停止しているIdPの連動を解除する必要があります。
+* 유저에게 IdP가 사용 중지된 것을 알리고, 로그아웃 후 다시 로그인 하도록 구현해야 합니다.
+
 * GamebaseEventIdPRevokedData.idpType：使用停止しているIdPタイプを意味します。
 * GamebaseEventIdPRevokedData.authMappingList：現在アカウントにマッピングされているIdPリストを意味します。
 
@@ -554,62 +545,12 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
                 GamebaseResponse.Event.GamebaseEventIdPRevokedData idPRevokedData = GamebaseResponse.Event.GamebaseEventIdPRevokedData.From(message.data);
                 if (idPRevokedData != null)
                 {
-                    ProcessIdPRevoked(idPRevokedData);
+                    // Call logout, then login again.
                 }
                 break;
             }
         default:
             {
-                break;
-            }
-    }
-}
-
-private void ProcessIdPRevoked(string category, GamebaseResponse.Event.GamebaseEventIdPRevokedData data)
-{
-    var revokedIdP = data.idPType;
-    switch (data.code)
-    {
-        case GamebaseIdPRevokedCode.WITHDRAW:
-            {
-                // 現在使用停止しているIdPでログインしていて、マッピングされたIdPリストがないことを意味します。
-                // ユーザーに現在のアカウントが退会していることを伝えてください。
-                Gamebase.Withdraw((error) =>
-                {
-                    ...
-                });
-                break;
-            }
-        case GamebaseIdPRevokedCode.OVERWRITE_LOGIN_AND_REMOVE_MAPPING:
-            {
-                // 現在使用停止しているIdPでログインしていて、使用停止したIdP以外のIdPがマッピングされている場合を意味します。
-                // ユーザーがauthMappingListのうちどのIdPで再度ログインするか選択し、選択したIdPでログインした後、使用停止したIdPについては連動を解除してください。
-                var selectedIdP = "ユーザーが選択したIdP";
-                var additionalInfo = new Dictionary<string, object>()
-                {
-                    { GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN, true }
-                };
-
-                Gamebase.Login(selectedIdP, additionalInfo, (authToken, loginError) =>
-                {
-                    if (Gamebase.IsSuccess(loginError) == true)
-                    {
-                        Gamebase.RemoveMapping(revokedIdP, (mappingError) =>
-                        {
-                            ...
-                        });
-                    }
-                });
-                break;
-            }
-        case GamebaseIdPRevokedCode.REMOVE_MAPPING:
-            {
-                // 現在のアカウントにマッピングされているIdPのうち使用停止しているIdPがある場合を意味します。
-                // ユーザーに現在のアカウントで使用停止しているIdPが連動解除されたことを伝えてください。
-                Gamebase.RemoveMapping(revokedIdP, (error) =>
-                {
-                    ...
-                });
                 break;
             }
     }
@@ -1330,10 +1271,130 @@ public void SampleRequestContactURL()
             // TODO: Gamebase Console Service Center URL is invalid.
             // Please check the url field in the NHN Cloud Gamebase Console.
         } 
-        else 
+        else
         {
             // An error occur when requesting the contact web view url.
         }
     });
+}
+```
+
+### App Tracking AuthorizationStatus
+
+* ATT 활성화 여부를 확인합니다.
+
+* AUTHORIZED : 앱의 추적 요청 허용 동의, iOS 14 미만 기기에서는 항상 AUTHORIZED를 반환
+* DENIED: 앱의 추적 요청 허용 거부
+* NOT_DETERMINED : 앱의 추적 요청 허용 미결정
+* RESTRICTED : 앱의 추적 요청 제한
+* UNKNOWN : 다른 os 이거나 os에서 정의되지 않은 경우
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+namespace Toast.Gamebase
+{
+    public enum GamebaseAppTrackingAuthorizationStatus
+    {
+        AUTHORIZED,
+        DENIED,
+        NOT_DETERMINED,
+        RESTRICTED,
+        UNKNOWN
+    }
+}
+
+static Toast.Gamebase.GamebaseAppTrackingAuthorizationStatus GetAppTrackingAuthorizationStatus();
+```
+
+**Example**
+
+``` cs
+public void GetAppTrackingAuthorizationStatusSample()
+{
+#if UNITY_IOS
+    switch (Gamebase.Util.GetAppTrackingAuthorizationStatus() ) iOS only
+    {
+        case GamebaseAppTrackingAuthorizationStatus.AUTHORIZED:
+        {
+        }
+        break; 
+        
+        case GamebaseAppTrackingAuthorizationStatus.DENIED:
+        {
+        }
+        break;
+        
+        case GamebaseAppTrackingAuthorizationStatus.NOT_DETERMINED:
+        {
+        }
+        break;
+        
+        case GamebaseAppTrackingAuthorizationStatus.RESTRICTED:
+        {
+        }
+        break;
+        
+        case GamebaseAppTrackingAuthorizationStatus.UNKNOWN:
+        {
+        }
+        break;
+    }
+#endif
+}
+```
+
+### IDFA
+
+* 단말기의 광고식별자 값을 반환합니다.
+
+iOS에서 IDFA 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.<br/>
+* [iOS IDFA](./ios-etc/#idfa)<br/>
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+static void GetIdfa();
+```
+
+**Example**
+
+``` cs
+public void SampleGetIdfa()
+{
+#if UNITY_IOS
+    string idfa = Gamebase.Util.GetIdfa(); iOS only
+#endif
+}
+```
+
+### Age Signals Support
+
+Texas SB 2420及び類似する州の法律は、未成年者の保護のためにアプリでユーザーの年齢確認を求めています。
+Gamebaseは、Google Play Age Signals APIをラッピングし、このような要件を満たすAPIを提供します。
+
+AndroidでAge Signals機能を設定する方法は、次のドキュメントを参照してください。<br/>
+* [Android Age Signals](./aos-etc/#age-signals-support)<br/>
+  
+Supported Platforms
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+
+#### GetAgeSignal
+
+年齢情報を確認します。
+
+**API**
+
+```cs
+static void GetAgeSignal(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Util.AgeSignalResult> callback)
+            HandleUnknownUser(result);
+            break;
+    }
 }
 ```

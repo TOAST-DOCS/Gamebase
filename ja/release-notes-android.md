@@ -1,5 +1,37 @@
 ## Game > Gamebase > リリースノート > Android
 
+### 2.78.0 (2025. 12. 23.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.78.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+
+* 외부 SDK 업데이트: Play Age Signals 라이브러리(0.0.2)
+    * Play Age Signals 라이브러리가 업데이트 되어, 2026년 1월 1일부터 정상적인 결과가 리턴됩니다.
+
+### 2.77.0 (2025. 12. 09.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.77.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+
+* 결제 관련 내부 로직 개선
+
+### 2.76.0 (2025. 11. 28.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.76.0/GamebaseSDK-Android.zip)
+
+#### 機能追加
+* 米国テキサス、ユタ、ルイジアナのような管轄権の特定年齢確認法律による遵守義務を満たすのに役立つよう、Google Play Age Signalsベースの年齢確認APIが追加されました。
+    * [Game > Gamebase > Android SDK使用ガイド > ETC > Age Signals Support](./aos-etc/#age-signals-support)
+    * Play Age Signals 라이브러리 버전이 베타(0.0.1-beta02) 상태이므로 API는 항상 예외가 발생합니다.
+        * 정상 동작을 위해서는 Play Age Signals 라이브러리 0.0.2 버전이 적용된 Gamebase Android SDK 2.78.0을 사용하세요.
+
+#### 機能改善・変更
+
+* **Gamebase.Purchase.requestItemListAtIAPConsole()** APIが非推奨になりました。
+    * **Gamebase.Purchase.requestItemListPurchasable()** APIを使用してください。
+
 ### 2.75.1 (2025. 10. 17.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.1/GamebaseSDK-Android.zip)
@@ -13,13 +45,13 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
+#### 機能改善・変更
  
 * 外部SDKのアップデート: NHN Cloud Android SDK(1.12.0), PAYCO Android SDK(1.5.17), Weibo Android SDK(13.10.5)
-* Google Play의 16KB 페이지 제약 대응을 위한 외부 SDK 업데이트
-    * NHN Cloud SDK / Weibo SDK 업데이트
-    * 16KB 미대응 gamebase-adapter-auth-weibo-v4 모듈 제거
-* 미사용 모듈 제거
+* Google Playの16KBページ制限対応のための外部SDKアップデート
+    * NHN Cloud SDK / Weibo SDKアップデート
+    * 16KB未対応のgamebase-adapter-auth-weibo-v4モジュール削除
+* 未使用モジュールの削除
     * gamebase-adapter-purchase-amazon, gamebase-adapter-push-adm
 * 内部ロジックの改善
 

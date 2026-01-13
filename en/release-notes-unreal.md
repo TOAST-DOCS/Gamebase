@@ -1,5 +1,29 @@
 ## Game > Gamebase > Release Notes > Unreal
 
+### 2.76.0 (2025. 11. 28.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.76.0/GamebaseSDK-Unreal.zip)
+
+####  Added Features
+
+* Added the `FGamebaseLaunchingInfo::FApp::FGameNotice::LatestNoticeTimeMillis` field to provide the post time of the most recently posted game announcement.
+* (Android) Added the API to verify the age based on Google Play Age Signals to assist with compliance with age verification laws in certain jurisdictions, including Texas, Utah, and Louisiana, USA.
+    * [Game > Gamebase > Unreal SDK User Guide > Note > Age Signals Support](./unreal-etc/#age-signals-support)
+* (Windows) Support login via external browsers when Steamworks SDK is not loaded during Steam authentication.
+
+#### Feature Updates
+
+* `IGamebasePurchase::RequestItemListAtIAPConsole()` API has been deprecated.
+    * Use `IGamebasePurchase::RequestItemListPurchasable()` API.
+* Improved internal logic.
+
+#### Bug Fixes
+* (Windows) Fixed an issue where Google Payments would not deliver results to the game after payment completion, depending on browser login status.
+
+#### Platform-specific Changes
+
+* [Gamebase Android SDK 2.76.0](./release-notes-android/#2760-2025-11-28)
+* [Gamebase iOS SDK 2.75.0](./release-notes-ios/#2750-2025-09-23)
+
 ### 2.75.0 (2025. 11. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-Unreal.zip)
 
@@ -8,12 +32,13 @@
 * (Windows) 이미지 공지, 게임 공지 출력 시 고정 크기에서 화면 해상도 비율로 출력되도록 수정되었습니다.
 * 내부 로직을 개선했습니다.
 
-#### 버그 수정
+#### Bug Fixes
 
-* (Windows) 이미지 공지, 게임 공지 클릭 시 엔진 UI 포커스 문제로 클릭을 여러번 해야 반영되는 문제가 수정되었습니다.
-* (Windows) 결제 완료 시 지표 전송 시 SetGameUserData API 호출 정보를 포함하여 전송되도록 수정되었습니다.
+* (Windows) Fixed an issue where clicking on image notices or game notices required multiple clicks due to engine UI focus issues.
+* (Windows) Fixed an issue where clicking on image notifications or game notifications required multiple clicks due to engine UI focus issues.
+* (Windows) Fixed the SetGameUserData API call information to be included in the payment completion indicator transmission.
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 
 * [Gamebase Android SDK 2.75.1](./release-notes-android/#2751-2025-10-17)
 * [Gamebase iOS SDK 2.75.0](./release-notes-ios/#2750-2025-09-23)

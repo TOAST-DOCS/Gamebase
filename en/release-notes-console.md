@@ -1,5 +1,12 @@
 ## Game > Gamebase > Release Notes > Console
 
+### Nov 25, 2025
+
+#### Added Features
+* Analytics > User Metrics > User Metrics
+    * Added the unique new subscriber metric
+    * Added the graphs for withdrawn users, unique new users
+
 ### July 23, 2024
 
 #### Added Features

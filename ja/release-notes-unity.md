@@ -1,23 +1,52 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.77.0 (2025. 12. 09.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.77.0/GamebaseSDK-Unity.zip)
+
+####  기능 추가
+* (WebGL) 브라우저 로그인 지원
+
+#### 기능 개선
+* Gamebase.Purchase.RequestItemListAtIAPConsole() API가 deprecated 되었습니다.
+  * Gamebase.Purchase.RequestItemListPurchasable() API 사용을 권장합니다.
+
+#### 버그 수정
+* (WebGL) 게스트 로그인 실패 문제를 수정했습니다.
+
+### 2.76.0 (2025. 11. 28.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.76.0/GamebaseSDK-Unity.zip)
+
+#### 機能追加
+* 最近投稿されたゲーム告知の投稿時間を提供するために、launching.app.gameNotice.latestNoticeTimeMillisフィールドを追加しました。
+* (Android) 米国テキサス、ユタ、ルイジアナなど特定管轄権の年齢確認関連法律遵守を支援するために、Google Play Age Signalsベースの年齢確認APIが追加されました。
+    * [Game > Gamebase > Unity SDK使用ガイド > 参考事項 > Age Signals Support](./unity-etc/#age-signals-support)
+
+### 2.75.1 (2025. 10. 17.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.1/GamebaseSDK-Unity.zip)
+
+#### 不具合の修正
+* (Windows) AdditionalInfoがnullの場合に発生していた例外を修正しました。
+* (macOS) GamebaseUtilで発生していたDllNotFoundException問題を修正しました。
+
 ### 2.75.0 (2025. 09. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* (Windows) Mapping 기능 추가
+#### 機能追加
+* (Windows) Mapping機能追加
 
-#### 기능 개선/변경
-* 내부 로직을 개선하였습니다.
+#### 機能改善・変更
+* (Android) Google Playの16KBページ制限対応
+* 内部ロジックを改善しました。
 
 ### 2.74.0 (2025. 08. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.74.0/GamebaseSDK-Unity.zip)
 
-#### 버그 수정
-* (iOS) ChangeLogin 시 발생하던 크래시 이슈를 수정했습니다.
-* (macOS) GamebaseUtil에서 발생하던 DllNotFoundException 문제를 수정했습니다.
+#### 不具合の修正
+* (iOS) ChangeLogin時に発生していたクラッシュ問題を修正しました。
+* (macOS) GamebaseUtilで発生していたDllNotFoundException問題を修正しました。
 
-#### 기타
-* 최소 지원 버전이 Unity 2022.3.10으로 상향되었습니다.
+#### その他
+* 最小サポートバージョンがUnity 2022.3.10に引き上げられました。
 
 ### 2.73.2 (2025. 07. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.2/GamebaseSDK-Unity.zip)

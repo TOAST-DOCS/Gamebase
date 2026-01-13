@@ -40,7 +40,7 @@ Gamebase supports OAuth login based on ID and passwords, using accounts of many 
 
 Following is the list of external authentication supported by Gamebase.
 
-| External Authentication       | Android | iOS | Unity(Windows, macOS) | Unreal(Windows) |
+| External Authentication       | Android | iOS | Unity(Windows, macOS, WebGL) | Unreal(Windows) |
 | ----------------- | ------------ | ------------ | ------------ | ------------ |
 | Facebook          | O | O | O | O |
 | Sign In with Apple | O  | O | O | O |

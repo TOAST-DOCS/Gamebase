@@ -67,7 +67,7 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 
 ## User Statistics
 ### User
-![analytics_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_03_kr_240103.png)
+![analytics_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_03_kr_251119.png)
 
 이용자의 기본 지표들을 확인할 수 있습니다.
 
@@ -79,6 +79,7 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 * MAU 누적: 월간 AU의 합(Monthly Active Users). 월간 지표 선택 시 DAU 항목이 MAU로 대체
 * 최대 동접자 수(MCU): 0시~24시까지 최대 동접자 수. 1분 단위 CCU 값에서 가장 큰 값을 1일 단위로 집계함.
 * 신규 가입자(NRU): 신규 가입자. 당일 0시~24시까지 로그인 로그가 최초 수집된 유저(memberno 기준)
+* 고유 신규 가입자(UNU): 고유 신규 가입자. 당일 0시~24시까지 로그인 로그가 최초 수집된 순수한 신규 유저(memberno, device 기준)
 * 탈퇴 이용자: 탈퇴 유저. 당일 0시~24시까지 memberno가 삭제된 유저 수
 * 평균 로그인 횟수: 선택된 기간 동안의 평균 로그인 수
 * 평균.CCU: 선택된 기간 동안의 CCU의 평균

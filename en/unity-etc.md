@@ -521,17 +521,8 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 > This is an event that only occur when using iOS Appleid login.
 
 * This event occurs when the service is deleted from the IdP.
-* Notifies the user that the IdP has been revoked, and issues a new userID when the user logs in with the same IdP.
-* GamebaseEventIdPRevokedData.code:  Indicates the GamebaseIdPRevokedCode value.
-    * WITHDRAW : 600
-        * Indicates that the user is logged in with a revoked IdP, and there is no list of mapped IdPs.
-        * You need to call the Withdraw API to remove the current account.
-    * OVERWRITE_LOGIN_AND_REMOVE_MAPPING : 601
-        * Indicates that the user is logged in with a revoked IdP and IdPs other than the revoked IdP are mapped.
-        * You need to log in with one of the mapped IdPs and call the RemoveMapping API to remove mapping with the revoked IdP.
-    * REMOVE_MAPPING : 602
-        * Indicates that there is a revoked IdP among IdPs mapped to the current account.
-        * You need to call the RemoveMapping API to remove mapping with the revoked IdP.
+* 유저에게 IdP가 사용 중지된 것을 알리고, 로그아웃 후 다시 로그인 하도록 구현해야 합니다.
+
 * GamebaseEventIdPRevokedData.idpType: Indicates the revoked IdP type.
 * GamebaseEventIdPRevokedData.authMappingList: Indicates the list of IdPs mapped to the current account.
 
@@ -552,62 +543,12 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
                 GamebaseResponse.Event.GamebaseEventIdPRevokedData idPRevokedData = GamebaseResponse.Event.GamebaseEventIdPRevokedData.From(message.data);
                 if (idPRevokedData != null)
                 {
-                    ProcessIdPRevoked(idPRevokedData);
+                    // Call logout, then login again.
                 }
                 break;
             }
         default:
             {
-                break;
-            }
-    }
-}
-
-private void ProcessIdPRevoked(string category, GamebaseResponse.Event.GamebaseEventIdPRevokedData data)
-{
-    var revokedIdP = data.idPType;
-    switch (data.code)
-    {
-        case GamebaseIdPRevokedCode.WITHDRAW:
-            {
-                // The user is logged in with a revoked IdP and there is no list of mapped IdPs. 
-                // Notifies the user that the current account has been removed.
-                Gamebase.Withdraw((error) =>
-                {
-                    ...
-                });
-                break;
-            }
-        case GamebaseIdPRevokedCode.OVERWRITE_LOGIN_AND_REMOVE_MAPPING:
-            {
-                // The user is logged in with a revoked IdP and IdPs other than the revoked IdP are mapped.
-                // Allows the user to select an IdP to login in to among the authMappingList, and removes mapping with the revoked IdP after login with the selected IdP.
-                var selectedIdP = "the IdP selected by the user";
-                var additionalInfo = new Dictionary<string, object>()
-                {
-                    { GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN, true }
-                };
-
-                Gamebase.Login(selectedIdP, additionalInfo, (authToken, loginError) =>
-                {
-                    if (Gamebase.IsSuccess(loginError) == true)
-                    {
-                        Gamebase.RemoveMapping(revokedIdP, (mappingError) =>
-                        {
-                            ...
-                        });
-                    }
-                });
-                break;
-            }
-        case GamebaseIdPRevokedCode.REMOVE_MAPPING:
-            {
-                // There is a revoked IdP among IdPs mapped to the current account.
-                // Notifies the user that mapping with the revoked IdP is removed from the current account.
-                Gamebase.RemoveMapping(revokedIdP, (error) =>
-                {
-                    ...
-                });
                 break;
             }
     }
@@ -1340,10 +1281,224 @@ public void SampleRequestContactURL()
             // TODO: Gamebase Console Service Center URL is invalid.
             // Please check the url field in the NHN Cloud Gamebase Console.
         } 
-        else 
+        else
         {
             // An error occur when requesting the contact web view url.
         }
     });
 }
 ```
+
+### App Tracking AuthorizationStatus
+
+* ATT 활성화 여부를 확인합니다.
+
+* AUTHORIZED : 앱의 추적 요청 허용 동의, iOS 14 미만 기기에서는 항상 AUTHORIZED를 반환
+* DENIED: 앱의 추적 요청 허용 거부
+* NOT_DETERMINED : 앱의 추적 요청 허용 미결정
+* RESTRICTED : 앱의 추적 요청 제한
+* UNKNOWN : 다른 os 이거나 os에서 정의되지 않은 경우
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+namespace Toast.Gamebase
+{
+    public enum GamebaseAppTrackingAuthorizationStatus
+    {
+        AUTHORIZED,
+        DENIED,
+        NOT_DETERMINED,
+        RESTRICTED,
+        UNKNOWN
+    }
+}
+
+static Toast.Gamebase.GamebaseAppTrackingAuthorizationStatus GetAppTrackingAuthorizationStatus();
+```
+
+**Example**
+
+``` cs
+public void GetAppTrackingAuthorizationStatusSample()
+{
+#if UNITY_IOS
+    switch (Gamebase.Util.GetAppTrackingAuthorizationStatus() ) iOS only
+    {
+        case GamebaseAppTrackingAuthorizationStatus.AUTHORIZED:
+        {
+        }
+        break; 
+        
+        case GamebaseAppTrackingAuthorizationStatus.DENIED:
+        {
+        }
+        break;
+        
+        case GamebaseAppTrackingAuthorizationStatus.NOT_DETERMINED:
+        {
+        }
+        break;
+        
+        case GamebaseAppTrackingAuthorizationStatus.RESTRICTED:
+        {
+        }
+        break;
+        
+        case GamebaseAppTrackingAuthorizationStatus.UNKNOWN:
+        {
+        }
+        break;
+    }
+#endif
+}
+```
+
+### IDFA
+
+* 단말기의 광고식별자 값을 반환합니다.
+
+iOS에서 IDFA 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.<br/>
+* [iOS IDFA](./ios-etc/#idfa)<br/>
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+static void GetIdfa();
+```
+
+**Example**
+
+``` cs
+public void SampleGetIdfa()
+{
+#if UNITY_IOS
+    string idfa = Gamebase.Util.GetIdfa(); iOS only
+#endif
+}
+```
+
+### Age Signals Support
+
+Texas SB 2420 and similar state laws require apps to verify users' ages to protect minors.
+Gamebase provides an API that wraps the Google Play Age Signals API to meet these requirements.
+
+Please refer to the following article for how to set up the Age Signals feature on Android:<br/>
+* [Android Age Signals](./aos-etc/#age-signals-support)<br/>
+  
+Supported Platforms
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+
+#### GetAgeSignal
+
+Check the age information.
+
+**API**
+
+```cs
+static void GetAgeSignal(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Util.AgeSignalResult> callback)
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_SUPPORTED(10)                   | Called on devices with Android API lower than version 23. | 
+| AUTH\_EXTERNAL\_LIBRARY\_ERROR(3009) | Google Play Age Signals API returned an error. | 
+
+
+**Handle results**
+
+You can check a user's status with AgeSignalResult.userStatus.
+Please determine whether to restrict the user based on the Status value.
+
+**GamebaseAgeSignalsVerificationStatus**
+
+A user verification status constant.
+
+| Status | Code | Description |
+| ----------------------------- | ---- | -------------------- |
+| VERIFIED | 0 | Adult (18 years or older) |
+| SUPERVISED | 1 | Minor with parental consent |
+| SUPERVISED\_APPROVAL\_PENDING | 2 | Pending parental approval |
+| SUPERVISED\_APPROVAL\_DENIED | 3 | Parental approval denied |
+| UNKNOWN | 4 | Unverified user |
+
+
+**Example**
+
+``` cs
+public static void SampleGetAgeSignal()
+{
+    Gamebase.Util.GetAgeSignal((data, error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            HandleAgeSignalsResult(data);
+        }
+        else
+        {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            switch (errorCode)
+            {
+                case GamebaseErrorCode.NOT_SUPPORTED:
+                    // Not supported on devices with Android API lower than version 23.
+                    Debug.LogError("Age Signals API is not supported on this device");
+                    break;
+                case GamebaseErrorCode.AUTH_EXTERNAL_LIBRARY_ERROR:
+                    // An error occurred in Google Play Services.
+                    Debug.LogErrorFormat("Google Play Age Signals error: {0}", errorMessage);
+                    break;
+            }
+        }
+    });
+}
+
+private static void HandleAgeSignalsResult(GamebaseResponse.Util.AgeSignalResult result)
+{
+    if(result.userStatus.HasValue == false)
+    {
+        // It means the user is not in a regulated area (Texas, Utah, Louisiana).
+       // You can proceed with your app's logic for non-regulated users.
+        return;
+    }
+    
+    GamebaseAgeSignalsVerificationStatus userStatus = (GamebaseAgeSignalsVerificationStatus)result.userStatus.Value;
+    switch (userStatus)
+    {
+        case GamebaseAgeSignalsVerificationStatus.VERIFIED:
+           // Adult users 18 years or older
+           // Allow access to all features
+           // ageLower and ageUpper are null
+            HandleAdultUser(result);
+            break;
+        case GamebaseAgeSignalsVerificationStatus.SUPERVISED:
+           // Minors with parental consent
+           // Limited functionality available for minors under Texas SB 2420
+
+            // You can check the age range.
+            var ageLower = result.ageLower.Value; // e.g. 13
+            var ageUpper = result.ageUpper.Value; // e.g. 17
+            var installId = result.installId;
+            HandleSupervisedMinor(result);
+            break;
+        case GamebaseAgeSignalsVerificationStatus.SUPERVISED_APPROVAL_PENDING:
+            // Limited feature is available while waiting for parental approval.
+            // Notify the user that approval is pending.
+            HandleApprovalPending(result);
+            break;
+        case GamebaseAgeSignalsVerificationStatus.SUPERVISED_APPROVAL_DENIED:
+            // If your guardian refuses permission,
+            // you will be notified that only limited features are available or the service is unavailable.
+            HandleApprovalDenied(result);
+            break;
+        case GamebaseAgeSignalsVerificationStatus.UNKNOWN:
+            // If the user is unverified or age verification information is unavailable in your jurisdiction,
+            // ask the user to visit the Play Store to resolve the issue.
