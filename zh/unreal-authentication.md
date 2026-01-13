@@ -92,7 +92,7 @@ void LoginForLastLoggedInProvider(const UGamebaseJsonObject& additionalInfo, con
 ```cpp
 void Sample::LoginForLastLoggedInProvider()
 {
-    IGamebase::Get().LoginForLastLoggedInProvider(FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+    IGamebase::Get().LoginForLastLoggedInProvider(FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -144,7 +144,7 @@ void Login(const FString& providerName, const FGamebaseAuthTokenDelegate& onCall
 ```cpp
 void Sample::Login()
 {
-    IGamebase::Get().Login(GamebaseAuthProvider::Guest, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+    IGamebase::Get().Login(GamebaseAuthProvider::Guest, FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -212,7 +212,7 @@ void Login(const FString& providerName, const UGamebaseJsonObject& additionalInf
 ```cpp
 void Sample::Login()
 {
-    IGamebase::Get().Login(GamebaseAuthProvider::Facebook, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+    IGamebase::Get().Login(GamebaseAuthProvider::Facebook, FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -243,7 +243,7 @@ void Sample::LoginWithAdditionalInfo()
     UGamebaseJsonObject* additionalInfo = NewObject<UGamebaseJsonObject>();
     additionalInfo->SetStringField(TEXT("Key"), TEXT("Value"));
 
-    IGamebase::Get().Login(GamebaseAuthProvider::Facebook, *additionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+    IGamebase::Get().Login(GamebaseAuthProvider::Facebook, *additionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -310,7 +310,7 @@ void Sample::LoginWithCredential()
     credentialInfo->SetStringField(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Facebook);
     credentialInfo->SetStringField(GamebaseAuthProviderCredential::AccessToken, TEXT("facebook access token"));
 
-    IGamebase::Get().Login(*credentialInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+    IGamebase::Get().Login(*credentialInfo, FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -348,7 +348,7 @@ void Logout(const FGamebaseErrorDelegate& onCallback);
 ```cpp
 void Sample::Logout()
 {
-    IGamebase::Get().Logout(FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+    IGamebase::Get().Logout(FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -394,7 +394,7 @@ void Withdraw(const FGamebaseErrorDelegate& onCallback);
 ```cpp
 void Sample::Withdraw()
 {
-    IGamebase::Get().Withdraw(FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+    IGamebase::Get().Withdraw(FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -492,7 +492,7 @@ void AddMapping(const FString& providerName, const UGamebaseJsonObject& addition
 ```cpp
 void Sample::AddMapping(const FString& providerName)
 {
-    IGamebase::Get().AddMapping(providerName, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+    IGamebase::Get().AddMapping(providerName, FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -555,7 +555,7 @@ void Sample::AddMappingWithCredential()
     credentialInfo->SetStringField(GamebaseAuthProviderCredential::ProviderName, GamebaseAuthProvider::Facebook);
     credentialInfo->SetStringField(GamebaseAuthProviderCredential::AccessToken, TEXT("facebook access token"));
 
-    IGamebase::Get().AddMapping(*credentialInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+    IGamebase::Get().AddMapping(*credentialInfo, FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -592,7 +592,7 @@ void AddMappingForcibly(const UGamebaseJsonObject& credentialInfo, const FString
 ```cpp
 void Sample::AddMappingForcibly(const FString& providerName)
 {
-    IGamebase::Get().AddMapping(providerName, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+    IGamebase::Get().AddMapping(providerName, FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -656,7 +656,7 @@ The following example shows a situation where, after attempting to map to Facebo
 ```cpp
 void Sample::ChangeLoginWithFacebook(const FString& providerName)
 {
-    IGamebase::Get().AddMapping(GamebaseAuthProvider::Facebook, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+    IGamebase::Get().AddMapping(GamebaseAuthProvider::Facebook, FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -722,7 +722,7 @@ void RemoveMapping(const FString& providerName, const FGamebaseErrorDelegate& on
 ```cpp
 void Sample::RemoveMapping(const FString& providerName)
 {
-    IGamebase::Get().RemoveMapping(providerName, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+    IGamebase::Get().RemoveMapping(providerName, FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -884,7 +884,7 @@ void IssueTransferAccount(const FGamebaseTransferAccountDelegate& onCallback);
 ```cpp
 void Sample::IssueTransferAccount()
 {
-    IGamebase::Get().IssueTransferAccount(FGamebaseTransferAccountDelegate::CreateLambda([=](const FGamebaseTransferAccountInfo* transferAccountInfo, const FGamebaseError* error)
+    IGamebase::Get().IssueTransferAccount(FGamebaseTransferAccountDelegate::CreateLambda([](const FGamebaseTransferAccountInfo* transferAccountInfo, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -912,7 +912,7 @@ void QueryTransferAccount(const FGamebaseTransferAccountDelegate& onCallback);
 ```cpp
 void Sample::QueryTransferAccount()
 {
-    IGamebase::Get().IssueTransferAccount(FGamebaseTransferAccountDelegate::CreateLambda([=](const FGamebaseTransferAccountInfo* transferAccountInfo, const FGamebaseError* error)
+    IGamebase::Get().IssueTransferAccount(FGamebaseTransferAccountDelegate::CreateLambda([](const FGamebaseTransferAccountInfo* transferAccountInfo, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -946,7 +946,7 @@ void Sample::RenewTransferAccount(const FString& accountId, const FString& accou
     // Auto Setting
     //FGamebaseTransferAccountRenewConfiguration configuration{ type };
 
-    IGamebase::Get().RenewTransferAccount(configuration, FGamebaseTransferAccountDelegate::CreateLambda([=](const FGamebaseTransferAccountInfo* transferAccountInfo, const FGamebaseError* error)
+    IGamebase::Get().RenewTransferAccount(configuration, FGamebaseTransferAccountDelegate::CreateLambda([](const FGamebaseTransferAccountInfo* transferAccountInfo, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -980,7 +980,7 @@ void TransferAccountWithIdPLogin(const FString& accountId, const FString& accoun
 ```cpp
 void Sample::TransferAccountWithIdPLogin(const FString& accountId, const FString& accountPassword)
 {
-    IGamebase::Get().TransferAccountWithIdPLogin(accountId, accountPassword, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+    IGamebase::Get().TransferAccountWithIdPLogin(accountId, accountPassword, FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -1025,7 +1025,7 @@ void RequestWithdrawal(const FGamebaseTemporaryWithdrawalDelegate& onCallback);
 ```cpp
 void Sample::RequestWithdrawal()
 {
-    IGamebase::Get().GetTemporaryWithdrawal().RequestWithdrawal(FGamebaseTemporaryWithdrawalDelegate::CreateLambda([=](const FGamebaseTemporaryWithdrawalInfo* info, const FGamebaseError* error)
+    IGamebase::Get().GetTemporaryWithdrawal().RequestWithdrawal(FGamebaseTemporaryWithdrawalDelegate::CreateLambda([](const FGamebaseTemporaryWithdrawalInfo* info, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -1048,7 +1048,7 @@ Games enabling the suspension of withdrawal must always notify the user after lo
 ```cpp
 void Sample::Login()
 {
-    IGamebase::Get().Login(GamebaseAuthProvider::Guest, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+    IGamebase::Get().Login(GamebaseAuthProvider::Guest, FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
       if (Gamebase::IsSuccess(error))
         {
@@ -1087,7 +1087,7 @@ void CancelWithdrawal(const FGamebaseErrorDelegate& onCallback);
 ```cpp
 void Sample::CancelTemporaryWithdrawal()
 {
-    IGamebase::Get().GetTemporaryWithdrawal().CancelTemporaryWithdrawal(FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+    IGamebase::Get().GetTemporaryWithdrawal().CancelTemporaryWithdrawal(FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -1119,7 +1119,7 @@ void WithdrawImmediately(const FGamebaseErrorDelegate& onCallback);
 ```cpp
 void Sample::WithdrawImmediately()
 {
-    IGamebase::Get().GetTemporaryWithdrawal().WithdrawImmediately(FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+    IGamebase::Get().GetTemporaryWithdrawal().WithdrawImmediately(FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -1147,7 +1147,7 @@ void Sample::WithdrawImmediately()
 ```cpp
 void Sample::Login()
 {
-    IGamebase::Get().Login(GamebaseAuthProvider::Guest, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+    IGamebase::Get().Login(GamebaseAuthProvider::Guest, FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error) == false)
         {

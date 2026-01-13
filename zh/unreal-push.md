@@ -114,7 +114,7 @@ void Sample::RegisterPushWithOption(bool pushEnabled, bool adAgreement, bool adA
     NotificationOptions.smallIconName = SmallIconName;
     NotificationOptions.soundFileName = SoundFileName;
 
-    IGamebase::Get().GetPush().RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+    IGamebase::Get().GetPush().RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -157,7 +157,7 @@ void Sample::GetNotificationOptions()
         
         FGamebasePushConfiguration Configuration;
         
-        IGamebase::Get().GetPush().RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) { }));
+        IGamebase::Get().GetPush().RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* error) { }));
     }
     else
     {
@@ -190,7 +190,7 @@ void QueryPush(const FGamebasePushConfigurationDelegate& onCallback);
 ```cpp
 void Sample::QueryTokenInfo()
 {
-    IGamebase::Get().GetPush().QueryTokenInfo(FGamebasePushTokenInfoDelegate::CreateLambda([=](const FGamebasePushTokenInfo* tokenInfo, const FGamebaseError* error)
+    IGamebase::Get().GetPush().QueryTokenInfo(FGamebasePushTokenInfoDelegate::CreateLambda([](const FGamebasePushTokenInfo* tokenInfo, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {

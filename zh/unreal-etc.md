@@ -105,7 +105,7 @@ void Sample::Initialize(const FString& appID, const FString& appVersion)
     configuration.displayLanguageCode = displayLanguage;
     ...
 
-    IGamebase::Get().Initialize(configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* launchingInfo, const FGamebaseError* error)
+    IGamebase::Get().Initialize(configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([](const FGamebaseLaunchingInfo* launchingInfo, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -279,7 +279,7 @@ struct GAMEBASE_API FGamebaseEventMessage
 ```cpp
 void Sample::AddEventHandler()
 {
-    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([](const FGamebaseEventMessage& message)
     {
         if (message.category.Equals(GamebaseEventCategory::IdPRevoked))
         {
@@ -367,7 +367,7 @@ void Sample::AddEventHandler()
 ```cpp
 void Sample::AddEventHandler()
 {
-    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([](const FGamebaseEventMessage& message)
     {
         if (message.category.Equals(GamebaseEventCategory::IdPRevoked))
         {
@@ -389,7 +389,7 @@ void Sample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
         // Notifies the user that the current account has been deleted.
         case GamebaseIdPRevokeCode::Withdraw:
         {
-            IGamebase::Get().Withdraw(FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+            IGamebase::Get().Withdraw(FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* error)
             {
                 ...
             }));
@@ -403,11 +403,11 @@ void Sample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
             auto additionalInfo = NewObject<UGamebaseJsonObject>();
             additionalInfo->SetBoolField(GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn, true);
 
-            IGamebase::Get().Login(selectedIdP, *additionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([=](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
+            IGamebase::Get().Login(selectedIdP, *additionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([](const FGamebaseAuthToken* authToken, const FGamebaseError* error)
             {
                 if (Gamebase::IsSuccess(error))
                 {
-                    IGamebase::Get().RemoveMapping(revokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+                    IGamebase::Get().RemoveMapping(revokedIdP, FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* error)
                     {
                         ...
                     }));
@@ -419,7 +419,7 @@ void Sample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
         {
             // Indicates that there is a revoked IdP among IdPs mapped to the current account.
             // Notifies the user that mapping with the revoked IdP is removed from the current account.
-              IGamebase::Get().RemoveMapping(revokedIdP, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+              IGamebase::Get().RemoveMapping(revokedIdP, FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* error)
             {
                 ...
             }));
@@ -438,7 +438,7 @@ void Sample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& data)
 ```cpp
 void Sample::AddEventHandler()
 {
-    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([](const FGamebaseEventMessage& message)
     {
         if (message.category.Equals(GamebaseEventCategory::LoggedOut))
         {
@@ -472,7 +472,7 @@ void Sample::AddEventHandler()
 ```cpp
 void Sample::AddEventHandler()
 {
-    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([](const FGamebaseEventMessage& message)
     {
         if (message.category.Equals(GamebaseEventCategory::ServerPushAppKickOut) ||
             message.category.Equals(GamebaseEventCategory::ServerPushAppKickOutMessageReceived) ||
@@ -561,7 +561,7 @@ struct GAMEBASE_API FGamebaseEventObserverData
 ```cpp
 void Sample::AddEventHandler()
 {
-    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([](const FGamebaseEventMessage& message)
     {
         if (message.category.Equals(GamebaseEventCategory::ObserverLaunching))
         {
@@ -656,7 +656,7 @@ void Sample::CheckHeartbeat(const FGamebaseEventObserverData& data)
 ```cpp
 void Sample::AddEventHandler()
 {
-    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([](const FGamebaseEventMessage& message)
     {
         if (message.category.Equals(GamebaseEventCategory::PurchaseUpdated))
         {
@@ -702,7 +702,7 @@ struct FGamebaseEventPushMessage
 ```cpp
 void Sample::AddEventHandler()
 {
-    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([](const FGamebaseEventMessage& message)
     {
         if (message.category.Equals(GamebaseEventCategory::PushReceivedMessage))
         {
@@ -730,7 +730,7 @@ void Sample::AddEventHandler()
 ```cpp
 void Sample::AddEventHandler()
 {
-    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([](const FGamebaseEventMessage& message)
     {
         if (message.category.Equals(GamebaseEventCategory::PushClickMessage))
         {
@@ -775,7 +775,7 @@ struct FGamebaseEventPushAction
 ```cpp
 void Sample::AddEventHandler()
 {
-    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([=](const FGamebaseEventMessage& message)
+    IGamebase::Get().AddEventHandler(FGamebaseEventDelegate::FDelegate::CreateLambda([](const FGamebaseEventMessage& message)
     {
         if (message.category.Equals(GamebaseEventCategory::PushClickAction))
         {
@@ -958,7 +958,7 @@ void OpenContact(const FGamebaseContactConfiguration& configuration, const FGame
 ```cpp
 void Sample::OpenContact()
 {
-    IGamebase::Get().GetContact().OpenContact(FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error)
+    IGamebase::Get().GetContact().OpenContact(FGamebaseErrorDelegate::CreateLambda([Subsystem](const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
@@ -1024,7 +1024,7 @@ void Sample::RequestContactURL(const FString& userName)
 {
     FGamebaseContactConfiguration configuration{ userName };
 
-    IGamebase::Get().GetContact().RequestContactURL(configuration, FGamebaseContactUrlDelegate::CreateLambda([=](FString url, const FGamebaseError* error)
+    IGamebase::Get().GetContact().RequestContactURL(configuration, FGamebaseContactUrlDelegate::CreateLambda([Subsystem](FString url, const FGamebaseError* error)
     {
         if (Gamebase::IsSuccess(error))
         {
