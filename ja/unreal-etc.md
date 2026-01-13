@@ -354,19 +354,7 @@ void USample::AddEventHandler()
 > iOS Appleidログインを使用する場合にのみ発生するイベントです。
 
 * IdPで該当サービスを削除したときに発生するイベントです。
-* ユーザーにIdPが使用停止したことを知らせ、同じIdPでログインするとき、userIDを新たに発行できるように実装する必要があります。
-* FGamebaseEventIdPRevokedData.code: GamebaseIdPRevokedCode値を意味します。
-    * WITHDRAW : 600
-        * 現在使用停止しているIdPでログインしていて、マッピングされたIdPリストがないことを意味します。
-        * withdraw APIを呼び出して現在のアカウントを退会させる必要があります。
-    * OverwriteLoginAndRemoveMapping : 601
-        * 現在使用停止しているIdPでログインしていて、使用停止しているIdP以外の他のIdPがマッピングされている場合を意味します。
-        * マッピングされたIdPリストのうちの1つのIdPにログインし、removeMapping APIを呼び出して使用停止しているIdPの連動を解除する必要があります。
-    * RemoveMapping : 602
-        * 現在アカウントにマッピングされているIdPのうち、使用停止しているIdPがある場合を意味します。
-        * RemoveMapping APIを呼び出して使用停止しているIdPの連動を解除する必要があります。
-* FGamebaseEventIdPRevokedData.idpType：使用停止しているIdPタイプを意味します。
-* FGamebaseEventIdPRevokedData.authMappingList：現在アカウントにマッピングされているIdPリストを意味します。
+* 유저에게 IdP가 사용 중지된 것을 알리고, 로그아웃 후 다시 로그인하도록 구현해야 합니다.
 
 **Example**
 
@@ -378,61 +366,9 @@ void USample::AddEventHandler()
     {
         if (Message.Category.Equals(GamebaseEventCategory::IdPRevoked))
         {
-            auto IdpRevokedData = FGamebaseEventIdPRevokedData::From(Message.Data);
-            if (IdpRevokedData.IsValid())
-            {
-                ProcessIdPRevoked(IdpRevokedData);
-            }
+            // TODO: process logout, then login again.
         }
     }));
-}
-
-void USample::ProcessIdPRevoked(const FGamebaseEventIdPRevokedData& Data)
-{
-    auto RevokedIdP = Data->IdpType;
-    switch (Data->code)
-    {
-        // 現在使用停止しているIdPでログインしていて、マッピングされたIdPリストがないことを意味します。
-        // ユーザーに現在のアカウントが退会していることを伝えてください。
-        case GamebaseIdPRevokeCode::Withdraw:
-        {
-            Subsystem->Withdraw(FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* Error)
-            {
-                ...
-            }));
-            break;
-        }
-        case GamebaseIdPRevokeCode::OverwriteLoginAndRemoveMapping:
-        {
-            // 現在使用停止しているIdPでログインしていて、使用停止したIdP以外の他のIdPがマッピングされている場合を意味します。
-            // ユーザーがauthMappingListのうちどのIdPで再度ログインするか選択し、選択したIdPでログインした後、使用停止したIdPについては連動を解除してください。
-            auto SelectedIdP = "ユーザーが選択したIdP";
-            FGamebaseVariantMap AdditionalInfo;
-            AdditionalInfo.Add(GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn, true);
-
-            Subsystem->Login(SelectedIdP, *AdditionalInfo, FGamebaseAuthTokenDelegate::CreateLambda([Subsystem, RevokedIdP](const FGamebaseAuthToken* AuthToken, const FGamebaseError* Error)
-            {
-                if (Gamebase::IsSuccess(Error))
-                {
-                    Subsystem->RemoveMapping(RevokedIdP, FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* Error)
-                    {
-                        ...
-                    }));
-                }
-            }));
-            break;
-        }
-        case GamebaseIdPRevokeCode::RemoveMapping:
-        {
-            // 現在のアカウントにマッピングされているIdPのうち使用停止しているIdPがある場合を意味します。
-            // ユーザーに現在アカウントで使用停止しているIdPが連動解除されていることを伝えてください。
-            Subsystem->RemoveMapping(RevokedIdP, FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* Error)
-            {
-                ...
-            }));
-            break;
-        }
-    }
 }
 ```
 
@@ -1082,6 +1018,98 @@ void USample::RequestContactURL(const FString& userName)
     }));
 }
 ```
+
+
+### App Tracking AuthorizationStatus
+
+* ATT 활성화 여부를 확인합니다.
+
+* Authorized: 앱의 추적 요청 허용 동의, iOS 14 미만 기기에서는 항상 AUTHORIZED를 반환
+* Denied: 앱의 추적 요청 허용 거부
+* NotDetermined: 앱의 추적 요청 허용 미결정
+* Restricted: 앱의 추적 요청 제한
+* Unknown: 다른 OS이거나 OS에서 정의되지 않은 경우
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+
+```cpp
+UENUM(BlueprintType)
+enum class EGamebaseAppTrackingAuthorizationStatus : uint8
+{
+    Authorized,
+    Denied,
+    NotDetermined,
+    Restricted,
+    Unknown
+};
+
+EGamebaseAppTrackingAuthorizationStatus GetAppTrackingAuthorizationStatus();
+```
+
+**Example**
+
+```cpp
+void USample::GetAppTrackingAuthorizationStatus()
+{
+    UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    EGamebaseAppTrackingAuthorizationStatus Status = GamebaseSubsystem->GetUtil()->GetAppTrackingAuthorizationStatus();
+    
+    switch (Status)
+    {
+    case EGamebaseAppTrackingAuthorizationStatus::Authorized:
+        // Authorized
+        break;
+    case EGamebaseAppTrackingAuthorizationStatus::Denied:
+        // Denied
+        break;
+    case EGamebaseAppTrackingAuthorizationStatus::NotDetermined:
+        // Not determined
+        break;
+    case EGamebaseAppTrackingAuthorizationStatus::Restricted:
+        // Restricted
+        break;
+    case EGamebaseAppTrackingAuthorizationStatus::Unknown:
+        // Unknown
+        break;
+    }
+    
+}
+```
+
+### IDFA
+
+* 단말기의 광고 식별자 값을 반환합니다.
+
+iOS에서 IDFA 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.<br/>
+* [iOS IDFA](./ios-etc/#idfa)<br/>
+
+**API**
+
+Supported Platforms
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+
+```cpp
+FString GetIdfa();
+```
+
+**Example**
+
+```cpp
+public void SampleGetIdfa()
+{
+    UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    FString Idfa = GamebaseSubsystem->GetUtil()->GetIdfa();
+}
+```
+
+> <font color="red">[주의]</font><br/>
+>
+> iOS 14 이상부터 IDFA 값 요청 시, 사용자 권한을 받아야합니다.
+> 사용자 권한 요청할 때 노출시킬 문구를 info.plist에 설정을 해야 합니다.
+> info.plist에 'Privacy - Tracking Usage Description'을 설정하십시오.
 
 ### Age Signals Support
 
