@@ -1011,12 +1011,6 @@ void USample::RequestContactURL(const FString& userName)
 
 * ATT 활성화 여부를 확인합니다.
 
-* Authorized: 앱의 추적 요청 허용 동의, iOS 14 미만 기기에서는 항상 AUTHORIZED를 반환
-* Denied: 앱의 추적 요청 허용 거부
-* NotDetermined: 앱의 추적 요청 허용 미결정
-* Restricted: 앱의 추적 요청 제한
-* Unknown: 다른 OS이거나 OS에서 정의되지 않은 경우
-
 **API**
 
 Supported Platforms
@@ -1026,11 +1020,12 @@ Supported Platforms
 UENUM(BlueprintType)
 enum class EGamebaseAppTrackingAuthorizationStatus : uint8
 {
-    Authorized,
-    Denied,
-    NotDetermined,
-    Restricted,
-    Unknown
+    
+    Authorized,     // 앱의 추적 요청 허용 동의, iOS 14 미만 기기에서는 항상 Authorized를 반환
+    Denied,         // 앱의 추적 요청 허용 거부
+    NotDetermined,  // 앱의 추적 요청 허용 미결정
+    Restricted,     // 앱의 추적 요청 제한
+    Unknown         // 다른 OS이거나 OS에서 정의되지 않은 경우
 };
 
 EGamebaseAppTrackingAuthorizationStatus GetAppTrackingAuthorizationStatus();
@@ -1047,19 +1042,14 @@ void USample::GetAppTrackingAuthorizationStatus()
     switch (Status)
     {
     case EGamebaseAppTrackingAuthorizationStatus::Authorized:
-        // Authorized
         break;
     case EGamebaseAppTrackingAuthorizationStatus::Denied:
-        // Denied
         break;
     case EGamebaseAppTrackingAuthorizationStatus::NotDetermined:
-        // Not determined
         break;
     case EGamebaseAppTrackingAuthorizationStatus::Restricted:
-        // Restricted
         break;
     case EGamebaseAppTrackingAuthorizationStatus::Unknown:
-        // Unknown
         break;
     }
     
@@ -1069,9 +1059,8 @@ void USample::GetAppTrackingAuthorizationStatus()
 ### IDFA
 
 * 단말기의 광고 식별자 값을 반환합니다.
-
-iOS에서 IDFA 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.<br/>
-* [iOS IDFA](./ios-etc/#idfa)<br/>
+* iOS에서 IDFA 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.
+    * [iOS IDFA](./ios-etc/#idfa)
 
 **API**
 
@@ -1091,12 +1080,6 @@ public void SampleGetIdfa()
     FString Idfa = GamebaseSubsystem->GetUtil()->GetIdfa();
 }
 ```
-
-> <font color="red">[주의]</font><br/>
->
-> iOS 14 이상부터 IDFA 값 요청 시, 사용자 권한을 받아야합니다.
-> 사용자 권한 요청할 때 노출시킬 문구를 info.plist에 설정을 해야 합니다.
-> info.plist에 'Privacy - Tracking Usage Description'을 설정하십시오.
 
 ### Age Signals Support
 

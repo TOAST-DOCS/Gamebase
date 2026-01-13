@@ -251,7 +251,7 @@ NHN Cloud Log & Crash Searchでクラッシュ分析を行うゲーム開発会�
 #### WebViewプラグイン案内
 
 * WebViewを使用するコンテンツを使用する場合、プラグインの有効化が必要です。
-    * GameNotics
+    * GameNotice
     * ImageNotices
     * WebView
 * エンジンを修正せずにWebView関連機能を使用する場合、Unrealエディタで**Settings > Plugins**ウィンドウを開き、**Project > NHN Cloud > NHNWebView**プラグインを見つけて有効にします。
