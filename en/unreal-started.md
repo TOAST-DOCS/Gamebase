@@ -8,7 +8,7 @@ This document describes the environment and initial setting to enable Unreal Gam
 >
 > Support Versions for Unreal 
 >
-> * UE 4.27 ~ UE 5.4
+> * UE 4.27~UE 5.7
 > * To get support for another version of Unreal, please contact [Customer Center](https://www.nhncloud.com/kr/support/inquiry).
 
 #### Supported Platforms
@@ -261,15 +261,7 @@ Game developers using the crash analysis of the NHN Cloud Log & Crash Search mus
     * ImageNotices
     * WebView
 * To use WebView-related features without modifying the engine, open the **Settings > Plugins** window in the Unreal Editor, find the **Project > NHN Cloud > NHNWebView** plugin, and activate it.
-* UE 5.4 or later is required to use the Web Browser plugin provided by the engine; lower versions will not work correctly with web features due to low CEF versions and will need to update the modules associated with the Web Browser plugin.
-    * ThirdParty
-        * CEF3
-    * Runtime
-        * CEF3Utils
-        * WebBrowser
-        * WebBrowserTexture
-    * Program
-        * EpicWebHelper
+* 엔진에서 제공하는 Web Browser 플러그인을 사용할 경우 엔진 내부에 CEF 버전과 Web Browser 기능에 따라 기능이 정상적으로 동작하지 않을 수 있습니다.
 
 > [Note]
 > The NHNWebView plugin and the Web Browser plugin cannot be used concurrently, and if both are enabled, an error will occur at build time.
