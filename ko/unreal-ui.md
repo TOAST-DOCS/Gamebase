@@ -187,7 +187,7 @@ void USample::ShowTermsView()
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->GetTerms()->ShowTermsView(Configuration,
-        FGamebaseDataContainerDelegate::CreateLambda([=](const FGamebaseDataContainer* DataContainer, const FGamebaseError* Error) {
+        FGamebaseDataContainerDelegate::CreateLambda([](const FGamebaseDataContainer* DataContainer, const FGamebaseError* Error) {
             if (Gamebase::IsSuccess(Error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView succeeded."));
@@ -267,7 +267,7 @@ void USample::QueryTerms()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->GetTerms()->QueryTerms(
-        FGamebaseQueryTermsResultDelegate::CreateLambda([=](const FGamebaseQueryTermsResult* Data, const FGamebaseError* Error) {
+        FGamebaseQueryTermsResultDelegate::CreateLambda([](const FGamebaseQueryTermsResult* Data, const FGamebaseError* Error) {
             if (Gamebase::IsSuccess(Error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("QueryTerms succeeded."));
@@ -358,7 +358,7 @@ void USample::UpdateTerms(int32 TermsSeq, const FString& TermsVersion, int32 Ter
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->GetTerms()->UpdateTerms(
         FGamebaseUpdateTermsConfiguration { TermsSeq, TermsVersion, Contents },
-        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) {
+        FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* Error) {
             if (Gamebase::IsSuccess(Error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("UpdateTerms succeeded."));
@@ -445,11 +445,11 @@ void USample::ShowWebView(const FString& Url)
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->GetWebView()->ShowWebView(Url, Configuration,
-        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) {
+        FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* Error) {
             Result(ANSI_TO_TCHAR(__FUNCTION__), TEXT("Close webview"));
         }),
         SchemeList,
-        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& Scheme, const FGamebaseError* Error) {
+        FGamebaseSchemeEventDelegate::CreateLambda([](const FString& Scheme, const FGamebaseError* Error) {
         if (Gamebase::IsSuccess(Error))
         {
             Result(ANSI_TO_TCHAR(__FUNCTION__), true, *FString::Printf(TEXT("Scheme= %s"), *Scheme));
@@ -580,7 +580,7 @@ void USample::ShowAlert(const FString& Title, const FString& Message)
 void USample::ShowAlertEvent(const FString& Title, const FString& Message)
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetUtil()->ShowAlert(Title, Message, FGamebaseAlertCloseDelegate::CreateLambda([=]()
+    Subsystem->GetUtil()->ShowAlert(Title, Message, FGamebaseAlertCloseDelegate::CreateLambda([]()
     {
         UE_LOG(GamebaseTestResults, Display, TEXT("ShowAlert ButtonClick."));
     }));

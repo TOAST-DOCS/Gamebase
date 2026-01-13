@@ -8,7 +8,7 @@ Gamebase Unreal SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 >
 > Unreal 지원 버전
 >
-> * UE 4.27~UE 5.4
+> * UE 4.27~UE 5.7
 > * 다른 버전의 지원이 필요하면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
 
 #### Supported Platforms
@@ -258,15 +258,7 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
     * ImageNotices
     * WebView
 * 별도의 엔진 수정 없이 WebView 관련 기능을 사용할 경우 Unreal 에디터에서 **Settings > Plugins** 창을 띄우고, **Project > NHN Cloud > NHNWebView** 플러그인을 찾아 활성화합니다.
-* 엔진에서 제공하는 Web Browser 플러그인을 사용할 경우 UE 5.4 이상이 필요하며, 그 이하 버전에서는 CEF 버전이 낮아 정상적으로 웹 기능이 동작하지 않으므로 Web Browser 플러그인과 연관된 모듈의 업데이트가 필요합니다.
-    * ThirdParty
-        * CEF3
-    * Runtime
-        * CEF3Utils
-        * WebBrowser
-        * WebBrowserTexture
-    * Program
-        * EpicWebHelper
+* 엔진에서 제공하는 Web Browser 플러그인을 사용할 경우 엔진 내부에 CEF 버전과 Web Browser 기능에 따라 기능이 정상적으로 동작하지 않을 수 있습니다.
 
 > [주의]
 > NHNWebView 플러그인과 Web Browser 플러그인은 동시의 사용이 불가능하며, 두 플러그인이 모두 활성화되어 있는 경우 빌드 시 오류가 발생합니다.

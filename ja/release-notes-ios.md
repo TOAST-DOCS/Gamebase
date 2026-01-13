@@ -3,9 +3,9 @@
 ### 2.77.0 (2025. 12. 09.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.77.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 결제 관련 내부 로직 개선
-* 아래 API가 deprecated 되었습니다.
+#### 機能改善・変更
+* 決済関連の内部ロジックを改善
+* 以下のAPIが非推奨となりました。
     * **[TCGBPurchase requestItemListAtIAPConsoleWithCompletion:]**
     
 ### 2.75.0 (2025. 09. 23.)

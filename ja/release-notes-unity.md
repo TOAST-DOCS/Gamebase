@@ -3,15 +3,15 @@
 ### 2.77.0 (2025. 12. 09.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.77.0/GamebaseSDK-Unity.zip)
 
-####  기능 추가
-* (WebGL) 브라우저 로그인 지원
+####  機能追加
+* (WebGL) ブラウザログインをサポート
 
-#### 기능 개선
-* Gamebase.Purchase.RequestItemListAtIAPConsole() API가 deprecated 되었습니다.
-  * Gamebase.Purchase.RequestItemListPurchasable() API 사용을 권장합니다.
+#### 機能改善
+* Gamebase.Purchase.RequestItemListAtIAPConsole() APIが非推奨となりました。
+  * Gamebase.Purchase.RequestItemListPurchasable() APIの使用を推奨します。
 
-#### 버그 수정
-* (WebGL) 게스트 로그인 실패 문제를 수정했습니다.
+#### 不具合の修正
+* (WebGL) ゲストログインに失敗する問題を修正しました。
 
 ### 2.76.0 (2025. 11. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.76.0/GamebaseSDK-Unity.zip)

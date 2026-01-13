@@ -114,7 +114,7 @@ void USample::RegisterPushWithOption(bool pushEnabled, bool adAgreement, bool ad
     NotificationOptions.SoundFileName = SoundFileName;
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetPush()->RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error)
+    Subsystem->GetPush()->RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
@@ -159,7 +159,7 @@ void USample::GetNotificationOptions()
         FGamebasePushConfiguration Configuration;
         
         UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-        Subsystem->GetPush()->RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* Error) { }));
+        Subsystem->GetPush()->RegisterPush(Configuration, NotificationOptions, FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* Error) { }));
     }
     else
     {
@@ -193,7 +193,7 @@ void QueryPush(const FGamebasePushConfigurationDelegate& Callback);
 void USample::QueryTokenInfo()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetPush()->QueryTokenInfo(FGamebasePushTokenInfoDelegate::CreateLambda([=](const FGamebasePushTokenInfo* TokenInfo, const FGamebaseError* Error)
+    Subsystem->GetPush()->QueryTokenInfo(FGamebasePushTokenInfoDelegate::CreateLambda([](const FGamebasePushTokenInfo* TokenInfo, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {
