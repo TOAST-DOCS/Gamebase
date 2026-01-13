@@ -67,7 +67,7 @@ The above login can be implemented in the following order:
 ### Login with the Latest Login IdP
 
 Attempt to log in with the most recent login IdP. 
-MWhen token for the login has expired, or if token verification has failed, return such failure.  
+When token for the login has expired, or if token verification has failed, return such failure.  
 To that end, it is required to implement [Login for IdP](#login-with-idp).
 
 * Settings AdditionalInfo Parameters
@@ -762,6 +762,7 @@ Supported Platforms
 
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 ```cpp
 TArray<FString> GetAuthMappingList() const;
