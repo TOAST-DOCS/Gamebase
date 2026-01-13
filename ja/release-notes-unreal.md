@@ -40,23 +40,25 @@
 #### 不具合の修正
 * (Windows) Google決済時にブラウザログイン状態によって決済完了後、結果がゲームに伝達されない問題が修正されました。
 
+#### プラットフォーム別の変更事項
+
 * [Gamebase Android SDK 2.76.0](./release-notes-android/#2760-2025-11-28)
 * [Gamebase iOS SDK 2.75.0](./release-notes-ios/#2750-2025-09-23)
 
 ### 2.75.0 (2025. 11. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 개선/변경
+#### 機能改善・変更
 
-* (Windows) 이미지 공지, 게임 공지 출력 시 고정 크기에서 화면 해상도 비율로 출력되도록 수정되었습니다.
-* 내부 로직을 개선했습니다.
+* (Windows) 이미지 공지, 게임 공지 출력 시 고정 크기에서 화면 해상도 비율로 출력되도록 수정되었습니다. 
+* 내부 로직을 개선했습니다. 
 
-#### 버그 수정
+#### 不具合の修正
 
-* (Windows) 이미지 공지, 게임 공지 클릭 시 엔진 UI 포커스 문제로 클릭을 여러번 해야 반영되는 문제가 수정되었습니다.
+* (Windows) 이미지 공지, 게임 공지 클릭 시 엔진 UI 포커스 문제로 클릭을 여러번 해야 반영되는 문제가 수정되었습니다. 
 * (Windows) 決済完了時の指標送信にSetGameUserData API呼び出し情報が含まれるように修正されました。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 
 * [Gamebase Android SDK 2.75.1](./release-notes-android/#2751-2025-10-17)
 * [Gamebase iOS SDK 2.75.0](./release-notes-ios/#2750-2025-09-23)
@@ -64,21 +66,21 @@
 ### 2.74.0 (2025. 08. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.74.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 추가
+#### 機能追加
 
-* (Windows) 계정 매핑 기능이 추가되었습니다.
+* (Windows) 계정 매핑 기능이 추가되었습니다. 
 
-#### 기능 개선/변경
+#### 機能改善・変更
 
-* (Windows) 게임 공지 출력 시 엔진의 DPI에 영향을 받지 않도록 수정되었습니다.
-* 내부 로직을 개선했습니다.
+* (Windows) 게임 공지 출력 시 엔진의 DPI에 영향을 받지 않도록 수정되었습니다. 
+* 내부 로직을 개선했습니다. 
 
-#### 버그 수정
+#### 不具合の修正
 
-* (Windows) 계정 상태가 변경되었을 때 간헐적으로 크래시가 발생되는 로직이 수정되었습니다.
-* (Windows) Twitter 로그인 시 간헐적으로 'Something went wrong' 오류가 발생하지 않도록 수정되었습니다.
+* (Windows) 계정 상태가 변경되었을 때 간헐적으로 크래시가 발생되는 로직이 수정되었습니다. 
+* (Windows) Twitter 로그인 시 간헐적으로 'Something went wrong' 오류가 발생하지 않도록 수정되었습니다. 
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 
 * [Gamebase Android SDK 2.73.1](./release-notes-android/#2731-2025-08-12)
 * [Gamebase iOS SDK 2.73.1](./release-notes-ios/#2731-2025-08-12)
