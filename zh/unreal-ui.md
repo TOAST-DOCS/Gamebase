@@ -30,11 +30,11 @@ void Sample::ShowImageNotices(int32 colorR, int32 colorG, int32 colorB, int32 co
     FGamebaseImageNoticeConfiguration configuration{ colorR, colorG, colorB, colorA, timeOut };
 
     IGamebase::Get().GetImageNotice().ShowImageNotices(configuration,
-        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) {
+        FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* error) {
             // Called when the entire imageNotice is closed.
             ...
         }),
-        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& scheme, const FGamebaseError* error) {
+        FGamebaseSchemeEventDelegate::CreateLambda([](const FString& scheme, const FGamebaseError* error) {
             // Called when custom event occurred.
             ...
         })
@@ -139,7 +139,7 @@ void Sample::ShowTermsView()
     FGamebaseTermsConfiguration configuration { true };
 
     IGamebase::Get().GetTerms().ShowTermsView(configuration,
-        FGamebaseDataContainerDelegate::CreateLambda([=](const FGamebaseDataContainer* dataContainer, const FGamebaseError* error) {
+        FGamebaseDataContainerDelegate::CreateLambda([](const FGamebaseDataContainer* dataContainer, const FGamebaseError* error) {
             if (Gamebase::IsSuccess(error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView succeeded."));
@@ -218,7 +218,7 @@ void QueryTerms(const FGamebaseQueryTermsResultDelegate& onCallback);
 void Sample::QueryTerms()
 {
     IGamebase::Get().GetTerms().QueryTerms(
-        FGamebaseQueryTermsResultDelegate::CreateLambda([=](const FGamebaseQueryTermsResult* data, const FGamebaseError* error) {
+        FGamebaseQueryTermsResultDelegate::CreateLambda([](const FGamebaseQueryTermsResult* data, const FGamebaseError* error) {
             if (Gamebase::IsSuccess(error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("QueryTerms succeeded."));
@@ -308,7 +308,7 @@ void Sample::UpdateTerms(int32 termsSeq, const FString& termsVersion, int32 term
     
     IGamebase::Get().GetTerms().UpdateTerms(
         FGamebaseUpdateTermsConfiguration { termsSeq, termsVersion, contents },
-        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) {
+        FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* error) {
             if (Gamebase::IsSuccess(error))
             {
                 UE_LOG(GamebaseTestResults, Display, TEXT("UpdateTerms succeeded."));
@@ -392,11 +392,11 @@ void Sample::ShowWebView(const FString& url)
     TArray<FString> schemeList{ TEXT("customScheme://openBrowser") };
 
     IGamebase::Get().GetWebView().ShowWebView(url, configuration,
-        FGamebaseErrorDelegate::CreateLambda([=](const FGamebaseError* error) {
+        FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* error) {
             Result(ANSI_TO_TCHAR(__FUNCTION__), TEXT("Close webview"));
         }),
         schemeList,
-        FGamebaseSchemeEventDelegate::CreateLambda([=](const FString& scheme, const FGamebaseError* error) {
+        FGamebaseSchemeEventDelegate::CreateLambda([](const FString& scheme, const FGamebaseError* error) {
         if (Gamebase::IsSuccess(error))
         {
             Result(ANSI_TO_TCHAR(__FUNCTION__), true, *FString::Printf(TEXT("scheme= %s"), *scheme));
@@ -523,7 +523,7 @@ void Sample::ShowAlert(const FString& title, const FString& message)
 
 void Sample::ShowAlertEvent(const FString& title, const FString& message)
 {
-    IGamebase::Get().GetUtil().ShowAlert(title, message, FGamebaseAlertCloseDelegate::CreateLambda([=]()
+    IGamebase::Get().GetUtil().ShowAlert(title, message, FGamebaseAlertCloseDelegate::CreateLambda([]()
     {
             UE_LOG(GamebaseTestResults, Display, TEXT("ShowAlert ButtonClick."));
     }));

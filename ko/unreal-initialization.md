@@ -149,7 +149,7 @@ void USample::Initialize(const FString& AppID, const FString& AppVersion)
     Configuration.bEnableBanPopup = true;
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->Initialize(Configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([=](const FGamebaseLaunchingInfo* LaunchingInfo, const FGamebaseError* Error)
+    Subsystem->Initialize(Configuration, FGamebaseLaunchingInfoDelegate::CreateLambda([](const FGamebaseLaunchingInfo* LaunchingInfo, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(Error))
         {

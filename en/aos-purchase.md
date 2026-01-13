@@ -440,7 +440,7 @@ For subscription status codes, see the following document.
 > <font color="red">[Caution]</font><br/>
 >
 > * The subscription status code is only returned correctly if you follow the guide below to set up the subscription event.
->     * Go to [Game > Gamebase > Store Console Guide > Google Console Guide and set up event propagation of real-time subscription information within Google's system](./console-google-guide/#google_1)
+>     * Go to [Game > Gamebase > Store Console Guide > Google Console Guide and set up event propagation of real-time subscription information within Google's system](./console-google-guide/#set-up-event-propagation-of-real-time-subscription-information-within-googles-system)
 >     * The status code for a subscription product purchased without setting up events always returns 0 (PURCHASED).
 > * Subscription products currently only supports Google Play Store.
 

@@ -1281,13 +1281,13 @@ public void SampleRequestContactURL()
 
 ### App Tracking AuthorizationStatus
 
-* ATT 활성화 여부를 확인합니다.
+* ATTが有効かどうかを確認します。
 
-* AUTHORIZED : 앱의 추적 요청 허용 동의, iOS 14 미만 기기에서는 항상 AUTHORIZED를 반환
-* DENIED: 앱의 추적 요청 허용 거부
-* NOT_DETERMINED : 앱의 추적 요청 허용 미결정
-* RESTRICTED : 앱의 추적 요청 제한
-* UNKNOWN : 다른 os 이거나 os에서 정의되지 않은 경우
+* AUTHORIZED : アプリのトラッキング要求を許可、iOS 14未満の端末では常にAUTHORIZEDを返却
+* DENIED: アプリのトラッキング要求を拒否
+* NOT_DETERMINED : アプリのトラッキング要求許可が未決定
+* RESTRICTED : アプリのトラッキング要求を制限
+* UNKNOWN : 他のOSであるか、OSで定義されていない場合
 
 **API**
 
@@ -1349,9 +1349,9 @@ public void GetAppTrackingAuthorizationStatusSample()
 
 ### IDFA
 
-* 단말기의 광고식별자 값을 반환합니다.
+* 端末の広告識別子(IDFA)の値を返却します。
 
-iOS에서 IDFA 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.<br/>
+iOSでIDFA機能を設定する方法は、次のドキュメントを参照してください。<br/>
 * [iOS IDFA](./ios-etc/#idfa)<br/>
 
 **API**
