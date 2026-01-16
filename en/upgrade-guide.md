@@ -2,6 +2,10 @@
 
 ## 2.77.0
 
+### Common
+* We have updated the recommended guide for the IdP Revoked event in GamebaseEventHandler, which occurs when an Apple ID account is revoked.
+    * You need to notify users that the IdP is disabled and ensure they log out and log back in, rather than withdrawing from the service.
+    
 ### iOS
 
 * **TCGBPurchase.requestItemListAtIAPConsoleWithCompletion:** API가 deprecated 되었습니다.
@@ -18,6 +22,9 @@
 
 * **Gamebase.Purchase.requestItemListAtIAPConsole()** API has been deprecated.
     * Use **Gamebase.Purchase.requestItemListPurchasable()** API.
+* The Age Verification API, added for compliance with specific age verification laws in jurisdictions such as Texas, Utah, and Louisiana, will always throw exceptions as the Play Age Signals library is currently in beta (0.0.1-beta02).
+    * [Game > Gamebase > Android SDK User Guide > ETC > Age Signals Support](./aos-etc/#age-signals-support)
+    * To ensure compatibility with future updates, please upgrade to Gamebase Android SDK 2.78.0 (Play Age Signals v0.0.2).
 
 ### Unreal
 
