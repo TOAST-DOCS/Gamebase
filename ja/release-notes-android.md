@@ -4,10 +4,10 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.78.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
+#### 機能改善・変更
 
-* 외부 SDK 업데이트: Play Age Signals 라이브러리(0.0.2)
-    * Play Age Signals 라이브러리가 업데이트되었습니다.
+* 外部SDKアップデート: Play Age Signalsライブラリ(0.0.2)
+    * Play Age Signalsライブラリがアップデートされました。
 
 ### 2.77.0 (2025. 12. 09.)
 
