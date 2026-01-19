@@ -24,8 +24,8 @@
 #### 機能追加
 * 米国テキサス、ユタ、ルイジアナのような管轄権の特定年齢確認法律による遵守義務を満たすのに役立つよう、Google Play Age Signalsベースの年齢確認APIが追加されました。
     * [Game > Gamebase > Android SDK使用ガイド > ETC > Age Signals Support](./aos-etc/#age-signals-support)
-    * Play Age Signals 라이브러리 버전이 베타(0.0.1-beta02) 상태이므로 API는 항상 예외가 발생합니다.
-        * 정상 동작을 위해서는 Play Age Signals 라이브러리 0.0.2 버전이 적용된 Gamebase Android SDK 2.78.0을 사용하세요.
+    * Play Age Signalsライブラリのバージョンがベータ(0.0.1-beta02)状態であるため、APIでは常に例外が発生します。
+        * 今後正常に動作させるためには、Play Age Signalsライブラリ 0.0.2バージョンが適用されたGamebase Android SDK 2.78.0を使用してください。
 
 #### 機能改善・変更
 
