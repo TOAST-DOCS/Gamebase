@@ -3,20 +3,20 @@
 ### 2.78.0 (2026. 01. 13.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.78.0/GamebaseSDK-Unreal.zip)
 
-####  기능 추가
+#### 機能追加
 
-* 언리얼 엔진 지원 버전이 변경되었습니다.
+* Unreal Engineの対応バージョンが変更されました。
     * 4.27 ~ 5.7
 
-#### 기능 개선/변경
+#### 機能改善・変更
 
-* 내부 로직을 개선했습니다.
+* 内部ロジックを改善しました。
 
-#### 버그 수정
-* (Windows) Payload를 포함한 RequestPurchase API 호출 시 Payload가 콘솔에 전송되지 않는 문제를 수정했습니다.
-* (Windows) NHNWebView를 이용한 웹뷰 노출 관련 기능을 처음 노출 시 High DPI 관련 설정 여부에 따라 DPI가 높은 환경에서 프로그램 창이 줄어드는 문제가 수정되었습니다.
+#### 不具合の修正
+* (Windows) Payloadを含むRequestPurchase API呼び出し時、Payloadがコンソールに送信されない問題を修正しました。
+* (Windows) NHNWebViewを利用したWebView表示関連機能を初めて表示する際、High DPI関連設定の有無により、高DPI環境でプログラムウィンドウが縮小する問題を修正しました。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 
 * [Gamebase Android SDK 2.78.0](./release-notes-android/#2780-2025-12-23)
 * [Gamebase iOS SDK 2.77.0](./release-notes-ios/#2770-2025-12-09)
