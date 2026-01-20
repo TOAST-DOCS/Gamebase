@@ -352,7 +352,7 @@ void USample::AddEventHandler()
 > This is an event that can only occur when using iOS Appleid login.
 
 * This event occurs when the service is deleted from the IdP.
-* 유저에게 IdP가 사용 중지된 것을 알리고, 로그아웃 후 다시 로그인하도록 구현해야 합니다.
+* Users must be notified of the IdP discontinuation and prompted to log out and log in again.
 
 **Example**
 
@@ -1009,7 +1009,7 @@ void USample::RequestContactURL(const FString& userName)
 
 ### App Tracking AuthorizationStatus
 
-* ATT 활성화 여부를 확인합니다.
+* Verifies whether ATT is enabled.
 
 **API**
 
@@ -1021,11 +1021,11 @@ UENUM(BlueprintType)
 enum class EGamebaseAppTrackingAuthorizationStatus : uint8
 {
     
-    Authorized,     // 앱의 추적 요청 허용 동의, iOS 14 미만 기기에서는 항상 Authorized를 반환
-    Denied,         // 앱의 추적 요청 허용 거부
-    NotDetermined,  // 앱의 추적 요청 허용 미결정
-    Restricted,     // 앱의 추적 요청 제한
-    Unknown         // 다른 OS이거나 OS에서 정의되지 않은 경우
+    Authorized,     // Consent to allow tracking requests from apps, always returns Authorized on devices below iOS 14
+    Denied,         // Denied app tracking authorization
+    NotDetermined,  // App tracking authorization: Not Determined
+    Restricted,     // App tracking authorization: Restricted
+    Unknown         // Other OS or undefined OS status
 };
 
 EGamebaseAppTrackingAuthorizationStatus GetAppTrackingAuthorizationStatus();
@@ -1058,8 +1058,8 @@ void USample::GetAppTrackingAuthorizationStatus()
 
 ### IDFA
 
-* 단말기의 광고 식별자 값을 반환합니다.
-* iOS에서 IDFA 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.
+* Returns the device's Advertising Identifier (IDFA) value.
+* Refer to the following document for instructions on how to set up the IDFA feature on iOS.
     * [iOS IDFA](./ios-etc/#idfa)
 
 **API**
