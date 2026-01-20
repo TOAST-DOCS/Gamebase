@@ -255,7 +255,7 @@ NHN Cloud Log & Crash Searchでクラッシュ分析を行うゲーム開発会�
     * ImageNotices
     * WebView
 * エンジンを修正せずにWebView関連機能を使用する場合、Unrealエディタで**Settings > Plugins**ウィンドウを開き、**Project > NHN Cloud > NHNWebView**プラグインを見つけて有効にします。
-* 엔진에서 제공하는 Web Browser 플러그인을 사용할 경우 엔진 내부에 CEF 버전과 Web Browser 기능에 따라 기능이 정상적으로 동작하지 않을 수 있습니다.
+* エンジンが提供するWeb Browserプラグインを使用する場合、エンジン内部のCEFバージョンとWeb Browser機能によっては、機能が正常に動作しないことがあります。
 
 > [注意]
 > NHNWebViewプラグインとWeb Browserプラグインは同時に使用することができず、両方のプラグインが有効になっている場合、ビルド時にエラーが発生します。
