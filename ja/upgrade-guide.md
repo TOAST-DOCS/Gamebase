@@ -3,8 +3,8 @@
 ## 2.77.0
 
 ### Common
-* Appleid 계정을 revoke 시켰을 때 발생하는 GamebaseEventHandler의 IdP Revoked 이벤트의 권장 가이드를 변경하였습니다.
-    * 유저에게 IdP가 사용 중지된 것을 알리고, 탈퇴 대신 로그아웃 후 다시 로그인 할 수 있도록 변경하시기 바립니다.
+* Apple IDアカウントの連携を解除(Revoke)した際に発生するGamebaseEventHandlerのIdP Revokedイベントの推奨ガイドを変更しました。
+    * ユーザーにIdPが利用停止となったことを通知し、退会ではなくログアウトしてから再度ログインできるように変更してください。
 
 ### iOS
 
@@ -24,9 +24,9 @@
 
 * **Gamebase.Purchase.requestItemListAtIAPConsole()** APIが非推奨になりました。
     * **Gamebase.Purchase.requestItemListPurchasable()** APIを使用してください。
-* 미국 텍사스, 유타, 루이지애나와 같은 관할권의 특정 연령 확인 법률에 따른 준수를 위해 추가된 연령 확인 API는 Play Age Signals 라이브러리 버전이 베타(0.0.1-beta02) 상태이므로 항상 예외가 발생합니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Age Signals Support](./aos-etc/#age-signals-support)
-    * 향후 정상 동작을 위해서는 Play Age Signals 라이브러리 버전이 0.0.2로 업데이트된 Gamebase Android SDK 2.78.0을 사용하세요.
+* 米国テキサス、ユタ、ルイジアナなどの管轄区域における特定の年齢確認法に準拠するために追加された年齢確認APIは、Play Age Signalsライブラリのバージョンがベータ(0.0.1-beta02)状態であるため、常に例外が発生します。
+    * [Game > Gamebase > Android SDK利用ガイド > ETC > Age Signals Support](./aos-etc/#age-signals-support)
+    * 今後正常に動作させるためには、Play Age Signalsライブラリのバージョンが0.0.2にアップデートされたGamebase Android SDK 2.78.0を使用してください。
 
 ### Unreal
 
