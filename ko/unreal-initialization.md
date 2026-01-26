@@ -153,7 +153,7 @@ void USample::Initialize(const FString& AppID, const FString& AppVersion)
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("Initialize succeeded."));
+            UE_LOG(LogTemp, Display, TEXT("Initialize succeeded."));
         
             // Following notices are registered in the Gamebase Console
             auto Notice = LaunchingInfo->Launching.Notice;
@@ -161,9 +161,9 @@ void USample::Initialize(const FString& AppID, const FString& AppVersion)
             {
                 if (string.IsNullOrEmpty(Notice.message) == false)
                 {
-                    UE_LOG(GamebaseTestResults, Display, TEXT("title: %s"), Notice.title);
-                    UE_LOG(GamebaseTestResults, Display, TEXT("message: %s"), Notice.message);
-                    UE_LOG(GamebaseTestResults, Display, TEXT("url: %s"), Notice.url);
+                    UE_LOG(LogTemp, Display, TEXT("title: %s"), Notice.title);
+                    UE_LOG(LogTemp, Display, TEXT("message: %s"), Notice.message);
+                    UE_LOG(LogTemp, Display, TEXT("url: %s"), Notice.url);
                 }
             }
             
@@ -197,7 +197,7 @@ void USample::Initialize(const FString& AppID, const FString& AppVersion)
         else
         {
             // Check the Error code and handle the Error appropriately.
-            UE_LOG(GamebaseTestResults, Display, TEXT("Initialize failed."));
+            UE_LOG(LogTemp, Display, TEXT("Initialize failed."));
         }
     }));
 }
@@ -335,11 +335,11 @@ const FGamebaseLaunchingInfoPtr GetLaunchingInformations() const;
 ```cpp
 void USample::GetLaunchingInformations()
 {
-    auto LaunchingInformation = UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetLaunching().GetLaunchingInformations();
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    auto LaunchingInformation = Subsystem->GetLaunching().GetLaunchingInformations();
     if (LaunchingInformation.IsValid() == false)
     {
-        UE_LOG(GamebaseTestResults, Display, TEXT("Not found launching info."));
+        UE_LOG(LogTemp, Display, TEXT("Not found launching info."));
         return;
     }
 }
