@@ -1,5 +1,14 @@
 ## Game > Gamebase > 릴리스 노트 > Android
 
+### 2.79.0 (2026. 01. 27.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.79.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+
+* targetSdk 36 빌드를 Android 16 단말기에서 실행 시 뒤로 가기가 정상 작동하지 않고 웹뷰가 그대로 닫히거나 앱이 종료되는 현상을 수정했습니다.
+* 내부 로직 개선
+
 ### 2.78.0 (2025. 12. 23.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.78.0/GamebaseSDK-Android.zip)
@@ -7,7 +16,7 @@
 #### 기능 개선/변경
 
 * 외부 SDK 업데이트: Play Age Signals 라이브러리(0.0.2)
-    * Play Age Signals 라이브러리가 업데이트 되어, 2026년 1월 1일부터 정상적인 결과가 리턴됩니다.
+    * Play Age Signals 라이브러리가 업데이트되었습니다.
 
 ### 2.77.0 (2025. 12. 09.)
 

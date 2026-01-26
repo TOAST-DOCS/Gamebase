@@ -1,15 +1,23 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.79.0
+
+### iOS
+
+* **+[TCGBConfiguration setStoreCode:]** API가 deprecated 되었습니다.
+* **-[TCGBPurchase setStoreCode:]** API가 deprecated 되었습니다.
+* **TCGBPurchase.storeCode** API가 deprecated 되었습니다.
+
 ## 2.77.0
 
 ### Common
-* Appleid 계정을 revoke 시켰을 때 발생하는 GamebaseEventHandler의 IdP Revoked 이벤트의 권장 가이드를 변경하였습니다.
-    * 유저에게 IdP가 사용 중지된 것을 알리고, 탈퇴 대신 로그아웃 후 다시 로그인 할 수 있도록 변경하시기 바립니다.
+* We have updated the recommended guide for the IdP Revoked event in GamebaseEventHandler, which occurs when an Apple ID account is revoked.
+    * You need to notify users that the IdP is disabled and ensure they log out and log back in, rather than withdrawing from the service.
     
 ### iOS
 
-* **TCGBPurchase.requestItemListAtIAPConsoleWithCompletion:** API is deprecated.
-    * **Use TCGBPurchase.requestItemListPurchasableWithCompletion** API.
+* **+[TCGBPurchase requestItemListAtIAPConsoleWithCompletion:]** API is deprecated.
+    * Use **+[TCGBPurchase requestItemListPurchasableWithCompletion:]** API.
 
 ### Unity
 
@@ -22,9 +30,9 @@
 
 * **Gamebase.Purchase.requestItemListAtIAPConsole()** API has been deprecated.
     * Use **Gamebase.Purchase.requestItemListPurchasable()** API.
-* 미국 텍사스, 유타, 루이지애나와 같은 관할권의 특정 연령 확인 법률에 따른 준수를 위해 추가된 연령 확인 API는 Play Age Signals 라이브러리 버전이 베타(0.0.1-beta02) 상태이므로 항상 예외가 발생합니다.
-    * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Age Signals Support](./aos-etc/#age-signals-support)
-    * 정상 동작을 위해서는 Play Age Signals 라이브러리 버전이 0.0.2로 업데이트 된 Gamebase Android SDK 2.78.0을 사용하세요.
+* The Age Verification API, added for compliance with specific age verification laws in jurisdictions such as Texas, Utah, and Louisiana, will always throw exceptions as the Play Age Signals library is currently in beta (0.0.1-beta02).
+    * [Game > Gamebase > Android SDK User Guide > ETC > Age Signals Support](./aos-etc/#age-signals-support)
+    * To ensure compatibility with future updates, please upgrade to Gamebase Android SDK 2.78.0 (Play Age Signals v0.0.2).
 
 ### Unreal
 
@@ -376,14 +384,14 @@ if (UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebas
 
 #### Changed/Deprecated APIs
 * Starting from iOS 16.4, the following APIs have been deprecated as Apple deprecated the CTCarrier class.
-    * **[TCGBGamebase countryCode];**
-    * **[TCGBGamebase countryCodeOfUSIM];**
-    * **[TCGBGamebase carrierCode];**
-    * **[TCGBGamebase carrierName];**
-    * **[TCGBUtil countryCode];**
-    * **[TCGBUtil usimCountryCode];**
-    * **[TCGBUtil carrierCode];**
-    * **[TCGBUtil carrierName];**
+    * **+[TCGBGamebase countryCode]**
+    * **+[TCGBGamebase countryCodeOfUSIM]**
+    * **+[TCGBGamebase carrierCode]**
+    * **+[TCGBGamebase carrierName]**
+    * **+[TCGBUtil countryCode]**
+    * **+[TCGBUtil usimCountryCode]**
+    * **+[TCGBUtil carrierCode]**
+    * **+[TCGBUtil carrierName]**
 
 ## 2.50.0
 
@@ -585,8 +593,8 @@ Raised the minimum supported verision to Android 4.4.(minSdk 16 -> 19)
 #### Changed/Deprecated APIs
 
 * The following APIs have been deprecated because whether to display the kickout popup window can be set during kickout registration in the Gamebase console.
-    * **[TCGBConfiguration enableKickoutPopup:]**
-    * **[TCGBConfiguration isEnableKickoutPopup]**
+    * **-[TCGBConfiguration enableKickoutPopup:]**
+    * **-[TCGBConfiguration isEnableKickoutPopup]**
 
 ### Unity
 

@@ -1,13 +1,22 @@
 ## Game > Gamebase > リリースノート > Android
 
+### 2.79.0 (2026. 01. 27.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.79.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+
+* targetSdk 36 빌드를 Android 16 단말기에서 실행 시 뒤로 가기가 정상 작동하지 않고 웹뷰가 그대로 닫히거나 앱이 종료되는 현상을 수정했습니다.
+* 内部ロジックの改善
+
 ### 2.78.0 (2025. 12. 23.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.78.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
+#### 機能改善・変更
 
-* 외부 SDK 업데이트: Play Age Signals 라이브러리(0.0.2)
-    * Play Age Signals 라이브러리가 업데이트 되어, 2026년 1월 1일부터 정상적인 결과가 리턴됩니다.
+* 外部SDKアップデート: Play Age Signalsライブラリ(0.0.2)
+    * Play Age Signalsライブラリがアップデートされました。
 
 ### 2.77.0 (2025. 12. 09.)
 
@@ -24,8 +33,8 @@
 #### 機能追加
 * 米国テキサス、ユタ、ルイジアナのような管轄権の特定年齢確認法律による遵守義務を満たすのに役立つよう、Google Play Age Signalsベースの年齢確認APIが追加されました。
     * [Game > Gamebase > Android SDK使用ガイド > ETC > Age Signals Support](./aos-etc/#age-signals-support)
-    * Play Age Signals 라이브러리 버전이 베타(0.0.1-beta02) 상태이므로 API는 항상 예외가 발생합니다.
-        * 정상 동작을 위해서는 Play Age Signals 라이브러리 0.0.2 버전이 적용된 Gamebase Android SDK 2.78.0을 사용하세요.
+    * Play Age Signalsライブラリのバージョンがベータ(0.0.1-beta02)状態であるため、APIでは常に例外が発生します。
+        * 今後正常に動作させるためには、Play Age Signalsライブラリ 0.0.2バージョンが適用されたGamebase Android SDK 2.78.0を使用してください。
 
 #### 機能改善・変更
 
