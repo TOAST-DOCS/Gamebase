@@ -166,7 +166,7 @@ See below for relevant guides.
 To compile frameworks developed in swift from the Gamebase Unreal SDK and external authentication SDKs, you need to add the code below in the [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.26/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs) file.
  
  
-```cs
+```cpp
 // need to tell where to load Framework dylibs
 Result += " -rpath /usr/lib/swift";                 // Additional code
 Result += " -rpath @executable_path/Frameworks";
@@ -216,7 +216,7 @@ Cannot use the Rich Push Notification function due to the following issues:
 
 If a warning message from iOS SDK is converted as error for Unreal build, leading into failure in the buildup, handle the clang compile option code of the following file as footnotes: [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs)
 
-```cs
+```cpp
 // Result += " -Wall -Werror";
 ```
 
@@ -263,7 +263,8 @@ Game developers using the crash analysis of the NHN Cloud Log & Crash Search mus
 * To use WebView-related features without modifying the engine, open the **Settings > Plugins** window in the Unreal Editor, find the **Project > NHN Cloud > NHNWebView** plugin, and activate it.
 * When using the engine's built-in Web Browser plugin, certain features may not function correctly depending on the internal CEF version and the plugin's capabilities.
 
-> [Note]
+> <font color="red">[Caution]</font><br/>
+>
 > The NHNWebView plugin and the Web Browser plugin cannot be used concurrently, and if both are enabled, an error will occur at build time.
 
 #### Epic Games Service
@@ -286,7 +287,8 @@ Game developers using the crash analysis of the NHN Cloud Log & Crash Search mus
         [OnlineSubsystemSteam]
 		bEnabled=True
 
-> [Caution]
+> <font color="red">[Caution]</font><br/>
+>
 > When using Steamworks alone without the Online Subsystem Steam, Gamebase will only get the credentials for using Steamworks inside Gamebase and will not go through the Steamworks SDK process.
 > When applying the Steamworks SDK directly, you need to implement your own processing for required processes like initialization, updates, and shutdowns.
 
