@@ -1048,7 +1048,7 @@ void USample::GetAppTrackingAuthorizationStatus()
 ### IDFA
 
 * 단말기의 광고 식별자 값을 반환합니다.
-* iOS에서 IDFA 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.
+* iOS에서 IDFA 기능을 설정하는 방법은 다음 문서를 참고하세요.
     * [iOS IDFA](./ios-etc/#idfa)
 
 **API**

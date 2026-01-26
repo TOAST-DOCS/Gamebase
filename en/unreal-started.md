@@ -261,7 +261,7 @@ Game developers using the crash analysis of the NHN Cloud Log & Crash Search mus
     * ImageNotices
     * WebView
 * To use WebView-related features without modifying the engine, open the **Settings > Plugins** window in the Unreal Editor, find the **Project > NHN Cloud > NHNWebView** plugin, and activate it.
-* 엔진에서 제공하는 Web Browser 플러그인을 사용할 경우 엔진 내부에 CEF 버전과 Web Browser 기능에 따라 기능이 정상적으로 동작하지 않을 수 있습니다.
+* When using the engine's built-in Web Browser plugin, certain features may not function correctly depending on the internal CEF version and the plugin's capabilities.
 
 > [Note]
 > The NHNWebView plugin and the Web Browser plugin cannot be used concurrently, and if both are enabled, an error will occur at build time.
