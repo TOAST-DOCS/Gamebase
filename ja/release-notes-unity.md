@@ -1,5 +1,12 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.79.0 (2026. 01. 27.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.79.0/GamebaseSDK-Unity.zip)
+
+#### 기능 개선
+* (Windows, macOS) WebView barHeight 설정되지 않았을 때 navigation이 보이지 않던 문제를 수정했습니다.
+* (Windows, macOS) WebView isBackButtonVisible 설정 시 Close 버튼이 보이지 않던 문제를 수정했습니다.
+
 ### 2.77.0 (2025. 12. 09.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.77.0/GamebaseSDK-Unity.zip)
 
