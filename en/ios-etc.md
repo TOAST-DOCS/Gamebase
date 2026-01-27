@@ -359,7 +359,7 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 > This is an event that only occur when using the iOS Appleid login.
 
 * This event occurs when the service is deleted from the IdP.
-* 유저에게 IdP가 사용 중지된 것을 알리고, 로그아웃 후 다시 로그인 하도록 구현해야 합니다.
+* You must inform users that the IdP has been disabled and instruct them to log out and log back in.
 
 ```objectivec
 @interface TCGBGamebaseEventIdPRevokedData : NSObject <TCGBValueObject>

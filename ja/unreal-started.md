@@ -163,7 +163,7 @@ See below for relevant guides.
 
 Gamebase Unreal SDK及び外部認証SDKでswiftで開発されたフレームワークをコンパイルするには、[Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.26/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs)ファイルで下記のコードを追加してください。
 
-```cs
+```cpp
 // need to tell where to load Framework dylibs
 Result += " -rpath /usr/lib/swift";                 // 追加コード
 Result += " -rpath @executable_path/Frameworks";
@@ -213,7 +213,7 @@ bEnableSignInWithAppleSupport=True
 
 iOS SDKで発生するWarningメッセージがUnrealビルド時、エラーに変換されてビルドに失敗する現象が発生する場合は[Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs)ファイルのclangコンパイルオプションコードをコメント処理してください。
 
-```cs
+```cpp
 // Result += " -Wall -Werror";
 ```
 
@@ -255,9 +255,10 @@ NHN Cloud Log & Crash Searchでクラッシュ分析を行うゲーム開発会�
     * ImageNotices
     * WebView
 * エンジンを修正せずにWebView関連機能を使用する場合、Unrealエディタで**Settings > Plugins**ウィンドウを開き、**Project > NHN Cloud > NHNWebView**プラグインを見つけて有効にします。
-* 엔진에서 제공하는 Web Browser 플러그인을 사용할 경우 엔진 내부에 CEF 버전과 Web Browser 기능에 따라 기능이 정상적으로 동작하지 않을 수 있습니다.
+* エンジンが提供するWeb Browserプラグインを使用する場合、エンジン内部のCEFバージョンとWeb Browser機能によっては、機能が正常に動作しないことがあります。
 
-> [注意]
+> <font color="red">[注意]</font><br/>
+>
 > NHNWebViewプラグインとWeb Browserプラグインは同時に使用することができず、両方のプラグインが有効になっている場合、ビルド時にエラーが発生します。
 
 #### Epic Gamesサービス
@@ -277,7 +278,8 @@ NHN Cloud Log & Crash Searchでクラッシュ分析を行うゲーム開発会�
         * [参考:エンジン内Steamworksアップグレードガイド](https://dev.epicgames.com/documentation/en-us/unreal-engine?application_version=4.27)
 * 内部では、Online Subsystem設定オプションのDefaultPlatformServiceの値がSteamの場合、自動的にOnline Subsystem Steamを使用しているものとみなされます。この値がない場合、エンジン内部にSteamworksモジュールのインストールバージョンを確認し、1.57以上の場合、Gamebase内のSteam機能が動作します。
 
-> [注意]
+> <font color="red">[注意]</font><br/>
+>
 > Online Subsystem Steamを使用せずにSteamworksのみを使用する場合、Gamebase内部でSteamworksを使用した認証情報を受け取る作業のみを行い、Steamworks SDKプロセスは行われません。
 > Steamworks SDKを直接適用する場合、初期化、アップデート、終了などの必須的な処理については直接実装する必要があります。
 

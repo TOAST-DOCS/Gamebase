@@ -1,12 +1,22 @@
 ## Game > Gamebase > 릴리스 노트 > iOS
 
+### 2.79.0 (2026. 01. 27.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.79.0/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 내부 로직 개선
+* 아래 API가 deprecated되었습니다.
+    * **+[TCGBConfiguration setStoreCode:]**
+    * **-[TCGBPurchase setStoreCode:]**
+    * **TCGBPurchase.storeCode**
+
 ### 2.77.0 (2025. 12. 09.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.77.0/GamebaseSDK-iOS.zip)
 
 #### 기능 개선/변경
 * 결제 관련 내부 로직 개선
 * 아래 API가 deprecated되었습니다.
-    * **[TCGBPurchase requestItemListAtIAPConsoleWithCompletion:]**
+    * **+[TCGBPurchase requestItemListAtIAPConsoleWithCompletion:]**
 
 ### 2.75.0 (2025. 09. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-iOS.zip)
@@ -153,7 +163,7 @@
     * NHN Cloud iOS SDK (1.8.3)
         * 앱 스토어 심사에서 PrivacyInfo manifest 관련 경고 메일이 오지 않도록 수정되었습니다.
 * 아래 필드가 deprecated되었습니다.
-    * `TCGBWebViewConfiguration.orientationMask`
+    * **TCGBWebViewConfiguration.orientationMask**
 * 콘솔에 등록되지 않은 IdP로 로그인을 시도할 경우 TCGB_ERROR_AUTH_IDP_LOGIN_INVALID_IDP_INFO(3202) 오류가 발생하도록 수정했습니다.
 * 롤링 이미지 공지의 웹뷰 내부에서 오류가 발생한 경우 기존의 성공 콜백 호출 대신 실패 콜백이 호출되도록 수정했습니다.
 * 내부 로직 개선
@@ -335,7 +345,7 @@
 * 외부 SDK 업데이트
     * Hangame iOS SDK (1.8.6)
 * 아래 필드가 deprecated되었습니다.
-    * TCGBWebViewConfiguration.backgroundOpacity
+    * **TCGBWebViewConfiguration.backgroundOpacity**
 * iPad에서 [TCGBUtil showActionSheetWithTitle:message:blocks:] API 호출 시 ActionSheet이 화면 중앙에 오도록 수정하였습니다.
 * 프로젝트에 추가하지 않은 인증 Adapter를 사용하는 경우 **TCGB_ERROR_AUTH_NOT_SUPPORTED_PROVIDER(3002)** 오류를 반환하도록 수정하였습니다.
 
@@ -351,14 +361,14 @@
     * NHN Cloud iOS SDK (1.4.0)
     * Weibo iOS SDK (3.3.3)
 * 아래 API가 deprecated되었습니다.
-    * [TCGBGamebase countryCode];
-    * [TCGBGamebase countryCodeOfUSIM];
-    * [TCGBGamebase carrierCode];
-    * [TCGBGamebase carrierName];
-    * [TCGBUtil countryCode];
-    * [TCGBUtil usimCountryCode];
-    * [TCGBUtil carrierCode];
-    * [TCGBUtil carrierName];
+    * **+[TCGBGamebase countryCode]**
+    * **+[TCGBGamebase countryCodeOfUSIM]**
+    * **+[TCGBGamebase carrierCode]**
+    * **+[TCGBGamebase carrierName]**
+    * **+[TCGBUtil countryCode]**
+    * **+[TCGBUtil usimCountryCode]**
+    * **+[TCGBUtil carrierCode]**
+    * **+[TCGBUtil carrierName]**
 * SDK 내부 로직 개선
 
 ### 2.51.0 (2023. 05. 30.)
@@ -441,8 +451,8 @@
     * NHN Cloud iOS SDK (1.2.0)
     * Hangame iOS SDK (1.8.0)
 * 아래 API가 deprecated 되었습니다.
-    * **[TCGBPurchase requestItemListOfNotConsumedWithCompletion:]**
-    * **[TCGBPurchase requestActivatedPurchasesWithCompletion:]**
+    * **+[TCGBPurchase requestItemListOfNotConsumedWithCompletion:]**
+    * **+[TCGBPurchase requestActivatedPurchasesWithCompletion:]**
 * SDK 내부 로직 개선
 
 ### 2.44.0 (2022. 10. 25.)
@@ -599,8 +609,8 @@
 #### 기능 개선/변경
 * 이미지 공지 API를 호출했을 때 표시할 이미지 공지가 없는 경우, 배경이 잠시 어두워지는 현상을 수정하였습니다.
 * 킥아웃 팝업 창 표시 여부는 Gamebase 콘솔에서 킥아웃 등록 시 설정할 수 있으므로 다음 필드가 deprecated되었습니다.
-    * **[TCGBConfiguration enableKickoutPopup:]**
-    * **[TCGBConfiguration isEnableKickoutPopup]**
+    * **-[TCGBConfiguration enableKickoutPopup:]**
+    * **-[TCGBConfiguration isEnableKickoutPopup]**
 
 ### 2.33.0 (2022.01.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-iOS.zip)
@@ -1197,17 +1207,17 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * 이용 정지/점검에 대해 사용자가 콘솔에 작성한 메시지들을 URL 인코딩하여 전송하고 클라이언트에서 디코딩하여 처리하도록 수정
 * PAYCO iOS SDK 업데이트 (1.2.4)
 * Remove API: Webview, Network, Launching
-    * [TCGBUtil showToastWithMessage:duration:]
-    * [TCGBWebView showWebBrowserWithURL:viewController:]
-    * [TCGBWebView showWebViewWithURL:viewController:configuration:]
-    * [TCGBLaunching addObserverOnChangedStatusNotification:]
-    * [TCGBLaunching removeObserverOnChangedStatusNotification:]
-    * [TCGBLaunching addUpdateStatusNotification]
-    * [TCGBLaunching removeUpdateStatusNotification]
-    * [TCGBNetwork addObserverOnChangedNetworkStatusWithHandler:]
-    * [TCGBNetwork removeObserverOnChangedNetworkStatusWithHandler:]
+    * **[TCGBUtil showToastWithMessage:duration:]**
+    * **[TCGBWebView showWebBrowserWithURL:viewController:]**
+    * **[TCGBWebView showWebViewWithURL:viewController:configuration:]**
+    * **[TCGBLaunching addObserverOnChangedStatusNotification:]**
+    * **[TCGBLaunching removeObserverOnChangedStatusNotification:]**
+    * **[TCGBLaunching addUpdateStatusNotification]**
+    * **[TCGBLaunching removeUpdateStatusNotification]**
+    * **[TCGBNetwork addObserverOnChangedNetworkStatusWithHandler:]**
+    * **[TCGBNetwork removeObserverOnChangedNetworkStatusWithHandler:]**
 * Deprecated API 
-    * [TCGBGamebase languageCode]
+    * **[TCGBGamebase languageCode]**
 
 ### 1.13.0 (2018.09.13)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.13.0/GamebaseSDK-iOS.zip)

@@ -18,7 +18,7 @@ Supported Platforms
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
 
-```cs
+```cpp
 void OpenGameNotice(const FGamebaseErrorDelegate& Callback);
 ```
 
@@ -35,7 +35,7 @@ void OpenGameNotice(const FGamebaseErrorDelegate& Callback);
 
 **Example**
 
-```cs
+```cpp
 void USample::OpenGameNotice()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
@@ -191,7 +191,7 @@ void USample::ShowTermsView()
         FGamebaseDataContainerDelegate::CreateLambda([](const FGamebaseDataContainer* DataContainer, const FGamebaseError* Error) {
             if (Gamebase::IsSuccess(Error))
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView succeeded."));
+                UE_LOG(LogTemp, Display, TEXT("ShowTermsView succeeded."));
                 
                 const auto result = FGamebaseShowTermsResult::From(DataContainer);
                 if (result.IsValid())
@@ -202,7 +202,7 @@ void USample::ShowTermsView()
             }
             else
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("ShowTermsView failed. (Error: %d)"), Error->Code);
+                UE_LOG(LogTemp, Display, TEXT("ShowTermsView failed. (Error: %d)"), Error->Code);
             }
         })
     );
@@ -249,7 +249,7 @@ Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
-```cs
+```cpp
 void QueryTerms(const FGamebaseQueryTermsResultDelegate& Callback);
 ```
 
@@ -271,11 +271,11 @@ void USample::QueryTerms()
         FGamebaseQueryTermsResultDelegate::CreateLambda([](const FGamebaseQueryTermsResult* Data, const FGamebaseError* Error) {
             if (Gamebase::IsSuccess(Error))
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("QueryTerms succeeded."));
+                UE_LOG(LogTemp, Display, TEXT("QueryTerms succeeded."));
             }
             else
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("QueryTerms failed. (Error: %d)"), Error->Code);
+                UE_LOG(LogTemp, Display, TEXT("QueryTerms failed. (Error: %d)"), Error->Code);
             }
         })
     );
@@ -363,11 +363,11 @@ void USample::UpdateTerms(int32 TermsSeq, const FString& TermsVersion, int32 Ter
         FGamebaseErrorDelegate::CreateLambda([](const FGamebaseError* Error) {
             if (Gamebase::IsSuccess(Error))
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("UpdateTerms succeeded."));
+                UE_LOG(LogTemp, Display, TEXT("UpdateTerms succeeded."));
             }
             else
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("UpdateTerms failed. (Error: %d)"), Error->Code);
+                UE_LOG(LogTemp, Display, TEXT("UpdateTerms failed. (Error: %d)"), Error->Code);
             }
         })
     );
@@ -406,7 +406,7 @@ void USample::IsShowingTermsView()
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     bool isShowingTermsView = Subsystem->GetTerms()->IsShowingTermsView();
-    UE_LOG(GamebaseTestResults, Display, TEXT("IsShowingTermsView : %s"), isShowingTermsView ? TEXT("true") : TEXT("false"));
+    UE_LOG(LogTemp, Display, TEXT("IsShowingTermsView : %s"), isShowingTermsView ? TEXT("true") : TEXT("false"));
 }
 ```
 
@@ -584,7 +584,7 @@ void USample::ShowAlertEvent(const FString& Title, const FString& Message)
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
     Subsystem->GetUtil()->ShowAlert(Title, Message, FGamebaseAlertCloseDelegate::CreateLambda([]()
     {
-        UE_LOG(GamebaseTestResults, Display, TEXT("ShowAlert ButtonClick."));
+        UE_LOG(LogTemp, Display, TEXT("ShowAlert ButtonClick."));
     }));
 }
 ```

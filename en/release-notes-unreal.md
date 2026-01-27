@@ -1,22 +1,34 @@
 ## Game > Gamebase > Release Notes > Unreal
 
-### 2.78.0 (2026. 01. 13.)
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.78.0/GamebaseSDK-Unreal.zip)
-
-####  기능 추가
-
-* 언리얼 엔진 지원 버전이 변경되었습니다.
-    * 4.27 ~ 5.7
+### 2.79.0 (2026. 01. 27.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.79.0/GamebaseSDK-Unreal.zip)
 
 #### 기능 개선/변경
 
 * 내부 로직을 개선했습니다.
 
-#### 버그 수정
-* (Windows) Payload를 포함한 RequestPurchase API 호출 시 Payload가 콘솔에 전송되지 않는 문제를 수정했습니다.
-* (Windows) NHNWebView를 이용한 웹뷰 노출 관련 기능을 처음 노출 시 High DPI 관련 설정 여부에 따라 DPI가 높은 환경에서 프로그램 창이 줄어드는 문제가 수정되었습니다.
-
 #### 플랫폼별 변경 사항
+
+* [Gamebase Android SDK 2.79.0](./release-notes-android/#2790-2026-01-27)
+* [Gamebase iOS SDK 2.79.0](./release-notes-ios/#2790-2026-01-27)
+
+### 2.78.0 (2026. 01. 13.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.78.0/GamebaseSDK-Unreal.zip)
+
+####  Added Features
+
+* Updated the supported Unreal Engine version.
+    * 4.27 ~ 5.7
+
+#### Feature Updates
+
+* Improved internal logic.
+
+#### Bug Fixes
+* (Windows) Fixed an issue where the payload was not being logged to the console when calling the RequestPurchase API.
+* (Windows) Fixed an issue where the program window would shrink in High DPI environments, depending on the configuration, when first launching a webview via NHNWebView.
+
+#### Platform-Specific Changes
 
 * [Gamebase Android SDK 2.78.0](./release-notes-android/#2780-2025-12-23)
 * [Gamebase iOS SDK 2.77.0](./release-notes-ios/#2770-2025-12-09)
@@ -48,10 +60,10 @@
 ### 2.75.0 (2025. 11. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 개선/변경 
+#### Feature Updates 
 
-* (Windows) 이미지 공지, 게임 공지 출력 시 고정 크기에서 화면 해상도 비율로 출력되도록 수정되었습니다. 
-* 내부 로직을 개선했습니다. 
+* (Windows) Fixed an issue where image and game announcements were displayed at a fixed size; they now scale according to the screen resolution. 
+* Improved internal logic. 
 
 #### Bug Fixes
 
@@ -67,21 +79,21 @@
 ### 2.74.0 (2025. 08. 26.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.74.0/GamebaseSDK-Unreal.zip)
 
-#### 기능 추가 
+#### Added Features 
 
-* (Windows) 계정 매핑 기능이 추가되었습니다. 
+* (Windows) Added a new account mapping feature. 
 
-#### 기능 개선/변경 
+#### Feature Updates 
 
-* (Windows) 게임 공지 출력 시 엔진의 DPI에 영향을 받지 않도록 수정되었습니다. 
-* 내부 로직을 개선했습니다. 
+* (Windows) Fixed an issue where game announcements were affected by the engine's DPI settings. 
+* Improved internal logic. 
 
-#### 버그 수정 
+#### Bug Fixes 
 
-* (Windows) 계정 상태가 변경되었을 때 간헐적으로 크래시가 발생되는 로직이 수정되었습니다. 
-* (Windows) Twitter 로그인 시 간헐적으로 'Something went wrong' 오류가 발생하지 않도록 수정되었습니다. 
+* (Windows) Fixed an issue where an intermittent crash occurred when the account status changed. 
+* (Windows) Fixed an issue where a 'Something went wrong' error would occasionally occur during Twitter login. 
 
-#### 플랫폼별 변경 사항 
+#### Platform-Specific Changes 
 
 * [Gamebase Android SDK 2.73.1](./release-notes-android/#2731-2025-08-12)
 * [Gamebase iOS SDK 2.73.1](./release-notes-ios/#2731-2025-08-12)
@@ -89,18 +101,18 @@
 ### 2.73.1 (2025. 07. 29.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.1/GamebaseSDK-Unreal.zip)
 
-#### 기능 개선/변경 
+#### Feature Updates 
 
-* (Android) Amazon Appstore가 서비스 중단되어 스토어 설정 및 푸시 설정 기능이 제거되었습니다. 
-* (Windows) 로그 전송 시 재시도 로직이 개선되었습니다. 
-* 내부 로직을 개선했습니다. 
+* (Android) Fixed an issue by removing store and push notification settings following the discontinuation of the Amazon Appstore service. 
+* (Windows) Improved the retry logic for log transmission. 
+* Improved internal logic. 
 
-#### 버그 수정 
+#### Bug Fixes 
 
-* 컴파일러 환경에 따라 빌드 오류가 발생하는 로직이 수정되었습니다. 
-* (Windows) 로그 전송 시 특정 문자가 포함된 데이터를 전송할 때 발생하던 오류가 수정되었습니다. 
+* Fixed an issue where build errors occurred depending on the compiler environment. 
+* (Windows) Fixed an issue where errors occurred when transmitting logs containing specific special characters. 
 
-#### 플랫폼별 변경 사항 
+#### Platform-Specific Changes 
 
 * [Gamebase Android SDK 2.73.0](./release-notes-android/#2730-2025-07-15)
 * [Gamebase iOS SDK 2.73.0](./release-notes-ios/#2730-2025-07-15)

@@ -99,11 +99,11 @@ void Initialize(const FGamebaseConfiguration& configuration, const FGamebaseLaun
 **Example**
 
 ```cpp
-void USample::Initialize(const FString& appID, const FString& appVersion)
+void USample::Initialize(const FString& AppID, const FString& AppVersion)
 {
     FGamebaseConfiguration Configuration;
     ...
-    Configuration.displayLanguageCode = displayLanguage;
+    Configuration.DisplayLanguageCode = DisplayLanguage;
     ...
 
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
@@ -111,12 +111,12 @@ void USample::Initialize(const FString& appID, const FString& appVersion)
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("Initialize succeeded."));
-            FString displayLanguage = Subsystem->GetDisplayLanguageCode();
+            UE_LOG(LogTemp, Display, TEXT("Initialize succeeded."));
+            FString DisplayLanguage = Subsystem->GetDisplayLanguageCode();
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("Initialize failed."));
+            UE_LOG(LogTemp, Display, TEXT("Initialize failed."));
         }
     }));
 }
@@ -140,10 +140,10 @@ void SetDisplayLanguageCode(const FString& languageCode);
 **Example**
 
 ```cpp
-void USample::SetDisplayLanguageCode(cosnt FString& displayLanguage)
+void USample::SetDisplayLanguageCode(const FString& DisplayLanguage)
 {
-    FString displayLanguage = UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->SetDisplayLanguageCode(displayLanguage);
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->SetDisplayLanguageCode(DisplayLanguage);
 }
 ```
 
@@ -167,8 +167,8 @@ FString GetDisplayLanguageCode() const;
 ```cpp
 void USample::GetDisplayLanguageCode()
 {
-    FString displayLanguage = UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetDisplayLanguageCode();
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    FString DisplayLanguage = Subsystem->GetDisplayLanguageCode();
 }
 ```
 
@@ -259,7 +259,7 @@ Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
-```cs
+```cpp
 FDelegateHandle AddHandler(const FGamebaseEventDelegate::FDelegate& Callback);
 void RemoveHandler(const FDelegateHandle& handle);
 void RemoveAllHandler();
@@ -354,7 +354,7 @@ void USample::AddEventHandler()
 > iOS Appleidログインを使用する場合にのみ発生するイベントです。
 
 * IdPで該当サービスを削除したときに発生するイベントです。
-* 유저에게 IdP가 사용 중지된 것을 알리고, 로그아웃 후 다시 로그인하도록 구현해야 합니다.
+* ユーザーにIdPが利用停止となったことを通知し、ログアウトしてから再度ログインするように実装する必要があります。
 
 **Example**
 
@@ -948,18 +948,18 @@ void USample::OpenContact()
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("OpenContact succeeded."));
+            UE_LOG(LogTemp, Display, TEXT("OpenContact succeeded."));
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("OpenContact failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Messsage);
+            UE_LOG(LogTemp, Display, TEXT("OpenContact failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Message);
 
             if (Error->Code == GamebaseErrorCode::WEBVIEW_INVALID_URL)
             {
                 // Gamebase Console Service Center URL is invalid.
                 // Please check the url field in the TOAST Gamebase Console.
                 auto LaunchingInfo = Subsystem->GetLaunching().GetLaunchingInformations();
-                UE_LOG(GamebaseTestResults, Display, TEXT("csUrl: %s"), *LaunchingInfo->Launching.App.RelatedUrls.CsUrl);
+                UE_LOG(LogTemp, Display, TEXT("csUrl: %s"), *LaunchingInfo->Launching.App.RelatedUrls.CsUrl);
             }
         }
     }));
@@ -972,7 +972,7 @@ void USample::OpenContact()
 
 **API**
 
-```cs
+```cpp
 void RequestContactURL(const FGamebaseContactUrlDelegate& Callback);
 void RequestContactURL(const FGamebaseContactConfiguration& configuration, const FGamebaseContactUrlDelegate& Callback);
 ```
@@ -999,11 +999,11 @@ void USample::RequestContactURL(const FString& userName)
         if (Gamebase::IsSuccess(Error))
         {
             // Open webview with 'contactUrl'
-            UE_LOG(GamebaseTestResults, Display, TEXT("RequestContactURL succeeded. (url = %s)"), *url);
+            UE_LOG(LogTemp, Display, TEXT("RequestContactURL succeeded. (url = %s)"), *url);
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RequestContactURL failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Messsage);
+            UE_LOG(LogTemp, Display, TEXT("RequestContactURL failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Message);
 
             if (Error->Code == GamebaseErrorCode::UI_CONTACT_FAIL_INVALID_URL)
             {
@@ -1021,7 +1021,7 @@ void USample::RequestContactURL(const FString& userName)
 
 ### App Tracking AuthorizationStatus
 
-* ATT 활성화 여부를 확인합니다.
+* ATTが有効かどうかを確認します。
 
 **API**
 
@@ -1033,11 +1033,11 @@ UENUM(BlueprintType)
 enum class EGamebaseAppTrackingAuthorizationStatus : uint8
 {
     
-    Authorized,     // 앱의 추적 요청 허용 동의, iOS 14 미만 기기에서는 항상 Authorized를 반환
-    Denied,         // 앱의 추적 요청 허용 거부
-    NotDetermined,  // 앱의 추적 요청 허용 미결정
-    Restricted,     // 앱의 추적 요청 제한
-    Unknown         // 다른 OS이거나 OS에서 정의되지 않은 경우
+    Authorized,     // アプリのトラッキング要求を許可、iOS 14未満のデバイスでは常にAuthorizedを返却
+    Denied,         // アプリのトラッキング要求を拒否
+    NotDetermined,  // アプリのトラッキング要求許可が未決定
+    Restricted,     // アプリのトラッキング要求を制限
+    Unknown         // 他のOS、またはOSで定義されていない場合
 };
 
 EGamebaseAppTrackingAuthorizationStatus GetAppTrackingAuthorizationStatus();
@@ -1048,8 +1048,8 @@ EGamebaseAppTrackingAuthorizationStatus GetAppTrackingAuthorizationStatus();
 ```cpp
 void USample::GetAppTrackingAuthorizationStatus()
 {
-    UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    EGamebaseAppTrackingAuthorizationStatus Status = GamebaseSubsystem->GetUtil()->GetAppTrackingAuthorizationStatus();
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    EGamebaseAppTrackingAuthorizationStatus Status = Subsystem->GetUtil()->GetAppTrackingAuthorizationStatus();
     
     switch (Status)
     {
@@ -1070,8 +1070,8 @@ void USample::GetAppTrackingAuthorizationStatus()
 
 ### IDFA
 
-* 단말기의 광고 식별자 값을 반환합니다.
-* iOS에서 IDFA 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.
+* 端末の広告識別子値を返却します。
+* iOSでIDFA機能を設定する方法については、次のドキュメントを参照してください。
     * [iOS IDFA](./ios-etc/#idfa)
 
 **API**
@@ -1086,10 +1086,10 @@ FString GetIdfa();
 **Example**
 
 ```cpp
-public void SampleGetIdfa()
+void USample::GetIdfa()
 {
-    UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    FString Idfa = GamebaseSubsystem->GetUtil()->GetIdfa();
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    FString Idfa = Subsystem->GetUtil()->GetIdfa();
 }
 ```
 
@@ -1154,7 +1154,7 @@ void USample::GetAgeSignal()
                 {
                     // ユーザーが規制地域(テキサス、ユタ、ルイジアナ)にいないことを意味します。
                     // 規制対象ではないユーザーに対するアプリのロジックを進行できます。
-                    UE_LOG(GamebaseTestResults, Display, TEXT("Not legally applicable"));
+                    UE_LOG(LogTemp, Display, TEXT("Not legally applicable"));
                 }
                 else
                 {
@@ -1168,7 +1168,7 @@ void USample::GetAgeSignal()
                             // 18歳以上の成人ユーザー
                             // 全ての機能に対するアクセス許可
                             // AgeLowerとAgeUpperは設定されていません
-                            UE_LOG(GamebaseTestResults, Display, TEXT("Age 18 or older"));
+                            UE_LOG(LogTemp, Display, TEXT("Age 18 or older"));
                             break;
                         }
                         case EGamebaseAgeSignalsVerificationStatus::Supervised:
@@ -1181,13 +1181,13 @@ void USample::GetAgeSignal()
                             {
                                 int32 AgeLower = AgeSignalResult->AgeLower.GetValue(); // 例: 13
                                 int32 AgeUpper = AgeSignalResult->AgeUpper.GetValue(); // 例: 17
-                                UE_LOG(GamebaseTestResults, Display, TEXT("Supervised user, age range: %d - %d"), AgeLower, AgeUpper);
+                                UE_LOG(LogTemp, Display, TEXT("Supervised user, age range: %d - %d"), AgeLower, AgeUpper);
                             }
 
                             if (AgeSignalResult->InstallId.IsSet())
                             {
                                 FString InstallId = AgeSignalResult->InstallId.GetValue();
-                                UE_LOG(GamebaseTestResults, Display, TEXT("InstallId: %s"), *InstallId);
+                                UE_LOG(LogTemp, Display, TEXT("InstallId: %s"), *InstallId);
                             }
                             
                             break;
@@ -1199,7 +1199,7 @@ void USample::GetAgeSignal()
                             if (AgeSignalResult->MostRecentApprovalDate.IsSet())
                             {
                                 int64 ApprovalDate = AgeSignalResult->MostRecentApprovalDate.GetValue();
-                                UE_LOG(GamebaseTestResults, Display, TEXT("Approval pending since: %lld"), ApprovalDate);
+                                UE_LOG(LogTemp, Display, TEXT("Approval pending since: %lld"), ApprovalDate);
                             }
                             break;
                         }
@@ -1207,14 +1207,14 @@ void USample::GetAgeSignal()
                         {
                             // 保護者が承認を拒否した場合
                             // 制限された機能のみ提供するか、サービス利用不可を案内
-                            UE_LOG(GamebaseTestResults, Display, TEXT("Parent or guardian has denied changes"));
+                            UE_LOG(LogTemp, Display, TEXT("Parent or guardian has denied changes"));
                             break;
                         }
                         case EGamebaseAgeSignalsVerificationStatus::Unknown:
                         {
                             // 該当管轄地域で検証されていないユーザーまたは年齢確認情報を使用できない場合
                             // ユーザーにPlayストアを訪問して状態を解決するようにリクエストしてください。
-                            UE_LOG(GamebaseTestResults, Display, TEXT("User is not verified or supervised"));
+                            UE_LOG(LogTemp, Display, TEXT("User is not verified or supervised"));
                             break;
                         }
                     }
@@ -1222,17 +1222,17 @@ void USample::GetAgeSignal()
             }
             else
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("GetAgeSignal failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Message);
+                UE_LOG(LogTemp, Display, TEXT("GetAgeSignal failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Message);
                 
                 if (Error->Code == GamebaseErrorCode::NOT_SUPPORTED)
                 {
                     // Android API 23未満のデバイスではサポートされません。
-                    UE_LOG(GamebaseTestResults, Display, TEXT("Age Signals API is not supported on this device"));
+                    UE_LOG(LogTemp, Display, TEXT("Age Signals API is not supported on this device"));
                 }
                 else if (Error->Code == GamebaseErrorCode::AUTH_EXTERNAL_LIBRARY_ERROR)
                 {
                     // Google Playサービスでエラーが発生しました。
-                    UE_LOG(GamebaseTestResults, Display, TEXT("Google Play Age Signals error"));
+                    UE_LOG(LogTemp, Display, TEXT("Google Play Age Signals error"));
                 }
             }
         }));
