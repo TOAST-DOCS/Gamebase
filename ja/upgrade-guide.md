@@ -1,5 +1,13 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.79.0
+
+### iOS
+
+* **+[TCGBConfiguration setStoreCode:]** API가 deprecated 되었습니다.
+* **-[TCGBPurchase setStoreCode:]** API가 deprecated 되었습니다.
+* **TCGBPurchase.storeCode** API가 deprecated 되었습니다.
+
 ## 2.77.0
 
 ### Common
@@ -8,9 +16,9 @@
 
 ### iOS
 
-* **TCGBPurchase.requestItemListAtIAPConsoleWithCompletion:** APIが非推奨となりました。
+* **+[TCGBPurchase requestItemListAtIAPConsoleWithCompletion:]** APIが非推奨となりました。
 
-    * **TCGBPurchase.requestItemListPurchasableWithCompletion** APIを使用してください。
+    * **+[TCGBPurchase requestItemListPurchasableWithCompletion:]** APIを使用してください。
 
 ### Unity
 
@@ -376,14 +384,14 @@ if (UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebas
 #### Changed/Deprecated APIs
 
 * iOS 16.4からAppleがCTCarrier classがdeprecatedされたため、下記のAPIがdeprecatedされました。
-    * **[TCGBGamebase countryCode];**
-    * **[TCGBGamebase countryCodeOfUSIM];**
-    * **[TCGBGamebase carrierCode];**
-    * **[TCGBGamebase carrierName];**
-    * **[TCGBUtil countryCode];**
-    * **[TCGBUtil usimCountryCode];**
-    * **[TCGBUtil carrierCode];**
-    * **[TCGBUtil carrierName];**
+    * **+[TCGBGamebase countryCode]**
+    * **+[TCGBGamebase countryCodeOfUSIM]**
+    * **+[TCGBGamebase carrierCode]**
+    * **+[TCGBGamebase carrierName]**
+    * **+[TCGBUtil countryCode]**
+    * **+[TCGBUtil usimCountryCode]**
+    * **+[TCGBUtil carrierCode]**
+    * **+[TCGBUtil carrierName]**
 
 ## 2.50.0
 
@@ -586,8 +594,8 @@ if (UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebas
 #### Changed/Deprecated APIs
 
 * キックアウトポップアップの表示有無は、Gamebaseコンソールでキックアウト登録時に設定できるため、次のAPIがdeprecatedになりました。
-    * **[TCGBConfiguration enableKickoutPopup:]**
-    * **[TCGBConfiguration isEnableKickoutPopup]**
+    * **-[TCGBConfiguration enableKickoutPopup:]**
+    * **-[TCGBConfiguration isEnableKickoutPopup]**
 
 ### Unity
 

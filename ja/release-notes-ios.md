@@ -1,12 +1,22 @@
 ## Game > Gamebase > リリースノート > iOS
 
+### 2.79.0 (2026. 01. 27.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.79.0/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 내부 로직 개선
+* 아래 API가 deprecated되었습니다.
+    * **+[TCGBConfiguration setStoreCode:]**
+    * **-[TCGBPurchase setStoreCode:]**
+    * **TCGBPurchase.storeCode**
+
 ### 2.77.0 (2025. 12. 09.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.77.0/GamebaseSDK-iOS.zip)
 
 #### 機能改善・変更
 * 決済関連の内部ロジックを改善
 * 以下のAPIが非推奨となりました。
-    * **[TCGBPurchase requestItemListAtIAPConsoleWithCompletion:]**
+    * **+[TCGBPurchase requestItemListAtIAPConsoleWithCompletion:]**
     
 ### 2.75.0 (2025. 09. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-iOS.zip)
@@ -337,7 +347,7 @@
 * 外部SDKアップデート
     * Hangame iOS SDK (1.8.6)
 * 以下のフィールドがdeprecatedされました。
-    * TCGBWebViewConfiguration.backgroundOpacity
+    * **TCGBWebViewConfiguration.backgroundOpacity**
 * iPadで[TCGBUtil showActionSheetWithTitle:message:blocks:]API呼び出し時、ActionSheetが画面中央に来るように修正しました。
 * プロジェクトに追加していない認証Adapterを使用する場合、**TCGB_ERROR_AUTH_NOT_SUPPORTED_PROVIDER(3002)**エラーを返すように修正しました。
 
@@ -353,14 +363,14 @@
     * NHN Cloud iOS SDK (1.4.0)
     * Weibo iOS SDK (3.3.3)
 * 以下のAPIがdeprecatedされました。
-    * [TCGBGamebase countryCode];
-    * [TCGBGamebase countryCodeOfUSIM];
-    * [TCGBGamebase carrierCode];
-    * [TCGBGamebase carrierName];
-    * [TCGBUtil countryCode];
-    * [TCGBUtil usimCountryCode];
-    * [TCGBUtil carrierCode];
-    * [TCGBUtil carrierName];
+    * **+[TCGBGamebase countryCode]**
+    * **+[TCGBGamebase countryCodeOfUSIM]**
+    * **+[TCGBGamebase carrierCode]**
+    * **+[TCGBGamebase carrierName]**
+    * **+[TCGBUtil countryCode]**
+    * **+[TCGBUtil usimCountryCode]**
+    * **+[TCGBUtil carrierCode]**
+    * **+[TCGBUtil carrierName]**
 * SDK内部ロジック改善
 
 ### 2.51.0 (2023. 05. 30.)
@@ -442,8 +452,8 @@
     * NHN Cloud iOS SDK (1.2.0)
     * Hangame iOS SDK (1.8.0)
 * 以下のAPIがdeprecatedされました。
-    * **[TCGBPurchase requestItemListOfNotConsumedWithCompletion:]**
-    * **[TCGBPurchase requestActivatedPurchasesWithCompletion:]**
+    * **+[TCGBPurchase requestItemListOfNotConsumedWithCompletion:]**
+    * **+[TCGBPurchase requestActivatedPurchasesWithCompletion:]**
 * SDK内部ロジック改善
 
 ### 2.44.0 (2022. 10. 25.)
@@ -600,8 +610,8 @@
 #### 機能改善・変更
 * イメージ告知APIを呼び出したときに表示するイメージ告知がない場合、背景が少しの間暗くなる現象を修正しました。
 * キックアウトポップアップの表示有無はGamebaseコンソールでキックアウト登録時に設定することができるため、次のAPIがdeprecatedになりました。
-    * **[TCGBConfiguration enableKickoutPopup:]**
-    * **[TCGBConfiguration isEnableKickoutPopup]**
+    * **-[TCGBConfiguration enableKickoutPopup:]**
+    * **-[TCGBConfiguration isEnableKickoutPopup]**
     
 ### 2.33.0 (2022.01.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-iOS.zip)

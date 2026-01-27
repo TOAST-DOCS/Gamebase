@@ -1,5 +1,13 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.79.0
+
+### iOS
+
+* **+[TCGBConfiguration setStoreCode:]** API가 deprecated 되었습니다.
+* **-[TCGBPurchase setStoreCode:]** API가 deprecated 되었습니다.
+* **TCGBPurchase.storeCode** API가 deprecated 되었습니다.
+
 ## 2.77.0
 
 ### Common
@@ -8,8 +16,8 @@
     
 ### iOS
 
-* **TCGBPurchase.requestItemListAtIAPConsoleWithCompletion:** API is deprecated.
-    * **Use TCGBPurchase.requestItemListPurchasableWithCompletion** API.
+* **+[TCGBPurchase requestItemListAtIAPConsoleWithCompletion:]** API is deprecated.
+    * Use **+[TCGBPurchase requestItemListPurchasableWithCompletion:]** API.
 
 ### Unity
 
@@ -376,14 +384,14 @@ if (UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebas
 
 #### Changed/Deprecated APIs
 * Starting from iOS 16.4, the following APIs have been deprecated as Apple deprecated the CTCarrier class.
-    * **[TCGBGamebase countryCode];**
-    * **[TCGBGamebase countryCodeOfUSIM];**
-    * **[TCGBGamebase carrierCode];**
-    * **[TCGBGamebase carrierName];**
-    * **[TCGBUtil countryCode];**
-    * **[TCGBUtil usimCountryCode];**
-    * **[TCGBUtil carrierCode];**
-    * **[TCGBUtil carrierName];**
+    * **+[TCGBGamebase countryCode]**
+    * **+[TCGBGamebase countryCodeOfUSIM]**
+    * **+[TCGBGamebase carrierCode]**
+    * **+[TCGBGamebase carrierName]**
+    * **+[TCGBUtil countryCode]**
+    * **+[TCGBUtil usimCountryCode]**
+    * **+[TCGBUtil carrierCode]**
+    * **+[TCGBUtil carrierName]**
 
 ## 2.50.0
 
@@ -585,8 +593,8 @@ Raised the minimum supported verision to Android 4.4.(minSdk 16 -> 19)
 #### Changed/Deprecated APIs
 
 * The following APIs have been deprecated because whether to display the kickout popup window can be set during kickout registration in the Gamebase console.
-    * **[TCGBConfiguration enableKickoutPopup:]**
-    * **[TCGBConfiguration isEnableKickoutPopup]**
+    * **-[TCGBConfiguration enableKickoutPopup:]**
+    * **-[TCGBConfiguration isEnableKickoutPopup]**
 
 ### Unity
 

@@ -1,12 +1,22 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.79.0 (2026. 01. 27.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.79.0/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* 내부 로직 개선
+* 아래 API가 deprecated되었습니다.
+    * **+[TCGBConfiguration setStoreCode:]**
+    * **-[TCGBPurchase setStoreCode:]**
+    * **TCGBPurchase.storeCode**
+
 ### 2.77.0 (2025. 12. 09.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.77.0/GamebaseSDK-iOS.zip)
 
 #### Feature Updates
 * Improved internal payment logic
 * The API below is deprecated:
-    * **[TCGBPurchase requestItemListAtIAPConsoleWithCompletion:]**
+    * **+[TCGBPurchase requestItemListAtIAPConsoleWithCompletion:]**
     
 ### 2.75.0 (2025. 09. 23.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-iOS.zip)
@@ -153,7 +163,7 @@
     * NHN Cloud iOS SDK (1.8.3)
         * Made modifications so that the app store review does not warn about PrivacyInfo manifest.
 * Deprecated the following field.
-    * `TCGBWebViewConfiguration.orientationMask`
+    * **TCGBWebViewConfiguration.orientationMask**
 * Made modifications so that `TCGB_ERROR_AUTH_IDP_LOGIN_INVALID_IDP_INFO (3202)` error occurs when attempting to log in with an IdP that is not registered in the console.
 * Fixed a failure callback to be called instead of the previous success callback when an error occurs inside the webview of a rolling image announcement.
 * Improved internal logic
@@ -336,7 +346,7 @@
 * External SDK update
     * Hangame iOS SDK (1.8.6)
 * Deprecated fields are as follows.
-    * TCGBWebViewConfiguration.backgroundOpacity
+    * **TCGBWebViewConfiguration.backgroundOpacity**
 * Modified to center the ActionSheet on the screen when calling the [TCGBUtil howActionSheetWithTitle:message:blocks:] API on iPad.
 * Modified to return the **TCGB_ERROR_AUTH_NOT_SUPPORTED_PROVIDER(3002)** error when using an authentication adapter that is not added to the project.
 
@@ -352,14 +362,14 @@
     * NHN Cloud iOS SDK (1.4.0)
     * Weibo iOS SDK (3.3.3)
 * Deprecated APIs as follows.
-    * [TCGBGamebase countryCode];
-    * [TCGBGamebase countryCodeOfUSIM];
-    * [TCGBGamebase carrierCode];
-    * [TCGBGamebase carrierName];
-    * [TCGBUtil countryCode];
-    * [TCGBUtil usimCountryCode];
-    * [TCGBUtil carrierCode];
-    * [TCGBUtil carrierName];
+    * **+[TCGBGamebase countryCode]**
+    * **+[TCGBGamebase countryCodeOfUSIM]**
+    * **+[TCGBGamebase carrierCode]**
+    * **+[TCGBGamebase carrierName]**
+    * **+[TCGBUtil countryCode]**
+    * **+[TCGBUtil usimCountryCode]**
+    * **+[TCGBUtil carrierCode]**
+    * **+[TCGBUtil carrierName]**
 * Improved SDK internal logic
 
 ### 2.51.0 (2023. 05. 30.)
@@ -441,8 +451,8 @@
     * NHN Cloud iOS SDK (1.2.0)
     * Hangame iOS SDK (1.8.0)
 * Deprecated APIs as follows
-    * **[TCGBPurchase requestItemListOfNotConsumedWithCompletion:]**
-    * **[TCGBPurchase requestActivatedPurchasesWithCompletion:]**
+    * **+[TCGBPurchase requestItemListOfNotConsumedWithCompletion:]**
+    * **+[TCGBPurchase requestActivatedPurchasesWithCompletion:]**
 * Improved SDK internal logic
 
 ### 2.44.0 (2022. 10. 25.)
@@ -599,8 +609,8 @@
 #### Feature Updates
 * Corrected the issue where the background becomes dark briefly when the Image Notice API has been called but there is no image notice to display
 * The following fields have been deprecated because whether to display the kickout popup window can be set during kickout registration in the Gamebase console.
-    * **[TCGBConfiguration enableKickoutPopup:]**
-    * **[TCGBConfiguration isEnableKickoutPopup]**
+    * **-[TCGBConfiguration enableKickoutPopup:]**
+    * **-[TCGBConfiguration isEnableKickoutPopup]**
 
 ### 2.33.0 (2022.01.25)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-iOS.zip)

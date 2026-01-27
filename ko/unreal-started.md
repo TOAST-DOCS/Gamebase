@@ -166,7 +166,7 @@ Gamebase SDK for Unreal을 사용하려면 `UE4 Github 소스 코드`를 사용�
 
 Gamebase Unreal SDK 및 외부 인증 SDK에서 swift로 개발된 프레임워크를 컴파일하려면 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.26/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs) 파일에서 아래 코드를 추가해야 합니다.
 
-```cs
+```cpp
 // need to tell where to load Framework dylibs
 Result += " -rpath /usr/lib/swift";                 // 추가 코드
 Result += " -rpath @executable_path/Frameworks";
@@ -216,7 +216,7 @@ bEnableSignInWithAppleSupport=True
 
 iOS SDK에서 발생하는 Warning 메시지가 Unreal 빌드 시 오류로 변환되어 빌드에 실패하는 현상이 발생하면 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs) 파일에서 clang 컴파일 옵션 코드를 주석 처리하십시오.
 
-```cs
+```cpp
 // Result += " -Wall -Werror";
 ```
 
@@ -260,7 +260,8 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
 * 별도의 엔진 수정 없이 WebView 관련 기능을 사용할 경우 Unreal 에디터에서 **Settings > Plugins** 창을 띄우고, **Project > NHN Cloud > NHNWebView** 플러그인을 찾아 활성화합니다.
 * 엔진에서 제공하는 Web Browser 플러그인을 사용할 경우 엔진 내부에 CEF 버전과 Web Browser 기능에 따라 기능이 정상적으로 동작하지 않을 수 있습니다.
 
-> [주의]
+> <font color="red">[주의]</font><br/>
+>
 > NHNWebView 플러그인과 Web Browser 플러그인은 동시의 사용이 불가능하며, 두 플러그인이 모두 활성화되어 있는 경우 빌드 시 오류가 발생합니다.
 
 #### Epic Games 서비스
@@ -283,7 +284,8 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
         [OnlineSubsystemSteam]
 		bEnabled=True
 
-> [주의]
+> <font color="red">[주의]</font><br/>
+>
 > Online Subsystem Steam 없이 Steamworks만 사용 시 Gamebase 내부에서 Steamworks를 사용한 인증 정보를 받아 오는 작업만 진행하며 Steamworks SDK 프로세스를 진행하지 않습니다.
 > Steamworks SDK를 직접 적용 시 초기화, 업데이트, 종료 등 필수적인 처리에 대해서는 직접 구현해야 합니다.
 
