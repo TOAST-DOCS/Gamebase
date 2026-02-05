@@ -4,9 +4,9 @@
 
 ### iOS
 
-* **+[TCGBConfiguration setStoreCode:]** API가 deprecated 되었습니다.
-* **-[TCGBPurchase setStoreCode:]** API가 deprecated 되었습니다.
-* **TCGBPurchase.storeCode** API가 deprecated 되었습니다.
+* **+[TCGBConfiguration setStoreCode:]** API is deprecated.
+* **-[TCGBPurchase setStoreCode:]** API is deprecated.
+* **TCGBPurchase.storeCode** API is deprecated.
 
 ## 2.77.0
 
