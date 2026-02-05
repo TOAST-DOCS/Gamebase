@@ -3,9 +3,9 @@
 ### 2.79.0 (2026. 01. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.79.0/GamebaseSDK-iOS.zip)
 
-#### 기능 개선/변경
-* 내부 로직 개선
-* 아래 API가 deprecated되었습니다.
+#### Feature Updates
+* Improved internal logic
+* The APIs below is deprecated:
     * **+[TCGBConfiguration setStoreCode:]**
     * **-[TCGBPurchase setStoreCode:]**
     * **TCGBPurchase.storeCode**
