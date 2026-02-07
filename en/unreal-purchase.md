@@ -104,7 +104,7 @@ void USample::RequestPurchase(const FString& GamebaseProductId)
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase succeeded. (GamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s)"),
+            UE_LOG(LogTemp, Display, TEXT("RequestPurchase succeeded. (GamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s)"),
                 *PurchasableReceipt->GamebaseProductId, PurchasableReceipt->Price, *PurchasableReceipt->Currency,
                 *PurchasableReceipt->PaymentSeq, *PurchasableReceipt->PurchaseToken);
         }
@@ -112,12 +112,12 @@ void USample::RequestPurchase(const FString& GamebaseProductId)
         {
             if (Error->Code == GamebaseErrorCode::PURCHASE_USER_CANCELED)
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("User canceled purchase."));
+                UE_LOG(LogTemp, Display, TEXT("User canceled purchase."));
             }
             else
             {
                 // Check the Error code and handle the Error appropriately.
-                UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase failed. (Error: %d)"), Error->Code);
+                UE_LOG(LogTemp, Display, TEXT("RequestPurchase failed. (Error: %d)"), Error->Code);
             }
 
         }
@@ -134,7 +134,7 @@ void USample::RequestPurchaseWithPayload(const FString& GamebaseProductId)
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase succeeded. (GamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s)"),
+            UE_LOG(LogTemp, Display, TEXT("RequestPurchase succeeded. (GamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s)"),
                 *PurchasableReceipt->GamebaseProductId, PurchasableReceipt->price, *PurchasableReceipt->Currency,
                 *PurchasableReceipt->PaymentSeq, *PurchasableReceipt->PurchaseToken);
 
@@ -144,12 +144,12 @@ void USample::RequestPurchaseWithPayload(const FString& GamebaseProductId)
         {
             if (Error->Code == GamebaseErrorCode::PURCHASE_USER_CANCELED)
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("User canceled purchase."));
+                UE_LOG(LogTemp, Display, TEXT("User canceled purchase."));
             }
             else
             {
                 // Check the Error code and handle the Error appropriately.
-                UE_LOG(GamebaseTestResults, Display, TEXT("RequestPurchase failed. (Error: %d)"), Error->Code);
+                UE_LOG(LogTemp, Display, TEXT("RequestPurchase failed. (Error: %d)"), Error->Code);
             }
         }
     }));
@@ -260,17 +260,17 @@ void USample::RequestItemListPurchasable()
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RequestItemListPurchasable succeeded."));
+            UE_LOG(LogTemp, Display, TEXT("RequestItemListPurchasable succeeded."));
 
             for (const FGamebasePurchasableItem& PurchasableItem : *PurchasableItemList)
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT(" - GamebaseProductId= %s, price= %f, itemName= %s, itemName= %s, marketItemId= %s"),
+                UE_LOG(LogTemp, Display, TEXT(" - GamebaseProductId= %s, price= %f, itemName= %s, itemName= %s, marketItemId= %s"),
                     *PurchasableItem.GamebaseProductId, PurchasableItem.Price, *PurchasableItem.Currency, *PurchasableItem.ItemName, *PurchasableItem.MarketItemId);
             }
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RequestItemListPurchasable failed. (Error: %d)"), Error->Code);
+            UE_LOG(LogTemp, Display, TEXT("RequestItemListPurchasable failed. (Error: %d)"), Error->Code);
         }
     }));
 }
@@ -361,17 +361,17 @@ void USample::RequestItemListOfNotConsumed(bool bAllStores)
             // Should Deal With This non-consumed Items.
             // Send this item list to the game(item) server for consuming item.
 
-            UE_LOG(GamebaseTestResults, Display, TEXT("RequestItemListOfNotConsumed succeeded."));
+            UE_LOG(LogTemp, Display, TEXT("RequestItemListOfNotConsumed succeeded."));
 
             for (const FGamebasePurchasableReceipt& PurchasableReceipt : *purchasableReceiptList)
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT(" - GamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s"),
+                UE_LOG(LogTemp, Display, TEXT(" - GamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s"),
                     *PurchasableReceipt.GamebaseProductId, PurchasableReceipt.Price, *PurchasableReceipt.Currency, *PurchasableReceipt.PaymentSeq, *PurchasableReceipt.PurchaseToken);
             }
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RequestItemListOfNotConsumed failed. (Error: %d)"), Error->Code);
+            UE_LOG(LogTemp, Display, TEXT("RequestItemListOfNotConsumed failed. (Error: %d)"), Error->Code);
         }
     }));
 }
@@ -416,17 +416,17 @@ void USample::RequestActivatedPurchases(bool bAllStores)
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RequestActivatedPurchases succeeded."));
+            UE_LOG(LogTemp, Display, TEXT("RequestActivatedPurchases succeeded."));
 
             for (const FGamebasePurchasableReceipt& PurchasableReceipt : *purchasableReceiptList)
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT(" - GamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s"),
+                UE_LOG(LogTemp, Display, TEXT(" - GamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s"),
                     *PurchasableReceipt.GamebaseProductId, PurchasableReceipt.Price, *PurchasableReceipt.Currency, *PurchasableReceipt.PaymentSeq, *PurchasableReceipt.PurchaseToken);
             }
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RequestActivatedPurchases failed. (Error: %d)"), Error->Code);
+            UE_LOG(LogTemp, Display, TEXT("RequestActivatedPurchases failed. (Error: %d)"), Error->Code);
         }
     }));
 }
@@ -462,27 +462,28 @@ void RequestSubscriptionsStatus(const FGamebasePurchasableConfiguration& Configu
 
 **Example**
 ```cpp
-void Sample::RequestSubscriptionsStatus(bool includeExpiredSubscriptions)
+void USample::RequestSubscriptionsStatus(bool bIncludeExpiredSubscriptions)
 {
     FGamebasePurchasableConfiguration Configuration;
-    Configuration.allStores = allStores;
+    Configuration.bAllStores = bAllStores;
 
-    IGamebase::Get().GetPurchase().RequestSubscriptionsStatus(Configuration, FGamebasePurchasableSubscriptionStatusDelegate::CreateLambda(
-        [](const TArray<FGamebasePurchasableSubscriptionStatus>* purchasableReceiptList, const FGamebaseError* error)
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->GetPurchase()->RequestSubscriptionsStatus(Configuration, FGamebasePurchasableSubscriptionStatusDelegate::CreateLambda(
+        [](const TArray<FGamebasePurchasableSubscriptionStatus>* purchasableReceiptList, const FGamebaseError* Error)
     {
         if (Gamebase::IsSuccess(error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RequestSubscriptionsStatus succeeded."));
+            UE_LOG(LogTemp, Display, TEXT("RequestSubscriptionsStatus succeeded."));
 
             for (const FGamebasePurchasableSubscriptionStatus& purchasableReceipt : *purchasableReceiptList)
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT(" - gamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s"),
+                UE_LOG(LogTemp, Display, TEXT(" - gamebaseProductId= %s, price= %f, currency= %s, paymentSeq= %s, purchaseToken= %s"),
                     *purchasableReceipt.gamebaseProductId, purchasableReceipt.price, *purchasableReceipt.currency, *purchasableReceipt.paymentSeq, *purchasableReceipt.purchaseToken);
             }
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RequestSubscriptionsStatus failed. (error: %d)"), error->code);
+            UE_LOG(LogTemp, Display, TEXT("RequestSubscriptionsStatus failed. (error: %d)"), error->code);
         }
     }));
 }
@@ -603,12 +604,12 @@ if (Gamebase::IsSuccess(Error))
 }
 else
 {
-    UE_LOG(GamebaseTestResults, Display, TEXT("code: %d, message: %s"), Error->Code, *Error->Messsage);
+    UE_LOG(LogTemp, Display, TEXT("code: %d, message: %s"), Error->Code, *Error->Message);
 
     GamebaseInnerError* moduleError = gamebaseError.Error; // GamebaseError.Error object from external module
     if (moduleError.code != GamebaseErrorCode::SUCCESS)
     {
-        UE_LOG(GamebaseTestResults, Display, TEXT("moduleErrorCode: %d, moduleErrorMessage: %s"), moduleerror->Code, *moduleerror->Messsage);
+        UE_LOG(LogTemp, Display, TEXT("moduleErrorCode: %d, moduleErrorMessage: %s"), moduleerror->Code, *moduleerror->Message);
     }
 }
 ```

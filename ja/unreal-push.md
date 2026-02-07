@@ -40,20 +40,20 @@ void RegisterPush(const FGamebasePushConfiguration& Configuration, const FGameba
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
 | ------------- | ------------- | ---------------------------------- | ------------------ |
 | bPushEnabled                   | M             | bool         | プッシュ同意の有無 |
-| bAdAgreement                   | M             | bool         | 広告性プッシュ同意の有無 |
-| bAdAgreementNight | M          | bool         | 夜間広告性プッシュ同意の有無 |
+| bADAgreement                   | M             | bool         | 広告性プッシュ同意の有無 |
+| bADAgreementNight | M          | bool         | 夜間広告性プッシュ同意の有無 |
 | bRequestNotificationPermission | O             | bool         | Android 13以上のOSでRegisterPush APIを呼び出した場合、Push権限リクエストポップアップを自動出力するかどうか<br>**default**: true<br/>**Androidに限る** |
 | bAlwaysAllowTokenRegistration  | O             | bool         | ユーザーがプッシュ権限を拒否してもトークンを登録するかどうか<br>trueに設定した場合、プッシュ権限を取得できなくてもトークンを登録します。<br>**default**: false<br/>**iOSに限る** |
 
 **Example**
 
 ```cpp
-void USample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNight)
+void USample::RegisterPush(bool bPushEnabled, bool bADAgreement, bool bADAgreementNight)
 {
     FGamebasePushConfiguration Configuration;
-    Configuration.bPushEnabled = pushEnabled;
-    Configuration.bAdAgreement = adAgreement;
-    Configuration.bAdAgreementNight = adAgreementNight;
+    Configuration.bPushEnabled = bPushEnabled;
+    Configuration.bADAgreement = bADAgreement;
+    Configuration.bADAgreementNight = bADAgreementNight;
     Configuration.bRequestNotificationPermission = bRequestNotificationPermission;
     Configuration.bAlwaysAllowTokenRegistration = bAlwaysAllowTokenRegistration;
     
@@ -62,11 +62,11 @@ void USample::RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementN
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RegisterPush succeeded"));
+            UE_LOG(LogTemp, Display, TEXT("RegisterPush succeeded"));
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RegisterPush failed. (Error: %d)"), Error->Code);
+            UE_LOG(LogTemp, Display, TEXT("RegisterPush failed. (Error: %d)"), Error->Code);
         }
     }));
 }
@@ -95,12 +95,12 @@ FGamebaseNotificationOptionsの作成者にGamebaseSubsystem->GetPush()->GetNoti
 **Example**
 
 ```cpp
-void USample::RegisterPushWithOption(bool pushEnabled, bool adAgreement, bool adAgreementNight, const FString& displayLanguage, bool foregroundEnabled, bool badgeEnabled, bool soundEnabled, int32 priority, const FString& smallIconName, const FString& soundFileName)
+void USample::RegisterPushWithOption(bool bPushEnabled, bool bADAgreement, bool bADAgreementNight, const FString& DisplayLanguage, bool bForegroundEnabled, bool bBadgeEnabled, bool bSoundEnabled, int32 Priority, const FString& SmallIconName, const FString& SoundFileName)
 {
     FGamebasePushConfiguration Configuration;
-    Configuration.bPushEnabled = pushEnabled;
-    Configuration.bAdAgreement = adAgreement;
-    Configuration.bAdAgreementNight = adAgreementNight;
+    Configuration.bPushEnabled = bPushEnabled;
+    Configuration.bADAgreement = bADAgreement;
+    Configuration.bADAgreementNight = bADAgreementNight;
     Configuration.bRequestNotificationPermission = bRequestNotificationPermission;
     Configuration.bAlwaysAllowTokenRegistration = bAlwaysAllowTokenRegistration;
     
@@ -117,12 +117,12 @@ void USample::RegisterPushWithOption(bool pushEnabled, bool adAgreement, bool ad
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RegisterPush succeeded"));
+            UE_LOG(LogTemp, Display, TEXT("RegisterPush succeeded"));
         }
         else
         {
             // Check the Error code and handle the Error appropriately.
-            UE_LOG(GamebaseTestResults, Display, TEXT("RegisterPush failed. (Error: %d)"), Error->Code);
+            UE_LOG(LogTemp, Display, TEXT("RegisterPush failed. (Error: %d)"), Error->Code);
         }
     }));
 }
@@ -148,11 +148,11 @@ FGamebaseNotificationOptionsPtr GetNotificationOptions();
 ```cpp
 void USample::GetNotificationOptions()
 {
-    auto NotificationOptions = UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetPush()->GetNotificationOptions();
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    auto NotificationOptions = Subsystem->GetPush()->GetNotificationOptions();
     if (result.IsValid())
     {
-        NotificationOptions->ForegroundEnabled = true;
+        NotificationOptions->bForegroundEnabled = true;
         NotificationOptions->SmallIconName = TEXT("notification_icon_name");
         
         FGamebasePushConfiguration Configuration;
@@ -162,7 +162,7 @@ void USample::GetNotificationOptions()
     }
     else
     {
-        UE_LOG(GamebaseTestResults, Display, TEXT("No GetNotificationOptions"));
+        UE_LOG(LogTemp, Display, TEXT("No GetNotificationOptions"));
     }
 }
 ```
@@ -196,15 +196,15 @@ void USample::QueryTokenInfo()
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("QueryTokenInfo succeeded. (pushEnabled= %s, adAgreement= %s, adAgreementNight= %s, TokenInfo= %s)"),
-                TokenInfo->PushEnabled ? TEXT("true") : TEXT("false"),
-                TokenInfo->bAdAgreement ? TEXT("true") : TEXT("false"),
-                TokenInfo->bAdAgreementNight ? TEXT("true") : TEXT("false"),
+            UE_LOG(LogTemp, Display, TEXT("QueryTokenInfo succeeded. (pushEnabled= %s, adAgreement= %s, adAgreementNight= %s, TokenInfo= %s)"),
+                TokenInfo->Agreement.bPushEnabled ? TEXT("true") : TEXT("false"),
+                TokenInfo->Agreement.bAdAgreement ? TEXT("true") : TEXT("false"),
+                TokenInfo->Agreement.bAdAgreementNight ? TEXT("true") : TEXT("false"),
                 *TokenInfo->Token);
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("QueryTokenInfo failed. (Error: %d)"), Error->Code);
+            UE_LOG(LogTemp, Display, TEXT("QueryTokenInfo failed. (Error: %d)"), Error->Code);
         }
     }));
 }
@@ -261,10 +261,10 @@ void SetSandboxMode(bool isSandbox);
 **Example**
 
 ```cpp
-void USample::SetSandboxMode(bool isSandbox)
+void USample::SetSandboxMode(bool bIsSandbox)
 {
     UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
-    Subsystem->GetPush()->SetSandboxMode(isSandbox);
+    Subsystem->GetPush()->SetSandboxMode(bIsSandbox);
 }
 ```
 
@@ -294,12 +294,12 @@ if (Gamebase::IsSuccess(Error))
 }
 else
 {
-    UE_LOG(GamebaseTestResults, Display, TEXT("code: %d, message: %s"), Error->Code, *Error->Messsage);
+    UE_LOG(LogTemp, Display, TEXT("code: %d, message: %s"), Error->Code, *Error->Message);
 
     GamebaseInnerError* moduleError = gamebaseError.Error; // GamebaseError.Error object from external module
     if (moduleError.Code != GamebaseErrorCode::SUCCESS)
     {
-        UE_LOG(GamebaseTestResults, Display, TEXT("moduleErrorCode: %d, moduleErrorMessage: %s"), moduleerror->Code, *moduleerror->Messsage);
+        UE_LOG(LogTemp, Display, TEXT("moduleErrorCode: %d, moduleErrorMessage: %s"), moduleerror->Code, *moduleerror->Message);
     }
 }
 ```

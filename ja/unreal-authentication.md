@@ -97,25 +97,25 @@ void USample::LoginForLastLoggedInProvider()
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("LoginForLastLoggedInProvider succeeded."));
+            UE_LOG(LogTemp, Display, TEXT("LoginForLastLoggedInProvider succeeded."));
         }
         else
         {
             if (Error->Code == GamebaseErrorCode::SOCKET_ERROR || Error->Code == GamebaseErrorCode::SOCKET_RESPONSE_TIMEOUT)
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("Retry LoginForLastLoggedInProvider or notify an Error message to the user. : %s"), *Error->Messsage);
+                UE_LOG(LogTemp, Display, TEXT("Retry LoginForLastLoggedInProvider or notify an Error message to the user. : %s"), *Error->Message);
             }
             else if (Error->Code == GamebaseErrorCode::BANNED_MEMBER)
             {
                 auto BanInfo = FGamebaseBanInfo::From(Error);
                 if (BanInfo.IsValid())
                 {
-                    UE_LOG(GamebaseTestResults, Display, TEXT("This user has been banned. Gamebase userId is %s"), *BanInfo->userId);
+                    UE_LOG(LogTemp, Display, TEXT("This user has been banned. Gamebase userId is %s"), *BanInfo->userId);
                 }
             }
             else
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("Try to login using a specifec IdP"));
+                UE_LOG(LogTemp, Display, TEXT("Try to login using a specifec IdP"));
             }
         }
     }));
@@ -155,22 +155,22 @@ void USample::Login()
     {1
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("Login succeeded. Gamebase userId is %s"), *AuthToken->Member.UserId);
+            UE_LOG(LogTemp, Display, TEXT("Login succeeded. Gamebase userId is %s"), *AuthToken->Member.UserId);
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("Login failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Messsage);
+            UE_LOG(LogTemp, Display, TEXT("Login failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Message);
 
             if (Error->Code == GamebaseErrorCode::SOCKET_ERROR || Error->Code == GamebaseErrorCode::SOCKET_RESPONSE_TIMEOUT)
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("Retry LoginForLastLoggedInProvider or notify an Error message to the user. : %s"), *Error->Messsage);
+                UE_LOG(LogTemp, Display, TEXT("Retry LoginForLastLoggedInProvider or notify an Error message to the user. : %s"), *Error->Message);
             }
             else if (Error->Code == GamebaseErrorCode::BANNED_MEMBER)
             {
                 auto BanInfo = FGamebaseBanInfo::From(Error);
                 if (BanInfo.IsValid())
                 {
-                    UE_LOG(GamebaseTestResults, Display, TEXT("This user has been banned. Gamebase userId is %s"), *BanInfo->userId);
+                    UE_LOG(LogTemp, Display, TEXT("This user has been banned. Gamebase userId is %s"), *BanInfo->userId);
                 }
             }
         }
@@ -223,22 +223,22 @@ void USample::Login()
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("Login succeeded. Gamebase userId is %s"), *AuthToken->Member.UserId);
+            UE_LOG(LogTemp, Display, TEXT("Login succeeded. Gamebase userId is %s"), *AuthToken->Member.UserId);
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("Login failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Messsage);
+            UE_LOG(LogTemp, Display, TEXT("Login failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Message);
 
             if (Error->Code == GamebaseErrorCode::SOCKET_ERROR || Error->Code == GamebaseErrorCode::SOCKET_RESPONSE_TIMEOUT)
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("Retry LoginForLastLoggedInProvider or notify an Error message to the user. : %s"), *Error->Messsage);
+                UE_LOG(LogTemp, Display, TEXT("Retry LoginForLastLoggedInProvider or notify an Error message to the user. : %s"), *Error->Message);
             }
             else if (Error->Code == GamebaseErrorCode::BANNED_MEMBER)
             {
                 auto BanInfo = FGamebaseBanInfo::From(Error);
                 if (BanInfo.IsValid())
                 {
-                    UE_LOG(GamebaseTestResults, Display, TEXT("This user has been banned. Gamebase userId is %s"), *BanInfo->UserId);
+                    UE_LOG(LogTemp, Display, TEXT("This user has been banned. Gamebase userId is %s"), *BanInfo->UserId);
                 }
             }
         }
@@ -254,11 +254,11 @@ void USample::LoginWithAdditionalInfo()
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("Login succeeded. Gamebase userId is %s"), *AuthToken->Member.UserId);
+            UE_LOG(LogTemp, Display, TEXT("Login succeeded. Gamebase userId is %s"), *AuthToken->Member.UserId);
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("Login failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Messsage);
+            UE_LOG(LogTemp, Display, TEXT("Login failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Message);
         }
     }));
 }
@@ -346,11 +346,11 @@ void USample::LoginWithCredential()
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("Login succeeded. Gamebase userId is %s"), *AuthToken->Member.UserId);
+            UE_LOG(LogTemp, Display, TEXT("Login succeeded. Gamebase userId is %s"), *AuthToken->Member.UserId);
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("Login failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Messsage);
+            UE_LOG(LogTemp, Display, TEXT("Login failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Message);
         }
     }));
 }
@@ -384,11 +384,11 @@ void USample::Logout()
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("Logout succeeded."));
+            UE_LOG(LogTemp, Display, TEXT("Logout succeeded."));
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("Logout failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Messsage);
+            UE_LOG(LogTemp, Display, TEXT("Logout failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Message);
         }
     }));
 }
@@ -432,11 +432,11 @@ void USample::Withdraw()
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("Withdraw succeeded."));
+            UE_LOG(LogTemp, Display, TEXT("Withdraw succeeded."));
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("Withdraw failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Messsage);
+            UE_LOG(LogTemp, Display, TEXT("Withdraw failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Message);
         }
     }));
 }
@@ -532,11 +532,11 @@ void USample::AddMapping(const FString& ProviderName)
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("AddMapping succeeded."));
+            UE_LOG(LogTemp, Display, TEXT("AddMapping succeeded."));
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("AddMapping failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Messsage);
+            UE_LOG(LogTemp, Display, TEXT("AddMapping failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Message);
         }
     }));
 }
@@ -598,11 +598,11 @@ void USample::AddMappingWithCredential()
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("AddMapping succeeded."));
+            UE_LOG(LogTemp, Display, TEXT("AddMapping succeeded."));
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("AddMapping failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Messsage);
+            UE_LOG(LogTemp, Display, TEXT("AddMapping failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Message);
         }
     }));
 }
@@ -636,7 +636,7 @@ void USample::AddMappingForcibly(const FString& providerName)
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("AddMapping succeeded. Gamebase userId is %s"), *AuthToken->Member.UserId);
+            UE_LOG(LogTemp, Display, TEXT("AddMapping succeeded. Gamebase userId is %s"), *AuthToken->Member.UserId);
         }
         else
         {
@@ -655,19 +655,19 @@ void USample::AddMappingForcibly(const FString& providerName)
                     if (Gamebase::IsSuccess(InnerError))
                     {
                         // 強制マッピング追加成功
-                        UE_LOG(GamebaseTestResults, Display, TEXT("ChangeLogin succeeded. Gamebase userId is %s"), *InnerAuthToken->Member.UserId);
+                        UE_LOG(LogTemp, Display, TEXT("ChangeLogin succeeded. Gamebase userId is %s"), *InnerAuthToken->Member.UserId);
                     }
                     else
                     {
                         // エラーコードを確認し、適切な処理を行います。
-                        UE_LOG(GamebaseTestResults, Display, TEXT("ChangeLogin failed."));
+                        UE_LOG(LogTemp, Display, TEXT("ChangeLogin failed."));
                     }
                 }));
             }
             else
             {
                 // エラーコードを確認し、適切な処理を行います。
-                UE_LOG(GamebaseTestResults, Display, TEXT("AddMapping failed."));
+                UE_LOG(LogTemp, Display, TEXT("AddMapping failed."));
             }
         }
     }));
@@ -684,7 +684,7 @@ Change Login APIの呼び出しが失敗した場合、 Gamebaseログイン状�
 
 **API**
 
-```cs
+```cpp
 void ChangeLogin(const FGamebaseForcingMappingTicket& ForcingMappingTicket, const FGamebaseAuthTokenDelegate& Callback);
 ```
 
@@ -700,7 +700,7 @@ void USample::ChangeLoginWithFacebook(const FString& ProviderName)
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("AddMapping succeeded. Gamebase userId is %s"), *AuthToken->Member.UserId);
+            UE_LOG(LogTemp, Display, TEXT("AddMapping succeeded. Gamebase userId is %s"), *AuthToken->Member.UserId);
         }
         else
         {
@@ -719,20 +719,20 @@ void USample::ChangeLoginWithFacebook(const FString& ProviderName)
                     if (Gamebase::IsSuccess(InnerError))
                     {
                         // ログイン変更成功
-                        UE_LOG(GamebaseTestResults, Display, TEXT("ChangeLogin succeeded. Gamebase userId is %s"), *InnerAuthToken->Member.UserId);
+                        UE_LOG(LogTemp, Display, TEXT("ChangeLogin succeeded. Gamebase userId is %s"), *InnerAuthToken->Member.UserId);
                     }
                     else
                     {
                         // ログイン変更失敗
                         // エラーコードを確認し、適切な処理を行います。
-                        UE_LOG(GamebaseTestResults, Display, TEXT("ChangeLogin failed."));
+                        UE_LOG(LogTemp, Display, TEXT("ChangeLogin failed."));
                     }
                 }));                
             }
             else
             {
                 // エラーコードを確認し、適切な処理を行います。
-                UE_LOG(GamebaseTestResults, Display, TEXT("AddMapping failed."));
+                UE_LOG(LogTemp, Display, TEXT("AddMapping failed."));
             }
         }
     }));
@@ -766,11 +766,11 @@ void USample::RemoveMapping(const FString& ProviderName)
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RemoveMapping succeeded."));
+            UE_LOG(LogTemp, Display, TEXT("RemoveMapping succeeded."));
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("RemoveMapping failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Messsage);
+            UE_LOG(LogTemp, Display, TEXT("RemoveMapping failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Message);
         }
     }));
 }
@@ -801,7 +801,7 @@ void USample::GetAuthMappingList()
     
     for (FString provider : MappingList)
     {
-        UE_LOG(GamebaseTestResults, Display, TEXT("GetAuthMappingList - %s"), *provider);
+        UE_LOG(LogTemp, Display, TEXT("GetAuthMappingList - %s"), *provider);
     }
 }
 ```
@@ -891,7 +891,7 @@ void USample::GetLastLoggedInProvider()
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("LastLoggedInProvider: %s"), *lastLoggedInProviderAsync);
+            UE_LOG(LogTemp, Display, TEXT("LastLoggedInProvider: %s"), *lastLoggedInProviderAsync);
         }
     }));    
 }
@@ -1102,16 +1102,16 @@ void USample::Login()
                 const auto TemporaryWithdrawal = AuthToken->Member.TemporaryWithdrawal.GetValue();
                 // GracePeriodDate: epoch time in milliseconds
                 const FDateTime PeriodDate = FDateTime(1970, 1, 1) + FTimespan::FromMilliseconds(TemporaryWithdrawal.GracePeriodDate);
-                UE_LOG(GamebaseTestResults, Display, TEXT("User is under temporary withdrawa. GracePeriodDate : %s"), *PeriodDate.ToString());
+                UE_LOG(LogTemp, Display, TEXT("User is under temporary withdrawa. GracePeriodDate : %s"), *PeriodDate.ToString());
             }
             else
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("Login succeeded. Gamebase userId is %s"), *AuthToken->Member.UserId);
+                UE_LOG(LogTemp, Display, TEXT("Login succeeded. Gamebase userId is %s"), *AuthToken->Member.UserId);
             }
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("Login failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Messsage);
+            UE_LOG(LogTemp, Display, TEXT("Login failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Message);
         }
     }));
 }
@@ -1136,16 +1136,16 @@ void USample::Login()
                 const auto TemporaryWithdrawal = AuthToken->Member.TemporaryWithdrawal.GetValue();
                 // GracePeriodDate: epoch time in milliseconds
                 const FDateTime PeriodDate = FDateTime(1970, 1, 1) + FTimespan::FromMilliseconds(TemporaryWithdrawal.GracePeriodDate);
-                UE_LOG(GamebaseTestResults, Display, TEXT("User is under temporary withdrawa. GracePeriodDate : %s"), *PeriodDate.ToString());
+                UE_LOG(LogTemp, Display, TEXT("User is under temporary withdrawa. GracePeriodDate : %s"), *PeriodDate.ToString());
             }
             else
             {
-                UE_LOG(GamebaseTestResults, Display, TEXT("Login succeeded. Gamebase userId is %s"), *AuthToken->Member.UserId);
+                UE_LOG(LogTemp, Display, TEXT("Login succeeded. Gamebase userId is %s"), *AuthToken->Member.UserId);
             }
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("Login failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Messsage);
+            UE_LOG(LogTemp, Display, TEXT("Login failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Message);
         }
     }));
 }
@@ -1171,11 +1171,11 @@ void USample::CancelTemporaryWithdrawal()
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("CancelTemporaryWithdrawal succeeded."));
+            UE_LOG(LogTemp, Display, TEXT("CancelTemporaryWithdrawal succeeded."));
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("CancelTemporaryWithdrawal failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Messsage);
+            UE_LOG(LogTemp, Display, TEXT("CancelTemporaryWithdrawal failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Message);
         }
     }));
 }
@@ -1204,11 +1204,11 @@ void USample::WithdrawImmediately()
     {
         if (Gamebase::IsSuccess(Error))
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("WithdrawImmediately succeeded."));
+            UE_LOG(LogTemp, Display, TEXT("WithdrawImmediately succeeded."));
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("WithdrawImmediately failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Messsage);
+            UE_LOG(LogTemp, Display, TEXT("WithdrawImmediately failed. (errorCode: %d, errorMessage: %s)"), Error->Code, *Error->Message);
         }
     }));
 }
@@ -1263,7 +1263,7 @@ void USample::Login()
         }
         else
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("Login succeeded. Gamebase userId is %s"), *AuthToken->Member.UserId);
+            UE_LOG(LogTemp, Display, TEXT("Login succeeded. Gamebase userId is %s"), *AuthToken->Member.UserId);
         }
     }));
 }
@@ -1335,14 +1335,14 @@ if (Gamebase::IsSuccess(Error))
 }
 else
 {
-    UE_LOG(GamebaseTestResults, Display, TEXT("code: %d, message: %s"), Error->Code, *Error->Messsage);
+    UE_LOG(LogTemp, Display, TEXT("code: %d, message: %s"), Error->Code, *Error->Message);
 
     if (Error->Code == GamebaseErrorCode::AUTH_EXTERNAL_LIBRARY_ERROR)
     {
         FGamebaseErrorInner moduleError = Error->Error;
         if (moduleError.code != GamebaseErrorCode::SUCCESS)
         {
-            UE_LOG(GamebaseTestResults, Display, TEXT("moduleErrorCode: %d, moduleErrorMessage: %s"), moduleError.code, *moduleError.message);
+            UE_LOG(LogTemp, Display, TEXT("moduleErrorCode: %d, moduleErrorMessage: %s"), moduleError.code, *moduleError.message);
         }
     }
 }

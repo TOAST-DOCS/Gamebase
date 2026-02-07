@@ -1,5 +1,14 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.79.0 (2026. 01. 27.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.79.0/GamebaseSDK-Android.zip)
+
+#### Feature Updates
+
+* Fixed an issue where the back button failed to function correctly on Android 16 (targetSdk 36), causing WebViews or the app to close unexpectedly.
+* Improved internal logic
+
 ### 2.78.0 (2025. 12. 23.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.78.0/GamebaseSDK-Android.zip)
