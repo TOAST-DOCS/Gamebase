@@ -1,5 +1,12 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.80.0
+
+### iOS
+
+* Xcode 최소 지원 버전이 16.0에서 26.0으로 변경되었습니다.
+* **+[TCGBPurchase setPromotionIAPHandler:]** API가 deprecated되었습니다.
+
 ## 2.79.0
 
 ### iOS

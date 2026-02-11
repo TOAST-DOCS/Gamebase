@@ -382,55 +382,20 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 }
 ```
 
-### Event by Promotion
+### Event by Purchase
 
-> `주의`
-> iOS 11 이상에서만 사용할 수 있습니다.
-> Gamebase 1.13.0 이상에서 지원합니다. (NHN Cloud IAP SDK 1.6.0 이상적용)
-
-프로모션 결제 이벤트는 GamebaseEventHandler를 이용해 처리할 수 있습니다.
-GamebaseEventHandler로 프로모션 결제 이벤트를 처리하는 방법은 아래 가이드를 확인하세요.
+App Store 프로모션 상품 구매가 완료되거나, Ask to Buy 등으로 지연된 결제가 완료되었을 때, GamebaseEventHandler를 이용해 이벤트를 받아 처리할 수 있습니다.
+GamebaseEventHandler로 지연 결제 이벤트를 처리하는 방법은 아래 가이드를 확인하세요.
 [Game > Gamebase > iOS SDK 사용 가이드 > ETC > Gamebase Event Handler](./ios-etc/#purchase-updated)
 
 
-#### 사용시 주의 사항
-Facebook SDK, Google AdMob SDK 와 같이 SDK 내에 In App Purchase (AppStore 결제) 기능이 있는 경우에는 Gamebase Login 을 하기 전에 사전결제를 시작할 경우에는 정상적으로 결제창이 나타나지 않을 수 있습니다.
+#### Caution for Usage
+Facebook SDK, Google AdMob SDK 와 같이 SDK 내에 In App Purchase (AppStore 결제) 기능이 있는 경우에는 Gamebase Login 을 하기 전에 App Store 프로모션 결제를 시작할 경우에는 정상적으로 결제창이 나타나지 않을 수 있습니다.
 
 * 해결 방법
   * Facebook
     * Facebook Console > 설정 > 기본 설정 > **앱 내 이벤트를 자동으로 로깅(권장)** 기능을 비활성화
     * Facebook 인증 기능을 사용하지 않을 경우: **GamebaseAuthFacebookAdapter.xcframework 파일을 제외**시킨 후 빌드
-
-
-#### Overview
-* Apple Developer Overview: [https://developer.apple.com/app-store/promoting-in-app-purchases/](https://developer.apple.com/app-store/promoting-in-app-purchases/)
-* Apple Developer Reference: [https://help.apple.com/app-store-connect/#/deve3105860f](https://help.apple.com/app-store-connect/#/deve3105860f)
-
-
-App Store 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니다.
-아이템 구매 성공 후, 아래의 등록해놓은 핸들러를 통하여, 아이템지급을 진행할 수 있습니다.
-
-프로모션 IAP는 App Store Connect 에서 별도의 설정이 되어야 노출이 가능합니다.
-
-
-#### How to Test App Store Promotion IAP
-
-> `주의`
-> App Store Connect에 앱을 업로드한 다음 TestFlight를 통하여 앱을 설치 후, 테스트를 진행할 수 있습니다.
->
-
-1. TestFlight로 App을 설치합니다.
-2. 아래와 같은 URL Scheme을 호출하여, 테스트를 진행합니다.
-
-| URL Components | keyname | value |
-| --- | --- | --- |
-| scheme | itms-services | 고정값 |
-| host &amp; path | 없음 | 없음 |
-| queries | action | purchaseIntent |
-| | bundleId | 앱의 bundeld identifier |
-| | productIdentifier | 구매 아이템의 product identifier |
-
-예제) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
 
 ### TCGBPurchasableConfiguration
 
@@ -450,6 +415,7 @@ App Store 앱 내에서 아이템을 구매할 수 있는 기능을 제공합니
 | TCGB_ERROR_PURCHASE_INACTIVE_PRODUCT_ID              | 4005       | 해당 상품이 활성화 상태가 아닙니다.             |
 | TCGB_ERROR_PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 존재하지 않은 GamebaseProductID로 결제를 요청하였습니다.             |
 | TCGB_ERROR_PURCHASE_LIMIT_EXCEEDED                   | 4007       | 월 구매 한도를 초과했습니다.             |
+| TCGB_ERROR_PURCHASE_PENDING                          | 4008       | 결제를 완료하려면 추가 확인이 필요합니다. |
 | TCGB_ERROR_PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 지원하지 않는 스토어입니다. iOS의 지원가능한 스토어는 "AS"입니다. |
 | TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN Cloud IAP 라이브러리 오류입니다.<br/>상세 오류를 확인하십시오. |
 | TCGB_ERROR_PURCHASE_UNKNOWN_ERROR                    | 4999       | 정의되지 않은 구매 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
