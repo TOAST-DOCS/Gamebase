@@ -4,9 +4,9 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.79.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
+#### 機能改善・変更
 
-* targetSdk 36 빌드를 Android 16 단말기에서 실행 시 뒤로 가기가 정상 작동하지 않고 웹뷰가 그대로 닫히거나 앱이 종료되는 현상을 수정했습니다.
+* targetSdk 36 ビルドをAndroid 16 端末で実行した際、「戻る」操作が正常に動作せず、WebViewがそのまま閉じたりアプリが終了したりする現象を修正しました。
 * 内部ロジックの改善
 
 ### 2.78.0 (2025. 12. 23.)
