@@ -61,19 +61,18 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
     * 게임 내 상점(또는 로비) 진입시.
     * 유저 프로필 또는 우편함 확인시.
 
-### Purchase Item
+### Purchase Items
 
 구매하고자 하는 아이템의 gamebaseProductId를 사용하여 구매를 요청합니다.<br/>
 gamebaseProductId는 일반적으로 스토어에 등록한 아이템의 id와 동일하지만, Gamebase 콘솔에서 변경할 수도 있습니다.
 payload 필드에 입력한 추가 정보는 결제 성공 후, **PurchasableReceipt.payload** 필드에 유지되므로 여러 가지 용도로 활용할 수 있습니다.<br/>
 
-> <font color="red">[주의]</font><br/>
->
-> AMAZON 스토어는 **payload** 필드를 지원하지 않습니다.
->
-
 게임 유저가 구매를 취소하는 경우 **PURCHASE_USER_CANCELED** 오류가 반환됩니다.
 취소 처리를 해 주시기 바랍니다.
+
+느린 결제나 부모 동의와 같이 결제 완료를 기다려야 하는 상황이 발생하는 경우에는 **GamebaseError.PURCHASE_PENDING** 오류가 반환됩니다.
+이후에 결제가 정상적으로 완료되는 경우, GamebaseEventHandler에서 결제 완료 이벤트를 수신할 수 있습니다.
+[Game > Gamebase > Unity SDK 사용 가이드 > ETC > Gamebase Event Handler](./unity-etc/#purchase-updated)
 
 **API**
 
@@ -674,7 +673,7 @@ Supported Platforms
 ### Error Handling
 
 | Error                                     | Error Code | Description                              |
-| ----------------------------------------- | ---------- | ---------------------------------------- |
+|-------------------------------------------|------------| ---------------------------------------- |
 | PURCHASE_NOT_INITIALIZED                  | 4001       | Purchase 모듈이 초기화되지 않았습니다.<br>gamebase-adapter-purchase-IAP 모듈을 프로젝트에 추가했는지 확인해 주세요. |
 | PURCHASE_USER_CANCELED                    | 4002       | 게임 유저가 아이템 구매를 취소하였습니다.                  |
 | PURCHASE_NOT_FINISHED_PREVIOUS_PURCHASING | 4003       | 구매 로직이 아직 완료되지 않은 상태에서 API가 호출되었습니다. |
@@ -682,7 +681,8 @@ Supported Platforms
 | PURCHASE_INACTIVE_PRODUCT_ID              | 4005       | 해당 상품이 활성화 상태가 아닙니다.  |
 | PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 존재하지 않는 GamebaseProductID 로 결제를 요청하였습니다. |
 | PURCHASE_LIMIT_EXCEEDED                   | 4007       | 월 구매 한도를 초과했습니다.             |
-| PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 지원하지 않는 스토어입니다.<br>선택 가능한 스토어는 AS(App Store), GG(Google), ONESTORE, GALAXY, AMAZON, HUAWEI, MYCARD 입니다. |
+| PURCHASE_PENDING                          | 4008       | 결제를 완료하려면 추가 확인이 필요합니다. |
+| PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 지원하지 않는 스토어입니다.<br>선택 가능한 스토어는 AS(App Store), GG(Google), ONESTORE, GALAXY, HUAWEI, MYCARD 입니다. |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN Cloud IAP 라이브러리 오류입니다.<br/>상세 오류를 확인하십시오. |
 | PURCHASE_UNKNOWN_ERROR                    | 4999       | 정의되지 않은 구매 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 

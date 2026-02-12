@@ -61,19 +61,18 @@ If there's a value on the list of unconsumed purchases, proceed with the Consume
     * When entering the store (or lobby) in a game
     * When checking the user profile or mailbox
 
-### Purchase Item
+### Purchase Items
 
 Request a purchase by using the gamebaseProductId of the item to purchase.<br/>
 The gamebaseProductId is generally the same as the ID of item registered at the store, but it can be changed in the Gamebase console. 
 Additional information entered in the payload field is maintained at the **PurchasableReceipt.payload** field after a successful payment, so it can be used for many purposes.<br/>
 
-> <font color="red">[Caution]</font><br/>
->
-> The AMAZON store does not support the **payload** field.
->
-
 When a game user cancels purchase, the **PURCHASE_USER_CANCELED** error is returned.
 Please process cancellation.
+
+느린 결제나 부모 동의와 같이 결제 완료를 기다려야 하는 상황이 발생하는 경우에는 **GamebaseError.PURCHASE_PENDING** 오류가 반환됩니다.
+이후에 결제가 정상적으로 완료되는 경우, GamebaseEventHandler에서 결제 완료 이벤트를 수신할 수 있습니다.
+[Game > Gamebase > Unity SDK 사용 가이드 > ETC > Gamebase Event Handler](./unity-etc/#purchase-updated)
 
 **API**
 
@@ -654,7 +653,7 @@ Supported Platforms
 ### Error Handling
 
 | Error                                       | Error Code | Description                              |
-| ------------------------------------------- | ---------- | ---------------------------------------- |
+|---------------------------------------------| ---------- | ---------------------------------------- |
 | PURCHASE_NOT_INITIALIZED                    | 4001       | The purchase module has not been initialized.<br>Check if the gamebase-adapter-purchase-IAP module has been added to project. |
 | PURCHASE_USER_CANCELED                      | 4002       | Purchase has been cancelled. |
 | PURCHASE_NOT_FINISHED\_PREVIOUS\_PURCHASING | 4003       | API has been called when a purchase logic is not completed. |
@@ -662,7 +661,8 @@ Supported Platforms
 | PURCHASE_INACTIVE_PRODUCT_ID                | 4005       | Product is not activated.   |
 | PURCHASE_NOT_EXIST_PRODUCT_ID               | 4006       | Requested for purchase with invalid GamebaseProductID. |
 | PURCHASE_LIMIT_EXCEEDED                     | 4007       | You have exceeded your monthly purchase limit.              |
-| PURCHASE_NOT_SUPPORTED_MARKET               | 4010       | The store is not supported.<br>The stores you can select are AS (App Store), GG (Google), ONESTORE, GALAXY, AMAZON, HUAWEI, and MYCARD. |
+| PURCHASE_PENDING                            | 4008       | 결제를 완료하려면 추가 확인이 필요합니다. |
+| PURCHASE_NOT_SUPPORTED_MARKET               | 4010       | The store is not supported.<br>The stores you can select are AS (App Store), GG (Google), ONESTORE, GALAXY, HUAWEI, and MYCARD. |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR             | 4201       | Error in IAP library.<br>Check the code details. |
 | PURCHASE_UNKNOWN_ERROR                      | 4999       | Unknown error in purchase.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry) and we'll reply at the earliest possible moment. |
 

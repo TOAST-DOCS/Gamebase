@@ -61,11 +61,18 @@ AndroidやiOSでアプリ内決済機能を設定する方法は、次のドキ�
     * ゲーム内ショップ(またはロビー)に移動した時
     * ユーザープロフィールまたはメールボックスを確認した時
 
-### Purchase Item
+### Purchase Items
 
-購入したいアイテムのitemSeqを利用して次のAPIを呼び出し、購入をリクエストします。
-ゲームユーザーが購入をキャンセルする場合、**PURCHASE_USER_CANCELED**エラーが返されます。
+구매하고자 하는 아이템의 gamebaseProductId를 사용하여 구매를 요청합니다.<br/>
+gamebaseProductId는 일반적으로 스토어에 등록한 아이템의 id와 동일하지만, Gamebase 콘솔에서 변경할 수도 있습니다.
+payload 필드에 입력한 추가 정보는 결제 성공 후, **PurchasableReceipt.payload** 필드에 유지되므로 여러 가지 용도로 활용할 수 있습니다.<br/>
 
+게임 유저가 구매를 취소하는 경우 **PURCHASE_USER_CANCELED** 오류가 반환됩니다.
+취소 처리를 해 주시기 바랍니다.
+
+느린 결제나 부모 동의와 같이 결제 완료를 기다려야 하는 상황이 발생하는 경우에는 **GamebaseError.PURCHASE_PENDING** 오류가 반환됩니다.
+이후에 결제가 정상적으로 완료되는 경우, GamebaseEventHandler에서 결제 완료 이벤트를 수신할 수 있습니다.
+[Game > Gamebase > Unity SDK 사용 가이드 > ETC > Gamebase Event Handler](./unity-etc/#purchase-updated)
 
 **API**
 
@@ -674,7 +681,8 @@ Supported Platforms
 | PURCHASE_INACTIVE_PRODUCT_ID              | 4005       | 該当商品が有効な状態ではありません。  |
 | PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 存在しないGamebaseProductIDで決済をリクエストしました。 |
 | PURCHASE_LIMIT_EXCEEDED                   | 4007       | 月の購入限度を超過しました。             |
-| PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | このストアには対応しておりません。<br>選択可能なストアは、GG(Google)、TS(ONE store)、GALAXY、AMAZON、HUAWEI、MYCARDです。 |
+| PURCHASE_PENDING                          | 4008       | 결제를 완료하려면 추가 확인이 필요합니다. |
+| PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | このストアには対応しておりません。<br>選択可能なストアは、GG(Google)、TS(ONE store)、GALAXY、HUAWEI、MYCARDです。 |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN Cloud IAPライブラリエラーです。<br/>詳細エラーを確認してください。 |
 | PURCHASE_UNKNOWN_ERROR                    | 4999       | 定義されていない購入エラーです。<br>ログ全体を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。|
 
