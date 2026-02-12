@@ -549,6 +549,7 @@ Can add customized functions by specifying scheme names and blocks in Gamebase.
 | navigationBarColor                     | UIColor                                  | Color of Navigation Bar<br/>**default**: [UIColor colorWithRed: 0.07 green: 0.36 blue: 0.90 alpha: 1.00]   |
 | navigationBarTitleColor                | UIColor                                  | Color of Navigation Bar Title<br/>**default**: UIColor.whiteColor   |
 | navigationBarIconTintColor             | UIColor                                  | Color of Navigation Bar Icon<br/>If no value is set, the original image of the icon is displayed.<br/>**default**: nil   |
+| navigationBarHeight                    | CGFloat                                  | 내비게이션 바 높이<br/>**default**: 54 |
 | isBackButtonVisible                    | YES or NO                                | Activate or deactivate Go Back Button<br/>**default**: YES |
 | isNavigationBarVisible                 | YES or NO                                | Show or hide Navigation Bar<br/>**default**: YES    |
 | goBackImagePathForFullScreenNavigation | file name in Gamebase.bundle             | Image of Go Back Button       |

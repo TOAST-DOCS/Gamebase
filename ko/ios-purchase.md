@@ -89,7 +89,7 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
     * 게임 내 상점(또는 로비) 진입시.
     * 유저 프로필 또는 우편함 확인시.
 
-### Purchase Item
+### Purchase Items
 
 구매하고자 하는 아이템의 gamebaseProductId를 이용해 다음의 API를 호출해 구매를 요청합니다. <br/>
 gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID와 동일하지만, Gamebase 콘솔에서 변경할 수도 있습니다.
@@ -102,21 +102,13 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 + (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId 
                               viewController:(UIViewController *)viewController
                                   completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
-
-+ (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId 
-                                     payload:(NSString *)payload 
-                              viewController:(UIViewController *)viewController 
-                                  completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
 ```
 
 **Example**
 
 ```objectivec
 - (void)purchasingItem:(NSString *)gamebaseProductId {
-    NSString *userPayload = @"USER_PAYLOAD";
-
-    [TCGBPurchase requestPurchaseWithGamebaseProductId:gamebaseProductId payload:userPayload viewController:self completion:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
-        NSString *receivedPayload = purchasableReceipt.payload;
+    [TCGBPurchase requestPurchaseWithGamebaseProductId:gamebaseProductId viewController:self completion:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Purchase Item Succeeded
         } else if (error.code == TCGB_ERROR_PURCHASE_USER_CANCELED) {

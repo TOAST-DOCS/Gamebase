@@ -347,10 +347,10 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 | LoggedOut | kTCGBLoggedOut | [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data] | \- |
 | ServerPush | kTCGBServerPushAppKickoutMessageReceived<br>kTCGBServerPushAppKickout<br>kTCGBServerPushTransferKickout | [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data] | \- |
 | Observer | kTCGBObserverLaunching<br>kTCGBObserverHeartbeat<br>kTCGBObserverNetwork | [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data] | \- |
-| Purchase - Promotion payment | kTCGBPurchaseUpdated | [TCGBPurchasableReceipt purchasableReceiptFromJsonString:message.data] | \- |
-| Push - Message received | kTCGBPushReceivedMessage | [TCGBPushMessage pushMessageFromJsonString:message.data] | \- |
-| Push - Message clicked | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
-| Push - Action clicked | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | Operates when the RichMessage button is clicked. |
+| Purchase<br>- 프로모션 결제<br>- 지연 결제 | kTCGBPurchaseUpdated | [TCGBPurchasableReceipt purchasableReceiptFromJsonString:message.data] | \- |
+| Push<br>- Message received | kTCGBPushReceivedMessage | [TCGBPushMessage pushMessageFromJsonString:message.data] | \- |
+| Push<br>- Message clicked | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
+| Push<br>- Action clicked | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | Operates when the RichMessage button is clicked. |
 
 #### IdP Revoked
 
@@ -546,7 +546,7 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 
 #### Purchase Updated
 
-* This event is triggered when a product is acquired by redeeming a promotion code.
+* App Store 프로모션 상품 구매 완료 또는 Ask to Buy 등으로 지연된 결제가 완료되었을 때 발생하는 이벤트입니다.
 * Can acquire payment receipt information.
 
 **Example**
@@ -556,8 +556,7 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
     void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
         TCGBPurchasableReceipt* receipt = [TCGBPurchasableReceipt purchasableReceiptFromJsonString:message.data];
         if (receipt != nil) {
-            // If user purchase item from appstore promoting iap
-            // this event will be occurred.
+            // If a promotion or pending purchase is completed, this event will be occurred.
         }
     };
     
@@ -672,7 +671,7 @@ The game index can be transferred to the Gamebase server.
 
 > [TIP]
 >
-> The index is transmitted automatically when payment is made by calling requestPurchaseWithItemSeq:viewController:completion API of TCGBPurchase or when promotion payment is made by calling setPromotionIAPHandler.
+> The index is transmitted automatically when payment is made by calling requestPurchase API of TCGBPurchase or when promotion payment is made by calling setPromotionIAPHandler.
 
 Please see the following guide for how to use Analytics console.
 
