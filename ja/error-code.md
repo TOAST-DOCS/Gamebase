@@ -78,6 +78,7 @@
 |                 | Android<br/>Unity<br/>Unreal<br/>iOS | PURCHASE\_INACTIVE\_PRODUCT\_ID<br/>TCGB\_ERROR\_PURCHASE\_INACTIVE\_PRODUCT\_ID | 4005       | 該当商品が有効な状態ではありません。  |
 |                 | Android<br/>Unity<br/>Unreal<br/>iOS | PURCHASE\_NOT\_EXIST\_PRODUCT\_ID<br/>TCGB\_ERROR\_PURCHASE\_NOT\_EXIST\_PRODUCT\_ID | 4006       | 存在しないGamebaseProductIDで決済をリクエストしました。 |
 |                 | Android<br/>Unity<br/>Unreal<br/>iOS | PURCHASE\_LIMIT\_EXCEEDED<br/>TCGB\_ERROR\_PURCHASE\_LIMIT\_EXCEEDED | 4007       | 月の購入限度を超過しました。 |
+|                 | Android<br/>Unity<br/>Unreal<br/>iOS | PURCHASE\_PENDING<br/>TCGB\_ERROR\_PURCHASE\_PENDING | 4008       | 결제를 완료하려면 추가 확인이 필요합니다. |
 |                 | Android<br/>Unity<br/>Unreal<br/>iOS | PURCHASE\_NOT\_SUPPORTED\_MARKET<br/>TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET | 4010       | このストアには対応しておりません。                          |
 |                 | Android<br/>Unity<br/>Unreal<br/>iOS | PURCHASE\_EXTERNAL\_LIBRARY\_ERROR<br/>TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR | 4201       | 外部IAPライブラリーのエラーです。                      |
 |                 | Android<br/>Unity<br/>Unreal<br/>iOS | PURCHASE\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR | 4999       | 不明な購入エラーです。                           |

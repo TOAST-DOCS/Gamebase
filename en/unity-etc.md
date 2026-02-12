@@ -846,7 +846,7 @@ private void CheckWebView(GamebaseResponse.Event.GamebaseEventObserverData obser
 
 #### Purchase Updated
 
-* This event is triggered when a product is acquired by redeeming a promotion code.
+* App Store 프로모션 상품 구매 완료 또는 Ask to Buy 등으로 지연된 결제가 완료되었을 때 발생하는 이벤트입니다.
 * Can acquire payment receipt information.
 
 **Example**
@@ -866,8 +866,7 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
                 GamebaseResponse.Event.PurchasableReceipt purchasableReceipt = GamebaseResponse.Event.PurchasableReceipt.From(message.data);
                 if (purchasableReceipt != null)
                 {
-                    // If the user got item by 'Promotion Code',
-                    // this event will be occurred.
+                    // If a promotion or pending purchase is completed, this event will be occurred.
                 }
                 break;
             }
