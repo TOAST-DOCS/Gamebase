@@ -503,7 +503,7 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 * Category 는 GamebaseEventCategory 클래스에 정의되어 있습니다.
 * 이벤트는 크게 IdPRevoked, LoggedOut, ServerPush, Observer, Purchase, Push로 나뉘며, 각 Category에 따라 아래 표와 같은 방법으로 GamebaseEventMessage.data를 VO로 변환할 수 있습니다.
 
-| Event 종류 | GamebaseEventCategory | VO 변환 방법 | 비고 |
+| <div style="width:150px">Event 종류</div> | GamebaseEventCategory | VO 변환 방법 | 비고 |
 | --------- | --------------------- | ----------- | --- |
 | IdPRevoked | GamebaseEventCategory.IDP_REVOKED | GamebaseResponse.Event.GamebaseEventIdPRevokedData.from(message.data) | \- |
 | LoggedOut | GamebaseEventCategory.LOGGED_OUT | GamebaseResponse.Event.GamebaseEventLoggedOutData.from(message.data) | \- |
