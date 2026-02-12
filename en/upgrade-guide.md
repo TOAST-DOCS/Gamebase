@@ -1,16 +1,24 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.80.0
+
+### iOS
+
+* Xcode 최소 지원 버전이 16.0에서 26.0으로 변경되었습니다.
+* **+[TCGBPurchase setPromotionIAPHandler:]** API가 deprecated되었습니다.
+
 ## 2.79.0
 
 ### iOS
 
-* **+[TCGBConfiguration setStoreCode:]** API가 deprecated 되었습니다.
-* **-[TCGBPurchase setStoreCode:]** API가 deprecated 되었습니다.
-* **TCGBPurchase.storeCode** API가 deprecated 되었습니다.
+* **+[TCGBConfiguration setStoreCode:]** API is deprecated.
+* **-[TCGBPurchase setStoreCode:]** API is deprecated.
+* **TCGBPurchase.storeCode** API is deprecated.
 
 ## 2.77.0
 
 ### Common
+
 * We have updated the recommended guide for the IdP Revoked event in GamebaseEventHandler, which occurs when an Apple ID account is revoked.
     * You need to notify users that the IdP is disabled and ensure they log out and log back in, rather than withdrawing from the service.
     

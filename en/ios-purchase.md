@@ -89,7 +89,7 @@ If there's a value on the list of unconsumed purchases, proceed with the Consume
     * When entering the store (or lobby) in a game
     * When checking the user profile or mailbox
 
-### Purchase Item
+### Purchase Items
 
 With gamebaseProductId of an item to purchase, call the following API to request for purchase.  <br/>
 The gamebaseProductId is generally same as the ID of item registered at store, but it could be changed on Gamebase console.
@@ -102,21 +102,13 @@ When a game user cancels purchase, the **TCGB_ERROR_PURCHASE_USER_CANCELED** is 
 + (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId 
                               viewController:(UIViewController *)viewController
                                   completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
-
-+ (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId 
-                                     payload:(NSString *)payload 
-                              viewController:(UIViewController *)viewController 
-                                  completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
 ```
 
 **Example**
 
 ```objectivec
 - (void)purchasingItem:(NSString *)gamebaseProductId {
-    NSString *userPayload = @"USER_PAYLOAD";
-
-    [TCGBPurchase requestPurchaseWithGamebaseProductId:gamebaseProductId payload:userPayload viewController:self completion:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
-        NSString *receivedPayload = purchasableReceipt.payload;
+    [TCGBPurchase requestPurchaseWithGamebaseProductId:gamebaseProductId viewController:self completion:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Purchase Item Succeeded
         } else if (error.code == TCGB_ERROR_PURCHASE_USER_CANCELED) {
@@ -382,14 +374,10 @@ In the case of auto-renewed consumable subscriptions, any missing purchases can 
 }
 ```
 
-### Event by Promotion
+### Event by Purchase
 
-> `Caution`
-> It is available for iOS version 11 or later.
-> Supported in Gamebase 1.13.0 or later. (NHN Cloud IAP SDK 1.6.0 or later applied)
-
-The promotion payment can be processed through GamebaseEventHandler.
-Please refer to the guide below for how to process the promotion payment with GamebaseEventHandler.
+App Store 프로모션 상품 구매가 완료되거나, Ask to Buy 등으로 지연된 결제가 완료되었을 때, GamebaseEventHandler를 이용해 이벤트를 받아 처리할 수 있습니다.
+GamebaseEventHandler로 지연 결제 이벤트를 처리하는 방법은 아래 가이드를 확인하세요.
 [Game > Gamebase > iOS SDK user guide > ETC > Gamebase Event Handler](./ios-etc/#purchase-updated)
 
 
@@ -400,37 +388,6 @@ If In-App Purchase (for App Store) is included to SDK, like Facebook SDK or Goog
   * Facebook
     * Facebook Console > Setting > Default Setting > Disable the **Automatically Log In-App Events (Recommended)** feature
     * When the Facebook authentication feature is not used: **Exclude the GamebaseAuthFacebookAdapter.xcframework file** and build
-
-
-#### Overview
-* Apple Developer Overview : [https://developer.apple.com/app-store/promoting-in-app-purchases/](https://developer.apple.com/app-store/promoting-in-app-purchases/)
-* Apple Developer Reference : [https://help.apple.com/app-store-connect/#/deve3105860f](https://help.apple.com/app-store-connect/#/deve3105860f)
-
-
-It provides a function to purchase in-app items from App Store apps.
-After a successful purchase of items, the items can be delivered using the handler listed below.
-
-The promotion IAP is displayed only when an additional setting is done in App Store Connect.
-
-
-#### How to Test App Store Promotion IAP
-
-> `Caution`
-> You can test your app after uploading it to the App Store Connect and installing the app with TestFlight.
->
-
-1. Install the app with TestFlight.
-2. Call the following URL scheme (scheme) to proceed the test.
-
-| URL Components | keyname | value |
-| --- | --- | --- |
-| scheme | itms-services | Fixed value |
-| host &amp; path | None | None |
-| queries | action | purchaseIntent |
-| | bundleId | bundled identifier of the app |
-| | productIdentifier | product identifier of the purchased item |
-
-E.g.) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
 
 ### TCGBPurchasableConfiguration
 
@@ -450,6 +407,7 @@ E.g.) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&prod
 | TCGB\_ERROR\_PURCHASE\_INACTIVE\_PRODUCT\_ID               | 4005       | Product is not activated.                                    |
 | TCGB\_ERROR\_PURCHASE\_NOT\_EXIST\_PRODUCT\_ID             | 4006       | Requested for purchase with invalid GamebaseProductID.       |
 | TCGB_ERROR_PURCHASE_LIMIT_EXCEEDED                         | 4007       | You have exceeded your monthly purchase limit.               |
+| TCGB_ERROR_PURCHASE_PENDING                          | 4008       | 결제를 완료하려면 추가 확인이 필요합니다. |
 | TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET              | 4010       | The store is not supported.<br />iOS supports "AS".                  |
 | TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR            | 4201       | Error in NHN Cloud IAP library.<br>Please check the error details.         |
 | TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR                      | 4999       | Unknown error in purchase.<br>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we'll return at the earliest possible moment. 
