@@ -336,7 +336,7 @@ void USample::AddEventHandler()
 * イベントは大きくLoggedOut、ServerPush、Observer、Purchase、Pushに分けられ、各Categoryに基づいて、GamebaseEventMessage.dataを次の表のような方法でVOに変換できます。
 
 
-| Event種類 | GamebaseEventCategory | VO変換方法 | 備考 |
+| <div style="width:120px">Event種類</div> | GamebaseEventCategory | VO変換方法 | 備考 |
 | --------- | --------------------- | ----------- | --- |
 | IdPRevoked | GamebaseEventCategory::IdPRevoked | FGamebaseEventIdPRevokedData::From(Message.Data) | \- |
 | LoggedOut | GamebaseEventCategory::LoggedOut | FGamebaseEventLoggedOutData::From(Message.Data) | \- |
