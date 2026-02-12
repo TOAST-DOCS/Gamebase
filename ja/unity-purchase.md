@@ -64,8 +64,7 @@ AndroidやiOSでアプリ内決済機能を設定する方法は、次のドキ�
 ### Purchase Items
 
 구매하고자 하는 아이템의 gamebaseProductId를 사용하여 구매를 요청합니다.<br/>
-gamebaseProductId는 일반적으로 스토어에 등록한 아이템의 id와 동일하지만, Gamebase 콘솔에서 변경할 수도 있습니다.
-payload 필드에 입력한 추가 정보는 결제 성공 후, **PurchasableReceipt.payload** 필드에 유지되므로 여러 가지 용도로 활용할 수 있습니다.<br/>
+gamebaseProductId는 일반적으로 스토어에 등록한 아이템의 id와 동일하지만, Gamebase 콘솔에서 변경할 수도 있습니다.<br/>
 
 게임 유저가 구매를 취소하는 경우 **PURCHASE_USER_CANCELED** 오류가 반환됩니다.
 취소 처리를 해 주시기 바랍니다.
@@ -82,7 +81,6 @@ Supported Platforms
 
 ```cs
 static void RequestPurchase(string gamebaseProductId, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
-static void RequestPurchase(string gamebaseProductId, string payload, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
 ```
 
 **Example**
@@ -108,32 +106,6 @@ public void RequestPurchase(string gamebaseProductId)
         }
     });
 }
-
-
-public void RequestPurchase(string gamebaseProductId)
-{
-    string userPayload = "{\"description\":\"This is example\",\"channelId\":\"delta\",\"characterId\":\"abc\"}";
-    Gamebase.Purchase.RequestPurchase(gamebaseProductId, userPayload, (purchasableReceipt, error) =>
-    {
-        if (Gamebase.IsSuccess(error))
-        {
-            Debug.Log("Purchase succeeded.");
-            // userPayload value entered when calling API
-            string payload = purchasableReceipt.payload
-        }
-        else
-        {
-        	if (error.code == (int)GamebaseErrorCode.PURCHASE_USER_CANCELED)
-            {
-                Debug.Log("User canceled purchase.");
-            }
-            else
-            {
-            	Debug.Log(string.Format("Purchase failed. error is {0}", error));
-            }
-        }
-    });
-}  
 ```
 
 **VO**

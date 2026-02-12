@@ -64,8 +64,7 @@ If there's a value on the list of unconsumed purchases, proceed with the Consume
 ### Purchase Items
 
 Request a purchase by using the gamebaseProductId of the item to purchase.<br/>
-The gamebaseProductId is generally the same as the ID of item registered at the store, but it can be changed in the Gamebase console. 
-Additional information entered in the payload field is maintained at the **PurchasableReceipt.payload** field after a successful payment, so it can be used for many purposes.<br/>
+The gamebaseProductId is generally the same as the ID of item registered at the store, but it can be changed in the Gamebase console.<br/>
 
 When a game user cancels purchase, the **PURCHASE_USER_CANCELED** error is returned.
 Please process cancellation.
@@ -82,7 +81,6 @@ Supported Platforms
 
 ```cs
 static void RequestPurchase(string gamebaseProductId, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
-static void RequestPurchase(string gamebaseProductId, string payload, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Purchase.PurchasableReceipt> callback)
 ```
 
 **Example**
@@ -108,32 +106,6 @@ public void RequestPurchase(string gamebaseProductId)
         }
     });
 }
-
-
-public void RequestPurchase(string gamebaseProductId)
-{
-    string userPayload = "{\"description\":\"This is example\",\"channelId\":\"delta\",\"characterId\":\"abc\"}";
-    Gamebase.Purchase.RequestPurchase(gamebaseProductId, userPayload, (purchasableReceipt, error) =>
-    {
-        if (Gamebase.IsSuccess(error))
-        {
-            Debug.Log("Purchase succeeded.");
-            // userPayload value entered when calling API
-            string payload = purchasableReceipt.payload
-        }
-        else
-        {
-        	if (error.code == (int)GamebaseErrorCode.PURCHASE_USER_CANCELED)
-            {
-                Debug.Log("User canceled purchase.");
-            }
-            else
-            {
-            	Debug.Log(string.Format("Purchase failed. error is {0}", error));
-            }
-        }
-    });
-}  
 ```
 
 **VO**
