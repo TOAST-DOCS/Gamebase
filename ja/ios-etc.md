@@ -343,16 +343,16 @@ localizedstring.jsonに定義されている形式は、次の通りです。
 * CategoryはGamebaseEventCategoryクラスに定義されています。
 * イベントは大きくIdPRevoked、LoggedOut、ServerPush、Observer、Purchase、Pushに分けられ、各Categoryに基づいて、TCGBGamebaseEventMessage.dataを次の表のような方法でVOに変換できます。
 
-| Event種類 | GamebaseEventCategory | VO変換方法 | 備考 |
+| <div style="width:150px">Event種類</div> | GamebaseEventCategory | VO変換方法 | 備考 |
 | --------- | --------------------- | ----------- | --- |
 | IdPRevoked | kTCGBIdPRevoked | [TCGBGamebaseEventIdPRevokedData gamebaseEventIdPRevokedDataFromJsonString:message.data] | \- |
 | LoggedOut | kTCGBLoggedOut | [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data] | \- |
 | ServerPush | kTCGBServerPushAppKickoutMessageReceived<br>kTCGBServerPushAppKickout<br>kTCGBServerPushTransferKickout | [TCGBGamebaseEventServerPushData gamebaseEventServerPushDataFromJsonString:message.data] | \- |
 | Observer | kTCGBObserverLaunching<br>kTCGBObserverHeartbeat<br>kTCGBObserverNetwork | [TCGBGamebaseEventObserverData gamebaseEventObserverDataFromJsonString:message.data] | \- |
-| Purchase - プロモーション決済 | kTCGBPurchaseUpdated | [TCGBPurchasableReceipt purchasableReceiptFromJsonString:message.data] | \- |
-| Push - メッセージ受信 | kTCGBPushReceivedMessage | [TCGBPushMessage pushMessageFromJsonString:message.data] | \- |
-| Push - メッセージクリック | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
-| Push - アクションクリック | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | RichMessageボタンを押すと動作します。 |
+| Purchase<br>- 프로모션 결제<br>- 지연 결제 | kTCGBPurchaseUpdated | [TCGBPurchasableReceipt purchasableReceiptFromJsonString:message.data] | \- |
+| Push<br>- メッセージ受信 | kTCGBPushReceivedMessage | [TCGBPushMessage pushMessageFromJsonString:message.data] | \- |
+| Push<br>- メッセージクリック | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
+| Push<br>- アクションクリック | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | RichMessageボタンを押すと動作します。 |
 
 #### IdP Revoked
 
@@ -548,7 +548,7 @@ localizedstring.jsonに定義されている形式は、次の通りです。
 
 #### Purchase Updated
 
-* Promotionコードを入力して商品を獲得した場合に発生するイベントです。
+* App Store 프로모션 상품 구매 완료 또는 Ask to Buy 등으로 지연된 결제가 완료되었을 때 발생하는 이벤트입니다.
 * 決済領収書情報を取得できます。
 
 **Example**
@@ -558,8 +558,7 @@ localizedstring.jsonに定義されている形式は、次の通りです。
     void(^eventHandler)(TCGBGamebaseEventMessage *) = ^(TCGBGamebaseEventMessage * _Nonnull message) {
         TCGBPurchasableReceipt* receipt = [TCGBPurchasableReceipt purchasableReceiptFromJsonString:message.data];
         if (receipt != nil) {
-            // If user purchase item from appstore promoting iap
-            // this event will be occurred.
+            // If a promotion or pending purchase is completed, this event will be occurred.
         }
     };
     
@@ -674,7 +673,7 @@ localizedstring.jsonに定義されている形式は、次の通りです。
 
 > [TIP]
 >
-> TCGBPurchaseのrequestPurchaseWithItemSeq:viewController:completion APIを呼び出して決済するか、setPromotionIAPHandlerを呼び出してプロモーション決済を完了すると、自動的に指標を伝送します。
+> TCGBPurchaseのrequestPurchase APIを呼び出して決済するか、setPromotionIAPHandlerを呼び出してプロモーション決済を完了すると、自動的に指標を伝送します。
 
 Analyticsコンソールの使用方法は、下記のガイドを参照してください。
 

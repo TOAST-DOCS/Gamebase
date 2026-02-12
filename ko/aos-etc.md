@@ -369,15 +369,15 @@ void eventHandlerSample(Activity activity) {
 * Category는 GamebaseEventCategory 클래스에 정의되어 있습니다.
 * 이벤트는 크게 LoggedOut, ServerPush, Observer, Purchase, Push로 나뉘며, 각 Category에 따라, 아래 표와 같은 방법으로 GamebaseEventMessage.data를 VO로 변환할 수 있습니다.
 
-| Event 종류 | GamebaseEventCategory | VO 변환 방법 | 비고 |
+| <div style="width:150px">Event 종류</div> | GamebaseEventCategory | VO 변환 방법 | 비고 |
 | --------- | --------------------- | ----------- | --- |
 | LoggedOut | GamebaseEventCategory.LOGGED_OUT | GamebaseEventLoggedOutData.from(message.data) | \- |
 | ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED<br>GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseEventServerPushData.from(message.data) | \- |
 | Observer | GamebaseEventCategory.OBSERVER_LAUNCHING<br>GamebaseEventCategory.OBSERVER_NETWORK<br>GamebaseEventCategory.OBSERVER_HEARTBEAT | GamebaseEventObserverData.from(message.data) | \- |
-| Purchase - 프로모션 결제 | GamebaseEventCategory.PURCHASE_UPDATED | PurchasableReceipt.from(message.data) | \- |
-| Push - 메시지 수신 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | PushMessage.from(message.data) | **isForeground** 값을 통해 Foreground에서 메시지를 수신했는지 여부를 확인할 수 있습니다. |
-| Push - 메시지 클릭 | GamebaseEventCategory.PUSH_CLICK_MESSAGE | PushMessage.from(message.data) | **isForeground** 값이 없습니다. |
-| Push - 액션 클릭 | GamebaseEventCategory.PUSH_CLICK_ACTION | PushAction.from(message.data) | RichMessage 버튼 클릭 시 동작합니다. |
+| Purchase<br>- 프로모션 결제<br>- 지연 결제 | GamebaseEventCategory.PURCHASE_UPDATED | PurchasableReceipt.from(message.data) | \- |
+| Push<br>- 메시지 수신 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | PushMessage.from(message.data) | **isForeground** 값을 통해 Foreground에서 메시지를 수신했는지 여부를 확인할 수 있습니다. |
+| Push<br>- 메시지 클릭 | GamebaseEventCategory.PUSH_CLICK_MESSAGE | PushMessage.from(message.data) | **isForeground** 값이 없습니다. |
+| Push<br>- 액션 클릭 | GamebaseEventCategory.PUSH_CLICK_ACTION | PushAction.from(message.data) | RichMessage 버튼 클릭 시 동작합니다. |
 
 #### How to handle events when the application is not running
 
@@ -606,7 +606,7 @@ void processObserver(String category, GamebaseEventObserverData data) {
 
 #### Purchase Updated
 
-* Promotion 코드 입력을 통해 상품을 획득한 경우 발생하는 이벤트입니다.
+* Promotion 코드 입력을 통해 상품을 획득한 경우 또는 Pending 결제(느린 결제, 부모 동의 등)가 완료되었을 때 발생하는 이벤트입니다.
 * 결제 영수증 정보를 획득할 수 있습니다.
 
 **Example**
@@ -620,7 +620,8 @@ void eventHandlerSample(Activity activity) {
                 case GamebaseEventCategory.PURCHASE_UPDATED:
                     PurchasableReceipt receipt = PurchasableReceipt.from(message.data);
                     if (receipt != null) {
-                        // If the user got item by 'Promotion Code',
+                        // If the user got item by 'Promotion Code' or
+                        // 'Lazy purchase', or 'Parents permission',...,
                         // this event will be occurred.
                     }
                     break;

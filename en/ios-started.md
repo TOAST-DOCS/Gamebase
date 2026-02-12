@@ -8,7 +8,7 @@
 > Minimum specifications
 >
 > * User run environment : iOS 15 or later, Swift 5 or later
-> * Build environment : Xcode 16 (iOS 18 SDK) or later
+> * Build environment : Xcode 26 (iOS 26 SDK) or later
 >
 
 <br/>
@@ -48,7 +48,7 @@ Then, include corresponding SDK files to a target of your project.
 |  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 15 or later |
 |  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.17.2 | Supports Hangame login | iOS 15 or later |
 |  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.4.0 | Supports Weibo login | iOS 15 or later |
-|  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.20.0 | Supports Kakao login | iOS 15 or later<br/>Xcode 16.2 or later |
+|  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.20.0 | Supports Kakao login | iOS 15 or later |
 |  | GamebaseAuthSteamAdapter.xcframework |  | Supports Steam login | iOS 15 or later |
 | Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit<br/>NHNCloudIAP 1.8.5 | Supports in-game purchase | iOS 15 or later |
 | Gamebase Push Adapters | GamebasePushAdapter.xcframework | NHNCloudPush 1.8.5 | Supports Push | iOS 15 or later |
