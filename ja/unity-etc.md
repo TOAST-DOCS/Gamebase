@@ -505,7 +505,7 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 * CategoryはGamebaseEventCategoryクラスに定義されています。
 * イベントは大きくIdPRevoked、LoggedOut、ServerPush、Observer、Purchase、Pushに分けられ、各Categoryに基づいて、GamebaseEventMessage.dataを次の表のような方法でVOに変換できます。
 
-| Event種類 | GamebaseEventCategory | VO変換方法 | 備考 |
+| <div style="width:150px">Event種類</div> | GamebaseEventCategory | VO変換方法 | 備考 |
 | --------- | --------------------- | ----------- | --- |
 | IdPRevoked | GamebaseEventCategory.IDP_REVOKED | GamebaseResponse.Event.GamebaseEventIdPRevokedData.from(message.data) | \- |
 | LoggedOut | GamebaseEventCategory.LOGGED_OUT | GamebaseResponse.Event.GamebaseEventLoggedOutData.from(message.data) | \- |
@@ -848,7 +848,7 @@ private void CheckWebView(GamebaseResponse.Event.GamebaseEventObserverData obser
 
 #### Purchase Updated
 
-* Promotionコードを入力して商品を獲得した場合に発生するイベントです。
+* App Store 프로모션 상품 구매 완료 또는 Ask to Buy 등으로 지연된 결제가 완료되었을 때 발생하는 이벤트입니다.
 * 決済領収書情報を取得できます。
 
 **Example**
@@ -868,8 +868,7 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
                 GamebaseResponse.Event.PurchasableReceipt purchasableReceipt = GamebaseResponse.Event.PurchasableReceipt.From(message.data);
                 if (purchasableReceipt != null)
                 {
-                    // If the user got item by 'Promotion Code',
-                    // this event will be occurred.
+                    // If a promotion or pending purchase is completed, this event will be occurred.
                 }
                 break;
             }
