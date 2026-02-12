@@ -334,7 +334,7 @@ void USample::AddEventHandler()
 * Category is defined in the GamebaseEventCategory class.
 * In general, events can be categorized into LoggedOut, ServerPush, Observer, Purchase, or Push. GamebaseEventMessage.data can be converted into a VO in the ways shown in the following table for each Category.
 
-| <div style="width:120px">Event type</div> | GamebaseEventCategory | VO conversion method | Remarks |
+| <div style="width:150px">Event type</div> | GamebaseEventCategory | VO conversion method | Remarks |
 | --------- | --------------------- | ----------- | --- |
 | IdPRevoked | GamebaseEventCategory::IdPRevoked | FGamebaseEventIdPRevokedData::From(Message.Data) | \- |
 | LoggedOut | GamebaseEventCategory::LoggedOut | FGamebaseEventLoggedOutData::From(Message.Data) | \- |

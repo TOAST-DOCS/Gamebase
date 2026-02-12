@@ -503,7 +503,7 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 * Category is defined in the GamebaseEventCategory class.
 * In general, events can be categorized into IdPRevoked, LoggedOut, ServerPush, Observer, Purchase, or Push. GamebaseEventMessage.data can be converted into a VO in the ways shown in the following table for each Category.
 
-| <div style="width:120px">Event type</div> | GamebaseEventCategory | VO conversion method | Remarks |
+| <div style="width:150px">Event type</div> | GamebaseEventCategory | VO conversion method | Remarks |
 | --------- | --------------------- | ----------- | --- |
 | IdPRevoked | GamebaseEventCategory.IDP_REVOKED | GamebaseResponse.Event.GamebaseEventIdPRevokedData.from(message.data) | \- |
 | LoggedOut | GamebaseEventCategory.LOGGED_OUT | GamebaseResponse.Event.GamebaseEventLoggedOutData.from(message.data) | \- |

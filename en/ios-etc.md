@@ -341,7 +341,7 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 * Category is defined in the GamebaseEventCategory class.
 * In general, events can be categorized into IdPRevoked, LoggedOut, ServerPush, Observer, Purchase, or Push. TCGBGamebaseEventMessage.data can be converted into a VO in the ways shown in the following table for each Category.
 
-| <div style="width:120px">Event type</div> | GamebaseEventCategory | VO conversion method | Remarks |
+| <div style="width:150px">Event type</div> | GamebaseEventCategory | VO conversion method | Remarks |
 | --------- | --------------------- | ----------- | --- |
 | IdPRevoked | kTCGBIdPRevoked | [TCGBGamebaseEventIdPRevokedData gamebaseEventIdPRevokedDataFromJsonString:message.data] | \- |
 | LoggedOut | kTCGBLoggedOut | [TCGBGamebaseEventLoggedOutData gamebaseEventLoggedOutDataFromJsonString:message.data] | \- |
