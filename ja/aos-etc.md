@@ -374,10 +374,10 @@ void eventHandlerSample(Activity activity) {
 | LoggedOut | GamebaseEventCategory.LOGGED_OUT | GamebaseEventLoggedOutData.from(message.data) | \- |
 | ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED<br>GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseEventServerPushData.from(message.data) | \- |
 | Observer | GamebaseEventCategory.OBSERVER_LAUNCHING<br>GamebaseEventCategory.OBSERVER_NETWORK<br>GamebaseEventCategory.OBSERVER_HEARTBEAT | GamebaseEventObserverData.from(message.data) | \- |
-| Purchase - プロモーション決済 | GamebaseEventCategory.PURCHASE_UPDATED | PurchasableReceipt.from(message.data) | \- |
-| Push - メッセージ受信 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | PushMessage.from(message.data) | **isForeground**値を使用してForegroundでメッセージを受信したかどうかを確認できます。 |
-| Push - メッセージクリック | GamebaseEventCategory.PUSH_CLICK_MESSAGE | PushMessage.from(message.data) | **isForeground**値がありません。 |
-| Push - アクションクリック | GamebaseEventCategory.PUSH_CLICK_ACTION | PushAction.from(message.data) | RichMessageボタンを押すと動作します。 |
+| Purchase<br>- プロモーション決済<br>- 지연 결제 | GamebaseEventCategory.PURCHASE_UPDATED | PurchasableReceipt.from(message.data) | \- |
+| Push<br>- メッセージ受信 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | PushMessage.from(message.data) | **isForeground**値を使用してForegroundでメッセージを受信したかどうかを確認できます。 |
+| Push<br>- メッセージクリック | GamebaseEventCategory.PUSH_CLICK_MESSAGE | PushMessage.from(message.data) | **isForeground**値がありません。 |
+| Push<br>- アクションクリック | GamebaseEventCategory.PUSH_CLICK_ACTION | PushAction.from(message.data) | RichMessageボタンを押すと動作します。 |
 
 #### How to handle events when the application is not running
 
@@ -607,7 +607,7 @@ void processObserver(String category, GamebaseEventObserverData data) {
 
 #### Purchase Updated
 
-* Promotionコードを入力して商品を獲得した場合に発生するイベントです。
+* Promotion 코드 입력을 통해 상품을 획득한 경우 또는 Pending 결제(느린 결제, 부모 동의 등)가 완료되었을 때 발생하는 이벤트입니다.
 * 決済領収書情報を取得できます。
 
 **Example**
@@ -621,7 +621,8 @@ void eventHandlerSample(Activity activity) {
                 case GamebaseEventCategory.PURCHASE_UPDATED:
                     PurchasableReceipt receipt = PurchasableReceipt.from(message.data);
                     if (receipt != null) {
-                        // If the user got item by 'Promotion Code',
+                        // If the user got item by 'Promotion Code' or
+                        // 'Lazy purchase', or 'Parents permission',...,
                         // this event will be occurred.
                     }
                     break;

@@ -5,7 +5,7 @@
 
 #### 기능 개선/변경
 * Xcode 최소 지원 버전이 26.0으로 변경되었습니다.
-* 결제 요청 시 Ask to Buy 등으로 지연 결제가 지연되면 **PURCHASE_PENDING(4008)** 에러가 발생합니다.
+* 결제 요청 시 Ask to Buy 등으로 지연 결제가 지연되면 **TCGB_ERROR_PURCHASE_PENDING(4008)** 에러가 발생합니다.
 * Gamebase Event Handler의 kTCGBPurchaseUpdated 이벤트 기능이 확장되었습니다.
     * App Store 프로모션 상품 구매 완료 또는 Ask to Buy 등으로 지연된 결제가 완료되었을 때 이벤트를 수신할 수 있습니다.
 * 내부 로직 개선
