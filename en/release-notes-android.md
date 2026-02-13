@@ -1,12 +1,27 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.80.0 (2026. 02. 13.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.80.0/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+
+* 결제 요청 시 느린 결제나 부모 동의와 같이 결제 완료를 기다려야 하는 상황이 발생하는 경우, 신규로 추가된 **PURCHASE_PENDING(4008)** 에러가 발생하게 됩니다.
+* Gamebase Event Handler의 GamebaseEventCategory.PURCHASE_UPDATED 이벤트 기능이 확장되었습니다.
+    * 앱이 실행 중일 때 GamebaseEventHandler를 통해 Pending 결제(느린 결제, 부모 동의 등) 완료 이벤트를 제공받을 수 있습니다.
+
+#### 버그 수정
+
+* 약관 창 사이즈가 간헐적으로 크게 보이는 이슈 수정
+* 난독화 적용시 알림 권한 자동 요청 팝업이 표시되지 않는 이슈 수정
+
 ### 2.79.0 (2026. 01. 27.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.79.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
+#### Feature Updates
 
-* targetSdk 36 빌드를 Android 16 단말기에서 실행 시 뒤로 가기가 정상 작동하지 않고 웹뷰가 그대로 닫히거나 앱이 종료되는 현상을 수정했습니다.
+* Fixed an issue where the back button failed to function correctly on Android 16 (targetSdk 36), causing WebViews or the app to close unexpectedly.
 * Improved internal logic
 
 ### 2.78.0 (2025. 12. 23.)

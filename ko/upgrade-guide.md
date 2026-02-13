@@ -1,20 +1,31 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.80.0
+
+### iOS
+
+* Xcode 최소 지원 버전이 16.0에서 26.0으로 변경되었습니다.
+* **+[TCGBPurchase setPromotionIAPHandler:]** API가 deprecated되었습니다.
+
+### Unreal
+
+* (iOS) Project Settings에서 활성화한 기능에 따라 Info.plist에 필요한 항목이 자동으로 추가됩니다.
+    * `AdditionalPlistData`로 직접 관리하려면 [iOS Settings](./unreal-started/#ios-settings)에서 **Disable Auto Info.plist Update**를 활성화하세요.
+
 ## 2.79.0
 
 ### iOS
 
-* **+[TCGBConfiguration setStoreCode:]** API가 deprecated 되었습니다.
-* **-[TCGBPurchase setStoreCode:]** API가 deprecated 되었습니다.
-* **TCGBPurchase.storeCode** API가 deprecated 되었습니다.
+* **+[TCGBConfiguration setStoreCode:]** API가 deprecated되었습니다.
+* **-[TCGBPurchase setStoreCode:]** API가 deprecated되었습니다.
+* **TCGBPurchase.storeCode** API가 deprecated되었습니다.
 
 ## 2.77.0
 
 ### Common
+
 * Apple 계정을 revoke했을 때 발생하는 GamebaseEventHandler의 IdP Revoked 이벤트의 권장 가이드를 변경하였습니다.
-
     * 유저에게 IdP가 사용 중지된 것을 알리고, 탈퇴 대신 로그아웃 후 다시 로그인할 수 있도록 변경하시기 바랍니다.
-
 
 ### iOS
 
@@ -53,7 +64,6 @@
 
 * Gamebase Android SDK 2.71.2는 다음 이슈가 발생합니다.
     * 네트워크 연결이 끊어진 후 복구되거나, 앱을 백그라운드로 내렸다가 포그라운드로 활성화한 경우 간헐적으로 웹소켓 모듈에서 ArrayIndexOutOfBoundsException으로 인한 크래시가 발생할 수 있습니다.
-
     * 이슈가 해결된 Gamebase Android SDK 2.72.0을 사용하세요.
 
 ## 2.70.0
@@ -596,7 +606,7 @@ if (UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebas
 
 #### Changed/Deprecated APIs
 
-* 킥아웃 팝업 표시 여부는 Gamebase 콘솔에서 킥아웃 등록시 설정할 수 있으므로 아래 API들이 deprecated 되었습니다.
+* 킥아웃 팝업 표시 여부는 Gamebase 콘솔에서 킥아웃 등록 시 설정할 수 있으므로 아래 API들이 deprecated되었습니다.
     * **-[TCGBConfiguration enableKickoutPopup:]**
     * **-[TCGBConfiguration isEnableKickoutPopup]**
 

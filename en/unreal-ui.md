@@ -467,27 +467,27 @@ void USample::ShowWebView(const FString& Url)
 
 #### FGamebaseWebViewConfiguration
 
-| Parameter | Values | Description |
-| ------------------------ | ---------------------------------------- | --------------------------- |
-| Title                    | FString                                   | Title of WebView                  |
-| Orientation              | GamebaseScreenOrientation::Unspecified    | Unspecified (**default**)            |
-|                          | GamebaseScreenOrientation::Portrait       | Portrait mode                       |
-|                          | GamebaseScreenOrientation::Landscape      | Landscape mode                       |
-|                          | GamebaseScreenOrientation::LandscapeReverse | Rotate portrait mode 180 degrees            |
-| ContentMode              | GamebaseWebViewContentMode::Recommended      | Browser recommended by the current platform (**default**)   |
-|                          | GamebaseWebViewContentMode::Mobile           | Mobile browser            |
-|                          | GamebaseWebViewContentMode::Desktop          | Desktop browser          |
-| NavigationColor          | FColor                                   | Color of Navigation Bar<br>**default**: FColor(18, 93, 230, 255)        |
-| NavigationTitleColor     | FColor                                   | Color of Navigation Bar Title<br>**default**: FColor::White          |
-| NavigationIconTintColor  | TOptional&lt;FColor&gt;                  | Color of Navigation Bar Title Icon Tint |
-| NavigationBarHeight      | height                                   | Height of Navigation Bar<br>**Android Only**                 |
-| bIsNavigationBarVisible  | true or false                            | Activate or deactivate Navigation Bar<br>**default**: true    |
-| bIsBackButtonVisible     | true or false                            | Activate or deactivate Go Back button<br>**default**: true   |
-| BackButtonImageResource  | ID of resource                           | Image of Go Back button         |
-| CloseButtonImageResource | ID of resource                           | Image of Close button            |
-| bEnableFixedFontSize      | true or false                            | Fix the font size for the terms and condtion window .<br>**default**: false<br>**Only for Android**     |
-| bRenderOutSideSafeArea    | true or false                            | Rendering to Cutout Area Ignoring SafeArea.<br>**default**: false<br>**Only for Android**   |
-| CutoutColor              | TOptional<FColor>                        | Cutout area background color outside of SafeArea<br>**Only for Android**                            |
+| Parameter                | Values                                           | Description |
+| ------------------------ | ------------------------------------------------ | --- |
+| Title                    | FString                                          | Title of WebView |
+| Orientation              | GamebaseScreenOrientation::Unspecified           | Unspecified (**default**) |
+|                          | GamebaseScreenOrientation::Portrait              | Portrait mode |
+|                          | GamebaseScreenOrientation::Landscape             | Landscape mode |
+|                          | GamebaseScreenOrientation::LandscapeReverse      | Rotate portrait mode 180 degrees |
+| ContentMode              | GamebaseWebViewContentMode::Recommended          | Browser recommended by the current platform (**default**) |
+|                          | GamebaseWebViewContentMode::Mobile               | Mobile browser |
+|                          | GamebaseWebViewContentMode::Desktop              | Desktop browser |
+| NavigationColor          | FColor                                           | Color of Navigation Bar<br>**default**: FColor(18, 93, 230, 255) |
+| NavigationTitleColor     | FColor                                           | Color of Navigation Bar Title<br>**default**: FColor::White |
+| NavigationIconTintColor  | TOptional&lt;FColor&gt;                          | Color of Navigation Bar Title Icon Tint |
+| NavigationBarHeight      | int32                                            | Height of Navigation Bar |
+| bIsNavigationBarVisible  | bool                                             | Activate or deactivate Navigation Bar<br>**default**: true |
+| bIsBackButtonVisible     | bool                                             | Activate or deactivate Go Back button<br>**default**: true |
+| BackButtonImageResource  | FString                                          | Image of Go Back button |
+| CloseButtonImageResource | FString                                          | Image of Close button |
+| bEnableFixedFontSize     | bool                                             | Fix the font size for the terms and condition window<br>**default**: false<br>**Only for Android** |
+| bRenderOutSideSafeArea   | bool                                             | Rendering to Cutout Area Ignoring SafeArea<br>**default**: false<br>**Only for Android** |
+| CutoutColor              | TOptional&lt;FColor&gt;                          | Cutout area background color outside of SafeArea<br>**Only for Android** |
 
 > [TIP]
 >

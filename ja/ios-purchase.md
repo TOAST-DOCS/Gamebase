@@ -89,7 +89,7 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
     * ゲーム内商店(またはロビー)進入時。
     * ユーザープロフィールまたはメールボックスの確認時。
 
-### Purchase Item
+### Purchase Items
 
 購入するアイテムのgamebaseProductIdを利用して次のAPIを呼び出し、購入をリクエストします。<br/>
 gamebaseProductIdは一般的にはストアに登録したアイテムのIDと同じですが、Gamebaseコンソールでも変更できます。
@@ -101,21 +101,13 @@ gamebaseProductIdは一般的にはストアに登録したアイテムのIDと�
 + (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId 
                               viewController:(UIViewController *)viewController
                                   completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
-
-+ (void)requestPurchaseWithGamebaseProductId:(NSString *)gamebaseProductId 
-                                     payload:(NSString *)payload 
-                              viewController:(UIViewController *)viewController 
-                                  completion:(void(^)(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error))completion;
 ```
 
 **Example**
 
 ```objectivec
 - (void)purchasingItem:(NSString *)gamebaseProductId {
-    NSString *userPayload = @"USER_PAYLOAD";
-
-    [TCGBPurchase requestPurchaseWithGamebaseProductId:gamebaseProductId payload:userPayload viewController:self completion:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
-        NSString *receivedPayload = purchasableReceipt.payload;
+    [TCGBPurchase requestPurchaseWithGamebaseProductId:gamebaseProductId viewController:self completion:^(TCGBPurchasableReceipt *purchasableReceipt, TCGBError *error) {
         if ([TCGBGamebase isSuccessWithError:error] == YES) {
             // To Purchase Item Succeeded
         } else if (error.code == TCGB_ERROR_PURCHASE_USER_CANCELED) {
@@ -385,15 +377,10 @@ gamebaseProductIdは一般的にはストアに登録したアイテムのIDと�
 }
 ```
 
-### Event by Promotion
+### Event by Purchase
 
-> `注意`
-> iOS 11以上でのみ使用できます。
-> Gamebase 1.13.0以上でサポートします。(NHN Cloud IAP SDK 1.6.0以上適用)
-
-
-プロモーション決済イベントはGamebaseEventHandlerによって処理できます。
-GamebaseEventHandlerでプロモーション決済イベントを処理する方法は、以下のガイドを確認してください。
+App Store 프로모션 상품 구매가 완료되거나, Ask to Buy 등으로 지연된 결제가 완료되었을 때, GamebaseEventHandler를 이용해 이벤트를 받아 처리할 수 있습니다.
+GamebaseEventHandler로 지연 결제 이벤트를 처리하는 방법은 아래 가이드를 확인하세요.
 [Game > Gamebase > iOS SDK使用ガイド > ETC > Gamebase Event Handler](./ios-etc/#purchase-updated)
 
 #### 使用時の注意事項
@@ -403,37 +390,6 @@ Facebook SDK、Google AdMob SDKなどのように、SDK内にIn App Purchase(App
   * Facebook
     * Facebook Console > 設定 > 基本設定 > **アプリ内イベントを自動的にロギング(推奨)**機能を無効化
     * Facebook認証機能を使用しない場合：**GamebaseAuthFacebookAdapter.xcframeworkファイルを除外**した後ビルド
-
-
-#### Overview
-* Apple Developer Overview : [https://developer.apple.com/app-store/promoting-in-app-purchases/](https://developer.apple.com/app-store/promoting-in-app-purchases/)
-* Apple Developer Reference : [https://help.apple.com/app-store-connect/#/deve3105860f](https://help.apple.com/app-store-connect/#/deve3105860f)
-
-
-App Storeアプリ内でアイテムを購入できる機能を提供します。
-アイテム購入成功後、登録しておいた下記のハンドラでアイテムを支給できます。
-
-プロモーションIAPは、App Store Connectで別途設定すると表示されます。
-
-
-#### How to Test App Store Promotion IAP
-
-> `注意`
-> App Store Connectにアプリをアップロードし、TestFlightでアプリをインストールした後、テストできます。
->
-
-1. TestFlightでアプリをインストールします。
-2. 下記のようなURLスキーム(scheme)を呼び出し、テストを進行します。
-
-| URL Components | keyname | value |
-| --- | --- | --- |
-| scheme | itms-services | 固定値 |
-| host &amp; path | なし | なし |
-| queries | action | purchaseIntent |
-| | bundleId | アプリのbundeld identifier |
-| | productIdentifier | 購入アイテムのproduct identifier |
-
-例) `itms-services://?action=purchaseIntent&bundleId=com.bundleid.testest&productIdentifier=productid.001`
 
 ### TCGBPurchasableConfiguration
 
@@ -453,6 +409,7 @@ App Storeアプリ内でアイテムを購入できる機能を提供します�
 | TCGB_ERROR_PURCHASE_INACTIVE_PRODUCT_ID              | 4005       | 該当商品が有効になっていません。                          |
 | TCGB_ERROR_PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 存在しないGamebaseProductIDで決済をリクエストしました。       |
 | TCGB_ERROR_PURCHASE_LIMIT_EXCEEDED                   | 4007       | 月の購入限度を超過しました。             |
+| TCGB_ERROR_PURCHASE_PENDING                          | 4008       | 결제를 완료하려면 추가 확인이 필요합니다. |
 | TCGB_ERROR_PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | サポートしないストアです。 iOSのサポート可能なストアは"AS"です。 |
 | TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN Cloud IAPライブラリエラーです。<br/>詳細エラーを確認してください。 |
 | TCGB_ERROR_PURCHASE_UNKNOWN_ERROR                    | 4999       | 定義されていない購入エラーです。<br>全てのログを[サポート](https://toast.com/support/inquiry)に送ってください。できるだけ早く回答いたします。 |

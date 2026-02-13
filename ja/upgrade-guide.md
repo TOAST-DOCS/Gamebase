@@ -1,29 +1,40 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.80.0
+
+### iOS
+
+* Xcode 최소 지원 버전이 16.0에서 26.0으로 변경되었습니다.
+* **+[TCGBPurchase setPromotionIAPHandler:]** API가 deprecated되었습니다.
+
+### Unreal
+
+* (iOS) Project Settings에서 활성화한 기능에 따라 Info.plist에 필요한 항목이 자동으로 추가됩니다.
+    * `AdditionalPlistData`로 직접 관리하려면 [iOS Settings](./unreal-started/#ios-settings)에서 **Disable Auto Info.plist Update**를 활성화하세요.
+
 ## 2.79.0
 
 ### iOS
 
-* **+[TCGBConfiguration setStoreCode:]** API가 deprecated 되었습니다.
-* **-[TCGBPurchase setStoreCode:]** API가 deprecated 되었습니다.
-* **TCGBPurchase.storeCode** API가 deprecated 되었습니다.
+* **+[TCGBConfiguration setStoreCode:]** APIが非推奨となりました。
+* **-[TCGBPurchase setStoreCode:]** APIが非推奨となりました。
+* **TCGBPurchase.storeCode** APIが非推奨となりました。
 
 ## 2.77.0
 
 ### Common
+
 * Apple IDアカウントの連携を解除(Revoke)した際に発生するGamebaseEventHandlerのIdP Revokedイベントの推奨ガイドを変更しました。
     * ユーザーにIdPが利用停止となったことを通知し、退会ではなくログアウトしてから再度ログインできるように変更してください。
 
 ### iOS
 
 * **+[TCGBPurchase requestItemListAtIAPConsoleWithCompletion:]** APIが非推奨となりました。
-
     * **+[TCGBPurchase requestItemListPurchasableWithCompletion:]** APIを使用してください。
 
 ### Unity
 
 * **Gamebase.Purchase.RequestItemListAtIAPConsole():** APIが非推奨となりました。
-
     * **Gamebase.Purchase.RequestItemListPurchasable()** APIを使用してください。
 
 ## 2.76.0
@@ -52,8 +63,8 @@
 ### Android
 
 * Gamebase Android SDK 2.71.2では、以下の問題が発生します。
-    * ネットワーク接続が切断された後に復旧した場合や、アプリをバックグラウンドにしてからフォアグラウンドに復帰させた場合に、断続的にWebSocketモジュールでArrayIndexOutOfBoundsExceptionによるクラッシュが発生することがあります。
-    * この問題が解決されたGamebase Android SDK 2.72.0を使用してください。
+    * ネットワーク接続が切断された後に復旧した場合や、アプリをバックグラウンドにしてからフォアグラウンドに復帰させた場合に、断続的にWebSocketモジュールでArrayIndexOutOfBoundsExceptionによるクラッシュが発生することがあります。
+    * この問題が解決されたGamebase Android SDK 2.72.0を使用してください。
 
 ## 2.70.0
 

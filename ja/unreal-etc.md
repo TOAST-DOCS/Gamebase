@@ -336,16 +336,16 @@ void USample::AddEventHandler()
 * イベントは大きくLoggedOut、ServerPush、Observer、Purchase、Pushに分けられ、各Categoryに基づいて、GamebaseEventMessage.dataを次の表のような方法でVOに変換できます。
 
 
-| Event種類 | GamebaseEventCategory | VO変換方法 | 備考 |
+| <div style="width:150px">Event種類</div> | GamebaseEventCategory | VO変換方法 | 備考 |
 | --------- | --------------------- | ----------- | --- |
 | IdPRevoked | GamebaseEventCategory::IdPRevoked | FGamebaseEventIdPRevokedData::From(Message.Data) | \- |
 | LoggedOut | GamebaseEventCategory::LoggedOut | FGamebaseEventLoggedOutData::From(Message.Data) | \- |
 | ServerPush | GamebaseEventCategory::ServerPushAppKickOut<br>GamebaseEventCategory::ServerPushAppKickOutMessageReceived<br>GamebaseEventCategory::ServerPushTransferKickout | FGamebaseEventServerPushData::From(Message.Data) | \- |
 | Observer | GamebaseEventCategory::ObserverLaunching<br>GamebaseEventCategory::ObserverNetwork<br>GamebaseEventCategory::ObserverHeartbeat | FGamebaseEventObserverData::From(Message.Data) | \- |
-| Purchase - プロモーション決済 | GamebaseEventCategory::PurchaseUpdated | FGamebaseEventPurchasableReceipt::From(Message.Data) | \- |
-| Push - メッセージ受信 | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(Message.Data) |  |
-| Push - メッセージクリック | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(Message.Data) |  |
-| Push - アクションクリック | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(Message.Data) | RichMessageボタンを押すと動作します。 |
+| Purchase<br>- 프로모션 결제<br>- 지연 결제 | GamebaseEventCategory::PurchaseUpdated | FGamebaseEventPurchasableReceipt::From(Message.Data) | \- |
+| Push<br>- メッセージ受信 | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(Message.Data) |  |
+| Push<br>- メッセージクリック | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(Message.Data) |  |
+| Push<br>- アクションクリック | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(Message.Data) | RichMessageボタンを押すと動作します。 |
 
 #### IdP Revoked
 
@@ -615,7 +615,7 @@ void USample::CheckHeartbeat(const FGamebaseEventObserverData& Data)
 
 #### Purchase Updated
 
-* Promotionコードを入力して商品を獲得した場合に発生するイベントです。
+* Promotion 코드 입력을 통해 상품을 획득한 경우 또는 Pending 결제(느린 결제, 부모 동의 등)가 완료되었을 때 발생하는 이벤트입니다.
 * 決済領収書情報を取得できます。
 
 **Example**
@@ -631,7 +631,8 @@ void USample::AddEventHandler()
             auto purchasableReceipt = FGamebaseEventPurchasableReceipt::From(Message.Data);
             if (purchasableReceipt.IsVaild())
             {
-                // If the user got item by 'Promotion Code',
+                // If the user got item by 'Promotion Code' or
+                // 'Lazy purchase', or 'Parents permission',...,
                 // this event will be occurred.
             }
             }

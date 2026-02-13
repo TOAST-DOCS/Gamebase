@@ -553,6 +553,7 @@ Gamebase에 스킴 이름과 블록을 지정해 원하는 기능을 추가할 �
 | navigationBarColor                     | UIColor                                  | 내비게이션 바 색상<br/>**default**: [UIColor colorWithRed: 0.07 green: 0.36 blue: 0.90 alpha: 1.00]   |
 | navigationBarTitleColor                | UIColor                                  | 내비게이션 바 타이틀 색상<br/>**default**: UIColor.whiteColor   |
 | navigationBarIconTintColor             | UIColor                                  | 내비게이션 바 아이콘 색상<br/>값을 설정하지 않으면 아이콘 원본 이미지가 표시됩니다.<br/>**default**: nil   |
+| navigationBarHeight                    | CGFloat                                  | 내비게이션 바 높이<br/>**default**: 54 |
 | isBackButtonVisible                    | YES or NO                                | 뒤로 가기 버튼 활성 또는 비활성<br/>**default**: YES |
 | isNavigationBarVisible                 | YES or NO                                | 내비게이션 바 표시 또는 숨기기<br/>**default**: YES    |
 | goBackImagePathForFullScreenNavigation | file name in Gamebase.bundle             | 뒤로 가기 버튼 이미지       |

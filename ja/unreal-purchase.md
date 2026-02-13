@@ -82,6 +82,10 @@ AndroidまたはiOSでアプリ内決済機能を設定する方法は、次の�
 購入したいアイテムのitemSeqを利用して次のAPIを呼び出し、購入をリクエストします。
 ゲームユーザーが購入をキャンセルする場合、**PURCHASE_USER_CANCELED**エラーが返されます。
 
+느린 결제나 부모 동의와 같이 결제 완료를 기다려야 하는 상황이 발생하는 경우에는 **PURCHASE_PENDING** 오류가 반환됩니다.
+이후에 결제가 정상적으로 완료되는 경우, GamebaseEventHandler에서 결제 완료 이벤트를 수신할 수 있습니다.
+[Game > Gamebase > Unreal SDK 사용 가이드 > ETC > Gamebase Event Handler](./unreal-etc/#purchase-updated)
+
 **API**
 
 Supported Platforms
@@ -560,6 +564,20 @@ struct FGamebasePurchasableSubscriptionStatus
 };
 ```
 
+### Event by Purchase
+
+Promotion 코드 입력을 통해 상품을 획득한 경우 또는 Pending 결제(느린 결제, 부모 동의 등)가 완료되었을 때 GamebaseEventHandler를 통해 이벤트를 받아 처리할 수 있습니다.
+GamebaseEventHandler로 프로모션 결제 및 지연 결제 이벤트를 처리하는 방법은 아래 가이드를 확인하세요.
+[Game > Gamebase > Unreal SDK 사용 가이드 > ETC > Gamebase Event Handler](./unreal-etc/#purchase-updated)
+
+Supported Platforms
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+
+> <font color="red">[주의]</font><br/>
+>
+> iOS 프로모션 결제를 위해서는 반드시 아래 가이드를 따라 설정하세요.
+> [Game > Gamebase > iOS SDK 사용 가이드 > 결제 > Event by Purchase](./ios-purchase/#event-by-purchase)
 
 ### Error Handling
 
@@ -572,6 +590,7 @@ struct FGamebasePurchasableSubscriptionStatus
 | PURCHASE_INACTIVE_PRODUCT_ID              | 4005       | 該当商品が有効な状態ではありません。  |
 | PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 存在しないGamebaseProductIDで決済をリクエストしました。 |
 | PURCHASE_LIMIT_EXCEEDED                   | 4007       | 月購入限度を超過しました。             |
+| PURCHASE_PENDING                          | 4008       | 결제를 완료하려면 추가 확인이 필요합니다. |
 | PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | サポートしないストアです。<br>選択できるストアはAS(App Store)、GG(Google)、ONESTORE、GALAXYです。 |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN Cloud IAPライブラリエラーです。<br/>詳細エラーを確認してください。 |
 | PURCHASE_UNKNOWN_ERROR                    | 4999       | 定義されていない購入エラーです。<br>全てのログを[サポート](https://toast.com/support/inquiry)へご送付ください。迅速に対応いたします。

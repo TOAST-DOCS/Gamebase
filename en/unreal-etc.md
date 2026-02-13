@@ -334,16 +334,16 @@ void USample::AddEventHandler()
 * Category is defined in the GamebaseEventCategory class.
 * In general, events can be categorized into LoggedOut, ServerPush, Observer, Purchase, or Push. GamebaseEventMessage.data can be converted into a VO in the ways shown in the following table for each Category.
 
-| Event type | GamebaseEventCategory | VO conversion method | Remarks |
+| <div style="width:150px">Event type</div> | GamebaseEventCategory | VO conversion method | Remarks |
 | --------- | --------------------- | ----------- | --- |
 | IdPRevoked | GamebaseEventCategory::IdPRevoked | FGamebaseEventIdPRevokedData::From(Message.Data) | \- |
 | LoggedOut | GamebaseEventCategory::LoggedOut | FGamebaseEventLoggedOutData::From(Message.Data) | \- |
 | ServerPush | GamebaseEventCategory::ServerPushAppKickOut<br>GamebaseEventCategory::ServerPushAppKickOutMessageReceived<br>GamebaseEventCategory::ServerPushTransferKickout | FGamebaseEventServerPushData::From(Message.Data) | \- |
 | Observer | GamebaseEventCategory::ObserverLaunching<br>GamebaseEventCategory::ObserverNetwork<br>GamebaseEventCategory::ObserverHeartbeat | FGamebaseEventObserverData::From(Message.Data) | \- |
-| Purchase - Promotion payment | GamebaseEventCategory::PurchaseUpdated | FGamebaseEventPurchasableReceipt::From(Message.Data) | \- |
-| Push - Message received | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(Message.Data) |  |
-| Push - Message clicked | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(Message.Data) |  |
-| Push - Action clicked | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(Message.Data) | Operates when the RichMessage button is clicked. |
+| Purchase<br>- 프로모션 결제<br>- 지연 결제 | GamebaseEventCategory::PurchaseUpdated | FGamebaseEventPurchasableReceipt::From(Message.Data) | \- |
+| Push<br>- Message received | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(Message.Data) |  |
+| Push<br>- Message clicked | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(Message.Data) |  |
+| Push<br>- Action clicked | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(Message.Data) | Operates when the RichMessage button is clicked. |
 
 #### IdP Revoked
 
@@ -592,7 +592,7 @@ void USample::CheckHeartbeat(const FGamebaseEventObserverData& Data)
 
 #### Purchase Updated
 
-* This event is triggered when a product is acquired by redeeming a promotion code.
+* Promotion 코드 입력을 통해 상품을 획득한 경우 또는 Pending 결제(느린 결제, 부모 동의 등)가 완료되었을 때 발생하는 이벤트입니다.
 * Can acquire payment receipt information.
 
 **Example**
@@ -608,7 +608,8 @@ void USample::AddEventHandler()
             auto purchasableReceipt = FGamebaseEventPurchasableReceipt::From(Message.Data);
             if (purchasableReceipt.IsVaild())
             {
-                // If the user got item by 'Promotion Code',
+                // If the user got item by 'Promotion Code' or
+                // 'Lazy purchase', or 'Parents permission',...,
                 // this event will be occurred.
             }
         }

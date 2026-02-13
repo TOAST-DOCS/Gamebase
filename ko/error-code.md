@@ -78,6 +78,7 @@
 |                 | Android<br/>Unity<br/>Unreal<br/>iOS | PURCHASE\_INACTIVE\_PRODUCT\_ID<br/>TCGB\_ERROR\_PURCHASE\_INACTIVE\_PRODUCT\_ID | 4005       | 해당 상품이 활성화 상태가 아닙니다.  |
 |                 | Android<br/>Unity<br/>Unreal<br/>iOS | PURCHASE\_NOT\_EXIST\_PRODUCT\_ID<br/>TCGB\_ERROR\_PURCHASE\_NOT\_EXIST\_PRODUCT\_ID | 4006       | 존재하지 않는 GamebaseProductID로 결제를 요청하였습니다. |
 |                 | Android<br/>Unity<br/>Unreal<br/>iOS | PURCHASE\_LIMIT\_EXCEEDED<br/>TCGB\_ERROR\_PURCHASE\_LIMIT\_EXCEEDED | 4007       | 월 구매 한도를 초과했습니다. |
+|                 | Android<br/>Unity<br/>Unreal<br/>iOS | PURCHASE\_PENDING<br/>TCGB\_ERROR\_PURCHASE\_PENDING | 4008       | 결제를 완료하려면 추가 확인이 필요합니다. |
 |                 | Android<br/>Unity<br/>Unreal<br/>iOS | PURCHASE\_NOT\_SUPPORTED\_MARKET<br/>TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET | 4010       | 지원하지 않는 스토어입니다.                          |
 |                 | Android<br/>Unity<br/>Unreal<br/>iOS | PURCHASE\_EXTERNAL\_LIBRARY\_ERROR<br/>TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR | 4201       | 외부 IAP 라이브러리 오류입니다.                      |
 |                 | Android<br/>Unity<br/>Unreal<br/>iOS | PURCHASE\_UNKNOWN\_ERROR<br/>TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR | 4999       | 알 수 없는 구매 오류입니다.                           |

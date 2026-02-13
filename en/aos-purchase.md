@@ -83,6 +83,10 @@ The gamebaseProductId is generally the same as the ID of item registered at the 
 When a game user cancels purchase, the **GamebaseError.PURCHASE_USER_CANCELED** error is returned.
 Please process cancellation.
 
+느린 결제나 부모 동의와 같이 결제 완료를 기다려야 하는 상황이 발생하는 경우에는 **GamebaseError.PURCHASE_PENDING** 오류가 반환됩니다.
+이후에 결제가 정상적으로 완료되는 경우, GamebaseEventHandler에서 결제 완료 이벤트를 수신할 수 있습니다.
+[Game > Gamebase > User Guide for Android SDK > ETC > Gamebase Event Handler](./aos-etc/#purchase-updated)
+
 **API**
 
 ```java
@@ -604,12 +608,11 @@ class PurchasableSubscriptionStatus {
 }
 ```
 
+### Event by Purchase
 
-### Promotional Events
-
-When a promotional purchase is completed, get an event from GamebaseEventHandler to be processed.  
-See the guide on how to process a promotional purchase event via GamebaseEventHandler.
-[Game > Gamebase > User Guide for Android SDK  > ETC > Gamebase Event Handler](./aos-etc/#purchase-updated)
+Promotion 코드 입력을 통해 상품을 획득한 경우 또는 Pending 결제(느린 결제, 부모 동의 등)가 완료되었을 때 GamebaseEventHandler 를 통해 이벤트를 받아 처리할 수 있습니다.
+GamebaseEventHandler 로 프로모션 결제 및 지연 결제 이벤트를 처리하는 방법은 아래 가이드를 확인하세요.
+[Game > Gamebase > User Guide for Android SDK > ETC > Gamebase Event Handler](./aos-etc/#purchase-updated)
 
 ### Error Handling
 
@@ -621,6 +624,7 @@ See the guide on how to process a promotional purchase event via GamebaseEventHa
 | PURCHASE_INACTIVE_PRODUCT_ID              | 4005       | Product is not activated.  |
 | PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | Requested for purchase with invalid GamebaseProductID. |
 | PURCHASE_LIMIT_EXCEEDED                   | 4007       | You have exceeded your monthly purchase limit.             |
+| PURCHASE_PENDING                          | 4008       | 결제를 완료하려면 추가 확인이 필요합니다. |
 | PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | The store is not supported.<br>You can choose either GG (Google), ONESTORE, GALAXY, HUAWEI, or MYCARD. |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | Error in NHN Cloud IAP library.<br>Check the error details.  |
 | PURCHASE_UNKNOWN_ERROR                    | 4999       | Unknown error in purchase.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry) and we'll reply at the earliest possible moment. |
