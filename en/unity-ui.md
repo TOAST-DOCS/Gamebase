@@ -512,25 +512,25 @@ public void ShowWebView()
 
 #### Configuration
 
-| Parameter | Values | Description                                                                        |
-| ------------------------ | ---------------------------------------- |------------------------------------------------------------------------------------|
-| title                    | string                                   | Title of WebView                                                                   |
-| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | Unspecified (**default**)                                                          |
-|                          | GamebaseScreenOrientation.PORTRAIT       | Portait mode                                                                       |
-|                          | GamebaseScreenOrientation.LANDSCAPE      | Landscape mode                                                                     |
-|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | Reverse landscape                                                                  |
-| contentMode<br>(Only for iOS )           | GamebaseWebViewContentMode.RECOMMENDED      | Browser recommended by the current platform (**default**)                          |
-|                          | GamebaseWebViewContentMode.MOBILE           | Mobile browser                                                                     |
-|                          | GamebaseWebViewContentMode.DESKTOP          | Desktop browser                                                                    |
-| navigationColor          | Color                                       | Color of Navigation Bar <br>**default**: GamebaseColor.RGB255(18, 93, 230)         |
-| barHeight                | height                                   | Height of Navigation Bar<br>**Android Only**                                       |
-| isNavigationBarVisible   | true or false                            | Activate or deactivate Navigation Bar<br>**default**: true                         |
-| isBackButtonVisible      | true or false                            | Activate or deactivate Go Back Button<br>**default**: true                         |
-| backButtonImageResource  | ID of resource                           | Image of Go Back Button                                                            |
-| closeButtonImageResource | ID of resource                           | Image of Close Button                                                              |
+| Parameter | Values | Description                                                                       |
+| ------------------------ | ---------------------------------------- |-----------------------------------------------------------------------------------|
+| title                    | string                                   | Title of WebView                                                                  |
+| orientation              | GamebaseScreenOrientation.UNSPECIFIED    | Unspecified (**default**)                                                         |
+|                          | GamebaseScreenOrientation.PORTRAIT       | Portait mode                                                                      |
+|                          | GamebaseScreenOrientation.LANDSCAPE      | Landscape mode                                                                    |
+|                          | GamebaseScreenOrientation.LANDSCAPE_REVERSE | Reverse landscape                                                                 |
+| contentMode<br>(Only for iOS )           | GamebaseWebViewContentMode.RECOMMENDED      | Browser recommended by the current platform (**default**)                         |
+|                          | GamebaseWebViewContentMode.MOBILE           | Mobile browser                                                                    |
+|                          | GamebaseWebViewContentMode.DESKTOP          | Desktop browser                                                                   |
+| navigationColor          | Color                                       | Color of Navigation Bar <br>**default**: GamebaseColor.RGB255(18, 93, 230)        |
+| barHeight                | height                                   | Height of Navigation Bar                                                          |
+| isNavigationBarVisible   | true or false                            | Activate or deactivate Navigation Bar<br>**default**: true                        |
+| isBackButtonVisible      | true or false                            | Activate or deactivate Go Back Button<br>**default**: true                        |
+| backButtonImageResource  | ID of resource                           | Image of Go Back Button                                                           |
+| closeButtonImageResource | ID of resource                           | Image of Close Button                                                             |
 | enableFixedFontSize<br>(Only for Android)   | true or false              | Decide if the font size of the Terms window should be fixed.<br>**default**: false |
-| renderOutSideSafeArea<br>(Only for Android) | true or false              | Decide whether to render outside Safe Area.<br>**default**: false                  |
-| cutoutColor<br>(Only for Android)           | Color                      | Background color of the cutout area outside the SafeArea <br>**default**: null     |
+| renderOutSideSafeArea<br>(Only for Android) | true or false              | Decide whether to render outside Safe Area.<br>**default**: false                 |
+| cutoutColor<br>(Only for Android)           | Color                      | Background color of the cutout area outside the SafeArea <br>**default**: null    |
 
 > [TIP]
 >
