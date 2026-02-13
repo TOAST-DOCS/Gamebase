@@ -574,7 +574,7 @@ struct FGamebasePurchasableSubscriptionStatus
 };
 ```
 
-### Event by Promotion
+### Event by Purchase
 
 Promotion 코드 입력을 통해 상품을 획득한 경우 또는 Pending 결제(느린 결제, 부모 동의 등)가 완료되었을 때 GamebaseEventHandler를 통해 이벤트를 받아 처리할 수 있습니다.
 GamebaseEventHandler로 프로모션 결제 및 지연 결제 이벤트를 처리하는 방법은 아래 가이드를 확인하세요.
