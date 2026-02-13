@@ -517,7 +517,7 @@ public void ShowWebView()
 | navigationColor                       | Color                                       | ナビゲーションバーの色 <br>**default**: GamebaseColor.RGB255(18, 93, 230)      |
 | navigationTitleColor                  | Color                                       | ナビゲーションバータイトルの色 <br>**default**: GamebaseColor.RGB255(255, 255, 255) |
 | navigationIconTintColor               | Color                                       | ナビゲーションバーアイコンの色 <br>**default**: null                               |
-| barHeight                             | height                                      | ナビゲーションバーの高さ<br>**Android限定**                                      |
+| barHeight                             | height                                      | ナビゲーションバーの高さ                                      |
 | isNavigationBarVisible                | true or false                               | ナビゲーションバー有効または無効<br>**default**: true                             |
 | isBackButtonVisible                   | true or false                               | 戻るボタン有効または無効<br>**default**: true                            |
 | backButtonImageResource               | ID of resource                              | 戻るボタンの画像                                                     |
