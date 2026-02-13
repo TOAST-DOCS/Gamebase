@@ -81,6 +81,9 @@ If there's a value on the list of unconsumed purchases, proceed with the Consume
 By using itemSeq of an item to purchase, call the following API and request a purchase.  
 If a game user cancels purchase, the **PURCHASE_USER_CANCELED** error is returned.
 
+느린 결제나 부모 동의와 같이 결제 완료를 기다려야 하는 상황이 발생하는 경우에는 **PURCHASE_PENDING** 오류가 반환됩니다.
+이후에 결제가 정상적으로 완료되는 경우, GamebaseEventHandler에서 결제 완료 이벤트를 수신할 수 있습니다.
+[Game > Gamebase > Unreal SDK 사용 가이드 > ETC > Gamebase Event Handler](./unreal-etc/#purchase-updated)
 
 **API**
 
@@ -572,6 +575,21 @@ struct FGamebasePurchasableSubscriptionStatus
 ```
 
 
+### Event by Promotion
+
+Promotion 코드 입력을 통해 상품을 획득한 경우 또는 Pending 결제(느린 결제, 부모 동의 등)가 완료되었을 때 GamebaseEventHandler를 통해 이벤트를 받아 처리할 수 있습니다.
+GamebaseEventHandler로 프로모션 결제 및 지연 결제 이벤트를 처리하는 방법은 아래 가이드를 확인하세요.
+[Game > Gamebase > Unreal SDK 사용 가이드 > ETC > Gamebase Event Handler](./unreal-etc/#purchase-updated)
+
+Supported Platforms
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNREAL_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
+
+> <font color="red">[주의]</font><br/>
+>
+> iOS 프로모션 결제를 위해서는 반드시 아래 가이드를 따라 설정하세요.
+> [Game > Gamebase > iOS SDK 사용 가이드 > 결제 > Event by Purchase](./ios-purchase/#event-by-purchase)
+
 ### Error Handling
 
 | Error                                       | Error Code | Description                              |
@@ -583,6 +601,7 @@ struct FGamebasePurchasableSubscriptionStatus
 | PURCHASE_INACTIVE_PRODUCT_ID                | 4005       | Product is not activated.   |
 | PURCHASE_NOT_EXIST_PRODUCT_ID               | 4006       | Requested for purchase with invalid GamebaseProductID. |
 | PURCHASE_LIMIT_EXCEEDED                     | 4007       | You have exceeded your monthly purchase limit.              |
+| PURCHASE_PENDING                            | 4008       | 결제를 완료하려면 추가 확인이 필요합니다. |
 | PURCHASE_NOT_SUPPORTED_MARKET               | 4010       | The store is not supported.<br>The stores you can select are AS (App Store), GG (Google), ONESTORE, and GALAXY. |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR             | 4201       | Error in NHN Cloud IAP library.<br>Check the error details. |
 | PURCHASE_UNKNOWN_ERROR                      | 4999       | Unknown error in purchase.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry) and we'll reply at the earliest possible moment. |
