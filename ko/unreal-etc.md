@@ -340,10 +340,10 @@ void USample::AddEventHandler()
 | LoggedOut | GamebaseEventCategory::LoggedOut | FGamebaseEventLoggedOutData::From(Message.Data) | \- |
 | ServerPush | GamebaseEventCategory::ServerPushAppKickOut<br>GamebaseEventCategory::ServerPushAppKickOutMessageReceived<br>GamebaseEventCategory::ServerPushTransferKickout | FGamebaseEventServerPushData::From(Message.Data) | \- |
 | Observer | GamebaseEventCategory::ObserverLaunching<br>GamebaseEventCategory::ObserverNetwork<br>GamebaseEventCategory::ObserverHeartbeat | FGamebaseEventObserverData::From(Message.Data) | \- |
-| Purchase - 프로모션 결제 | GamebaseEventCategory::PurchaseUpdated | FGamebaseEventPurchasableReceipt::From(Message.Data) | \- |
-| Push - 메시지 수신 | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(Message.Data) |  |
-| Push - 메시지 클릭 | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(Message.Data) |  |
-| Push - 액션 클릭 | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(Message.Data) | RichMessage 버튼 클릭 시 동작합니다. |
+| Purchase<br>- 프로모션 결제<br>- 지연 결제 | GamebaseEventCategory::PurchaseUpdated | FGamebaseEventPurchasableReceipt::From(Message.Data) | \- |
+| Push<br>- 메시지 수신 | GamebaseEventCategory::PushReceivedMessage | FGamebaseEventPushMessage::From(Message.Data) |  |
+| Push<br>- 메시지 클릭 | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(Message.Data) |  |
+| Push<br>- 액션 클릭 | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(Message.Data) | RichMessage 버튼 클릭 시 동작합니다. |
 
 #### IdP Revoked
 
@@ -592,7 +592,7 @@ void USample::CheckHeartbeat(const FGamebaseEventObserverData& Data)
 
 #### Purchase Updated
 
-* Promotion 코드 입력을 통해 상품을 획득한 경우 발생하는 이벤트입니다.
+* Promotion 코드 입력을 통해 상품을 획득한 경우 또는 Pending 결제(느린 결제, 부모 동의 등)가 완료되었을 때 발생하는 이벤트입니다.
 * 결제 영수증 정보를 획득할 수 있습니다.
 
 **Example**
@@ -608,7 +608,8 @@ void USample::AddEventHandler()
             auto purchasableReceipt = FGamebaseEventPurchasableReceipt::From(Message.Data);
             if (purchasableReceipt.IsVaild())
             {
-                // If the user got item by 'Promotion Code',
+                // If the user got item by 'Promotion Code' or
+                // 'Lazy purchase', or 'Parents permission',...,
                 // this event will be occurred.
             }
         }
