@@ -525,7 +525,7 @@ public void ShowWebView()
 | navigationColor                       | Color                                       | 내비게이션 바 색상 <br>**default**: GamebaseColor.RGB255(18, 93, 230)      |
 | navigationTitleColor                  | Color                                       | 내비게이션 바 제목 색상 <br>**default**: GamebaseColor.RGB255(255, 255, 255) |
 | navigationIconTintColor               | Color                                       | 내비게이션 바 아이콘 색상 <br>**default**: null                               |
-| barHeight                             | height                                      | 내비게이션 바 높이<br>**Android에 한함**                                      |
+| barHeight                             | height                                      | 내비게이션 바 높이                                      |
 | isNavigationBarVisible                | true or false                               | 내비게이션 바 활성 또는 비활성<br>**default**: true                             |
 | isBackButtonVisible                   | true or false                               | 뒤로 가기 버튼 활성 또는 비활성<br>**default**: true                            |
 | backButtonImageResource               | ID of resource                              | 뒤로 가기 버튼 이미지                                                       |
