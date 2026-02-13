@@ -463,27 +463,27 @@ void USample::ShowWebView(const FString& Url)
 
 #### FGamebaseWebViewConfiguration
 
-| Parameter | Values | Description |
-| ------------------------ | ---------------------------------------- | --------------------------- |
-| Title                    | FString                                   | WebViewのタイトル               |
-| Orientation              | GamebaseScreenOrientation::Unspecified   | 未指定(**default**)            |
-|                          | GamebaseScreenOrientation::Portrait      | 縦モード                     |
-|                          | GamebaseScreenOrientation::Landscape     | 横モード                     |
-|                          | GamebaseScreenOrientation::LandscapeReverse | 横モードを180度回転              |
-| ContentMode              | GamebaseWebViewContentMode::Recommended     | 現在のプラットフォームの推薦ブラウザ(**default**)   |
-|                          | GamebaseWebViewContentMode::Mobile          | モバイルブラウザ         |
-|                          | GamebaseWebViewContentMode::Desktop         | デスクトップブラウザ       |
-| NavigationColor          | FColor                                   | ナビゲーションバーの色<br>**default**: FColor(18, 93, 230, 255)   |
-| NavigationTitleColor     | FColor                                   | ナビゲーションバータイトルの色<br>**default**: FColor::White          |
-| NavigationIconTintColor  | TOptional&lt;FColor&gt;                  | ナビゲーションバーアイコンティントカラー |
-| NavigationBarHeight      | height                                   | ナビゲーションバーの高さ<br>**Androidのみ**                 |
-| bIsNavigationBarVisible  | true or false                            | ナビゲーションバー有効または無効<br>**default**: true    |
-| bIsBackButtonVisible     | true or false                            | 戻るボタンの有効または無効<br>**default**: true   |
-| BackButtonImageResource  | ID of resource                           | 戻るボタンの画像        |
-| CloseButtonImageResource | ID of resource                           | 閉じるボタンの画像            |
-| bEnableFixedFontSize      | true or false                            | 約款ウィンドウの文字サイズを固定するかどうかを決定します。<br>**default**: false<br>**Androidのみ**     |
-| bRenderOutSideSafeArea    | true or false                            | Safe Area領域外でレンダリングするかどうかを決定します。<br>**default**: false<br>**Androidのみ**   |
-| CutoutColor              | TOptional&lt;FColor&gt;                  | SafeArea外のCutout領域の背景色<br>**Android限定**                            |
+| Parameter                | Values                                           | Description |
+| ------------------------ | ------------------------------------------------ | --- |
+| Title                    | FString                                          | WebViewのタイトル |
+| Orientation              | GamebaseScreenOrientation::Unspecified           | 未指定(**default**) |
+|                          | GamebaseScreenOrientation::Portrait              | 縦モード |
+|                          | GamebaseScreenOrientation::Landscape             | 横モード |
+|                          | GamebaseScreenOrientation::LandscapeReverse      | 横モードを180度回転 |
+| ContentMode              | GamebaseWebViewContentMode::Recommended          | 現在のプラットフォームの推薦ブラウザ(**default**) |
+|                          | GamebaseWebViewContentMode::Mobile               | モバイルブラウザ |
+|                          | GamebaseWebViewContentMode::Desktop              | デスクトップブラウザ |
+| NavigationColor          | FColor                                           | ナビゲーションバーの色<br>**default**: FColor(18, 93, 230, 255) |
+| NavigationTitleColor     | FColor                                           | ナビゲーションバータイトルの色<br>**default**: FColor::White |
+| NavigationIconTintColor  | TOptional&lt;FColor&gt;                          | ナビゲーションバーアイコンティントカラー |
+| NavigationBarHeight      | int32                                            | ナビゲーションバーの高さ |
+| bIsNavigationBarVisible  | bool                                             | ナビゲーションバー有効または無効<br>**default**: true |
+| bIsBackButtonVisible     | bool                                             | 戻るボタンの有効または無効<br>**default**: true |
+| BackButtonImageResource  | FString                                          | 戻るボタンの画像 |
+| CloseButtonImageResource | FString                                          | 閉じるボタンの画像 |
+| bEnableFixedFontSize     | bool                                             | 約款ウィンドウの文字サイズを固定するかどうかを決定します。<br>**default**: false<br>**Androidのみ** |
+| bRenderOutSideSafeArea   | bool                                             | Safe Area領域外でレンダリングするかどうかを決定します。<br>**default**: false<br>**Androidのみ** |
+| CutoutColor              | TOptional&lt;FColor&gt;                          | SafeArea外のCutout領域の背景色<br>**Android限定** |
 
 > [TIP]
 >
