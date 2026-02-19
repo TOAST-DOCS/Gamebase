@@ -1,5 +1,16 @@
 ## Game > Gamebase > 릴리스 노트 > Server API
 
+### 2026. 02. 24.
+
+#### 기능 추가
+* 쿠폰 코드로 쿠폰 정보를 조회하는 "Get Coupon Information by Coupon Code" API가 추가
+
+### 2025. 12. 23.
+
+#### 기능 추가
+* "Withdraw Histories" API의 요청 파라미터에 eventLogType 추가
+* Sign in with Apple 계정 관련 처리를 위한 "SIWA Account Webhook" API가 추가
+
 ### 2024. 08. 27.
 
 #### 기능 추가

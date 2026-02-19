@@ -20,6 +20,7 @@
 - `Get Payment Transaction` API request body에 ONEStore의 purchaseId 혹은 purchaseToken 값을 나타내는 `paymentToken` 추가
 - `Withdraw Histories` API의 요청 파라미터에 eventLogType 추가
 - `SIWA Account Webhook` API 추가
+- `Get Coupon Information by Coupon Code` API 추가
 
 ## Advance Notice
 
@@ -1586,6 +1587,78 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | result.benefits | Array[Object] | 지급할 아이템 정보 |
 | result.benefits.itemId | String | 아이템 ID |
 | result.benefits.amount | Integer | 아이템 개수 |
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+<br>
+
+#### Get Coupon Information by Coupon Code
+
+입력된 쿠폰 코드를 바탕으로, 콘솔에 등록된 해당 쿠폰의 기본 정보를 조회합니다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-gateway/v1.3/apps/{appId}/coupons/codes/{couponCode}
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud 프로젝트 ID |
+| couponCode | String | 쿠폰 코드 |
+
+**[Request Parameter]**
+
+없음
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "title": "Coupon Title",
+        "benefits": [
+            {
+                "itemId": "heart",
+                "amount": 10
+            },
+            {
+                "itemId": "diamond",
+                "amount": 20
+            }
+        ],
+        "type": "KEYWORD",
+        "couponCode": "XMAS",
+        "startDate": "2025-12-21T00:00:00+09:00",
+        "endDate": "2025-12-31T23:59:59+09:00"
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Object | 쿠폰 상세 정보 |
+| result.title | String | 쿠폰 이름 |
+| result.benefits | Array[Object] | 지급할 아이템 목록 |
+| result.benefits.itemId | String | 아이템 ID |
+| result.benefits.amount | Integer | 아이템 개수 |
+| result.type | Enum | 쿠폰 타입 (KEYWORD, SERIAL) |
+| result.couponCode | String | 쿠폰 코드 |
+| result.startDate | String | 유효 시작 시각 (ISO 8601) |
+| result.endDate | String | 유효 종료 시각 (ISO 8601) |
 
 **[Error Code]**
 
