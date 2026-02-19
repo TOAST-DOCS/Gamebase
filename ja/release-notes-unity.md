@@ -10,6 +10,9 @@
 * (Android, iOS) Gamebase Event Handler의 GamebaseEventCategory.PURCHASE_UPDATED 이벤트 기능이 확장되었습니다.
     * 앱이 실행 중일 때 GamebaseEventHandler를 통해 Pending 결제(느린 결제, 부모 동의 등) 완료 이벤트를 제공받을 수 있습니다.
 
+#### 버그 수정
+* (Android) 게임 공지 배경이 투명하게 표시되던 문제를 수정했습니다.
+
 ### 2.79.0 (2026. 01. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.79.0/GamebaseSDK-Unity.zip)
 
