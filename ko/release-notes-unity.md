@@ -1,5 +1,11 @@
 ## Game > Gamebase > 릴리스 노트 > Unity
 
+### 2.80.1 (2026. 02. 20.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.80.1/GamebaseSDK-Unity.zip)
+
+#### 버그 수정
+* (iOS) GameCenter에서 AddMapping 수행 시 오류가 발생하던 문제를 수정했습니다.
+
 ### 2.80.0 (2026. 02. 13.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.80.0/GamebaseSDK-Unity.zip)
 
