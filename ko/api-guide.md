@@ -1387,11 +1387,13 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
         {
             "userId": "String",
             "date": "2022-03-27T17:40:00+09:00",
+            "type": "WAA",
             "regUser": null
         },
         {
             "userId": "String",
             "date": "2022-03-27T17:41:05+09:00",
+            "type": "WACS",
             "regUser": "String"
         }
     ]
@@ -1411,7 +1413,8 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | result | Array[Object] | 조회된 탈퇴 유저 내역 |
 | result.userId | String | 유저 ID |
 | result.date | String | 탈퇴 일시 |
-| result.regUser | String | 탈퇴 API를 호출한 주체<br>- 해당 값이 **null** 이면 client SDK에서 호출됨|
+| result.type | Enum | [탈퇴 이벤트 발생 경로](#withdrawal-event-type)|
+| result.regUser | String | 탈퇴 API를 호출한 주체<br>- 해당 값이 **null** 이면 client SDK에서 호출됨 |
 
 **[Error Code]**
 
@@ -2510,6 +2513,7 @@ X-Secret-Key: IgsaAP
 | WAES | 외부 서버(게임 서버)에 의해 탈퇴<br>- 서버 탈퇴 API 호출 |
 | WAAI | Apple ID 연동 삭제에 의해 탈퇴 |
 | WAHI | 한게임 계정 삭제로 인한 탈퇴 |
+| WAHD | 한게임 장기 미사용 계정 탈퇴 |
 | WAGE | 유예 기간 만료에 따른 시스템 자동 탈퇴 |
 <br/>
 
