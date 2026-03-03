@@ -69,9 +69,9 @@ The gamebaseProductId is generally the same as the ID of item registered at the 
 When a game user cancels purchase, the **PURCHASE_USER_CANCELED** error is returned.
 Please process cancellation.
 
-느린 결제나 부모 동의와 같이 결제 완료를 기다려야 하는 상황이 발생하는 경우에는 **GamebaseError.PURCHASE_PENDING** 오류가 반환됩니다.
-이후에 결제가 정상적으로 완료되는 경우, GamebaseEventHandler에서 결제 완료 이벤트를 수신할 수 있습니다.
-[Game > Gamebase > Unity SDK 사용 가이드 > ETC > Gamebase Event Handler](./unity-etc/#purchase-updated)
+Added a new error code, **PURCHASE_PENDING (4008)**, which is returned when a transaction awaits completion (e.g., slow-process payments or parental consent).
+Once the payment is successfully completed, you can receive the payment completion event via the GamebaseEventHandler.
+[Game > Gamebase > Unity SDK User Guide > ETC > Gamebase Event Handler](./unity-etc/#purchase-updated)
 
 **API**
 
