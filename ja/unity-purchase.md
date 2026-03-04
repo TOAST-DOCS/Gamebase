@@ -650,7 +650,7 @@ Supported Platforms
 | PURCHASE_INACTIVE_PRODUCT_ID              | 4005       | 該当商品が有効な状態ではありません。  |
 | PURCHASE_NOT_EXIST_PRODUCT_ID             | 4006       | 存在しないGamebaseProductIDで決済をリクエストしました。 |
 | PURCHASE_LIMIT_EXCEEDED                   | 4007       | 月の購入限度を超過しました。             |
-| PURCHASE_PENDING                          | 4008       | 결제를 완료하려면 추가 확인이 필요합니다. |
+| PURCHASE_PENDING                          | 4008       | 決済を完了するには追加の確認が必要です。 |
 | PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | このストアには対応しておりません。<br>選択可能なストアは、GG(Google)、TS(ONE store)、GALAXY、HUAWEI、MYCARDです。 |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN Cloud IAPライブラリエラーです。<br/>詳細エラーを確認してください。 |
 | PURCHASE_UNKNOWN_ERROR                    | 4999       | 定義されていない購入エラーです。<br>ログ全体を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。|
