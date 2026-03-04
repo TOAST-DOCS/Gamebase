@@ -4,13 +4,13 @@
 
 ### iOS
 
-* Xcode 최소 지원 버전이 16.0에서 26.0으로 변경되었습니다.
-* **+[TCGBPurchase setPromotionIAPHandler:]** API가 deprecated되었습니다.
+* The minimum supported Xcode version has been updated from 16.0 to 26.0.
+* **+[TCGBPurchase setPromotionIAPHandler:]** The API is deprecated.
 
 ### Unreal
 
-* (iOS) Project Settings에서 활성화한 기능에 따라 Info.plist에 필요한 항목이 자동으로 추가됩니다.
-    * `AdditionalPlistData`로 직접 관리하려면 [iOS Settings](./unreal-started/#ios-settings)에서 **Disable Auto Info.plist Update**를 활성화하세요.
+* (iOS) Required entries are automatically added to Info.plist depending on the features enabled in Project Settings.
+    * To manage `AdditionalPlistData` manually, enable **Disable Auto Info.plist Update** in [iOS Settings](./unreal-started/#ios-settings).
 
 ## 2.79.0
 
