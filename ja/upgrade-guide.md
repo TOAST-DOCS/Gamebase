@@ -1,5 +1,11 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.80.1
+
+### Unity
+
+* Auth.AuthToken의 extraParams 타입이 Dictionary<string, string>에서 Dictionary<string, object>로 변경되었습니다.
+
 ## 2.80.0
 
 ### iOS

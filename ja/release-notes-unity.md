@@ -1,5 +1,15 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.80.1 (2026. 03. 10.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.80.1/GamebaseSDK-Unity.zip)
+
+#### 버그 수정
+* (iOS) GameCenter에서 AddMapping 수행 시 오류가 발생하던 문제를 수정했습니다.
+* (Windows) WebView 오픈시, 타이틀 영역을 클릭하면 웹뷰가 닫히는 문제를 수정했습니다.
+
+#### 기능 개선
+* (Windows) WebView 내부 로직을 개선하였습니다.
+
 ### 2.80.0 (2026. 02. 13.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.80.0/GamebaseSDK-Unity.zip)
 
