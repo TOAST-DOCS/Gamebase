@@ -4,16 +4,16 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.80.0/GamebaseSDK-Android.zip)
 
-#### 기능 개선/변경
+#### 機能改善・変更
 
-* 결제 요청 시 느린 결제나 부모 동의와 같이 결제 완료를 기다려야 하는 상황이 발생하는 경우, 신규로 추가된 **PURCHASE_PENDING(4008)** 에러가 발생하게 됩니다.
-* Gamebase Event Handler의 GamebaseEventCategory.PURCHASE_UPDATED 이벤트 기능이 확장되었습니다.
-    * 앱이 실행 중일 때 GamebaseEventHandler를 통해 Pending 결제(느린 결제, 부모 동의 등) 완료 이벤트를 제공받을 수 있습니다.
+* 決済リクエスト時、遅延決済や保護者の同意のように決済完了を待つ必要がある状況が発生した場合、新規追加された**PURCHASE_PENDING(4008)**エラーが発生します。
+* Gamebase Event HandlerのGamebaseEventCategory.PURCHASE_UPDATEDイベント機能が拡張されました。
+    * アプリの実行中、GamebaseEventHandlerを通じてPending決済(遅延決済、保護者の同意など)の完了イベントを受け取ることができます。
 
-#### 버그 수정
+#### 不具合の修正
 
-* 약관 창 사이즈가 간헐적으로 크게 보이는 이슈 수정
-* 난독화 적용시 알림 권한 자동 요청 팝업이 표시되지 않는 이슈 수정
+* 利用規約ウィンドウのサイズが断続的に大きく表示される問題を修正
+* 難読化適用時、通知権限の自動リクエストポップアップが表示されない問題を修正
 
 ### 2.79.0 (2026. 01. 27.)
 
