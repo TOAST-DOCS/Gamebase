@@ -846,7 +846,7 @@ private void CheckWebView(GamebaseResponse.Event.GamebaseEventObserverData obser
 
 #### Purchase Updated
 
-* App Store 프로모션 상품 구매 완료 또는 Ask to Buy 등으로 지연된 결제가 완료되었을 때 발생하는 이벤트입니다.
+* This event is triggered when an App Store promotion product purchase is completed or when a pending payment delayed by 'Ask to Buy' is finalized.
 * Can acquire payment receipt information.
 
 **Example**
