@@ -18,7 +18,7 @@
 - 이용 정지 상태의 유저를 조회하는 `Get Ban Members` API 추가
 - 구독의 현재 상태를 조회하는 `Get Subscriptions Status` API 추가
 - `Get Payment Transaction` API request body에 ONEStore의 purchaseId 혹은 purchaseToken 값을 나타내는 `paymentToken` 추가
-- `Withdraw Histories` API의 요청 파라미터에 eventLogType 추가
+- `Withdraw Histories` API의 요청 파라미터에 eventLogType/includePending 추가
 - `SIWA Account Webhook` API 추가
 - `Get Coupon Information by Coupon Code` API 추가
 
