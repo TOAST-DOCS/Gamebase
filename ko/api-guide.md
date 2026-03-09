@@ -1363,6 +1363,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | size | String | Optional | 페이지당 데이터 개수 |
 | order | String | Optional | 조회 데이터 정렬 방법. ASC or DESC |
 | eventLogType | Enum | Optional | [탈퇴 이벤트 발생 경로](#withdrawal-event-type) |
+| includePending | boolean | Optional | 탈퇴 진행 중인 중간 상태값 포함 여부 <br> - false(기본값) 설정 시, 최종 탈퇴가 완료된 로그만 필터링하여 제공 <br> - eventLogType이 입력된 경우 해당 값이 우선 적용 됨 |
 
 **[Response Body]**
 
@@ -2515,6 +2516,8 @@ X-Secret-Key: IgsaAP
 | WAHI | 한게임 계정 삭제로 인한 탈퇴 |
 | WAHD | 한게임 장기 미사용 계정 탈퇴 |
 | WAGE | 유예 기간 만료에 따른 시스템 자동 탈퇴 |
+| WAT | 탈퇴 유예 상태<br>- 최종 탈퇴 상태가 아님 |
+| WAC | 탈퇴 유예 취소 |
 <br/>
 
 ### Support
