@@ -152,14 +152,14 @@ See below for relevant guides.
 * Path
     * Xcode Path：Xcodeのパスを入力します。 (デフォルト値： /Applications/Xcode.app)
 * Info.plist
-    * Disable Auto Info.plist Update: Project Settings에 의한 Info.plist 자동 업데이트를 비활성화합니다.
-        * `AdditionalPlistData`로 Info.plist를 직접 관리하는 경우 활성화하세요.
-        * IdP별 설정 항목은 [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP Settings](./ios-started/#idp-settings)를 참고하세요.
-    * Enable Contact (Privacy Permissions): 고객센터에서 첨부 파일 사용을 위한 카메라, 사진 라이브러리, 마이크 권한 설명을 Info.plist에 추가합니다.
-    * Enable Tracking Description: App Tracking Transparency 권한 요청을 위한 NSUserTrackingUsageDescription을 Info.plist에 추가합니다.
+    * Disable Auto Info.plist Update：Project SettingsによるInfo.plistの自動アップデートを無効化します。
+        * `AdditionalPlistData`でInfo.plistを直接管理する場合は有効化してください。
+        * IdP別の設定項目は、[Game > Gamebase > iOS SDK使用ガイド > はじめに > IdP Settings](./ios-started/#idp-settings)を参照してください。
+    * Enable Contact (Privacy Permissions)：カスタマーセンターで添付ファイルを使用するためのカメラ、写真ライブラリ、マイクの権限説明をInfo.plistに追加します。
+    * Enable Tracking Description：App Tracking Transparency権限リクエストのためのNSUserTrackingUsageDescriptionをInfo.plistに追加します。
 * Authentication
-    * 사용하려는 IdP를 활성화합니다.
-    * 각 IdP별 추가 설정 항목은 다음과 같습니다.
+    * 使用するIdPを有効化します。
+    * 各IdP別の追加設定項目は次のとおりです。
         * Facebook: `FacebookAppId`, `FacebookClientToken`, `FacebookDisplayName`
         * Google: `GoogleClientId`, `GoogleReservedClientId`
         * Weibo: `WeiboAppKey`
