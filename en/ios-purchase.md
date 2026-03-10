@@ -376,8 +376,8 @@ In the case of auto-renewed consumable subscriptions, any missing purchases can 
 
 ### Event by Purchase
 
-App Store 프로모션 상품 구매가 완료되거나, Ask to Buy 등으로 지연된 결제가 완료되었을 때, GamebaseEventHandler를 이용해 이벤트를 받아 처리할 수 있습니다.
-GamebaseEventHandler로 지연 결제 이벤트를 처리하는 방법은 아래 가이드를 확인하세요.
+When an App Store promotion purchase is completed or a pending payment from 'Ask to Buy' is finalized, you can receive and handle the event via GamebaseEventHandler.
+Refer to the guide below for instructions on handling these pending payment events using GamebaseEventHandler.
 [Game > Gamebase > iOS SDK user guide > ETC > Gamebase Event Handler](./ios-etc/#purchase-updated)
 
 
@@ -407,7 +407,7 @@ If In-App Purchase (for App Store) is included to SDK, like Facebook SDK or Goog
 | TCGB\_ERROR\_PURCHASE\_INACTIVE\_PRODUCT\_ID               | 4005       | Product is not activated.                                    |
 | TCGB\_ERROR\_PURCHASE\_NOT\_EXIST\_PRODUCT\_ID             | 4006       | Requested for purchase with invalid GamebaseProductID.       |
 | TCGB_ERROR_PURCHASE_LIMIT_EXCEEDED                         | 4007       | You have exceeded your monthly purchase limit.               |
-| TCGB_ERROR_PURCHASE_PENDING                          | 4008       | 결제를 완료하려면 추가 확인이 필요합니다. |
+| TCGB_ERROR_PURCHASE_PENDING                          | 4008       | Additional verification is required to complete your payment. |
 | TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET              | 4010       | The store is not supported.<br />iOS supports "AS".                  |
 | TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR            | 4201       | Error in NHN Cloud IAP library.<br>Please check the error details.         |
 | TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR                      | 4999       | Unknown error in purchase.<br>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we'll return at the earliest possible moment. 

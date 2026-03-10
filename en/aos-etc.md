@@ -373,7 +373,7 @@ void eventHandlerSample(Activity activity) {
 | LoggedOut | GamebaseEventCategory.LOGGED_OUT | GamebaseEventLoggedOutData.from(message.data) | \- |
 | ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED<br>GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseEventServerPushData.from(message.data) | \- |
 | Observer | GamebaseEventCategory.OBSERVER_LAUNCHING<br>GamebaseEventCategory.OBSERVER_NETWORK<br>GamebaseEventCategory.OBSERVER_HEARTBEAT | GamebaseEventObserverData.from(message.data) | \- |
-| Purchase<br>- Promotion payment<br>- 지연 결제 | GamebaseEventCategory.PURCHASE_UPDATED | PurchasableReceipt.from(message.data) | \- |
+| Purchase<br>- Promotion payment<br>- Pending payment | GamebaseEventCategory.PURCHASE_UPDATED | PurchasableReceipt.from(message.data) | \- |
 | Push<br>- Message received | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | PushMessage.from(message.data) | Checks whether or not a message was received in the Foreground using the **isForeground** value. |
 | Push<br>- Message clicked | GamebaseEventCategory.PUSH_CLICK_MESSAGE | PushMessage.from(message.data) | The **isForeground** value does not exist. |
 | Push<br>- Action clicked | GamebaseEventCategory.PUSH_CLICK_ACTION | PushAction.from(message.data) | Operates when the RichMessage button is clicked. |
@@ -606,7 +606,7 @@ void processObserver(String category, GamebaseEventObserverData data) {
 
 #### Purchase Updated
 
-* Promotion 코드 입력을 통해 상품을 획득한 경우 또는 Pending 결제(느린 결제, 부모 동의 등)가 완료되었을 때 발생하는 이벤트입니다.
+* This event is triggered when a user acquires an item via a promotion code or when a pending payment (e.g., slow-process payments, parental consent) is successfully completed.
 * Can acquire payment receipt information.
 
 **Example**

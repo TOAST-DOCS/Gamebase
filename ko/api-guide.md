@@ -18,8 +18,9 @@
 - 이용 정지 상태의 유저를 조회하는 `Get Ban Members` API 추가
 - 구독의 현재 상태를 조회하는 `Get Subscriptions Status` API 추가
 - `Get Payment Transaction` API request body에 ONEStore의 purchaseId 혹은 purchaseToken 값을 나타내는 `paymentToken` 추가
-- `Withdraw Histories` API의 요청 파라미터에 eventLogType 추가
+- `Withdraw Histories` API의 요청 파라미터에 eventLogType/includePending 추가
 - `SIWA Account Webhook` API 추가
+- `Get Coupon Information by Coupon Code` API 추가
 
 ## Advance Notice
 
@@ -1362,6 +1363,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | size | String | Optional | 페이지당 데이터 개수 |
 | order | String | Optional | 조회 데이터 정렬 방법. ASC or DESC |
 | eventLogType | Enum | Optional | [탈퇴 이벤트 발생 경로](#withdrawal-event-type) |
+| includePending | boolean | Optional | 탈퇴 진행 중인 중간 상태값 포함 여부 <br> - false(기본값) 설정 시, 최종 탈퇴가 완료된 로그만 필터링하여 제공 <br> - eventLogType이 입력된 경우 해당 값이 우선 적용 됨 |
 
 **[Response Body]**
 
@@ -1386,11 +1388,13 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
         {
             "userId": "String",
             "date": "2022-03-27T17:40:00+09:00",
+            "type": "WAA",
             "regUser": null
         },
         {
             "userId": "String",
             "date": "2022-03-27T17:41:05+09:00",
+            "type": "WACS",
             "regUser": "String"
         }
     ]
@@ -1410,7 +1414,8 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | result | Array[Object] | 조회된 탈퇴 유저 내역 |
 | result.userId | String | 유저 ID |
 | result.date | String | 탈퇴 일시 |
-| result.regUser | String | 탈퇴 API를 호출한 주체<br>- 해당 값이 **null** 이면 client SDK에서 호출됨|
+| result.type | Enum | [탈퇴 이벤트 발생 경로](#withdrawal-event-type)|
+| result.regUser | String | 탈퇴 API를 호출한 주체<br>- 해당 값이 **null** 이면 client SDK에서 호출됨 |
 
 **[Error Code]**
 
@@ -1586,6 +1591,78 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | result.benefits | Array[Object] | 지급할 아이템 정보 |
 | result.benefits.itemId | String | 아이템 ID |
 | result.benefits.amount | Integer | 아이템 개수 |
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+<br>
+
+#### Get Coupon Information by Coupon Code
+
+입력된 쿠폰 코드를 바탕으로, 콘솔에 등록된 해당 쿠폰의 기본 정보를 조회합니다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-gateway/v1.3/apps/{appId}/coupons/codes/{couponCode}
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud 프로젝트 ID |
+| couponCode | String | 쿠폰 코드 |
+
+**[Request Parameter]**
+
+없음
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "title": "Coupon Title",
+        "benefits": [
+            {
+                "itemId": "heart",
+                "amount": 10
+            },
+            {
+                "itemId": "diamond",
+                "amount": 20
+            }
+        ],
+        "type": "KEYWORD",
+        "couponCode": "XMAS",
+        "startDate": "2025-12-21T00:00:00+09:00",
+        "endDate": "2025-12-31T23:59:59+09:00"
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Object | 쿠폰 상세 정보 |
+| result.title | String | 쿠폰 이름 |
+| result.benefits | Array[Object] | 지급할 아이템 목록 |
+| result.benefits.itemId | String | 아이템 ID |
+| result.benefits.amount | Integer | 아이템 개수 |
+| result.type | Enum | 쿠폰 타입 (KEYWORD, SERIAL) |
+| result.couponCode | String | 쿠폰 코드 |
+| result.startDate | String | 유효 시작 시각 (ISO 8601) |
+| result.endDate | String | 유효 종료 시각 (ISO 8601) |
 
 **[Error Code]**
 
@@ -2437,7 +2514,10 @@ X-Secret-Key: IgsaAP
 | WAES | 외부 서버(게임 서버)에 의해 탈퇴<br>- 서버 탈퇴 API 호출 |
 | WAAI | Apple ID 연동 삭제에 의해 탈퇴 |
 | WAHI | 한게임 계정 삭제로 인한 탈퇴 |
+| WAHD | 한게임 장기 미사용 계정 탈퇴 |
 | WAGE | 유예 기간 만료에 따른 시스템 자동 탈퇴 |
+| WAT | 탈퇴 유예 상태<br>- 최종 탈퇴 상태가 아님 |
+| WAC | 탈퇴 유예 취소 |
 <br/>
 
 ### Support

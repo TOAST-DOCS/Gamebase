@@ -382,7 +382,7 @@ GamebaseEventHandler로 지연 결제 이벤트를 처리하는 방법은 아래
 
 
 #### Caution for Usage
-Facebook SDK, Google AdMob SDK 와 같이 SDK 내에 In App Purchase (AppStore 결제) 기능이 있는 경우에는 Gamebase Login 을 하기 전에 App Store 프로모션 결제를 시작할 경우에는 정상적으로 결제창이 나타나지 않을 수 있습니다.
+Facebook SDK, Google Mobile Ads SDK와 같이 SDK 내에 In App Purchase(App Store 결제) 기능이 있는 경우 Gamebase Login을 하기 전에 App Store 프로모션 결제를 시작하면 정상적으로 결제창이 나타나지 않을 수 있습니다.
 
 * 해결 방법
   * Facebook
