@@ -198,10 +198,9 @@ Enter {App ID} and {App Secret Code} of an app registered in the Facebook develo
 * Set JSON string type information in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Information**. 
 * For Facebook, set **facebook_permission** and **facebook_client_token**, which is the authentication information to request for Facebook when attempting to authenticate with OAuth.
 * Example of entering Facebook additional authentication information
-
-```json
-{ "facebook_permission": ["public_profile", "email"], "facebook_client_token": "Your Facebook Client Token" }
-```
+    ```json
+    { "facebook_permission": ["public_profile", "email"], "facebook_client_token": "Your Facebook Client Token" }
+    ```
 
 ![gamebase_app_20_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_20_en_240105.png)
 
@@ -280,8 +279,9 @@ Enter {App ID} and {App Secret Code} of an app registered in the Facebook develo
     * https://developers.google.com/identity/protocols/oauth2/scopes#google-sign-in
     * https://developers.google.com/identity/protocols/oauth2/scopes
 * Example of entering Google additional authentication information
-
-        { "scope": ["email","myscope1","myscope2",...] }
+    ```json
+    { "scope": ["email","myscope1","myscope2",...] }
+    ```
 
 ##### iOS
 
@@ -315,12 +315,10 @@ Enter {client_id} and {client_secret} issued from PAYCO ID application in the TO
 
 * You need to provide JSON string data at **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info**.
 * For PAYCO, set **service_code** and **service_name** required by PAYCO SDK.
-
 * Example of entering the additional authentication information for PAYCO
-
-```json
-{ "service_code": "Your Service Code", "service_name": "Your Service Name" }
-```
+    ```json
+    { "service_code": "Your Service Code", "service_name": "Your Service Name" }
+    ```
 
 ##### iOS
 * [Gamebase > iOS SDK User Guide > Getting Started > IdP Settings > PAYCO](./ios-started/#payco)
@@ -347,10 +345,9 @@ Here, **service_name**, which is the name of an application to be displayed in t
 * For NAVER login SDK, you cannot chagne your account becasue you are automatically logged in  after logging out. You must set **logout_and_delete_token** to **true** to log in with a different NAVER account after logging out.
 
 * Example of entering the additional authentication information for NAVER
-
-```json
-{ "service_name": "Your Service Name", "logout_and_delete_token": true }
-```
+    ```json
+    { "service_name": "Your Service Name", "logout_and_delete_token": true }
+    ```
 
 ##### iOS
 * [Gamebase > iOS SDK User Guide > Getting Started > IdP settings > NAVER](./ios-started/#naver)
@@ -639,6 +636,45 @@ For Steam authentication, you must obtain an **App ID** and **Web API** from Ste
 ![gamebase_app_steam_01_en_241025.png](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_steam_01_en_241025.png)
 
 ![gamebase_app_steam_02_en_241025.png](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_steam_02_en_241025.png)
+
+#### 13. Epic Games
+[Epic Games Dev Portal](https://dev.epicgames.com/portal)에서 발급 받은 {Client ID} 및 {Client Secret}을 Gamebase Console에 입력합니다.
+이때, 디플로이 ID와 인증 시 필요한 {scope}를 JSON String 형태로 추가 정보란에 입력해야 합니다.
+
+1. **제품 설정 > 샌드박스** 메뉴에서 디플로이를 생성합니다.
+2. **제품 설정 > 클라이언트** 메뉴에서 클라이언트를 생성합니다.
+3. **제품 설정 > SDK 다운로드 및 크리덴셜** 메뉴에서 **Client ID**, **Client Secret**, **Deployment ID**를 확인합니다.
+
+> [참고]
+>
+> 디플로이 및 클라이언트 생성에 대한 자세한 내용은 다음 문서를 참고하시기 바랍니다.
+> [Game > Gamebase > 스토어 콘솔 가이드 > Epic Games Store 콘솔 가이드](./console-epicgames-guide)
+
+**입력 필드**
+
+- Client ID: {Client ID}
+- Secret Key: {Client Secret}
+- 추가정보: deployment_id, scope (json format)
+
+![에픽 앱 정보](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_iap/console_epic/epic_console_app_03_kor.png)
+
+**Reference URL**
+
+- [Epic Games Dev Portal](https://dev.epicgames.com/portal)
+- [Epic Online Services 문서](https://dev.epicgames.com/docs/epic-online-services)
+
+##### Additional Info Settings
+
+* **NHN Cloud Console > Gamebase > App > 인증 정보 > 추가 정보** 항목에 JSON string 형태의 정보를 설정해야 합니다.
+* Epic Games의 경우, **제품 설정 > SDK 다운로드 및 크리덴셜 > EOS SDK 크리덴셜 > 디플로이**에서 확인한 **deployment_id**와 OAuth 인증 시 요청할 권한 범위인 **scope**를 설정해야 합니다.
+* **deployment_id**는 EOS(Epic Online Services) 서비스 환경을 식별하기 위해 반드시 설정해야 합니다.
+* **scope**는 인증 시 사용자의 프로필, 친구 목록, 접속 상태 등의 정보를 획득하기 위해 설정합니다.
+* 인증 시 요청 가능한 scope는 다음 문서에서 확인할 수 있습니다.
+    * https://dev.epicgames.com/docs/web-api-ref/authentication#requesting-an-access-token
+* Epic Games 추가 인증 정보 입력 예제
+    ```json
+    { "deployment_id": "Your Deployment ID", "scope": ["basic_profile", "friends_list", "presence"] }
+    ```
 
 ### GPGS Automatic Login Settings
 
