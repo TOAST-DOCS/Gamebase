@@ -1,6 +1,6 @@
 ## Game > Gamebase > リリースノート > Unity
 
-### 2.80.2 (2026. 03. 24.)
+### 2.81.0 (2026. 03. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.0/GamebaseSDK-Unity.zip)
 
 #### 기능 추가
