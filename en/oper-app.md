@@ -198,9 +198,8 @@ Enter {App ID} and {App Secret Code} of an app registered in the Facebook develo
 * Set JSON string type information in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Information**. 
 * For Facebook, set **facebook_permission** and **facebook_client_token**, which is the authentication information to request for Facebook when attempting to authenticate with OAuth.
 * Example of entering Facebook additional authentication information
-    ```json
-    { "facebook_permission": ["public_profile", "email"], "facebook_client_token": "Your Facebook Client Token" }
-    ```
+
+        { "facebook_permission": ["public_profile", "email"], "facebook_client_token": "Your Facebook Client Token" }
 
 ![gamebase_app_20_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_20_en_240105.png)
 
@@ -279,9 +278,8 @@ Enter {App ID} and {App Secret Code} of an app registered in the Facebook develo
     * https://developers.google.com/identity/protocols/oauth2/scopes#google-sign-in
     * https://developers.google.com/identity/protocols/oauth2/scopes
 * Example of entering Google additional authentication information
-    ```json
-    { "scope": ["email","myscope1","myscope2",...] }
-    ```
+
+        { "scope": ["email","myscope1","myscope2",...] }
 
 ##### iOS
 
@@ -316,9 +314,8 @@ Enter {client_id} and {client_secret} issued from PAYCO ID application in the TO
 * You need to provide JSON string data at **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Info**.
 * For PAYCO, set **service_code** and **service_name** required by PAYCO SDK.
 * Example of entering the additional authentication information for PAYCO
-    ```json
-    { "service_code": "Your Service Code", "service_name": "Your Service Name" }
-    ```
+
+        { "service_code": "Your Service Code", "service_name": "Your Service Name" }
 
 ##### iOS
 * [Gamebase > iOS SDK User Guide > Getting Started > IdP Settings > PAYCO](./ios-started/#payco)
@@ -345,9 +342,8 @@ Here, **service_name**, which is the name of an application to be displayed in t
 * For NAVER login SDK, you cannot chagne your account becasue you are automatically logged in  after logging out. You must set **logout_and_delete_token** to **true** to log in with a different NAVER account after logging out.
 
 * Example of entering the additional authentication information for NAVER
-    ```json
-    { "service_name": "Your Service Name", "logout_and_delete_token": true }
-    ```
+
+        { "service_name": "Your Service Name", "logout_and_delete_token": true }
 
 ##### iOS
 * [Gamebase > iOS SDK User Guide > Getting Started > IdP settings > NAVER](./ios-started/#naver)
@@ -672,9 +668,8 @@ For Steam authentication, you must obtain an **App ID** and **Web API** from Ste
 * 인증 시 요청 가능한 scope는 다음 문서에서 확인할 수 있습니다.
     * https://dev.epicgames.com/docs/web-api-ref/authentication#requesting-an-access-token
 * Epic Games 추가 인증 정보 입력 예제
-    ```json
-    { "deployment_id": "Your Deployment ID", "scope": ["basic_profile", "friends_list", "presence"] }
-    ```
+
+        { "deployment_id": "Your Deployment ID", "scope": ["basic_profile", "friends_list", "presence"] }
 
 ### GPGS Automatic Login Settings
 
