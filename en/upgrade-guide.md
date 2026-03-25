@@ -4,7 +4,7 @@
 
 ### Unity
 
-* Auth.AuthToken의 extraParams 타입이 Dictionary<string, string>에서 Dictionary<string, object>로 변경되었습니다.
+* Auth.AuthToken의 extraParams 타입이 Dictionary&lt;string, string&gt;에서 Dictionary&lt;string, object&gt;로 변경되었습니다.
 
 ## 2.80.0
 

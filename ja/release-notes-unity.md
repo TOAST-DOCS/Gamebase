@@ -1,5 +1,15 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.81.0 (2026. 03. 24.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.0/GamebaseSDK-Unity.zip)
+
+#### 기능 추가
+* (Windows, macOS) 외부 브라우저 로그인 IDP에 Epicgames가 추가되었습니다.
+
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.80.0](./release-notes-android/#2800-2026-02-13)
+* [Gamebase iOS SDK 2.80.0](./release-notes-ios/#2800-2026-02-13)
+
 ### 2.80.1 (2026. 03. 10.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.80.1/GamebaseSDK-Unity.zip)
 
