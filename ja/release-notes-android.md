@@ -1,5 +1,13 @@
 ## Game > Gamebase > リリースノート > Android
 
+### 2.80.1 (2026. 03. 30.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.80.1/GamebaseSDK-Android.zip)
+
+#### 不具合の修正
+
+* 2.80.0 버전에서 추가된 Pending 이벤트 관련 로직이 IAP 서버 부하를 주는 이슈 수정
+
 ### 2.80.0 (2026. 02. 13.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.80.0/GamebaseSDK-Android.zip)

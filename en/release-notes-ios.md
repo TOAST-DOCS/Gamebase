@@ -1,5 +1,11 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.81.1 (2026. 03. 30.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.1/GamebaseSDK-iOS.zip)
+
+#### 버그 수정
+* LINE으로 addMapping을 시도 시 callback이 오지 않는 버그를 수정하였습니다.
+
 ### 2.80.0 (2026. 02. 13.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.80.0/GamebaseSDK-iOS.zip)
 

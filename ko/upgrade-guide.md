@@ -8,6 +8,12 @@
 
 ## 2.80.0
 
+### Android
+
+* Gamebase Android SDK 2.80.0은 다음 이슈가 발생합니다.
+    * Pending 이벤트 관련 로직이 IAP 서버에 부하를 주는 문제가 존재합니다.
+    * 이슈가 해결된 Gamebase Android SDK 2.80.1을 사용하세요.
+
 ### iOS
 
 * Xcode 최소 지원 버전이 16.0에서 26.0으로 변경되었습니다.
