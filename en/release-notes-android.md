@@ -6,7 +6,7 @@
 
 #### Bug Fixes
 
-* 2.80.0 버전에서 추가된 Pending 이벤트 관련 로직이 IAP 서버 부하를 주는 이슈 수정
+* Fixed an issue where the Pending event-related logic added in version 2.80.0 was causing excessive load on the IAP server.
 
 ### 2.80.0 (2026. 02. 13.)
 
