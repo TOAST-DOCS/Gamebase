@@ -10,9 +10,9 @@
 
 ### Android
 
-* Gamebase Android SDK 2.80.0은 다음 이슈가 발생합니다.
-    * Pending 이벤트 관련 로직이 IAP 서버에 부하를 주는 문제가 존재합니다.
-    * 이슈가 해결된 Gamebase Android SDK 2.80.1을 사용하세요.
+* Gamebase Android SDK 2.80.0では、以下の問題が発生します。
+    * Pendingイベント関連のロジックにより、IAPサーバーに負荷がかかる問題があります。
+    * この問題が修正されたGamebase Android SDK 2.80.1をご利用ください。
 
 ### iOS
 
