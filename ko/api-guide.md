@@ -21,6 +21,7 @@
 - `Withdraw Histories` API의 요청 파라미터에 eventLogType/includePending 추가
 - `SIWA Account Webhook` API 추가
 - `Get Coupon Information by Coupon Code` API 추가
+- Push 토큰 관련 `Push Wrapping` API 추가
 
 ## Advance Notice
 
@@ -2364,7 +2365,9 @@ Gamebase는 NHN Cloud Push 서비스의 서버 API에 대해 **Wrapping** 기능
 |   | 조회 | GET | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
 |   | 수정 | PUT | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
 |   | 태그 삭제 | DELETE | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
-
+| 토큰 | 생성 | POST | /tcgb-push/v1.3/apps/{appId}/tokens | /push/v2.4/appkeys/{appkey}/tokens |
+|   | 조회 | GET | /tcgb-push/v1.3/apps/{appId}/tokens-by-cursor | /push/v2.4/appkeys/{appkey}/tokens-by-cursor |
+|   | 삭제 | DELETE | /tcgb-push/v1.3/apps/{appId}/tokens/{token} | /push/v2.4/appkeys/{appkey}/tokens/{token} |
 <br/>
 
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
