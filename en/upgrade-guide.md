@@ -1,5 +1,13 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.81.2
+
+### iOS
+
+* Gamebase iOS SDK 2.81.2 미만에서 다음 이슈가 발생합니다.
+    * 앱이 SceneDelegate를 지원하는 상태에서 실행 직후 Gamebase 초기화 시, callback이 오지 않는 문제가 발생합니다.
+    * 이슈가 해결된 Gamebase iOS SDK 2.81.2를 사용하세요.
+
 ## 2.80.1
 
 ### Unity
@@ -10,9 +18,9 @@
 
 ### Android
 
-* Gamebase Android SDK 2.80.0은 다음 이슈가 발생합니다.
-    * Pending 이벤트 관련 로직이 IAP 서버에 부하를 주는 문제가 존재합니다.
-    * 이슈가 해결된 Gamebase Android SDK 2.80.1을 사용하세요.
+* Gamebase Android SDK 2.80.0 has the following issue:
+    * The Pending event-related logic causes excessive load on the IAP server.
+    * Use Gamebase Android SDK 2.80.1, in which this issue has been resolved.
 
 ### iOS
 
