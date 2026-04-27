@@ -5,7 +5,7 @@
 
 #### 버그 수정
 * (Windows, MacOS) 이미지 공지 '오늘은 그만 보기' 체크 후 ShowImageNotices를 다시 호출 했을 때 종료 콜백을 받지 못하는 문제를 수정했습니다.
-* (Windows, MacOS) 창모드로 실행중인 게임 화면을 크기가 변경되는 것에 맞춰 WebView 영역이 변경되지 않는 문제를 수정했습니다.
+* (Windows, MacOS) 창 모드로 실행 중 게임 화면 크기 변경이 WebView 영역에 반영되지 않는 문제를 수정했습니다.
 
 #### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.80.2](./release-notes-android/#2802-2026-04-28)
