@@ -2,7 +2,7 @@
 
 ### 2.80.2 (2026. 04. 28.)
 
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.80.1/GamebaseSDK-Android.zip)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.80.2/GamebaseSDK-Android.zip)
 
 #### 기능 개선/변경
 
