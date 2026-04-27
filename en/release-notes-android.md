@@ -1,5 +1,13 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.80.2 (2026. 04. 28.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.80.1/GamebaseSDK-Android.zip)
+
+#### 기능 개선/변경
+
+* 외부 SDK 업데이트: Hangame Android SDK(1.17.4)
+
 ### 2.80.1 (2026. 03. 30.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.80.1/GamebaseSDK-Android.zip)
@@ -29,8 +37,8 @@
 
 #### Feature Updates
 
-* Fixed an issue where the back button failed to function correctly on Android 16 (targetSdk 36), causing WebViews or the app to close unexpectedly.
-* Improved internal logic
+* targetSdk 36 을 지원합니다. targetSdk 36 빌드를 Android 16 단말기에서 실행 시 웹뷰의 뒤로 가기가 정상 작동하지 않는 현상을 수정했습니다.
+* 내부 로직 개선
 
 ### 2.78.0 (2025. 12. 23.)
 
