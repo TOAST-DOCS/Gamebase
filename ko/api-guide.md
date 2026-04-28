@@ -2367,6 +2367,8 @@ Gamebase는 NHN Cloud Push 서비스의 서버 API에 대해 **Wrapping** 기능
 |   | 태그 삭제 | DELETE | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
 | 토큰 | 생성 | POST | /tcgb-push/v1.3/apps/{appId}/tokens | /push/v2.4/appkeys/{appkey}/tokens |
 |   | 조회 | GET | /tcgb-push/v1.3/apps/{appId}/tokens-by-cursor | /push/v2.4/appkeys/{appkey}/tokens-by-cursor |
+|   | 토큰으로 조회 | GET | /tcgb-push/v1.3/apps/{appId}/tokens/{token} | /push/v2.4/appkeys/{appkey}/tokens/{token} |
+|   | UID로 조회 | GET | /tcgb-push/v1.3/apps/{appId}/tokens | /push/v2.4/appkeys/{appkey}/tokens |
 |   | 삭제 | DELETE | /tcgb-push/v1.3/apps/{appId}/tokens/{token} | /push/v2.4/appkeys/{appkey}/tokens/{token} |
 <br/>
 
