@@ -509,7 +509,7 @@ class MyApplication: GamebaseMyCardApplication() {
         <package android:name="com.hanaskcard.paycla" />
         <package android:name="kvp.jjy.MispAndroid320" />
         <package android:name="nh.smart.nhallonepay" />
-        <!-- [ㄴ] Configurations end -->
+        <!-- [Hangame] Configurations end -->
         
         <!-- [NAVER] Configurations begin -->
         <package android:name="com.nhn.android.search" />
