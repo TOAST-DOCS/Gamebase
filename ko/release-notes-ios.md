@@ -4,7 +4,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.2/GamebaseSDK-iOS.zip)
 
 #### 버그 수정
-* 앱이 SceneDelegate를 지원하는 상태에서 실행 직후 Gamebase 초기화 시, callback이 오지 않는 버그를 수정하였습니다.
+* 앱이 SceneDelegate를 지원하는 상태에서 실행 직후 Gamebase를 초기화하면 callback이 오지 않는 버그를 수정했습니다.
 
 ### 2.81.1 (2026. 03. 30.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.1/GamebaseSDK-iOS.zip)
