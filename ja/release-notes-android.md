@@ -1,5 +1,13 @@
 ## Game > Gamebase > リリースノート > Android
 
+### 2.80.2 (2026. 04. 28.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.80.2/GamebaseSDK-Android.zip)
+
+#### 機能改善・変更
+
+* 外部SDKのアップデート: Hangame Android SDK(1.17.4)
+
 ### 2.80.1 (2026. 03. 30.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.80.1/GamebaseSDK-Android.zip)
@@ -16,7 +24,7 @@
 
 * 決済リクエスト時、遅延決済や保護者の同意のように決済完了を待つ必要がある状況が発生した場合、新規追加された**PURCHASE_PENDING(4008)**エラーが発生します。
 * Gamebase Event HandlerのGamebaseEventCategory.PURCHASE_UPDATEDイベント機能が拡張されました。
-    * アプリの実行中、GamebaseEventHandlerを通じてPending決済(遅延決済、保護者の同意など)の完了イベントを受け取ることができます。
+    * アプリの実行中、GamebaseEventHandlerを通じてPending決済(遅延決済、保護者の同意など)の完了イベントを受け取ることができます。
 
 #### 不具合の修正
 
@@ -29,8 +37,8 @@
 
 #### 機能改善・変更
 
-* targetSdk 36 ビルドをAndroid 16 端末で実行した際、「戻る」操作が正常に動作せず、WebViewがそのまま閉じたりアプリが終了したりする現象を修正しました。
-* 内部ロジックの改善
+* targetSdk 36 을 지원합니다. targetSdk 36 빌드를 Android 16 단말기에서 실행 시 웹뷰의 뒤로 가기가 정상 작동하지 않는 현상을 수정했습니다.
+* 내부 로직 개선
 
 ### 2.78.0 (2025. 12. 23.)
 
