@@ -1,5 +1,13 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.81.3
+
+### iOS
+
+* Gamebase iOS SDK 2.81.3 미만에서 다음 이슈가 발생합니다.
+    * iPhone 웹뷰에서 일부 영상이 재생되지 않는 문제가 발생합니다.
+    * 이슈가 해결된 Gamebase iOS SDK 2.81.3을 사용하세요.
+
 ## 2.81.2
 
 ### iOS
