@@ -8,7 +8,7 @@
 * 내부 로직 개선
 
 #### 버그 수정
-* iPhone 웹뷰에서 일부 영상이 재생되지 않는 버그를 수정하였습니다.
+* Gamebase 웹뷰에서 일부 영상이 재생되지 않는 버그를 수정하였습니다.
 
 ### 2.81.2 (2026. 04. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.2/GamebaseSDK-iOS.zip)
