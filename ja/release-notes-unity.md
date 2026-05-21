@@ -3,11 +3,11 @@
 ### 2.81.1 (2026. 04. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.1/GamebaseSDK-Unity.zip)
 
-#### 버그 수정
-* (Windows, MacOS) 이미지 공지 '오늘은 그만 보기' 체크 후 ShowImageNotices를 다시 호출 했을 때 종료 콜백을 받지 못하는 문제를 수정했습니다.
-* (Windows, MacOS) 창 모드로 실행 중 게임 화면 크기 변경이 WebView 영역에 반영되지 않는 문제를 수정했습니다.
+#### 不具合の修正
+* (Windows、MacOS) 画像お知らせの「今日はこれ以上表示しない」にチェックを入れた後、ShowImageNoticesを再度呼び出した際に、終了コールバックを受け取れない問題を修正しました。
+* (Windows、MacOS) ウィンドウモードで実行中にゲーム画面のサイズ変更がWebビュー領域に反映されない問題を修正しました。
 
-#### 플랫폼별 변경 사항
+#### プラットフォーム別の変更事項
 * [Gamebase Android SDK 2.80.2](./release-notes-android/#2802-2026-04-28)
 * [Gamebase iOS SDK 2.81.2](./release-notes-ios/#2812-2026-04-28)
 
