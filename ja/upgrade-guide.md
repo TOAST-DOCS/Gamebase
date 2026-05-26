@@ -4,9 +4,9 @@
 
 ### iOS
 
-* Gamebase iOS SDK 2.81.2 미만에서 다음 이슈가 발생합니다.
-    * 앱이 SceneDelegate를 지원하는 상태에서 실행 직후 Gamebase 초기화 시, callback이 오지 않는 문제가 발생합니다.
-    * 이슈가 해결된 Gamebase iOS SDK 2.81.2를 사용하세요.
+* Gamebase iOS SDK 2.81.2未満で次の問題が発生します。
+    * アプリがSceneDelegateをサポートしている状態で、実行直後にGamebaseを初期化した際、コールバックが返されない問題が発生します。
+    * 問題が解決されたGamebase iOS SDK 2.81.2を使用してください。
 
 ## 2.80.1
 

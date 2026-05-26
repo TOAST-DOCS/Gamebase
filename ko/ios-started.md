@@ -266,7 +266,7 @@ end
     * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
 #### Game Center
-* Entitlements.plist에 Game Center entitlement(`com.apple.developer.game-center`)이 없다면 직접 추가해야 합니다.
+* Entitlements.plist에 Game Center entitlement(`com.apple.developer.game-center`)가 없다면 직접 추가해야 합니다.
 
 #### Weibo
 
