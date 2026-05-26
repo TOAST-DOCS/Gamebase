@@ -37,8 +37,8 @@
 
 #### Feature Updates
 
-* targetSdk 36 을 지원합니다. targetSdk 36 빌드를 Android 16 단말기에서 실행 시 웹뷰의 뒤로 가기가 정상 작동하지 않는 현상을 수정했습니다.
-* 내부 로직 개선
+* Added support for targetSdk 36. Fixed an issue where the back navigation in WebView did not function correctly when running a targetSdk 36 build on an Android 16 device.
+* Improved internal logic
 
 ### 2.78.0 (2025. 12. 23.)
 

@@ -1,10 +1,20 @@
 ## Game > Gamebase > 릴리스 노트 > iOS
 
+### 2.81.3 (2026. 05. 27.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.3/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* GamebasePushAdapter를 빌드에 포함하지 않은 상태에서 Push API 호출 시 **TCGB_ERROR_NOT_SUPPORTED(10)** 오류를 반환하도록 수정하였습니다.
+* 내부 로직 개선
+
+#### 버그 수정
+* Gamebase 웹뷰에서 일부 영상이 재생되지 않는 버그를 수정하였습니다.
+
 ### 2.81.2 (2026. 04. 28.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.2/GamebaseSDK-iOS.zip)
 
 #### 버그 수정
-* 앱이 SceneDelegate를 지원하는 상태에서 실행 직후 Gamebase 초기화 시, callback이 오지 않는 버그를 수정하였습니다.
+* 앱이 SceneDelegate를 지원하는 상태에서 실행 직후 Gamebase를 초기화하면 callback이 오지 않는 버그를 수정했습니다.
 
 ### 2.81.1 (2026. 03. 30.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.1/GamebaseSDK-iOS.zip)
