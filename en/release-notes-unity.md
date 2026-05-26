@@ -1,5 +1,16 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.81.1 (2026. 04. 28.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.1/GamebaseSDK-Unity.zip)
+
+#### Bug Fixes
+* (Windows, macOS) Fixed an issue where the close callback was not received when ShowImageNotices was called again after checking "Do not show today" in the image notice.
+* (Windows, macOS) Fixed an issue where changes to the game screen size while running in windowed mode were not reflected in the WebView area.
+
+#### Platform-Specific Changes
+* [Gamebase Android SDK 2.80.2](./release-notes-android/#2802-2026-04-28)
+* [Gamebase iOS SDK 2.81.2](./release-notes-ios/#2812-2026-04-28)
+
 ### 2.81.0 (2026. 03. 24.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.0/GamebaseSDK-Unity.zip)
 

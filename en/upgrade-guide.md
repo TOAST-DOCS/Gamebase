@@ -1,5 +1,13 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.81.2
+
+### iOS
+
+* The following issue occurs in Gamebase iOS SDK versions below 2.81.2.
+    * When Gamebase is initialized immediately after launch while the app supports SceneDelegate, the callback is not received.
+    * Use Gamebase iOS SDK 2.81.2, in which this issue has been resolved.
+
 ## 2.80.1
 
 ### Unity

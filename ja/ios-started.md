@@ -266,6 +266,9 @@ end
 * Gamebase iOS SDK 2.42.2以下は追加設定が必要です。
     * [Game > Gamebase > iOS SDK使用ガイド > はじめる > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
+#### Game Center
+* Entitlements.plistにGame Centerエンタイトルメント(`com.apple.developer.game-center`)がない場合は、直接追加する必要があります。
+
 #### Weibo
 
 * URL Schemeを設定する必要があります。

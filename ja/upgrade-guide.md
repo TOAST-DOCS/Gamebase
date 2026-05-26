@@ -1,5 +1,13 @@
 ## Game > Gamebase > Upgrade Guide
 
+## 2.81.2
+
+### iOS
+
+* Gamebase iOS SDK 2.81.2未満で次の問題が発生します。
+    * アプリがSceneDelegateをサポートしている状態で、実行直後にGamebaseを初期化した際、コールバックが返されない問題が発生します。
+    * 問題が解決されたGamebase iOS SDK 2.81.2を使用してください。
+
 ## 2.80.1
 
 ### Unity

@@ -1,5 +1,11 @@
 ## Game > Gamebase > Release Notes > iOS
 
+### 2.81.2 (2026. 04. 28.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.2/GamebaseSDK-iOS.zip)
+
+#### Bug Fixes
+* Fixed a bug where the callback was not received when Gamebase was initialized immediately after launch while the app supported SceneDelegate.
+
 ### 2.81.1 (2026. 03. 30.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.1/GamebaseSDK-iOS.zip)
 
