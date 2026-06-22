@@ -226,7 +226,7 @@ You can get the push info registered with the TCGBPushTokenInfo value which come
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |
-| TCGB_ERROR_NOT_SUPPORTED                 | 10         | Push Adapter가 포함되지 않았습니다.<br/>Push Adapter가 프로젝트에 포함되었는지 확인해 주시길 바랍니다. |
+| TCGB_ERROR_NOT_SUPPORTED                 | 10         | The Push Adapter is not included.<br/>Please check if the Push Adapter is included in the project. |
 | TCGB_ERROR_PUSH_EXTERNAL_LIBRARY_ERROR   | 5101       | Error in NHN Cloud Push library.<br>Please check the error details. |
 | TCGB_ERROR_PUSH_ALREADY_IN_PROGRESS_ERROR | 5102       | Previous PUSH API call is not completed.<br>Please call again after the previous push API callback is executed. |
 | TCGB_ERROR_PUSH_UNKNOWN_ERROR            | 5999       | Unknown push error.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry), and we'll respond ASAP. |
