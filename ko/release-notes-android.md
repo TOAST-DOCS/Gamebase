@@ -6,7 +6,7 @@
 
 #### 기능 개선/변경
 
-* 결제 모듈 의존성이 변경되었습니다. NHN Cloud IAP SDK (1.12.0) -> NHN IAP SDK (2.1.0)
+* 결제 모듈 의존성이 변경되었습니다. NHN Cloud IAP SDK (1.12.0) → NHN IAP SDK (2.1.0)
     * Google Play Billing Library 8.3.0이 적용되었습니다.
     * OneStore V21 서버 도메인 변경을 대응하였습니다.
 
