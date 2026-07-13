@@ -4,7 +4,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.4/GamebaseSDK-Unity.zip)
 
 #### 버그 수정
-* (Windows, macOS) 불안정한 네트워크 환경에서 Websocket 재연결을 시도할 때 간헐적으로 오류가 발생하는 문제를 수정하였습니다.
+* (Windows, macOS) 불안정한 네트워크 환경에서 Websocket 재연결을 시도할 때 간헐적으로 오류가 발생하는 문제를 수정했습니다.
 
 #### 기능 개선
 * Gamebase SDK에 Assembly Definition(.asmdef)을 적용했습니다.
