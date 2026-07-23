@@ -1,5 +1,11 @@
 ## Game > Gamebase > 릴리스 노트 > iOS
 
+### 2.82.0 (2026. 07. 28.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.82.0/GamebaseSDK-iOS.zip)
+
+#### 기능 개선/변경
+* Gamebase 초기화 시 Facebook SDK도 초기화되도록 수정하였습니다.
+
 ### 2.81.3 (2026. 05. 27.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.3/GamebaseSDK-iOS.zip)
 
