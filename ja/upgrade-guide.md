@@ -16,6 +16,25 @@
     * アプリがSceneDelegateをサポートしている状態で、実行直後にGamebaseを初期化した際、コールバックが返されない問題が発生します。
     * 問題が解決されたGamebase iOS SDK 2.81.2を使用してください。
 
+## 2.81.0
+
+### Android
+
+* Gamebase Android SDK 2.81.0은 R8 8.0.44 미만 버전을 사용하는 게임 프로젝트에서 빌드가 실패하는 문제가 존재합니다.
+    * R8 버전은 Unity Editor의 AGP에 따라 결정됩니다. Unity 2022 LTS 이하에서 발생하고, Unity 2023·Unity 6 이상에서는 발생하지 않습니다.
+    * 이슈가 해결된 Gamebase Android SDK 2.82.0을 사용하거나, 다음과 같이 R8 버전을 강제로 업데이트하면 문제가 해결됩니다.
+
+            // baseProjectTemplate.gradle
+            buildscript {
+                repositories {
+                    maven { url "https://storage.googleapis.com/r8-releases/raw" }
+                }
+                dependencies {
+                    // 최소 R8 8.0.44, Gamebase 검증 버전 8.3.37 권장
+                    classpath("com.android.tools:r8:8.3.37")
+                }
+            }
+
 ## 2.80.1
 
 ### Unity
