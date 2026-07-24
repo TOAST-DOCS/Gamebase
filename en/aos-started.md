@@ -28,15 +28,15 @@ To execute Gamebase in Android, the following system environment is required.
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.10.5 | Support Weibo login | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.19.3<br>kakaogame.gamesdk-3.19.3<br>kakaogame.common-3.19.3<br>kakao.sdk.v2-auth-2.17.0<br>kakao.sdk.v2-partner-auth-2.17.0<br>kakao.sdk.v2-common-2.17.0<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 23(Marshmallow, OS 6.0) |
 |  | gamebase-adapter-auth-steam | - | Support Steam login | API 25(Nougat, OS 7.1.1) |
-| Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | Support in-app purchase | - |
-|  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Support Samsung Galaxy Store |  - |
-|  | gamebase-adapter-purchase-google | billing-7.1.1<br>nhncloud-iap-google | Support Google Play | API 24(Nougat, OS 7.0)<br>[Desugaring declaration](https://developer.android.com/studio/write/java8-support#library-desugaring) required for API 23 or lower support |
-|  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | Support Huawei AppGallery | - |
-|  | gamebase-adapter-purchase-onestore | nhncloud-iap-onestore | Support ONE store v17 | - |
-|  | gamebase-adapter-purchase-onestore-v19 | nhncloud-iap-onestore-v19 | Support ONE store v19| - |
-|  | gamebase-adapter-purchase-onestore-v21 | nhncloud-iap-onestore-v21 | Support ONE store v21 | API 23(Marshmallow, OS 6.0) |
-|  | gamebase-adapter-purchase-onestore-external | nhncloud-iap-onestore-external | Support ONE store external payment function | - |
-|  | gamebase-adapter-purchase-mycard | nhncloud-iap-mycard | Support MyCard payment function | - |
+| Gamebase IAP Adapters | gamebase-adapter-toastiap | nhn-iap-core-2.1.0 | Support in-app purchase | - |
+|  | gamebase-adapter-purchase-galaxy | nhn-iap-galaxy-2.1.0 | Support Samsung Galaxy Store |  - |
+|  | gamebase-adapter-purchase-google | billing-8.3.0<br>nhn-iap-google-2.1.0 | Support Google Play | API 24(Nougat, OS 7.0)<br>[Desugaring declaration](https://developer.android.com/studio/write/java8-support#library-desugaring) required for API 23 or lower support |
+|  | gamebase-adapter-purchase-huawei | nhn-iap-huawei-2.1.0 | Support Huawei AppGallery | - |
+|  | gamebase-adapter-purchase-onestore | nhn-iap-onestore-2.1.0 | Support ONE store v17 | - |
+|  | gamebase-adapter-purchase-onestore-v19 | nhn-iap-onestore-v19-2.1.0 | Support ONE store v19| - |
+|  | gamebase-adapter-purchase-onestore-v21 | nhn-iap-onestore-v21-2.1.0 | Support ONE store v21 | API 23(Marshmallow, OS 6.0) |
+|  | gamebase-adapter-purchase-onestore-external | nhn-iap-onestore-external-2.1.0 | Support ONE store external payment function | - |
+|  | gamebase-adapter-purchase-mycard | nhn-iap-mycard-2.1.0 | Support MyCard payment function | - |
 | Gamebase Push Adapters | gamebase-adapter-toastpush | nhncloud-push-analytics<br>nhncloud-push-core<br>nhncloud-push-notification | Support Push | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>nhncloud-push-fcm | Support Firebase Cloud Messaging | - |
 
