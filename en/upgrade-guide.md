@@ -4,9 +4,9 @@
 
 ### Unity
 
-* Gamebase Unity SDK 소스에 Assembly Definition(.asmdef)이 적용되어, SDK가 기본 어셈블리(Assembly-CSharp)에서 분리된 별도의 **Gamebase** 어셈블리로 컴파일됩니다.
-    * Gamebase 어셈블리는 autoReferenced가 활성화되어 있으므로, 별도의 Assembly Definition을 사용하지 않는 프로젝트는 추가 설정 없이 기존과 동일하게 Gamebase API를 사용할 수 있습니다.
-    * 게임 코드에서 자체 Assembly Definition(.asmdef)을 사용하는 경우, Gamebase API를 호출하는 어셈블리의 **Assembly Definition References**에 **Gamebase** 어셈블리를 추가해야 합니다.
+* Assembly Definition (.asmdef) has been applied to the Gamebase Unity SDK source, and the SDK is compiled into a separate **Gamebase** assembly, independent of the default assembly (Assembly-CSharp).
+    * Since the Gamebase assembly has autoReferenced enabled, projects that do not use a separate Assembly Definition can use the Gamebase API as before without any additional configuration.
+    * If your game code uses its own Assembly Definition (.asmdef), you must add the **Gamebase** assembly to the **Assembly Definition References** of the assembly that calls the Gamebase API.
 
 ## 2.81.2
 
@@ -15,6 +15,25 @@
 * The following issue occurs in Gamebase iOS SDK versions below 2.81.2.
     * When Gamebase is initialized immediately after launch while the app supports SceneDelegate, the callback is not received.
     * Use Gamebase iOS SDK 2.81.2, in which this issue has been resolved.
+
+## 2.81.0
+
+### Android
+
+* Gamebase Android SDK 2.81.0은 R8 8.0.44 미만 버전을 사용하는 게임 프로젝트에서 빌드가 실패하는 문제가 존재합니다.
+    * R8 버전은 Unity Editor의 AGP에 따라 결정됩니다. Unity 2022 LTS 이하에서 발생하고, Unity 2023·Unity 6 이상에서는 발생하지 않습니다.
+    * 이슈가 해결된 Gamebase Android SDK 2.82.0을 사용하거나, 다음과 같이 R8 버전을 강제로 업데이트하면 문제가 해결됩니다.
+
+            // baseProjectTemplate.gradle
+            buildscript {
+                repositories {
+                    maven { url "https://storage.googleapis.com/r8-releases/raw" }
+                }
+                dependencies {
+                    // 최소 R8 8.0.44, Gamebase 검증 버전 8.3.37 권장
+                    classpath("com.android.tools:r8:8.3.37")
+                }
+            }
 
 ## 2.80.1
 
