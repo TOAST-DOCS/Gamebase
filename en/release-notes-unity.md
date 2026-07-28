@@ -3,13 +3,13 @@
 ### 2.81.4 (2026. 07. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.4/GamebaseSDK-Unity.zip)
 
-#### 버그 수정
-* (Windows, macOS) 불안정한 네트워크 환경에서 Websocket 재연결을 시도할 때 간헐적으로 오류가 발생하는 문제를 수정했습니다.
+#### Bug Fixes
+* (Windows, macOS) Fixed an intermittent error that occurred when attempting to reconnect via WebSocket in an unstable network environment.
 
-#### 기능 개선
-* Gamebase SDK에 Assembly Definition(.asmdef)을 적용했습니다.
+#### Feature Updates
+* Applied Assembly Definition (.asmdef) on the Gamebase SDK.
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.81.0](./release-notes-android/#2810-2026-06-23)
 * [Gamebase iOS SDK 2.81.3](./release-notes-ios/#2813-2026-05-27)
 
