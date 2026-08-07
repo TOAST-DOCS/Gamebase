@@ -1,5 +1,17 @@
 ## Game > Gamebase > Release Notes > Android
 
+### 2.82.0 (2026. 07. 28.)
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.82.0/GamebaseSDK-Android.zip)
+
+#### Feature Updates
+
+* Improved internal logic
+
+#### Bug Fixes
+
+* Fixed an issue where the game build failed when applying 2.81.0 in an environment below AGP 8.0 without upgrading the R8 version.
+
 ### 2.81.0 (2026. 06. 23.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.0/GamebaseSDK-Android.zip)

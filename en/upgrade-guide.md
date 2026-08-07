@@ -16,6 +16,25 @@
     * When Gamebase is initialized immediately after launch while the app supports SceneDelegate, the callback is not received.
     * Use Gamebase iOS SDK 2.81.2, in which this issue has been resolved.
 
+## 2.81.0
+
+### Android
+
+* Gamebase Android SDK 2.81.0 has an issue where the build fails in game projects using a version of R8 earlier than 8.0.44.
+    * The R8 version is determined by the AGP in Unity Editor. This occurs on Unity 2022 LTS and earlier, and does not occur on Unity 2023, Unity 6, and later.
+    * This issue is resolved by using Gamebase Android SDK 2.82.0, in which the issue has been fixed, or by forcibly updating the R8 version as follows.
+
+            // baseProjectTemplate.gradle
+            buildscript {
+                repositories {
+                    maven { url "https://storage.googleapis.com/r8-releases/raw" }
+                }
+                dependencies {
+                    // Minimum R8 8.0.44, Gamebase-verified version 8.3.37 recommended
+                    classpath("com.android.tools:r8:8.3.37")
+                }
+            }
+
 ## 2.80.1
 
 ### Unity

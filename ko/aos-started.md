@@ -28,15 +28,15 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.10.5 | Weibo 로그인을 지원 | - |
 |  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.19.3<br>kakaogame.gamesdk-3.19.3<br>kakaogame.common-3.19.3<br>kakao.sdk.v2-auth-2.17.0<br>kakao.sdk.v2-partner-auth-2.17.0<br>kakao.sdk.v2-common-2.17.0<br>play-services-ads-identifier-17.0.0 | Kakao 로그인을 지원 | API 23(Marshmallow, OS 6.0) |
 |  | gamebase-adapter-auth-steam | - | Steam 로그인을 지원 | API 25(Nougat, OS 7.1.1) |
-| Gamebase IAP Adapters | gamebase-adapter-toastiap | nhncloud-iap-core | 게임 내 결제 지원 | - |
-|  | gamebase-adapter-purchase-galaxy | nhncloud-iap-galaxy | Samsung Galaxy Store를 지원 | - |
-|  | gamebase-adapter-purchase-google | billing-7.1.1<br>nhncloud-iap-google | Google Play를 지원 | API 24(Nougat, OS 7.0)<br>API 23 이하 지원을 위해서는 [desugaring 선언](https://developer.android.com/studio/write/java8-support#library-desugaring) 필요 |
-|  | gamebase-adapter-purchase-huawei | nhncloud-iap-huawei | Huawei AppGallery를 지원 | - |
-|  | gamebase-adapter-purchase-onestore | nhncloud-iap-onestore | ONE store v17을 지원 | - |
-|  | gamebase-adapter-purchase-onestore-v19 | nhncloud-iap-onestore-v19 | ONE store v19를 지원 | - |
-|  | gamebase-adapter-purchase-onestore-v21 | nhncloud-iap-onestore-v21 | ONE store v21을 지원 | API 23(Marshmallow, OS 6.0) |
-|  | gamebase-adapter-purchase-onestore-external | nhncloud-iap-onestore-external | ONE store 외부 결제 기능을 지원 | - |
-|  | gamebase-adapter-purchase-mycard | nhncloud-iap-mycard | MyCard 결제 기능을 지원 | - |
+| Gamebase IAP Adapters | gamebase-adapter-toastiap | nhn-iap-core-2.1.0 | 게임 내 결제 지원 | - |
+|  | gamebase-adapter-purchase-galaxy | nhn-iap-galaxy-2.1.0 | Samsung Galaxy Store를 지원 | - |
+|  | gamebase-adapter-purchase-google | billing-8.3.0<br>nhn-iap-google-2.1.0 | Google Play를 지원 | API 24(Nougat, OS 7.0)<br>API 23 이하 지원을 위해서는 [desugaring 선언](https://developer.android.com/studio/write/java8-support#library-desugaring) 필요 |
+|  | gamebase-adapter-purchase-huawei | nhn-iap-huawei-2.1.0 | Huawei AppGallery를 지원 | - |
+|  | gamebase-adapter-purchase-onestore | nhn-iap-onestore-2.1.0 | ONE store v17을 지원 | - |
+|  | gamebase-adapter-purchase-onestore-v19 | nhn-iap-onestore-v19-2.1.0 | ONE store v19를 지원 | - |
+|  | gamebase-adapter-purchase-onestore-v21 | nhn-iap-onestore-v21-2.1.0 | ONE store v21을 지원 | API 23(Marshmallow, OS 6.0) |
+|  | gamebase-adapter-purchase-onestore-external | nhn-iap-onestore-external-2.1.0 | ONE store 외부 결제 기능을 지원 | - |
+|  | gamebase-adapter-purchase-mycard | nhn-iap-mycard-2.1.0 | MyCard 결제 기능을 지원 | - |
 | Gamebase Push Adapters | gamebase-adapter-toastpush | nhncloud-push-analytics<br>nhncloud-push-core<br>nhncloud-push-notification | Push를 지원 | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>nhncloud-push-fcm | Firebase Cloud Messaging을 지원 | - |
 
