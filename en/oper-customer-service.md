@@ -203,7 +203,7 @@ Enter the text of the FAQ.
 > [Note]
 Supported languages that were configured in the > App - Customer Center can be registered only when all of them were entered.
 
-####. 5. Answer
+#### 5. Answer
 Enter the answer to the FAQ.
 You can customize the answer by using the Text Editor, and the answer is exposed in the web page as is.
 > [Note]

@@ -784,7 +784,7 @@
 	* Android settings tool provided
 	* Unreal 4.26 supported
 
-### ### 2.15.0 (October 27, 2020)
+### 2.15.0 (October 27, 2020)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.15.0/GamebaseSDK-Unreal.zip)
 
 #### More Features
@@ -806,7 +806,7 @@
 * [SDK] 2.15.0    
     * (Unreal) Fixed an issue where the ProGuard declaration was missing in the transaction module
 
-### ### 2.9.1 (August 25, 2020)
+### 2.9.1 (August 25, 2020)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.9.1/GamebaseSDK-Unreal.zip)
 
 #### More Features
