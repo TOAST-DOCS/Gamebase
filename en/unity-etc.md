@@ -1432,6 +1432,7 @@ A user verification status constant.
 
 **Example**
 
+<!-- fence-lint: F1 L1435 — 리뷰 후 이 라인 삭제 (suggestion accept 시 자동 제거) -->
 ``` cs
 public static void SampleGetAgeSignal()
 {
