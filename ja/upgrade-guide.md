@@ -30,7 +30,7 @@
                     maven { url "https://storage.googleapis.com/r8-releases/raw" }
                 }
                 dependencies {
-                    // 최소 R8 8.0.44, Gamebase 검증 버전 8.3.37 권장
+                    // 最小R8 8.0.44、Gamebase検証バージョン8.3.37推奨
                     classpath("com.android.tools:r8:8.3.37")
                 }
             }
