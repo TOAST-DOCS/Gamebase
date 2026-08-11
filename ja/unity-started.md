@@ -9,7 +9,7 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 > 
 > Unity対応バージョン
 >
-> * 2022.3.10f1 ~ 6000.3.12f1
+> * 2022.3.10f1 ~ 6000.3.21f1
 
 #### Supported Platforms
 

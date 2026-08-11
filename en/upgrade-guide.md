@@ -20,9 +20,9 @@
 
 ### Android
 
-* Gamebase Android SDK 2.81.0은 R8 8.0.44 미만 버전을 사용하는 게임 프로젝트에서 빌드가 실패하는 문제가 존재합니다.
-    * R8 버전은 Unity Editor의 AGP에 따라 결정됩니다. Unity 2022 LTS 이하에서 발생하고, Unity 2023·Unity 6 이상에서는 발생하지 않습니다.
-    * 이슈가 해결된 Gamebase Android SDK 2.82.0을 사용하거나, 다음과 같이 R8 버전을 강제로 업데이트하면 문제가 해결됩니다.
+* Gamebase Android SDK 2.81.0 has an issue where the build fails in game projects using a version of R8 earlier than 8.0.44.
+    * The R8 version is determined by the AGP in Unity Editor. This occurs on Unity 2022 LTS and earlier, and does not occur on Unity 2023, Unity 6, and later.
+    * This issue is resolved by using Gamebase Android SDK 2.82.0, in which the issue has been fixed, or by forcibly updating the R8 version as follows.
 
             // baseProjectTemplate.gradle
             buildscript {
@@ -30,7 +30,7 @@
                     maven { url "https://storage.googleapis.com/r8-releases/raw" }
                 }
                 dependencies {
-                    // 최소 R8 8.0.44, Gamebase 검증 버전 8.3.37 권장
+                    // Minimum R8 8.0.44, Gamebase-verified version 8.3.37 recommended
                     classpath("com.android.tools:r8:8.3.37")
                 }
             }
