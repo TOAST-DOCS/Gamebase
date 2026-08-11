@@ -2343,20 +2343,18 @@ Google Play에서 차지백 검토 요청 알림(`PendingRefundReviewNotificatio
 | pendingRefundNotification.paymentSeq | String | Required | IAP 결제 번호 |
 | pendingRefundNotification.accessToken | String | Required | IAP 결제 번호에 상응하는 토큰 |
 | pendingRefundNotification.refundRequestReason | String | Required | 환불 요청 사유를 구분하는 값<br>- 현재 `CHARGEBACK`만 지원 |
-| pendingRefundNotification.marketExpiryTimeMillis | Long | Required | 의견 등록 만료 시각<br>- Google Play가 알림을 최종 전송한 시점부터 24시간<br>- IAP 수신 시점 기준이 아님<br>- Epoch Time(milliseconds) |
+| pendingRefundNotification.marketExpiryTimeMillis | Long | Required | 의견 등록 만료 시각<br>- Google Play가 알림을 최종 전송한 시점부터 24시간- Epoch Time(milliseconds) |
 
 > [참고]
 > 콜백으로 전달된 `pendingRefundNotification.accessToken`으로 [Get Payment Transaction](#get-payment-transaction) API를 호출하면 차지백 대상 결제의 상세 정보를 조회할 수 있습니다.
 
 > [주의]
-> 동일한 `refundReviewSeq`의 콜백이 중복으로 전달될 수 있습니다.<br>
+> 동일한 `refundReviewSeq`의 콜백이 중복으로 전달될 수 있습니다.
 > 게임 서버는 이미 처리한 `refundReviewSeq`가 다시 전달되면 해당 요청을 다시 처리하지 않고 성공 응답을 반환해야 합니다.
 
 **[Response Body]**
 
 게임 서버는 콜백 처리 결과를 `HTTP 200 OK`와 Gamebase 공통 응답 형식으로 반환해야 합니다.
-
-응답 본문은 64 KB(65,536바이트) 이하여야 합니다. Gamebase는 `header.isSuccessful`, `header.resultCode`, `header.resultMessage`만 처리합니다.
 
 ```json
 {
@@ -2373,14 +2371,15 @@ Google Play에서 차지백 검토 요청 알림(`PendingRefundReviewNotificatio
 
 <br>
 
-### Reply Refund Review
+### Google Play Reply Refund Review
 
 게임에서 차지백 검토 요청에 대한 내부 검토를 완료한 후, 이 API를 호출하여 환불 의견과 구매 콘텐츠 소비 정보를 등록합니다.
 등록된 내용은 Google Play에 환불 검토 의견으로 제출됩니다.
 
 > [주의]
-> 콜백으로 전달받은 `marketExpiryTimeMillis`는 환불 검토 의견 등록 만료 시각입니다.<br>
-> 만료되기 전에 이 API를 호출해야 합니다.
+> 콜백으로 전달받은 `marketExpiryTimeMillis`는 환불 검토 의견 등록 만료 시각입니다.
+> 만료되기 전에 이 API를 호출해야 합니다.<br>
+> 기한 내에 의견을 등록하지 않으면 Google Play가 자체 기준에 따라 환불 여부를 결정합니다.
 
 **[Method, URI]**
 
