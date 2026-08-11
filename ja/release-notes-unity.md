@@ -13,6 +13,10 @@
 * [Gamebase Android SDK 2.82.0](./release-notes-android/#2820-2026-07-28)
 * [Gamebase iOS SDK 2.82.0](./release-notes-ios/#2820-2026-07-28)
 
+#### Setting Tool (v3.0.1)
+
+* WebGL 플랫폼 전용 어댑터 설치가 가능해 집니다.
+
 ### 2.81.4 (2026. 07. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.4/GamebaseSDK-Unity.zip)
 
