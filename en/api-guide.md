@@ -2544,6 +2544,7 @@ An event occurrence path that indicates where the user withdrawal occurred.
 | WAES | Withdrawl by external server (game server)<br>- Server withdrawl API call |
 | WAAI | Withdrawal by Apple ID link deletion |
 | WAHI | Withdrawal by Hangame account deletion |
+| WAHD | 한게임 장기 미사용 계정 탈퇴 |
 | WAGE | Automatic withdrawal from the system upon expiration of the grace period |
 | WAT | 탈퇴 유예 상태<br>- 최종 탈퇴 상태가 아님 |
 | WAC | 탈퇴 유예 취소 |
