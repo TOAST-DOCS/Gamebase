@@ -2433,7 +2433,7 @@ Google Play에서 차지백 검토 요청 알림(`PendingRefundReviewNotificatio
 | marketAppId | String | Required | 마켓 앱 ID |
 | paymentSeq | String | Required | IAP 결제 번호 |
 | paymentId | String | Required | 마켓 결제 번호 |
-| decision | String | Required | [검토 의견](#refund-review-decision) |
+| decision | Enum | Required | [검토 의견](#refund-review-decision) |
 | sampleContentProvided | Boolean | Required | 구매 전 샘플 또는 체험 제공 여부 |
 | consumptionPercentage | Integer | Optional | 소비 비율<br>- milli-units 단위<br>- `0`~`100000`은 0~100%를 의미 |
 | consumptionEvents | Array[Object] | Optional | 소비 이벤트 목록 |
@@ -2441,7 +2441,7 @@ Google Play에서 차지백 검토 요청 알림(`PendingRefundReviewNotificatio
 | consumptionEvents[].ipAddress | String | Optional | 소비 시점의 IP 주소 |
 | consumptionEvents[].consumptionItemDescription | String | Optional | 소비 아이템 설명 |
 | consumptionEvents[].location | Object | Optional | 소비 위치 |
-| consumptionEvents[].location.regionCode | String | Required | 국가 또는 지역 코드(예: `KR`)<br>- `location` 제공 시 필수 |
+| consumptionEvents[].location.regionCode | String | Required | 국가·지역 식별용 CLDR 코드(예: `KR`, `JP`)<br>- `location` 제공 시 필수 |
 | consumptionEvents[].location.administrativeArea | String | Optional | 광역 행정구역 |
 | consumptionEvents[].location.locality | String | Optional | 도시 |
 | consumptionEvents[].location.sublocality | String | Optional | 하위 지역 |
