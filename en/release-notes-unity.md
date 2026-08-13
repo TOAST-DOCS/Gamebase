@@ -3,19 +3,19 @@
 ### 2.82.0 (2026. 08. 11.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.82.0/GamebaseSDK-Unity.zip)
 
-#### 기능 개선/변경
-* (Android, iOS) 유효하지 않은 데이터에 대한 검증 로직을 개선했습니다.
+#### Feature Updates
+* (Android, iOS) Improved the validation logic for invalid data.
 
-#### 버그 수정
-* (Windows, macOS) 웹뷰에서 gamebase://openbrowser 스킴이 처리되지 않는 문제를 수정했습니다.
+#### Bug Fixes
+* (Windows, macOS) Fixed an issue where the gamebase://openbrowser scheme was not processed in the WebView.
 
-#### 플랫폼별 변경 사항
+#### Platform-specific Changes
 * [Gamebase Android SDK 2.82.0](./release-notes-android/#2820-2026-07-28)
 * [Gamebase iOS SDK 2.82.0](./release-notes-ios/#2820-2026-07-28)
 
 #### Setting Tool (v3.0.1)
 
-* WebGL 플랫폼 전용 어댑터 설치가 가능해 집니다.
+* Added support for installing a dedicated adapter for the WebGL platform.
 
 ### 2.81.4 (2026. 07. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.4/GamebaseSDK-Unity.zip)
