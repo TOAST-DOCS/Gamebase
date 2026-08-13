@@ -20,6 +20,8 @@
 - Added a `paymentToken` to the `Get Payment Transaction` API request body, representing the ONEStore's purchaseId or purchaseToken value.
 - Added eventLogType to the request parameter of `Withdraw Histories` API
 - Added the `SIWA Account Webhook`API
+- Push 토큰 관련 `Push Wrapping` API 추가
+- Google ChargeBack 관련 API 추가
 
 ## Advance Notice
 
@@ -1271,6 +1273,7 @@ Check common items.
 | size | String | Optional | Number of data per page |
 | order | String | Optional | Sorting method for queried data. ASC or DESC |
 | eventLogType | Enum | Optional | [Withdrawal event type](#withdrawal-event-type) |
+| includePending | boolean | Optional | 탈퇴 진행 중인 중간 상태값 포함 여부 <br> - false(기본값) 설정 시, 최종 탈퇴가 완료된 로그만 필터링하여 제공 <br> - eventLogType이 입력된 경우 해당 값이 우선 적용 됨 |
 
 **[Response Body]**
 
@@ -1295,11 +1298,13 @@ Check common items.
         {
             "userId": "String",
             "date": "2022-03-27T17:40:00+09:00",
+            "type": "WAA",
             "regUser": null
         },
         {
             "userId": "String",
             "date": "2022-03-27T17:41:05+09:00",
+            "type": "WACS",
             "regUser": "String"
         }
     ]
@@ -1319,6 +1324,7 @@ Check common items.
 | result | Array[Object] | Retrieved withdrawn user details |
 | result.userId | String | User ID |
 | result.date | String | Date of withdrawal |
+| result.type | Enum | [탈퇴 이벤트 발생 경로](#withdrawal-event-type)|
 | result.regUser | String | The entity that called the Withdraw API<br>- If the value is **null**, the API has been called from the client SDK |
 
 **[Error Code]**
@@ -2011,6 +2017,198 @@ None
 [Error Code](./error-code/#server)
 
 <br>
+
+### Google Play Chargeback Callback
+
+Google Play에서 차지백 검토 요청 알림(`PendingRefundReviewNotification`)을 받으면, 해당 알림을 Gamebase Console에 등록된 게임 서버 콜백 URL로 전달합니다.
+
+> [참고]
+> 게임 서버에서 접근 제어 목록(ACL)을 사용하는 경우 Gamebase 서버의 출발지 IP를 허용해야 합니다.<br>
+> 허용 목록에 등록할 Gamebase 서버의 출발지 IP는 고객센터로 문의하시기 바랍니다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | Gamebase Console에 등록된 게임 서버 콜백 URL |
+
+**[Request Header]**
+
+| Name | Required | Value |
+| --- | --- | --- |
+| Content-Type | Required | application/json |
+
+**[Path Variable]**
+
+없음
+
+**[Request Parameter]**
+
+없음
+
+**[Request Body]**
+
+```json
+{
+  "version": "1.0",
+  "notificationType": "PENDING_REFUND",
+  "marketAppId": "com.nhn.gamebase",
+  "marketItemId": "ruby_500",
+  "marketEventTimeMillis": 1780901642182,
+  "pendingRefundNotification": {
+    "refundReviewSeq": 123456789,
+    "paymentSeq": "20250806190011395",
+    "accessToken": "-Fr8Y7_dvv5qhdd6qVHbs7gKnkX0r7EKPvuK6CI-UBBekc1rE9CVbMKVCNuw6ZtwkBGlzeIHg6DdjaRVeaW7GYlPF4vRa50L8umB6tdBvk8",
+    "refundRequestReason": "CHARGEBACK",
+    "marketExpiryTimeMillis": 1780988042182
+  }
+}
+```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| version | String | Required | 알림 규격 버전 |
+| notificationType | String | Required | IAP 공통 알림 타입<br>- 환불 검토: `PENDING_REFUND` |
+| marketAppId | String | Required | 마켓 앱 ID |
+| marketItemId | String | Required | 마켓 상품 ID |
+| marketEventTimeMillis | Long | Required | 마켓 이벤트 발생 시각<br>- Epoch Time(milliseconds) |
+| pendingRefundNotification | Object | Required | 환불 검토 알림 데이터 |
+| pendingRefundNotification.refundReviewSeq | Long | Required | IAP 환불 검토 번호 |
+| pendingRefundNotification.paymentSeq | String | Required | IAP 결제 번호 |
+| pendingRefundNotification.accessToken | String | Required | IAP 결제 번호에 상응하는 토큰 |
+| pendingRefundNotification.refundRequestReason | String | Required | 환불 요청 사유를 구분하는 값<br>- 현재 `CHARGEBACK`만 지원 |
+| pendingRefundNotification.marketExpiryTimeMillis | Long | Required | 의견 등록 만료 시각<br>- Google Play가 알림을 최종 전송한 시점부터 24시간<br>- Epoch Time(milliseconds) |
+
+> [참고]
+> 콜백으로 전달된 `pendingRefundNotification.accessToken`으로 [Get Payment Transaction](#get-payment-transaction) API를 호출하면 차지백 대상 결제의 상세 정보를 조회할 수 있습니다.
+
+> [주의]
+> 동일한 `refundReviewSeq`의 콜백이 중복으로 전달될 수 있습니다.
+> 게임 서버는 이미 처리한 `refundReviewSeq`가 다시 전달되면 해당 요청을 다시 처리하지 않고 성공 응답을 반환해야 합니다.
+
+**[Response Body]**
+
+게임 서버는 콜백 처리 결과를 `HTTP 200 OK`와 Gamebase 공통 응답 형식으로 반환해야 합니다.
+
+```json
+{
+  "header": {
+    "isSuccessful": true,
+    "resultCode": 0,
+    "resultMessage": "SUCCESS"
+  }
+}
+```
+
+`header.isSuccessful`이 `false`이거나 `HTTP 200 OK`가 아닌 응답을 반환하면 콜백이 다시 전달될 수 있습니다.
+
+
+<br>
+
+### Google Play Reply Refund Review
+
+게임에서 차지백 검토 요청에 대한 내부 검토를 완료한 후, 이 API를 호출하여 환불 의견과 구매 콘텐츠 소비 정보를 등록합니다.
+등록된 내용은 Google Play에 환불 검토 의견으로 제출됩니다.
+
+> [주의]
+> [Google Play Chargeback Callback](#google-play-chargeback-callback) 요청에 `HTTP 200 OK`와 Gamebase 공통 성공 응답을 반환한 후 이 API를 호출해야 합니다.
+> 콜백 응답을 반환하기 전에 이 API를 호출하면 오류가 발생합니다.
+
+> [주의]
+> 콜백으로 전달받은 `marketExpiryTimeMillis`는 환불 검토 의견을 제출할 수 있는 만료 시각입니다.
+> 해당 시각이 지나기 전에 이 API를 호출해야 합니다.<br>
+> 기한 내에 의견을 등록하지 않으면 Google Play가 자체 기준에 따라 환불 여부를 결정합니다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/refund-reviews/{refundReviewSeq}/reply |
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud 프로젝트 ID |
+| refundReviewSeq | Long | IAP 환불 검토 번호 |
+
+**[Request Parameter]**
+
+없음
+
+**[Request Body]**
+
+```json
+{
+  "marketAppId": "com.nhn.gamebase",
+  "paymentSeq": "20250806190011395",
+  "paymentId": "GPA.1234-5678-9012-34567",
+  "decision": "REJECT",
+  "sampleContentProvided": false,
+  "consumptionPercentage": 100000,
+  "consumptionEvents": [
+    {
+      "consumptionTime": 1780901642182,
+      "ipAddress": "203.0.113.10",
+      "consumptionItemDescription": "ruby_500 사용",
+      "location": {
+        "regionCode": "KR",
+        "administrativeArea": "Seoul",
+        "locality": "Seoul",
+        "sublocality": "Gangnam-gu"
+      }
+    }
+  ]
+}
+```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| marketAppId | String | Required | 마켓 앱 ID |
+| paymentSeq | String | Required | IAP 결제 번호 |
+| paymentId | String | Required | 마켓 결제 번호 |
+| decision | Enum | Required | [검토 의견](#refund-review-decision) |
+| sampleContentProvided | Boolean | Required | 구매 전 샘플 또는 체험 제공 여부 |
+| consumptionPercentage | Integer | Optional | 소비 비율<br>- milli-units 단위<br>- `0`~`100000`은 0~100%를 의미 |
+| consumptionEvents | Array[Object] | Optional | 소비 이벤트 목록 |
+| consumptionEvents[].consumptionTime | Long | Optional | 소비 발생 시각<br>- Epoch Time(milliseconds) |
+| consumptionEvents[].ipAddress | String | Optional | 소비 시점의 IP 주소 |
+| consumptionEvents[].consumptionItemDescription | String | Optional | 소비 아이템 설명 |
+| consumptionEvents[].location | Object | Optional | 소비 위치 |
+| consumptionEvents[].location.regionCode | String | Required | 국가·지역 식별용 CLDR 코드(예: `KR`, `JP`)<br>- `location` 제공 시 필수 |
+| consumptionEvents[].location.administrativeArea | String | Optional | 광역 행정구역 |
+| consumptionEvents[].location.locality | String | Optional | 도시 |
+| consumptionEvents[].location.sublocality | String | Optional | 하위 지역 |
+
+**[Response Body]**
+
+```json
+{
+  "header": {
+    "isSuccessful": true,
+    "resultCode": 0,
+    "resultMessage": "SUCCESS"
+  }
+}
+```
+
+#### Refund Review Decision
+
+| Value | Description | Google Play Code |
+| --- | --- | --- |
+| APPROVE | 환불 승인 | APPROVE |
+| REJECT | 환불 거절 | DECLINE |
+| NEUTRAL | 판단 보류<br>- Google Play의 표준 로직으로 결정 | NEUTRAL |
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+<br>
 <br>
 
 ## Leaderboard
@@ -2094,6 +2292,11 @@ Gamebase provides **Wrapping** function for the Server API of the NHN Cloud Push
 |   | View | GET | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
 |   | Modify | PUT | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
 |   | Tag Delete | DELETE | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
+| 토큰 | 생성 | POST | /tcgb-push/v1.3/apps/{appId}/tokens | /push/v2.4/appkeys/{appkey}/tokens |
+|   | 조회 | GET | /tcgb-push/v1.3/apps/{appId}/tokens-by-cursor | /push/v2.4/appkeys/{appkey}/tokens-by-cursor |
+|   | 토큰으로 조회 | GET | /tcgb-push/v1.3/apps/{appId}/tokens/{token} | /push/v2.4/appkeys/{appkey}/tokens/{token} |
+|   | UID로 조회 | GET | /tcgb-push/v1.3/apps/{appId}/tokens | /push/v2.4/appkeys/{appkey}/tokens |
+|   | 삭제 | DELETE | /tcgb-push/v1.3/apps/{appId}/tokens/{token} | /push/v2.4/appkeys/{appkey}/tokens/{token} |
 
 <br/>
 
@@ -2311,20 +2514,6 @@ The code defined internally by Gamebase for the user's current status.
 | M | Missing account |
 <br/>
 
-### Withdrawal Event Type
-
-An event occurrence path that indicates where the user withdrawal occurred.
-
-| Type | Description |
-| --- | --- |
-| WAA | Withdrawal by app (client) request |
-| WACS | Withdrawal by console/manager request |
-| WAES | Withdrawl by external server (game server)<br>- Server withdrawl API call |
-| WAAI | Withdrawal by Apple ID link deletion |
-| WAHI | Withdrawal by Hangame account deletion |
-| WAGE | Automatic withdrawal from the system upon expiration of the grace period |
-<br/>
-
 ### Store Reference Status
 
 Payment reference status provided by the payment system (in-app purchase in stores, external payment)
@@ -2346,7 +2535,23 @@ Payment reference status provided by the payment system (in-app purchase in stor
 | | IN_GRACE | In grace period |
 | | EXPIRED | Expired |
 | | NOT_APPOINTED | No corresponding condition |
+<br/>
 
+### Withdrawal Event Type
+
+An event occurrence path that indicates where the user withdrawal occurred.
+
+| Type | Description |
+| --- | --- |
+| WAA | Withdrawal by app (client) request |
+| WACS | Withdrawal by console/manager request |
+| WAES | Withdrawl by external server (game server)<br>- Server withdrawl API call |
+| WAAI | Withdrawal by Apple ID link deletion |
+| WAHI | Withdrawal by Hangame account deletion |
+| WAHD | 한게임 장기 미사용 계정 탈퇴 |
+| WAGE | Automatic withdrawal from the system upon expiration of the grace period |
+| WAT | 탈퇴 유예 상태<br>- 최종 탈퇴 상태가 아님 |
+| WAC | 탈퇴 유예 취소 |
 <br/>
 
 

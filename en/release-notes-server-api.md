@@ -1,5 +1,15 @@
 ## Game > Gamebase > Release Notes > Server API
 
+### 2026. 08. 25.
+
+#### 기능 추가
+* Google Pay 차지백 관련 API 추가
+
+### 2026. 03. 24.
+
+#### 기능 추가
+* 유저ID로 푸시 토큰을 조회하는 API 추가
+
 ### October 31, 2023
 
 #### Added Features
