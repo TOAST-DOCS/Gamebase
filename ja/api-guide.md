@@ -2239,7 +2239,7 @@ Google Play에서 차지백 검토 요청 알림(`PendingRefundReviewNotificatio
 | pendingRefundNotification.paymentSeq | String | Required | IAP 결제 번호 |
 | pendingRefundNotification.accessToken | String | Required | IAP 결제 번호에 상응하는 토큰 |
 | pendingRefundNotification.refundRequestReason | String | Required | 환불 요청 사유를 구분하는 값<br>- 현재 `CHARGEBACK`만 지원 |
-| pendingRefundNotification.marketExpiryTimeMillis | Long | Required | 의견 등록 만료 시각<br>- Google Play가 알림을 최종 전송한 시점부터 24시간- Epoch Time(milliseconds) |
+| pendingRefundNotification.marketExpiryTimeMillis | Long | Required | 의견 등록 만료 시각<br>- Google Play가 알림을 최종 전송한 시점부터 24시간<br>- Epoch Time(milliseconds) |
 
 > [참고]
 > 콜백으로 전달된 `pendingRefundNotification.accessToken`으로 [Get Payment Transaction](#get-payment-transaction) API를 호출하면 차지백 대상 결제의 상세 정보를 조회할 수 있습니다.
@@ -2273,8 +2273,12 @@ Google Play에서 차지백 검토 요청 알림(`PendingRefundReviewNotificatio
 등록된 내용은 Google Play에 환불 검토 의견으로 제출됩니다.
 
 > [주의]
-> 콜백으로 전달받은 `marketExpiryTimeMillis`는 환불 검토 의견 등록 만료 시각입니다.
-> 만료되기 전에 이 API를 호출해야 합니다.<br>
+> [Google Play Chargeback Callback](#google-play-chargeback-callback) 요청에 `HTTP 200 OK`와 Gamebase 공통 성공 응답을 반환한 후 이 API를 호출해야 합니다.
+> 콜백 응답을 반환하기 전에 이 API를 호출하면 오류가 발생합니다.
+
+> [주의]
+> 콜백으로 전달받은 `marketExpiryTimeMillis`는 환불 검토 의견을 제출할 수 있는 만료 시각입니다.
+> 해당 시각이 지나기 전에 이 API를 호출해야 합니다.<br>
 > 기한 내에 의견을 등록하지 않으면 Google Play가 자체 기준에 따라 환불 여부를 결정합니다.
 
 **[Method, URI]**
