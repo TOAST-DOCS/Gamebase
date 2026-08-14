@@ -1,5 +1,22 @@
 ## Game > Gamebase > Release Notes > Unity
 
+### 2.82.0 (2026. 08. 11.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.82.0/GamebaseSDK-Unity.zip)
+
+#### Feature Updates
+* (Android, iOS) Improved the validation logic for invalid data.
+
+#### Bug Fixes
+* (Windows, macOS) Fixed an issue where the gamebase://openbrowser scheme was not processed in the WebView.
+
+#### Platform-specific Changes
+* [Gamebase Android SDK 2.82.0](./release-notes-android/#2820-2026-07-28)
+* [Gamebase iOS SDK 2.82.0](./release-notes-ios/#2820-2026-07-28)
+
+#### Setting Tool (v3.0.1)
+
+* Added support for installing a dedicated adapter for the WebGL platform.
+
 ### 2.81.4 (2026. 07. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.4/GamebaseSDK-Unity.zip)
 

@@ -1,5 +1,22 @@
 ## Game > Gamebase > リリースノート > Unity
 
+### 2.82.0 (2026. 08. 11.)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.82.0/GamebaseSDK-Unity.zip)
+
+#### 機能改善・変更
+* (Android、iOS) 無効なデータに対する検証ロジックを改善しました。
+
+#### 不具合の修正
+* (Windows、macOS) Webビューでgamebase://openbrowserスキームが処理されない不具合を修正しました。
+
+#### プラットフォーム別の変更事項
+* [Gamebase Android SDK 2.82.0](./release-notes-android/#2820-2026-07-28)
+* [Gamebase iOS SDK 2.82.0](./release-notes-ios/#2820-2026-07-28)
+
+#### Setting Tool (v3.0.1)
+
+* WebGLプラットフォーム専用アダプタのインストールが可能になります。
+
 ### 2.81.4 (2026. 07. 14.)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.4/GamebaseSDK-Unity.zip)
 
