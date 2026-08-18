@@ -1336,7 +1336,7 @@ Check common requirements.
 | size | String | Optional | 1ページ当たりのデータ数 |
 | order | String | Optional | 照会データのソート方法。 ASC or DESC |
 | eventLogType | Enum | Optional | [退会イベント発生経路](#withdrawal-event-type) |
-| includePending | boolean | Optional | 탈퇴 진행 중인 중간 상태값 포함 여부 <br> - false(기본값) 설정 시, 최종 탈퇴가 완료된 로그만 필터링하여 제공 <br> - eventLogType이 입력된 경우 해당 값이 우선 적용 됨 |
+| includePending | boolean | Optional | 탈퇴 진행 중인 중간 상태값 포함 여부 <br> - false(기본값) 설정 시 최종 탈퇴가 완료된 로그만 필터링하여 제공 <br> - eventLogType이 입력된 경우 해당 값이 우선 적용됨 |
 
 **[Response Body]**
 
@@ -2186,7 +2186,7 @@ Google Play에서 차지백 검토 요청 알림(`PendingRefundReviewNotificatio
 
 > [참고]
 > 게임 서버에서 접근 제어 목록(ACL)을 사용하는 경우 Gamebase 서버의 출발지 IP를 허용해야 합니다.<br>
-> 허용 목록에 등록할 Gamebase 서버의 출발지 IP는 고객센터로 문의하시기 바랍니다.
+> 허용 목록에 등록할 Gamebase 서버의 출발지 IP는 고객지원으로 문의하시기 바랍니다.
 
 **[Method, URI]**
 
