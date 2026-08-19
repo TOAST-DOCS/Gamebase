@@ -279,6 +279,11 @@ Check common items.
 | idPToken | Object | Access Token information of IdP used by the logged-in user |
 | idPToken.idPCode | String | [User authentication IdP](#identity-provider-code) |
 | idPToken.accessToken | String | IdP Access Token |
+
+**[Error Code]**
+
+[Error Code](./error-code/#server)
+
 <br>
 <br>
 
@@ -416,7 +421,7 @@ Check common items.
 
 **[Error Code]**
 
-[Error code](./error-code/#server)](./error-code/#server)
+[Error code](./error-code/#server)
 
 <br>
 <br>
@@ -1445,7 +1450,6 @@ This webhook event supports two events: consent-revoked and account-delete, and 
 | Method | URI |
 | --- | --- |
 | POST | /tcgb-gateway/v1.3/apps/{appId}/webhooks/apple/notifications |
-
 
 **[Path Variable]**
 
@@ -2507,7 +2511,6 @@ Gamebase provides Wrapping to server API of NHN Cloud Leaderboard. With Wrapping
 **For more information of the API, click the following link.**
 To find out about Leaderboard API specs mapped with Gamebase Wrapping API, see the following guide.
 Use the Gamebase AppId and SecretKey to call the Gamebase Wrapping Leaderboard API without setting the Leaderboard Appkey.
-
 
 [Leaderboard Guide](https://docs.nhncloud.com/en/Game/Leaderboard/en/api-guide/)
 

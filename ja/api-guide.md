@@ -208,9 +208,7 @@ APIレスポンス結果の特定変数タイプが変更されるとき、API�
 
 [エラーコード](./error-code/#server)
 
-
 <br/>
-
 #### Get IdP Token and Profiles
 
 クライアントから"Login with IdP"でログインが成功した時に発行されたGamebase Access Tokenです。ログインに使用されたIdPのAccess TokenおよびProfiles情報を照会します。
@@ -420,10 +418,6 @@ APIレスポンス結果の特定変数タイプが変更されるとき、API�
 | maintenance.url | String | メンテナンスURL |
 | maintenance.reason | String | メンテナンス理由 |
 | maintenance.message | String | 基本メンテナンス理由メッセージ |
-
-**[Error Code]**
-
-[エラーコード](./error-code/#server)
 
 **[Error Code]**
 
@@ -957,6 +951,8 @@ Check common requirements.
 
 [エラーコード](./error-code/#server)
 
+</br>
+
 #### Get Ban Members
 
 이용 정지 상태인 유저를 조회합니다.
@@ -1207,7 +1203,6 @@ Check common requirements.
 | result.releaseReason | String | 利用停止解除理由 |
 | result.releaseDate | String | 利用停止解除時間 |
 
-
 **[Error Code]**
 
 [エラーコード](./error-code/#server)
@@ -1287,7 +1282,6 @@ Check common requirements.
 
 [エラーコード](./error-code/#server)
 
-<br>
 <br>
 
 #### Withdraw
@@ -1456,7 +1450,6 @@ Check common requirements.
 | Method | URI |
 | --- | --- |
 | POST | /tcgb-gateway/v1.3/apps/{appId}/webhooks/apple/notifications |
-
 
 **[Path Variable]**
 
@@ -2007,6 +2000,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 | packageName | String | Required | コンソールに登録したストアアプリID |
 | userId | String | Required | ユーザーID |
 | includeInactiveGoogleStatuses | Array[String] | Optional | レスポンス結果に含める**Google購読の無効化状態**<br>- 現在'ON_HOLD'状態のみサポート |
+
 **[Response Body]**
 
 ```json
@@ -2069,7 +2063,6 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 
 [エラーコード](./error-code/#server)
 
-
 <br>
 
 ### Cancel Subscriptions
@@ -2078,6 +2071,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 
 > [参考]
 > 現在Google Playストアのみサポートします。
+
 **[Method, URI]**
 
 | Method | URI |
@@ -2136,6 +2130,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 
 > [参考]
 > 現在Google Playストアのみサポートします。
+
 **[Method, URI]**
 
 | Method | URI |
@@ -2379,9 +2374,6 @@ Google Play에서 차지백 검토 요청 알림(`PendingRefundReviewNotificatio
 [오류 코드](./error-code/#server)
 <br>
 
-
-<br>
-
 ### Google Play Reply Refund Review
 
 게임에서 차지백 검토 요청에 대한 내부 검토를 완료한 후, 이 API를 호출하여 환불 의견과 구매 콘텐츠 소비 정보를 등록합니다.
@@ -2520,7 +2512,6 @@ Gamebaseは、NHN Cloud LeaderboardサービスのサーバーAPIに対して**W
 Gamebase Wrapping APIとマッピングされたLeaderboard APIのスペックは、以下のガイドを参考にしてください。
 Leaderboard Appkeyを設定しないで、Gamebase AppIdおよびSecretKeyを利用してGamebase Wrapping Leaderboard APIを呼び出せます。
 
-
 [Leaderboard APIガイド](https://docs.nhncloud.com/ja/Game/Leaderboard/ja/api-guide/)
 
 <br/>
@@ -2573,14 +2564,11 @@ Gamebaseは、NHN Cloud PushサービスのサーバーAPIで**Wrapping**機能�
 |   | 토큰으로 조회 | GET | /tcgb-push/v1.3/apps/{appId}/tokens/{token} | /push/v2.4/appkeys/{appkey}/tokens/{token} |
 |   | UID로 조회 | GET | /tcgb-push/v1.3/apps/{appId}/tokens | /push/v2.4/appkeys/{appkey}/tokens |
 |   | 삭제 | DELETE | /tcgb-push/v1.3/apps/{appId}/tokens/{token} | /push/v2.4/appkeys/{appkey}/tokens/{token} |
-
 <br/>
 
 **当該APIの詳細については次のリンクを参照してください。**
 Gamebase Wrapping APIとマッピングされたPush APIのスペックは、以下のガイドを参照してください。
 Push Appkeyの設定を行わずに、Gamebase AppIdおよびSecretKeyを利用してGamebase Wrapping Push APIを呼び出せます。
-
-[Push Guide](https://docs.nhncloud.com/ja/Notification/Push/ja/api-guide/)
 
 > [参考1]
 > Pushガイドに存在するuid値はgamebase userId値を使用できます。クライアントSDKでプッシュトークン登録時、ユーザー識別子はgamebase userIdに登録されています。
@@ -2589,6 +2577,8 @@ Push Appkeyの設定を行わずに、Gamebase AppIdおよびSecretKeyを利用�
 > [参考2]
 > APIを介してプッシュメッセージを送信した場合、送信履歴はGamebase Consoleの**プッシュ > 送信履歴**で確認できません。
 > **プッシュ > 設定 > 送信履歴保存**メニューで**Log & Crash**設定から確認できます。
+
+[Push Guide](https://docs.nhncloud.com/ja/Notification/Push/ja/api-guide/)
 
 <br/>
 
@@ -2688,7 +2678,6 @@ X-Secret-Key: IgsaAP
 | M | 消失したアカウント |
 <br/>
 
-
 ### Store Reference Status
 
 決済システム(ストアのアプリ内決済、外部決済)が提供する決済参照状態
@@ -2732,8 +2721,6 @@ X-Secret-Key: IgsaAP
 ### Support
 
 API呼び出し失敗の原因に対するお問い合わせがある場合、**API呼び出しURL(HTTP bodyがある場合は、bodyと一緒に)とそれに対するレスポンス結果**を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。
-
-<br>
 
 ##### API呼び出し例
 

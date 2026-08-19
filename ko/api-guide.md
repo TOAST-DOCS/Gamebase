@@ -279,6 +279,11 @@ API 응답 결과의 특정 변수 타입이 변경될 때 API 버전이 변경�
 | idPToken | Object | 로그인한 유저가 사용한 IdP의 Access Token 정보 |
 | idPToken.idPCode | String | [유저 인증 IdP](#identity-provider-code) |
 | idPToken.accessToken | String | IdP Access Token |
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
 <br>
 <br>
 
@@ -1446,7 +1451,6 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | --- | --- |
 | POST | /tcgb-gateway/v1.3/apps/{appId}/webhooks/apple/notifications |
 
-
 **[Path Variable]**
 
 | Name | Type | Value |
@@ -2507,7 +2511,6 @@ Gamebase는 NHN Cloud Leaderboard 서비스의 서버 API에 대해 **Wrapping**
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
 Gamebase Wrapping API와 매핑된 Leaderboard API 스펙은 아래 가이드를 참고하십시오.
 Leaderboard Appkey 설정 없이 Gamebase AppId 및 SecretKey를 이용해서 Gamebase Wrapping Leaderboard API를 호출할 수 있습니다.
-
 
 [Leaderboard Guide](https://docs.nhncloud.com/ko/Game/Leaderboard/ko/api-guide/)
 
