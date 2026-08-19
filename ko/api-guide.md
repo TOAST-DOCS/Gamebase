@@ -1670,7 +1670,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 <br>
 <br>
 
-## Purchase(IAP)
+## Purchase (IAP)
 
 #### Consume
 

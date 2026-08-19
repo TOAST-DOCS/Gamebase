@@ -310,13 +310,13 @@
 ### 2017.04.04
 
 #### 機能改善/変更
-* [IAP](./api-guide/#purchaseiap) API連携：アイテム照会、未消費内訳照会
+* [IAP](./api-guide/#purchase-iap) API連携：アイテム照会、未消費内訳照会
 * checkAccessToken APIレスポンス結果に、ログイン時に使用されたIdP関連情報を含むスペックを追加
 
 ### 2017.03.21
 
 #### 機能改善/変更
-* [Leaderboard](./api-guide/#leaderboard), [IAP](./api-guide/#purchaseiap) API連携
+* [Leaderboard](./api-guide/#leaderboard), [IAP](./api-guide/#purchase-iap) API連携
 
 ### 2017.03.09
 
