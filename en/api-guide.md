@@ -2565,7 +2565,6 @@ Gamebase provides **Wrapping** function for the Server API of the NHN Cloud Push
 |   | View by token | GET | /tcgb-push/v1.3/apps/{appId}/tokens/{token} | /push/v2.4/appkeys/{appkey}/tokens/{token} |
 |   | View by UID | GET | /tcgb-push/v1.3/apps/{appId}/tokens | /push/v2.4/appkeys/{appkey}/tokens |
 |   | Delete | DELETE | /tcgb-push/v1.3/apps/{appId}/tokens/{token} | /push/v2.4/appkeys/{appkey}/tokens/{token} |
-
 <br/>
 
 **For more information of the API, click the following link.**
@@ -2680,6 +2679,7 @@ The code defined internally by Gamebase for the user's current status.
 | M | Missing account |
 <br/>
 
+
 ### Store Reference Status
 
 Payment reference status provided by the payment system (in-app purchase in stores, external payment)
@@ -2719,7 +2719,6 @@ An event occurrence path that indicates where the user withdrawal occurred.
 | WAT | Withdrawal grace period status<br>- Not a final withdrawal status |
 | WAC | Cancellation of withdrawal grace period |
 <br/>
-
 
 ### Support
 
