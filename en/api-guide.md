@@ -20,8 +20,8 @@
 - Added a `paymentToken` to the `Get Payment Transaction` API request body, representing the ONEStore's purchaseId or purchaseToken value.
 - Added eventLogType to the request parameter of `Withdraw Histories` API
 - Added the `SIWA Account Webhook`API
-- Push 토큰 관련 `Push Wrapping` API 추가
-- Google ChargeBack 관련 API 추가
+- Added the `Push Wrapping` API about Push token
+- Added API about Google ChargeBack
 
 ## Advance Notice
 
