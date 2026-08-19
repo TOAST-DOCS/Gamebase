@@ -2679,7 +2679,6 @@ X-Secret-Key: IgsaAP
 | M | 유실된 계정 |
 <br/>
 
-
 ### Store Reference Status
 
 결제 시스템(스토어의 인앱 결제, 외부 결제)이 제공하는 결제 참조 상태

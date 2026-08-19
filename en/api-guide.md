@@ -2679,7 +2679,6 @@ The code defined internally by Gamebase for the user's current status.
 | M | Missing account |
 <br/>
 
-
 ### Store Reference Status
 
 Payment reference status provided by the payment system (in-app purchase in stores, external payment)
