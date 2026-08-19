@@ -16,12 +16,13 @@
 - Added `renewTime` to the `List Active Subscriptions` API response result to indicate when RENEWED/RECOVERED occurred.
 - Added `marketIds` to the `List Active Subscriptions` API request to perform querying against N stores at once.
 - Added the `Get Ban Members` API to retrieve users who are banned from using the service
-- Added the `Get Subscription Status` API to retrieve the current status of subscriptions
+- Added the `Get Subscriptions Status` API to retrieve the current status of subscriptions
 - Added a `paymentToken` to the `Get Payment Transaction` API request body, representing the ONEStore's purchaseId or purchaseToken value.
 - Added eventLogType/includePending to the request parameter of `Withdraw Histories` API
 - Added the `SIWA Account Webhook`API
-- Added the `Push Wrapping` API for Push tokens
-- Added APIs related to Google Chargeback
+- `Get Coupon Information by Coupon Code` API 추가
+- Added the `Push Wrapping` API for Push tokens.
+- Added APIs related to Google Chargeback.
 
 ## Advance Notice
 
@@ -948,6 +949,97 @@ Check common items.
 
 </br>
 
+#### Get Ban Members
+
+이용 정지 상태인 유저를 조회합니다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-member/v1.3/apps/{appId}/members/bans/current |
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud 프로젝트 ID |
+
+**[Request Parameter]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| page | String | Optional | 조회하고자 하는 페이지. 0부터 시작 |
+| size | String | Optional | 페이지당 데이터 개수 |
+| order | String | Optional | 조회 데이터 정렬 방법. ASC or DESC |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "pagingInfo": {
+        "first": true,
+        "last": true,
+        "numberOfElements": 0,
+        "page": 0,
+        "size": 0,
+        "totalElements": 0,
+        "totalPages": 0
+    },
+    "result": [
+        {
+            "userId": "String",
+            "banCaller": "CONSOLE",
+            "banReason": "String",
+            "banType": "TEMPORARY",
+            "beginDate": "2019-08-27T17:41:05+09:00",
+            "endDate": "2019-08-28T17:41:05+09:00",
+            "flags": "String",
+            "name": "String",
+            "templateCode": 0
+        }
+    ]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| pagingInfo | Object | 조회된 페이징 정보 |
+| pagingInfo.first | boolean | 첫 번째 페이지이면 true |
+| pagingInfo.last | boolean | 마지막 페이지이면 true |
+| pagingInfo.numberOfElements | int | 전체 데이터 수 |
+| pagingInfo.page | int | 페이지 번호 |
+| pagingInfo.size | int | 페이지당 데이터 개수 |
+| pagingInfo.totalElements | int | 전체 데이터 수 |
+| pagingInfo.totalPages | int | 전체 페이지 수 |
+| result | Array[Object] | 조회된 이용 정지 내역 |
+| result.userId | String | 유저 ID |
+| result.banCaller | String | 이용 정지 호출 주체 |
+| result.banReason | String | 이용 정지 사유 |
+| result.banType | String | 이용 정지 타입. TEMPORARY or PERMANENT |
+| result.beginDate | Long | 이용 정지 시작 시간 |
+| result.endDate | Long | 이용 정지 종료 시간<br>PERMANENT 타입인 경우 해당 값은 존재하지 않음 |
+| result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'leaderboard'로 반환 |
+| result.name | String | 콘솔에서 등록한 템플릿 이름 |
+| result.templateCode | Long | 콘솔에서 등록한 이용 정지 템플릿 코드 값 |
+
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+</br>
+
 #### Ban Release
 
 Changes users to the ban released state, that is, the normal state.
@@ -1324,7 +1416,7 @@ Check common items.
 | result | Array[Object] | Retrieved withdrawn user details |
 | result.userId | String | User ID |
 | result.date | String | Date of withdrawal |
-| result.type | Enum | [Withdrawal event occurrence path](#withdrawal-event-type)|
+| result.type | Enum | [Withdrawal event type](#withdrawal-event-type)|
 | result.regUser | String | The entity that called the Withdraw API<br>- If the value is **null**, the API has been called from the client SDK |
 
 **[Error Code]**
@@ -1505,6 +1597,78 @@ Check common items.
 **[Error Code]**
 
 [Error Code](./error-code/#server)
+
+<br>
+
+#### Get Coupon Information by Coupon Code
+
+입력된 쿠폰 코드를 바탕으로, 콘솔에 등록된 해당 쿠폰의 기본 정보를 조회합니다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-gateway/v1.3/apps/{appId}/coupons/codes/{couponCode}
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud 프로젝트 ID |
+| couponCode | String | 쿠폰 코드 |
+
+**[Request Parameter]**
+
+없음
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "title": "Coupon Title",
+        "benefits": [
+            {
+                "itemId": "heart",
+                "amount": 10
+            },
+            {
+                "itemId": "diamond",
+                "amount": 20
+            }
+        ],
+        "type": "KEYWORD",
+        "couponCode": "XMAS",
+        "startDate": "2025-12-21T00:00:00+09:00",
+        "endDate": "2025-12-31T23:59:59+09:00"
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Object | 쿠폰 상세 정보 |
+| result.title | String | 쿠폰 이름 |
+| result.benefits | Array[Object] | 지급할 아이템 목록 |
+| result.benefits.itemId | String | 아이템 ID |
+| result.benefits.amount | Integer | 아이템 개수 |
+| result.type | Enum | 쿠폰 타입 (KEYWORD, SERIAL) |
+| result.couponCode | String | 쿠폰 코드 |
+| result.startDate | String | 유효 시작 시각 (ISO 8601) |
+| result.endDate | String | 유효 종료 시각 (ISO 8601) |
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
 
 <br>
 <br>
@@ -2018,6 +2182,108 @@ None
 
 <br>
 
+### Get Subscriptions Status
+
+Queries the current status of subscriptions.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/subscriptions/status |
+
+**[Request Header]**
+
+Check for common items
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud project ID |
+
+**[Request Parameter]**
+
+None
+
+**[Request Body]**
+
+```json
+{
+  "payments": [
+    {
+      "paymentSeq": "2023082410408370",
+      "accessToken": "Yk3sMxc-JSaGLLY0X-DnajXDyMXRVjxSRks0Lk1SaoaO7RD7VRjZcs8OTm8lOQVFoP71pgjAb_INjl0Y5KN8_A"
+    },
+    {
+      "paymentSeq": "2023082410408383",
+      "accessToken": "qEP1ZeV_ORmJdlNr9xDm9DXDyMXRVjxSRks0Lk1SaoaPiqPX4dG6UstXeWUt1NujyQAwH8BWQJueaPRfmnRyeg"
+    }
+  ]
+}
+```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| payments | Array[Object] | Subscription payment information. Up to 10 can be entered |
+| payments[].paymentSeq | String | Required | Payment number |
+| payments[].accessToken | String | Required | Payment authentication token |
+
+**[Response Body]**
+
+```json
+{
+  "header": {
+    "isSuccessful": true,
+    "resultCode": 0,
+    "resultMessage": "SUCCESS"
+  },
+  "result": [
+    {
+      "userId": "QXG774PMRZMWR3BR",
+      "paymentSeq": "2023082410408389",
+      "accessToken": "uddRuwkHm9nFIHjvVuDS2jXDyMXRVjxSRks0Lk1SaoaPiqPX4dG6UstXeWUt1NujyQAwH8BWQJueaPRfmnRyeg",
+      "paymentId": "GPA.3333-7714-3477-48799..5",
+      "originalPaymentId": "GPA.3333-7714-3477-48799",
+      "purchaseTime": "2022-05-16T09:59:27+09:00",
+      "expiryTime": "2023-08-24T12:48:45+09:00",
+      "renewTime": "2023-08-24T12:48:45+09:00",
+      "referenceStatus": "REPURCHASED"
+    },
+    {
+      "userId": "QXG774PMRZMWR3BR",
+      "paymentSeq": "2023082410408381",
+      "accessToken": "SFkxJL2sk8NlbsPe8ivVGDXDyMXRVjxSRks0Lk1SaoaO7RD7VRjZcs8OTm8lOQVFoP71pgjAb_INjl0Y5KN8_A",
+      "paymentId": "GPA.3395-4426-6912-10820..5",
+      "originalPaymentId": "GPA.3395-4426-6912-10820",
+      "purchaseTime": "2022-05-16T09:59:27+09:00",
+      "expiryTime": "2023-08-24T12:48:45+09:00",
+      "renewTime": "2023-08-24T12:48:45+09:00",
+      "referenceStatus": "EXPIRED"
+    }
+  ]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Array[Object] | Payment basic information |
+| result[].userId | String  | User ID  |
+| result[].paymentSeq | String  | Payment number |
+| result[].accessToken | String | Payment authentication token |
+| result[].paymentId | String | Recently updated store payment ID |
+| result[].originalPaymentId | String | Initial store payment ID |
+| result[].purchaseTime | String | Recently updated time |
+| result[].expiryTime | String | When subscription expires |
+| result[].renewTime | String | When RENEWED/RECOVERED occurs |
+| result[].referenceStatus | String | [Payment Reference Status](#store-reference-status) provided by payment system (in-app purchase in stores, external payment)<br>Currently only available in Google Play Store |
+
+**[Error Code]**
+
+[Error Code](./error-code/#server)
+
+<br>
+
 ### Google Play Chargeback Callback
 
 When Google Play sends a chargeback review request notification (`PendingRefundReviewNotification`), Gamebase forwards the notification to the game server callback URL registered in the Gamebase Console.
@@ -2313,112 +2579,10 @@ Use the Gamebase AppId and SecretKey to call the Gamebase Wrapping Push API with
 > [Notes 2]
 > When you send a push message with an API, the send history cannot be checked from **Push > Send History** on the Gamebase console.
 > You can find the history in the **Log & Crash** settings from **Push > Settings > Save Send History**.
+
 [Push Guide](https://docs.nhncloud.com/en/Notification/Push/en/api-guide/)
 
 <br/>
-
-<br>
-
-### Get Subscriptions Status
-
-Queries the current status of subscriptions.
-
-**[Method, URI]**
-
-| Method | URI |
-| --- | --- |
-| POST | /tcgb-inapp/v1.3/apps/{appId}/subscriptions/status |
-
-**[Request Header]**
-
-Check for common items
-
-**[Path Variable]**
-
-| Name | Type | Value |
-| --- | --- | --- |
-| appId | String | NHN Cloud project ID |
-
-**[Request Parameter]**
-
-None
-
-**[Request Body]**
-
-```json
-{
-  "payments": [
-    {
-      "paymentSeq": "2023082410408370",
-      "accessToken": "Yk3sMxc-JSaGLLY0X-DnajXDyMXRVjxSRks0Lk1SaoaO7RD7VRjZcs8OTm8lOQVFoP71pgjAb_INjl0Y5KN8_A"
-    },
-    {
-      "paymentSeq": "2023082410408383",
-      "accessToken": "qEP1ZeV_ORmJdlNr9xDm9DXDyMXRVjxSRks0Lk1SaoaPiqPX4dG6UstXeWUt1NujyQAwH8BWQJueaPRfmnRyeg"
-    }
-  ]
-}
-```
-
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| payments | Array[Object] | Subscription payment information. Up to 10 can be entered |
-| payments[].paymentSeq | String | Required | Payment number |
-| payments[].accessToken | String | Required | Payment authentication token |
-
-**[Response Body]**
-
-```json
-{
-  "header": {
-    "isSuccessful": true,
-    "resultCode": 0,
-    "resultMessage": "SUCCESS"
-  },
-  "result": [
-    {
-      "userId": "QXG774PMRZMWR3BR",
-      "paymentSeq": "2023082410408389",
-      "accessToken": "uddRuwkHm9nFIHjvVuDS2jXDyMXRVjxSRks0Lk1SaoaPiqPX4dG6UstXeWUt1NujyQAwH8BWQJueaPRfmnRyeg",
-      "paymentId": "GPA.3333-7714-3477-48799..5",
-      "originalPaymentId": "GPA.3333-7714-3477-48799",
-      "purchaseTime": "2022-05-16T09:59:27+09:00",
-      "expiryTime": "2023-08-24T12:48:45+09:00",
-      "renewTime": "2023-08-24T12:48:45+09:00",
-      "referenceStatus": "REPURCHASED"
-    },
-    {
-      "userId": "QXG774PMRZMWR3BR",
-      "paymentSeq": "2023082410408381",
-      "accessToken": "SFkxJL2sk8NlbsPe8ivVGDXDyMXRVjxSRks0Lk1SaoaO7RD7VRjZcs8OTm8lOQVFoP71pgjAb_INjl0Y5KN8_A",
-      "paymentId": "GPA.3395-4426-6912-10820..5",
-      "originalPaymentId": "GPA.3395-4426-6912-10820",
-      "purchaseTime": "2022-05-16T09:59:27+09:00",
-      "expiryTime": "2023-08-24T12:48:45+09:00",
-      "renewTime": "2023-08-24T12:48:45+09:00",
-      "referenceStatus": "EXPIRED"
-    }
-  ]
-}
-```
-
-| Key | Type | Description |
-| --- | --- | --- |
-| result | Array[Object] | Payment basic information |
-| result[].userId | String  | User ID  |
-| result[].paymentSeq | String  | Payment number |
-| result[].accessToken | String | Payment authentication token |
-| result[].paymentId | String | Recently updated store payment ID |
-| result[].originalPaymentId | String | Initial store payment ID |
-| result[].purchaseTime | String | Recently updated time |
-| result[].expiryTime | String | When subscription expires |
-| result[].renewTime | String | When RENEWED/RECOVERED occurs |
-| result[].referenceStatus | String | [Payment Reference Status](#store-reference-status) provided by payment system (in-app purchase in stores, external payment)<br>Currently only available in Google Play Store |
-
-**[Error Code]**
-
-[Error Code](./error-code/#server)
-
 
 ##### Example of API Call
 
@@ -2547,7 +2711,7 @@ An event occurrence path that indicates where the user withdrawal occurred.
 | --- | --- |
 | WAA | Withdrawal by app (client) request |
 | WACS | Withdrawal by console/manager request |
-| WAES | Withdrawl by external server (game server)<br>- Server withdrawl API call |
+| WAES | Withdrawal by external server (game server)<br>- Server withdrawl API call |
 | WAAI | Withdrawal by Apple ID link deletion |
 | WAHI | Withdrawal by Hangame account deletion |
 | WAHD | Withdrawal of long-term inactive Hangame accounts |
