@@ -21,7 +21,7 @@
 - Added eventLogType/includePending to the request parameter of `Withdraw Histories` API
 - Added the `SIWA Account Webhook`API
 - Added the `Push Wrapping` API for Push tokens
-- Added APIs related to Google ChargeBack
+- Added APIs related to Google Chargeback
 
 ## Advance Notice
 

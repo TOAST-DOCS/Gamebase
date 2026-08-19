@@ -3,7 +3,7 @@
 ### 2026. 08. 25.
 
 #### 기능 추가
-* Google ChargeBack 관련 API 추가
+* Google Chargeback 관련 API 추가
 
 ### 2026. 03. 24.
 

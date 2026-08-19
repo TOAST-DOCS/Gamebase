@@ -21,7 +21,7 @@
 - `Withdraw Histories` APIのリクエストパラメータにeventLogTypeを追加
 - `SIWA Account Webフック` APIを追加
 - Push 토큰 관련 `Push Wrapping` API 추가
-- Google ChargeBack 관련 API 추가
+- Google Chargeback 관련 API 추가
 
 ## Advance Notice
 
