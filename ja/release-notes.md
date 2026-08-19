@@ -1440,7 +1440,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 #### 機能改善/変更
 * [Console]
 	* [Operating indicator>モニタリング]チャートの色を変更、Timezoneの問題。DAU計算ロジックを変更(Login時間基準→接続時間基準)
-* [API] [メンテナンス照会API](./api-guide/#check-under-maintenance)結果をListから単一オブジェクトに変更
+* [API] [メンテナンス照会API](./api-guide/#check-maintenance-set)結果をListから単一オブジェクトに変更
 
 #### バグ修正
 * [Console]

@@ -1,7 +1,7 @@
 ## Game > Gamebase > API v1.3ガイド
 
 ## 変更事項
-'- IAP(In App Purchase) APIのリクエストパラメータおよびレスポンス結果項目追加および削除
+- IAP(In App Purchase) APIのリクエストパラメータおよびレスポンス結果項目追加および削除
 - `Push Wrapping` API追加
 - Gamebase Access Tokenでログインする時に使用されたIdPのプロフィールおよびトークン情報を取得できる`Get IdP Token and Profiles` API追加
 - IdP IdでマッピングされたGamebase userIdを取得する`Get UserId Information with IdP Id` API追加
@@ -434,7 +434,7 @@ APIレスポンス結果の特定変数タイプが変更されるとき、API�
 
 ## Member
 
-#### Get member
+#### Get Member
 
 単一会員の詳細情報を照会します。
 
@@ -605,7 +605,7 @@ APIレスポンス結果の特定変数タイプが変更されるとき、API�
 
 <br>
 
-#### Get IdP infomation
+#### Get IdP Information
 
 ユーザーIDにマッピングされたIdP情報を照会します。
 
@@ -670,7 +670,7 @@ APIレスポンス結果の特定変数タイプが変更されるとき、API�
 
 <br>
 
-#### Get userId infomation with auth key
+#### Get UserId Information with Auth key
 
 ユーザー認証キーにマッピングされたユーザーIDを照会します。
 
@@ -1295,7 +1295,7 @@ Check common requirements.
 ユーザーアカウントを退会処理します。
 
 > [参考]
-> SDKの退会APIを使用せず、サーバー退会APIを使用してアカウント退会を実装した場合、クライアントでは退会成功後にSDKのlogout APIを呼び出してキャッシュされているトークンなどのデータを削除する必要があります。
+> SDKの退会APIを使用せず、サーバー退会APIを使用してアカウント退会を実装した場合、クライアントでは退会成功後にSDKのlogout APIを呼び出してキャッシュされているトークンなどのデータ削除が必要です。
 
 **[Method, URI]**
 
@@ -1318,61 +1318,7 @@ Check common requirements.
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| regUser | String | Required | 退会をリクエストしたシステムまたは運営者情報。空白なしで入力 <br> - この情報はConsole > 「メンバー」ページの「退会履歴」画面で確認可能 <br> - 退会履歴画面は退会した利用者の照会時にのみ表示される |
-
-**[Request Body]**
-
-なし
-
-**[Response Body]**
-
-```json
-{
-    "header": {
-        "transactionId": "String",
-        "resultCode": 0,
-        "resultMessage": "SUCCESS",
-        "isSuccessful": true
-    }
-}
-```
-
-**[Error Code]**
-
-[エラーコード](./error-code/#server)
-
-
-<br>
-
-#### Withdraw
-
-ユーザーアカウントを退会処理します。
-
-> [参考]
-> SDKの退会APIを使用せず、サーバー退会APIを使用してアカウント退会を実装した場合、クライアントでは退会成功後にSDKのlogout APIを呼び出してキャッシュされているトークンなどのデータ削除が必要です。
-
-**[Method, URI]**
-
-| Method | URI |
-| --- | --- |
-| DELETE | /tcgb-gateway/v1.3/apps/{appId}/members/{userId}?regUser={regUser} |
-
-**[Request Header]**
-
-共通事項の確認
-
-**[Path Variable]**
-
-| Name | Type | Value |
-| --- | --- | --- |
-| appId | String | NHN CloudプロジェクトID |
-| userId | String | 退会対象ユーザーID |
-
-**[Request Parameter]**
-
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| regUser | String | Required | 退会をリクエストしたシステムまたはユーザー情報<br> - この情報はConsole > 「メンバー」ページの「退会履歴」画面で確認可能 |
+| regUser | String | Required | 退会をリクエストしたシステムまたは運営者情報。空白なしで入力 <br> - この情報はConsole > 「メンバー」ページの「退会履歴」画面で確認可能 |
 
 **[Request Body]**
 
@@ -1523,7 +1469,7 @@ Check common requirements.
 
 ## Maintenance
 
-#### Check Under Maintenance
+#### Check Maintenance Set
 
 現在、メンテナンスが設定されているかどうかを確認します。
 
@@ -2678,7 +2624,7 @@ X-Secret-Key: IgsaAP
 <br/>
 <br/>
 
-## Etc
+## Others
 
 ### OS Code
 

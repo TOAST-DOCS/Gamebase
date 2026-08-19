@@ -965,7 +965,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 기능 개선/변경
 * [Console]
 	* [Operating indicator>모니터링] 차트 색상 변경, Timezone 이슈. DAU 계산로직 변경(Login시간기준->접속시간기준)
-* [API] [점검 조회 API](./api-guide/#check-under-maintenance) 결과를 List 에서 단일 객체로 변경
+* [API] [점검 조회 API](./api-guide/#check-maintenance-set) 결과를 List 에서 단일 객체로 변경
 
 #### 버그 수정
 * [Console]
@@ -2131,7 +2131,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 기능 개선/변경
 * [Console]
 	* [Operating indicator > 모니터링] 차트 색상 변경, Timezone 이슈. DAU 계산로직 변경(Login시간기준->접속시간기준)
-* [API] [점검 조회 API](./api-guide/#check-under-maintenance) 결과를 List 에서 단일 객체로 변경
+* [API] [점검 조회 API](./api-guide/#check-maintenance-set) 결과를 List 에서 단일 객체로 변경
 
 #### 버그 수정
 * [Console]
@@ -3661,7 +3661,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 #### 기능 개선/변경
 * [Console]
 	* [Operating indicator > 모니터링] 차트 색상 변경, Timezone 이슈. DAU 계산로직 변경(Login시간기준->접속시간기준)
-* [API] [점검 조회 API](./api-guide/#check-under-maintenance) 결과를 List 에서 단일 객체로 변경
+* [API] [점검 조회 API](./api-guide/#check-maintenance-set) 결과를 List 에서 단일 객체로 변경
 
 #### 버그 수정
 * [Console]

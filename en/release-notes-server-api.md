@@ -123,7 +123,7 @@
 ### 2017. 11. 30.
 
 #### 기능 개선/변경
-* [점검 조회 API](./api-guide/#check-under-maintenance) 결과를 List 에서 단일 객체로 변경
+* [점검 조회 API](./api-guide/#check-maintenance-set) 결과를 List 에서 단일 객체로 변경
 
 ### 2017. 04. 04.
 
