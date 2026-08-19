@@ -2264,6 +2264,11 @@ Google Play에서 차지백 검토 요청 알림(`PendingRefundReviewNotificatio
 
 `header.isSuccessful`이 `false`이거나 `HTTP 200 OK`가 아닌 응답을 반환하면 콜백이 다시 전달될 수 있습니다.
 
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+<br>
+
 
 <br>
 

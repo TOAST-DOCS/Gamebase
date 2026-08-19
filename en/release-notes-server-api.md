@@ -2,13 +2,13 @@
 
 ### 2026. 08. 25.
 
-#### 기능 추가
-* Google ChargeBack 관련 API 추가
+#### Added Features
+* Added APIs related to Google Chargeback
 
 ### 2026. 03. 24.
 
-#### 기능 추가
-* 유저 ID로 Push 토큰을 조회하는 API 추가
+#### Added Features
+* Added an API to retrieve push tokens by user ID
 
 ### October 31, 2023
 
