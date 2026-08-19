@@ -18,8 +18,9 @@
 - 利用停止状態のユーザーを照会する`Get Ban Members` API追加
 - 購読の現在状態を照会する`Get Subscriptions Status` APIを追加
 - `Get Payment Transaction` API request bodyにONEStoreのpurchaseIdまたはpurchaseTokenの値を表す`paymentToken`を追加
-- `Withdraw Histories` APIのリクエストパラメータにeventLogTypeを追加
+- `Withdraw Histories` APIのリクエストパラメータにeventLogType/includePendingを追加
 - `SIWA Account Webフック` APIを追加
+- `Get Coupon Information by Coupon Code` API 추가
 - Push 토큰 관련 `Push Wrapping` API 추가
 - Google Chargeback 관련 API 추가
 
@@ -956,6 +957,96 @@ Check common requirements.
 
 [エラーコード](./error-code/#server)
 
+#### Get Ban Members
+
+이용 정지 상태인 유저를 조회합니다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-member/v1.3/apps/{appId}/members/bans/current |
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud 프로젝트 ID |
+
+**[Request Parameter]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| page | String | Optional | 조회하고자 하는 페이지. 0부터 시작 |
+| size | String | Optional | 페이지당 데이터 개수 |
+| order | String | Optional | 조회 데이터 정렬 방법. ASC or DESC |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "pagingInfo": {
+        "first": true,
+        "last": true,
+        "numberOfElements": 0,
+        "page": 0,
+        "size": 0,
+        "totalElements": 0,
+        "totalPages": 0
+    },
+    "result": [
+        {
+            "userId": "String",
+            "banCaller": "CONSOLE",
+            "banReason": "String",
+            "banType": "TEMPORARY",
+            "beginDate": "2019-08-27T17:41:05+09:00",
+            "endDate": "2019-08-28T17:41:05+09:00",
+            "flags": "String",
+            "name": "String",
+            "templateCode": 0
+        }
+    ]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| pagingInfo | Object | 조회된 페이징 정보 |
+| pagingInfo.first | boolean | 첫 번째 페이지이면 true |
+| pagingInfo.last | boolean | 마지막 페이지이면 true |
+| pagingInfo.numberOfElements | int | 전체 데이터 수 |
+| pagingInfo.page | int | 페이지 번호 |
+| pagingInfo.size | int | 페이지당 데이터 개수 |
+| pagingInfo.totalElements | int | 전체 데이터 수 |
+| pagingInfo.totalPages | int | 전체 페이지 수 |
+| result | Array[Object] | 조회된 이용 정지 목록 |
+| result.userId | String | 유저 ID |
+| result.banCaller | String | 이용 정지 호출 주체 |
+| result.banReason | String | 이용 정지 사유 |
+| result.banType | String | 이용 정지 타입. TEMPORARY or PERMANENT |
+| result.beginDate | Long | 이용 정지 시작 시간 |
+| result.endDate | Long | 이용 정지 종료 시간<br>PERMANENT 타입인 경우 해당 값은 존재하지 않음 |
+| result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'leaderboard'로 반환 |
+| result.name | String | 콘솔에서 등록한 템플릿 이름 |
+| result.templateCode | Long | 콘솔에서 등록한 이용 정지 템플릿 코드 값 |
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+</br>
+
 #### Ban Release
 
 ユーザーを利用停止解除状態、すなわち正常状態に変更します。
@@ -1570,6 +1661,78 @@ Consoleを通して発行されたクーポンコードに対して、有効性�
 [エラーコード](./error-code/#server)
 
 <br>
+
+#### Get Coupon Information by Coupon Code
+
+입력된 쿠폰 코드를 바탕으로, 콘솔에 등록된 해당 쿠폰의 기본 정보를 조회합니다.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-gateway/v1.3/apps/{appId}/coupons/codes/{couponCode} |
+
+**[Request Header]**
+
+공통 사항 확인
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud 프로젝트 ID |
+| couponCode | String | 쿠폰 코드 |
+
+**[Request Parameter]**
+
+없음
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "title": "Coupon Title",
+        "benefits": [
+            {
+                "itemId": "heart",
+                "amount": 10
+            },
+            {
+                "itemId": "diamond",
+                "amount": 20
+            }
+        ],
+        "type": "KEYWORD",
+        "couponCode": "XMAS",
+        "startDate": "2025-12-21T00:00:00+09:00",
+        "endDate": "2025-12-31T23:59:59+09:00"
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Object | 쿠폰 상세 정보 |
+| result.title | String | 쿠폰 이름 |
+| result.benefits | Array[Object] | 지급할 아이템 목록 |
+| result.benefits.itemId | String | 아이템 ID |
+| result.benefits.amount | Integer | 아이템 개수 |
+| result.type | Enum | 쿠폰 타입 (KEYWORD, SERIAL) |
+| result.couponCode | String | 쿠폰 코드 |
+| result.startDate | String | 유효 시작 시각 (ISO 8601) |
+| result.endDate | String | 유효 종료 시각 (ISO 8601) |
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
+<br>
 <br>
 
 ## Purchase (IAP)
@@ -1916,6 +2079,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
             "productSeq": 1001221,
             "productId": "money_100",
             "productType": "AUTO_RENEWABLE",
+            "originalPaymentId": "GPA.3302-8679-7228-41195",
             "paymentId": "GPA.3302-8679-7228-41195",
             "linkedPaymentId": "GPA.3358-3220-2629-70624",
             "price": 1000.0,
@@ -2539,6 +2703,8 @@ X-Secret-Key: IgsaAP
 | AS | App Store |
 | ONESTORE | ONE store |
 | GALAXY | Galaxy Store |
+| AMAZON | Amazon Appstore |
+| HUAWEI | Huawei AppGallery |
 | MYCARD | Global MyCard |
 | EPIC | Epic Games Store |
 | STEAM | STEAM Store |
