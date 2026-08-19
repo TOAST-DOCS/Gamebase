@@ -942,7 +942,6 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | result.name | String | 콘솔에서 등록한 템플릿 이름 |
 | result.templateCode | Long | 콘솔에서 등록한 이용 정지 템플릿 코드 값 |
 
-
 **[Error Code]**
 
 [오류 코드](./error-code/#server)
@@ -1032,7 +1031,6 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'leaderboard'로 반환 |
 | result.name | String | 콘솔에서 등록한 템플릿 이름 |
 | result.templateCode | Long | 콘솔에서 등록한 이용 정지 템플릿 코드 값 |
-
 
 **[Error Code]**
 
@@ -1199,7 +1197,6 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | result.releaseCaller | String | 이용 정지 해제 주체 |
 | result.releaseReason | String | 이용 정지 해제 사유 |
 | result.releaseDate | String | 이용 정지 해제 시간 |
-
 
 **[Error Code]**
 
@@ -2535,7 +2532,6 @@ Gamebase는 NHN Cloud Push 서비스의 서버 API에 대해 **Wrapping** 기능
 
 > [참고]
 > Gamebase를 활성화 하면 Push Appkey 설정 없이 Gamebase Wrapping API를 호출하여 Push 기능을 사용할 수 있습니다.
-
 
 <br>
 

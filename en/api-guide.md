@@ -942,7 +942,6 @@ Check common items.
 | result.name | String | Template name registered in the console |
 | result.templateCode | Long | Code value of the ban template registered in the console |
 
-
 **[Error Code]**
 
 [Error code](./error-code/#server)
@@ -1032,7 +1031,6 @@ Check common items.
 | result.flags | String | Returned as 'leaderboard' when you have selected Delete Leaderboard upon Registering Ban in the console. |
 | result.name | String | Template name registered in the console |
 | result.templateCode | Long | Code value of the ban template registered in the console |
-
 
 **[Error Code]**
 
@@ -1199,7 +1197,6 @@ Check common items.
 | result.releaseCaller | String | Subject of the ban release |
 | result.releaseReason | String | Reason for the ban release |
 | result.releaseDate | String | Date of the ban release |
-
 
 **[Error Code]**
 
@@ -2535,7 +2532,6 @@ Gamebase provides **Wrapping** function for the Server API of the NHN Cloud Push
 
 > [Note]
 > Once the Gamebase is activated, you can call the Gamebase Wrapping API to use the Push function without setting the Push Appkey.
-
 
 <br>
 
