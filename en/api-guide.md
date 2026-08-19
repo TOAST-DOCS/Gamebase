@@ -20,7 +20,7 @@
 - Added a `paymentToken` to the `Get Payment Transaction` API request body, representing the ONEStore's purchaseId or purchaseToken value.
 - Added eventLogType/includePending to the request parameter of `Withdraw Histories` API
 - Added the `SIWA Account Webhook`API
-- `Get Coupon Information by Coupon Code` API 추가
+- Added the `Get Coupon Information by Coupon Code` API
 - Added the `Push Wrapping` API for Push tokens.
 - Added APIs related to Google Chargeback.
 
@@ -951,7 +951,7 @@ Check common items.
 
 #### Get Ban Members
 
-이용 정지 상태인 유저를 조회합니다.
+Retrieves users who are in the banned state.
 
 **[Method, URI]**
 
@@ -961,21 +961,21 @@ Check common items.
 
 **[Request Header]**
 
-공통 사항 확인
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud 프로젝트 ID |
+| appId | String | NHN Cloud project ID |
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| page | String | Optional | 조회하고자 하는 페이지. 0부터 시작 |
-| size | String | Optional | 페이지당 데이터 개수 |
-| order | String | Optional | 조회 데이터 정렬 방법. ASC or DESC |
+| page | String | Optional | Page to retrieve, starting from 0 |
+| size | String | Optional | Number of data per page |
+| order | String | Optional | Sorting method for queried data. ASC or DESC |
 
 **[Response Body]**
 
@@ -1014,29 +1014,29 @@ Check common items.
 
 | Key | Type | Description |
 | --- | --- | --- |
-| pagingInfo | Object | 조회된 페이징 정보 |
-| pagingInfo.first | boolean | 첫 번째 페이지이면 true |
-| pagingInfo.last | boolean | 마지막 페이지이면 true |
-| pagingInfo.numberOfElements | int | 전체 데이터 수 |
-| pagingInfo.page | int | 페이지 번호 |
-| pagingInfo.size | int | 페이지당 데이터 개수 |
-| pagingInfo.totalElements | int | 전체 데이터 수 |
-| pagingInfo.totalPages | int | 전체 페이지 수 |
-| result | Array[Object] | 조회된 이용 정지 내역 |
-| result.userId | String | 유저 ID |
-| result.banCaller | String | 이용 정지 호출 주체 |
-| result.banReason | String | 이용 정지 사유 |
-| result.banType | String | 이용 정지 타입. TEMPORARY or PERMANENT |
-| result.beginDate | Long | 이용 정지 시작 시간 |
-| result.endDate | Long | 이용 정지 종료 시간<br>PERMANENT 타입인 경우 해당 값은 존재하지 않음 |
-| result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'leaderboard'로 반환 |
-| result.name | String | 콘솔에서 등록한 템플릿 이름 |
-| result.templateCode | Long | 콘솔에서 등록한 이용 정지 템플릿 코드 값 |
+| pagingInfo | Object | Retrieved paging information |
+| pagingInfo.first | boolean | True if it is the first page |
+| pagingInfo.last | boolean | True if it is the last page |
+| pagingInfo.numberOfElements | int | Total number of data |
+| pagingInfo.page | int | Page No. |
+| pagingInfo.size | int | Number of data per page |
+| pagingInfo.totalElements | int | Total number of data |
+| pagingInfo.totalPages | int | Total number of pages |
+| result | Array[Object] | Retrieved ban history details |
+| result.userId | String | User ID |
+| result.banCaller | String | Subject of calling ban |
+| result.banReason | String | Reason for the ban |
+| result.banType | String | Type of the ban. TEMPORARY or PERMANENT |
+| result.beginDate | Long | Start date of the ban |
+| result.endDate | Long | End date of the ban<br>In case of PERMANENT type, the value does not exist |
+| result.flags | String | Returned as 'leaderboard' when you have selected Delete Leaderboard upon Registering Ban in the console. |
+| result.name | String | Template name registered in the console |
+| result.templateCode | Long | Code value of the ban template registered in the console |
 
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[Error code](./error-code/#server)
 
 </br>
 
@@ -1602,7 +1602,7 @@ Check common items.
 
 #### Get Coupon Information by Coupon Code
 
-입력된 쿠폰 코드를 바탕으로, 콘솔에 등록된 해당 쿠폰의 기본 정보를 조회합니다.
+Retrieves the basic information of the coupon registered in the console, based on the entered coupon code.
 
 **[Method, URI]**
 
@@ -1612,18 +1612,18 @@ Check common items.
 
 **[Request Header]**
 
-공통 사항 확인
+Check common items.
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appId | String | NHN Cloud 프로젝트 ID |
-| couponCode | String | 쿠폰 코드 |
+| appId | String | NHN Cloud project ID |
+| couponCode | String | Coupon code |
 
 **[Request Parameter]**
 
-없음
+N/A
 
 **[Response Body]**
 
@@ -1656,19 +1656,19 @@ Check common items.
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Object | 쿠폰 상세 정보 |
-| result.title | String | 쿠폰 이름 |
-| result.benefits | Array[Object] | 지급할 아이템 목록 |
-| result.benefits.itemId | String | 아이템 ID |
-| result.benefits.amount | Integer | 아이템 개수 |
-| result.type | Enum | 쿠폰 타입 (KEYWORD, SERIAL) |
-| result.couponCode | String | 쿠폰 코드 |
-| result.startDate | String | 유효 시작 시각 (ISO 8601) |
-| result.endDate | String | 유효 종료 시각 (ISO 8601) |
+| result | Object | Detailed coupon information |
+| result.title | String | Coupon name |
+| result.benefits | Array[Object] | List of items to be provided |
+| result.benefits.itemId | String | Item ID |
+| result.benefits.amount | Integer | Item count |
+| result.type | Enum | Coupon type (KEYWORD, SERIAL) |
+| result.couponCode | String | Coupon code |
+| result.startDate | String | Validity start time (ISO 8601) |
+| result.endDate | String | Validity end time (ISO 8601) |
 
 **[Error Code]**
 
-[오류 코드](./error-code/#server)
+[Error Code](./error-code/#server)
 
 <br>
 <br>
