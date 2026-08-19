@@ -1022,7 +1022,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | pagingInfo.size | int | 페이지당 데이터 개수 |
 | pagingInfo.totalElements | int | 전체 데이터 수 |
 | pagingInfo.totalPages | int | 전체 페이지 수 |
-| result | Array[Object] | 조회된 이용 정지 내역 |
+| result | Array[Object] | 조회된 이용 정지 목록 |
 | result.userId | String | 유저 ID |
 | result.banCaller | String | 이용 정지 호출 주체 |
 | result.banReason | String | 이용 정지 사유 |
@@ -1608,7 +1608,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-gateway/v1.3/apps/{appId}/coupons/codes/{couponCode}
+| GET | /tcgb-gateway/v1.3/apps/{appId}/coupons/codes/{couponCode} |
 
 **[Request Header]**
 

@@ -1022,7 +1022,7 @@ Check common items.
 | pagingInfo.size | int | Number of data per page |
 | pagingInfo.totalElements | int | Total number of data |
 | pagingInfo.totalPages | int | Total number of pages |
-| result | Array[Object] | Retrieved ban history details |
+| result | Array[Object] | Retrieved ban details |
 | result.userId | String | User ID |
 | result.banCaller | String | Subject of calling ban |
 | result.banReason | String | Reason for the ban |
@@ -1608,7 +1608,7 @@ Retrieves the basic information of the coupon registered in the console, based o
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-gateway/v1.3/apps/{appId}/coupons/codes/{couponCode}
+| GET | /tcgb-gateway/v1.3/apps/{appId}/coupons/codes/{couponCode} |
 
 **[Request Header]**
 
