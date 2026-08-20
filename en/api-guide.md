@@ -2289,6 +2289,8 @@ None
 
 When Google Play sends a chargeback review request notification (`PendingRefundReviewNotification`), Gamebase forwards the notification to the game server callback URL registered in the Gamebase Console.
 
+![](../static/images/google-chargeback-flow-en.png)
+
 > [Note]
 > If your game server uses an access control list (ACL), you must allow the source IP of the Gamebase server.<br>
 > Contact customer support for the source IP of the Gamebase server to register in the allow list.
