@@ -2289,7 +2289,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 
 Google Play에서 차지백 검토 요청 알림(`PendingRefundReviewNotification`)을 받으면, 해당 알림을 Gamebase Console에 등록된 게임 서버 콜백 URL로 전달합니다.
 
-![](../static/images/google-chargeback-flow-ko.png)
+![](../static/images/google-chargeback-flow-ko.png){ width="80%" }
 
 > [참고]
 > 게임 서버에서 접근 제어 목록(ACL)을 사용하는 경우 Gamebase 서버의 출발지 IP를 허용해야 합니다.<br>

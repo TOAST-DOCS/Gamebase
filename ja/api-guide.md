@@ -2289,7 +2289,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 
 Google Playからチャージバック検討リクエストの通知(`PendingRefundReviewNotification`)を受け取ると、その通知をGamebase Consoleに登録されたゲームサーバーのコールバックURLへ送信します。
 
-![](../static/images/google-chargeback-flow-ja.png)
+![](../static/images/google-chargeback-flow-ja.png){ width="80%" }
 
 > [参考]
 > ゲームサーバーでアクセス制御リスト(ACL)を使用している場合、Gamebaseサーバーの送信元IPを許可する必要があります。<br>
