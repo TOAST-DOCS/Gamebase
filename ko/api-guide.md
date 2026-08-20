@@ -22,7 +22,7 @@
 - `SIWA Account Webhook` API 추가
 - `Get Coupon Information by Coupon Code` API 추가
 - Push 토큰 관련 `Push Wrapping` API 추가
-- Google ChargeBack 관련 API 추가
+- Google Chargeback 관련 API 추가
 
 ## Advance Notice
 
@@ -279,6 +279,11 @@ API 응답 결과의 특정 변수 타입이 변경될 때 API 버전이 변경�
 | idPToken | Object | 로그인한 유저가 사용한 IdP의 Access Token 정보 |
 | idPToken.idPCode | String | [유저 인증 IdP](#identity-provider-code) |
 | idPToken.accessToken | String | IdP Access Token |
+
+**[Error Code]**
+
+[오류 코드](./error-code/#server)
+
 <br>
 <br>
 
@@ -942,7 +947,6 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | result.name | String | 콘솔에서 등록한 템플릿 이름 |
 | result.templateCode | Long | 콘솔에서 등록한 이용 정지 템플릿 코드 값 |
 
-
 **[Error Code]**
 
 [오류 코드](./error-code/#server)
@@ -1022,7 +1026,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | pagingInfo.size | int | 페이지당 데이터 개수 |
 | pagingInfo.totalElements | int | 전체 데이터 수 |
 | pagingInfo.totalPages | int | 전체 페이지 수 |
-| result | Array[Object] | 조회된 이용 정지 내역 |
+| result | Array[Object] | 조회된 이용 정지 목록 |
 | result.userId | String | 유저 ID |
 | result.banCaller | String | 이용 정지 호출 주체 |
 | result.banReason | String | 이용 정지 사유 |
@@ -1032,7 +1036,6 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | result.flags | String | 콘솔에서 이용 정지 등록 시 리더보드 삭제를 선택한 경우 'leaderboard'로 반환 |
 | result.name | String | 콘솔에서 등록한 템플릿 이름 |
 | result.templateCode | Long | 콘솔에서 등록한 이용 정지 템플릿 코드 값 |
-
 
 **[Error Code]**
 
@@ -1200,7 +1203,6 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | result.releaseReason | String | 이용 정지 해제 사유 |
 | result.releaseDate | String | 이용 정지 해제 시간 |
 
-
 **[Error Code]**
 
 [오류 코드](./error-code/#server)
@@ -1365,7 +1367,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | size | String | Optional | 페이지당 데이터 개수 |
 | order | String | Optional | 조회 데이터 정렬 방법. ASC or DESC |
 | eventLogType | Enum | Optional | [탈퇴 이벤트 발생 경로](#withdrawal-event-type) |
-| includePending | boolean | Optional | 탈퇴 진행 중인 중간 상태값 포함 여부 <br> - false(기본값) 설정 시, 최종 탈퇴가 완료된 로그만 필터링하여 제공 <br> - eventLogType이 입력된 경우 해당 값이 우선 적용 됨 |
+| includePending | boolean | Optional | 탈퇴 진행 중인 중간 상태값 포함 여부 <br> - false(기본값) 설정 시 최종 탈퇴가 완료된 로그만 필터링하여 제공 <br> - eventLogType이 입력된 경우 해당 값이 우선 적용됨 |
 
 **[Response Body]**
 
@@ -1417,7 +1419,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | result.userId | String | 유저 ID |
 | result.date | String | 탈퇴 일시 |
 | result.type | Enum | [탈퇴 이벤트 발생 경로](#withdrawal-event-type)|
-| result.regUser | String | 탈퇴 API를 호출한 주체<br>- 해당 값이 **null** 이면 client SDK에서 호출됨 |
+| result.regUser | String | 탈퇴 API를 호출한 주체<br>- 해당 값이 **null**이면 client SDK에서 호출됨 |
 
 **[Error Code]**
 
@@ -1448,7 +1450,6 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 | Method | URI |
 | --- | --- |
 | POST | /tcgb-gateway/v1.3/apps/{appId}/webhooks/apple/notifications |
-
 
 **[Path Variable]**
 
@@ -1608,7 +1609,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 
 | Method | URI |
 | --- | --- |
-| GET | /tcgb-gateway/v1.3/apps/{appId}/coupons/codes/{couponCode}
+| GET | /tcgb-gateway/v1.3/apps/{appId}/coupons/codes/{couponCode} |
 
 **[Request Header]**
 
@@ -1673,7 +1674,7 @@ IdP ID로 매핑된 유저 ID 정보를 조회합니다.
 <br>
 <br>
 
-## Purchase(IAP)
+## Purchase (IAP)
 
 #### Consume
 
@@ -2290,7 +2291,7 @@ Google Play에서 차지백 검토 요청 알림(`PendingRefundReviewNotificatio
 
 > [참고]
 > 게임 서버에서 접근 제어 목록(ACL)을 사용하는 경우 Gamebase 서버의 출발지 IP를 허용해야 합니다.<br>
-> 허용 목록에 등록할 Gamebase 서버의 출발지 IP는 고객센터로 문의하시기 바랍니다.
+> 허용 목록에 등록할 Gamebase 서버의 출발지 IP는 고객지원으로 문의하시기 바랍니다.
 
 **[Method, URI]**
 
@@ -2368,7 +2369,9 @@ Google Play에서 차지백 검토 요청 알림(`PendingRefundReviewNotificatio
 
 `header.isSuccessful`이 `false`이거나 `HTTP 200 OK`가 아닌 응답을 반환하면 콜백이 다시 전달될 수 있습니다.
 
+**[Error Code]**
 
+[오류 코드](./error-code/#server)
 <br>
 
 ### Google Play Reply Refund Review
@@ -2509,7 +2512,6 @@ Gamebase는 NHN Cloud Leaderboard 서비스의 서버 API에 대해 **Wrapping**
 Gamebase Wrapping API와 매핑된 Leaderboard API 스펙은 아래 가이드를 참고하십시오.
 Leaderboard Appkey 설정 없이 Gamebase AppId 및 SecretKey를 이용해서 Gamebase Wrapping Leaderboard API를 호출할 수 있습니다.
 
-
 [Leaderboard Guide](https://docs.nhncloud.com/ko/Game/Leaderboard/ko/api-guide/)
 
 <br/>
@@ -2533,7 +2535,6 @@ Gamebase는 NHN Cloud Push 서비스의 서버 API에 대해 **Wrapping** 기능
 
 > [참고]
 > Gamebase를 활성화 하면 Push Appkey 설정 없이 Gamebase Wrapping API를 호출하여 Push 기능을 사용할 수 있습니다.
-
 
 <br>
 
@@ -2676,7 +2677,6 @@ X-Secret-Key: IgsaAP
 | P | 이용 정지 유예 상태인 유저 |
 | M | 유실된 계정 |
 <br/>
-
 
 ### Store Reference Status
 

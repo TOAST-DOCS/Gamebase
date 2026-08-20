@@ -16,12 +16,13 @@
 - Added `renewTime` to the `List Active Subscriptions` API response result to indicate when RENEWED/RECOVERED occurred.
 - Added `marketIds` to the `List Active Subscriptions` API request to perform querying against N stores at once.
 - Added the `Get Ban Members` API to retrieve users who are banned from using the service
-- Added the `Get Subscription Status` API to retrieve the current status of subscriptions
+- Added the `Get Subscriptions Status` API to retrieve the current status of subscriptions
 - Added a `paymentToken` to the `Get Payment Transaction` API request body, representing the ONEStore's purchaseId or purchaseToken value.
-- Added eventLogType to the request parameter of `Withdraw Histories` API
+- Added eventLogType/includePending to the request parameter of `Withdraw Histories` API
 - Added the `SIWA Account Webhook`API
-- Push 토큰 관련 `Push Wrapping` API 추가
-- Google ChargeBack 관련 API 추가
+- Added the `Get Coupon Information by Coupon Code` API
+- Added the `Push Wrapping` API for Push tokens.
+- Added APIs related to Google Chargeback.
 
 ## Advance Notice
 
@@ -278,6 +279,11 @@ Check common items.
 | idPToken | Object | Access Token information of IdP used by the logged-in user |
 | idPToken.idPCode | String | [User authentication IdP](#identity-provider-code) |
 | idPToken.accessToken | String | IdP Access Token |
+
+**[Error Code]**
+
+[Error Code](./error-code/#server)
+
 <br>
 <br>
 
@@ -415,7 +421,7 @@ Check common items.
 
 **[Error Code]**
 
-[Error code](./error-code/#server)](./error-code/#server)
+[Error code](./error-code/#server)
 
 <br>
 <br>
@@ -941,6 +947,95 @@ Check common items.
 | result.name | String | Template name registered in the console |
 | result.templateCode | Long | Code value of the ban template registered in the console |
 
+**[Error Code]**
+
+[Error code](./error-code/#server)
+
+</br>
+
+#### Get Ban Members
+
+Retrieves users who are in the banned state.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-member/v1.3/apps/{appId}/members/bans/current |
+
+**[Request Header]**
+
+Check common items.
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud project ID |
+
+**[Request Parameter]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| page | String | Optional | Page to retrieve, starting from 0 |
+| size | String | Optional | Number of data per page |
+| order | String | Optional | Sorting method for queried data. ASC or DESC |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "pagingInfo": {
+        "first": true,
+        "last": true,
+        "numberOfElements": 0,
+        "page": 0,
+        "size": 0,
+        "totalElements": 0,
+        "totalPages": 0
+    },
+    "result": [
+        {
+            "userId": "String",
+            "banCaller": "CONSOLE",
+            "banReason": "String",
+            "banType": "TEMPORARY",
+            "beginDate": "2019-08-27T17:41:05+09:00",
+            "endDate": "2019-08-28T17:41:05+09:00",
+            "flags": "String",
+            "name": "String",
+            "templateCode": 0
+        }
+    ]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| pagingInfo | Object | Retrieved paging information |
+| pagingInfo.first | boolean | True if it is the first page |
+| pagingInfo.last | boolean | True if it is the last page |
+| pagingInfo.numberOfElements | int | Total number of data |
+| pagingInfo.page | int | Page No. |
+| pagingInfo.size | int | Number of data per page |
+| pagingInfo.totalElements | int | Total number of data |
+| pagingInfo.totalPages | int | Total number of pages |
+| result | Array[Object] | Retrieved ban details |
+| result.userId | String | User ID |
+| result.banCaller | String | Subject of calling ban |
+| result.banReason | String | Reason for the ban |
+| result.banType | String | Type of the ban. TEMPORARY or PERMANENT |
+| result.beginDate | Long | Start date of the ban |
+| result.endDate | Long | End date of the ban<br>In case of PERMANENT type, the value does not exist |
+| result.flags | String | Returned as 'leaderboard' when you have selected Delete Leaderboard upon Registering Ban in the console. |
+| result.name | String | Template name registered in the console |
+| result.templateCode | Long | Code value of the ban template registered in the console |
 
 **[Error Code]**
 
@@ -1108,7 +1203,6 @@ Check common items.
 | result.releaseReason | String | Reason for the ban release |
 | result.releaseDate | String | Date of the ban release |
 
-
 **[Error Code]**
 
 [Error code](./error-code/#server)
@@ -1273,7 +1367,7 @@ Check common items.
 | size | String | Optional | Number of data per page |
 | order | String | Optional | Sorting method for queried data. ASC or DESC |
 | eventLogType | Enum | Optional | [Withdrawal event type](#withdrawal-event-type) |
-| includePending | boolean | Optional | 탈퇴 진행 중인 중간 상태값 포함 여부 <br> - false(기본값) 설정 시, 최종 탈퇴가 완료된 로그만 필터링하여 제공 <br> - eventLogType이 입력된 경우 해당 값이 우선 적용 됨 |
+| includePending | boolean | Optional | Whether to include intermediate status values for withdrawals in progress <br> - If set to `false` (default), only logs for which withdrawal has been fully completed are filtered and provided <br> - If `eventLogType` is entered, that value takes priority |
 
 **[Response Body]**
 
@@ -1324,7 +1418,7 @@ Check common items.
 | result | Array[Object] | Retrieved withdrawn user details |
 | result.userId | String | User ID |
 | result.date | String | Date of withdrawal |
-| result.type | Enum | [탈퇴 이벤트 발생 경로](#withdrawal-event-type)|
+| result.type | Enum | [Withdrawal event type](#withdrawal-event-type)|
 | result.regUser | String | The entity that called the Withdraw API<br>- If the value is **null**, the API has been called from the client SDK |
 
 **[Error Code]**
@@ -1356,7 +1450,6 @@ This webhook event supports two events: consent-revoked and account-delete, and 
 | Method | URI |
 | --- | --- |
 | POST | /tcgb-gateway/v1.3/apps/{appId}/webhooks/apple/notifications |
-
 
 **[Path Variable]**
 
@@ -1501,6 +1594,78 @@ Check common items.
 | result.benefits | Array[Object] | Information of item to be provided |
 | result.benefits.itemId | String | Item ID |
 | result.benefits.amount | Integer | Item count |
+
+**[Error Code]**
+
+[Error Code](./error-code/#server)
+
+<br>
+
+#### Get Coupon Information by Coupon Code
+
+Retrieves the basic information of the coupon registered in the console, based on the entered coupon code.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-gateway/v1.3/apps/{appId}/coupons/codes/{couponCode} |
+
+**[Request Header]**
+
+Check common items.
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud project ID |
+| couponCode | String | Coupon code |
+
+**[Request Parameter]**
+
+N/A
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "title": "Coupon Title",
+        "benefits": [
+            {
+                "itemId": "heart",
+                "amount": 10
+            },
+            {
+                "itemId": "diamond",
+                "amount": 20
+            }
+        ],
+        "type": "KEYWORD",
+        "couponCode": "XMAS",
+        "startDate": "2025-12-21T00:00:00+09:00",
+        "endDate": "2025-12-31T23:59:59+09:00"
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Object | Detailed coupon information |
+| result.title | String | Coupon name |
+| result.benefits | Array[Object] | List of items to be provided |
+| result.benefits.itemId | String | Item ID |
+| result.benefits.amount | Integer | Item count |
+| result.type | Enum | Coupon type (KEYWORD, SERIAL) |
+| result.couponCode | String | Coupon code |
+| result.startDate | String | Validity start time (ISO 8601) |
+| result.endDate | String | Validity end time (ISO 8601) |
 
 **[Error Code]**
 
@@ -2018,305 +2183,6 @@ None
 
 <br>
 
-### Google Play Chargeback Callback
-
-Google Play에서 차지백 검토 요청 알림(`PendingRefundReviewNotification`)을 받으면, 해당 알림을 Gamebase Console에 등록된 게임 서버 콜백 URL로 전달합니다.
-
-> [참고]
-> 게임 서버에서 접근 제어 목록(ACL)을 사용하는 경우 Gamebase 서버의 출발지 IP를 허용해야 합니다.<br>
-> 허용 목록에 등록할 Gamebase 서버의 출발지 IP는 고객센터로 문의하시기 바랍니다.
-
-**[Method, URI]**
-
-| Method | URI |
-| --- | --- |
-| POST | Gamebase Console에 등록된 게임 서버 콜백 URL |
-
-**[Request Header]**
-
-| Name | Required | Value |
-| --- | --- | --- |
-| Content-Type | Required | application/json |
-
-**[Path Variable]**
-
-없음
-
-**[Request Parameter]**
-
-없음
-
-**[Request Body]**
-
-```json
-{
-  "version": "1.0",
-  "notificationType": "PENDING_REFUND",
-  "marketAppId": "com.nhn.gamebase",
-  "marketItemId": "ruby_500",
-  "marketEventTimeMillis": 1780901642182,
-  "pendingRefundNotification": {
-    "refundReviewSeq": 123456789,
-    "paymentSeq": "20250806190011395",
-    "accessToken": "-Fr8Y7_dvv5qhdd6qVHbs7gKnkX0r7EKPvuK6CI-UBBekc1rE9CVbMKVCNuw6ZtwkBGlzeIHg6DdjaRVeaW7GYlPF4vRa50L8umB6tdBvk8",
-    "refundRequestReason": "CHARGEBACK",
-    "marketExpiryTimeMillis": 1780988042182
-  }
-}
-```
-
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| version | String | Required | 알림 규격 버전 |
-| notificationType | String | Required | IAP 공통 알림 타입<br>- 환불 검토: `PENDING_REFUND` |
-| marketAppId | String | Required | 마켓 앱 ID |
-| marketItemId | String | Required | 마켓 상품 ID |
-| marketEventTimeMillis | Long | Required | 마켓 이벤트 발생 시각<br>- Epoch Time(milliseconds) |
-| pendingRefundNotification | Object | Required | 환불 검토 알림 데이터 |
-| pendingRefundNotification.refundReviewSeq | Long | Required | IAP 환불 검토 번호 |
-| pendingRefundNotification.paymentSeq | String | Required | IAP 결제 번호 |
-| pendingRefundNotification.accessToken | String | Required | IAP 결제 번호에 상응하는 토큰 |
-| pendingRefundNotification.refundRequestReason | String | Required | 환불 요청 사유를 구분하는 값<br>- 현재 `CHARGEBACK`만 지원 |
-| pendingRefundNotification.marketExpiryTimeMillis | Long | Required | 의견 등록 만료 시각<br>- Google Play가 알림을 최종 전송한 시점부터 24시간<br>- Epoch Time(milliseconds) |
-
-> [참고]
-> 콜백으로 전달된 `pendingRefundNotification.accessToken`으로 [Get Payment Transaction](#get-payment-transaction) API를 호출하면 차지백 대상 결제의 상세 정보를 조회할 수 있습니다.
-
-> [주의]
-> 동일한 `refundReviewSeq`의 콜백이 중복으로 전달될 수 있습니다.
-> 게임 서버는 이미 처리한 `refundReviewSeq`가 다시 전달되면 해당 요청을 다시 처리하지 않고 성공 응답을 반환해야 합니다.
-
-**[Response Body]**
-
-게임 서버는 콜백 처리 결과를 `HTTP 200 OK`와 Gamebase 공통 응답 형식으로 반환해야 합니다.
-
-```json
-{
-  "header": {
-    "isSuccessful": true,
-    "resultCode": 0,
-    "resultMessage": "SUCCESS"
-  }
-}
-```
-
-`header.isSuccessful`이 `false`이거나 `HTTP 200 OK`가 아닌 응답을 반환하면 콜백이 다시 전달될 수 있습니다.
-
-
-<br>
-
-### Google Play Reply Refund Review
-
-게임에서 차지백 검토 요청에 대한 내부 검토를 완료한 후, 이 API를 호출하여 환불 의견과 구매 콘텐츠 소비 정보를 등록합니다.
-등록된 내용은 Google Play에 환불 검토 의견으로 제출됩니다.
-
-> [주의]
-> [Google Play Chargeback Callback](#google-play-chargeback-callback) 요청에 `HTTP 200 OK`와 Gamebase 공통 성공 응답을 반환한 후 이 API를 호출해야 합니다.
-> 콜백 응답을 반환하기 전에 이 API를 호출하면 오류가 발생합니다.
-
-> [주의]
-> 콜백으로 전달받은 `marketExpiryTimeMillis`는 환불 검토 의견을 제출할 수 있는 만료 시각입니다.
-> 해당 시각이 지나기 전에 이 API를 호출해야 합니다.<br>
-> 기한 내에 의견을 등록하지 않으면 Google Play가 자체 기준에 따라 환불 여부를 결정합니다.
-
-**[Method, URI]**
-
-| Method | URI |
-| --- | --- |
-| POST | /tcgb-inapp/v1.3/apps/{appId}/refund-reviews/{refundReviewSeq}/reply |
-
-**[Request Header]**
-
-공통 사항 확인
-
-**[Path Variable]**
-
-| Name | Type | Value |
-| --- | --- | --- |
-| appId | String | NHN Cloud 프로젝트 ID |
-| refundReviewSeq | Long | IAP 환불 검토 번호 |
-
-**[Request Parameter]**
-
-없음
-
-**[Request Body]**
-
-```json
-{
-  "marketAppId": "com.nhn.gamebase",
-  "paymentSeq": "20250806190011395",
-  "paymentId": "GPA.1234-5678-9012-34567",
-  "decision": "REJECT",
-  "sampleContentProvided": false,
-  "consumptionPercentage": 100000,
-  "consumptionEvents": [
-    {
-      "consumptionTime": 1780901642182,
-      "ipAddress": "203.0.113.10",
-      "consumptionItemDescription": "ruby_500 사용",
-      "location": {
-        "regionCode": "KR",
-        "administrativeArea": "Seoul",
-        "locality": "Seoul",
-        "sublocality": "Gangnam-gu"
-      }
-    }
-  ]
-}
-```
-
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| marketAppId | String | Required | 마켓 앱 ID |
-| paymentSeq | String | Required | IAP 결제 번호 |
-| paymentId | String | Required | 마켓 결제 번호 |
-| decision | Enum | Required | [검토 의견](#refund-review-decision) |
-| sampleContentProvided | Boolean | Required | 구매 전 샘플 또는 체험 제공 여부 |
-| consumptionPercentage | Integer | Optional | 소비 비율<br>- milli-units 단위<br>- `0`~`100000`은 0~100%를 의미 |
-| consumptionEvents | Array[Object] | Optional | 소비 이벤트 목록 |
-| consumptionEvents[].consumptionTime | Long | Optional | 소비 발생 시각<br>- Epoch Time(milliseconds) |
-| consumptionEvents[].ipAddress | String | Optional | 소비 시점의 IP 주소 |
-| consumptionEvents[].consumptionItemDescription | String | Optional | 소비 아이템 설명 |
-| consumptionEvents[].location | Object | Optional | 소비 위치 |
-| consumptionEvents[].location.regionCode | String | Required | 국가·지역 식별용 CLDR 코드(예: `KR`, `JP`)<br>- `location` 제공 시 필수 |
-| consumptionEvents[].location.administrativeArea | String | Optional | 광역 행정구역 |
-| consumptionEvents[].location.locality | String | Optional | 도시 |
-| consumptionEvents[].location.sublocality | String | Optional | 하위 지역 |
-
-**[Response Body]**
-
-```json
-{
-  "header": {
-    "isSuccessful": true,
-    "resultCode": 0,
-    "resultMessage": "SUCCESS"
-  }
-}
-```
-
-#### Refund Review Decision
-
-| Value | Description | Google Play Code |
-| --- | --- | --- |
-| APPROVE | 환불 승인 | APPROVE |
-| REJECT | 환불 거절 | DECLINE |
-| NEUTRAL | 판단 보류<br>- Google Play의 표준 로직으로 결정 | NEUTRAL |
-
-**[Error Code]**
-
-[오류 코드](./error-code/#server)
-
-<br>
-<br>
-
-## Leaderboard
-
-Gamebase provides Wrapping to server API of NHN Cloud Leaderboard. With Wrapping, NHN Cloud products become available at a user server on a consistent interface.
-
-> [Note]
-> Once the Gamebase is activated, you can call Gamebase Wrapping API to use the Leaderboard function without setting the Leaderboard Appkey.
-
-<br>
-
-#### Wrapping API
-| API | Method | Wrapping URI | Leaderboard URI |
-| --- | --- | --- | --- |
-| Get user count in factor<br>- Get user count in factor | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
-| Get total factor count <br>- Get total factor count | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factor-count | /leaderboard/v2.0/appkeys/{appKey}/factor-count |
-| Get factor info<br>- Get factor info<br>- Get multiple factor info | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors | /leaderboard/v2.0/appkeys/{appKey}/factors |
-| Get single user info (score/ranking)<br>- Get single user info | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
-| Get multiple user info (score/ranking)<br>- Get multiple user info | POST | /tcgb-leaderboard/v1.3/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
-| Get the entire info (score/ranking) by range<br>- Get multiple user info by range | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
-| Get selected rank user info<br>- Get selected rank user info | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
-| Get ranking of a specific user or upper and lower users<br>- Get multiple user info by pivot user | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} | /leaderboard/v2.0/appkeys/{appkey}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} |
-| Set single user score<br>- Set single user score | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
-| Set single user score with extra data<br>- Set single user score with extra data | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
-| Set multiple user score<br>- Set multiple user score | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
-| Set multiple user score with extra data<br>- Set multiple user score with extra data | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
-| Delete user leaderboard information<br>- Delete single user info<br>- Delete multiple user info | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
-
-<br/>
-
-**For more information of the API, click the following link.**
-To find out about Leaderboard API specs mapped with Gamebase Wrapping API, see the following guide.
-Use the Gamebase AppId and SecretKey to call the Gamebase Wrapping Leaderboard API without setting the Leaderboard Appkey.
-
-
-[Leaderboard Guide](https://docs.nhncloud.com/en/Game/Leaderboard/en/api-guide/)
-
-<br/>
-
-##### Example of API Call
-
-```
-GET https://api-gamebase.nhncloudservice.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
-
-Content-Type: application/json
-X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
-X-Secret-Key: IgsaAP
-```
-
-<br/>
-<br/>
-
-## Push
-
-Gamebase provides **Wrapping** function for the Server API of the NHN Cloud Push service. By using the Wrapping function, you can use the NHN Cloud services on the user server with consistent interfaces.
-
-> [Note]
-> Once the Gamebase is activated, you can call the Gamebase Wrapping API to use the Push function without setting the Push Appkey.
-
-
-<br>
-
-#### Wrapping API
-|    | API | Method | Wrapping URI | Push URI |
-| --- | --- | --- | --- | --- |
-| Message | Send | POST | /tcgb-push/v1.3/apps/{appId}/messages | /push/v2.4/appkeys/{appkey}/messages |
-|   | View | GET | /tcgb-push/v1.3/apps/{appId}/messages | /push/v2.4/appkeys/{appkey}/messages |
-|   | View sent log | GET | /tcgb-push/v1.3/apps/{appId}/logs/message | /push/v2.4/appkeys/{appkey}/logs/message |
-| Scheduled message | Create send schedule | POST | /tcgb-push/v1.3/apps/{appId}/schedules | /push/v2.4/appkeys/{appkey}/schedules |
-|   | Create | POST | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
-|   | View list | GET | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
-|   | View a single item | GET | /tcgb-push/v1.3/apps/{appId}/reservations/{reservation-id} | /push/v2.4/appkeys/{appkey}/reservations/{reservation-id} |
-|   | View sent ones | GET | /tcgb-push/v1.3/apps/{appId}/reservations/{reservation-id}/messages | /push/v2.4/appkeys/{appkey}/reservations/{reservation-id}/messages |
-|   | Modify | PUT | /tcgb-push/v1.3/apps/{appId}/reservations/{reservationId} | /push/v2.4/appkeys/{appkey}/reservations/{reservationId} |
-|   | Delete | DELETE | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
-| Tag | Create | POST | /tcgb-push/v1.3/apps/{appId}/tags | /push/v2.4/appkeys/{appkey}/tags |
-|   | View | GET | /tcgb-push/v1.3/apps/{appId}/tags | /push/v2.4/appkeys/{appkey}/tags |
-|   | Modify | PUT | /tcgb-push/v1.3/apps/{appId}/tags/{tagId} | /push/v2.4/appkeys/{appkey}/tags/{tag-id} |
-|   | Delete | DELETE | /tcgb-push/v1.3/apps/{appId}/tags/{tagId} | /push/v2.4/appkeys/{appkey}/tags/{tag-id} |
-| UID | Create | POST | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
-|   | View | GET | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
-|   | Modify | PUT | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
-|   | Tag Delete | DELETE | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
-| 토큰 | 생성 | POST | /tcgb-push/v1.3/apps/{appId}/tokens | /push/v2.4/appkeys/{appkey}/tokens |
-|   | 조회 | GET | /tcgb-push/v1.3/apps/{appId}/tokens-by-cursor | /push/v2.4/appkeys/{appkey}/tokens-by-cursor |
-|   | 토큰으로 조회 | GET | /tcgb-push/v1.3/apps/{appId}/tokens/{token} | /push/v2.4/appkeys/{appkey}/tokens/{token} |
-|   | UID로 조회 | GET | /tcgb-push/v1.3/apps/{appId}/tokens | /push/v2.4/appkeys/{appkey}/tokens |
-|   | 삭제 | DELETE | /tcgb-push/v1.3/apps/{appId}/tokens/{token} | /push/v2.4/appkeys/{appkey}/tokens/{token} |
-
-<br/>
-
-**For more information of the API, click the following link.**
-To find out about the Push API spec mapped with Gamebase Wrapping API, see the following guide.
-Use the Gamebase AppId and SecretKey to call the Gamebase Wrapping Push API without setting the Push Appkey.
-
-> [Notes 1]
-> User can use the gamebase userId value for the uid value exists in Push guide. When registering push token in client SDK, the user identifier is registered as gamebase userId.
-> When a single user allows all push notifications on multiple devices, the user will receive all pushes on multiple devices.
-
-> [Notes 2]
-> When you send a push message with an API, the send history cannot be checked from **Push > Send History** on the Gamebase console.
-> You can find the history in the **Log & Crash** settings from **Push > Settings > Save Send History**.
-[Push Guide](https://docs.nhncloud.com/en/Notification/Push/en/api-guide/)
-
-<br/>
-
-<br>
-
 ### Get Subscriptions Status
 
 Queries the current status of subscriptions.
@@ -2417,6 +2283,304 @@ None
 
 [Error Code](./error-code/#server)
 
+<br>
+
+### Google Play Chargeback Callback
+
+When Google Play sends a chargeback review request notification (`PendingRefundReviewNotification`), Gamebase forwards the notification to the game server callback URL registered in the Gamebase Console.
+
+> [Note]
+> If your game server uses an access control list (ACL), you must allow the source IP of the Gamebase server.<br>
+> Contact customer support for the source IP of the Gamebase server to register in the allow list.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | The game server callback URL registered in the Gamebase Console |
+
+**[Request Header]**
+
+| Name | Required | Value |
+| --- | --- | --- |
+| Content-Type | Required | application/json |
+
+**[Path Variable]**
+
+N/A
+
+**[Request Parameter]**
+
+N/A
+
+**[Request Body]**
+
+```json
+{
+  "version": "1.0",
+  "notificationType": "PENDING_REFUND",
+  "marketAppId": "com.nhn.gamebase",
+  "marketItemId": "ruby_500",
+  "marketEventTimeMillis": 1780901642182,
+  "pendingRefundNotification": {
+    "refundReviewSeq": 123456789,
+    "paymentSeq": "20250806190011395",
+    "accessToken": "-Fr8Y7_dvv5qhdd6qVHbs7gKnkX0r7EKPvuK6CI-UBBekc1rE9CVbMKVCNuw6ZtwkBGlzeIHg6DdjaRVeaW7GYlPF4vRa50L8umB6tdBvk8",
+    "refundRequestReason": "CHARGEBACK",
+    "marketExpiryTimeMillis": 1780988042182
+  }
+}
+```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| version | String | Required | Notification specification version |
+| notificationType | String | Required | Common IAP notification type<br>- Refund review: `PENDING_REFUND` |
+| marketAppId | String | Required | Market app ID |
+| marketItemId | String | Required | Market item ID |
+| marketEventTimeMillis | Long | Required | Time the market event occurred<br>- Epoch time (milliseconds) |
+| pendingRefundNotification | Object | Required | Refund review notification data |
+| pendingRefundNotification.refundReviewSeq | Long | Required | IAP refund review number |
+| pendingRefundNotification.paymentSeq | String | Required | IAP payment number |
+| pendingRefundNotification.accessToken | String | Required | Token corresponding to the IAP payment number |
+| pendingRefundNotification.refundRequestReason | String | Required | Value indicating the reason for the refund request<br>- Currently only `CHARGEBACK` is supported |
+| pendingRefundNotification.marketExpiryTimeMillis | Long | Required | Expiration time for registering the opinion<br>- 24 hours from when Google Play last sent the notification<br>- Epoch time (milliseconds) |
+
+> [Note]
+> You can retrieve detailed information about the payment subject to the chargeback by calling the [Get Payment Transaction](#get-payment-transaction) API with the `pendingRefundNotification.accessToken` value delivered in the callback.
+
+> [Caution]
+> A callback with the same `refundReviewSeq` may be delivered more than once.
+> If a `refundReviewSeq` that has already been processed is delivered again, the game server must return a success response without processing the request again.
+
+**[Response Body]**
+
+The game server must return the callback processing result as `HTTP 200 OK` with the Gamebase common response format.
+
+```json
+{
+  "header": {
+    "isSuccessful": true,
+    "resultCode": 0,
+    "resultMessage": "SUCCESS"
+  }
+}
+```
+
+If `header.isSuccessful` is `false` or a response other than `HTTP 200 OK` is returned, the callback may be delivered again.
+
+**[Error Code]**
+
+[Error Code](./error-code/#server)
+<br>
+
+### Google Play Reply Refund Review
+
+After the game completes its internal review of the chargeback review request, call this API to register the refund opinion and purchased content consumption information.
+The registered content is submitted to Google Play as the refund review opinion.
+
+> [Caution]
+> You must call this API only after returning `HTTP 200 OK` and the Gamebase common success response to the [Google Play Chargeback Callback](#google-play-chargeback-callback) request.
+> If you call this API before returning the callback response, an error occurs.
+
+> [Caution]
+> The `marketExpiryTimeMillis` value delivered in the callback is the expiration time by which you can submit your refund review opinion.
+> You must call this API before that time has passed.<br>
+> If you do not register your opinion within the deadline, Google Play decides whether to refund based on its own criteria.
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/refund-reviews/{refundReviewSeq}/reply |
+
+**[Request Header]**
+
+Check common items.
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN Cloud project ID |
+| refundReviewSeq | Long | IAP refund review number |
+
+**[Request Parameter]**
+
+N/A
+
+**[Request Body]**
+
+```json
+{
+  "marketAppId": "com.nhn.gamebase",
+  "paymentSeq": "20250806190011395",
+  "paymentId": "GPA.1234-5678-9012-34567",
+  "decision": "REJECT",
+  "sampleContentProvided": false,
+  "consumptionPercentage": 100000,
+  "consumptionEvents": [
+    {
+      "consumptionTime": 1780901642182,
+      "ipAddress": "203.0.113.10",
+      "consumptionItemDescription": "ruby_500 used",
+      "location": {
+        "regionCode": "KR",
+        "administrativeArea": "Seoul",
+        "locality": "Seoul",
+        "sublocality": "Gangnam-gu"
+      }
+    }
+  ]
+}
+```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| marketAppId | String | Required | Market app ID |
+| paymentSeq | String | Required | IAP payment number |
+| paymentId | String | Required | Market payment number |
+| decision | Enum | Required | [Review decision](#refund-review-decision) |
+| sampleContentProvided | Boolean | Required | Whether a sample or trial was provided before purchase |
+| consumptionPercentage | Integer | Optional | Consumption percentage<br>- In milli-units<br>- `0` to `100000` represents 0% to 100% |
+| consumptionEvents | Array[Object] | Optional | List of consumption events |
+| consumptionEvents[].consumptionTime | Long | Optional | Time the consumption occurred<br>- Epoch time (milliseconds) |
+| consumptionEvents[].ipAddress | String | Optional | IP address at the time of consumption |
+| consumptionEvents[].consumptionItemDescription | String | Optional | Description of the consumed item |
+| consumptionEvents[].location | Object | Optional | Consumption location |
+| consumptionEvents[].location.regionCode | String | Required | CLDR code for identifying the country/region (e.g., `KR`, `JP`)<br>- Required if `location` is provided |
+| consumptionEvents[].location.administrativeArea | String | Optional | Administrative area |
+| consumptionEvents[].location.locality | String | Optional | City |
+| consumptionEvents[].location.sublocality | String | Optional | Sublocality |
+
+**[Response Body]**
+
+```json
+{
+  "header": {
+    "isSuccessful": true,
+    "resultCode": 0,
+    "resultMessage": "SUCCESS"
+  }
+}
+```
+
+#### Refund Review Decision
+
+| Value | Description | Google Play Code |
+| --- | --- | --- |
+| APPROVE | Approve refund | APPROVE |
+| REJECT | Reject refund | DECLINE |
+| NEUTRAL | Withhold judgment<br>- Decided by Google Play's standard logic | NEUTRAL |
+
+**[Error Code]**
+
+[Error Code](./error-code/#server)
+
+<br>
+<br>
+
+## Leaderboard
+
+Gamebase provides Wrapping to server API of NHN Cloud Leaderboard. With Wrapping, NHN Cloud products become available at a user server on a consistent interface.
+
+> [Note]
+> Once the Gamebase is activated, you can call Gamebase Wrapping API to use the Leaderboard function without setting the Leaderboard Appkey.
+
+<br>
+
+#### Wrapping API
+| API | Method | Wrapping URI | Leaderboard URI |
+| --- | --- | --- | --- |
+| Get user count in factor<br>- Get user count in factor | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/user-count |
+| Get total factor count <br>- Get total factor count | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factor-count | /leaderboard/v2.0/appkeys/{appKey}/factor-count |
+| Get factor info<br>- Get factor info<br>- Get multiple factor info | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors | /leaderboard/v2.0/appkeys/{appKey}/factors |
+| Get single user info (score/ranking)<br>- Get single user info | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?userId={userId} |
+| Get multiple user info (score/ranking)<br>- Get multiple user info | POST | /tcgb-leaderboard/v1.3/apps/{appId}/get-users | /leaderboard/v2.0/appkeys/{appKey}/get-users |
+| Get the entire info (score/ranking) by range<br>- Get multiple user info by range | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?start={start}&size={size} | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users?start={start}&size={size} |
+| Get selected rank user info<br>- Get selected rank user info | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+| Get ranking of a specific user or upper and lower users<br>- Get multiple user info by pivot user | GET | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} | /leaderboard/v2.0/appkeys/{appkey}/factors/{factor}/users?userId={userId}&prevSize={prevSize}&nextSize={nextSize} |
+| Set single user score<br>- Set single user score | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score |
+| Set single user score with extra data<br>- Set single user score with extra data | POST | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users/{userId}/score-with-extra | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users/{userId}/score-with-extra |
+| Set multiple user score<br>- Set multiple user score | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores | /leaderboard/v2.0/appkeys/{appKey}/scores |
+| Set multiple user score with extra data<br>- Set multiple user score with extra data | POST | /tcgb-leaderboard/v1.3/apps/{appId}/scores-with-extra | /leaderboard/v2.0/appkeys/{appKey}/score-with-extra |
+| Delete user leaderboard information<br>- Delete single user info<br>- Delete multiple user info | DELETE | /tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/users | /leaderboard/v2.0/appkeys/{appKey}/factors/{factor}/users |
+
+<br/>
+
+**For more information of the API, click the following link.**
+To find out about Leaderboard API specs mapped with Gamebase Wrapping API, see the following guide.
+Use the Gamebase AppId and SecretKey to call the Gamebase Wrapping Leaderboard API without setting the Leaderboard Appkey.
+
+[Leaderboard Guide](https://docs.nhncloud.com/en/Game/Leaderboard/en/api-guide/)
+
+<br/>
+
+##### Example of API Call
+
+```
+GET https://api-gamebase.nhncloudservice.com/tcgb-leaderboard/v1.3/apps/{appId}/factors/{factor}/user-count
+
+Content-Type: application/json
+X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
+X-Secret-Key: IgsaAP
+```
+
+<br/>
+<br/>
+
+## Push
+
+Gamebase provides **Wrapping** function for the Server API of the NHN Cloud Push service. By using the Wrapping function, you can use the NHN Cloud services on the user server with consistent interfaces.
+
+> [Note]
+> Once the Gamebase is activated, you can call the Gamebase Wrapping API to use the Push function without setting the Push Appkey.
+
+<br>
+
+#### Wrapping API
+|    | API | Method | Wrapping URI | Push URI |
+| --- | --- | --- | --- | --- |
+| Message | Send | POST | /tcgb-push/v1.3/apps/{appId}/messages | /push/v2.4/appkeys/{appkey}/messages |
+|   | View | GET | /tcgb-push/v1.3/apps/{appId}/messages | /push/v2.4/appkeys/{appkey}/messages |
+|   | View sent log | GET | /tcgb-push/v1.3/apps/{appId}/logs/message | /push/v2.4/appkeys/{appkey}/logs/message |
+| Scheduled message | Create send schedule | POST | /tcgb-push/v1.3/apps/{appId}/schedules | /push/v2.4/appkeys/{appkey}/schedules |
+|   | Create | POST | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+|   | View list | GET | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+|   | View a single item | GET | /tcgb-push/v1.3/apps/{appId}/reservations/{reservation-id} | /push/v2.4/appkeys/{appkey}/reservations/{reservation-id} |
+|   | View sent ones | GET | /tcgb-push/v1.3/apps/{appId}/reservations/{reservation-id}/messages | /push/v2.4/appkeys/{appkey}/reservations/{reservation-id}/messages |
+|   | Modify | PUT | /tcgb-push/v1.3/apps/{appId}/reservations/{reservationId} | /push/v2.4/appkeys/{appkey}/reservations/{reservationId} |
+|   | Delete | DELETE | /tcgb-push/v1.3/apps/{appId}/reservations | /push/v2.4/appkeys/{appkey}/reservations |
+| Tag | Create | POST | /tcgb-push/v1.3/apps/{appId}/tags | /push/v2.4/appkeys/{appkey}/tags |
+|   | View | GET | /tcgb-push/v1.3/apps/{appId}/tags | /push/v2.4/appkeys/{appkey}/tags |
+|   | Modify | PUT | /tcgb-push/v1.3/apps/{appId}/tags/{tagId} | /push/v2.4/appkeys/{appkey}/tags/{tag-id} |
+|   | Delete | DELETE | /tcgb-push/v1.3/apps/{appId}/tags/{tagId} | /push/v2.4/appkeys/{appkey}/tags/{tag-id} |
+| UID | Create | POST | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
+|   | View | GET | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
+|   | Modify | PUT | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
+|   | Tag Delete | DELETE | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
+| Token | Create | POST | /tcgb-push/v1.3/apps/{appId}/tokens | /push/v2.4/appkeys/{appkey}/tokens |
+|   | View | GET | /tcgb-push/v1.3/apps/{appId}/tokens-by-cursor | /push/v2.4/appkeys/{appkey}/tokens-by-cursor |
+|   | View by token | GET | /tcgb-push/v1.3/apps/{appId}/tokens/{token} | /push/v2.4/appkeys/{appkey}/tokens/{token} |
+|   | View by UID | GET | /tcgb-push/v1.3/apps/{appId}/tokens | /push/v2.4/appkeys/{appkey}/tokens |
+|   | Delete | DELETE | /tcgb-push/v1.3/apps/{appId}/tokens/{token} | /push/v2.4/appkeys/{appkey}/tokens/{token} |
+<br/>
+
+**For more information of the API, click the following link.**
+To find out about the Push API spec mapped with Gamebase Wrapping API, see the following guide.
+Use the Gamebase AppId and SecretKey to call the Gamebase Wrapping Push API without setting the Push Appkey.
+
+> [Notes 1]
+> User can use the gamebase userId value for the uid value exists in Push guide. When registering push token in client SDK, the user identifier is registered as gamebase userId.
+> When a single user allows all push notifications on multiple devices, the user will receive all pushes on multiple devices.
+
+> [Notes 2]
+> When you send a push message with an API, the send history cannot be checked from **Push > Send History** on the Gamebase console.
+> You can find the history in the **Log & Crash** settings from **Push > Settings > Save Send History**.
+
+[Push Guide](https://docs.nhncloud.com/en/Notification/Push/en/api-guide/)
+
+<br/>
 
 ##### Example of API Call
 
@@ -2545,15 +2709,14 @@ An event occurrence path that indicates where the user withdrawal occurred.
 | --- | --- |
 | WAA | Withdrawal by app (client) request |
 | WACS | Withdrawal by console/manager request |
-| WAES | Withdrawl by external server (game server)<br>- Server withdrawl API call |
+| WAES | Withdrawal by external server (game server)<br>- Server withdrawl API call |
 | WAAI | Withdrawal by Apple ID link deletion |
 | WAHI | Withdrawal by Hangame account deletion |
-| WAHD | 한게임 장기 미사용 계정 탈퇴 |
+| WAHD | Withdrawal of long-term inactive Hangame accounts |
 | WAGE | Automatic withdrawal from the system upon expiration of the grace period |
-| WAT | 탈퇴 유예 상태<br>- 최종 탈퇴 상태가 아님 |
-| WAC | 탈퇴 유예 취소 |
+| WAT | Withdrawal grace period status<br>- Not a final withdrawal status |
+| WAC | Cancellation of withdrawal grace period |
 <br/>
-
 
 ### Support
 

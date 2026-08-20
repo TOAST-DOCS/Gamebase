@@ -2,13 +2,13 @@
 
 ### 2026. 08. 25.
 
-#### 기능 추가
-* Google Pay 차지백 관련 API 추가
+#### 機能の追加
+* Google のチャージバック関連APIの追加
 
 ### 2026. 03. 24.
 
-#### 기능 추가
-* 유저ID로 푸시 토큰을 조회하는 API 추가
+#### 機能の追加
+* ユーザーIDでプッシュトークンを照会するAPIの追加
 
 ### 2024. 08. 27.
 
@@ -305,18 +305,18 @@
 ### 2017.11.30
 
 #### 機能改善/変更
-* [メンテナンス照会API](./api-guide/#check-under-maintenance)結果をListから単一オブジェクトに変更
+* [メンテナンス照会API](./api-guide/#check-maintenance-set)結果をListから単一オブジェクトに変更
 
 ### 2017.04.04
 
 #### 機能改善/変更
-* [IAP](./api-guide/#purchaseiap) API連携：アイテム照会、未消費内訳照会
+* [IAP](./api-guide/#purchase-iap) API連携：アイテム照会、未消費内訳照会
 * checkAccessToken APIレスポンス結果に、ログイン時に使用されたIdP関連情報を含むスペックを追加
 
 ### 2017.03.21
 
 #### 機能改善/変更
-* [Leaderboard](./api-guide/#leaderboard), [IAP](./api-guide/#purchaseiap) API連携
+* [Leaderboard](./api-guide/#leaderboard), [IAP](./api-guide/#purchase-iap) API連携
 
 ### 2017.03.09
 

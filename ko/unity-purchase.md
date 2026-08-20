@@ -427,7 +427,7 @@ public void RequestActivatedPurchasesSample(bool allStores)
                 
                 // You will need paymentSeq and purchaseToken when calling the Consume API.
                 // Refer to the following document for the Consume API.
-                // https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchaseiap
+                // https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
                 message.AppendLine(string.Format("paymentSeq:{0}", purchasableReceipt.paymentSeq));
                 message.AppendLine(string.Format("purchaseToken:{0}", purchasableReceipt.purchaseToken));
                 message.AppendLine(string.Format("marketItemId:{0}", purchasableReceipt.marketItemId));
