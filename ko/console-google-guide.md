@@ -248,3 +248,10 @@ Google Play에서 구독 상품을 판매하는 경우 NHN Cloud IAP에서 Googl
 - **홈** 화면에서 알림을 받을 앱을 선택 후 **수익 창출 설정**으로 들어갑니다.
 - **Google Play 결제** 항목 중 **주제 이름**에 앞서 만든 주제의 이름을 입력합니다.
 ![Google Cloud 프로젝트 연결](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/ko/260202_ko_28.png)
+
+
+## 구글 차지백(Google ChargeBack) 연동 
+![google Console img](../static/images/google_Store/2026_gamebase_google_chargeback_console.png)
+
+- 구글의 차지백(Google ChargeBack) 연동을 위한 URL을 입력해 주세요. 
+* 자세한 사항은 [Gamebase API](https://docs.alpha-nhncloud.com/ko/Game/Gamebase/ko/api-guide/#google-play-chargeback-callback)를 확인해 주세요.
