@@ -1,4 +1,7 @@
-## Game > Gamebase > Console Guide > Ban
+<!-- pre-align:aligned sig=4e29be4ad10c -->
+
+<a id="game-gamebase-console-guide-ban"></a>
+## Game > Gamebase > Console Guide > Ban { #game-gamebase-console-guide-ban }
 
 Gamebase bans those game users who use apps inappropriately or abusively.
 When a banned user tries to log in again, or session is restored, a pop-up will be displayed to restrict game use.
@@ -8,11 +11,13 @@ You can register banning either manually in the Gamebase Console or automaticall
 Refer to [AppGuard](./oper-ban/#appguard) on how to integrate AppGuard.
 
 
-## Ban
+<a id="ban"></a>
+## Ban { #ban }
 
 Retrieve the list of game users who are banned/released from banning, as search conditions allow.
 
-### Search Banned User
+<a id="search-banned-user"></a>
+### Search Banned User { #search-banned-user }
 
 Retrieve the list of game users who are banned/released from banning, as search conditions allow.
 
@@ -59,11 +64,13 @@ Retrieve the list of game users who are banned/released from banning, as search 
 
 
 
-### Register Ban
+<a id="register-ban"></a>
+### Register Ban { #register-ban }
 
 You can register banning by clicking **Register** on the Retrieve Ban page.
 
 ![gamebase_ban_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_02_240813.png)
+<a id="register-ban-1-user-id"></a>
 #### (1) User ID
 Enter a Gamebase user ID to register banning. Multiple users can be registered at once, following the two methods as below.
 
@@ -76,16 +83,19 @@ Enter a Gamebase user ID to register banning. Multiple users can be registered a
 > If batch registration fails during progress, a pop-up will be displayed. Click **Download** from the pop-up to download the list of users who are failed to be registered in a file.
 > ![gamebase_ban_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_04_240813.png)
 
+<a id="register-ban-2-period"></a>
 #### (2) Period
 Set a banning period for a game user. Banning will be applied from the moment of registration.
 
 - **Permanent**: Select to ban permanently.
 - **Specify Period**: Enter how long to ban by day and hour. Can expect banned period with **anticipated expiration time**.
 
+<a id="register-ban-3-reason"></a>
 #### (3) Reason
 Enter reasons why a user is to be banned.
 Serves only as an operation history, without exposed to users.
 
+<a id="register-ban-4-message"></a>
 #### (4) Message
 Enter messages to be displayed to banned user.
 A multi-language template to display messages is supported for users and allow easy re-use. Select a pre-registered template to register.
@@ -95,20 +105,24 @@ A multi-language template to display messages is supported for users and allow e
 > If a template has not been registered, first go to **Template** of **BAN** to register a template.
 > Refer to [Template](./oper-ban/#template) on how to register a template.
 
+<a id="register-ban-5-delete-leaderboard"></a>
 #### (5) Delete Leaderboard
 When registering banning, you can select whether to delete the game user's Leaderboard data or not.
 If you select this option and register banning, data of the game user is deleted. Caution is required because the deleted Leaderboard data <font color="red">cannot be recovered</font>.
 
-### Release Ban
+<a id="release-ban"></a>
+### Release Ban { #release-ban }
 
 You can release banning by clicking **Release** on the Retrieve Ban page.
 
 ![gamebase_ban_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_05_240813.png)
 
+<a id="release-ban-release-reason"></a>
 #### Release Reason
 Enter reasons why a user is to be released from banning.
 Serves only as an operation history, without exposed to users.
 
+<a id="release-ban-user-id"></a>
 #### User ID
 Enter a Gamebase user ID to release banning. Multiple users can be registered at once, following the two methods as below.
 
@@ -123,11 +137,13 @@ Enter a Gamebase user ID to release banning. Multiple users can be registered at
 > If batch registration fails during progress, a pop-up will be displayed. Click **Download** from the pop-up to download the list of users who are failed to be registered in a file.
 > ![gamebase_ban_04_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_04_240813.png)
 
-## Template
+<a id="template"></a>
+## Template { #template }
 Provides a multi-language template to display messages for banning target users and allows easy re-use. Select a pre-registered template.
 You can register templates by language, and a message of banning will be displayed for banning target users based on the language set on each of their devices.
 
-### Search
+<a id="search"></a>
+### Search { #search }
 
 Allows you to search the list of registered templates.
 You can register a new template, or modify registered templates, but cannot delete them.
@@ -136,18 +152,22 @@ You can register a new template, or modify registered templates, but cannot dele
 
 - In the template list, the Message item will show messages in a language entered as 'Default Language' while registering a template.
 
-### Register Template
+<a id="register-template"></a>
+### Register Template { #register-template }
 ![gamebase_ban_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_09_240813.png)
 
+<a id="register-template-1-name"></a>
 #### (1) Name
 Enter a name of template to show on the list to register banning.
 
+<a id="register-template-2-message"></a>
 #### (2) Message
 Enter messages for banning target users.
 The messages can be registered in multiple languages, and for users using other languages, the language selected as 'Default Language' will be displayed. To add a language, click **+** on the right, and if there's any other language you want on the list, contact [Customer Center](https://toast.com/support/inquiry).
 Click **Auto Translate to Default Language** and messages in the default language are translated into a language set for each item.
 
-## AppGuard
+<a id="appguard"></a>
+## AppGuard { #appguard }
 
 > <font color="red">[Important Note]</font>
 > The AppGuard integration function is available only when the NHN AppGuard service is activated in the same project as the service to which the function is to be applied in NHN Cloud.

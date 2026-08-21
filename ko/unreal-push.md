@@ -1,8 +1,12 @@
-## Game > Gamebase > Unreal SDK 사용 가이드 > 푸시
+<!-- pre-align:aligned sig=ad1ffd3bcb05 -->
+
+<a id="game-gamebase-user-guide-for-unreal-sdk-push"></a>
+## Game > Gamebase > Unreal SDK 사용 가이드 > 푸시 { #game-gamebase-user-guide-for-unreal-sdk-push }
 
 여기에서는 플랫폼별로 푸시 알림을 사용하기 위해 필요한 설정 방법을 알아보겠습니다.
 
-### Settings
+<a id="settings"></a>
+### Settings { #settings }
 
 Android나 iOS에서 푸시를 설정하는 방법은 다음 문서를 참고하시기 바랍니다.
 
@@ -16,7 +20,8 @@ Android나 iOS에서 푸시를 설정하는 방법은 다음 문서를 참고하
 >
 > 외부 플러그인에서 푸시 관련 처리가 있는 경우, Gamebase 푸시 기능이 정상적으로 동작하지 않을 수 있습니다.
 
-### Register Push
+<a id="register-push"></a>
+### Register Push { #register-push }
 
 다음 API를 호출하여, NHN Cloud Push에 해당 사용자를 등록합니다.
 푸시 동의 여부(enablePush), 광고성 푸시 동의 여부(enableAdPush), 야간 광고성 푸시 동의 여부(enableAdNightPush)값을 사용자로부터 받아, 다음 API를 호출해 등록을 완료합니다.
@@ -36,6 +41,7 @@ void RegisterPush(const FGamebasePushConfiguration& Configuration, const FGameba
 void RegisterPush(const FGamebasePushConfiguration& Configuration, const FGamebaseNotificationOptions& NotificationOptions, const FGamebaseErrorDelegate& Callback);
 ```
 
+<a id="register-push-fgamebasepushconfiguration"></a>
 #### FGamebasePushConfiguration
 
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
@@ -73,11 +79,13 @@ void USample::RegisterPush(bool bPushEnabled, bool bADAgreement, bool bADAgreeme
 }
 ```
 
-### Notification Options
+<a id="notification-options"></a>
+### Notification Options { #notification-options }
 
 * 단말기에 표시하는 알림을 어떤 형태로 표시할 것인지 Notification Options 를 통해 변경할 수 있습니다.
 * 런타임에 RegisterPush API를 호출하여 변경할 수 있습니다.
 
+<a id="notification-options-set-notification-options-with-registerpush-in-runtime"></a>
 #### Set Notification Options with RegisterPush in Runtime
 
 RegisterPush API 호출 시 FGamebaseNotificationOptions 인자를 추가하여 알림 옵션을 설정할 수 있습니다.
@@ -129,6 +137,7 @@ void USample::RegisterPushWithOption(bool bPushEnabled, bool bADAgreement, bool 
 }
 ```
 
+<a id="notification-options-get-notificationoptions"></a>
 #### Get NotificationOptions
 
 푸시를 등록할 때 기존에 설정했던 알림 옵션값을 가져옵니다.
@@ -169,7 +178,8 @@ void USample::GetNotificationOptions()
 ```
 
 
-### Request Push Settings
+<a id="request-push-settings"></a>
+### Request Push Settings { #request-push-settings }
 
 사용자의 푸시 설정을 조회하려면 다음 API를 이용합니다.
 콜백으로 받은 FGamebasePushTokenInfo 값으로 사용자 설정값을 얻을 수 있습니다.
@@ -212,6 +222,7 @@ void USample::QueryTokenInfo()
 ```
 
 
+<a id="request-push-settings-fgamebasepushtokeninfo"></a>
 #### FGamebasePushTokenInfo
 
 | Parameter           | Values                 | Description         |
@@ -226,6 +237,7 @@ void USample::QueryTokenInfo()
 | Agreement           | FGamebasePushAgreement | 수신 동의 여부        |
 | bSandbox             | bool                   | sandbox 여부(iOS에 한함)        |
 
+<a id="request-push-settings-fgamebasepushagreement"></a>
 #### FGamebasePushAgreement
 
 | Parameter        | Values  | Description               |
@@ -235,7 +247,8 @@ void USample::QueryTokenInfo()
 | bAdAgreementNight | bool | 야간 광고성 알림 표시 동의 여부  |
 
 
-### Event Handling
+<a id="event-handling"></a>
+### Event Handling { #event-handling }
 
 * 푸시 메시지가 도착했거나 푸시 메시지를 클릭했을 때 이벤트를 처리할 수 있습니다.
 * 이벤트 등록 방법은 GamebaseEventHandler 가이드를 참고하시기 바랍니다.
@@ -244,6 +257,7 @@ void USample::QueryTokenInfo()
     * [ Game > Gamebase > Unreal SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./unreal-etc/#push-click-action)
 
 
+<a id="event-handling-setting-for-apns-sandbox"></a>
 #### Setting for APNS Sandbox
 
 * SandboxMode를 켜면, APNS Sandbox로 Push를 발송하도록 등록할 수 있습니다.
@@ -270,7 +284,8 @@ void USample::SetSandboxMode(bool bIsSandbox)
 ```
 
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |

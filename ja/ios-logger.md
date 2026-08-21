@@ -1,8 +1,12 @@
-## Game > Gamebase > iOS SDK使用ガイド > Logger
+<!-- pre-align:aligned sig=b37ac9f2e6bc -->
+
+<a id="game-gamebase-ios-sdk-user-guide-logger"></a>
+## Game > Gamebase > iOS SDK使用ガイド > Logger { #game-gamebase-ios-sdk-user-guide-logger }
 
 ここではLog & Crash Search転送APIを使用する方法を説明します。
 
-### Initialize
+<a id="initialize"></a>
+### Initialize { #initialize }
 Log & Crash Searchで発行されたアプリケーションキーでNHN Cloud Logger SDKを初期化します。
 
 **API**
@@ -24,7 +28,8 @@ Log & Crash Searchで発行されたアプリケーションキーでNHN Cloud L
 }
 ```
 
-### Send Logs
+<a id="send-logs"></a>
+### Send Logs { #send-logs }
 
 Log & Crashサーバーにログを送信します。
 NHN Cloud Logger SDKは、次の5つのレベルのログを送信できます。
@@ -78,7 +83,8 @@ NHN Cloud Logger SDKは、次の5つのレベルのログを送信できます�
 }
 ```
 
-### Set User-Defined Fields
+<a id="set-user-defined-fields"></a>
+### Set User-Defined Fields { #set-user-defined-fields }
 ユーザー定義フィールドを設定します。
 
 ユーザー定義フィールドを設定すると、ログ転送APIを呼び出すたびに設定した値とログをサーバーに転送します。
@@ -98,7 +104,8 @@ NHN Cloud Logger SDKは、次の5つのレベルのログを送信できます�
 }
 ```
 
-### Further Tasks after Sending Logs
+<a id="further-tasks-after-sending-logs"></a>
+### Further Tasks after Sending Logs { #further-tasks-after-sending-logs }
 
 デリゲート(delegate)を登録すると、ログを送信した後に追加作業を進行できます。
 

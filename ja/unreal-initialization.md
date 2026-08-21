@@ -1,9 +1,13 @@
-## Game > Gamebase > Unreal SDK使用ガイド > 初期化
+<!-- pre-align:aligned sig=dc6b70f24a42 -->
+
+<a id="game-gamebase-user-guide-for-unreal-sdk-initialization"></a>
+## Game > Gamebase > Unreal SDK使用ガイド > 初期化 { #game-gamebase-user-guide-for-unreal-sdk-initialization }
 
 Gamebase Unreal SDKを使用するには、初期化を行う必要があります。またアプリID、アプリバージョン情報がTOAST Consoleに登録されている必要があります。
 
 
-### Include Header File
+<a id="include-header-file"></a>
+### Include Header File { #include-header-file }
 
 Gamebase APIを使用するには、次のヘッダファイルをインクルードします。
 
@@ -11,7 +15,8 @@ Gamebase APIを使用するには、次のヘッダファイルをインクル�
 #include "GamebaseSubsystem.h"
 ```
 
-### FGamebaseConfiguration 
+<a id="fgamebaseconfiguration"></a>
+### FGamebaseConfiguration { #fgamebaseconfiguration }
 
 初期化時に必要な設定は下記の通りです。
 
@@ -26,18 +31,21 @@ Gamebase APIを使用するには、次のヘッダファイルをインクル�
 | bEnableBanPopup | ALL | O |
 | bEnableGPGSSignInCheck | Android | O |
 
+<a id="fgamebaseconfiguration-appid"></a>
 #### 1. AppID
 
 Gamebase Consoleに登録されたプロジェクトIDです。
 
 [Game > Gamebase > コンソール使用ガイド > アプリ > App](./oper-app/#app)
 
+<a id="fgamebaseconfiguration-appversion"></a>
 #### 2. AppVersion
 
 Gamebase Consoleに登録したクライアントバージョンです。
 
 [Game > Gamebase > コンソール使用ガイド > アプリ > Client](./oper-app/#client)
 
+<a id="fgamebaseconfiguration-storecode"></a>
 #### 3. StoreCode
 NHN Cloud統合アプリ内決済サービスであるIAP(In-App Purchase)を初期化するために必要なストア情報です。
 
@@ -53,6 +61,7 @@ NHN Cloud統合アプリ内決済サービスであるIAP(In-App Purchase)を初
 | Epic Games Store | EPIC | GamebaseStoreCode::EpicGames | only Windows |
 | Steam | STEAM | GamebaseStoreCode::Steam | only Windows |
 
+<a id="fgamebaseconfiguration-benablepopup"></a>
 #### 4. bEnablePopup
 
 システムメンテナンス、利用制裁(ban)など、ゲームユーザーがゲームをプレイできない状況で、ポップアップなどで理由を表示する必要がある時があります。
@@ -62,6 +71,7 @@ Gamebaseで提供する基本ポップアップを使用するかの設定です
 * false：Gamebaseで提供するすべてのポップアップが表示されません。
 * デフォルト値：false
 
+<a id="fgamebaseconfiguration-benablelaunchingstatuspopup"></a>
 #### 5. bEnableLaunchingStatusPopup
 
 LaunchingStatusがゲームをできない状態の場合、Gamebaseで提供する基本ポップアップを使用するかの設定です。
@@ -69,12 +79,14 @@ LaunchingStatusは、下記Launching項目下のState、Code部分を参照し�
 
 * デフォルト値：true
 
+<a id="fgamebaseconfiguration-benablebanpopup"></a>
 #### 6. bEnableBanPopup
 
 ログイン時、該当ゲームユーザーが利用停止状態の場合、Gamebaseで提供する基本ポップアップを使用するかどうかの設定です。
 
 * デフォルト値：true
 
+<a id="fgamebaseconfiguration-benablegpgssignincheck"></a>
 #### 7. bEnableGPGSSignInCheck
 
 Androidプラットフォームで「GPGS自動ログイン」機能連動時、ユーザーにGPGSログインをアプリインストール後に一度だけ確認する設定です。
@@ -83,7 +95,8 @@ Androidプラットフォームで「GPGS自動ログイン」機能連動時、
 * false:アプリ初回実行時にのみGPGSログインウィンドウが一度表示されます。
 * デフォルト値: true
 
-### Debug Mode
+<a id="debug-mode"></a>
+### Debug Mode { #debug-mode }
 
 * Gamebaseは警告(warning)とエラーログのみを表示します。
 * 開発の参考にできるシステムログをオンにするには、**GamebaseSubsystem->SetDebugMode(true)**を呼び出してください。
@@ -120,7 +133,8 @@ void USample::SetDebugMode(bool bIsDebugMode)
 ```
 
 
-### Initialize
+<a id="initialize"></a>
+### Initialize { #initialize }
 
 SDKを初期化します。
 
@@ -203,11 +217,13 @@ void USample::Initialize(const FString& AppID, const FString& AppVersion)
 }
 ```
 
-### Launching Information
+<a id="launching-information"></a>
+### Launching Information { #launching-information }
 
 Initialize APIを使用してGamebase Unreal SDKを初期化すると、LaunchingInfoオブジェクトが結果値として伝達されます。
 このLaunchingInfoオブジェクトにはGamebase Consoleに設定した値とゲーム状態などが含まれています。
 
+<a id="launching-information-launching"></a>
 #### 1. Launching
 
 Gamebaseローンチ情報です。
@@ -279,6 +295,7 @@ Gamebase Consoleに登録された告知情報です。
 
 [Game > Gamebase > コンソール使用ガイド > 運営 > Notice](./oper-operation/#Notice)
 
+<a id="launching-information-tcproduct"></a>
 #### 2. tcProduct
 
 Gamebaseと連携されたTOASTサービスのappKeyです。
@@ -288,6 +305,7 @@ Gamebaseと連携されたTOASTサービスのappKeyです。
 * iap
 * push
 
+<a id="launching-information-tciap"></a>
 #### 3. tcIap
 
 NHN Cloud Consoleに登録されたIAPストア情報です。
@@ -298,6 +316,7 @@ NHN Cloud Consoleに登録されたIAPストア情報です。
  
 [Game > Gamebase > コンソール使用ガイド > 決済](./oper-purchase/)
 
+<a id="launching-information-tclaunching"></a>
 #### 4. tcLaunching
 
 NHN Cloud Launchingコンソールでユーザーが入力した情報です。
@@ -307,7 +326,8 @@ NHN Cloud Launchingコンソールでユーザーが入力した情報です。
  
 [Game > Gamebase > コンソール使用ガイド > 管理 > Config](./oper-management/#config)
 
-### Get Launching Information
+<a id="get-launching-information"></a>
+### Get Launching Information { #get-launching-information }
 
 GetLaunchingInformations APIを利用すると、Initialize後にもLaunchingInfoオブジェクトを取得できます。
 
@@ -344,7 +364,8 @@ void USample::GetLaunchingInformations()
 }
 ```
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                              | Error Code | Description            |
 | ---------------------------------- | ---------- | ---------------------- |

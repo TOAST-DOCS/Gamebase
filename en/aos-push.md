@@ -1,7 +1,12 @@
-## Game > Gamebase > Android Developer's Guide > Push
+<!-- pre-align:aligned sig=400acdc405f6 -->
 
-### Settings
+<a id="game-gamebase-android-developers-guide-push"></a>
+## Game > Gamebase > Android Developer's Guide > Push { #game-gamebase-android-developers-guide-push }
 
+<a id="settings"></a>
+### Settings { #settings }
+
+<a id="settings-android-notification-icon"></a>
 #### Android Notification Icon
 
 For the icon displayed when a push notification arrives, the app icon is used by default.
@@ -23,7 +28,8 @@ You need to set **default_small_icon** (AndroidManifest.xml) or **setSmallIconNa
 [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > Notification Options](./aos-started/#notification-options)
 [Game > Gamebase > Android SDK User Guide > Push > Notification Options > Set Notification Options with RegisterPush in Runtime](./aos-push/#set-notification-options-with-registerpush-in-runtime)
 
-### Register Push
+<a id="register-push"></a>
+### Register Push { #register-push }
 
 Call the following API to register the user for NHN Cloud Push.<br/>
 Get the values of consent to receiving push (enablePush), consent to receiving advertisement push (enableAdPush), and consent to receiving night-time advertisement push (enableAdNightPush) from the user, and call the following API to complete the registration.
@@ -69,11 +75,13 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 });
 ```
 
-### Notification Options
+<a id="notification-options"></a>
+### Notification Options { #notification-options }
 
 * You can use the Notification Options to change how the notification will be displayed in the device.
 * Notification Options can be changed by setting it to AndroidManifest.xml or calling the registerPush API at runtime.
 
+<a id="notification-options-set-notification-options-with-androidmanifestxml"></a>
 #### Set Notification Options with AndroidManifest.xml
 
 Notification options can be set by defining them to AndroidManifest.xml.<br/>
@@ -81,6 +89,7 @@ To find out how to set the options, see the following guide:
 
 [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > Notification Options](./aos-started/#notification-options)
 
+<a id="notification-options-set-notification-options-with-registerpush-in-runtime"></a>
 #### Set Notification Options with RegisterPush in Runtime
 
 You can also set the notification options at runtime without defining them in AndroidManifest.xml, or you can change the value set in AndroidManifest.xml at runtime as well.
@@ -131,6 +140,7 @@ Gamebase.Push.registerPush(activity, pushConfiguration, notificationOptions, new
 });
 ```
 
+<a id="notification-options-get-notificationoptions"></a>
 #### Get NotificationOptions
 
 Retrieves the notification options value which was set previously when registering the push notification.
@@ -142,7 +152,8 @@ Retrieves the most recent settings by including the value set in AndroidManifest
 + (GamebaseNotificationOptions)Gamebase.Push.getNotificationOptions(@NonNull Context context);
 ```
 
-### Request Push Settings
+<a id="request-push-settings"></a>
+### Request Push Settings { #request-push-settings }
 
 To retrieve user's push setting, apply API as below. <br/>
 From GamebasePushTokenInfo callback values, you can get user's value set.
@@ -177,6 +188,7 @@ Gamebase.Push.queryTokenInfo(activity, new GamebaseDataCallback<PushConfiguratio
 });
 ```
 
+<a id="request-push-settings-gamebasepushtokeninfo"></a>
 #### GamebasePushTokenInfo
 
 | Parameter           | Values                | Description         |
@@ -190,6 +202,7 @@ Gamebase.Push.queryTokenInfo(activity, new GamebaseDataCallback<PushConfiguratio
 | languageCode        | String                | Language settings            |
 | agreement           | GamebasePushAgreement | Opt in        |
 
+<a id="request-push-settings-gamebasepushagreement"></a>
 #### GamebasePushAgreement
 
 | Parameter        | Values  | Description               |
@@ -198,7 +211,8 @@ Gamebase.Push.queryTokenInfo(activity, new GamebaseDataCallback<PushConfiguratio
 | adAgreement      | boolean | Opt in to display advertisement notifications      |
 | adAgreementNight | boolean | Opt in to display night advertisement notifications  |
 
-### Event Handling
+<a id="event-handling"></a>
+### Event Handling { #event-handling }
 
 * You can handle events when a push message is received or clicked.
 * For how to register event handlers, refer to the GamebaseEventHandler guide.
@@ -206,7 +220,8 @@ Gamebase.Push.queryTokenInfo(activity, new GamebaseDataCallback<PushConfiguratio
     * [ Game > Gamebase > Android SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./aos-etc/#push-click-message)
     * [ Game > Gamebase > Android SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./aos-etc/#push-click-action)
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |

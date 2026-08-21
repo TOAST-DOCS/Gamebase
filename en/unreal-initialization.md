@@ -1,9 +1,13 @@
-## Game > Gamebase > User Guide for Unreal SDK > Initialization 
+<!-- pre-align:aligned sig=dc6b70f24a42 -->
+
+<a id="game-gamebase-user-guide-for-unreal-sdk-initialization"></a>
+## Game > Gamebase > User Guide for Unreal SDK > Initialization { #game-gamebase-user-guide-for-unreal-sdk-initialization }
 
 To use Unreal Gamebase SDK, initialization is required. In addition, app ID, and app version information must be registered on NHN Cloud Console. 
 
 
-### Include Header File
+<a id="include-header-file"></a>
+### Include Header File { #include-header-file }
 
 To enable Gamebase API, import the following header file. 
 
@@ -11,7 +15,8 @@ To enable Gamebase API, import the following header file.
 #include "GamebaseSubsystem.h"
 ```
 
-### FGamebaseConfiguration 
+<a id="fgamebaseconfiguration"></a>
+### FGamebaseConfiguration { #fgamebaseconfiguration }
 
 Following settings are required for initialization. 
 
@@ -25,6 +30,7 @@ Following settings are required for initialization.
 | bEnableBanPopup | ALL | O |
 | bEnableGPGSSignInCheck | Android | O |
 
+<a id="fgamebaseconfiguration-appid"></a>
 #### 1. AppID
 
 Refers to Project ID registered on Gamebase Console.
@@ -32,12 +38,14 @@ Refers to Project ID registered on Gamebase Console.
 [Game > Gamebase > Console Guide > App > App](./oper-app/#app)
 
 
+<a id="fgamebaseconfiguration-appversion"></a>
 #### 2. AppVersion
 
 Refers to Client Version registered on Gamebase Console. 
 
 [Game > Gamebase > Console Guide > App > Client](./oper-app/#client)
 
+<a id="fgamebaseconfiguration-storecode"></a>
 #### 3. StoreCode
 
 Find store information as below, required to initialize NHN Cloud In-App Purchase. 
@@ -54,6 +62,7 @@ Find store information as below, required to initialize NHN Cloud In-App Purchas
 | Epic Games Store | EPIC | GamebaseStoreCode::EpicGames | Only Windows |
 | Steam | STEAM | GamebaseStoreCode::Steam | Only Windows |
 
+<a id="fgamebaseconfiguration-benablepopup"></a>
 #### 4. bEnablePopup
 
 Game users may be required to show reasons for not being able to play games due to system maintenance or user banned on a popup.  
@@ -63,6 +72,7 @@ This setting allows to enable default Gamebase popups.
 * False: Do not show all Gamebase popups.
 * Default: false
 
+<a id="fgamebaseconfiguration-benablelaunchingstatuspopup"></a>
 #### 5. bEnableLaunchingStatusPopup
 
 This setting regards to using default Gamebase popups, when game is unavailable by LaunchingStatus.
@@ -70,12 +80,14 @@ See State, Code below the Launching paragraph to check LaunchingStatus.
 
 * Default: true
 
+<a id="fgamebaseconfiguration-benablebanpopup"></a>
 #### 6. bEnableBanPopup
 
 This setting regards to using default Gamebase popups, when a game user is found, with login, to have been banned.  
 
 * Default: true
 
+<a id="fgamebaseconfiguration-benablegpgssignincheck"></a>
 #### 7. bEnableGPGSSignInCheck
 
 When integrating the 'GPGS Auto Login' feature on the Android platform, set whether to display the GPGS login window only once when the app is first run after installation.
@@ -84,7 +96,8 @@ When integrating the 'GPGS Auto Login' feature on the Android platform, set whet
 * False : The GPGS login window will only appear once when you first launch the app.
 * Default: true
 
-### Debug Mode
+<a id="debug-mode"></a>
+### Debug Mode { #debug-mode }
 
 * Gamebase only displays the warning and error log.
 * To turn on system logs for development reference, please call **IGamebase::Get().SetDebugMode(true)**.
@@ -120,7 +133,8 @@ void USample::SetDebugMode(bool bIsDebugMode)
 }
 ```
 
-### Initialize
+<a id="initialize"></a>
+### Initialize { #initialize }
 
 Initialize SDKs. 
 
@@ -203,11 +217,13 @@ void USample::Initialize(const FString& AppID, const FString& AppVersion)
 }
 ```
 
-### Launching Information
+<a id="launching-information"></a>
+### Launching Information { #launching-information }
 
 With Unreal Gamebae SDK initialized by using Initialize API, the LaunchingInfo object is delivered as result value.  
 This LaunchingInfo object includes values set on Gamebase console, as well as and game status. 
 
+<a id="launching-information-launching"></a>
 #### 1. Launching
 
 Refers to Gamebase launching information. 
@@ -280,6 +296,7 @@ Information for notice registered on Gamebase Console.
 
 [Console Guide](./oper-operation/#notice)
 
+<a id="launching-information-tcproduct"></a>
 #### 2. tcProduct
 
 Refers to appkey of NHN Cloud service associated with Gamebase.  
@@ -289,6 +306,7 @@ Refers to appkey of NHN Cloud service associated with Gamebase.
 * iap
 * push
 
+<a id="launching-information-tciap"></a>
 #### 3. tcIap
 
 Refers to IAP store information registered on NHN Cloud Console. 
@@ -299,6 +317,7 @@ Refers to IAP store information registered on NHN Cloud Console.
  
 [Game > Gamebase > Console Guide > Purchase](./oper-purchase/)
 
+<a id="launching-information-tclaunching"></a>
 #### 4. tcLaunching
 
 User-input information on the console of NHN Cloud Launching.  
@@ -308,7 +327,8 @@ User-input information on the console of NHN Cloud Launching.
 
 [Game > Gamebase > Console Guide > Management > Config](./oper-management/#config)
 
-### Get Launching Information
+<a id="get-launching-information"></a>
+### Get Launching Information { #get-launching-information }
 
 With the GetLaunchingInformations API, you can get LaunchingInfo object even after initialization. 
 
@@ -345,7 +365,8 @@ void USample::GetLaunchingInformations()
 }
 ```
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                              | Error Code | Description            |
 | ---------------------------------- | ---------- | ---------------------- |

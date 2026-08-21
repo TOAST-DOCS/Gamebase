@@ -1,10 +1,15 @@
-## Game > Gamebase > Android SDK 사용 가이드 > ETC
+<!-- pre-align:aligned sig=7ac23bca4f79 -->
 
-## Additional Features
+<a id="game-gamebase-android-sdk-user-guide-etc"></a>
+## Game > Gamebase > Android SDK 사용 가이드 > ETC { #game-gamebase-android-sdk-user-guide-etc }
+
+<a id="additional-features"></a>
+## Additional Features { #additional-features }
 
 Gamebase에서 지원하는 부가 기능을 설명합니다.
 
-### Device Language
+<a id="device-language"></a>
+### Device Language { #device-language }
 
 * 단말기에 설정된 언어 코드를 반환합니다.
 * 여러개의 언어가 등록된 경우, 우선권이 가장 높은 언어만을 반환합니다.
@@ -15,7 +20,8 @@ Gamebase에서 지원하는 부가 기능을 설명합니다.
 + (String)Gamebase.getDeviceLanguageCode();
 ```
 
-### Display Language
+<a id="display-language"></a>
+### Display Language { #display-language }
 
 점검 팝업 창과 같이 Gamebase가 표시하는 언어는 단말기에 설정된 언어로 표시됩니다.
 
@@ -40,6 +46,7 @@ Display Language에 입력하는 언어 코드는 반드시 아래의 표(**Game
 > * Gamebase의 클라이언트에 포함되어 있지 않은 언어셋은 직접 추가할 수 있습니다.
 > **신규 언어셋 추가** 항목을 참조하시기 바랍니다.
 
+<a id="display-language-types-of-language-codes-supported-by-gamebase"></a>
 #### Gamebase에서 지원하는 언어코드의 종류
 
 | Code | Name |
@@ -89,6 +96,7 @@ public class DisplayLanguage {
 }
 ```
 
+<a id="display-language-set-display-language-with-gamebase-initialization"></a>
 #### Gamebase 초기화 시 Display Language 설정
 
 Gamebase 초기화 시 Display Language를 설정할 수 있습니다.
@@ -126,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
+<a id="display-language-set-display-language"></a>
 #### Set Display Language
 
 Gamebase 초기화 시 입력된 Display Language를 변경할 수 있습니다.
@@ -144,6 +153,7 @@ public void setDisplayLanguageCodeToEnglishInRuntime() {
 }
 ```
 
+<a id="display-language-get-display-language"></a>
 #### Get Display Language
 
 현재 적용된 Display Language를 조회할 수 있습니다.
@@ -162,6 +172,7 @@ public void getDisplayLanguageCodeInRuntime() {
 }
 ```
 
+<a id="display-language-add-new-language-sets"></a>
 #### 신규 언어셋 추가
 
 Gamebase에서 제공하는 기본 언어(ko, en, ja, zh-CN, zh-TW, th) 외 다른 언어를 추가하려면 프로젝트의 res > raw 폴더에 localizedstring.json 파일을 추가하면 됩니다.
@@ -237,6 +248,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
+<a id="display-language-priority-in-display-language"></a>
 #### Display Language 우선순위
 
 초기화 및 SetDisplayLanguageCode API를 통해 Display Language를 설정할 경우, 최종 적용되는 Display Language는 입력한 값과 다르게 적용될 수 있습니다.
@@ -246,11 +258,13 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 3. 2번이 실패했다면 Gamebase 콘솔에 설정된 기본 언어가 설정됩니다.
 4. Gamebase 콘솔에 언어 설정이 없다면 `en`이 기본값으로 설정됩니다.
 
-### Country Code
+<a id="country-code"></a>
+### Country Code { #country-code }
 
 * Gamebase는 System의 Country Code를 다음과 같은 API로 제공하고 있습니다.
 * 각 API 마다 특징이 있으니 쓰임새에 맞는 API를 선택하시기 바랍니다.
 
+<a id="country-code-usim-country-code"></a>
 #### USIM Country Code
 
 * USIM에 기록된 국가코드를 반환합니다.
@@ -263,6 +277,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 + (String)Gamebase.getCountryCodeOfUSIM()
 ```
 
+<a id="country-code-device-country-code"></a>
 #### Device Country Code
 
 * OS로부터 전달받은 단말기 국가코드를 추가적인 체크 없이 그대로 반환합니다.
@@ -276,6 +291,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 + (String)Gamebase.getCountryCodeOfDevice()
 ```
 
+<a id="country-code-intergrated-country-code"></a>
 #### Intergrated Country Code
 
 * USIM, 단말기 언어 설정의 순서로 국가 코드를 확인하여 반환합니다.
@@ -292,7 +308,8 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 + (String)Gamebase.getCountryCode()
 ```
 
-### Gamebase Event Handler
+<a id="gamebase-event-handler"></a>
+### Gamebase Event Handler { #gamebase-event-handler }
 
 * Gamebase는 각종 이벤트를 **GamebaseEventHandler**라는 하나의 이벤트 시스템에서 모두 처리할 수 있습니다.
 * GamebaseEventHandler는 아래 API를 통해 간단하게 Listener를 추가/제거할 수 있습니다.
@@ -379,6 +396,7 @@ void eventHandlerSample(Activity activity) {
 | Push<br>- 메시지 클릭 | GamebaseEventCategory.PUSH_CLICK_MESSAGE | PushMessage.from(message.data) | **isForeground** 값이 없습니다. |
 | Push<br>- 액션 클릭 | GamebaseEventCategory.PUSH_CLICK_ACTION | PushAction.from(message.data) | RichMessage 버튼 클릭 시 동작합니다. |
 
+<a id="gamebase-event-handler-how-to-handle-events-when-the-application-is-not-running"></a>
 #### How to handle events when the application is not running
 
 * 커스텀 Application 클래스에서 GamebaseEventHandler를 등록하면 애플리케이션이 실행되지 않았을 때에도 이벤트를 처리할 수 있습니다.
@@ -401,6 +419,7 @@ public class MyApplication extends Application {
 }
 ```
 
+<a id="gamebase-event-handler-logged-out"></a>
 #### Logged Out
 
 * Gamebase Access Token이 만료되어 네트워크 세션을 복구하기 위해 로그인 함수 호출이 필요한 경우 발생하는 이벤트입니다.
@@ -435,6 +454,7 @@ void processLoggedOut(String category, GamebaseEventLoggedOutData data) {
 }
 ```
 
+<a id="gamebase-event-handler-server-push"></a>
 #### Server Push
 
 * Gamebase 서버에서 클라이언트 단말기로 보내는 메시지입니다.
@@ -489,6 +509,7 @@ void processServerPush(String category, GamebaseEventServerPushData data) {
 }
 ```
 
+<a id="gamebase-event-handler-observer"></a>
 #### Observer
 
 * Gamebase의 각종 상태 변동 이벤트를 처리하는 시스템입니다.
@@ -604,6 +625,7 @@ void processObserver(String category, GamebaseEventObserverData data) {
 }
 ```
 
+<a id="gamebase-event-handler-purchase-updated"></a>
 #### Purchase Updated
 
 * Promotion 코드 입력을 통해 상품을 획득한 경우 또는 Pending 결제(느린 결제, 부모 동의 등)가 완료되었을 때 발생하는 이벤트입니다.
@@ -633,6 +655,7 @@ void eventHandlerSample(Activity activity) {
 }
 ```
 
+<a id="gamebase-event-handler-push-received-message"></a>
 #### Push Received Message
 
 * Push 메시지가 도착했을때 발생하는 이벤트입니다.
@@ -689,6 +712,7 @@ void eventHandlerSample(Activity activity) {
 }
 ```
 
+<a id="gamebase-event-handler-push-click-message"></a>
 #### Push Click Message
 
 * 수신한 Push 메시지를 클릭했을 때 발생하는 이벤트입니다.
@@ -716,6 +740,7 @@ void eventHandlerSample(Activity activity) {
 }
 ```
 
+<a id="gamebase-event-handler-push-click-action"></a>
 #### Push Click Action
 
 * Rich Message 기능을 통해 생성한 버튼을 클릭했을 때 발생하는 이벤트입니다.
@@ -765,7 +790,8 @@ void eventHandlerSample(Activity activity) {
 }
 ```
 
-### Analytics
+<a id="analytics"></a>
+### Analytics { #analytics }
 
 Game지표를 Gamebase Server로 전송할 수 있습니다.
 
@@ -779,6 +805,7 @@ Game지표를 Gamebase Server로 전송할 수 있습니다.
 > Gamebase.Purchase.requestPurchase() API를 호출하여 결제를 진행한 경우, 결제가 완료되면 자동으로 서버로 지표가 전송됩니다.
 >
 
+<a id="analytics-game-user-data-settings"></a>
 #### Game User Data Settings
 
 로그인 이후 유저 레벨 정보를 설정할 수 있습니다.
@@ -821,6 +848,7 @@ public void onLoginSuccess() {
 }
 ```
 
+<a id="analytics-level-up-trace"></a>
 #### Level Up Trace
 
 레벨업이 되었을 경우 유저 레벨 정보를 변경할 수 있습니다.
@@ -852,7 +880,8 @@ public void onLevelUp(int userLevel, long levelUpTime) {
 }
 ```
 
-### Contact
+<a id="contact"></a>
+### Contact { #contact }
 
 Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
 
@@ -870,6 +899,7 @@ Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
 >     * [Android Developer's Guide :Request App Permissions](https://developer.android.com/training/permissions/requesting)
 >     * [Unity Guide : Requesting Permissions](https://docs.unity3d.com/2018.4/Documentation/Manual/android-RequestingPermissions.html)
 
+<a id="contact-customer-service-type"></a>
 #### Customer Service Type
 
 **Gamebase 콘솔 > App > Customer service**에서는 아래와 같이 3가지 유형의 고객 센터를 선택할 수 있습니다.
@@ -892,6 +922,7 @@ Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
     * 로그인 전 : 유저 정보가 **없는** 고객 센터 URL.
     * 로그인 후 : 유저 정보가 포함된 고객 센터 URL.
 
+<a id="contact-open-contact-webview"></a>
 #### Open Contact WebView
 
 고객 센터 웹뷰를 표시합니다.
@@ -949,6 +980,7 @@ Gamebase.Contact.openContact(activity, new GamebaseCallback() {
 });
 ```
 
+<a id="contact-request-contact-url"></a>
 #### Request Contact URL
 
 고객 센터 웹뷰를 표시하는데 사용되는 URL을 반환합니다.
@@ -991,28 +1023,33 @@ Gamebase.Contact.requestContactURL(configuration, new GamebaseDataCallback<Strin
 });
 ```
 
+<a id="contact-file-attach-type-popup"></a>
 #### File Attach Type Popup
 
 고객 센터 유형이 'NHN Cloud 조직 상품'인 경우 '추가 파라미터' 항목의 Key에 **from**, Value에 **app**을 입력하면 파일 첨부 시 타입 선택 팝업이 표시됩니다.
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_002_2.53.0.png)
 ![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/etc_customer_center_003_2.53.0.png)
 
-### Age Signals Support
+<a id="age-signals-support"></a>
+### Age Signals Support { #age-signals-support }
 
 Texas SB 2420 및 유사한 주 법률은 미성년자 보호를 위해 앱에서 사용자의 연령 확인을 요구합니다.
 Gamebase는 Google Play Age Signals API를 래핑하여 이러한 요구사항을 충족할 수 있는 API를 제공합니다.
 
+<a id="age-signals-support-dependencies"></a>
 #### Dependencies
 
 SDK 내부적으로 아래 의존성을 갖습니다.
 
 `implementation 'com.google.android.play:age-signals'`
 
+<a id="age-signals-support-requirements"></a>
 #### Requirements
 
 * 최소 Android API Level: API 23 (Android 6.0) 이상
 * Gamebase SDK 버전: 2.78.0 이상
 
+<a id="age-signals-support-google-guide"></a>
 #### Google guide
 
 자세한 내용은 Play Age Signals 가이드의 [개요](https://developer.android.com/google/play/age-signals)를 참고하세요.
@@ -1023,6 +1060,7 @@ SDK 내부적으로 아래 의존성을 갖습니다.
 > Play Age Signals API (베타)는 2026년 1월 1일까지 예외를 발생시킵니다. 1월 1일부터 API는 실시간 응답을 반환합니다.
 >
 
+<a id="age-signals-support-check-age-signal"></a>
 #### Check age signal
 
 **Gamebase.AgeSignals.checkAgeSignals(Context, GamebaseAgeSignalsRequest)**를 호출하여 연령 정보를 확인합니다.
@@ -1081,6 +1119,7 @@ Gamebase.AgeSignals.checkAgeSignals(context, request) { result, exception ->
 }
 ```
 
+<a id="age-signals-support-handle-results"></a>
 #### Handle results
 
 **GamebaseAgeSignalsResult.userStatus()**로 유저의 상태를 확인할 수 있습니다.

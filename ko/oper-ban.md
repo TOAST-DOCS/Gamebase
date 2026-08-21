@@ -1,4 +1,7 @@
-## Game > Gamebase > 콘솔 사용 가이드 > 이용 정지
+<!-- pre-align:aligned sig=4e29be4ad10c -->
+
+<a id="game-gamebase-console-guide-ban"></a>
+## Game > Gamebase > 콘솔 사용 가이드 > 이용 정지 { #game-gamebase-console-guide-ban }
 
 앱을 부당하게 사용하거나 어뷰징하는 게임 유저에 대해 앱 이용을 제한할 수 있는 이용 정지 기능을 제공합니다.
 이용이 정지된 게임 유저가 다시 로그인하거나 세션을 복구하는 경우에 이용 정지 팝업이 표시되어 게임 이용이 제한됩니다.
@@ -8,11 +11,13 @@
 AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하시기 바랍니다.
 
 
-## Ban
+<a id="ban"></a>
+## Ban { #ban }
 
 이용 정지 이력을 조회하거나 이용 정지 등록, 이미 이용 정지 중인 게임 유저의 이용 정지 해제가 가능합니다.
 
-### Search Banned User
+<a id="search-banned-user"></a>
+### Search Banned User { #search-banned-user }
 
 검색 조건에 맞는 이용 정지/이용 정지 해제 게임 유저 목록을 조회합니다.
 
@@ -59,11 +64,13 @@ AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하
 
 
 
-### Register Ban
+<a id="register-ban"></a>
+### Register Ban { #register-ban }
 
 이용 정지 조회 화면에서 **등록** 버튼을 클릭하면 이용 정지 등록이 가능합니다.
 
 ![gamebase_ban_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/ko/gamebase_ban_02_240813.png)
+<a id="register-ban-1-user-id"></a>
 #### (1) 유저 ID
 이용 정지를 등록할 Gamebase 유저 아이디를 입력합니다. 한 번에 다수의 유저를 등록할 수 있으며, 등록 방법은 아래 두가지입니다.
 
@@ -76,16 +83,19 @@ AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하
 > 일괄 등록을 진행하다가 실패하면 팝업이 표시됩니다. 해당 팝업에서 **Download** 버튼을 클릭하면 등록에 실패한 유저 목록을 파일로 다운로드할 수 있습니다.  
 > ![gamebase_ban_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/ko/gamebase_ban_04_240813.png)
 
+<a id="register-ban-2-period"></a>
 #### (2) 기간
 게임 유저의 이용 정지 기간을 설정합니다. 이용 정지가 등록되는 시점부터 게임 유저는 로그인이 불가능합니다.
 
 - **영구 이용 정지**: 영구 이용 정지를 하려면 선택합니다.
 - **기간 지정**: 이용 정지 기간을 입력합니다. 일(day)과 시간(hour) **예상 만료 시간** 정보로 유저의 이용 정지 기간을 미리 확인하실 수 있습니다.
 
+<a id="register-ban-3-reason"></a>
 #### (3) 사유
 유저의 이용 정지 사유를 입력합니다.
 해당 사유는 유저에게 노출되지 않고 운영 이력으로만 확인할 수 있습니다.
 
+<a id="register-ban-4-message"></a>
 #### (4) 노출 메시지
 유저에게 표시할 이용 정지 메시지를 입력합니다.
 유저에게 표시할 메시지를 다국어로 입력하여 손쉽게 재사용할 수 있도록 템플릿을 제공합니다. 미리 등록한 템플릿을 선택하여 등록합니다.
@@ -95,20 +105,24 @@ AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하
 > 템플릿을 등록하지 않은 경우 **BAN** 메뉴의 **템플릿** 탭에서 템플릿을 먼저 등록해 주세요.
 > 템플릿을 등록하는 방법은 [Template](./oper-ban/#template)을 참고하시기 바랍니다.
 
+<a id="register-ban-5-delete-leaderboard"></a>
 #### (5) 리더보드 삭제
 이용 정지를 등록할 때 해당 게임 유저의 Leaderboard 데이터도 함께 삭제할지 여부를 설정합니다.
 선택 후 등록하면 리더보드에서 게임 유저의 데이터가 삭제되며 <font color="red">해당 데이터는 복구되지 않으므로</font> 주의해야 합니다.
 
-### Release Ban
+<a id="release-ban"></a>
+### Release Ban { #release-ban }
 
 이용 정지 조회 화면에서 **해제** 버튼을 클릭하면 이용 정지를 해제할 수 있습니다.
 
 ![gamebase_ban_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/ko/gamebase_ban_05_240813.png)
 
+<a id="release-ban-release-reason"></a>
 #### 해제 사유
 유저의 이용 정지를 해제하는 사유를 입력합니다.
 해당 사유는 유저에게 표시되지 않고 운영 이력으로만 확인할 수 있습니다.
 
+<a id="release-ban-user-id"></a>
 #### 유저 ID
 이용 정지를 해제할 Gamebase 유저 아이디를 입력합니다. 한 번에 다수의 유저를 등록할 수 있으며, 등록 방법은 아래 두가지입니다.
 
@@ -123,11 +137,13 @@ AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하
 > 일괄 등록을 진행하다가 실패하면 팝업이 표시됩니다. 해당 팝업에서 **Download** 버튼을 클릭하면 등록에 실패한 시용자 목록을 파일로 다운로드할 수 있습니다.  
 > ![gamebase_ban_04_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/ko/gamebase_ban_04_240813.png)
 
-## Template
+<a id="template"></a>
+## Template { #template }
 이용 정지 대상 유저에게 표시할 메시지를 다국어로 입력하여 손쉽게 재사용할 수 있도록 템플릿을 제공합니다. 미리 등록한 템플릿을 선택합니다.
 언어별로 등록할 수 있으며 이용 정지 대상 유저에게는 디바이스에 설정된 언어를 기준으로 이용 정지 메시지가 표시됩니다.
 
-### Search
+<a id="search"></a>
+### Search { #search }
 
 등록된 템플릿 목록을 검색할 수 있습니다.
 새 템플릿을 등록하거나 등록된 템플릿을 수정할 수 있으며, 등록된 템플릿을 삭제할 수는 없습니다.
@@ -136,18 +152,22 @@ AppGuard를 연동하는 방법은 [AppGuard](./oper-ban/#appguard)를 참고하
 
 - 템플릿 목록화면에서 노출메시지 항목에는 템플릿 등록시 '기본 언어'로 입력한 노출 메시지가 표시됩니다.
 
-### Register Template
+<a id="register-template"></a>
+### Register Template { #register-template }
 ![gamebase_ban_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/ko/gamebase_ban_09_240813.png)
 
+<a id="register-template-1-name"></a>
 #### (1) 이름
 이용 정지 등록 시 목록에 표시할 템플릿의 이름을 입력합니다.
 
+<a id="register-template-2-message"></a>
 #### (2) 노출 메시지
 이용 정지 대상 유저에게 표시할 메시지를 입력합니다.
 여러 개의 언어로 등록할 수 있으며, 입력한 언어 이외의 언어를 사용하는 유저에게는 '기본 언어'로 선택된 언어가 표시됩니다. 오른쪽의 **+** 버튼을 클릭하면 언어를 추가할 수 있으며 원하는 언어가 없는 경우 [고객 센터](https://toast.com/support/inquiry)로 연락 주시면 새로운 언어를 추가할 수 있습니다.
 '기본 언어로 자동 번역'버튼을 선택할 경우 기본언어로 입력된 내용을 기반으로 내용을 번역하여 각 항목에 설정된 언어에 맞게 내용이 입력됩니다.
 
-## AppGuard
+<a id="appguard"></a>
+## AppGuard { #appguard }
 
 > <font color="red">[중요]</font>
 > AppGuard 연동 기능은 NHN Cloud에서 해당 기능을 적용하려는 서비스와 동일한 프로젝트에 NHN AppGuard 서비스를 활성화한 경우에만 이용할 수 있습니다.

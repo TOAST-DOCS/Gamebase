@@ -1,31 +1,40 @@
-## Game > Gamebase > iOS Developer's Guide > Push
+<!-- pre-align:aligned sig=4f0c97e09dd5 -->
+
+<a id="game-gamebase-ios-developers-guide-push"></a>
+## Game > Gamebase > iOS Developer's Guide > Push { #game-gamebase-ios-developers-guide-push }
 
 > <font color="red">[Caution]</font><br/>
 >
 > If you use a 3rd party push plugin or module such as Unreal or Unity, it may affect the Gamebase push function.
 >
 
-### Settings
+<a id="settings"></a>
+### Settings { #settings }
 
+<a id="settings-getting-authentication-information-for-apns-jwt"></a>
 #### Getting Authentication Information for APNS JWT
 
 This document describes the process of getting authentication information for APNS JWT required to deliver push notifications.
 
 * Go to [Notification > Push > Console Guide > Getting APNS JWT credentials](https://docs.toast.com/en/Notification/Push/en/console-guide/#get-authentication-information-for-apns-jwt) and get the authentication information required to register ANPS JWT.
 
+<a id="settings-registering-gamebase-console"></a>
 #### Registering Gamebase Console 
 * Go to **Gamebase > Push > Certificate** and enter the information you get in **APNS JWT**.
 
+<a id="settings-implementing-notification-service-extension"></a>
 #### Implementing Notification Service Extension
 * For tasks such as collecting inbound indicators and setting the notification sound, see [NHN Cloud Push Guide](https://docs.toast.com/en/TOAST/en/toast-sdk/push-ios/#notification-service-extension) to implement the **Notification Service Extension** for the application.
 
 
+<a id="settings-setting-up-xcode-project"></a>
 #### Setting up Xcode Project
 * Go to **Targets > Capabilities > Push Notifications** and set it to **ON**.
 * Open the .entitlements file automatically created, and set the value of the **APS Environment** key to an appropriate value.
     * **development**: Sandbox APNS
     * **production**:  APNS
 
+<a id="settings-import-header-file"></a>
 #### Import Header File
 Import the following header file to the ViewController you want to implement a push API.
 
@@ -33,7 +42,8 @@ Import the following header file to the ViewController you want to implement a p
 #import <Gamebase/Gamebase.h>
 ```
 
-### Register Push
+<a id="register-push"></a>
+### Register Push { #register-push }
 
 Call the following API to register the user for NHN Cloud Push.
 
@@ -44,6 +54,7 @@ Get the values of consent to receiving push (TCGBPushConfiguration) from the use
 > It is recommended that you always call the registerPush API after logging in, because it is not certain when the push token will expire.
 >
 
+<a id="register-push-api"></a>
 #### API
 
 ```objectivec
@@ -51,6 +62,7 @@ Get the values of consent to receiving push (TCGBPushConfiguration) from the use
                                completion:(nullable void(^)(TCGBError * _Nullable error))completion;
 ```
 
+<a id="register-push-tcgbpushconfiguration"></a>
 #### TCGBPushConfiguration
 
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
@@ -60,6 +72,7 @@ Get the values of consent to receiving push (TCGBPushConfiguration) from the use
 | ADAgreementNight              | M             | BOOL         | Consent to receiving nighttime advertising pushes |
 | alwaysAllowTokenRegistration  | O             | BOOL         | Whether to register the token if the user denies push permissions<br>Set to YES to register the token even if push permissions are not obtained.<br>**default**: NO    |
 
+<a id="register-push-example"></a>
 #### Example
 
 ```objectivec
@@ -90,6 +103,7 @@ When registering the user for the NHN Cloud Push, the notification option can be
 
 Get the values of Enable foreground push (foregroundEnabled), Enable badge (badgeEnabled), and Enable notification sound (soundEnabled) from the user. Then you can call the following API to set the notification option.
 
+<a id="register-push-register-push-api"></a>
 #### API
 
 ```objectivec
@@ -97,6 +111,7 @@ Get the values of Enable foreground push (foregroundEnabled), Enable badge (badg
                       notificationOptions:(nullable TCGBNotificationOptions *)notificationOptions
                                completion:(nullable void(^)(TCGBError * _Nullable error))completion;
 ```
+<a id="register-push-tcgbnotificationoptions"></a>
 #### TCGBNotificationOptions
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
 | ------------- | ------------- | ---------------------------------- | ------------------ |
@@ -104,6 +119,7 @@ Get the values of Enable foreground push (foregroundEnabled), Enable badge (badg
 | badgeEnabled        | M     | BOOL         | 배지 아이콘 사용 여부<br/>**default**: YES           |
 | soundEnabled        | M     | BOOL         | 알림음 사용 여부<br/>**default**: YES           |
 
+<a id="register-push-register-push-example"></a>
 #### Example
 
 ```objectivec
@@ -132,7 +148,8 @@ Get the values of Enable foreground push (foregroundEnabled), Enable badge (badg
 }
 ```
 
-### Setting for APNS Sandbox
+<a id="setting-for-apns-sandbox"></a>
+### Setting for APNS Sandbox { #setting-for-apns-sandbox }
 
 By turning on the SandboxMode, it can be registered so that the push will be sent with the APNS Sandbox.
 
@@ -151,7 +168,8 @@ By turning on the SandboxMode, it can be registered so that the push will be sen
 
 Select **iOS Sandbox** as the **Target** from the Push menu and send push.
 
-### Get NotificationOptions
+<a id="get-notificationoptions"></a>
+### Get NotificationOptions { #get-notificationoptions }
 
 Retrieve the notification option value which was set when registering for the push notification.
 
@@ -172,7 +190,8 @@ Retrieve the notification option value which was set when registering for the pu
 >
 
 
-### Query Token Info
+<a id="query-token-info"></a>
+### Query Token Info { #query-token-info }
 
 To view the push settings of the user, the following API is used.
 You can get the push info registered with the TCGBPushTokenInfo value which comes as callback.
@@ -192,6 +211,7 @@ You can get the push info registered with the TCGBPushTokenInfo value which come
 }
 ```
 
+<a id="query-token-info-tcgbpushtokeninfo"></a>
 #### TCGBPushTokenInfo
 
 | Parameter                              | Values                           | Description                        |
@@ -206,6 +226,7 @@ You can get the push info registered with the TCGBPushTokenInfo value which come
 | sandbox                                | YES or NO                        | Checks if the token is registered in the sandbox environment       |
 | agreement                              | TCGBPushAgreement                | Opt in                         |
 
+<a id="query-token-info-tcgbpushagreement"></a>
 #### TCGBPushAgreement
 
 | Parameter                              | Values                            | Description               |
@@ -214,7 +235,8 @@ You can get the push info registered with the TCGBPushTokenInfo value which come
 | ADAgreement                            | YES or NO                         | Opt in to display advertisement notifications      |
 | ADAgreementNight                       | YES or NO                         | Opt in to display night advertisement notifications  |
 
-### Event Handling
+<a id="event-handling"></a>
+### Event Handling { #event-handling }
 
 * You can receive events when a push message is received or clicked.
 * For how to register event handlers, refer to the GamebaseEventHandler guide.
@@ -222,7 +244,8 @@ You can get the push info registered with the TCGBPushTokenInfo value which come
     * [ Game > Gamebase > iOS SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./ios-etc/#push-click-message)
     * [ Game > Gamebase > iOS SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./ios-etc/#push-click-action)
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |

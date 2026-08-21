@@ -1,6 +1,10 @@
-## Game > Gamebase > Store Console Guide > Huawei AppGallery Console Guide
+<!-- pre-align:aligned sig=430e8193739d -->
 
-## Huawei Developer Console
+<a id="game-gamebase-store-console-guide-huawei-appgallery-console-guide"></a>
+## Game > Gamebase > Store Console Guide > Huawei AppGallery Console Guide { #game-gamebase-store-console-guide-huawei-appgallery-console-guide }
+
+<a id="huawei-developer-console"></a>
+## Huawei Developer Console { #huawei-developer-console }
 1. After registering an account in [Huawei Developer Console](https://developer.huawei.com/consumer/en/console) <br/>
    go to Ecosystem Service / App Service -> [AppGallery Connect Console](https://developer.huawei.com/consumer/en/service/josp/agc/index.html#/).
    ![Select AppGallery Connect in Huawei Developer Console](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/huawei_console_eng.png)
@@ -13,23 +17,27 @@
 4. After creating the app, enter additional information and enter the information that can be found on the Huawei AppGallery Connect console in the store settings of the NHN Cloud Gamebase console.
 5. This guide covers only how to link the app information registered in the Huawei AppGallery Connect and the app information of the NHN Cloud Gamebase. For more detailed steps for Huawei AppGallery app registration, refer to [Huawei documentation](https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/introduction-0000001050033062).
 
-## Setting Values ​​Required for Linking
+<a id="setting-values-required-for-linking"></a>
+## Setting Values ​​Required for Linking { #setting-values-required-for-linking }
 ![NHN Cloud Gamebase store settings popup](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/huawei_iap_console_en.png)
-### Store App ID
+<a id="store-app-id"></a>
+### Store App ID { #store-app-id }
 - You can check the information of the project linked with the app on the AppGallery Connect > MyProject > Project Settings screen.
 - You must enter the value of `App Information - Package Name` on this screen into 'Store App ID' in the NHN Cloud Gamebase console store settings.
    - This value can also be found on the AppGallery Connect > MyApp > App screen.
 
 ![AppGallery Connect project basic information screen](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/huawei_console_app_06_eng.png)
 
-### Huawei App ID & App Secret
+<a id="huawei-app-id-app-secret"></a>
+### Huawei App ID & App Secret { #huawei-app-id-app-secret }
 - You can check the information of the project linked with the app on the AppGallery Connect > MyProject > Project Settings screen.
 - You must enter the `App Information - OAuth 2.0 Client ID` value on this screen as the 'Huawei App ID' value in the NHN Cloud Gamebase console store settings.
 - You must enter the `App Information - OAuth 2.0 Client Secret` value on this screen as the 'Huawei App Secret' value in the NHN Cloud Gamebase console store settings.
 
 ![AppGallery Connect project basic information screen](http://static.toastoven.net/prod_gamebase/StoreConsoleGuide/huawei_console_app_06_eng.png)
 
-### Huawei Developer Public Key
+<a id="huawei-developer-public-key"></a>
+### Huawei Developer Public Key { #huawei-developer-public-key }
 - You can check IAP-related information on the AppGallery Connect > MyProject > Earn > In-App Purchases screen.
 - When you enter this screen for the first time, if you enable IAP by clicking the button that enables IAP, you can check the generated `Public Key` value.<br/>
   You must enter this value as the 'Huawei Developer Public Key' value in the NHN Cloud Gamebase console store settings.

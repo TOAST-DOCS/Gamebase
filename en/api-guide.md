@@ -1,6 +1,10 @@
-## Game > Gamebase > API v1.3 Guide
+<!-- pre-align:aligned sig=c663b6fda511 -->
 
-## Updates
+<a id="game-gamebase-api-v13-guide"></a>
+## Game > Gamebase > API v1.3 Guide { #game-gamebase-api-v13-guide }
+
+<a id="updates"></a>
+## Updates { #updates }
 - New items have been added to or deleted from the request parameters and response results of IAP (In App Purchase) API.
 - Added the `Push Wrapping` API.
 - Added the `Get IdP Token and Profiles` API that lets you acquire the profile and token info of the IdP used for logging in with the Gamebase Access Token.
@@ -24,10 +28,12 @@
 - Added the `Push Wrapping` API for Push tokens.
 - Added APIs related to Google Chargeback.
 
-## Advance Notice
+<a id="advance-notice"></a>
+## Advance Notice { #advance-notice }
 
 Gamebase Server API provides APIs as follows, in the RESTful format. Following information is required to use Server API.
 
+<a id="advance-notice-server-address"></a>
 #### Server Address
 
 To call API, below address is needed, which is also available in the Gamebase Console.
@@ -35,12 +41,14 @@ To call API, below address is needed, which is also available in the Gamebase Co
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.3.png)
 
+<a id="advance-notice-appid"></a>
 #### AppId
 
 App ID, as a project ID of NHN Cloud, can be found on the **Project List** page of the Console.
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
+<a id="advance-notice-secretkey"></a>
 #### SecretKey
 
 Secret Key, as a control access of API, can be found in the Gamebase Console. It must be set at the HTTP header to call Server API.
@@ -49,12 +57,15 @@ Secret Key, as a control access of API, can be found in the Gamebase Console. It
 
 ![image alt](https://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.2.png)
 
+<a id="advance-notice-transactionid"></a>
 #### TransactionId
 
 As part of managing API internally within a server that calls API, TransactionId is provided. By setting a transaction ID at the HTTP header from a calling server to call API, the Gamebase server delivers results with corresponding TransactionId set at the response HTTP Header and Response Body Header of results.
 
-## Common
+<a id="common"></a>
+## Common { #common }
 
+<a id="common-http-header"></a>
 #### HTTP Header
 
 Following items should be set at the HTTP Header to call API.
@@ -65,6 +76,7 @@ Following items should be set at the HTTP Header to call API.
 | X-Secret-Key | Required | Refer to description of SecretKey  |
 | X-TCGB-Transaction-Id | Optional | Refer to description of TransactionId |
 
+<a id="common-api-response"></a>
 #### API Response
 
 As a response to all API requests, **HTTP 200 OK** is delivered. Whether an API request is successful or not can be determined in reference of the Header of Response Body.
@@ -104,6 +116,7 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | resultCode | int | Result code<br>0 for success; return error codes, for failure |
 | resultMessage | String | Result message  |
 
+<a id="common-api-version"></a>
 #### API Version
 
 When a specific variable type in the API response result changes, the API version changes. That is, even if a new API is added or a new variable is added to the response result, the API version does not change.
@@ -114,8 +127,10 @@ When a specific variable type in the API response result changes, the API versio
 <br>
 <br>
 
-## Authentication
+<a id="authentication"></a>
+## Authentication { #authentication }
 
+<a id="authentication-token-authentication"></a>
 #### Token Authentication
 
 Authenticates an Access Token issued to a login user. If it is normal, returns information of the corresponding user.
@@ -209,6 +224,7 @@ Check common items.
 [Error Code](./error-code/#server)
 
 <br/>
+<a id="authentication-get-idp-token-and-profiles"></a>
 #### Get IdP Token and Profiles
 
 Gamebase Access Token which is issued upon successful login with "Login with IdP" from the client side. It retrieves the Access Token and Profiles information of the IdP used for login.
@@ -287,8 +303,10 @@ Check common items.
 <br>
 <br>
 
-## Launching
+<a id="launching"></a>
+## Launching { #launching }
 
+<a id="launching-get-simple-launching"></a>
 #### Get Simple Launching
 
 In the console, you can view the launching information provided when starting up a client app, such as the server address, install URL, current maintenance status, maintenance time, and messages.
@@ -426,8 +444,10 @@ Check common items.
 <br>
 <br>
 
-## Member
+<a id="member"></a>
+## Member { #member }
 
+<a id="member-get-member"></a>
 #### Get Member
 
 Retrieves detailed information of a single user.
@@ -534,6 +554,7 @@ Check common items.
 
 <br>
 
+<a id="member-get-members"></a>
 #### Get Members
 
 Retrieves brief information about multiple users.
@@ -599,6 +620,7 @@ Check common items.
 
 <br>
 
+<a id="member-get-idp-information"></a>
 #### Get IdP Information
 
 Retrieves IdP information mapped with user ID.
@@ -664,6 +686,7 @@ Check common items.
 
 <br>
 
+<a id="member-get-userid-information-with-auth-key"></a>
 #### Get UserId Information with Auth key
 
 Retrieves a user ID mapped to user authentication key.
@@ -726,6 +749,7 @@ Check common items.
 
 <br>
 
+<a id="member-get-userid-information-with-idp-id"></a>
 #### Get UserId Information with IdP Id
 
 Retrieves the information of user ID mapped with IdP ID.
@@ -785,6 +809,7 @@ Check common items.
 
 <br>
 
+<a id="member-ban"></a>
 #### Ban
 
 Changed users to the banned state.
@@ -861,6 +886,7 @@ N/A
 
 </br>
 
+<a id="member-ban-histories"></a>
 #### Ban Histories
 
 Retrieves the user ban history.
@@ -953,6 +979,7 @@ Check common items.
 
 </br>
 
+<a id="member-get-ban-members"></a>
 #### Get Ban Members
 
 Retrieves users who are in the banned state.
@@ -1043,6 +1070,7 @@ Check common items.
 
 </br>
 
+<a id="member-ban-release"></a>
 #### Ban Release
 
 Changes users to the ban released state, that is, the normal state.
@@ -1111,6 +1139,7 @@ N/A
 
 </br>
 
+<a id="member-ban-release-histories"></a>
 #### Ban Release Histories
 
 Retrieves the user ban release history.
@@ -1209,6 +1238,7 @@ Check common items.
 
 <br>
 
+<a id="member-validate-transferaccount"></a>
 #### Validate TransferAccount
 
 Validates the ID and password issued for transferring the guest account. For valid TransferAccount, return issued userID information.
@@ -1284,6 +1314,7 @@ None
 
 <br>
 
+<a id="member-withdraw"></a>
 #### Withdraw
 
 Withdraws a user account.
@@ -1337,6 +1368,7 @@ None
 
 </br>
 
+<a id="member-withdraw-histories"></a>
 #### Withdraw Histories
 
 Retrieves users who have withdrawn during a specific period.
@@ -1427,6 +1459,7 @@ Check common items.
 
 </br>
 
+<a id="member-siwa-account-webhook"></a>
 #### SIWA Account Webhook
 
 **Sign In with Apple (SIWA)** is a webhook API that receives and processes notifications from Apple servers about changes in a user's account status.
@@ -1460,8 +1493,10 @@ This webhook event supports two events: consent-revoked and account-delete, and 
 </br>
 </br>
 
-## Maintenance
+<a id="maintenance"></a>
+## Maintenance { #maintenance }
 
+<a id="maintenance-check-maintenance-set"></a>
 #### Check Maintenance Set
 
 Checks whether maintenance is currently set.
@@ -1532,8 +1567,10 @@ N/A
 <br>
 <br>
 
-## Coupon
+<a id="coupon"></a>
+## Coupon { #coupon }
 
+<a id="coupon-check-validation-and-consume-coupon"></a>
 #### Check Validation And Consume Coupon
 
 Validates published coupon code and change coupon status via console. For valid coupons, change to consume status and return item information to be paid as response result.
@@ -1601,6 +1638,7 @@ Check common items.
 
 <br>
 
+<a id="coupon-get-coupon-information-by-coupon-code"></a>
 #### Get Coupon Information by Coupon Code
 
 Retrieves the basic information of the coupon registered in the console, based on the entered coupon code.
@@ -1674,8 +1712,10 @@ N/A
 <br>
 <br>
 
-## Purchase (IAP)
+<a id="purchase-iap"></a>
+## Purchase (IAP) { #purchase-iap }
 
+<a id="purchase-iap-consume"></a>
 #### Consume
 
 If the store payment (Google Play Store, App Store, ONEStore, etc.) has been made successfully, it issues the purchased items to the user, records the purchase history in the server, and then informs the Gamebase of the payment consumption. You can consume payment only once per payment, and the payment is not consumed if the payment status is not normal.
@@ -1769,6 +1809,7 @@ N/A
 
 <br>
 
+<a id="purchase-iap-list-consumables"></a>
 #### List Consumables
 
 Lists non-consumed payment, which is not consumed even if paid up.
@@ -1868,6 +1909,7 @@ N/A
 
 <br>
 
+<a id="purchase-iap-get-payment-transaction"></a>
 #### Get Payment Transaction
 
 You can check whether the non-consumed payment history obtained through the client SDK is valid.
@@ -1953,7 +1995,8 @@ N/A
 
 <br>
 
-### List Active Subscriptions
+<a id="list-active-subscriptions"></a>
+### List Active Subscriptions { #list-active-subscriptions }
 
 Lists payment of user's current subscriptions.
 
@@ -2065,7 +2108,8 @@ N/A
 
 <br>
 
-### Cancel Subscriptions
+<a id="cancel-subscriptions"></a>
+### Cancel Subscriptions { #cancel-subscriptions }
 
 Products in subscription is no longer renewed at the time of renewal, and the subscription will remain until it expires.
 
@@ -2124,7 +2168,8 @@ None
 
 <br>
 
-### Revoke Subscriptions
+<a id="revoke-subscriptions"></a>
+### Revoke Subscriptions { #revoke-subscriptions }
 
 Cancel the current subscription immediately and proceed with a refund for the products in subscription.
 
@@ -2183,7 +2228,8 @@ None
 
 <br>
 
-### Get Subscriptions Status
+<a id="get-subscriptions-status"></a>
+### Get Subscriptions Status { #get-subscriptions-status }
 
 Queries the current status of subscriptions.
 
@@ -2285,7 +2331,8 @@ None
 
 <br>
 
-### Google Play Chargeback Callback
+<a id="google-play-chargeback-callback"></a>
+### Google Play Chargeback Callback { #google-play-chargeback-callback }
 
 When Google Play sends a chargeback review request notification (`PendingRefundReviewNotification`), Gamebase forwards the notification to the game server callback URL registered in the Gamebase Console.
 
@@ -2376,7 +2423,8 @@ If `header.isSuccessful` is `false` or a response other than `HTTP 200 OK` is re
 [Error Code](./error-code/#server)
 <br>
 
-### Google Play Reply Refund Review
+<a id="google-play-reply-refund-review"></a>
+### Google Play Reply Refund Review { #google-play-reply-refund-review }
 
 After the game completes its internal review of the chargeback review request, call this API to register the refund opinion and purchased content consumption information.
 The registered content is submitted to Google Play as the refund review opinion.
@@ -2467,6 +2515,7 @@ N/A
 }
 ```
 
+<a id="google-play-reply-refund-review-refund-review-decision"></a>
 #### Refund Review Decision
 
 | Value | Description | Google Play Code |
@@ -2482,7 +2531,8 @@ N/A
 <br>
 <br>
 
-## Leaderboard
+<a id="leaderboard"></a>
+## Leaderboard { #leaderboard }
 
 Gamebase provides Wrapping to server API of NHN Cloud Leaderboard. With Wrapping, NHN Cloud products become available at a user server on a consistent interface.
 
@@ -2491,6 +2541,7 @@ Gamebase provides Wrapping to server API of NHN Cloud Leaderboard. With Wrapping
 
 <br>
 
+<a id="leaderboard-wrapping-api"></a>
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
 | --- | --- | --- | --- |
@@ -2531,7 +2582,8 @@ X-Secret-Key: IgsaAP
 <br/>
 <br/>
 
-## Push
+<a id="push"></a>
+## Push { #push }
 
 Gamebase provides **Wrapping** function for the Server API of the NHN Cloud Push service. By using the Wrapping function, you can use the NHN Cloud services on the user server with consistent interfaces.
 
@@ -2540,6 +2592,7 @@ Gamebase provides **Wrapping** function for the Server API of the NHN Cloud Push
 
 <br>
 
+<a id="push-wrapping-api"></a>
 #### Wrapping API
 |    | API | Method | Wrapping URI | Push URI |
 | --- | --- | --- | --- | --- |
@@ -2616,9 +2669,11 @@ X-Secret-Key: IgsaAP
 <br/>
 <br/>
 
-## Others
+<a id="others"></a>
+## Others { #others }
 
-### OS Code
+<a id="os-code"></a>
+### OS Code { #os-code }
 
 The code defined internally by Gamebase for the OS of the user device.
 
@@ -2631,7 +2686,8 @@ The code defined internally by Gamebase for the OS of the user device.
 | MACOS | macOS |
 <br/>
 
-### Store Code
+<a id="store-code"></a>
+### Store Code { #store-code }
 
 The code defined internally by Gamebase for the store where the app is installed.
 
@@ -2648,7 +2704,8 @@ The code defined internally by Gamebase for the store where the app is installed
 | STEAM | STEAM Store |
 <br/>
 
-### Identity Provider Code
+<a id="identity-provider-code"></a>
+### Identity Provider Code { #identity-provider-code }
 
 The code defined internally by Gamebase for the Identity Providers used for user authentication.
 
@@ -2666,7 +2723,8 @@ The code defined internally by Gamebase for the Identity Providers used for user
 - weibo
 <br/>
 
-### Member Valid Code
+<a id="member-valid-code"></a>
+### Member Valid Code { #member-valid-code }
 
 The code defined internally by Gamebase for the user's current status.
 
@@ -2680,7 +2738,8 @@ The code defined internally by Gamebase for the user's current status.
 | M | Missing account |
 <br/>
 
-### Store Reference Status
+<a id="store-reference-status"></a>
+### Store Reference Status { #store-reference-status }
 
 Payment reference status provided by the payment system (in-app purchase in stores, external payment)
 
@@ -2703,7 +2762,8 @@ Payment reference status provided by the payment system (in-app purchase in stor
 | | NOT_APPOINTED | No corresponding condition |
 <br/>
 
-### Withdrawal Event Type
+<a id="withdrawal-event-type"></a>
+### Withdrawal Event Type { #withdrawal-event-type }
 
 An event occurrence path that indicates where the user withdrawal occurred.
 
@@ -2720,7 +2780,8 @@ An event occurrence path that indicates where the user withdrawal occurred.
 | WAC | Cancellation of withdrawal grace period |
 <br/>
 
-### Support
+<a id="support"></a>
+### Support { #support }
 
 To inquire about causes of failure in API call, upload **API call URL (with HTTP body, if available) along with response results** to [Customer Center](https://toast.com/support/inquiry), and we'll respond as soon as possible.
 

@@ -1,10 +1,14 @@
-## Game > Gamebase > Android SDK 사용 가이드 > 결제
+<!-- pre-align:aligned sig=bacf30302c7a -->
+
+<a id="game-gamebase-android-developers-guide-purchase"></a>
+## Game > Gamebase > Android SDK 사용 가이드 > 결제 { #game-gamebase-android-developers-guide-purchase }
 
 여기에서는 앱에서 인앱 결제 기능을 사용하기 위해 필요한 설정 방법을 알아보겠습니다.
 
 Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 많은 스토어의 인앱 결제를 연동할 수 있도록 돕습니다.
 
-### Initialization
+<a id="initialization"></a>
+### Initialization { #initialization }
 
 > <font color="red">[주의]</font><br/>
 >
@@ -28,7 +32,8 @@ GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(APP_ID, A
 Gamebase.initialize(activity, configuration, callback);
 ```
 
-### Purchase Flow
+<a id="purchase-flow"></a>
+### Purchase Flow { #purchase-flow }
 
 아이템 구매는 크게 **결제 Flow** 와 **[Consume Flow](./aos-purchase/#consume-flow)**, **[재처리 Flow](./aos-purchase/#retry-transaction-flow)** 로 나누어 볼 수 있습니다.
 **결제 Flow**는 다음과 같은 순서로 구현하시기 바랍니다.
@@ -39,7 +44,8 @@ Gamebase.initialize(activity, configuration, callback);
 2. 게임 클라이언트에서는 Gamebase SDK의 **requestPurchase**를 호출하여 결제를 시도합니다.
 3. 결제가 성공하였다면 **requestItemListOfNotConsumed**를 호출하여 미소비 결제 내역을 확인한 후 지급할 아이템이 존재한다면 Consume Flow 를 진행합니다.
 
-### Consume Flow
+<a id="consume-flow"></a>
+### Consume Flow { #consume-flow }
 
 미소비 결제 내역 목록에 값이 있으면 다음과 같은 순서로 **Consume Flow** 를 진행하시기 바랍니다.
 
@@ -63,7 +69,8 @@ Gamebase.initialize(activity, configuration, callback);
 3. 아이템 지급 여부와 무관하게 게임 서버는 더 이상 미소비 내역이 리턴되지 않도록 Gamebase 서버의 consume(소비) API를 호출하여 아이템 지급을 완료합니다.
     * [Game > Gamebase > API 가이드 > Purchase(IAP) > Consume](./api-guide/#consume)
 
-### Retry Transaction Flow
+<a id="retry-transaction-flow"></a>
+### Retry Transaction Flow { #retry-transaction-flow }
 
 ![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
 
@@ -75,7 +82,8 @@ Gamebase.initialize(activity, configuration, callback);
     * 게임 내 상점(또는 로비) 진입시.
     * 유저 프로필 또는 우편함 확인시.
 
-### Purchase Items
+<a id="purchase-items"></a>
+### Purchase Items { #purchase-items }
 
 구매하고자 하는 아이템의 gamebaseProductId 를 이용해 다음의 API를 호출해 구매를 요청합니다.<br/>
 gamebaseProductId 는 일반적으로는 스토어에 등록한 아이템의 id와 동일하지만, Gamebase 콘솔에서 변경할 수도 있습니다.
@@ -238,7 +246,8 @@ class PurchasableReceipt {
 }
 ```
 
-### List Purchasable Items
+<a id="list-purchasable-items"></a>
+### List Purchasable Items { #list-purchasable-items }
 
 아이템 목록을 조회하려면 다음 API를 호출합니다. 콜백으로 반환되는 배열(array) 안에는 각 아이템들에 대한 정보가 담겨 있습니다.
 
@@ -336,7 +345,8 @@ class PurchasableItem {
 }
 ```
 
-### List Non-Consumed Items
+<a id="list-non-consumed-items"></a>
+### List Non-Consumed Items { #list-non-consumed-items }
 
 * 아직 소비되지 않은 일회성 상품(CONSUMABLE)과 소비성 구독 상품(CONSUMABLE_AUTO_RENEWABLE) 정보를 조회합니다.
 * 미결제 내역이 있는 경우에는 게임 서버(아이템 서버)에 요청하여, 아이템을 배송(지급)하도록 처리해야 합니다.
@@ -384,7 +394,8 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, configuration, new Game
 });
 ```
 
-### List Activated Subscriptions
+<a id="list-activated-subscriptions"></a>
+### List Activated Subscriptions { #list-activated-subscriptions }
 
 현재 사용자 ID 기준으로 활성화된 구독 목록을 조회합니다.
 결제가 완료된 구독 상품(자동 갱신형 구독, 자동 갱신형 소비성 구독 상품)은 만료되기 전까지 계속 조회할 수 있습니다.
@@ -433,7 +444,8 @@ Gamebase.Purchase.requestActivatedPurchases(activity, configuration, new Gamebas
 });
 ```
 
-### List Status of Subscriptions
+<a id="list-status-of-subscriptions"></a>
+### List Status of Subscriptions { #list-status-of-subscriptions }
 
 현재 사용자 ID 기준으로 구입한 구독 상품의 상태를 조회할 수 있습니다.
 결제가 완료된 구독 상품(자동 갱신형 구독, 자동 갱신형 소비성 구독 상품)은 만료되기 전까지 계속 조회할 수 있습니다.
@@ -608,13 +620,15 @@ class PurchasableSubscriptionStatus {
 }
 ```
 
-### Event by Purchase
+<a id="event-by-purchase"></a>
+### Event by Purchase { #event-by-purchase }
 
 Promotion 코드를 입력해 상품을 획득했거나 Pending 결제(느린 결제, 부모 동의 등)가 완료되었을 때 GamebaseEventHandler를 통해 이벤트를 받아 처리할 수 있습니다.
 GamebaseEventHandler로 프로모션 결제 및 지연 결제 이벤트를 처리하는 방법은 아래 가이드를 확인하세요.
 [Game > Gamebase > Android SDK 사용 가이드 > ETC > Gamebase Event Handler](./aos-etc/#purchase-updated)
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                                     | Error Code | Description                              |
 | ----------------------------------------- | ---------- | ---------------------------------------- |

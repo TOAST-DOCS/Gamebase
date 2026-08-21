@@ -1,8 +1,12 @@
-## Game > Gamebase > Console Guide > Member
+<!-- pre-align:aligned sig=f02fea74321d -->
+
+<a id="game-gamebase-console-guide-member"></a>
+## Game > Gamebase > Console Guide > Member { #game-gamebase-console-guide-member }
 
 Retrieve information of members who are logged in a game.
 
-## Search Member
+<a id="search-member"></a>
+## Search Member { #search-member }
 
 Enter User ID to search for member information.
 User ID is a user identifier which is automatically issued at a first-time login by Gamebase. To lessen confusion while delivered, "ABCDFGHJKLMNPQRSTWXYZ1346789" are applied only, in order to prevent confusion due to similar pronunciation.
@@ -10,7 +14,8 @@ IdP is not used for signing in or out, but serves as a unique identifier provide
 
 Detailed information of searched users are displayed in the above, while history data such as login, mapping, purchase, ban, and playtime are shown under, as taps.
 
-### Detail Information
+<a id="detail-information"></a>
+### Detail Information { #detail-information }
 ![member_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_01_en_240103.png)
 
 **User **
@@ -26,6 +31,7 @@ Detailed information of searched users are displayed in the above, while history
 - **Retrieve push additional information**: Retrieves the push tokens and tag information of a game user.
 ![member_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_02_en_240103.png)
 
+<a id="detail-information-changing-account-status"></a>
 #### Changing Account Status
 ![member_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_03_en_240103.png)
 
@@ -42,6 +48,7 @@ In Gamebase, many external IdPs can be integrated. In short, a user can log in b
 - **Idp ID**: ID provided by an external IdP (Facebook no, or PAYCO ID)
 - **Registration Date**: The first time when a user registered an IdP.
 
+<a id="detail-information-mapping"></a>
 #### Mapping
 You can map the user's IdP to other account.
 This only works if the target account status is OK.
@@ -54,6 +61,7 @@ This only works if the target account status is OK.
 ![member_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_04_en_240103.png)
 ![member_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_05_en_240103.png)
 
+<a id="detail-information-unmapping"></a>
 #### Unmapping
  If the account has been mapped multiple times, it can be unmapped.
 The button only works when the account has been mapped more than twice.
@@ -64,7 +72,8 @@ The button only works when the account has been mapped more than twice.
 
  ![member_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_07_en_240103.png)
 
-### Login History
+<a id="login-history"></a>
+### Login History { #login-history }
 ![member_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_08_en_240103.png)
 
 Retrieve login history of a searched user.
@@ -86,7 +95,8 @@ Can add history when SDK calls login-related APIs.
 - **Gamebase SDK Version**: Version information of Gamebase SDK applied to an app
 - **etc**: Any other information than above items applied for a login.
 
-### Mapping History
+<a id="mapping-history"></a>
+### Mapping History { #mapping-history }
 
 ![member_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_09_en_240103.png)
 
@@ -105,7 +115,8 @@ Retrieve mapping and remove mapping history of a searched user. Shows all histor
 Clicking on the mapped IdP will show the mapping history modal based that IdP.
 ![member_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_10_en_240103.png)
 
-### Purchase History
+<a id="purchase-history"></a>
+### Purchase History { #purchase-history }
 ![member_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_11_en_240103.png)
 
 Retrieve purchase history of user products.
@@ -123,7 +134,8 @@ Can search by date, and history data can be retrieved up to 1 month (30 days).
 - **Purchase Date**: Time when a user completed purchase
 - **Refund Date**: Time when a user item was refunded
 
-### Ban History
+<a id="ban-history"></a>
+### Ban History { #ban-history }
 ![member_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_12_en_240103.png)
 
 Can retrieve ban history of a searched user.
@@ -137,25 +149,30 @@ Can search by date, and history data can be retrieved up to 1 month (30 days).
 - **Release Reason**: Actual reasons of an operator to release banning
 - **Released User/Release Date**: Operator who released banning/system information and date
 
-### Playtime
+<a id="playtime"></a>
+### Playtime { #playtime }
 ![member_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_13_en_240103.png)
 
 Retrieve playtime of a searched user by date.
 Can search by date, and history data can be retrieved up to 1 month (30 days).
 
-### Coupon using history
+<a id="coupon-using-history"></a>
+### Coupon using history { #coupon-using-history }
 ![member_14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_14_en_240103.png)
 
-### Inquiry histoy
+<a id="inquiry-histoy"></a>
+### Inquiry histoy { #inquiry-histoy }
 ![member_15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_15_en_240103.png)
 
 
-### Withdraw History
+<a id="withdraw-history"></a>
+### Withdraw History { #withdraw-history }
 ![member_16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_16_en_240103.png)
 
 Retrieve withdraw log of a searched user by date.
 
-## Transfer account
+<a id="transfer-account"></a>
+## Transfer account { #transfer-account }
 This is available only when the **device transfer** function is used. [Enable the device transfer function](./oper-app/#transfer-account)
 You can check the history of issue and verification of the device transfer key for game users. You can unblock blocked keys or reissue expired keys.
 
@@ -174,7 +191,8 @@ You can check the history of issue and verification of the device transfer key f
 You can retrieve the history of keys issued to game users.
 By default, the last issued key is selected. If you select another key, you can check the history of that key.
 
-### Reissuance Transfer account
+<a id="reissuance-transfer-account"></a>
+### Reissuance Transfer account { #reissuance-transfer-account }
 
 Click the **Reissue** button to reissue the device transfer key. The previous key cannot be used when a new one is reissued.
 
@@ -183,6 +201,7 @@ Click the **Reissue** button to reissue the device transfer key. The previous ke
 - **Reissue ID/Password**: Reissue both the ID and password.
 - **Reissue Password**: Use the ID issued as it is and reissue the password only.
 
+<a id="reissuance-transfer-account-cautions-for-reissuance"></a>
 #### Cautions for reissuance
 - The password is displayed only once when it is reissued. Please write down the information somewhere else once it is reissued.
 - If you lost it again, there is no way to find the password and in that case, you need to reissue it again.

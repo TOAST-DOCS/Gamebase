@@ -1,10 +1,15 @@
-## Game > Gamebase > Unity SDK User Guide > ETC
+<!-- pre-align:aligned sig=d1c091670b0d -->
 
-## Additional Features
+<a id="game-gamebase-unity-sdk-user-guide-etc"></a>
+## Game > Gamebase > Unity SDK User Guide > ETC { #game-gamebase-unity-sdk-user-guide-etc }
+
+<a id="additional-features"></a>
+## Additional Features { #additional-features }
 
 Additional functions provided by Gamebase are described as below:
 
-### Device Language
+<a id="device-language"></a>
+### Device Language { #device-language }
 
 * Returns the language code from the device.
 * If there are several languages registered, only the language of top priority is returned.
@@ -29,7 +34,8 @@ static string GetDeviceLanguageCode()
 > In case of Editor on Mac or WebGL, the language code is returned based on the [Application.systemLanguage](https://docs.unity3d.com/ScriptReference/SystemLanguage.html) value.<br/>For example, when Application.systemLanguage == SystemLanguage.Korean, 'ko' is returned.
 
 
-### Display Language
+<a id="display-language"></a>
+### Display Language { #display-language }
 
 Similar to the Maintenance popup, the language used by the device will be displayed as the Gamebase language.
 
@@ -54,6 +60,7 @@ The language code entered for Display Language should be one of the codes listed
 > * You can manually add a language set that is not included in the Gamebase client.
 > See the **Add New Language Set** section.
 
+<a id="display-language-types-of-language-codes-supported-by-gamebase"></a>
 #### Types of Language Codes Supported by Gamebase
 
 | Code | Name |
@@ -102,6 +109,7 @@ namespace Toast.Gamebase
 }
 ```
 
+<a id="display-language-set-display-language-with-gamebase-initialization"></a>
 #### Set Display Language with Gamebase Initialization
 
 Display Language can be set when Gamebase is initialized.
@@ -144,6 +152,7 @@ public void InitializeWithConfiguration()
 }
 ```
 
+<a id="display-language-set-display-language"></a>
 #### Set Display Language
 
 You can change the initial setting of Display Language.
@@ -170,6 +179,7 @@ public void SetDisplayLanguageCode()
 }
 ```
 
+<a id="display-language-get-display-language"></a>
 #### Get Display Language
 
 You can retrieve the current application of Display Language.
@@ -196,6 +206,7 @@ public void GetDisplayLanguageCode()
 }
 ```
 
+<a id="display-language-add-new-language-sets"></a>
 #### Add New Language Sets
 
 For UnityEditor and Unity Standalone, or WebGL platform services, to use another language in addition to default Gamebase languages (ko, en, ja), go to Assets > StreamingAssets > Gamebase and add a value to the localizedstring.json file. 
@@ -261,6 +272,7 @@ Refer to the guides below to learn how to add new language sets for Unity Androi
 * [Add New Language Sets for Android](./aos-etc#display-language)
 * [Add New Language Sets for iOS](./ios-etc#display-language)
 
+<a id="display-language-priority-in-display-language"></a>
 #### Priority in Display Language
 
 If Display Language is set via initialization and SetDisplayLanguageCode API, the final application may be different from what has been entered.
@@ -269,11 +281,13 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 2. See if, during Gamebase initialization, the language code set on the device is defined in the localizedstring.json file. (This value shall maintain even if the language set on device changes after initialization.)
 3. `en`, which is the default value of Display Language, is automatically set.
 
-### Country Code
+<a id="country-code"></a>
+### Country Code { #country-code }
 
 * Gamebase provides (country codes) for the system in the following APIs.
 * Please select an appropriate API that best fits your purpose as each API has its own characteristics.
 
+<a id="country-code-usim-country-code"></a>
 #### USIM Country Code
 
 * Returns a country code written in the USIM.
@@ -291,6 +305,7 @@ Supported Platforms
 static string GetCountryCodeOfUSIM()
 ```
 
+<a id="country-code-device-country-code"></a>
 #### Device Country Code
 
 * Returns the country code received from the OS as it is without any verification.
@@ -308,6 +323,7 @@ Supported Platforms
 static string GetCountryCodeOfDevice()
 ```
 
+<a id="country-code-intergrated-country-code"></a>
 #### Intergrated Country Code
 
 * Verifies and returns the country code in the order of the language settings in the USIM.
@@ -336,7 +352,8 @@ static string GetCountryCodeOfDevice()
 public static string GetCountryCode()
 ```
 
-### Gamebase Event Handler
+<a id="gamebase-event-handler"></a>
+### Gamebase Event Handler { #gamebase-event-handler }
 
 * Gamebase can process all kinds of events in a single event system called **GamebaseEventHandler**.
 * GamebaseEventHandler can simply add or remove a Listener through the API below:
@@ -514,6 +531,7 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 | Push - Message clicked | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) |  |
 | Push - Action clicked | GamebaseEventCategory.PUSH_CLICK_ACTION | GamebaseResponse.Event.PushAction.from(message.data) | Operates when the RichMessage button is clicked. |
 
+<a id="gamebase-event-handler-idp-revoked"></a>
 #### IdP Revoked
 
 > [Note]
@@ -555,6 +573,7 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 }
 ```
 
+<a id="gamebase-event-handler-logged-out"></a>
 #### Logged Out
 
 * This event occurs when the Gamebase Access Token has expired and a login function call is required to recover the network session.
@@ -585,6 +604,7 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 }
 ```
 
+<a id="gamebase-event-handler-server-push"></a>
 #### Server Push
 
 * This is a message sent from the Gamebase server to the client's device.
@@ -652,6 +672,7 @@ private void CheckServerPush(string category, GamebaseResponse.Event.GamebaseEve
 }
 ```
 
+<a id="gamebase-event-handler-observer"></a>
 #### Observer
 
 * It is a system used to handle many different status-changing events in Gamebase.
@@ -844,6 +865,7 @@ private void CheckWebView(GamebaseResponse.Event.GamebaseEventObserverData obser
 ```
 
 
+<a id="gamebase-event-handler-purchase-updated"></a>
 #### Purchase Updated
 
 * This event is triggered when an App Store promotion product purchase is completed or when a pending payment delayed by 'Ask to Buy' is finalized.
@@ -878,6 +900,7 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 }
 ```
 
+<a id="gamebase-event-handler-push-received-message"></a>
 #### Push Received Message
 
 * This event is triggered when a push message is received.
@@ -936,6 +959,7 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 }
 ```
 
+<a id="gamebase-event-handler-push-click-message"></a>
 #### Push Click Message
 
 * This event is triggered when a received message is clicked.
@@ -970,6 +994,7 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 }
 ```
 
+<a id="gamebase-event-handler-push-click-action"></a>
 #### Push Click Action
 
 * This event is triggered when the button created by the Rich Message feature is clicked.
@@ -1024,7 +1049,8 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 }
 ```
 
-### Analytics
+<a id="analytics"></a>
+### Analytics { #analytics }
 
 The game index can be transferred to the Gamebase server.
 
@@ -1042,6 +1068,7 @@ Please see the following guide for how to use Analytics console.
 
 * [Analytics Console](./oper-analytics)
 
+<a id="analytics-game-user-data-settings"></a>
 #### Game User Data Settings
 
 The game user level information can be transmitted as an index after logging in to the game.
@@ -1089,6 +1116,7 @@ public void SetGameUserData(int userLevel, string channelId, string characterId,
 }
 ```
 
+<a id="analytics-level-up-trace"></a>
 #### Level Up Trace
 
 The game user level information can be transmitted as an index after leveling up.
@@ -1127,7 +1155,8 @@ public void TraceLevelUp(int userLevel, long levelUpTime)
 }
 ```
 
-### Contact
+<a id="contact"></a>
+### Contact { #contact }
 
 Gamebase provides features to respond to customer inquiries. 
 
@@ -1138,6 +1167,12 @@ Gamebase provides features to respond to customer inquiries.
 > [NHN Cloud Online Contact Guide](https://docs.nhncloud.com/en/Contact%20Center/en/online-contact-overview/)
 
 
+<a id="contact-permissions-settings"></a>
+#### Permissions Settings
+
+<!-- TODO: translate body -->
+
+<a id="contact-customer-service-type"></a>
 #### Customer Service Type
 
 In the **Gamebase Console > App > Customer service**, you can choose from three different types of Customer Centers.
@@ -1160,6 +1195,7 @@ Gamebase SDK's Customer Center API uses the following URLs based on the type:
     * Before login: Customer Center URL **without** user information.
     * After login: Customer Center URL with user information.
 
+<a id="contact-open-contact-webview"></a>
 #### Open Contact WebView
 
 Displays the Customer Center WebView.
@@ -1240,6 +1276,7 @@ public void SampleOpenContact()
 >
 > * Please set 'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description' in info.plist.
 
+<a id="contact-request-contact-url"></a>
 #### Request Contact URL
 
 Returns the URL used for displaying the Customer Center WebView.
@@ -1288,7 +1325,8 @@ public void SampleRequestContactURL()
 }
 ```
 
-### App Tracking AuthorizationStatus
+<a id="app-tracking-authorizationstatus"></a>
+### App Tracking AuthorizationStatus { #app-tracking-authorizationstatus }
 
 * Check the ATT status.
 
@@ -1356,7 +1394,8 @@ public void GetAppTrackingAuthorizationStatusSample()
 }
 ```
 
-### IDFA
+<a id="idfa"></a>
+### IDFA { #idfa }
 
 * Returns the device's Advertising Identifier (IDFA).
 
@@ -1383,7 +1422,8 @@ public void SampleGetIdfa()
 }
 ```
 
-### Age Signals Support
+<a id="age-signals-support"></a>
+### Age Signals Support { #age-signals-support }
 
 Texas SB 2420 and similar state laws require apps to verify users' ages to protect minors.
 Gamebase provides an API that wraps the Google Play Age Signals API to meet these requirements.
@@ -1394,6 +1434,7 @@ Please refer to the following article for how to set up the Age Signals feature 
 Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
+<a id="age-signals-support-getagesignal"></a>
 #### GetAgeSignal
 
 Check the age information.

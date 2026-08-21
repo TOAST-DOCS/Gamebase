@@ -1,10 +1,15 @@
-## Game > Gamebase > Unreal SDK 사용 가이드 > ETC
+<!-- pre-align:aligned sig=5f2cf1791bd6 -->
 
-## Additional Features
+<a id="game-gamebase-user-guide-for-unreal-sdk-etc"></a>
+## Game > Gamebase > Unreal SDK 사용 가이드 > ETC { #game-gamebase-user-guide-for-unreal-sdk-etc }
+
+<a id="additional-features"></a>
+## Additional Features { #additional-features }
 
 Gamebase에서 지원하는 부가 기능을 설명합니다.
 
-### Device Language
+<a id="device-language"></a>
+### Device Language { #device-language }
 
 * 단말기에 설정된 언어 코드를 반환합니다.
 * 여러 개의 언어가 등록된 경우, 우선권이 가장 높은 언어만을 반환합니다.
@@ -20,7 +25,8 @@ Supported Platforms
 FString GetDeviceLanguageCode() const;
 ```
 
-### Display Language
+<a id="display-language"></a>
+### Display Language { #display-language }
 
 * Gamebase에서 제공하는 UI 및 SystemDialog에 표시되는 언어를 단말기에 설정된 언어가 아닌 다른 언어로 변경할 수 있습니다.
 * Gamebase는 클라이언트에 포함되어 있는 메시지를 표시하거나 서버에서 받은 메시지를 표시합니다.
@@ -31,6 +37,7 @@ FString GetDeviceLanguageCode() const;
 >
 > Gamebase의 클라이언트 메시지는 영어(en), 한글(ko), 일본어(ja)만 포함합니다.
 
+<a id="display-language-language-codes-supported-by-gamebase"></a>
 #### Gamebase에서 지원하는 언어코드의 종류
 
 | Code | Name |
@@ -82,6 +89,7 @@ namespace GamebaseDisplayLanguageCode
 }
 ```
 
+<a id="display-language-setting-for-gamebase-initialization"></a>
 #### Gamebase 초기화 시 Display Language 설정
 
 Gamebase 초기화 시 Display Language를 설정할 수 있습니다.
@@ -122,6 +130,7 @@ void USample::Initialize(const FString& AppID, const FString& AppVersion)
 }
 ```
 
+<a id="display-language-set-display-language"></a>
 #### Set Display Language
 
 Gamebase 초기화 시 입력된 Display Language를 변경할 수 있습니다.
@@ -147,6 +156,7 @@ void USample::SetDisplayLanguageCode(const FString& DisplayLanguage)
 }
 ```
 
+<a id="display-language-get-display-language"></a>
 #### Get Display Language
 
 현재 적용된 Display Language를 조회할 수 있습니다.
@@ -172,6 +182,7 @@ void USample::GetDisplayLanguageCode()
 }
 ```
 
+<a id="display-language-add-new-language-sets"></a>
 #### 신규 언어셋 추가
 
 Unreal Android, iOS 플랫폼에서의 신규 언어셋 추가 방법은 아래 가이드를 참고하십시오.
@@ -179,6 +190,7 @@ Unreal Android, iOS 플랫폼에서의 신규 언어셋 추가 방법은 아래 
 * [Android 신규 언어셋 추가](./aos-etc#display-language)
 * [iOS 신규 언어셋 추가](./ios-etc#display-language)
 
+<a id="display-language-priority-of-display-languages"></a>
 #### Display Language 우선순위
 
 초기화 및 SetDisplayLanguageCode API를 통해 Display Language를 설정할 경우, 최종 적용되는 Display Language는 입력한 값과 다르게 적용될 수 있습니다.
@@ -187,11 +199,13 @@ Unreal Android, iOS 플랫폼에서의 신규 언어셋 추가 방법은 아래 
 2. Gamebase 초기화 시, 단말기에 설정된 언어코드가 localizedstring.json 파일에 정의되어 있는지 확인합니다.(이 값은 초기화 이후, 단말기에 설정된 언어를 변경하더라도 유지됩니다.)
 3. Display Language의 기본값인 `en`이 자동으로 설정됩니다.
 
-### Country Code
+<a id="country-code"></a>
+### Country Code { #country-code }
 
 * Gamebase는 System의 국가 코드를 다음과 같은 API로 제공하고 있습니다.
 * 각 API 마다 특징이 있으니 쓰임새에 맞는 API를 선택하시기 바랍니다.
 
+<a id="country-code-usim-country-code"></a>
 #### USIM Country Code
 
 * USIM에 기록된 국가 코드를 반환합니다.
@@ -208,6 +222,7 @@ Supported Platforms
 FString GetCountryCodeOfUSIM() const;
 ```
 
+<a id="country-code-device-country-code"></a>
 #### Device Country Code
 
 * OS로부터 전달받은 단말기 국가 코드를 추가적인 확인 없이 그대로 반환합니다.
@@ -225,6 +240,7 @@ Supported Platforms
 FString GetCountryCodeOfDevice() const;
 ```
 
+<a id="country-code-intergrated-country-code"></a>
 #### Intergrated Country Code
 
 * USIM, 단말기 언어 설정의 순서로 국가 코드를 확인하여 반환합니다.
@@ -245,7 +261,8 @@ FString GetCountryCodeOfDevice() const;
 FString GetCountryCode() const;
 ```
 
-### Gamebase Event Handler
+<a id="gamebase-event-handler"></a>
+### Gamebase Event Handler { #gamebase-event-handler }
 
 * Gamebase는 각종 이벤트를 **GamebaseEventHandler**라는 하나의 이벤트 시스템에서 모두 처리할 수 있습니다.
 * GamebaseEventHandler는 아래 API를 통해 간단하게 Listener를 추가/제거할 수 있습니다.
@@ -345,6 +362,7 @@ void USample::AddEventHandler()
 | Push<br>- 메시지 클릭 | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(Message.Data) |  |
 | Push<br>- 액션 클릭 | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(Message.Data) | RichMessage 버튼 클릭 시 동작합니다. |
 
+<a id="gamebase-event-handler-idp-revoked"></a>
 #### IdP Revoked
 
 > [참고]
@@ -370,6 +388,7 @@ void USample::AddEventHandler()
 }
 ```
 
+<a id="gamebase-event-handler-logged-out"></a>
 #### Logged Out
 
 * Gamebase Access Token이 만료되어 네트워크 세션을 복구하기 위해 로그인 함수 호출이 필요한 경우 발생하는 이벤트입니다.
@@ -395,6 +414,7 @@ void USample::AddEventHandler()
 }
 ```
 
+<a id="gamebase-event-handler-server-push"></a>
 #### Server Push
 
 * Gamebase 서버에서 클라이언트 단말기로 보내는 메시지입니다.
@@ -453,6 +473,7 @@ void USample::CheckServerPush(const FString& Category, const FGamebaseEventServe
 }
 ```
 
+<a id="gamebase-event-handler-observer"></a>
 #### Observer
 
 * Gamebase Gamebase의 각종 상태 변동 이벤트를 처리하는 시스템입니다.
@@ -590,6 +611,7 @@ void USample::CheckHeartbeat(const FGamebaseEventObserverData& Data)
 }
 ```
 
+<a id="gamebase-event-handler-purchase-updated"></a>
 #### Purchase Updated
 
 * Promotion 코드 입력을 통해 상품을 획득한 경우 또는 Pending 결제(느린 결제, 부모 동의 등)가 완료되었을 때 발생하는 이벤트입니다.
@@ -618,6 +640,7 @@ void USample::AddEventHandler()
 ```
 
 
+<a id="gamebase-event-handler-push-received-message"></a>
 #### Push Received Message
 
 * Push 메시지가 도착했을때 발생하는 이벤트입니다.
@@ -667,6 +690,7 @@ void USample::AddEventHandler()
 }
 ```
 
+<a id="gamebase-event-handler-push-click-message"></a>
 #### Push Click Message
 
 * 수신한 Push 메시지를 클릭했을 때 발생하는 이벤트입니다.
@@ -693,6 +717,7 @@ void USample::AddEventHandler()
 ```
 
 
+<a id="gamebase-event-handler-push-click-action"></a>
 #### Push Click Action
 
 * Rich Message 기능을 통해 생성한 버튼을 클릭했을 때 발생하는 이벤트입니다.
@@ -740,7 +765,8 @@ void USample::AddEventHandler()
 ```
 
 
-### Analytics
+<a id="analytics"></a>
+### Analytics { #analytics }
 
 Game지표를 Gamebase Server로 전송할 수 있습니다.
 
@@ -758,6 +784,7 @@ Analytics Console 사용법은 아래 가이드를 참고하십시오.
 
 * [Analytics Console](./oper-analytics)
 
+<a id="analytics-game-user-data-settings"></a>
 #### Game User Data Settings
 
 게임 로그인 이후 게임 유저 레벨 정보를 지표로 전송할 수 있습니다.
@@ -806,6 +833,7 @@ void USample::SetGameUserData(int32 UserLevel, const FString& ChannelId, const F
 
 ```
 
+<a id="analytics-level-up-trace"></a>
 #### Level Up Trace
 
 레벨업이 되었을 경우 게임 유저 레벨 정보를 지표로 전송할 수 있습니다.
@@ -841,7 +869,8 @@ void USample::TraceLevelUpNow(int32 UserLevel)
 }
 ```
 
-### Contact
+<a id="contact"></a>
+### Contact { #contact }
 
 Gamebase 는 고객 문의 대응을 위한 기능을 제공합니다.
 
@@ -851,12 +880,14 @@ Gamebase 는 고객 문의 대응을 위한 기능을 제공합니다.
 > 자세한 NHN Cloud  Contact 서비스 이용법은 아래 가이드를 참고하시기 바랍니다.
 > [NHN Cloud Online Contact Guide](https://docs.nhncloud.com/ko/Contact%20Center/ko/online-contact-overview/)
 
+<a id="contact-permission-settings"></a>
 #### 권한 설정
 
 * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Contact](aos-etc/#contact)
 * [Game > Gamebase > iOS SDK 사용 가이드 > ETC > Contact](ios-etc/#contact)
 
 
+<a id="contact-customer-service-type"></a>
 #### Customer Service Type
 
 **Gamebase 콘솔 > App > Customer service**에서는 아래와 같이 3가지 유형의 고객 센터를 선택할 수 있습니다.
@@ -879,6 +910,7 @@ Gamebase 는 고객 문의 대응을 위한 기능을 제공합니다.
     * 로그인 전 : NOT_LOGGED_IN(2) 에러가 발생.
     * 로그인 후 : 유저 정보가 포함된 고객 센터 URL.
 
+<a id="contact-open-contact-webview"></a>
 #### Open Contact WebView
 
 고객 센터 웹뷰를 표시합니다.
@@ -944,6 +976,7 @@ void USample::OpenContact()
 }
 ```
 
+<a id="contact-request-contact-url"></a>
 #### Request Contact URL
 
 고객 센터 웹뷰를 표시하는 데 사용되는 URL을 반환합니다.
@@ -997,7 +1030,8 @@ void USample::RequestContactURL(const FString& userName)
 }
 ```
 
-### App Tracking AuthorizationStatus
+<a id="app-tracking-authorizationstatus"></a>
+### App Tracking AuthorizationStatus { #app-tracking-authorizationstatus }
 
 * ATT 활성화 여부를 확인합니다.
 
@@ -1046,7 +1080,8 @@ void USample::GetAppTrackingAuthorizationStatus()
 }
 ```
 
-### IDFA
+<a id="idfa"></a>
+### IDFA { #idfa }
 
 * 단말기의 광고 식별자 값을 반환합니다.
 * iOS에서 IDFA 기능을 설정하는 방법은 다음 문서를 참고하세요.
@@ -1071,7 +1106,8 @@ void USample::GetIdfa()
 }
 ```
 
-### Age Signals Support
+<a id="age-signals-support"></a>
+### Age Signals Support { #age-signals-support }
 
 Texas SB 2420 및 유사한 주 법률은 미성년자 보호를 위해 앱에서 사용자의 연령 확인을 요구합니다.
 Gamebase는 Google Play Age Signals API를 래핑하여 이러한 요구사항을 충족할 수 있는 API를 제공합니다.
@@ -1080,6 +1116,7 @@ Android에서 Age Signals 기능을 설정하는 방법은 다음 문서를 참�
 
 * [Android Age Signals](./aos-etc/#age-signals-support)
 
+<a id="age-signals-support-getagesignal"></a>
 #### GetAgeSignal
 
 연령 정보를 확인합니다.

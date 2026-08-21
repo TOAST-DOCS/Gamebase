@@ -1,12 +1,17 @@
-## Game > Gamebase > API v1.0ガイド
+<!-- pre-align:aligned sig=645a5f5a2911 -->
+
+<a id="game-gamebase-api-v10-guide"></a>
+## Game > Gamebase > API v1.0ガイド { #game-gamebase-api-v10-guide }
 
 Gamebase Server APIは、RESTful形式で、 次のようなAPIを提供します。
 
-## Advance Notice
+<a id="advance-notice"></a>
+## Advance Notice { #advance-notice }
 
 サーバーAPIを使用するためには、次のような情報が必要です。
 <br>
 
+<a id="advance-notice-server-address"></a>
 #### Server Address
 
 APIを呼び出すためのサーバーアドレスは、次の通りです。該当するアドレスは、Gamebase Console画面からでも確認できます。
@@ -17,6 +22,7 @@ APIを呼び出すためのサーバーアドレスは、次の通りです。�
 
 <br>
 
+<a id="advance-notice-appid"></a>
 #### AppId
 
 アプリIDとはNHN CloudプロジェクトのIDのことであり、アプリメニューの画面から確認することができます。
@@ -25,6 +31,7 @@ APIを呼び出すためのサーバーアドレスは、次の通りです。�
 
 <br>
 
+<a id="advance-notice-secretkey"></a>
 #### SecretKey
 
 シークレットキー(secret key)は、APIに対するアクセスを制御する方法で、Gamebase Consoleから確認することができます。シークレットキーは、ServerAPIを呼び出すとき、HTTPのヘッダーに必ず設定する必要があります。
@@ -36,13 +43,16 @@ APIを呼び出すためのサーバーアドレスは、次の通りです。�
 
 <br>
 
+<a id="advance-notice-transactionid"></a>
 #### TransactionId
 
 APIを呼び出すサーバーで内部的にAPIリクエストを管理することができる方法としてTransactionId機能を提供します。呼び出すサーバーからHTTPのヘッダーにトランザクションIDを設定してAPIを呼び出すと、Gamebaseのサーバーは、レスポンスHTTP Header及びレスポンス結果のResponse Body Headerに該当するTransactionIdを設定して結果を送ります。
 
 
-## Common
+<a id="common"></a>
+## Common { #common }
 
+<a id="common-http-header"></a>
 #### HTTP Header
 
 APIを呼び出す際には、HTTP Headerに次の項目を設定する必要があります。
@@ -55,6 +65,7 @@ APIを呼び出す際には、HTTP Headerに次の項目を設定する必要が
 
 <br>
 
+<a id="common-api-response"></a>
 #### API Response
 
 すべてのAPIリクエストに対するレスポンスとして**HTTP 200 OK**を送ります。APIリクエストが成功したかどうかは、Response BodyのHeader項目を参考して判断することができます。
@@ -95,8 +106,10 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | resultMessage | String | レスポンスメッセージ |
 
 
-## Authentication
+<a id="authentication"></a>
+## Authentication { #authentication }
 
+<a id="authentication-token-authentication"></a>
 #### Token Authentication
 
 ログインユーザーに発行されたAccess Tokenが有効かどうか検査します。Access Tokenが正常な場合、該当するユーザーの情報を返します。
@@ -186,8 +199,10 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 [エラーコード](./error-code/#server)
 
-## Launching
+<a id="launching"></a>
+## Launching { #launching }
 
+<a id="launching-get-simple-launching"></a>
 #### Get Simple Launching
 
 コンソールで設定したサーバーアドレス、インストールURL、現在のメンテナンス状態とメンテナンス時間およびメッセージなど、クライアントアプリ起動時に提供されるLaunching情報を確認できます。
@@ -319,8 +334,10 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 <br>
 
-## Member
+<a id="member"></a>
+## Member { #member }
 
+<a id="member-get-member"></a>
 #### Get member
 
 単一会員の詳細情報を照会します。
@@ -424,6 +441,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 <br>
 
+<a id="member-get-members"></a>
 #### Get members
 
 複数の会員情報を簡素化して照会します。
@@ -487,6 +505,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 <br>
 
+<a id="member-get-idp-information"></a>
 #### Get IdP infomation
 
 ユーザーIDにマッピングされたIdP情報を照会します。
@@ -551,6 +570,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 <br>
 
+<a id="member-get-userid-information-with-auth-key"></a>
 #### Get userId infomation with auth key
 
 ユーザー認証キーにマッピングされたユーザーIDを照会します。
@@ -613,6 +633,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 [エラーコード](./error-code/#server)
 
+<a id="member-ban-histories"></a>
 #### Ban Histories
 
 ユーザー利用停止履歴を照会します。
@@ -720,6 +741,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 [エラーコード](./error-code/#server)
 
+<a id="member-ban-release-histories"></a>
 #### Ban Release Histories.
 
 ユーザー利用停止解除履歴を照会します。
@@ -830,8 +852,10 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 <br>
 
-## Maintenance
+<a id="maintenance"></a>
+## Maintenance { #maintenance }
 
+<a id="maintenance-check-maintenance-set"></a>
 #### Check Under Maintenance
 
 現在、メンテナンスが設定されているかどうかを確認します。
@@ -898,10 +922,12 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 [エラーコード](./error-code/#server)
 
 
-## Purchase(IAP)
+<a id="purchaseiap"></a>
+## Purchase(IAP) { #purchaseiap }
 
 Gamebaseは、NHN Cloud IAPサービスのサーバーAPIに対して**Wrapping**機能を提供します。Wrapping機能を使用すれば、ユーザーサーバーにおいて一貫したインターフェースでNHN Cloudサービスを使用することができます。
 
+<a id="purchaseiap-wrapping-api"></a>
 #### Wrapping API
 
 | API | Method | Wrapping URI | IAP URI |
@@ -928,10 +954,12 @@ POST https://api-gamebase.cloud.toast.com/tcgb-inapp/v1.0/apps/{appId}/consume/{
 ```
 
 
-## Leaderboard
+<a id="leaderboard"></a>
+## Leaderboard { #leaderboard }
 
 Gamebaseは、NHN Cloud LeaderboardサービスのサーバーAPIに対して**Wrapping**機能を提供します。Wrapping機能を使用すれば、ユーザーサーバーにおいて一貫したインターフェースでNHN Cloudサービスを使用することができます。
 
+<a id="leaderboard-wrapping-api"></a>
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
 | --- | --- | --- | --- |
@@ -962,9 +990,11 @@ GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.0/apps/{appId}/fact
 ```
 
 
-## Etc
+<a id="others"></a>
+## Etc { #others }
 
-### Support
+<a id="support"></a>
+### Support { #support }
 
 API呼び出し失敗の原因に対するお問い合わせがある場合、**API呼び出しURL(HTTP bodyがある場合は、bodyと一緒に)とそれに対するレスポンス結果**を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。
 

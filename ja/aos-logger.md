@@ -1,8 +1,12 @@
-## Game > Gamebase > Android SDK使用ガイド > Logger
+<!-- pre-align:aligned sig=640feae42eaf -->
+
+<a id="game-gamebase-android-sdk-user-guide-logger"></a>
+## Game > Gamebase > Android SDK使用ガイド > Logger { #game-gamebase-android-sdk-user-guide-logger }
 
 ここではLog & Crash Search転送APIを使用する方法を説明します。
 
-### Initialize
+<a id="initialize"></a>
+### Initialize { #initialize }
 
 Log & Crash Searchで発行したAppKeyでNHN Cloud Logger SDKを初期化します。<br/>
 アプリ起動直後に発生するクラッシュログも漏れなく転送するには**Application.onCreate()**でNHN Cloud Loggerを初期化する必要があります。
@@ -31,7 +35,8 @@ public class MyApplication extends Application {
 }
 ```
 
-### Send Logs
+<a id="send-logs"></a>
+### Send Logs { #send-logs }
 
 Log & Crash Serverにログを転送します。
 NHN Cloud Logger SDKは、下記の5つのレベルのログを転送できます。
@@ -85,7 +90,8 @@ final String val2 = "maValue2";
 Gamebase.Logger.debug("VALUE1： %s, VALUE2： %s", val1, val2);
 ```
 
-### Set User-Defined Fields
+<a id="set-user-defined-fields"></a>
+### Set User-Defined Fields { #set-user-defined-fields }
 ユーザー定義フィールドを設定します。
 
 ユーザー定義フィールドを設定すると、ログ転送APIを呼び出すたびに設定した値をログと一緒にサーバーに転送します。
@@ -102,7 +108,8 @@ Gamebase.Logger.debug("VALUE1： %s, VALUE2： %s", val1, val2);
 Gamebase.Logger.setUserField("KEY", "VALUE");
 ```
 
-### Further Tasks after Sending Logs
+<a id="further-tasks-after-sending-logs"></a>
+### Further Tasks after Sending Logs { #further-tasks-after-sending-logs }
 
 リスナー(listener)を登録すると、ログ転送後、追加作業を進行できます。
 
@@ -138,7 +145,8 @@ Gamebase.Logger.setLoggerListener(new LoggerListener() {
 });
 ```
 
-### Use Handled Exception API
+<a id="use-handled-exception-api"></a>
+### Use Handled Exception API { #use-handled-exception-api }
 
 Androidプラットフォームでは、try/catch構文で例外に関する内容をNHN Cloud LoggerのHandled Exception APIを使用して送信できます。
 このように送信した例外ログは、コンソールで**Log & Crash Search > アプリクラッシュ検索**をクリックし、**エラータイプ**の**Handled**をクリックして照会できます。

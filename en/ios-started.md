@@ -1,6 +1,10 @@
-## Game > Gamebase > iOS Developer's Guide > Getting Started
+<!-- pre-align:aligned sig=18f341083517 -->
 
-## Environments
+<a id="game-gamebase-ios-developers-guide-getting-started"></a>
+## Game > Gamebase > iOS Developer's Guide > Getting Started { #game-gamebase-ios-developers-guide-getting-started }
+
+<a id="environments"></a>
+## Environments { #environments }
 
 
 > [INFO]
@@ -21,11 +25,13 @@
 > * https://developer.apple.com/ios/submit/
 >
 
-## Setting
+<a id="setting"></a>
+## Setting { #setting }
 
 Gamebase can be setup as below.
 
-### Download
+<a id="download"></a>
+### Download { #download }
 
 * [Download Gamebase iOS SDK](/Download/#game-gamebase)
 
@@ -74,7 +80,8 @@ Then, include corresponding SDK files to a target of your project.
 > For setting of external SDKs which each IdP provides, refer to each IdP guide.
 >
 
-### Xcode Settings
+<a id="xcode-settings"></a>
+### Xcode Settings { #xcode-settings }
 
 By decompression, following SDKs will show, including Gamebase.xcframework.
 
@@ -128,7 +135,8 @@ By decompression, following SDKs will show, including Gamebase.xcframework.
 > * Note that there may be problems with operation if you import the Gamebase iOS SDK in duplicate for each target.
 > 
 
-### CocoaPods Settings
+<a id="cocoapods-settings"></a>
+### CocoaPods Settings { #cocoapods-settings }
 
 You can set the Gamebase iOS SDK with CocoaPods.
 
@@ -187,7 +195,8 @@ end
 >
 >
 
-### IdP Settings
+<a id="idp-settings"></a>
+### IdP Settings { #idp-settings }
 
 > <font color="red">[Caution]</font><br/>
 >
@@ -198,6 +207,7 @@ end
     * [Game > Gamebase > Console User Guide > App > Authentication Information](./oper-app/#authentication-information)
 * Gamebase iOS SDK requires an additional, separate setting per IdP.
 
+<a id="idp-settings-facebook"></a>
 #### Facebook
 
 * URL Scheme must be configured.
@@ -221,6 +231,7 @@ end
 <string>{FACEBOOK_DISPLAY_NAME}</string>
 ```
 
+<a id="idp-settings-google"></a>
 #### Google
 
 * URL Scheme must be configured.
@@ -228,12 +239,14 @@ end
 * An additional setting is required for Gamebase iOS SDK 2.34.1 or earlier versions.
     * [Game > Gamebase > iOS SDK User Guide > Getting Started > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
+<a id="idp-settings-payco"></a>
 #### PAYCO
 
 * URL Scheme must be configured.
     * Go to **Xcode > Target > Info > URL Types** and add **tcgb.{Bundle ID}.payco**
     * Go to **Xcode > Target > Info > URL Types** and add **paycologinsdk**.
 
+<a id="idp-settings-naver"></a>
 #### NAVER
 
 * URL Scheme must be configured.
@@ -250,6 +263,7 @@ end
 * An additional setting is required for Gamebase iOS SDK 1.12.1 or earlier versions.
     * [Game > Gamebase > iOS SDK User Guide > Getting Started > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
+<a id="idp-settings-line"></a>
 #### LINE
 
 * URL Scheme must be configured.
@@ -265,9 +279,11 @@ end
 * For Gamebase iOS SDK 2.42.2 or earlier, additional settings are required.
     * [Game > Gamebase > iOS SDK User Guide > Getting Started > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
+<a id="idp-settings-game-center"></a>
 #### Game Center
 * Entitlements.plist에 Game Center entitlement(`com.apple.developer.game-center`)이 없다면 직접 추가해야 합니다.
 
+<a id="idp-settings-weibo"></a>
 #### Weibo
 
 * URL Scheme must be configured.
@@ -283,7 +299,8 @@ end
 </array>
 ```
 
-### IdP Settings (Legacy)
+<a id="idp-settings-legacy"></a>
+### IdP Settings (Legacy) { #idp-settings-legacy }
 
 **Google**
 
@@ -333,16 +350,8 @@ end
     <string>{Issued LINE ChannleID}</string>
 </dict>
 ```
-#### Twitter
-
-* Gamebase iOS SDK 2.66.3 or below
-    * URL Scheme must be configured.
-        * Go to **Xcode > Target > Info > URL Types** and add **tcgb.{Bundle ID}.twitter**
-    * Need to configure Apps > Target Project > App Details > Callback URL on the Developer site of Twitter.
-        *  Add **tcgb.{Bundle ID}.twitter://**.
-
-
-## 3rd-Party Provider SDK Guide
+<a id="3rd-party-provider-sdk-guide"></a>
+## 3rd-Party Provider SDK Guide { #3rd-party-provider-sdk-guide }
 
 * [Facebook for developers](https://developers.facebook.com/docs/ios)
 * [NAVER for developers](https://developers.naver.com/docs/login/ios/ios.md)
@@ -353,15 +362,18 @@ end
 * [Google Sign-In for iOS](https://developers.google.com/identity/sign-in/ios)
 * [Kakaogame SDK 3.0 Guide for Channeling](https://kakaogames.atlassian.net/wiki/spaces/KS3GFC/overview)
 
-## Sample App
+<a id="sample-app"></a>
+## Sample App { #sample-app }
 
 * [https://github.com/nhn/toast.gamebase.ios.sample](https://github.com/nhn/toast.gamebase.ios.sample)
 
-## API Reference
+<a id="api-reference"></a>
+## API Reference { #api-reference }
 
 Included in SDK.
 
-## API Deprecate Governance
+<a id="api-deprecate-governance"></a>
+## API Deprecate Governance { #api-deprecate-governance }
 
 The API which is not supported by Gamebase anymore is processed as deprecated (deprecate).
 A (deprecated) API can be deleted without any prior notice when the following conditions are met:

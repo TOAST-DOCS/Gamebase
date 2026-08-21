@@ -1,9 +1,13 @@
-## Game > Gamebase > Unreal SDK 사용 가이드 > 결제
+<!-- pre-align:aligned sig=e79828fe0190 -->
+
+<a id="game-gamebase-user-guide-for-unreal-sdk-purchase"></a>
+## Game > Gamebase > Unreal SDK 사용 가이드 > 결제 { #game-gamebase-user-guide-for-unreal-sdk-purchase }
 
 여기에서는 Unreal에서 인앱 결제 기능을 사용하기 위해 필요한 설정 방법을 알아보겠습니다.
 Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 많은 스토어의 인앱 결제를 연동할 수 있도록 돕습니다.
 
-### Settings
+<a id="settings"></a>
+### Settings { #settings }
 
 Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.<br/>
 
@@ -11,6 +15,7 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 * [iOS Purchase Settings](ios-purchase#settings)
 * [Windows Purchase Settings](unreal-started/#windows-settings)
 
+<a id="settings-unreal-plugin-settings"></a>
 #### Unreal Plugin 설정
 
 > <font color="red">[주의]</font><br/>
@@ -29,7 +34,8 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
             [OnlineSubsystemIOS.Store]
             bSupportsInAppPurchasing=False
 
-### Purchase Flow
+<a id="purchase-flow"></a>
+### Purchase Flow { #purchase-flow }
 
 아이템 구매는 크게 결제 Flow 와 Consume Flow, 재처리 Flow 로 나누어 볼 수 있습니다.
 결제 Flow는 다음과 같은 순서로 구현하시기 바랍니다.
@@ -40,7 +46,8 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 2. 게임 클라이언트에서는 Gamebase SDK의 **RequestPurchase**를 호출하여 결제를 시도합니다.
 3. 결제가 성공했다면 **RequestItemListOfNotConsumed**를 호출하여 미소비 결제 내역을 확인한 후 지급할 아이템이 존재한다면 Consume Flow 를 진행합니다.
 
-### Consume Flow
+<a id="consume-flow"></a>
+### Consume Flow { #consume-flow }
 
 미소비 결제 내역 목록에 값이 있으면 다음과 같은 순서로 Consume Flow 를 진행하시기 바랍니다.
 
@@ -64,7 +71,8 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
 3. 아이템 지급 여부와 무관하게 게임 서버는 더 이상 미소비 내역이 리턴되지 않도록 Gamebase 서버의 consume(소비) API를 호출하여 아이템 지급을 완료합니다.
     * [Game > Gamebase > API 가이드 > Purchase(IAP) > Consume](./api-guide/#consume)
 
-### Retry Transaction Flow
+<a id="retry-transaction-flow"></a>
+### Retry Transaction Flow { #retry-transaction-flow }
 
 ![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
 
@@ -76,7 +84,8 @@ Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문�
     * 게임 내 상점(또는 로비) 진입시.
     * 유저 프로필 또는 우편함 확인시.
 
-### Purchase Item
+<a id="purchase-item"></a>
+### Purchase Item { #purchase-item }
 
 구매하고자 하는 아이템의 gamebaseProductId를 이용해 다음의 API를 호출하여 구매를 요청합니다.
 게임 유저가 구매를 취소하는 경우 **PURCHASE_USER_CANCELED** 오류가 반환됩니다.
@@ -237,7 +246,8 @@ struct FGamebasePurchasableReceipt
 ```
 
 
-### List Purchasable Items
+<a id="list-purchasable-items"></a>
+### List Purchasable Items { #list-purchasable-items }
 
 아이템 목록을 조회하려면 다음 API를 호출합니다. 
 콜백으로 반환되는 목록 안에는 각 아이템들에 대한 정보가 있습니다.
@@ -325,7 +335,8 @@ struct FGamebasePurchasableItem
 ```
 
 
-### List Non-Consumed Items
+<a id="list-non-consumed-items"></a>
+### List Non-Consumed Items { #list-non-consumed-items }
 
 아이템을 구매했지만, 정상적으로 아이템이 소비(배송, 지급)되지 않은 미소비 결제 내역을 요청합니다.
 미결제 내역이 있는 경우에는 게임 서버(아이템 서버)에 요청하여, 아이템을 배송(지급)하도록 처리해야 합니다.
@@ -380,7 +391,8 @@ void USample::RequestItemListOfNotConsumed(bool bAllStores)
 }
 ```
 
-### List Actived Subscriptions
+<a id="list-activated-subscriptions"></a>
+### List Actived Subscriptions { #list-activated-subscriptions }
 
 현재 사용자 ID 기준으로 활성화된 구독 목록을 조회합니다.
 결제가 완료된 구독 상품(자동 갱신형 구독, 자동 갱신형 소비성 구독 상품)은 만료되기 전까지 계속 조회할 수 있습니다.
@@ -435,7 +447,8 @@ void USample::RequestActivatedPurchases(bool bAllStores)
 }
 ```
 
-### List Subscriptions Status
+<a id="list-subscriptions-status"></a>
+### List Subscriptions Status { #list-subscriptions-status }
 
 현재 사용자 ID 기준으로 구독 상품들의 상태를 조회합니다.
 콜백으로 반환되는 목록 안에는 구독 상품들의 정보가 담겨 있습니다.
@@ -574,7 +587,8 @@ struct FGamebasePurchasableSubscriptionStatus
 };
 ```
 
-### Event by Purchase
+<a id="event-by-purchase"></a>
+### Event by Purchase { #event-by-purchase }
 
 Promotion 코드 입력을 통해 상품을 획득한 경우 또는 Pending 결제(느린 결제, 부모 동의 등)가 완료되었을 때 GamebaseEventHandler를 통해 이벤트를 받아 처리할 수 있습니다.
 GamebaseEventHandler로 프로모션 결제 및 지연 결제 이벤트를 처리하는 방법은 아래 가이드를 확인하세요.
@@ -589,7 +603,8 @@ Supported Platforms
 > iOS 프로모션 결제를 위해서는 반드시 아래 가이드를 따라 설정하세요.
 > [Game > Gamebase > iOS SDK 사용 가이드 > 결제 > Event by Purchase](./ios-purchase/#event-by-purchase)
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                                     | Error Code | Description                              |
 | ----------------------------------------- | ---------- | ---------------------------------------- |

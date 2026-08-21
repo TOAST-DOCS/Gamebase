@@ -1,8 +1,12 @@
-## Game > Gamebase > Store Console Guide > ONEStore Console Guide
+<!-- pre-align:aligned sig=978cae155453 -->
+
+<a id="game-gamebase-store-console-guide-onestore-console-guide"></a>
+## Game > Gamebase > Store Console Guide > ONEStore Console Guide { #game-gamebase-store-console-guide-onestore-console-guide }
 
 Create your license key and OAuth credentials in the one-store to register for the IAP app information.
 
-### Create One-Store Key
+<a id="create-one-store-key"></a>
+### Create One-Store Key { #create-one-store-key }
 
 ```
 Apps > select App > In-App information > Licensing & in-app billing

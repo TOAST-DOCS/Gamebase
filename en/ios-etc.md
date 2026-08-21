@@ -1,9 +1,14 @@
-## Game > Gamebase > iOS SDK User Guide > ETC
+<!-- pre-align:aligned sig=073953cec848 -->
 
-## Additional Features
+<a id="game-gamebase-ios-sdk-user-guide-etc"></a>
+## Game > Gamebase > iOS SDK User Guide > ETC { #game-gamebase-ios-sdk-user-guide-etc }
+
+<a id="additional-features"></a>
+## Additional Features { #additional-features }
 Additional functions provided by Gamebase are described as below:
 
-### IDFA
+<a id="idfa"></a>
+### IDFA { #idfa }
 
 * Returns the ad identifier value of the device.
 
@@ -22,7 +27,8 @@ Additional functions provided by Gamebase are described as below:
 
 
 
-### Device Language
+<a id="device-language"></a>
+### Device Language { #device-language }
 
 * Returns the language code from the device.
 * If there are several languages registered, only the language of top priority is returned.
@@ -34,7 +40,8 @@ Additional functions provided by Gamebase are described as below:
 ```
 
 
-### Display Language
+<a id="display-language"></a>
+### Display Language { #display-language }
 
 Similar to the Maintenance popup, the language used by the device will be displayed as the Gamebase language.
 
@@ -61,6 +68,7 @@ The language code entered for Display Language should be one of the codes listed
 > See the **Add New Language Set** section.
 
 
+<a id="display-language-types-of-language-codes-supported-by-gamebase"></a>
 #### Types of Language Codes Supported by Gamebase 
 | Code | Name |
 | --- | --- |
@@ -105,6 +113,7 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 ```
 
 
+<a id="display-language-set-display-language-with-gamebase-initialization"></a>
 #### Set Display Language with Gamebase Initialization 
 
 Display Language can be set when Gamebase is initialized.
@@ -135,6 +144,7 @@ Display Language can be set when Gamebase is initialized.
     }
 ```
 
+<a id="display-language-set-display-language"></a>
 #### Set Display Language
 
 You can change the initial setting of Display Language.
@@ -153,6 +163,7 @@ You can change the initial setting of Display Language.
 }
 ```
 
+<a id="display-language-get-display-language"></a>
 #### Get Display Language
 
 You can retrieve the current application of Display Language.
@@ -172,6 +183,7 @@ You can retrieve the current application of Display Language.
 }
 ```
 
+<a id="display-language-add-new-language-sets"></a>
 #### Add New Language Sets
 
 If you are using a language other than the default language provided by Gamebase (ko, en, ja, zh-CN, zh-TW, th), add a **localizedstring.json** file to `Copy Bundle Resources` in the Xcode project.
@@ -244,6 +256,7 @@ If you need to add another language set, you can add a value in the form of `"ke
 }
 ```
 
+<a id="display-language-priority-in-display-language"></a>
 #### Priority in Display Language
 
 If Display Language is set via initialization and SetDisplayLanguageCode API, the final application may be different from what has been entered.
@@ -253,10 +266,12 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 3. If step 2 fails, the default language set in the Gamebase console is set as the Display Language.
 4. If there is no language set in the Gamebase console, `en` is set as the default value.
 
-### Country Code
+<a id="country-code"></a>
+### Country Code { #country-code }
 
 * Gamebase provides (country codes) for the system in the following APIs.
 
+<a id="country-code-device-country-code"></a>
 #### Device Country Code
 
 * Returns the device region setting received from the OS as it is without any further verification.
@@ -269,7 +284,8 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 + (NSString *)deviceCountryCode;
 ```
 
-### Gamebase Event Handler
+<a id="gamebase-event-handler"></a>
+### Gamebase Event Handler { #gamebase-event-handler }
 
 * Gamebase can process all kinds of events in a single event system called **GamebaseEventHandler**.
 * GamebaseEventHandler can simply add or remove a Handler through the API below:
@@ -352,6 +368,7 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 | Push<br>- Message clicked | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
 | Push<br>- Action clicked | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | Operates when the RichMessage button is clicked. |
 
+<a id="gamebase-event-handler-idp-revoked"></a>
 #### IdP Revoked
 
 > [Note]
@@ -386,6 +403,7 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 }
 ```
 
+<a id="gamebase-event-handler-logged-out"></a>
 #### Logged Out
 
 * This event occurs when the Gamebase Access Token has expired and a login function call is required to recover the network session.
@@ -408,6 +426,7 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 }
 ```
 
+<a id="gamebase-event-handler-server-push"></a>
 #### Server Push
 
 * This is a message sent from the Gamebase server to the client's device.
@@ -450,6 +469,7 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 }
 ```
 
+<a id="gamebase-event-handler-observer"></a>
 #### Observer
 
 * It is a system used to handle many different status-changing events in Gamebase.
@@ -544,6 +564,7 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 ```
 
 
+<a id="gamebase-event-handler-purchase-updated"></a>
 #### Purchase Updated
 
 * This event is triggered when an App Store promotion product purchase is completed or when a pending payment delayed by 'Ask to Buy' is finalized.
@@ -564,6 +585,7 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 }
 ```
 
+<a id="gamebase-event-handler-push-received-message"></a>
 #### Push Received Message
 
 
@@ -600,6 +622,7 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 }
 ```
 
+<a id="gamebase-event-handler-push-click-message"></a>
 #### Push Click Message
 
 * This event is triggered when a received push message is clicked.
@@ -621,6 +644,7 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 }
 ```
 
+<a id="gamebase-event-handler-push-click-action"></a>
 #### Push Click Action
 
 * This event is triggered when the button created by the Rich Message feature is clicked.
@@ -661,7 +685,8 @@ If Display Language is set via initialization and SetDisplayLanguageCode API, th
 
 
  
-### Analytics
+<a id="analytics"></a>
+### Analytics { #analytics }
 
 The game index can be transferred to the Gamebase server.
 
@@ -677,6 +702,7 @@ Please see the following guide for how to use Analytics console.
 
 - [Analytics console](./oper-analytics)
 
+<a id="analytics-game-user-data-settings"></a>
 #### Game User Data Settings
 
 The game user level information can be transmitted as an index after logging in to the game.
@@ -715,6 +741,7 @@ Parameters required for calling the API are as follows:
 }
 ```
 
+<a id="analytics-level-up-trace"></a>
 #### Level Up Trace
 
 The game user level information can be transmitted as an index after leveling up.
@@ -743,7 +770,8 @@ Parameters required for calling the API are as follows:
 }
 ```
 
-### Contact
+<a id="contact"></a>
+### Contact { #contact }
 
 Gamebase provides features to respond to customer inquiries. 
 
@@ -754,6 +782,7 @@ Gamebase provides features to respond to customer inquiries.
 > [NHN Cloud Online Contact Guide](https://docs.nhncloud.com/en/Contact%20Center/en/online-contact-overview/)
 >
 
+<a id="contact-customer-service-type"></a>
 #### Customer Service Type
 
 In the **Gamebase Console > App > Customer service**, you can choose from three different types of Customer Centers.
@@ -776,6 +805,7 @@ Gamebase SDK's Customer Center API uses the following URLs based on the type:
     * Before login: Customer Center URL **without** user information.
     * After login: Customer Center URL with user information.
 
+<a id="contact-open-contact-webview"></a>
 #### Open Contact WebView
 
 This feature is used to represent the **Customer Center URL** WebView entered in the Gamebase Console.
@@ -831,6 +861,7 @@ You can pass the additional information to the URL using TCGBContactConfiguratio
 > When contacting the Customer Center, access to camera or album may be required for file attachment.
 > Please set 'Privacy - Camera Usage Description', 'Privacy - Microphone Library Usage Description' in info.plist.
 
+<a id="contact-request-contact-url"></a>
 #### Request Contact URL
 
 Can get the URL used for displaying the Customer Center WebView.

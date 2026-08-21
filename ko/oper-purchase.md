@@ -1,21 +1,27 @@
-## IAP 메뉴 이용에 앞서
+<!-- pre-align:aligned sig=7ecc88a808bd -->
+
+<a id="before-using-purchase-menu"></a>
+## IAP 메뉴 이용에 앞서 { #before-using-purchase-menu }
 ![purchase_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_01_kr_240103.png)
 IAP 메뉴를 이용하려면 결제 지표를 위한 통화를 먼저 선택해 주셔야 합니다.
 최초 한번만 설정 가능하며 Analytics 매출지표에는 설정된 통화코드로 지표가 노출됩니다.
 한번 선택한 통화코드는 변경할 수 없으니 신중히 선택해 주세요.
 
-## Game > Gamebase > 콘솔 사용 가이드 > 결제
+<a id="game-gamebase-console-user-guide-purchase"></a>
+## Game > Gamebase > 콘솔 사용 가이드 > 결제 { #game-gamebase-console-user-guide-purchase }
 
 인앱 결제와 관련된 정보를 등록하고 내역을 조회할 수 있습니다.
 Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사용합니다.
 
-## Store
+<a id="store"></a>
+## Store { #store }
 
 게임 내에서 상품을 판매하기 위해 스토어를 등록합니다.
 **Store** 탭의 **스토어 정보 리스트**에서 새 스토어를 등록하거나 이미 등록한 스토어를 관리할 수 있습니다.
 ![purchase_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_02_kr_240103.png)
 
-### Register
+<a id="register"></a>
+### Register { #register }
 
 새로운 스토어를 등록하려면 **스토어 정보 리스트** 화면의 **등록** 버튼을 클릭합니다.
 
@@ -31,7 +37,8 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 > 구글 영수증 검증 시스템 장애시 **일회성 상품의 영수증 검증 설정**을 1단계 검증으로 하여, Gamebase 내부적인 시그니쳐 검증만으로 정상적인 결제가 가능합니다.
 > 구독 상품은 설정값에 상관없이 항상 2단계 검증을 수행합니다.
 
-### Modify
+<a id="modify"></a>
+### Modify { #modify }
 
 조회 목록에서 등록된 스토어의 상세 정보를 조회하거나 정보를 변경할 수 있습니다.
 
@@ -41,7 +48,8 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 - **수정** 버튼을 클릭하면 스토어 앱 ID를 제외한 앱 이름, 스토어 앱, 사용 여부 정보를 수정할 수 있습니다.
 - **삭제** 버튼을 클릭하면 스토어의 정보를 삭제할 수 있습니다. 단, 사용여부가 미사용인 스토어 삭제만 가능합니다.
 
-## Product
+<a id="product"></a>
+## Product { #product }
 
 스토어에서 판매할 상품을 등록할 수 있습니다.
 **상품** 탭에서 새 상품을 등록하거나 이미 등록한 상품을 관리할 수 있습니다.
@@ -52,9 +60,11 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 
 ![purchase_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_05_kr_240103.png)
 
-### Register
+<a id="product-register"></a>
+### Register { #product-register }
 
 새로운 상품을 등록하려면 **상품 목록** 화면의 **등록** 버튼을 클릭합니다.
+<a id="product-register-user-input-registration"></a>
 #### 1. 직접 입력을 이용한 등록 방법
 ![purchase_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_06_kr_240103.png)
 
@@ -66,6 +76,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 * (6) **스토어 아이템 ID** : 스토어 등록 후 발급 받은 ID 정보를 입력합니다. Gamebase 상품에 등록된 목록은 선택한 스토어에 결제 요청 시 이 부분에 입력한 내용을 이용하여 결제가 이루어집니다.
 * (7) **스토어 아이템 유형**  등록하고자 하는 상품 유형을 선택합니다. Google play, App store의 경우 구독 아이템 등록이 가능하며 그 외의 스토어를 선택할 경우 일회성 아이템으로 등록됩니다.
 
+<a id="product-register-file-uploading-registration"></a>
 #### 2. 파일 업로드를 이용한 등록 방법
 ![purchase_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_07_kr_240103.png)
 
@@ -76,7 +87,8 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 * 파일 등록에 실패하였을 경우 결과창의 **다운로드**항목을 통해 실패한 목록을 다운받아 확인할 수 있습니다.
 
 
-### Modify
+<a id="product-modify"></a>
+### Modify { #product-modify }
 
 조회 목록에서 등록된 상품의 상세 정보를 조회하거나 정보를 변경할 수 있습니다.
 ![purchase_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_08_kr_240103.png)
@@ -85,13 +97,15 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 - 수정이 가능한 항목은 **상품 이름**, **사용 여부**, **스토어 아이템 ID** 항목이며 그 외의 항목은 수정할 수 없으므로 등록 시 주의가 필요합니다.
 - **스토어 아이템 ID**는 이미 등록된 다른 **스토어 아이템 ID**로만 수정이 가능하며, 신규 **스토어 아이템 ID**는 상품 등록해야 합니다.
 
-## Transactions
+<a id="transactions"></a>
+## Transactions { #transactions }
 
 결제 정보를 조회할 수 있습니다.
 원하는 검색 유형을 선택하여 원하는 결제 정보를 편리하게 조회할 수 있습니다.
 결제 내역 조회 결과는 오른쪽 상단의 **다운로드** 버튼을 클릭해 언제든지 다운로드할 수 있습니다.
 
-### Transaction Status Code
+<a id="transaction-status-code"></a>
+### Transaction Status Code { #transaction-status-code }
 결제 상태 코드는 사용자가 결제를 진행하는 과정에서 발생한 상황을 나타내는 코드입니다.  
 
 > [참고]
@@ -121,9 +135,11 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 > 
 > **결제 검증 완료** 상태에서 변경이 없다면 고객 센터로 문의 주시기 바랍니다.
 
-### 결제 내역 조회
+<a id="view-transaction-list"></a>
+### 결제 내역 조회 { #view-transaction-list }
 ![purchase_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_09_kr_240103.png)
 
+<a id="view-transaction-list-category"></a>
 #### 카테고리
 
 결제 내역은 2가지 카테고리로 조회할 수 있습니다.
@@ -132,6 +148,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 - **상품 정보 미등록 결제**: 결제는 완료되었지만 상품 정보가 누락되어 아이템 지급이 불가능한 결제 내역을 조회 
 
 
+<a id="view-transaction-list-search-conditions"></a>
 #### Search conditions
 선택한 검색 유형에 따라 검색 항목이 다르게 표시됩니다.
 
@@ -157,6 +174,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 결제 시 지급된 영수증 정보를 이용해 검색할 수 있습니다.
 
 
+<a id="view-transaction-list-all-search-results"></a>
 #### [전체] 검색 결과
 검색 결과 항목은 아래와 같습니다.
 
@@ -222,6 +240,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 각각의 결제 상태마다 오른쪽 화살표를 클릭해서 부가 정보와 영수증 정보를 확인할 수 있습니다.
 
 
+<a id="view-transaction-list-search-result-of-product-information-unregistered-payment"></a>
 #### [상품 정보 미등록 결제] 검색 결과
 검색 결과 항목은 아래와 같습니다.
 
@@ -245,17 +264,20 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 * 누락된 아이템 정보를 수동으로 선택하여 지급할 수 있습니다. 
 
 
-## 결제 어뷰징 모니터링
+<a id="monitor-purchase-abuse"></a>
+## 결제 어뷰징 모니터링 { #monitor-purchase-abuse }
 
 결제 어뷰징 정보를 조회하고 자동 제재/해제 설정을 할 수 있습니다.
 
-### 환불 이력 조회
+<a id="query-refund-history"></a>
+### 환불 이력 조회 { #query-refund-history }
 
 ![purchase_20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_20_kr_240103.png)
 
 아래 검색 조건을 이용해 원하는 결제 및 환불 정보를 검색할 수 있습니다.
 결제 및 환불 내역은 오른쪽 상단의 **다운로드** 버튼을 클릭해 언제든지 다운로드할 수 있습니다.
 
+<a id="query-refund-history-search-conditions"></a>
 #### 검색 조건
 - **환불 일시**: 환불 처리된 시간
 - **유저 ID**: 결제한 사용자 ID
@@ -263,6 +285,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 - **환불 금액**: 사용자가 환불받은 금액으로, 입력한 금액 이상이 조회됩니다.
 - **스토어**: 환불한 스토어
 
+<a id="query-refund-history-search-results"></a>
 #### 검색 결과
 - **유저 ID**: 결제한 사용자 ID
 - **스토어**: 결제된 스토어 정보
@@ -277,6 +300,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 - **상태**: 사용자의 현재 상태
 - **상태 변경**: 사용자 상태에 따라 이용 정지 또는 정지 해제
 
+<a id="query-refund-history-change-status"></a>
 #### 상태 변경
 ![purchase_21](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_21_kr_240103.png)
 
@@ -288,12 +312,14 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 - **이용 정지 유예**: 이용 정지 상태로 변경할 수 있습니다.
 - **탈퇴**: 상태를 변경할 수 없으므로 해당 버튼이 표시되지 않습니다.
 
+<a id="query-refund-history-check-purchase-history"></a>
 #### 결제 내역 확인
 
 검색된 목록에서 유저 ID를 클릭하면 검색 기간의 결제 상세 내역을 조회할 수 있습니다.
 
 ![ipurchase_22](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_22_kr_240103.png)
 
+<a id="query-refund-history-purchase-history"></a>
 #### 결제 내역
 - **결제 예약 일시**: 사용자가 구입을 시도한 시간
 - **결제 일시**: 사용자가 구입을 완료한 시간
@@ -305,18 +331,21 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 - **통화 종류**: 사용자가 구입 시 사용한 통화 종류
 - **결제 상태**: 결제의 현재 진행 상태
 
-### 결제 어뷰징 자동 해제 이력 조회
+<a id="query-the-history-of-automatic-release-for-purchase-abuse"></a>
+### 결제 어뷰징 자동 해제 이력 조회 { #query-the-history-of-automatic-release-for-purchase-abuse }
 
 ![purchase_23](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_23_kr_240103.png)
 
 아래 검색 조건을 이용해 원하는 결제 어뷰징 자동 해제 사용자 정보를 검색할 수 있습니다.
 
+<a id="query-the-history-of-automatic-release-for-purchase-abuse-search-conditions"></a>
 #### 검색 조건
 - **검색 기간**: 이용 정지 유예가 시작된 시간 기준으로 조회됩니다.
 - **유저 ID**: 이용 정지 유예 사용자 ID
 - **결제 건수**: 이용 정지 유예 기간 중에 사용자가 결제한 횟수로 입력한 횟수 이상이 조회됩니다.
 - **결제 금액**: 이용 정지 유예 기간 중에 사용자가 결제한 금액으로, 입력한 금액 이상이 조회됩니다.
 
+<a id="query-the-history-of-automatic-release-for-purchase-abuse-search-results"></a>
 #### 검색 결과
 - **유저 ID**: 이용 정지 유예 사용자 ID
 - **이용 정지 유예 기간**: 이용 정지 유예 시작 및 종료 시간
@@ -326,6 +355,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 - **결제 건수(유예 기간)**: 이용 정지 유예 기간 중에 사용자가 결제한 전체 누적 횟수
 - **결제 금액(유예 기간)**: 이용 정지 유예 기간 중에 사용자가 결제한 전체 금액
 
+<a id="query-the-history-of-automatic-release-for-purchase-abuse-check-purchase-history"></a>
 #### 결제 내역 확인
 
 검색된 목록에서 유저 ID를 클릭하면 검색 기간의 결제 상세 내역을 조회할 수 있습니다.
@@ -333,6 +363,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 
 ![purchase_24](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_24_kr_240103.png)
 
+<a id="query-the-history-of-automatic-release-for-purchase-abuse-purchase-history"></a>
 #### 결제 내역
 - **결제 일시**: 사용자가 구입을 완료한 시간
 - **Transaction ID**: Gamebase 내에서 결제를 구별할 수 있는 고유 번호
@@ -341,12 +372,14 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 - **스토어 아이템 ID**: 사용자가 앱에서 구입한 실제 스토어 아이템 ID
 - **결제 금액**: 사용자가 결제한 금액
 
+<a id="query-the-history-of-automatic-release-for-purchase-abuse-set-automatic-lockdown-for-purchase-abuse"></a>
 #### 결제 어뷰징 자동 제재 설정
 
 자동 제재 설정을 사용하려면 **사용** 버튼을 클릭해 설정 값을 입력합니다.
 
 ![purchase_25](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_25_kr_240103.png)
 
+<a id="query-the-history-of-automatic-release-for-purchase-abuse-setting-information"></a>
 #### 설정 정보
 
 ![purchase_26](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_26_kr_240103.png)
@@ -364,6 +397,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
     * 자동 제재 시 해당 게임 유저의 리더보드 데이터도 함께 삭제할지 여부를 설정합니다.
     * 선택 후 등록하면 자동 제재 적용 시 리더보드에서 게임 유저의 데이터가 삭제되며 <font color="red">해당 데이터는 복구되지 않으므로</font> 주의해야 합니다.
 
+<a id="query-the-history-of-automatic-release-for-purchase-abuse-set-automatic-release-for-purchase-abuse"></a>
 #### 결제 어뷰징 자동 해제 설정
 
 자동 해제 설정을 사용하려면 **사용** 버튼을 클릭해 설정 값을 입력합니다.
@@ -371,6 +405,7 @@ Gamebase에서는 NHN Cloud IAP(In-App Purchase, 인앱 결제) 서비스를 사
 
 ![purchase_27](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_27_kr_240103.png)
 
+<a id="query-the-history-of-automatic-release-for-purchase-abuse-query-the-history-of-automatic-release-for-purchase-abuse-setting-information"></a>
 #### 설정 정보
 
 ![purchase_28](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/ko/purchase_28_kr_240103.png)

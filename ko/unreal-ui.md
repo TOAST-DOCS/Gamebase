@@ -1,12 +1,17 @@
-## Game > Gamebase > Unreal SDK 사용 가이드 > UI
+<!-- pre-align:aligned sig=95a59ace3365 -->
 
-## GameNotice
+<a id="game-gamebase-user-guide-for-unreal-sdk-ui"></a>
+## Game > Gamebase > Unreal SDK 사용 가이드 > UI { #game-gamebase-user-guide-for-unreal-sdk-ui }
+
+<a id="gamenotice"></a>
+## GameNotice { #gamenotice }
 
 콘솔에 이미지와 함께 등록한 공지 사항을 표시하는 기능입니다.
 
 ![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_001.png)
 
-### Open GameNotice
+<a id="open-gamenotice"></a>
+### Open GameNotice { #open-gamenotice }
 
 게임 공지를 화면에 표시합니다.
 
@@ -48,13 +53,15 @@ void USample::OpenGameNotice()
 }
 ```
 
-## ImageNotice
+<a id="imagenotice"></a>
+## ImageNotice { #imagenotice }
 
 콘솔에 이미지를 등록한 후 사용자에게 공지를 띄울 수 있습니다.
 
 ![ImageNotice Example](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/DevelopersGuide/imageNotice-guide-landscape-ko_v3.png)
 
-### Show ImageNotices
+<a id="show-imagenotices"></a>
+### Show ImageNotices { #show-imagenotices }
 
 이미지 공지를 화면에 띄워 줍니다.
 
@@ -92,6 +99,7 @@ void USample::ShowImageNotices(int32 ColorR, int32 ColorG, int32 ColorB, int32 C
 }
 ```
 
+<a id="show-imagenotices-fgamebaseimagenoticeconfiguration"></a>
 #### FGamebaseImageNoticeConfiguration
 
 | Parameter                              | Values                                   | Description        |
@@ -100,7 +108,8 @@ void USample::ShowImageNotices(int32 ColorR, int32 ColorG, int32 ColorB, int32 C
 | TimeOut                  | int64        | 이미지 공지 최대 로딩 시간(단위: millisecond)<br/>**default**: 5000 |
 
 
-### Close ImageNotices
+<a id="close-imagenotices"></a>
+### Close ImageNotices { #close-imagenotices }
 
 CloseImageNotices API를 호출하여 현재 표시 중인 이미지 공지를 모두 종료할 수 있습니다.
 
@@ -115,7 +124,8 @@ void CloseImageNotices();
 ```
 
 
-## Terms
+<a id="terms"></a>
+## Terms { #terms }
 
 Gamebase 콘솔에 설정한 약관을 표시합니다.
 
@@ -125,7 +135,8 @@ ShowTermsView API는 웹뷰로 약관 창을 표시해줍니다.
 Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 QueryTerms API를 호출하여, Gamebase 콘솔에 설정한 약관 항목을 불러올 수 있습니다.
 유저가 약관에 동의했다면 각 항목별 동의 여부를 UpdateTerms API를 통해 Gamebase 서버로 전송하시기 바랍니다.
 
-### ShowTermsView
+<a id="showtermsview"></a>
+### ShowTermsView { #showtermsview }
 
 약관 창을 화면에 띄워 줍니다.
 유저가 약관에 동의를 했을 경우, 동의 여부를 서버에 등록합니다.
@@ -138,6 +149,7 @@ Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 
 > * FGamebasePushConfiguration.bPushEnabled 값은 항상 true입니다.
 > * FGamebasePushConfiguration이 null이 아니라면 **로그인 후에** Subsystem->GetPush()->RegisterPush()를 호출하세요.
 
+<a id="showtermsview-optional-parameter"></a>
 #### Optional 파라미터
 
 * GamebaseTermsConfiguration : GamebaseTermsConfiguration 객체를 통해 강제 약관 동의 창 표시 여부와 같은 설정을 변경할 수 있습니다.
@@ -221,7 +233,8 @@ void USample::AfterLogin()
 ```
 
 
-### QueryTerms
+<a id="queryterms"></a>
+### QueryTerms { #queryterms }
 
 Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 게임UI에 맞는 약관을 직접 제작하고자 하신다면, QueryTerms API를 호출하여 Gamebase 콘솔에 설정한 약관 정보를 내려받아 활용하실 수 있습니다.
@@ -237,6 +250,7 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 > * 콘솔에서 '기본 약관 설정'을 하지 않는 경우 약관 언어와 다른 국가 코드로 설정된 단말기에서 queryTerms API를 호출하면 `UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)` 오류가 발생합니다.
 >     * 콘솔에서 '기본 약관 설정'을 하거나, `UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)` 오류가 발생했을 때는 약관을 표시하지 않도록 처리하시기 바랍니다.
 
+<a id="queryterms-required-parameter"></a>
 #### Required 파라미터
 * Callback: API 호출 결과를 사용자에게 콜백으로 알려줍니다. 콜백으로 오는 GamebaseResponse.Terms.QueryTermsResult로 콘솔에 설정된 약관 정보를 얻을 수 있습니다.
  
@@ -281,6 +295,7 @@ void USample::QueryTerms()
 }
 ```
 
+<a id="queryterms-gamebaseresponsetermsquerytermsresult"></a>
 #### GamebaseResponse.Terms.QueryTermsResult
 
 | Parameter            | Values                          | Description         |
@@ -291,6 +306,7 @@ void USample::QueryTerms()
 | Contents             | TArray<FGamebaseTermsContent>   | 약관 항목 정보          |
 
 
+<a id="queryterms-gamebaseresponsetermscontentdetail"></a>
 #### GamebaseResponse.Terms.ContentDetail
 
 | Parameter            | Values                | Description         |
@@ -305,7 +321,8 @@ void USample::QueryTerms()
 | DetailPageUrl        | FString               | 약관 자세히 보기 URL<br/> 없을 경우 null. |
 
 
-### UpdateTerms
+<a id="updateterms"></a>
+### UpdateTerms { #updateterms }
 
 QueryTerms API로 내려받은 약관 정보로 UI를 직접 제작했다면,
 게임유저가 약관에 동의한 내역을 UpdateTerms API를 통해 Gamebase 서버로 전송하시기 바랍니다.
@@ -319,9 +336,11 @@ QueryTerms API로 내려받은 약관 정보로 UI를 직접 제작했다면,
 > 푸시 수신 동의 여부는 **로그인 후에** Gamebase.Push.RegisterPush API를 호출해서 저장하세요.
 >
 
+<a id="updateterms-required-parameter"></a>
 #### Required 파라미터
 * Configuration: 서버에 등록할 유저의 선택 약관 정보입니다.
  
+<a id="updateterms-optional-parameter"></a>
 #### Optional 파라미터
 
 * callback : 선택 약관 정보를 서버에 등록 후 사용자에게 콜백으로 알려줍니다.
@@ -372,6 +391,7 @@ void USample::UpdateTerms(int32 TermsSeq, const FString& TermsVersion, int32 Ter
 }
 ```
 
+<a id="updateterms-gamebaserequesttermsupdatetermsconfiguration"></a>
 #### GamebaseRequest.Terms.UpdateTermsConfiguration
 
 | Parameter            | Mandatory(M) / Optional(O) | Values                    | Description         |
@@ -380,6 +400,7 @@ void USample::UpdateTerms(int32 TermsSeq, const FString& TermsVersion, int32 Ter
 | TermsSeq             | **M**                      | int32                       | 약관 전체 KEY.<br/>queryTerms API를 호출해 내려받은 값을 전달해야 합니다.             |
 | Contents             | **M**                      | List< Content > | 선택 약관 유저 동의 정보  |
 
+<a id="updateterms-gamebaserequesttermscontent"></a>
 #### GamebaseRequest.Terms.Content
 
 | Parameter            | Mandatory(M) / Optional(O) | Values             | Description         |
@@ -387,7 +408,8 @@ void USample::UpdateTerms(int32 TermsSeq, const FString& TermsVersion, int32 Ter
 | TermsContentSeq      | **M**                      | int32                | 선택 약관 항목 KEY      |
 | bAgreed               | **M**                      | bool               | 선택 약관 항목 동의 여부  |
 
-### IsShowingTermsView
+<a id="isshowingtermsview"></a>
+### IsShowingTermsView { #isshowingtermsview }
 
 현재 약관 창이 화면에 표시되고 있는지 여부를 알 수 있습니다.
 
@@ -408,9 +430,11 @@ void USample::IsShowingTermsView()
 }
 ```
 
-## Webview
+<a id="webview"></a>
+## Webview { #webview }
 
-### Show WebView
+<a id="show-webview"></a>
+### Show WebView { #show-webview }
 
 웹뷰를 표시합니다.<br/>
 
@@ -463,6 +487,7 @@ void USample::ShowWebView(const FString& Url)
 ```
 
 
+<a id="show-webview-fgamebasewebviewconfiguration"></a>
 #### FGamebaseWebViewConfiguration
 
 | Parameter                | Values                                           | Description |
@@ -492,6 +517,7 @@ void USample::ShowWebView(const FString& Url)
 > iPadOS 13 이상에서 웹뷰는 기본적으로 데스크톱 모드입니다.
 > contentMode =`GamebaseWebViewContentMode::MOBILE` 설정으로 모바일 모드로 변경할 수 있습니다.
 
+<a id="show-webview-predefined-custom-scheme"></a>
 #### Predefined Custom Scheme
 
 Gamebase에서 지정해 놓은 스킴입니다.
@@ -504,7 +530,8 @@ Gamebase에서 지정해 놓은 스킴입니다.
 | gamebase://goBack | 웹뷰 뒤로 가기 |
 
 
-### Close WebView
+<a id="close-webview"></a>
+### Close WebView { #close-webview }
 
 다음 API를 이용해 보이는 웹뷰를 닫을 수 있습니다.
 
@@ -529,7 +556,8 @@ void USample::CloseWebView()
 ```
 
 
-## Open External Browser
+<a id="open-external-browser"></a>
+## Open External Browser { #open-external-browser }
 
 다음 API를 통하여 외부 브라우져를 열 수 있습니다. 파라미터로 전송되는 url은 유효한 값이어야 합니다.
 
@@ -553,7 +581,8 @@ void USample::OpenWebBrowser(const FString& Url)
 ```
 
 
-## Alert
+<a id="alert"></a>
+## Alert { #alert }
 
 시스템 알림을 표시할 수 있습니다.
 시스템 알림에 콜백을 등록할 수도 있습니다.
@@ -587,7 +616,8 @@ void USample::ShowAlertEvent(const FString& Title, const FString& Message)
 }
 ```
 
-## Toast
+<a id="toast"></a>
+## Toast { #toast }
 
 다음 API를 사용하여 쉽게 메시지를 표시할 수 있습니다.
 
@@ -610,7 +640,8 @@ void USample::ShowToast(const FString& Message, EGamebaseToastExposureTime Expos
 }
 ```
 
-## Error Handling
+<a id="error-handling"></a>
+## Error Handling { #error-handling }
 
 | Error              | Error Code | Description                 |
 | ------------------ | ---------- | --------------------------- |

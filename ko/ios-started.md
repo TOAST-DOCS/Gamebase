@@ -1,6 +1,10 @@
-## Game > Gamebase > iOS SDK 사용 가이드 > 시작하기
+<!-- pre-align:aligned sig=18f341083517 -->
 
-## Environments
+<a id="game-gamebase-ios-developers-guide-getting-started"></a>
+## Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 { #game-gamebase-ios-developers-guide-getting-started }
+
+<a id="environments"></a>
+## Environments { #environments }
 
 
 > [INFO]
@@ -21,11 +25,13 @@
 > * https://developer.apple.com/ios/submit/
 >
 
-## Setting
+<a id="setting"></a>
+## Setting { #setting }
 
 Gamebase는 아래와 같은 방법으로 설정이 가능합니다.
 
-### Download
+<a id="download"></a>
+### Download { #download }
 
 * [Download Gamebase iOS SDK](/Download/#game-gamebase)
 
@@ -74,7 +80,8 @@ Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
 > 각 IdP에서 제공하는 외부 SDK에 대한 설정은 각 IdP의 가이드 문서를 참고하시길 바랍니다.
 >
 
-### Xcode Settings
+<a id="xcode-settings"></a>
+### Xcode Settings { #xcode-settings }
 
 압축을 풀면 다음과 같이 Gamebase.xcframework 등의 SDK를 볼 수 있습니다.
 
@@ -128,7 +135,8 @@ Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
 > * 각 타겟에 Gamebase iOS SDK를 중복해서 import 할 경우, 동작에 문제가 있을 수 있으니 유의해야 합니다.
 > 
 
-### CocoaPods Settings
+<a id="cocoapods-settings"></a>
+### CocoaPods Settings { #cocoapods-settings }
 
 Gamebase iOS SDK는 CocoaPods를 통해서도 설정할 수 있습니다.
 
@@ -187,7 +195,8 @@ end
 >
 >
 
-### IdP Settings
+<a id="idp-settings"></a>
+### IdP Settings { #idp-settings }
 
 > <font color="red">[주의]</font><br/>
 >
@@ -198,6 +207,7 @@ end
     * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information](./oper-app/#authentication-information)
 * Gamebase iOS SDK는 각 IdP별로 추가 설정이 필요합니다.
 
+<a id="idp-settings-facebook"></a>
 #### Facebook
 
 * URL Scheme을 설정해야 합니다.
@@ -221,6 +231,7 @@ end
 <string>{FACEBOOK_DISPLAY_NAME}</string>
 ```
 
+<a id="idp-settings-google"></a>
 #### Google
 
 * URL Scheme을 설정해야 합니다.
@@ -228,12 +239,14 @@ end
 * Gamebase iOS SDK 2.34.1 이하는 추가 설정이 필요합니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
+<a id="idp-settings-payco"></a>
 #### PAYCO
 
 * URL Scheme을 설정해야 합니다.
     * **Xcode > Target > Info > URL Types**에 **tcgb.{Bundle ID}.payco**를 추가해야 합니다.
     * **Xcode > Target > Info > URL Types**에 **paycologinsdk**를 추가해야 합니다.
 
+<a id="idp-settings-naver"></a>
 #### NAVER
 
 * URL Scheme을 설정해야 합니다.
@@ -250,6 +263,7 @@ end
 * Gamebase iOS SDK 1.12.1 이하는 추가 설정이 필요합니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
+<a id="idp-settings-line"></a>
 #### LINE
 
 * URL Scheme을 설정해야 합니다.
@@ -265,9 +279,11 @@ end
 * Gamebase iOS SDK 2.42.2 이하는 추가 설정이 필요합니다.
     * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
 
+<a id="idp-settings-game-center"></a>
 #### Game Center
 * Entitlements.plist에 Game Center entitlement(`com.apple.developer.game-center`)가 없다면 직접 추가해야 합니다.
 
+<a id="idp-settings-weibo"></a>
 #### Weibo
 
 * URL Scheme을 설정해야 합니다.
@@ -283,7 +299,8 @@ end
 </array>
 ```
 
-### IdP Settings (Legacy)
+<a id="idp-settings-legacy"></a>
+### IdP Settings (Legacy) { #idp-settings-legacy }
 
 **Google**
 
@@ -342,7 +359,8 @@ end
     * Twitter Developer 사이트의 Apps > 대상 프로젝트 > App Details > Callback URL 항목을 설정해야 합니다.
         *  **tcgb.{Bundle ID}.twitter://**를 추가합니다.
 
-## 3rd-Party Provider SDK Guide
+<a id="3rd-party-provider-sdk-guide"></a>
+## 3rd-Party Provider SDK Guide { #3rd-party-provider-sdk-guide }
 
 * [Facebook for developers](https://developers.facebook.com/docs/ios)
 * [NAVER for developers](https://developers.naver.com/docs/login/ios/ios.md)
@@ -353,15 +371,18 @@ end
 * [Google Sign-In for iOS](https://developers.google.com/identity/sign-in/ios)
 * [Kakaogame SDK 3.0 Guide for Channeling](https://kakaogames.atlassian.net/wiki/spaces/KS3GFC/overview)
 
-## Sample App
+<a id="sample-app"></a>
+## Sample App { #sample-app }
 
 * [https://github.com/nhn/toast.gamebase.ios.sample](https://github.com/nhn/toast.gamebase.ios.sample)
 
-## API Reference
+<a id="api-reference"></a>
+## API Reference { #api-reference }
 
 API Reference는 SDK 내에 포함되어 있습니다.
 
-## API Deprecate Governance
+<a id="api-deprecate-governance"></a>
+## API Deprecate Governance { #api-deprecate-governance }
 
 Gamebase에서 더 이상 지원하지 않는 API는 Deprecate 처리합니다.
 Deprecated 된 API는 다음 조건 충족 시 사전 공지 없이 삭제될 수 있습니다.

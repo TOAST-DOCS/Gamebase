@@ -1,6 +1,10 @@
-## Game > Gamebase > Android SDK ご利用ガイド > はじめる
+<!-- pre-align:aligned sig=63d46c12bfa4 -->
 
-## Environments
+<a id="game-gamebase-android-developers-guide-getting-started"></a>
+## Game > Gamebase > Android SDK ご利用ガイド > はじめる { #game-gamebase-android-developers-guide-getting-started }
+
+<a id="environments"></a>
+## Environments { #environments }
 
 AndroidでGamebaseを利用するためのシステム環境は、次の通りです。
 
@@ -10,7 +14,8 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 > * ビルド環境：Android Gradle Plugin 7.4.2以上
 > * 開発環境：Android Studio
 
-### Dependencies
+<a id="dependencies"></a>
+### Dependencies { #dependencies }
 
 | Gamebase SDK | Gamebase Adapter | External SDK | 用途 | minSdkVersion |
 | --- | --- | --- | --- | --- |
@@ -40,9 +45,11 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
 | Gamebase Push Adapters | gamebase-adapter-toastpush | nhncloud-push-analytics<br>nhncloud-push-core<br>nhncloud-push-notification | Pushをサポート | - |
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>nhncloud-push-fcm | Firebase Notificationをサポート | - |
 
-## Setting
+<a id="setting"></a>
+## Setting { #setting }
 
-### Console
+<a id="console"></a>
+### Console { #console }
 
 > <font color="red">[注意]</font><br/>
 >
@@ -66,13 +73,16 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
     * 次のガイドに従って新しいクライアントバージョンを登録してください。
     * [Game > Gamebase > コンソール使用ガイド > アプリ > Client > Client List](./oper-app/#client-list)
 
-### Register as Tester
+<a id="register-as-tester"></a>
+### Register as Tester { #register-as-tester }
 
+<a id="register-as-tester-gamebase-test-device"></a>
 #### Gamebase Test Device
 
 * メンテナンス中も正常にゲームにアクセスしたい場合は、Gamebaseコンソールにテスト端末を登録します。
     * [Game > Gamebase > コンソール使用ガイド > アプリ > Test Device](./oper-app/#test-device)
 
+<a id="register-as-tester-stores-tester"></a>
 #### Store's Tester
 
 * 決済テストを行うために、ストアごとに次のようにテスターとして登録します。(Gamebase Tester登録ではなく、ストアのテスト決済を行うための設定です。)
@@ -89,8 +99,10 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
     * Huawei App Gallery
         * [Huawei Developers > HMS Core > App Services > In-App Purchases > Guides > Sandbox Testing](https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/sandbox-testing-0000001050035039)
 
-### Gradle
+<a id="gradle"></a>
+### Gradle { #gradle }
 
+<a id="gradle-root-level-buildgradle"></a>
 #### Root level build.gradle
 
 * Huawei IAPを使用するにはプロジェクトレベル(root level)のsettings.gradleに次の宣言を追加してください。
@@ -109,6 +121,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
             }
         }            
 
+<a id="gradle-define-adapters"></a>
 #### Define Adapters
 
 * 使用するGamebaseバージョン、使用する認証、決済、プッシュモジュールをbuild.gradleファイルで宣言してください。
@@ -192,8 +205,10 @@ android {
 }
 ```
 
-### Resources
+<a id="resources"></a>
+### Resources { #resources }
 
+<a id="resources-huawei-store"></a>
 #### Huawei Store
 
 * AppGallery Connection構成ファイル(agconnect-services.json)をassetsフォルダに追加する必要があります。
@@ -206,6 +221,7 @@ android {
     * Unityビルドの場合
         * **agconnect-services.json** ファイルをプロジェクトの **Assets/StreamingAssets**フォルダにコピーします。
 
+<a id="resources-firebase-notification"></a>
 #### Firebase Notification
 
 * Android Studioビルドの場合
@@ -226,8 +242,10 @@ android {
     * Unrealのプロジェクトの[Gamebase Android設定](./unreal-started/#android-settings)で`GoogleServicesFilePath`の値をFirebaseコンソールからダウンロードした`google-services.json`のパスに指定します。
     * Firebase関連で他のプラグインを使う時、google-services.jsonのデータをAndroidリソースにする過程がある場合、Gamebaseが処理するリソース処理と重複してビルド中にエラーが発生する場合があります。この場合、Gamebase Androidの設定で`GoogleServicesFilePath`の値を空白にしておけば、GamebaseはそのjsonをAndroidリソースに変換する作業を行いません。
 
-### AndroidManifest.xml
+<a id="androidmanifestxml"></a>
+### AndroidManifest.xml { #androidmanifestxml }
 
+<a id="androidmanifestxml-contact"></a>
 #### Contact
 
 * サポートページ([Game > Gamebase > Android SDK使用ガイド > ETC > Additional Features > Contact](./aos-etc/#contact))でお問い合わせの際、写真やメディアを添付するために~API 21でストレージの読み取り権限宣言が必要です。
@@ -236,6 +254,7 @@ android {
 
 * Android API Level 22以上の端末でもREAD_EXTERNAL_STORAGE権限が必要な場合は、**android:maxSdkVersion="21"**構文を削除し、ランタイム権限リクエストを実装する必要があります。
 
+<a id="androidmanifestxml-facebook-idp"></a>
 #### Facebook IdP
 
 * Facebook SDKを初期化するためにApp IDとClient Tokenを宣言します。
@@ -268,6 +287,7 @@ android {
 </resources>
 ```
 
+<a id="androidmanifestxml-gpgs-idp"></a>
 #### GPGS IdP
 
 * GPGS v2認証やGPGS自動ログインに必要なライブラリを初期化するためにApp IDを宣言します。
@@ -299,6 +319,7 @@ android {
 * GPGS自動ログイン機能を使用するためには、コンソールにGoogleサービスアカウントの設定も必要です。
     * [Game > Gamebase > コンソール使用ガイド > アプリ > GPGS Automatic Login Settings](./oper-app/#gpgs-automatic-login-settings)
 
+<a id="androidmanifestxml-weibo-idp"></a>
 #### Weibo IdP
 
 * Weibo IdPが正常に動作するには、**application**タグに**android:networkSecurityConfig** attributeを追加し、weibo、sina関連URLを宣言したxmlファイル名を設定する必要があります。
@@ -328,6 +349,7 @@ android {
 </network-security-config>
 ```
 
+<a id="androidmanifestxml-one-store"></a>
 #### ONE Store
 
 * ONE storeは、全体決済画面とポップアップ決済画面をサポートします。
@@ -372,6 +394,12 @@ android {
 ```
 注意：ユーザー端末にHuawei App Galleryがインストールされている時のみ正常に決済が可能です。
 
+<a id="androidmanifestxml-huawei-store"></a>
+#### Huawei Store
+
+<!-- TODO: translate body -->
+
+<a id="androidmanifestxml-mycard"></a>
 #### MyCard
 
 * MyCard決済連動のためにはGamebaseMyCardApplicationを使用する必要があります。 AndroidManifest.xmlに次の内容を追加してください。
@@ -400,6 +428,7 @@ class MyApplication: GamebaseMyCardApplication() {
 </application>
 ```
 
+<a id="androidmanifestxml-notification-options"></a>
 #### Notification Options
 
 * 次のような方法で通知オプションを設定できます。
@@ -454,7 +483,8 @@ class MyApplication: GamebaseMyCardApplication() {
 | com.toast.sdk.push.notification.badge_enabled | boolean | バッジアイコンの使用有無。 |
 | com.toast.sdk.push.notification.foreground_enabled | boolean | フォアグラウンド通知の使用有無。 |
 
-### Android 11
+<a id="android-11"></a>
+### Android 11 { #android-11 }
 
 * Android 11は、ビルド時にあらかじめ宣言されたアプリケーションでなければ、他のアプリケーションが実行されません。
     * [https://developer.android.com/about/versions/11/privacy/package-visibility](https://developer.android.com/about/versions/11/privacy/package-visibility)
@@ -534,7 +564,8 @@ class MyApplication: GamebaseMyCardApplication() {
 </manifest>
 ```
 
-## Recommended Flow
+<a id="recommended-flow"></a>
+## Recommended Flow { #recommended-flow }
 
 * Gamebaseで推奨するflowは、Sample Projectにも同じように実装されています。
     * Android Sample Project
@@ -553,7 +584,8 @@ class MyApplication: GamebaseMyCardApplication() {
     * [Game > Gamebase > Android SDK使用ガイド > 決済 > Retry Transaction Flow](./aos-purchase/#retry-transaction-flow)
     * [Game > Gamebase > Android SDK使用ガイド > プッシュ > Register Push](./aos-push/#register-push)
 
-## 3rd-Party Provider SDK Guide
+<a id="3rd-party-provider-sdk-guide"></a>
+## 3rd-Party Provider SDK Guide { #3rd-party-provider-sdk-guide }
 
 * [Facebook for developers](https://developers.facebook.com/docs/android)
 * [Google APIs for Android](https://developers.google.com/android/guides/overview)
@@ -566,11 +598,13 @@ class MyApplication: GamebaseMyCardApplication() {
 * [Weibo for developers](https://github.com/sinaweibosdk/weibo_android_sdk/tree/master/doc)
 * [Kakaogame SDK 3.0 Guide for Channeling](https://kakaogames.atlassian.net/wiki/spaces/KS3GFC/overview)
 
-## API Reference
+<a id="api-reference"></a>
+## API Reference { #api-reference }
 
 * API Referenceは、SDKの中に含まれています。
 
-## API Deprecate Governance
+<a id="api-deprecate-governance"></a>
+## API Deprecate Governance { #api-deprecate-governance }
 
 GamebaseでサポートしないAPIは、使用していないもの(deprecate)として処理します。
 使用していない(deprecated) APIは、次の条件を満たす場合、事前告知を行わずに削除されることがあります。

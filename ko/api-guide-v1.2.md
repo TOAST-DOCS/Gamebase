@@ -1,6 +1,10 @@
-## Game > Gamebase > API v1.2 가이드
+<!-- pre-align:aligned sig=4b71bbc93ca7 -->
 
-## 변경 사항
+<a id="game-gamebase-api-v12-guide"></a>
+## Game > Gamebase > API v1.2 가이드 { #game-gamebase-api-v12-guide }
+
+<a id="updates"></a>
+## 변경 사항 { #updates }
 - IAP(in app purchase) API가 변경되었습니다.
 - Get Simple Launching API 호출 시 필수 파라미터로 storeCode가 추가되었습니다.
 - Check Maintenance API 응답 결과에 점검 대상에 대한 storeCode 정보가 추가되었습니다.
@@ -11,10 +15,12 @@
 - Purchase(IAP)의 구매 가격(price) 데이터 타입이 가이드상에서 Long 으로 잘못 표기된 것을 Float 타입으로 변경하였습니다.
 - 탈퇴 유예 기능 추가에 따라 Token Authentication, Get Member API 응답 결과에 탈퇴 유예 상태인 사용자에 대한 정보가 추가 되었습니다.
 
-## Advance Notice
+<a id="advance-notice"></a>
+## Advance Notice { #advance-notice }
 
 Gamebase Server API는 RESTful 형식으로, 서버 API를 사용하기 위해서는 다음 정보들을 알고 있어야 합니다.
 
+<a id="advance-notice-server-address"></a>
 #### Server Address
 
 API를 호출하기 위한 서버 주소는 다음과 같습니다. 해당 주소는 Gamebase Console 화면에서도 확인 가능합니다.
@@ -22,11 +28,13 @@ API를 호출하기 위한 서버 주소는 다음과 같습니다. 해당 주�
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.2.png)
 
+<a id="advance-notice-appid"></a>
 #### AppId
 
 앱 ID는 NHN Cloud 프로젝트 ID로 앱 메뉴 화면에서 확인할 수 있습니다.
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
+<a id="advance-notice-secretkey"></a>
 #### SecretKey
 
 비밀 키(secret key)는 API에 대한 접근 제어 방안으로, Gamebase Console에서 확인할 수 있습니다. 비밀 키는 Server API를 호출할 때 HTTP 헤더에 필수로 설정해야 합니다.
@@ -35,12 +43,15 @@ API를 호출하기 위한 서버 주소는 다음과 같습니다. 해당 주�
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.2.png)
 
+<a id="advance-notice-transactionid"></a>
 #### TransactionId
 
 API를 호출하는 서버에서 내부적으로 API 요청을 관리할 수 있는 방안으로 TransactionId 기능을 제공합니다. 호출하는 서버에서 HTTP 헤더에 트랜잭션 ID를 설정하여 API를 호출하면, Gamebase 서버는 응답 HTTP Header 및 응답 결과의 Response Body Header에 해당 TransactionId를 설정하여 결과를 전달합니다.
 
-## Common
+<a id="common"></a>
+## Common { #common }
 
+<a id="common-http-header"></a>
 #### HTTP Header
 
 API 호출 시 HTTP Header에 다음 항목들을 설정해야 합니다.
@@ -51,6 +62,7 @@ API 호출 시 HTTP Header에 다음 항목들을 설정해야 합니다.
 | X-Secret-Key | mandatory |SecretKey 설명 참고 |
 | X-TCGB-Transaction-Id | optional | TransactionId 설명 참고 |
 
+<a id="common-api-response"></a>
 #### API Response
 
 모든 API 요청에 대한 응답으로 **HTTP 200 OK**를 전달합니다. API 요청 성공 유무는 Response Body의 Header 항목을 참고하여 판단할 수 있습니다.
@@ -93,8 +105,10 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 <br>
 <br>
 
-## Authentication
+<a id="authentication"></a>
+## Authentication { #authentication }
 
+<a id="authentication-token-authentication"></a>
 #### Token Authentication
 
 로그인 사용자에게 발급된 Gamebase Access Token이 유효한지를 검증합니다. Access Token이 정상이면 해당 사용자의 정보를 리턴합니다.
@@ -191,8 +205,10 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 <br>
 <br>
 
-## Launching
+<a id="launching"></a>
+## Launching { #launching }
 
+<a id="launching-get-simple-launching"></a>
 #### Get Simple Launching
 
 Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 설정 정보 및 현재 점검 상태/시간/ 메시지 등 클라이언트 앱 기동시 제공되는 Launching 정보들에 대해 서버에서 간략히 확인할수 있습니다.
@@ -326,8 +342,10 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 <br>
 <br>
 
-## Member
+<a id="member"></a>
+## Member { #member }
 
+<a id="member-get-member"></a>
 #### Get Member
 
 단일 사용자에 대해 상세 정보를 조회합니다.
@@ -434,6 +452,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 <br>
 
+<a id="member-get-members"></a>
 #### Get Members
 
 다수의 사용자 정보를 간략히 조회합니다.
@@ -496,6 +515,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 <br>
 
+<a id="member-get-idp-information"></a>
 #### Get IdP Information
 
 사용자 ID로 매핑된 IdP 정보를 조회합니다.
@@ -557,6 +577,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 <br>
 
+<a id="member-get-userid-information-with-auth-key"></a>
 #### Get UserId Information with Auth key
 
 사용자 인증 키에 매핑된 사용자 ID를 조회합니다.
@@ -614,6 +635,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 [오류 코드](./error-code/#server)
 
+<a id="member-ban-histories"></a>
 #### Ban Histories
 
 사용자 이용 정지 이력을 조회합니다.
@@ -721,6 +743,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 <br>
 
+<a id="member-ban-release-histories"></a>
 #### Ban Release Histories.
 
 사용자 이용 정지 해제 이력을 조회합니다.
@@ -828,6 +851,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 <br>
 
+<a id="member-validate-transferaccount"></a>
 #### Validate TransferAccount
 
 게스트 계정 이전을 위해 발급 받은 ID 및 PASSWORD 의 유효성 검사를 수행합니다. 유효한 TransferAccount인 경우 발급 받은 userId 정보를 반환합니다.
@@ -903,6 +927,7 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 
 <br>
 
+<a id="member-withdraw"></a>
 #### Withdraw
 
 사용자 계정을 탈퇴 처리합니다.
@@ -957,8 +982,10 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 <br>
 <br>
 
-## Maintenance
+<a id="maintenance"></a>
+## Maintenance { #maintenance }
 
+<a id="maintenance-check-maintenance-set"></a>
 #### Check Maintenance Set
 
 현재 점검이 설정되어 있는지 여부를 확인합니다.
@@ -1030,8 +1057,10 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 <br>
 <br>
 
-## Coupon
+<a id="coupon"></a>
+## Coupon { #coupon }
 
+<a id="coupon-check-validation-and-consume-coupon"></a>
 #### Check Validation And Consume Coupon
 
 콘솔에서 발급된 쿠폰 코드의 유효성 검증 및 쿠폰 상태를 변경합니다. 유효한 쿠폰이면 소비 상태로 변경하고, 응답 결과로 지급할 아이템 정보를 반환합니다.
@@ -1100,8 +1129,10 @@ Console 화면에서 설정한 서버 주소, 설치 URL 등의 클라이언트 
 <br>
 <br>
 
-## Purchase(IAP)
+<a id="purchaseiap"></a>
+## Purchase(IAP) { #purchaseiap }
 
+<a id="purchaseiap-consume"></a>
 #### Consume
 
 Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완료되었다면 유저에게 아이템 지급 및 서버 내부적으로 이력을 기록한 후에, Gmaebase에 결제를 소비를 알립니다. 결제 1건당 1번만 결제를 소비할 수 있으며 결제 상태가 정상이 아니면 소비되지 않습니다.
@@ -1184,6 +1215,7 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 
 <br>
 
+<a id="purchaseiap-list-consumables"></a>
 #### List Consumables
 
 결제가 완료되었지만 아직 소비(consume)되지 않은, 미소비 결제 내역을 조회할 수 있습니다.
@@ -1267,7 +1299,8 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 
 <br>
 
-### List Active Subscriptions
+<a id="list-active-subscriptions"></a>
+### List Active Subscriptions { #list-active-subscriptions }
 
 유저가 현재 구독 중인 결제를 조회할 수 있습니다.
 
@@ -1363,11 +1396,13 @@ Google Play Store, App Store, ONEStore 등 스토어 결제가 정상으로 완�
 <br>
 <br>
 
-## Leaderboard
+<a id="leaderboard"></a>
+## Leaderboard { #leaderboard }
 
 Gamebase는 NHN Cloud Leaderboard 서비스의 서버 API에 대해 **Wrapping** 기능을 제공합니다. Wrapping 기능을 사용하면 사용자 서버에서 일관된 인터페이스로 NHN Cloud 서비스들을 사용할 수 있습니다.
 
 
+<a id="leaderboard-wrapping-api"></a>
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
 | --- | --- | --- | --- |
@@ -1399,9 +1434,11 @@ GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.2/apps/{appId}/fact
 
 <br>
 
-## Others
+<a id="others"></a>
+## Others { #others }
 
-### Support
+<a id="support"></a>
+### Support { #support }
 
 API 호출 실패 원인에 대한 문의 사항이 있을 경우, **API 호출 URL(HTTP body가 있는 경우는 body와 함께)과 그에 대한 응답 결과**를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다.
 

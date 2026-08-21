@@ -1,6 +1,10 @@
-## Game > Gamebase > Android Developer's Guide > Getting Started
+<!-- pre-align:aligned sig=63d46c12bfa4 -->
 
-## Environments
+<a id="game-gamebase-android-developers-guide-getting-started"></a>
+## Game > Gamebase > Android Developer's Guide > Getting Started { #game-gamebase-android-developers-guide-getting-started }
+
+<a id="environments"></a>
+## Environments { #environments }
 
 To execute Gamebase in Android, the following system environment is required.
 
@@ -10,7 +14,8 @@ To execute Gamebase in Android, the following system environment is required.
 > * Build environment: Android Gradle Plugin 7.4.2 or higher
 > * Development environment: Android Studio
 
-### Dependencies
+<a id="dependencies"></a>
+### Dependencies { #dependencies }
 
 | Gamebase SDK | Gamebase Adapter | External SDK | Purpose | minSdkVersion |
 | --- | --- | --- | --- | --- |
@@ -41,9 +46,11 @@ To execute Gamebase in Android, the following system environment is required.
 |  | gamebase-adapter-push-fcm | firebase-messaging-17.6.0<br>nhncloud-push-fcm | Support Firebase Cloud Messaging | - |
 
 
-## Setting
+<a id="setting"></a>
+## Setting { #setting }
 
-### Console
+<a id="console"></a>
+### Console { #console }
 
 > <font color="red">[Caution]</font><br/>
 >
@@ -67,13 +74,16 @@ To execute Gamebase in Android, the following system environment is required.
     * Use the following guide to register a new client version.
     * [Game > Gamebase > Console User Guide > App > Client > Client List](./oper-app/#client-list)
 
-### Register as Tester
+<a id="register-as-tester"></a>
+### Register as Tester { #register-as-tester }
 
+<a id="register-as-tester-gamebase-test-device"></a>
 #### Gamebase Test Device
 
 * To be able to access games even during maintenance, register the test device in the Gamebase console.
     * [Game > Gamebase > Console User Guide > App > Test Device](./oper-app/#test-device)
 
+<a id="register-as-tester-stores-tester"></a>
 #### Store's Tester
 
 * For payment test, register as a tester as follows for each store: (This is not settings for Gamebase Tester registration but for test payment of the store.)
@@ -90,8 +100,10 @@ To execute Gamebase in Android, the following system environment is required.
     * Huawei App Gallery
         * [Huawei Developers > HMS Core > App Services > In-App Purchases > Guides > Sandbox Testing](https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/sandbox-testing-0000001050035039)
 
-### Gradle
+<a id="gradle"></a>
+### Gradle { #gradle }
 
+<a id="gradle-root-level-buildgradle"></a>
 #### Root level build.gradle
 
 * To enable Huawei IAP, add the following declaration to your project-level (root level) settings.gradle
@@ -110,6 +122,7 @@ To execute Gamebase in Android, the following system environment is required.
             }
         }
 
+<a id="gradle-define-adapters"></a>
 #### Define Adapters
 
 * Declare Gamebase version and authentication to use, and the payment and the push modules in the build.gradle file.
@@ -193,8 +206,10 @@ android {
 }
 ```
 
-### Resources
+<a id="resources"></a>
+### Resources { #resources }
 
+<a id="resources-huawei-store"></a>
 #### Huawei Store
 
 * You must add the AppGallery Connection configuration file (agconnect-services.json) to the assets folder.
@@ -207,6 +222,7 @@ android {
     * For Unity builds
         * Copy the **agconnect-services.json** file to the **Assets/StreamingAssets** folder in your project.
 
+<a id="resources-firebase-notification"></a>
 #### Firebase Notification
 
 * For Android Studio build
@@ -227,8 +243,10 @@ android {
     * The Gamebase Unreal SDK includes an empty google-service-json.xml file, so follow the instructions in 'For a Unity build' to change to an xml file from the json file.
     * If there is Content automatically creating xml in a similar form like EasyFirebase, there may be a build error due to resource duplication. At this time, remove the google-service-json.xml file.
 
-### AndroidManifest.xml
+<a id="androidmanifestxml"></a>
+### AndroidManifest.xml { #androidmanifestxml }
 
+<a id="androidmanifestxml-contact"></a>
 #### Contact
 
 * To attach photos and media when writing an inquiry on the Customer Center ([Game > Gamebase > Android SDK User Guide > ETC > Additional Features > Contact](./aos-etc/#contact)), storage read permission declaration is required on devices below Android API Level 21 (OS 5.0).
@@ -237,6 +255,7 @@ android {
   
 * If you need the READ_EXTERNAL_STORAGE permission even on devices with Android API Level 22 or higher, you must remove the **android:maxSdkVersion="21"** syntax and implement a runtime permission request.
 
+<a id="androidmanifestxml-facebook-idp"></a>
 #### Facebook IdP
 
 * Declares the App ID and the client token to initialize Facebook SDK.
@@ -269,6 +288,7 @@ android {
 </resources>
 ```
 
+<a id="androidmanifestxml-gpgs-idp"></a>
 #### GPGS IdP
 
 * Declare an App ID to initialize the libraries needed for GPGS v2 authentication or GPGS auto-login.
@@ -300,6 +320,7 @@ android {
 * To use the GPGS auto-sign-in feature, you also need to set up a Google Services account in the console.
     * [Game > Gamebase > Console User Guide > App > GPGS Automatic Login Settings](./oper-app/#gpgs-automatic-login-settings)
 
+<a id="androidmanifestxml-weibo-idp"></a>
 #### Weibo IdP
 
 * In order for Weibo IdP to work properly, **android:networkSecurityConfig** attribute must be added to **application** tag, and the name of the xml file which has declared the weibo/sina-related URL must be set.
@@ -329,6 +350,7 @@ android {
 </network-security-config>
 ```
 
+<a id="androidmanifestxml-one-store"></a>
 #### ONE Store
 
 * ONE store supports both full payment screen and payment popup window.
@@ -356,6 +378,7 @@ android {
 | Full payment screen | "full" |
 | Payment popup window | "popup" |
 
+<a id="androidmanifestxml-huawei-store"></a>
 #### Huawei Store
 
 * When building multi platforms like Unity, add the following instead of the apply plugin to enable normal payment.
@@ -373,6 +396,7 @@ android {
 ```
 Caution: Huawei App Gallery must be installed on your device to make payment normally.
 
+<a id="androidmanifestxml-mycard"></a>
 #### MyCard
 
 * To integrate with MyCard payment, you must use GamebaseMyCardApplication. Add the following to the AndroidManifest.xml.
@@ -401,6 +425,7 @@ class MyApplication: GamebaseMyCardApplication() {
 </application>
 ```
 
+<a id="androidmanifestxml-notification-options"></a>
 #### Notification Options
 
 * You can use the following method to set the notification option:
@@ -460,7 +485,8 @@ class MyApplication: GamebaseMyCardApplication() {
 | com.toast.sdk.push.notification.badge_enabled | boolean | Whether to use a badge icon or not. |
 | com.toast.sdk.push.notification.foreground_enabled | boolean | Whether to use the foreground notification or not. |
 
-### Android 11
+<a id="android-11"></a>
+### Android 11 { #android-11 }
 
 * When building on Android 11, no other applications will run unless pre-declared.
     * [https://developer.android.com/about/versions/11/privacy/package-visibility](https://developer.android.com/about/versions/11/privacy/package-visibility)
@@ -540,7 +566,8 @@ class MyApplication: GamebaseMyCardApplication() {
 </manifest>
 ```
 
-## Recommended Flow
+<a id="recommended-flow"></a>
+## Recommended Flow { #recommended-flow }
 
 * The flow recommended by Gamebase is identically implemented in the Sample Project.
     * Android Sample Project
@@ -559,7 +586,8 @@ class MyApplication: GamebaseMyCardApplication() {
     * [Game > Gamebase > Android SDK User Guide > Payment > Retry Transaction Flow](./aos-purchase/#retry-transaction-flow)
     * [Game > Gamebase > Android SDK User Guide > Push > Register Push](./aos-push/#register-push)
 
-## 3rd-Party Provider SDK Guide
+<a id="3rd-party-provider-sdk-guide"></a>
+## 3rd-Party Provider SDK Guide { #3rd-party-provider-sdk-guide }
 
 * [Facebook for developers](https://developers.facebook.com/docs/android)
 * [Google APIs for Android](https://developers.google.com/android/guides/overview)
@@ -572,11 +600,13 @@ class MyApplication: GamebaseMyCardApplication() {
 * [Weibo for developers](https://github.com/sinaweibosdk/weibo_android_sdk/tree/master/doc)
 * [Kakaogame SDK 3.0 Guide for Channeling](https://kakaogames.atlassian.net/wiki/spaces/KS3GFC/overview)
 
-## API Reference
+<a id="api-reference"></a>
+## API Reference { #api-reference }
 
 * API Reference is included in SDK.
 
-## API Deprecate Governance
+<a id="api-deprecate-governance"></a>
+## API Deprecate Governance { #api-deprecate-governance }
 
 The API which is not supported by Gamebase anymore is processed as deprecated (deprecate).
 A deprecated API can be deleted without any prior notice when the following conditions are met:

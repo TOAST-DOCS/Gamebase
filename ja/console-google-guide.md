@@ -1,41 +1,50 @@
-## Game > Gamebase > ストアコンソールガイド > Googleコンソールガイド
+<!-- pre-align:aligned sig=b8b98a046a8f -->
+
+<a id="game-gamebase-store-console-guide-google-console-guide"></a>
+## Game > Gamebase > ストアコンソールガイド > Googleコンソールガイド { #game-gamebase-store-console-guide-google-console-guide }
 
 > [告知]
 > 本文書はGoogle Playにリリースされたアプリの情報を[[Gamebase IAP](https://docs.toast.com/ko/Game/Gamebase/ko/oper-purchase/)コンソールに登録および連動させる方法について扱います。
 > Google Playにアプリをリリースするためのより詳細なコンソール設定関連事項については、Googleが提供するGoogle Play Consoleガイドを参照してください。
 
-## Googleサイト
+<a id="google-site"></a>
+## Googleサイト { #google-site }
 
 連動に必要な情報を得るために下記のGoogleサイトを利用します。
 - [Google Play Console](https://play.google.com/console/developers)
 - [Google Cloud Console](https://console.cloud.google.com/)
 - [Google Developers - OAuth 2.0 Playground](https://developers.google.com/oauthplayground/)
 
-## 基本情報入力
+<a id="enter-basic-information"></a>
+## 基本情報入力 { #enter-basic-information }
 
 ![Gamebase IAPアプリ設定](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/260202_ja_01.png)
 
-### 1. Store App ID
+<a id="store-app-id"></a>
+### 1. Store App ID { #store-app-id }
 - Google Play登録のためにビルドしたアプリのPackage Nameで、Google Play内でアプリを識別できる固有の値です。
 - アプリを登録したら、Google Play Consoleのアプリ一覧やダッシュボードなどで確認できます。
 
 ![Google Cloudプロジェクトのリンク](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/260202_ja_02.png)
 
 
-### 2. Google InApp Purchase License Key
+<a id="google-inapp-purchase-license-key"></a>
+### 2. Google InApp Purchase License Key { #google-inapp-purchase-license-key }
 - ライセンス確認のためGoogle Play Consoleに接続します。
 - **ホーム**画面で設定するアプリを選択し、**収益化設定**に移動します。
 - 項目のうち**ライセンス**にあるBase64でエンコードされた内容をコピーして貼り付けます。
 
 ![Google Cloudプロジェクトのリンク](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/260202_ja_03.png)
 
-### 3. マーケット連動検証省略
+<a id="skip-market-integration-verification"></a>
+### 3. マーケット連動検証省略 { #skip-market-integration-verification }
 - Googleの障害状況に備えたオプションで、通常はデフォルトの**NO**に設定してください。
 - **YES**に設定すると、送信された決済情報の改ざん有無のみを確認し、Googleの検証を省略します。
 - すべての決済に有効なわけではなく購読や再検証などには適用されません。
 
 
-## 連動のための2つの認証方式を提供
+<a id="two-authentication-methods-for-integration"></a>
+## 連動のための2つの認証方式を提供 { #two-authentication-methods-for-integration }
 
 - Google連携のためにはGoogle Cloud APIを使用する必要があり、Google Cloud APIはGoogleが提供するOAuth2.0認証が必要です。
 - Gamebase IAPはGoogleのOAuth2.0認証のうち、**クライアントID**方式と**サービスアカウント**方式をサポートします。
@@ -58,11 +67,13 @@
 ![Gamebase IAPアプリ設定](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/260202_ja_04.png)
 
 
-## Google Cloudプロジェクト設定
+<a id="set-up-google-cloud-project"></a>
+## Google Cloudプロジェクト設定 { #set-up-google-cloud-project }
 - Google Playに登録されたアプリと連動するためにGoogle Cloudプロジェクトが必要です。
 - 既に作られたプロジェクトがある場合は,既存のプロジェクトを使うことも可能ですが、ここではGoogle Cloudプロジェクトの作成からガイドします。
 
-### 1. プロジェクト作成
+<a id="create-a-project"></a>
+### 1. プロジェクト作成 { #create-a-project }
 
 - プロジェクトを作成するため[Google Cloud Console](https://console.cloud.google.com/)にアクセスします。
 - Google Play Console開発者アカウントを所有するユーザーでログインします。
@@ -73,7 +84,8 @@
 
 ![Google Cloudプロジェクトのリンク](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/260202_ja_06.png)
 
-### 2. プロジェクトで使うAPIを追加
+<a id="add-apis-to-use-in-your-project"></a>
+### 2. プロジェクトで使うAPIを追加 { #add-apis-to-use-in-your-project }
 - 生成したプロジェクトを選択して、**API及びサービス > ライブラリ**メニューに移動します。
 - **APIライブラリ**で使用するAPIを選択します。Google Playに登録したアプリと連動するために次のAPIが必要です。
 - **Play Android Developer API**
@@ -83,18 +95,21 @@
 ![Google Cloudプロジェクトのリンク](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/260202_ja_07.png)
 
 
-### 3. Google Cloud Consoleメニュー表示
+<a id="show-the-google-cloud-console-menu"></a>
+### 3. Google Cloud Consoleメニュー表示 { #show-the-google-cloud-console-menu }
 
 - 設定過程でGoogle Cloud Pub/Subのように見えないメニューがある場合、**製品及びソリューション > すべての製品**に入るとメニュー(固定された製品)に追加できます。
 
 ![Google Cloudプロジェクトのリンク](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/260202_ja_08.png)
 
-## SUPERVISOR連動方式設定
+<a id="set-up-supervisor-integration"></a>
+## SUPERVISOR連動方式設定 { #set-up-supervisor-integration }
 
 Gamebase IAPでGoogle CloudクライアントID認証を使用するためには、クライアントIDで作成したRefresh tokenが必要です。Refresh tokenの生成中はユーザーの承認プロセスがあり、そのためにGoogle Cloudプロジェクトで**OAuth同意画面**を設定する必要があります。Google Play Consoleに登録したアプリのアクセス権限はRefresh tokenの生成を承認したユーザーの権限に従います。
 
 
-### 1. OAuth同意画面構成
+<a id="configure-the-oauth-consent-screen"></a>
+### 1. OAuth同意画面構成 { #configure-the-oauth-consent-screen }
 - クライアントIDを作成する前に**OAuth同意画面**を設定したことがない場合は、まず**OAuth同意画面**を設定する必要があります。
 - **APIおよびサービス > OAuth同意画面**で、ユーザーが認証情報の生成を承認する際に表示される画面を設定します。
 - Google Workspaceを使用しなかった場合、**User Type**は**外部**のみ選択が可能です。
@@ -102,7 +117,8 @@ Gamebase IAPでGoogle CloudクライアントID認証を使用するためには
 
 ![Google Cloudプロジェクトのリンク](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/260202_ja_09.png)
 
-### 2. Google CloudクライアントIDの作成
+<a id="create-a-google-cloud-client-id"></a>
+### 2. Google CloudクライアントIDの作成 { #create-a-google-cloud-client-id }
 
 - **APIおよびサービス > ユーザー認証情報**で上部の**ユーザー認証情報の作成 > OAuthクライアントID**を選択して**OAuthクライアントIDの作成**ページに入ります。
 
@@ -120,7 +136,8 @@ Gamebase IAPでGoogle CloudクライアントID認証を使用するためには
 
 ![Google Cloudプロジェクトのリンク](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/260202_ja_12.png)
 
-### 3. OAuthクライアントでRefresh token作成
+<a id="create-a-refresh-token-with-oauth-client"></a>
+### 3. OAuthクライアントでRefresh token作成 { #create-a-refresh-token-with-oauth-client }
 
 - Refresh tokenを作成するために[Google Developers - OAuth 2.0 Playground](https://developers.google.com/oauthplayground)に接続します。
 - **Step 1**で認証に使用するAPIである**Google Play Android Developer API v3**の```https://www.googleapis.com/auth/androidpublisher```を選択します。
@@ -143,7 +160,8 @@ Gamebase IAPでGoogle CloudクライアントID認証を使用するためには
 
 - **Step 3**は進行しなくても構いません。
 
-### 4. Gamebase IAPアプリでクライアント情報設定
+<a id="set-up-client-information-in-gamebase-iap-app"></a>
+### 4. Gamebase IAPアプリでクライアント情報設定 { #set-up-client-information-in-gamebase-iap-app }
 
 - **IAP > App**の登録または修正でGoogle Cloud ConsoleとGoogle Developsersで確認した情報を入力します。
 - **Google API Client ID : クライアントID**を入力
@@ -158,12 +176,14 @@ Gamebase IAPでGoogle CloudクライアントID認証を使用するためには
 > 他にも有効期限が切れる場合がありますので、[GoogleのOAuth 2.0ガイド - 更新トークンの有効期限](https://developers.google.com/identity/protocols/oauth2?hl=ko#expiration)を必ずご確認ください。
 
 
-## SERVICE_ACCOUNT連動方式設定
+<a id="setting-up-the-serviceaccount-integration-method"></a>
+## SERVICE_ACCOUNT連動方式設定 { #setting-up-the-serviceaccount-integration-method }
 
 人以外のユーザーがGoogle CloudリソースにアクセスできるようにGoogle Cloud IAMでサービスアカウントを発行できます。ユーザーアカウントとの違いや運営戦略は、[Google Cloud IAMドキュメント](https://cloud.google.com/iam/docs/service-account-overview?hl=ko)または[Google Cloud認証ドキュメント](https://cloud.google.com/docs/authentication?hl=ko#credentials)を参照してください。
 
 
-### 1. Google Cloudサービスアカウントの作成
+<a id="create-a-google-cloud-services-account"></a>
+### 1. Google Cloudサービスアカウントの作成 { #create-a-google-cloud-services-account }
 
 - **IAMおよび管理者 > サービスアカウント**で**サービスアカウントの作成**をクリックするか、**APIとサービス > ユーザー認証情報**で**ユーザー認証情報の作成 > サービスアカウント**を選択します。
 
@@ -182,7 +202,8 @@ Gamebase IAPでGoogle CloudクライアントID認証を使用するためには
 
 - その後,完了をするか、追加でサービスアカウントの管理者メールアドレスを登録できます。管理者メールアドレスを登録すると、作成中のサービスアカウントの管理権限を取得します。もし現在プロジェクトに参加していないユーザーメールであれば、招待メールが送信されます。
 
-### 2. Google Cloudサービスアカウントのキー作成
+<a id="generate-a-key-for-your-google-cloud-services-account"></a>
+### 2. Google Cloudサービスアカウントのキー作成 { #generate-a-key-for-your-google-cloud-services-account }
 
 - 作成されたサービスアカウントをクリックして詳細を確認します。
 - **キータブ**に移動して**キーの追加 > 新しいキーの作成**を選択します。
@@ -196,7 +217,8 @@ Gamebase IAPでGoogle CloudクライアントID認証を使用するためには
 >また、キーはサービスアカウントに付与したすべての権限を使用することができますので、キーのセキュリティに十分ご注意ください。
 
 
-### 3. Google Play Consoleにサービスアカウント登録
+<a id="register-a-service-account-with-google-play-console"></a>
+### 3. Google Play Consoleにサービスアカウント登録 { #register-a-service-account-with-google-play-console }
 
 - Google Play Consoleに接続します。
 - **ユーザーおよび権限**で**新規ユーザー招待**ボタンをクリックします。
@@ -213,18 +235,21 @@ Gamebase IAPでGoogle CloudクライアントID認証を使用するためには
 
 > Googleの一般ユーザーアカウントもGoogle Cloudのプロジェクトに主メンバーとして登録されており、Google Play Consoleでユーザー招待と権限を付与すれば、SUPERVISOR方式のようにクライアントIDでGoogle Cloud APIアクセスが可能です。
 
-### 4. Gamebase IAPアプリでサービスアカウント設定
+<a id="set-up-a-service-account-in-the-gamebase-iap-app"></a>
+### 4. Gamebase IAPアプリでサービスアカウント設定 { #set-up-a-service-account-in-the-gamebase-iap-app }
 - Gamebase IAP > storeの登録または修正で**サービスアカウント連動情報**項目にダウンロードしたサービスアカウントのキーファイルの内容を入力します。
 - コピーする際は、メモ帳などのテキストエディタを使用して内容全体をコピーしてください。
 
 ![Gamebase IAPアプリ設定](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/260202_ja_22.png)
 
 
-## リアルタイム購読状態を受信するためのGoogle通知設定
+<a id="set-up-google-notifications-to-receive-real-time-subscription-status"></a>
+## リアルタイム購読状態を受信するためのGoogle通知設定 { #set-up-google-notifications-to-receive-real-time-subscription-status }
 
 Google Playで購読商品を販売する場合、Gamebase IAPではGoogleから通知を受け取り、購読の最新状態を管理できます。購読商品の更新は、更新時にGoogle内で自動的に行われます。このようなGoogle内で発生する購読イベントを追跡するため、Google Cloudの**トピック(Topic)**を使用します。トピックに関する追加内容は[Android Developers - トピックの作成](https://developer.android.com/google/play/billing/getting-ready#create-topic)で確認できます。
 
-### 1. Google Cloud通知トピックの作成
+<a id="create-a-google-cloud-notification-topic"></a>
+### 1. Google Cloud通知トピックの作成 { #create-a-google-cloud-notification-topic }
 - [Google Cloud Console](https://console.cloud.google.com/)に接続します。
 - **Pub/Sub**で**トピックの作成**をクリックします。
 - **トピックID**を入力し、**基本購読の追加**と**Google管理暗号化キー**を選択してトピックを作成します。
@@ -239,7 +264,8 @@ Google Playで購読商品を販売する場合、Gamebase IAPではGoogleから
 
 ![Google Cloudプロジェクトのリンク](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/260202_ja_25.png)
 
-### 2. トピックに掲示する購読設定
+<a id="set-up-subscriptions-to-publish-to-the-topic"></a>
+### 2. トピックに掲示する購読設定 { #set-up-subscriptions-to-publish-to-the-topic }
 - トピックを作成すると、**購読**メニューで該当トピックの購読が一緒に作成されたことが確認できます。
 - 購読修正に移動し、**送信タイプ**は**プッシュ**を選択し、**エンドポイントURL**はGamebase IAPの通知受信アドレスである```https://api-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/GG ```を入力します。入力時に```{YOUR_PACKAGE_NAME}```は、上記のGamebase IAPアプリ基本情報入力中の**Store App ID**と同じ値に置き換えてください。
 - Gamebaseサンドボックスを使用している場合、**エンドポイントURL**は```https://sandbox-api-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/GG```と入力します。
@@ -248,7 +274,8 @@ Google Playで購読商品を販売する場合、Gamebase IAPではGoogleから
 ![Google Cloudプロジェクトのリンク](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/260202_ja_26.png)
 
 
-### 3. Google Play Consoleに購読 トピック 登録
+<a id="register-a-subscription-topic-in-google-play-console"></a>
+### 3. Google Play Consoleに購読 トピック 登録 { #register-a-subscription-topic-in-google-play-console }
 
 - **ホーム**画面で通知を受けるアプリを選択し、**収益化設定**に入ります。
 - **Google Play決済**項目のうち**トピック 名**に先に作成したトピックの**トピック 名**を入力します。

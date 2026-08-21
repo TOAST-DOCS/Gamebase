@@ -1,8 +1,12 @@
-## Game > Gamebase > iOS Developer's Guide > Initialization
+<!-- pre-align:aligned sig=4e4168cc7b07 -->
+
+<a id="game-gamebase-ios-developers-guide-initialization"></a>
+## Game > Gamebase > iOS Developer's Guide > Initialization { #game-gamebase-ios-developers-guide-initialization }
 
 To use Gamebase iOS SDK, initialization is required.
 
-### Import Header File
+<a id="import-header-file"></a>
+### Import Header File { #import-header-file }
 
 First, import Gamebase header file to the app.<br/>
 Get the following header file to where Gamebase functions will be initialized, such as AppDelegate.h.
@@ -11,13 +15,15 @@ Get the following header file to where Gamebase functions will be initialized, s
 #import <Gamebase/Gamebase.h>
 ```
 
-### Initialization Flow
+<a id="initialization-flow"></a>
+### Initialization Flow { #initialization-flow }
 
 When the game starts, enable the Debug Mode and reset the Gamebase to implement the flow as shown below so that entering the game will be determined based on the Launching Status Code.
 
 ![initialization flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/initialization_flow_2.19.0.png)
 
-### Configuration Settings
+<a id="configuration-settings"></a>
+### Configuration Settings { #configuration-settings }
 
 When Gamebase is initialized, Gamebase setting can be modified with TCGBConfiguration.
 
@@ -29,7 +35,8 @@ When Gamebase is initialized, Gamebase setting can be modified with TCGBConfigur
 | enableBanPopup:                    | O                          | **[UI]**<br/>When a game user is banned, you can change whether to allow Gamebase to automatically display a pop-up on the reasons.<br/>Works only when **enablePopup:YES**.<br/>The default value is **YES**. |
 
 
-### Debug Mode
+<a id="debug-mode"></a>
+### Debug Mode { #debug-mode }
 Gamebase shows warning and error logs only.
 To turn on system logs for the reference of development, call **[TCGBGamebase setDebugMode:YES]**.
 
@@ -45,7 +52,8 @@ Please see the following guide to set in the console.
 
 
 
-### Initialize
+<a id="initialize"></a>
+### Initialize { #initialize }
 Process initialization, in **application:didFinishLaunchingWithOptions:**.
 
 
@@ -87,7 +95,8 @@ Process initialization, in **application:didFinishLaunchingWithOptions:**.
 
 
 
-### Launching Information
+<a id="launching-information"></a>
+### Launching Information { #launching-information }
 
 Check launching status by calling Gamebase#initialize.<br/>
 Need to call launching status after Gamebase is initialized.
@@ -131,6 +140,7 @@ NSDictionary* launchingInfo = [TCGBLaunching launchingInformations];
 ```
 
 
+<a id="launching-information-launching"></a>
 #### 1. launching
 
 Refers to Gamebase launching data.
@@ -224,6 +234,7 @@ Below is the user information who initialized Gamebase.
         * Type matched with the test device information
         * Forwarded when matchingFlag is true
 
+<a id="launching-information-tcproduct"></a>
 #### 2. tcProduct
 
 The appKey of the NHN Cloud service associated with Gamebase.
@@ -233,6 +244,7 @@ The appKey of the NHN Cloud service associated with Gamebase.
 * iap
 * push
 
+<a id="launching-information-tciap"></a>
 #### 3. tcIap
 
 This is information about IAP stores registered in the NHN Cloud console.
@@ -243,6 +255,7 @@ This is information about IAP stores registered in the NHN Cloud console.
 
 [Game > Gamebase > Console Guide > Purchase](./oper-purchase/)
 
+<a id="launching-information-tclaunching"></a>
 #### 4. tcLaunching
 
 The information users entered in the NHN Cloud Launching Console.
@@ -253,7 +266,8 @@ The information users entered in the NHN Cloud Launching Console.
 [Game > Gamebase > Console Guide > Management > Config](./oper-management/#config)
 
 
-### Handling Unregistered Version
+<a id="handling-unregistered-version"></a>
+### Handling Unregistered Version { #handling-unregistered-version }
       
 If GameClientVersion that is not registered in the Gamebase Console is initialized, the **LAUNCHING_UNREGISTERED_CLIENT(2004)** error occurs.
 In the enablePopup(true), enableLaunchingStatusPopup(true) status, it forces the update popup to be displayed and users can move to the market.
@@ -305,7 +319,8 @@ If the Gamebase popup is not used, the related UI can be manually implemented so
 }
 ```
 
-## Lifecycle Event
+<a id="lifecycle-event"></a>
+## Lifecycle Event { #lifecycle-event }
 
 To manage iOS app events, implement the following **UIApplicationDelegate** protocol.
 
@@ -314,7 +329,8 @@ To manage iOS app events, implement the following **UIApplicationDelegate** prot
 > If you are using SceneDelegate (iOS 13 or later), **UISceneDelegate** protocol must be implemented.
 >
 
-### DidFinishLaunching Event
+<a id="didfinishlaunching-event"></a>
+### DidFinishLaunching Event { #didfinishlaunching-event }
 You need to notify Gamebase that your app has started by calling the **application:didFinishLaunchingWithOptions:** method.
 
 ```objectivec
@@ -324,7 +340,8 @@ You need to notify Gamebase that your app has started by calling the **applicati
 }
 ```
 
-### OpenURL Event
+<a id="openurl-event"></a>
+### OpenURL Event { #openurl-event }
 Call **application:openURL:options:** method to notify Gamebase when application's external URL was tried to be open. Gamebase will deliver a corresponding value to authentication SDK of each IdP to make it operate as required.
 
 
@@ -346,7 +363,8 @@ If you are using SceneDelegate (iOS 13 or later), **scene:openURLContexts:** met
 ```
 
 
-### DidBecomeActive Event
+<a id="didbecomeactive-event"></a>
+### DidBecomeActive Event { #didbecomeactive-event }
 Call **applicationDidBecomeActive:** method to notify Gamebase whether an app has been activated or not. Gamebase delivers a corresponding value to authentication SDK of each IdP to make it operate as required.
 
 
@@ -367,7 +385,8 @@ If you are using SceneDelegate (iOS 13 or later), **sceneDidBecomeActive:** meth
 }
 ```
 
-### DidEnterBackground Event
+<a id="didenterbackground-event"></a>
+### DidEnterBackground Event { #didenterbackground-event }
 Call **applicationDidEnterBackground**, to notify Gamebase that an app will be converted to background.
 
 
@@ -387,7 +406,8 @@ If you are using SceneDelegate (iOS 13 or later), **sceneDidEnterBackground:** m
 }
 ```
 
-### WillEnterForeground Event
+<a id="willenterforeground-event"></a>
+### WillEnterForeground Event { #willenterforeground-event }
 Call **applicationWillEnterForeground**, to notify Gamebase that an app will be converted to foreground.
 
 ```objectivec
@@ -406,7 +426,8 @@ If you are using SceneDelegate (iOS 13 or later), **sceneWillEnterForeground:** 
 }
 ```
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                              | Error Code | Description            |
 | ---------------------------------- | ---------- | ---------------------- |

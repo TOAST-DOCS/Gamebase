@@ -1,12 +1,17 @@
-## Game > Gamebase > Unreal SDKご利用ガイド > UI
+<!-- pre-align:aligned sig=95a59ace3365 -->
 
-## GameNotice
+<a id="game-gamebase-user-guide-for-unreal-sdk-ui"></a>
+## Game > Gamebase > Unreal SDKご利用ガイド > UI { #game-gamebase-user-guide-for-unreal-sdk-ui }
+
+<a id="gamenotice"></a>
+## GameNotice { #gamenotice }
 
 コンソールに画像と一緒に登録した告知事項を表示する機能です。
 
 ![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_001.png)
 
-### Open GameNotice
+<a id="open-gamenotice"></a>
+### Open GameNotice { #open-gamenotice }
 
 ゲーム告知を画面に表示します。
 
@@ -48,13 +53,15 @@ void USample::OpenGameNotice()
 }
 ```
 
-## ImageNotice
+<a id="imagenotice"></a>
+## ImageNotice { #imagenotice }
 
 コンソールにイメージを登録した後、ユーザーに告知を表示できます。
 
 ![ImageNotice Example](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/DevelopersGuide/imageNotice-guide-landscape-ja_v3.png)
 
-### Show ImageNotices
+<a id="show-imagenotices"></a>
+### Show ImageNotices { #show-imagenotices }
 
 イメージ告知を画面に表示します。
 
@@ -92,6 +99,7 @@ void USample::ShowImageNotices(int32 ColorR, int32 ColorG, int32 ColorB, int32 C
 }
 ```
 
+<a id="show-imagenotices-fgamebaseimagenoticeconfiguration"></a>
 #### FGamebaseImageNoticeConfiguration
 
 | Parameter                              | Values                                   | Description        |
@@ -100,7 +108,8 @@ void USample::ShowImageNotices(int32 ColorR, int32 ColorG, int32 ColorB, int32 C
 | timeOut                  | int64        | イメージ告知最大ローディング時間(単位: millisecond)<br/>**default**: 5000 |
 
 
-### Close ImageNotices
+<a id="close-imagenotices"></a>
+### Close ImageNotices { #close-imagenotices }
 
 CloseImageNotices APIを呼び出して現在表示中のイメージ告知を全て終了できます。
 
@@ -115,7 +124,8 @@ void CloseImageNotices();
 ```
 
 
-## Terms
+<a id="terms"></a>
+## Terms { #terms }
 
 Gamebaseコンソールに設定した約款を表示します。
 
@@ -125,7 +135,8 @@ ShowTermsView APIは、Webビューで約款ウィンドウを表示します。
 GameのUIに合った約款ウィンドウを直接製作したい場合には、QueryTerms APIを呼び出して、 Gamebaseコンソールに設定した約款項目を呼び出すことができます。
 ユーザーが約款に同意した場合、各項目の同意有無をUpdateTerms APIを介してGamebaseサーバーに転送してください。
 
-### ShowTermsView
+<a id="showtermsview"></a>
+### ShowTermsView { #showtermsview }
 
 約款ウィンドウを画面に表示します。
 ユーザーが約款に同意した場合、同意の有無をサーバーに登録します。
@@ -138,6 +149,7 @@ GameのUIに合った約款ウィンドウを直接製作したい場合には�
 > * FGamebasePushConfiguration.bPushEnabled 値は常にtrueです。
 > * FGamebasePushConfigurationがnullではない場合、**ログイン後に** Subsystem->GetPush()->RegisterPush()を呼び出してください。
 
+<a id="showtermsview-optional-parameter"></a>
 #### Optionalパラメータ
 
 * GamebaseTermsConfiguration : GamebaseTermsConfigurationオブジェクトを介して強制的に約款同意ウィンドウを表示するかどうかなどの設定を変更できます。
@@ -221,7 +233,8 @@ void USample::AfterLogin()
 ```
 
 
-### QueryTerms
+<a id="queryterms"></a>
+### QueryTerms { #queryterms }
 
 Gamebaseは、単純な形式のWebビューで約款を表示します。
 ゲームのUIに合った約款を直接製作したい場合、QueryTerms APIを呼び出してGamebaseコンソールに設定した約款情報を取得して活用できます。
@@ -236,6 +249,7 @@ Gamebaseは、単純な形式のWebビューで約款を表示します。
 >     * ユーザーのプッシュ受信同意状況は、Gamebase.Push.QueryPush APIを通して確認してください。
 > * コンソールで「基本約款設定」を行わない場合、約款言語と異なる国コードに設定された端末でqueryTerms APIを呼び出すと、**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**エラーが発生します。
 >     * コンソールで「基本約款設定」を行ったり、**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**エラーが発生した時は、約款を表示しないように処理してください。
+<a id="queryterms-required-parameter"></a>
 #### Requiredパラメータ
 * Callback：API呼び出し結果をユーザーにコールバックで伝えます。コールバックで来るGamebaseResponse.Terms.QueryTermsResultでコンソールに設定された約款情報を取得できます。
 
@@ -280,6 +294,7 @@ void USample::QueryTerms()
 }
 ```
 
+<a id="queryterms-gamebaseresponsetermsquerytermsresult"></a>
 #### GamebaseResponse.Terms.QueryTermsResult
 
 | Parameter            | Values                          | Description         |
@@ -290,6 +305,7 @@ void USample::QueryTerms()
 | Contents             | TArray<FGamebaseTermsContent>   | 約款項目情報        |
 
 
+<a id="queryterms-gamebaseresponsetermscontentdetail"></a>
 #### GamebaseResponse.Terms.ContentDetail
 
 | Parameter            | Values                | Description         |
@@ -304,7 +320,8 @@ void USample::QueryTerms()
 | DetailPageUrl        | FString               | 約款詳細表示URL。<br/> ない場合null |
 
 
-### UpdateTerms
+<a id="updateterms"></a>
+### UpdateTerms { #updateterms }
 
 QueryTerms APIで取得した約款情報でUIを直接製作した場合、
 ゲームユーザーが約款に同意した内容をUpdateTerms APIを通してGamebaseサーバーに転送してください。
@@ -317,9 +334,11 @@ QueryTerms APIで取得した約款情報でUIを直接製作した場合、
 > プッシュ受信同意状況はGamebaseサーバーに保存されません。
 > プッシュ受信同意状況は**ログイン後に** Gamebase.Push.RegisterPush APIを呼び出して保存してください。
 >
+<a id="updateterms-required-parameter"></a>
 #### Requiredパラメータ
 * Configuration サーバーに登録するユーザーの選択約款情報です。
 
+<a id="updateterms-optional-parameter"></a>
 #### Optionalパラメータ
 
 * callback：選択約款情報をサーバーに登録後、ユーザーにコールバックで伝えます。
@@ -370,6 +389,7 @@ void USample::UpdateTerms(int32 TermsSeq, const FString& TermsVersion, int32 Ter
 }
 ```
 
+<a id="updateterms-gamebaserequesttermsupdatetermsconfiguration"></a>
 #### GamebaseRequest.Terms.UpdateTermsConfiguration
 
 | Parameter            | Mandatory(M) / Optional(O) | Values                    | Description         |
@@ -378,6 +398,7 @@ void USample::UpdateTerms(int32 TermsSeq, const FString& TermsVersion, int32 Ter
 | TermsSeq             | **M**                      | int32                       | 約款全体KEY.<br/>queryTerms APIを呼び出して取得した値を伝達する必要があります。             |
 | Contents             | **M**                      | List< Content > | 選択約款ユーザー同意情報 |
 
+<a id="updateterms-gamebaserequesttermscontent"></a>
 #### GamebaseRequest.Terms.Content
 
 | Parameter            | Mandatory(M) / Optional(O) | Values             | Description         |
@@ -385,7 +406,8 @@ void USample::UpdateTerms(int32 TermsSeq, const FString& TermsVersion, int32 Ter
 | TermsContentSeq      | **M**                      | int32                | 選択約款項目KEY      |
 | bAgreed               | **M**                      | bool               | 選択約款項目同意状況 |
 
-### IsShowingTermsView
+<a id="isshowingtermsview"></a>
+### IsShowingTermsView { #isshowingtermsview }
 
 現在約款ウィンドウが画面に表示されているかどうかを知ることができます。
 
@@ -406,9 +428,11 @@ void USample::IsShowingTermsView()
 }
 ```
 
-## Webview
+<a id="webview"></a>
+## Webview { #webview }
 
-### Show WebView
+<a id="show-webview"></a>
+### Show WebView { #show-webview }
 
 WebViewを表示します。<br/>
 
@@ -461,6 +485,7 @@ void USample::ShowWebView(const FString& Url)
 ```
 
 
+<a id="show-webview-fgamebasewebviewconfiguration"></a>
 #### FGamebaseWebViewConfiguration
 
 | Parameter                | Values                                           | Description |
@@ -490,6 +515,7 @@ void USample::ShowWebView(const FString& Url)
 > iPadOS 13以上でWebViewは基本的にデスクトップモードです。
 > contentMode =`GamebaseWebViewContentMode::MOBILE`設定でモバイルモードに変更できます。
 
+<a id="show-webview-predefined-custom-scheme"></a>
 #### Predefined Custom Scheme
 
 Gamebaseで指定しておいたスキームです。
@@ -502,7 +528,8 @@ Gamebaseで指定しておいたスキームです。
 | gamebase://goBack | WebView戻る |
 
 
-### Close WebView
+<a id="close-webview"></a>
+### Close WebView { #close-webview }
 
 次のAPIを利用して、表示されているWebViewを閉じることができます。
 
@@ -527,7 +554,8 @@ void USample::CloseWebView()
 ```
 
 
-## Open External Browser
+<a id="open-external-browser"></a>
+## Open External Browser { #open-external-browser }
 
 次のAPIを通して外部ブラウザーを開くことができます。パラメータに転送されるurlは有効な値である必要があります。
 
@@ -551,7 +579,8 @@ void USample::OpenWebBrowser(const FString& Url)
 ```
 
 
-## Alert
+<a id="alert"></a>
+## Alert { #alert }
 
 システム通知を表示できます。
 システム通知にコールバックを登録することもできます。
@@ -585,7 +614,8 @@ void USample::ShowAlertEvent(const FString& Title, const FString& Message)
 }
 ```
 
-## Toast
+<a id="toast"></a>
+## Toast { #toast }
 
 次のAPIを使用して、簡単にメッセージを表示できます。
 
@@ -608,7 +638,8 @@ void USample::ShowToast(const FString& Message, EGamebaseToastExposureTime Expos
 }
 ```
 
-## Error Handling
+<a id="error-handling"></a>
+## Error Handling { #error-handling }
 
 | Error              | Error Code | Description                 |
 | ------------------ | ---------- | --------------------------- |

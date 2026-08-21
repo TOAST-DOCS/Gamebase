@@ -1,20 +1,27 @@
-## Game > Gamebase > Android SDK ご利用ガイド > UI
+<!-- pre-align:aligned sig=3ec693c0ed98 -->
 
-## GameNotice
+<a id="game-gamebase-android-developers-guide-ui"></a>
+## Game > Gamebase > Android SDK ご利用ガイド > UI { #game-gamebase-android-developers-guide-ui }
+
+<a id="gamenotice"></a>
+## GameNotice { #gamenotice }
 
 コンソールに画像と一緒に登録した告知事項を表示する機能です。
 
 ![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_001.png)
 ![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_002.png)
 
-### Open GameNotice
+<a id="open-gamenotice"></a>
+### Open GameNotice { #open-gamenotice }
 
 ゲーム告知を画面に表示します。
 
+<a id="open-gamenotice-required-parameter"></a>
 #### Requiredパラメータ
 * Activity:ゲーム告知が表示されるActivityです。
 
 
+<a id="open-gamenotice-optional-parameter"></a>
 #### Optionalパラメータ
 * GameNoticeConfiguration:ゲーム告知設定を変更できます。
 
@@ -55,7 +62,8 @@ Gamebase.GameNotice.openGameNotice(activity, (GamebaseCallback) exception -> {
 });
 ```
 
-### Custom GameNotice
+<a id="custom-gamenotice"></a>
+### Custom GameNotice { #custom-gamenotice }
 
 ユーザー設定ゲーム告知を表示します。
 GameNoticeConfigurationで表示設定を変更できます。
@@ -78,6 +86,7 @@ Gamebase.GameNotice.openGameNotice(
         });
 ```
 
+<a id="custom-gamenotice-gamenoticeconfiguration"></a>
 #### GameNoticeConfiguration
 
 | API | Mandatory(M) / Optional(O) | Description |
@@ -86,19 +95,23 @@ Gamebase.GameNotice.openGameNotice(
 | build() | **M** | 設定を終えたBuilderをConfigurationオブジェクトに変換します。 |
 | setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | ゲーム告知の背景色です。<br>色はARGB順序です。<br>Stringはandroid.graphics.Color.parseColor(String) APIで変換した値を使用します。<br>**default**: #CC000000 |
 
-## ImageNotice
+<a id="imagenotice"></a>
+## ImageNotice { #imagenotice }
 
 コンソールにイメージを登録した後、ユーザーに告知を表示できます。
 
 ![ImageNotice Example](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/DevelopersGuide/imageNotice-guide-landscape-ja_v3.png)
 
-### Show ImageNotices
+<a id="show-imagenotices"></a>
+### Show ImageNotices { #show-imagenotices }
 
 イメージ告知を画面に表示します。
 
+<a id="show-imagenotices-required-parameter"></a>
 #### Requiredパラメータ
 * Activity ：イメージ告知が表示されるActivityです。
 
+<a id="show-imagenotices-optional-parameter"></a>
 #### Optionalパラメータ
 * ImageNoticeConfiguration：イメージ告知設定を変更できます。
 * GamebaseCallback ：イメージ告知が全て終了する時、ユーザーにコールバックで伝えます。
@@ -145,7 +158,8 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), null,
     });
 ```
 
-### Custom ImageNotices
+<a id="custom-imagenotices"></a>
+### Custom ImageNotices { #custom-imagenotices }
 
 ユーザー設定イメージ告知を画面に表示します。
 ImageNoticeConfigurationでユーザー設定イメージ告知を作成できます。
@@ -161,6 +175,7 @@ ImageNoticeConfiguration configuration = ImageNoticeConfiguration.newBuilder()
 Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 ```
 
+<a id="custom-imagenotices-imagenoticeconfiguration"></a>
 #### ImageNoticeConfiguration
 
 | API | Mandatory(M) / Optional(O) | Description |
@@ -172,7 +187,8 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 | enableAutoCloseByCustomScheme(boolean enable) | O | カスタムスキームイベントが発生した時、メージ告知を強制終了するかどうかを決定します。<br>**default** : true |
 
 
-### Close ImageNotices
+<a id="close-imagenotices"></a>
+### Close ImageNotices { #close-imagenotices }
 
 closeImageNotices APIを呼び出して現在表示中のイメージ告知を全て終了できます。
 
@@ -182,7 +198,8 @@ closeImageNotices APIを呼び出して現在表示中のイメージ告知を�
 + (void)Gamebase.ImageNotice.closeImageNotices(@NonNull Activity activity);
 ```
 
-## Terms
+<a id="terms"></a>
+## Terms { #terms }
 
 Gamebaseコンソールに設定した約款を表示します。
 
@@ -192,17 +209,20 @@ showTermsView APIは、Webビューで約款ウィンドウを表示します。
 GameのUIに合った約款ウィンドウを直接作成したい場合は、queryTerms APIを呼び出して、 Gamebaseコンソールに設定した約款項目を呼び出すことができます。
 ユーザーが約款に同意した場合、項目別の同意有無をupdateTerms APIを介してGamebaseサーバーへ送信してください。
 
-### showTermsView
+<a id="showtermsview"></a>
+### showTermsView { #showtermsview }
 
 約款ウィンドウを画面に表示します。
 ユーザーが約款に同意した場合、同意の有無をサーバーに登録します。
 約款に同意した場合、showTermsView APIを再度呼び出しても約款ウィンドウが表示されず、すぐに成功コールバックがリターンされます。
 ただし、Gamebaseコンソールで「約款の再同意」項目を**必要**に変更した場合は、ユーザーが再度約款に同意するまでは約款ウィンドウが表示されます。
 
+<a id="showtermsview-required-parameter"></a>
 #### Requiredパラメータ
 
 * Activity：約款ウィンドウが表示されるActivityです。
  
+<a id="showtermsview-optional-parameter"></a>
 #### Optionalパラメータ
 
 * GamebaseTermsConfiguration : GamebaseTermsConfigurationオブジェクトを介して強制的に約款同意ウィンドウを表示するかどうかなどの設定を変更できます。
@@ -277,7 +297,8 @@ public void afterLogin(Activity activity) {
 }
 ```
 
-### queryTerms
+<a id="queryterms"></a>
+### queryTerms { #queryterms }
 
 Gamebaseは単純な形式のWebビューで約款を表示します。
 ゲームUIに合った約款を直接作成したい場合は、queryTerms APIを呼び出してGamebaseコンソールに設定した約款情報をダウンロードして活用できます。
@@ -293,6 +314,7 @@ Gamebaseは単純な形式のWebビューで約款を表示します。
 > * コンソールで「基本約款設定」をしない場合、約款言語と異なる国コードで設定された端末からqueryTerms APIを呼び出した場合、**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**エラーが発生します。
 >     * コンソールで「基本約款設定」を行ったり、**UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**エラーが発生した時は、約款を表示しないように処理してください。
 
+<a id="queryterms-required-parameter"></a>
 #### Requiredパラメータ
 
 * Activity ： API呼び出し時点の最上位Activityです。
@@ -335,6 +357,7 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 });
 ```
 
+<a id="queryterms-gamebasequerytermsresult"></a>
 #### GamebaseQueryTermsResult
 
 | API            | Values                          | Description         |
@@ -344,6 +367,7 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | getTermsCountryType     | String                          | 約款タイプ。<br/> - KOREAN：韓国の約款 <br/> - GDPR ：ヨーロッパの約款 <br/> - ETC：その他の国 |
 | getContents             | List<GamebaseTermsContentDetail> | 約款項目別詳細情報 |
 
+<a id="queryterms-gamebasetermscontentdetail"></a>
 #### GamebaseTermsContentDetail
 
 | API            | Values                | Description         |
@@ -357,7 +381,8 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | getNode2DepthPosition   | int                   | 2段階項目表示順序。<br/> ない場合は-1           |
 | getDetailPageUrl        | String                | 約款詳細表示URL。<br/> ない場合はnull。 |
 
-### updateTerms
+<a id="updateterms"></a>
+### updateTerms { #updateterms }
 
 queryTerms APIでダウンロードした約款情報でUIを直接作った場合は、
 ゲームユーザーが約款に同意した内容をupdateTerms APIを介してGamebaseサーバーへ送信してください。
@@ -369,11 +394,13 @@ queryTerms APIでダウンロードした約款情報でUIを直接作った場�
 > プッシュ受信同意有無は、Gamebaseサーバーに保存されません。
 > プッシュ受信同意有無は、**ログイン後に**Gamebase.Push.registerPush APIを呼び出して保存してください。
 
+<a id="updateterms-required-parameter"></a>
 #### Requiredパラメータ
 
 * Activity ：API呼び出し時点の最上位Activityです。
 * GamebaseUpdateTermsConfiguration：サーバーに登録するユーザーの任意約款情報です。
 
+<a id="updateterms-optional-parameter"></a>
 #### Optionalパラメータ
 
 * GamebaseCallback：任意約款情報をサーバーに登録した後、ユーザーにコールバックで伝えます。
@@ -432,6 +459,7 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 });
 ```
 
+<a id="updateterms-gamebaseupdatetermsconfiguration"></a>
 #### GamebaseUpdateTermsConfiguration
 
 **Builder**
@@ -447,6 +475,7 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | termsVersion         | **M**                      | String                    | 約款のバージョン。<br/>queryTerms APIを呼び出してダウンロードした値を伝達する必要があります。   |
 | contents             | **M**                      | List<GamebaseTermsContent> | 任意約款ユーザー同意情報 |
 
+<a id="updateterms-gamebasetermscontent"></a>
 #### GamebaseTermsContent
 
 **Constructor**
@@ -462,7 +491,8 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | termsContentSeq      | **M**                      | int                | 任意約款項目KEY      |
 | agreed               | **M**                      | boolean            | 任意約款項目同意有無 |
 
-### isShowingTermsView
+<a id="isshowingtermsview"></a>
+### isShowingTermsView { #isshowingtermsview }
 
 現在約款ウィンドウが表示されている状態かどうかを伝えます。
 
@@ -472,12 +502,14 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 + (boolean)Gamebase.Terms.isShowingTermsView();
 ```
 
-## WebView
+<a id="webview"></a>
+## WebView { #webview }
 
 Gamebaseでは、基本的なWebViewに対応しています。
 
 
-### Show WebView
+<a id="show-webview"></a>
+### Show WebView { #show-webview }
 
 WebViewを表示します。
 
@@ -510,6 +542,7 @@ Gamebase.WebView.showWebView(activity, "https://www.toast.com");
 
 ![Webview Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
 
+<a id="show-webview-custom-webview"></a>
 #### Custom WebView
 
 ユーザーが指定したWebViewを表示します。<br/>
@@ -535,6 +568,7 @@ GamebaseWebViewConfiguration configuration
 GamebaseWebView.showWebView(activity, "https://www.toast.com", configuration);
 ```
 
+<a id="show-webview-custom-schema"></a>
 #### Custom Scheme
 
 Gamebase WebViewでローディングしたWebページ内に、スキームで特定機能を使用したり、Webページの内容を変更できます。
@@ -551,6 +585,7 @@ Gamebaseで指定しておいたスキームです。
 | gamebase://showwebview?link={URLEncodedURL} | linkパラメータのURLをWebViewで開く。<br>URLEncodedURL ：WebViewで開くURL。<br>URLのデコード必要。 |
 | gamebase://openbrowser?link={URLEncodedURL} | linkパラメータのURLを外部ブラウザで開く。<br>URLEncodedURL：外部ブラウザで開くURL。<br>URLデコード必要。 |
 
+<a id="show-webview-user-custom-schema"></a>
 #### User Custom Scheme
 
 Gamebaseにスキーム名とブロックを指定し、自由に機能を追加できます。
@@ -590,6 +625,7 @@ showWebView(activity, urlString, configuration,
         });
 ```
 
+<a id="show-webview-gamebasewebviewconfiguration"></a>
 #### GamebaseWebViewConfiguration
 
 | Method                                   | Values                              | Description    |
@@ -611,7 +647,8 @@ showWebView(activity, urlString, configuration,
 | setRenderOutsideSafeArea(boolean render) | true or false | safe areaを無視し、cutout領域にもrender。<br>**default**: false |
 | setCutoutAreaColor(int color) | Color.argb(a, r, g, b) | SafeArea外のCutout領域の背景色 |
 
-### Close WebView
+<a id="close-webview"></a>
+### Close WebView { #close-webview }
 次のAPIを通じて、表示されているWebViewを閉じることができます。
 
 **API**
@@ -621,7 +658,8 @@ showWebView(activity, urlString, configuration,
 ```
 
 
-## Open External Browser
+<a id="open-external-browser"></a>
+## Open External Browser { #open-external-browser }
 
 次のAPIを通じて、外部ブラウザを開くことができます。パラメーターで送信されるURLは、有効な値でなければなりません。
 
@@ -632,11 +670,13 @@ showWebView(activity, urlString, configuration,
 ```
 
 
-## Alert
+<a id="alert"></a>
+## Alert { #alert }
 
 システム通知を表示することができます。<br/>
 
-### Simple Alert Dialog
+<a id="simple-alert-dialog"></a>
+### Simple Alert Dialog { #simple-alert-dialog }
 
 タイトルとメッセージだけを入力して簡単に通知のダイアログボックスを表示することができます。
 
@@ -649,7 +689,8 @@ showWebView(activity, urlString, configuration,
 ![Alert Dialog Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-002_1.0.0.png)
 
 
-### Alert Dialog with Listener
+<a id="alert-dialog-with-listener"></a>
+### Alert Dialog with Listener { #alert-dialog-with-listener }
 
 通知のダイアログボックスを表示した後、処理結果をコールバックで受け取りたい場合は次のAPIを使用します。
 
@@ -663,7 +704,8 @@ showWebView(activity, urlString, configuration,
                             DialogInterface.OnClickListener clickListener); // ポジティブボタンを押したときに呼び出されるListener。
 ```
 
-## Toast
+<a id="toast"></a>
+## Toast { #toast }
 
 次のAPIを使用して簡単に[Android トースト(toast)](https://developer.android.com/guide/topics/ui/notifiers/toasts.html)のメッセージを表示することができます。<br/>
 メッセージを表示する時間タイプのパラメーターはint形式であり、Android SDK NotificationManagerServiceクラスの定義に基づき、下の図の時間の間、表示されます。
@@ -684,7 +726,8 @@ showWebView(activity, urlString, configuration,
                         int duration);      // メッセージを表示する時間タイプ (Toast.LENGTH_SHORT or Toast.LENGTH_LONG)
 ```
 
-## Custom Maintenance Page
+<a id="custom-maintenance-page"></a>
+## Custom Maintenance Page { #custom-maintenance-page }
 
 メンテナンス状態で｢詳細確認」をクリックすると表示されるメンテナンスページを変更することができます。
 
@@ -698,7 +741,8 @@ showWebView(activity, urlString, configuration,
 	android:value="file:///android_asset/html/gamebase-maintenance.html"/>
 ```
 
-## Error Handling
+<a id="error-handling"></a>
+## Error Handling { #error-handling }
 
 | Error                                             | Error Code | Description                                                                                 |
 |---------------------------------------------------|------------|---------------------------------------------------------------------------------------------|

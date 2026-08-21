@@ -1,10 +1,15 @@
-## Game > Gamebase > Unity SDK ご利用ガイド > ETC
+<!-- pre-align:aligned sig=d1c091670b0d -->
 
-## Additional Features
+<a id="game-gamebase-unity-sdk-user-guide-etc"></a>
+## Game > Gamebase > Unity SDK ご利用ガイド > ETC { #game-gamebase-unity-sdk-user-guide-etc }
+
+<a id="additional-features"></a>
+## Additional Features { #additional-features }
 
 Gamebaseで対応している付加機能について説明します。
 
-### Device Language
+<a id="device-language"></a>
+### Device Language { #device-language }
 
 * 端末に設定されている言語コードを返します。
 * 複数の言語が登録されている場合、優先権が最も高い言語だけを返します。
@@ -29,7 +34,8 @@ static string GetDeviceLanguageCode()
 > Editor on Mac, WebGLは[Application.systemLanguage](https://docs.unity3d.com/ScriptReference/SystemLanguage.html)の値を参照して言語コードを返します。<br/>例えば、Application.systemLanguage == SystemLanguage.Koreanの場合は'ko'を返します。
 
 
-### Display Language
+<a id="display-language"></a>
+### Display Language { #display-language }
 
 メンテナンスポップアップなどでGamebaseが表示する言語は、端末に設定された言語と同じです。
 
@@ -54,6 +60,7 @@ Display Languageに入力する言語コードは、以下の表(**Gamebaseで�
 > * Gamebaseのクライアントに含まれていない言語セットは直接追加できます。
 > **新規言語セット追加**項目を参照してください。
 
+<a id="display-language-types-of-language-codes-supported-by-gamebase"></a>
 #### Gamebaseでサポートしている言語コードの種類
 
 | Code | Name |
@@ -102,6 +109,7 @@ namespace Toast.Gamebase
 }
 ```
 
+<a id="display-language-set-display-language-with-gamebase-initialization"></a>
 #### Gamebaseを初期化する際のDisplay Languageの設定
 
 Gamebaseを初期化する際にDisplay Languageを設定することができます。
@@ -144,6 +152,7 @@ public void InitializeWithConfiguration()
 }
 ```
 
+<a id="display-language-set-display-language"></a>
 #### Set Display Language
 
 Gamebaseを初期化する際に入力されたDisplay Languageを変更することができます。
@@ -170,6 +179,7 @@ public void SetDisplayLanguageCode()
 }
 ```
 
+<a id="display-language-get-display-language"></a>
 #### Get Display Language
 
 現在適用されているDisplay Languageを照会することができます。
@@ -196,6 +206,7 @@ public void GetDisplayLanguageCode()
 }
 ```
 
+<a id="display-language-add-new-language-sets"></a>
 #### 言語セットの新規追加
 
 UnityEditor及びUnity Standalone、WebGLプラットフォームサービスを提供する際にGamebaseで提供するデフォルト言語(ko、en、ja)以外に他の言語を使用しなければならない場合、Assets > StreamingAssets > Gamebaseにあるlocalizedstring.jsonファイルに値を追加しなければなりません。
@@ -261,6 +272,7 @@ Unity Android、iOSプラットフォームでの言語セットの新規追加�
 * [Android言語セットの新規追加](./aos-etc#display-language)
 * [iOS言語セットの新規追加](./ios-etc#display-language)
 
+<a id="display-language-priority-in-display-language"></a>
 #### Display Languageの優先順位
 
 初期化及びSetDisplayLanguageCodeAPIを通してDisplay Languageを設定する場合、最終的に適用されるDisplay Languageは、入力した値と違う値が適用されることがあります。
@@ -269,11 +281,13 @@ Unity Android、iOSプラットフォームでの言語セットの新規追加�
 2. Gamebaseを初期化する際に、デバイスに設定されている言語コードがlocalizedstring.jsonファイルに定義されているかどうかを確認します。(この値は、初期化後にデバイスに設定されている言語を変更した場合でも維持されます。)
 3. Display Languageのデフォルト値である`en`が自動で設定されます。
 
-### Country Code
+<a id="country-code"></a>
+### Country Code { #country-code }
 
 * Gamebaseは、システムの国コード(country code)を次のようなAPIで提供しています。
 * APIごとに特徴があるため、使用用途に合ったAPIを選択してください。
 
+<a id="country-code-usim-country-code"></a>
 #### USIM Country Code
 
 * USIMに記録された国コードを返します。
@@ -291,6 +305,7 @@ Supported Platforms
 static string GetCountryCodeOfUSIM()
 ```
 
+<a id="country-code-device-country-code"></a>
 #### Device Country Code
 
 * OSから伝達された端末国コードを、確認しないでそのまま返します。
@@ -308,6 +323,7 @@ Supported Platforms
 static string GetCountryCodeOfDevice()
 ```
 
+<a id="country-code-intergrated-country-code"></a>
 #### Intergrated Country Code
 
 * USIM、端末の言語設定の順序で国コードを確認して返します。
@@ -336,7 +352,8 @@ sb
 public static string GetCountryCode()
 ```
 
-### Gamebase Event Handler
+<a id="gamebase-event-handler"></a>
+### Gamebase Event Handler { #gamebase-event-handler }
 
 * Gamebaseは各種イベントを**GamebaseEventHandler**という1つのイベントシステムで全て処理できます。
 * GamebaseEventHandlerは以下のAPIを利用して簡単にListenerを追加/削除できます。
@@ -516,6 +533,7 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 | Push - メッセージクリック | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
 | Push - アクションクリック | GamebaseEventCategory.PUSH_CLICK_ACTION | GamebaseResponse.Event.PushAction.from(message.data) | RichMessageボタンを押すと動作します。 |
 
+<a id="gamebase-event-handler-idp-revoked"></a>
 #### IdP Revoked
 
 > [参考]
@@ -557,6 +575,7 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 }
 ```
 
+<a id="gamebase-event-handler-logged-out"></a>
 #### Logged Out
 
 * Gamebase Access Tokenの有効期限が切れてネットワークセッションを復元するためにログイン関数の呼び出しが必要な場合に発生するイベントです。
@@ -587,6 +606,7 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 }
 ```
 
+<a id="gamebase-event-handler-server-push"></a>
 #### Server Push
 
 * Gamebaseサーバーからクライアント端末へ送信するメッセージです。
@@ -654,6 +674,7 @@ private void CheckServerPush(string category, GamebaseResponse.Event.GamebaseEve
 }
 ```
 
+<a id="gamebase-event-handler-observer"></a>
 #### Observer
 
 * Gamebase Gamebaseの各種状態変動イベントを処理するシステムです。
@@ -846,6 +867,7 @@ private void CheckWebView(GamebaseResponse.Event.GamebaseEventObserverData obser
 ```
 
 
+<a id="gamebase-event-handler-purchase-updated"></a>
 #### Purchase Updated
 
 * App Storeのプロモーション商品の購入完了、またはAsk to Buyなどにより遅延した決済が完了した際に発生するイベントです。
@@ -880,6 +902,7 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 }
 ```
 
+<a id="gamebase-event-handler-push-received-message"></a>
 #### Push Received Message
 
 * Pushメッセージが到着した時に発生するイベントです。
@@ -938,6 +961,7 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 }
 ```
 
+<a id="gamebase-event-handler-push-click-message"></a>
 #### Push Click Message
 
 * 受信したPushメッセージをクリックした時に発生するイベントです。
@@ -972,6 +996,7 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 }
 ```
 
+<a id="gamebase-event-handler-push-click-action"></a>
 #### Push Click Action
 
 * Rich Message機能を利用して作成したボタンをクリックした時に発生するイベントです。
@@ -1026,7 +1051,8 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 }
 ```
 
-### Analytics
+<a id="analytics"></a>
+### Analytics { #analytics }
 
 Game指標をGamebase Serverに伝送できます。
 
@@ -1044,6 +1070,7 @@ Analyticsコンソールの使用方法は、下記のガイドを参照して�
 
 * [Analytics Console](./oper-analytics)
 
+<a id="analytics-game-user-data-settings"></a>
 #### Game User Data Settings
 
 ゲームログイン後、ゲームユーザーレベル情報を指標として伝送できます。
@@ -1091,6 +1118,7 @@ public void SetGameUserData(int userLevel, string channelId, string characterId,
 }
 ```
 
+<a id="analytics-level-up-trace"></a>
 #### Level Up Trace
 
 レベルアップすると、ゲームユーザーレベル情報を指標として伝送できます。
@@ -1128,7 +1156,8 @@ public void TraceLevelUp(int userLevel, long levelUpTime)
 }
 ```
 
-### Contact
+<a id="contact"></a>
+### Contact { #contact }
 
 Gamebaseは、顧客の問い合わせに対応するための機能を提供します。
 
@@ -1138,12 +1167,14 @@ Gamebaseは、顧客の問い合わせに対応するための機能を提供し
 > 詳細はNHN Cloud Contactサービスの利用ガイドを参照してください。
 > [NHN Cloud Online Contact Guide](https://docs.nhncloud.com/ja/Contact%20Center/ja/online-contact-overview/)
 
+<a id="contact-permissions-settings"></a>
 #### 権限設定
 
 * [Game > Gamebase > Android SDK使用ガイド > ETC > Contact](aos-etc/#contact)
 * [Game > Gamebase > iOS SDK使用ガイド > ETC > Contact](ios-etc/#contact)
 
 
+<a id="contact-customer-service-type"></a>
 #### Customer Service Type
 
 **Gamebase コンソール > App > Customer service**で、以下の3つのタイプのサポートを選択できます。
@@ -1166,6 +1197,7 @@ Gamebaseは、顧客の問い合わせに対応するための機能を提供し
     * ログイン前：ユーザー情報が**ない**サポートURL。
     * ログイン後：ユーザー情報が含まれたサポートURL。
 
+<a id="contact-open-contact-webview"></a>
 #### Open Contact WebView
 
 サポートWebビューを表示します。
@@ -1230,6 +1262,7 @@ public void SampleOpenContact()
 }
 ```
 
+<a id="contact-request-contact-url"></a>
 #### Request Contact URL
 
 サポートWebビューを表示するのに使用されるURLをリターンします。
@@ -1278,7 +1311,8 @@ public void SampleRequestContactURL()
 }
 ```
 
-### App Tracking AuthorizationStatus
+<a id="app-tracking-authorizationstatus"></a>
+### App Tracking AuthorizationStatus { #app-tracking-authorizationstatus }
 
 * ATTが有効かどうかを確認します。
 
@@ -1346,7 +1380,8 @@ public void GetAppTrackingAuthorizationStatusSample()
 }
 ```
 
-### IDFA
+<a id="idfa"></a>
+### IDFA { #idfa }
 
 * 端末の広告識別子(IDFA)の値を返却します。
 
@@ -1373,7 +1408,8 @@ public void SampleGetIdfa()
 }
 ```
 
-### Age Signals Support
+<a id="age-signals-support"></a>
+### Age Signals Support { #age-signals-support }
 
 Texas SB 2420及び類似する州の法律は、未成年者の保護のためにアプリでユーザーの年齢確認を求めています。
 Gamebaseは、Google Play Age Signals APIをラッピングし、このような要件を満たすAPIを提供します。
@@ -1384,6 +1420,7 @@ AndroidでAge Signals機能を設定する方法は、次のドキュメント�
 Supported Platforms
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
 
+<a id="age-signals-support-getagesignal"></a>
 #### GetAgeSignal
 
 年齢情報を確認します。

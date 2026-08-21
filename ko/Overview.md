@@ -1,11 +1,15 @@
-## Game > Gamebase > 개요
+<!-- pre-align:aligned sig=8c4ae870b803 -->
+
+<a id="game-gamebase-overview"></a>
+## Game > Gamebase > 개요 { #game-gamebase-overview }
 
 게임플랫폼 선두 기업 NHN의 10년 노하우를 담은 Gamebase, 자신 있게 추천합니다. 
 Gamebase SDK만 적용하면 모든 서비스를 손쉽게 이용 가능합니다. 
 
 ![Gamebase_summary](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/ko/Gamebase_overview_00_kr_202501.png)
 
-## Gamebase Sample App
+<a id="gamebase-sample-app"></a>
+## Gamebase Sample App { #gamebase-sample-app }
 
 Gamebase의 다양한 기능을 확인할 수 있도록 샘플앱을 제공하고 있습니다.
 샘플앱을 이용하여 게임 앱에서 Gamebase가 제공하는 기능을 확인하고 어떤 방식으로 동작하는지 예측할 수 있습니다.
@@ -15,20 +19,24 @@ Gamebase의 다양한 기능을 확인할 수 있도록 샘플앱을 제공하�
 ![Gamebase_sample_app](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_Sample_App1.png)
 * QR코드를 이용하여 Sample App APK를 다운로드 할 수 있습니다.(지원 플랫폼: Android OS)
 
-## Key Features
+<a id="key-features"></a>
+## Key Features { #key-features }
 
-### Gamebase Analytics
+<a id="gamebase-analytics"></a>
+### Gamebase Analytics { #gamebase-analytics }
 
 Gamebase SDK만 적용하면, 매출, 이용자, 게임밸런싱 지표를 무료로 제공합니다. 
 게임에서 발생하는 매출, 동접, 이용자, 레벨, 아이템 판매 등 게임 사업과 운영에  꼭 필요한 지표 서비스를 제공합니다. 
 빠르게 적용하시고 서비스에 적극 활용해보세요!
 ![Gamebase_analytics](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_02_201903.png)
 
+<a id="gamebase-analytics-reference"></a>
 #### Reference
 
 * [콘솔 사용 가이드 > Analytics](./oper-analytics) 
 
-### Authentication
+<a id="authentication"></a>
+### Authentication { #authentication }
 
 Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번호 기반의 OAuth 로그인과 단말기의 UUID를 이용한 게스트 로그인을 지원합니다. Gamebase의 인증은 자체적인 회원 체계를 구축하지 않고 외부 IdP에서 제공하는 회원 정보를 이용하여 인증 서비스를 제공하는 서비스입니다. 자체적인 회원 체계가 없다라는 것은 사용자의 아이디, 비밀번호를 Gamebase 내부에 저장하지 않는 것을 의미합니다.
 
@@ -67,6 +75,7 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 * **게임 이용자 한 명이 여러 개의 외부 IdP를 동시에 사용할 수 있도록 매핑(mapping) 기능을 제공합니다.**
   예를 들어 Facebook 인증을 사용하여 게임을 이용하고 있는 사용자가 Google 인증으로도 동일한 사용자 아이디를 사용할 수 있도록 매핑 기능을 제공합니다. 하나의 사용자 아이디에 Facebook과 Google 인증을 매핑하면 게임 이용자는 어떤 기기에서는 Facebook, 또 다른 기기에서는 Google로 인증하여 게임을 할 수 있습니다.
 
+<a id="authentication-reference"></a>
 #### Reference
 
 * [Android SDK 사용 가이드 > 인증](./aos-authentication)
@@ -74,7 +83,8 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 * [Unity SDK 사용 가이드 > 인증](./unity-authentication)
 * [Unreal SDK 사용 가이드 > 인증](./unreal-authentication)
 
-### Payment
+<a id="payment"></a>
+### Payment { #payment }
 
 게임사는 이미 만들어진 게임을 여러 개의 스토어에 출시하면 적은 노력으로 수익을 극대화할 수 있습니다. Gamebase를 사용하면 손쉽게 여러 개의 스토어와 연동할 수 있어 주요 스토어별 결제 연동 스펙을 완벽하게 학습하지 않아도 됩니다.
 
@@ -97,6 +107,7 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 * **웹 콘솔에서의 다양한 기능(결제 내역 조회 기능 등)으로 고객 문의에 원활하게 대응할 수 있습니다.**
   웹 콘솔에서 사용자의 결제 내역과 아이템 지급 상태를 확인할 수 있고 결제 취소 및 어뷰징 대응도 가능합니다.
 
+<a id="payment-reference"></a>
 #### Reference
 
 * [Android SDK 사용 가이드 > 결제](./aos-purchase/)
@@ -104,7 +115,8 @@ Gamebase는 여러 IdP(identity provider)의 계정을 이용한 ID, 비밀번�
 * [Unity SDK 사용 가이드 > 결제](./unity-purchase)
 * [Unreal SDK 사용 가이드 > 결제](./unreal-purchase)
 
-### Launching
+<a id="launching"></a>
+### Launching { #launching }
 
 서비스되고 있는 게임 앱은 처음 시작할 때 여러 정보가 필요합니다. Gamebase는 게임 앱 실행 초기에 운영에 필요한 데이터를 게임 앱에 제공하며, 이를 Launching이라고 부릅니다.
 론칭 정보는 Gamebase Console에서 실시간으로 설정할 수 있으며, SDK 초기화나 론칭 상태 변경 시에 게임에서 확인할 수 있습니다.
@@ -118,6 +130,7 @@ Gamebase에서 제공되는 론칭 정보는 다음과 같습니다.
 * 인증 정보
 * 게임 인앱 URL 목록
 
+<a id="launching-reference"></a>
 #### Reference
 
 * [Android SDK 사용 가이드 > 초기화 > Launching Status](./aos-initialization/#launching-status)
@@ -128,7 +141,8 @@ Gamebase에서 제공되는 론칭 정보는 다음과 같습니다.
 * [콘솔 사용 가이드 > 운영](./oper-operation): 점검, 공지 등록
 
 
-### For Global
+<a id="for-global"></a>
+### For Global { #for-global }
 
 Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며 글로벌 환경에서의 게임 운영을 지원하기 위하여 다음과 같은 기능들을 제공합니다.
 
@@ -139,7 +153,8 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 * **운영자의 현지 표준 시간대(local timezone)를 선택하여 손쉽게 시간 입력이 가능합니다.**
 	* 베트남에서 게임을 운영하는 경우, 베트남 표준 시간대(timezone)를 선택하여 베트남 시간 기준으로 입력할 수 있으므로, 한국 시간으로 변경하는 수고를 줄일 수 있습니다.
 
-### Using the other NHN Cloud Service
+<a id="using-the-other-nhn-cloud-service"></a>
+### Using the other NHN Cloud Service { #using-the-other-nhn-cloud-service }
 
 * 게임에서 필요한 NHN Cloud 서비스를 보다 쉽게 연동할 수 있도록 돕습니다. 
   * **Gamebase 사용자 아이디**로 각 서비스의 API를 사용할 수 있도록 Gamebase에서 래핑(wrapping)하여 API를 제공합니다. 따라서, 사용자는 별도 서비스의 API를 직접 호출할 필요가 없습니다. **Gamebase 유저 ID**로 푸시를 보내거나 랭킹 순위 등록이 가능합니다.
@@ -147,7 +162,8 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
   * [Game > Leaderboard](https://toast.com/service/game/leaderboard) : 실시간 대용량 랭킹 서비스
   * [Security > AppGuard](https://toast.com/service/security/appguard) : 실시간으로 애플리케이션의 코드 조작을 방지하는 서비스
 
-## Terms
+<a id="glossary"></a>
+## Terms { #glossary }
 다음은 Gamebase 서비스 용어를 정리한 것입니다.
 
 | 용어      | 설명                                       |
@@ -161,7 +177,8 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 
 <br/>
 
-## Service Architecture
+<a id="service-architecture"></a>
+## Service Architecture { #service-architecture }
 다음은 Gamebase 서비스 구조도와 간단한 설명입니다.
 ![논리 구성도](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_03_202203.png)
 <br>
@@ -173,25 +190,30 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 | Console         | - 웹 Console                              |
 
 
-## Platform Guide
+<a id="platform-guide"></a>
+## Platform Guide { #platform-guide }
 
-### Client Developer's Guide
+<a id="client-developers-guide"></a>
+### Client Developer's Guide { #client-developers-guide }
 
 * [Android SDK 사용 가이드](./aos-started/)
 * [iOS SDK 사용 가이드](./ios-started/)
 * [Unity SDK 사용 가이드](./unity-started/)
 * [Unreal SDK 사용 가이드](./unreal-started/)
 
-### Server Developer's Guide
+<a id="server-developers-guide"></a>
+### Server Developer's Guide { #server-developers-guide }
 
 * [API 가이드](./api-guide/)
 
-### Operator's Guide
+<a id="operators-guide"></a>
+### Operator's Guide { #operators-guide }
 
 * [콘솔 사용 가이드](./oper-operating-indicator/)
 
 <br/>
-## Funtional Guide
+<a id="functional-guide"></a>
+## Funtional Guide { #functional-guide }
 
 | Feature               | Description                              | Client                                   | Server                                   | Console                                  |
 | --------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
@@ -212,12 +234,14 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 | [Operator] Customer Service         | (운영) 1:1 문의 접수 및 처리 <br> -  FAQ, 공지사항 관리 | [[Android](./aos-etc/#contact)] [[iOS](./ios-etc/#contact)] [[Unity](./unity-etc/#contact)] <br/> - 고객 센터 웹페이지를 웹뷰로 표시 |                                        | [[Customer Service]](./oper-customer-service) <br/>- 고객 센터 문의 처리<br>- FAQ/공지 관리 |
 
 
-## Console Role
+<a id="console-role"></a>
+## Console Role { #console-role }
 
 NHN Cloud의 기본적인 멤버 정책과 권한에 대해서는 다음 가이드를 참고하시기 바랍니다.
 * [NHN Cloud > 콘솔 사용 가이드 > 멤버 관리](https://docs.nhncloud.com/ko/nhncloud/ko/console-guide/#_14)
 
-### Manage Role
+<a id="manage-role"></a>
+### Manage Role { #manage-role }
 
 **Console > 프로젝트 설정 > 멤버 관리**
 프로젝트 설정 화면에서 토스트 회원을 추가하거나 등록된 회원에게 개별적인 권한 부여가 가능합니다. 한 명의 회원에게 여러개의 권한을 중복하여 지급할 수 있습니다.
@@ -231,7 +255,8 @@ NHN Cloud의 기본적인 멤버 정책과 권한에 대해서는 다음 가이�
 조직 관리 화면에서 조직내의 프로젝트에서 공통으로 사용하는 권한 그룹을 관리할 수 있습니다.
 ![조직권한그룹](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/ko/gamebase_overview_03_ko_240105.png)
 
-### Gamebase에서 제공하는 권한 목록
+<a id="permissions-list-provided-by-gamebase"></a>
+### Gamebase에서 제공하는 권한 목록 { #permissions-list-provided-by-gamebase }
 
 | 서비스 | 권한 | 설명 |
 | --- | --- | --- |
@@ -289,8 +314,10 @@ NHN Cloud의 기본적인 멤버 정책과 권한에 대해서는 다음 가이�
 | Gamebase | PUSH ADMIN | | ● | |
 | Gamebase | PUSH VIEWER | |  | ● |
 
-## Privacy Policy
-### 개인정보 처리 및 준법에 대한 안내
+<a id="privacy-policy"></a>
+## Privacy Policy { #privacy-policy }
+<a id="information-on-privacy-and-compliance"></a>
+### 개인정보 처리 및 준법에 대한 안내 { #information-on-privacy-and-compliance }
 Gamebase 서비스를 이용하는 과정에서 고객은 관련 법령(정보통신망법, 개인정보보호법, 전자상거래법, 개인정보보호법 등)에 따른 의무를 숙지하고 준수하여야 합니다.
 NHN Cloud는 서비스 제공사로서 고객께서 Gamebase 서비스를 안전하게 이용하실 수 있도록 적극적으로 지원하는 파트너이며, 고객이 관리하는 게시물, 이용자의 개인정보 등에 대해서는 책임지지 않습니다.
 또한 고객이 이용자의 개인정보를 수집하는 과정에서 고객과 NHN Cloud 간 개인정보 처리에 관한 업무 위수탁 관계가 발생할 수 있습니다. 

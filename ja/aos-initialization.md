@@ -1,8 +1,12 @@
-## Game > Gamebase > Android SDK ご利用ガイド > 初期化
+<!-- pre-align:aligned sig=4c9d12d60980 -->
+
+<a id="game-gamebase-android-developers-guide-initialization"></a>
+## Game > Gamebase > Android SDK ご利用ガイド > 初期化 { #game-gamebase-android-developers-guide-initialization }
 
 Gamebase Android SDKを使用するためには、まず初期化を行う必要があります。
 
-### onActivityResult
+<a id="onactivityresult"></a>
+### onActivityResult { #onactivityresult }
 
 Gamebaseが正常に動作するよう、必ず**Activity#onActivityResult(int, int, Intent)**から**Gamebase.onActivityResult(int, int, Intent)**を呼び出します。
 
@@ -12,13 +16,15 @@ Gamebaseが正常に動作するよう、必ず**Activity#onActivityResult(int, 
 + (void)Gamebase.onActivityResult(int requestCode, int resultCode, Intent data);
 ```
 
-### Initialization Flow
+<a id="initialization-flow"></a>
+### Initialization Flow { #initialization-flow }
 
 ゲームが始まったらDebug Modeを設定し、Gamebaseを初期化して、Launching Status Codeに従ってゲームに進入可否を決定するように、以下のフローのように実装してください。
 
 ![initialization flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/initialization_flow_2.19.0.png)
 
-### Configuration Settings
+<a id="configuration-settings"></a>
+### Configuration Settings { #configuration-settings }
 
 Gamebaseを初期化するとき、GamebaseConfiguration.Builderの客体でGamebaseの設定を変更することができます。
 
@@ -31,7 +37,8 @@ Gamebaseを初期化するとき、GamebaseConfiguration.Builderの客体でGame
 | enableBanPopup(boolean enable)           | O                          | **[UI]**<br/>ゲームユーザーが利用を制限された状態の場合、Gamebaseが自動でbanされた理由をポップアップで表示するかどうかを変更することができます。<br/>**enablePopup(true)**の状態でのみ動作します。<br/>デフォルトは**true**です。|
 | enableGPGSSignInCheck(boolean enable)    | O                          | 「GPGS自動ログイン」機能連動時、ユーザーにGPGSログインをアプリインストール後に一度だけ確認するか、Gamebaseを初期化するたびに確認するかを選択します。<br/>**true**に設定すると、ユーザーがGPGSログインを拒否してもGamebase初期化時にGPGSログインウィンドウを再度表示します。<br/>**false**に設定すると、アプリ初回実行時にのみGPGSログインウィンドウが一度表示され、拒否しても再度表示されません。GPGSログインを再度行うには、**Google Play Games**アプリケーションで設定する必要があります。<br/>デフォルト値は**true**です。|
 
-### Debug Mode
+<a id="debug-mode"></a>
+### Debug Mode { #debug-mode }
 * Gamebaseは、警告(warning)とエラーログのみ表示します。
 * 開発の参考になるシステムログをオンにしたいときは、**Gamebase.setDebugMode(true)**を呼び出してください。
 
@@ -46,7 +53,8 @@ Gamebaseを初期化するとき、GamebaseConfiguration.Builderの客体でGame
 * [コンソールクライアント設定](./oper-app/#client)
 
 
-### Initialize
+<a id="initialize"></a>
+### Initialize { #initialize }
 
 **Activity#onCreate(Bundle)**から**Gamebase#initialize(Activity, GamebaseConfiguration, GamebaseDataCallback)**を呼び出してGamebase SDKを初期化します。
 
@@ -118,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-### Launching Information
+<a id="launching-information"></a>
+### Launching Information { #launching-information }
 
 Gamebase#initializeの呼び出し結果で起動状態を確認することができます。<br/>
 ローンチコードに応じてゲームプレイ可否を判断してください。
@@ -194,6 +203,7 @@ getLaunchingInformations APIを利用すると、初期化後にもLaunchingInfo
 LaunchingInfoオブジェクトにはGamebase Consoleに設定した値、ゲーム状態などが含まれています。
 
 
+<a id="launching-information-launching"></a>
 #### 1. launching
 
 Gamebaseローンチ情報です。
@@ -264,37 +274,7 @@ Gamebase Consoleに登録されたメンテナンス情報です。
 Not translated yet
 ```
 
-##### Change Default Maintenance HTML
-
-enablePopupとenableLaunchingStatusPopupの値がいずれもtrueの場合、ゲームがメンテナンス状態の時、自動的にメンテナンスポップアップが表示されます。
-![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_popup_android_2.30.0.png)
-
-ここで**詳細表示**ボタンをクリックするとメンテナンス情報が自動的にWebビューで表示されます。
-![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_webview_android_2.30.0.png)
-
-この時に表示されるhtmlファイルを修正したい場合は、次のリンクのhtmlファイルをダウンロードして自由に修正した後、'assets/Gamebase'フォルダに格納します。するとGamebase SDKに内蔵された基本htmlファイルの代わりにそのhtmlファイルを使用してメンテナンス情報を表示します。
-[htmlファイルダウンロードLINK](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gamebase-maintenance.html)
-
-**1.4 notice**
-
-Gamebase Consoleに登録された告知情報です。
-
-* message：メッセージ
-* title：タイトル
-* url：メンテナンスURL
-
-[Game > Gamebase > コンソール使用ガイド > 運営 > Notice](./oper-operation/#notice)
-
-**1.5 user**
-
-Gamebase初期化を実行したユーザー情報です。
-
-* testDevice:テスト端末情報(Statusが200台の場合のみ伝達)
-    * matchingFlag:ユーザー端末がGamebaseコンソールに設定されたテスト端末の情報と同じかどうか
-    * matchingTypes
-        * テスト端末情報とマッチングされたタイプ
-        * matchingFlagがtrueの場合にのみ伝達   
-
+<a id="launching-information-tcproduct"></a>
 #### 2. tcProduct
 
 Gamebaseと連携したNHN CloudサービスのappKeyです。
@@ -304,6 +284,7 @@ Gamebaseと連携したNHN CloudサービスのappKeyです。
 * iap
 * push
 
+<a id="launching-information-tciap"></a>
 #### 3. tcIap
 
 NHN Cloud Consoleに登録されたIAPストア情報です。
@@ -314,6 +295,7 @@ NHN Cloud Consoleに登録されたIAPストア情報です。
 
 [Game > Gamebase > コンソール使用ガイド > 決済](./oper-purchase/)
 
+<a id="launching-information-tclaunching"></a>
 #### 4. tcLaunching
 
 TNHN Cloud Launching Consoleでユーザーが入力した情報です。
@@ -323,7 +305,8 @@ TNHN Cloud Launching Consoleでユーザーが入力した情報です。
  
 [Game > Gamebase > コンソール使用ガイド > 管理 > Config](./oper-management/#config)
 
-### Handling Unregistered Version
+<a id="handling-unregistered-version"></a>
+### Handling Unregistered Version { #handling-unregistered-version }
 
 Gamebaseコンソールに登録されていないGameClientVersionを初期化すると**LAUNCHING_UNREGISTERED_CLIENT(2004)**エラーが発生します。
 enablePopup(true), enableLaunchingStatusPopup(true)状態の場合、強制アップデートポップアップが表示され、マーケットに移動します。
@@ -376,7 +359,8 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 });
 ```
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                        | Error Code | Description                |
 | ---------------------------- | ---------- | -------------------------- |

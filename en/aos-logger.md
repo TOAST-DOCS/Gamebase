@@ -1,8 +1,12 @@
-## Game > Gamebase > Android SDK User Guide > Logger
+<!-- pre-align:aligned sig=640feae42eaf -->
+
+<a id="game-gamebase-android-sdk-user-guide-logger"></a>
+## Game > Gamebase > Android SDK User Guide > Logger { #game-gamebase-android-sdk-user-guide-logger }
 
 This document describes how to use Log & Crash Search API.
 
-### Initialize
+<a id="initialize"></a>
+### Initialize { #initialize }
 
 Initialize NHN Cloud Logger SDK with appkey issued from Log & Crash Search.<br/>
 To send crash logs, without a miss, occurring immediately with app execution, NHN Cloud Logger must be initialized from **Application.onCreate()**.
@@ -31,7 +35,8 @@ public class MyApplication extends Application {
 }
 ```
 
-### Send Logs
+<a id="send-logs"></a>
+### Send Logs { #send-logs }
 
 Send logs to Log & Crash Server.
 NHN Cloud Logger SDK provides the following five level of logs to send:
@@ -85,7 +90,8 @@ final String val2 = "maValue2";
 Gamebase.Logger.debug("VALUE1: %s, VALUE2: %s", val1, val2);
 ```
 
-### Set User-Defined Fields
+<a id="set-user-defined-fields"></a>
+### Set User-Defined Fields { #set-user-defined-fields }
 Set the user-defined fields you need.
 
 With user-defined field setting, set values are delivered to a server along with logs, every time  send logs API is called.
@@ -102,7 +108,8 @@ With user-defined field setting, set values are delivered to a server along with
 Gamebase.Logger.setUserField("KEY", "VALUE");
 ```
 
-### Further Tasks after Sending Logs
+<a id="further-tasks-after-sending-logs"></a>
+### Further Tasks after Sending Logs { #further-tasks-after-sending-logs }
 
 With the listener registered, further tasks can be executed after log is sent.
 
@@ -138,7 +145,8 @@ Gamebase.Logger.setLoggerListener(new LoggerListener() {
 });
 ```
 
-### Use Handled Exception API
+<a id="use-handled-exception-api"></a>
+### Use Handled Exception API { #use-handled-exception-api }
 
 On the Android platform, you can send exception-related content in the try/catch syntax using NHN Cloud Logger's Handled Exception API.
 The exception logs you sent can be viewed in the console by clicking **Log & Crash Search > App Crash Search** and clicking **Handled** under **Error Type**.

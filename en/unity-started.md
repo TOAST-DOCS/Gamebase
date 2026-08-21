@@ -1,9 +1,12 @@
+<!-- pre-align:aligned sig=9ca0a1936f8a -->
 
-## Game > Gamebase > Unity Developer's Guide > Getting Started
+<a id="game-gamebase-unity-developers-guide-getting-started"></a>
+## Game > Gamebase > Unity Developer's Guide > Getting Started { #game-gamebase-unity-developers-guide-getting-started }
 
 This guide describes the environments and initial setting of Gamebase Unity SDK.
 
-## Environments
+<a id="environments"></a>
+## Environments { #environments }
 
 > [Note]
 > 
@@ -11,11 +14,13 @@ This guide describes the environments and initial setting of Gamebase Unity SDK.
 >
 > * 2022.3.10f1 ~ 6000.3.21f1
 
+<a id="environments-dependencies"></a>
 #### Dependencies
 
 * [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
 * [Gamebase iOS SDK - Dependencies](./ios-started/#setting)
 
+<a id="environments-supported-platforms"></a>
 #### Supported Platforms
 
 * iOS
@@ -28,24 +33,28 @@ This guide describes the environments and initial setting of Gamebase Unity SDK.
 * Editor
     * Supports functions only partially.
 
-## Gamebase SDK SettingTool
+<a id="gamebase-sdk-settingtool"></a>
+## Gamebase SDK SettingTool { #gamebase-sdk-settingtool }
 
 Can easily install the Gamebase SDK using the SettingTool.
 
-### Specification of Setting Tool
+<a id="specification-of-setting-tool"></a>
+### Specification of Setting Tool { #specification-of-setting-tool }
 
 1. Install Gamebase SDK
 2. Update Gamebase SDK
 3. Manage Gamebase SDK settings
 4. Uninstall Gamebase SDK
 
-### Installing SettingTool
+<a id="installing-settingtool"></a>
+### Installing SettingTool { #installing-settingtool }
 
 1. Download the SettingTool.
     * [Download Gamebase Setting Tool](/Download/#game-gamebase)
 2. After running the Unity project, import the GamebaseUnitySettingTool_{version}.unitypackage file.
 
-### Using the Setting Tool
+<a id="using-the-setting-tool"></a>
+### Using the Setting Tool { #using-the-setting-tool }
 
 Can use the SettingTool features by selecting **Tools > Gamebase** from the top menu bar in the Unity Editor.
 
@@ -60,7 +69,8 @@ Can use the SettingTool features by selecting **Tools > Gamebase** from the top 
 4. Refresh SettingTool
     * Refresh the SettingTool data.
 
-## Installing Gamebase SDK
+<a id="installing-gamebase-sdk"></a>
+## Installing Gamebase SDK { #installing-gamebase-sdk }
 
 Select **Tools > Gamebase > Setup Wizard** menu.
 
@@ -73,7 +83,8 @@ Select **Tools > Gamebase > Setup Wizard** menu.
 >
 > * can check the **required settings** through [Required Settings](#required-settings).
 
-## Updating the SDK to the Latest Version
+<a id="updating-the-sdk-to-the-latest-version"></a>
+## Updating the SDK to the Latest Version { #updating-the-sdk-to-the-latest-version }
 
 Select **Tools > Gamebase > Update Latest Version** menu.
 
@@ -82,7 +93,8 @@ Select **Tools > Gamebase > Update Latest Version** menu.
 
 ![unity-developers-guide-started-settingtool-3.0.0-latestupdate](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-3.0.0-latestupdate-en.png)
 
-## Editing Gamebase SDK Features
+<a id="editing-gamebase-sdk-features"></a>
+## Editing Gamebase SDK Features { #editing-gamebase-sdk-features }
 
 Select **Tools > Gamebase > Customize...** menu.
 
@@ -95,7 +107,8 @@ Select **Tools > Gamebase > Customize...** menu.
 >
 > * can check the **required settings** through [Required Settings](#required-settings).
 
-## Required Settings
+<a id="required-settings"></a>
+## Required Settings { #required-settings }
 
 The SettingTool provides a UI where Can view and modify **required settings**. 
 Can find them in both the **Setup Wizard** and **Customize** menus. 
@@ -105,7 +118,8 @@ Once all required settings are completed, the corresponding item will disappear.
 >
 > If the Required Settings are not resolved, errors may occur when running or building the project.
 
-### Installing EDM4U
+<a id="installing-edm4u"></a>
+### Installing EDM4U { #installing-edm4u }
 
 If you're using Android or iOS platforms, [EDM4U(External Dependency Manager)](https://github.com/googlesamples/unity-jar-resolver) is required.
 
@@ -113,7 +127,8 @@ If you're using Android or iOS platforms, [EDM4U(External Dependency Manager)](h
 >
 > * If EDM4U is not installed in the project, first [download](https://github.com/googlesamples/unity-jar-resolver/raw/refs/heads/master/external-dependency-manager-latest.unitypackage) the UnityPackage file and import it to install.
 
-### Android Publishing Settings
+<a id="android-publishing-settings"></a>
+### Android Publishing Settings { #android-publishing-settings }
 
 To configure the Gamebase Android SDK, essential files need to be generated.
 
@@ -127,7 +142,8 @@ To configure the Gamebase Android SDK, essential files need to be generated.
     * Create gradleTemplate.properties
         * Enable **Custom Gradle Properties Template**
 
-### Android Activity Settings
+<a id="android-activity-settings"></a>
+### Android Activity Settings { #android-activity-settings }
 
 To manage the Android Lifecycle, you need to set the Activity provided by Gamebase as the MainActivity.
 
@@ -153,7 +169,8 @@ The MainActivity setting depends on the Application Entry Point.
 >
 > * The MainActivity must be the one provided by Gamebase or inherit from it.
 
-### AndroidManifest.xml Configuration
+<a id="androidmanifestxml-configuration"></a>
+### AndroidManifest.xml Configuration { #androidmanifestxml-configuration }
 
 ```xml
 <manifest>
@@ -182,7 +199,8 @@ The MainActivity setting depends on the Application Entry Point.
 </manifest>
 ```
 
-### Android EDM4U Settings
+<a id="android-edm4u-settings"></a>
+### Android EDM4U Settings { #android-edm4u-settings }
 
 **Assets > External Dependency Manager > Android Resolver > Settings > Android Resolver Settings**
 
@@ -193,7 +211,8 @@ The MainActivity setting depends on the Application Entry Point.
     * Patch gradleTemplate.properties: Enabled
     * ![unity-developers-guide-started-settingtool-edm4u-settings-android-1.2.182](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-edm4u-settings-android-1.2.182.png)
 
-### Android EDM4U Manual Resolve
+<a id="android-edm4u-manual-resolve"></a>
+### Android EDM4U Manual Resolve { #android-edm4u-manual-resolve }
 
 When installing the Gamebase SDK using the Setting Tool, if EDM4U is installed, the resolve process will run automatically to configure the settings.
 
@@ -201,7 +220,8 @@ If EDM4U is not installed or if changes are needed, manual resolution can be per
 
 **Assets > External Dependency Manager > Android Resolver > Force Resolve**
 
-### iOS CocoaPods Installation
+<a id="ios-cocoapods-installation"></a>
+### iOS CocoaPods Installation { #ios-cocoapods-installation }
 
 If you're servicing the iOS platform, CocoaPods must be installed. For installation and detailed instructions, refer to the [CocoaPods official site](https://cocoapods.org/).
 
@@ -209,7 +229,8 @@ CocoaPods can also be installed through EDM4U.
 
 **Assets > External Dependency Manager > iOS Resolver > install Cocoapods**
 
-### iOS EDM4U Settings
+<a id="ios-edm4u-settings"></a>
+### iOS EDM4U Settings { #ios-edm4u-settings }
 
 > **Assets > External Dependency Manager > iOS Resolver > Settings > iOS Resolver Settings**
 
@@ -222,6 +243,7 @@ CocoaPods can also be installed through EDM4U.
     * Link frameworks statically: Disable
     * ![unity-developers-guide-started-settingtool-edm4u-settings-ios-1.2.182](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-edm4u-settings-ios-1.2.182.png)
 
+<a id="ios-edm4u-settings-additional-ios-module-settings"></a>
 #### Additional iOS Module Settings
 
 * Depending on the selected module, May need to configure settings directly through Xcode.
@@ -231,16 +253,19 @@ CocoaPods can also be installed through EDM4U.
 3. Add iOS SDK settings to TARGETS > UnityFramework.
     * [iOS SDK Settings Guide](./ios-started)
 
-## In case of errors
+<a id="in-case-of-errors"></a>
+## In case of errors { #in-case-of-errors }
 
 * If an unexpected error occurs at Setting Tool, close the window and try again.
 * If the error is not resolved by re-running, open the SettingToolWindow.cs file in Assets/NhnCloud/GamebaseTools/SettingTool/Editor/Scripts, uncomment SettingTool.SetDebugMode(true); code in the ShowWindow method, and send the log.
 
-## API Reference
+<a id="api-reference"></a>
+## API Reference { #api-reference }
 
 API Reference is included in GamebaseUnitySDK.
 
-## API Supported Platforms
+<a id="api-supported-platforms"></a>
+## API Supported Platforms { #api-supported-platforms }
 
 **API**
 
@@ -263,7 +288,8 @@ To call a Gamebase API which is not supported by a selected platform, following 
 * GamebaseErrorCode.NOT_SUPPORTED_UNITY_WEBGL
 * GamebaseErrorCode.NOT_SUPPORTED_UNITY_EDITOR
 
-## API Deprecate Governance
+<a id="api-deprecate-governance"></a>
+## API Deprecate Governance { #api-deprecate-governance }
 
 The API which is not supported by Gamebase anymore is processed as deprecated (deprecate).
 A deprecated API can be deleted without any prior notice when the following conditions are met:

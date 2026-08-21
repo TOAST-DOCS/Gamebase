@@ -1,4 +1,7 @@
-## Game > Gamebase > Console User Guide > Customer Center
+<!-- pre-align:aligned sig=bf3230130c47 -->
+
+<a id="game-gamebase-console-user-guide-customer-center"></a>
+## Game > Gamebase > Console User Guide > Customer Center { #game-gamebase-console-user-guide-customer-center }
 
 You can process user inquiries received during game operation and manage settings for notices, FAQ, etc. provided through the Customer Center page.
 When processing the user inquiries, you can also register the settings for the email to be sent to the user and frequently used answers as a template for later use.
@@ -6,16 +9,19 @@ When processing the user inquiries, you can also register the settings for the e
 > To use this menu, go to App -  Customer Center settings, and select Customer Center Provided by Gamebase.
 >
 
-## Help Center Web Page 
+<a id="help-center-web-page"></a>
+## Help Center Web Page { #help-center-web-page }
 
 Describes the customer center web page exposed to the user.
 Through this screen, the user registers 1:1 inquiry and views the history of inquiries. The user can also check FAQ and Notice pages.
 
-### Main 
+<a id="main"></a>
+### Main { #main }
 
 When you open the customer center website using the Gamebase SDK in the game, the following screen is exposed to the user.
 ![main](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_help_center_01_en_240105.jpg)
 
+<a id="main-1-11-inquiry"></a>
 #### (1) 1:1 Inquiry
 
 When the user clicks the **1:1 inquiry** button, they are redirected to the screen where 1:1 inquiries can be registered.
@@ -37,6 +43,7 @@ When you open the customer center page after setting the game nickname as additi
 > When selecting a inquiry type, if a template is set for the inquiry type, the inquiry content is automatically filled with the template content.
 > Template setting can be performed in [Customer Center > Customer Inquiry > Manage inquiry type](./oper-customer-service/#inquiry).
 
+<a id="main-2-my-inquiries"></a>
 #### (2) My Inquiries
 
 Logging in and accessing the customer center web page is required to activate **My Inquiries** button. Click the button to go to the screen where users can view the history of their previous inquiries.
@@ -48,6 +55,7 @@ In My Inquiries, you can see 10 listings by default. If there are more than 10, 
 > If the user posts the inquiry without logging in, they can check the inquiries only through emails and cannot see them in My Inquiries.
 > ![MyInquiries_no-login](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_help_center_04_en_240105.jpg)
 
+<a id="main-3-frequently-asked-questions"></a>
 #### (3) Frequently Asked Questions
 
 In FAQ, the user can see categorized questions and frequently asked questions. In the list, up to 12 items are exposed.
@@ -59,6 +67,7 @@ The user can search for topics or click the Category button to see the FAQ regis
 3) You can see FAQs by grouping them using **Manage FAQ Type** that was set when registering the FAQs.
 4) FAQ categories can be added or deleted through [Gamebase Console > Customer Center >  Manage FAQ Type](./oper-customer-service/#search-faq).
 
+<a id="main-4-notices"></a>
 #### (4) Notices
 Registered posts can be viewed in the **Customer Center > Notices**.
 
@@ -66,11 +75,13 @@ On the main screen, the three most recent posts are displayed, and the posts pin
 Created date is sorted in descending order to expose the notice posts, and the notices pinned at the top are shown in the boldface format. Expired posts are no longer shown in the list. You can click the post to see the details.
 ![Notices](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_help_center_06_en_240105.jpg)
 
-## Inquiry
+<a id="inquiry"></a>
+## Inquiry { #inquiry }
 Inquiries sent by customers can be viewed or processed.
 You can also set the submission types necessary to register a user inquiry, and set the push notifications sent to the user when the inquiry is completely processed.
 
-### Search Inquiry
+<a id="search-inquiry"></a>
+### Search Inquiry { #search-inquiry }
 
 Searches for the customer inquiry that matches the search conditions.
 
@@ -96,6 +107,7 @@ Searches for the customer inquiry that matches the search conditions.
     - Resolved: The person in charge has left a reply as Resolved. The inquiry has been resolved.
     - Completed: The status becomes Completed automatically when completed or two weeks have passed after being resolved by the person in charge.
 
+<a id="search-inquiry-manage-inquiry-type"></a>
 #### 1. Manage inquiry type
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_inquiry_02_en_240105.jpg)
 
@@ -106,6 +118,7 @@ By selecting a template registered in **Customer Center > Templates**, you can e
 > [Note]
 > The currently selected supported language can be checked in App - Customer Center settings.
 
+<a id="search-inquiry-send-reply-settings"></a>
 #### 2. Send reply settings
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_inquiry_03_en_240105.jpg)
 
@@ -116,7 +129,8 @@ As for the global service, you can additionally register the language you want a
 > 1. To use this function, NHN Cloud Push product must be enabled first.
 > 2. As for selection of the Send Reply settings, all languages supported by Gamebase can be registered regardless of the languages supported by the customer center.
 
-### Inquiry details
+<a id="inquiry-details"></a>
+### Inquiry details { #inquiry-details }
 
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_inquiry_04_en_240105.jpg)
 
@@ -134,6 +148,7 @@ At this point, you can check if the push notification is being sent to the user 
 > You can close the window by clicking the X button on the right. The window will reopen when you click the user ID.
 > The user information is viewed as similar to the functions from the previous member menu, you can easily check the necessary information when having to respond to the user inquiry.
 
+<a id="inquiry-details-send-reply-settings"></a>
 #### 1. Send Reply settings
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_inquiry_03_en_240105.jpg)
 
@@ -148,11 +163,13 @@ As for the global service, you can additionally register the language you want a
 > When viewing a closed user inquiry, you can view the inquiry and the answer, and if there is a file attached to the inquiry while processing it, you can click the item to download the attachment.
 
 
-## FAQ
+<a id="faq"></a>
+## FAQ { #faq }
 
 You can manage the FAQ provided by the customer center page.
 
-### Search FAQ
+<a id="search-faq"></a>
+### Search FAQ { #search-faq }
 
 You can search the registered FAQs.
 
@@ -173,6 +190,7 @@ You can search the registered FAQs.
 - **Modified date**: Shows the last date when the FAQ was registered or modified.
 - **Status**: Shows whether FAQ is currently being displayed. It is either Exposed or Not exposed.
 
+<a id="search-faq-manage-faq-type"></a>
 #### Manage FAQ type
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_faq_02_en_240105.jpg)
 
@@ -182,38 +200,46 @@ The list is shown in the order of appearance, and this order can be changed with
 > [Note]
 > The currently selected supported language can be checked in App - Customer Center settings.
 
-### Register or Update FAQ
+<a id="register-or-update-faq"></a>
+### Register or Update FAQ { #register-or-update-faq }
 You can register an FAQ or modify the info of an FAQ that is already registered.
 What can be changed during registration or modification is the same.
 
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_faq_03_en_240105.jpg)
 
+<a id="register-or-update-faq-status"></a>
 #### 1. Status
 Selects the exposure status of the FAQ you want to register or modify.
 There are Exposed / Not exposed, and you just have to select whether it will be exposed to actual users on the Customer Center page.
 
+<a id="register-or-update-faq-type"></a>
 #### 2. Type
 Select the FAQ type that you want to register or modify based on the type registered under Manage FAQ Type.
 
+<a id="register-or-update-faq-frequently-asked-questions"></a>
 #### 3. Frequently asked questions
 Check whether you will display the question in the Frequently Asked Questions section of the customer center page.
 
+<a id="register-or-update-faq-question"></a>
 #### 4. Question
 Enter the text of the FAQ.
 > [Note]
 Supported languages that were configured in the > App - Customer Center can be registered only when all of them were entered.
 
+<a id="register-or-update-faq-answer"></a>
 #### 5. Answer
 Enter the answer to the FAQ.
 You can customize the answer by using the Text Editor, and the answer is exposed in the web page as is.
 > [Note]
 Supported languages that were configured in the > App - Customer Center can be registered only when all of them were entered.
 
-## Notice
+<a id="notice"></a>
+## Notice { #notice }
 
 You can manage the notices to be provided by the customer center page.
 
-### Search Notice
+<a id="search-notice"></a>
+### Search Notice { #search-notice }
 
 You can search the registered notices list.
 
@@ -234,6 +260,7 @@ You can search the registered notices list.
 - **Exposure period**: Shows the exposure period of the notice.
 - **Status**: Shows the current progress of the notice. You can select one from To Be Exposed / Currently Exposed / Finished.
 
+<a id="search-notice-manage-header"></a>
 #### Manage Header
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_notice_02_en_240105.jpg)
 
@@ -243,44 +270,54 @@ The list is shown in the order of appearance, and this order can be changed with
 > [Note]
 > The currently selected supported language can be checked in App - Customer Center settings.
 
-### Register or Update Notice
+<a id="register-or-update-notice"></a>
+### Register or Update Notice { #register-or-update-notice }
 You can register a new notice or modify the notice information which has already been registered.
 What can be changed during registration or modification is the same.
 
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_notice_03_en_240105.jpg)
 
+<a id="register-or-update-notice-date-of-exposure"></a>
 #### 1. Date of exposure
 Set the period to expose the notice.
 
+<a id="register-or-update-notice-display-time"></a>
 #### 2. Display time
 Select the date to be shown to the user when posting the notice.
 
+<a id="register-or-update-notice-header"></a>
 #### 3. Header
 Select the header of the notice.
 
+<a id="register-or-update-notice-pin-to-top"></a>
 #### 4. Pin to top
 Pin the notice at the top, so that it will always be exposed.
 
+<a id="register-or-update-notice-subject"></a>
 #### 5. Subject
 Enter the subject of the notice.
 
+<a id="register-or-update-notice-body"></a>
 #### 6. Body
 Enter the text for the body of the notice.
 You can customize the answer by using the Text Editor, and the answer is exposed in the web page as is.
 > [Note]
 Supported languages that were configured in the > App - Customer Center can be registered only when all of them were entered.
 
+<a id="register-or-update-notice-attach-file"></a>
 #### 7. Attach file
 You can attach and upload a file to be shown with the notice.
 Up to 5 files (under 10 MB) can be attached.
 The attachments are exposed with the notice, and can be downloaded by clicking on them.
 
-## Answer template
+<a id="answer-template"></a>
+## Answer template { #answer-template }
 
 To reduce repetitive typing of the same text while processing customer inquiries, this function provides a template to process the inquiry.
 In addition, this feature supports templates for each inquiry type so that customers can fill out necessary information when they create inquiries.
 
-### Search Template
+<a id="search-template"></a>
+### Search Template { #search-template }
 It shows the list of the currently registered templates, and you can enter the search term in the upper-right corner to search for the currently registered template.
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_template_01_en_240105.jpg)
 
@@ -289,25 +326,30 @@ It shows the list of the currently registered templates, and you can enter the s
 - **Modified by**: Shows the information of the last user who registered or modified the reply template.
 - **Modified date**: Shows the date when the reply template was most recently registered or modified.
 
-### Register or Update Template
+<a id="register-or-update-template"></a>
+### Register or Update Template { #register-or-update-template }
 You can register a new reply template or modify the information of the previously registered reply template.
 What can be changed during registration or modification is the same.
 
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_template_02_en_240105.jpg)
 
+<a id="register-or-update-template-classification"></a>
 #### 1. Classification
 - **Inquiry Processing**: The default answer message for customer inquiry.
 - **Inquiry Type**: The message exposed for the user inquiry input by default.
 
+<a id="register-or-update-template-template-name"></a>
 #### 2. Template name
 Enter the name of the template which will be exposed in the template list when processing user inquiries.
 If the classification is Inquiry Type, this is the template name exposed in the inquiry type management.
 
+<a id="register-or-update-template-body"></a>
 #### 3. Body
 Enter the body text to fill the template upon the selection of the template while processing the inquiry.
 You can freely use the text editor to fill out the template, and this text will be applied as is when selecting the template while processing the inquiry.
 
-## Email Config
+<a id="email-config"></a>
+## Email Config { #email-config }
 You can set the format of the email which will be sent out to the user after the inquiry is processed.
 A default template is provided when initially activated, and you can edit it as freely as you want by using the text editor.
 

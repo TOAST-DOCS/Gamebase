@@ -1,10 +1,14 @@
-## Game > Gamebase > Android SDK ご利用ガイド > 決済
+<!-- pre-align:aligned sig=bacf30302c7a -->
+
+<a id="game-gamebase-android-developers-guide-purchase"></a>
+## Game > Gamebase > Android SDK ご利用ガイド > 決済 { #game-gamebase-android-developers-guide-purchase }
 
 ここではアプリでアプリ内決済機能を使用するために必要な設定方法についてご案内いたします。
 
 Gamebaseは、一つの統合された決済APIを提供することで、ゲームで簡単に各ストアのアプリ内決済を連動することができるようサポートします。
 
-### Initialization
+<a id="initialization"></a>
+### Initialization { #initialization }
 
 > <font color="red">[注意]</font><br/>
 >
@@ -28,7 +32,8 @@ GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(APP_ID, A
 Gamebase.initialize(activity, configuration, callback);
 ```
 
-### Purchase Flow
+<a id="purchase-flow"></a>
+### Purchase Flow { #purchase-flow }
 
 アイテムの購入は大きく分けて**決済フロー**、**[消費フロー](./aos-purchase/#consume-flow)**、**[再処理フロー](./aos-purchase/#retry-transaction-flow)**の3つがあります。
 **決済フロー**は、次のような順序で実装してください。
@@ -39,7 +44,8 @@ Gamebase.initialize(activity, configuration, callback);
 2. ゲームクライアントではGamebase SDKの**requestPurchase**を呼び出して決済を試行します。
 3. 決済に成功すると**requestItemListOfNotConsumed**を呼び出して未消費決済履歴を確認した後、支給するアイテムが存在する場合、Consume Flowを進行します。
 
-### Consume Flow
+<a id="consume-flow"></a>
+### Consume Flow { #consume-flow }
 
 未消費決済履歴リストに値がある場合、次のような順序で**Consume Flow**を進行してください。
 
@@ -63,7 +69,8 @@ Gamebase.initialize(activity, configuration, callback);
 3. アイテム支給有無に関係なく、ゲームサーバーは未消費履歴が返されないようにGamebaseサーバーのconsume(消費) APIを呼び出してアイテムの支給を完了します。
     * [Game > Gamebase > APIガイド > Purchase(IAP) > Consume](./api-guide/#consume)
 
-### Retry Transaction Flow
+<a id="retry-transaction-flow"></a>
+### Retry Transaction Flow { #retry-transaction-flow }
 
 ![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
 
@@ -75,7 +82,8 @@ Gamebase.initialize(activity, configuration, callback);
     * ゲーム内ショップ(またはロビー)に移動した時
     * ユーザープロフィールまたはメールボックスを確認した時
 
-### Purchase Items
+<a id="purchase-items"></a>
+### Purchase Items { #purchase-items }
 
 購入するアイテムのgamebaseProductIdを利用して次のAPIを呼び出し、購入をリクエストします。<br/>
 gamebaseProductIdは一般的にはストアに登録したアイテムのIDと同じですが、Gamebaseコンソールで変更することもできます。
@@ -238,7 +246,8 @@ class PurchasableReceipt {
 }
 ```
 
-### List Purchasable Items
+<a id="list-purchasable-items"></a>
+### List Purchasable Items { #list-purchasable-items }
 
 アイテムリストを照会したい場合、次のAPIを呼び出します。コールバックで返される配列(array)の中にはそれぞれ各アイテムの情報が含まれています。
 
@@ -336,7 +345,8 @@ class PurchasableItem {
 }
 ```
 
-### List Non-Consumed Items
+<a id="list-non-consumed-items"></a>
+### List Non-Consumed Items { #list-non-consumed-items }
 
 * まだ消費していない一回性商品(CONSUMABLE)と消費性定期購入商品(CONSUMABLE_AUTO_RENEWABLE)情報を照会します。
 * 未決済の内訳がある場合は、ゲームサーバー(アイテムサーバー)にリクエストを出してアイテムを送信(配布)するように処理する必要があります。
@@ -384,7 +394,8 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, configuration, new Game
 });
 ```
 
-### List Activated Subscriptions
+<a id="list-activated-subscriptions"></a>
+### List Activated Subscriptions { #list-activated-subscriptions }
 
 現在のユーザーID基準で有効になっている定期購入リストを照会します。
 決済が完了した定期購入商品(自動更新型定期購入、自動更新型消費性定期購入商品)は、有効期限が切れる前まで照会できます。
@@ -432,7 +443,8 @@ Gamebase.Purchase.requestActivatedPurchases(activity, configuration, new Gamebas
 });
 ```
 
-### List Status of Subscriptions
+<a id="list-status-of-subscriptions"></a>
+### List Status of Subscriptions { #list-status-of-subscriptions }
 
 現在のユーザーID基準で購入した購読商品の状態を照会できます。
 決済が完了した購読商品(自動更新型購読、自動更新型消費性購読商品)は、期限が切れる前まで継続して照会できます。
@@ -607,13 +619,15 @@ class PurchasableSubscriptionStatus {
 }
 ```
 
-### Event by Purchase
+<a id="event-by-purchase"></a>
+### Event by Purchase { #event-by-purchase }
 
 Promotionコード入力により商品を取得した場合、またはPending決済(遅延決済、保護者の同意など)が完了した際、GamebaseEventHandlerを通じてイベントを受け取り、処理できます。
 GamebaseEventHandlerでプロモーション決済及び遅延決済イベントを処理する方法は、以下のガイドをご確認ください。
 [Game > Gamebase > Android SDK使用ガイド > ETC > Gamebase Event Handler](./aos-etc/#purchase-updated)
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                                     | Error Code | Description                              |
 | ----------------------------------------- | ---------- | ---------------------------------------- |

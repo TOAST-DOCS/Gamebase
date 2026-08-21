@@ -1,20 +1,27 @@
-## Game > Gamebase > Android SDK 사용 가이드 > UI
+<!-- pre-align:aligned sig=3ec693c0ed98 -->
 
-## GameNotice
+<a id="game-gamebase-android-developers-guide-ui"></a>
+## Game > Gamebase > Android SDK 사용 가이드 > UI { #game-gamebase-android-developers-guide-ui }
+
+<a id="gamenotice"></a>
+## GameNotice { #gamenotice }
 
 콘솔에 이미지와 함께 등록한 공지 사항을 표시하는 기능입니다.
 
 ![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_001.png)
 ![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_002.png)
 
-### Open GameNotice
+<a id="open-gamenotice"></a>
+### Open GameNotice { #open-gamenotice }
 
 게임 공지를 화면에 표시합니다.
 
+<a id="open-gamenotice-required-parameter"></a>
 #### Required 파라미터
 * Activity: 게임 공지가 노출되는 Activity입니다.
 
 
+<a id="open-gamenotice-optional-parameter"></a>
 #### Optional 파라미터
 * GameNoticeConfiguration: 게임 공지 설정을 변경할 수 있습니다.
 
@@ -55,7 +62,8 @@ Gamebase.GameNotice.openGameNotice(activity, (GamebaseCallback) exception -> {
 });
 ```
 
-### Custom GameNotice
+<a id="custom-gamenotice"></a>
+### Custom GameNotice { #custom-gamenotice }
 
 사용자 설정 게임 공지를 표시합니다.
 GameNoticeConfiguration으로 표시 설정을 변경할 수 있습니다.
@@ -78,6 +86,7 @@ Gamebase.GameNotice.openGameNotice(
         });
 ```
 
+<a id="custom-gamenotice-gamenoticeconfiguration"></a>
 #### GameNoticeConfiguration
 
 | API | Mandatory(M) / Optional(O) | Description |
@@ -86,19 +95,23 @@ Gamebase.GameNotice.openGameNotice(
 | build() | **M** | 설정을 마친 Builder를 Configuration 객체로 변환합니다. |
 | setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | 게임 공지 배경색입니다.<br>색상은 ARGB 순서입니다.<br>String 은 android.graphics.Color.parseColor(String) API로 변환한 값을 사용합니다.<br>**default**: #CC000000 |
 
-## ImageNotice
+<a id="imagenotice"></a>
+## ImageNotice { #imagenotice }
 
 콘솔에 이미지를 등록한 후 사용자에게 공지를 띄울 수 있습니다.
 
 ![ImageNotice Example](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/DevelopersGuide/imageNotice-guide-landscape-ko_v3.png)
 
-### Show ImageNotices
+<a id="show-imagenotices"></a>
+### Show ImageNotices { #show-imagenotices }
 
 이미지 공지를 화면에 띄워 줍니다.
 
+<a id="show-imagenotices-required-parameter"></a>
 #### Required 파라미터
 * Activity : 이미지 공지가 노출되는 Activity입니다.
 
+<a id="show-imagenotices-optional-parameter"></a>
 #### Optional 파라미터
 * ImageNoticeConfiguration : 이미지 공지 설정을 변경할 수 있습니다.
 * GamebaseCallback : 이미지 공지가 전체 종료될 때 사용자에게 콜백으로 알려 줍니다.
@@ -145,7 +158,8 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), null,
     });
 ```
 
-### Custom ImageNotices
+<a id="custom-imagenotices"></a>
+### Custom ImageNotices { #custom-imagenotices }
 
 사용자 설정 이미지 공지를 화면에 띄워 줍니다.
 ImageNoticeConfiguration으로 사용자 설정 이미지 공지를 만들 수 있습니다.
@@ -161,6 +175,7 @@ ImageNoticeConfiguration configuration = ImageNoticeConfiguration.newBuilder()
 Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 ```
 
+<a id="custom-imagenotices-imagenoticeconfiguration"></a>
 #### ImageNoticeConfiguration
 
 | API | Mandatory(M) / Optional(O) | Description |
@@ -172,7 +187,8 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 | enableAutoCloseByCustomScheme(boolean enable) | O | 커스텀 스킴 이벤트가 발생하면 이미지 공지를 강제종료 할지 여부를 결정합니다.<br>**default**: true |
 
 
-### Close ImageNotices
+<a id="close-imagenotices"></a>
+### Close ImageNotices { #close-imagenotices }
 
 closeImageNotices API를 호출하여 현재 표시 중인 이미지 공지를 모두 종료할 수 있습니다.
 
@@ -182,7 +198,8 @@ closeImageNotices API를 호출하여 현재 표시 중인 이미지 공지를 �
 + (void)Gamebase.ImageNotice.closeImageNotices(@NonNull Activity activity);
 ```
 
-## Terms
+<a id="terms"></a>
+## Terms { #terms }
 
 Gamebase 콘솔에 설정한 약관을 표시합니다.
 
@@ -192,17 +209,20 @@ showTermsView API 는 웹뷰로 약관 창을 표시해줍니다.
 Game 의 UI 에 맞는 약관 창을 직접 제작하고자 하는 경우에는 queryTerms API를 호출하여, Gamebase 콘솔에 설정한 약관 항목을 불러올 수 있습니다.
 유저가 약관에 동의했다면 각 항목별 동의 여부를 updateTerms API를 통해 Gamebase 서버로 전송하시기 바랍니다.
 
-### showTermsView
+<a id="showtermsview"></a>
+### showTermsView { #showtermsview }
 
 약관 창을 화면에 띄워 줍니다.
 유저가 약관에 동의를 했을 경우, 동의 여부를 서버에 등록합니다.
 약관에 동의했다면 showTermsView API를 다시 호출해도 약관 창이 표시되지 않고 바로 성공 콜백이 반환됩니다.
 단, Gamebase 콘솔에서 '약관 재동의' 항목을 **필요** 로 변경했다면 유저가 다시 약관에 동의할 때까지는 약관 창이 표시됩니다.
 
+<a id="showtermsview-required-parameter"></a>
 #### Required 파라미터
 
 * Activity : 약관 창이 노출되는 Activity입니다.
  
+<a id="showtermsview-optional-parameter"></a>
 #### Optional 파라미터
 
 * GamebaseTermsConfiguration : GamebaseTermsConfiguration 객체를 통해 강제 약관 동의창 표시여부와 같은 설정을 변경할 수 있습니다.
@@ -277,7 +297,8 @@ public void afterLogin(Activity activity) {
 }
 ```
 
-### queryTerms
+<a id="queryterms"></a>
+### queryTerms { #queryterms }
 
 Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 게임UI에 맞는 약관을 직접 제작하고자 하신다면, queryTerms API를 호출하여 Gamebase 콘솔에 설정한 약관 정보를 내려받아 활용하실 수 있습니다.
@@ -293,6 +314,7 @@ Gamebase는 단순한 형태의 웹뷰로 약관을 표시합니다.
 > * 콘솔에서 '기본 약관 설정'을 하지 않는 경우 약관 언어와 다른 국가 코드로 설정된 단말기에서 queryTerms API를 호출하면 `UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)` 오류가 발생합니다.
 >     * 콘솔에서 '기본 약관 설정'을 하거나, `UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)` 오류가 발생했을 때는 약관을 표시하지 않도록 처리하시기 바랍니다.
 
+<a id="queryterms-required-parameter"></a>
 #### Required 파라미터
 
 * Activity : API 호출 시점의 최상위 Activity입니다.
@@ -335,6 +357,7 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 });
 ```
 
+<a id="queryterms-gamebasequerytermsresult"></a>
 #### GamebaseQueryTermsResult
 
 | API            | Values                          | Description         |
@@ -344,6 +367,7 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | getTermsCountryType     | String                          | 약관 타입.<br/> - KOREAN : 한국 약관 <br/> - GDPR : 유럽 약관 <br/> - ETC : 기타 국가 |
 | getContents             | List<GamebaseTermsContentDetail> | 약관 항목별 상세 정보 |
 
+<a id="queryterms-gamebasetermscontentdetail"></a>
 #### GamebaseTermsContentDetail
 
 | API            | Values                | Description         |
@@ -357,7 +381,8 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | getNode2DepthPosition   | int                   | 2단계 항목 노출 순서<br/> 없을 경우 -1           |
 | getDetailPageUrl        | String                | 약관 자세히 보기 URL<br/> 없을 경우 null. |
 
-### updateTerms
+<a id="updateterms"></a>
+### updateTerms { #updateterms }
 
 queryTerms API 로 내려받은 약관 정보로 UI 를 직접 제작했다면,
 게임유저가 약관에 동의한 내역을 updateTerms API를 통해 Gamebase 서버로 전송하시기 바랍니다.
@@ -369,11 +394,13 @@ queryTerms API 로 내려받은 약관 정보로 UI 를 직접 제작했다면,
 > 푸시 수신 동의 여부는 Gamebase 서버에 저장되지 않습니다.
 > 푸시 수신 동의 여부는 **로그인 후에** Gamebase.Push.registerPush API를 호출해서 저장하세요.
 
+<a id="updateterms-required-parameter"></a>
 #### Required 파라미터
 
 * Activity : API 호출 시점의 최상위 Activity입니다.
 * GamebaseUpdateTermsConfiguration : 서버에 등록할 유저의 선택 약관 정보입니다.
 
+<a id="updateterms-optional-parameter"></a>
 #### Optional 파라미터
 
 * GamebaseCallback : 선택 약관 정보를 서버에 등록 후 사용자에게 콜백으로 알려줍니다.
@@ -432,6 +459,7 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 });
 ```
 
+<a id="updateterms-gamebaseupdatetermsconfiguration"></a>
 #### GamebaseUpdateTermsConfiguration
 
 **Builder**
@@ -447,6 +475,7 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | termsVersion         | **M**                      | String                    | 약관 버전.<br/>queryTerms API를 호출해 내려받은 값을 전달해야 합니다.   |
 | contents             | **M**                      | List<GamebaseTermsContent> | 선택 약관 유저 동의 정보  |
 
+<a id="updateterms-gamebasetermscontent"></a>
 #### GamebaseTermsContent
 
 **Constructor**
@@ -462,7 +491,8 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | termsContentSeq      | **M**                      | int                | 선택 약관 항목 KEY      |
 | agreed               | **M**                      | boolean            | 선택 약관 항목 동의 여부  |
 
-### isShowingTermsView
+<a id="isshowingtermsview"></a>
+### isShowingTermsView { #isshowingtermsview }
 
 현재 약관 창이 표시되어 있는 상태인지를 알려 줍니다.
 
@@ -472,12 +502,14 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 + (boolean)Gamebase.Terms.isShowingTermsView();
 ```
 
-## WebView
+<a id="webview"></a>
+## WebView { #webview }
 
 Gamebase에서는 기본적인 웹뷰를 지원합니다.
 
 
-### Show WebView
+<a id="show-webview"></a>
+### Show WebView { #show-webview }
 
 웹뷰를 표시합니다.
 
@@ -510,6 +542,7 @@ Gamebase.WebView.showWebView(activity, "https://www.toast.com");
 
 ![Webview Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
 
+<a id="show-webview-custom-webview"></a>
 #### Custom WebView
 
 사용자 지정 웹뷰를 표시합니다. <br/>
@@ -531,6 +564,7 @@ GamebaseWebViewConfiguration configuration
 GamebaseWebView.showWebView(activity, "https://www.toast.com", configuration);
 ```
 
+<a id="show-webview-custom-schema"></a>
 #### Custom Scheme
 
 Gamebase 웹뷰에서 로딩한 웹 페이지 내에 스킴으로 특정 기능을 사용하거나 웹 페이지 내용을 변경할 수 있습니다.
@@ -547,6 +581,7 @@ Gamebase에서 지정해 놓은 스킴입니다.
 | gamebase://showwebview?link={URLEncodedURL} | link 파라메터의 URL 을 웹뷰로 열기.<br>URLEncodedURL : 웹뷰로 열 URL.<br>URL 디코딩 필요. |
 | gamebase://openbrowser?link={URLEncodedURL} | link 파라메터의 URL 을 외부 브라우저로 열기.<br>URLEncodedURL : 외부 브라우저로 열 URL.<br>URL 디코딩 필요. |
 
+<a id="show-webview-user-custom-schema"></a>
 #### User Custom Scheme
 
 Gamebase에 스킴 이름과 블록을 지정해 원하는 기능을 추가할 수 있습니다.
@@ -586,6 +621,7 @@ showWebView(activity, urlString, configuration,
         });
 ```
 
+<a id="show-webview-gamebasewebviewconfiguration"></a>
 #### GamebaseWebViewConfiguration
 
 | Method                                   | Values                              | Description    |
@@ -607,7 +643,8 @@ showWebView(activity, urlString, configuration,
 | setRenderOutsideSafeArea(boolean render) | true or false | SafeArea를 무시하고 Cutout 영역에도 렌더링.<br>**default**: false |
 | setCutoutAreaColor(int color) | Color.argb(a, r, g, b) | SafeArea 밖의 Cutout 영역 바탕 색상 |
 
-### Close WebView
+<a id="close-webview"></a>
+### Close WebView { #close-webview }
 다음 API를 통해 현재 보여지는 웹뷰를 닫을 수 있습니다.
 
 **API**
@@ -617,7 +654,8 @@ showWebView(activity, urlString, configuration,
 ```
 
 
-## Open External Browser
+<a id="open-external-browser"></a>
+## Open External Browser { #open-external-browser }
 
 다음 API를 통하여 외부 브라우져를 열 수 있습니다. 파라미터로 전송되는 URL은 유효한 값이어야 합니다.
 
@@ -628,11 +666,13 @@ showWebView(activity, urlString, configuration,
 ```
 
 
-## Alert
+<a id="alert"></a>
+## Alert { #alert }
 
 시스템 알림을 표시할 수 있습니다.<br/>
 
-### Simple Alert Dialog
+<a id="simple-alert-dialog"></a>
+### Simple Alert Dialog { #simple-alert-dialog }
 
 제목과 메시지만 입력하여 간단하게 알림 대화 상자를 표시할 수 있습니다.
 
@@ -645,7 +685,8 @@ showWebView(activity, urlString, configuration,
 ![Alert Dialog Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-002_1.0.0.png)
 
 
-### Alert Dialog with Listener
+<a id="alert-dialog-with-listener"></a>
+### Alert Dialog with Listener { #alert-dialog-with-listener }
 
 알림 대화 상자를 표시한 후 처리 결과를 콜백받고 싶다면 다음 API를 사용합니다.
 
@@ -659,7 +700,8 @@ showWebView(activity, urlString, configuration,
                             DialogInterface.OnClickListener clickListener);
 ```
 
-## Toast
+<a id="toast"></a>
+## Toast { #toast }
 
 다음 API를 사용하여 쉽게 [Android 토스트(toast)](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) 메시지를 표시할 수 있습니다.<br/>
 메시지를 표시하는 시간 종류 파라미터는 int 형식이며, Android SDK NotificationManagerService 클래스의 정의에 따라 아래 표에 정리한 시간 동안 표시됩니다.
@@ -680,7 +722,8 @@ showWebView(activity, urlString, configuration,
                         int duration);    // 메시지를 표시하는 시간 종류 (Toast.LENGTH_SHORT or Toast.LENGTH_LONG)
 ```
 
-## Custom Maintenance Page
+<a id="custom-maintenance-page"></a>
+## Custom Maintenance Page { #custom-maintenance-page }
 
 점검 상태에서 '자세히 보기'를 클릭하면 표시되는 점검 페이지를 변경할 수 있습니다.
 
@@ -694,7 +737,8 @@ showWebView(activity, urlString, configuration,
 	android:value="file:///android_asset/html/gamebase-maintenance.html"/>
 ```
 
-## Error Handling
+<a id="error-handling"></a>
+## Error Handling { #error-handling }
 
 | Error                                             | Error Code | Description                                                                                 |
 |---------------------------------------------------|------------|---------------------------------------------------------------------------------------------|

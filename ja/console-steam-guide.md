@@ -1,10 +1,14 @@
-## Game > Gamebase > ストアコンソールガイド > Steamコンソールガイド
+<!-- pre-align:aligned sig=a71963985071 -->
+
+<a id="game-gamebase-store-console-guide-steam-console-guide"></a>
+## Game > Gamebase > ストアコンソールガイド > Steamコンソールガイド { #game-gamebase-store-console-guide-steam-console-guide }
 
 > 本文書は、Steamworksでリリースされたアプリの情報を[Gamebase](https://docs.nhncloud.com/ja/Game/Gamebase/ja/Overview/)コンソールに登録して連動する方法を説明します。
 > Steamアプリをリリースするための詳細は、[Steamworksガイド文書](https://partner.steamgames.com/doc/home)を参照してください。
 
 
-## 基本情報の入力
+<a id="enter-basic-information"></a>
+## 基本情報の入力 { #enter-basic-information }
 
 Steam連動のために以下の3つの情報を正確に入力してください。
 
@@ -16,7 +20,8 @@ Steam連動のために以下の3つの情報を正確に入力してくださ�
 ![Gamebaseストア設定](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/Steam/ja/steam_register_01_ja_241028.png)
 
 
-### Steam Store App ID
+<a id="steam-store-app-id"></a>
+### Steam Store App ID { #steam-store-app-id }
 
 * Steamworksで製品を登録した後に発行されるアプリの固有識別情報です。
 * **Steamworks > App Admin >** (プロジェクト名)に表示されたApp IDを入力します。
@@ -24,7 +29,8 @@ Steam連動のために以下の3つの情報を正確に入力してくださ�
 ![Steam Store App ID](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_iap/console_steam/steam_console_app_02_kor.png)
 
 
-### Steam Web API Key
+<a id="steam-web-api-key"></a>
+### Steam Web API Key { #steam-web-api-key }
 
 * [ISteamMicroTxn Interface](https://partner.steamgames.com/doc/webapi/ISteamMicroTxn)(Steam決済API)にアクセスするために必要な情報です。
 * **Steamworks > Users & Permissions**で新規作成または発行済みのキー値を入力します。
@@ -33,7 +39,8 @@ Steam連動のために以下の3つの情報を正確に入力してくださ�
 ![Steam Web API Key](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_iap/console_steam/steam_console_app_03_kor.png)
 
 
-### Steamの基本通貨
+<a id="steam-default-currency"></a>
+### Steamの基本通貨 { #steam-default-currency }
 
 * ユーザーが購入を試行し、Steam決済オーバーレイに入る際、アイテム価格に適用される通貨コードのデフォルト値を設定できます。
 * ユーザーのSteamウォレットの通貨と一致する通貨コードがアイテム情報に存在しない場合、本項目で設定された基本通貨で商品の価格が出力されます。
@@ -44,7 +51,8 @@ Steamのデフォルト通貨](https://kr1-api-object-storage.nhncloudservice.co
 
 
 
-## 販売アイテム設定
+<a id="set-up-items-for-sale"></a>
+## 販売アイテム設定 { #set-up-items-for-sale }
 
 Gamebaseは[Steam Microtransaction API](https://partner.steamgames.com/doc/features/microtransactions)をサポートします。
 
@@ -52,7 +60,8 @@ Gamebaseは[Steam Microtransaction API](https://partner.steamgames.com/doc/featu
 
 
 
-### アイテム基本情報の入力
+<a id="enter-item-basic-information"></a>
+### アイテム基本情報の入力 { #enter-item-basic-information }
 
 - **商品名**: Gamebaseコンソールで管理するアイテムの代表的な名前を入力します。
 - **ストアアイテムID**:アプリで管理するアイテムIDを入力します。
@@ -63,7 +72,8 @@ Gamebaseは[Steam Microtransaction API](https://partner.steamgames.com/doc/featu
 - **商品種類**:現在、一回アイテム(`CONSUMABLE`)のみをサポートしています。
 
 
-### 国別販売アイテム情報の入力
+<a id="enter-country-specific-sales-item-information"></a>
+### 国別販売アイテム情報の入力 { #enter-country-specific-sales-item-information }
 入力されたアイテムの名前や価格などは、購入しようとしたユーザーに実際に請求される情報なので、入力および修正する際は注意してください。
 
 - **言語**:決済画面に表示されるアイテム名に対応する言語コードを選択します。

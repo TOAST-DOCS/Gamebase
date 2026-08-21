@@ -1,8 +1,12 @@
-## Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기
+<!-- pre-align:aligned sig=e7a996a84bc1 -->
+
+<a id="game-gamebase-user-guide-for-unreal-sdk-getting-started"></a>
+## Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 { #game-gamebase-user-guide-for-unreal-sdk-getting-started }
 
 Gamebase Unreal SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 
-## Environments
+<a id="environments"></a>
+## Environments { #environments }
 
 > [참고] 
 >
@@ -11,6 +15,7 @@ Gamebase Unreal SDK 사용 환경 및 초기 설정에 대해 설명합니다.
 > * UE 4.27~UE 5.7
 > * 다른 버전의 지원이 필요하면 [고객 센터](https://toast.com/support/inquiry)로 문의해 주시기 바랍니다.
 
+<a id="environments-supported-platforms"></a>
 #### Supported Platforms
 
 * Android
@@ -34,18 +39,21 @@ Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
+<a id="environments-dependencies"></a>
 #### Dependencies
 
 * [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
 * [Gamebase iOS SDK - Dependencies](./ios-started/#setting)
 
-## Installation
+<a id="installation"></a>
+## Installation { #installation }
 
 1. Gamebase Unreal SDK를 다운로드한 뒤 프로젝트 경로에 **Plugins** 폴더를 만들고, 다운로드한 SDK 내부 **NHNCloud** 폴더를 추가합니다.
     * [Download Gamebase Unreal SDK](/Download/#game-gamebase)
 2. Unreal 에디터에서 **Settings > Plugins** 창을 띄우고, **Project > NHN Cloud > Gamebase Plugin** 플러그인을 찾아 활성화합니다.
 
-### Module Settings
+<a id="module-settings"></a>
+### Module Settings { #module-settings }
 
 * Gamebase 코드를 사용하려면 모듈의 Build.cs 파일에서 의존 모듈 설정 시 아래와 같이 모듈을 추가해야 합니다.
 
@@ -56,7 +64,8 @@ Supported Platforms
             }
         );
 
-### Android Settings
+<a id="android-settings"></a>
+### Android Settings { #android-settings }
 
 1. 에디터의 메뉴 **Edit > Project Settings**를 선택합니다.
 2. Project Settings 창의 Plugin 카테고리에서 **Gamebase - Android**를 선택합니다.
@@ -79,6 +88,7 @@ Supported Platforms
         * 해당 스토어를 사용하는 경우 활성화됩니다.
         * View Option - 전체 결제 화면(Full)과 팝업 결제 화면(Popup) 중 선택합니다.
 
+<a id="android-settings-an-issue-where-google-play-authentication-and-payment-does-not-complete"></a>
 #### Google Play 인증 및 결제가 되지 않는 문제
 
 Google Play 서비스에 인증과 결제를 진행하려면 Distribution 설정이 필요합니다.
@@ -86,6 +96,7 @@ Google Play 서비스에 인증과 결제를 진행하려면 Distribution 설정
 
 * [Signing Projects for Release](https://docs.unrealengine.com/en-US/Platforms/Mobile/Android/DistributionSigning/index.html)
 
+<a id="android-settings-gpgs-google-play-services-settings"></a>
 #### GPGS(Google Play Games Services) 설정
 
 Sign in with Apple 사용 시 프로젝트에서 /Config/Android/AndroidEngine.ini 파일에 아래 내용을 추가하여 GPGS의 Application ID를 입력합니다.
@@ -95,6 +106,7 @@ Sign in with Apple 사용 시 프로젝트에서 /Config/Android/AndroidEngine.i
 GamesAppID=
 ```
 
+<a id="android-settings-enable-androidx"></a>
 #### AndroidX 적용
 
 * Gamebase Android SDK 2.25.0 부터 AndroidX가 도입되어 [UPL(Unreal Plugin Language)](https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/Mobile/UnrealPluginLanguage/) 파일에 아래 설정을 추가해야 합니다.
@@ -108,6 +120,7 @@ GamesAppID=
 </gradleProperties>
 ```
 
+<a id="android-settings-enable-multidex"></a>
 #### multidex 적용
 
 * Gamebase Unreal SDK 2.26.0 부터 Gamebase 내부에서 설정하던 multidex 관련 내용이 제거되었으므로, [UPL(Unreal Plugin Language)](https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/Mobile/UnrealPluginLanguage/) 파일에 아래 설정을 추가해야 합니다.
@@ -128,6 +141,7 @@ GamesAppID=
 </androidManifestUpdates>
 ```
 
+<a id="android-settings-epic-games-service"></a>
 #### Epic Games 서비스
 
 * [로그인 인증 타입](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type)은 PersistentAuth, AccountPortal을 지원합니다.
@@ -135,7 +149,8 @@ GamesAppID=
 * 상세 내용은 아래 내용을 참고하시어 진행 바랍니다.
     * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
 
-### iOS Settings
+<a id="ios-settings"></a>
+### iOS Settings { #ios-settings }
 
 Gamebase SDK for Unreal을 사용하려면 `UE4 Github 소스 코드`를 사용해야 하며, Epic games 회원 가입 후 Github 계정을 연결해야 UnrealEngine repository가 노출됩니다.
 관련 가이드는 아래 문서를 참고하시기 바랍니다.
@@ -146,6 +161,7 @@ Gamebase SDK for Unreal을 사용하려면 `UE4 Github 소스 코드`를 사용�
 >`!중요`
 > 이 과정을 무시할 경우, 아래 가이드 링크가 정상 작동하지 않거나 Gamebase SDK for Unreal 사용이 불가합니다.
 
+<a id="ios-settings-project-settings"></a>
 #### Project Settings
 
 1. 에디터의 메뉴 **Edit > Project Settings**를 선택합니다.
@@ -172,6 +188,7 @@ Gamebase SDK for Unreal을 사용하려면 `UE4 Github 소스 코드`를 사용�
 * Push
     * 사용하려는 푸시 서비스를 활성화합니다.
 
+<a id="ios-settings-modify-the-engine-to-use-the-gamebase-unreal-sdk"></a>
 #### Gamebase Unreal SDK 사용을 위한 엔진 수정
 
 Gamebase Unreal SDK 및 외부 인증 SDK에서 swift로 개발된 프레임워크를 컴파일하려면 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.26/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs) 파일에서 아래 코드를 추가해야 합니다.
@@ -182,6 +199,7 @@ Result += " -rpath /usr/lib/swift";                 // 추가 코드
 Result += " -rpath @executable_path/Frameworks";
 ```
 
+<a id="ios-settings-sign-in-with-apple"></a>
 #### Sign in with Apple
 
 Sign in with Apple 사용 시 프로젝트에서 /Config/IOS/IOSEngine.ini 파일에 아래 내용을 추가합니다.
@@ -191,6 +209,7 @@ Sign in with Apple 사용 시 프로젝트에서 /Config/IOS/IOSEngine.ini 파�
 bEnableSignInWithAppleSupport=True
 ```
 
+<a id="ios-settings-remote-notification"></a>
 #### Remote Notification
 
 1. Gamebase Remote Notification 기능을 사용하려면 **Project Settings > Platforms > iOS** 설정에서 **Enable Remote Notifications Support** 기능을 활성화해야 합니다. (Github 소스에서만 가능)
@@ -215,6 +234,7 @@ bEnableSignInWithAppleSupport=True
         completionHandler(UNNotificationPresentationOptionAlert);
     
 
+<a id="ios-settings-rich-push-notification"></a>
 #### Rich Push Notification
 
 다음과 같은 이슈로 인해 Rich Push Notification 기능을 사용할 수 없습니다.
@@ -222,6 +242,7 @@ bEnableSignInWithAppleSupport=True
 * Unreal은 프로젝트에 [Notification Service Extension](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension?language=objc)을 추가할 수 있는 방법을 제공하지 않습니다.
     * [NHN Cloud Push Notification Service Extension 생성](https://docs.toast.com/e  n/TOAST/en/toast-sdk/push-ios/#notification-service-extension)
 
+<a id="ios-settings-error-in-unreal-builds-due-to-warning-messages-of-ios-sdk"></a>
 #### iOS SDK의 Warning 메시지로 인한 Unreal 빌드 오류
 
 iOS SDK에서 발생하는 Warning 메시지가 Unreal 빌드 시 오류로 변환되어 빌드에 실패하는 현상이 발생하면 [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs) 파일에서 clang 컴파일 옵션 코드를 주석 처리하십시오.
@@ -230,6 +251,7 @@ iOS SDK에서 발생하는 Warning 메시지가 Unreal 빌드 시 오류로 변�
 // Result += " -Wall -Werror";
 ```
 
+<a id="ios-settings-plcrashreporter"></a>
 #### PLCrashReporter
 
 UE4에서 사용 중인 PLCrashReporter가 `arm64e` architecture를 지원하지 않아, 해당 architecture를 사용하는 디바이스에서 메모리 주솟값을 획득하지 못하는 이슈가 있습니다.
@@ -240,6 +262,7 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
 2. UE4 내부 PLCrashReporter의 a 파일과 header 파일을 압축 해제한 파일로 교체합니다.
     * Engine/Source/ThirdParty/PLCrashReporter/plcrashreporter-master-xxxxxxx
 
+<a id="ios-settings-epic-games-service"></a>
 #### Epic Games 서비스
 
 * [로그인 인증 타입](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type)은 PersistentAuth, AccountPortal을 지원합니다.
@@ -247,7 +270,8 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
 * 상세 내용은 아래 내용을 참고하시어 진행 바랍니다.
     * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
 
-### Windows Settings
+<a id="windows-settings"></a>
+### Windows Settings { #windows-settings }
 
 1. 에디터의 메뉴 **Edit > Project Settings**를 선택합니다.
 2. Project Settings 창의 Plugin 카테고리에서 **Gamebase - Windows**를 선택합니다.
@@ -261,6 +285,7 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
     * Epic Games Store
         * EOS 서비스 정보를 각 항목에 맞게 입력합니다.
 
+<a id="windows-settings-webview-plugin"></a>
 #### WebView 플러그인 안내
 
 * WebView 사용 콘텐츠를 사용 시 플러그인 활성화가 필요합니다.
@@ -274,6 +299,7 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
 >
 > NHNWebView 플러그인과 Web Browser 플러그인은 동시의 사용이 불가능하며, 두 플러그인이 모두 활성화되어 있는 경우 빌드 시 오류가 발생합니다.
 
+<a id="windows-settings-epic-games-service"></a>
 #### Epic Games 서비스
 
 * [로그인 인증 타입](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type)은 ExchangeCode, AccountPortal을 지원합니다.
@@ -281,6 +307,7 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
 * 상세 내용은 아래 내용을 참고하시어 진행 바랍니다.
     * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
 
+<a id="windows-settings-steamworks-services"></a>
 #### Steamworks 서비스
 
 * Windows에서 Steam 인증 및 결제는 Steamworks SDK를 통해 진행됩니다.
@@ -299,9 +326,11 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
 > Online Subsystem Steam 없이 Steamworks만 사용 시 Gamebase 내부에서 Steamworks를 사용한 인증 정보를 받아 오는 작업만 진행하며 Steamworks SDK 프로세스를 진행하지 않습니다.
 > Steamworks SDK를 직접 적용 시 초기화, 업데이트, 종료 등 필수적인 처리에 대해서는 직접 구현해야 합니다.
 
-## 3rd-Party Provider SDK Settings
+<a id="3rd-party-provider-sdk-settings"></a>
+## 3rd-Party Provider SDK Settings { #3rd-party-provider-sdk-settings }
 
-### Epic Games
+<a id="epic-games"></a>
+### Epic Games { #epic-games }
 
 * Epic Games의 기능을 사용하려면 Epic Online Services(EOS) SDK를 사용하여 로그인해야 합니다.
 * Online Subsystem EOS 플러그인이 활성화되고, Engine.ini의 OnlineSubsystemEOS 섹션 내 bEnabled이 활성화된 경우 Online Subsystem EOS를 사용하는 것으로 간주합니다.
@@ -366,7 +395,8 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
 
 
 
-## API Deprecate Governance
+<a id="api-deprecate-governance"></a>
+## API Deprecate Governance { #api-deprecate-governance }
 
 Gamebase에서 더 이상 지원하지 않는 API는 Deprecate 처리합니다.
 Deprecated된 API는 다음 조건 충족 시 사전 공지 없이 삭제될 수 있습니다.

@@ -1,4 +1,7 @@
-## Game > Gamebase > Console ご利用ガイド > 運営
+<!-- pre-align:aligned sig=abe84fae62cb -->
+
+<a id="game-gamebase-console-guide-operation"></a>
+## Game > Gamebase > Console ご利用ガイド > 運営 { #game-gamebase-console-guide-operation }
 
 アプリを運営する際に必要な機能を提供するメニューです。
 
@@ -8,7 +11,8 @@
 * イメージ告知(Image notice)：ゲームユーザーにイメージで提供するイメージ告知管理
 * キックアウト(Kick out)：アプリを使用するユーザーの接続を解除
 
-## Maintenance
+<a id="maintenance"></a>
+## Maintenance { #maintenance }
 
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_01_ja_240625.png)
 
@@ -28,7 +32,8 @@ Gamebaseで基本提供するメンテナンスポップアップ
 Gamebaseで基本提供するメンテナンスページ(メンテナンス理由とメンテナンス時間を表示)
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_02_ja_240105.jpg)
 
-### Register Maintenance
+<a id="register-maintenance"></a>
+### Register Maintenance { #register-maintenance }
 
 **メンテナンス**タブから**登録**ボタンをクリックすると、メンテナンスを登録する画面へ移動します。
 
@@ -39,6 +44,7 @@ Gamebaseで基本提供するメンテナンスページ(メンテナンス理�
 >  **アップデート必須とメンテナンスが同時に設定**されている場合、サービス状態は「アップデート必須」になります。
 > メンテナンス進行中に、ユーザーにアップデート必須ポップアップを表示したくない場合は、メンテナンス完了後にサービスの状態を「アップデート必須」に変更する必要があります。
 
+<a id="register-maintenance-1-target"></a>
 #### (1)対象
 メンテナンスを進行する対象を選択します。
 
@@ -48,14 +54,17 @@ Gamebaseで基本提供するメンテナンスページ(メンテナンス理�
  <br>クライアントの状態およびストア別全体選択が可能で、メンテナンスを行いたいクライアントのバージョンを選択して確認ボタンを押してください。
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_04_ja_240625.png)
 
+<a id="register-maintenance-2-reason"></a>
 #### (2)理由
 メンテナンスが行われる理由を入力します。
 この入力情報はゲームユーザーに表示されず、このメンテナンスを登録する簡単な理由について入力してください。
 
+<a id="register-maintenance-3-time"></a>
 #### (3)時間
 メンテナンスが行われる時間を設定します。
 タイムゾーンの場合、デフォルトで「UTC+09：00」が選択されており、サービスを行う国の時間帯を選択してメンテナンスを登録することも可能です。
 
+<a id="register-maintenance-4-maintenance-page"></a>
 #### (4)メンテナンスページ
 ユーザーに提供するメンテナンスページのタイプを設定します。
 **Gamebase提供ページ(Webビュー)**、**ユーザー定義HTML(Webビュー)**、**外部ページ**の中から選択することができ、項目ごとに入力ウィンドウが異なります。
@@ -87,17 +96,20 @@ Gamebaseで基本提供するメンテナンスページ(メンテナンス理�
 - beginDate：メンテナンスを登録する際に入力した開始時刻
 - endDate：メンテナンスを登録する際に入力した終了時刻
 
+<a id="register-maintenance-5-popup-messages"></a>
 #### (5)表示メッセージ
 メンテナンス時に表示するメッセージを設定します。
 **基本言語で自動翻訳**ボタンをクリックすると、基本言語に入力された内容を翻訳して各項目に設定された言語に合わせて入力されます。
 
-### Modify Maintenance
+<a id="modify-maintenance"></a>
+### Modify Maintenance { #modify-maintenance }
 
 登録したメンテナンスの詳細内容を確認して修正、削除することができます。
 基本的に入力項目は登録画面と同じで、メンテナンスを誤って登録した場合、削除ボタンでメンテナンスを削除することもできます。
 同じような内容でメンテナンスをもう一度登録する場合、コピー機能を使ってメンテナンスを簡単に登録することができます。
 
-## Notice
+<a id="notice"></a>
+## Notice { #notice }
 
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_06_ja_240625.png)
 
@@ -109,12 +121,14 @@ Gamebaseで基本提供するメンテナンスページ(メンテナンス理�
 (2) 表示中：お知らせ表示中
 (3) 完了：お知らせ表示時間終了
 
-### Register Notice
+<a id="register-notice"></a>
+### Register Notice { #register-notice }
 
 告知メイン画面で「登録」ボタンを押すと告知を登録する画面に移動します。
 
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_07_ja_240625.png)
 
+<a id="register-notice-1-target"></a>
 #### (1) 対象
 
 お知らせを表示する対象を選択します。
@@ -125,6 +139,7 @@ Gamebaseで基本提供するメンテナンスページ(メンテナンス理�
   <br>クライアントの状態及びストアごとに全体を選択することができ、メンテナンスが必要なクライアントバージョンを選択してから確認ボタンを押してください。
   ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_04_ja_240625.png)
 
+<a id="register-notice-2-target-country"></a>
 #### (2) 対象国家
 お知らせを表示する国家を選択します。
 
@@ -136,21 +151,25 @@ Gamebaseで基本提供するメンテナンスページ(メンテナンス理�
 > 国家判断基準
 > ユーザーの**USIMの国家コード**を基に判断し、USIMがない場合、**Device**に設定されている国家を基にお知らせが表示されます。
 
+<a id="register-notice-3-number-of-impressions"></a>
 #### (3) 表示回数
 お知らせをユーザーに表示する回数を選択します。
 - 期間中1回表示：表示期間中に1回表示
 - アプリを起動するたびに表示：表示期間中、ユーザーがアプリを起動するたびにお知らせを表示
 
+<a id="register-notice-4-time"></a>
 #### (4) 表示時間
 お知らせが表示される時間を設定します。
 Timezoneの場合、基本的に「UTC+09:00」が選択されており、サービスする国家の時間帯を選択してメンテナンスを登録することもできます。
 
+<a id="register-notice-5-message"></a>
 #### (5) 表示するメッセージ
 ユーザーに表示するお知らせメッセージを入力します。
 メッセージは多国語入力が可能で、登録された言語の中から選択された言語は、「基本言語」に設定されます。
 登録されたメッセージとマッチングする言語がないユーザーには、「基本言語」として選択された言語が表示されます。右の**+**ボタンをクリックすると言語を追加でき、利用したい言語がない場合、[カスタマーセンター](https://toast.com/support/inquiry) までご連絡ください。新しい言語を追加することができます。
 **基本言語で自動翻訳**ボタンをクリックすると、基本言語に入力された内容を翻訳して各項目に設定された言語に合わせて入力されます。
 
+<a id="register-notice-6-bottom-button-type"></a>
 #### (6)下部ボタンタイプ
 告知ポップアップの下部に表示されるボタンのタイプを指定します。
 - 閉じる：閉じるボタンのみ表示。
@@ -161,17 +180,20 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
   - サポート接続：Gamebase提供サポートを設定している場合、ユーザーが**詳細表示**ボタンを押すと、サポートをWebViewで開きます。
 
 
+<a id="register-notice-example-of-a-notice-pop-up"></a>
 #### 緊急のお知らせポップアップの例
 **閉じる**を選択した場合、左の画像のように「閉じる(CLOSE)」ボタンのみ表示され、**閉じる+詳細表示**を選択した場合、右の画像のように「閉じる(CLOSE)」と「詳細表示(SHOW DETAIL)」ボタンが表示されます。 
 ![gamebase_op_img](https://static.toastoven.net/prod_gamebase/gamebase_op_08_201812.png)
 
-### Modify Notice
+<a id="modify-notice"></a>
+### Modify Notice { #modify-notice }
 
 登録した告知の詳細内容の確認、修正、削除が行えます。
 基本的に入力項目は登録画面と同じで、告知を誤って登録した場合、削除ボタンをクリックして削除できます。
 同じような内容でメンテナンスを再度登録したい場合はコピー機能を使って簡単に告知を登録できます。
 
-## Game notice
+<a id="game-notice"></a>
+## Game notice { #game-notice }
 
 コンソールにゲーム告知を登録してゲーム内に画像と告知を一緒に提供できます。
 登録されたゲーム告知情報を一目で確認することができ、**表示中**状態のゲーム告知の登録日を基準にゲーム内にゲーム告知リストが表示されます。
@@ -186,6 +208,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 
  (2) **タイトル**：デフォルトで選択された言語のゲーム告知タイトルを含むゲーム告知リストの検索が可能です。
 
+<a id="game-notice-properties"></a>
 #### properties
 各項目に表示される内容は次のとおりです。
 
@@ -195,11 +218,13 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 - **掲示時間(+09:00)**：ゲーム告知が表示される時間情報を韓国時刻基準(+09:00)に変更して表示します。
 - **修正日**：ゲーム告知が最終的に修正された時刻を表示します。
 
-### Register Game notice
+<a id="register-game-notice"></a>
+### Register Game notice { #register-game-notice }
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_02_ko_250415.png)
 
 **ゲーム告知**リストで**登録** ボタンを選択するとゲーム告知を登録できます。
 
+<a id="register-game-notice-1-target"></a>
 #### (1)対象
 
 ゲーム告知を表示する対象を選択します。
@@ -211,6 +236,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
   ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240611.png)
 
 
+<a id="register-game-notice-2-target-country"></a>
 #### (2)対象国
 告知を表示する国を選択します。
 
@@ -222,10 +248,12 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 >
 > 国家判断基準
 > ユーザーの**USIM**国コード基を基準に判断し、USIMがない場合、**端末**に設定されている国を基準に告知が表示されます。
+<a id="register-game-notice-3-time-of-exposure"></a>
 #### (3)掲示期間
 登録されたゲーム告知がゲーム内に表示される時間を設定します。
 タイムゾーンの場合、基本的に「UTC+09:00」が選択されており、サービスを行う国のタイムゾーンを選択してメンテナンスを登録することも可能です。
 
+<a id="register-game-notice-4-notice-image"></a>
 #### (4)告知内容及び画像
 ゲーム内に表示する告知内容と画像を登録します。
 言語ごとに表示したいお知らせ内容と画像を設定することができ、端末の言語に合わせてお知らせ内容と画像が表示されます。
@@ -235,7 +263,8 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 > [参考]
 >
 > アップロードした画像はゲーム告知の表示期間終了後、14日が経過すると自動的に削除されます。
-### Modify Game notice
+<a id="modify-game-notice"></a>
+### Modify Game notice { #modify-game-notice }
 
 登録したゲーム告知の詳細内容を確認し、修正、削除が可能です。
 画像を交換したい場合は、修正画面から再登録することができ、そのほかにもゲーム告知の掲示期間や表示対象などを修正できます。
@@ -244,13 +273,15 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 > [参考]
 >
 > アップロードした画像はゲーム告知の表示期間終了後、14日が経過すると自動的に削除されます。
-### Modify Game notice Setting
+<a id="modify-game-notice-setting"></a>
+### Modify Game notice Setting { #modify-game-notice-setting }
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_03_ko_250415.png)
 
 ゲーム告知の基本的な設定ができる場合、設定した情報は全てのゲーム告知に一括適用されます。
 - 画像リスト使用：画像リストを使用すると、ゲーム告知に登録した画像がゲーム内のリスト画面にも表示されます。
 
-## Image notice
+<a id="image-notice"></a>
+## Image notice { #image-notice }
 
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_08_ja_240625.png)
 
@@ -262,6 +293,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 >
 > 画像告知ポップアップの一括適用される基本的な設定は、**Gamebase > 画像告知 > 設定**で行うことができます。
 
+<a id="image-notice-properties"></a>
 #### properties
 各項目に表示される内容は、以下の通りです。
 
@@ -279,11 +311,13 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 (3)完了：表示時間終了
 ```
 
-### Register Image notice
+<a id="register-image-notice"></a>
+### Register Image notice { #register-image-notice }
 
 **イメージ告知**リストから**登録**ボタンを選択すると、イメージ告知を登録できます。
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_04_ko_250415.png)
 
+<a id="register-image-notice-1-target"></a>
 #### (1)対象
 
 イメージ告知を表示する対象を選択します。
@@ -295,6 +329,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_04_ja_240625.png)
 
 
+<a id="register-image-notice-2-target-country"></a>
 #### (2)対象国
 告知を表示する国を選択します。
 
@@ -308,14 +343,17 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 > ユーザーの**USIM**国コードを元に判断し、USIMがない場合、**端末**に設定されている国を基準に告知が表示されます。
 
 
+<a id="register-image-notice-3-reason"></a>
 #### (3)理由
 イメージ告知が登録された理由を入力します。
 入力情報はゲームユーザーに表示されず、運営上識別するための情報を簡単に入力してください。
 
+<a id="register-image-notice-4-time-of-exposure"></a>
 #### (4)表示時間
 登録されたイメージがゲーム内に表示される時間を設定します。
 タイムゾーンの場合、デフォルトで「UTC+09：00」が選択されており、サービスを行う国の時間帯を選択してメンテナンスを登録することも可能です。
 
+<a id="register-image-notice-5-image"></a>
 #### (5)イメージ
 ゲーム内に表示する画像を登録します。メモを入力した場合、画像告知の画像の上に入力した文言が表示されます。メモは最大60文字まで入力可能です。  
 言語ごとに表示したいイメージを設定することができ、端末の言語に合わせてイメージが表示されます。
@@ -327,6 +365,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 > 
 > アップロードした画像は、イメージ告知の表示期間が過ぎた後、14日が経過すると自動的に削除されます。
 
+<a id="register-image-notice-6-image-click-action"></a>
 #### (6)画像クリック動作
 ゲームユーザーが画像告知をクリックしたときに処理するクリック動作を設定します。
 クリックアクションは、言語別に表示したい画像ごとに設定することができ、設定できるクリックアクションは次のとおりです。
@@ -340,13 +379,15 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 > **URLを開く**項目に特定の**http**URLを使用したい場合は、Androidビルドにドメイン例外宣言を追加する必要があります。
 > 追加していない場合、OSの基本的な制約により、Android 9.0以上の端末では、ページが正常に表示されません。
 
-### Modify Image notice
+<a id="modify-image-notice"></a>
+### Modify Image notice { #modify-image-notice }
 
 登録したイメージ告知の詳細内容の確認、修正、削除が可能です。
 イメージを変更したい場合は、修正画面から再度登録することができます。またイメージ告知の表示時間や表示対象などを修正できます。
 登録されたイメージ告知と類似した内容でイメージ告知を再度登録したい場合は、コピー機能を利用してイメージのみ新たにアップロードして登録できます。
 
-### Modify Image notice setting
+<a id="modify-image-notice-setting"></a>
+### Modify Image notice setting { #modify-image-notice-setting }
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_10_ja_240709.png)
 画像告知ポップアップの基本的な設定を行うことができ、設定した情報はすべての画像告知に一括適用されます。
 
@@ -359,18 +400,21 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
     - ライトモード：Webビューの下部バーの色を白に指定します。 
   - ポップアップの再表示設定： **今日は表示しない**設定を適用した場合に、画像告知ポップアップの再表示タイミングを指定できます。
 
-## Kick Out
+<a id="kick-out"></a>
+## Kick Out { #kick-out }
 ゲームメンテナンスなどの理由でユーザーの接続を解除する場合は、Consoleから簡単にユーザーの接続を解除できます。
 登録したキックアウト内容は、ひと目で確認できます。
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_11_ja_240625.png)
 
-### Register Kick Out
+<a id="register-kick-out"></a>
+### Register Kick Out { #register-kick-out }
 
 **キックアウト**タブで**登録**ボタンを押すと、キックアウトを登録する画面に移動します。
 
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_12_ja_240625.png)
 
-### (1)処理対象
+<a id="1-target-to-process"></a>
+### (1)処理対象 { #1-target-to-process }
 キックアウト対象のクライアントを選択します。
 - 全てのクライアント：すべてのクライアントバージョンにキックアウトが必要な場合選択します。
 - 一部のクライアント：特定のクライアントバージョンにのみキックアウトが必要な場合に選択します。「バージョン選択」ボタンを押すと、クライアントメニューで登録したクライアントバージョンリストが出力されます。
@@ -378,13 +422,16 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
  <br>クライアントの状態およびストア別全体選択が可能で、メンテナンスを行いいたいクライアントバージョンを選択し、確認ボタンを押してください。
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_04_ja_240625.png)
 
-### (2)理由
+<a id="2-reason"></a>
+### (2)理由 { #2-reason }
 キックアウトが行われる理由を最大100文字まで作成できます。
 この入力情報は、ゲームユーザーに表示されません。運営目的でこのキックアウトを登録する簡単な理由について入力してください。
 
-### (3)ポップアップを表示するかどうか
+<a id="3-whether-to-expose-popup"></a>
+### (3)ポップアップを表示するかどうか { #3-whether-to-expose-popup }
 - ポップアップ表示：キックアウト時にユーザーに表示されるポップアップにメッセージを入力できます。
 - ポップアップ表示しない：キックアウト時にポップアップを表示しません。
 
-### (4)メッセージ
+<a id="4-message"></a>
+### (4)メッセージ { #4-message }
 ユーザーに表示するキックアウトメッセージです。**ポップアップ表示設定**が**ポップアップ表示**の場合にのみ作成できます。

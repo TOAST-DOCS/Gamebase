@@ -1,6 +1,10 @@
-## Game > Gamebase > ストアコンソールガイド > MyCardコンソールガイド
+<!-- pre-align:aligned sig=a9f5312decac -->
 
-## MyCardストア登録
+<a id="game-gamebase-store-console-guide-mycard-console-guide"></a>
+## Game > Gamebase > ストアコンソールガイド > MyCardコンソールガイド { #game-gamebase-store-console-guide-mycard-console-guide }
+
+<a id="register-mycard-store"></a>
+## MyCardストア登録 { #register-mycard-store }
 
 - マイカードでは、顧客がログイン可能なウェブコンソールを提供しておりません。 (2023年7月現在)
 - マイカード連動は、NHN Cloud IAPコンソールに入力した情報を基に処理されます。

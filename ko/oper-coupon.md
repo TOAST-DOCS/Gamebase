@@ -1,12 +1,17 @@
-## Game > Gamebase > 콘솔 사용 가이드 > 쿠폰
+<!-- pre-align:aligned sig=4800987c46f8 -->
+
+<a id="game-gamebase-console-user-guide-coupons"></a>
+## Game > Gamebase > 콘솔 사용 가이드 > 쿠폰 { #game-gamebase-console-user-guide-coupons }
 
 게임 운영 시 게임 유저에게 배포할 쿠폰을 대량으로 생성하고 관리할 수 있는 기능입니다.
 
-## Coupon Publish
+<a id="publish-coupons"></a>
+## Coupon Publish { #publish-coupons }
 
 앱 내에서 사용할 수 있는 쿠폰을 발급 또는 검색할 수 있습니다.
 
-### Search Coupon publish
+<a id="search-coupon-publish"></a>
+### Search Coupon publish { #search-coupon-publish }
 
 검색 조건에 맞는 쿠폰 발급 내역을 검색합니다.
 
@@ -31,12 +36,14 @@
 - **다운로드**: 발급한 쿠폰의 상세 코드 목록 다운로드
 - **지급 아이템**: 발급한 쿠폰의 등록 가능 여부 표시
 
-### Publish coupon
+<a id="publish-coupon"></a>
+### Publish coupon { #publish-coupon }
 
 쿠폰 발급 검색 화면에서 **등록** 버튼을 클릭하면 쿠폰 발급을 진행할 수 있습니다.
 
 ![gamebase_coupon_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_02_240813.png)
 
+<a id="publish-coupon-coupon-type"></a>
 #### 1. 쿠폰 타입
 
 발급할 쿠폰 타입을 설정할 수 있습니다.
@@ -45,34 +52,41 @@
 - **시리얼** : 임의의 쿠폰 번호를 생성해 쿠폰 코드를 발급합니다.
 - **키워드** : 지정된 키워드 이름을 유저가 사용할 수 있는 쿠폰 코드로 발급합니다.
 
+<a id="publish-coupon-coupon-name"></a>
 #### 2. 쿠폰명
 
 발급한 쿠폰의 목적을 알 수 있는 쿠폰 이름을 입력합니다.
 
+<a id="publish-coupon-coupon-code"></a>
 #### 3. 쿠폰 코드
 
 **키워드 쿠폰 발급 시**에 유저가 사용할 수 있는 고유 쿠폰 코드를 입력합니다.
 
+<a id="publish-coupon-store"></a>
 #### 4. 스토어
 
 발급한 쿠폰을 사용할 수 있는 스토어를 선택합니다.
 
 기본적으로는 전체가 선택되어 있으며 쿠폰 사용을 스토어별로 제한하고자 할 경우 사용을 하길 원하는 스토어를 지정합니다.
 
+<a id="publish-coupon-valid-period"></a>
 #### 5. 유효 기간
 
 발급한 쿠폰을 사용할 수 있는 기간을 설정합니다.
 
+<a id="publish-coupon-number-of-issuance"></a>
 #### 6. 발급 개수
 
 발급 시 생성할 쿠폰 코드의 개수를 설정합니다.
 한 번 요청 시 최대 100만 개의 쿠폰 코드까지 생성할 수 있습니다.
 
+<a id="publish-coupon-number-of-coupons-allowed-per-user"></a>
 #### 7. 유저별 사용 가능 개수
 
 유저 1명이 최대로 사용할 수 있는 쿠폰 개수를 설정합니다.
 설정할 수 있는 최대 개수는 99개입니다. 무제한으로 사용하게 하려면  0으로 설정합니다.
 
+<a id="publish-coupon-item"></a>
 #### 8. 아이템
 
 쿠폰 코드 등록 시 지급할 아이템 정보를 입력합니다.
@@ -85,37 +99,44 @@
 > 쿠폰 아이템을 등록하는 방법은 [Coupon Item](./oper-coupon/#coupon-item)을 참고하시기 바랍니다.
 
 
-### Update publish coupon
+<a id="update-coupons"></a>
+### Update publish coupon { #update-coupons }
 
 발급한 쿠폰 정보를 수정하려면 상세 정보에서 **수정** 버튼을 클릭합니다.
 이미 발급한 쿠폰 코드 타입은 수정할 수 없으므로 새 타입의 쿠폰을 발급하려면 발급 정보를 새로 등록해야 합니다.
 
 ![gamebase_coupon_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_03_240813.png)
 
+<a id="update-coupons-coupon-name"></a>
 #### 1. 쿠폰명
 
 발급한 쿠폰의 목적을 알 수 있는 쿠폰 이름을 입력합니다.
 
+<a id="update-coupons-store"></a>
 #### 2. 스토어
 
 발급한 쿠폰을 사용할 수 있는 스토어를 선택합니다.
 발급시 선택한 스토어가 선택되어 있으며 정보를 변경할 경우 변경한 스토어에서만 발급된 쿠폰을 사용할 수 있게 됩니다.
 
+<a id="update-coupons-valid-period"></a>
 #### 3. 유효 기간
 
 발급한 쿠폰을 사용할 수 있는 기간을 설정합니다.
 
+<a id="update-coupons-available-count-per-user"></a>
 #### 4. 유저별 사용 가능 개수
 
 유저 1명이 최대로 사용할 수 있는 쿠폰 개수를 설정합니다.
 설정할 수 있는 최대 개수는 99개입니다. 무제한으로 사용하게 하려면  0으로 설정합니다.
 
+<a id="update-coupons-item"></a>
 #### 5. 아이템
 
 쿠폰 코드 등록 시 지급할 아이템 정보를 입력합니다.
 지급할 아이템을 선택하고 오른쪽에 지급 개수를 입력합니다.
 아이템을 등록하려면 **쿠폰 아이템** 메뉴에서 먼저 아이템을 등록해야 선택할 수 있습니다.
 
+<a id="update-coupons-send-coupon"></a>
 #### 6. 쿠폰 발송
 발급된 쿠폰 정보를 이용하여 유저에게 직접 쿠폰을 발송할 수 있는 기능을 제공합니다.
 
@@ -148,11 +169,13 @@
 >
 > 쿠폰 발송은 SMS 상품을 활성화 해야 사용할 수 있습니다.
 
+<a id="update-coupons-issue-additional-coupons"></a>
 #### 7. 쿠폰 추가 발급
 쿠폰 타입이 시리얼인 경우 1회 10만 개씩 최대 100만 개까지(초기 발급 개수 포함) 추가로 발급받을 수 있습니다.
 
 ![gamebase_coupon_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_05_240813.png)
 
+<a id="update-coupons-coupon-statistics"></a>
 #### 8. 쿠폰 통계
 쿠폰 발급 상세 정보 화면의 하단에서 SMS 발송 내역을 조회할 수 있으며 발송과 관련된 통계를 조회 및 파일 다운로드를 진행할 수 있습니다.
 ![gamebase_coupon_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_06_240813.png)
@@ -163,23 +186,28 @@
 - **생성 중** : 요청된 다운로드 파일을 생성 중입니다.
 - **다운로드** : 다운로드 파일이 생성이 완료되었을 경우 다운로드 버튼이 활성화되며 버튼을 클릭하면 발송 상세 내역이 다운로드 됩니다.
 
-## Coupon history
+<a id="query-coupon-history"></a>
+## Coupon history { #query-coupon-history }
 
 발급한 쿠폰의 사용 내역을 확인할 수 있는 기능을 제공합니다.
 검색 조건에 따라 아래와 같은 검색 화면을 제공합니다.
 
-### Properties
+<a id="properties"></a>
+### Properties { #properties }
 
+<a id="properties-query-by-coupon-code"></a>
 #### 쿠폰 코드별 조회
 
 쿠폰 코드를 직접 입력하여 사용여부를 조회할 수 있습니다.
 ![gamebase_coupon_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_07_240813.png)
 
+<a id="properties-query-by-user-id"></a>
 #### 유저 ID별 조회
 
 유저 ID를 통해 해당 유저가 쿠폰을 사용한 이력을 조회할 수 있습니다.
 ![gamebase_coupon_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_08_240813.png)
 
+<a id="properties-query-by-coupon-name"></a>
 #### 쿠폰명 조회
 
 쿠폰명 및 기타 검색조건을 통해 사용 이력을 조회할 수 있습니다.
@@ -188,21 +216,25 @@
 1. **쿠폰명**: 쿠폰 발급 메뉴를 통해 발급한 쿠폰을 선택할 수 있습니다.
 2. **쿠폰 사용일**: 기간을 설정하여 해당 기간에 사용된 쿠폰만 조회할 수 있는 기능을 제공합니다.
 
-## Coupon Item
+<a id="coupon-items"></a>
+## Coupon Item { #coupon-items }
 
 쿠폰 코드 사용 시 지급할 쿠폰 아이템을 조회/관리할 수 있습니다.
 
-### Search Coupon item
+<a id="search-coupon-item"></a>
+### Search Coupon item { #search-coupon-item }
 
 등록된 쿠폰 아이템 내역을 조회할 수 있습니다.
 필터를 통해 아이템 ID/아이템 이름을 통한 검색도 가능합니다.
 ![gamebase_coupon_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_10_240813.png)
 
-### Register Coupon item
+<a id="register-coupon-item"></a>
+### Register Coupon item { #register-coupon-item }
 
 쿠폰 코드 사용 시 지급할 아이템을 등록합니다.
 등록되는 아이템은 단건 입력 또는 파일을 통해 등록할 수 있습니다.
 
+<a id="register-coupon-item-register-by-case"></a>
 #### 단건 등록
 
 ![gamebase_coupon_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_11_240813.png)
@@ -216,13 +248,15 @@
 
 등록된 아이템을 구별할 수 있는 아이템 이름을 입력합니다.
 
+<a id="register-coupon-item-register-by-file-upload"></a>
 #### 파일 업로드
 
 ![gamebase_coupon_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_12_240813.png)
 한번에 대량으로 등록하고자 할 때 파일을 이용하여 등록할 수 있습니다.
 파일을 이용해서 등록할 경우 한번에 최대 10,000건까지 등록할 수 있으며 템플릿 예시 파일을 다운로드 받은 후 해당 형식에 맞도록 작성해서 업로드를 해주셔야 정상적으로 파일을 이용한 아이템 등록 작업 진행이 가능합니다.
 
-### Update Coupon item
+<a id="update-coupon-item"></a>
+### Update Coupon item { #update-coupon-item }
 
 등록한 아이템에 대한 정보를 수정할 수 있으며 해당 아이템을 사용하지 않고자 할 경우 사용하지 않음으로 설정하여 쿠폰 발급시 해당 아이템이 노출되지 않도록 변경할 수 있습니다.
 
@@ -232,10 +266,12 @@
 
 ![gamebase_coupon_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/ko/gamebase_coupon_13_240813.png)
 
+<a id="update-coupon-item-item-name"></a>
 #### 1. 아이템 이름
 
 구별할 수 있는 아이템 이름을 입력합니다.
 
+<a id="update-coupon-item-availability"></a>
 #### 2. 사용 여부
 
 **사용**상태인 경우에만 쿠폰 등록시 아이템 추가가 가능합니다. 아이템을 쿠폰 등록 화면에서 노출하고 싶지 않은 경우에는 사용 여부를 **사용하지 않음**으로 변경하면 됩니다. 최초 아이템 등록 시에는 항상 **사용**으로 등록됩니다.

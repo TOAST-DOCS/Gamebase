@@ -1,7 +1,12 @@
-## Game > Gamebase > Android SDK 사용 가이드 > 푸시
+<!-- pre-align:aligned sig=400acdc405f6 -->
 
-### Settings
+<a id="game-gamebase-android-developers-guide-push"></a>
+## Game > Gamebase > Android SDK 사용 가이드 > 푸시 { #game-gamebase-android-developers-guide-push }
 
+<a id="settings"></a>
+### Settings { #settings }
+
+<a id="settings-android-notification-icon"></a>
 #### Android Notification Icon
 
 푸시 알림이 도착했을때 표시되는 아이콘의 경우, 기본 상태에서는 앱 아이콘이 사용됩니다.
@@ -23,7 +28,8 @@
 [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > Notification Options](./aos-started/#notification-options)
 [Game > Gamebase > Android SDK 사용 가이드 > 푸시 > Notification Options > Set Notification Options with RegisterPush in Runtime](./aos-push/#set-notification-options-with-registerpush-in-runtime)
 
-### Register Push
+<a id="register-push"></a>
+### Register Push { #register-push }
 
 다음 API를 호출하여, NHN Cloud Push에 해당 사용자를 등록합니다.<br/>
 푸시 동의 여부(enablePush), 광고성 푸시 동의 여부(enableAdPush), 야간 광고성 푸시 동의 여부(enableAdNightPush) 값을 사용자로부터 받아, 다음의 API 호출을 통해 등록을 완료합니다.
@@ -69,11 +75,13 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 });
 ```
 
-### Notification Options
+<a id="notification-options"></a>
+### Notification Options { #notification-options }
 
 * 단말기에 표시하는 알림을 어떤 형태로 표시할 것인지 Notification Options 를 통해 변경할 수 있습니다.
 * Notification Options 는 AndroidManifest.xml 에 설정하거나 런타임에 registerPush API를 호출하여 변경할 수 있습니다.
 
+<a id="notification-options-set-notification-options-with-androidmanifestxml"></a>
 #### Set Notification Options with AndroidManifest.xml
 
 알림 옵션은 AndroidManifest.xml 에 정의하여 설정할 수 있습니다.<br/>
@@ -81,6 +89,7 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 
 [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > Notification Options](./aos-started/#notification-options)
 
+<a id="notification-options-set-notification-options-with-registerpush-in-runtime"></a>
 #### Set Notification Options with RegisterPush in Runtime
 
 알림 옵션을 AndroidManifest.xml 에 정의하지 않고 런타임에 설정할 수도 있습니다. 또는 AndroidManifest.xml 에 정의한 값을 런타임에 변경할 수도 있습니다.
@@ -131,6 +140,7 @@ Gamebase.Push.registerPush(activity, pushConfiguration, notificationOptions, new
 });
 ```
 
+<a id="notification-options-get-notificationoptions"></a>
 #### Get NotificationOptions
 
 푸시를 등록할 때 기존에 설정했던 알림 옵션값을 가져옵니다.
@@ -142,7 +152,8 @@ AndroidManifest.xml 에 설정한 값과 런타임에 변경된 값을 포함하
 + (GamebaseNotificationOptions)Gamebase.Push.getNotificationOptions(@NonNull Context context);
 ```
 
-### Request Push Settings
+<a id="request-push-settings"></a>
+### Request Push Settings { #request-push-settings }
 
 사용자의 푸시 설정을 조회하기 위해, 다음 API를 이용합니다. <br/>
 콜백으로 오는 GamebasePushTokenInfo 값으로 사용자 설정값을 얻을 수 있습니다.
@@ -177,6 +188,7 @@ Gamebase.Push.queryTokenInfo(activity, new GamebaseDataCallback<PushConfiguratio
 });
 ```
 
+<a id="request-push-settings-gamebasepushtokeninfo"></a>
 #### GamebasePushTokenInfo
 
 | Parameter           | Values                | Description         |
@@ -190,6 +202,7 @@ Gamebase.Push.queryTokenInfo(activity, new GamebaseDataCallback<PushConfiguratio
 | languageCode        | String                | 언어 설정            |
 | agreement           | GamebasePushAgreement | 수신 동의 여부        |
 
+<a id="request-push-settings-gamebasepushagreement"></a>
 #### GamebasePushAgreement
 
 | Parameter        | Values  | Description               |
@@ -198,7 +211,8 @@ Gamebase.Push.queryTokenInfo(activity, new GamebaseDataCallback<PushConfiguratio
 | adAgreement      | boolean | 광고성 알림 표시 동의 여부      |
 | adAgreementNight | boolean | 야간 광고성 알림 표시 동의 여부  |
 
-### Event Handling
+<a id="event-handling"></a>
+### Event Handling { #event-handling }
 
 * 푸시 메시지가 도착했거나 푸시 메시지를 클릭했을 때 이벤트를 처리할 수 있습니다.
 * 이벤트 등록 방법은 GamebaseEventHandler 가이드를 참고하시기 바랍니다.
@@ -206,7 +220,8 @@ Gamebase.Push.queryTokenInfo(activity, new GamebaseDataCallback<PushConfiguratio
     * [ Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./aos-etc/#push-click-message)
     * [ Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./aos-etc/#push-click-action)
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |

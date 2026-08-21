@@ -1,6 +1,10 @@
-## Game > Gamebase > Error Code
+<!-- pre-align:aligned sig=34320c7ef9d1 -->
 
-## Client SDK
+<a id="game-gamebase-error-code"></a>
+## Game > Gamebase > Error Code { #game-gamebase-error-code }
+
+<a id="client-sdk"></a>
+## Client SDK { #client-sdk }
 
 | Category        | Platform           | Error                                    | Error Code | Description                                    |
 | --------------- | ------------------ | ---------------------------------------- | ---------- | ---------------------------------------- |
@@ -110,7 +114,8 @@
 <br/>
 <br/>
 
-## Server
+<a id="server"></a>
+## Server { #server }
 | Module  | Error Code            | Description                              |
 | ------- | --------------------- | ---------------------------------------- |
 | Common  | -4000001<br/>-4000006 | Called API with invalid parameter type. <br/>e.g) The parameter is declared in the int type, but API has been called with string-format data. |

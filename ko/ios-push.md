@@ -1,31 +1,40 @@
-## Game > Gamebase > iOS SDK 사용 가이드 > 푸시
+<!-- pre-align:aligned sig=4f0c97e09dd5 -->
+
+<a id="game-gamebase-ios-developers-guide-push"></a>
+## Game > Gamebase > iOS SDK 사용 가이드 > 푸시 { #game-gamebase-ios-developers-guide-push }
 
 > <font color="red">[주의]</font><br/>
 >
 > Unreal, Unity 등 3rd party 푸시 플러그인 또는 모듈을 사용할 경우, Gamebase 푸시 기능에 영향을 줄 수 있습니다.
 >
 
-### Settings
+<a id="settings"></a>
+### Settings { #settings }
 
+<a id="settings-getting-authentication-information-for-apns-jwt"></a>
 #### APNS JWT 인증 정보 얻기
 
 여기에서는 푸시 알림 전송에 필요한 APNS JWT 인증 정보를 얻는 과정을 설명합니다.
 
 * [Notification > Push > Console Guide > APNS JWT 인증 정보 얻기](https://docs.toast.com/en/Notification/Push/en/console-guide/#get-authentication-information-for-apns-jwt) 가이드를 참고하여 ANPS JWT 등록에 필요한 필수 인증 정보를 얻습니다.
 
+<a id="settings-registering-gamebase-console"></a>
 #### Gamebase Console 등록
 * **Gamebase > Push > Certificate**에서 **APNS JWT**에 위에서 얻은 정보를 입력합니다.
 
+<a id="settings-implementing-notification-service-extension"></a>
 #### Notification Service Extension 구현
 * 수신 지표 수집, 알림음 설정 등을 위해서는 [NHN Cloud Push 가이드](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-ios/#notification-service-extension)를 참고하여 애플리케이션에 **Notification Service Extension**을 구현해야 합니다.
 
 
+<a id="settings-setting-up-xcode-project"></a>
 #### Xcode Project 설정
 * **Targets > Capabilities > Push Notifications **항목을 **ON**으로 설정합니다.
 * 자동으로 생성된 .entitlements 파일을 열어서, **APS Environment** 키의 값을 알맞은 값으로 설정합니다.
     * **development**: Sandbox APNS
     * **production**:  APNS
 
+<a id="settings-import-header-file"></a>
 #### Import Header File
 푸시 API를 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
 
@@ -33,7 +42,8 @@
 #import <Gamebase/Gamebase.h>
 ```
 
-### Register Push
+<a id="register-push"></a>
+### Register Push { #register-push }
 
 다음 API를 호출하여 NHN Cloud Push에 해당 사용자를 등록합니다.
 
@@ -44,6 +54,7 @@
 > 푸시 토큰이 언제 만료될지 모르기 때문에, 로그인 이후에는 항상 registerPush API를 호출하는 것을 권장합니다.
 >
 
+<a id="register-push-api"></a>
 #### API
 
 ```objectivec
@@ -51,6 +62,7 @@
                                completion:(nullable void(^)(TCGBError * _Nullable error))completion;
 ```
 
+<a id="register-push-tcgbpushconfiguration"></a>
 #### TCGBPushConfiguration
 
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
@@ -60,6 +72,7 @@
 | ADAgreementNight              | M             | BOOL         | 야간 광고성 푸시 동의 여부 |
 | alwaysAllowTokenRegistration  | O             | BOOL         | 사용자가 푸시 권한을 거부해도 토큰을 등록할지 여부<br>YES로 설정할 경우 푸시 권한을 획득하지 못하더라도 토큰을 등록합니다.<br>**default**: NO    |
 
+<a id="register-push-example"></a>
 #### Example
 
 ```objectivec
@@ -90,6 +103,7 @@ NHN Cloud Push에 사용자를 등록할 때 TCGBNotificationOptions 객체로 �
 
 포그라운드 푸시 여부(foregroundEnabled), 배지 사용 여부(badgeEnabled), 알림음 사용 여부(soundEnabled) 값을 사용자로부터 받아, 다음의 API 호출을 통해 알림 옵션 설정이 가능합니다.
 
+<a id="register-push-register-push-api"></a>
 #### API
 
 ```objectivec
@@ -98,6 +112,7 @@ NHN Cloud Push에 사용자를 등록할 때 TCGBNotificationOptions 객체로 �
                                completion:(nullable void(^)(TCGBError * _Nullable error))completion;
 ```
 
+<a id="register-push-tcgbnotificationoptions"></a>
 #### TCGBNotificationOptions
 
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
@@ -106,6 +121,7 @@ NHN Cloud Push에 사용자를 등록할 때 TCGBNotificationOptions 객체로 �
 | badgeEnabled        | M     | BOOL         | 배지 아이콘 사용 여부<br/>**default**: YES           |
 | soundEnabled        | M     | BOOL         | 알림음 사용 여부<br/>**default**: YES           |
 
+<a id="register-push-register-push-example"></a>
 #### Example
 
 ```objectivec
@@ -139,7 +155,8 @@ NHN Cloud Push에 사용자를 등록할 때 TCGBNotificationOptions 객체로 �
 }
 ```
 
-### Setting for APNS Sandbox
+<a id="setting-for-apns-sandbox"></a>
+### Setting for APNS Sandbox { #setting-for-apns-sandbox }
 
 SandboxMode를 켜면, APNS Sandbox로 Push를 발송하도록 등록할 수 있습니다.
 
@@ -158,7 +175,8 @@ SandboxMode를 켜면, APNS Sandbox로 Push를 발송하도록 등록할 수 있
 
 Push 메뉴의 **대상**에서 **iOS Sandbox**를 선택한 후 발송합니다.
 
-### Get NotificationOptions
+<a id="get-notificationoptions"></a>
+### Get NotificationOptions { #get-notificationoptions }
 
 푸시를 등록할 때 설정한 알림 옵션값을 가져옵니다.
 
@@ -179,7 +197,8 @@ Push 메뉴의 **대상**에서 **iOS Sandbox**를 선택한 후 발송합니다
 >
 
 
-### Query Token Info
+<a id="query-token-info"></a>
+### Query Token Info { #query-token-info }
 
 사용자의 푸시 설정을 조회하기 위해 다음 API를 이용합니다.
 콜백으로 오는 TCGBPushTokenInfo 값으로 등록한 푸시 정보를 얻을 수 있습니다.
@@ -199,6 +218,7 @@ Push 메뉴의 **대상**에서 **iOS Sandbox**를 선택한 후 발송합니다
 }
 ```
 
+<a id="query-token-info-tcgbpushtokeninfo"></a>
 #### TCGBPushTokenInfo
 
 | Parameter                              | Values                           | Description                        |
@@ -213,6 +233,7 @@ Push 메뉴의 **대상**에서 **iOS Sandbox**를 선택한 후 발송합니다
 | sandbox                                | YES or NO                        | 샌드박스 환경에서 등록된 토큰인지 확인       |
 | agreement                              | TCGBPushAgreement                | 수신 동의 여부                         |
 
+<a id="query-token-info-tcgbpushagreement"></a>
 #### TCGBPushAgreement
 
 | Parameter                              | Values                            | Description               |
@@ -221,7 +242,8 @@ Push 메뉴의 **대상**에서 **iOS Sandbox**를 선택한 후 발송합니다
 | ADAgreement                            | YES or NO                         | 광고성 알림 표시 동의 여부      |
 | ADAgreementNight                       | YES or NO                         | 야간 광고성 알림 표시 동의 여부  |
 
-### Event Handling
+<a id="event-handling"></a>
+### Event Handling { #event-handling }
 
 * 푸시 메시지가 도착했거나 푸시 메시지를 클릭했을 때 이벤트를 받을 수 있습니다.
 * 이벤트 등록 방법은 GamebaseEventHandler 가이드를 참고하시기 바랍니다.
@@ -229,7 +251,8 @@ Push 메뉴의 **대상**에서 **iOS Sandbox**를 선택한 후 발송합니다
     * [ Game > Gamebase > iOS SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./ios-etc/#push-click-message)
     * [ Game > Gamebase > iOS SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./ios-etc/#push-click-action)
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |

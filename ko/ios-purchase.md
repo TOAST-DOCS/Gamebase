@@ -1,4 +1,7 @@
-## Game > Gamebase > iOS SDK 사용 가이드 > 결제
+<!-- pre-align:aligned sig=b5df3c0f60cb -->
+
+<a id="game-gamebase-ios-developers-guide-purchase"></a>
+## Game > Gamebase > iOS SDK 사용 가이드 > 결제 { #game-gamebase-ios-developers-guide-purchase }
 
 > <font color="red">[주의]</font><br/>
 >
@@ -9,14 +12,17 @@
 
 Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 많은 스토어의 인앱 결제를 연동할 수 있도록 돕습니다.
 
-### Settings
+<a id="settings"></a>
+### Settings { #settings }
 
+<a id="settings-apple-itunes-connect"></a>
 #### Apple iTunes-Connect
 1. 테스트용 앱 빌드 업로드
 2. In-App Purchases 아이템 등록 및 승인
 3. Sandbox Tester 계정 등록
 * Detail Guide for iTunes-Connect: [Apple Guide](https://help.apple.com/itunes-connect/developer/#/devb57be10e7)
 
+<a id="settings-register-at-gamebase-console"></a>
 #### Gamebase Console 등록
 다음은 Gamebase Console에서 설정해야 하는 내용입니다.
 
@@ -30,10 +36,12 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
     * 스토어 아이템 ID: iTunes-Connect에 등록한 Product ID를 입력합니다.
 3. 아이템을 설정했다면, **저장**을 누릅니다.
 
+<a id="settings-set-xcode-project"></a>
 #### Xcode Project 설정
 1. **Targets > Capabilities > In-App Purchase**를 **ON**으로 설정합니다.
 2. **Targets > General > Identity**의 Bundle Identifier, Version, Build의 값을 알맞게 설정합니다.
 
+<a id="settings-import-header-file"></a>
 #### Import Header File
 
 구매 API를 구현하고자 하는 ViewController에 다음의 헤더 파일을 가져옵니다.
@@ -42,7 +50,8 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 #import <Gamebase/Gamebase.h>
 ```
 
-### Purchase Flow
+<a id="purchase-flow"></a>
+### Purchase Flow { #purchase-flow }
 
 아이템 구매는 크게 결제 Flow 와 Consume Flow, 재처리 Flow 로 나누어 볼 수 있습니다.
 결제 Flow는 다음과 같은 순서로 구현하시기 바랍니다.
@@ -53,7 +62,8 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 2. 게임 클라이언트에서는 Gamebase SDK의 **requestPurchaseWithGamebaseProductId:viewController:completion:**를 호출하여 결제를 시도합니다.
 3. 결제가 성공하였다면 **requestItemListOfNotConsumedWithCompletion:**를 호출하여 미소비 결제 내역을 확인한 후 지급할 아이템이 존재한다면 Consume Flow 를 진행합니다.
 
-### Consume Flow
+<a id="consume-flow"></a>
+### Consume Flow { #consume-flow }
 
 미소비 결제 내역 목록에 값이 있으면 다음과 같은 순서로 Consume Flow 를 진행하시기 바랍니다.
 
@@ -77,7 +87,8 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 3. 아이템 지급 여부와 무관하게 게임 서버는 더 이상 미소비 내역이 리턴되지 않도록 Gamebase 서버의 consume(소비) API를 호출하여 아이템 지급을 완료합니다.
     * [Game > Gamebase > API 가이드 > Purchase(IAP) > Consume](./api-guide/#consume)
 
-### Retry Transaction Flow
+<a id="retry-transaction-flow"></a>
+### Retry Transaction Flow { #retry-transaction-flow }
 
 ![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
 
@@ -89,7 +100,8 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
     * 게임 내 상점(또는 로비) 진입시.
     * 유저 프로필 또는 우편함 확인시.
 
-### Purchase Items
+<a id="purchase-items"></a>
+### Purchase Items { #purchase-items }
 
 구매하고자 하는 아이템의 gamebaseProductId를 이용해 다음의 API를 호출해 구매를 요청합니다. <br/>
 gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID와 동일하지만, Gamebase 콘솔에서 변경할 수도 있습니다.
@@ -196,7 +208,8 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 
 
 
-### List Purchasable Items
+<a id="list-purchasable-items"></a>
+### List Purchasable Items { #list-purchasable-items }
 
 아이템 목록을 조회하려면 다음 API를 호출합니다. 콜백으로 반환되는 배열(array) 안에는 각 아이템들에 대한 정보가 담겨 있습니다.
 
@@ -268,7 +281,8 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 @end
 ```
 
-### List Non-Consumed Items
+<a id="list-non-consumed-items"></a>
+### List Non-Consumed Items { #list-non-consumed-items }
 
 아이템을 구매했지만, 정상적으로 아이템이 소비(배송, 지급)되지 않은 미소비 결제 내역을 요청합니다.<br/>
 미결제 내역이 있는 경우에는 게임 서버(아이템 서버)에 요청하여, 아이템을 배송(지급)하도록 처리해야 합니다..
@@ -289,6 +303,7 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
                                            completion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
 ```
 
+<a id="list-non-consumed-items-required-parameters"></a>
 #### Required 파라미터
 
 * configuration: TCGBPurchasableConfiguration으로 미소비 결제 내역 조회에 대한 설정을 변경할 수 있습니다.
@@ -312,7 +327,8 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 }
 ```
 
-### List Activated Subscriptions
+<a id="list-activated-subscriptions"></a>
+### List Activated Subscriptions { #list-activated-subscriptions }
 
 현재 사용자 ID 기준으로 활성화된 구독 목록을 조회합니다.
 결제가 완료된 구독 상품(자동 갱신형 구독, 자동 갱신형 소비성 구독 상품)은 만료되기 전까지 계속 조회할 수 있습니다.
@@ -324,6 +340,7 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
                                         completion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
 ```
 
+<a id="list-activated-subscriptions-required-parameters"></a>
 #### Required 파라미터
 
 * configuration: TCGBPurchasableConfiguration으로 활성화된 구독 목록 조회에 대한 설정을 변경할 수 있습니다.
@@ -346,7 +363,8 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 }
 ```
 
-### Restore Purchase
+<a id="restore-purchase"></a>
+### Restore Purchase { #restore-purchase }
 
 사용자의 App Store 계정으로 구매한 내역을 기준으로 구매 내역을 복원하여 콘솔에 반영합니다.
 구매한 구독 상품이 조회되지 않거나 활성화되지 않을 경우 사용합니다.
@@ -374,13 +392,15 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 }
 ```
 
-### Event by Purchase
+<a id="event-by-purchase"></a>
+### Event by Purchase { #event-by-purchase }
 
 App Store 프로모션 상품 구매가 완료되거나, Ask to Buy 등으로 지연된 결제가 완료되었을 때, GamebaseEventHandler를 이용해 이벤트를 받아 처리할 수 있습니다.
 GamebaseEventHandler로 지연 결제 이벤트를 처리하는 방법은 아래 가이드를 확인하세요.
 [Game > Gamebase > iOS SDK 사용 가이드 > ETC > Gamebase Event Handler](./ios-etc/#purchase-updated)
 
 
+<a id="event-by-purchase-caution-for-usage"></a>
 #### Caution for Usage
 Facebook SDK, Google Mobile Ads SDK와 같이 SDK 내에 In App Purchase(App Store 결제) 기능이 있는 경우 Gamebase Login을 하기 전에 App Store 프로모션 결제를 시작하면 정상적으로 결제창이 나타나지 않을 수 있습니다.
 
@@ -389,13 +409,15 @@ Facebook SDK, Google Mobile Ads SDK와 같이 SDK 내에 In App Purchase(App Sto
     * Facebook Console > 설정 > 기본 설정 > **앱 내 이벤트를 자동으로 로깅(권장)** 기능을 비활성화
     * Facebook 인증 기능을 사용하지 않을 경우: **GamebaseAuthFacebookAdapter.xcframework 파일을 제외**시킨 후 빌드
 
-### TCGBPurchasableConfiguration
+<a id="tcgbpurchasableconfiguration"></a>
+### TCGBPurchasableConfiguration { #tcgbpurchasableconfiguration }
 
 | Parameter     | Values            | Description        |
 | ------------- | ----------------- | ------------------ |
 | allStores     | Bool | 동일 UserID 기준으로 API가 현재 스토어 또는 모든 스토어를 대상으로 동작하도록 설정<br>- 모든 스토어: YES<br>- 현재 스토어: NO<br>**default**: NO    |
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                                                | Error Code | Description                              |
 | ---------------------------------------------------- | ---------- | ---------------------------------------- |

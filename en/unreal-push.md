@@ -1,8 +1,12 @@
-## Game > Gamebase > User Guide for Unreal SDK > Push
+<!-- pre-align:aligned sig=ad1ffd3bcb05 -->
+
+<a id="game-gamebase-user-guide-for-unreal-sdk-push"></a>
+## Game > Gamebase > User Guide for Unreal SDK > Push { #game-gamebase-user-guide-for-unreal-sdk-push }
 
 This document describes setting requirements to enable push notifications on each platform. 
 
-### Settings
+<a id="settings"></a>
+### Settings { #settings }
 
 For how to set up push on Android or iOS, refer to the following documents.
 
@@ -18,7 +22,8 @@ For how to set up push on Android or iOS, refer to the following documents.
 >
 > If there is push-related processing in an external plugin, the Gamebase push function may not work properly.
 
-### Register Push
+<a id="register-push"></a>
+### Register Push { #register-push }
 
 Call the following API to register the user for NHN Cloud Push.
 Get the values of consent to receiving push (enablePush), consent to receiving advertisement push (enableAdPush), and consent to receiving night-time advertisement push (enableAdNightPush) from the user, and call the following API to complete the registration.
@@ -38,6 +43,7 @@ void RegisterPush(const FGamebasePushConfiguration& Configuration, const FGameba
 void RegisterPush(const FGamebasePushConfiguration& Configuration, const FGamebaseNotificationOptions& notificationOptions, const FGamebaseErrorDelegate& Callback);
 ```
 
+<a id="register-push-fgamebasepushconfiguration"></a>
 #### FGamebasePushConfiguration
 
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
@@ -75,11 +81,13 @@ void USample::RegisterPush(bool bPushEnabled, bool bADAgreement, bool bADAgreeme
 }
 ```
 
-### Notification Options
+<a id="notification-options"></a>
+### Notification Options { #notification-options }
 
 * You can use the Notification Options to change how the notification will be displayed in the device.
 * You can call the RegisterPush API at runtime to change it.
 
+<a id="notification-options-set-notification-options-with-registerpush-in-runtime"></a>
 #### Set Notification Options with RegisterPush in Runtime
 
 When calling the RegisterPush API, you can add the FGamebaseNotificationOptions argument to set the notification options.
@@ -131,6 +139,7 @@ void USample::RegisterPushWithOption(bool bPushEnabled, bool bADAgreement, bool 
 }
 ```
 
+<a id="notification-options-get-notificationoptions"></a>
 #### Get NotificationOptions
 
 Retrieves the notification options value which was set previously when registering the push notification.
@@ -171,7 +180,8 @@ void USample::GetNotificationOptions()
 ```
 
 
-### Request Push Settings
+<a id="request-push-settings"></a>
+### Request Push Settings { #request-push-settings }
 
 Use the following API to query user's push setting. 
 You can get user configuration value from the FGamebasePushTokenInfo value of the incoming callback.
@@ -214,6 +224,7 @@ void USample::QueryTokenInfo()
 ```
 
 
+<a id="request-push-settings-fgamebasepushtokeninfo"></a>
 #### FGamebasePushTokenInfo
 
 | Parameter           | Values                 | Description         |
@@ -228,6 +239,7 @@ void USample::QueryTokenInfo()
 | Agreement           | FGamebasePushAgreement | Opt in        |
 | bSandbox             | bool                   | Whether to use sandbox (iOS Only)        |
 
+<a id="request-push-settings-fgamebasepushagreement"></a>
 #### FGamebasePushAgreement
 
 | Parameter        | Values  | Description               |
@@ -237,7 +249,8 @@ void USample::QueryTokenInfo()
 | bAdAgreementNight | bool | Opt in to display night advertisement notifications  |
 
 
-### Event Handling
+<a id="event-handling"></a>
+### Event Handling { #event-handling }
 
 * You can handle events when a push message is received or clicked.
 * For how to register event handlers, refer to the GamebaseEventHandler guide.
@@ -246,6 +259,7 @@ void USample::QueryTokenInfo()
     * [ Game > Gamebase > Unreal SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./unreal-etc/#push-click-action)
 
 
+<a id="event-handling-setting-for-apns-sandbox"></a>
 #### Setting for APNS Sandbox
 
 * Enable the SandboxMode, and push messages can be registered and sent via APNS Sandbox. 
@@ -272,7 +286,8 @@ void USample::SetSandboxMode(bool bIsSandbox)
 ```
 
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
