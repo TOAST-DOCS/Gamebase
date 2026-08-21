@@ -279,4 +279,4 @@ If you sell subscription products on Google Play, you can receive notifications 
 ![google Console img](../static/images/google_store/google-store-info-chargeback-en.png)
 
 - Please enter the URL for Google Chargeback integration.
-* For more information, please refer to the [Gamebase API](https://docs.alpha-nhncloud.com/ko/Game/Gamebase/ko/api-guide/#google-play-chargeback-callback).
+* For more information, please refer to the [Gamebase API](https://docs.alpha-nhncloud.com/en/Game/Gamebase/en/api-guide/#google-play-chargeback-callback).

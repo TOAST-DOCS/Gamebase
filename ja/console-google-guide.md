@@ -260,4 +260,4 @@ Google Playで購読商品を販売する場合、Gamebase IAPではGoogleから
 ![google Console img](../static/images/google_store/google-store-info-chargeback-ja.png)
 
 - Googleチャージバック（Google ChargeBack）連携用のURLを入力してください。
-* 詳細については、[Gamebase API](https://docs.alpha-nhncloud.com/ko/Game/Gamebase/ko/api-guide/#google-play-chargeback-callback)をご確認ください。
+* 詳細については、[Gamebase API](https://docs.alpha-nhncloud.com/ja/Game/Gamebase/ja/api-guide/#google-play-chargeback-callback)をご確認ください。
