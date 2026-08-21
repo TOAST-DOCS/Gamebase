@@ -19,7 +19,6 @@
 #### Feature Updates
 * Modified to return a **TCGB_ERROR_NOT_SUPPORTED(10)** error when a Push API is called without GamebasePushAdapter included in the build.
 * Improved internal logic
-* 
 
 #### Bug Fixes
 * Fixed a bug where some videos did not play in the Gamebase web view.
