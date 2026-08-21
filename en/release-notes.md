@@ -3,11 +3,9 @@
 <!-- pre-align:aligned sig=4da805cd3daa -->
 
 <a id="game-gamebase"></a>
-
 ## Game > Gamebase > Release Notes { #game-gamebase }
 
 <a id="2021-04-19"></a>
-
 ### 2021. 04. 19. { #2021-04-19 }
 
 <a id="2021-04-19-1"></a>
@@ -17,7 +15,6 @@
 	* (iOS) Fixed an issue where the setting was not applied even when configured to support bitcode.
 
 <a id="2021-04-13"></a>
-
 ### 2021. 04. 13. { #2021-04-13 }
 
 <a id="2021-04-13-1"></a>
@@ -44,7 +41,6 @@
 	* (Android) Fixed a crash that occurred when calling the payment API in a build with Proguard applied.
 
 <a id="2021-03-30"></a>
-
 ### 2021. 03. 30. { #2021-03-30 }
 
 <a id="2021-03-30-1"></a>
@@ -53,7 +49,6 @@
 	* (Android) Updated to Billing Client 3.0.3, which resolves payment errors on Android 11 devices in the Google Play Store.
 
 <a id="2021-03-23"></a>
-
 ### 2021. 03. 23. { #2021-03-23 }
 
 <a id="2021-03-23-1"></a>
@@ -64,7 +59,6 @@
 	* (iOS) Fixed an issue where the openURL delegate was not called in GamebaseAuthFacebookAdapter in certain cases.
 
 <a id="2021-03-09"></a>
-
 ### 2021. 03. 09. { #2021-03-09 }
 
 <a id="2021-03-09-1"></a>
@@ -78,7 +72,6 @@
 	* (iOS) Updated the IDFA retrieval logic for iOS 14 compatibility: added the NSUserTrackingUsageDescription field to info.plist.
 
 <a id="2021-02-23"></a>
-
 ### 2021. 02. 23. { #2021-02-23 }
 
 <a id="2021-02-23-1"></a>
@@ -93,7 +86,6 @@
 	* (Android) Fixed a logic that could cause a crash during initialization of the push-fcm module.
 
 <a id="2021-02-15"></a>
-
 ### 2021. 02. 15. { #2021-02-15 }
 
 <a id="2021-02-15-1"></a>
@@ -101,7 +93,6 @@
 * [Console] Purchase (IAP) > Payment History: Fixed an issue where the product name was incorrectly displayed when downloading a file.
 
 <a id="2021-02-09"></a>
-
 ### 2021. 02. 09. { #2021-02-09 }
 
 <a id="2021-02-09-1"></a>
@@ -133,7 +124,6 @@
 	* (Unreal) Fixed a compile error that occurred when files were excluded during Unity build
 
 <a id="2021-01-26"></a>
-
 ### 2021. 01. 26. { #2021-01-26 }
 
 ```
@@ -163,7 +153,6 @@ Removed the Push > Push (old) console menu feature.
 	* (iOS) Changed the Weibo IdPAdapter structure
 
 <a id="2021-01-12"></a>
-
 ### 2021. 01. 12. { #2021-01-12 }
 
 ```
@@ -179,7 +168,6 @@ The minimum supported Xcode version for Gamebase has changed from 10 to 11.
 	* Settings: Manage setting values related to push
 	
 <a id="2020-12-29"></a>
-
 ### 2020. 12. 29. { #2020-12-29 }
 
 <a id="2020-12-29-1"></a>
@@ -208,7 +196,6 @@ The minimum supported Xcode version for Gamebase has changed from 10 to 11.
 	* (Android) Fixed an issue where a crash occurred when logging in with another IdP after attempting Weibo login
 	
 <a id="2020-12-15"></a>
-
 ### December 15, 2020 { #2020-12-15 }
 
 <a id="2020-12-15-1"></a>
@@ -245,7 +232,6 @@ The minimum supported Xcode version for Gamebase has changed from 10 to 11.
     * (Android) Fixed an issue where the WebView custom scheme did not work on OS 5.0 - 6.0 devices
 
 <a id="2020-12-2"></a>
-
 ### December 2, 2020 { #2020-12-2 }
 
 <a id="2020-12-2-1"></a>
@@ -272,7 +258,6 @@ The minimum supported Xcode version for Gamebase has changed from 10 to 11.
     * Purchase (IAP) > Payment Information: Fixed an issue where files could not be downloaded when there was a large amount of queried data.
 
 <a id="2020-11-10"></a>
-
 ### November 10, 2020 { #2020-11-10 }
 
 <a id="2020-11-10-1"></a>
@@ -292,7 +277,6 @@ The minimum supported Xcode version for Gamebase has changed from 10 to 11.
     * (Android) Fixed an issue where a crash occurred after Google payment in 2.18.0
 
 <a id="2020-10-27"></a>
-
 ### October 27, 2020 { #2020-10-27 }
 
 <a id="2020-10-27-1"></a>
@@ -328,7 +312,6 @@ The minimum supported Xcode version for Gamebase has changed from 10 to 11.
 
 
 <a id="2020-10-13"></a>
-
 ### 2020. 10. 13. { #2020-10-13 }
 
 ```
@@ -355,7 +338,6 @@ If you want to use Hangame authentication, contact the customer support center i
     * (Android) Fixed an issue where a crash occurred in the kotlinx-coroutine module when the ImageNotice API was called in 2.17.0
 
 <a id="2020-09-22"></a>
-
 ### 2020. 09. 22. { #2020-09-22 }
 
 <a id="2020-09-22-1"></a>
@@ -373,7 +355,6 @@ If you want to use Hangame authentication, contact the customer support center i
     * Analytics > Revenue metrics: The per-store dashboard now displays the total payment amount in addition to the per-country payment amount for each store
 
 <a id="2020-09-16"></a>
-
 ### 2020. 09. 16. { #2020-09-16 }
 
 <a id="2020-09-16-1"></a>
@@ -383,7 +364,6 @@ If you want to use Hangame authentication, contact the customer support center i
 	* A new version of the IAP SDK that addresses iOS 14 beta changes has been applied. [TOAST SDK Release Notes](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0270-20200911)
 
 <a id="2020-09-15"></a>
-
 ### 2020. 09. 15. { #2020-09-15 }
 
 <a id="2020-09-15-1"></a>
@@ -397,7 +377,6 @@ If you want to use Hangame authentication, contact the customer support center i
     * Purchase (IAP) > Payment Information: Fixed an issue where the receipt validation display was not working properly
 
 <a id="2020-08-25"></a>
-
 ### August 25, 2020 { #2020-08-25 }
 
 ```
@@ -434,7 +413,6 @@ This is because when purchasing an item while different Billing Client versions 
     * Push > Push: Fixed an issue where scheduled push notifications were always calculated and sent in UTC+9 regardless of the entered timezone
     
 <a id="2020-08-19"></a>
-
 ### August 19, 2020 { #2020-08-19 }
 
 <a id="2020-08-19-1"></a>
@@ -443,7 +421,6 @@ This is because when purchasing an item while different Billing Client versions 
     * Analytics (all menus): Fixed an issue where Excel download did not work
 
 <a id="2020-08-11"></a>
-
 ### August 11, 2020 { #2020-08-11 }
 
 <a id="2020-08-11-1"></a>
@@ -457,7 +434,6 @@ This is because when purchasing an item while different Billing Client versions 
     * Added error codes for the coupon consume API: for cases where a value other than letters or numbers is entered in the coupon code (Error Code: -4000205)
 
 <a id="2020-07-28"></a>
-
 ### July 28, 2020 { #2020-07-28 }
 
 <a id="2020-07-28-1"></a>
@@ -484,7 +460,6 @@ This is because when purchasing an item while different Billing Client versions 
     * (Android) Fixed an issue where ProGuard declarations were missing from the payment module
     
 <a id="2020-07-14"></a>
-
 ### July 14, 2020 { #2020-07-14 }
 
 <a id="2020-07-14-1"></a>
@@ -506,7 +481,6 @@ This is because when purchasing an item while different Billing Client versions 
     * (Unity) Updated TOAST Unity SDK (0.20.1.1)
     
 <a id="2020-06-23"></a>
-
 ### June 23, 2020 { #2020-06-23 }
 
 <a id="2020-06-23-1"></a>
@@ -520,7 +494,6 @@ This is because when purchasing an item while different Billing Client versions 
 	* Purchase (IAP) > Products: improved so that multiple Gamebase products can be registered and managed under a single store item ID
 
 <a id="2020-06-09"></a>
-
 ### June 9, 2020 { #2020-06-09 }
 
 <a id="2020-06-09-1"></a>
@@ -542,7 +515,6 @@ This is because when purchasing an item while different Billing Client versions 
 	* (JavaScript) Fixed an issue where an error occurred if StoreCode was not entered during initialization
 
 <a id="2020-05-26"></a>
-
 ### May 26, 2020 { #2020-05-26 }
 
 <a id="2020-05-26-1"></a>
@@ -564,7 +536,6 @@ This is because when purchasing an item while different Billing Client versions 
 	* (Unity) Added error codes related to socket connection to GamebaseErrorCode: SOCKET_CONNECTION_TIMEOUT, SOCKET_CONNECTION_FAIL
 
 <a id="2020-05-12"></a>
-
 ### 2020. 05. 12. { #2020-05-12 }
 
 <a id="2020-05-12-1"></a>
@@ -586,7 +557,6 @@ This is because when purchasing an item while different Billing Client versions 
 	* (iOS) Fixed an issue where building with the Unreal Engine treated warnings as build errors, preventing the build from completing
 
 <a id="2020-04-29"></a>
-
 ### 2020. 04. 29. { #2020-04-29 }
 
 <a id="2020-04-29-1"></a>
@@ -597,7 +567,6 @@ This is because when purchasing an item while different Billing Client versions 
 		* Affected platforms: Standalone, WebGL, and Editor
 		
 <a id="2020-04-28"></a>
-
 ### April 28, 2020 { #2020-04-28 }
 
 <a id="2020-04-28-1"></a>
@@ -619,7 +588,6 @@ This is because when purchasing an item while different Billing Client versions 
 	* Member > Members: Added display of grace period expiration date when viewing member information for users in withdrawal grace period
 
 <a id="2020-04-14"></a>
-
 ### April 14, 2020 { #2020-04-14 }
 
 <a id="2020-04-14-1"></a>
@@ -639,7 +607,6 @@ This is because when purchasing an item while different Billing Client versions 
 	* (JavaScript) Fixed an issue where login with Hangame IdP via credentialInfo login did not work
 	
 <a id="2020-03-24"></a>
-
 ### March 24, 2020 { #2020-03-24 }
 
 <a id="2020-03-24-1"></a>
@@ -672,7 +639,6 @@ This is because when purchasing an item while different Billing Client versions 
 		* Fixed an issue where February metrics were not displayed when viewing by month
 		
 <a id="2020-03-10"></a>
-
 ### March 10, 2020 { #2020-03-10 }
 
 <a id="2020-03-10-1"></a>
@@ -712,7 +678,6 @@ This is because when purchasing an item while different Billing Client versions 
   	- Analytics: Fixed an issue where revenue metrics were displayed as '0' when the currency code was coin-based
 
 <a id="2020-02-25"></a>
-
 ### February 25, 2020 { #2020-02-25 }
 
 <a id="2020-02-25-1"></a>
@@ -737,7 +702,6 @@ This is because when purchasing an item while different Billing Client versions 
 		* Fixed an issue where button alignment was displayed vertically when the filter name was short
 
 <a id="2020-02-11"></a>
-
 ### 2020. 02. 11. { #2020-02-11 }
 
 <a id="2020-02-11-1"></a>
@@ -760,7 +724,6 @@ This is because when purchasing an item while different Billing Client versions 
 	* Analytics: Fixed an issue where the currency was displayed as "Yen (JPY)" instead of "Won (KRW)" when the language was changed to Japanese.
 
 <a id="2020-01-21"></a>
-
 ### 2020. 01. 21. { #2020-01-21 }
 
 <a id="2020-01-21-1"></a>
@@ -779,7 +742,6 @@ This is because when purchasing an item while different Billing Client versions 
 	* Analytics: Fixed an issue where the user was not redirected to the login page when the session expired.
 
 <a id="2020-01-14"></a>
-
 ### 2020. 01. 14. { #2020-01-14 }
 
 <a id="2020-01-14-1"></a>
@@ -799,7 +761,6 @@ This is because when purchasing an item while different Billing Client versions 
 	* (Unity) Fixed an error that occurred when calling the Login(CredentialInfo) API.
 	
 <a id="2019-12-24"></a>
-
 ### 2019. 12. 24. { #2019-12-24 }
 
 <a id="2019-12-24-1"></a>
@@ -815,7 +776,6 @@ This is because when purchasing an item while different Billing Client versions 
 	* (iOS) Updated the Naver SDK version (4.1.0).
 	
 <a id="2019-12-10"></a>
-
 ### December 10, 2019 { #2019-12-10 }
 
 <a id="2019-12-10-1"></a>
@@ -834,7 +794,6 @@ This is because when purchasing an item while different Billing Client versions 
 	* (iOS) Fixed a crash caused by an NSNull object when displayLanguageCode of PushConfiguration was not set using the Unity Plugin
 
 <a id="2019-11-26"></a>
-
 ### November 26, 2019 { #2019-11-26 }
 
 <a id="2019-11-26-1"></a>
@@ -845,7 +804,6 @@ This is because when purchasing an item while different Billing Client versions 
 	* Fixed an issue where the disabled page was not displayed correctly when accessing menus related to TOAST products (IAP, Push, AppGuard, etc.) while the product was disabled
 
 <a id="2019-11-20"></a>
-
 ### November 20, 2019 { #2019-11-20 }
 
 <a id="2019-11-20-1"></a>
@@ -856,7 +814,6 @@ This is because when purchasing an item while different Billing Client versions 
 	* (Unity) Fixed a NullReferenceException caused by an error in the zone type processing inside the Initialize API
 
 <a id="2019-11-13"></a>
-
 ### November 13, 2019 { #2019-11-13 }
 
 <a id="2019-11-13-1"></a>
@@ -866,7 +823,6 @@ This is because when purchasing an item while different Billing Client versions 
 
 
 <a id="2019-11-12"></a>
-
 ### 2019. 11. 12. { #2019-11-12 }
 
 ```
@@ -900,7 +856,6 @@ Guide location: Game > Gamebase > Upgrade Guide
 	* Purchase (IAP) > Payment Information: Updated the UI to allow searching by selecting search conditions
 
 <a id="2019-10-29"></a>
-
 ### 2019. 10. 29. { #2019-10-29 }
 
 <a id="2019-10-29-1"></a>
@@ -909,8 +864,7 @@ Guide location: Game > Gamebase > Upgrade Guide
 	* Analytics: Updated pie chart tooltips
 	* Analytics > Real-time Monitoring: Added support for Push send targets
 
-<a id="2019-10-29"></a>
-
+<a id="2019-10-15"></a>
 ### 2019. 10. 15. { #2019-10-15 }
 
 <a id="2019-10-15-1"></a>
@@ -933,7 +887,6 @@ Guide location: Game > Gamebase > Upgrade Guide
 		* Analytics: Fixed an issue where NRU values were displayed in the ARPPU field
 
 <a id="2019-09-24"></a>
-
 ### 2019. 09. 24. { #2019-09-24 }
 
 <a id="2019-09-24-1"></a>
@@ -950,7 +903,6 @@ Guide location: Game > Gamebase > Upgrade Guide
 		* Analytics: Fixed an issue where NRU values were displayed in the ARPPU field
 	
 <a id="game-gamebase-1"></a>
-
 ### 2019. 09. 10. { #game-gamebase-1 }
 
 <a id="game-gamebase-1-1"></a>
@@ -967,7 +919,6 @@ Guide location: Game > Gamebase > Upgrade Guide
 		* TCPushSDK has been changed from a Static Library to a Framework file, so you must add TCPushSDK.framework to your project.
 	
 <a id="game-gamebase-2"></a>
-
 ### 2019. 08. 27. { #game-gamebase-2 }
 
 <a id="game-gamebase-2-1"></a>
@@ -987,7 +938,6 @@ Guide location: Game > Gamebase > Upgrade Guide
 	* Fixed an issue where specifying the full path of a Language file for Multilanguage on Mac OS did not work
 	
 <a id="game-gamebase-3"></a>
-
 ### 2019. 08. 02. { #game-gamebase-3 }
 
 <a id="game-gamebase-3-1"></a>
@@ -997,7 +947,6 @@ Guide location: Game > Gamebase > Upgrade Guide
 	* Fixed an issue where specifying the full path of a Language file for Multilanguage on Mac OS did not work
 
 <a id="game-gamebase-4"></a>
-
 ### 2019. 07. 23. { #game-gamebase-4 }
 
 <a id="game-gamebase-4-1"></a>
@@ -1027,7 +976,6 @@ Guide location: Game > Gamebase > Upgrade Guide
 	* Analytics > User Metrics: Fixed an issue where chart x-axis dates overlap
 
 <a id="game-gamebase-5"></a>
-
 ### 2019. 07. 11. { #game-gamebase-5 }
 
 <a id="game-gamebase-5-1"></a>
@@ -1045,7 +993,6 @@ Guide location: Game > Gamebase > Upgrade Guide
 	* (Unity) Fixed a JSON parsing error in iOSPlugin when calling the RequestRetryTransaction API
 
 <a id="game-gamebase-6"></a>
-
 ### 2019. 07. 01. { #game-gamebase-6 }
 
 <a id="game-gamebase-6-1"></a>
@@ -1054,7 +1001,6 @@ Guide location: Game > Gamebase > Upgrade Guide
 	* Management > Alarms: Fixed an issue where modifying alarm settings fails after setting up a Webhook
 
 <a id="game-gamebase-7"></a>
-
 ### 2019. 06. 27. { #game-gamebase-7 }
 
 <a id="game-gamebase-7-1"></a>
@@ -1065,7 +1011,6 @@ Guide location: Game > Gamebase > Upgrade Guide
 	* Fixed an error where GamebaseSettingTool failed to retrieve existing settings information when launched
 
 <a id="game-gamebase-8"></a>
-
 ### 2019. 06. 25. { #game-gamebase-8 }
 
 <a id="game-gamebase-8-1"></a>
@@ -1095,7 +1040,6 @@ Guide location: Game > Gamebase > Upgrade Guide
 	* (iOS) Fixed an issue where the app crashed intermittently due to network connection issues
 
 <a id="game-gamebase-9"></a>
-
 ### 2019. 06. 13. { #game-gamebase-9 }
 
 <a id="game-gamebase-9-1"></a>
@@ -1104,7 +1048,6 @@ Guide location: Game > Gamebase > Upgrade Guide
 	* (iOS) Fixed a bug where some parameters were missing when sending Analytics metrics, causing metrics to not display correctly
 	
 <a id="game-gamebase-10"></a>
-
 ### May 28, 2019 { #game-gamebase-10 }
 
 <a id="game-gamebase-10-1"></a>
@@ -1132,7 +1075,6 @@ Guide location: Game > Gamebase > Upgrade Guide
     * Added LTV Grid ComplexColumns support and Excel download support
 
 <a id="game-gamebase-11"></a>
-
 ### May 16, 2019 { #game-gamebase-11 }
 
 <a id="game-gamebase-11-1"></a>
@@ -1160,7 +1102,6 @@ Guide location: Game > Gamebase > Upgrade Guide
 	* Kickout: Fixed an issue of abnormal operation by adding authentication checks for lookup requests
 	
 <a id="game-gamebase-12"></a>
-
 ### 2019. 04. 23. { #game-gamebase-12 }
 
 ```
@@ -1181,7 +1122,6 @@ If you are interested in launching in China, contact our customer support.
 	* (Android) Fixed a memory leak that occurred inside AuthAdapter during IdP login
 
 <a id="game-gamebase-13"></a>
-
 ### 2019. 04. 11. { #game-gamebase-13 }
 
 <a id="game-gamebase-13-1"></a>
@@ -1200,7 +1140,6 @@ If you are interested in launching in China, contact our customer support.
 	* (Unity) Fixed a crash that occurred when calling the AddMappingForcibly API
 
 <a id="game-gamebase-14"></a>
-
 ### 2019. 04. 02. { #game-gamebase-14 }
 
 <a id="game-gamebase-14-1"></a>
@@ -1209,7 +1148,6 @@ If you are interested in launching in China, contact our customer support.
 	* (Unity) Fixed an issue where a server error occurred during initialization when running play mode with the Android platform selected in Unity Editor
 
 <a id="game-gamebase-15"></a>
-
 ### 2019. 03. 26. { #game-gamebase-15 }
 
 <a id="game-gamebase-15-1"></a>
@@ -1237,7 +1175,6 @@ If you are interested in launching in China, contact our customer support.
 		* com.toast.gamebase.activity.GamebaseMainActivity -> com.toast.android.gamebase.activity.GamebaseMainActivity
 
 <a id="game-gamebase-16"></a>
-
 ### 2019. 02. 26. { #game-gamebase-16 }
 
 <a id="game-gamebase-16-1"></a>
@@ -1254,7 +1191,6 @@ If you are interested in launching in China, contact our customer support.
 	* (iOS) Fixed a bug where there was no response when attempting Gamecenter login through Gamebase after logging in to Gamecenter through logic other than Gamebase
 
 <a id="game-gamebase-17"></a>
-
 ### January 29, 2019 { #game-gamebase-17 }
 
 ```
@@ -1288,7 +1224,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* (iOS) Fixed an issue where a crash occurred when initializing Gamebase with debugMode enabled on simulators running iOS 12 or later
 
 <a id="game-gamebase-18"></a>
-
 ### December 27, 2018 { #game-gamebase-18 }
 
 <a id="game-gamebase-18-1"></a>
@@ -1315,7 +1250,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* Added filters for querying IAP transactions.
 
 <a id="game-gamebase-19"></a>
-
 ### November 15, 2018 { #game-gamebase-19 }
 
 <a id="game-gamebase-19-1"></a>
@@ -1342,7 +1276,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* (Unity) Fixed a bug where a compilation error occurred due to code that called a deleted API from the iOS SDK.
 
 <a id="game-gamebase-20"></a>
-
 ### October 23, 2018 { #game-gamebase-20 }
 
 <a id="game-gamebase-20-1"></a>
@@ -1403,7 +1336,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* (Android) Fixed an issue where Auth API calls did not work properly when the same Auth API was called again from within the callback after an initial Auth API call.
 	
 <a id="game-gamebase-21"></a>
-
 ### October 11, 2018 { #game-gamebase-21 }
 
 <a id="game-gamebase-21-1"></a>
@@ -1412,7 +1344,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* Ban: Fixed an error that occurred during batch registration.
 	
 <a id="game-gamebase-22"></a>
-
 ### September 20, 2018 { #game-gamebase-22 }
 
 <a id="game-gamebase-22-1"></a>
@@ -1421,7 +1352,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* Management: Fixed an issue where alarm page processing failed due to a page address error.
 
 <a id="game-gamebase-23"></a>
-
 ### September 13, 2018 { #game-gamebase-23 }
 
 <a id="game-gamebase-23-1"></a>
@@ -1455,7 +1385,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* App: Fixed an issue where content after the delete button was cut off when editing information
 		
 <a id="game-gamebase-24"></a>
-
 ### August 28, 2018 { #game-gamebase-24 }
 
 <a id="game-gamebase-24-1"></a>
@@ -1482,7 +1411,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* (Android) Fixed an issue where an initialization error occurred when building with TargetSdk 28 while including auth-twitter-adapter
 
 <a id="game-gamebase-25"></a>
-
 ### August 9, 2018 { #game-gamebase-25 }
 
 <a id="game-gamebase-25-1"></a>
@@ -1508,7 +1436,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* Purchase history: Fixed a bug where the payment status could not be changed from the 'Reserved' status, and an issue where filtering was not applied when downloading Excel
 
 <a id="game-gamebase-26"></a>
-
 ### July 24, 2018 { #game-gamebase-26 }
 
 <a id="game-gamebase-26-1"></a>
@@ -1545,7 +1472,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
         * Delete the GPGS SDK for Unity.
 
 <a id="game-gamebase-27"></a>
-
 ### 2018. 07. 05. { #game-gamebase-27 }
 
 <a id="game-gamebase-27-1"></a>
@@ -1566,7 +1492,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* Fixed an issue where the store code was incorrectly registered when registering a Windows client.
 
 <a id="game-gamebase-28"></a>
-
 ### June 26, 2018 { #game-gamebase-28 }
 
 <a id="game-gamebase-28-1"></a>
@@ -1592,7 +1517,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* Updated Gamebase SDK: Android (1.9.0), iOS (1.9.0), Unity (1.10.1)
 
 <a id="game-gamebase-29"></a>
-
 ### June 11, 2018 { #game-gamebase-29 }
 
 <a id="game-gamebase-29-1"></a>
@@ -1601,7 +1525,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* (Unity) Fixed a bug where calling the AddMapping API without a Unity Adapter was internally handled as a login
 
 <a id="game-gamebase-30"></a>
-
 ### June 7, 2018 { #game-gamebase-30 }
 
 <a id="game-gamebase-30-1"></a>
@@ -1620,7 +1543,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 		* Typo: Adapater => Adapter
 
 <a id="game-gamebase-31"></a>
-
 ### May 29, 2018 { #game-gamebase-31 }
 
 <a id="game-gamebase-31-1"></a>
@@ -1637,7 +1559,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* (iOS) Fixed an issue where the title, back button, and close button were not displayed in the Gamebase WebView NavigationBar area
 
 <a id="game-gamebase-32"></a>
-
 ### May 18, 2018 { #game-gamebase-32 }
 
 <a id="game-gamebase-32-1"></a>
@@ -1647,7 +1568,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
     	- Replaced the Google Adapter applied to Unity SDK (1.9.0) released on May 3 with the latest version (1.6.1 -> 1.6.2)
 
 <a id="game-gamebase-33"></a>
-
 ### May 3, 2018 { #game-gamebase-33 }
 
 <a id="game-gamebase-33-1"></a>
@@ -1669,7 +1589,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
     * (Android) Fixed an issue where the ban popup did not appear when a user was determined to be invalid in Heartbeat (modified to use the same logic as iOS)
 
 <a id="game-gamebase-34"></a>
-
 ### April 12, 2018 { #game-gamebase-34 }
 
 <a id="game-gamebase-34-1"></a>
@@ -1678,7 +1597,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* (Android. iOS) Fixed a bug where registerPush failed when null was passed as the displayLanguageCode when calling registerPush
 
 <a id="game-gamebase-35"></a>
-
 ### April 9, 2018 { #game-gamebase-35 }
 
 <a id="game-gamebase-35-1"></a>
@@ -1688,7 +1606,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 		* Launching, Purchase, Push, Util, Webview
 
 <a id="game-gamebase-36"></a>
-
 ### 2018. 04. 05. { #game-gamebase-36 }
 
 <a id="game-gamebase-36-1"></a>
@@ -1717,7 +1634,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* (Setting Tool) Fixed a bug where an error occurred when checking Unity Facebook Adapter
 
 <a id="game-gamebase-37"></a>
-
 ### 2018. 03. 13. { #game-gamebase-37 }
 
 <a id="game-gamebase-37-1"></a>
@@ -1728,7 +1644,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* (Unity) Released Google Adapter 1.6.2: Fixed a bug in Google Adapter 1.6.1 where AuthCode was returned as empty, causing authentication failure
 
 <a id="game-gamebase-38"></a>
-
 ### 2018. 02. 22. { #game-gamebase-38 }
 
 <a id="game-gamebase-38-1"></a>
@@ -1738,7 +1653,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* Added Display Language setting: Added a Display Language setting that allows game users to set the language displayed in the game separately from the device language.
 
 <a id="game-gamebase-39"></a>
-
 ### January 25, 2018 { #game-gamebase-39 }
 
 <a id="game-gamebase-39-1"></a>
@@ -1767,7 +1681,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 
 
 <a id="game-gamebase-40"></a>
-
 ### December 21, 2017 { #game-gamebase-40 }
 
 <a id="game-gamebase-40-1"></a>
@@ -1799,7 +1712,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 
 
 <a id="game-gamebase-41"></a>
-
 ### November 30, 2017 { #game-gamebase-41 }
 
 <a id="game-gamebase-41-1"></a>
@@ -1822,7 +1734,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 
 
 <a id="game-gamebase-42"></a>
-
 ### November 23, 2017 { #game-gamebase-42 }
 
 <a id="game-gamebase-42-1"></a>
@@ -1844,7 +1755,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* (iOS) Fixed an issue where the NavigationBar background was displayed overlapping when customizing the NavigationBar height of the WebView
 
 <a id="game-gamebase-43"></a>
-
 ### October 26, 2017 { #game-gamebase-43 }
 
 <a id="game-gamebase-43-1"></a>
@@ -1863,7 +1773,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* (Unity) Fixed a bug where JSON parsing failed in iOSPlugin when calling the Login API using CredentialInfo
 	
 <a id="game-gamebase-44"></a>
-
 ### September 21, 2017 { #game-gamebase-44 }
 
 <a id="game-gamebase-44-1"></a>
@@ -1887,7 +1796,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* Added multi-language support for concurrent user change notifications (English/Korean selectable)
 
 <a id="game-gamebase-45"></a>
-
 ### August 24, 2017 { #game-gamebase-45 }
 
 <a id="game-gamebase-45-1"></a>
@@ -1897,7 +1805,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* Added Push API (for iOS): SetSandboxMode
 
 <a id="game-gamebase-46"></a>
-
 ### July 20, 2017 { #game-gamebase-46 }
 
 <a id="game-gamebase-46-1"></a>
@@ -1913,7 +1820,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* Added TrackingTime display for tracing errors in external integration modules
 
 <a id="game-gamebase-47"></a>
-
 ### May 25, 2017 { #game-gamebase-47 }
 
 <a id="game-gamebase-47-1"></a>
@@ -1928,7 +1834,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 	* Added audit log for Create, Update, and Modify operations in all menus
 
 <a id="game-gamebase-48"></a>
-
 ### April 20, 2017 { #game-gamebase-48 }
 
 <a id="game-gamebase-48-1"></a>
@@ -1945,7 +1850,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 
 
 <a id="game-gamebase-49"></a>
-
 ### April 4, 2017 { #game-gamebase-49 }
 
 <a id="game-gamebase-49-1"></a>
@@ -1962,7 +1866,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 * [Console] Fixed abnormal market display when registering iOS clients
 
 <a id="game-gamebase-50"></a>
-
 ### March 21, 2017 { #game-gamebase-50 }
 
 <a id="game-gamebase-50-1"></a>
@@ -1973,7 +1876,6 @@ To use the improved overall metrics in Gamebase 2.0, you must update the SDK.
 * [API] Integrated [Leaderboard](./api-guide/#leaderboard) and [IAP](./api-guide/#purchase-iap) APIs
 
 <a id="game-gamebase-51"></a>
-
 ### March 9, 2017 { #game-gamebase-51 }
 
 <a id="game-gamebase-51-1"></a>
