@@ -1,3 +1,5 @@
+<!-- pre-align:aligned sig=4da805cd3daa -->
+
 <a id="game-gamebase"></a>
 ## Game > Gamebase > 릴리스 노트 { #game-gamebase }
 
