@@ -11,7 +11,7 @@
     - [Google Developers - OAuth 2.0 Playground](https://developers.google.com/oauthplayground/)
 
 ## 기본 정보 입력
-![최고 관리자 모델 설정](../static/images/google_store/2026_gamebase_google_chargeback_console_01.png)
+![최고 관리자 모델 설정](../static/images/google_store/google-store-info-supervisor-ko.png)
 
 ### 1. Store App ID
 - Google Play 등록을 위해 빌드한 앱의 Package Name으로 Google Play 내에서 앱을 식별할 수 있는 고유값입니다.
@@ -50,7 +50,7 @@
 - Google Play Console에서는 Google Cloud Console에서 생성한 서비스 계정을 추가하여 사용합니다.
 - 서비스 계정이 앱에 접근하기 위해서는 적절한 권한을 부여해야 합니다.
 
-![NHN Cloud IAP 앱 설정](../static/images/google_store/2026_gamebase_google_chargeback_console_02.png)
+![NHN Cloud IAP 앱 설정](../static/images/google_store/google-store-info-access-type-ko.png)
 
 
 ## Google Cloud 프로젝트 설정
@@ -145,7 +145,7 @@ Gamebase IAP에서 Google Cloud 클라이언트 ID 인증을 사용하기 위해
 - **Google API Client Secret: 클라이언트 보안 비밀번호**를 입력
 - **Refresh Token For Google Oauth**: Google Developsers OAuth Playground에서 수신한 **Refresh token**을 입력
 
-![최고 관리자 모델 설정](../static/images/google_store/2026_gamebase_google_chargeback_console_01.png)
+![최고 관리자 모델 설정](../static/images/google_store/google-store-info-supervisor-ko.png)
 
 
 
@@ -216,7 +216,7 @@ Gamebase IAP에서 Google Cloud 클라이언트 ID 인증을 사용하기 위해
 - **IAP > App**의 **추가** 또는 **편집**에서 **서비스 계정 연동 정보** 항목에 다운로드한 서비스 계정의 키 파일 내용을 입력합니다.
 - 복사할 때는 메모장과 같은 텍스트 편집기를 사용해 내용 전체를 복사하십시오.
 
-![연동방식_sevice_account](../static/images/google_store/2026_gamebase_google_chargeback_console_03.png)
+![연동방식_sevice_account](../static/images/google_store/google-store-info-service-account-ko.png)
 
 
 ## 실시간 구독 상태 수신을 위한 Google 알림 설정
@@ -251,7 +251,7 @@ Google Play에서 구독 상품을 판매하는 경우 NHN Cloud IAP에서 Googl
 
 
 ## 구글 차지백(Google ChargeBack) 연동 
-![google Console img](../static/images/google_store/2026_gamebase_google_chargeback_console.png)
+![google Console img](../static/images/google_store/google-store-info-chargeback-ko.png)
 
 - 구글의 차지백(Google ChargeBack) 연동을 위한 URL을 입력해 주세요. 
 * 자세한 사항은 [Gamebase API](https://docs.alpha-nhncloud.com/ko/Game/Gamebase/ko/api-guide/#google-play-chargeback-callback)를 확인해 주세요.

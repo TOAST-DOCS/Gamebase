@@ -13,7 +13,7 @@ We use the Google site below to get the information for the integration.
 
 ## Enter Basic Information
 
-![Store Information Registration](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/en/260202_en_01.png)
+![Store Information Registration](../static/images/google_store/google-store-info-supervisor-en.png)
 
 
 ### 1. Store App ID
@@ -57,7 +57,7 @@ We use the Google site below to get the information for the integration.
 - In order for the service account to access the app, you must grant the appropriate permissions.
 
 
-![Store Information Registration](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/en/260202_en_04.png)
+![Store Information Registration](../static/images/google_store/google-store-info-access-type-en.png)
 
 
 ## Set up Google Cloud Project
@@ -234,7 +234,7 @@ You can issue service accounts in Google Cloud IAM to allow non-human users to a
 - When copying, use a text editor like notepad to copy the entire content.
 
 
-![Store Information Registration](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/en/260202_en_22.png)
+![Store Information Registration](../static/images/google_store/google-store-info-service-account-en.png)
 
 
 ## Set up Google Notifications to receive real-time subscription status
@@ -273,3 +273,10 @@ If you sell subscription products on Google Play, you can receive notifications 
 - Under **Google Play Payments**, in **Topic name**, enter the name of the topic that you created earlier.
 
 ![Link a Google Cloud Project](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/en/260202_en_27.png)
+
+
+## Google Chargeback Integration
+![google Console img](../static/images/google_store/google-store-info-chargeback-en.png)
+
+- Please enter the URL for Google Chargeback integration.
+* For more information, please refer to the [Gamebase API](https://docs.alpha-nhncloud.com/ko/Game/Gamebase/ko/api-guide/#google-play-chargeback-callback).
