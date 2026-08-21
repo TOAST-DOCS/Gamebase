@@ -1,5 +1,7 @@
 <!-- machine_translated: true -->
 
+<!-- pre-align:aligned sig=4da805cd3daa -->
+
 <a id="game-gamebase"></a>
 
 ## Game > Gamebase > リリースノート { #game-gamebase }
