@@ -1,3 +1,5 @@
+<!-- pre-align:aligned sig=4c88926373f0 -->
+
 <a id="game-gamebase-release-notes-android"></a>
 ## Game > Gamebase > 릴리스 노트 > Android { #game-gamebase-release-notes-android }
 

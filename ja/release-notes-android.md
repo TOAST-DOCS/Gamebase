@@ -1,3 +1,5 @@
+<!-- pre-align:aligned sig=4c88926373f0 -->
+
 <a id="game-gamebase-release-notes-android"></a>
 ## Game > Gamebase > リリースノート > Android { #game-gamebase-release-notes-android }
 
@@ -643,6 +645,11 @@ Android Gradle Plugin最小バージョンが7.4.2以上に引き上げられま
 <a id="521-2023-07-17-bug-fixes"></a>
 #### 不具合修正
 * OkHttp 3.13から最小サポートOSバージョンが21になり、Android 4.4(OS 19 Kitkat)端末でクラッシュが発生する問題を修正しました。
+
+<a id="520-2023-06-27"></a>
+### 2.52.0 (2023. 06. 27.) { #520-2023-06-27 }
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.0/GamebaseSDK-Android.zip)
 
 <a id="520-2023-06-27-added-features"></a>
 #### 機能追加

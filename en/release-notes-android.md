@@ -1,3 +1,5 @@
+<!-- pre-align:aligned sig=4c88926373f0 -->
+
 <a id="game-gamebase-release-notes-android"></a>
 ## Game > Gamebase > Release Notes > Android { #game-gamebase-release-notes-android }
 
