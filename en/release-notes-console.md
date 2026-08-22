@@ -1,11 +1,9 @@
 <!-- machine_translated: true -->
 
 <a id="game-gamebase-console"></a>
-
 ## Game > Gamebase > Release Notes > Console { #game-gamebase-console }
 
 <a id="2025-1125"></a>
-
 ### Nov 25, 2025 { #2025-1125 }
 <a id="2025-1125-1"></a>
 #### Added Features
@@ -14,7 +12,6 @@
     * Added the graphs for withdrawn users, unique new users
 
 <a id="2025-04-15"></a>
-
 ### Apr 15, 2025 { #2025-04-15 }
 
 <a id="2025-04-15-1"></a>
@@ -29,7 +26,6 @@
     * Changed the menu name from 'Notice' to 'Maintenance Notice'
 
 <a id="2024-07-23"></a>
-
 ### July 23, 2024 { #2024-07-23 }
 
 <a id="2024-07-23-1"></a>
@@ -43,7 +39,6 @@
     * Fixed an error that caused terms to deploy even if no country was set
 
 <a id="2024-07-09"></a>
-
 ### July 9, 2024 { #2024-07-09 }
 
 <a id="2024-07-09-1"></a>
@@ -52,7 +47,6 @@
     * Added the feature to set up image notice
 
 <a id="2024-06-25"></a>
-
 ### June 25, 2024 { #2024-06-25 }
 
 <a id="2024-06-25-1"></a>
@@ -61,7 +55,6 @@
 	* Added support for Apple Notification V2's receipt verification feature
 
 <a id="2024-03-26"></a>
-
 ### March 26, 2024 { #2024-03-26 }
 
 <a id="2024-03-26-1"></a>
@@ -70,7 +63,6 @@
 	* Add the PUSH FCM Service Account Credential method
 
 <a id="2024-02-27"></a>
-
 ### February 27, 2024 { #2024-02-27 }
 
 <a id="2024-02-27-1"></a>
@@ -86,7 +78,6 @@
 	* Changed client version registration to only accept alphabets, numbers, periods (.), and underscores (_)
 
 <a id="2024-01-09"></a>
-
 ### January 9, 2024. { #2024-01-09 }
 
 <a id="2024-01-09-1"></a>
@@ -95,7 +86,6 @@
 	* Fixed FAQ search not working after changing language within Customer Center
 
 <a id="2023-12-19"></a>
-
 ### December 19, 2023 { #2023-12-19 }
 
 <a id="2023-12-19-1"></a>
@@ -110,7 +100,6 @@
 	* Added support for Spanish/Portuguese/German/French language
 
 <a id="2023-10-31"></a>
-
 ### October 31, 2023 { #2023-10-31 }
 
 <a id="2023-10-31-1"></a>
@@ -119,7 +108,6 @@
     * Added Epic Games Store
 
 <a id="2023-09-26"></a>
-
 ### September 26, 2023 { #2023-09-26 }
 
 <a id="2023-09-26-1"></a>
@@ -128,7 +116,6 @@
     * Added support for Thai
 
 <a id="2023-09-12"></a>
-
 ### September 12, 2023 { #2023-09-12 }
 
 <a id="2023-09-12-1"></a>
@@ -140,7 +127,6 @@
     * Fixed an issue where file attachment fails on certain verions of Android
 
 <a id="2023-07-25"></a>
-
 ### July 25, 2023 { #2023-07-25 }
 
 <a id="2023-07-25-1"></a>
@@ -158,7 +144,6 @@
     * Fixed an error where, when repeatitive push notification was set for time zones other than UTC+9, the sending time was incorrectly set
 
 <a id="2023-07-11"></a>
-
 ### July 11, 2023 { #2023-07-11 }
 
 <a id="2023-07-11-1"></a>
@@ -176,7 +161,6 @@
     * Fixed an error that caused unexposed posts to be retrieved via FAQ search
 
 <a id="2023-06-27"></a>
-
 ### June 27, 2023 { #2023-06-27 }
 
 <a id="2023-06-27-1"></a>
@@ -192,7 +176,6 @@
         * Changed the URL of token verification entered in NHN Cloud Online Contact screen from `https://gamebase-web.cloud.toast.com` to `https://web-gamebase.nhncloud.com`
 
 <a id="2023-06-13"></a>
-
 ### June 13, 2023 { #2023-06-13 }
 
 <a id="2023-06-13-1"></a>
@@ -201,7 +184,6 @@
         * Add a universalLink entry to Additional information for Weibo login authentication.
 	
 <a id="2023-05-16"></a>
-
 ### May 16, 2023 { #2023-05-16 }
 
 <a id="2023-05-16-1"></a>
@@ -212,7 +194,6 @@
         * Added Galaxy store
 
 <a id="2023-04-25"></a>
-
 ### April 25, 2023 { #2023-04-25 }
 
 <a id="2023-04-25-1"></a>
@@ -223,7 +204,6 @@
         * Added monthly inflow/outflow metrics
 
 <a id="2023-04-11"></a>
-
 ### April 11, 2023 { #2023-04-11 }
 
 <a id="2023-04-11-1"></a>
@@ -232,7 +212,6 @@
 	* Improved visibility of user metrics and filters
 
 <a id="2023-03-28"></a>
-
 ### March 28, 2023 { #2023-03-28 }
 
 <a id="2023-03-28-1"></a>
@@ -246,7 +225,6 @@
 	* Added accumulative DAU metrics that were missing when downloading excel files
 
 <a id="2023-03-14"></a>
-
 ### March 14, 2023 { #2023-03-14 }
 
 <a id="2023-03-14-1"></a>
@@ -255,7 +233,6 @@
         * Improved so that the status can be changed from 'Reserved' to 'Success' (Google Play Store excluded)
 
 <a id="2023-02-28"></a>
-
 ### February 28, 2023 { #2023-02-28 }
 
 <a id="2023-02-28-1"></a>
@@ -269,7 +246,6 @@
         * Added a feature to search for members by Device Key
 
 <a id="2023-02-14"></a>
-
 ### February 14, 2023 { #2023-02-14 }
 
 <a id="2023-02-14-1"></a>
@@ -278,7 +254,6 @@
 	    * Added support for SMS alarm receiving feature for IAM members
 
 <a id="2023-01-10"></a>
-
 ### January 10, 2023 { #2023-01-10 }
 
 <a id="2023-01-10-1"></a>
@@ -296,7 +271,6 @@
     * Made a change so that, only one Gamebase product can be registered per external store item for games that have set 'single product'
 
 <a id="2022-12-27"></a>
-
 ### December 27, 2022 { #2022-12-27 }
 
 <a id="2022-12-27-1"></a>
@@ -305,7 +279,6 @@
         * Changed the maximum retention period from 90 days to 180 days
 
 <a id="2022-11-29"></a>
-
 ### November 29, 2022 { #2022-11-29 }
 
 <a id="2022-11-29-1"></a>
@@ -316,7 +289,6 @@
 	* Added the first purchase period indicator
 
 <a id="2022-11-15"></a>
-
 ### November 15, 2022 { #2022-11-15 }
 
 <a id="2022-11-15-1"></a>
@@ -325,7 +297,6 @@
 	* Added the monthly cumulative user item on daily view
 
 <a id="2022-10-25"></a>
-
 ### October 25, 2022 { #2022-10-25 }
 
 <a id="2022-10-25-1"></a>
@@ -339,7 +310,6 @@
 	* Improved to display all devices when downloading data files if the search condition is set to device
 
 <a id="2022-10-04"></a>
-
 ### October 4, 2022 { #2022-10-04 }
 
 <a id="2022-10-04-1"></a>
@@ -360,7 +330,6 @@
 	* Improved to fix the order to output stores
 
 <a id="2022-09-14"></a>
-
 ### September 14, 2022 { #2022-09-14 }
 
 <a id="2022-09-14-1"></a>
@@ -378,7 +347,6 @@
 	* Fixed an issue where activation failed intermittently when activating 'Customer Center Provided by Gamebase' for the first time
 
 <a id="2022-07-26"></a>
-
 ### July 26, 2022 { #2022-07-26 }
 
 <a id="2022-07-26-1"></a>
@@ -394,7 +362,6 @@
 	* Fixed a download error when there is a space in the attached file name
 
 <a id="2022-06-14"></a>
-
 ### June 14, 2022 { #2022-06-14 }
 
 <a id="2022-06-14-1"></a>
@@ -403,7 +370,6 @@
 	* Added a feature to set the hour and minute in the coupon validity period
 
 <a id="2022-05-24"></a>
-
 ### May 24, 2022 { #2022-05-24 }
 
 <a id="2022-05-24-1"></a>
@@ -417,7 +383,6 @@
 	* Fixed an issue where unnecessary horizontal scroll is generated when the manually entered terms and conditions detailed page is displayed in Android WebView
 
 <a id="2022-04-26"></a>
-
 ### April 26, 2022 { #2022-04-26 }
 
 <a id="2022-04-26-1"></a>
@@ -437,7 +402,6 @@
 	* Fixed an issue where, when an error occurs due to input of special characters in the FAQ type management, an incorrect message is displayed as a duplicate category error
 
 <a id="2022-04-12"></a>
-
 ### April 12, 2022 { #2022-04-12 }
 
 <a id="2022-04-12-1"></a>
@@ -446,7 +410,6 @@
 	* For Amazon Store, changed to register only one 'Gamebase Product' in 'Store Item ID'
 
 <a id="2022-03-29"></a>
-
 ### March 29, 2022 { #2022-03-29 }
 
 <a id="2022-03-29-1"></a>
@@ -460,7 +423,6 @@
 	* Fixed an issue where, when saving data for the first time, an error occurred when saving data in different windows at the same time
 
 <a id="2022-03-15"></a>
-
 ### March 15, 2022 { #2022-03-15 }
 
 <a id="2022-03-15-1"></a>
@@ -474,7 +436,6 @@
 	* Fixed an error where settings were not saved after modifying the settings
 
 <a id="2022-02-22"></a>
-
 ### February 22, 2022 { #2022-02-22 }
 
 <a id="2022-02-22-1"></a>
@@ -496,7 +457,6 @@
 	* Fixed an error where an error message does not appear in certain situations when product registration using a CSV file fails
 
 <a id="2022-01-25"></a>
-
 ### January 25, 2022 { #2022-01-25 }
 
 <a id="2022-01-25-1"></a>
@@ -505,7 +465,6 @@
 	* Added a feature to select whether or not to expose a kickout popup
 
 <a id="2022-01-11"></a>
-
 ### January 11, 2022 { #2022-01-11 }
 
 <a id="2022-01-11-1"></a>
@@ -514,7 +473,6 @@
 	* Added a feature that enables users to select a display language among the supported languages in the Customer Center
 
 <a id="2021-12-28"></a>
-
 ### December 28, 2021 { #2021-12-28 }
 
 <a id="2021-12-28-1"></a>
@@ -523,7 +481,6 @@
 	* Fixed an error where the numbers of new/withdrawn users were displayed as twice the actual value
 
 <a id="2021-12-14"></a>
-
 ### December 14, 2021 { #2021-12-14 }
 
 <a id="2021-12-14-1"></a>
@@ -541,7 +498,6 @@
 	* Fixed an error where Chinese was not displayed in the Customer Center even if Chinese was set as the supported language
 
 <a id="2021-11-23"></a>
-
 ### November 23, 2021 { #2021-11-23 }
 
 <a id="2021-11-23-1"></a>
@@ -557,7 +513,6 @@
 	* Fixed an error where it was impossible to select the day/time of the period when the screen width was reduced
 
 <a id="2021-11-09"></a>
-
 ### November 9, 2021 { #2021-11-09 }
 
 <a id="2021-11-09-1"></a>
@@ -571,7 +526,6 @@
 	* Fixed an error where the preview was displayed incorrectly when registering custom page HTML (Webview) maintenance
 
 <a id="2021-10-26"></a>
-
 ### October 26, 2021 { #2021-10-26 }
 
 <a id="2021-10-26-1"></a>
@@ -582,7 +536,6 @@
 	* Added a feature to copy kickout details
 
 <a id="2021-10-12"></a>
-
 ### October 12, 2021 { #2021-10-12 }
 
 <a id="2021-10-12-1"></a>
@@ -598,7 +551,6 @@
 	* Fixed a bug where the withdrawn user indicator is displayed as 0 on the day of registration
 
 <a id="2021-09-28"></a>
-
 ### September 28, 2021 { #2021-09-28 }
 
 <a id="2021-09-28-1"></a>
@@ -616,7 +568,6 @@
     * Fixed an error where message sending fails when setting the text color for messages that have only content without a subject
 
 <a id="2021-09-14"></a>
-
 ### September 14, 2021 { #2021-09-14 }
 
 <a id="2021-09-14-1"></a>
@@ -638,7 +589,6 @@
 	* Fixed an error where a wrong calendar is exposed when the user selects submission period dates
 
 <a id="2021-08-24"></a>
-
 ### August 24, 2021 { #2021-08-24 }
 
 <a id="2021-08-24-1"></a>
@@ -649,7 +599,6 @@
 	* For the initial currency setting, a base currency is displayed according to the language selected in NHN Cloud
 
 <a id="2021-08-10"></a>
-
 ### August 10, 2021 { #2021-08-10 }
 
 <a id="2021-08-10-1"></a>
@@ -673,7 +622,6 @@
 	* Changed the text in the popup window when looking for a non-existing member
 
 <a id="2021-07-27"></a>
-
 ### July 27, 2021 { #2021-07-27 }
 
 <a id="2021-07-27-1"></a>
@@ -689,7 +637,6 @@
 * Coupon > Issue Coupon: Fixed an error where statistical data was omitted when sending coupon through SMS.
 
 <a id="2021-07-13"></a>
-
 ### July 13, 2021 { #2021-07-13 }
 
 <a id="2021-07-13-1"></a>
@@ -697,7 +644,6 @@
 * New mobile menu open: Retention
 
 <a id="2021-06-29"></a>
-
 ### June 29, 2021 { #2021-06-29 }
 
 <a id="2021-06-29-1"></a>
@@ -705,7 +651,6 @@
 * Analytics > Dashboard: Fixed a bug where the PU accumulation value of the downloaded Excel file included duplicate PUs
 
 <a id="2021-05-25"></a>
-
 ### May 25, 2021 { #2021-05-25 }
 
 <a id="2021-05-25-1"></a>
@@ -713,7 +658,6 @@
 * Purchase(IAP) > Item: Added a feature of allowing users to confirm low-level ID information when changing status of store Item
 
 <a id="2021-05-11"></a>
-
 ### May 11, 2021 { #2021-05-11 }
 
 <a id="2021-05-11-1"></a>
@@ -721,7 +665,6 @@
 * App > App: Improved the view so that users can group and edit apps by feature
 
 <a id="2021-04-13"></a>
-
 ### April 13, 2021 { #2021-04-13 }
 
 <a id="2021-04-13-1"></a>
@@ -733,7 +676,6 @@
 	* Updated automatic restriction condition input of numbers and prices that only allowed AND condition to also allow OR condition
 
 <a id="2021-03-23"></a>
-
 ### March 23, 2021 { #2021-03-23 }
 
 <a id="2021-03-23-1"></a>
@@ -741,7 +683,6 @@
 * Member > Download: Increased the size of data stored in a file (from 50,000 to > 500,000)
 
 <a id="2021-03-09"></a>
-
 ### March 09, 2021 { #2021-03-09 }
 
 <a id="2021-03-09-1"></a>
@@ -749,7 +690,6 @@
 * App > Terms and Conditions: Added the GDPR terms
 
 <a id="2021-02-23"></a>
-
 ### February 23, 2021 { #2021-02-23 }
 
 <a id="2021-02-23-1"></a>
@@ -758,7 +698,6 @@
 * Purchase (IAP) > Store: Added a feature to set one-time receipt verification phase for Google Play store
 
 <a id="2021-02-15"></a>
-
 ### February 15, 2021 { #2021-02-15 }
 
 <a id="2021-02-15-1"></a>
@@ -766,7 +705,6 @@
 * Purchase (IAP) > Payment History: Fixed an error displaying wrong item name on file download
 
 <a id="2021-02-09"></a>
-
 ### February 9, 2021 { #2021-02-09 }
 
 <a id="2021-02-09-1"></a>
@@ -779,7 +717,6 @@
 * App > Client: Improved the screen to classify and display the client version per store
 
 <a id="2021-01-26"></a>
-
 ### January 26, 2021 { #2021-01-26 }
 
 ```
@@ -796,7 +733,6 @@ Push > The Push (legacy) Console Menu feature has been removed.
 * Manage > Permissions: Sales Access Permissions removed [See the notice](https://www.toast.com/kr/support/notice/detail/2101)
 
 <a id="2021-01-12"></a>
-
 ### January 12, 2021 { #2021-01-12 }
 
 <a id="2021-01-12-1"></a>
@@ -808,7 +744,6 @@ Push > The Push (legacy) Console Menu feature has been removed.
 	* Setting: Manages the values related to push
 
 <a id="2020-12-29"></a>
-
 ### December 29, 2020 { #2020-12-29 }
 
 <a id="2020-12-29-1"></a>
@@ -822,7 +757,6 @@ Push > The Push (legacy) Console Menu feature has been removed.
 	* Analytics > Preferences > Terminate Installation URL Menu
 
 <a id="2020-12-15"></a>
-
 ### December 15, 2020 { #2020-12-15 }
 
 <a id="2020-12-15-1"></a>
@@ -843,7 +777,6 @@ Push > The Push (legacy) Console Menu feature has been removed.
 	* Purchase (IAP) > item: Fixed the issue where duplicate items are registered when a batch of items is added using a file
 
 <a id="2020-12-2"></a>
-
 ### December 2, 2020 { #2020-12-2 }
 
 <a id="2020-12-2-1"></a>
@@ -870,7 +803,6 @@ Push > The Push (legacy) Console Menu feature has been removed.
     * Purchase (IAP) > Payment Information: fixed the issue where files cannot be downloaded when too much data is viewed
 
 <a id="2020-11-10"></a>
-
 ### November 10, 2020 { #2020-11-10 }
 
 <a id="2020-11-10-1"></a>
@@ -880,7 +812,6 @@ Push > The Push (legacy) Console Menu feature has been removed.
 
 
 <a id="2020-10-27"></a>
-
 ### October 27, 2020 { #2020-10-27 }
 
 <a id="2020-10-27-1"></a>
@@ -892,7 +823,6 @@ Push > The Push (legacy) Console Menu feature has been removed.
 
 
 <a id="2020-10-13"></a>
-
 ### October 13, 2020 { #2020-10-13 }
 
 ```
@@ -905,7 +835,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 
 
 <a id="2020-09-22"></a>
-
 ### September 22, 2020 { #2020-09-22 }
 
 <a id="2020-09-22-1"></a>
@@ -920,7 +849,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Analytics > Sale index: Displays the total transaction amount as well as the transaction amount for each country for the country store in store-specific dashboards
 
 <a id="2020-09-15"></a>
-
 ### September 15, 2020 { #2020-09-15 }
 
 <a id="2020-09-15-1"></a>
@@ -929,7 +857,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Purchase (IAP) > Payment Information: Fixed an issue in which authentication by receipt did not properly show
 
 <a id="2020-08-25"></a>
-
 ### August 25, 2020 { #2020-08-25 }
 
 <a id="2020-08-25-1"></a>
@@ -943,7 +870,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Push > Push: Fixed an issue in which time was identically applied with UTC+9, for delivering repetitive push notification, regardless of timezone
 
 <a id="2020-08-19"></a>
-
 ### August 19, 2020 { #2020-08-19 }
 
 <a id="2020-08-19-1"></a>
@@ -952,7 +878,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* The Entire Menus of Analytics: Fixed the unavailability of downloading excel files
 
 <a id="2020-08-11"></a>
-
 ### August 11, 2020 { #2020-08-11 }
 
 <a id="2020-08-11-1"></a>
@@ -961,7 +886,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Analytics > User Indicators > Retention: Show numbers, as well as %
 
 <a id="2020-07-28"></a>
-
 ### July 28, 2020 { #2020-07-28 }
 
 <a id="2020-07-28-1"></a>
@@ -980,7 +904,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Operations > Image Notices: Fixed the feature of copying, as well as error in which selected countries are not properly changed to all countries
 
 <a id="2020-07-14"></a>
-
 ### July 14, 2020 { #2020-07-14 }
 
 <a id="2020-07-14-1"></a>
@@ -996,7 +919,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Membership > Download: Added deviceKey and IdP code to the history of login logs
 
 <a id="2020-06-23"></a>
-
 ### June 23, 2020 { #2020-06-23 }
 
 <a id="2020-06-23-1"></a>
@@ -1005,7 +927,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Purchase (IAP) > Products: Updated to register and manage many Gamebase products for a store item ID
 
 <a id="2020-06-09"></a>
-
 ### June 9, 2020 { #2020-06-09 }
 
 <a id="2020-06-09-1"></a>
@@ -1019,7 +940,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Coupons > Issue Coupons: Fixed an issue where the history of coupons sent via SMS was not included when downloading coupon statistics
 
 <a id="2020-05-26"></a>
-
 ### May 26, 2020 { #2020-05-26 }
 
 <a id="2020-05-26-1"></a>
@@ -1033,7 +953,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* All: Updated button/tag UIs to suit for common design guides
 
 <a id="2020-05-12"></a>
-
 ### May 12, 2020 { #2020-05-12 }
 
 <a id="2020-05-12-1"></a>
@@ -1044,7 +963,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Purchase (IAP) > Store: Test, Old) OneStore is updated not to allow new registration
 
 <a id="2020-04-28"></a>
-
 ### April 28, 2020 { #2020-04-28 }
 
 <a id="2020-04-28-1"></a>
@@ -1061,7 +979,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Members > Membership: Further shows suspension period expired, when querying members who are suspended for withdrawal
 
 <a id="2020-04-14"></a>
-
 ### April 14, 2020 { #2020-04-14 }
 
 <a id="2020-04-14-1"></a>
@@ -1076,7 +993,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Analytics > Real-time Monitoring: Fixed an issue in which indicator shows 0 when query is requested while saving data
 
 <a id="2020-03-24"></a>
-
 ### March 24, 2020 { #2020-03-24 }
 
 <a id="2020-03-24-1"></a>
@@ -1100,7 +1016,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 		* Fixed the issue of not showing February indicators for monthly search
 
 <a id="2020-03-10"></a>
-
 ### March 10, 2020 { #2020-03-10 }
 
 <a id="2020-03-10-1"></a>
@@ -1127,7 +1042,6 @@ If you wish to use HanGame authentication, please contact the customer center in
   - Analytics: Fixed an issue in which the sales indicator is displayed as '0' when the currency code is in coins
 
 <a id="2020-02-25"></a>
-
 ### February 25, 2020 { #2020-02-25 }
 
 <a id="2020-02-25-1"></a>
@@ -1150,7 +1064,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 		* Fixed the vertical display of buttons when the filter name is short
 
 <a id="2020-02-11"></a>
-
 ### February 11, 2020 { #2020-02-11 }
 
 <a id="2020-02-11-1"></a>
@@ -1172,7 +1085,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Analytics: Modified the currency display from 'Yen (JPY)' to 'Won (KRW)' when the language is changed to Japanese
 
 <a id="2020-01-21"></a>
-
 ### January 21, 2020 { #2020-01-21 }
 
 <a id="2020-01-21-1"></a>
@@ -1181,7 +1093,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Analytics: Fixed failed re-direction to a login page when the user session is expired
 
 <a id="2019-12-24"></a>
-
 ### December 24, 2019 { #2019-12-24 }
 
 <a id="2019-12-24-1"></a>
@@ -1194,7 +1105,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Purchase > Query Payment Information: Added the column for additional information
 
 <a id="2019-12-10"></a>
-
 ### December 10, 2019 { #2019-12-10 }
 
 <a id="2019-12-10-1"></a>
@@ -1207,7 +1117,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Modified incorrect Japanese
 
 <a id="2019-11-26"></a>
-
 ### November 26, 2019 { #2019-11-26 }
 
 <a id="2019-11-26-1"></a>
@@ -1218,7 +1127,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Fixed the issue in which the page is not properly displayed for a disabled product, when accessing relevant menu of NHN Cloud Product (e.g. IAP, Push, or AppGuard)
 
 <a id="2019-11-12"></a>
-
 ### November 12, 2019 { #2019-11-12 }
 
 <a id="2019-11-12-1"></a>
@@ -1237,7 +1145,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Purchase (IAP) > Payment Information: Changed UI to search by selecting search conditions
 
 <a id="2019-10-29"></a>
-
 ### October 29, 2019 { #2019-10-29 }
 
 <a id="2019-10-29-1"></a>
@@ -1247,7 +1154,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Analytics > Real-time Monitoring: More targets for push delivery
 
 <a id="2019-10-15"></a>
-
 ### October 15, 2019 { #2019-10-15 }
 
 <a id="2019-10-15-1"></a>
@@ -1259,7 +1165,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 		* Analytics: Fixed the issue of NRU value exposed for ARPPU
 
 <a id="2019-09-24"></a>
-
 ### September 24, 2019 { #2019-09-24 }
 
 <a id="2019-09-24-1"></a>
@@ -1276,7 +1181,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 		* Analytics: Fixed the issue of NRU value exposed for ARPPU
 
 <a id="game-gamebase-console-1"></a>
-
 ### September 10, 2019 { #game-gamebase-console-1 }
 
 <a id="game-gamebase-console-1-1"></a>
@@ -1290,7 +1194,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Analytics: Performance updated for grid rendering (with tui-grid 4.4x)
 
 <a id="game-gamebase-console-2"></a>
-
 ### August 27, 2019 { #game-gamebase-console-2 }
 
 <a id="game-gamebase-console-2-1"></a>
@@ -1299,7 +1202,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Analytics: Updated chart performances
 
 <a id="game-gamebase-console-3"></a>
-
 ### July 23, 2019 { #game-gamebase-console-3 }
 
 <a id="game-gamebase-console-3-1"></a>
@@ -1318,7 +1220,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Analytics > User Indicators: Fixed an issue where date overlaps on the axis X
 
 <a id="2019-07-11"></a>
-
 ### July 11, 2019 { #2019-07-11 }
 
 <a id="2019-07-11-1"></a>
@@ -1329,7 +1230,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Supported in multiple languages (Chinese)
 
 <a id="2019-07-01"></a>
-
 ### July 1, 2019 { #2019-07-01 }
 
 <a id="2019-07-01-1"></a>
@@ -1338,7 +1238,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Management > Alarms: Fixed the failure in modifying set alarm after Webhook is set up
 
 <a id="game-gamebase-console-4"></a>
-
 ### June 27, 2019 { #game-gamebase-console-4 }
 
 <a id="game-gamebase-console-4-1"></a>
@@ -1347,7 +1246,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Service Suspension: Fixed failure in uploading files to register suspension of service in mass
 
 <a id="game-gamebase-console-5"></a>
-
 ### June 25, 2019 { #game-gamebase-console-5 }
 
 <a id="game-gamebase-console-5-1"></a>
@@ -1363,7 +1261,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 		* Top 50 best-selling items
 
 <a id="game-gamebase-console-6"></a>
-
 ### May 28, 2019 { #game-gamebase-console-6 }
 
 <a id="game-gamebase-console-6-1"></a>
@@ -1380,7 +1277,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Support available for LTV Grid ComplexColumns and excel downloading
 
 <a id="game-gamebase-console-7"></a>
-
 ### May 16, 2019 { #game-gamebase-console-7 }
 
 <a id="game-gamebase-console-7-1"></a>
@@ -1406,7 +1302,6 @@ If you wish to use HanGame authentication, please contact the customer center in
 	* Kickout: Fixed an issue where abnormal behavior occurred; added authentication check when making query requests
 
 <a id="game-gamebase-console-8"></a>
-
 ### April 23, 2019 { #game-gamebase-console-8 }
 
 ```
@@ -1415,7 +1310,6 @@ If you are interested in launching in China, please contact our customer support
 ```
 
 <a id="game-gamebase-console-9"></a>
-
 ### April 11, 2019 { #game-gamebase-console-9 }
 
 <a id="game-gamebase-console-9-1"></a>
@@ -1425,7 +1319,6 @@ If you are interested in launching in China, please contact our customer support
 	* Applied security review vulnerability patches
 
 <a id="game-gamebase-console-10"></a>
-
 ### March 26, 2019 { #game-gamebase-console-10 }
 
 <a id="game-gamebase-console-10-1"></a>
@@ -1434,7 +1327,6 @@ If you are interested in launching in China, please contact our customer support
 	- [Console] Transfer history can be viewed in the Mapping History tab of the Member menu
 
 <a id="game-gamebase-console-11"></a>
-
 ### January 29, 2019 { #game-gamebase-console-11 }
 
 ```
@@ -1448,7 +1340,6 @@ To use all improved metrics in Gamebase 2.0, an SDK update is required.
 	* App: Added a feature to change client debug logs in real time
 
 <a id="game-gamebase-console-12"></a>
-
 ### December 27, 2018 { #game-gamebase-console-12 }
 
 <a id="game-gamebase-console-12-1"></a>
@@ -1463,7 +1354,6 @@ To use all improved metrics in Gamebase 2.0, an SDK update is required.
 	* Added IAP Transaction search filter
 
 <a id="game-gamebase-console-13"></a>
-
 ### November 15, 2018 { #game-gamebase-console-13 }
 
 <a id="game-gamebase-console-13-1"></a>
@@ -1483,7 +1373,6 @@ To use all improved metrics in Gamebase 2.0, an SDK update is required.
 	* Push: Fixed an issue where registration failed when copying and registering a push that was registered after sending to a specific target
 
 <a id="game-gamebase-console-14"></a>
-
 ### October 23, 2018 { #game-gamebase-console-14 }
 
 <a id="game-gamebase-console-14-1"></a>
@@ -1497,7 +1386,6 @@ To use all improved metrics in Gamebase 2.0, an SDK update is required.
 	* IAP: Improved the search condition for downloading payment history in the Payment Information menu (from 1 day to 30 days)
 
 <a id="game-gamebase-console-15"></a>
-
 ### October 11, 2018 { #game-gamebase-console-15 }
 
 <a id="game-gamebase-console-15-1"></a>
@@ -1506,7 +1394,6 @@ To use all improved metrics in Gamebase 2.0, an SDK update is required.
 	* Ban: Fixed an error that occurred during bulk registration
 
 <a id="game-gamebase-console-16"></a>
-
 ### September 20, 2018 { #game-gamebase-console-16 }
 
 <a id="game-gamebase-console-16-1"></a>
@@ -1515,7 +1402,6 @@ To use all improved metrics in Gamebase 2.0, an SDK update is required.
 	* Management: Fixed an issue where alarm page processing failed due to a page address error
 
 <a id="game-gamebase-console-17"></a>
-
 ### September 13, 2018 { #game-gamebase-console-17 }
 
 <a id="game-gamebase-console-17-1"></a>
@@ -1536,7 +1422,6 @@ To use all improved metrics in Gamebase 2.0, an SDK update is required.
 	* App: Fixed an issue where content after the delete button was cut off when modifying information
 
 <a id="game-gamebase-console-18"></a>
-
 ### August 28, 2018 { #game-gamebase-console-18 }
 
 <a id="game-gamebase-console-18-1"></a>
@@ -1552,7 +1437,6 @@ To use all improved metrics in Gamebase 2.0, an SDK update is required.
 	* Purchase (IAP): Limited payment information Excel download to 1 day, removed item deletion feature
 
 <a id="game-gamebase-console-19"></a>
-
 ### August 9, 2018 { #game-gamebase-console-19 }
 
 <a id="game-gamebase-console-19-1"></a>
@@ -1561,7 +1445,6 @@ To use all improved metrics in Gamebase 2.0, an SDK update is required.
 	* Payment history: Fixed a bug where payment status could not be changed from 'Reserved' state, and an issue where filters were not applied when downloading as an Excel file
 
 <a id="game-gamebase-console-20"></a>
-
 ### July 24, 2018 { #game-gamebase-console-20 }
 
 <a id="game-gamebase-console-20-1"></a>
@@ -1571,7 +1454,6 @@ To use all improved metrics in Gamebase 2.0, an SDK update is required.
 
 
 <a id="game-gamebase-console-21"></a>
-
 ### July 5, 2018 { #game-gamebase-console-21 }
 
 <a id="game-gamebase-console-21-1"></a>
@@ -1585,7 +1467,6 @@ To use all improved metrics in Gamebase 2.0, an SDK update is required.
 	* Fixed an issue where the store code was registered incorrectly when registering a Windows client
 
 <a id="game-gamebase-console-22"></a>
-
 ### June 26, 2018 { #game-gamebase-console-22 }
 
 <a id="game-gamebase-console-22-1"></a>
@@ -1596,7 +1477,6 @@ To use all improved metrics in Gamebase 2.0, an SDK update is required.
 
 
 <a id="game-gamebase-console-23"></a>
-
 ### May 29, 2018 { #game-gamebase-console-23 }
 
 <a id="game-gamebase-console-23-1"></a>
@@ -1609,7 +1489,6 @@ To use all improved metrics in Gamebase 2.0, an SDK update is required.
 
 
 <a id="game-gamebase-console-24"></a>
-
 ### May 3, 2018 { #game-gamebase-console-24 }
 
 <a id="game-gamebase-console-24-1"></a>
@@ -1622,7 +1501,6 @@ To use all improved metrics in Gamebase 2.0, an SDK update is required.
 
 
 <a id="game-gamebase-console-25"></a>
-
 ### April 5, 2018 { #game-gamebase-console-25 }
 
 <a id="game-gamebase-console-25-1"></a>
@@ -1641,7 +1519,6 @@ To use all improved metrics in Gamebase 2.0, an SDK update is required.
 
 
 <a id="game-gamebase-console-26"></a>
-
 ### January 25, 2018 { #game-gamebase-console-26 }
 
 <a id="game-gamebase-console-26-1"></a>
@@ -1661,7 +1538,6 @@ To use all improved metrics in Gamebase 2.0, an SDK update is required.
 
 
 <a id="game-gamebase-console-27"></a>
-
 ### December 21, 2017 { #game-gamebase-console-27 }
 
 <a id="game-gamebase-console-27-1"></a>
@@ -1683,7 +1559,6 @@ To use all improved metrics in Gamebase 2.0, an SDK update is required.
 
 
 <a id="game-gamebase-console-28"></a>
-
 ### November 30, 2017 { #game-gamebase-console-28 }
 
 <a id="game-gamebase-console-28-1"></a>
@@ -1712,7 +1587,6 @@ To use all improved metrics in Gamebase 2.0, an SDK update is required.
 	* Fixed an issue where the management menu was not displayed properly due to new TC permission additions
 
 <a id="game-gamebase-console-29"></a>
-
 ### September 21, 2017 { #game-gamebase-console-29 }
 
 <a id="game-gamebase-console-29-1"></a>
@@ -1735,7 +1609,6 @@ To use all improved metrics in Gamebase 2.0, an SDK update is required.
 
 
 <a id="game-gamebase-console-30"></a>
-
 ### July 20, 2017 { #game-gamebase-console-30 }
 
 <a id="game-gamebase-console-30-1"></a>
@@ -1746,7 +1619,6 @@ To use all improved metrics in Gamebase 2.0, an SDK update is required.
 	* Added TrackingTime display for tracking when an error occurs in an external integration module
 
 <a id="game-gamebase-console-31"></a>
-
 ### May 25, 2017 { #game-gamebase-console-31 }
 
 <a id="game-gamebase-console-31-1"></a>
@@ -1760,7 +1632,6 @@ To use all improved metrics in Gamebase 2.0, an SDK update is required.
 
 
 <a id="game-gamebase-console-32"></a>
-
 ### April 4, 2017 { #game-gamebase-console-32 }
 
 <a id="game-gamebase-console-32-1"></a>
@@ -1773,7 +1644,6 @@ To use all improved metrics in Gamebase 2.0, an SDK update is required.
 
 
 <a id="game-gamebase-console-33"></a>
-
 ### March 9, 2017 { #game-gamebase-console-33 }
 
 <a id="game-gamebase-console-33-1"></a>
