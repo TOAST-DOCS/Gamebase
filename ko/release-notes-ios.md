@@ -1,3 +1,5 @@
+<!-- pre-align:aligned sig=090e4b3f6de5 -->
+
 <a id="game-gamebase-release-notes-ios"></a>
 ## Game > Gamebase > 릴리스 노트 > iOS { #game-gamebase-release-notes-ios }
 
