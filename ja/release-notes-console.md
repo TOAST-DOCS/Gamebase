@@ -1,5 +1,7 @@
 <!-- machine_translated: true -->
 
+<!-- pre-align:aligned sig=51f9da208072 -->
+
 <a id="game-gamebase-console"></a>
 ## Game > Gamebase > リリースノート > Console { #game-gamebase-console }
 
