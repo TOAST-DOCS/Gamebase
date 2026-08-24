@@ -13,7 +13,7 @@
 
 ## 基本情報入力
 
-![Gamebase IAPアプリ設定](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/260202_ja_01.png)
+![Gamebase IAPアプリ設定](../static/images/google_store/google-store-info-supervisor-ja.png)
 
 ### 1. Store App ID
 - Google Play登録のためにビルドしたアプリのPackage Nameで、Google Play内でアプリを識別できる固有の値です。
@@ -55,7 +55,7 @@
 - Google Play ConsoleではGoogle Cloud Consoleで作成したサービスアカウントを追加して使用します。
 - サービスアカウントがアプリにアクセスするためには、適切な権限を付与する必要があります。
 
-![Gamebase IAPアプリ設定](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/260202_ja_04.png)
+![Gamebase IAPアプリ設定](../static/images/google_store/google-store-info-access-type-ja.png)
 
 
 ## Google Cloudプロジェクト設定
@@ -151,7 +151,7 @@ Gamebase IAPでGoogle CloudクライアントID認証を使用するためには
 - **Refresh Token For Google Oauth** : Google Developsers OAuth Playgroundで受信した**Refresh token**を入力
 
 
-![Gamebase IAPアプリ設定](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/260202_ja_01.png)
+![Gamebase IAPアプリ設定](../static/images/google_store/google-store-info-supervisor-ja.png)
 
 > [告知]
 > 発行されたRefresh tokenは、認証したユーザーアカウントのパスワードを変更するとすぐに失効します。もしアプリが稼働中であれば、障害が発生する可能性があります。
@@ -217,7 +217,7 @@ Gamebase IAPでGoogle CloudクライアントID認証を使用するためには
 - Gamebase IAP > storeの登録または修正で**サービスアカウント連動情報**項目にダウンロードしたサービスアカウントのキーファイルの内容を入力します。
 - コピーする際は、メモ帳などのテキストエディタを使用して内容全体をコピーしてください。
 
-![Gamebase IAPアプリ設定](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/260202_ja_22.png)
+![Gamebase IAPアプリ設定](../static/images/google_store/google-store-info-service-account-ja.png)
 
 
 ## リアルタイム購読状態を受信するためのGoogle通知設定
@@ -254,3 +254,10 @@ Google Playで購読商品を販売する場合、Gamebase IAPではGoogleから
 - **Google Play決済**項目のうち**トピック 名**に先に作成したトピックの**トピック 名**を入力します。
 
 ![Google Cloudプロジェクトのリンク](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/ja/260202_ja_27.png)
+
+
+## Googleチャージバック（Google ChargeBack）連携
+![google Console img](../static/images/google_store/google-store-info-chargeback-ja.png)
+
+- Googleチャージバック（Google ChargeBack）連携用のURLを入力してください。
+* 詳細については、[Gamebase API](https://docs.alpha-nhncloud.com/ja/Game/Gamebase/ja/api-guide/#google-play-chargeback-callback)をご確認ください。
