@@ -1392,6 +1392,105 @@ Supported Platforms
 
 ```cs
 static void GetAgeSignal(GamebaseCallback.GamebaseDelegate<GamebaseResponse.Util.AgeSignalResult> callback)
+```
+
+**ErrorCode**
+
+| Error Code | Description |
+| --- | --- |
+| NOT\_SUPPORTED(10)                     | Android API 23未満のデバイスで呼び出されました。 | 
+| AUTH\_EXTERNAL\_LIBRARY\_ERROR(3009) | Google Play Age Signals APIでエラーを返しました。 | 
+
+
+**Handle results**
+
+AgeSignalResult.userStatusでユーザーの状態を確認できます。
+Status値に従ってユーザー規制の有無を判断してください。
+
+**GamebaseAgeSignalsVerificationStatus**
+
+ユーザー検証状態定数です。
+
+| Status                        | Code | Description          | 
+| ----------------------------- | ---- | -------------------- | 
+| VERIFIED                      | 0    | 18歳以上の成人          | 
+| SUPERVISED                    | 1    | 保護者の同意がある未成年者 | 
+| SUPERVISED\_APPROVAL\_PENDING | 2    | 保護者承認待機中        | 
+| SUPERVISED\_APPROVAL\_DENIED  | 3    | 保護者承認拒否済み         | 
+| UNKNOWN                       | 4    | 検証されていないユーザー        | 
+
+
+**Example**
+
+``` cs
+public static void SampleGetAgeSignal()
+{
+    Gamebase.Util.GetAgeSignal((data, error) =>
+    {
+        if (Gamebase.IsSuccess(error) == true)
+        {
+            HandleAgeSignalsResult(data);
+        }
+        else
+        {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            switch (errorCode)
+            {
+                case GamebaseErrorCode.NOT_SUPPORTED:
+                    // Android API 23未満のデバイスではサポートされません。
+                    Debug.LogError("Age Signals API is not supported on this device");
+                    break;
+                case GamebaseErrorCode.AUTH_EXTERNAL_LIBRARY_ERROR:
+                    // Google Playサービスでエラーが発生しました。 
+                    Debug.LogErrorFormat("Google Play Age Signals error: {0}", errorMessage);
+                    break;
+            }
+        }
+    });
+}
+
+private static void HandleAgeSignalsResult(GamebaseResponse.Util.AgeSignalResult result)
+{
+    if(result.userStatus.HasValue == false)
+    {
+        // ユーザーが規制地域(テキサス、ユタ、ルイジアナ)にいないことを意味します。
+        // 規制対象ではないユーザーに対するアプリのロジックを進行できます。
+        return;
+    }
+    
+    GamebaseAgeSignalsVerificationStatus userStatus = (GamebaseAgeSignalsVerificationStatus)result.userStatus.Value;
+    switch (userStatus)
+    {
+        case GamebaseAgeSignalsVerificationStatus.VERIFIED:
+            // 18歳以上の成人ユーザー
+            // 全ての機能に対するアクセス許可
+            // ageLowerとageUpperはnullです
+            HandleAdultUser(result);
+            break;
+        case GamebaseAgeSignalsVerificationStatus.SUPERVISED:
+            // 保護者の同意がある未成年者
+            // Texas SB 2420に従い未成年者のための制限された機能を提供
+
+            // 年齢帯を確認できます。
+            var ageLower = result.ageLower.Value; // 例: 13
+            var ageUpper = result.ageUpper.Value; // 例: 17
+            var installId = result.installId;
+            HandleSupervisedMinor(result);
+            break;
+        case GamebaseAgeSignalsVerificationStatus.SUPERVISED_APPROVAL_PENDING:
+            // 保護者の承認を待つ間、制限された機能のみ提供
+            // ユーザーに承認待機中であることを通知
+            HandleApprovalPending(result);
+            break;
+        case GamebaseAgeSignalsVerificationStatus.SUPERVISED_APPROVAL_DENIED:
+            // 保護者が承認を拒否した場合
+            // 制限された機能のみ提供するか、サービス利用不可を案内
+            HandleApprovalDenied(result);
+            break;
+        case GamebaseAgeSignalsVerificationStatus.UNKNOWN:
+            // 該当管轄地域で検証されていないユーザーまたは年齢確認情報を使用できない場合
+            // ユーザーにPlayストアを訪問して状態を解決するようにリクエストしてください。
             HandleUnknownUser(result);
             break;
     }

@@ -1473,14 +1473,14 @@ private static void HandleAgeSignalsResult(GamebaseResponse.Util.AgeSignalResult
     switch (userStatus)
     {
         case GamebaseAgeSignalsVerificationStatus.VERIFIED:
-           // Adult users 18 years or older
+            // Adult users 18 years or older
            // Allow access to all features
            // ageLower and ageUpper are null
             HandleAdultUser(result);
             break;
         case GamebaseAgeSignalsVerificationStatus.SUPERVISED:
-           // Minors with parental consent
-           // Limited functionality available for minors under Texas SB 2420
+            // Minors with parental consent
+            // Limited functionality available for minors under Texas SB 2420
 
             // You can check the age range.
             var ageLower = result.ageLower.Value; // e.g. 13
@@ -1489,7 +1489,7 @@ private static void HandleAgeSignalsResult(GamebaseResponse.Util.AgeSignalResult
             HandleSupervisedMinor(result);
             break;
         case GamebaseAgeSignalsVerificationStatus.SUPERVISED_APPROVAL_PENDING:
-            // Limited feature is available while waiting for parental approval.
+            // Limited function is available while waiting for parental approval.
             // Notify the user that approval is pending.
             HandleApprovalPending(result);
             break;
@@ -1499,5 +1499,10 @@ private static void HandleAgeSignalsResult(GamebaseResponse.Util.AgeSignalResult
             HandleApprovalDenied(result);
             break;
         case GamebaseAgeSignalsVerificationStatus.UNKNOWN:
-            // If the user is unverified or age verification information is unavailable in your jurisdiction,
+            // If the user is unverified or age verification information is unavailable in your jurisdiction, 
             // ask the user to visit the Play Store to resolve the issue.
+            HandleUnknownUser(result);
+            break;
+    }
+}
+```

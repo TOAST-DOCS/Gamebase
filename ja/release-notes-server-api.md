@@ -1,5 +1,15 @@
 ## Game > Gamebase > リリースノート > Server API
 
+### 2026. 08. 25.
+
+#### 機能の追加
+* Google のチャージバック関連APIの追加
+
+### 2026. 03. 24.
+
+#### 機能の追加
+* ユーザーIDでプッシュトークンを照会するAPIの追加
+
 ### 2024. 08. 27.
 
 #### 機能追加
@@ -295,18 +305,18 @@
 ### 2017.11.30
 
 #### 機能改善/変更
-* [メンテナンス照会API](./api-guide/#check-under-maintenance)結果をListから単一オブジェクトに変更
+* [メンテナンス照会API](./api-guide/#check-maintenance-set)結果をListから単一オブジェクトに変更
 
 ### 2017.04.04
 
 #### 機能改善/変更
-* [IAP](./api-guide/#purchaseiap) API連携：アイテム照会、未消費内訳照会
+* [IAP](./api-guide/#purchase-iap) API連携：アイテム照会、未消費内訳照会
 * checkAccessToken APIレスポンス結果に、ログイン時に使用されたIdP関連情報を含むスペックを追加
 
 ### 2017.03.21
 
 #### 機能改善/変更
-* [Leaderboard](./api-guide/#leaderboard), [IAP](./api-guide/#purchaseiap) API連携
+* [Leaderboard](./api-guide/#leaderboard), [IAP](./api-guide/#purchase-iap) API連携
 
 ### 2017.03.09
 
