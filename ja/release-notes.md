@@ -1440,7 +1440,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 #### 機能改善/変更
 * [Console]
 	* [Operating indicator>モニタリング]チャートの色を変更、Timezoneの問題。DAU計算ロジックを変更(Login時間基準→接続時間基準)
-* [API] [メンテナンス照会API](./api-guide/#check-under-maintenance)結果をListから単一オブジェクトに変更
+* [API] [メンテナンス照会API](./api-guide/#check-maintenance-set)結果をListから単一オブジェクトに変更
 
 #### バグ修正
 * [Console]
@@ -1550,7 +1550,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 * [SDK] 1.1.2アップデート
     * ゲームローンチ時、メンテナンス、緊急告知ポップアップを改善
     * Unity Pluginデバッグログ追加および例外詳細処理
-* [API] [IAP](./api-guide/#purchaseiap) API連携：アイテム照会、未消費内訳照会
+* [API] [IAP](./api-guide/#purchase-iap) API連携：アイテム照会、未消費内訳照会
 * [API] checkAccessToken APIレスポンス結果に、ログイン時に使用されたIdP関連情報を含むスペックを追加
 * [Console]メンテナンス、緊急告知：クライアントバージョン選択時、ゲームで使用しないストアは表示されないように変更
 
@@ -1563,7 +1563,7 @@ Gamebase 2.0の改善された全体指標を活用するためには、SDKの�
 * [SDK] 1.1.0アップデート
     * 外部AccessTokenを受け取って、idPLoginするインターフェイスを追加
     * [UI機能追加](./aos-ui)：Custom Webview、AlertDialog
-* [API] [Leaderboard](./api-guide/#leaderboard), [IAP](./api-guide/#purchaseiap) API連携
+* [API] [Leaderboard](./api-guide/#leaderboard), [IAP](./api-guide/#purchase-iap) API連携
 
 ### 2017.03.09
 

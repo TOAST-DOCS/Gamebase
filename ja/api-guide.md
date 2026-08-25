@@ -1,7 +1,7 @@
 ## Game > Gamebase > API v1.3ガイド
 
 ## 変更事項
-'- IAP(In App Purchase) APIのリクエストパラメータおよびレスポンス結果項目追加および削除
+- IAP(In App Purchase) APIのリクエストパラメータおよびレスポンス結果項目追加および削除
 - `Push Wrapping` API追加
 - Gamebase Access Tokenでログインする時に使用されたIdPのプロフィールおよびトークン情報を取得できる`Get IdP Token and Profiles` API追加
 - IdP IdでマッピングされたGamebase userIdを取得する`Get UserId Information with IdP Id` API追加
@@ -18,8 +18,11 @@
 - 利用停止状態のユーザーを照会する`Get Ban Members` API追加
 - 購読の現在状態を照会する`Get Subscriptions Status` APIを追加
 - `Get Payment Transaction` API request bodyにONEStoreのpurchaseIdまたはpurchaseTokenの値を表す`paymentToken`を追加
-- `Withdraw Histories` APIのリクエストパラメータにeventLogTypeを追加
+- `Withdraw Histories` APIのリクエストパラメータにeventLogType/includePendingを追加
 - `SIWA Account Webフック` APIを追加
+- `Get Coupon Information by Coupon Code` APIの追加
+- Pushトークン関連 `Push Wrapping` APIの追加
+- Google Chargeback関連APIの追加
 
 ## Advance Notice
 
@@ -205,9 +208,7 @@ APIレスポンス結果の特定変数タイプが変更されるとき、API�
 
 [エラーコード](./error-code/#server)
 
-
 <br/>
-
 #### Get IdP Token and Profiles
 
 クライアントから"Login with IdP"でログインが成功した時に発行されたGamebase Access Tokenです。ログインに使用されたIdPのAccess TokenおよびProfiles情報を照会します。
@@ -422,16 +423,12 @@ APIレスポンス結果の特定変数タイプが変更されるとき、API�
 
 [エラーコード](./error-code/#server)
 
-**[Error Code]**
-
-[エラーコード](./error-code/#server)
-
 <br>
 <br>
 
 ## Member
 
-#### Get member
+#### Get Member
 
 単一会員の詳細情報を照会します。
 
@@ -602,7 +599,7 @@ APIレスポンス結果の特定変数タイプが変更されるとき、API�
 
 <br>
 
-#### Get IdP infomation
+#### Get IdP Information
 
 ユーザーIDにマッピングされたIdP情報を照会します。
 
@@ -667,7 +664,7 @@ APIレスポンス結果の特定変数タイプが変更されるとき、API�
 
 <br>
 
-#### Get userId infomation with auth key
+#### Get UserId Information with Auth key
 
 ユーザー認証キーにマッピングされたユーザーIDを照会します。
 
@@ -954,6 +951,98 @@ Check common requirements.
 
 [エラーコード](./error-code/#server)
 
+</br>
+
+#### Get Ban Members
+
+利用停止状態のユーザーを照会します。
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-member/v1.3/apps/{appId}/members/bans/current |
+
+**[Request Header]**
+
+共通事項確認
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN CloudプロジェクトID |
+
+**[Request Parameter]**
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| page | String | Optional | 照会するページ。0から開始 |
+| size | String | Optional | 1ページ当たりのデータ数 |
+| order | String | Optional | 照会データソート方法。 ASC or DESC |
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "transactionId": "String",
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "pagingInfo": {
+        "first": true,
+        "last": true,
+        "numberOfElements": 0,
+        "page": 0,
+        "size": 0,
+        "totalElements": 0,
+        "totalPages": 0
+    },
+    "result": [
+        {
+            "userId": "String",
+            "banCaller": "CONSOLE",
+            "banReason": "String",
+            "banType": "TEMPORARY",
+            "beginDate": "2019-08-27T17:41:05+09:00",
+            "endDate": "2019-08-28T17:41:05+09:00",
+            "flags": "String",
+            "name": "String",
+            "templateCode": 0
+        }
+    ]
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| pagingInfo | Object | 照会されたページ情報 |
+| pagingInfo.first | boolean | 最初のページの場合はtrue |
+| pagingInfo.last | boolean | 最後のページの場合はtrue |
+| pagingInfo.numberOfElements | int | 総データ数 |
+| pagingInfo.page | int | ページ番号 |
+| pagingInfo.size | int | 1ページ当たりのデータ数 |
+| pagingInfo.totalElements | int | 総データ数 |
+| pagingInfo.totalPages | int | 総ページ数 |
+| result | Array[Object] | 照会された利用停止リスト |
+| result.userId | String | ユーザーID |
+| result.banCaller | String | 利用停止指示者 |
+| result.banReason | String | 利用停止理由 |
+| result.banType | String | 利用停止タイプ。TEMPORARYまたはPERMANENT |
+| result.beginDate | Long | 利用停止開始時間 |
+| result.endDate | Long | 利用停止終了時間<br>PERMANENTタイプの場合、この値は存在しない |
+| result.flags | String | コンソールから利用停止を登録した時、リーダーボード削除を選択した場合は'leaderboard'を返す |
+| result.name | String | コンソールで登録したテンプレート名 |
+| result.templateCode | Long | コンソールで登録した利用停止テンプレートコード値 |
+
+**[Error Code]**
+
+[エラーコード](./error-code/#server)
+
+</br>
+
 #### Ban Release
 
 ユーザーを利用停止解除状態、すなわち正常状態に変更します。
@@ -1114,7 +1203,6 @@ Check common requirements.
 | result.releaseReason | String | 利用停止解除理由 |
 | result.releaseDate | String | 利用停止解除時間 |
 
-
 **[Error Code]**
 
 [エラーコード](./error-code/#server)
@@ -1195,14 +1283,13 @@ Check common requirements.
 [エラーコード](./error-code/#server)
 
 <br>
-<br>
 
 #### Withdraw
 
 ユーザーアカウントを退会処理します。
 
 > [参考]
-> SDKの退会APIを使用せず、サーバー退会APIを使用してアカウント退会を実装した場合、クライアントでは退会成功後にSDKのlogout APIを呼び出してキャッシュされているトークンなどのデータを削除する必要があります。
+> SDKの退会APIを使用せず、サーバー退会APIを使用してアカウント退会を実装した場合、クライアントでは退会成功後にSDKのlogout APIを呼び出してキャッシュされているトークンなどのデータ削除が必要です。
 
 **[Method, URI]**
 
@@ -1225,61 +1312,7 @@ Check common requirements.
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| regUser | String | Required | 退会をリクエストしたシステムまたは運営者情報。空白なしで入力 <br> - この情報はConsole > 「メンバー」ページの「退会履歴」画面で確認可能 <br> - 退会履歴画面は退会した利用者の照会時にのみ表示される |
-
-**[Request Body]**
-
-なし
-
-**[Response Body]**
-
-```json
-{
-    "header": {
-        "transactionId": "String",
-        "resultCode": 0,
-        "resultMessage": "SUCCESS",
-        "isSuccessful": true
-    }
-}
-```
-
-**[Error Code]**
-
-[エラーコード](./error-code/#server)
-
-
-<br>
-
-#### Withdraw
-
-ユーザーアカウントを退会処理します。
-
-> [参考]
-> SDKの退会APIを使用せず、サーバー退会APIを使用してアカウント退会を実装した場合、クライアントでは退会成功後にSDKのlogout APIを呼び出してキャッシュされているトークンなどのデータ削除が必要です。
-
-**[Method, URI]**
-
-| Method | URI |
-| --- | --- |
-| DELETE | /tcgb-gateway/v1.3/apps/{appId}/members/{userId}?regUser={regUser} |
-
-**[Request Header]**
-
-共通事項の確認
-
-**[Path Variable]**
-
-| Name | Type | Value |
-| --- | --- | --- |
-| appId | String | NHN CloudプロジェクトID |
-| userId | String | 退会対象ユーザーID |
-
-**[Request Parameter]**
-
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| regUser | String | Required | 退会をリクエストしたシステムまたはユーザー情報<br> - この情報はConsole > 「メンバー」ページの「退会履歴」画面で確認可能 |
+| regUser | String | Required | 退会をリクエストしたシステムまたは運営者情報。空白なしで入力 <br> - この情報はConsole > 「メンバー」ページの「退会履歴」画面で確認可能 |
 
 **[Request Body]**
 
@@ -1316,7 +1349,7 @@ Check common requirements.
 
 **[Request Header]**
 
-共通事項の確認
+共通事項確認
 
 **[Path Variable]**
 
@@ -1334,6 +1367,7 @@ Check common requirements.
 | size | String | Optional | 1ページ当たりのデータ数 |
 | order | String | Optional | 照会データのソート方法。 ASC or DESC |
 | eventLogType | Enum | Optional | [退会イベント発生経路](#withdrawal-event-type) |
+| includePending | boolean | Optional | 退会進行中の中間状態値を含めるかどうか <br> - false(デフォルト値)に設定時、最終退会が完了したログのみをフィルタリングして提供 <br> - eventLogTypeが入力された場合、該当の値が優先して適用されます |
 
 **[Response Body]**
 
@@ -1358,11 +1392,13 @@ Check common requirements.
         {
             "userId": "String",
             "date": "2022-03-27T17:40:00+09:00",
+            "type": "WAA",
             "regUser": null
         },
         {
             "userId": "String",
             "date": "2022-03-27T17:41:05+09:00",
+            "type": "WACS",
             "regUser": "String"
         }
     ]
@@ -1382,6 +1418,7 @@ Check common requirements.
 | result | Array[Object] | 照会された退会ユーザーの内容 |
 | result.userId | String | ユーザーID |
 | result.date | String | 退会日時 |
+| result.type | Enum | [退会イベント発生経路](#withdrawal-event-type)|
 | result.regUser | String | 退会APIを呼び出した主体<br>- この値が**null**の場合はclient SDKで呼び出し|
 
 **[Error Code]**
@@ -1414,7 +1451,6 @@ Check common requirements.
 | --- | --- |
 | POST | /tcgb-gateway/v1.3/apps/{appId}/webhooks/apple/notifications |
 
-
 **[Path Variable]**
 
 | Name | Type | Value |
@@ -1426,7 +1462,7 @@ Check common requirements.
 
 ## Maintenance
 
-#### Check Under Maintenance
+#### Check Maintenance Set
 
 現在、メンテナンスが設定されているかどうかを確認します。
 
@@ -1558,6 +1594,78 @@ Consoleを通して発行されたクーポンコードに対して、有効性�
 | result.benefits | Array[Object] | 支給するアイテム情報 |
 | result.benefits.itemId | String | アイテムID |
 | result.benefits.amount | Integer | アイテムの数 |
+
+**[Error Code]**
+
+[エラーコード](./error-code/#server)
+
+<br>
+
+#### Get Coupon Information by Coupon Code
+
+入力されたクーポンコードを基に、コンソールに登録された該当クーポンの基本情報を照会します。
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| GET | /tcgb-gateway/v1.3/apps/{appId}/coupons/codes/{couponCode} |
+
+**[Request Header]**
+
+共通事項確認
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN CloudプロジェクトID |
+| couponCode | String | クーポンコード |
+
+**[Request Parameter]**
+
+なし
+
+**[Response Body]**
+
+```json
+{
+    "header": {
+        "resultCode": 0,
+        "resultMessage": "SUCCESS",
+        "isSuccessful": true
+    },
+    "result": {
+        "title": "Coupon Title",
+        "benefits": [
+            {
+                "itemId": "heart",
+                "amount": 10
+            },
+            {
+                "itemId": "diamond",
+                "amount": 20
+            }
+        ],
+        "type": "KEYWORD",
+        "couponCode": "XMAS",
+        "startDate": "2025-12-21T00:00:00+09:00",
+        "endDate": "2025-12-31T23:59:59+09:00"
+    }
+}
+```
+
+| Key | Type | Description |
+| --- | --- | --- |
+| result | Object | クーポン詳細情報 |
+| result.title | String | クーポンの名前 |
+| result.benefits | Array[Object] | 支給するアイテムリスト |
+| result.benefits.itemId | String | アイテムID |
+| result.benefits.amount | Integer | アイテムの数 |
+| result.type | Enum | クーポンタイプ(KEYWORD、SERIAL) |
+| result.couponCode | String | クーポンコード |
+| result.startDate | String | 有効開始時刻(ISO 8601) |
+| result.endDate | String | 有効終了時刻(ISO 8601) |
 
 **[Error Code]**
 
@@ -1892,6 +2000,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 | packageName | String | Required | コンソールに登録したストアアプリID |
 | userId | String | Required | ユーザーID |
 | includeInactiveGoogleStatuses | Array[String] | Optional | レスポンス結果に含める**Google購読の無効化状態**<br>- 現在'ON_HOLD'状態のみサポート |
+
 **[Response Body]**
 
 ```json
@@ -1910,6 +2019,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
             "productSeq": 1001221,
             "productId": "money_100",
             "productType": "AUTO_RENEWABLE",
+            "originalPaymentId": "GPA.3302-8679-7228-41195",
             "paymentId": "GPA.3302-8679-7228-41195",
             "linkedPaymentId": "GPA.3358-3220-2629-70624",
             "price": 1000.0,
@@ -1953,7 +2063,6 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 
 [エラーコード](./error-code/#server)
 
-
 <br>
 
 ### Cancel Subscriptions
@@ -1962,6 +2071,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 
 > [参考]
 > 現在Google Playストアのみサポートします。
+
 **[Method, URI]**
 
 | Method | URI |
@@ -2020,6 +2130,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 
 > [参考]
 > 現在Google Playストアのみサポートします。
+
 **[Method, URI]**
 
 | Method | URI |
@@ -2173,6 +2284,202 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 [エラーコード](./error-code/#server)
 
 <br>
+
+### Google Play Chargeback Callback
+
+Google Playからチャージバック検討リクエストの通知(`PendingRefundReviewNotification`)を受け取ると、その通知をGamebase Consoleに登録されたゲームサーバーのコールバックURLへ送信します。
+
+![](../static/images/google-chargeback-flow-ja.png){ width="80%" }
+
+> [参考]
+> ゲームサーバーでアクセス制御リスト(ACL)を使用している場合、Gamebaseサーバーの送信元IPを許可する必要があります。<br>
+> 許可リストに登録するGamebaseサーバーの送信元IPについては、カスタマーサポートへお問い合わせください。
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | Gamebase Consoleに登録されたゲームサーバーのコールバックURL |
+
+**[Request Header]**
+
+| Name | Required | Value |
+| --- | --- | --- |
+| Content-Type | Required | application/json |
+
+**[Path Variable]**
+
+なし
+
+**[Request Parameter]**
+
+なし
+
+**[Request Body]**
+
+```json
+{
+  "version": "1.0",
+  "notificationType": "PENDING_REFUND",
+  "marketAppId": "com.nhn.gamebase",
+  "marketItemId": "ruby_500",
+  "marketEventTimeMillis": 1780901642182,
+  "pendingRefundNotification": {
+    "refundReviewSeq": 123456789,
+    "paymentSeq": "20250806190011395",
+    "accessToken": "-Fr8Y7_dvv5qhdd6qVHbs7gKnkX0r7EKPvuK6CI-UBBekc1rE9CVbMKVCNuw6ZtwkBGlzeIHg6DdjaRVeaW7GYlPF4vRa50L8umB6tdBvk8",
+    "refundRequestReason": "CHARGEBACK",
+    "marketExpiryTimeMillis": 1780988042182
+  }
+}
+```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| version | String | Required | 通知規格バージョン |
+| notificationType | String | Required | IAP共通通知タイプ<br>- 払い戻し検討: `PENDING_REFUND` |
+| marketAppId | String | Required | マーケットアプリID |
+| marketItemId | String | Required | マーケット商品ID |
+| marketEventTimeMillis | Long | Required | マーケットイベント発生時刻<br>- Epoch Time(milliseconds) |
+| pendingRefundNotification | Object | Required | 払い戻し検討通知データ |
+| pendingRefundNotification.refundReviewSeq | Long | Required | IAP払い戻し検討番号 |
+| pendingRefundNotification.paymentSeq | String | Required | IAP決済番号 |
+| pendingRefundNotification.accessToken | String | Required | IAP決済番号に対応するトークン |
+| pendingRefundNotification.refundRequestReason | String | Required | 払い戻しリクエストの事由を区分する値<br>- 現在は `CHARGEBACK` のみ対応 |
+| pendingRefundNotification.marketExpiryTimeMillis | Long | Required | 意見登録の提出期限<br>- Google Playが通知を最終送信した時点から24時間<br>- Epoch Time(milliseconds) |
+
+> [参考]
+> コールバックで送信された `pendingRefundNotification.accessToken` を使用して [Get Payment Transaction](#get-payment-transaction) APIを呼び出すと、チャージバック対象決済の詳細情報を照会できます。
+
+> [注意]
+> 同一の `refundReviewSeq` のコールバックが重複して送信される場合があります。
+> ゲームサーバーは、既に処理した `refundReviewSeq` が再度送信された場合、該当のリクエストを再処理せずに成功のレスポンスを返す必要があります。
+
+**[Response Body]**
+
+ゲームサーバーは、コールバックの処理結果を `HTTP 200 OK` とGamebase共通レスポンス形式で返す必要があります。
+
+```json
+{
+  "header": {
+    "isSuccessful": true,
+    "resultCode": 0,
+    "resultMessage": "SUCCESS"
+  }
+}
+```
+
+`header.isSuccessful` が `false` であるか、`HTTP 200 OK` 以外のレスポンスを返した場合、コールバックが再送信される可能性があります。
+
+**[Error Code]**
+
+[エラーコード](./error-code/#server)
+<br>
+
+### Google Play Reply Refund Review
+
+ゲーム側でチャージバック検討リクエストに対する内部検討を完了した後、このAPIを呼び出して払い戻し意見と購入コンテンツの消費情報を登録します。
+登録された内容は、Google Playに払い戻し検討意見として提出されます。
+
+> [注意]
+> [Google Play Chargeback Callback](#google-play-chargeback-callback) のリクエストに対して `HTTP 200 OK` とGamebase共通の成功レスポンスを返した後に、このAPIを呼び出す必要があります。
+> コールバックのレスポンスを返す前にこのAPIを呼び出すと、エラーが発生します。
+
+> [注意]
+> コールバックで受け取った `marketExpiryTimeMillis` は、払い戻し検討意見を提出できる有効期限です。
+> 該当の時刻が経過する前に、このAPIを呼び出す必要があります。<br>
+> 期限内に意見を登録しない場合、Google Playが独自の基準に従って払い戻しの可否を決定します。
+
+**[Method, URI]**
+
+| Method | URI |
+| --- | --- |
+| POST | /tcgb-inapp/v1.3/apps/{appId}/refund-reviews/{refundReviewSeq}/reply |
+
+**[Request Header]**
+
+共通事項確認
+
+**[Path Variable]**
+
+| Name | Type | Value |
+| --- | --- | --- |
+| appId | String | NHN CloudプロジェクトID |
+| refundReviewSeq | Long | IAP払い戻し検討番号 |
+
+**[Request Parameter]**
+
+なし
+
+**[Request Body]**
+
+```json
+{
+  "marketAppId": "com.nhn.gamebase",
+  "paymentSeq": "20250806190011395",
+  "paymentId": "GPA.1234-5678-9012-34567",
+  "decision": "REJECT",
+  "sampleContentProvided": false,
+  "consumptionPercentage": 100000,
+  "consumptionEvents": [
+    {
+      "consumptionTime": 1780901642182,
+      "ipAddress": "203.0.113.10",
+      "consumptionItemDescription": "ruby_500 使用",
+      "location": {
+        "regionCode": "JP",
+        "administrativeArea": "Tokyo",
+        "locality": "Minato-ku",
+        "sublocality": "Nishishinbashi"
+      }
+    }
+  ]
+}
+```
+
+| Name | Type | Required | Value |
+| --- | --- | --- | --- |
+| marketAppId | String | Required | マーケットアプリID |
+| paymentSeq | String | Required | IAP決済番号 |
+| paymentId | String | Required | マーケット決済番号 |
+| decision | Enum | Required | [検討意見](#refund-review-decision) |
+| sampleContentProvided | Boolean | Required | 購入前のサンプルまたは体験提供の有無 |
+| consumptionPercentage | Integer | Optional | 消費割合<br>- milli-units単位<br>- `0`～`100000`は0～100%を意味 |
+| consumptionEvents | Array[Object] | Optional | 消費イベントリスト |
+| consumptionEvents[].consumptionTime | Long | Optional | 消費発生時刻<br>- Epoch Time(milliseconds) |
+| consumptionEvents[].ipAddress | String | Optional | 消費時点のIPアドレス |
+| consumptionEvents[].consumptionItemDescription | String | Optional | 消費アイテムの説明 |
+| consumptionEvents[].location | Object | Optional | 消費位置 |
+| consumptionEvents[].location.regionCode | String | Required | 国・地域識別用のCLDRコード(例: `KR`、`JP`)<br>- `location` 提供時は必須 |
+| consumptionEvents[].location.administrativeArea | String | Optional | 広域行政区画 |
+| consumptionEvents[].location.locality | String | Optional | 都市 |
+| consumptionEvents[].location.sublocality | String | Optional | 下位地域 |
+
+**[Response Body]**
+
+```json
+{
+  "header": {
+    "isSuccessful": true,
+    "resultCode": 0,
+    "resultMessage": "SUCCESS"
+  }
+}
+```
+
+#### Refund Review Decision
+
+| Value | Description | Google Play Code |
+| --- | --- | --- |
+| APPROVE | 払い戻しの承認 | APPROVE |
+| REJECT | 払い戻しの拒否 | DECLINE |
+| NEUTRAL | 判断保留<br>- Google Playの標準ロジックで決定 | NEUTRAL |
+
+**[Error Code]**
+
+[エラーコード](./error-code/#server)
+
+<br>
 <br>
 
 ## Leaderboard
@@ -2206,7 +2513,6 @@ Gamebaseは、NHN Cloud LeaderboardサービスのサーバーAPIに対して**W
 **該当するAPIに対する詳細説明は、次のリンクをご参考ください。**
 Gamebase Wrapping APIとマッピングされたLeaderboard APIのスペックは、以下のガイドを参考にしてください。
 Leaderboard Appkeyを設定しないで、Gamebase AppIdおよびSecretKeyを利用してGamebase Wrapping Leaderboard APIを呼び出せます。
-
 
 [Leaderboard APIガイド](https://docs.nhncloud.com/ja/Game/Leaderboard/ja/api-guide/)
 
@@ -2255,14 +2561,16 @@ Gamebaseは、NHN Cloud PushサービスのサーバーAPIで**Wrapping**機能�
 |   | 照会 | GET | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
 |   | 修正 | PUT | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
 |   | タグ 削除 | DELETE | /tcgb-push/v1.3/apps/{appId}/uids/{uid}/tag-ids | /push/v2.4/appkeys/{appkey}/uids/{uid}/tag-ids |
-
+| トークン | 作成 | POST | /tcgb-push/v1.3/apps/{appId}/tokens | /push/v2.4/appkeys/{appkey}/tokens |
+|   | 照会 | GET | /tcgb-push/v1.3/apps/{appId}/tokens-by-cursor | /push/v2.4/appkeys/{appkey}/tokens-by-cursor |
+|   | トークンで照会 | GET | /tcgb-push/v1.3/apps/{appId}/tokens/{token} | /push/v2.4/appkeys/{appkey}/tokens/{token} |
+|   | UIDで照会 | GET | /tcgb-push/v1.3/apps/{appId}/tokens | /push/v2.4/appkeys/{appkey}/tokens |
+|   | 削除 | DELETE | /tcgb-push/v1.3/apps/{appId}/tokens/{token} | /push/v2.4/appkeys/{appkey}/tokens/{token} |
 <br/>
 
 **当該APIの詳細については次のリンクを参照してください。**
 Gamebase Wrapping APIとマッピングされたPush APIのスペックは、以下のガイドを参照してください。
 Push Appkeyの設定を行わずに、Gamebase AppIdおよびSecretKeyを利用してGamebase Wrapping Push APIを呼び出せます。
-
-[Push Guide](https://docs.nhncloud.com/ja/Notification/Push/ja/api-guide/)
 
 > [参考1]
 > Pushガイドに存在するuid値はgamebase userId値を使用できます。クライアントSDKでプッシュトークン登録時、ユーザー識別子はgamebase userIdに登録されています。
@@ -2271,6 +2579,8 @@ Push Appkeyの設定を行わずに、Gamebase AppIdおよびSecretKeyを利用�
 > [参考2]
 > APIを介してプッシュメッセージを送信した場合、送信履歴はGamebase Consoleの**プッシュ > 送信履歴**で確認できません。
 > **プッシュ > 設定 > 送信履歴保存**メニューで**Log & Crash**設定から確認できます。
+
+[Push Guide](https://docs.nhncloud.com/ja/Notification/Push/ja/api-guide/)
 
 <br/>
 
@@ -2306,7 +2616,7 @@ X-Secret-Key: IgsaAP
 <br/>
 <br/>
 
-## Etc
+## Others
 
 ### OS Code
 
@@ -2331,6 +2641,8 @@ X-Secret-Key: IgsaAP
 | AS | App Store |
 | ONESTORE | ONE store |
 | GALAXY | Galaxy Store |
+| AMAZON | Amazon Appstore |
+| HUAWEI | Huawei AppGallery |
 | MYCARD | Global MyCard |
 | EPIC | Epic Games Store |
 | STEAM | STEAM Store |
@@ -2368,7 +2680,6 @@ X-Secret-Key: IgsaAP
 | M | 消失したアカウント |
 <br/>
 
-
 ### Store Reference Status
 
 決済システム(ストアのアプリ内決済、外部決済)が提供する決済参照状態
@@ -2403,14 +2714,15 @@ X-Secret-Key: IgsaAP
 | WAES | 外部サーバー(ゲームサーバー)による退会<br>- サーバー退会API呼び出し |
 | WAAI | Apple ID連携削除による退会 |
 | WAHI | ハンゲームアカウント削除による退会 |
+| WAHD | ハンゲーム長期未使用アカウントの退会 |
 | WAGE | 猶予期間満了に伴うシステム自動退会 |
+| WAT | 退会猶予状態<br>- 最終退会状態ではない |
+| WAC | 退会猶予のキャンセル |
 <br/>
 
 ### Support
 
 API呼び出し失敗の原因に対するお問い合わせがある場合、**API呼び出しURL(HTTP bodyがある場合は、bodyと一緒に)とそれに対するレスポンス結果**を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。
-
-<br>
 
 ##### API呼び出し例
 
