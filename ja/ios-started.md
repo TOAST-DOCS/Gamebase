@@ -33,7 +33,7 @@ Gamebaseは、次のような方法で設定できます。
 <a id="download"></a>
 ### Download { #download }
 
-* [Download Gamebase iOS SDK](../../../../Download/#game-gamebase)
+* [Download Gamebase iOS SDK](/Download/#game-gamebase)
 
 Gamebase.xcframework及び必要なadapterをダウンロードします。<br/>
 また、各IdPの認証をするためのSDKファイルをダウンロードする必要があります。該当するIdPのログインを使用するときにだけ含めれば問題ありません。<br/>

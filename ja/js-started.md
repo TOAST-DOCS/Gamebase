@@ -19,7 +19,7 @@ Gamebase JavaScript SDKを使用する前に、NHN Cloud ConsoleでアプリID�
 
 #### Download
 下記のリンクからGamebase JavaScript SDKをダウンロードします。その後、ダウンロードしたZIPファイルを解凍し、適用するプロジェクトのフォルダに移動させます。
-* [Gamebase JavaScript SDKダウンロード](../../../../Download/#game-gamebase)
+* [Gamebase JavaScript SDKダウンロード](/Download/#game-gamebase)
 
 
 #### SDK適用
