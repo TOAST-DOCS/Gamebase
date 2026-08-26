@@ -93,7 +93,7 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 ![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
 
 * 스토어 결제에는 성공했으나 오류가 발생해 정상 종료되지 못하는 경우가 있습니다.
-* **requestItemListOfNotConsumedWithCompletion:**를 호출하여 재처리를 동작시켜 미지급된 아이템이 있으면 [Consume Flow](./ios-purchase/#consume-flow) 를 진행하세요.
+* **requestItemListOfNotConsumedWithCompletion:**를 호출하여 재처리를 동작시켜 미지급된 아이템이 있으면 [Consume Flow](#consume-flow) 를 진행하세요.
 * 재처리는 다음과 같은 시점에 호출할 것을 권장합니다.
     * 로그인 완료 후.
     * 결제 전.

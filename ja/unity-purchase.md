@@ -15,7 +15,7 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
 
 AndroidやiOSでアプリ内決済機能を設定する方法は、次のドキュメントをご参考ください。<br/>
 
-* [Android Purchase Settings](aos-purchase#settings)<br/>
+* [Android Purchase Settings](./aos-purchase/#initialization)<br/>
 * [iOS Purchase Settings](ios-purchase#settings)
 
 <a id="purchase-flow"></a>
@@ -459,7 +459,7 @@ public void RequestActivatedPurchasesSample(bool allStores)
 > <font color="red">[注意]</font><br/>
 >
 > * 以下のガイドに従って購読イベントを設定すると、購読ステータスコードが正常に返されます。
->     * [Game > Gamebase > ストアコンソールガイド > Googleコンソールガイド > Googleシステム内リアルタイム購読情報イベント配信設定](./console-google-guide/#google_1)
+>     * [Game > Gamebase > ストアコンソールガイド > Googleコンソールガイド > Googleシステム内リアルタイム購読情報イベント配信設定](./console-google-guide/#set-up-google-notifications-to-receive-real-time-subscription-status)
 >     * イベント設定を行っていない状態で購入したサブスクリプション商品のステータスコードは常に0(PURCHASED)が返されます。
 > * 現在、サブスクリプション商品はGoogle Playストアのみサポートします。
 
@@ -650,7 +650,7 @@ Supported Platforms
 > <font color="red">[注意]</font><br/>
 >
 > iOSプロモーション決済を行うには、必ず下記のガイドに沿って設定してください。
-> [Game > Gamebase > iOS SDK使用ガイド > 決済 > Event by Promotion](./ios-purchase/#event-by-promotion)
+> [Game > Gamebase > iOS SDK使用ガイド > 決済 > Event by Promotion](./ios-purchase/#event-by-purchase)
 
 <a id="error-handling"></a>
 ### Error Handling { #error-handling }

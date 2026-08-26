@@ -8,7 +8,7 @@
 
 利用停止の登録は、Gamebase Consoleから手動で登録することができ、NHN Cloud AppGuardを使用する場合は、パターン登録を利用して自動で登録することができます。
 
-AppGuardを連携する方法は、[AppGuard](./oper-ban/#appguard)をご参考ください。
+AppGuardを連携する方法は、[AppGuard](#appguard)をご参考ください。
 
 
 <a id="ban"></a>
@@ -38,7 +38,7 @@ AppGuardを連携する方法は、[AppGuard](./oper-ban/#appguard)をご参考�
 > [参考]
 > ユーザーに表示するメッセージを多国語で入力して簡単に再使用することができるようにテンプレートを提供します。
 > 登録されたテンプレートは一つ以上でないと、利用停止の登録をすることができません。
-> テンプレートを登録する方法は、[Template](./oper-ban/#template)をご参考ください。
+> テンプレートを登録する方法は、[Template](#template)をご参考ください。
 
 **検索結果**
 
@@ -98,7 +98,7 @@ AppGuardを連携する方法は、[AppGuard](./oper-ban/#appguard)をご参考�
 > <font color="red">[重要]</font>
 > 表示されたメッセージのテンプレートが登録された場合にのみ利用停止を登録することができます。
 > テンプレートを登録していない場合、**BAN**メニューの**テンプレート**タブからまずテンプレートを登録してください。
-> テンプレートを登録する方法は、[Template](./oper-ban/#template)をご参考ください。
+> テンプレートを登録する方法は、[Template](#template)をご参考ください。
 
 <a id="register-ban-5-delete-leaderboard"></a>
 #### (5)リーダーボード削除

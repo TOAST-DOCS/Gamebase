@@ -666,7 +666,7 @@
 * (Android) Added a new API to specify an option to hide the loading animation during the LoginForLastLoggedInProvider call.
     * LoginForLastLoggedInProvider(const UGamebaseJsonObject& additionalInfo, const FGamebaseAuthTokenDelegate& onCallback)
     * For more information, see the following guide document.
-        * [Game > Gamebase > Unreal SDK User Guide > Authentication > Login > Login Flow > Login as the Latest Login IdP](./unreal-authentication/#login-as-the-latest-login-idp)
+        * [Game > Gamebase > Unreal SDK User Guide > Authentication > Login > Login Flow > Login as the Latest Login IdP](./unreal-authentication/#login-with-the-latest-login-idp)
 * (Android) Added the FGamebasePushConfiguration.requestNotificationPermission field to prevent the Push permission request popup from automatically appearing when calling the RegisterPush API on Android 13 and later.
 * (iOS) Added the FGamebasePushConfiguration.alwaysAllowTokenRegistration field to allow users to register tokens even if they deny push permissions.
 

@@ -12,7 +12,7 @@ AndroidやiOSでプッシュを設定する方法は、次の文書を参照し�
 
 * Android
     * [Android Push Settings](aos-push/#settings)
-    * [Firebase Notification Settings](aos-started/₩1#firebase-notification)
+    * [Firebase Notification Settings](./aos-started/#resources-firebase-notification)
 * iOS
     * [iOS Push Settings](ios-push#settings)
 
@@ -293,7 +293,7 @@ void USample::SetSandboxMode(bool bIsSandbox)
 | PUSH_UNKNOWN_ERROR             | 5999       | 定義されていないプッシュエラーです。<br>全てのログを[サポート](https://toast.com/support/inquiry)へご送付ください。迅速に対応いたします。
 
 * エラーコードの一覧は、次の文書を参照してください。
-    * [エラーコード](./Error-code/#client-sdk)
+    * [エラーコード](./error-code/#client-sdk)
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 

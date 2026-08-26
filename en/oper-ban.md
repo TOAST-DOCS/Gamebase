@@ -8,7 +8,7 @@ When a banned user tries to log in again, or session is restored, a pop-up will 
 
 You can register banning either manually in the Gamebase Console or automatically with NHN Cloud Cloud AppGuard by using registered patterns.
 
-Refer to [AppGuard](./oper-ban/#appguard) on how to integrate AppGuard.
+Refer to [AppGuard](#appguard) on how to integrate AppGuard.
 
 
 <a id="ban"></a>
@@ -39,7 +39,7 @@ Retrieve the list of game users who are banned/released from banning, as search 
 >
 > By using a multi-language template, messages can be easily displayed to users in a language of choice, while the template can be reused.
 > Requires more than one registered template to register banning.
-> Refer to [Template](./oper-ban/#template) to register a template.
+> Refer to [Template](#template) to register a template.
 
 **Search Results**
 
@@ -103,7 +103,7 @@ A multi-language template to display messages is supported for users and allow e
 > <font color="red">[Important Note]</font>
 > You can register banning only when a template of displayed message is registered.
 > If a template has not been registered, first go to **Template** of **BAN** to register a template.
-> Refer to [Template](./oper-ban/#template) on how to register a template.
+> Refer to [Template](#template) on how to register a template.
 
 <a id="register-ban-5-delete-leaderboard"></a>
 #### (5) Delete Leaderboard

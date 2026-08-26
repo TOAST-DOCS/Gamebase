@@ -3,7 +3,7 @@
 <a id="game-gamebase-store-console-guide-apple-console-guide"></a>
 ## Game > Gamebase > Store Console Guide > Apple Console Guide { #game-gamebase-store-console-guide-apple-console-guide }
 
-> This document describes how to register and integrate the information of an app released on the App Store with [Gamebase](https://docs.nhncloud.com/ko/Game/Gamebase/en/Overview/) Console.
+> This document describes how to register and integrate the information of an app released on the App Store with [Gamebase](./Overview/) Console.
 There are two methods of integration: **(New) Receipt Verification + Notification V2** and **(Old) Receipt Verification+Notification V1**.
 
 <a id="nhn-cloud-sdk-integration-for-ios-versions"></a>

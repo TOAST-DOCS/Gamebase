@@ -50,7 +50,7 @@ SettingTool을 이용하여 Gamebase SDK를 간편하게 설치할 수 있습니
 ### SettingTool 설치 { #installing-settingtool }
 
 1. SettingTool을 다운로드합니다.
-    * [Download Gamebase Setting Tool](/Download/#game-gamebase)
+    * [Download Gamebase Setting Tool](https://docs.nhncloud.com/ko/Download/#game-gamebase)
 2. Unity 프로젝트 실행 후 GamebaseUnitySettingTool\_{version}.unitypackage 파일을 임포트 합니다.
 
 <a id="using-the-setting-tool"></a>

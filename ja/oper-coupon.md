@@ -90,7 +90,7 @@
 
 > [参考]
 >
-> クーポンアイテムを登録する方法は[Coupon Item](./oper-coupon/#Coupon_Item)を参照してください。
+> クーポンアイテムを登録する方法は[Coupon Item](#Coupon_Item)を参照してください。
 
 <a id="update-coupons"></a>
 ### Update publish coupon { #update-coupons }
@@ -151,7 +151,7 @@
 
 > [参考1]
 >
-> クーポンアイテムを登録する方法は[Coupon Item](./oper-coupon/#coupon-item)を参照してください。
+> クーポンアイテムを登録する方法は[Coupon Item](#coupon-items)を参照してください。
 >
 > [参考2]
 >

@@ -33,7 +33,7 @@ Gamebase는 아래와 같은 방법으로 설정이 가능합니다.
 <a id="download"></a>
 ### Download { #download }
 
-* [Download Gamebase iOS SDK](/Download/#game-gamebase)
+* [Download Gamebase iOS SDK](https://docs.nhncloud.com/ko/Download/#game-gamebase)
 
 Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
 또한 각 IdP의 인증을 위한 SDK 파일들을 다운로드해야 합니다. 해당 IdP의 로그인을 사용할 때만 포함하면 됩니다.<br/>
@@ -237,7 +237,7 @@ end
 * URL Scheme을 설정해야 합니다.
     * **Google Cloud Platform > APIs & Services > Credentials**에서 발급 받은 iOS URL scheme을 **Xcode > Target > Info > URL Types**에 추가해야 합니다.
 * Gamebase iOS SDK 2.34.1 이하는 추가 설정이 필요합니다.
-    * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
+    * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](#idp-settings-legacy)
 
 <a id="idp-settings-payco"></a>
 #### PAYCO
@@ -261,7 +261,7 @@ end
 </array>
 ```
 * Gamebase iOS SDK 1.12.1 이하는 추가 설정이 필요합니다.
-    * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
+    * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](#idp-settings-legacy)
 
 <a id="idp-settings-line"></a>
 #### LINE
@@ -277,7 +277,7 @@ end
 </array>
 ```
 * Gamebase iOS SDK 2.42.2 이하는 추가 설정이 필요합니다.
-    * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
+    * [Game > Gamebase > iOS SDK 사용 가이드 > 시작하기 > IdP settings (Legacy)](#idp-settings-legacy)
 
 <a id="idp-settings-game-center"></a>
 #### Game Center

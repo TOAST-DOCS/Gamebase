@@ -35,7 +35,7 @@ Gamebase.initialize(activity, configuration, callback);
 <a id="purchase-flow"></a>
 ### Purchase Flow { #purchase-flow }
 
-Purchase of an item can be divided into **Purchase Flow**, **[Consume Flow](./aos-purchase/#consume-flow)**, and **[Reprocess Flow](./aos-purchase/#retry-transaction-flow)**.
+Purchase of an item can be divided into **Purchase Flow**, **[Consume Flow](#consume-flow)**, and **[Reprocess Flow](#retry-transaction-flow)**.
 It is recommended to implement the **Purchase Flow** in the following order:
 
 ![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
@@ -75,7 +75,7 @@ If there's a value on the list of unconsumed purchases, proceed with the **Consu
 ![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
 
 * There are cases where the store purchase has been made successfully but the process was not properly completed due to errors.
-* Call **requestItemListOfNotConsumed** to run reprocessing and proceed with the [Consume Flow](./aos-purchase/#consume-flow) for any unprovided items.
+* Call **requestItemListOfNotConsumed** to run reprocessing and proceed with the [Consume Flow](#consume-flow) for any unprovided items.
 * It is recommended to call reprocessing at the following times:
     * After login is completed
     * Before making a purchase

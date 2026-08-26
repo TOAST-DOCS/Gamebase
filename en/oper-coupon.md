@@ -96,7 +96,7 @@ You have to register the item in the Coupon Item menu first to be able to select
 
 > [Note]
 >
-> Regarding coupon item registration, see [Coupon Item](./oper-coupon/#Coupon_Item).
+> Regarding coupon item registration, see [Coupon Item](#Coupon_Item).
 
 
 <a id="update-coupons"></a>
@@ -163,7 +163,7 @@ Provides a feature that directly sends coupons to users using issued coupon info
 
 > [Note1]
 >
-> Refer to [Coupon Item](./oper-coupon/#coupon-item) to see how to register coupon items.
+> Refer to [Coupon Item](#coupon-items) to see how to register coupon items.
 >
 > [Note2]
 >

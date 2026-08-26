@@ -654,7 +654,7 @@
 * (Android) Added a new API to specify an option to hide the loading animation during the loginForLastLoggedInProvider call.
     * Gamebase.LoginForLastLoggedInProvider(Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback);
     * For how to call the API, see the following document.
-        * [Game > Gamebase > Unity SDK User Guide > Authentication > Login > Login Flow > Login as the Latest Login IdP](./unity-authentication/#login-as-the-latest-login-idp)
+        * [Game > Gamebase > Unity SDK User Guide > Authentication > Login > Login Flow > Login as the Latest Login IdP](./unity-authentication/#login-with-latest-login-idp)
 
 <a id="540-2023-08-29-bug-fixes"></a>
 #### Bug Fixes

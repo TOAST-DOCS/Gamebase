@@ -290,7 +290,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 | AuthProviderCredentialConstants.GAMEBASE_ACCESS_TOKEN | Used when logging in with Gamebase Access Token instead of IdP authentication information |  |
 | AuthProviderCredentialConstants.IGNORE_ALREADY_LOGGED_IN | While logged in to Gamebase, allow login attempts with other account without logging out | **boolean** |
 | AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | Display loading animation until the API call ends | **boolean**<br>**default**: true |
-| AuthProviderCredentialConstants.LINE_CHANNEL_REGION |  Set LINE Service Region| [See Login with IdP](./aos-authentication/#login-with-idp) |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION |  Set LINE Service Region| [See Login with IdP](#login-with-idp) |
 
 > [Note]
 >
@@ -552,7 +552,7 @@ Try mapping to another IdP while logged-in to a specific IdP.<br/>
 | Keyname                                  | Usage                                  | Value Type                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | Display loading animation until the API call ends | **boolean**<br>**default**: true |
-| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Set LINE Service Region | [See Login with IdP](./aos-authentication/#login-with-idp) |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Set LINE Service Region | [See Login with IdP](#login-with-idp) |
 
 Below is an example of mapping to Facebook.
 
@@ -634,7 +634,7 @@ This interface can be used for Gamebase AddMapping by an access token issued by 
 | AuthProviderCredentialConstants.ACCESS_TOKEN | Set authentication information (access token) received after login IdP.<br/>Not applied for Google authentication. |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter one time authorization code (OTAC) which can be obtained after Google login. |                                          |
 | AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | Display loading animation until the API call ends | **boolean**<br>**default**: true |                                    |
-| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Set LINE Service Region | [See Login with IdP](./aos-authentication/#login-with-idp) |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Set LINE Service Region | [See Login with IdP](#login-with-idp) |
 
 > [Note]
 >

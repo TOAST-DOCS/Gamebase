@@ -221,7 +221,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | IdPタイプの設定                    | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo, kakaogame |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdPログイン後に取得した認証情報(アクセストークン)設定 |                                |
 | kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname | Gamebaseログイン状態でログアウトを行わなくても、他のアカウントログイン試行を許可する | **BOOL** |
-|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINEサービス提供地域のうち、ログインを行う1つの地域 | [Login with IdP参考](./ios-authentication/#login-with-idp)|
+|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINEサービス提供地域のうち、ログインを行う1つの地域 | [Login with IdP参考](#login-with-idp)|
 
 
 > [参考]
@@ -416,7 +416,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 | keyname                                  | a use                          | 値種類                         |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINEサービス提供地域のうち、ログインを行う1つの地域 | [Login with IdP参考](./ios-authentication/#login-with-idp)|
+|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINEサービス提供地域のうち、ログインを行う1つの地域 | [Login with IdP参考](#login-with-idp)|
 
 **API**
 

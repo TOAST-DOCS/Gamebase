@@ -49,7 +49,7 @@ Supported Platforms
 ## Installation { #installation }
 
 1. Gamebase Unreal SDK를 다운로드한 뒤 프로젝트 경로에 **Plugins** 폴더를 만들고, 다운로드한 SDK 내부 **NHNCloud** 폴더를 추가합니다.
-    * [Download Gamebase Unreal SDK](/Download/#game-gamebase)
+    * [Download Gamebase Unreal SDK](https://docs.nhncloud.com/ko/Download/#game-gamebase)
 2. Unreal 에디터에서 **Settings > Plugins** 창을 띄우고, **Project > NHN Cloud > Gamebase Plugin** 플러그인을 찾아 활성화합니다.
 
 <a id="module-settings"></a>
@@ -147,7 +147,7 @@ GamesAppID=
 * [로그인 인증 타입](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type)은 PersistentAuth, AccountPortal을 지원합니다.
     * 이전에 로그인하여 PersistentAuth 로그인을 위한 토큰이 저장되었다면 해당 토큰으로 로그인을 시도합니다. 해당 토큰으로 로그인을 할 수 없는 경우 AccountPortal 로그인을 시도하여 결과를 전달합니다.
 * 상세 내용은 아래 내용을 참고하시어 진행 바랍니다.
-    * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
+    * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > 3rd-Party SDK Provider Settings > Epic Games](#epic-games)
 
 <a id="ios-settings"></a>
 ### iOS Settings { #ios-settings }
@@ -268,7 +268,7 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
 * [로그인 인증 타입](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type)은 PersistentAuth, AccountPortal을 지원합니다.
     * 이전에 로그인하여 PersistentAuth 로그인을 위한 토큰이 저장되었다면 해당 토큰으로 로그인을 시도합니다. 해당 토큰으로 로그인을 할 수 없는 경우 AccountPortal 로그인을 시도하여 결과를 전달합니다.
 * 상세 내용은 아래 내용을 참고하시어 진행 바랍니다.
-    * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
+    * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > 3rd-Party SDK Provider Settings > Epic Games](#epic-games)
 
 <a id="windows-settings"></a>
 ### Windows Settings { #windows-settings }
@@ -305,7 +305,7 @@ NHN Cloud Log & Crash Search에서 크래시 분석을 사용하는 게임 개�
 * [로그인 인증 타입](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type)은 ExchangeCode, AccountPortal을 지원합니다.
     * 런처에서 게임을 실행하여 ExchangeCode를 사용할 수 있다면 해당 코드로 로그인을 시도합니다. 해당 코드로 로그인을 할 수 없는 경우 AccountPortal 로그인을 시도하여 결과를 전달합니다.
 * 상세 내용은 아래 내용을 참고하시어 진행 바랍니다.
-    * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
+    * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > 3rd-Party SDK Provider Settings > Epic Games](#epic-games)
 
 <a id="windows-settings-steamworks-services"></a>
 #### Steamworks 서비스

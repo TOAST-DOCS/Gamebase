@@ -320,7 +320,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 | GamebaseAuthProviderCredential::AuthorizationCode | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                          |
 | GamebaseAuthProviderCredential::GamebaseAccessToken | IdP 인증 정보가 아닌 Gamebase Access Token으로 로그인하는 경우 사용 |  |
 | GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn | Gamebase에 로그인한 상태에서 로그아웃을 하지 않고 다른 계정을 이용해 로그인을 시도하는 것을 허용 | **bool** |
-| GamebaseAuthProviderCredential::LineChannelRegion | LINE 서비스 제공 지역 설정 | [Login with IdP 참고](./unreal-authentication/#login-with-idp) |
+| GamebaseAuthProviderCredential::LineChannelRegion | LINE 서비스 제공 지역 설정 | [Login with IdP 참고](#login-with-idp) |
 
 > [TIP]
 >
@@ -1363,7 +1363,7 @@ void USample::Login()
 | Auth(Unknown) | AUTH_UNKNOWN_ERROR | 3999 | 알 수 없는 오류입니다. (정의되지 않은 오류입니다.) |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [오류 코드](./Error-code/#client-sdk)
+    * [오류 코드](./error-code/#client-sdk)
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 

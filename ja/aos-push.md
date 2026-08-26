@@ -26,7 +26,7 @@
 
 そして次のNotification Optionsガイドを参考にして**default_small_icon**(AndroidManifest.xml)または**setSmallIconName**(API)を設定する必要があります。
 [Game > Gamebase > Android SDK使用ガイド > 始める > Setting > AndroidManifest.xml > Notification Options](./aos-started/#notification-options)
-[Game > Gamebase > Android SDK使用ガイド > プッシュ > Notification Options > Set Notification Options with RegisterPush in Runtime](./aos-push/#set-notification-options-with-registerpush-in-runtime)
+[Game > Gamebase > Android SDK使用ガイド > プッシュ > Notification Options > Set Notification Options with RegisterPush in Runtime](#set-notification-options-with-registerpush-in-runtime)
 
 <a id="register-push"></a>
 ### Register Push { #register-push }

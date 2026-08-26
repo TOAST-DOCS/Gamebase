@@ -3,7 +3,7 @@
 <a id="game-gamebase-store-console-guide-apple-console-guide"></a>
 ## Game > Gamebase > Store 設定ガイド > Apple 設定ガイド { #game-gamebase-store-console-guide-apple-console-guide }
 
-> この文書、はApp Storeにリリースされたアプリの情報を[Gamebase](https://docs.nhncloud.com/ja/Game/Gamebase/ja/Overview/)コンソールに登録及び連動させる方法を説明します。
+> この文書、はApp Storeにリリースされたアプリの情報を[Gamebase](./Overview/)コンソールに登録及び連動させる方法を説明します。
 > 連動方法は**(新)領収書検証 + Notification V2**, **(旧)領収書検証 + Notification V1**の2つの方法に分かれています。
 
 <a id="nhn-cloud-sdk-integration-for-ios-versions"></a>

@@ -3,7 +3,7 @@
 <a id="game-gamebase-store-console-guide-steam-console-guide"></a>
 ## Game > Gamebase > 스토어 콘솔 가이드 > Steam 콘솔 가이드 { #game-gamebase-store-console-guide-steam-console-guide }
 
-> 본 문서는 Steamworks로 출시된 앱의 정보를 [Gamebase](https://docs.nhncloud.com/ko/Game/Gamebase/ko/Overview/) 콘솔에 등록하고 연동하는 방법을 다룹니다.
+> 본 문서는 Steamworks로 출시된 앱의 정보를 [Gamebase](./Overview/) 콘솔에 등록하고 연동하는 방법을 다룹니다.
 > Steam 앱을 출시하기 위한 보다 자세한 사항들은 [Steamworks 가이드 문서](https://partner.steamgames.com/doc/home)를 참고하세요.
 
 
@@ -14,7 +14,7 @@ Steam 연동을 위해 다음의 3가지 정보를 정확히 입력하세요.
 
 연동과 관련된 정보는 [Steamworks](https://partner.steamgames.com/)에서 생성합니다.
 
-기타 본 페이지에서 설명하지 않는 항목은 **Game > Gamebase > [콘솔 결제 사용 가이드](https://docs.nhncloud.com/ko/Game/Gamebase/ko/oper-purchase/)** 페이지를 참고하세요.
+기타 본 페이지에서 설명하지 않는 항목은 **Game > Gamebase > [콘솔 결제 사용 가이드](./oper-purchase/)** 페이지를 참고하세요.
 
 
 ![Gamebase 스토어 설정](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/Steam/ko/steam_register_01_ko_241028.png)

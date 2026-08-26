@@ -665,7 +665,7 @@
 * (Android) LoginForLastLoggedInProvider呼び出し中にローディングアニメーションを非表示にするオプションを指定できる新規APIが追加されました。
     * LoginForLastLoggedInProvider(const UGamebaseJsonObject& additionalInfo、const FGamebaseAuthTokenDelegate& onCallback)
     * API呼び出し方法は、次のガイド文書を参照してください。
-        * [Game > Gamebase > Unreal SDK使用ガイド > 認証 > Login > Login Flow > Login as the Latest Login IdP](./unreal-authentication/#login-as-the-latest-login-idp)
+        * [Game > Gamebase > Unreal SDK使用ガイド > 認証 > Login > Login Flow > Login as the Latest Login IdP](./unreal-authentication/#login-with-the-latest-login-idp)
 * (Android) Android 13以上のOSでRegisterPush APIを呼び出した時、Push権限リクエストポップアップが自動的に表示されないようにするFGamebasePushConfiguration.requestNotificationPermissionフィールドが追加されました。
 * (iOS)ユーザーがプッシュ権限を拒否してもトークンを登録できるようにFGamebasePushConfiguration.alwaysAllowTokenRegistrationフィールドが追加されました。
 

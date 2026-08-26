@@ -111,9 +111,9 @@ If you select 'Auto-translate to default language', the message is translated ba
 > it is highly likely that the user did not register the push token. Please make sure the user's push token has been registered.
 > To find out how to register a push token in the platform, see the following document.
 >
-> - [Android > Register Push](./aos-push/#2-register-push)
-> - [iOS > Register Push](./ios-push/#2-register-push)
-> - [Unity > Register Push](./unity-push/#2-register-push)
+> - [Android > Register Push](./aos-push/#register-push)
+> - [iOS > Register Push](./ios-push/#register-push)
+> - [Unity > Register Push](./unity-push/#register-push)
 
 <a id="register-push-7-message-text-color-only-android"></a>
 #### (7) Message text color (Only Android)

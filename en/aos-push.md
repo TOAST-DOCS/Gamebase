@@ -26,7 +26,7 @@ Push icon file names cannot include spaces, uppercase English characters, and sp
 
 You need to set **default_small_icon** (AndroidManifest.xml) or **setSmallIconName** (API) by referring to the following Notification Options guide.
 [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > Notification Options](./aos-started/#notification-options)
-[Game > Gamebase > Android SDK User Guide > Push > Notification Options > Set Notification Options with RegisterPush in Runtime](./aos-push/#set-notification-options-with-registerpush-in-runtime)
+[Game > Gamebase > Android SDK User Guide > Push > Notification Options > Set Notification Options with RegisterPush in Runtime](#set-notification-options-with-registerpush-in-runtime)
 
 <a id="register-push"></a>
 ### Register Push { #register-push }

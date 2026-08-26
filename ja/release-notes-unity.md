@@ -658,7 +658,7 @@
 * (Android) loginForLastLoggedInProviderの呼び出し中にローディングアニメーションを非表示にするオプションを指定できるAPIが追加されました。
     * Gamebase.LoginForLastLoggedInProvider(Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback);
     * API呼び出し方法は次のガイド文書を参照してください。
-        * [Game > Gamebase > Unity SDK使用ガイド > 認証 > Login > Login Flow > Login as the Latest Login IdP](./unity-authentication/#login-as-the-latest-login-idp)
+        * [Game > Gamebase > Unity SDK使用ガイド > 認証 > Login > Login Flow > Login as the Latest Login IdP](./unity-authentication/#login-with-latest-login-idp)
 
 <a id="540-2023-08-29-bug-fixes"></a>
 #### 不具合修正

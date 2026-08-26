@@ -29,9 +29,9 @@ When the user clicks the **1:1 inquiry** button, they are redirected to the scre
 ![Inquiry](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_help_center_02_en_240105.jpg)
 
 The following are the items to be entered when registering inquiries.
-Registered inquiries can be viewed and answered in the **[Customer Center > Customer Inquiry](./oper-customer-service/#inquiry)** console.
+Registered inquiries can be viewed and answered in the **[Customer Center > Customer Inquiry](#inquiry)** console.
 
-1. Inquiry type: Select the inquiry type for submission. A submission inquiry type can be registered, edited, and deleted in the [Customer Center > Customer Inquiry](./oper-customer-service/#inquiry). 
+1. Inquiry type: Select the inquiry type for submission. A submission inquiry type can be registered, edited, and deleted in the [Customer Center > Customer Inquiry](#inquiry). 
 2. Reply email: Enter the email address to receive an answer to user inquiry. If the inquiry answer is completely processed in the console, the answer email is automatically sent to the entered email address.
 3. Name (nickname): Users can enter a nickname to be used in the game. The maximum character length is 10. 
 When you open the customer center page after setting the game nickname as additional info, the nickname is automatically entered even if the user did not enter it.
@@ -41,7 +41,7 @@ When you open the customer center page after setting the game nickname as additi
 
 > [Note] 
 > When selecting a inquiry type, if a template is set for the inquiry type, the inquiry content is automatically filled with the template content.
-> Template setting can be performed in [Customer Center > Customer Inquiry > Manage inquiry type](./oper-customer-service/#inquiry).
+> Template setting can be performed in [Customer Center > Customer Inquiry > Manage inquiry type](#inquiry).
 
 <a id="main-2-my-inquiries"></a>
 #### (2) My Inquiries
@@ -59,13 +59,13 @@ In My Inquiries, you can see 10 listings by default. If there are more than 10, 
 #### (3) Frequently Asked Questions
 
 In FAQ, the user can see categorized questions and frequently asked questions. In the list, up to 12 items are exposed.
-The user can search for topics or click the Category button to see the FAQ registered by the [Customer Center > FAQ](./oper-customer-service/#faq).
+The user can search for topics or click the Category button to see the FAQ registered by the [Customer Center > FAQ](#faq).
 ![FAQ](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/en/gamebase_help_center_05_en_240105.jpg)
 
 1) You can enter the keyword you want to check to see the FAQs containing that keyword.
 2) You can see the questions registered as FAQ.
 3) You can see FAQs by grouping them using **Manage FAQ Type** that was set when registering the FAQs.
-4) FAQ categories can be added or deleted through [Gamebase Console > Customer Center >  Manage FAQ Type](./oper-customer-service/#search-faq).
+4) FAQ categories can be added or deleted through [Gamebase Console > Customer Center >  Manage FAQ Type](#search-faq).
 
 <a id="main-4-notices"></a>
 #### (4) Notices

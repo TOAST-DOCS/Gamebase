@@ -29,9 +29,9 @@
 ![문의하기](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/ko/gamebase_help_center_02_ko_240105.jpg)
 
 다음은 문의 등록 시에 입력하는 항목입니다.
-등록된 문의는 **[고객센터 > 고객문의](./oper-customer-service/#inquiry)** 콘솔에서 확인하고 답변 처리가 가능합니다.
+등록된 문의는 **[고객센터 > 고객문의](#inquiry)** 콘솔에서 확인하고 답변 처리가 가능합니다.
 
-1. 문의 유형: 접수 문의 유형을 선택합니다. 접수 문의 유형은 [고객센터 > 고객문의](./oper-customer-service/#inquiry)에서 등록, 수정, 삭제가 가능합니다. 
+1. 문의 유형: 접수 문의 유형을 선택합니다. 접수 문의 유형은 [고객센터 > 고객문의](#inquiry)에서 등록, 수정, 삭제가 가능합니다. 
 2. 답변 이메일: 문의에 관한 답변을 받을 이메일 주소를 입력합니다. 콘솔에서 문의 처리를 완료하면 입력된 이메일 주소로 자동으로 메일을 발송합니다.
 3. 이름(닉네임): 게임에서 사용하는 닉네임을 입력합니다. 최대 10자까지 입력 가능합니다. 
 게임 닉네임을 추가 정보로 설정하여 고객센터 페이지를 열면 유저가 입력하지 않아도 자동으로 닉네임이 입력됩니다.
@@ -41,7 +41,7 @@
 
 > [참고] 
 > 접수 문의 유형을 선택 시에 해당 문의 유형에 템플릿이 설정되어 있으면, 문의 내용에 자동으로 템플릿 내용이 작성됩니다.
-> 템플릿 설정은 [고객센터 > 고객 문의 > 문의 유형 관리](./oper-customer-service/#inquiry)에서 할 수 있습니다.
+> 템플릿 설정은 [고객센터 > 고객 문의 > 문의 유형 관리](#inquiry)에서 할 수 있습니다.
 
 <a id="main-2-my-inquiries"></a>
 #### (2) 내 문의 내역
@@ -59,13 +59,13 @@
 #### (3) 자주하는 질문
 
 FAQ에서는 카테고리 질문 및 자주하는 질문 등을 확인할 수 있습니다. 리스트에서는 최대 12개가 노출됩니다.
-원하는 내용을 검색하거나 카테고리 버튼을 클릭하여 [고객센터 > FAQ](./oper-customer-service/#faq)에서 등록한 FAQ내용을 확인할 수 있습니다.
+원하는 내용을 검색하거나 카테고리 버튼을 클릭하여 [고객센터 > FAQ](#faq)에서 등록한 FAQ내용을 확인할 수 있습니다.
 ![FAQ](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/ko/gamebase_help_center_05_ko_240105.jpg)
 
 1) 확인하고 싶은 검색어를 입력하여 검색어가 포함된 FAQ를 확인할 수 있습니다.
 2) 자주 하는 질문으로 등록된 질문을 확인할 수 있습니다.
 3) FAQ 등록시 설정한 **FAQ 유형 관리**별로 묶어서 FAQ를 확인할 수 있습니다.
-4) FAQ 카테고리는 [Gamebase Console > 고객센터 >  FAQ 유형관리](./oper-customer-service/#search-faq)를 통해 추가하거나 삭제할 수 있습니다.
+4) FAQ 카테고리는 [Gamebase Console > 고객센터 >  FAQ 유형관리](#search-faq)를 통해 추가하거나 삭제할 수 있습니다.
 
 <a id="main-4-notices"></a>
 #### (4) 공지사항

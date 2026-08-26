@@ -66,7 +66,7 @@ Android에서 Gamebase를 사용하기 위한 시스템 환경은 다음과 같�
     * [Game > Gamebase > 스토어 콘솔 가이드 > Huawei 콘솔 가이드](./console-huawei-guide)
     * [Game > Gamebase > 스토어 콘솔 가이드 > MyCard 콘솔 가이드](./console-mycard-guide)
     * 아래 가이드를 참고하여 아이템을 등록합니다.
-        * [Game > Gamebase > 콘솔 사용 가이드 > 결제 > Register](./oper-purchase/#register_1)
+        * [Game > Gamebase > 콘솔 사용 가이드 > 결제 > Register](./oper-purchase/#product-register)
 * 푸시 알림을 위해 푸시 알림 서비스 인증서를 Gamebase > 푸시 > 인증서 콘솔에 입력합니다.
     * [Game > Gamebase > 콘솔 사용 가이드 > 푸시 > Authentication > Authentication register](./oper-push/#authentication)
 * 새로운 Gamebase 프로젝트가 생성되었으니 AppVersion과 StoreCode를 등록해야 합니다.

@@ -35,7 +35,7 @@ Gamebase.initialize(activity, configuration, callback);
 <a id="purchase-flow"></a>
 ### Purchase Flow { #purchase-flow }
 
-アイテムの購入は大きく分けて**決済フロー**、**[消費フロー](./aos-purchase/#consume-flow)**、**[再処理フロー](./aos-purchase/#retry-transaction-flow)**の3つがあります。
+アイテムの購入は大きく分けて**決済フロー**、**[消費フロー](#consume-flow)**、**[再処理フロー](#retry-transaction-flow)**の3つがあります。
 **決済フロー**は、次のような順序で実装してください。
 
 ![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
@@ -75,7 +75,7 @@ Gamebase.initialize(activity, configuration, callback);
 ![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
 
 * ストア決済には成功したがエラーが発生して正常に終了しなかった場合があります。
-* **requestItemListOfNotConsumed**を呼び出して再処理を行い、未支給のアイテムがある場合、[Consume Flow](./aos-purchase/#consume-flow)を進行してください。
+* **requestItemListOfNotConsumed**を呼び出して再処理を行い、未支給のアイテムがある場合、[Consume Flow](#consume-flow)を進行してください。
 * 再処理は次の時点で呼び出すことを推奨します。
     * ログイン完了後
     * 決済前
@@ -455,7 +455,7 @@ Gamebase.Purchase.requestActivatedPurchases(activity, configuration, new Gamebas
 > <font color="red">[注意]</font><br/>
 >
 > * 購読ステータスコードは、以下のガイドに従って購読イベント設定を行うと正常に返されます。
->     * [Game > Gamebase > ストアコンソールガイド > Googleコンソールガイド > Googleシステム内リアルタイム購読情報イベント配信設定](./console-google-guide/#google_1)
+>     * [Game > Gamebase > ストアコンソールガイド > Googleコンソールガイド > Googleシステム内リアルタイム購読情報イベント配信設定](./console-google-guide/#set-up-google-notifications-to-receive-real-time-subscription-status)
 >     * イベント設定を行っていない状態で購入した購読商品のステータスコードは常に0(PURCHASED)が返されます。
 > * 現在、購読商品はGoogle Playストアのみサポートします。
 

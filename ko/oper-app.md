@@ -25,7 +25,7 @@ NHN Cloud 프로젝트 하나당 하나의 Gamebase 앱을 관리할 수 있으�
 #### (1) 설치 URL
 앱 설치와 홍보에 이용할 수 있는 단축 URL 정보입니다.
 앱이 배포된 스토어가 여러 개인 경우에도 하나의 단축 URL로 관리할 수 있습니다.
-자세한 동작 및 관리 방법은 다음 링크를 참고합니다. [설치 URL 관리](./oper-app/#installed-url)
+자세한 동작 및 관리 방법은 다음 링크를 참고합니다. [설치 URL 관리](#installed-url)
 
 > [참고]
 > Gamebase를 활성화하면 자동으로 생성되므로 변경은 불가능합니다.
@@ -642,7 +642,7 @@ Unity 빌드인 경우 **AppDelegate**를 **UnityAppController**로 변경하세
 #### 11. GPGS v2
 
 GPGS(Google Play Games Services) v2 인증을 위해서는 Google 인증 타입 추가 방법과 동일하게 Google Cloud Console에서 **Web Application Client ID**를 발급 받고 승인된 리디렉션 URI란에 Gamebase Callback URL을 입력해야 합니다.
-[Game > Gamebase > 콘솔 사용 가이드 > 앱 > App > Authentication Information > 2. Google](./oper-app/#2-google)
+[Game > Gamebase > 콘솔 사용 가이드 > 앱 > App > Authentication Information > 2. Google](#2-google)
 
 **입력 필드**
 
@@ -650,7 +650,7 @@ GPGS(Google Play Games Services) v2 인증을 위해서는 Google 인증 타입 
 - Secret Key: {Google Web Application Client secret}
 
 ##### Android
-* [Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#gpgs-v2-idp)
+* [Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#androidmanifestxml-gpgs-idp)
 
 <a id="app-authentication-information-steam"></a>
 #### 12. Steam

@@ -96,7 +96,7 @@
 
 > [참고]
 >
-> 쿠폰 아이템을 등록하는 방법은 [Coupon Item](./oper-coupon/#coupon-item)을 참고하시기 바랍니다.
+> 쿠폰 아이템을 등록하는 방법은 [Coupon Item](#coupon-items)을 참고하시기 바랍니다.
 
 
 <a id="update-coupons"></a>
@@ -163,7 +163,7 @@
 
 > [참고1]
 >
-> 쿠폰 아이템을 등록하는 방법은 [Coupon Item](./oper-coupon/#coupon-item)을 참고하시기 바랍니다.
+> 쿠폰 아이템을 등록하는 방법은 [Coupon Item](#coupon-items)을 참고하시기 바랍니다.
 >
 > [참고2]
 >

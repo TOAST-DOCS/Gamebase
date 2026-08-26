@@ -66,7 +66,7 @@ AndroidでGamebaseを利用するためのシステム環境は、次の通り�
     * [Game > Gamebase > ストアコンソールガイド > Huawei App Galleryコンソールガイド](./console-huawei-guide)
     * [Game > Gamebase > ストアコンソールガイド > MyCardコンソールガイド](./console-mycard-guide)
     * 以下のガイドを参考にしてアイテムを登録します。
-        * [Game > Gamebase > コンソール使用ガイド > 決済 > Register](./oper-purchase/#register_1)
+        * [Game > Gamebase > コンソール使用ガイド > 決済 > Register](./oper-purchase/#product-register)
 * プッシュ通知を行うためにプッシュ通知サービス証明書をGamebase > Push > 証明書コンソールに入力します。
     * [Game > Gamebase > Console ご利用ガイド > Push > Authentication > Authentication register](./oper-push/#authentication-register)
 * 新しいGamebaseプロジェクトが作成されたのでAppVersionとStoreCodeを登録する必要があります。

@@ -1233,7 +1233,7 @@ Gamebase Android SDKは今後、Maven Centralでのみ配布します。
         * それがプロジェクトのres/rawフォルダにlocalizedstring.jsonファイルを追加する方法に変わりました。
     * これまではUnityガイドのDisplay Language言語セットの追加方法はAndroidに適用できませんでした。
         * それをUnityガイドにしたがってlocalizedstring.jsonファイルを追加してもAndroidビルドに反映されるように改善しました。
-        * [Game > Gamebase > Unity SDK使用ガイド > ETC > Additional Features > Display Language > 新規言語セット追加](./unity-etc/#add-new-language-sets)
+        * [Game > Gamebase > Unity SDK使用ガイド > ETC > Additional Features > Display Language > 新規言語セット追加](./unity-etc/#display-language-add-new-language-sets)
     * Display Language言語セットに中国語簡体字(zh-CN)、中国語繁体字(zh-TW)、タイ語(th)が追加されました。
     * デフォルトの言語コードが**en**でしたが、Gamebaseコンソールで設定したデフォルトの言語が反映されるように改善しました。
         * [Game > Gamebase > コンソール使用ガイド > アプリ > App > 言語設定](./oper-app/#language-settings)

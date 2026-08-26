@@ -221,7 +221,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | IdP 유형 설정                      | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo, kakaogame |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdP 로그인 이후 받은 인증 정보(Access Token) 설정 |                                |
 | kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname | Gamebase에 로그인한 상태에서 로그아웃을 하지 않고 다른 계정을 이용해 로그인을 시도하는 것을 허용 | **BOOL** |
-|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINE 서비스 제공 지역 중 로그인을 수행할 하나의 지역 | [Login with IdP 참고](./ios-authentication/#login-with-idp)|
+|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINE 서비스 제공 지역 중 로그인을 수행할 하나의 지역 | [Login with IdP 참고](#login-with-idp)|
 
 
 > [참고]
@@ -416,7 +416,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 
 | keyname                                  | a use                          | 값 종류                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINE 서비스 제공 지역 중 로그인을 수행할 하나의 지역 | [Login with IdP 참고](./ios-authentication/#login-with-idp)|
+|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINE 서비스 제공 지역 중 로그인을 수행할 하나의 지역 | [Login with IdP 참고](#login-with-idp)|
 
 **API**
 

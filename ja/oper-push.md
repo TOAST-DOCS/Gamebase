@@ -107,9 +107,9 @@ Gamebaseでは、NHN Cloud Pushサービスを使用してPush通知を送信し
 > 大部分はユーザーのプッシュトークンを登録していない場合です。ユーザーのプッシュトークンを登録しているかを確認してください。
 > プラットフォームでプッシュトークンを登録する方法は、次の文書を参照してください。
 >
-> - [Android > Register Push](./aos-push/#2-register-push)
-> - [iOS > Register Push](./ios-push/#2-register-push)
-> - [Unity > Register Push](./unity-push/#2-register-push)
+> - [Android > Register Push](./aos-push/#register-push)
+> - [iOS > Register Push](./ios-push/#register-push)
+> - [Unity > Register Push](./unity-push/#register-push)
 
 <a id="register-push-7-message-text-color-only-android"></a>
 #### (7)メッセージ文字色(Only Android)

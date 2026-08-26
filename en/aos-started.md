@@ -67,7 +67,7 @@ To execute Gamebase in Android, the following system environment is required.
     * [Game > Gamebase > Store Console Guide > Huawei App Gallery Console Guide](./console-huawei-guide)
     * [Game > Gamebase > Store Console Guide > MyCard Console Guide](./console-mycard-guide)
     * See the following guide to register items.
-        * [Game > Gamebase > Console User Guide > Payment > Register](./oper-purchase/#register_1)
+        * [Game > Gamebase > Console User Guide > Payment > Register](./oper-purchase/#product-register)
 * For push notifications, go to Gamebase > Push > Certificate Console and enter the push notification service certificate.
     * [Game > Gamebase > Console User Guide > Push > Authentication > Authentication register](./oper-push/#authentication-register)
 * Now that a new Gamebase project has been created, you need to register AppVersion and StoreCode.

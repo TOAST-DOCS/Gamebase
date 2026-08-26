@@ -15,7 +15,7 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 
 Android나 iOS에서 인앱 결제 기능을 설정하는 방법은 다음 문서를 참고하시기 바랍니다.<br/>
 
-* [Android Purchase Settings](aos-purchase#settings)<br/>
+* [Android Purchase Settings](./aos-purchase/#initialization)<br/>
 * [iOS Purchase Settings](ios-purchase#settings)
 
 <a id="purchase-flow"></a>
@@ -463,7 +463,7 @@ public void RequestActivatedPurchasesSample(bool allStores)
 > <font color="red">[주의]</font><br/>
 >
 > * 아래 가이드에 따라 구독 이벤트를 설정해야 구독 상태 코드가 정상적으로 반환됩니다.
->     * [Game > Gamebase > 스토어 콘솔 가이드 > Google 콘솔 가이드 > Google 시스템 내 실시간 구독 정보 이벤트 전파 설정](./console-google-guide/#google_1)
+>     * [Game > Gamebase > 스토어 콘솔 가이드 > Google 콘솔 가이드 > Google 시스템 내 실시간 구독 정보 이벤트 전파 설정](./console-google-guide/#set-up-google-notifications-to-receive-real-time-subscription-status)
 >     * 이벤트 설정을 하지 않은 상태에서 구매한 구독 상품의 상태 코드는 항상 0(PURCHASED)이 반환됩니다.
 > * 현재 구독 상품은 Google Play 스토어만 지원합니다.
 
@@ -653,7 +653,7 @@ Supported Platforms
 > <font color="red">[주의]</font><br/>
 >
 > iOS 프로모션 결제를 위해서는 반드시 아래 가이드를 따라 설정하세요.
-> [Game > Gamebase > iOS SDK 사용 가이드 > 결제 > Event by Promotion](./ios-purchase/#event-by-promotion)
+> [Game > Gamebase > iOS SDK 사용 가이드 > 결제 > Event by Promotion](./ios-purchase/#event-by-purchase)
 
 <a id="error-handling"></a>
 ### Error Handling { #error-handling }

@@ -25,7 +25,7 @@ For more detailed information on each item, see the details below:
 #### (1) Installation URL
 Shortened URL information that can be used to install and promote the app.
 Even if there are multiple stores to which the app is deployed, you can manage them with a single URL.
-See the following link for more information on the operation and maintenance of this app. [Manage installation URL](./oper-app/#installed-url)
+See the following link for more information on the operation and maintenance of this app. [Manage installation URL](#installed-url)
 
 > [Note]
 > When Gamebase is activated, it is automatically created and cannot be changed.
@@ -642,7 +642,7 @@ If you have a Unity build, change **AppDelegate** to **UnityAppController**.
 #### 11. GPGS v2
 
 For Google Play Games Services (GPGS) v2 authentication, you need to obtain a **Web Application Client ID** from Google Cloud Console and enter the Gamebase Callback URL in the Authorised Redirect URI field, the same as how to add Google authentication type.
-[Game > Gamebase > Console User Guide > Apps > App > Authentication Information > 2. Google](./oper-app/#2-google)
+[Game > Gamebase > Console User Guide > Apps > App > Authentication Information > 2. Google](#2-google)
 
 **Input Field**
 
@@ -650,7 +650,7 @@ For Google Play Games Services (GPGS) v2 authentication, you need to obtain a **
 - Secret Key: {Google Web Application Client secret}
 
 ##### Android
-* [Gamebase > Android SDK User Guide > Get Started > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#gpgs-v2-idp)
+* [Gamebase > Android SDK User Guide > Get Started > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#androidmanifestxml-gpgs-idp)
 
 <a id="app-authentication-information-steam"></a>
 #### 12. Steam

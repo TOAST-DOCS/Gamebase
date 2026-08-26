@@ -3,7 +3,7 @@
 <a id="game-gamebase-store-console-guide-apple-console-guide"></a>
 ## Game > Gamebase > 스토어 콘솔 가이드 > Apple 콘솔 가이드 { #game-gamebase-store-console-guide-apple-console-guide }
 
-> 본 문서는 App Store로 출시된 앱의 정보를 [Gamebase](https://docs.nhncloud.com/ko/Game/Gamebase/ko/Overview/) 콘솔에 등록 및 연동시키는 방법을 다룹니다.
+> 본 문서는 App Store로 출시된 앱의 정보를 [Gamebase](./Overview/) 콘솔에 등록 및 연동시키는 방법을 다룹니다.
 > 연동 방법은 **(신)영수증 검증+Notification V2**, **(구)영수증 검증+Notification V1** 두 가지 방식으로 나뉩니다.
 
 <a id="nhn-cloud-sdk-integration-for-ios-versions"></a>

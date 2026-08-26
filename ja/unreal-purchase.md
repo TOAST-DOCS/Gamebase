@@ -11,7 +11,7 @@ Gamebaseは、1つの統合された決済APIを提供し、ゲームから簡�
 
 AndroidまたはiOSでアプリ内決済機能を設定する方法は、次の文書を参照してください。<br/>
 
-* [Android Purchase Settings](aos-purchase#settings)
+* [Android Purchase Settings](./aos-purchase/#initialization)
 * [iOS Purchase Settings](ios-purchase#settings)
 * [Windows Purchase Settings](unreal-started/#windows-settings)
 
@@ -455,7 +455,7 @@ void USample::RequestActivatedPurchases(bool bAllStores)
 > <font color="red">[注意]</font><br/>
 >
 > * 以下のガイドに従って購読イベントを設定すると購読ステータスコードが正常に返されます。
->     * [Game > Gamebase > ストアコンソールガイド > Googleコンソールガイド > Googleシステム内リアルタイム購読情報イベント配信設定](./console-google-guide/#google_1)
+>     * [Game > Gamebase > ストアコンソールガイド > Googleコンソールガイド > Googleシステム内リアルタイム購読情報イベント配信設定](./console-google-guide/#set-up-google-notifications-to-receive-real-time-subscription-status)
 >     * イベント設定を行っていない状態で購入したサブスクリプション商品のステータスコードは常に0(PURCHASED)が返されます。
 > * 現在サブスクリプション商品はGoogle Playストアのみサポートします。
 
@@ -610,7 +610,7 @@ Supported Platforms
 | PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN Cloud IAPライブラリエラーです。<br/>詳細エラーを確認してください。 |
 | PURCHASE_UNKNOWN_ERROR                    | 4999       | 定義されていない購入エラーです。<br>全てのログを[サポート](https://toast.com/support/inquiry)へご送付ください。迅速に対応いたします。
 * エラーコードの一覧は、次の文書を参照してください。
-    * [エラーコード](./Error-code/#client-sdk)
+    * [エラーコード](./error-code/#client-sdk)
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 

@@ -288,7 +288,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 | AuthProviderCredentialConstants.GAMEBASE_ACCESS_TOKEN | IdP認証情報ではなくGamebase Access Tokenでログインを行いたい場合に使用 |  |
 | AuthProviderCredentialConstants.IGNORE_ALREADY_LOGGED_IN | Gamebaseログイン状態からログアウトを行わずに別のアカウントへのログイン試行を許可する | **boolean** |
 | AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | API呼び出しが終了するまでローディングアニメーションを表示 | **boolean**<br>**default**: true | **boolean**: true |
-| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Lineサービス提供地域設定 | [Login with IdP参考](./aos-authentication/#login-with-idp) |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Lineサービス提供地域設定 | [Login with IdP参考](#login-with-idp) |
 
 > [参考]
 >
@@ -550,7 +550,7 @@ private static void onWithdraw(final Activity activity) {
 | keyname                                  | a use                                    | 値種類                                   |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | API呼び出しが終了するまでローディングアニメーションを表示 | **boolean**<br>**default**: true | **boolean**: true |
-| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | LINEサービス提供地域設定 | [Login with IdP参考](./aos-authentication/#login-with-idp) |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | LINEサービス提供地域設定 | [Login with IdP参考](#login-with-idp) |
 
 
 
@@ -634,7 +634,7 @@ private static void addMappingForFacebook(final Activity activity) {
 | AuthProviderCredentialConstants.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)の設定<br/>Google認証の場合は使用しない  |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Googleログイン後に取得できるOTAC(one time authorization code)の入力 |                                          |
 | AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | API呼び出しが終了するまでローディングアニメーションを表示 | **boolean**<br>**default**: true | **boolean**: true |
-| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | LINEサービス提供地域設定 | [Login with IdP参考](./aos-authentication/#login-with-idp) |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | LINEサービス提供地域設定 | [Login with IdP参考](#login-with-idp) |
 
 > [参考]
 >

@@ -654,7 +654,7 @@
 * (Android) loginForLastLoggedInProvider 호출 중에 로딩 애니메이션을 숨기는 옵션을 지정할 수 있는 신규 API가 추가되었습니다.
     * Gamebase.LoginForLastLoggedInProvider(Dictionary<string, object> additionalInfo, GamebaseCallback.GamebaseDelegate<GamebaseResponse.Auth.AuthToken> callback);
     * API 호출 방법은 다음 가이드 문서를 참고하시기 바랍니다.
-        * [Game > Gamebase > Unity SDK 사용 가이드 > 인증 > Login > Login Flow > Login as the Latest Login IdP](./unity-authentication/#login-as-the-latest-login-idp)
+        * [Game > Gamebase > Unity SDK 사용 가이드 > 인증 > Login > Login Flow > Login as the Latest Login IdP](./unity-authentication/#login-with-latest-login-idp)
 
 <a id="540-2023-08-29-bug-fixes"></a>
 #### 버그 수정

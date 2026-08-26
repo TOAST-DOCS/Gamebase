@@ -106,9 +106,9 @@ Gamebase에서는 NHN Cloud Push 서비스를 사용해 푸시 알림을 발송�
 > 대부분은 사용자의 푸시 토큰을 등록하지 않은 경우입니다. 사용자의 푸시 토큰을 등록했는지 확인해주세요.
 > 플랫폼에서 푸시 토큰을 등록하는 방법은 다음 문서를 참고하시기 바랍니다.
 >
-> - [Android > Register Push](./aos-push/#2-register-push)
-> - [iOS > Register Push](./ios-push/#2-register-push)
-> - [Unity > Register Push](./unity-push/#2-register-push)
+> - [Android > Register Push](./aos-push/#register-push)
+> - [iOS > Register Push](./ios-push/#register-push)
+> - [Unity > Register Push](./unity-push/#register-push)
 
 <a id="register-push-7-message-text-color-only-android"></a>
 #### (7) 메시지 글자색(Android에 한함)

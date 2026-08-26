@@ -93,7 +93,7 @@ If there's a value on the list of unconsumed purchases, proceed with the Consume
 ![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
 
 * There are cases where the store purchase has been made successfully but the process was not properly completed due to errors.
-* Call **requestItemListOfNotConsumedWithCompletion:** to run reprocessing and proceed with the [Consume Flow](./ios-purchase/#consume-flow) for any unprovided items.
+* Call **requestItemListOfNotConsumedWithCompletion:** to run reprocessing and proceed with the [Consume Flow](#consume-flow) for any unprovided items.
 * It is recommended to call reprocessing at the following times:
     * After login is completed
     * Before making a purchase

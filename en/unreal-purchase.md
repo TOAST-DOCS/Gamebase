@@ -11,7 +11,7 @@ The unified purchase API of Gamebase supports for easy integration of in-app pur
 
 Regarding how to set in-app purchases on Android or iOS, read the following documents: <br/>
 
-* [Android Purchase Settings](aos-purchase#settings)
+* [Android Purchase Settings](./aos-purchase/#initialization)
 * [iOS Purchase Settings](ios-purchase#settings)
 * [Windows Purchase Settings](unreal-started/#windows-settings)
 

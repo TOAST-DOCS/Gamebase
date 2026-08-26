@@ -221,7 +221,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo, kakaogame |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set authentication information (access token) received after login IdP |                   | 
 | kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname | Allow login attempts using other accounts while logged into Gamebase without logging out  | **BOOL** |      
-|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | One of the LINE service regions to log in  | [See Login with IdP ](./ios-authentication/#login-with-idp)|                                  
+|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | One of the LINE service regions to log in  | [See Login with IdP ](#login-with-idp)|                                  
 
 
 > [Note]
@@ -416,7 +416,7 @@ Try mapping to another IdP while logged-in to a specific IdP.<br/>
 
 | Keyname                                  | Usage                        | Value Type                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | A region to perform login among LINE service regions  | [See Login with IdP](./ios-authentication/#login-with-idp)|
+|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | A region to perform login among LINE service regions  | [See Login with IdP](#login-with-idp)|
 
 **API**
 

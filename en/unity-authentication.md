@@ -384,7 +384,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 | GamebaseAuthProviderCredential.GAMEBASE_ACCESS_TOKEN | Used when logging in with Gamebase Access Token instead of IdP authentication information |  |
 | GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN | While logged in to Gamebase, allow login attempts with other account without logging out | **bool** |
 | GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | Display the loading animation until the end of the API call<br>**Only for Android** | **bool**<br>**default**: true |
-| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | Set LINE Service Region | [See Login with IdP](./unity-authentication/#login-with-idp) |
+| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | Set LINE Service Region | [See Login with IdP](#login-with-idp) |
 | GamebaseAuthProviderCredential.REDIRECT_URI | Add the redirect_uri registered in **Google Cloud Console > Authorized Redirect URI**<br>**Standalone default**: http://localhost:8080/<br>**WebGL default**: http://localhost/<br/>**Limited to Google sign-in on standalone and WebGL platforms** |  |
 
 > [Note]
@@ -625,7 +625,7 @@ Mapping simply adds IdP integration.
 | keyname                                  | a use                                    | Value Type                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | Display the loading animation until the end of the API call<br>**Only for Android**<br>**Only for Android** | **bool**<br>**default**: true |
-| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | Set LINE service region | [See Login with IdP](./unity-authentication/#login-with-idp) |
+| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | Set LINE service region | [See Login with IdP](#login-with-idp) |
 
 **API**
 
@@ -671,7 +671,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | Set authentication information (access token) received after login IdP |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Enter One Time Authorization Code (OTAC) which can be obtained after Google login. |                                          |
 | GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | Display the loading animation until the end of the API call<br>**Only for Android** | **bool**<br>**default**: true |
-| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | Set LINE service region | [See Login with IdP](./unity-authentication/#login-with-idp) |
+| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | Set LINE service region | [See Login with IdP](#login-with-idp) |
 
 > [Note]
 >

@@ -15,7 +15,7 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
 
 For Android and iOS IAP setting, refer to the below documents.<br/>
 
-* [Android Purchase Settings](aos-purchase#settings)<br/>
+* [Android Purchase Settings](./aos-purchase/#initialization)<br/>
 * [iOS Purchase Settings](ios-purchase#settings)
 
 <a id="purchase-flow"></a>
@@ -633,7 +633,7 @@ Supported Platforms
 > <font color="red">[Caution]</font><br/>
 >
 > To execute an iOS promotion purchase, make sure to follow the guide for a setup.
-> [Game > Gamebase > User Guide for iOS SDK > Purchase > Event by Promotion](./ios-purchase/#event-by-promotion)
+> [Game > Gamebase > User Guide for iOS SDK > Purchase > Event by Promotion](./ios-purchase/#event-by-purchase)
 
 <a id="error-handling"></a>
 ### Error Handling { #error-handling }

@@ -3,7 +3,7 @@
 <a id="game-gamebase-store-console-guide-steam-console-guide"></a>
 ## Game > Gamebase > ストアコンソールガイド > Steamコンソールガイド { #game-gamebase-store-console-guide-steam-console-guide }
 
-> 本文書は、Steamworksでリリースされたアプリの情報を[Gamebase](https://docs.nhncloud.com/ja/Game/Gamebase/ja/Overview/)コンソールに登録して連動する方法を説明します。
+> 本文書は、Steamworksでリリースされたアプリの情報を[Gamebase](./Overview/)コンソールに登録して連動する方法を説明します。
 > Steamアプリをリリースするための詳細は、[Steamworksガイド文書](https://partner.steamgames.com/doc/home)を参照してください。
 
 
@@ -14,7 +14,7 @@ Steam連動のために以下の3つの情報を正確に入力してくださ�
 
 連動に関する情報は[Steamworks](https://partner.steamgames.com/)で作成します。
 
-その他、本ページで説明しない項目は、 **Game > Gamebase > [コンソール決済ガイド](https://docs.nhncloud.com/ja/Game/Gamebase/ja/oper-purchase/)**を参照してください。
+その他、本ページで説明しない項目は、 **Game > Gamebase > [コンソール決済ガイド](./oper-purchase/)**を参照してください。
 
 
 ![Gamebaseストア設定](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/Steam/ja/steam_register_01_ja_241028.png)

@@ -133,8 +133,8 @@ Gamebase에서 제공되는 론칭 정보는 다음과 같습니다.
 <a id="launching-reference"></a>
 #### Reference
 
-* [Android SDK 사용 가이드 > 초기화 > Launching Status](./aos-initialization/#launching-status)
-* [iOS SDK 사용 가이드 > 초기화 > Launching Status](./ios-initialization/#launching-status)
+* [Android SDK 사용 가이드 > 초기화 > Launching Status](./aos-initialization/#launching-information)
+* [iOS SDK 사용 가이드 > 초기화 > Launching Status](./ios-initialization/#launching-information)
 * [Unity SDK 사용 가이드 > 초기화 > Launching Information](./unity-initialization/#launching-information)
 * [Unreal SDK 사용 가이드 > 초기화 > Launching Information](./unreal-initialization/#launching-information)
 * [콘솔 사용 가이드 > 앱](./oper-app): 앱, 클라이언트 상태 및 설치 URL 설정
@@ -218,18 +218,18 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 | Feature               | Description                              | Client                                   | Server                                   | Console                                  |
 | --------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | Analytics                  | 실시간, 매출, 이용자, 밸런싱 지표 제공<br>레벨별, 서버별 지표 제공 | [[Android](./aos-etc/#analytics)] [[iOS](./ios-etc/#analytics)] [[Unity](./unity-etc/#analytics)] |                                          | [[Analytics]](./oper-analytics)  ||
-| Login                 | 게스트, 3rd Party 인증 지원  <br> - [지원되는 IdP](./Overview/#authentication) |  [[Android](./aos-authentication/#login)] [[iOS](./ios-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[토큰 검증](./api-guide/#token-authentication)] <br> [[회원 조회](./api-guide/#get-member)] | [[App] > 인증 정보 설정](./oper-app/#authentication-information) <br> [[Member] > 회원 조회](./oper-member/#member) <br> - 기본 정보, 로그인 이력, 플레이 시간, 결제 이력 등 |
+| Login                 | 게스트, 3rd Party 인증 지원  <br> - [지원되는 IdP](#authentication) |  [[Android](./aos-authentication/#login)] [[iOS](./ios-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[토큰 검증](./api-guide/#token-authentication)] <br> [[회원 조회](./api-guide/#get-member)] | [[App] > 인증 정보 설정](./oper-app/#authentication-information) <br> [[Member] > 회원 조회](./oper-member/#member) <br> - 기본 정보, 로그인 이력, 플레이 시간, 결제 이력 등 |
 | Logout                | 로그아웃                                     | [[Android](./aos-authentication/#logout)]  [[iOS](./ios-authentication/#logout)] [[Unity](./unity-authentication/#logout)] |                                          |                                          |
 | Withdraw              | 게임 탈퇴 <br> -  게임 이용자의 사용자 ID, 매핑 정보 등 모든 정보 삭제 | [[Android](./aos-authentication/#withdraw)] [[iOS](./ios-authentication/#withdraw)] [[Unity](./unity-authentication/#withdraw)] |                                          |                                          |
 | Mapping               | 하나의 사용자 ID에 여러 개의 IdP를 연동하는 기능           | [[Android](./aos-authentication/#mapping)] [[iOS](./ios-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)] |                                          |
-| Purchase(IAP)         | 인앱 결제  | [[Android](./aos-purchase/#purchase)] [[iOS](./ios-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[API](./api-guide/#purchase-iap)] | [[Purchase]](./oper-purchase/#app)<br> [- 아이템 등록](./oper-purchase/#item) <br> [- 결제 정보 조회](./oper-purchase/#transactions) |
-| Push                  | (NHN Cloud 서비스 연동) <br> 푸시 메시지 전송 및 결과 확인 | [[Android](./aos-push/#push)] [[iOS](./ios-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- 실시간, 예약 푸시 발송 |
+| Purchase(IAP)         | 인앱 결제  | [[Android](./aos-purchase/)] [[iOS](./ios-purchase/)] [[Unity](./unity-purchase/)] | [[API](./api-guide/#purchase-iap)] | [[Purchase]](./oper-purchase/#app)<br> [- 아이템 등록](./oper-purchase/#product-register) <br> [- 결제 정보 조회](./oper-purchase/#transactions) |
+| Push                  | (NHN Cloud 서비스 연동) <br> 푸시 메시지 전송 및 결과 확인 | [[Android](./aos-push/)] [[iOS](./ios-push/)] [[Unity](./unity-push/)] |                                          | [[Push]](./oper-push/#push) <br/>- 실시간, 예약 푸시 발송 |
 | Leaderboard           | 실시간 대용량 랭킹 조회 및 등록 |                                          | [[API](./api-guide/#leaderboard)] |                                          |
 | Webview               | SDK에서 기본적인 웹뷰 UI를 제공<br/>시스템 팝업, 토스트(toast) UI 제공 | [[Android](./aos-ui/#webview)] [[iOS](./ios-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
 | [Operator] Maintenance | (운영) 점검 기능                               |                                          | [[점검 여부 확인](./api-guide/#maintenance)] | [[Maintenance]](./oper-operation/#maintenance)<br>- 점검 등록, 점검 해제 |
 | [Operator] Notice      | (운영) 긴급 공지 기능 <br> -  게임 이용자가 앱을 실행할 때 팝업 형태로 공지 확인 가능 |                                          |                                          | [[Notice]](./oper-operation/#notice) <br/>- 공지 등록 |
 | [Operator] Image Notice         | (운영) 이미지 공지 기능 <br> -  게임내 팝업 형태의 이미지 공지 노출 | [[Android](./aos-ui/#imagenotice)] [[iOS](./ios-ui/#imagenotice)] [[Unity](./unity-ui/#imagenotice)] <br/> - 이미지 공지 노출 |                             | [[Image Notice]](./oper-operation/#image-notice) <br/>- 이미지 공지 관리 |
-| [Operator] Ban         | (운영) 게임 이용자의 이용 정지 등록 및 해제 <br> -  게임 이용자의 이용 정지 등록 및 해제 | [[Android](./aos-authentication/#get-banned-user-information)] [[iOS](./ios-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> - 이용 정지 게임 이용자 정보 확인 |    [[게임 이용자의 이용정지 이력조회](./api-guide/#ban-histories)]                                      | [[Ban]](./oper-ban/#ban) <br/>- 이용 정지 등록 및 해제 |
+| [Operator] Ban         | (운영) 게임 이용자의 이용 정지 등록 및 해제 <br> -  게임 이용자의 이용 정지 등록 및 해제 | [[Android](./aos-authentication/#get-banned-user-information)] [[iOS](./ios-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-information)] <br/> - 이용 정지 게임 이용자 정보 확인 |    [[게임 이용자의 이용정지 이력조회](./api-guide/#ban-histories)]                                      | [[Ban]](./oper-ban/#ban) <br/>- 이용 정지 등록 및 해제 |
 | [Operator] Coupon         | (운영) 쿠폰 관리<br>- 발급, 이력 조회 |  |                                      [[쿠폰 유효성 검증 및 쿠폰 상태 변경](./api-guide/#coupon)  | [[Coupon]](./oper-coupon) <br/>- 쿠폰 발급 |
 | [Operator] Customer Service         | (운영) 1:1 문의 접수 및 처리 <br> -  FAQ, 공지사항 관리 | [[Android](./aos-etc/#contact)] [[iOS](./ios-etc/#contact)] [[Unity](./unity-etc/#contact)] <br/> - 고객 센터 웹페이지를 웹뷰로 표시 |                                        | [[Customer Service]](./oper-customer-service) <br/>- 고객 센터 문의 처리<br>- FAQ/공지 관리 |
 
@@ -238,7 +238,7 @@ Gamebase는 기본적으로 게임의 글로벌 오픈을 지원하고 있으며
 ## Console Role { #console-role }
 
 NHN Cloud의 기본적인 멤버 정책과 권한에 대해서는 다음 가이드를 참고하시기 바랍니다.
-* [NHN Cloud > 콘솔 사용 가이드 > 멤버 관리](https://docs.nhncloud.com/ko/nhncloud/ko/console-guide/#_14)
+* [NHN Cloud > 콘솔 사용 가이드 > 멤버 관리](https://docs.nhncloud.com/ko/nhncloud/ko/console-guide/#member-management)
 
 <a id="manage-role"></a>
 ### Manage Role { #manage-role }

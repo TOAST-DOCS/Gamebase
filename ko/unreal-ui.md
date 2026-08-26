@@ -649,4 +649,4 @@ void USample::ShowToast(const FString& Message, EGamebaseToastExposureTime Expos
 | UI\_UNKNOWN\_ERROR | 6999       | 알수 없는 오류입니다(정의되지 않은 오류입니다). |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [오류 코드](./Error-code/#client-sdk)
+    * [오류 코드](./error-code/#client-sdk)

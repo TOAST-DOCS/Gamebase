@@ -380,7 +380,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 | GamebaseAuthProviderCredential.GAMEBASE_ACCESS_TOKEN | IdP認証情報ではなくGamebase Access Tokenでログインを行いたい場合に使用 |  |
 | GamebaseAuthProviderCredential.IGNORE_ALREADY_LOGGED_IN | Gamebaseログイン状態からログアウトを行わずに別のアカウントへのログイン試行を許可する | **bool** |
 | GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API呼び出しが終了するまでローディングアニメーションを表示<br>**Androidのみ** | **bool**<br>**default**: true |
-| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | LINEサービス提供地域設定 | [Login with IdP参考](./unity-authentication/#login-with-idp) |
+| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | LINEサービス提供地域設定 | [Login with IdP参考](#login-with-idp) |
 | GamebaseAuthProviderCredential.REDIRECT_URI | **Google Cloud Console > 承認されたリダイレクションURI**に登録されたredirect_uriを追加<br>**Standalone default**: http://localhost:8080/<br>**WebGL default**: http://localhost/<br/>**Standalone, WebGLプラットフォームでGoogleログイン時に限る** |  |
 
 > [参考]
@@ -621,7 +621,7 @@ Mappingは、 単にIdP連携だけを追加する機能です。
 | keyname                                  | a use                                    | 値種類                                   |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API呼び出しが終了するまでローディングアニメーションを表示<br>**Androidのみ** | **bool**<br>**default**: true |
-| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | LINEサービス提供地域設定 | [Login with IdP参考](./unity-authentication/#login-with-idp) |
+| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | LINEサービス提供地域設定 | [Login with IdP参考](#login-with-idp) |
 
 **API**
 
@@ -667,7 +667,7 @@ public void AddMapping(string providerName)
 | GamebaseAuthProviderCredential.ACCESS_TOKEN | IdPログイン後に取得した認証情報(アクセストークン)設定<br/>Google認証の場合は使用しない |                                |
 | GamebaseAuthProviderCredential.AUTHORIZATION_CODE | Googleログイン後に取得できるOTAC(one time authorization code)を入力 |                                          |
 | GamebaseAuthProviderCredential.SHOW_LOADING_ANIMATION | API呼び出しが終了するまでローディングアニメーションを表示<br>**Androidのみ** | **bool**<br>**default**: true |
-| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | LINEサービス提供地域設定 | [Login with IdP参考](./unity-authentication/#login-with-idp) |
+| GamebaseAuthProviderCredential.LINE_CHANNEL_REGION | LINEサービス提供地域設定 | [Login with IdP参考](#login-with-idp) |
 
 > [TIP]
 >

@@ -50,7 +50,7 @@ Supported Platforms
 1. Gamebase Unreal SDKをダウンロードして、プロジェクトパスに`Plugins`フォルダを作成し、ダウンロードしたSDK内部 **NHNCloud**フォルダを追加します。
 2. Unrealエディタで`Settings > Plugins`ウィンドウを開き、`Project > NHN Cloud > Gamebase Plugin`プラグインを探して有効にします。
 
-* [Download Gamebase Unreal SDK](/Download/#game-gamebase)
+* [Download Gamebase Unreal SDK](https://docs.nhncloud.com/ja/Download/#game-gamebase)
 
 <a id="module-settings"></a>
 ### Module Settings { #module-settings }
@@ -147,7 +147,7 @@ GamesAppID=
 * [ログイン認証タイプ](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type)はPersistentAuth, AccountPortalをサポートします。
     * 以前にログインしてPersistentAuthログイン用のトークンが保存されている場合、そのトークンでログインを試みます。トークンでログインできない場合は、AccountPortalログインを試行し、結果を返します。
 * 詳細については、以下の内容をご確認のうえ、進めてください。
-    * [Game > Gamebase > Unreal SDK使用ガイド > はじめる > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
+    * [Game > Gamebase > Unreal SDK使用ガイド > はじめる > 3rd-Party SDK Provider Settings > Epic Games](#epic-games)
     
 <a id="ios-settings"></a>
 ### iOS Settings { #ios-settings }
@@ -268,7 +268,7 @@ NHN Cloud Log & Crash Searchでクラッシュ分析を行うゲーム開発会�
 * [ログイン認証タイプ](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type)はPersistentAuth, AccountPortalをサポートします。
     * 以前にログインしてPersistentAuthログイン用のトークンが保存されている場合、そのトークンでログインを試みます。トークンでログインできない場合は、AccountPortalログインを試行し、結果を返します。
 * 詳細については、以下の内容をご確認のうえ、進めてください。
-    * [Game > Gamebase > Unreal SDK使用ガイド > はじめる > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
+    * [Game > Gamebase > Unreal SDK使用ガイド > はじめる > 3rd-Party SDK Provider Settings > Epic Games](#epic-games)
     
 <a id="windows-settings"></a>
 ### Windows Settings { #windows-settings }
@@ -305,7 +305,7 @@ NHN Cloud Log & Crash Searchでクラッシュ分析を行うゲーム開発会�
 * [ログイン認証タイプ](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type)はExchangeCode, AccountPortalをサポートします。
     * ランチャーからゲームを実行し、ExchangeCodeを使用できる場合、そのコードでログインを試みます。そのコードでログインできない場合、AccountPortalログインを試行し、結果を返します。
 * 詳細については、以下の内容をご確認のうえ、進めてください。
-    * [Game > Gamebase > Unreal SDK使用ガイド > はじめる > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
+    * [Game > Gamebase > Unreal SDK使用ガイド > はじめる > 3rd-Party SDK Provider Settings > Epic Games](#epic-games)
 
 <a id="windows-settings-steamworks-services"></a>
 #### Steamworksサービス

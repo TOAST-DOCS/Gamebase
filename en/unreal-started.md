@@ -51,7 +51,7 @@ Supported Platforms
 1. Download Unreal Gamebase SDK and create a folder named `Plugins` in the project path and add  **NHN Cloud** Folder in the downloaded SDK.
 2. From the Unreal editor, display the `Settings > Plugins` window, and find and enable `Project > NHN Cloud > Gamebase Plugin`.
 
-* [Download Gamebase Unreal SDK](/Download/#game-gamebase)
+* [Download Gamebase Unreal SDK](https://docs.nhncloud.com/en/Download/#game-gamebase)
 
 <a id="module-settings"></a>
 ### Module Settings { #module-settings }
@@ -146,7 +146,7 @@ GamesAppID=
 * [Login Credential Type](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type) supports PersistentAuth and AccountPortal.
     * If a token for PersistentAuth sign-in was saved from a previous sign-in, it tries to sign in with that token. If it can't sign in with that token, it tries to sign in to AccountPortal and passes the result.
 * Refer to the details below.
-    * [Game > Gamebase > Unreal SDK User Guide > Getting Started > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
+    * [Game > Gamebase > Unreal SDK User Guide > Getting Started > 3rd-Party SDK Provider Settings > Epic Games](#epic-games)
 
 <a id="ios-settings"></a>
 ### iOS Settings { #ios-settings }
@@ -268,7 +268,7 @@ Game developers using the crash analysis of the NHN Cloud Log & Crash Search mus
 * [Login Credential Type](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type) supports PersistentAuth and AccountPortal.
     * If a token for PersistentAuth sign-in was saved from a previous sign-in, it tries to sign in with that token. If it can't sign in with that token, it tries to sign in to AccountPortal and passes the result.
 * Refer to the details below.
-    * [Game > Gamebase > Unreal SDK User Guide > Getting Started > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
+    * [Game > Gamebase > Unreal SDK User Guide > Getting Started > 3rd-Party SDK Provider Settings > Epic Games](#epic-games)
 
 
 <a id="windows-settings"></a>
@@ -308,7 +308,7 @@ Game developers using the crash analysis of the NHN Cloud Log & Crash Search mus
 * [Login Credential Type](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type) supports ExchangeCode and AccountPortal.
     * If an ExchangeCode is available by launching the game in the launcher, it tries to sign in with that code. If it can't sign in with that token, it tries to sign in to AccountPortal and passes the result.
 * Refer to the details below.
-    * [Game > Gamebase > Unreal SDK User Guide > Getting Started > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
+    * [Game > Gamebase > Unreal SDK User Guide > Getting Started > 3rd-Party SDK Provider Settings > Epic Games](#epic-games)
 
 <a id="windows-settings-steamworks-services"></a>
 #### Steamworks Services

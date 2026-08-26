@@ -35,7 +35,7 @@ Gamebase.initialize(activity, configuration, callback);
 <a id="purchase-flow"></a>
 ### Purchase Flow { #purchase-flow }
 
-아이템 구매는 크게 **결제 Flow** 와 **[Consume Flow](./aos-purchase/#consume-flow)**, **[재처리 Flow](./aos-purchase/#retry-transaction-flow)** 로 나누어 볼 수 있습니다.
+아이템 구매는 크게 **결제 Flow** 와 **[Consume Flow](#consume-flow)**, **[재처리 Flow](#retry-transaction-flow)** 로 나누어 볼 수 있습니다.
 **결제 Flow**는 다음과 같은 순서로 구현하시기 바랍니다.
 
 ![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
@@ -75,7 +75,7 @@ Gamebase.initialize(activity, configuration, callback);
 ![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
 
 * 스토어 결제에는 성공했으나 오류가 발생해 정상 종료되지 못하는 경우가 있습니다.
-* **requestItemListOfNotConsumed**를 호출하여 재처리를 동작시켜 미지급된 아이템이 있으면 [Consume Flow](./aos-purchase/#consume-flow) 를 진행하세요.
+* **requestItemListOfNotConsumed**를 호출하여 재처리를 동작시켜 미지급된 아이템이 있으면 [Consume Flow](#consume-flow) 를 진행하세요.
 * 재처리는 다음과 같은 시점에 호출할 것을 권장합니다.
     * 로그인 완료 후.
     * 결제 전.
@@ -456,7 +456,7 @@ Gamebase.Purchase.requestActivatedPurchases(activity, configuration, new Gamebas
 > <font color="red">[주의]</font><br/>
 >
 > * 구독 상태 코드는 아래 가이드를 따라 구독 이벤트 설정을 해야 정상적으로 반환됩니다.
->     * [Game > Gamebase > 스토어 콘솔 가이드 > Google 콘솔 가이드 > Google 시스템 내 실시간 구독 정보 이벤트 전파 설정](./console-google-guide/#google_1)
+>     * [Game > Gamebase > 스토어 콘솔 가이드 > Google 콘솔 가이드 > Google 시스템 내 실시간 구독 정보 이벤트 전파 설정](./console-google-guide/#set-up-google-notifications-to-receive-real-time-subscription-status)
 >     * 이벤트 설정을 하지 않은 상태에서 구매한 구독 상품의 상태 코드는 항상 0(PURCHASED)이 반환됩니다.
 > * 현재 구독 상품은 Google Play 스토어만 지원합니다.
 

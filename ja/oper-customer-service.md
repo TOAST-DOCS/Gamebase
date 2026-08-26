@@ -29,9 +29,9 @@
 ![問い合わせる](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_help_center_02_ja_240105.jpg)
 
 次は、問い合わせを登録する時に入力する項目です。
-登録されたお問い合わせは**[サポート > 顧客お問い合わせ](./oper-customer-service/#inquiry)**コンソールで確認し、返信処理が可能です。
+登録されたお問い合わせは**[サポート > 顧客お問い合わせ](#inquiry)**コンソールで確認し、返信処理が可能です。
 
-1. お問い合わせタイプ：受付お問い合わせタイプを選択します。受付お問い合わせタイプは[サポート > 顧客お問い合わせ](./oper-customer-service/#inquiry)で登録、修正、削除できます。
+1. お問い合わせタイプ：受付お問い合わせタイプを選択します。受付お問い合わせタイプは[サポート > 顧客お問い合わせ](#inquiry)で登録、修正、削除できます。
 2. 返信メール：お問い合わせに関する返信を受け取るメールアドレスを入力します。コンソールでお問い合わせ処理を完了すると、入力したメールアドレスへ自動的にメールを送信します。
 3. 名前(ニックネーム)：ゲームで使用するニックネームを入力します。最大10文字まで入力できます。
 ゲームニックネームを追加情報に設定してサポートページを開くと、ユーザーが入力しなくても自動的にニックネームが入力されます。
@@ -41,7 +41,7 @@
 
 > [参考] 
 > 受付お問い合わせタイプを選択した時、そのお問い合わせタイプにテンプレートが設定されている場合、お問い合わせ内容に自動的にテンプレート内容が入力されます。
-> テンプレート設定は[サポート > 顧客お問い合わせ > お問い合わせタイプ管理](./oper-customer-service/#inquiry)で行うことができます。
+> テンプレート設定は[サポート > 顧客お問い合わせ > お問い合わせタイプ管理](#inquiry)で行うことができます。
 
 <a id="main-2-my-inquiries"></a>
 #### (2)お問い合わせ履歴
@@ -59,13 +59,13 @@
 #### (3)よくある質問
 
 FAQでは、カテゴリー質問および、よくある質問などを確認できます。リストには最大12個が表示されます。
-内容を自由に検索したり、カテゴリーボタンを押して[サポート > FAQ](./oper-customer-service/#faq)に登録されたFAQ内容を確認できます。
+内容を自由に検索したり、カテゴリーボタンを押して[サポート > FAQ](#faq)に登録されたFAQ内容を確認できます。
 ![FAQ](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_help_center_05_ja_240105.jpg)
 
 1)確認したい検索ワードを入力して検索ワードが含まれたFAQを確認できます。
 2)よくある質問に登録された質問を確認できます。
 3) FAQの登録時に設定した**FAQタイプ管理**ごとにFAQを確認できます。
-4) FAQカテゴリーは[Gamebase Console > サポート >  FAQタイプ管理](./oper-customer-service/#search-faq)で追加または削除できます。
+4) FAQカテゴリーは[Gamebase Console > サポート >  FAQタイプ管理](#search-faq)で追加または削除できます。
 
 <a id="main-4-notices"></a>
 #### (4)告知事項

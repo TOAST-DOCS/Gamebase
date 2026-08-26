@@ -317,7 +317,7 @@ IdPで提供するSDKを使用して、ゲームで直接認証した後、発�
 | GamebaseAuthProviderCredential::AccessToken | IdPログイン後に取得した認証情報(Access Token)設定<br/>Google認証時には使用しない |  
 | GamebaseAuthProviderCredential::AuthorizationCode | Googleログイン後に取得した認証情報(Authorization Code)設定 |                                          |
 | GamebaseAuthProviderCredential::GamebaseAccessToken | IdP認証情報ではなくGamebase Access Tokenでログインを行いたい場合に使用 |  |
-| GamebaseAuthProviderCredential::LineChannelRegion | Lineサービス提供地域設定 | [Login with IdP参照](./unreal-authentication/#login-with-idp) |
+| GamebaseAuthProviderCredential::LineChannelRegion | Lineサービス提供地域設定 | [Login with IdP参照](#login-with-idp) |
 
 > [TIP]
 >
@@ -1368,7 +1368,7 @@ void USample::Login()
 | Auth(Unknown) | AUTH_UNKNOWN_ERROR | 3999 | 不明なエラーです。(定義されていないエラーです。) |
 
 * エラーコードの一覧は、次の文書を参照してください。
-    * [エラーコード](./Error-code/#client-sdk)
+    * [エラーコード](./error-code/#client-sdk)
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 

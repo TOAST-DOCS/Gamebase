@@ -377,4 +377,4 @@ void USample::GetLaunchingInformations()
 | NOT\_SUPPORTED        | 10         | サポートしない機能です。         |
 
 * エラーコードの一覧は、次の文書を参照してください。
-    * [エラーコード](./Error-code/#client-sdk)
+    * [エラーコード](./error-code/#client-sdk)
