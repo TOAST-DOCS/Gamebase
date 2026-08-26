@@ -912,7 +912,7 @@ Gamebase provides **Wrapping** to Server API of NHN Cloud IAP. With Wrapping, NH
 
 **For more information of the API, click the following link.**
 
-[IAP Guide](https://docs.nhncloud.com/en/Mobile%20Service/IAP/en/api-guide-for-toast-sdk/)
+[IAP Guide](/Mobile%20Service/IAP/en/api-guide-for-toast-sdk/)
 
 ##### Example of API Call
 
@@ -947,7 +947,7 @@ Gamebase provides Wrapping to server API of NHN Cloud Leaderboard. With Wrapping
 **For more information of the API, click the following link.**
 
 
-[Leaderboard Guide](https://docs.nhncloud.com/en/Game/Leaderboard/en/api-guide/)
+[Leaderboard Guide](/Game/Leaderboard/en/api-guide/)
 
 ##### Example of API Call
 

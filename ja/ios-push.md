@@ -24,7 +24,7 @@
 
 <a id="settings-implementing-notification-service-extension"></a>
 #### Notification Service Extension実装
-* 受信指標収集、通知音設定などを行うには[NHN Cloud Pushガイド](https://docs.nhncloud.com/ja/nhncloud-sdk/ja/push-ios/#notification-service-extension)を参考にしてアプリケーションに**Notification Service Extension**を実装する必要があります。
+* 受信指標収集、通知音設定などを行うには[NHN Cloud Pushガイド](/nhncloud-sdk/ja/push-ios/#notification-service-extension)を参考にしてアプリケーションに**Notification Service Extension**を実装する必要があります。
 
 
 <a id="settings-setting-up-xcode-project"></a>

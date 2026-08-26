@@ -158,4 +158,4 @@ void USample::SetLoggerUserField()
 * Windows
     * To interpret crashes that occur in your SDK in Log & Crash Search, you need to upload a symbol file to the console
     * During the build process, a .sym file and a .zip file containing the compressed .sym file are generated in the project's binary output path.
-    * Check out the [Log & Crash Search console guide](https://docs.nhncloud.com/en/Data%20&%20Analytics/Log%20&%20Crash%20Search/en/console-guide/#symbol-file) to upload.
+    * Check out the [Log & Crash Search console guide](/Data%20&%20Analytics/Log%20&%20Crash%20Search/en/console-guide/#symbol-file) to upload.

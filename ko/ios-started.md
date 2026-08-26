@@ -33,7 +33,7 @@ Gamebase는 아래와 같은 방법으로 설정이 가능합니다.
 <a id="download"></a>
 ### Download { #download }
 
-* [Download Gamebase iOS SDK](https://docs.nhncloud.com/ko/Download/#game-gamebase)
+* [Download Gamebase iOS SDK](/Download/#game-gamebase)
 
 Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
 또한 각 IdP의 인증을 위한 SDK 파일들을 다운로드해야 합니다. 해당 IdP의 로그인을 사용할 때만 포함하면 됩니다.<br/>

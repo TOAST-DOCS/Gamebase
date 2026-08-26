@@ -700,4 +700,4 @@ else
 ```
 
 * NHN Cloud IAPのエラーコードは、次のドキュメントをご参考ください。
-    * [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud IAP > Unity > エラーコード](https://docs.nhncloud.com/ja/nhncloud-sdk/ja/iap-unity/#_19)
+    * [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud IAP > Unity > エラーコード](/nhncloud-sdk/ja/iap-unity/#_19)

@@ -939,7 +939,7 @@ Gamebaseは、NHN Cloud IAPサービスのサーバーAPIに対して**Wrapping*
 **該当するAPIに対する詳細説明は、次のリンクをご参考ください。**
 
 <br>
-[Mobile Service > IAP > APIガイド](https://docs.nhncloud.com/ja/Mobile%20Service/IAP/ja/api-guide-for-toast-sdk/)
+[Mobile Service > IAP > APIガイド](/Mobile%20Service/IAP/ja/api-guide-for-toast-sdk/)
 
 <br>
 
@@ -977,7 +977,7 @@ Gamebaseは、NHN Cloud LeaderboardサービスのサーバーAPIに対して**W
 **該当するAPIに対する詳細説明は、次のリンクをご参考ください。**
 
 <br>
-[Game > Leaderboard > APIガイド](https://docs.nhncloud.com/ja/Game/Leaderboard/ja/api-guide/)
+[Game > Leaderboard > APIガイド](/Game/Leaderboard/ja/api-guide/)
 
 ##### API呼び出し例
 

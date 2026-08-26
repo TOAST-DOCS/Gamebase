@@ -2565,7 +2565,7 @@ Gamebaseは、NHN Cloud LeaderboardサービスのサーバーAPIに対して**W
 Gamebase Wrapping APIとマッピングされたLeaderboard APIのスペックは、以下のガイドを参考にしてください。
 Leaderboard Appkeyを設定しないで、Gamebase AppIdおよびSecretKeyを利用してGamebase Wrapping Leaderboard APIを呼び出せます。
 
-[Leaderboard APIガイド](https://docs.nhncloud.com/ja/Game/Leaderboard/ja/api-guide/)
+[Leaderboard APIガイド](/Game/Leaderboard/ja/api-guide/)
 
 <br/>
 
@@ -2633,7 +2633,7 @@ Push Appkeyの設定を行わずに、Gamebase AppIdおよびSecretKeyを利用�
 > APIを介してプッシュメッセージを送信した場合、送信履歴はGamebase Consoleの**プッシュ > 送信履歴**で確認できません。
 > **プッシュ > 設定 > 送信履歴保存**メニューで**Log & Crash**設定から確認できます。
 
-[Push Guide](https://docs.nhncloud.com/ja/Notification/Push/ja/api-guide/)
+[Push Guide](/Notification/Push/ja/api-guide/)
 
 <br/>
 

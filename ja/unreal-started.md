@@ -50,7 +50,7 @@ Supported Platforms
 1. Gamebase Unreal SDKをダウンロードして、プロジェクトパスに`Plugins`フォルダを作成し、ダウンロードしたSDK内部 **NHNCloud**フォルダを追加します。
 2. Unrealエディタで`Settings > Plugins`ウィンドウを開き、`Project > NHN Cloud > Gamebase Plugin`プラグインを探して有効にします。
 
-* [Download Gamebase Unreal SDK](https://docs.nhncloud.com/ja/Download/#game-gamebase)
+* [Download Gamebase Unreal SDK](/Download/#game-gamebase)
 
 <a id="module-settings"></a>
 ### Module Settings { #module-settings }
@@ -240,7 +240,7 @@ bEnableSignInWithAppleSupport=True
 次のようなイシューによりRich Push Notification機能を使用できません。
 
 * Unrealはプロジェクトに[Notification Service Extension](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension?language=objc)を追加できる方法を提供しません。
-    * [NHN Cloud Push Notification Service Extension作成](https://docs.nhncloud.com/ja/nhncloud-sdk/ja/push-ios/#notification-service-extension)
+    * [NHN Cloud Push Notification Service Extension作成](/nhncloud-sdk/ja/push-ios/#notification-service-extension)
 
 <a id="ios-settings-error-in-unreal-builds-due-to-warning-messages-of-ios-sdk"></a>
 #### iOS SDKのWarningメッセージによるUnrealビルドエラー

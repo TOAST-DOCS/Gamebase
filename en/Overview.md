@@ -239,7 +239,7 @@ The following shows the service structure of Gamebase with simple description
 ## Console Role { #console-role }
 
 As for the standard member policy and permission for NHN Cloud, see the following guide.
-* [NHN Cloud > Console User Guide > Manage Members](https://docs.nhncloud.com/en/nhncloud/en/console-guide/#manage-members)
+* [NHN Cloud > Console User Guide > Manage Members](/nhncloud/en/console-guide/#manage-members)
 
 <a id="manage-role"></a>
 ### Manage Role { #manage-role }

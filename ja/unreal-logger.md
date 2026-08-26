@@ -156,4 +156,4 @@ void USample::SetLoggerUserField()
 * Windows
     * Log & Crash SearchでSDKで発生したクラッシュを解析するには、シンボルファイルをコンソールにアップロードする必要があります。
     * ビルド時、プロジェクトのバイナリ作成パスに .symファイルと該当ファイルを圧縮した .zipファイル作成されます。
-    * [Log & Crash Searchコンソールガイド](https://docs.nhncloud.com/ko/Data%20&%20Analytics/Log%20&%20Crash%20Search/ko/console-guide/#_21)を確認してアップロードします。
+    * [Log & Crash Searchコンソールガイド](/Data%20&%20Analytics/Log%20&%20Crash%20Search/ko/console-guide/#_21)を確認してアップロードします。

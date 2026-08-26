@@ -400,7 +400,7 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, configuration, new Game
 現在のユーザーID基準で有効になっている定期購入リストを照会します。
 決済が完了した定期購入商品(自動更新型定期購入、自動更新型消費性定期購入商品)は、有効期限が切れる前まで照会できます。
 購読ライフサイクル処理は、次の文書をご覧ください。
-[NHN Cloud > SDK使用ガイド > IAP > Android > Google Play Store購読(定期的決済)機能 > 購読ライフサイクル処理](https://docs.nhncloud.com/ja/nhncloud-sdk/ja/iap-android/#_28)
+[NHN Cloud > SDK使用ガイド > IAP > Android > Google Play Store購読(定期的決済)機能 > 購読ライフサイクル処理](/nhncloud-sdk/ja/iap-android/#_28)
 
 > <font color="red">[注意]</font><br/>
 >
@@ -450,7 +450,7 @@ Gamebase.Purchase.requestActivatedPurchases(activity, configuration, new Gamebas
 決済が完了した購読商品(自動更新型購読、自動更新型消費性購読商品)は、期限が切れる前まで継続して照会できます。
 **PurchasableConfiguration.setIncludeExpiredSubscriptions(true)**APIで、有効期限が切れた購読商品の状態も照会できます。
 購読ステータスコードは、次の文書を参照してください。
-[NHN Cloud > SDK使用ガイド > IAP > Android > NHN Cloud IAP Class Reference > IapSubscriptionStatus.StatusCode](https://docs.nhncloud.com/ja/nhncloud-sdk/ja/iap-android/#iapsubscriptionstatusstatuscode)
+[NHN Cloud > SDK使用ガイド > IAP > Android > NHN Cloud IAP Class Reference > IapSubscriptionStatus.StatusCode](/nhncloud-sdk/ja/iap-android/#iapsubscriptionstatusstatuscode)
 
 > <font color="red">[注意]</font><br/>
 >
@@ -677,4 +677,4 @@ Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataC
 ```
 
 * NHN Cloud IAP SDKのエラーコードは、次のドキュメントをご参考ください。
-    * [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud IAP > Android > エラーコード](https://docs.nhncloud.com/ja/nhncloud-sdk/ja/iap-android/#_33)
+    * [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud IAP > Android > エラーコード](/nhncloud-sdk/ja/iap-android/#_33)
