@@ -18,7 +18,7 @@ We use the Google site below to get the information for the integration.
 <a id="enter-basic-information"></a>
 ## Enter Basic Information { #enter-basic-information }
 
-![Store Information Registration](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/en/260202_en_01.png)
+![Store Information Registration](../static/images/google_store/google-store-info-supervisor-en.png)
 
 
 <a id="store-app-id"></a>
@@ -66,7 +66,7 @@ We use the Google site below to get the information for the integration.
 - In order for the service account to access the app, you must grant the appropriate permissions.
 
 
-![Store Information Registration](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/en/260202_en_04.png)
+![Store Information Registration](../static/images/google_store/google-store-info-access-type-en.png)
 
 
 <a id="set-up-google-cloud-project"></a>
@@ -257,7 +257,7 @@ You can issue service accounts in Google Cloud IAM to allow non-human users to a
 - When copying, use a text editor like notepad to copy the entire content.
 
 
-![Store Information Registration](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/en/260202_en_22.png)
+![Store Information Registration](../static/images/google_store/google-store-info-service-account-en.png)
 
 
 <a id="set-up-google-notifications-to-receive-real-time-subscription-status"></a>
@@ -300,3 +300,11 @@ If you sell subscription products on Google Play, you can receive notifications 
 - Under **Google Play Payments**, in **Topic name**, enter the name of the topic that you created earlier.
 
 ![Link a Google Cloud Project](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/en/260202_en_27.png)
+
+
+<a id="google-chargeback-integration"></a>
+## Google Chargeback Integration { #google-chargeback-integration }
+![google Console img](../static/images/google_store/google-store-info-chargeback-en.png)
+
+- Please enter the URL for Google Chargeback integration.
+* For more information, please refer to the [Gamebase API](./api-guide/#google-play-chargeback-callback).

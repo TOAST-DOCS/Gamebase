@@ -3,6 +3,15 @@
 <a id="game-gamebase-release-notes-ios"></a>
 ## Game > Gamebase > 릴리스 노트 > iOS { #game-gamebase-release-notes-ios }
 
+<a id="2-82-1-2026-08-25"></a>
+### 2.82.1 (2026. 08. 25.) { #2-82-1-2026-08-25 }
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.82.1/GamebaseSDK-iOS.zip)
+
+<a id="821-2026-08-25-bug-fixes"></a>
+#### 버그 수정
+* updateTerms에서 크래시가 발생하는 문제를 수정하였습니다.
+* GamebaseEventHandler에서 특정 이벤트가 중복으로 전달되는 문제를 수정하였습니다.
+
 <a id="2-82-0-2026-07-28"></a>
 ### 2.82.0 (2026. 07. 28.) { #2-82-0-2026-07-28 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.82.0/GamebaseSDK-iOS.zip)

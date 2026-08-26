@@ -5,6 +5,15 @@
 <a id="game-gamebase-release-notes-ios"></a>
 ## Game > Gamebase > リリースノート > iOS { #game-gamebase-release-notes-ios }
 
+<a id="2-82-1-2026-08-25"></a>
+### 2.82.1 (2026. 08. 25.) { #2-82-1-2026-08-25 }
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.82.1/GamebaseSDK-iOS.zip)
+
+<a id="821-2026-08-25-bug-fixes"></a>
+#### バグ修正
+* updateTermsでクラッシュが発生する問題を修正しました。
+* GamebaseEventHandlerで特定のイベントが重複して伝達される問題を修正しました。
+
 <a id="2-82-0-2026-07-28"></a>
 ### 2.82.0 (2026. 07. 28.) { #2-82-0-2026-07-28 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.82.0/GamebaseSDK-iOS.zip)
