@@ -1,6 +1,10 @@
-## Game > Gamebase > API v1.3ガイド
+<!-- pre-align:aligned sig=c663b6fda511 -->
 
-## 変更事項
+<a id="game-gamebase-api-v13-guide"></a>
+## Game > Gamebase > API v1.3ガイド { #game-gamebase-api-v13-guide }
+
+<a id="updates"></a>
+## 変更事項 { #updates }
 - IAP(In App Purchase) APIのリクエストパラメータおよびレスポンス結果項目追加および削除
 - `Push Wrapping` API追加
 - Gamebase Access Tokenでログインする時に使用されたIdPのプロフィールおよびトークン情報を取得できる`Get IdP Token and Profiles` API追加
@@ -24,10 +28,12 @@
 - Pushトークン関連 `Push Wrapping` APIの追加
 - Google Chargeback関連APIの追加
 
-## Advance Notice
+<a id="advance-notice"></a>
+## Advance Notice { #advance-notice }
 
 Gamebase Server APIは、RESTful形式で、 次のようなAPIを提供します。サーバーAPIを使用するためには、次のような情報が必要です。
 
+<a id="advance-notice-server-address"></a>
 #### Server Address
 
 APIを呼び出すためのサーバーアドレスは、次の通りです。該当するアドレスは、Gamebase Console画面からでも確認できます。
@@ -35,12 +41,14 @@ APIを呼び出すためのサーバーアドレスは、次の通りです。�
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.3.png)
 
+<a id="advance-notice-appid"></a>
 #### AppId
 
 アプリIDとはNHN CloudプロジェクトのIDのことであり、アプリメニューの画面から確認することができます。
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
+<a id="advance-notice-secretkey"></a>
 #### SecretKey
 
 シークレットキー(secret key)は、APIに対するアクセスを制御する方法で、Gamebase Consoleから確認することができます。シークレットキーは、ServerAPIを呼び出すとき、HTTPのヘッダーに必ず設定する必要があります。
@@ -49,12 +57,15 @@ APIを呼び出すためのサーバーアドレスは、次の通りです。�
 
 ![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.2.png)
 
+<a id="advance-notice-transactionid"></a>
 #### TransactionId
 
 APIを呼び出すサーバーで内部的にAPIリクエストを管理することができる方法としてTransactionId機能を提供します。呼び出すサーバーからHTTPのヘッダーにトランザクションIDを設定してAPIを呼び出すと、Gamebaseのサーバーは、レスポンスHTTP Header及びレスポンス結果のResponse Body Headerに該当するTransactionIdを設定して結果を送ります。
 
-## Common
+<a id="common"></a>
+## Common { #common }
 
+<a id="common-http-header"></a>
 #### HTTP Header
 
 APIを呼び出す際には、HTTP Headerに次の項目を設定する必要があります。
@@ -65,6 +76,7 @@ APIを呼び出す際には、HTTP Headerに次の項目を設定する必要が
 | X-Secret-Key | Required | SecretKey 説明参考 |
 | X-TCGB-Transaction-Id | Optional | TransactionId 説明参考 |
 
+<a id="common-api-response"></a>
 #### API Response
 
 すべてのAPIリクエストに対するレスポンスとして**HTTP 200 OK**を送ります。APIリクエストが成功したかどうかは、Response BodyのHeader項目を参考して判断することができます。
@@ -104,6 +116,7 @@ X-TCGB-Transaction-Id：88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | resultCode | int | レスポンスコード<br>成功すると0、失敗するとエラーコードを返す |
 | resultMessage | String | レスポンスメッセージ |
 
+<a id="common-api-version"></a>
 #### API Version
 
 APIレスポンス結果の特定変数タイプが変更されるとき、APIバージョンが変更されます。すなわち、新規APIが追加されたりレスポンス結果に新規変数が追加されてもAPIバージョンは変更されません。
@@ -114,8 +127,10 @@ APIレスポンス結果の特定変数タイプが変更されるとき、API�
 <br>
 <br>
 
-## Authentication
+<a id="authentication"></a>
+## Authentication { #authentication }
 
+<a id="authentication-token-authentication"></a>
 #### Token Authentication
 
 ログインユーザーに発行されたAccess Tokenが有効かどうか検査します。Access Tokenが正常な場合、該当するユーザーの情報を返します。
@@ -209,6 +224,7 @@ APIレスポンス結果の特定変数タイプが変更されるとき、API�
 [エラーコード](./error-code/#server)
 
 <br/>
+<a id="authentication-get-idp-token-and-profiles"></a>
 #### Get IdP Token and Profiles
 
 クライアントから"Login with IdP"でログインが成功した時に発行されたGamebase Access Tokenです。ログインに使用されたIdPのAccess TokenおよびProfiles情報を照会します。
@@ -287,8 +303,10 @@ APIレスポンス結果の特定変数タイプが変更されるとき、API�
 <br>
 <br>
 
-## Launching
+<a id="launching"></a>
+## Launching { #launching }
 
+<a id="launching-get-simple-launching"></a>
 #### Get Simple Launching
 
 コンソールで設定したサーバーアドレス、インストールURL、現在のメンテナンス状態とメンテナンス時間およびメッセージなど、クライアントアプリ起動時に提供されるLaunching情報を確認できます。
@@ -426,8 +444,10 @@ APIレスポンス結果の特定変数タイプが変更されるとき、API�
 <br>
 <br>
 
-## Member
+<a id="member"></a>
+## Member { #member }
 
+<a id="member-get-member"></a>
 #### Get Member
 
 単一会員の詳細情報を照会します。
@@ -534,6 +554,7 @@ APIレスポンス結果の特定変数タイプが変更されるとき、API�
 
 <br>
 
+<a id="member-get-members"></a>
 #### Get Members
 
 複数の会員情報を簡素化して照会します。
@@ -599,6 +620,7 @@ APIレスポンス結果の特定変数タイプが変更されるとき、API�
 
 <br>
 
+<a id="member-get-idp-information"></a>
 #### Get IdP Information
 
 ユーザーIDにマッピングされたIdP情報を照会します。
@@ -664,6 +686,7 @@ APIレスポンス結果の特定変数タイプが変更されるとき、API�
 
 <br>
 
+<a id="member-get-userid-information-with-auth-key"></a>
 #### Get UserId Information with Auth key
 
 ユーザー認証キーにマッピングされたユーザーIDを照会します。
@@ -726,6 +749,7 @@ APIレスポンス結果の特定変数タイプが変更されるとき、API�
 
 <br>
 
+<a id="member-get-userid-information-with-idp-id"></a>
 #### Get UserId Information with IdP Id
 
 IdP IDでマッピングされたユーザーID情報を照会します。
@@ -785,6 +809,7 @@ Check common requirements.
 
 <br>
 
+<a id="member-ban"></a>
 #### Ban
 
 ユーザーを利用停止状態に変更します。
@@ -861,6 +886,7 @@ Check common requirements.
 
 </br>
 
+<a id="member-ban-histories"></a>
 #### Ban Histories
 
 ユーザー利用停止履歴を照会します。
@@ -953,6 +979,7 @@ Check common requirements.
 
 </br>
 
+<a id="member-get-ban-members"></a>
 #### Get Ban Members
 
 利用停止状態のユーザーを照会します。
@@ -1043,6 +1070,7 @@ Check common requirements.
 
 </br>
 
+<a id="member-ban-release"></a>
 #### Ban Release
 
 ユーザーを利用停止解除状態、すなわち正常状態に変更します。
@@ -1111,6 +1139,7 @@ Check common requirements.
 
 </br>
 
+<a id="member-ban-release-histories"></a>
 #### Ban Release Histories
 
 ユーザー利用停止解除履歴を照会します。
@@ -1209,6 +1238,7 @@ Check common requirements.
 
 <br>
 
+<a id="member-validate-transferaccount"></a>
 #### Validate TransferAccount
 
 ゲストアカウントを移行するために、すでに発行されているIDおよびパスワードの有効性をチェックします。有効なTransferAccountの場合、発行されたuserId情報を返します。
@@ -1284,6 +1314,7 @@ Check common requirements.
 
 <br>
 
+<a id="member-withdraw"></a>
 #### Withdraw
 
 ユーザーアカウントを退会処理します。
@@ -1337,6 +1368,7 @@ Check common requirements.
 
 </br>
 
+<a id="member-withdraw-histories"></a>
 #### Withdraw Histories
 
 特定期間に退会したユーザーを照会します。
@@ -1427,6 +1459,7 @@ Check common requirements.
 
 </br>
 
+<a id="member-siwa-account-webhook"></a>
 #### SIWA Account Webhook
 
 **Sign In with Apple (SIWA)** ユーザーのアカウント状態変更をAppleサーバーから通知を受け取り処理するWebフック APIです。
@@ -1460,8 +1493,10 @@ Check common requirements.
 </br>
 </br>
 
-## Maintenance
+<a id="maintenance"></a>
+## Maintenance { #maintenance }
 
+<a id="maintenance-check-maintenance-set"></a>
 #### Check Maintenance Set
 
 現在、メンテナンスが設定されているかどうかを確認します。
@@ -1532,8 +1567,10 @@ Check common requirements.
 <br>
 <br>
 
-## Coupon
+<a id="coupon"></a>
+## Coupon { #coupon }
 
+<a id="coupon-check-validation-and-consume-coupon"></a>
 #### Check Validation And Consume Coupon
 
 Consoleを通して発行されたクーポンコードに対して、有効性の検証およびクーポン状態の変更を行います。有効なクーポンの場合、消費状態に変更し、レスポンス結果で支給するアイテム情報を返します。
@@ -1601,6 +1638,7 @@ Consoleを通して発行されたクーポンコードに対して、有効性�
 
 <br>
 
+<a id="coupon-get-coupon-information-by-coupon-code"></a>
 #### Get Coupon Information by Coupon Code
 
 入力されたクーポンコードを基に、コンソールに登録された該当クーポンの基本情報を照会します。
@@ -1674,8 +1712,10 @@ Consoleを通して発行されたクーポンコードに対して、有効性�
 <br>
 <br>
 
-## Purchase (IAP)
+<a id="purchase-iap"></a>
+## Purchase (IAP) { #purchase-iap }
 
+<a id="purchase-iap-consume"></a>
 #### Consume
 
 Google Play Store、App Store、ONEStoreなどのストア決済が正常に完了した場合、ユーザーにアイテムを支給し、サーバー内部的に履歴を記録した後、Gmaebaseに決済消費を伝えます。決済1件につき1回のみ決済を消費することができ、決済の状態が正常でない場合は消費されません。
@@ -1769,6 +1809,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 
 <br>
 
+<a id="purchase-iap-list-consumables"></a>
 #### List Consumables
 
 決済が完了したが、まだ消費(Consume)していない未消費決済履歴を照会できます。
@@ -1868,6 +1909,7 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 
 <br>
 
+<a id="purchase-iap-get-payment-transaction"></a>
 #### Get Payment Transaction
 
 クライアントSDKを介して取得した未消費決済履歴が有効かどうかを確認できます。
@@ -1953,7 +1995,8 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 
 <br>
 
-### List Active Subscriptions
+<a id="list-active-subscriptions"></a>
+### List Active Subscriptions { #list-active-subscriptions }
 
 ユーザーが現在定期購入中の決済を照会できます。
 
@@ -2065,7 +2108,8 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 
 <br>
 
-### Cancel Subscriptions
+<a id="cancel-subscriptions"></a>
+### Cancel Subscriptions { #cancel-subscriptions }
 
 購読中の商品について、更新時点以降は更新されなくなり、現在の購読満了まで維持します。
 
@@ -2124,7 +2168,8 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 
 <br>
 
-### Revoke Subscriptions
+<a id="revoke-subscriptions"></a>
+### Revoke Subscriptions { #revoke-subscriptions }
 
 現在購読中の商品についてすぐに購読をキャンセルし、返金を行います。
 
@@ -2183,7 +2228,8 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 
 <br>
 
-### Get Subscriptions Status
+<a id="get-subscriptions-status"></a>
+### Get Subscriptions Status { #get-subscriptions-status }
 
 サブスクリプション商品の現在状態を照会します。
 
@@ -2285,7 +2331,8 @@ Google Play Store、App Store、ONEStoreなどのストア決済が正常に完�
 
 <br>
 
-### Google Play Chargeback Callback
+<a id="google-play-chargeback-callback"></a>
+### Google Play Chargeback Callback { #google-play-chargeback-callback }
 
 Google Playからチャージバック検討リクエストの通知(`PendingRefundReviewNotification`)を受け取ると、その通知をGamebase Consoleに登録されたゲームサーバーのコールバックURLへ送信します。
 
@@ -2349,7 +2396,7 @@ Google Playからチャージバック検討リクエストの通知(`PendingRef
 | pendingRefundNotification.marketExpiryTimeMillis | Long | Required | 意見登録の提出期限<br>- Google Playが通知を最終送信した時点から24時間<br>- Epoch Time(milliseconds) |
 
 > [参考]
-> コールバックで送信された `pendingRefundNotification.accessToken` を使用して [Get Payment Transaction](#get-payment-transaction) APIを呼び出すと、チャージバック対象決済の詳細情報を照会できます。
+> コールバックで送信された `pendingRefundNotification.accessToken` を使用して [Get Payment Transaction](#purchase-iap-get-payment-transaction) APIを呼び出すと、チャージバック対象決済の詳細情報を照会できます。
 
 > [注意]
 > 同一の `refundReviewSeq` のコールバックが重複して送信される場合があります。
@@ -2376,7 +2423,8 @@ Google Playからチャージバック検討リクエストの通知(`PendingRef
 [エラーコード](./error-code/#server)
 <br>
 
-### Google Play Reply Refund Review
+<a id="google-play-reply-refund-review"></a>
+### Google Play Reply Refund Review { #google-play-reply-refund-review }
 
 ゲーム側でチャージバック検討リクエストに対する内部検討を完了した後、このAPIを呼び出して払い戻し意見と購入コンテンツの消費情報を登録します。
 登録された内容は、Google Playに払い戻し検討意見として提出されます。
@@ -2442,7 +2490,7 @@ Google Playからチャージバック検討リクエストの通知(`PendingRef
 | marketAppId | String | Required | マーケットアプリID |
 | paymentSeq | String | Required | IAP決済番号 |
 | paymentId | String | Required | マーケット決済番号 |
-| decision | Enum | Required | [検討意見](#refund-review-decision) |
+| decision | Enum | Required | [検討意見](#google-play-reply-refund-review-refund-review-decision) |
 | sampleContentProvided | Boolean | Required | 購入前のサンプルまたは体験提供の有無 |
 | consumptionPercentage | Integer | Optional | 消費割合<br>- milli-units単位<br>- `0`～`100000`は0～100%を意味 |
 | consumptionEvents | Array[Object] | Optional | 消費イベントリスト |
@@ -2467,6 +2515,7 @@ Google Playからチャージバック検討リクエストの通知(`PendingRef
 }
 ```
 
+<a id="google-play-reply-refund-review-refund-review-decision"></a>
 #### Refund Review Decision
 
 | Value | Description | Google Play Code |
@@ -2482,7 +2531,8 @@ Google Playからチャージバック検討リクエストの通知(`PendingRef
 <br>
 <br>
 
-## Leaderboard
+<a id="leaderboard"></a>
+## Leaderboard { #leaderboard }
 
 Gamebaseは、NHN Cloud LeaderboardサービスのサーバーAPIに対して**Wrapping**機能を提供します。Wrapping機能を使用すれば、ユーザーサーバーにおいて一貫したインターフェースでNHN Cloudサービスを使用することができます。
 
@@ -2491,6 +2541,7 @@ Gamebaseは、NHN Cloud LeaderboardサービスのサーバーAPIに対して**W
 
 <br>
 
+<a id="leaderboard-wrapping-api"></a>
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
 | --- | --- | --- | --- |
@@ -2514,7 +2565,7 @@ Gamebaseは、NHN Cloud LeaderboardサービスのサーバーAPIに対して**W
 Gamebase Wrapping APIとマッピングされたLeaderboard APIのスペックは、以下のガイドを参考にしてください。
 Leaderboard Appkeyを設定しないで、Gamebase AppIdおよびSecretKeyを利用してGamebase Wrapping Leaderboard APIを呼び出せます。
 
-[Leaderboard APIガイド](https://docs.nhncloud.com/ja/Game/Leaderboard/ja/api-guide/)
+[Leaderboard APIガイド](/Game/Leaderboard/ja/api-guide/)
 
 <br/>
 
@@ -2531,7 +2582,8 @@ X-Secret-Key: IgsaAP
 <br/>
 <br/>
 
-## Push
+<a id="push"></a>
+## Push { #push }
 
 Gamebaseは、NHN Cloud PushサービスのサーバーAPIで**Wrapping**機能を提供します。Wrapping機能を使用すると、ユーザーサーバーで一貫したインターフェイスでNHN Cloudサービスを使用できます。
 
@@ -2540,6 +2592,7 @@ Gamebaseは、NHN Cloud PushサービスのサーバーAPIで**Wrapping**機能�
 
 <br>
 
+<a id="push-wrapping-api"></a>
 #### Wrapping API
 |    | API | Method | Wrapping URI | Push URI |
 | --- | --- | --- | --- | --- |
@@ -2580,7 +2633,7 @@ Push Appkeyの設定を行わずに、Gamebase AppIdおよびSecretKeyを利用�
 > APIを介してプッシュメッセージを送信した場合、送信履歴はGamebase Consoleの**プッシュ > 送信履歴**で確認できません。
 > **プッシュ > 設定 > 送信履歴保存**メニューで**Log & Crash**設定から確認できます。
 
-[Push Guide](https://docs.nhncloud.com/ja/Notification/Push/ja/api-guide/)
+[Push Guide](/Notification/Push/ja/api-guide/)
 
 <br/>
 
@@ -2616,9 +2669,11 @@ X-Secret-Key: IgsaAP
 <br/>
 <br/>
 
-## Others
+<a id="others"></a>
+## Others { #others }
 
-### OS Code
+<a id="os-code"></a>
+### OS Code { #os-code }
 
 ユーザー端末のOSに対してGamebase内部で定義したコードです。
 
@@ -2631,7 +2686,8 @@ X-Secret-Key: IgsaAP
 | MACOS | macOS |
 <br/>
 
-### Store Code
+<a id="store-code"></a>
+### Store Code { #store-code }
 
 アプリをインストールしたストアについてGamebase内部で定義したコードです。
 
@@ -2648,7 +2704,8 @@ X-Secret-Key: IgsaAP
 | STEAM | STEAM Store |
 <br/>
 
-### Identity Provider Code
+<a id="identity-provider-code"></a>
+### Identity Provider Code { #identity-provider-code }
 
 ユーザー認証に使用されたIdentity ProviderについてGamebase内部で定義したコードです。
 
@@ -2666,7 +2723,8 @@ X-Secret-Key: IgsaAP
 - weibo
 <br/>
 
-### Member Valid Code
+<a id="member-valid-code"></a>
+### Member Valid Code { #member-valid-code }
 
 ユーザーの現在状態についてGamebase内部で定義したコードです。
 
@@ -2680,7 +2738,8 @@ X-Secret-Key: IgsaAP
 | M | 消失したアカウント |
 <br/>
 
-### Store Reference Status
+<a id="store-reference-status"></a>
+### Store Reference Status { #store-reference-status }
 
 決済システム(ストアのアプリ内決済、外部決済)が提供する決済参照状態
 
@@ -2703,7 +2762,8 @@ X-Secret-Key: IgsaAP
 | | NOT_APPOINTED | 適切な特定状態なし |
 <br/>
 
-### Withdrawal Event Type
+<a id="withdrawal-event-type"></a>
+### Withdrawal Event Type { #withdrawal-event-type }
 
 ユーザー退会がどこで発生したかを示すイベント発生経路です。
 
@@ -2720,7 +2780,8 @@ X-Secret-Key: IgsaAP
 | WAC | 退会猶予のキャンセル |
 <br/>
 
-### Support
+<a id="support"></a>
+### Support { #support }
 
 API呼び出し失敗の原因に対するお問い合わせがある場合、**API呼び出しURL(HTTP bodyがある場合は、bodyと一緒に)とそれに対するレスポンス結果**を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。
 

@@ -1,19 +1,26 @@
-## Game > Gamebase > iOS Developer's Guide > UI
+<!-- pre-align:aligned sig=8711ba179e34 -->
 
-## GameNotice
+<a id="game-gamebase-ios-developers-guide-ui"></a>
+## Game > Gamebase > iOS Developer's Guide > UI { #game-gamebase-ios-developers-guide-ui }
+
+<a id="gamenotice"></a>
+## GameNotice { #gamenotice }
 
 This feature displays registered notices with images on the console.
 
 ![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_001.png) 
 ![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_002.png)
 
-### Open GameNotice
+<a id="open-gamenotice"></a>
+### Open GameNotice { #open-gamenotice }
 
 Show the game notice on the screen.
 
+<a id="open-gamenotice-required-parameter"></a>
 #### Required parameter
 * viewController: The ViewController where the game notice will be displayed.
 
+<a id="open-gamenotice-optional-parameter"></a>
 #### Optional parameter
 * completion: A callback that notifies the user when the game notice is closed.
 
@@ -42,19 +49,23 @@ Show the game notice on the screen.
 }
 ```
 
-## ImageNotice
+<a id="imagenotice"></a>
+## ImageNotice { #imagenotice }
 
 You can pop up a notice to users after registering an image to the console.
 
 ![ImageNotice Example](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/DevelopersGuide/imageNotice-guide-landscape-en_v3.png)
 
-### Show ImageNotices
+<a id="show-imagenotices"></a>
+### Show ImageNotices { #show-imagenotices }
 
 Show the image notice on the screen.
 
+<a id="show-imagenotices-required-parameter"></a>
 #### Required parameter
 * viewController: ViewController where the image notice is displayed.
  
+<a id="show-imagenotices-optional-parameter"></a>
 #### Optional parameter
 * configuration: Can change the image notice settings (e.g. background color) with TCGBImageNoticeConfiguration.
 * closeCompletion: Informs the user with callback when the entire image notice ends.
@@ -98,7 +109,8 @@ Show the image notice on the screen.
 }
 ```
 
-### Custom ImageNotices
+<a id="custom-imagenotices"></a>
+### Custom ImageNotices { #custom-imagenotices }
 
 Pops up a customized image notice on the screen.
 You can use TCGBImageNoticeConfiguration to create a customized image notice.
@@ -127,6 +139,7 @@ You can use TCGBImageNoticeConfiguration to create a customized image notice.
 ```
 
 
+<a id="custom-imagenotices-tcgbimagenoticeconfiguration"></a>
 #### TCGBImageNoticeConfiguration
 
 | Parameter                              | Values                                   | Description        |
@@ -136,7 +149,8 @@ You can use TCGBImageNoticeConfiguration to create a customized image notice.
 | enableAutoCloseByCustomScheme    | YES or NO   | Close all notifications when the custom scheme event occurs, or display next notification<br/>**default**: YES         |
 
 
-### Close ImageNotices
+<a id="close-imagenotices"></a>
+### Close ImageNotices { #close-imagenotices }
 
 You can call the closeImageNotices API to terminate all image notices currently being displayed.
 
@@ -154,7 +168,8 @@ You can call the closeImageNotices API to terminate all image notices currently 
 }
 ```
 
-## Terms
+<a id="terms"></a>
+## Terms { #terms }
 
 Shows the Terms and Conditions specified in the Gamebase Console.
 
@@ -164,7 +179,8 @@ showTermsView API displays the terms and conditions window in WebView.
 If you want to create your own terms and conditions window appropriate for the Game UI, call the queryTerms API to load the terms and conditions set in the Gamebase console.
 If users agree to the terms and conditions, please use the updateTerms API to send the user consent of each item to the Gamebase server.
 
-### showTermsView
+<a id="showtermsview"></a>
+### showTermsView { #showtermsview }
 
 Shows the terms and conditions window on the screen.
 If users agree to the terms and conditions, register the user consent data in the server.
@@ -179,9 +195,11 @@ However, if the Terms and Conditions reconsent requirement has been changed to *
 > * If TCGBPushConfiguration is not nil, call [TCGBPush registerPushWithConfiguration:completion:] **after login**.
 >
 
+<a id="showtermsview-required-parameter"></a>
 #### Required parameter
 * viewController: The terms and conditions window is exposed in ViewController.
  
+<a id="showtermsview-optional-parameter"></a>
 #### Optional parameter
 * configuration: Using TCGBTermsConfiguration, you can change settings such as whether to forcibly display the terms and conditions agreement window.
 * completion: Uses a callback to inform the user when the terms and conditions window closes after agreeing to it. The TCGBDataContainer object which comes as callback can be converted to TCGBPushConfiguration. The converted object can be used in the registerPush API after login.
@@ -252,7 +270,8 @@ However, if the Terms and Conditions reconsent requirement has been changed to *
 | isTermsUIOpened            | BOOL                            | Indicates whether the terms and conditions window was displayed on the screen.          |
 | TCGBPushConfiguration      | TCGBPushConfiguration           | If you added consent to receive push notifications to the terms and conditions, this parameter has information on whether the user agrees to receive push notifications.    |
 
-### queryTerms
+<a id="queryterms"></a>
+### queryTerms { #queryterms }
 
 Gamebase displays the terms and conditions with a simple WebView.
 If you want to create the terms and conditions appropriate for the game UI, call the queryTerms API to download the terms and conditions information set in the Gamebase Console for later use.
@@ -268,6 +287,7 @@ The "optional" terms items will return the user's consent status when queried af
 > * If you do not touch the 'Terms and Conditions settings' in the console, **TCGB_ERROR_UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** error occurs when you call the queryTerms API from the device with the country code that is different from the terms and conditions language.
 >     * If you complete the 'Terms and Conditions settings' in the console or if **TCGB_ERROR_UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** error occurs, please make sure the terms and conditions are not displayed.
 
+<a id="queryterms-required-parameter"></a>
 #### Required parameter
 * viewController: The top-level ViewController.
 * completion: Uses a callback to inform users about the API call result. With the TCGBQueryTermsResult that comes as callback, you can acquire the terms and conditions information set in the console.
@@ -309,6 +329,7 @@ The "optional" terms items will return the user's consent status when queried af
 }
 ```
 
+<a id="queryterms-tcgbquerytermsresult"></a>
 #### TCGBQueryTermsResult
 
 | Parameter            | Values                          | Description         |
@@ -319,6 +340,7 @@ The "optional" terms items will return the user's consent status when queried af
 | contents             | Array< TCGBTermsContentDetail > | Terms and conditions info          |
 
 
+<a id="queryterms-tcgbtermscontentdetail"></a>
 #### TCGBTermsContentDetail
 
 | Parameter            | Values                | Description         |
@@ -333,7 +355,8 @@ The "optional" terms items will return the user's consent status when queried af
 | detailPageUrl        | String                | Full terms and conditions text URL.<br/> Does not require filed if not enabled           |
 
 
-### updateTerms
+<a id="updateterms"></a>
+### updateTerms { #updateterms }
 
 If the UI has been created manually with the terms and conditions info downloaded from the queryTerms API,
 please use the updateTerms API to send the game user's agreement history to the Gamebase server.
@@ -347,10 +370,12 @@ It can be used to terminate the agreement to optional terms and conditions as we
 > Push accept status should be stored by calling the [TCGBPush registerPushWithConfiguration:completion:] API **after login**.
 >
 
+<a id="updateterms-required-parameter"></a>
 #### Required parameter
 * viewController: The top-level ViewController.
 * configuration: Information of optional T&C of users who will be registered on the server.
 
+<a id="updateterms-optional-parameter"></a>
 #### Optional parameter
 
 * completion: Registers the information of optional terms and conditions on the server, and notifies user with a callback.
@@ -395,6 +420,7 @@ It can be used to terminate the agreement to optional terms and conditions as we
 ```
 
 
+<a id="updateterms-tcgbupdatetermsconfiguration"></a>
 #### TCGBUpdateTermsConfiguration
 
 | Parameter            | Mandatory(M) / Optional(O) | Values                    | Description         |
@@ -403,6 +429,7 @@ It can be used to terminate the agreement to optional terms and conditions as we
 | termsSeq             | **M**                      | int                       | KEY for the entire terms and conditions.<br/>The queryTerms API must be called to pass the downloaded value.             |
 | contents             | **M**                      | Array< TCGBTermsContent > | Info on whether user agrees to the optional terms and conditions  |
 
+<a id="updateterms-tcgbtermscontent"></a>
 #### TCGBTermsContent
 
 | Parameter            | Mandatory(M) / Optional(O) | Values             | Description         |
@@ -410,7 +437,8 @@ It can be used to terminate the agreement to optional terms and conditions as we
 | termsContentSeq      | **M**                      | int                | KEY for optional terms and conditions      |
 | agreed               | **M**                      | BOOL               | Info on whether user agrees to optional terms and conditions  |
 
-### isShowingTermsView
+<a id="isshowingtermsview"></a>
+### isShowingTermsView { #isshowingtermsview }
 
 Determines whether the terms and conditions window is currently displayed or not.
 
@@ -427,12 +455,14 @@ Determines whether the terms and conditions window is currently displayed or not
 }
 ```
 
-## WebView
+<a id="webview"></a>
+## WebView { #webview }
 
 Gamebase supports a default WebView.<br/>
 WebView-related resources (images, html, and others) are included to Gamebase.bundle.
 
-### Show WebView
+<a id="show-webview"></a>
+### Show WebView { #show-webview }
 
 Shows a WebView.<br/>
 
@@ -462,6 +492,7 @@ Shows a WebView.<br/>
 
 ![Webview Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
 
+<a id="show-webview-custom-webview"></a>
 #### Custom WebView
 Shows a customized WebView.<br/>Can configure a customzed WebView by using TCGBWebViewConfiguration.
 
@@ -489,6 +520,7 @@ Shows a customized WebView.<br/>Can configure a customzed WebView by using TCGBW
 ```
 
 
+<a id="show-webview-custom-scheme"></a>
 #### Custom Scheme 
 
 Can apply scheme to use specific functions on a webpage of Gamebase Webview or change content.
@@ -507,6 +539,7 @@ Gamebase has specified following schemes.<br/>
 
 
 
+<a id="show-webview-user-custom-scheme"></a>
 #### User Custom Scheme
 
 Can add customized functions by specifying scheme names and blocks in Gamebase.
@@ -538,6 +571,7 @@ Can add customized functions by specifying scheme names and blocks in Gamebase.
 ```
 
 
+<a id="show-webview-tcgbwebviewconfiguration"></a>
 #### TCGBWebViewConfiguration
 
 | Parameter                              | Values                                   | Description        |
@@ -562,7 +596,8 @@ Can add customized functions by specifying scheme names and blocks in Gamebase.
 
 
 
-### Close WebView
+<a id="close-webview"></a>
+### Close WebView { #close-webview }
 Close currently displayed WebView by using the following API.
 
 ```objectivec
@@ -573,7 +608,8 @@ Close currently displayed WebView by using the following API.
 ```
 
 
-## Open External Browser
+<a id="open-external-browser"></a>
+## Open External Browser { #open-external-browser }
 
 Use the following API to open external browsers. The URL sent by parameters must be valid. 
 
@@ -586,10 +622,12 @@ Use the following API to open external browsers. The URL sent by parameters must
 ```
 
 
-## Alert
+<a id="alert"></a>
+## Alert { #alert }
 
 Shows alerts on the system. <br/>
 
+<a id="alert-types-of-alert"></a>
 #### Types of Alert
 1. Provides only one 'OK' button, and its click brings Completion.
 2. Provides only one 'OK' button, which does not provide Completion.
@@ -608,6 +646,7 @@ Shows alerts on the system. <br/>
 }
 ```
 
+<a id="alert-types-of-actionsheet"></a>
 #### Types of ActionSheet
 1. ActionSheet is provided along with the **Cancel** button. 
 2. On **blocks**, user's AlerAction can be registered. 
@@ -636,7 +675,8 @@ Shows alerts on the system. <br/>
 ```
 
 
-## Toast
+<a id="toast"></a>
+## Toast { #toast }
 
 Displays [Android Toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) messages, by using the following API.<br/>
 Simple messages with display time can be set.
@@ -655,7 +695,8 @@ Simple messages with display time can be set.
 ```
 
 
-## Error Handling
+<a id="error-handling"></a>
+## Error Handling { #error-handling }
 
 
 | Error                           | Error Code | Description                 |

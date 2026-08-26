@@ -1,8 +1,12 @@
-## Game > Gamebase > iOS SDK User Guide > Logger
+<!-- pre-align:aligned sig=b37ac9f2e6bc -->
+
+<a id="game-gamebase-ios-sdk-user-guide-logger"></a>
+## Game > Gamebase > iOS SDK User Guide > Logger { #game-gamebase-ios-sdk-user-guide-logger }
 
 This document describes how to use Log & Crash Search API.
 
-### Initialize
+<a id="initialize"></a>
+### Initialize { #initialize }
 Initialize NHN Cloud Logger SDK using the app key issued via Log & Crash Search.
 
 **API**
@@ -24,7 +28,8 @@ Initialize NHN Cloud Logger SDK using the app key issued via Log & Crash Search.
 }
 ```
 
-### Send Logs
+<a id="send-logs"></a>
+### Send Logs { #send-logs }
 
 Sends logs to Log & Crash Server.
 NHN Cloud Logger SDK can send five different levels of logs listed below:
@@ -78,7 +83,8 @@ Log levels are as follows:
 }
 ```
 
-### Set User-Defined Fields
+<a id="set-user-defined-fields"></a>
+### Set User-Defined Fields { #set-user-defined-fields }
 Set the user-defined fields you need. 
 
 With user-defined field setting, set values are delivered to a server along with logs, every time  send logs API is called. 
@@ -98,7 +104,8 @@ With user-defined field setting, set values are delivered to a server along with
 }
 ```
 
-### Further Tasks after Sending Logs
+<a id="further-tasks-after-sending-logs"></a>
+### Further Tasks after Sending Logs { #further-tasks-after-sending-logs }
 
 Additional tasks are available after logs are sent if a delegate is registered.
 

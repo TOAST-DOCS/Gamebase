@@ -1,4 +1,7 @@
-## Game > Gamebase > 콘솔 사용 가이드 > 고객센터
+<!-- pre-align:aligned sig=bf3230130c47 -->
+
+<a id="game-gamebase-console-user-guide-customer-center"></a>
+## Game > Gamebase > 콘솔 사용 가이드 > 고객센터 { #game-gamebase-console-user-guide-customer-center }
 
 게임 운영 중 유저에게 인입된 문의를 처리할 수 있으며 그 외 고객센터 페이지를 통해 제공할 수 있는 공지사항, FAQ 등의 설정을 관리할 수 있습니다.
 문의 처리시에 유저에게 발송될 이메일 설정 및 자주 쓰이는 답변을 템플릿으로 등록하여 활용하실 수도 있습니다.
@@ -6,16 +9,19 @@
 > 이 메뉴를 이용하시려면 앱 - 고객센터 설정에서 Gamebase 제공 고객센터 항목을 선택하셔야 합니다.
 >
 
-## Help Center Web Page 
+<a id="help-center-web-page"></a>
+## Help Center Web Page { #help-center-web-page }
 
 유저에게 노출되는 고객센터 웹페이지에 대해서 설명합니다.
 해당 화면을 통해 유저는 1:1 문의를 등록하고 내 문의 내역 조회가 가능하며, 자주하는 질문 및 공지사항을 확인할 수 있습니다.
 
-### Main 
+<a id="main"></a>
+### Main { #main }
 
 게임에서 Gamebase SDK를 이용하여 고객센터 페이지를 오픈하면 다음과 같은 화면이 유저에게 노출됩니다.
 ![main](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/ko/gamebase_help_center_01_ko_240105.jpg)
 
+<a id="main-1-11-inquiry"></a>
 #### (1) 1:1 문의
 
 **1:1 문의** 버튼을 클릭하면 1:1 문의를 등록하는 화면으로 이동합니다.
@@ -23,9 +29,9 @@
 ![문의하기](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/ko/gamebase_help_center_02_ko_240105.jpg)
 
 다음은 문의 등록 시에 입력하는 항목입니다.
-등록된 문의는 **[고객센터 > 고객문의](./oper-customer-service/#inquiry)** 콘솔에서 확인하고 답변 처리가 가능합니다.
+등록된 문의는 **[고객센터 > 고객문의](#inquiry)** 콘솔에서 확인하고 답변 처리가 가능합니다.
 
-1. 문의 유형: 접수 문의 유형을 선택합니다. 접수 문의 유형은 [고객센터 > 고객문의](./oper-customer-service/#inquiry)에서 등록, 수정, 삭제가 가능합니다. 
+1. 문의 유형: 접수 문의 유형을 선택합니다. 접수 문의 유형은 [고객센터 > 고객문의](#inquiry)에서 등록, 수정, 삭제가 가능합니다. 
 2. 답변 이메일: 문의에 관한 답변을 받을 이메일 주소를 입력합니다. 콘솔에서 문의 처리를 완료하면 입력된 이메일 주소로 자동으로 메일을 발송합니다.
 3. 이름(닉네임): 게임에서 사용하는 닉네임을 입력합니다. 최대 10자까지 입력 가능합니다. 
 게임 닉네임을 추가 정보로 설정하여 고객센터 페이지를 열면 유저가 입력하지 않아도 자동으로 닉네임이 입력됩니다.
@@ -35,8 +41,9 @@
 
 > [참고] 
 > 접수 문의 유형을 선택 시에 해당 문의 유형에 템플릿이 설정되어 있으면, 문의 내용에 자동으로 템플릿 내용이 작성됩니다.
-> 템플릿 설정은 [고객센터 > 고객 문의 > 문의 유형 관리](./oper-customer-service/#inquiry)에서 할 수 있습니다.
+> 템플릿 설정은 [고객센터 > 고객 문의 > 문의 유형 관리](#inquiry)에서 할 수 있습니다.
 
+<a id="main-2-my-inquiries"></a>
 #### (2) 내 문의 내역
 
 로그인을 하고 고객센터 웹페이지에 접근하여야 **내 문의 내역** 버튼이 표시됩니다. 클릭하면 이전에 고객이 문의한 내역을 확인하는 화면으로 이동합니다.
@@ -48,17 +55,19 @@
 > 로그인 하지 않고 문의를 남기면 이메일로만 문의 내역 확인이 가능하며 내 문의 내역에서의 확인 또한 불가능합니다.
 > ![내문의내역_비로그인](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/ko/gamebase_help_center_04_ko_240105.jpg)
 
+<a id="main-3-frequently-asked-questions"></a>
 #### (3) 자주하는 질문
 
 FAQ에서는 카테고리 질문 및 자주하는 질문 등을 확인할 수 있습니다. 리스트에서는 최대 12개가 노출됩니다.
-원하는 내용을 검색하거나 카테고리 버튼을 클릭하여 [고객센터 > FAQ](./oper-customer-service/#faq)에서 등록한 FAQ내용을 확인할 수 있습니다.
+원하는 내용을 검색하거나 카테고리 버튼을 클릭하여 [고객센터 > FAQ](#faq)에서 등록한 FAQ내용을 확인할 수 있습니다.
 ![FAQ](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/ko/gamebase_help_center_05_ko_240105.jpg)
 
 1) 확인하고 싶은 검색어를 입력하여 검색어가 포함된 FAQ를 확인할 수 있습니다.
 2) 자주 하는 질문으로 등록된 질문을 확인할 수 있습니다.
 3) FAQ 등록시 설정한 **FAQ 유형 관리**별로 묶어서 FAQ를 확인할 수 있습니다.
-4) FAQ 카테고리는 [Gamebase Console > 고객센터 >  FAQ 유형관리](./oper-customer-service/#search-faq)를 통해 추가하거나 삭제할 수 있습니다.
+4) FAQ 카테고리는 [Gamebase Console > 고객센터 >  FAQ 유형관리](#search-faq)를 통해 추가하거나 삭제할 수 있습니다.
 
+<a id="main-4-notices"></a>
 #### (4) 공지사항
 **고객센터 > 공지사항**에 등록된 게시물을 확인할 수 있습니다.
 
@@ -66,11 +75,13 @@ FAQ에서는 카테고리 질문 및 자주하는 질문 등을 확인할 수 �
 작성일 내림차순으로 정렬되어 공지사항 게시물이 노출되고 상단 고정으로 지정한 공지는 굵은 폰트로 상단에 우선 노출됩니다. 노출 기간이 지난 게시물은 목록에서 더 이상 표시되지 않습니다. 게시물을 클릭하면 상세 내용을 확인할 수 있습니다.
 ![공지사항](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/ko/gamebase_help_center_06_ko_240105.jpg)
 
-## Inquiry
+<a id="inquiry"></a>
+## Inquiry { #inquiry }
 고객에게 인입된 문의를 처리하거나 조회할 수 있습니다.
 그 외에도 고객이 문의를 등록하고자 할 때 필요한 접수 유형 항목을 설정할 수 있으며 문의가 처리되었을 때 유저에게 발송되는 Push 알람에 대한 설정도 가능합니다.
 
-### Search Inquiry
+<a id="search-inquiry"></a>
+### Search Inquiry { #search-inquiry }
 
 검색 조건에 맞는 고객 문의 내역을 검색합니다.
 
@@ -96,6 +107,7 @@ FAQ에서는 카테고리 질문 및 자주하는 질문 등을 확인할 수 �
     - 해결: 담당자가 답변을 남길 때, 해결로 작성한 상태입니다. 문의가 해결된 상태입니다.
     - 완료: 담당자가 완료 처리 혹은 해결된 문의가 2주 지나면 자동으로 완료 상태가 됩니다.
 
+<a id="search-inquiry-manage-inquiry-type"></a>
 #### 1. 문의 유형 관리
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/ko/gamebase_inquiry_02_ko_240105.jpg)
 
@@ -106,6 +118,7 @@ FAQ에서는 카테고리 질문 및 자주하는 질문 등을 확인할 수 �
 > [참고]
 > 지원 언어 선택 현황은 앱 - 고객센터 설정에서 확인할 수 있습니다.
 
+<a id="search-inquiry-send-reply-settings"></a>
 #### 2. 답변 발송 설정
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/ko/gamebase_inquiry_03_ko_240105.jpg)
 
@@ -116,7 +129,8 @@ FAQ에서는 카테고리 질문 및 자주하는 질문 등을 확인할 수 �
 > 1. 이 기능을 사용하려면 NHN Cloud Push 상품이 먼저 활성화되어 있어야 합니다.
 > 2. 답변발송 설정의 언어선택의 경우 고객센터에서 지원되는 언어와 무관하게 Gamebase에서 지원되는 모든 언어를 등록할 수 있습니다.
 
-### Inquiry details
+<a id="inquiry-details"></a>
+### Inquiry details { #inquiry-details }
 
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/ko/gamebase_inquiry_04_ko_240105.jpg)
 
@@ -134,6 +148,7 @@ FAQ에서는 카테고리 질문 및 자주하는 질문 등을 확인할 수 �
 > 우측 X 버튼을 클릭하여 창을 닫을 수 있으며, 유저 ID를 클릭 시 다시 노출됩니다.
 > 기존 회원 메뉴에서 사용했던 기능과 동일하게 유저정보가 조회되므로 유저 문의대응시 필요한 정보를 한화면에서 편리하게 확인하실 수 있습니다.
 
+<a id="inquiry-details-send-reply-settings"></a>
 #### 1. 답변 발송 설정
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/ko/gamebase_inquiry_03_ko_240105.jpg)
 
@@ -148,11 +163,13 @@ FAQ에서는 카테고리 질문 및 자주하는 질문 등을 확인할 수 �
 > 문의 처리가 완료된 고객 문의를 조회할 경우에는 문의 내역 및 처리 내역을 함께 조회할 수 있으며 처리 당시에 등록한 첨부파일이 있을 경우 해당항목을 클릭하여 다운이 가능합니다.
 
 
-## FAQ
+<a id="faq"></a>
+## FAQ { #faq }
 
 고객센터 페이지에서 제공되는 FAQ 항목에 대한 관리를 진행할 수 있습니다.
 
-### Search FAQ
+<a id="search-faq"></a>
+### Search FAQ { #search-faq }
 
 등록되어 있는 FAQ 항목에 대하여 검색할 수 있습니다.
 
@@ -173,6 +190,7 @@ FAQ에서는 카테고리 질문 및 자주하는 질문 등을 확인할 수 �
 - **수정일**: FAQ가 마지막으로 등록 또는 수정된 날짜 정보를 보여줍니다.
 - **상태**: FAQ가 현재 표시되고 있는지 여부를 보여줍니다. 노출 중 / 비노출 상태가 있습니다.
 
+<a id="search-faq-manage-faq-type"></a>
 #### FAQ 유형 관리
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/ko/gamebase_faq_02_ko_240105.jpg)
 
@@ -182,38 +200,46 @@ FAQ 등록 또는 수정시 선택할 수 있는 유형을 관리할 수 있습�
 > [참고]
 > 지원 언어 선택 현황은 앱 - 고객센터 설정에서 확인할 수 있습니다.
 
-### Register or Update FAQ
+<a id="register-or-update-faq"></a>
+### Register or Update FAQ { #register-or-update-faq }
 FAQ를 등록하거나 또는 기존에 등록된 FAQ정보를 수정할 수 있습니다.
 등록 또는 수정 시 변경할 수 있는 항목은 모두 동일합니다.
 
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/ko/gamebase_faq_03_ko_240105.jpg)
 
+<a id="register-or-update-faq-status"></a>
 #### 1. 상태
 등록 또는 수정하고자 하는 FAQ의 노출 상태를 선택합니다.
 노출 / 비노출 항목이 있으며 고객센터 페이지에서 실제 유저에게 노출할지에 대한 여부를 선택하면 됩니다.
 
+<a id="register-or-update-faq-type"></a>
 #### 2. 유형
 FAQ 유형 관리에서 등록된 유형을 기반으로 등록 또는 수정하고자 하는 FAQ의 유형을 선택합니다.
 
+<a id="register-or-update-faq-frequently-asked-questions"></a>
 #### 3. 자주하는 질문
 고객센터 페이지에서 자주하는 질문란에 해당 질문을 표시할 지에 대한 여부를 체크합니다.
 
+<a id="register-or-update-faq-question"></a>
 #### 4. 질문
 FAQ 질문 내용을 입력합니다.
 > [참고]
 > 앱 - 고객센터에서 설정한 지원 언어들은 모두 입력해야 등록이 가능합니다.
 
+<a id="register-or-update-faq-answer"></a>
 #### 5. 답변
 FAQ 질문에 대한 답변 내용을 입력합니다.
 Text Editor를 통해 원하는 형태로 답변을 입력할 수 있으며 해당형태 그대로 웹페이지에 노출됩니다.
 > [참고]
 > 앱 - 고객센터에서 설정한 지원 언어들은 모두 입력해야 등록이 가능합니다.
 
-## Notice
+<a id="notice"></a>
+## Notice { #notice }
 
 고객센터 페이지에서 제공할 공지사항에 대한 관리를 진행할 수 있습니다.
 
-### Search Notice
+<a id="search-notice"></a>
+### Search Notice { #search-notice }
 
 등록되어 있는 공지사항 목록에 대하여 검색할 수 있습니다.
 
@@ -234,6 +260,7 @@ Text Editor를 통해 원하는 형태로 답변을 입력할 수 있으며 해�
 - **노출 기간**: 해당 공지사항의 노출 기간을 표시합니다.
 - **상태**: 공지사항의 현재 진행여부 보여줍니다. 예정 / 노출 중 / 종료 상태가 있습니다.
 
+<a id="search-notice-manage-header"></a>
 #### 말머리 관리
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/ko/gamebase_notice_02_ko_240105.jpg)
 
@@ -243,45 +270,55 @@ Text Editor를 통해 원하는 형태로 답변을 입력할 수 있으며 해�
 > [참고]
 > 지원 언어 선택 현황은 앱 - 고객센터 설정에서 확인할 수 있습니다.
 
-### Register or Update Notice
+<a id="register-or-update-notice"></a>
+### Register or Update Notice { #register-or-update-notice }
 새로운 공지사항을 등록하거나 기존에 등록된 공지사항 정보를 수정할 수 있습니다.
 등록 또는 수정 시 변경할 수 있는 항목은 모두 동일합니다.
 
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/ko/gamebase_notice_03_ko_240105.jpg)
 
+<a id="register-or-update-notice-date-of-exposure"></a>
 #### 1. 노출일
 공지사항을 노출하고자 하는 기간을 설정합니다.
 
+<a id="register-or-update-notice-display-time"></a>
 #### 2. 표시 시각
 공지사항 내용을 표시할 때 실제 유저에게 보여질 날짜를 선택합니다.
 
+<a id="register-or-update-notice-header"></a>
 #### 3. 말머리
 공지사항의 말머리를 선택합니다.
 
+<a id="register-or-update-notice-pin-to-top"></a>
 #### 4. 상단 고정
 공지사항을 상단에 고정하여 항상 노출될 수 있도록 합니다.
 
+<a id="register-or-update-notice-subject"></a>
 #### 5. 제목
 공지사항의 제목을 입력합니다.
 
+<a id="register-or-update-notice-body"></a>
 #### 6. 내용
 공지사항에 대한 내용을 입력합니다.
 Text Editor를 통해 원하는 형태로 답변을 입력할 수 있으며 해당형태 그대로 웹페이지에 노출됩니다.
 > [참고]
 > 앱 - 고객센터에서 설정한 지원 언어들은 모두 입력해야 등록이 가능합니다.
 
+<a id="register-or-update-notice-attach-file"></a>
 #### 7. 파일 첨부
 해당 공지사항에 함께 노출할 파일을 첨부하여 올릴 수 있습니다.
 10MB 이내의 파일을 최대 5개까지 첨부가능합니다.
 첨부파일들은 공지사항에 함께 노출되며 클릭 시 다운로드가 가능합니다.
 
-## Answer template
+<a id="answer-template"></a>
+## Answer template { #answer-template }
 
 고객 문의 처리 시 반복입력을 자주 할 경우 템플릿을 사용하여 처리할 수 있도록 기능을 지원합니다.
 또한, 고객이 문의 작성 시 필요한 정보들을 작성할 수 있도록 문의 유형별 템플릿을 사용할 수 있도록 기능을 지원합니다.
 
 
-### Search Template
+<a id="search-template"></a>
+### Search Template { #search-template }
 현재 등록된 템플릿 리스트를 표시하며, 우측 상단에 검색어를 입력하여 현재 등록된 템플릿을 검색할 수 있습니다.
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/ko/gamebase_template_01_ko_240105.jpg)
 
@@ -290,25 +327,30 @@ Text Editor를 통해 원하는 형태로 답변을 입력할 수 있으며 해�
 - **수정자**: 답변 템플릿을 마지막으로 등록 또는 수정한 유저의 정보를 보여줍니다.
 - **수정일**: 답변 템플릿이 마지막으로 등록 또는 수정된 날짜 정보를 보여줍니다.
 
-### Register or Update Template
+<a id="register-or-update-template"></a>
+### Register or Update Template { #register-or-update-template }
 답변 템플릿을 새롭게 등록하거나 기존에 등록된 답변 템플릿 정보를 수정할 수 있습니다.
 등록 또는 수정 시 변경할 수 있는 항목은 모두 동일합니다.
 
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/ko/gamebase_template_02_ko_240105.jpg)
 
+<a id="register-or-update-template-classification"></a>
 #### 1. 구분
 - **문의 처리**: 고객 문의에 대한 기본 답변 메시지입니다.
 - **문의 유형**: 유저 문의 입력에 기본으로 노출되는 메시지입니다.
 
+<a id="register-or-update-template-template-name"></a>
 #### 2. 템플릿명
 문의 처리시에 템플릿 선택항목에 노출될 템플릿명을 입력합니다.
 구분이 문의 유형인 경우는 문의 유형 관리에서 노출될 템플릿 명입니다.
 
+<a id="register-or-update-template-body"></a>
 #### 3. 내용
 문의 처리시 템플릿이 선택되었을 때 채워질 내용을 입력합니다.
 Text editor를 이용하여 자유롭게 입력이 가능하며 입력된 내용이 그대로 문의 처리시 템플릿을 선택하면 동일하게 적용됩니다.
 
-## Email Config
+<a id="email-config"></a>
+## Email Config { #email-config }
 문의 처리가 완료되었을 경우 유저에게 발송할 이메일 형식을 설정할 수 있습니다.
 최초에 활성화 시켰을 경우 기본 템플릿이 제공되며 이후 Text editor를 통해 원하는 형태로 얼마든지 수정하실 수 있습니다.
 

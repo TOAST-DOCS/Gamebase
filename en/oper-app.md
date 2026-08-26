@@ -1,4 +1,7 @@
-## Game > Gamebase > Console Guide > App
+<!-- pre-align:aligned sig=f94bbb0ce7bb -->
+
+<a id="game-gamebase-console-guide-app"></a>
+## Game > Gamebase > Console Guide > App { #game-gamebase-console-guide-app }
 
 Go to the NHN Cloud Cloud Console and click **Game > Gamebase > App**.
 
@@ -7,23 +10,27 @@ Go to the NHN Cloud Cloud Console and click **Game > Gamebase > App**.
 * **Install URL**: Manage installation URL of each app store
 
 
-## App
+<a id="app"></a>
+## App { #app }
 
 When the Gamebase service is activated, the app is automatically created and only the registered information can be edited from the menu.
 Since only one Gamebase app can be managed per NHN Cloud project, you cannot register additional apps or delete exiting apps. When the Gamebase service is deactivated, the information registered in the app is deleted.
 For more detailed information on each item, see the details below:
 
-### Basic information
+<a id="basic-information"></a>
+### Basic information { #basic-information }
 ![gamebase_app_01_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_01_en_240105.png)
 
+<a id="basic-information-1-installation-url"></a>
 #### (1) Installation URL
 Shortened URL information that can be used to install and promote the app.
 Even if there are multiple stores to which the app is deployed, you can manage them with a single URL.
-See the following link for more information on the operation and maintenance of this app. [Manage installation URL](./oper-app/#installed-url)
+See the following link for more information on the operation and maintenance of this app. [Manage installation URL](#installed-url)
 
 > [Note]
 > When Gamebase is activated, it is automatically created and cannot be changed.
 
+<a id="basic-information-2-whether-to-include-test-payments"></a>
 #### (2) Whether to include test payments
 Decides whether or not to include test payments in the app's indexes.
 "Include Test Payments" is the default option and if you set it to "Exclude Test Payments", the test payments are all excluded from the Analytics revenue indexes.
@@ -40,13 +47,15 @@ Decides whether or not to include test payments in the app's indexes.
 > * Google: The history of payments made by the test accounts registered with Google
 > * AppStore: The history of payments made in the sandbox environment
 
+<a id="basic-information-3-period-of-pending-withdrawal"></a>
 #### (3) Period of Pending Withdrawal
 Set the grace period if you want to enable the Pending Withdrawal feature.
 The default is 7 days and it can be anywhere between 1 and 30 days.
 > [Note]
 > The services are available as usual during the grace period.
 
-### Server address
+<a id="server-address"></a>
+### Server address { #server-address }
 ![gamebase_app_02_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_02_en_240105.png)
 
 - Used when the game needs to receive the server address (e.g. IP, URL) in real time.
@@ -54,13 +63,15 @@ The default is 7 days and it can be anywhere between 1 and 30 days.
 - Server address can be configured according to the client's status and the server address can be checked in Launching Information.
 - Enter information only if required by the game; otherwise, leave it empty.
 
-### Language settings
+<a id="language-settings"></a>
+### Language settings { #language-settings }
 ![gamebase_app_03_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_03_en_240105.png)
 - You can specify the default language to display in advance in the multi-language setting in each menu.
 - The selected languages are displayed when displaying multiple languages and the default language is set as selected.
 - If you do not want to use it, leave it empty.
 
-###  Authentication information
+<a id="authentication-information"></a>
+###  Authentication information { #authentication-information }
 ![gamebase_app_04_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_04_en_240105.png)
 
 The authentication information of the IdP to be used when logging in to the app can be registered, edited, and deleted.
@@ -74,7 +85,8 @@ See [Authentication Information](#authentication-information) for more informati
 > If **Do Not Verify** is selected, only internal tokens are validated without revalidating the token of the external IdP.
 > If **Always Verify** is selected, not only the internal tokens issued by Gamebase but also external IdP tokens are validated every time.
 
-### In-app URL
+<a id="in-app-url"></a>
+### In-app URL { #in-app-url }
 ![gamebase_app_05_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_05_en_240105.png)
 You can edit URLs frequently used in the app in real time via Console without having to redeploy the client.
 
@@ -85,11 +97,13 @@ You can edit URLs frequently used in the app in real time via Console without ha
 Enter information only if required by the game; otherwise, leave it empty.
 The configured information can be viewed in Launching Information after the client is initialized.
 
-### Customer Center
+<a id="customer-center"></a>
+### Customer Center { #customer-center }
 You can perform the customer center settings.
 As of now, Gamebase provides 3 types of customer center formats, and the items you can configure vary depending on the type you selected.
 The following are the settings for each customer center type:
 
+<a id="customer-center-developers-own-customer-center"></a>
 #### 1. Developer's Own Customer Center
 ![gamebase_app_06_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_06_en_240105.png)
 Set this when the developer uses its own customer center.
@@ -97,6 +111,7 @@ The options to be set are as follows:
 * **Customer Center URL**: Enter developer's own customer center address which is currently being provided or used.
 * **Contact**: Enter the Customer Center contact information. This information will be delivered via the Gamebase SDK.
 
+<a id="customer-center-provided-by-gamebase"></a>
 #### 2. Customer Center Provided by Gamebase
 ![gamebase_app_07_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_07_en_240105.png)
 Set this when you want to use the customer center feature provided by Gamebase.
@@ -106,6 +121,7 @@ The options to be set are as follows:
 * **Supported language**: Select the language supported for the customer center users. It is set separately from the project language setting, and supports Korean, English, Japanese, Chinese (Simplified), Chinese (Traditional), and Russian. If the supported language you want is not available, please contact customer center.
 * **Default language**: From the list of the selected support languages, select the default one.
 
+<a id="customer-center-nhn-cloud-organization-product-online-contact"></a>
 #### 3. NHN Cloud organization product (Online Contact)
 ![gamebase_app_08_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_08_en_240105.png)
 Set this to use online contact products provided by each organization within NHN Cloud.
@@ -136,7 +152,8 @@ The options to be set are as follows:
 > ![gamebase_app_12_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_12_en_240105.png)
 >
 
-### Test Device
+<a id="test-device"></a>
+### Test Device { #test-device }
 
 ![gamebase_app_13_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_13_en_240105.png)
 If it is registered as a test device, it can access the game as usual even when the app running Gamebase is under maintenance.
@@ -149,10 +166,12 @@ Click the Access History button to check **Connected Time and Detailed Connectio
 > [Note]
 > Up to 100 test devices can be registered.
 
+<a id="test-device-1-search"></a>
 #### (1) Search
 
 Can check all test devices registered with the app. Enter a keyword in the **Search** field to easily find test devices that match the keyword.
 
+<a id="test-device-2-register"></a>
 #### (2) Register
 
 Click the **Register** button on the Search screen to access the screen where test devices can be registered. Manually enter **Device Key** or search for **Game User ID** and register a test device.
@@ -173,14 +192,17 @@ Enter **Device Name**, debug log, and whether to ignore maintenance of the devic
 > [Note]
 > Enter an easily recognizable nickname as the name of the device (e.g. iPhone 6 Test, TOAST's iPad)
 
+<a id="test-device-3-delete"></a>
 #### (3) Delete
 
 ![gamebase_app_17_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_17_en_240105.png)
 
 Select the test device to delete on the Search Test Device screen and click the Delete button located at the top left of the screen to delete the test device information. Once deleted, the information cannot be recovered, so please make sure that it needs to be deleted before clicking the button.
 
-### Authentication Information
+<a id="app-authentication-information"></a>
+### Authentication Information { #app-authentication-information }
 
+<a id="app-authentication-information-facebook"></a>
 #### 1. Facebook
 Enter {App ID} and {App Secret Code} of an app registered in the Facebook developer's site in the TOAST Cloud Gamebase Console.
 
@@ -214,6 +236,7 @@ Enter {App ID} and {App Secret Code} of an app registered in the Facebook develo
 ##### iOS
 * [Gamebase > iOS SDK User Guide > Getting Started > IdP Settings > Facebook](./ios-started/#facebook)
 
+<a id="app-authentication-information-google"></a>
 #### 2. Google
 
 ##### Google Cloud Console - Common
@@ -285,6 +308,7 @@ Enter {App ID} and {App Secret Code} of an app registered in the Facebook develo
 
 * [Gamebase > iOS SDK User Guide > Getting Started > IdP Settings > Google](./ios-started/#google)
 
+<a id="app-authentication-information-apple-game-center"></a>
 #### 3. Apple Game Center
 Enter Bundle ID registered on Apple Developer's Site in the TOAST Cloud Gamebase Console.
 
@@ -300,6 +324,7 @@ Enter Bundle ID registered on Apple Developer's Site in the TOAST Cloud Gamebase
 - [Apple iTunes Connect](https://itunesconnect.apple.com/)
 
 
+<a id="app-authentication-information-payco"></a>
 #### 4. PAYCO
 Enter {client_id} and {client_secret} issued from PAYCO ID application in the TOAST Cloud Gamebase Console.
 
@@ -320,6 +345,7 @@ Enter {client_id} and {client_secret} issued from PAYCO ID application in the TO
 ##### iOS
 * [Gamebase > iOS SDK User Guide > Getting Started > IdP Settings > PAYCO](./ios-started/#payco)
 
+<a id="app-authentication-information-naver"></a>
 #### 5. NAVER
 Enter {client_id} and {client_secret} issued by the NAVER Developers website in the Gamebase Console.
 Here, **service_name**, which is the name of an application to be displayed in the Agree to Login window, needs to be configured.
@@ -348,6 +374,7 @@ Here, **service_name**, which is the name of an application to be displayed in t
 ##### iOS
 * [Gamebase > iOS SDK User Guide > Getting Started > IdP settings > NAVER](./ios-started/#naver)
 
+<a id="app-authentication-information-twitter"></a>
 #### 6. Twitter
 
 ##### Developer Portal
@@ -387,6 +414,7 @@ Register your app in the Developer Portal and get an **OAuth 2.0 Client ID and C
 >
 > In short, only Android 4.4 and higher devices (KitKat, API Level 19) allow logins to Twitter.
 
+<a id="app-authentication-information-line"></a>
 #### 7. LINE
 
 **Input Fields**
@@ -401,6 +429,7 @@ Register your app in the Developer Portal and get an **OAuth 2.0 Client ID and C
 ##### iOS
 * [Gamebase > iOS SDK User Guide > Getting Started > IdP settings > LINE](./ios-started/#line)
 
+<a id="app-authentication-information-sign-in-with-apple"></a>
 #### 8. Sign In with Apple
 To enable Sign In with Apple, setting is required for AppStore Connect, Gamebase Console and Xcode.
 
@@ -522,6 +551,7 @@ As of November 2019, there are only two types of scope, `full_name` and `email`,
 ![Set Service ID for Sign In with Apple JS](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_23_en_240105.png)
 
 
+<a id="app-authentication-information-weibo"></a>
 #### 9. WEIBO
 
 ##### Weibo Console
@@ -567,6 +597,7 @@ If not entered, it is set to a random value.
 **Reference URL**
 - [Weibo Developer](https://open.weibo.com/)
 
+<a id="app-authentication-information-kakaogames"></a>
 #### 10. Kakaogames
 
 Kakao authentication information can be set/checked in various places, including Kakao Developers, Kakao Game Center (channeled games), Kakao Game 3.0 Admin, etc. depending on the publishing contract relationship.
@@ -607,10 +638,11 @@ If you have a Unity build, change **AppDelegate** to **UnityAppController**.
 {"AppDelegateClassName" : "AppDelegate"}
 ```
 
+<a id="app-authentication-information-gpgs-v2"></a>
 #### 11. GPGS v2
 
 For Google Play Games Services (GPGS) v2 authentication, you need to obtain a **Web Application Client ID** from Google Cloud Console and enter the Gamebase Callback URL in the Authorised Redirect URI field, the same as how to add Google authentication type.
-[Game > Gamebase > Console User Guide > Apps > App > Authentication Information > 2. Google](./oper-app/#2-google)
+[Game > Gamebase > Console User Guide > Apps > App > Authentication Information > 2. Google](#app-authentication-information-google)
 
 **Input Field**
 
@@ -618,8 +650,9 @@ For Google Play Games Services (GPGS) v2 authentication, you need to obtain a **
 - Secret Key: {Google Web Application Client secret}
 
 ##### Android
-* [Gamebase > Android SDK User Guide > Get Started > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#gpgs-v2-idp)
+* [Gamebase > Android SDK User Guide > Get Started > Setting > AndroidManifest.xml > GPGS v2 IdP](./aos-started/#androidmanifestxml-gpgs-idp)
 
+<a id="app-authentication-information-steam"></a>
 #### 12. Steam
 
 For Steam authentication, you must obtain an **App ID** and **Web API** from Steamworks and enter them into the Gamebase Console.
@@ -633,6 +666,7 @@ For Steam authentication, you must obtain an **App ID** and **Web API** from Ste
 
 ![gamebase_app_steam_02_en_241025.png](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_steam_02_en_241025.png)
 
+<a id="app-authentication-information-epic-games"></a>
 #### 13. Epic Games
 [Epic Games Dev Portal](https://dev.epicgames.com/portal)에서 발급 받은 {Client ID} 및 {Client Secret}을 Gamebase Console에 입력합니다.
 이때, 디플로이 ID와 인증 시 필요한 {scope}를 JSON String 형태로 추가 정보란에 입력해야 합니다.
@@ -671,7 +705,8 @@ For Steam authentication, you must obtain an **App ID** and **Web API** from Ste
 
         { "deployment_id": "Your Deployment ID", "scope": ["basic_profile", "friends_list", "presence"] }
 
-### GPGS Automatic Login Settings
+<a id="gpgs-automatic-login-settings"></a>
+### GPGS Automatic Login Settings { #gpgs-automatic-login-settings }
 
 * Supports the [Automatic sign-in using Google Play Games Services (GPGS)](https://developer.android.com/games/pgs/signin#automatic-sign-in) feature.
     * This feature requires the **gamebase-adapter-auth-gpgs-autologin** module declaration and [additional settings](./aos-started/#gpgs-idp) in the Android build dependencies.
@@ -691,28 +726,34 @@ For Steam authentication, you must obtain an **App ID** and **Web API** from Ste
         * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_007_2.68.0.png)
         * ![](https://static.toastoven.net/prod_gamebase/Console_App_Auth_GPGS_AutoLogin_008_2.68.0.png)
 
-## Client
+<a id="client"></a>
+## Client { #client }
 
 Can manage client information by operating system (iOS, Android, Unity WebGL, or Unity Standalone), or version.
 
-### Client List
+<a id="client-list"></a>
+### Client List { #client-list }
 ![image alt](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_client_01_en_240105.png)
 You can see the list of currently registered clients.
 They are sorted by OS, and the number in the icon indicates the version entered when registering the client.
 Only the icon list shows only the following service statuses: <font color="white" style="background-color:#eed14c">Test</font>, <font color="white" style="background-color:#eba34b">Beta Service</font>, <font color="white" style="background-color:#eb7e4b">Review in Progress</font>, <font color="white" style="background-color:#88C637">In Service</font>, and <font color="white" style="background-color:#2AB1A6">Update Recommended (In Service)</font>. If you click the arrow at the bottom right of each OS, you can see the list of clients in the following statuses: <font color="white" style="background-color:#A1A1A1">Update Required</font>, and <font color="white" style="background-color:#CCCCCC">Service Closed</font>.
 You can see the service status at a glance thanks to the distinguished icon color per service status.
 
-### Properties
+<a id="properties"></a>
+### Properties { #properties }
 
 Explains about the client registration information managed by the Gamebase Console.
 If you click buttons such as **Register AOS**, and **Register iOS** on the **Client** tab, the client registration screen appears. If you want to edit or delete the input value of the registered client, click the icon from the icons list or select the client you want from all clients list.
 ![gamebase_client_02_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_client_02_en_240105.png)
+<a id="properties-1-store"></a>
 #### (1) Store
 (<font color="red">Required</font>) Select the store to deploy the client.
 The store you can select varies by OS.
+<a id="properties-2-game-version"></a>
 #### (2) Game version
 (<font color="red">Required</font>) Enter the client version.
 You just need to enter the string according to the rules set forth by the game.
+<a id="properties-3-service-status"></a>
 #### (3) Service status
 (<font color="red">Required</font>) Select the service status of the client.
 There are 6 service statuses: <font color="white" style="background-color:#eed14c">Test</font>, <font color="white" style="background-color:#eba34b">Beta Service</font>, <font color="white" style="background-color:#eb7e4b">Review in Progress</font>, <font color="white" style="background-color:#88C637">In Service</font>, <font color="white" style="background-color:#2AB1A6">Update Recommended (In Service)</font>, <font color="white" style="background-color:#A1A1A1">Updated Required</font>, and <font color="white" style="background-color:#CCCCCC">Service Closed</font>.
@@ -747,39 +788,49 @@ There are 6 service statuses: <font color="white" style="background-color:#eed14
 > If there is no information in the app's language settings, the default messages are provided in 5 languages (Korean, English, Japanese, Simplified Chinese, and Traditional Chinese). These languages can be added or the text of the default message can be changed.
 > ![gamebase_client_03_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_client_03_en_240105.png)
 
+<a id="properties-4-server-address"></a>
 #### (4) Server address
 Enter the server address (IP, URL) to be used by client.
 If you enter the server address in the **App** tab, it is applied to all clients. So enter the server address only when you want to use a different server address per client.
 
+<a id="properties-5-debug-log"></a>
 #### (5) Debug log
 You can change whether to display debug logs of Gamebase SDK in the console in real time.
 If it is not set, the default value set in the Gamebase SDK will be used. You can set whether to display debug logs in the console or not.
 Even if the debug log is 'OFF' in the Gamebase SDK, the Gamebase debug logs are displayed on the device if you set debug log to 'ON' for the console.
 
+<a id="properties-6-memo"></a>
 #### (6) Memo
 You can write a brief memo about the client in no more than 30 characters.
 
-## Terms Of Service
+<a id="terms-of-service"></a>
+## Terms Of Service { #terms-of-service }
 Create and configure the terms and conditions to display within the game.
 ![gamebase_terms_of_service_01_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_terms_of_service_01_en_240105.png)
-### (1) Created terms and conditions list
+<a id="1-created-terms-and-conditions-list"></a>
+### (1) Created terms and conditions list { #1-created-terms-and-conditions-list }
 You can click the - **+** button to create another terms and conditions.
 ![gamebase_terms_of_service_02_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_terms_of_service_02_en_240105.png)
 
-### (2) Terms and conditions country type
+<a id="2-terms-and-conditions-country-type"></a>
+### (2) Terms and conditions country type { #2-terms-and-conditions-country-type }
 
-### (3) Target country of the terms and conditions
+<a id="3-target-country-of-the-terms-and-conditions"></a>
+### (3) Target country of the terms and conditions { #3-target-country-of-the-terms-and-conditions }
 - If the country type is Other, you can additional select the target country.
 
-### (4) Terms and conditions configuration
+<a id="4-terms-and-conditions-configuration"></a>
+### (4) Terms and conditions configuration { #4-terms-and-conditions-configuration }
 - You can specify the sequence of the terms and conditions by dragging & dropping.
 - A total of 25 terms and conditions can be created (5 high-level T&C and 5 low-level T&C).
 
-### (5) Create terms and conditions
+<a id="5-create-terms-and-conditions"></a>
+### (5) Create terms and conditions { #5-create-terms-and-conditions }
 - In the terms and conditions list, select the terms and conditions configuration you want and click the **Add** button to create the low-level terms and conditions.
 - If a low-level terms and conditions is selected, you cannot create terms and conditions.
 
-### (6) Details of the selected terms and conditions
+<a id="6-details-of-the-selected-terms-and-conditions"></a>
+### (6) Details of the selected terms and conditions { #6-details-of-the-selected-terms-and-conditions }
 - Terms and conditions name
 	- Name for managing the terms and conditions.
 - Terms and conditions agreement
@@ -805,12 +856,14 @@ You can click the - **+** button to create another terms and conditions.
 >
 
 
-## Terms Of Service Deploy
+<a id="terms-of-service-deploy"></a>
+## Terms Of Service Deploy { #terms-of-service-deploy }
 
 The distribute terms and conditions and distribution history to display in game.
 ![gamebase_terms_of_service_deploy_01_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_terms_of_service_deploy_01_en_240105.jpg)
 
-### (1) Default terms and conditions settings
+<a id="1-default-terms-and-conditions-settings"></a>
+### (1) Default terms and conditions settings { #1-default-terms-and-conditions-settings }
 ![gamebase_terms_of_service_deploy_02_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_terms_of_service_deploy_02_en_240105.jpg)
 
 - Select the terms and conditions to expose by default if accessed from a country without distributed terms and conditions.
@@ -820,25 +873,31 @@ The distribute terms and conditions and distribution history to display in game.
 > You may not set the default terms and conditions if you do not want. If the default terms and conditions are not set,  the terms and conditions are not exposed when accessed from outside the distributed country.
 >
 
-### (2) Terms and conditions list
+<a id="2-terms-and-conditions-list"></a>
+### (2) Terms and conditions list { #2-terms-and-conditions-list }
 
 - List of the currently created terms and conditions.
 
-### (3) Preview
+<a id="3-preview"></a>
+### (3) Preview { #3-preview }
 ![gamebase_terms_of_service_deploy_03_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_terms_of_service_deploy_03_en_240105.jpg)
 
 - You can preview the terms and conditions selected from the list of terms and conditions.
 
-### (4) Terms and conditions distribution and distribution history
+<a id="4-terms-and-conditions-distribution-and-distribution-history"></a>
+### (4) Terms and conditions distribution and distribution history { #4-terms-and-conditions-distribution-and-distribution-history }
+<a id="4-terms-and-conditions-distribution-and-distribution-history-distribution"></a>
 #### Distribution
 - You can distribute the selected terms and conditions from the terms and conditions list.
 - If you proceed with distributing after checking 'Agree again to Terms and Conditions', new terms and conditions are exposed to the users who have previously consented to the terms and conditions. For a simple revision, such as some word changes, checking the Agree again to Terms and Conditions box is unnecessary.
 
+<a id="4-terms-and-conditions-distribution-and-distribution-history-distribution-history"></a>
 #### Distribution history
 ![gamebase_terms_of_service_deploy_04_en_240105](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_terms_of_service_deploy_04_en_240105.jpg)
 - Distribution history of the terms and conditions selected from the list of terms and conditions.
 
-## Installed URL
+<a id="installed-url"></a>
+## Installed URL { #installed-url }
 
 Manage store URL information to install a game.
 
@@ -856,7 +915,8 @@ _[Example 3] A user enters Install URL on a PC._
 **(Device:PC,OS:Windows,Store:N/A)** Move to URL set in COMMON PC.
 
 
-### Properties
+<a id="installed-url-properties"></a>
+### Properties { #installed-url-properties }
 
 To modify Install URL, click **Modify**.
 
@@ -865,19 +925,24 @@ To modify Install URL, click **Modify**.
 - Item setting can be different for PC and mobile. Enter the same value for each device, if there is no need to separate.
 - When a store you want is not on the list, contact [CustomerCenter](https://toast.com/support/inquiry) so as to add as required.
 
+<a id="installed-url-properties-1-common"></a>
 #### (1) Common
 Set an URL to connect when store information is unavailable or store relocation has failed.
 
+<a id="installed-url-properties-2-android"></a>
 #### (2) Android
 Set an URL to connect at the request of Android users.
 
+<a id="installed-url-properties-3-ios"></a>
 #### (3) iOS
 Set an URL to connect at the request of App Store users.
 
+<a id="installed-url-properties-4-standalone"></a>
 #### (4) Standalone
 Set an URL to connect from an app of standalone service. Standalone needed PC URL only.
 
-## Transfer account
+<a id="transfer-account"></a>
+## Transfer account { #transfer-account }
 Transfer account allows a game user logged in as Guest to continue the game on another device without using another ID provider.
 You can change the game device just by getting the transfer key from the current device where the game is being played and entering the key on another device.
 **Transfer Device** function is disabled by default. To use this, click **Enable** on **Transfer Device**.
@@ -889,8 +954,10 @@ Click the **Enable** button and then enter the information required for transfer
 ![gamebase_transfer_account_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_transfer_account_02_en_240105.jpg)
 Description on each item is as follows:
 
-### Properties
+<a id="transfer-account-properties"></a>
+### Properties { #transfer-account-properties }
 
+<a id="transfer-account-properties-issue"></a>
 #### Issue
 Sets the format of a key issued for device transfer.
 The key for device transfer can be either ID only or both ID and password. Format of ID and password can be a combination of the desired lowercase letters, uppercase letters, and numbers.
@@ -910,6 +977,7 @@ The key for device transfer can be either ID only or both ID and password. Forma
 - **Number+Lowercase+Uppercase(Minimum length: 9)**: Issues an ID with numbers, lowercase letters, and uppercase letters. The minimum length of the issued password is 9 characters.
 - **Lowercase+Uppercase(Minimum length: 9)**: Issues an ID with lowercase letters and uppercase letters. The minimum length of the issued password is 9 characters.
 
+<a id="transfer-account-properties-verification"></a>
 #### Verification
 Sets the verification conditions of the issued device transfer key.
 For verification of the issued device transfer, you can set the transfer count, expiration date, block upon failure, etc.
@@ -919,31 +987,39 @@ For verification of the issued device transfer, you can set the transfer count, 
 6. **Login attempt count until blocking**: Displayed when **Block reverification upon failure** is selected. The account is blocked when login verification fails for the specific count entered here. The value must be 1 or above.
 7. **Block period**: Sets the period of blocking time that must be passed to unblock the account for retry. Select **PERMANENT** or **Specify Period**.If you select **Specify Period**, you can set the desired block hours and minutes.
 
+<a id="transfer-account-properties-after-initial-setting-completed"></a>
 #### After initial setting completed
 ![gamebase_transfer_account_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_transfer_account_03_en_240105.jpg)
 Once the initial settings are done, game users can disable the device transfer function only if they want. If they need to change the settings, they need to contact Customer Center.
 Click **Disable** to disable the function. In this case, all device transfer keys issued will be deleted. So be careful when you should determine whether to disable the function or not.
 
-## Analytics indicator
+<a id="analytics-indicator"></a>
+## Analytics indicator { #analytics-indicator }
 The transfer index for stacking indexes in Analytics can be checked and configured.
 They are divided by user level (INT), world/server/channel, and class/profession. For user level, only the level items actually transferred to Analytics are displayed, for world/server/channel and class/profession items, only the items registered in this menu are stacked in Analytics as indexes.
-### By User Level (INT)
+<a id="by-user-level-int"></a>
+### By User Level (INT) { #by-user-level-int }
 Can check the level indexes transferred to the Analytics system.
 In this item, only search is available, without separate edits.
 ![gamebase_analytics_indicator_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_analytics_indicator_02_en_240105.jpg)
 
-### Search by World/Server/Channel and Class/Profession
+<a id="search-by-worldserverchannel-and-classprofession"></a>
+### Search by World/Server/Channel and Class/Profession { #search-by-worldserverchannel-and-classprofession }
 Currently, you can check the transfer index configured for each item.
 If you do not want to stack the indexes for the items configured in the Search screen, you can delete previously registered items using the Delete button.
 Deleted items are not displayed as indexes in the Analytics menu. Be careful when deleting items, as the indexes of deleted items won't be stacked anymore.
 ![gamebase_analytics_indicator_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_analytics_indicator_03_en_240105.jpg)
 
-### Register each World/Server/Channel and Class/Profession
+<a id="register-each-worldserverchannel-and-classprofession"></a>
+### Register each World/Server/Channel and Class/Profession { #register-each-worldserverchannel-and-classprofession }
 You can register new information that you want to stack in Analytics indexes.
 You can use the Add button below. **Up to 100 new items** can be registered.
 Only **those items displayed on the Index screen can be edited** among the previously registered data. If you want to delete them, you need to go to the Search screen and delete them there.
 ![gamebase_analytics_indicator_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_analytics_indicator_04_en_240105.jpg)
 
+<a id="register-each-worldserverchannel-and-classprofession-1-channelidclassid-enter-the-information-of-the-separator-to-be-stacked-in-analytics-enter-the-id-information-you-want-to-set-when-stacking-indexes"></a>
 #### (1) ChannelId/ClassId: Enter the information of the separator to be stacked in Analytics. Enter the ID information you want to set when stacking indexes.
+<a id="register-each-worldserverchannel-and-classprofession-2-display-index-screen-type-in-text-to-display-when-displaying-the-index-that-was-transferred-to-the-id-entered-as-the-first-item-the-information-can-be-used-to-edit-already-registered-indexes"></a>
 #### (2) Display index screen: Type in text to display when displaying the index that was transferred to the ID entered as the first item. The information can be used to edit already registered indexes.
+<a id="register-each-worldserverchannel-and-classprofession-3-delete-only-the-items-that-are-newly-added-can-be-deleted-in-the-register-screen"></a>
 #### (3) Delete: Only the items that are newly added can be deleted in the Register screen.

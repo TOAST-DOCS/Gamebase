@@ -1,18 +1,23 @@
-## Game > Gamebase > Console ご利用ガイド > 利用停止
+<!-- pre-align:aligned sig=4e29be4ad10c -->
+
+<a id="game-gamebase-console-guide-ban"></a>
+## Game > Gamebase > Console ご利用ガイド > 利用停止 { #game-gamebase-console-guide-ban }
 
 アプリを不当に使用したり、アビュージング行為をするゲームユーザーに対してアプリの利用を制限することができる利用停止機能を提供します。
 利用停止状態となったゲームユーザーがもう一度ログインしたりセッションを復旧する場合に利用停止に関するポップアップが表示され、ゲームの利用が制限されます。
 
 利用停止の登録は、Gamebase Consoleから手動で登録することができ、NHN Cloud AppGuardを使用する場合は、パターン登録を利用して自動で登録することができます。
 
-AppGuardを連携する方法は、[AppGuard](./oper-ban/#appguard)をご参考ください。
+AppGuardを連携する方法は、[AppGuard](#appguard)をご参考ください。
 
 
-## Ban
+<a id="ban"></a>
+## Ban { #ban }
 
 利用停止履歴を照会したり、利用停止の登録、利用停止状態のゲームユーザーに対する利用停止の解除が可能です。
 
-### Search Banned User
+<a id="search-banned-user"></a>
+### Search Banned User { #search-banned-user }
 
 検索条件に合った利用停止状態/利用停止状態が解除されたゲームユーザーのリストを照会します。
 
@@ -33,7 +38,7 @@ AppGuardを連携する方法は、[AppGuard](./oper-ban/#appguard)をご参考�
 > [参考]
 > ユーザーに表示するメッセージを多国語で入力して簡単に再使用することができるようにテンプレートを提供します。
 > 登録されたテンプレートは一つ以上でないと、利用停止の登録をすることができません。
-> テンプレートを登録する方法は、[Template](./oper-ban/#template)をご参考ください。
+> テンプレートを登録する方法は、[Template](#template)をご参考ください。
 
 **検索結果**
 
@@ -55,11 +60,13 @@ AppGuardを連携する方法は、[AppGuard](./oper-ban/#appguard)をご参考�
 > [参考]
 > **ファイルダウンロード**ボタンをクリックすると、検索結果をCSVファイルで保存することができます。
 
-### Register Ban
+<a id="register-ban"></a>
+### Register Ban { #register-ban }
 
 利用停止照会画面から**登録**ボタンをクリックすると、利用停止の登録ができます。
 
 ![gamebase_ban_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/jp/gamebase_ban_02_240813.png)
+<a id="register-ban-1-user-id"></a>
 #### (1) ユーザーID
 利用停止を登録するGamebaseのユーザーIDを入力します。一度に複数のユーザーを登録することができ、登録方法は次の二つです。
 
@@ -71,16 +78,19 @@ AppGuardを連携する方法は、[AppGuard](./oper-ban/#appguard)をご参考�
 > 一括登録を進行する途中に失敗すると、ポップアップが表示されます。該当するポップアップから**Download**ボタンをクリックすると、登録に失敗したユーザーリストをファイルでダウンロードすることができます。 
 > ![gamebase_ban_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/jp/gamebase_ban_04_240813.png)
 
+<a id="register-ban-2-period"></a>
 #### (2) 期間
 ゲームユーザーの利用停止期間を設定します。利用停止が登録された時点からゲームユーザーはログインができなくなります。
 
 - **永久利用停止**：永久利用停止にしたいときに選択します。
 - **期間指定**：利用停止にする期間を入力します。日(day)と時間(hour) **予想期限**情報からユーザーの利用停止期間を先に確認することができます。
 
+<a id="register-ban-3-reason"></a>
 #### (3) 理由
 ユーザーが利用停止になった理由を入力します。
 該当する理由はユーザーに表示されず、運営履歴でのみ確認することができます。
 
+<a id="register-ban-4-message"></a>
 #### (4) 表示するメッセージ
 ユーザーに表示する利用停止メッセージを入力します。
 ユーザーに表示するメッセージを多国語で入力して簡単に再使用できるようにするテンプレートを提供します。予め登録したテンプレートを選択して登録します。
@@ -88,23 +98,27 @@ AppGuardを連携する方法は、[AppGuard](./oper-ban/#appguard)をご参考�
 > <font color="red">[重要]</font>
 > 表示されたメッセージのテンプレートが登録された場合にのみ利用停止を登録することができます。
 > テンプレートを登録していない場合、**BAN**メニューの**テンプレート**タブからまずテンプレートを登録してください。
-> テンプレートを登録する方法は、[Template](./oper-ban/#template)をご参考ください。
+> テンプレートを登録する方法は、[Template](#template)をご参考ください。
 
+<a id="register-ban-5-delete-leaderboard"></a>
 #### (5)リーダーボード削除
 
 利用停止を登録する時、該当ゲームユーザーのLeaderboardデータも一緒に削除するかどうかを設定します。
 選択して登録すると、リーダーボードからゲームユーザーのデータが削除されます。<font color="red">データは復旧できないため</font>注意してください。
 
-### Release Ban
+<a id="release-ban"></a>
+### Release Ban { #release-ban }
 
 利用停止照会画面から**解除**ボタンをクリックすると、利用停止を解除することができます。
 
 ![gamebase_ban_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/jp/gamebase_ban_05_240813.png)
 
+<a id="release-ban-release-reason"></a>
 #### 解除理由
 ユーザーの利用停止を解除する理由を入力します。
 該当する理由はユーザーに表示されず、運営履歴でのみ確認することができます。
 
+<a id="release-ban-user-id"></a>
 #### ユーザーID
 利用停止を解除するGamebaseのユーザーIDを入力します。一度に複数のユーザーを登録することができ、 登録方法は次の二つです。
 
@@ -117,11 +131,13 @@ AppGuardを連携する方法は、[AppGuard](./oper-ban/#appguard)をご参考�
 > 一括登録を進行する途中に失敗すると、ポップアップが表示されます。該当するポップアップから**Download**ボタンをクリックすると、登録に失敗したユーザーリストをファイルでダウンロードすることができます。  
 > ![gamebase_ban_04_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/jp/gamebase_ban_04_240813.png)
 
-## Template
+<a id="template"></a>
+## Template { #template }
 利用停止対象ユーザーに表示するメッセージを多国語で入力して簡単に再使用できるようにするテンプレートを提供します。予め登録したテンプレートを選択して登録します。
 言語ごとに登録でき、利用停止対象ユーザーにはデバイスで設定された言語を基に利用停止メッセージが表示されます。
 
-### Search
+<a id="search"></a>
+### Search { #search }
 
 登録されたテンプレートリストを検索することができます。
 新しいテンプレートを登録したり、登録されたテンプレートを修正することができ、登録されたテンプレートを削除することはできません。
@@ -130,18 +146,22 @@ AppGuardを連携する方法は、[AppGuard](./oper-ban/#appguard)をご参考�
 
 -テンプレートリスト画面の表示メッセージ項目には、テンプレート登録時に「基本言語」で入力した表示メッセージが表示されます。
 
-### Register Template
+<a id="register-template"></a>
+### Register Template { #register-template }
 ![gamebase_ban_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/jp/gamebase_ban_09_240813.png)
 
+<a id="register-template-1-name"></a>
 #### (1) 名前
 利用停止を登録する際にリストに表示するテンプレートの名前を入力します。
 
+<a id="register-template-2-message"></a>
 #### (2) 表示メッセージ
 利用停止対象ユーザーに表示するメッセージを入力します。
 複数の言語で登録することができ、入力した言語以外の言語を使用する対象ユーザーには「基本言語」に選択された言語が表示されます。右の**+**ボタンをクリックすると言語を追加でき、利用したい言語がない場合、[カスタマーセンター](https://toast.com/support/inquiry)までご連絡ください。新しい言語を追加することができます。
 **基本言語で自動翻訳**ボタンをクリックすると、基本言語に入力された内容を翻訳して各項目に設定された言語に合わせて入力されます。
 
-## AppGuard
+<a id="appguard"></a>
+## AppGuard { #appguard }
 
 > <font color="red">[重要]</font>
 > AppGuard連動機能は、NHN Cloudで該当機能を適用しようとしているサービスと同じプロジェクトにNHN AppGuardサービスを有効化した場合にのみ利用できます。

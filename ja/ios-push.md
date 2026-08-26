@@ -1,31 +1,40 @@
-## Game > Gamebase > iOS SDK ご利用ガイド > Push
+<!-- pre-align:aligned sig=4f0c97e09dd5 -->
+
+<a id="game-gamebase-ios-developers-guide-push"></a>
+## Game > Gamebase > iOS SDK ご利用ガイド > Push { #game-gamebase-ios-developers-guide-push }
 
 > <font color="red">[注意]</font><br/>
 >
 > Unreal、Unityなど3rd partyプッシュプラグインまたはモジュールを使用する場合は、 Gamebaseプッシュ機能に影響を与える可能性があります。
 >
 
-### Settings
+<a id="settings"></a>
+### Settings { #settings }
 
+<a id="settings-getting-authentication-information-for-apns-jwt"></a>
 #### APNS JWT認証情報を取得する
 
 ここではPush通知の送信に必要なAPNS JWT認証情報を取得するプロセスを説明します。
 
 * [Notification > Push > Console Guide > APNS JWT認証情報を取得する](https://docs.toast.com/en/Notification/Push/en/console-guide/#get-authentication-information-for-apns-jwt)ガイドを参考にしてANPS JWTの登録に必要な必須認証情報を取得します。
 
+<a id="settings-registering-gamebase-console"></a>
 #### Gamebase Console登録
 * **Gamebase > Push > Certificate**で**APNS JWT**に上で取得した情報を入力します。
 
+<a id="settings-implementing-notification-service-extension"></a>
 #### Notification Service Extension実装
-* 受信指標収集、通知音設定などを行うには[NHN Cloud Pushガイド](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-ios/#notification-service-extension)を参考にしてアプリケーションに**Notification Service Extension**を実装する必要があります。
+* 受信指標収集、通知音設定などを行うには[NHN Cloud Pushガイド](/nhncloud-sdk/ja/push-ios/#notification-service-extension)を参考にしてアプリケーションに**Notification Service Extension**を実装する必要があります。
 
 
+<a id="settings-setting-up-xcode-project"></a>
 #### Xcode Project設定
 * **Targets > Capabilities > Push Notifications**項目を **ON**に設定します。
 * 自動的に作成された.entitlementsファイルを開いて、**APS Environment**キーの値を適切な値に設定します。
     * **development**: Sandbox APNS
     * **production**:  APNS
 
+<a id="settings-import-header-file"></a>
 #### Import Header File
 Push APIを設計するViewControllerに次のヘッダーファイルを持ってきます。
 
@@ -33,7 +42,8 @@ Push APIを設計するViewControllerに次のヘッダーファイルを持っ�
 #import <Gamebase/Gamebase.h>
 ```
 
-### Register Push
+<a id="register-push"></a>
+### Register Push { #register-push }
 
 次のAPIを呼び出して、NHN Cloud Pushに該当ユーザーを登録します。
 
@@ -44,6 +54,7 @@ Push APIを設計するViewControllerに次のヘッダーファイルを持っ�
 > プッシュトークンがいつ有効期限切れになるかわからないため、ログイン後は常にregisterPush APIを呼び出すことを推奨します。
 >
 
+<a id="register-push-api"></a>
 #### API
 
 ```objectivec
@@ -51,6 +62,7 @@ Push APIを設計するViewControllerに次のヘッダーファイルを持っ�
                                completion:(nullable void(^)(TCGBError * _Nullable error))completion;
 ```
 
+<a id="register-push-tcgbpushconfiguration"></a>
 #### TCGBPushConfiguration
 
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
@@ -60,6 +72,7 @@ Push APIを設計するViewControllerに次のヘッダーファイルを持っ�
 | ADAgreementNight              | M             | BOOL         | 夜間広告性プッシュ同意有無 |
 | alwaysAllowTokenRegistration  | O             | BOOL         | ユーザーがプッシュ権限を拒否してもトークンを登録するかどうか<br>YESに設定した場合は、プッシュ権限を取得できなくてもトークンを登録します。<br>**default**: NO    |
 
+<a id="register-push-example"></a>
 #### Example
 
 ```objectivec
@@ -90,6 +103,7 @@ NHN Cloud Pushにユーザーを登録する時、TCGBNotificationOptionsオブ�
 
 フォアグラウンドプッシュ有無(foregroundEnabled)、バッジ使用有無(badgeEnabled)、通知音使用有無(soundEnabled)値をユーザーから取得し、次のAPIを呼び出して通知オプションの設定が可能です。
 
+<a id="register-push-register-push-api"></a>
 #### API
 
 ```objectivec
@@ -98,6 +112,7 @@ NHN Cloud Pushにユーザーを登録する時、TCGBNotificationOptionsオブ�
                                completion:(nullable void(^)(TCGBError * _Nullable error))completion;
 ```
 
+<a id="register-push-tcgbnotificationoptions"></a>
 #### TCGBNotificationOptions
 
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
@@ -106,6 +121,7 @@ NHN Cloud Pushにユーザーを登録する時、TCGBNotificationOptionsオブ�
 | badgeEnabled        | M     | BOOL         | バッジアイコンの使用有無<br/>**default**: YES           |
 | soundEnabled        | M     | BOOL         | 通知音の使用有無<br/>**default**: YES           |
 
+<a id="register-push-register-push-example"></a>
 #### Example
 
 ```objectivec
@@ -139,7 +155,8 @@ NHN Cloud Pushにユーザーを登録する時、TCGBNotificationOptionsオブ�
 }
 ```
 
-### Setting for APNS Sandbox
+<a id="setting-for-apns-sandbox"></a>
+### Setting for APNS Sandbox { #setting-for-apns-sandbox }
 
 SandboxModeをオンにすると、APNS SandboxでPushを送信するように登録できます。
 
@@ -158,7 +175,8 @@ SandboxModeをオンにすると、APNS SandboxでPushを送信するように�
 
 Pushメニューの**対象**から**iOS Sandbox**を選択した後に送信します。
 
-### Get NotificationOptions
+<a id="get-notificationoptions"></a>
+### Get NotificationOptions { #get-notificationoptions }
 
 プッシュを登録する時に設定した通知オプション値を取得します。
 
@@ -179,7 +197,8 @@ Pushメニューの**対象**から**iOS Sandbox**を選択した後に送信し
 >
 
 
-### Query Token Info
+<a id="query-token-info"></a>
+### Query Token Info { #query-token-info }
 
 ユーザーのプッシュ設定を照会するために、次のAPIを利用します。
 コールバックで来るTCGBPushTokenInfo値で登録したプッシュ情報を取得できます。
@@ -199,6 +218,7 @@ Pushメニューの**対象**から**iOS Sandbox**を選択した後に送信し
 }
 ```
 
+<a id="query-token-info-tcgbpushtokeninfo"></a>
 #### TCGBPushTokenInfo
 
 | Parameter                              | Values                           | Description                        |
@@ -213,6 +233,7 @@ Pushメニューの**対象**から**iOS Sandbox**を選択した後に送信し
 | sandbox                                | YES or NO                        | サンドボックス環境で登録されたトークンなのかを確認    |
 | agreement                              | TCGBPushAgreement                | 受信同意有無                        |
 
+<a id="query-token-info-tcgbpushagreement"></a>
 #### TCGBPushAgreement
 
 | Parameter                              | Values                            | Description               |
@@ -221,7 +242,8 @@ Pushメニューの**対象**から**iOS Sandbox**を選択した後に送信し
 | ADAgreement                            | YES or NO                         | 広告性通知表示同意有無     |
 | ADAgreementNight                       | YES or NO                         | 夜間広告性通知表示同意有無 |
 
-### Event Handling
+<a id="event-handling"></a>
+### Event Handling { #event-handling }
 
 * プッシュメッセージが到着した場合、またはプッシュメッセージをクリックしたときにイベントを受け取ることができます。
 * イベントの登録方法はGamebaseEventHandlerガイドを参照してください。
@@ -229,7 +251,8 @@ Pushメニューの**対象**から**iOS Sandbox**を選択した後に送信し
     * [ Game > Gamebase > iOS SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./ios-etc/#push-click-message)
     * [ Game > Gamebase > iOS SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./ios-etc/#push-click-action)
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                                    | Error Code | Description                              |
 | ---------------------------------------- | ---------- | ---------------------------------------- |

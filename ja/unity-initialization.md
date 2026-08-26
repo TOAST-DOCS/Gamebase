@@ -1,8 +1,12 @@
-## Game > Gamebase > Unity SDK ご利用ガイド > 初期化
+<!-- pre-align:aligned sig=008150b67ed5 -->
+
+<a id="game-gamebase-unity-developers-guide-initialization"></a>
+## Game > Gamebase > Unity SDK ご利用ガイド > 初期化 { #game-gamebase-unity-developers-guide-initialization }
 
 Gamebase Unity SDKを使用するためには、まず初期化を行う必要があります。また、アプリID、アプリバージョン情報がNHN Cloudコンソールに必ず登録されていなければなりません。
 
-### GamebaseConfiguration 
+<a id="gamebaseconfiguration"></a>
+### GamebaseConfiguration { #gamebaseconfiguration }
 
 初期化する際に必要な設定は、次の通りです。
 
@@ -18,18 +22,21 @@ Gamebase Unity SDKを使用するためには、まず初期化を行う必要�
 | useWebViewLogin | Standalone | O |
 | enableGPGSSignInCheck | Android | O | 
 
+<a id="gamebaseconfiguration-app-id"></a>
 #### 1. App ID
 
 Gamebaseコンソールに登録されたプロジェクトIDです。
 
 [Game > Gamebase > コンソール使用ガイド > アプリ > App](./oper-app/#app)
 
+<a id="gamebaseconfiguration-appversion"></a>
 #### 2. appVersion
 
 Gamebaseコンソールに登録したクライアントバージョンです。
 
 [Game > Gamebase > コンソール使用ガイド > アプリ > Client](./oper-app/#client)
 
+<a id="gamebaseconfiguration-storecode"></a>
 #### 3. storeCode
 
 NHN Cloudの統合アプリ内決済サービスであるIAP(In-App Purchase)を初期化するために必要なストア情報です。
@@ -46,12 +53,14 @@ NHN Cloudの統合アプリ内決済サービスであるIAP(In-App Purchase)を
 | macOS | MAC | Standaloneに限る |
 | Web | WEB | only Unity WebGL|
 
+<a id="gamebaseconfiguration-displaylanguagecode"></a>
 #### 4. displayLanguageCode
 
 Gamebaseで提供するUI及びSystemDialogに表示される言語をデバイスに設定されている言語ではなく、ユーザーが設定した言語に変更することができます。
 
 [Game > Gamebase > Unity SDK使用ガイド > ETC > Additional Features > Display Language](./unity-etc/#display-language)
 
+<a id="gamebaseconfiguration-enablepopup"></a>
 #### 5. enablePopup
 
 システムメンテナンス、利用制限(ban)などゲームユーザーがゲームをプレイすることができない状況の場合、ポップアップなどで理由を表示しなければならないときがあります。
@@ -61,6 +70,7 @@ Gamebase SDKで提供する基本ポップアップを使用するかどうか�
 * false:Gamebaseで提供するすべてのポップアップが表示されません。
 * デフォルト:false
 
+<a id="gamebaseconfiguration-enablelaunchingstatuspopup"></a>
 #### 6. enableLaunchingStatusPopup
 
 LaunchingStatusがゲームをプレイすることができない状態の場合、Gamebaseで提供する基本ポップアップを使用するかどうかに対する設定です。
@@ -68,16 +78,19 @@ LaunchingStatusは、次のLaunchingチャプターの下のState、Code部分�
 
 * デフォルト:true
 
+<a id="gamebaseconfiguration-enablebanpopup"></a>
 #### 7. enableBanPopup
 
 ログインする際に該当するゲームユーザーが利用停止状態の場合、Gamebaseで提供する基本ポップアップを使用するかどうかに対する設定です。
 
 * デフォルト:true
 
+<a id="gamebaseconfiguration-usewebviewlogin"></a>
 #### 8. useWebview
 
 スタンドアローン(standalone)プラットフォームで、WebViewでログインするかどうかに対する設定です。
 
+<a id="gamebaseconfiguration-enablegpgssignincheck"></a>
 #### 9. enableGPGSSignInCheck
 
 Androidプラットフォームで「GPGS自動ログイン」機能連動時、ユーザーにGPGSログインをアプリインストール後に一度だけ確認する設定です。
@@ -86,7 +99,8 @@ Androidプラットフォームで「GPGS自動ログイン」機能連動時、
 * false :アプリ初回実行時にのみGPGSログインウィンドウが一度表示されます。
 * デフォルト値: true
 
-### Debug Mode
+<a id="debug-mode"></a>
+### Debug Mode { #debug-mode }
 * Gamebaseは警告(warning)とエラーログだけを表示します。
 * 開発の参考にできるシステムログをオンにするには、**Gamebase.SetDebugMode(true)**を呼び出してください。
 
@@ -122,7 +136,8 @@ public void SetDebugModeSample(bool isDebugMode)
 }
 ```
 
-### Initialize
+<a id="initialize"></a>
+### Initialize { #initialize }
 
 SDKを初期化します。
 
@@ -238,11 +253,13 @@ public class SampleInitialization
 }
 ```
 
-### Launching Information
+<a id="launching-information"></a>
+### Launching Information { #launching-information }
 
 InitializeAPIを使用してGamebase Unity SDKを初期化すると、LaunchingInfoの客体が結果値として送られます。
 このLaunchingInfoの客体には、Gamebaseコンソールに設定した値やゲーム状態などが含まれています。
 
+<a id="launching-information-launching"></a>
 #### 1. launching
 
 Gamebaseの起動情報です。
@@ -335,6 +352,7 @@ Gamebase初期化を実行したユーザー情報です。
         * テスト端末情報とマッチングされたタイプ
         * matchingFlagがtrueの場合のみ伝達   
 
+<a id="launching-information-tcproduct"></a>
 #### 2. tcProduct
 
 Gamebaseと連携しているNHN CloudサービスのappKeyです。
@@ -344,6 +362,7 @@ Gamebaseと連携しているNHN CloudサービスのappKeyです。
 * iap
 * push
 
+<a id="launching-information-tciap"></a>
 #### 3. tcIap
 
 **NHN Cloud**コンソールに登録されたIAPストアの情報です。
@@ -354,6 +373,7 @@ Gamebaseと連携しているNHN CloudサービスのappKeyです。
  
 [Game > Gamebase > コンソール使用ガイド > 決済](./oper-purchase/)
 
+<a id="launching-information-tclaunching"></a>
 #### 4. tcLaunching
 
 NHN Cloud Launching Consoleでユーザーが入力した情報です。
@@ -363,7 +383,8 @@ NHN Cloud Launching Consoleでユーザーが入力した情報です。
  
 [Game > Gamebase > コンソール使用ガイド > 管理 > Config](./oper-management/#config)
 
-### Get Launching Information
+<a id="get-launching-information"></a>
+### Get Launching Information { #get-launching-information }
 
 GetLaunchingInformations APIを利用すると、Initialize後もLaunchingInfoオブジェクトを取得できます。
 
@@ -396,7 +417,8 @@ public GamebaseResponse.Launching.LaunchingInfo GetLaunchingInformations()
 }
 ```
 
-### Handling Unregistered Version
+<a id="handling-unregistered-version"></a>
+### Handling Unregistered Version { #handling-unregistered-version }
  	 
 Gamebaseコンソールに登録されていないGameClientVersionを初期化すると**LAUNCHING_UNREGISTERED_CLIENT(2004)**エラーが発生します。
 enablePopup(true), enableLaunchingStatusPopup(true)状態の場合、強制アップデートポップアップが表示され、マーケットに移動します。
@@ -479,7 +501,8 @@ public class SampleInitialization
 }
 ```
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                              | Error Code | Description            |
 | ---------------------------------- | ---------- | ---------------------- |

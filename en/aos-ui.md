@@ -1,19 +1,26 @@
-## Game > Gamebase > Android Developer's Guide > UI
+<!-- pre-align:aligned sig=3ec693c0ed98 -->
 
-## GameNotice
+<a id="game-gamebase-android-developers-guide-ui"></a>
+## Game > Gamebase > Android Developer's Guide > UI { #game-gamebase-android-developers-guide-ui }
+
+<a id="gamenotice"></a>
+## GameNotice { #gamenotice }
 
 This feature displays registered notices with images on the console.
 
 ![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_001.png)
 ![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_002.png)
 
-### Open GameNotice
+<a id="open-gamenotice"></a>
+### Open GameNotice { #open-gamenotice }
 
 Show the game notice on the screen.
 
+<a id="open-gamenotice-required-parameter"></a>
 #### Required parameter
 * Activity: An activity where the game notice is exposed.
 
+<a id="open-gamenotice-optional-parameter"></a>
 #### Optional parameter
 * GameNoticeConfiguration: Can change the game notice settings.
 * GamebaseCallback: Informs the user with callback when the game notice is either closed normally or fails to display due to an error.
@@ -52,7 +59,8 @@ Gamebase.GameNotice.openGameNotice(activity, (GamebaseCallback) exception -> {
 });
 ```
 
-### Custom GameNotice
+<a id="custom-gamenotice"></a>
+### Custom GameNotice { #custom-gamenotice }
 
 Show user-configured game notices.
 You can use ImageNoticeConfiguration to change the display settings.
@@ -75,6 +83,7 @@ Gamebase.GameNotice.openGameNotice(
         });
 ```
 
+<a id="custom-gamenotice-gamenoticeconfiguration"></a>
 #### GameNoticeConfiguration
 
 | API | Mandatory(M) / Optional(O) | Description |
@@ -84,19 +93,23 @@ Gamebase.GameNotice.openGameNotice(
 | setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | Game notice background color.<br>Colors are in ARGB order.
 <br>Use the string value converted by the android.graphics.Color.parseColor(String) API.<br>**default**: #CC000000 |
 
-## ImageNotice
+<a id="imagenotice"></a>
+## ImageNotice { #imagenotice }
 
 You can pop up a notice to users after registering an image to the console.
 
 ![ImageNotice Example](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/DevelopersGuide/imageNotice-guide-landscape-en_v3.png)
 
-### Show ImageNotices
+<a id="show-imagenotices"></a>
+### Show ImageNotices { #show-imagenotices }
 
 Show the image notice on the screen.
 
+<a id="show-imagenotices-required-parameter"></a>
 #### Required parameter
 * Activity: An activity where the image notice is exposed.
 
+<a id="show-imagenotices-optional-parameter"></a>
 #### Optional parameter
 * ImageNoticeConfiguration: Can change the image notice settings.
 * GamebaseCallback: Informs the user with callback when the entire image notice is terminated.
@@ -143,7 +156,8 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), null,
     });
 ```
 
-### Custom ImageNotices
+<a id="custom-imagenotices"></a>
+### Custom ImageNotices { #custom-imagenotices }
 
 Pops up a customized image notice on the screen.
 You can use ImageNoticeConfiguration to create a customized image notice.
@@ -159,6 +173,7 @@ ImageNoticeConfiguration configuration = ImageNoticeConfiguration.newBuilder()
 Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 ```
 
+<a id="custom-imagenotices-imagenoticeconfiguration"></a>
 #### ImageNoticeConfiguration
 
 | API | Mandatory(M) / Optional(O) | Description |
@@ -170,7 +185,8 @@ Gamebase.ImageNotice.showImageNotices(getActivity(), configuration, null, null);
 | enableAutoCloseByCustomScheme(boolean enable) | O | Determine whether to force shutdown the image notice when a custom scheme event occurs.<br>**default**: true |
 
 
-### Close ImageNotices
+<a id="close-imagenotices"></a>
+### Close ImageNotices { #close-imagenotices }
 
 You can call the closeImageNotices API to terminate all image notices currently being displayed.
 
@@ -180,7 +196,8 @@ You can call the closeImageNotices API to terminate all image notices currently 
 + (void)Gamebase.ImageNotice.closeImageNotices(@NonNull Activity activity);
 ```
 
-## Terms
+<a id="terms"></a>
+## Terms { #terms }
 
 Shows the Terms and Conditions specified in the Gamebase Console.
 
@@ -190,17 +207,20 @@ showTermsView API displays the terms and conditions window in WebView.
 If you want to create your own terms and conditions window appropriate for the Game UI, call the queryTerms API to load the terms and conditions set in the Gamebase console.
 If users agree to the terms and conditions, please use the updateTerms API to send the user consent of each item to the Gamebase server.
 
-### showTermsView
+<a id="showtermsview"></a>
+### showTermsView { #showtermsview }
 
 Shows the terms and conditions window on the screen.
 If users agree to the terms and conditions, register the user consent data in the server.
 If users agree to the terms and conditions, calling the showTermsView API again will immediately return the success callback without displaying the terms and conditions window.
 However, if the "Agree again to Terms and Conditions" item has been switched to **Required**, the terms and conditions window is displayed until users agree again to the terms and conditions.
 
+<a id="showtermsview-required-parameter"></a>
 #### Required parameter
 
 * Activity: An activity that prompts the terms and conditions window.
  
+<a id="showtermsview-optional-parameter"></a>
 #### Optional parameter
 
 * GamebaseTermsConfiguration: Using the GamebaseTermsConfiguration object, you can change settings such as whether to forcibly display the terms and conditions agreement window.
@@ -275,7 +295,8 @@ public void afterLogin(Activity activity) {
 }
 ```
 
-### queryTerms
+<a id="queryterms"></a>
+### queryTerms { #queryterms }
 
 Gamebase displays the terms and conditions with a simple WebView.
 If you want to create the terms and conditions appropriate for the game UI, call the queryTerms API to download the terms and conditions information set in the Gamebase Console for later use.
@@ -291,6 +312,7 @@ The "optional" terms items will return the user's consent status when queried af
 > * If you do not touch the 'Terms and Conditions settings' in the console, **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** error occurs when you call the queryTerms API from the device with the country code different from the terms and conditions language.
 >     * If you complete the 'Terms and Conditions settings' in the console or if **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** error occurs, please make sure the terms and conditions are not displayed.
 
+<a id="queryterms-required-parameter"></a>
 #### Required parameter
 
 * Activity: A top level activity at the time of API call.
@@ -333,6 +355,7 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 });
 ```
 
+<a id="queryterms-gamebasequerytermsresult"></a>
 #### GamebaseQueryTermsResult
 
 | API            | Values                          | Description         |
@@ -342,6 +365,7 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | getTermsCountryType     | String                          | Terms and conditions type.<br/> - KOREAN: Korean T&C <br/> - GDPR: European T&C <br/> - ETC: Other countries |
 | getContents             | List<GamebaseTermsContentDetail> | Details of each T&C |
 
+<a id="queryterms-gamebasetermscontentdetail"></a>
 #### GamebaseTermsContentDetail
 
 | API            | Values                | Description         |
@@ -355,7 +379,8 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | getNode2DepthPosition   | int                   | Secondary item exposure sequence.<br/> If none, -1           |
 | getDetailPageUrl        | String                | URL for the full terms and conditions.<br/> If none, null. |
 
-### updateTerms
+<a id="updateterms"></a>
+### updateTerms { #updateterms }
 
 If the UI has been created manually with the terms and conditions info downloaded from the queryTerms API,
 please use the updateTerms API to send the game user's agreement history to the Gamebase server.
@@ -367,11 +392,13 @@ It can be used to terminate the agreement to optional terms and conditions as we
 > Push accept status is not stored in the Gamebase server.
 > Push accept status should be stored by calling the Gamebase.Push.registerPush API **after login**.
 
+<a id="updateterms-required-parameter"></a>
 #### Required parameter
 
 * Activity: A top level activity at the time of API call.
 * GamebaseUpdateTermsConfiguration: Information of optional T&C of users who will be registered on the server.
 
+<a id="updateterms-optional-parameter"></a>
 #### Optional parameter
 
 * GamebaseCallback: Registers the information of optional terms and conditions on the server, and notifies user with a callback.
@@ -430,6 +457,7 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 });
 ```
 
+<a id="updateterms-gamebaseupdatetermsconfiguration"></a>
 #### GamebaseUpdateTermsConfiguration
 
 **Builder**
@@ -445,6 +473,7 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | termsVersion         | **M**                      | String                    | T&C version.<br/>The queryTerms API must be called to pass the downloaded value.   |
 | contents             | **M**                      | List<GamebaseTermsContent> | Info on whether user agrees to the optional terms and conditions  |
 
+<a id="updateterms-gamebasetermscontent"></a>
 #### GamebaseTermsContent
 
 **Constructor**
@@ -460,7 +489,8 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | termsContentSeq      | **M**                      | int                | KEY for optional terms and conditions      |
 | agreed               | **M**                      | boolean            | Info on whether user agrees to optional terms and conditions  |
 
-### isShowingTermsView
+<a id="isshowingtermsview"></a>
+### isShowingTermsView { #isshowingtermsview }
 
 Determines whether the terms and conditions window is currently displayed or not.
 
@@ -470,12 +500,14 @@ Determines whether the terms and conditions window is currently displayed or not
 + (boolean)Gamebase.Terms.isShowingTermsView();
 ```
 
-## WebView
+<a id="webview"></a>
+## WebView { #webview }
 
 Gamebase supports a default WebView.
 
 
-### Show WebView
+<a id="show-webview"></a>
+### Show WebView { #show-webview }
 
 Shows a WebView.
 
@@ -508,6 +540,7 @@ Gamebase.WebView.showWebView(activity, "https://www.toast.com");
 
 ![Webview Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
 
+<a id="show-webview-custom-webview"></a>
 #### Custom WebView
 
 Shows a customized WebView. <br/>
@@ -529,6 +562,7 @@ GamebaseWebViewConfiguration configuration
 GamebaseWebView.showWebView(activity, "https://www.toast.com", configuration);
 ```
 
+<a id="show-webview-custom-schema"></a>
 #### Custom Schema
 
 With schema on the webpage loaded by Gamebase WebView, specific features become available or webpage can be changed. 
@@ -545,6 +579,7 @@ Gamebase has the following schemas
 | gamebase://showwebview?link={URLEncodedURL} | Open the URL of the link parameter with the WebView.<br>URLEncodedURL: Column URL with the WebView.<br>Requires URL decoding. |
 | gamebase://openbrowser?link={URLEncodedURL} | Open the URL of the link parameter with an external browser.<br>URLEncodedURL: Column URL with the WebView.<br>Requires URL decoding. |
 
+<a id="show-webview-user-custom-schema"></a>
 #### User Custom Schema
 
 By specifying the name and block of a schema for Gamebase, features may be added in need.   
@@ -584,6 +619,7 @@ showWebView(activity, urlString, configuration,
         });
 ```
 
+<a id="show-webview-gamebasewebviewconfiguration"></a>
 #### GamebaseWebViewConfiguration
 
 | Method                                   | Values                              | Description    |
@@ -605,7 +641,8 @@ showWebView(activity, urlString, configuration,
 | setRenderOutsideSafeArea(boolean render) | true or false | Ignore safe area and render cutout area.<br>**default**: false |
 | setCutoutAreaColor(int color) | Color.argb(a, r, g, b) | Cutout area background color outside of SafeArea |
 
-### Close WebView
+<a id="close-webview"></a>
+### Close WebView { #close-webview }
 Close currently displayed WebView by using the following API.
 
 **API**
@@ -615,7 +652,8 @@ Close currently displayed WebView by using the following API.
 ```
 
 
-## Open External Browser
+<a id="open-external-browser"></a>
+## Open External Browser { #open-external-browser }
 
 Open an external browser by using the following API. The URL delivered as a parameter should be valid.
 
@@ -626,11 +664,13 @@ Open an external browser by using the following API. The URL delivered as a para
 ```
 
 
-## Alert
+<a id="alert"></a>
+## Alert { #alert }
 
 Displays a system alert API.<br/>
 
-### Simple Alert Dialog
+<a id="simple-alert-dialog"></a>
+### Simple Alert Dialog { #simple-alert-dialog }
 
 Shows a simple alert dialogue by entering title and message only.
 
@@ -643,7 +683,8 @@ Shows a simple alert dialogue by entering title and message only.
 ![Alert Dialog Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-002_1.0.0.png)
 
 
-### Alert Dialog with Listener
+<a id="alert-dialog-with-listener"></a>
+### Alert Dialog with Listener { #alert-dialog-with-listener }
 
 Use the following API to receive callbacks on processing results after an alert dialog is displayed.
 
@@ -657,7 +698,8 @@ Use the following API to receive callbacks on processing results after an alert 
                             DialogInterface.OnClickListener clickListener); // Listener called when pressing a positive button.
 ```
 
-## Toast
+<a id="toast"></a>
+## Toast { #toast }
 
 Displays [Android Toast](https://developer.android.com/guide/topics/ui/notifiers/toasts.html) messages, by using the following API.<br/>
 The type of time parameter to display message is provided in int format and will be displayed during time as below, as the Android SDK NotificationManagerService class is defined.
@@ -678,7 +720,8 @@ The type of time parameter to display message is provided in int format and will
                         int duration);      // Type of time to display message (Toast.LENGTH_SHORT or Toast.LENGTH_LONG)
 ```
 
-## Custom Maintenance Page
+<a id="custom-maintenance-page"></a>
+## Custom Maintenance Page { #custom-maintenance-page }
 
 Click 'Detail' in maintenance status to change maintenance page.
 
@@ -692,7 +735,8 @@ Click 'Detail' in maintenance status to change maintenance page.
 	android:value="file:///android_asset/html/gamebase-maintenance.html"/>
 ```
 
-## Error Handling
+<a id="error-handling"></a>
+## Error Handling { #error-handling }
 
 | Error                                             | Error Code | Description                                                                                 |
 |---------------------------------------------------|------------|---------------------------------------------------------------------------------------------|
@@ -714,4 +758,4 @@ Click 'Detail' in maintenance status to change maintenance page.
 | SERVER\_INVALID\_RESPONSE                         | 8003       | Invalid response is returned from the server.  | 
 
 * Refer to the following document for the entire error codes:
-    * [Entire Error Codes](./error-codes#client-sdk)
+    * [Entire Error Codes](./error-code/#client-sdk)

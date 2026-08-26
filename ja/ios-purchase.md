@@ -1,4 +1,7 @@
-## Game > Gamebase > iOS SDK ご利用ガイド > 決済
+<!-- pre-align:aligned sig=b5df3c0f60cb -->
+
+<a id="game-gamebase-ios-developers-guide-purchase"></a>
+## Game > Gamebase > iOS SDK ご利用ガイド > 決済 { #game-gamebase-ios-developers-guide-purchase }
 
 > <font color="red">[注意]</font><br/>
 >
@@ -9,14 +12,17 @@
 
 Gamebaseは、一つの統合された決済APIを提供することで、ゲームで簡単に各ストアのアプリ内決済を連携させることができるようサポートしています。
 
-### Settings
+<a id="settings"></a>
+### Settings { #settings }
 
+<a id="settings-apple-itunes-connect"></a>
 #### Apple iTunes-Connect
 1. テスト用アプリのビルドをアップロード
 2. In-App Purchasesアイテムの登録及び承認
 3. Sandbox Testerアカウントの登録
 * Detail Guide for iTunes-Connect:[Apple Guide](https://help.apple.com/itunes-connect/developer/#/devb57be10e7)
 
+<a id="settings-register-at-gamebase-console"></a>
 #### Gamebase Console登録
 次はGamebase Consoleで設定する必要がある内容です。
 
@@ -30,10 +36,12 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
     * ストアアイテムID：iTunes-Connectに登録したProduct IDを入力します。
 3. **保存**を押します。
 
+<a id="settings-set-xcode-project"></a>
 #### Xcode Projectの設定
 1. **Targets > Capabilities > In-App Purchase**を**ON**に設定します。
 2. **Targets > General > Identity**のBundle Identifier、Version、Buildの値を正しく設定します。
 
+<a id="settings-import-header-file"></a>
 #### Import Header File
 
 購入APIを設計するViewControllerに次のヘッダーファイルを持ってきます。
@@ -42,7 +50,8 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
 #import <Gamebase/Gamebase.h>
 ```
 
-### Purchase Flow
+<a id="purchase-flow"></a>
+### Purchase Flow { #purchase-flow }
 
 アイテムの購入は大きく分けて決済フロー、消費フロー、再処理フローの3つがあります。
 決済フローは、次のような順序で実装してください。
@@ -53,7 +62,8 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
 2. ゲームクライアントではGamebase SDKの**requestPurchaseWithGamebaseProductId:viewController:completion:**を呼び出して決済を試行します。
 3. 決済が成功したら**requestItemListOfNotConsumedWithCompletion:**を呼び出して未消費決済履歴を確認した後、支給するアイテムが存在すればConsume Flowを進行します。
 
-### Consume Flow
+<a id="consume-flow"></a>
+### Consume Flow { #consume-flow }
 
 未消費決済履歴リストに値がある場合、次のような順序でConsume Flowを進行してください。
 
@@ -77,19 +87,21 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
 3. アイテム支給有無に関係なく、ゲームサーバーは未消費履歴が返されないようにGamebaseサーバーのconsume(消費) APIを呼び出してアイテムの支給を完了します。
     * [Game > Gamebase > APIガイド > Purchase(IAP) > Consume](./api-guide/#consume)
 
-### Retry Transaction Flow
+<a id="retry-transaction-flow"></a>
+### Retry Transaction Flow { #retry-transaction-flow }
 
 ![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
 
 * ストア決済には成功したがエラーが発生して正常終了できない場合があります。
-* **requestItemListOfNotConsumedWithCompletion:**を呼び出して再処理を動作させ、未支給アイテムがあれば[Consume Flow](./ios-purchase/#consume-flow)を進行してください。
+* **requestItemListOfNotConsumedWithCompletion:**を呼び出して再処理を動作させ、未支給アイテムがあれば[Consume Flow](#consume-flow)を進行してください。
 * 再処理は、次のようなタイミングで呼び出すことを推奨します。
     * ログイン完了後。
     * 決済前。
     * ゲーム内商店(またはロビー)進入時。
     * ユーザープロフィールまたはメールボックスの確認時。
 
-### Purchase Items
+<a id="purchase-items"></a>
+### Purchase Items { #purchase-items }
 
 購入するアイテムのgamebaseProductIdを利用して次のAPIを呼び出し、購入をリクエストします。<br/>
 gamebaseProductIdは一般的にはストアに登録したアイテムのIDと同じですが、Gamebaseコンソールでも変更できます。
@@ -194,7 +206,8 @@ gamebaseProductIdは一般的にはストアに登録したアイテムのIDと�
 
 
 
-### List Purchasable Items
+<a id="list-purchasable-items"></a>
+### List Purchasable Items { #list-purchasable-items }
 
 アイテムリストを照会したい場合、次のAPIを呼び出します。コールバックで返される配列(array)の中にはそれぞれ各アイテムの情報が含まれています。
 
@@ -266,7 +279,8 @@ gamebaseProductIdは一般的にはストアに登録したアイテムのIDと�
 @end
 ```
 
-### List Non-Consumed Items
+<a id="list-non-consumed-items"></a>
+### List Non-Consumed Items { #list-non-consumed-items }
 
 アイテムを購入したものの、正常にアイテムが消費(送信、配布)されていない未消費決済の内訳をリクエストします。<br/>
 未決済の内訳がある場合は、ゲームサーバー(アイテムサーバー)にリクエストを出してアイテムを送信(配布)するように処理する必要があります。.
@@ -287,6 +301,7 @@ gamebaseProductIdは一般的にはストアに登録したアイテムのIDと�
                                            completion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
 ```
 
+<a id="list-non-consumed-items-required-parameters"></a>
 #### Requiredパラメータ
 
 * configuration: TCGBPurchasableConfigurationで未消費決済履歴照会の設定を変更できます。
@@ -310,7 +325,8 @@ gamebaseProductIdは一般的にはストアに登録したアイテムのIDと�
 }
 ```
 
-### List Activated Subscriptions
+<a id="list-activated-subscriptions"></a>
+### List Activated Subscriptions { #list-activated-subscriptions }
 
 現在のユーザーIDで有効になっている定期購入リストを照会します。
 決済が完了した定期購入商品(自動更新型定期購入、自動更新型消費性定期購入商品)は、期間が終了するまで照会できます。 
@@ -322,17 +338,13 @@ gamebaseProductIdは一般的にはストアに登録したアイテムのIDと�
                                         completion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
 ```
 
+<a id="list-activated-subscriptions-required-parameters"></a>
 #### Requiredパラメータ
 
 * configuration: TCGBPurchasableConfigurationで有効になった購読リスト照会の設定を変更できます。
 * completion:有効な購読リスト照会結果をユーザーにコールバックで通知します。
 
 **Example**
-
-### Reprocess Failed Purchase Transaction
-
-ストアでは決済が正常に行われたものの、TOAST IAPサーバーの検証エラーなどにより正常に決済されていない場合は、APIを利用して再処理を試みます。<br/>
-最後に、決済が成功した内訳を基にアイテム送信(配布)などのAPIを呼び出して処理する必要があります。
 
 ```objectivec
 - (void)viewDidLoad {
@@ -349,7 +361,8 @@ gamebaseProductIdは一般的にはストアに登録したアイテムのIDと�
 }
 ```
 
-### Restore Purchase
+<a id="restore-purchase"></a>
+### Restore Purchase { #restore-purchase }
 
 ユーザーのApp Storeアカウントで購入した履歴を基準に購入履歴を復元してコンソールに反映します。
 購入した定期購入商品が照会できない時や、有効になっていない場合に使用します。
@@ -377,12 +390,14 @@ gamebaseProductIdは一般的にはストアに登録したアイテムのIDと�
 }
 ```
 
-### Event by Purchase
+<a id="event-by-purchase"></a>
+### Event by Purchase { #event-by-purchase }
 
 App Storeのプロモーション商品の購入が完了したり、Ask to Buyなどにより遅延した決済が完了したりした際、GamebaseEventHandlerを利用してイベントを受け取り、処理できます。
 GamebaseEventHandlerで遅延決済イベントを処理する方法は、以下のガイドをご確認ください。
 [Game > Gamebase > iOS SDK使用ガイド > ETC > Gamebase Event Handler](./ios-etc/#purchase-updated)
 
+<a id="event-by-purchase-caution-for-usage"></a>
 #### 使用時の注意事項
 Facebook SDK、Google AdMob SDKなどのように、SDK内にIn App Purchase(App Store決済)機能がある場合、Gamebaseにログインする前に事前決済を始めると、決済ウィンドウが表示されないことがあります。
 
@@ -391,13 +406,15 @@ Facebook SDK、Google AdMob SDKなどのように、SDK内にIn App Purchase(App
     * Facebook Console > 設定 > 基本設定 > **アプリ内イベントを自動的にロギング(推奨)**機能を無効化
     * Facebook認証機能を使用しない場合：**GamebaseAuthFacebookAdapter.xcframeworkファイルを除外**した後ビルド
 
-### TCGBPurchasableConfiguration
+<a id="tcgbpurchasableconfiguration"></a>
+### TCGBPurchasableConfiguration { #tcgbpurchasableconfiguration }
 
 | Parameter     | Values            | Description        |
 | ------------- | ----------------- | ------------------ |
 | allStores     | Bool | 同じUserIDでAPIが現在ストアまたはすべてのストアを対象に動作するように設定<br>- すべてのストア：YES<br>- 現在のストア：NO<br>**default**: NO    |
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                                                | Error Code | Description                              |
 | ---------------------------------------------------- | ---------- | ---------------------------------------- |
@@ -436,4 +453,4 @@ NSLog(@"TCGBError:%@", [tcgbError description]);
 ```
 
 * NHN Cloud IAPエラーコードは、次の文書を参照してください。
-    * [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud IAP > iOS > エラーコード](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-ios/#error-codes)
+    * [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud IAP > iOS > エラーコード](/nhncloud-sdk/ja/iap-ios/#error-codes)

@@ -1,6 +1,10 @@
-## Game > Gamebase > User Guide for Unreal SDK > Authentication 
+<!-- pre-align:aligned sig=3b6c59994f8b -->
 
-## Login
+<a id="game-gamebase-user-guide-for-unreal-sdk-authentication"></a>
+## Game > Gamebase > User Guide for Unreal SDK > Authentication { #game-gamebase-user-guide-for-unreal-sdk-authentication }
+
+<a id="login"></a>
+## Login { #login }
 
 Gamebase basically supports guest login. <br/>
 
@@ -9,7 +13,8 @@ Gamebase basically supports guest login. <br/>
     * [3rd-Party Provider SDK Guide](aos-started#3rd-party-provider-sdk-guide)
 
 
-### Login Flow
+<a id="login-flow"></a>
+### Login Flow { #login-flow }
 
 Many games allow login execution on the title page.  
 
@@ -21,16 +26,19 @@ The above login can be implemented in the following order:
 ![last provider login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
 ![idp login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
+<a id="login-flow-authenticate-with-previous-login-type"></a>
 #### 1. Authenticate with Previous Login Type 
 
 * If a previous record exists for authentication, authentication can be tried without ID or password. 
 * Call **LoginForLastLoggedInProvider API**. 
 
+<a id="login-flow-1-1-when-authentication-is-successful"></a>
 #### 1-1. When Authentication is Successful 
 
 * Congratulations! Successfully authenticated.
 * Get a user ID with **GetUserID API** and implement game logic. 
 
+<a id="login-flow-1-2-when-authentication-fails"></a>
 #### 1-2. When Authentication Fails
 
 * Network Error 
@@ -42,17 +50,20 @@ The above login can be implemented in the following order:
 * Other Errors 
     * Authentication failed with the previous login type. Execute **'2. Authenticate with Specified IdP'**.
 
+<a id="login-flow-authenticate-with-specified-idp"></a>
 #### 2. Authenticate with Specified IdP
 
 * Specify IdP type to authenticate.  
     * Available types of authentication are declared in the **GamebaseAuthProvider** class. 
 * Call **Login(providerName, callback) API**.
 
+<a id="login-flow-2-1-when-authentication-is-successful"></a>
 #### 2-1. When Authentication is Successful 
 
 * Congratulations! Successfully authenticated.
 * Get a user ID with **GetUserID API** and implement game logic.
 
+<a id="login-flow-2-2-when-authentication-fails"></a>
 #### 2-2. When Authentication Fails
 
 * Network Error
@@ -64,7 +75,8 @@ The above login can be implemented in the following order:
 * Other Errors 
     * Notify game users of the occurrence of error, and it is reverted to a status (mostly, title or login page) in which game user can select an IdP type of authentication.   
 
-### Login with the Latest Login IdP
+<a id="login-with-the-latest-login-idp"></a>
+### Login with the Latest Login IdP { #login-with-the-latest-login-idp }
 
 Attempt to log in with the most recent login IdP. 
 When token for the login has expired, or if token verification has failed, return such failure.  
@@ -122,7 +134,8 @@ void USample::LoginForLastLoggedInProvider()
 }
 ```
 
-### Login with GUEST
+<a id="login-with-guest"></a>
+### Login with GUEST { #login-with-guest }
 
 Gamebase supports guest login. 
 
@@ -178,7 +191,8 @@ void USample::Login()
 }
 ```
 
-### Login with IdP
+<a id="login-with-idp"></a>
+### Login with IdP { #login-with-idp }
 
 Following codes are login examples with particular IdP. 
 The types of IdPs that can be used for login can be found in the **GamebaseAuthProvider** class.
@@ -266,7 +280,13 @@ void USample::LoginWithAdditionalInfo()
 }
 ```
 
-### Login with Credential
+<a id="login-with-idp-cancel-login-with-external-browser"></a>
+#### Cancel Login with External Browser
+
+<!-- TODO: translate body -->
+
+<a id="login-with-credential"></a>
+### Login with Credential { #login-with-credential }
 
 This interface allows login to Gamebase with SDKs provided by IdP and authenticated in each game, by using access token.  
 
@@ -279,7 +299,7 @@ This interface allows login to Gamebase with SDKs provided by IdP and authentica
 | GamebaseAuthProviderCredential::AuthorizationCode | Set authorization code given after Google login |                                          |
 | GamebaseAuthProviderCredential::GamebaseAccessToken | Used when logging in with Gamebase Access Token instead of IdP authentication information |  |
 | GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn | Allow login attempts with another account without logging out while logged in to Gamebase | **bool** |
-| GamebaseAuthProviderCredential::LineChannelRegion | Set LINE service region | [See Login with IdP](./unreal-authentication/#login-with-idp) |
+| GamebaseAuthProviderCredential::LineChannelRegion | Set LINE service region | [See Login with IdP](#login-with-idp) |
 
 > [TIP]
 >
@@ -335,7 +355,8 @@ void USample::LoginWithCredential()
 ```
 
 
-## Logout
+<a id="logout"></a>
+## Logout { #logout }
 
 Attempt to log out from login IdP. In most cases, the logout button is located on the setting page of a game, to be clicked for execution. 
 Even with a successful logout, game user's data remains. 
@@ -374,7 +395,8 @@ void USample::Logout()
 ```
 
 
-## Withdraw
+<a id="withdraw"></a>
+## Withdraw { #withdraw }
 Attempts account withdrawal while logged in.
 
 * Upon successful withdrawal
@@ -420,7 +442,8 @@ void USample::Withdraw()
 }
 ```
 
-## Mapping
+<a id="mapping"></a>
+## Mapping { #mapping }
 
 Mapping refers to integrating or disintegrating other IdP accounts with a previously logged-in account. 
 
@@ -444,26 +467,31 @@ See the following for example: <br/>
 
 Regarding mapping, two APIs exist: Add/Cancel Mapping API.  
 
-### Add Mapping Flow
+<a id="add-mapping-flow"></a>
+### Add Mapping Flow { #add-mapping-flow }
 
 Mapping can be implemented in the following order. 
 
 ![add mapping flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_add_mapping_flow_2.30.0.png)
 
+<a id="add-mapping-flow-login"></a>
 #### 1. Login 
 Since mapping refers to adding IdP account integration to a current account, login is required. 
 Call login API first to log in. 
 
+<a id="add-mapping-flow-mapping"></a>
 #### 2. Mapping 
 
 Call **AddMapping API** to attempt a mapping. 
 
+<a id="add-mapping-flow-2-1-when-mapping-is-successful"></a>
 #### 2-1. When Mapping is Successful
 
 * Congratulations! Just added an IdP account now mapped with the current account. 
 * Even with a successful mapping, 'Currently logged IdP' does not change. <br> For instance, if you've been logged with Google account, and even if an attempt of mapping with Facebook has been successful, the 'Currently logged IdP' does not change from Google to Facebook.
 * Mapping simply adds IdP integration. 
 
+<a id="add-mapping-flow-2-2-when-mapping-fails"></a>
 #### 2-2. When Mapping Fails 
 
 * Network error
@@ -478,7 +506,8 @@ Call **AddMapping API** to attempt a mapping.
     * The mapping attempt has failed.
 
 
-### Add Mapping
+<a id="add-mapping"></a>
+### Add Mapping { #add-mapping }
 
 Attempt to map with another IdP while it is logged in to a specific IdP. 
 If an account of IdP about to map to is already mapped to another account, 
@@ -520,7 +549,8 @@ void USample::AddMapping(const FString& ProviderName)
 }
 ```
 
-### AddMapping with Credential
+<a id="addmapping-with-credential"></a>
+### AddMapping with Credential { #addmapping-with-credential }
 
 This interface allows to authenticate with SDK provided by IdP of a game to enable Gamebase AddMapping by using a given access token.  
 
@@ -585,7 +615,8 @@ void USample::AddMappingWithCredential()
 }
 ```
 
-### Add Mapping Forcibly
+<a id="add-mapping-forcibly"></a>
+### Add Mapping Forcibly { #add-mapping-forcibly }
 
 특정 IdP에 이미 매핑된 계정이 있을 때, **강제로** 매핑을 시도합니다.
 **강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
@@ -651,7 +682,8 @@ void USample::AddMappingForcibly(const FString& ProviderName)
 }
 ```
 
-### Change Login with ForcingMappingTicket
+<a id="change-login-with-forcingmappingticket"></a>
+### Change Login with ForcingMappingTicket { #change-login-with-forcingmappingticket }
 
 When there's an account which is already mapped to a particular IdP, log out from the current account and log in with the mapped account. 
 In this case, `ForcingMappingTicket` acquired from AddMapping API is required. 
@@ -715,7 +747,8 @@ void USample::ChangeLoginWithFacebook(const FString& ProviderName)
 }
 ```
 
-### Remove Mapping
+<a id="remove-mapping"></a>
+### Remove Mapping { #remove-mapping }
 
 Remove mapping from a particular IdP. If there's only one IdP, return failure. 
 After mapping is removed, log out from the IdP within Gamebase. 
@@ -752,7 +785,8 @@ void USample::RemoveMapping(const FString& ProviderName)
 }
 ```
 
-### Get Mapping List
+<a id="get-mapping-list"></a>
+### Get Mapping List { #get-mapping-list }
 
 Return the list of IdPs mapped with user ID. <br/>
 
@@ -783,12 +817,15 @@ void USample::GetAuthMappingList()
 }
 ```
 
-## Gamebase User's Information
+<a id="gamebase-users-information"></a>
+## Gamebase User's Information { #gamebase-users-information }
 
 Execute authentication via Gamebase, to obtain information required to produce an app. 
 
-### Get Authentication Information for Gamebase
+<a id="get-authentication-information-for-gamebase"></a>
+### Get Authentication Information for Gamebase { #get-authentication-information-for-gamebase }
 
+<a id="get-authentication-information-for-gamebase-userid"></a>
 #### UserID
 
 Get UserID issued from Gamebase. 
@@ -812,6 +849,7 @@ void USample::GetUserID()
 }
 ```
 
+<a id="get-authentication-information-for-gamebase-accesstoken"></a>
 #### AccessToken
 
 Get access token issued from Gamebase.
@@ -836,6 +874,7 @@ void USample::GetAccessToken()
 }
 ```
 
+<a id="get-authentication-information-for-gamebase-last-loggedin-provider-name"></a>
 #### Last LoggedIn Provider Name
 
 Get ProviderName that was successful with the last login from Gamebase.
@@ -874,7 +913,8 @@ void USample::GetLastLoggedInProvider()
 }
 ```
 
-### Get Authentication Information for External IdP
+<a id="get-authentication-information-for-external-idp"></a>
+### Get Authentication Information for External IdP { #get-authentication-information-for-external-idp }
 
 * Information such as access token, user ID, and profile of an external authentication IdP can be received by calling the Gamebase Server API after login.
     * [Game > Gamebase > API Guide > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
@@ -888,13 +928,15 @@ void USample::GetLastLoggedInProvider()
 > * When logged in with the "Gamebase.LoginForLastLoggedInProvider()” API, the authentication info cannot be retrieved.
 >     * If you need the user info, instead of "Gamebase.LoginForLastLoggedInProvider()” , use the {IDP_CODE} identical to the IDPCode that you want to use as the parameter to log in as the "Gamebase.Login(IDP_CODE, callback)" API.
 
-### Get Banned User Information
+<a id="get-banned-user-information"></a>
+### Get Banned User Information { #get-banned-user-information }
 
 When a user is registered as banned from Gamebase Console, 
 with his login attempt, servic restriction code (**BANNED_MEMBER(7)**) may be displayed, and punishment information can be found by using the **FGamebaseBanInfo::From API**. 
 
 
-## TransferAccount
+<a id="transferaccount"></a>
+## TransferAccount { #transferaccount }
 With this feature, key to transfer guest account onto another device can be issued.  
 
 The key is called **TransferAccountInfo**.
@@ -905,7 +947,8 @@ The issued TransferAccountInfo enables account transfer by calling **requestTran
 > Account transfer by using TransferAccountInfo is available only with a guest login or logout. 
 > If a login guest account is already mapped with another external IdP (e.g. Google, Facebook, or PAYCO), account transfer is not supported. 
 
-### Issue TransferAccount
+<a id="issue-transferaccount"></a>
+### Issue TransferAccount { #issue-transferaccount }
 Issue TransferAccountInfo to transfer account. 
 
 **API**
@@ -934,7 +977,8 @@ void USample::IssueTransferAccount()
 }
 ```
 
-### Query TransferAccount
+<a id="query-transferaccount"></a>
+### Query TransferAccount { #query-transferaccount }
 Query TransferAccountInfo, already issued for the transfer of guest account, to a Gamebase server. 
 
 **API**
@@ -963,7 +1007,8 @@ void USample::QueryTransferAccount()
 }
 ```
 
-### Renew TransferAccount
+<a id="renew-transferaccount"></a>
+### Renew TransferAccount { #renew-transferaccount }
 Renew TransferAccountInfo which has already been issued.  
 It is available either by "Auto Renewal", or "Manual Renewal", and TransferAccountInfo can be updated by setting "Renew Password Only", or "Renew Both ID and Password". 
 
@@ -1001,7 +1046,8 @@ void USample::RenewTransferAccount(const FString& AccountId, const FString& Acco
 ```
 
 
-### Transfer Guest Account to Another Device
+<a id="transfer-guest-account-to-another-device"></a>
+### Transfer Guest Account to Another Device { #transfer-guest-account-to-another-device }
 Account can be transferred via TransferAccount with the **issueTransfer** API. 
 When account transfer is successful, transfer completion message may be displayed on the device that issued TransferAccount, and a new account will be created with a guest login.  
 On a device with successful account transfer, you can continue to apply the guest account of device which issued TransferAccount.  
@@ -1037,7 +1083,8 @@ void USample::TransferAccountWithIdPLogin(const FString& AccountId, const FStrin
 ```
 
 
-## TemporaryWithdrawal
+<a id="temporarywithdrawal"></a>
+## TemporaryWithdrawal { #temporarywithdrawal }
 
 'Suspension of Withdrawal' is available. 
 At the request for a temporary withdrawal, user can withdraw after certain period of suspension. 
@@ -1050,7 +1097,8 @@ Suspension period can be changed from the console.
 
 When it is successfully logged in, the withdrawal status of a user can be found with AuthToken.member.temporaryWithdrawal.
 
-### Request TemporaryWithdrawal
+<a id="request-temporarywithdrawal"></a>
+### Request TemporaryWithdrawal { #request-temporarywithdrawal }
 
 Send a request for a temporary withdrawal. 
 After a certain period specified on console, user withdrawal is automatically processed.  
@@ -1081,7 +1129,8 @@ void USample::RequestWithdrawal()
 }
 ```
 
-### Check TemporaryWithdrawal User
+<a id="check-temporarywithdrawal-user"></a>
+### Check TemporaryWithdrawal User { #check-temporarywithdrawal-user }
 
 Games enabling the suspension of withdrawal must always notify the user after login that withdrawal is underway, unless AuthToken.member.temporaryWithdrawal is null. 
 
@@ -1115,7 +1164,8 @@ void USample::Login()
 }
 ```
 
-### Cancel TemporaryWithdrawal
+<a id="cancel-temporarywithdrawal"></a>
+### Cancel TemporaryWithdrawal { #cancel-temporarywithdrawal }
 
 Cancel request for a withdrawal.
 After withdrawal is completed and if the request has expired, withdrawal cannot be reverted.  
@@ -1145,7 +1195,8 @@ void USample::CancelTemporaryWithdrawal()
 }
 ```
 
-### Withdraw Immediately
+<a id="withdraw-immediately"></a>
+### Withdraw Immediately { #withdraw-immediately }
 
 Withdraw immediately without considering the suspension period. 
 It runs the same as Withdraw API. 
@@ -1178,7 +1229,8 @@ void USample::WithdrawImmediately()
 }
 ```
 
-## GraceBan
+<a id="graceban"></a>
+## GraceBan { #graceban }
 
 * This is a 'purchase abuse automatic release' function.
     * The purchase abuse automatic release function allows users who should be banned due to purchase abuse automatic lockdown to be banned after ban suspension status.
@@ -1233,7 +1285,8 @@ void USample::Login()
 }
 ```
 
-## Error Handling
+<a id="error-handling"></a>
+## Error Handling { #error-handling }
 
 | Category | Error | Error Code | Description |
 | --- | --- | --- | --- |

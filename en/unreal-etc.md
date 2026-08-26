@@ -1,10 +1,15 @@
-## Game > Gamebase > User Guide for Unreal SDK > ETC
+<!-- pre-align:aligned sig=5f2cf1791bd6 -->
 
-## Additional Features
+<a id="game-gamebase-user-guide-for-unreal-sdk-etc"></a>
+## Game > Gamebase > User Guide for Unreal SDK > ETC { #game-gamebase-user-guide-for-unreal-sdk-etc }
+
+<a id="additional-features"></a>
+## Additional Features { #additional-features }
 
 This document describes additional features supported by Gamebase. 
 
-### Device Language
+<a id="device-language"></a>
+### Device Language { #device-language }
 
 * Return the language code configured for your device. 
 * When there's many number of registered languages, return only the language of the highest priority.   
@@ -20,7 +25,8 @@ Supported Platforms
 FString GetDeviceLanguageCode() const;
 ```
 
-### Display Language
+<a id="display-language"></a>
+### Display Language { #display-language }
 
 * You may change language displayed on Gamebase UI or SystemDialog to another one which is different from the configured language on device. 
 * Gamebase shows messages that are included to client or received from the server. 
@@ -31,6 +37,7 @@ FString GetDeviceLanguageCode() const;
 >
 > Gamebase client messages are available in English (en), Korean (ko), and Japanese (ja) only. 
 
+<a id="display-language-language-codes-supported-by-gamebase"></a>
 #### Language Codes Supported by Gamebase
 
 | Code | Name |
@@ -81,6 +88,7 @@ namespace GamebaseDisplayLanguageCode
 }
 ```
 
+<a id="display-language-setting-for-gamebase-initialization"></a>
 #### Display Language Setting for Gamebase Initialization
 
 Display Language can be configured when Gamebase is initialized.  
@@ -121,6 +129,7 @@ void USample::Initialize(const FString& AppID, const FString& AppVersion)
 }
 ```
 
+<a id="display-language-set-display-language"></a>
 #### Set Display Language
 
 Display Language can be changed from Gamebase initialization. 
@@ -146,6 +155,7 @@ void USample::SetDisplayLanguageCode(const FString& DisplayLanguage)
 }
 ```
 
+<a id="display-language-get-display-language"></a>
 #### Get Display Language
 
 Current Display Language can be queried.
@@ -171,6 +181,7 @@ void USample::GetDisplayLanguageCode()
 }
 ```
 
+<a id="display-language-add-new-language-sets"></a>
 #### Add New Language Sets
 
 Regarding how to add new language sets on Unreal Android or iOS platform, see the following guides:  
@@ -178,6 +189,7 @@ Regarding how to add new language sets on Unreal Android or iOS platform, see th
 * [Adding New Language Sets on Android](./aos-etc#display-language)
 * [Addig New Languages Sets on iOS](./ios-etc#display-language)
 
+<a id="display-language-priority-of-display-languages"></a>
 #### Priority of Display Languages
 
 When Display Language is set by initialization or SetDisplayLanguageCode API, the final value might be different from actual input. 
@@ -186,11 +198,13 @@ When Display Language is set by initialization or SetDisplayLanguageCode API, th
 2. When Gamebase is initialized, see if the language set on device is defined in the localizedstring.json file. (This value, after initialization, shall remain the same even with the change of language set on device.)
 3. The default `en` is automatically set for Display Language. 
 
-### Country Code
+<a id="country-code"></a>
+### Country Code { #country-code }
 
 * Gamebase provides country codes of a system on the following APIs.  
 * Each API has different features, so select one to suit your needs. 
 
+<a id="country-code-usim-country-code"></a>
 #### USIM Country Code
 
 * Return the country code recorded at USIM. 
@@ -208,6 +222,7 @@ Supported Platforms
 FString GetCountryCodeOfUSIM() const;
 ```
 
+<a id="country-code-device-country-code"></a>
 #### Device Country Code
 
 * Return the device country code delivered from OS without further checks. 
@@ -225,6 +240,7 @@ Supported Platforms
 FString GetCountryCodeOfDevice() const;
 ```
 
+<a id="country-code-intergrated-country-code"></a>
 #### Intergrated Country Code
 
 * Check and return country code in the order of language setting of USIM and device. 
@@ -245,7 +261,8 @@ FString GetCountryCodeOfDevice() const;
 FString GetCountryCode() const;
 ```
 
-### Gamebase Event Handler
+<a id="gamebase-event-handler"></a>
+### Gamebase Event Handler { #gamebase-event-handler }
 
 * Gamebase can process all kinds of events in a single event system called **GamebaseEventHandler**.
 * GamebaseEventHandler can simply add or remove a Listener through the API below:
@@ -345,6 +362,7 @@ void USample::AddEventHandler()
 | Push<br>- Message clicked | GamebaseEventCategory::PushClickMessage | FGamebaseEventPushMessage::From(Message.Data) |  |
 | Push<br>- Action clicked | GamebaseEventCategory::PushClickAction | FGamebaseEventPushAction::From(Message.Data) | Operates when the RichMessage button is clicked. |
 
+<a id="gamebase-event-handler-idp-revoked"></a>
 #### IdP Revoked
 
 > [Note]
@@ -370,6 +388,7 @@ void USample::AddEventHandler()
 }
 ```
 
+<a id="gamebase-event-handler-logged-out"></a>
 #### Logged Out
 
 * This event occurs when the Gamebase Access Token has expired and a login function call is required to recover the network session.
@@ -395,6 +414,7 @@ void USample::AddEventHandler()
 }
 ```
 
+<a id="gamebase-event-handler-server-push"></a>
 #### Server Push
 
 * This is a message sent from the Gamebase server to the client's device.
@@ -453,6 +473,7 @@ void USample::CheckServerPush(const FString& Category, const FGamebaseEventServe
 }
 ```
 
+<a id="gamebase-event-handler-observer"></a>
 #### Observer
 
 * It is a system used to handle many different status-changing events in Gamebase.
@@ -590,6 +611,7 @@ void USample::CheckHeartbeat(const FGamebaseEventObserverData& Data)
 }
 ```
 
+<a id="gamebase-event-handler-purchase-updated"></a>
 #### Purchase Updated
 
 * Promotion 코드 입력을 통해 상품을 획득한 경우 또는 Pending 결제(느린 결제, 부모 동의 등)가 완료되었을 때 발생하는 이벤트입니다.
@@ -618,6 +640,7 @@ void USample::AddEventHandler()
 ```
 
 
+<a id="gamebase-event-handler-push-received-message"></a>
 #### Push Received Message
 
 * This event is triggered when a push message is received.
@@ -667,6 +690,7 @@ void USample::AddEventHandler()
 }
 ```
 
+<a id="gamebase-event-handler-push-click-message"></a>
 #### Push Click Message
 
 * This event is triggered when a received message is clicked.
@@ -693,6 +717,7 @@ void USample::AddEventHandler()
 ```
 
 
+<a id="gamebase-event-handler-push-click-action"></a>
 #### Push Click Action
 
 * This event is triggered when the button created by the Rich Message feature is clicked.
@@ -740,7 +765,8 @@ void USample::AddEventHandler()
 ```
 
 
-### Analytics
+<a id="analytics"></a>
+### Analytics { #analytics }
 
 Game indicators can be sent to Gamebase Server. 
 
@@ -758,6 +784,7 @@ Regarding the usage of Analytics Console, see the following guide:
 
 * [Analytics Console](./oper-analytics)
 
+<a id="analytics-game-user-data-settings"></a>
 #### Game User Data Settings
 
 Level information of a game user can be delivered to indicators, after a user login.  
@@ -806,6 +833,7 @@ void USample::SetGameUserData(int32 UserLevel, const FString& ChannelId, const F
 
 ```
 
+<a id="analytics-level-up-trace"></a>
 #### Level Up Trace
 
 Updated level information of a game user can be delivered to indicators. 
@@ -841,7 +869,8 @@ void USample::TraceLevelUpNow(int32 UserLevel)
 }
 ```
 
-### Contact
+<a id="contact"></a>
+### Contact { #contact }
 
 Gamebase provides features for customer response. 
 
@@ -849,8 +878,14 @@ Gamebase provides features for customer response.
 >
 > By integrating with NHN Cloud Contact, customer inquiries can be handled with more ease and convenience.  
 > For more details on NHN Cloud Contact, see the guide as below: 
-> [NHN Cloud Online Contact Guide](https://docs.nhncloud.com/en/Contact%20Center/en/online-contact-overview/)
+> [NHN Cloud Online Contact Guide](/Contact%20Center/en/online-contact-overview/)
 
+<a id="contact-permission-settings"></a>
+#### Permission Settings
+
+<!-- TODO: translate body -->
+
+<a id="contact-customer-service-type"></a>
 #### Customer Service Type
 
 In the **Gamebase Console > App > Customer service**, you can choose from three different types of Customer Centers.
@@ -873,6 +908,7 @@ Gamebase SDK's Customer Center API uses the following URLs based on the type:
     * Before login : NOT_LOGGED_IN(2) error has occurred.
     * After login: Customer Center URL with user information.
 
+<a id="contact-open-contact-webview"></a>
 #### Open Contact WebView
 
 Displays the Customer Center WebView.
@@ -955,6 +991,7 @@ void USample::OpenContact()
 >
 > * Please set 'Privacy - Camera Usage Description', 'Privacy - Photo Library Usage Description' in info.plist.
 
+<a id="contact-request-contact-url"></a>
 #### Request Contact URL
 
 Returns the URL used for displaying the Customer Center WebView.
@@ -1008,7 +1045,8 @@ void USample::RequestContactURL(const FString& userName)
 }
 ```
 
-### App Tracking AuthorizationStatus
+<a id="app-tracking-authorizationstatus"></a>
+### App Tracking AuthorizationStatus { #app-tracking-authorizationstatus }
 
 * Verifies whether ATT is enabled.
 
@@ -1057,7 +1095,8 @@ void USample::GetAppTrackingAuthorizationStatus()
 }
 ```
 
-### IDFA
+<a id="idfa"></a>
+### IDFA { #idfa }
 
 * Returns the device's Advertising Identifier (IDFA) value.
 * Refer to the following document for instructions on how to set up the IDFA feature on iOS.
@@ -1082,7 +1121,8 @@ void USample::GetIdfa()
 }
 ```
 
-### Age Signals Support
+<a id="age-signals-support"></a>
+### Age Signals Support { #age-signals-support }
 
 Texas SB 2420 and similar state laws require apps to verify a user's age to protect minors.
 Gamebase provides an API that wraps the Google Play Age Signals API to meet this requirement.
@@ -1091,6 +1131,7 @@ For instructions on setting up the Age Signals feature on Android, please refer 
 
 * [Android Age Signals](./aos-etc/#age-signals-support)
 
+<a id="age-signals-support-getagesignal"></a>
 #### GetAgeSignal
 
 Check the age information.

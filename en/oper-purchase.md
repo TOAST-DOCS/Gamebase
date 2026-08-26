@@ -1,21 +1,27 @@
-## Before Using Purchase Menu
+<!-- pre-align:aligned sig=7ecc88a808bd -->
+
+<a id="before-using-purchase-menu"></a>
+## Before Using Purchase Menu { #before-using-purchase-menu }
 ![purchase_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_01_en_240103.png)
 To use the purchase menu, currency must be selected for purchase metrics. 
 It can be set only once initially, and the Analytics sales metrics show in the currency code as configured. 
 Please be cautious with your choice, since the currency code cannot be modified, once selected. 
 
-## Game > Gamebase > Console User Guide > Purchase
+<a id="game-gamebase-console-user-guide-purchase"></a>
+## Game > Gamebase > Console User Guide > Purchase { #game-gamebase-console-user-guide-purchase }
 
 You can register in-app purchase information and view the history.
 Gamebase uses NHN Cloud IAP (In-App Purchase) service.
 
-## Store
+<a id="store"></a>
+## Store { #store }
 
 Register stores to sell products in games.
 Register a new store on the **Store Information List** of the **Store** tab, or manage registered stores.
 ![purchase_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_02_en_240103.png)
 
-### Register
+<a id="register"></a>
+### Register { #register }
 
 Click **Register** on the **Store Information List** to register a new store.
 
@@ -31,7 +37,8 @@ Click **Register** on the **Store Information List** to register a new store.
 > When Google's receipt validation system experiences failure, you can use the Gamebase's internal signature validation to properly process the purchase by setting the **Receipt validation settings for onetime products** to 1-step validation.
 > 2-step validation is always performed for subscription products regardless of the setting.
 
-### Modify
+<a id="modify"></a>
+### Modify { #modify }
 
 Retrieve or modify detail information of registered stores on the list.
 
@@ -41,7 +48,8 @@ Retrieve or modify detail information of registered stores on the list.
 - Click **Modify** to modify information such as app name, store app, and use or not, but not store App ID.
 - Click **Delete** to delete information: only for the stores that are Not in Use.
 
-## Product
+<a id="product"></a>
+## Product { #product }
 
 You can register products to sell at the store.
 In the **Product** tab, you can register a new product or manage the registered products.
@@ -52,9 +60,11 @@ In the **Product** tab, you can register a new product or manage the registered 
 
 ![purchase_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_05_en_240103.png)
 
-### Register
+<a id="product-register"></a>
+### Register { #product-register }
 
 To register a new product, click **Register** on the **Product List** page. 
+<a id="product-register-user-input-registration"></a>
 #### 1. User-input Registration
 ![purchase_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_06_en_240103.png)
 
@@ -66,6 +76,7 @@ To register a new product, click **Register** on the **Product List** page.
 * (6) **Store Item ID**: Enter ID issued after store is registered. The item registered in the Gamebase product list is purchased using this information at the request of purchase to the selected store. 
 * (7) **Store Item Type**: Select the type of product to register. For Google Play and App Store, items can be registered for subscription, and for other stores, only one-time item registration is available.     
 
+<a id="product-register-file-uploading-registration"></a>
 #### 2. File-uploading Registration 
 ![purchase_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_07_en_240103.png)
 
@@ -76,7 +87,8 @@ To register a new product, click **Register** on the **Product List** page.
 * When it fails to register files, you may download failed list from **Download** at the result popup. 
 
 
-### Modify
+<a id="product-modify"></a>
+### Modify { #product-modify }
 
 Query details or change information of a registered product from the list. 
 ![purchase_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_08_en_240103.png)
@@ -85,13 +97,15 @@ Query details or change information of a registered product from the list.
 - Only **Product Name, Use, and Store Item ID** are modifiable, and the others cannot be changed. 
 - **Store Item ID** is only modifiable with other already registered **Store Item ID**, and a new **Store Item ID** requires product registration.
 
-## Transactions
+<a id="transactions"></a>
+## Transactions { #transactions }
 
 Purchase information can be queried. 
 Select a search type in need and query purchase information. 
 To query the list of purchases, click **Download** on top right of the page. 
 
-### Transaction Status Code
+<a id="transaction-status-code"></a>
+### Transaction Status Code { #transaction-status-code }
 Transaction status code indicates what occurs while the user is making a payment.  
 
 > [Note]
@@ -120,9 +134,11 @@ Transaction status code indicates what occurs while the user is making a payment
 > 
 > - If there is no change in the **Verification completed** status, please contact the Customer Center.
 
-### View Transaction List
+<a id="view-transaction-list"></a>
+### View Transaction List { #view-transaction-list }
 ![purchase_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_09_en_240103.png)
 
+<a id="view-transaction-list-category"></a>
 #### Category
 
 You can view transaction list with two categories.
@@ -131,6 +147,7 @@ You can view transaction list with two categories.
 - **Product Information Unregistered Payment**: View transactions where payment is made but product information is missing so the item cannot be delivered.
 
 
+<a id="view-transaction-list-search-conditions"></a>
 #### Search conditions
 Each search type shows different search items.  
 
@@ -156,6 +173,7 @@ Search is available by Transaction ID which is created upon purchase.
 You can view the results using the receipt issued during the purchase.
 
 
+<a id="view-transaction-list-all-search-results"></a>
 #### [All] Search Results
 The search results are as follows:
 
@@ -195,11 +213,11 @@ The status of the searched purchase information is as follows:
 	- User has withdrawn the purchase
 
 
-##### Changing to Success
+###### Changing to Success
 ![purchase_14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_14_en_240103.png)
 In order to proceed, you need to provide **Receipt Number, Value, and Currency**.
 
-#### Changing to Refund
+###### Changing to Refund
 ![purchase_15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_15_en_240103.png)
 No additional information is required. 
 Once it has been changed to Refund status, it's set for good.
@@ -221,6 +239,7 @@ You can view transaction lists by clicking the Transaction ID of the payment inf
 For each payment status, you can click the right arrow to view additional information and receipt information.
 
 
+<a id="view-transaction-list-search-result-of-product-information-unregistered-payment"></a>
 #### Search Result of [Product Information Unregistered Payment]
 Search result items are as follows.
 
@@ -243,17 +262,20 @@ Search result items are as follows.
 ![purchase_19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_19_en_240103.png)
 * You can manually add missing item information. 
 
-## Monitor Purchase Abuse
+<a id="monitor-purchase-abuse"></a>
+## Monitor Purchase Abuse { #monitor-purchase-abuse }
 
 You can view purchase abuse information and set automatic lockdown/release.
 
-### Query Refund History
+<a id="query-refund-history"></a>
+### Query Refund History { #query-refund-history }
 
 ![purchase_20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_20_en_240103.png)
 
 Purchase and refund information can be queried by search conditions as below.
 Click **Download** on top right to download purchase and refund list at any time.
 
+<a id="query-refund-history-search-conditions"></a>
 #### Search Conditions
 - **Refund Date**: Time when a user item was refunded
 - **User ID**: User ID that made the purchase
@@ -261,6 +283,7 @@ Click **Download** on top right to download purchase and refund list at any time
 - **Refund Amount**: Refund amount of the user. Only the items with amount higher than input amount are queried.
 - **Store**: The store where refund was made
 
+<a id="query-refund-history-search-results"></a>
 #### Search Results
 - **User ID**: User ID that made the purchase
 - **Store**: Information of a store where purchase has been made
@@ -275,6 +298,7 @@ Click **Download** on top right to download purchase and refund list at any time
 - **Status**:  Current status of the user
 - **Change Status**: Ban or release depending on the user status
 
+<a id="query-refund-history-change-status"></a>
 #### Change Status
 ![purchase_21](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_21_en240103.png)
 
@@ -286,12 +310,14 @@ Each status is available for change like below:
 - **Ban Suspended**: Can be changed to ban status.
 - **Withdrawal**: The button is not displayed, because the status cannot be changed.
 
+<a id="query-refund-history-check-purchase-history"></a>
 #### Check Purchase History
 
 You can query detailed purchase history during the search period by clicking a user ID on the list.
 
 ![purchase_22](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_22_en240103.png)
 
+<a id="query-refund-history-purchase-history"></a>
 #### Purchase History
 - **Scheduled purchase date**: Time when a user attempted purchase
 - **Purchase date**: Time when a user completed purchase
@@ -303,18 +329,21 @@ You can query detailed purchase history during the search period by clicking a u
 - **Currency**: Type of currency used by the user for purchase
 - **Purchase Status**: Current status of purchase
 
-### Query the History of Automatic Release for Purchase Abuse
+<a id="query-the-history-of-automatic-release-for-purchase-abuse"></a>
+### Query the History of Automatic Release for Purchase Abuse { #query-the-history-of-automatic-release-for-purchase-abuse }
 
 ![purchase_23](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_23_en240103.png)
 
 You can search for user information on automatic release for purchase abuse by using the following search conditions.
 
+<a id="query-the-history-of-automatic-release-for-purchase-abuse-search-conditions"></a>
 #### Search Conditions
 - **Search Period**: Query is performed based on the time when ban suspension started.
 - **User ID**: User ID for ban suspension
 - **Purchase Count**: The number of purchases made by the user during the ban suspension period. Only the items with count higher than input value are queried.
 - **Purchase Amount**: The purchase amount of the user during the ban suspension period. Only the items with amount higher than input amount are queried.
 
+<a id="query-the-history-of-automatic-release-for-purchase-abuse-search-results"></a>
 #### Search Results
 - **User ID**: User ID for ban suspension
 - **Ban Suspension Period**: Ban suspension start and end time
@@ -324,6 +353,7 @@ You can search for user information on automatic release for purchase abuse by u
 - **Purchase Count (Suspension Period)**: Total accumulated number of purchases made by the user during the ban suspension period
 - **Purchase Amount (Suspension Period)**: Total amount purchased by the user during the ban suspension period
 
+<a id="query-the-history-of-automatic-release-for-purchase-abuse-check-purchase-history"></a>
 #### Check Purchase History
 
 You can query detailed purchase history during the search period by clicking a user ID on the list.
@@ -331,6 +361,7 @@ You can query detailed purchase history during the search period by clicking a u
 
 ![purchase_24](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_24_en240103.png)
 
+<a id="query-the-history-of-automatic-release-for-purchase-abuse-purchase-history"></a>
 #### Purchase History
 - **Purchase Date**: Time when a user completed purchase
 - **Transaction ID**: Unique number to identify purchases within Gamebase
@@ -339,12 +370,14 @@ You can query detailed purchase history during the search period by clicking a u
 - **Store Item ID**: Actual store item ID that the user purchased in the app
 - **Purchase Amount**: Amount of purchase
 
+<a id="query-the-history-of-automatic-release-for-purchase-abuse-set-automatic-lockdown-for-purchase-abuse"></a>
 #### Set Automatic Lockdown for Purchase Abuse
 
 Click **Enable** to enable the auto lockdown setting, and enter value.
 
 ![purchase_25](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_25_en240103.png)
 
+<a id="query-the-history-of-automatic-release-for-purchase-abuse-setting-information"></a>
 #### Setting Information
 
 ![purchase_26](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_26_en240103.png)
@@ -362,6 +395,7 @@ Click **Enable** to enable the auto lockdown setting, and enter value.
     * Set whether to delete Leaderboard of the game user as well, along with auto-lockdown.
     * With registration, game user's data is to be deleted from the leaderboard, and note that <font color="red">such data cannot be recovered</font>.
 
+<a id="query-the-history-of-automatic-release-for-purchase-abuse-set-automatic-release-for-purchase-abuse"></a>
 #### Set Automatic Release for Purchase Abuse
 
 To use the automatic release setting, click the **Use** button and enter the setting value.
@@ -369,6 +403,7 @@ To enable the automatic release setting, the automatic lockdown setting must be 
 
 ![purchase_27](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_27_en240103.png)
 
+<a id="query-the-history-of-automatic-release-for-purchase-abuse-query-the-history-of-automatic-release-for-purchase-abuse-setting-information"></a>
 #### Setting Information
 
 ![purchase_28](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Purchase/en/purchase_28_en240103.png)

@@ -1,8 +1,12 @@
-## Game > Gamebase > User Guide for Unreal SDK > Getting Started 
+<!-- pre-align:aligned sig=e7a996a84bc1 -->
+
+<a id="game-gamebase-user-guide-for-unreal-sdk-getting-started"></a>
+## Game > Gamebase > User Guide for Unreal SDK > Getting Started { #game-gamebase-user-guide-for-unreal-sdk-getting-started }
 
 This document describes the environment and initial setting to enable Unreal Gamebase SDK.
 
-## Environments
+<a id="environments"></a>
+## Environments { #environments }
 
 > [Note] 
 >
@@ -11,6 +15,7 @@ This document describes the environment and initial setting to enable Unreal Gam
 > * UE 4.27~UE 5.7
 > * To get support for another version of Unreal, please contact [Customer Center](https://www.nhncloud.com/kr/support/inquiry).
 
+<a id="environments-supported-platforms"></a>
 #### Supported Platforms
 
 * Android
@@ -34,19 +39,22 @@ Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNREAL_IOS
 <span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
 
+<a id="environments-dependencies"></a>
 #### Dependencies
 
 * [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
 * [Gamebase iOS SDK - Dependencies](./ios-started/#setting)
 
-## Installation
+<a id="installation"></a>
+## Installation { #installation }
 
 1. Download Unreal Gamebase SDK and create a folder named `Plugins` in the project path and add  **NHN Cloud** Folder in the downloaded SDK.
 2. From the Unreal editor, display the `Settings > Plugins` window, and find and enable `Project > NHN Cloud > Gamebase Plugin`.
 
 * [Download Gamebase Unreal SDK](/Download/#game-gamebase)
 
-### Module Settings
+<a id="module-settings"></a>
+### Module Settings { #module-settings }
 
 * To use the Gamebase code, you need to add modules as shown below when setting up dependencies in the module's Build.cs file.
 
@@ -57,7 +65,8 @@ Supported Platforms
             }
         );
 
-### Android Settings
+<a id="android-settings"></a>
+### Android Settings { #android-settings }
 
 1. Select **Edit > Project Settings** from the editor menu.
 2. In the Project Settings window, under Plugin category, select **Gamebase - Android**.
@@ -78,6 +87,7 @@ Supported Platforms
     * FCM
 
 
+<a id="android-settings-an-issue-where-google-play-authentication-and-payment-does-not-complete"></a>
 #### An issue where Google Play authentication and payment does not complete
 
 Processing the authentication and payment for the Google Play service requires Distribution settings.
@@ -85,6 +95,7 @@ To find out more, see the following document.
 
 * [Signing Projects for Release](https://docs.unrealengine.com/en-US/Platforms/Mobile/Android/DistributionSigning/index.html)
 
+<a id="android-settings-gpgs-google-play-services-settings"></a>
 #### GPGS (Google Play Services) Settings
 
 When using Sign in with Apple, enter the Application ID of GPGS by adding the following to the /Config/Android/AndroidEngine.ini file in the project.
@@ -94,6 +105,7 @@ When using Sign in with Apple, enter the Application ID of GPGS by adding the fo
 GamesAppID=
 ```
 
+<a id="android-settings-enable-androidx"></a>
 #### Enable AndroidX
 
 * From Gamebase Android SDK 2.25.0, AndroidX has been introduced. Therefore, you must add the following setting to the [UPL (Unreal Plugin Language)](https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/Mobile/UnrealPluginLanguage/) file.
@@ -107,6 +119,7 @@ GamesAppID=
 </gradleProperties>
 ```
 
+<a id="android-settings-enable-multidex"></a>
 #### Enable multidex
 
 * From Gamebase Unreal SDK 2.26.0, the multidex-related setting within Gamebase has been removed. Therefore, you must add the following setting to the [UPL (Unreal Plugin Language)](https://docs.unrealengine.com/4.27/en-US/SharingAndReleasing/Mobile/UnrealPluginLanguage/) file.
@@ -127,14 +140,16 @@ GamesAppID=
 </androidManifestUpdates>
 ```
 
+<a id="android-settings-epic-games-service"></a>
 #### Epic Games Service
 
 * [Login Credential Type](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type) supports PersistentAuth and AccountPortal.
     * If a token for PersistentAuth sign-in was saved from a previous sign-in, it tries to sign in with that token. If it can't sign in with that token, it tries to sign in to AccountPortal and passes the result.
 * Refer to the details below.
-    * [Game > Gamebase > Unreal SDK User Guide > Getting Started > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
+    * [Game > Gamebase > Unreal SDK User Guide > Getting Started > 3rd-Party SDK Provider Settings > Epic Games](#epic-games)
 
-### iOS Settings
+<a id="ios-settings"></a>
+### iOS Settings { #ios-settings }
 
 To use the Gamebase SDK for Unreal, `UE4 Github source code` has to be used, and the Github account must be linked after joining the Epic games in order to expose the UnrealEngine repository.
 See below for relevant guides.  
@@ -145,6 +160,7 @@ See below for relevant guides.
 >`!Important`
 > If you ignore this process, the following guide link does not properly work and the Gamebase SDK for Unreal will become unavailable.
 
+<a id="ios-settings-project-settings"></a>
 #### Project Settings
 
 1. Select the editor menu **Edit > Project Settings**.
@@ -171,6 +187,7 @@ See below for relevant guides.
 * Push
     * Enable the push service to use.
 
+<a id="ios-settings-modify-the-engine-to-use-the-gamebase-unreal-sdk"></a>
 #### Modify the Engine to Use the Gamebase Unreal SDK
 
 To compile frameworks developed in swift from the Gamebase Unreal SDK and external authentication SDKs, you need to add the code below in the [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.26/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs) file.
@@ -182,6 +199,7 @@ Result += " -rpath /usr/lib/swift";                 // Additional code
 Result += " -rpath @executable_path/Frameworks";
 ```
 
+<a id="ios-settings-sign-in-with-apple"></a>
 #### Sign in with Apple
 
 When using Sign in with Apple, add the following to the /Config/IOS/IOSEngine.ini file in your project
@@ -192,6 +210,7 @@ When using Sign in with Apple, add the following to the /Config/IOS/IOSEngine.in
 bEnableSignInWithAppleSupport=True
 ```
 
+<a id="ios-settings-remote-notification"></a>
 #### Remote Notification
 
 1. To enable Gamebase Remote Notification, go to **Project Settings > Platforms > iOS** and activate **Enable Remote Notifications Support**. (available only on Github sources)
@@ -215,13 +234,15 @@ bEnableSignInWithAppleSupport=True
         // TO-BE
         completionHandler(UNNotificationPresentationOptionAlert);
 
+<a id="ios-settings-rich-push-notification"></a>
 #### Rich Push Notification
 
 Cannot use the Rich Push Notification function due to the following issues:
 
 * Unreal does not provide any methods for adding the [Notification Service Extension](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension?language=objc) to the project.
-    * [Create NHN Cloud Push Notification Service Extension](https://docs.toast.com/en/TOAST/en/toast-sdk/push-ios/#notification-service-extension)
+    * [Create NHN Cloud Push Notification Service Extension](/nhncloud-sdk/en/push-ios/#notification-service-extension)
 
+<a id="ios-settings-error-in-unreal-builds-due-to-warning-messages-of-ios-sdk"></a>
 #### Error in Unreal Builds due to Warning Messages of iOS SDK
 
 If a warning message from iOS SDK is converted as error for Unreal build, leading into failure in the buildup, handle the clang compile option code of the following file as footnotes: [Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs](https://github.com/EpicGames/UnrealEngine/blob/4.24/Engine/Source/Programs/UnrealBuildTool/Platform/IOS/IOSToolChain.cs)
@@ -230,6 +251,7 @@ If a warning message from iOS SDK is converted as error for Unreal build, leadin
 // Result += " -Wall -Werror";
 ```
 
+<a id="ios-settings-plcrashreporter"></a>
 #### PLCrashReporter
 
 There is an issue where the device using the architecture cannot get the memory address because the PLCrashReporter used by UE4 does not support the `arm64e` architecture.
@@ -240,15 +262,17 @@ Game developers using the crash analysis of the NHN Cloud Log & Crash Search mus
 2. Replace the file and header file of the UE4 internal PLCrashReporter with the unzipped file.
     * Engine/Source/ThirdParty/PLCrashReporter/plcrashreporter-master-xxxxxxx
 
+<a id="ios-settings-epic-games-service"></a>
 #### Epic Games Service
 
 * [Login Credential Type](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type) supports PersistentAuth and AccountPortal.
     * If a token for PersistentAuth sign-in was saved from a previous sign-in, it tries to sign in with that token. If it can't sign in with that token, it tries to sign in to AccountPortal and passes the result.
 * Refer to the details below.
-    * [Game > Gamebase > Unreal SDK User Guide > Getting Started > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
+    * [Game > Gamebase > Unreal SDK User Guide > Getting Started > 3rd-Party SDK Provider Settings > Epic Games](#epic-games)
 
 
-### Windows Settings
+<a id="windows-settings"></a>
+### Windows Settings { #windows-settings }
 
 1. Select **Edit > Project Settings** from the editor menu.
 2. In the Project Settings window, in the Plugin category, select **Gamebase - Windows**.
@@ -264,6 +288,7 @@ Game developers using the crash analysis of the NHN Cloud Log & Crash Search mus
     * Steamworks
         * Enter the Steamworks service information as appropriate for each field.
 
+<a id="windows-settings-webview-plugin"></a>
 #### WebView Plugin
 
 * Plugin activation is required when using content that utilizes WebView.
@@ -277,13 +302,15 @@ Game developers using the crash analysis of the NHN Cloud Log & Crash Search mus
 >
 > The NHNWebView plugin and the Web Browser plugin cannot be used concurrently, and if both are enabled, an error will occur at build time.
 
+<a id="windows-settings-epic-games-service"></a>
 #### Epic Games Service
 
 * [Login Credential Type](https://dev.epicgames.com/docs/api-ref/enums/eos-e-login-credential-type) supports ExchangeCode and AccountPortal.
     * If an ExchangeCode is available by launching the game in the launcher, it tries to sign in with that code. If it can't sign in with that token, it tries to sign in to AccountPortal and passes the result.
 * Refer to the details below.
-    * [Game > Gamebase > Unreal SDK User Guide > Getting Started > 3rd-Party SDK Provider Settings > Epic Games](./unreal-started/#epic-games)
+    * [Game > Gamebase > Unreal SDK User Guide > Getting Started > 3rd-Party SDK Provider Settings > Epic Games](#epic-games)
 
+<a id="windows-settings-steamworks-services"></a>
 #### Steamworks Services
 
 * Steam authentication and payment on Windows is proceeded through the Steamworks SDK.
@@ -302,9 +329,11 @@ Game developers using the crash analysis of the NHN Cloud Log & Crash Search mus
 > When using Steamworks alone without the Online Subsystem Steam, Gamebase will only get the credentials for using Steamworks inside Gamebase and will not go through the Steamworks SDK process.
 > When applying the Steamworks SDK directly, you need to implement your own processing for required processes like initialization, updates, and shutdowns.
 
-## 3rd-Party Provider SDK Settings
+<a id="3rd-party-provider-sdk-settings"></a>
+## 3rd-Party Provider SDK Settings { #3rd-party-provider-sdk-settings }
 
-### Epic Games
+<a id="epic-games"></a>
+### Epic Games { #epic-games }
 
 * To use Epic Games features, you must log in using the Epic Online Services (EOS) SDK.
 * If the Online Subsystem EOS plugin is enabled and OnlineSubsystemEOS.bEnabled is set to true in Engine.ini, the system will consider that Online Subsystem EOS is being used.
@@ -369,7 +398,8 @@ Game developers using the crash analysis of the NHN Cloud Log & Crash Search mus
 
 
 
-## API Deprecate Governance
+<a id="api-deprecate-governance"></a>
+## API Deprecate Governance { #api-deprecate-governance }
 
 APIs that are no longer supported by Gamebase are to be deprecated. 
 Once deprecated, APIs might be deleted without previous notice if they fulfill the following conditions: 

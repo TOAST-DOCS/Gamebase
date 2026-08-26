@@ -1,4 +1,7 @@
-## Game > Gamebase > Unity SDK ご利用ガイド > 決済
+<!-- pre-align:aligned sig=b4a1a494b1cb -->
+
+<a id="game-gamebase-unity-developers-guide-purchase"></a>
+## Game > Gamebase > Unity SDK ご利用ガイド > 決済 { #game-gamebase-unity-developers-guide-purchase }
 
 ここではUnityでアプリ内決済機能を使用するために必要な設定方法についてご案内いたします。
 Gamebaseは、一つの統合された決済APIを提供することで、ゲームで簡単に各ストアのアプリ内決済を連携することができるようサポートします。
@@ -7,14 +10,16 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
 >
 > 外部パッケージで決済関連処理がある場合、 Gamebase決済機能が正常に動作しない可能性があります。
 
-### Settings
+<a id="settings"></a>
+### Settings { #settings }
 
 AndroidやiOSでアプリ内決済機能を設定する方法は、次のドキュメントをご参考ください。<br/>
 
-* [Android Purchase Settings](aos-purchase#settings)<br/>
+* [Android Purchase Settings](./aos-purchase/#initialization)<br/>
 * [iOS Purchase Settings](ios-purchase#settings)
 
-### Purchase Flow
+<a id="purchase-flow"></a>
+### Purchase Flow { #purchase-flow }
 
 アイテムの購入は大きく分けて決済フロー、消費フロー、再処理フローの3つがあります。
 決済フローは、次のような順序で実装してください。
@@ -25,7 +30,8 @@ AndroidやiOSでアプリ内決済機能を設定する方法は、次のドキ�
 2. ゲームクライアントではGamebase SDKの**RequestPurchase**を呼び出して決済を試行します。
 3. 決済が成功すると**RequestItemListOfNotConsumed**を呼び出して未消費決済履歴を確認した後、支給するアイテムが存在場合、Consume Flowを進行します。
 
-### Consume Flow
+<a id="consume-flow"></a>
+### Consume Flow { #consume-flow }
 
 未消費決済履歴リストに値がある場合、次のような順序でConsume Flowを進行してください。
 
@@ -49,7 +55,8 @@ AndroidやiOSでアプリ内決済機能を設定する方法は、次のドキ�
 3. アイテム支給有無に関係なく、ゲームサーバーは未消費履歴が返されないようにGamebaseサーバーのconsume(消費) APIを呼び出してアイテムの支給を完了します。
     * [Game > Gamebase > APIガイド > Purchase(IAP) > Consume](./api-guide/#consume)
 
-### Retry Transaction Flow
+<a id="retry-transaction-flow"></a>
+### Retry Transaction Flow { #retry-transaction-flow }
 
 ![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
 
@@ -61,7 +68,8 @@ AndroidやiOSでアプリ内決済機能を設定する方法は、次のドキ�
     * ゲーム内ショップ(またはロビー)に移動した時
     * ユーザープロフィールまたはメールボックスを確認した時
 
-### Purchase Items
+<a id="purchase-items"></a>
+### Purchase Items { #purchase-items }
 
 購入したいアイテムのitemSeqを利用して次のAPIを呼び出し、購入をリクエストします。
 ゲームユーザーが購入をキャンセルする場合、**PURCHASE_USER_CANCELED**エラーが返されます。
@@ -219,7 +227,8 @@ public class PurchasableReceipt
 }
 ```
 
-### List Purchasable Items
+<a id="list-purchasable-items"></a>
+### List Purchasable Items { #list-purchasable-items }
 
 アイテムリストを照会したい場合、次のAPIを呼び出します。
 コールバックで返されるリストの中にはそれぞれ各アイテムの情報が含まれています。
@@ -319,7 +328,8 @@ public class PurchasableItem
 }
 ```
 
-### List Non-Consumed Items
+<a id="list-non-consumed-items"></a>
+### List Non-Consumed Items { #list-non-consumed-items }
 
 アイテムを購入したが、正常にアイテムが消費(配送、支給)されなかった未消費決済履歴をリクエストします。
 未消費決済履歴があある場合はゲームサーバー(アイテムサーバー)にリクエストして、アイテムを配送(支給)するように処理する必要があります。
@@ -374,7 +384,8 @@ public void RequestItemListOfNotConsumedSample(bool allStores)
 }
 ```
 
-### List Actived Subscriptions
+<a id="list-activated-subscriptions"></a>
+### List Actived Subscriptions { #list-activated-subscriptions }
 
 現在のユーザーIDで有効になっている定期購入リストを照会します。
 決済が完了した定期購入商品(自動更新型定期購入、自動更新型消費性定期購入商品)は、期間が終了するまで照会できます。 
@@ -439,7 +450,8 @@ public void RequestActivatedPurchasesSample(bool allStores)
 }
 ```
 
-### List Subscriptions status
+<a id="list-subscriptions-status"></a>
+### List Subscriptions status { #list-subscriptions-status }
 
 現在のユーザーID基準でサブスクリプション商品の状態を照会します。
 コールバックで返されるリストにはサブスクリプション商品の情報が含まれています。
@@ -447,7 +459,7 @@ public void RequestActivatedPurchasesSample(bool allStores)
 > <font color="red">[注意]</font><br/>
 >
 > * 以下のガイドに従って購読イベントを設定すると、購読ステータスコードが正常に返されます。
->     * [Game > Gamebase > ストアコンソールガイド > Googleコンソールガイド > Googleシステム内リアルタイム購読情報イベント配信設定](./console-google-guide/#google_1)
+>     * [Game > Gamebase > ストアコンソールガイド > Googleコンソールガイド > Googleシステム内リアルタイム購読情報イベント配信設定](./console-google-guide/#set-up-google-notifications-to-receive-real-time-subscription-status)
 >     * イベント設定を行っていない状態で購入したサブスクリプション商品のステータスコードは常に0(PURCHASED)が返されます。
 > * 現在、サブスクリプション商品はGoogle Playストアのみサポートします。
 
@@ -624,7 +636,8 @@ public class PurchasableSubscriptionStatus
 }
 ```
 
-### Event by Promotion
+<a id="event-by-promotion"></a>
+### Event by Promotion { #event-by-promotion }
 
 プロモーション決済が完了すると、GamebaseEventHandlerを通してイベントを取得して処理できます。
 GamebaseEventHandlerでプロモーション決済イベントを処理する方法は、下記のガイドを参照してください。
@@ -637,9 +650,10 @@ Supported Platforms
 > <font color="red">[注意]</font><br/>
 >
 > iOSプロモーション決済を行うには、必ず下記のガイドに沿って設定してください。
-> [Game > Gamebase > iOS SDK使用ガイド > 決済 > Event by Promotion](./ios-purchase/#event-by-promotion)
+> [Game > Gamebase > iOS SDK使用ガイド > 決済 > Event by Promotion](./ios-purchase/#event-by-purchase)
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                                     | Error Code | Description                              |
 | ----------------------------------------- | ---------- | ---------------------------------------- |
@@ -686,4 +700,4 @@ else
 ```
 
 * NHN Cloud IAPのエラーコードは、次のドキュメントをご参考ください。
-    * [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud IAP > Unity > エラーコード](https://docs.nhncloud.com/en/nhncloud/en/nhncloud-sdk/iap-unity/#error-code)
+    * [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud IAP > Unity > エラーコード](/nhncloud-sdk/ja/iap-unity/#_19)

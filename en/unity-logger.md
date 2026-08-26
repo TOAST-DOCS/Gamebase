@@ -1,8 +1,12 @@
-## Game > Gamebase > Unity Developer's Guide > Logger
+<!-- pre-align:aligned sig=9d40086bc5d8 -->
+
+<a id="game-gamebase-unity-developers-guide-logger"></a>
+## Game > Gamebase > Unity Developer's Guide > Logger { #game-gamebase-unity-developers-guide-logger }
 
 This document describes how to use Log & Crash Search API.
 
-### Initialize
+<a id="initialize"></a>
+### Initialize { #initialize }
 Initializes NHN Cloud Logger SDK using the AppKey issued via Log & Crash Search.
 
 **API**
@@ -28,7 +32,8 @@ public static void InitializeSample()
 }
 ```
 
-### Send Logs
+<a id="send-logs"></a>
+### Send Logs { #send-logs }
 Sends logs to Log & Crash Server.
 NHN Cloud Logger SDK can send five different levels of logs listed below: 
 * DEBUG
@@ -124,7 +129,8 @@ public void FatalSample()
 }
 ```
 
-### Set User-Defined Fields
+<a id="set-user-defined-fields"></a>
+### Set User-Defined Fields { #set-user-defined-fields }
 Sets user-defined fields you want. 
 If a custom field is set, the setting value are sent along with a log to the server whenever Send Log API is called.
 
@@ -148,7 +154,8 @@ public void SetUserFieldSample()
 }
 ```
 
-### Further Tasks after Sending Logs
+<a id="further-tasks-after-sending-logs"></a>
+### Further Tasks after Sending Logs { #further-tasks-after-sending-logs }
 Additional tasks are available after logs are sent if a listener is registered.
 
 **API**
@@ -195,7 +202,8 @@ public void SetLoggerListenerSample()
 }
 ```
 
-### Specifications for SetCrashListener API
+<a id="specifications-for-setcrashlistener-api"></a>
+### Specifications for SetCrashListener API { #specifications-for-setcrashlistener-api }
 When using Unity, sometimes unwanted exception or crash logs are collected.
 NHN Cloud Logger SDK supports a feature that filters out crash logs that you do not want to collect.
 If crashFilter returns true, the log is filtered out.
@@ -238,7 +246,8 @@ public void RemoveCrashFilterSample()
 }
 ```
 
-### Send Handled Exceptions
+<a id="send-handled-exceptions"></a>
+### Send Handled Exceptions { #send-handled-exceptions }
 
 In addition to general/crash logs, you can send exception-related content in the try/catch syntax using Report API.
 The exception logs you sent can be viewed in the console by clicking **Log & Crash Search > App Crash Search** and clicking **Handled** under **Error Type**.

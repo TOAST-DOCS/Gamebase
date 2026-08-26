@@ -1,8 +1,12 @@
-## Game > Gamebase > Unity SDK使用ガイド > Logger
+<!-- pre-align:aligned sig=9d40086bc5d8 -->
+
+<a id="game-gamebase-unity-developers-guide-logger"></a>
+## Game > Gamebase > Unity SDK使用ガイド > Logger { #game-gamebase-unity-developers-guide-logger }
 
 ここではLog & Crash Search転送APIを使用する方法を説明します。
 
-### Initialize
+<a id="initialize"></a>
+### Initialize { #initialize }
 Log & Crash Searchで発行されたAppKeyでNHN Cloud Logger SDKを初期化します。
 
 **API**
@@ -28,7 +32,8 @@ public static void InitializeSample()
 }
 ```
 
-### Send Logs
+<a id="send-logs"></a>
+### Send Logs { #send-logs }
 Log & Crash Serverへログを送信します。
 NHN Cloud Logger SDKは、次の5つのレベルのログを送信できます。 
 * DEBUG
@@ -124,7 +129,8 @@ public void FatalSample()
 }
 ```
 
-### Set User-Defined Fields
+<a id="set-user-defined-fields"></a>
+### Set User-Defined Fields { #set-user-defined-fields }
 任意のユーザー定義フィールドを設定します。 
 ユーザー定義フィールドを設定すると、ログ転送APIを呼び出すたびに、設定した値をログと一緒にサーバーに送信します。
 
@@ -148,7 +154,8 @@ public void SetUserFieldSample()
 }
 ```
 
-### Further Tasks after Sending Logs
+<a id="further-tasks-after-sending-logs"></a>
+### Further Tasks after Sending Logs { #further-tasks-after-sending-logs }
 リスナーを登録すると、ログ送信後に追加作業を実行できます。
 
 **API**
@@ -195,7 +202,8 @@ public void SetLoggerListenerSample()
 }
 ```
 
-### Specifications for SetCrashListener API
+<a id="specifications-for-setcrashlistener-api"></a>
+### Specifications for SetCrashListener API { #specifications-for-setcrashlistener-api }
 Unityを利用していると、収集を望まない例外ログやクラッシュログが収集されることがあります。
 NHN Cloud Logger SDKは、収集を望まないクラッシュログをフィルタリングする機能をサポートします。
 crashFilterのreturn値がtrueの場合、ログはフィルタリングされます。
@@ -238,7 +246,8 @@ public void RemoveCrashFilterSample()
 }
 ```
 
-### Send Handled Exceptions
+<a id="send-handled-exceptions"></a>
+### Send Handled Exceptions { #send-handled-exceptions }
 
 一般/クラッシュログだけでなく、try/catch構文の例外に関する内容をReport APIを使用して送信できます。
 このように送信した例外ログは「Log & Crash Searchコンソール」>「App Crash Searchタブ」のエラータイプで「Handled」でフィルタリングして照会できます。

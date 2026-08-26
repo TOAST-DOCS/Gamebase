@@ -1,9 +1,14 @@
-## Game > Gamebase > iOS SDK 사용 가이드 > ETC
+<!-- pre-align:aligned sig=073953cec848 -->
 
-## Additional Features
+<a id="game-gamebase-ios-sdk-user-guide-etc"></a>
+## Game > Gamebase > iOS SDK 사용 가이드 > ETC { #game-gamebase-ios-sdk-user-guide-etc }
+
+<a id="additional-features"></a>
+## Additional Features { #additional-features }
 Gamebase에서 지원하는 부가적인 기능을 설명합니다.
 
-### IDFA
+<a id="idfa"></a>
+### IDFA { #idfa }
 
 * 단말기의 광고식별자 값을 반환합니다.
 
@@ -22,7 +27,8 @@ Gamebase에서 지원하는 부가적인 기능을 설명합니다.
 
 
 
-### Device Language
+<a id="device-language"></a>
+### Device Language { #device-language }
 
 * 단말기에 설정된 언어 코드를 반환합니다.
 * 여러개의 언어가 등록된 경우, 우선권이 가장 높은 언어만을 반환합니다.
@@ -34,7 +40,8 @@ Gamebase에서 지원하는 부가적인 기능을 설명합니다.
 ```
 
 
-### Display Language
+<a id="display-language"></a>
+### Display Language { #display-language }
 
 점검 팝업 창과 같이 Gamebase가 표시하는 언어는 단말기에 설정된 언어로 표시됩니다.
 
@@ -61,6 +68,7 @@ Display Language에 입력하는 언어 코드는 반드시 아래의 표(**Game
 > **신규 언어셋 추가** 항목을 참조하시기 바랍니다.
 
 
+<a id="display-language-types-of-language-codes-supported-by-gamebase"></a>
 #### Gamebase에서 지원하고 있는 언어코드의 종류
 | Code | Name |
 | --- | --- |
@@ -105,6 +113,7 @@ extern NSString* const kTCGBDisplayLanguageCodeChineseTraditional;
 ```
 
 
+<a id="display-language-set-display-language-with-gamebase-initialization"></a>
 #### Gamebase 초기화 시 Display Language 설정
 
 Gamebase 초기화 시 Display Language를 설정할 수 있습니다.
@@ -135,6 +144,7 @@ Gamebase 초기화 시 Display Language를 설정할 수 있습니다.
     }
 ```
 
+<a id="display-language-set-display-language"></a>
 #### Set Display Language
 
 Gamebase 초기화 시 입력된 Display Language를 변경할 수 있습니다.
@@ -153,6 +163,7 @@ Gamebase 초기화 시 입력된 Display Language를 변경할 수 있습니다.
 }
 ```
 
+<a id="display-language-get-display-language"></a>
 #### Get Display Language
 
 현재 적용된 Display Language를 조회할 수 있습니다.
@@ -172,6 +183,7 @@ Gamebase 초기화 시 입력된 Display Language를 변경할 수 있습니다.
 }
 ```
 
+<a id="display-language-add-new-language-sets"></a>
 #### 신규 언어셋 추가
 
 Gamebase에서 제공하는 기본 언어(ko, en, ja, zh-CN, zh-TW, th) 외 다른 언어를 사용하는 경우에는 Xcode 프로젝트의 `Copy Bundle Resources`에 **localizedstring.json** 파일을 추가하면 됩니다.
@@ -244,6 +256,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
+<a id="display-language-priority-in-display-language"></a>
 #### Display Language 우선 순위
 
 초기화 및 setDisplayLanguageCode: API를 통해 Display Language를 설정할 경우, 최종 적용되는 Display Language는 입력한 값과 다르게 적용될 수 있습니다.
@@ -253,10 +266,12 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 3. 2번이 실패했다면 Gamebase 콘솔에 설정된 기본 언어가 설정됩니다.
 4. Gamebase 콘솔에 언어 설정이 없다면 `en`이 기본값으로 설정됩니다.
 
-### Country Code
+<a id="country-code"></a>
+### Country Code { #country-code }
 
 * Gamebase는 System의 Country Code를 다음 API로 제공하고 있습니다.
 
+<a id="country-code-device-country-code"></a>
 #### Device Country Code
 
 * OS로부터 전달받은 단말기 지역 설정을 추가적인 체크 없이 그대로 반환합니다.
@@ -269,7 +284,8 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 + (NSString *)deviceCountryCode;
 ```
 
-### Gamebase Event Handler
+<a id="gamebase-event-handler"></a>
+### Gamebase Event Handler { #gamebase-event-handler }
 
 * Gamebase는 각종 이벤트를 **GamebaseEventHandler**라는 하나의 이벤트 시스템에서 모두 처리할 수 있습니다.
 * GamebaseEventHandler는 아래 API를 통해 간단하게 Handler를 추가/제거할 수 있습니다.
@@ -352,6 +368,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 | Push<br>- 메시지 클릭 | kTCGBPushClickMessage | [TCGBPushMessage pushFromJsonString:message.data] | \- |
 | Push<br>- 액션 클릭 | kTCGBPushClickAction | [TCGBPushMessage pushFromJsonString:message.data] | RichMessage 버튼 클릭 시 동작합니다. |
 
+<a id="gamebase-event-handler-idp-revoked"></a>
 #### IdP Revoked
 
 > [참고]
@@ -386,6 +403,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
+<a id="gamebase-event-handler-logged-out"></a>
 #### Logged Out
 
 * Gamebase Access Token이 만료되어 네트워크 세션을 복구하기 위해 로그인 함수 호출이 필요한 경우 발생하는 이벤트입니다.
@@ -408,6 +426,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
+<a id="gamebase-event-handler-server-push"></a>
 #### Server Push
 
 * Gamebase 서버에서 클라이언트 단말기로 보내는 메시지입니다.
@@ -450,6 +469,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
+<a id="gamebase-event-handler-observer"></a>
 #### Observer
 
 * Gamebase의 각종 상태 변동 이벤트를 처리하는 시스템입니다.
@@ -544,6 +564,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 ```
 
 
+<a id="gamebase-event-handler-purchase-updated"></a>
 #### Purchase Updated
 
 * App Store 프로모션 상품 구매 완료 또는 Ask to Buy 등으로 지연된 결제가 완료되었을 때 발생하는 이벤트입니다.
@@ -564,6 +585,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
+<a id="gamebase-event-handler-push-received-message"></a>
 #### Push Received Message
 
 
@@ -600,6 +622,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
+<a id="gamebase-event-handler-push-click-message"></a>
 #### Push Click Message
 
 * 수신한 Push 메시지를 클릭했을 때 발생하는 이벤트입니다.
@@ -621,6 +644,7 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 }
 ```
 
+<a id="gamebase-event-handler-push-click-action"></a>
 #### Push Click Action
 
 * Rich Message 기능을 통해 생성한 버튼을 클릭했을 때 발생하는 이벤트입니다.
@@ -661,7 +685,8 @@ localizedstring.json에 정의되어 있는 형식은 아래와 같습니다.
 
 
  
-### Analytics
+<a id="analytics"></a>
+### Analytics { #analytics }
 
 Game지표를 Gamebase Server로 전송할 수 있습니다.
 
@@ -677,6 +702,7 @@ Analytics Console 사용법은 아래 가이드를 참고하십시오.
 
 - [Analytics Console](./oper-analytics)
 
+<a id="analytics-game-user-data-settings"></a>
 #### Game User Data Settings
 
 게임 로그인 이후 게임 유저 레벨 정보를 지표로 전송할 수 있습니다.
@@ -715,6 +741,7 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 }
 ```
 
+<a id="analytics-level-up-trace"></a>
 #### Level Up Trace
 
 레벨업이 되었을 경우 게임 유저 레벨 정보를 지표로 전송할 수 있습니다.
@@ -743,7 +770,8 @@ API 호출에 필요한 파라미터는 아래와 같습니다.
 }
 ```
 
-### Contact
+<a id="contact"></a>
+### Contact { #contact }
 
 Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
 
@@ -751,7 +779,7 @@ Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
 >
 > NHN Cloud Contact 서비스와 연동해서 사용하면 보다 쉽고 편리하게 고객 문의에 대응할 수 있습니다.
 > 자세한 NHN Cloud Contact 서비스 이용법은 아래 가이드를 참고하시기 바랍니다.
-> [NHN Cloud Online Contact Guide](https://docs.nhncloud.com/ko/Contact%20Center/ko/online-contact-overview/)
+> [NHN Cloud Online Contact Guide](/Contact%20Center/ko/online-contact-overview/)
 >
 
 > <font color="red">[주의]</font><br/>
@@ -759,6 +787,7 @@ Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
 > 고객 센터 문의 시 파일 첨부를 위해 카메라 또는 앨범 접근이 필요할 수 있습니다.
 > info.plist에 'Privacy - Camera Usage Description', 'Privacy — Microphone Usage Description'을 설정하십시오.
 
+<a id="contact-customer-service-type"></a>
 #### Customer Service Type
 
 **Gamebase 콘솔 > App > Customer service**에서는 아래와 같이 3가지 유형의 고객 센터를 선택할 수 있습니다.
@@ -781,6 +810,7 @@ Gamebase에서는 고객 문의 대응을 위한 기능을 제공합니다.
     * 로그인 전: 유저 정보가 **없는** 고객 센터 URL.
     * 로그인 후: 유저 정보가 포함된 고객 센터 URL.
 
+<a id="contact-open-contact-webview"></a>
 #### Open Contact WebView
 
 Gamebase 콘솔에 입력한 **고객 센터 URL** 웹뷰를 나타낼 수 있는 기능입니다.
@@ -831,6 +861,7 @@ TCGBContactConfiguration으로 URL에 추가 정보를 전달할 수 있습니�
 }];
 ```
 
+<a id="contact-request-contact-url"></a>
 #### Request Contact URL
 
 고객 센터 웹뷰를 표시하는 데 사용되는 URL을 얻을 수 있습니다.

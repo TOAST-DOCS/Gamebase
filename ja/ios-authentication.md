@@ -1,7 +1,11 @@
-## Game > Gamebase > iOS SDK ご利用ガイド > 認証
+<!-- pre-align:aligned sig=a81a19473baf -->
+
+<a id="game-gamebase-ios-developers-guide-authentication"></a>
+## Game > Gamebase > iOS SDK ご利用ガイド > 認証 { #game-gamebase-ios-developers-guide-authentication }
 
 
-## Login
+<a id="login"></a>
+## Login { #login }
 
 Gamebaseでは基本的にゲストログインに対応しています。
 
@@ -13,7 +17,8 @@ Gamebaseでは基本的にゲストログインに対応しています。
 AdditionalInfoに対する説明は下の**Gamebaseで対応しているIdP**の説明をご参考ください。
 
 
-### Import Header File
+<a id="import-header-file"></a>
+### Import Header File { #import-header-file }
 
 ログインを設計するViewControllerに次のヘッダーファイルを持ってきます。
 
@@ -21,7 +26,8 @@ AdditionalInfoに対する説明は下の**Gamebaseで対応しているIdP**の
 #import <Gamebase/Gamebase.h>
 ```
 
-### Login Flow
+<a id="login-flow"></a>
+### Login Flow { #login-flow }
 
 多くのゲームが、タイトル画面でログインを実装します。
 
@@ -33,16 +39,19 @@ AdditionalInfoに対する説明は下の**Gamebaseで対応しているIdP**の
 ![last provider login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
 ![idp login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
+<a id="login-flow-authenticate-with-latest-login-type"></a>
 #### 1. 前回のログインタイプで認証
 
 * 前回の認証記録がある場合、IDとパスワードを入力させずに認証を試みます。
 * **[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]**を呼び出します。
 
+<a id="login-flow-1-1-when-authentication-is-successful"></a>
 #### 1-1. 認証に成功した場合
 
 * おめでとうございます！認証に成功しました。
 * **[TCGBGamebase userID]**でユーザーIDを取得し、ゲームロジックを設計してください。
 
+<a id="login-flow-1-2-when-authentication-fails"></a>
 #### 1-2. 認証に失敗した場合
 
 * ネットワークエラー
@@ -54,17 +63,20 @@ AdditionalInfoに対する説明は下の**Gamebaseで対応しているIdP**の
 * その他のエラー
     * 以前のログインタイプでの認証が失敗しました。**「2. 指定されたIdPで認証」**を行います。
 
+<a id="login-flow-authenticate-with-specified-idp"></a>
 #### 2. 指定されたIdPで認証
 
 * IdPのタイプを直接指定して認証を試みます。
     * 認証可能なタイプは、**TCGBConstants.h**ファイルの**TCGBAuthIdPs**に宣言されています。
 * **[TCGBGamebase loginWithType:viewController:completion:]**APIを呼び出します。
 
+<a id="login-flow-2-1-when-authentication-is-successful"></a>
 #### 2-1. 認証に成功した場合
 
 * おめでとうございます！認証に成功しました。
 * **[TCGBGamebase userID]**でユーザーIDを取得し、ゲームロジックを設計してください。
 
+<a id="login-flow-2-2-when-authentication-fails"></a>
 #### 2-2. 認証に失敗した場合
 
 * ネットワークエラー
@@ -76,7 +88,8 @@ AdditionalInfoに対する説明は下の**Gamebaseで対応しているIdP**の
 * その他のエラー
     * エラーが発生したことをゲームユーザーに伝え、ゲームユーザーが認証IdPタイプを選択できる状態(主にタイトル画面またはログイン画面)へ戻ります。
 
-### Login as the Latest Login IdP
+<a id="login-as-the-latest-login-idp"></a>
+### Login as the Latest Login IdP { #login-as-the-latest-login-idp }
 
 最後にログインしたIdPでログインを試みます。該当するログイントークンの期限が切れていたり、
 トークン検証などに失敗した場合、失敗を返します。<br/>
@@ -123,7 +136,8 @@ AdditionalInfoに対する説明は下の**Gamebaseで対応しているIdP**の
 }
 ```
 
-### Login with IdP
+<a id="login-with-idp"></a>
+### Login with IdP { #login-with-idp }
 
 特定のIdPログインを呼び出すために**[TCGBGamebase loginWithType:viewController:completion:]**メソッドを呼び出します。<br/>
 Gamebaseを通じてログインを初めて試みたり、ログイン情報(アクセストークン)の期限などが切れている場合、このAPIを使用してログインを試みる必要があります。<br/>
@@ -194,7 +208,8 @@ Gamebaseを通じてログインを初めて試みたり、ログイン情報(�
 }
 ```
 
-### Login with Credential
+<a id="login-with-credential"></a>
+### Login with Credential { #login-with-credential }
 
 IdPが提供するSDKを使ってゲームで直接認証した後、発行されたアクセストークンなどを利用してGamebaseにログインできるインターフェースです。
 
@@ -206,7 +221,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | IdPタイプの設定                    | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo, kakaogame |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | IdPログイン後に取得した認証情報(アクセストークン)設定 |                                |
 | kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname | Gamebaseログイン状態でログアウトを行わなくても、他のアカウントログイン試行を許可する | **BOOL** |
-|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINEサービス提供地域のうち、ログインを行う1つの地域 | [Login with IdP参考](./ios-authentication/#login-with-idp)|
+|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINEサービス提供地域のうち、ログインを行う1つの地域 | [Login with IdP参考](#login-with-idp)|
 
 
 > [参考]
@@ -231,12 +246,15 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 }
 ```
 
-### Authentication Additional Information Settings
+<a id="authentication-additional-information-settings"></a>
+### Authentication Additional Information Settings { #authentication-additional-information-settings }
 
 [Console Guide](./oper-app/#authentication-information)
 
-## Logout
+<a id="logout"></a>
+## Logout { #logout }
 
+<a id="logout-import-header-file"></a>
 #### Import Header File
 
 ログアウトを設計するViewControllerに次のヘッダーファイルを持ってきます。
@@ -245,6 +263,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 #import <Gamebase/Gamebase.h>
 ```
 
+<a id="logout-api"></a>
 #### Logout API
 
 ログインされたIdPからのログアウトを試みます。主にゲームの設定画面にログアウトボタンを設け、ボタンをクリックすると実行されるように設計するケースが多いです。
@@ -268,9 +287,11 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 
 
-## Withdraw
+<a id="withdraw"></a>
+## Withdraw { #withdraw }
 
-### Import Header File
+<a id="withdraw-import-header-file"></a>
+### Import Header File { #withdraw-import-header-file }
 
 退会を設計するViewControllerに次のヘッダーファイルを持ってきます。
 
@@ -278,7 +299,8 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 #import <Gamebase/Gamebase.h>
 ```
 
-### Withdraw API
+<a id="withdraw-api"></a>
+### Withdraw API { #withdraw-api }
 
 ログイン状態で退会を試行します。
 
@@ -307,7 +329,8 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 }
 ```
 
-## Mapping
+<a id="mapping"></a>
+## Mapping { #mapping }
 
 マッピングは、既にログインされているアカウントに他のIdPアカウントを連携させたり、解除する機能です。
 
@@ -334,20 +357,24 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 > Guestログイン中にマッピングに成功すると、Guest IdPは消えます。
 >
 
-### Add Mapping Flow
+<a id="add-mapping-flow"></a>
+### Add Mapping Flow { #add-mapping-flow }
 
 マッピングは、次の手順で設計することができます。
 
 ![add mapping flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_add_mapping_flow_2.30.0.png)
 
+<a id="add-mapping-flow-login"></a>
 #### 1. ログイン
 マッピングは、現在のアカウントにIdPアカウントの連携を追加する機能であるため、ログインされた状態でなければなりません。
 まず、ログインAPIを呼び出してログインします。
 
+<a id="add-mapping-flow-mapping"></a>
 #### 2. マッピング
 
 **[TCGBGamebase addMappingWithType:viewController:completion:]**を呼び出してマッピングを試みます。
 
+<a id="add-mapping-flow-2-1-when-mapping-is-successful"></a>
 #### 2-1. マッピングに成功した場合
 
 * おめでとうございます！現在のアカウントと連携しているIdPアカウントが追加されました。
@@ -355,6 +382,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
     * <font color="red">[注意]</font><br/>：Guestアカウントは例外です。Guestアカウントでログインした状態で試行したマッピングが成功した場合、Guest IdPは**削除**され、「現在ログイン中のIdP」もマッピングされたIdPに変更されます。
 * マッピングは、単にIdP連携だけを追加する機能です。
 
+<a id="add-mapping-flow-2-2-when-mapping-fails"></a>
 #### 2-2. マッピングに失敗した場合
 
 * ネットワークエラー
@@ -368,7 +396,8 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 * その他のエラー
     * マッピングが失敗しました。
 
-### Import Header file into ViewController
+<a id="import-header-file-into-viewcontroller"></a>
+### Import Header file into ViewController { #import-header-file-into-viewcontroller }
 
 マッピングを設計するViewControllerに次のヘッダーファイルを持ってきます。
 
@@ -378,7 +407,8 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 
 
-### Add Mapping API
+<a id="add-mapping-api"></a>
+### Add Mapping API { #add-mapping-api }
 
 特定のIdPにログインされた状態で他のIdPへのマッピングを試みます。<br/>
 
@@ -386,7 +416,7 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 
 | keyname                                  | a use                          | 値種類                         |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINEサービス提供地域のうち、ログインを行う1つの地域 | [Login with IdP参考](./ios-authentication/#login-with-idp)|
+|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | LINEサービス提供地域のうち、ログインを行う1つの地域 | [Login with IdP参考](#login-with-idp)|
 
 **API**
 
@@ -415,7 +445,8 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 }
 ```
 
-### AddMapping with Credential
+<a id="addmapping-with-credential"></a>
+### AddMapping with Credential { #addmapping-with-credential }
 
 ゲームで直接IdPに提供するSDKで、予め認証を行いアクセストークンなどを利用してGamebase AddMappingをすることができるインターフェースです。
 
@@ -478,7 +509,8 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 }
 ```
 
-### Add Mapping Forcibly
+<a id="add-mapping-forcibly"></a>
+### Add Mapping Forcibly { #add-mapping-forcibly }
 特定IdPにすでにマッピングされているアカウントがある時、**強制的に**マッピングを試行します。
 **強制マッピング**を試行する時は、AddMapping APIで取得した`ForcingMappingTicket`が必要です。
 
@@ -517,7 +549,8 @@ IdPが提供するSDKを使ってゲームで直接認証した後、発行さ�
 }
 ```
 
-### Change Login with ForcingMappingTicket
+<a id="change-login-with-forcingmappingticket"></a>
+### Change Login with ForcingMappingTicket { #change-login-with-forcingmappingticket }
 
 特定IdPにすでにマッピングされているアカウントがある時、**ログインアカウントを変更**します。
 **ログインアカウントを変更**する時はAddMapping APIで取得した`ForcingMappingTicket`が必要です。
@@ -560,7 +593,8 @@ Change Login APIの呼び出しが失敗した場合、以前のアカウント�
 }
 ```
 
-### Remove Mapping API
+<a id="remove-mapping-api"></a>
+### Remove Mapping API { #remove-mapping-api }
 
 特定のIDPに対する連携を解除します。<br/>
 解除しようとしているIdP以外に**IdPがない**場合、失敗を返します。<br/>
@@ -576,7 +610,8 @@ Change Login APIの呼び出しが失敗した場合、以前のアカウント�
 }];
 ```
 
-### Get IdP Mapping List
+<a id="get-idp-mapping-list"></a>
+### Get IdP Mapping List { #get-idp-mapping-list }
 現在のアカウントがどんなIdPとマッピングされているか、リストを確認することができます。
 
 ```objectivec
@@ -585,7 +620,8 @@ NSArray* authMappingList = [TCGBGamebase authMappingList];
 ```
 
 
-## Gamebase User's Information
+<a id="gamebase-users-information"></a>
+## Gamebase User's Information { #gamebase-users-information }
 Gamebaseで認証フローを進めた後、アプリを制作する際に必要な情報を得ることができます。
 
 > <font color="red">[注意]</font><br/>
@@ -594,7 +630,8 @@ Gamebaseで認証フローを進めた後、アプリを制作する際に必要
 >
 > 認証情報が必要な場合、"[TCGBGamebase loginForLastLoggedInProvider]"の代わりに、使用したいIDPCodeと同じ{IDP_CODE}をパラメータにして"[TCGBGamebase loginWithType:IDP_CODE viewController:topViewController completion:completion];" APIでログインすると、正常に認証情報を取得できます。
 
-### Get Authentication Information for Gamebase
+<a id="get-authentication-information-for-gamebase"></a>
+### Get Authentication Information for Gamebase { #get-authentication-information-for-gamebase }
 Gamebaseから発行された認証情報を取得することができます。
 
 ```objectivec
@@ -609,7 +646,8 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 ```
 
 
-### Get Authentication Information for External IdP
+<a id="get-authentication-information-for-external-idp"></a>
+### Get Authentication Information for External IdP { #get-authentication-information-for-external-idp }
 
 * 外部認証IdPのアクセストークン、ユーザーID、Profileなどの情報はログイン後、ゲームサーバーでGamebase Server APIを呼び出して取得できます。
     * [Game > Gamebase > APIガイド > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
@@ -628,7 +666,8 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 > iOS 12以下のappleidログインの場合、認証情報を照会できません。
 >
 
-### Get Banned User Information
+<a id="get-banned-user-information"></a>
+### Get Banned User Information { #get-banned-user-information }
 
 Gamebase Consoleに制裁されたゲームユーザーとして登録されている場合、
 ログインを試行すると、以下のような利用制限情報コードが表示されることがあります。**[TCGBBanInfo banInfoFromError:error]**メソッドを利用して制裁情報を確認できます。
@@ -638,7 +677,8 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
 
 
 
-## TransferAccount
+<a id="transferaccount"></a>
+## TransferAccount { #transferaccount }
 ゲストアカウントを他の端末に移行するためのキーを発行する機能です。
 
 このキーを**TransferAccountInfo**と呼びます。
@@ -649,7 +689,8 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
 > TransferAccountInfoを利用したアカウント移行は、ゲストログイン状態またはログインされていない状態でのみ可能です。
 > ログインしたゲストアカウントがすでに他の外部IdP(Google、Facebook など)アカウントとマッピングされている場合、アカウント移行がサポートされません。
 
-### Issue TransferAccount
+<a id="issue-transferaccount"></a>
+### Issue TransferAccount { #issue-transferaccount }
 ゲストアカウントを移行するためにTransferAccountInfoを発行します。
 
 **API**
@@ -668,7 +709,8 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
  }
 ```
 
-### Query TransferAccount
+<a id="query-transferaccount"></a>
+### Query TransferAccount { #query-transferaccount }
 ゲストアカウントを移行するために、すでに発行されているTransferAccountInfo情報をGamebaseサーバーに問い合わせます。
 
 **API**
@@ -688,7 +730,8 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
 ```
 
 
-### Renew TransferAccount
+<a id="renew-transferaccount"></a>
+### Renew TransferAccount { #renew-transferaccount }
 すでに発行されたTransferAccountInfo情報を更新します。
 更新方法には**自動更新**と**手動更新**があり、**パスワードのみ更新**、**IDとパスワードを更新**を選択してTransferAccountInfo情報を更新できます。
 
@@ -723,7 +766,8 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
 
 
 
-### Transfer Guest Account to Another Device
+<a id="transfer-guest-account-to-another-device"></a>
+### Transfer Guest Account to Another Device { #transfer-guest-account-to-another-device }
 **issueTransfer**APIで発行したTransferAccountにアカウントを移行する機能です。
 アカウントの移行に成功した時、TransferAccountを発行した端末から移行完了メッセージが表示される場合があり、ゲストログインすると新規のアカウントが作成されます。
 アカウント移行が成功した端末では、TransferAccountを発行した端末のゲストアカウントを継続して使用できます。
@@ -770,7 +814,8 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
 
 
 
-## TemporaryWithdrawal
+<a id="temporarywithdrawal"></a>
+## TemporaryWithdrawal { #temporarywithdrawal }
 
 「退会猶予」機能です。
 一時退会をリクエストして即時に退会が行われずに一定期間の猶予期間が過ぎると、退会が行われます。
@@ -783,7 +828,8 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
 
 ログインが成功すると、AuthToken.getTemporaryWithdrawalInfo() APIを呼び出して退会猶予状態のユーザーかを判断できます。
 
-### Request TemporaryWithdrawal
+<a id="request-temporarywithdrawal"></a>
+### Request TemporaryWithdrawal { #request-temporarywithdrawal }
 
 一時退会をリクエストします。
 コンソールに指定した期間が過ぎると自動的に退会進行が完了します。
@@ -820,7 +866,8 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
 }
 ```
 
-### Check TemporaryWithdrawal User
+<a id="check-temporarywithdrawal-user"></a>
+### Check TemporaryWithdrawal User { #check-temporarywithdrawal-user }
 
 退会猶予を使用するゲームはログイン後に常に**TCGBAuthToken.tcgbMember.temporaryWithdrawal**を使用し、結果がnullではない有効なTemporaryWithdrawalInfoオブジェクトを返す場合、該当ユーザーに退会進行中であることを伝える必要があります。
 
@@ -848,7 +895,8 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
 ```
 
 
-### Cancel TemporaryWithdrawal
+<a id="cancel-temporarywithdrawal"></a>
+### Cancel TemporaryWithdrawal { #cancel-temporarywithdrawal }
 
 退会リクエストをキャンセルします。
 退会リクエストした後、期間が満了して退会が完了すると、キャンセルができません。
@@ -885,7 +933,8 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
 }
 ```
 
-### Withdraw Immediately
+<a id="withdraw-immediately"></a>
+### Withdraw Immediately { #withdraw-immediately }
 
 退会猶予期間を無視して、即時退会を進行します。
 実際の内部動作は**[TCGBGamebase withdrawWithViewController:completion:]**APIと同じです。
@@ -914,7 +963,8 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
 }
 ```
 
-## GraceBan
+<a id="graceban"></a>
+## GraceBan { #graceban }
 
 * 「決済アビューズ自動解除」機能です。
     * 決済アビューズ自動解除機能は、決済アビューズ自動制裁で利用停止にならなければいけないユーザーが利用停止猶予状態後、利用停止になるようにします。
@@ -961,7 +1011,8 @@ Gamebase Consoleに制裁されたゲームユーザーとして登録されて�
 }
 ```
 
-## Error Handling
+<a id="error-handling"></a>
+## Error Handling { #error-handling }
 
 | Category       | Error                                    | Error Code | Description                              |
 | -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |

@@ -1,29 +1,36 @@
-## Game > Gamebase > Store Console Guide > Google Console Guide
+<!-- pre-align:aligned sig=b8b98a046a8f -->
+
+<a id="game-gamebase-store-console-guide-google-console-guide"></a>
+## Game > Gamebase > Store Console Guide > Google Console Guide { #game-gamebase-store-console-guide-google-console-guide }
 
 > [Notice]
 > This document covers how to register and link the information of apps released on Google Play to the [Gamebase IAP](https://docs.toast.com/ko/Game/Gamebase/ko/oper-purchase/) console.
 > For more details on console settings to release apps on Google Play, refer to the Google Play Console guide provided by Google.
 
 
-## Google site
+<a id="google-site"></a>
+## Google site { #google-site }
 We use the Google site below to get the information for the integration.
 - [Google Play Console](https://play.google.com/console/developers)
 - [Google Cloud Console](https://console.cloud.google.com/)
 - [Google Developers - OAuth 2.0 Playground](https://developers.google.com/oauthplayground/)
 
-## Enter Basic Information
+<a id="enter-basic-information"></a>
+## Enter Basic Information { #enter-basic-information }
 
 ![Store Information Registration](../static/images/google_store/google-store-info-supervisor-en.png)
 
 
-### 1. Store App ID
+<a id="store-app-id"></a>
+### 1. Store App ID { #store-app-id }
 
 - The Package Name of the app you build for Google Play registration, a unique value that identifies your app within Google Play.
 - If you've registered your app, you can see it in your app list in the Google Play Console, or in your dashboard.
 
 ![Link a Google Cloud Project](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/en/260202_en_02.png)
 
-### 2. Google InApp Purchase License Key
+<a id="google-inapp-purchase-license-key"></a>
+### 2. Google InApp Purchase License Key { #google-inapp-purchase-license-key }
 - Access the Google Play Console to verify your license.
 - From **Home**, select the app you want to set up and enter the **Monetization setup**.
 - Copy and paste the Base64-encoded portion of the item from **License**.
@@ -31,13 +38,15 @@ We use the Google site below to get the information for the integration.
 ![Link a Google Cloud Project](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/en/260202_en_03.png)
 
 
-### 3. Skip Market Integration Verification
+<a id="skip-market-integration-verification"></a>
+### 3. Skip Market Integration Verification { #skip-market-integration-verification }
 
 - Set to **NO**, which is usually the default, as an option in case of a Google outage.
 - When set to **YES**, it only checks for tampering with the sent payment information and skips verification by Google.
 - Do not apply to all payments, and subscriptions and revalidations are excluded.
 
-## Two Authentication Methods for Integration
+<a id="two-authentication-methods-for-integration"></a>
+## Two Authentication Methods for Integration { #two-authentication-methods-for-integration }
 
 - To integrate with Google, you must use the Google Cloud API, which requires OAuth2.0 authorization provided by Google.
 - Gamebase IAP supports the **Client ID** and **service account** methods among Google OAuth2.0 authentications.
@@ -60,12 +69,14 @@ We use the Google site below to get the information for the integration.
 ![Store Information Registration](../static/images/google_store/google-store-info-access-type-en.png)
 
 
-## Set up Google Cloud Project
+<a id="set-up-google-cloud-project"></a>
+## Set up Google Cloud Project { #set-up-google-cloud-project }
 
 - To integrate with apps registered on Google Play, you require a Google Cloud project.
 - You can use an existing project if you already have one, but you can learn how to create a Google Cloud project first.
 
-### 1. Create a project
+<a id="create-a-project"></a>
+### 1. Create a project { #create-a-project }
 
 - Access the [Google Cloud Console](https://console.cloud.google.com/) to create a project.
 - Sign in as the user who owns the Google Play Console developer account.
@@ -78,7 +89,8 @@ We use the Google site below to get the information for the integration.
 ![Link a Google Cloud Project](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/en/260202_en_06.png)
 
 
-### 2. Add APIs to Use in Your Project
+<a id="add-apis-to-use-in-your-project"></a>
+### 2. Add APIs to Use in Your Project { #add-apis-to-use-in-your-project }
 
 - Select the project you created, and navigate to the **APIs & Services > Library** menu.
 - Select the API you want to use from **API Library**. The following APIs are required to integrate with apps registered in Google Play.
@@ -88,19 +100,22 @@ We use the Google site below to get the information for the integration.
 
 ![Link a Google Cloud Project](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/en/260202_en_07.png)
 
-### 3. Show the Google Cloud Console Menu
+<a id="show-the-google-cloud-console-menu"></a>
+### 3. Show the Google Cloud Console Menu { #show-the-google-cloud-console-menu }
 
 - If you have an invisible menu during the setup process, such as Google Cloud Pub/Sub, you can add it to your menu (pinned products) by navigating to **Products & Solutions > All Products**.
 
 ![Link a Google Cloud Project](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/en/260202_en_08.png)
 
 
-## Set up SUPERVISOR integration
+<a id="set-up-supervisor-integration"></a>
+## Set up SUPERVISOR integration { #set-up-supervisor-integration }
 
 To use Google Cloud Client ID authentication in Gamebase IAP, you need a Refresh token created with your client ID. While creating a Refresh token, there is a user authorization process, and you need to configure the **OAuth consent screen** in your Google Cloud project. The access permissions of apps registered in Google Play Console are based on the permissions of the user who approved the Refresh token generation.
 
 
-### 1. Configure the OAuth Consent Screen
+<a id="configure-the-oauth-consent-screen"></a>
+### 1. Configure the OAuth Consent Screen { #configure-the-oauth-consent-screen }
 
 - If you haven't configured the **OAuth consent** screen before creating a client ID, you must do so first.
 - **In APIs & Services > OAuth consent screen**, configure the screen that users will see when they authorize the creation of their credentials.
@@ -110,7 +125,8 @@ To use Google Cloud Client ID authentication in Gamebase IAP, you need a Refresh
 ![Link a Google Cloud Project](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/en/260202_en_09.png)
 
 
-### 2. Create a Google Cloud Client ID
+<a id="create-a-google-cloud-client-id"></a>
+### 2. Create a Google Cloud Client ID { #create-a-google-cloud-client-id }
 
 - **Under APIs & Services > User Credentials**, select **Create User Credentials > OAuth Client ID** at the top to enter the **Create OAuth client ID** page.
 
@@ -129,7 +145,8 @@ To use Google Cloud Client ID authentication in Gamebase IAP, you need a Refresh
 ![Link a Google Cloud Project](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/en/260202_en_12.png)
 
 
-### 3. Create a Refresh Token with OAuth Client
+<a id="create-a-refresh-token-with-oauth-client"></a>
+### 3. Create a Refresh Token with OAuth Client { #create-a-refresh-token-with-oauth-client }
 
 - Access the [Google Developers - OAuth 2.0 Playground](https://developers.google.com/oauthplayground) to generate a Refresh token.
 - **In Step 1**, select https:``` //www.googleapis.com/auth/androidpublisher``` of **Google Play Android Developer API v3** used for authentication.
@@ -152,7 +169,8 @@ To use Google Cloud Client ID authentication in Gamebase IAP, you need a Refresh
 
 - You don't need to proceed with **Step 3**.
 
-### 4. Set up Client Information in Gamebase IAP app
+<a id="set-up-client-information-in-gamebase-iap-app"></a>
+### 4. Set up Client Information in Gamebase IAP app { #set-up-client-information-in-gamebase-iap-app }
 
 - In **Gamebase IAP > App > Add**, enter the information you verified in Google Cloud Console and Google Developers.
 - **Google API Client ID**: Enter your **client ID**
@@ -168,12 +186,14 @@ To use Google Cloud Client ID authentication in Gamebase IAP, you need a Refresh
 > There are other reasons for expiration, please check out [Google's OAuth 2.0 guide - Refresh token expiration](https://developers.google.com/identity/protocols/oauth2?hl=ko#expiration).
 
 
-## Setting up the SERVICE_ACCOUNT Integration Method
+<a id="setting-up-the-serviceaccount-integration-method"></a>
+## Setting up the SERVICE_ACCOUNT Integration Method { #setting-up-the-serviceaccount-integration-method }
 
 You can issue service accounts in Google Cloud IAM to allow non-human users to access Google Cloud resources. For differences from user accounts and operational strategies, see the Google Cloud IAM documentation or the [Google Cloud Authentication documentation](https://cloud.google.com/docs/authentication?hl=ko#credentials).
 
 
-### 1. Create a Google Cloud Services Account
+<a id="create-a-google-cloud-services-account"></a>
+### 1. Create a Google Cloud Services Account { #create-a-google-cloud-services-account }
 
 - **In IAM & Admin > Service accounts**, click **Create Service Account**, or in **APIs & Services > User credentials**, select **Create User Credentials > Service Account**.
 
@@ -193,7 +213,8 @@ You can issue service accounts in Google Cloud IAM to allow non-human users to a
 - You can then complete or register additional administrator emails for the service account. Registering an admin email gives you administrative permissions for the service account you're creating. If the registered email isn't currently working on a project, you'll receive an invitation.
 
 
-### 2. Generate a key for your Google Cloud Services account
+<a id="generate-a-key-for-your-google-cloud-services-account"></a>
+### 2. Generate a key for your Google Cloud Services account { #generate-a-key-for-your-google-cloud-services-account }
 
 - Click the created service account to view its details.
 - Go to the **Keys** tab and select **Add key > Create new key**.
@@ -207,7 +228,8 @@ You can issue service accounts in Google Cloud IAM to allow non-human users to a
 > Also, remember that keys can use any permissions you've granted to the service account, so be extra careful about key security.
 
 
-### 3. Register a Service Account with Google Play Console
+<a id="register-a-service-account-with-google-play-console"></a>
+### 3. Register a Service Account with Google Play Console { #register-a-service-account-with-google-play-console }
 
 - Access Google Play Console.
 - In **Users and permissions**, click the **Invite new user** button.
@@ -228,7 +250,8 @@ You can issue service accounts in Google Cloud IAM to allow non-human users to a
 > Google's regular user account can also access the Google Cloud API through the client ID, just like the SUPERVISOR method, as long as the project is registered as a primary member in Google Cloud and the user is invited and authorized in the Google Play Console.
 
 
-### 4. Set up a Service Account in the Gamebase IAP app
+<a id="set-up-a-service-account-in-the-gamebase-iap-app"></a>
+### 4. Set up a Service Account in the Gamebase IAP app { #set-up-a-service-account-in-the-gamebase-iap-app }
 
 - In **Gamebase IAP > App > Add**, in the **Service account integration information** field, enter the contents of the key file for the downloaded service account.
 - When copying, use a text editor like notepad to copy the entire content.
@@ -237,11 +260,13 @@ You can issue service accounts in Google Cloud IAM to allow non-human users to a
 ![Store Information Registration](../static/images/google_store/google-store-info-service-account-en.png)
 
 
-## Set up Google Notifications to receive real-time subscription status
+<a id="set-up-google-notifications-to-receive-real-time-subscription-status"></a>
+## Set up Google Notifications to receive real-time subscription status { #set-up-google-notifications-to-receive-real-time-subscription-status }
 
 If you sell subscription products on Google Play, you can receive notifications from Google in Gamebase IAP to manage the latest status of your subscriptions. Subscription products are automatically renewed within Google at the time of renewal. To track these subscription events within Google, you use **Topics** in Google Cloud. You can learn more about topics in [Android Developers - Creating topics](https://developer.android.com/google/play/billing/getting-ready#create-topic).
 
-### 1. Create a Google Cloud Notification topic
+<a id="create-a-google-cloud-notification-topic"></a>
+### 1. Create a Google Cloud Notification topic { #create-a-google-cloud-notification-topic }
 
 - Access [Google Cloud Console](https://console.cloud.google.com/).
 - **In Pub/Sub**,click **Create a topic**.
@@ -258,7 +283,8 @@ If you sell subscription products on Google Play, you can receive notifications 
 ![Link a Google Cloud Project](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/en/260202_en_25.png)
 
 
-### 2. Set up Subscriptions to Publish to the Topic
+<a id="set-up-subscriptions-to-publish-to-the-topic"></a>
+### 2. Set up Subscriptions to Publish to the Topic { #set-up-subscriptions-to-publish-to-the-topic }
 
 - When you create a topic, you'll see a subscription for that topic created alongside it in the **Subscriptions** menu.
 - Go to modify subscription, select **Push** for **Delivery type**, and enter ```https://api-iap.cloud.toast.com/callback/subscription/{YOUR_PACKAGE_NAME}/GG```as the **endpoint URL** to receive notifications from Gamebase IAP. When entering, ```{YOUR_PACKAGE_NAME}```must be replaced with the same value as the Store App IDduring the Gamebase IAP app basic information entry above.
@@ -267,7 +293,8 @@ If you sell subscription products on Google Play, you can receive notifications 
 
 ![Link a Google Cloud Project](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/en/260202_en_26.png)
 
-### 3. Register a Subscription Topic in Google Play Console
+<a id="register-a-subscription-topic-in-google-play-console"></a>
+### 3. Register a Subscription Topic in Google Play Console { #register-a-subscription-topic-in-google-play-console }
 
 - From the **home** screen, select the apps you want to receive notifications for and enter the **monetization settings**.
 - Under **Google Play Payments**, in **Topic name**, enter the name of the topic that you created earlier.
@@ -275,8 +302,9 @@ If you sell subscription products on Google Play, you can receive notifications 
 ![Link a Google Cloud Project](https://static.toastoven.net/prod_gamebase/StoreConsoleGuide/GooglePlay/en/260202_en_27.png)
 
 
-## Google Chargeback Integration
+<a id="google-chargeback-integration"></a>
+## Google Chargeback Integration { #google-chargeback-integration }
 ![google Console img](../static/images/google_store/google-store-info-chargeback-en.png)
 
 - Please enter the URL for Google Chargeback integration.
-* For more information, please refer to the [Gamebase API](https://docs.alpha-nhncloud.com/en/Game/Gamebase/en/api-guide/#google-play-chargeback-callback).
+* For more information, please refer to the [Gamebase API](./api-guide/#google-play-chargeback-callback).

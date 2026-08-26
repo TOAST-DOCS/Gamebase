@@ -1,4 +1,7 @@
-## Game > Gamebase > iOS Developer's Guide> Purchase
+<!-- pre-align:aligned sig=b5df3c0f60cb -->
+
+<a id="game-gamebase-ios-developers-guide-purchase"></a>
+## Game > Gamebase > iOS Developer's Guide> Purchase { #game-gamebase-ios-developers-guide-purchase }
 
 > <font color="red">[Caution]</font><br/>
 >
@@ -9,14 +12,17 @@ This page describes how to set In-App Purchase (IAP).
 
 Gamebase provides an integrated purchase API to easily link IAP of many stores in a game.
 
-### Settings
+<a id="settings"></a>
+### Settings { #settings }
 
+<a id="settings-apple-itunes-connect"></a>
 #### Apple iTunes-Connect
 1. Upload a tester app-build
 2. Register and approve IAP
 3. Register a Sandbox Tester account
 * Detail Guide for iTunes-Connect: [Apple Guide](https://help.apple.com/itunes-connect/developer/#/devb57be10e7)
 
+<a id="settings-register-at-gamebase-console"></a>
 #### Register at Gamebase Console
 See the following for the setup on Gamebase Console.
 
@@ -30,10 +36,12 @@ See the following for the setup on Gamebase Console.
     * Store Item ID: Enter Product ID registered for iTunes-Connect.
 3. Press **Save**.
 
+<a id="settings-set-xcode-project"></a>
 #### Set Xcode Project
 1. Set **ON** for **Targets > Capabilities > In-App Purchase**.
 2. Set appropriate values for Bundle Identifier, Version, and Build at **Targets > General > Identity**.
 
+<a id="settings-import-header-file"></a>
 #### Import Header File
 
 Import the following header to ViewController to implement purchase API.
@@ -42,7 +50,8 @@ Import the following header to ViewController to implement purchase API.
 #import <Gamebase/Gamebase.h>
 ```
 
-### Purchase Flow
+<a id="purchase-flow"></a>
+### Purchase Flow { #purchase-flow }
 
 Purchase of an item can be divided into Purchase Flow, Consume Flow, and Reprocess Flow.
 It is recommended to implement the Purchase Flow in the following order:
@@ -53,7 +62,8 @@ It is recommended to implement the Purchase Flow in the following order:
 2. The game client attempts to make a purchase by calling **requestPurchaseWithGamebaseProductId:viewController:completion:** of the Gamebase SDK.
 3. If the purchase is successful, call **requestItemListOfNotConsumedWithCompletion:** to check the unconsumed purchase details, and if there is an item to provide, proceed with the Consume Flow.
 
-### Consume Flow
+<a id="consume-flow"></a>
+### Consume Flow { #consume-flow }
 
 If there's a value on the list of unconsumed purchases, proceed with the Consume Flow in the following order:
 
@@ -77,19 +87,21 @@ If there's a value on the list of unconsumed purchases, proceed with the Consume
 3. Regardless of whether the item has been provided, the game server completes the item provision by calling the Gamebase server's consume API.
     * [Game > Gamebase > API Guide > Purchase(IAP) > Consume](./api-guide/#consume)
 
-### Retry Transaction Flow
+<a id="retry-transaction-flow"></a>
+### Retry Transaction Flow { #retry-transaction-flow }
 
 ![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
 
 * There are cases where the store purchase has been made successfully but the process was not properly completed due to errors.
-* Call **requestItemListOfNotConsumedWithCompletion:** to run reprocessing and proceed with the [Consume Flow](./ios-purchase/#consume-flow) for any unprovided items.
+* Call **requestItemListOfNotConsumedWithCompletion:** to run reprocessing and proceed with the [Consume Flow](#consume-flow) for any unprovided items.
 * It is recommended to call reprocessing at the following times:
     * After login is completed
     * Before making a purchase
     * When entering the store (or lobby) in a game
     * When checking the user profile or mailbox
 
-### Purchase Items
+<a id="purchase-items"></a>
+### Purchase Items { #purchase-items }
 
 With gamebaseProductId of an item to purchase, call the following API to request for purchase.  <br/>
 The gamebaseProductId is generally same as the ID of item registered at store, but it could be changed on Gamebase console.
@@ -196,7 +208,8 @@ When a game user cancels purchase, the **TCGB_ERROR_PURCHASE_USER_CANCELED** is 
 
 
 
-### List Purchasable Items
+<a id="list-purchasable-items"></a>
+### List Purchasable Items { #list-purchasable-items }
 
 To retrieve the list of items, call the following API. Information of each item is included in the array of callback return.
 
@@ -267,7 +280,8 @@ To retrieve the list of items, call the following API. Information of each item 
 @end
 ```
 
-### List Non-Consumed Items
+<a id="list-non-consumed-items"></a>
+### List Non-Consumed Items { #list-non-consumed-items }
 
 Request a list of non-consumed items, which have not been normally consumed (delivered, or provided) after purchase.<br/>
 * In case there is any non-purchased item, request the game server (item server) to proceed with item delivery (provision).
@@ -289,6 +303,7 @@ Request a list of non-consumed items, which have not been normally consumed (del
                                            completion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
 ```
 
+<a id="list-non-consumed-items-required-parameters"></a>
 #### Required Parameters
 
 * configuration: With TCGBPurchasableConfiguration, you can change the settings to query unconsumed lists.
@@ -312,7 +327,8 @@ Request a list of non-consumed items, which have not been normally consumed (del
 }
 ```
 
-### List Activated Subscriptions
+<a id="list-activated-subscriptions"></a>
+### List Activated Subscriptions { #list-activated-subscriptions }
 
 List activated subscriptions based on the current user ID.
 Subscriptions that are paid up (e.g. auto-renewable subscription, auto-renewed consumable subscription) can be listed before they are expired. 
@@ -324,6 +340,7 @@ Subscriptions that are paid up (e.g. auto-renewable subscription, auto-renewed c
                                         completion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
 ```
 
+<a id="list-activated-subscriptions-required-parameters"></a>
 #### Required Parameters
 
 * configuration: With TCGBPurchasableConfiguration, you can change the settings to query activated subscriptions.
@@ -346,7 +363,8 @@ Subscriptions that are paid up (e.g. auto-renewable subscription, auto-renewed c
 }
 ```
 
-### Restore Purchase
+<a id="restore-purchase"></a>
+### Restore Purchase { #restore-purchase }
 
 List of purchases made by user's App Store account can be restored and applied to console. 
 This feature is useful when a purchased subscription cannot be queried nor activated. 
@@ -374,13 +392,15 @@ In the case of auto-renewed consumable subscriptions, any missing purchases can 
 }
 ```
 
-### Event by Purchase
+<a id="event-by-purchase"></a>
+### Event by Purchase { #event-by-purchase }
 
 When an App Store promotion purchase is completed or a pending payment from 'Ask to Buy' is finalized, you can receive and handle the event via GamebaseEventHandler.
 Refer to the guide below for instructions on handling these pending payment events using GamebaseEventHandler.
 [Game > Gamebase > iOS SDK user guide > ETC > Gamebase Event Handler](./ios-etc/#purchase-updated)
 
 
+<a id="event-by-purchase-caution-for-usage"></a>
 #### Caution for Usage
 If In-App Purchase (for App Store) is included to SDK, like Facebook SDK or Google AdMob SDK, and advance payment begins even before login to Gamebase, a payment popup may not show up. 
 
@@ -389,13 +409,15 @@ If In-App Purchase (for App Store) is included to SDK, like Facebook SDK or Goog
     * Facebook Console > Setting > Default Setting > Disable the **Automatically Log In-App Events (Recommended)** feature
     * When the Facebook authentication feature is not used: **Exclude the GamebaseAuthFacebookAdapter.xcframework file** and build
 
-### TCGBPurchasableConfiguration
+<a id="tcgbpurchasableconfiguration"></a>
+### TCGBPurchasableConfiguration { #tcgbpurchasableconfiguration }
 
 | Parameter     | Values            | Description        |
 | ------------- | ----------------- | ------------------ |
 | allStores     | Bool | Set to make sure the API works for the current or all stores based on the same UserID<br>- All Stores: YES<br>- Current Store: NO<br>**default**: NO    |
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                                                      | Error Code | Description                                                  |
 | ---------------------------------------------------------- | ---------- | ------------------------------------------------------------ |
@@ -434,4 +456,4 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 
 
 * See the guide for the NHN Cloud IAP error codes.  
-    * [NHN Cloud > User Guide for NHN CLoud SDK > NHN Cloud IAP > iOS > Error Codes](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-ios/#error-codes)
+    * [NHN Cloud > User Guide for NHN CLoud SDK > NHN Cloud IAP > iOS > Error Codes](/nhncloud-sdk/en/iap-ios/#error-codes)

@@ -1,32 +1,43 @@
-## Game > Gamebase > 릴리스 노트 > Unreal
+<!-- pre-align:aligned sig=1a11e8a39079 -->
 
-### 2.81.1 (2026. 06. 23.)
+<a id="game-gamebase-release-notes-unreal"></a>
+## Game > Gamebase > 릴리스 노트 > Unreal { #game-gamebase-release-notes-unreal }
+
+<a id="2-81-1-2026-06-23"></a>
+### 2.81.1 (2026. 06. 23.) { #2-81-1-2026-06-23 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.1/GamebaseSDK-Unreal.zip)
 
+<a id="811-2026-06-23-feature-updates"></a>
 #### 기능 개선/변경
 
 * 내부 로직을 개선했습니다.
 
+<a id="811-2026-06-23-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
 
-* [Gamebase Android SDK 2.81.0](./release-notes-android/#2810-2026-06-23)
-* [Gamebase iOS SDK 2.81.3](./release-notes-ios/#2813-2026-05-27)
+* [Gamebase Android SDK 2.81.0](./release-notes-android/#2-81-0-2026-06-23)
+* [Gamebase iOS SDK 2.81.3](./release-notes-ios/#2-81-3-2026-05-27)
 
-### 2.81.0 (2026. 03. 24.)
+<a id="2-81-0-2026-03-24"></a>
+### 2.81.0 (2026. 03. 24.) { #2-81-0-2026-03-24 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.0/GamebaseSDK-Unreal.zip)
 
+<a id="810-2026-03-24-1"></a>
 #### 기능 개선/변경
 
 * 내부 로직을 개선했습니다.
 
+<a id="810-2026-03-24-2"></a>
 #### 플랫폼별 변경 사항
 
-* [Gamebase Android SDK 2.80.0](./release-notes-android/#2800-2026-02-13)
-* [Gamebase iOS SDK 2.80.0](./release-notes-ios/#2800-2026-02-13)
+* [Gamebase Android SDK 2.80.0](./release-notes-android/#2-80-0-2026-02-13)
+* [Gamebase iOS SDK 2.80.0](./release-notes-ios/#2-80-0-2026-02-13)
 
-### 2.80.0 (2026. 02. 13.)
+<a id="2-80-0-2026-02-13"></a>
+### 2.80.0 (2026. 02. 13.) { #2-80-0-2026-02-13 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.80.0/GamebaseSDK-Unreal.zip)
 
+<a id="800-2026-02-13-feature-updates"></a>
 #### 기능 개선/변경
 
 * 결제 요청 시 느린 결제나 부모 동의와 같이 결제 완료를 기다려야 하는 상황이 발생하는 경우, 신규로 추가된 **PURCHASE_PENDING(4008)** 오류가 발생합니다.
@@ -36,47 +47,58 @@
     * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > iOS Settings](./unreal-started/#ios-settings)
 * 내부 로직을 개선했습니다.
 
+<a id="800-2026-02-13-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
 
-* [Gamebase Android SDK 2.80.0](./release-notes-android/#2800-2026-02-13)
-* [Gamebase iOS SDK 2.80.0](./release-notes-ios/#2800-2026-02-13)
+* [Gamebase Android SDK 2.80.0](./release-notes-android/#2-80-0-2026-02-13)
+* [Gamebase iOS SDK 2.80.0](./release-notes-ios/#2-80-0-2026-02-13)
 
-### 2.79.0 (2026. 01. 27.)
+<a id="2-79-0-2026-01-27"></a>
+### 2.79.0 (2026. 01. 27.) { #2-79-0-2026-01-27 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.79.0/GamebaseSDK-Unreal.zip)
 
+<a id="790-2026-01-27-feature-updates"></a>
 #### 기능 개선/변경
 
 * 내부 로직을 개선했습니다.
 
+<a id="790-2026-01-27-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
 
-* [Gamebase Android SDK 2.79.0](./release-notes-android/#2790-2026-01-27)
-* [Gamebase iOS SDK 2.79.0](./release-notes-ios/#2790-2026-01-27)
+* [Gamebase Android SDK 2.79.0](./release-notes-android/#2-79-0-2026-01-27)
+* [Gamebase iOS SDK 2.79.0](./release-notes-ios/#2-79-0-2026-01-27)
 
-### 2.78.0 (2026. 01. 13.)
+<a id="2-78-0-2026-01-13"></a>
+### 2.78.0 (2026. 01. 13.) { #2-78-0-2026-01-13 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.78.0/GamebaseSDK-Unreal.zip)
 
+<a id="780-2026-01-13-added-features"></a>
 ####  기능 추가
 
 * 언리얼 엔진 지원 버전이 변경되었습니다.
     * 4.27 ~ 5.7
 
+<a id="780-2026-01-13-feature-updates"></a>
 #### 기능 개선/변경
 
 * 내부 로직을 개선했습니다.
 
+<a id="780-2026-01-13-bug-fixes"></a>
 #### 버그 수정
 * (Windows) Payload를 포함한 RequestPurchase API 호출 시 Payload가 콘솔에 전송되지 않는 문제를 수정했습니다.
 * (Windows) NHNWebView를 이용한 웹뷰 노출 관련 기능을 처음 노출 시 High DPI 관련 설정 여부에 따라 DPI가 높은 환경에서 프로그램 창이 줄어드는 문제가 수정되었습니다.
 
+<a id="780-2026-01-13-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
 
-* [Gamebase Android SDK 2.78.0](./release-notes-android/#2780-2025-12-23)
-* [Gamebase iOS SDK 2.77.0](./release-notes-ios/#2770-2025-12-09)
+* [Gamebase Android SDK 2.78.0](./release-notes-android/#2-78-0-2025-12-23)
+* [Gamebase iOS SDK 2.77.0](./release-notes-ios/#2-77-0-2025-12-09)
 
-### 2.76.0 (2025. 11. 28.)
+<a id="2-76-0-2025-11-28"></a>
+### 2.76.0 (2025. 11. 28.) { #2-76-0-2025-11-28 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.76.0/GamebaseSDK-Unreal.zip)
 
+<a id="760-2025-11-28-added-features"></a>
 ####  기능 추가
 
 * 가장 최근 게시된 게임 공지의 게시 시간을 제공하기 위해 `FGamebaseLaunchingInfo::FApp::FGameNotice::LatestNoticeTimeMillis` 필드를 추가했습니다.
@@ -84,82 +106,100 @@
     * [Game > Gamebase > Unreal SDK 사용 가이드 > 참고사항 > Age Signals Support](./unreal-etc/#age-signals-support)
 * (Windows) Steam 인증 시 Steamworks SDK가 로드되지 않은 경우 외부 브라우저를 통한 로그인을 지원합니다.
 
+<a id="760-2025-11-28-feature-updates"></a>
 #### 기능 개선/변경
 
 * `IGamebasePurchase::RequestItemListAtIAPConsole()` API가 deprecated되었습니다.
     * `IGamebasePurchase::RequestItemListPurchasable()` API를 사용하세요.
 * 내부 로직을 개선했습니다.
 
+<a id="760-2025-11-28-bug-fixes"></a>
 #### 버그 수정
 * (Windows) Google 결제 시 브라우저 로그인 상태에 따라 결제 완료 후 결과가 게임에 전달되지 않는 문제가 수정되었습니다.
 
+<a id="760-2025-11-28-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
 
-* [Gamebase Android SDK 2.76.0](./release-notes-android/#2760-2025-11-28)
-* [Gamebase iOS SDK 2.75.0](./release-notes-ios/#2750-2025-09-23)
+* [Gamebase Android SDK 2.76.0](./release-notes-android/#2-76-0-2025-11-28)
+* [Gamebase iOS SDK 2.75.0](./release-notes-ios/#2-75-0-2025-09-23)
 
-### 2.75.0 (2025. 11. 11.)
+<a id="2-75-0-2025-11-11"></a>
+### 2.75.0 (2025. 11. 11.) { #2-75-0-2025-11-11 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-Unreal.zip)
 
+<a id="750-2025-11-11-feature-updates"></a>
 #### 기능 개선/변경
 
 * (Windows) 이미지 공지, 게임 공지 출력 시 고정 크기에서 화면 해상도 비율로 출력되도록 수정되었습니다.
 * 내부 로직을 개선했습니다.
 
+<a id="750-2025-11-11-bug-fixes"></a>
 #### 버그 수정
 
 * (Windows) 이미지 공지, 게임 공지 클릭 시 엔진 UI 포커스 문제로 클릭을 여러번 해야 반영되는 문제가 수정되었습니다.
 * (Windows) 결제 완료 시 지표 전송에 SetGameUserData API 호출 정보가 포함되도록 수정되었습니다.
 
+<a id="750-2025-11-11-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
 
-* [Gamebase Android SDK 2.75.1](./release-notes-android/#2751-2025-10-17)
-* [Gamebase iOS SDK 2.75.0](./release-notes-ios/#2750-2025-09-23)
+* [Gamebase Android SDK 2.75.1](./release-notes-android/#2-75-1-2025-10-17)
+* [Gamebase iOS SDK 2.75.0](./release-notes-ios/#2-75-0-2025-09-23)
 
-### 2.74.0 (2025. 08. 26.)
+<a id="2-74-0-2025-08-26"></a>
+### 2.74.0 (2025. 08. 26.) { #2-74-0-2025-08-26 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.74.0/GamebaseSDK-Unreal.zip)
 
+<a id="740-2025-08-26-added-features"></a>
 #### 기능 추가
 
 * (Windows) 계정 매핑 기능이 추가되었습니다.
 
+<a id="740-2025-08-26-feature-updates"></a>
 #### 기능 개선/변경
 
 * (Windows) 게임 공지 출력 시 엔진의 DPI에 영향을 받지 않도록 수정되었습니다.
 * 내부 로직을 개선했습니다.
 
+<a id="740-2025-08-26-bug-fixes"></a>
 #### 버그 수정
 
 * (Windows) 계정 상태가 변경되었을 때 간헐적으로 크래시가 발생되는 로직이 수정되었습니다.
 * (Windows) Twitter 로그인 시 간헐적으로 'Something went wrong' 오류가 발생하지 않도록 수정되었습니다.
 
+<a id="740-2025-08-26-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
 
-* [Gamebase Android SDK 2.73.1](./release-notes-android/#2731-2025-08-12)
-* [Gamebase iOS SDK 2.73.1](./release-notes-ios/#2731-2025-08-12)
+* [Gamebase Android SDK 2.73.1](./release-notes-android/#2-73-1-2025-08-12)
+* [Gamebase iOS SDK 2.73.1](./release-notes-ios/#2-73-1-2025-08-12)
 
-### 2.73.1 (2025. 07. 29.)
+<a id="2-73-1-2025-07-29"></a>
+### 2.73.1 (2025. 07. 29.) { #2-73-1-2025-07-29 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.1/GamebaseSDK-Unreal.zip)
 
+<a id="731-2025-07-29-feature-updates"></a>
 #### 기능 개선/변경
 
 * (Android) Amazon Appstore가 서비스 중단되어 스토어 설정 및 푸시 설정 기능이 제거되었습니다.
 * (Windows) 로그 전송 시 재시도 로직이 개선되었습니다.
 * 내부 로직을 개선했습니다.
 
+<a id="731-2025-07-29-bug-fixes"></a>
 #### 버그 수정
 
 * 컴파일러 환경에 따라 빌드 오류가 발생하는 로직이 수정되었습니다.
 * (Windows) 로그 전송 시 특정 문자가 포함된 데이터를 전송할 때 발생하던 오류가 수정되었습니다.
 
+<a id="731-2025-07-29-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
 
-* [Gamebase Android SDK 2.73.0](./release-notes-android/#2730-2025-07-15)
-* [Gamebase iOS SDK 2.73.0](./release-notes-ios/#2730-2025-07-15)
+* [Gamebase Android SDK 2.73.0](./release-notes-android/#2-73-0-2025-07-15)
+* [Gamebase iOS SDK 2.73.0](./release-notes-ios/#2-73-0-2025-07-15)
 
-### 2.73.0 (2025. 07. 15.)
+<a id="2-73-0-2025-07-15"></a>
+### 2.73.0 (2025. 07. 15.) { #2-73-0-2025-07-15 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-Unreal.zip)
 
+<a id="730-2025-07-15-feature-updates"></a>
 #### 기능 개선/변경
 
 * (Windows) SDK를 사용하지 않는 IdP의 경우 외부 브라우저 로그인으로 진행되도록 변경되었습니다.
@@ -170,60 +210,73 @@
 * (Windows) Steam 로그인 시 Steamworks 초기화 실패 여부 메시지를 추가하여 원인을 파악하기 쉽도록 변경했습니다.
 * 내부 로직을 개선했습니다.
 
+<a id="730-2025-07-15-bug-fixes"></a>
 #### 버그 수정
 
 * Epic Games 관련 기능을 사용하지 않을 때는 EOSSDK 모듈이 포함되지 않도록 수정되었습니다.
 * (Windows) 콘솔에서 설정되지 않은 스토어를 사용할 때 크래시가 발생하지 않도록 수정되었습니다.
 
+<a id="730-2025-07-15-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
 
-* [Gamebase Android SDK 2.73.0](./release-notes-android/#2730-2025-07-15)
-* [Gamebase iOS SDK 2.73.0](./release-notes-ios/#2730-2025-07-15)
+* [Gamebase Android SDK 2.73.0](./release-notes-android/#2-73-0-2025-07-15)
+* [Gamebase iOS SDK 2.73.0](./release-notes-ios/#2-73-0-2025-07-15)
 
-### 2.72.0 (2025. 06. 24.)
+<a id="2-72-0-2025-06-24"></a>
+### 2.72.0 (2025. 06. 24.) { #2-72-0-2025-06-24 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.0/GamebaseSDK-Unreal.zip)
 
+<a id="720-2025-06-24-added-features"></a>
 #### 기능 추가
 
 * EpicGames 인증이 추가되었습니다.
 * (Windows) 이용 정지 팝업에 고객 센터 링크를 추가하였습니다.
 
+<a id="720-2025-06-24-feature-updates"></a>
 #### 기능 개선/변경
 
 * 내부 로직을 개선했습니다.
 
+<a id="720-2025-06-24-bug-fixes"></a>
 #### 버그 수정
 
 * (Windows) 외부 브라우저 로그인 시 응답 시 게임스레드로 전달하도록 수정되었습니다.
 * (Windows) 성능이 느린 PC에서 외부 브라우저 로그인이 실패하는 문제가 수정되었습니다.
 * (Windows) 디바이스 정보를 가져오는 과정이 정상적으로 이루어지지 않는 경우 크래시가 발생하는 문제가 수정되었습니다.
 
+<a id="720-2025-06-24-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
 
-* [Gamebase Android SDK 2.72.0](./release-notes-android/#2720-2025-06-24)
-* [Gamebase iOS SDK 2.72.0](./release-notes-ios/#2720-2025-06-24)
+* [Gamebase Android SDK 2.72.0](./release-notes-android/#2-72-0-2025-06-24)
+* [Gamebase iOS SDK 2.72.0](./release-notes-ios/#2-72-0-2025-06-24)
 
-### 2.71.1 (2025. 4. 29.)
+<a id="2-71-1-2025-04-29"></a>
+### 2.71.1 (2025. 4. 29.) { #2-71-1-2025-04-29 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.1/GamebaseSDK-Unreal.zip)
 
+<a id="711-2025-4-29-feature-updates"></a>
 #### 기능 개선/변경
 
 * (Windows) 결제 API 오류 발생 시 디버깅을 돕기 위해 상세 오류 메시지를 보강했습니다.
 * 내부 로직을 개선했습니다.
 
+<a id="711-2025-4-29-bug-fixes"></a>
 #### 버그 수정
 
 * (Windows) FGamebaseConfiguration 내 DisplayLanguageCode 적용 시 점검 언어 값을 잘못 가져오는 문제가 수정되었습니다.
 * (Windows) 인증 과정 중 일부 실패 케이스에서 재인증이 불가능했던 문제가 수정되었습니다.
 
+<a id="711-2025-4-29-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
 
-* [Gamebase Android SDK 2.71.1](./release-notes-android/#2711-2025-04-29)
-* [Gamebase iOS SDK 2.71.0](./release-notes-ios/#2710-2025-04-15)
+* [Gamebase Android SDK 2.71.1](./release-notes-android/#2-71-1-2025-04-29)
+* [Gamebase iOS SDK 2.71.0](./release-notes-ios/#2-71-0-2025-04-15)
 
-### 2.71.0 (2025. 4. 15.)
+<a id="2-71-0-2025-04-15"></a>
+### 2.71.0 (2025. 4. 15.) { #2-71-0-2025-04-15 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.0/GamebaseSDK-Unreal.zip)
 
+<a id="710-2025-4-15-added-features"></a>
 #### 기능 추가
 
 * '게임 공지' 신규 기능이 추가되었습니다.
@@ -232,11 +285,13 @@
 * (Windows) Google Play Games 지원을 위한 Google 결제 기능이 추가되었습니다.
     * [Windows 설정 툴](./unreal-started/#windows-settings) 내 Windows Store 설정에 `Google Play Store`가 추가되었습니다.
 
+<a id="710-2025-4-15-feature-updates"></a>
 #### 기능 개선/변경
 
 * (Windows) 시스템 설정에서 '지역 > 국가 또는 지역'을 바탕으로 CountryCode를 생성하도록 수정했습니다.
     * 변경 전에는 엔진에서 제공하는 `FInternationalization::Get().GetDefaultCulture()`를 통해 '지역 > 사용지역 언어' 정보를 가져왔습니다.
 
+<a id="710-2025-4-15-bug-fixes"></a>
 #### 버그 수정
 
 * (Windows) WebView를 열고 프로그램 종료 시 크래시가 발생하지 않도록 수정했습니다.
@@ -244,14 +299,17 @@
 * (Windows) 로그 전송 필터링이 정상적으로 동작하지 않는 문제가 수정되었습니다.
 * 내부 로직을 개선했습니다.
 
+<a id="710-2025-4-15-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
 
-* [Gamebase Android SDK 2.71.0](./release-notes-android/#2710-2025-04-15)
-* [Gamebase iOS SDK 2.71.0](./release-notes-ios/#2710-2025-04-15)
+* [Gamebase Android SDK 2.71.0](./release-notes-android/#2-71-0-2025-04-15)
+* [Gamebase iOS SDK 2.71.0](./release-notes-ios/#2-71-0-2025-04-15)
 
-### 2.70.0 (2025. 3. 11.)
+<a id="2-70-0-2025-03-11"></a>
+### 2.70.0 (2025. 3. 11.) { #2-70-0-2025-03-11 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.0/GamebaseSDK-Unreal.zip)
 
+<a id="700-2025-3-11-added-features"></a>
 #### 기능 추가
 
 * 로그인 시 IdP 서버로부터 오류가 발생했음을 나타내는 신규 오류 코드가 추가되었습니다.
@@ -264,32 +322,39 @@
     * 기본 설정은 true로, 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.
     * false로 설정하면 앱 최초 실행 시에만 GPGS 로그인 창이 한번 표시됩니다.
 
+<a id="700-2025-3-11-feature-updates"></a>
 #### 기능 개선/변경
 
 * 내부 로직을 개선하였습니다.
 
+<a id="700-2025-3-11-bug-fixes"></a>
 #### 버그 수정
 
 * (Windows) 로그인 시 FGamebaseVariantMap로 추가 정보를 받는 경우 크래시가 발생하지 않도록 수정했습니다.
 
+<a id="700-2025-3-11-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
 
-* [Gamebase Android SDK 2.70.0](./release-notes-android/#2700-2025-03-11)
-* [Gamebase iOS SDK 2.70.0](./release-notes-ios/#2700-2025-03-11)
+* [Gamebase Android SDK 2.70.0](./release-notes-android/#2-70-0-2025-03-11)
+* [Gamebase iOS SDK 2.70.0](./release-notes-ios/#2-70-0-2025-03-11)
 
-### 2.69.1 (2025. 3. 4.)
+<a id="2-69-1-2025-03-04"></a>
+### 2.69.1 (2025. 3. 4.) { #2-69-1-2025-03-04 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.69.1/GamebaseSDK-Unreal.zip)
 
+<a id="691-2025-3-4-added-features"></a>
 #### 기능 추가
 
 * 론칭 정보에서 약관 정보를 확인할 수 있도록 추가했습니다.
     * FGamebaseLaunchingInfo::FApp::FTermsService
 
+<a id="691-2025-3-4-feature-updates"></a>
 #### 기능 개선/변경
 
 * API 호출 시 매개변수로 전달 받는 `UGamebaseJsonObject`를 `FGamebaseVariantMap(TMap<FName, FVariant>)`으로 변경했습니다.
 * 내부 로직을 개선했습니다.
 
+<a id="691-2025-3-4-bug-fixes"></a>
 #### 버그 수정
 
 * (Windows) 게스트 로그인 시 UUID 발급 과정 오류로 인해 모두 동일한 값이 생성되는 문제를 수정했습니다.
@@ -298,14 +363,17 @@
 * (Windows) 심볼 생성 시 엔진의 Build Configuration이 Development가 아닌 경우 오류가 발생하는 문제를 수정했습니다.
 * (Android) 환경에 따라 RegisterPush가 동작하지 않는 문제를 수정했습니다.
 
+<a id="691-2025-3-4-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
 
-* [Gamebase Android SDK 2.69.0](./release-notes-android/#2690-2025-01-21)
-* [Gamebase iOS SDK 2.69.0](./release-notes-ios/#2690-2025-01-21)
+* [Gamebase Android SDK 2.69.0](./release-notes-android/#2-69-0-2025-01-21)
+* [Gamebase iOS SDK 2.69.0](./release-notes-ios/#2-69-0-2025-01-21)
 
-### 2.69.0 (2025. 2. 11.)
+<a id="2-69-0-2025-02-11"></a>
+### 2.69.0 (2025. 2. 11.) { #2-69-0-2025-02-11 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.69.0/GamebaseSDK-Unreal.zip)
 
+<a id="690-2025-2-11-added-features"></a>
 #### 기능 추가
 
 * `RequestLastLoggedInProvider` 비동기 API를 추가했습니다.
@@ -321,10 +389,12 @@
     * CutoutColor 필드는 이렇게 추가된 padding 영역의 색을 설정할 수 있습니다.
     * RenderOutsideSafeArea 필드를 false로 설정했지만 CutoutColor 필드는 설정하지 않는 경우에는 웹 페이지 'body'의 'background-color' 값으로 자동으로 padding 영역의 색상을 결정합니다.
 
+<a id="690-2025-2-11-feature-updates"></a>
 #### 기능 개선/변경
 
 * 내부 로직을 개선하였습니다.
 
+<a id="690-2025-2-11-bug-fixes"></a>
 #### 버그 수정
 
 * 약관 조회 결과 API인 FGamebaseQueryTermsResult가 수정되었습니다.
@@ -332,13 +402,16 @@
     * bPushEnabled, bAdAgreement, bAdAgreementNight가 제거되었습니다.
 * (Android) Windows 환경에서 빌드 시 포스트 빌드 프로세스에서 오류가 발생하지 않도록 수정했습니다.
 
+<a id="690-2025-2-11-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.69.0](./release-notes-android/#2690-2025-01-21)
-* [Gamebase iOS SDK 2.69.0](./release-notes-ios/#2690-2025-01-21)
+* [Gamebase Android SDK 2.69.0](./release-notes-android/#2-69-0-2025-01-21)
+* [Gamebase iOS SDK 2.69.0](./release-notes-ios/#2-69-0-2025-01-21)
 
-### 2.68.1 (2025. 01. 21.)
+<a id="2-68-1-2025-01-21"></a>
+### 2.68.1 (2025. 01. 21.) { #2-68-1-2025-01-21 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.1/GamebaseSDK-Unreal.zip)
 
+<a id="681-2025-01-21-feature-updates"></a>
 #### 기능 개선/변경
 * 내부 로직을 개선했습니다.
 * (Windows) WebView 플러그인을 옵션으로 선택할 수 있도록 변경되었습니다.
@@ -348,16 +421,20 @@
     * 자세한 내용은 다음 링크를 참고하세요.
         * [Game > Gamebase > Unreal SDK 사용 가이드 > Logger > Crash Reporter](./unreal-logger/#crash-reporter)
 
+<a id="681-2025-01-21-bug-fixes"></a>
 #### 버그 수정
 * (Windows) 내부 로그 전송 시 크래시가 발생할 수 있는 로직이 수정되었습니다.
 
+<a id="681-2025-01-21-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.68.0](./release-notes-android/#2680-2024-11-26)
-* [Gamebase iOS SDK 2.68.1](./release-notes-ios/#2681-2024-12-10)
+* [Gamebase Android SDK 2.68.0](./release-notes-android/#2-68-0-2024-11-26)
+* [Gamebase iOS SDK 2.68.1](./release-notes-ios/#2-68-1-2024-12-10)
 
-### 2.68.0 (2024. 12. 10.)
+<a id="2-68-0-2024-12-10"></a>
+### 2.68.0 (2024. 12. 10.) { #2-68-0-2024-12-10 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.0/GamebaseSDK-Unreal.zip)
 
+<a id="680-2024-12-10-feature-updates"></a>
 #### 기능 개선/변경
 * 내부 로직을 개선했습니다.
 * (Windows) Twitter 인증 방식을 OAuth 2.0으로 변경하여, 아래의 설정 변경 없이는 로그인이 동작하지 않습니다.
@@ -369,30 +446,38 @@
     * 자세한 내용은 다음 링크를 참고하세요.
         * [Game > Gamebase > 콘솔 사용 가이드 > 앱 > Authentication Information](./oper-app/#authentication-information)
 
+<a id="680-2024-12-10-bug-fixes"></a>
 #### 버그 수정
 * (Windows) 결제 프로세스에서 크래시가 발생하지 않도록 수정했습니다.
 * (Windows) Steam 결제 중 ESC 키로 결제를 종료하는 경우 다음 결제 API가 동작하지 않는 이슈를 수정했습니다.
 
+<a id="680-2024-12-10-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.68.0](./release-notes-android/#2680-2024-11-26)
-* [Gamebase iOS SDK 2.68.1](./release-notes-ios/#2681-2024-12-10)
+* [Gamebase Android SDK 2.68.0](./release-notes-android/#2-68-0-2024-11-26)
+* [Gamebase iOS SDK 2.68.1](./release-notes-ios/#2-68-1-2024-12-10)
 
-### 2.67.2 (2024. 11. 26.)
+<a id="2-67-2-2024-11-26"></a>
+### 2.67.2 (2024. 11. 26.) { #2-67-2-2024-11-26 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.67.2/GamebaseSDK-Unreal.zip)
 
+<a id="672-2024-11-26-feature-updates"></a>
 #### 기능 개선/변경
 * 내부 로직을 개선했습니다.
 
+<a id="672-2024-11-26-bug-fixes"></a>
 #### 버그 수정
 * (Windows) Apple ID 로그인을 정상적으로 진행하지 못하는 문제가 수정되었습니다.
 
+<a id="672-2024-11-26-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.67.0](./release-notes-android/#2670-2024-10-29)
-* [Gamebase iOS SDK 2.67.0](./release-notes-ios/#2670-2024-10-29)
+* [Gamebase Android SDK 2.67.0](./release-notes-android/#2-67-0-2024-10-29)
+* [Gamebase iOS SDK 2.67.0](./release-notes-ios/#2-67-0-2024-10-29)
 
-### 2.67.1 (2024. 11. 14.)
+<a id="2-67-1-2024-11-14"></a>
+### 2.67.1 (2024. 11. 14.) { #2-67-1-2024-11-14 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.67.1/GamebaseSDK-Unreal.zip)
 
+<a id="671-2024-11-14-feature-updates"></a>
 #### 기능 개선/변경
 * (Windows) Purchase 설정 시 스토어를 하나만 선택할 수 있도록 변경되었습니다.
     * 스토어 재설정이 필요합니다.
@@ -403,19 +488,23 @@
     * 자세한 내용은 다음 링크를 참고하세요.
         * [Game > Gamebase > Unreal SDK 사용 가이드 > 시작하기 > Windows Settings > Steamworks 서비스](./unreal-started/#windows-settings)
 
+<a id="671-2024-11-14-bug-fixes"></a>
 #### 버그 수정
 * 헤더 파일을 정상적으로 참조할 수 있도록 수정했습니다.
 * (Windows) 초기화를 여러번 시도 시 크래시가 발생하지 않도록 수정되었습니다.
 * (Windows) 초기화 시 StoreCode가 Steam 혹은 Epic Games Store에 해당하는 코드를 입력 시 크래시가 발생하지 않도록 수정되었습니다.
 * (Windows) 외부 브라우저를 이용한 로그인 시도 시 크래시가 발생할 수 있는 로직이 수정되었습니다.
 
+<a id="671-2024-11-14-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.67.0](./release-notes-android/#2670-2024-10-29)
-* [Gamebase iOS SDK 2.67.0](./release-notes-ios/#2670-2024-10-29)
+* [Gamebase Android SDK 2.67.0](./release-notes-android/#2-67-0-2024-10-29)
+* [Gamebase iOS SDK 2.67.0](./release-notes-ios/#2-67-0-2024-10-29)
 
-### 2.67.0 (2024. 10. 30.)
+<a id="2-67-0-2024-10-30"></a>
+### 2.67.0 (2024. 10. 30.) { #2-67-0-2024-10-30 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.67.0/GamebaseSDK-Unreal.zip)
 
+<a id="670-2024-10-30-added-features"></a>
 #### 기능 추가
 * Steam 인증이 추가되었습니다.
 * Steam 결제가 추가되었습니다.
@@ -424,30 +513,38 @@
     * 기존의 이미지 공지는 팝업 타입으로 표기되며, Windows에서는 지원되지 않습니다.
 * (Windows) LINE 인증이 추가되었습니다.
 
+<a id="670-2024-10-30-feature-updates"></a>
 #### 기능 개선/변경
 * 엔진의 지원 버전이 4.27~5.4로 변경되었습니다.
 * 내부 로직을 개선했습니다.
 
+<a id="670-2024-10-30-bug-fixes"></a>
 #### 버그 수정
 * 크래시 로그 발생 시 크래시가 발생할 수 있는 로직을 수정했습니다.
 
+<a id="670-2024-10-30-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.67.0](./release-notes-android/#2670-2024-10-29)
-* [Gamebase iOS SDK 2.67.0](./release-notes-ios/#2670-2024-10-29)
+* [Gamebase Android SDK 2.67.0](./release-notes-android/#2-67-0-2024-10-29)
+* [Gamebase iOS SDK 2.67.0](./release-notes-ios/#2-67-0-2024-10-29)
 
-### 2.66.1 (2024. 09. 10.)
+<a id="2-66-1-2024-09-10"></a>
+### 2.66.1 (2024. 09. 10.) { #2-66-1-2024-09-10 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.1/GamebaseSDK-Unreal.zip)
 
+<a id="661-2024-09-10-feature-updates"></a>
 #### 기능 개선/변경
 * 내부 로직을 개선했습니다.
 
+<a id="661-2024-09-10-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.66.3](./release-notes-android/#2663-2024-09-10)
-* [Gamebase iOS SDK 2.66.2](./release-notes-ios/#2662-2024-08-27)
+* [Gamebase Android SDK 2.66.3](./release-notes-android/#2-66-3-2024-09-10)
+* [Gamebase iOS SDK 2.66.2](./release-notes-ios/#2-66-2-2024-08-27)
 
-### 2.66.0 (2024. 08. 27.)
+<a id="2-66-0-2024-08-27"></a>
+### 2.66.0 (2024. 08. 27.) { #2-66-0-2024-08-27 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.0/GamebaseSDK-Unreal.zip)
 
+<a id="660-2024-08-27-feature-updates"></a>
 #### 기능 개선/변경
 * API 사용 방식이 변경되었습니다.
     * `IModuleInterface`를 상속 받은 **IGamebase**에서 제공하던 API를 `UGameInstanceSubsystem`을 상속 받은 **UGamebaseSubsytem**에서 제공하도록 변경했습니다.
@@ -455,87 +552,111 @@
 * GamebaseInterface 모듈이 제거되었습니다. Gamebase 플러그인 사용 시 GamebaseInterface 모듈을 삭제 후 사용하시길 바랍니다.
 * (Windows) GameInstance가 여러 개인 환경에서 사용할 수 있습니다.
 
+<a id="660-2024-08-27-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.66.2](./release-notes-android/#2662-2024-08-27)
-* [Gamebase iOS SDK 2.66.2](./release-notes-ios/#2662-2024-08-27)
+* [Gamebase Android SDK 2.66.2](./release-notes-android/#2-66-2-2024-08-27)
+* [Gamebase iOS SDK 2.66.2](./release-notes-ios/#2-66-2-2024-08-27)
 
-### 2.64.0 (2024. 06. 11.)
+<a id="2-64-0-2024-06-11"></a>
+### 2.64.0 (2024. 06. 11.) { #2-64-0-2024-06-11 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.64.0/GamebaseSDK-Unreal.zip)
 
+<a id="640-2024-06-11-feature-updates"></a>
 #### 기능 개선/변경
 * 내부 로직을 개선했습니다.
 
+<a id="640-2024-06-11-bug-fixes"></a>
 #### 버그 수정
 * C++ 환경에 따라 경고가 발생하여 빌드 시 오류가 발생하는 코드가 수정되었습니다.
 * (Android) ProGuard 선언이 누락되어 API 호출 시 오류가 발생하는 내용이 수정되었습니다.
 
+<a id="640-2024-06-11-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.64.0](./release-notes-android/#2640-2024-05-28)
-* [Gamebase iOS SDK 2.64.0](./release-notes-ios/#2640-2024-05-28)
+* [Gamebase Android SDK 2.64.0](./release-notes-android/#2-64-0-2024-05-28)
+* [Gamebase iOS SDK 2.64.0](./release-notes-ios/#2-64-0-2024-05-28)
 
-### 2.63.0 (2024. 04. 23.)
+<a id="2-63-0-2024-04-23"></a>
+### 2.63.0 (2024. 04. 23.) { #2-63-0-2024-04-23 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.63.0/GamebaseSDK-Unreal.zip)
 
+<a id="630-2024-04-23-added-features"></a>
 #### 기능 추가
 * (Android) Firebase Notification 설정 방식이 변경되어 플러그인 내부에 google-services-json.xml 파일 수정이 아닌 [Android 설정 툴](./unreal-started/#android-settings)에서 google-services.json 파일 경로를 지정하도록 변경되었습니다.
 * (iOS) Gamebase Unreal SDK에 Privacy manifest와 서명을 적용했습니다.
 
+<a id="630-2024-04-23-feature-updates"></a>
 #### 기능 개선/변경
 * (iOS) 빌드 시 오류가 발생하지 않도록 수정되었습니다.
 
+<a id="630-2024-04-23-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.63.0](./release-notes-android/#2630-2024-04-23)
-* [Gamebase iOS SDK 2.63.0](./release-notes-ios/#2630-2024-04-23)
+* [Gamebase Android SDK 2.63.0](./release-notes-android/#2-63-0-2024-04-23)
+* [Gamebase iOS SDK 2.63.0](./release-notes-ios/#2-63-0-2024-04-23)
 
-### 2.62.0 (2024. 03. 26.)
+<a id="2-62-0-2024-03-26"></a>
+### 2.62.0 (2024. 03. 26.) { #2-62-0-2024-03-26 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.62.0/GamebaseSDK-Unreal.zip)
 
+<a id="620-2024-03-26-added-features"></a>
 #### 기능 추가
 * (iOS) Gamebase SDK 내부 iOS 프레임워크에 Privacy manifest와 서명을 적용했습니다.
 
+<a id="620-2024-03-26-feature-updates"></a>
 #### 기능 개선/변경
 * 내부 로직을 개선했습니다.
 
+<a id="620-2024-03-26-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.62.0](./release-notes-android/#2620-2024-03-26)
-* [Gamebase iOS SDK 2.62.0](./release-notes-ios/#2620-2024-03-26)
+* [Gamebase Android SDK 2.62.0](./release-notes-android/#2-62-0-2024-03-26)
+* [Gamebase iOS SDK 2.62.0](./release-notes-ios/#2-62-0-2024-03-26)
 
-### 2.60.0 (2024. 02. 15.)
+<a id="2-60-0-2024-02-15"></a>
+### 2.60.0 (2024. 02. 15.) { #2-60-0-2024-02-15 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.60.0/GamebaseSDK-Unreal.zip)
 
+<a id="600-2024-02-15-feature-updates"></a>
 #### 기능 개선/변경
 * 내부 로직을 개선했습니다.
 
+<a id="600-2024-02-15-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.60.0](./release-notes-android/#2600-2024-01-23)
-* [Gamebase iOS SDK 2.60.1](./release-notes-ios/#2601-2024-02-15)
+* [Gamebase Android SDK 2.60.0](./release-notes-android/#2-60-0-2024-01-23)
+* [Gamebase iOS SDK 2.60.1](./release-notes-ios/#2-60-1-2024-02-15)
 
-### 2.58.0 (2023. 11. 28.)
+<a id="2-58-0-2023-11-28"></a>
+### 2.58.0 (2023. 11. 28.) { #2-58-0-2023-11-28 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.58.0/GamebaseSDK-Unreal.zip)
 
+<a id="580-2023-11-28-bug-fixes"></a>
 #### 버그 수정
 * (Windows) 서버 푸시가 동작하지 않는 이슈가 수정되었습니다.
 * 초기화 시 크래시가 발생할 수 있는 로직이 수정되었습니다.
 
+<a id="580-2023-11-28-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.58.0](./release-notes-android/#2580-2023-11-28)
-* [Gamebase iOS SDK 2.58.0](./release-notes-ios/#2580-2023-11-28)
+* [Gamebase Android SDK 2.58.0](./release-notes-android/#2-58-0-2023-11-28)
+* [Gamebase iOS SDK 2.58.0](./release-notes-ios/#2-58-0-2023-11-28)
 
-### 2.57.0 (2023. 11. 14.)
+<a id="2-57-0-2023-11-14"></a>
+### 2.57.0 (2023. 11. 14.) { #2-57-0-2023-11-14 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.57.0/GamebaseSDK-Unreal.zip)
 
+<a id="570-2023-11-14-added-features"></a>
 #### 기능 개선/변경
 * Windows 플랫폼 지원 추가
     * [Windows 설정 툴](./unreal-started/#windows-settings)이 추가되었습니다.
     * 플랫폼에서 지원하는 API는 각 문서에 `UNREAL_WINDOWS` 항목을 확인하시기 바랍니다.
 
+<a id="570-2023-11-14-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.57.0](./release-notes-android/#2570-2023-10-31)
-* [Gamebase iOS SDK 2.57.0](./release-notes-ios/#2570-2023-10-31)
+* [Gamebase Android SDK 2.57.0](./release-notes-android/#2-57-0-2023-10-31)
+* [Gamebase iOS SDK 2.57.0](./release-notes-ios/#2-57-0-2023-10-31)
 
-### 2.56.0 (2023. 10. 17.)
+<a id="2-56-0-2023-10-17"></a>
+### 2.56.0 (2023. 10. 17.) { #2-56-0-2023-10-17 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.56.0/GamebaseSDK-Unreal.zip)
 
+<a id="560-2023-10-17-added-features"></a>
 #### 기능 추가
 * [Android 설정 툴](./unreal-started/#android-settings)에서 스토어 설정이 추가되었습니다.
     * Amazon Appstore, Huawei AppGallery, MyCard 선택이 추가되었습니다.
@@ -544,34 +665,42 @@
 * (Android) LoginForLastLoggedInProvider 호출 중에 로딩 애니메이션을 숨기는 옵션을 지정할 수 있는 신규 API가 추가되었습니다. 
     * LoginForLastLoggedInProvider(const UGamebaseJsonObject& additionalInfo, const FGamebaseAuthTokenDelegate& onCallback)
     * API 호출 방법은 다음 가이드 문서를 참고하시기 바랍니다.
-        * [Game > Gamebase > Unreal SDK 사용 가이드 > 인증 > Login > Login Flow > Login as the Latest Login IdP](./unreal-authentication/#login-as-the-latest-login-idp)
+        * [Game > Gamebase > Unreal SDK 사용 가이드 > 인증 > Login > Login Flow > Login as the Latest Login IdP](./unreal-authentication/#login-with-the-latest-login-idp)
 * (Android) Android 13 이상의 OS에서 RegisterPush API를 호출했을 때 Push 권한 요청 팝업이 자동으로 뜨지 않도록 할 수 있는 FGamebasePushConfiguration.requestNotificationPermission 필드가 추가되었습니다.
 * (iOS) 사용자가 푸시 권한을 거부해도 토큰을 등록할 수 있도록 FGamebasePushConfiguration.alwaysAllowTokenRegistration 필드가 추가되었습니다.
 
+<a id="560-2023-10-17-feature-updates"></a>
 #### 기능 개선/변경
 * 제공되는 타입이 USTRUCT에서 일반 구조체로 변경되었습니다.
     * 결과로 받는 타입의 경우 기본적으로 제공되지 않는 값인 경우 TOptional 형태로 제공됩니다.
 
+<a id="560-2023-10-17-bug-fixes"></a>
 #### 버그 수정
 * 로그인 후 탈퇴 유예 정보 및 결제 어뷰징 자동 해제 정보가 정상으로 전달되도록 수정되었습니다.
 
+<a id="560-2023-10-17-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.56.0](./release-notes-android/#2560-2023-09-26)
-* [Gamebase iOS SDK 2.55.2](./release-notes-ios/#2552-2023-09-26)
+* [Gamebase Android SDK 2.56.0](./release-notes-android/#2-56-0-2023-09-26)
+* [Gamebase iOS SDK 2.55.2](./release-notes-ios/#2-55-2-2023-09-26)
 
-### 2.49.1 (2023. 04. 14.)
+<a id="2-49-1-2023-04-14"></a>
+### 2.49.1 (2023. 04. 14.) { #2-49-1-2023-04-14 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.1/GamebaseSDK-Unreal.zip)
 
+<a id="491-2023-04-14-bug-fixes"></a>
 #### 버그 수정
 * (iOS) 결제 상품 조회 API를 호출 시 크래시가 발생하지 않도록 수정했습니다.
 
+<a id="491-2023-04-14-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.48.0](./release-notes-android/#2480-2023-03-28)
-* [Gamebase iOS SDK 2.49.0](./release-notes-ios/#2490-2023-04-11)
+* [Gamebase Android SDK 2.48.0](./release-notes-android/#2-48-0-2023-03-28)
+* [Gamebase iOS SDK 2.49.0](./release-notes-ios/#2-49-0-2023-04-11)
 
-### 2.49.0 (2023. 04. 11.)
+<a id="2-49-0-2023-04-11"></a>
+### 2.49.0 (2023. 04. 11.) { #2-49-0-2023-04-11 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.0/GamebaseSDK-Unreal.zip)
 
+<a id="490-2023-04-11-added-features"></a>
 #### 기능 추가
 * 미소비 내역 조회 API가 변경되어 신규 API로 변경해야 합니다.
  
@@ -594,32 +723,40 @@
 * (Android) 웹뷰에서 컷아웃(노치) 영역을 비롯한 모든 이용 가능한 스크린 공간을 사용하여 렌더링할 수 있는 설정이 추가되었습니다.
     * GamebaseWebViewConfiguration.renderOutsideSafeArea
 
+<a id="490-2023-04-11-feature-updates"></a>
 #### 기능 개선/변경
 * Unreal의 최소 지원 버전이 4.26으로 변경되었습니다.
 * (iOS) Xcode 14.1에서 빌드 시 오류가 발생되는 이슈가 수정되었습니다.
     
+<a id="490-2023-04-11-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.48.0](./release-notes-android/#2480-2023-03-28)
-* [Gamebase iOS SDK 2.49.0](./release-notes-ios/#2490-2023-04-11)
+* [Gamebase Android SDK 2.48.0](./release-notes-android/#2-48-0-2023-03-28)
+* [Gamebase iOS SDK 2.49.0](./release-notes-ios/#2-49-0-2023-04-11)
 
-### 2.43.3 (2022. 10. 04.)
+<a id="2-43-3-2022-10-04"></a>
+### 2.43.3 (2022. 10. 04.) { #2-43-3-2022-10-04 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.3/GamebaseSDK-Unreal.zip)
 
+<a id="433-2022-10-04-feature-updates"></a>
 #### 기능 개선/변경
 * LINE 로그인을 수행 시 서비스를 제공할 Region을 입력하도록 변경되었습니다.
     * [Game > Gamebase > Unreal SDK 사용 가이드 > 인증 > Login with IdP](./unreal-authentication/#login-with-idp)
     
+<a id="433-2022-10-04-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.43.0](./release-notes-android/#2430-2022-09-07)
-* [Gamebase iOS SDK 2.43.3](./release-notes-ios/#2433-2022-10-04)
+* [Gamebase Android SDK 2.43.0](./release-notes-android/#2-43-0-2022-09-07)
+* [Gamebase iOS SDK 2.43.3](./release-notes-ios/#2-43-3-2022-10-04)
 
-### 2.42.1 (2022. 08. 09.)
+<a id="2-42-1-2022-08-09"></a>
+### 2.42.1 (2022. 08. 09.) { #2-42-1-2022-08-09 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Unreal.zip)
 
+<a id="421-2022-08-09-added-features"></a>
 #### 기능 추가
 * FGamebaseForcingMappingTicket 클래스에 매핑 유저 상태를 나타내는 mappedUserValid 필드가 추가되었습니다.
 * [iOS 설정 툴](./unreal-started/#ios-settings)에서 Xcode의 경로를 지정할 수 있도록 **Xcode Path** 설정이 추가되었습니다.
 
+<a id="421-2022-08-09-feature-updates"></a>
 #### 기능 개선/변경
 * 킥아웃 팝업 창 표시 여부는 Gamebase 콘솔에서 킥아웃 등록 시 설정할 수 있으므로 다음 필드는 더 이상 사용하지 않습니다.
     * **FGamebaseConfiguration.bEnableKickoutPopup**
@@ -633,31 +770,39 @@
     * 내비게이션 바 활성 여부를 지정하는 필드인 isNavigationBarVisible의 기본값이 true로 설정되었습니다.
     * 웹뷰 내 뒤로 가기 버튼 활성 여부를 지정하는 필드인 isBackButtonVisible의 기본값이 true로 설정되었습니다.
     
+<a id="421-2022-08-09-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.42.1](./release-notes-android/#2421-2022-07-26)
-* [Gamebase iOS SDK 2.42.1](./release-notes-ios/#2421-2022-08-09)
+* [Gamebase Android SDK 2.42.1](./release-notes-android/#2-42-1-2022-07-26)
+* [Gamebase iOS SDK 2.42.1](./release-notes-ios/#2-42-1-2022-08-09)
 
-### 2.41.0 (2022. 07. 05.)
+<a id="2-41-0-2022-07-05"></a>
+### 2.41.0 (2022. 07. 05.) { #2-41-0-2022-07-05 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.0/GamebaseSDK-Unreal.zip)
 
+<a id="410-2022-07-05-added-features"></a>
 #### 기능 추가
 * GamebaseEventHandler의 GamebaseEventCategory에 **IdPRevoked** 타입이 추가되었습니다.
     * [Game > Gamebase > Unreal SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > IdP Revoked](./unreal-etc/#idp-revoked)
 
+<a id="410-2022-07-05-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.41.0](./release-notes-android/#2410-2022-07-05)
-* [Gamebase iOS SDK 2.41.0](./release-notes-ios/#2410-2022-07-05)
+* [Gamebase Android SDK 2.41.0](./release-notes-android/#2-41-0-2022-07-05)
+* [Gamebase iOS SDK 2.41.0](./release-notes-ios/#2-41-0-2022-07-05)
 
-### 2.40.1 (2022. 06. 14.)
+<a id="2-40-1-2022-06-14"></a>
+### 2.40.1 (2022. 06. 14.) { #2-40-1-2022-06-14 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.1/GamebaseSDK-Unreal.zip)
 
+<a id="401-2022-06-14-bug-fixes"></a>
 #### 버그 수정
 * 크래시가 발생할 수 있는 로직이 수정되었습니다.
 * (iOS) 동일한 API를 연속해서 호출 시 콜백이 정상적으로 전달되지 않는 문제가 수정되었습니다.
 
-### 2.40.0 (2022. 05. 24.)
+<a id="2-40-0-2022-05-24"></a>
+### 2.40.0 (2022. 05. 24.) { #2-40-0-2022-05-24 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Unreal.zip)
 
+<a id="400-2022-05-24-added-features"></a>
 #### 기능 추가
 *  [iOS 설정 툴](./unreal-started/#ios-settings)을 제공합니다.
     * 기존 프로젝트 설정에서 **Gamebase**으로 표시되었지만 업데이트 이후 **Gamebase - Android**, **Gamebase - iOS**로 표시됩니다.
@@ -683,6 +828,7 @@
 * 고객 센터 URL 뒤에 파라미터를 추가할 수 있도록 다음 필드가 추가되었습니다.
     * FGamebaseContactConfiguration.additionalParameters
 
+<a id="400-2022-05-24-feature-updates"></a>
 #### 기능 개선/변경
 * API 결과 콜백 호출 시 GameThread로 전환하여 호출하도록 수정되었습니다.
 * RequestActivatedPurchases API 호출 시 내부에서 2회 호출되는 문제가 수정되었습니다.
@@ -690,20 +836,25 @@
     * FGamebaseAnalyticesLevelUpData → FGamebaseAnalyticsLevelUpData
     * FGambaseBanInfoPtr → FGamebaseBanInfoPtr
     
+<a id="400-2022-05-24-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.40.0](./release-notes-android/#2400-2022-05-24)
-* [Gamebase iOS SDK 2.40.0](./release-notes-ios/#2400-2022-05-24)
+* [Gamebase Android SDK 2.40.0](./release-notes-android/#2-40-0-2022-05-24)
+* [Gamebase iOS SDK 2.40.0](./release-notes-ios/#2-40-0-2022-05-24)
 
-### 2.33.1 (2022. 02. 22.)
+<a id="2-33-1-2022-02-22"></a>
+### 2.33.1 (2022. 02. 22.) { #2-33-1-2022-02-22 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.1/GamebaseSDK-Unreal.zip)
 
+<a id="331-2022-02-22-bug-fixes"></a>
 #### 버그 수정
 * iOS 빌드 시 발생하는 오류를 수정했습니다.
 
-### 2.33.0 (2022.01.25)
+<a id="2-33-0-2022-01-25"></a>
+### 2.33.0 (2022. 01. 25.) { #2-33-0-2022-01-25 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-Unreal.zip)
 
+<a id="330-20220125-added-features"></a>
 #### 기능 추가
 * '결제 어뷰징 자동 해제' 기능이 추가되었습니다.
     * [Game > Gamebase > Unreal SDK 사용 가이드 > 인증 > GraceBan](./unreal-authentication/#graceban)
@@ -725,52 +876,65 @@
 * 공통 약관 창의 설정을 변경할 수 있는 신규 API가 추가되었습니다.
     * [Game > Gamebase > Unreal SDK 사용 가이드 > UI > Terms > showTermsView](./unreal-ui/#showtermsview)
 
+<a id="330-20220125-feature-updates"></a>
 #### 기능 개선/변경
 * 오류 코드 추가 및 변경
     * GamebaseErrorCode::UNKNOWN_ERROR 에러에 매핑된 오류 코드를 999에서 9999로 변경하였습니다.
     * 오류 코드 999에 매핑한 GamebaseErrorCode::SOCKET_UNKNOWN_ERROR 에러를 새로 추가하였습니다.
     
+<a id="330-20220125-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
-* [Gamebase Android SDK 2.33.0](./release-notes-android/#2330-20220125)
-* [Gamebase iOS SDK 2.33.0](./release-notes-ios/#2330-20220125)
+* [Gamebase Android SDK 2.33.0](./release-notes-android/#2-33-0-2022-01-25)
+* [Gamebase iOS SDK 2.33.0](./release-notes-ios/#2-33-0-2022-01-25)
 
-### 2.26.1 (2021.11.23)
+<a id="2-26-1-2021-11-23"></a>
+### 2.26.1 (2021. 11. 23.) { #2-26-1-2021-11-23 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.1/GamebaseSDK-Unreal.zip)
 
+<a id="261-20211123-bug-fixes"></a>
 #### 버그 수정
 * GamebaseDisplayLanguageCode 핀란드어 오타 수정
     * Finish → Finnish
 
-### 2.26.0 (2021.09.28)
+<a id="2-26-0-2021-09-28"></a>
+### 2.26.0 (2021. 09. 28.) { #2-26-0-2021-09-28 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-Unreal.zip)
 
+<a id="260-20210928-added-features"></a>
 #### 기능 추가
 * 공통 약관 기능 추가
     * 약관 웹뷰를 여는 API 추가
     * 약관 리스트 및 유저별 동의 여부를 조회하는 API 추가
     * 유저별 약관 동의 여부를 Gamebase 서버에 저장하는 API 추가
 
+<a id="260-20210928-feature-updates"></a>
 #### 기능 개선/변경
 * 고객 센터 타입이 TOAST 조직 상품(Online Contact)인 경우 로그인을 하지 않아도 고객 센터가 표시되도록 변경
 * 내부 론칭 URL 변경
 * Gamebase에서 Android multidex 적용 제거
 
-### 2.19.2 (2021.06.29)
+<a id="2-19-2-2021-06-29"></a>
+### 2.19.2 (2021. 06. 29.) { #2-19-2-2021-06-29 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.2/GamebaseSDK-Unreal.zip)
 
+<a id="192-20210629-bug-fixes"></a>
 #### 버그 수정
 * 이미지 공지 ShowImageNotices API 호출 시 onEventCallback을 등록하지 않는 경우 닫기 버튼을 눌렀을 때 크래시가 발생하는 문제 수정
 * Android 설정 툴 - Enable Hangame, Enable Weibo가 정상 동작하지 않는 문제 수정
 
-### 2.19.1 (2021.02.09)
+<a id="2-19-1-2021-02-09"></a>
+### 2.19.1 (2021. 02. 09.) { #2-19-1-2021-02-09 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.1/GamebaseSDK-Unreal.zip)
 
+<a id="191-20210209-bug-fixes"></a>
 #### 버그 수정
 * Unity 빌드 중 제외되는 파일이 생길 때 발생하는 컴파일 오류 수정
 
-### 2.19.0 (2021.01.26)
+<a id="2-19-0-2021-01-26"></a>
+### 2.19.0 (2021. 01. 26.) { #2-19-0-2021-01-26 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.0/GamebaseSDK-Unreal.zip)
 
+<a id="190-20210126-more-features"></a>
 #### 기능 추가
 * SDK 배포: 2.16.0 ~ 2.19.0 누적된 내역 반영
     * [Android 설정 툴](./unreal-started/#android-settings) 제공: Gamebase_Android_UPL.xml 파일을 수정하는 대신 설정 툴을 사용바랍니다.
@@ -781,9 +945,11 @@
     * Android 설정 툴 제공
     * Unreal 4.26 지원
     
-### 2.15.0 (2020.10.27)
+<a id="2-15-0-2020-10-27"></a>
+### 2.15.0 (2020. 10. 27.) { #2-15-0-2020-10-27 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.15.0/GamebaseSDK-Unreal.zip)
 
+<a id="150-october-27-2020-more-features"></a>
 #### 기능 추가
 * Unreal SDK 기능 추가: SDK 2.15.0
     * 기존의 모든 이벤트 시스템을 통합하는 GamebaseEventHandler 추가
@@ -795,30 +961,37 @@
     * 푸시 토큰 등록 시 NotificationOption 설정으로 앱이 포그라운드(foreground) 상태에서도 푸시 알림을 받을 수 있도록 기능 추가
     * WebViewConfiguration contentMode 설정 추가
     
+<a id="150-october-27-2020-feature-updates"></a>
 #### 기능 개선/변경
 * [SDK] 2.15.0
     * (Unreal) TOAST SDK 업데이트: Android(0.23.0), iOS(0.26.0), Unity(0.21.0)    
 
+<a id="150-october-27-2020-bug-fixes"></a>
 #### 버그 수정
 * [SDK] 2.15.0    
     * (Unreal) 결제 모듈에 ProGuard 선언이 누락된 오류 수정
 
-### 2.9.1 (2020.08.25)
+<a id="2-9-1-2020-08-25"></a>
+### 2.9.1 (2020. 08. 25.) { #2-9-1-2020-08-25 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.9.1/GamebaseSDK-Unreal.zip)
 
+<a id="91-august-25-2020-more-features"></a>
 #### 기능 추가
 * [SDK] 2.9.1
     * (Unreal) Unreal 4.22 ~ 4.25 지원
     * (Unreal) PLCrashReporter 이슈 지원: [가이드](./unreal-started/#ios-settings)
 
+<a id="91-august-25-2020-feature-updates"></a>
 #### 기능 개선/변경
 * [SDK] 2.9.1
     * (Unreal) iOS Plugin 내부 Gamebase SDK for iOS 버전 업데이트(2.9.1)
     * (Unreal) UObject 레퍼런싱 처리가 누락된 부분을 수정  
    
-### 2.9.0 (2020.05.12)
+<a id="2-9-0-2020-05-12"></a>
+### 2.9.0 (2020. 05. 12.) { #2-9-0-2020-05-12 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.9.0/GamebaseSDK-Unreal.zip)
 
+<a id="90-may-12-2020-more-features"></a>
 #### 기능 추가
 * [SDK] 2.9.0
     * (Unreal) SDK 신규 배포

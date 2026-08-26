@@ -1,6 +1,10 @@
-## Game > Gamebase > API v1.2 Guide
+<!-- pre-align:aligned sig=4b71bbc93ca7 -->
 
-## Updates
+<a id="game-gamebase-api-v12-guide"></a>
+## Game > Gamebase > API v1.2 Guide { #game-gamebase-api-v12-guide }
+
+<a id="updates"></a>
+## Updates { #updates }
 - Changed IAP API.
 - Added storeCode as required parameter to call Get Simple Launching API.
 - Added storeCode information of the maintenance target for the response result of Check Maintenance API.
@@ -11,36 +15,43 @@
 - Corrected the price data type of Purchase (IAP) from Long to Float.  
 - Added information of users who are suspended from withdrawal to the result of Token Authentication and Get Member API Response, as the feature of suspension of withdrawal has been added.
 
-## Advance Notice
+<a id="advance-notice"></a>
+## Advance Notice { #advance-notice }
 
 Gamebase Server API provides APIs as follows, in the RESTful format. Following information is required to use Server API.
 
+<a id="advance-notice-server-address"></a>
 #### Server Address
 
 To call API, below address is needed, which is also available in the Gamebase Console.
 > https://api-gamebase.cloud.toast.com
 
-![image alt](./image/Server_Developers_Guide/pre_server_address_v1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.2.png)
 
+<a id="advance-notice-appid"></a>
 #### AppId
 
 App ID, as a project ID of NHN Cloud, can be found on the **Project List** page of the Console.
-![image alt](./image/Server_Developers_Guide/pre_appId_v1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
+<a id="advance-notice-secretkey"></a>
 #### SecretKey
 
 Secret Key, as a control access of API, can be found in the Gambase Console. It must be set at the HTTP header to call Server API.
 > [Note]<br>
 > When a secret key is exposed and a wrong call is made, click **Create** to create a new secret key and replace the old one.
 
-![image alt](./image/Server_Developers_Guide/pre_secret_key_v1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.2.png)
 
+<a id="advance-notice-transactionid"></a>
 #### TransactionId
 
 AS part of managing API internally within a server that calls API, TransactionId is provided.  By setting a transaction ID at the HTTP header from a calling server to call API, the Gamebase server delivers results with corresponding TransactionId set at the response HTTP Header and Response Body Header of results.
 
-## Common
+<a id="common"></a>
+## Common { #common }
 
+<a id="common-http-header"></a>
 #### HTTP Header
 
 Following items should be set at the HTTP Header to call API.
@@ -51,6 +62,7 @@ Following items should be set at the HTTP Header to call API.
 | X-Secret-Key | mandatory |Refer to description of SecretKey  |
 | X-TCGB-Transaction-Id | optional | Refer to description of TransactionId |
 
+<a id="common-api-response"></a>
 #### API Response
 
 As a response to all API requests, **HTTP 200 OK** is delivered. Whether an API request is successful or not can be determined in reference of the Header of Response Body.
@@ -93,8 +105,10 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 <br>
 <br>
 
-## Authentication
+<a id="authentication"></a>
+## Authentication { #authentication }
 
+<a id="authentication-token-authentication"></a>
 #### Token Authentication
 
 Authenticates an Access Token issued to a login user. If it is normal, return information of a corresponding user.
@@ -191,8 +205,10 @@ Check common requirements.
 <br>
 <br>
 
-## Launching
+<a id="launching"></a>
+## Launching { #launching }
 
+<a id="launching-get-simple-launching"></a>
 #### Get Simple Launching
 
 In the console, you can view the launching information provided when starting up a client app, such as the server address, install URL, current maintenance status, maintenance time, and messages.
@@ -326,8 +342,10 @@ Check Common Factors
 <br>
 <br>
 
-## Member
+<a id="member"></a>
+## Member { #member }
 
+<a id="member-get-member"></a>
 #### Get Member
 
 Retrieve detailed information of a single member.
@@ -434,6 +452,7 @@ Check common requirements.
 
 <br>
 
+<a id="member-get-members"></a>
 #### Get Members
 
 Retrieves brief information about multiple members.
@@ -495,6 +514,7 @@ Check common requirements.
 
 <br>
 
+<a id="member-get-idp-information"></a>
 #### Get IdP Information
 
 Retrieve IdP information mapped with user ID.
@@ -556,6 +576,7 @@ Check common requirements.
 
 <br>
 
+<a id="member-get-userid-information-with-auth-key"></a>
 #### Get UserId Information with Auth key
 
 Retrieve a user ID mapped to user authentication key.
@@ -614,6 +635,7 @@ Check common requirements.
 
 <br>
 
+<a id="member-ban-histories"></a>
 #### Ban Histories
 
 Looks up users' ban history.
@@ -721,6 +743,7 @@ Check Common Factors
 
 <br>
 
+<a id="member-ban-release-histories"></a>
 #### Ban Release Histories.
 
 Queries the user's unban history.
@@ -828,6 +851,7 @@ Check Common Factors
 
 <br>
 
+<a id="member-validate-transferaccount"></a>
 #### Validate TransferAccount
 
 Validates the ID and password issued for transferring the guest account. For valid TransferAccount, return issued userID information.
@@ -903,6 +927,7 @@ None
 
 <br>
 
+<a id="member-withdraw"></a>
 #### Withdraw
 
 Withdraws (Deletes) a user account.
@@ -957,8 +982,10 @@ None
 <br>
 <br>
 
-## Maintenance
+<a id="maintenance"></a>
+## Maintenance { #maintenance }
 
+<a id="maintenance-check-maintenance-set"></a>
 #### Check Maintenance Set
 
 Check whether maintenance is currently set.
@@ -1030,8 +1057,10 @@ N/A
 <br>
 <br>
 
-## Coupon
+<a id="coupon"></a>
+## Coupon { #coupon }
 
+<a id="coupon-check-validation-and-consume-coupon"></a>
 #### Check Validation And Consume Coupon
 
 Validate published coupon code and change coupon status via console. For valid coupons, change to consume status and return item information to be paid as response result.
@@ -1100,8 +1129,10 @@ Check common issues
 <br>
 <br>
 
-## Purchase(IAP)
+<a id="purchaseiap"></a>
+## Purchase(IAP) { #purchaseiap }
 
+<a id="purchaseiap-consume"></a>
 #### Consume
 
 If the store payment (Google Play Store, App Store, ONEStore, etc.) has been made successfully, it issues the purchased items to the user, records the purchase history in the server, and then informs the Gamebase of the payment consumption. You can consume payment only once per payment, and the payment is not consumed if the payment status is not normal.
@@ -1183,6 +1214,7 @@ N/A
 
 <br>
 
+<a id="purchaseiap-list-consumables"></a>
 #### List Consumables
 
 List non-consumed payment, which is not consumed even if paid up.
@@ -1266,7 +1298,8 @@ List non-consumed payment, which is not consumed even if paid up.
 
 <br>
 
-### List Active Subscriptions
+<a id="list-active-subscriptions"></a>
+### List Active Subscriptions { #list-active-subscriptions }
 
 List payment of user's current subscriptions.
 
@@ -1361,10 +1394,12 @@ N/A
 <br>
 <br>
 
-## Leaderboard
+<a id="leaderboard"></a>
+## Leaderboard { #leaderboard }
 
 Gamebase provides Wrapping to server API of NHN Cloud Leaderboard. With Wrapping, NHN Cloud products become available at a user server on a consistent interface.
 
+<a id="leaderboard-wrapping-api"></a>
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
 | --- | --- | --- | --- |
@@ -1382,7 +1417,7 @@ Gamebase provides Wrapping to server API of NHN Cloud Leaderboard. With Wrapping
 **For more information of the API, click the following link.**
 
 
-[Leaderboard Guide](https://docs.nhncloud.com/en/Game/Leaderboard/en/api-guide/)
+[Leaderboard Guide](/Game/Leaderboard/en/api-guide/)
 
 ##### Example of API Call
 
@@ -1397,9 +1432,11 @@ GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.2/apps/{appId}/fact
 <br>
 <br>
 
-## Others
+<a id="others"></a>
+## Others { #others }
 
-### Support
+<a id="support"></a>
+### Support { #support }
 
 To inquire about causes of failure in API call, upload **API Call URL (with HTTP body, if available) along with response results** to [Customer Center](https://cloud.toast.com/support/faq), and we'll respond ASAP.
 

@@ -1,16 +1,21 @@
-## Game > Gamebase > User Guide for Unreal SDK > Purchase 
+<!-- pre-align:aligned sig=e79828fe0190 -->
+
+<a id="game-gamebase-user-guide-for-unreal-sdk-purchase"></a>
+## Game > Gamebase > User Guide for Unreal SDK > Purchase { #game-gamebase-user-guide-for-unreal-sdk-purchase }
 
 This document describes setting requirements to use Unreal in-app purchase.  
 The unified purchase API of Gamebase supports for easy integration of in-app purchases of many stores. 
 
-### Settings
+<a id="settings"></a>
+### Settings { #settings }
 
 Regarding how to set in-app purchases on Android or iOS, read the following documents: <br/>
 
-* [Android Purchase Settings](aos-purchase#settings)
+* [Android Purchase Settings](./aos-purchase/#initialization)
 * [iOS Purchase Settings](ios-purchase#settings)
 * [Windows Purchase Settings](unreal-started/#windows-settings)
 
+<a id="settings-unreal-plugin-settings"></a>
 #### Unreal Plugin Settings
 
 > <font color="red">[Caution]</font><br/>
@@ -29,7 +34,8 @@ Regarding how to set in-app purchases on Android or iOS, read the following docu
             [OnlineSubsystemIOS.Store]
             bSupportsInAppPurchasing=False           
 
-### Purchase Flow
+<a id="purchase-flow"></a>
+### Purchase Flow { #purchase-flow }
 
 Purchase of an item can be divided into Purchase Flow, Consume Flow, and Reprocess Flow.
 It is recommended to implement the Purchase Flow in the following order:
@@ -40,7 +46,8 @@ It is recommended to implement the Purchase Flow in the following order:
 2. The game client attempts to make a purchase by calling **RequestPurchase** of the Gamebase SDK.
 3. If the purchase is successful, call **RequestItemListOfNotConsumed** to check the unconsumed purchase details, and if there is an item to provide, proceed with the Consume Flow.
 
-### Consume Flow
+<a id="consume-flow"></a>
+### Consume Flow { #consume-flow }
 
 If there's a value on the list of unconsumed purchases, proceed with the Consume Flow in the following order:
 
@@ -64,7 +71,8 @@ If there's a value on the list of unconsumed purchases, proceed with the Consume
 3. Regardless of whether the item has been provided, the game server completes the item provision by calling the Gamebase server's consume API.
     * [Game > Gamebase > API Guide > Purchase(IAP) > Consume](./api-guide/#consume)
 
-### Retry Transaction Flow
+<a id="retry-transaction-flow"></a>
+### Retry Transaction Flow { #retry-transaction-flow }
 
 ![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
 
@@ -76,7 +84,8 @@ If there's a value on the list of unconsumed purchases, proceed with the Consume
     * When entering the store (or lobby) in a game
     * When checking the user profile or mailbox
 
-### Purchase Item
+<a id="purchase-item"></a>
+### Purchase Item { #purchase-item }
 
 By using itemSeq of an item to purchase, call the following API and request a purchase.  
 If a game user cancels purchase, the **PURCHASE_USER_CANCELED** error is returned.
@@ -237,7 +246,8 @@ struct FGamebasePurchasableReceipt
 ```
 
 
-### List Purchasable Items
+<a id="list-purchasable-items"></a>
+### List Purchasable Items { #list-purchasable-items }
 
 To query the list of items, call the following API: 
 The list of callback returns includes information of each item. 
@@ -325,7 +335,8 @@ struct FGamebasePurchasableItem
 ```
 
 
-### List Non-Consumed Items
+<a id="list-non-consumed-items"></a>
+### List Non-Consumed Items { #list-non-consumed-items }
 
 Send a request for unconsumed purchases of which items have not been normally consumed (delivered or provided) even after purchased. 
 When there's an unconsumed purchase, send a request to the game server (item server) so as to deliver (provide) items. 
@@ -380,7 +391,8 @@ void USample::RequestItemListOfNotConsumed(bool bAllStores)
 }
 ```
 
-### List Activated Subscriptions
+<a id="list-activated-subscriptions"></a>
+### List Activated Subscriptions { #list-activated-subscriptions }
 
 Query the list of activated subscriptions of a current user ID. 
 Paid subscriptions (auto-renewal subscription, or auto-renewal consumable subscription products) can be queried until they are expired. 
@@ -435,7 +447,8 @@ void USample::RequestActivatedPurchases(bool bAllStores)
 }
 ```
 
-### List Subscriptions Status
+<a id="list-subscriptions-status"></a>
+### List Subscriptions Status { #list-subscriptions-status }
 
 Retrieve the status of subscription products based on the current user ID.
 The list returned in the callback contains information about the subscription products.
@@ -574,7 +587,8 @@ struct FGamebasePurchasableSubscriptionStatus
 };
 ```
 
-### Event by Purchase
+<a id="event-by-purchase"></a>
+### Event by Purchase { #event-by-purchase }
 
 You can handle events via the GamebaseEventHandler when an item is acquired through a promotion code or when a pending payment (e.g., slow-process payments, parental consent) is completed.
 Refer to the guide below for instructions on processing promotion and pending payment events using the GamebaseEventHandler.
@@ -589,7 +603,8 @@ Supported Platforms
 > To enable iOS promotion payments, you must follow the configuration steps in the guide below.
 > [Game > Gamebase > iOS SDK User Guide > Payment > Event by Purchase](./ios-purchase/#event-by-purchase)
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                                       | Error Code | Description                              |
 | ------------------------------------------- | ---------- | ---------------------------------------- |
@@ -633,7 +648,7 @@ else
 ```
 
 * For NHN Cloud IAP error codes, refer to the document below.
-    * [NHN Cloud > User Guide for NHN Cloud SDK > NHN Cloud IAP > Unity > Error Codes](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-unity/#error-code)
+    * [NHN Cloud > User Guide for NHN Cloud SDK > NHN Cloud IAP > Unity > Error Codes](/nhncloud-sdk/en/iap-unity/#error-code)
 
 
 

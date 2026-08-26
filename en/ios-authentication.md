@@ -1,7 +1,11 @@
-## Game > Gamebase > iOS Developer's Guide > Authentication
+<!-- pre-align:aligned sig=a81a19473baf -->
+
+<a id="game-gamebase-ios-developers-guide-authentication"></a>
+## Game > Gamebase > iOS Developer's Guide > Authentication { #game-gamebase-ios-developers-guide-authentication }
 
 
-## Login
+<a id="login"></a>
+## Login { #login }
 
 Gamebase supports guest logins by default.
 
@@ -13,7 +17,8 @@ In some cases, additionalInfo parameter is required for IdP trying a login.
 For more details about AdditionalInfo, refer to **IdPs supported by Gamebase** below.
 
 
-### Import Header File
+<a id="import-header-file"></a>
+### Import Header File { #import-header-file }
 
 Import the following header file to the ViewController to implement a login.
 
@@ -21,7 +26,8 @@ Import the following header file to the ViewController to implement a login.
 #import <Gamebase/Gamebase.h>
 ```
 
-### Login Flow
+<a id="login-flow"></a>
+### Login Flow { #login-flow }
 
 In most games, login is implemented on the title screen.
 
@@ -33,16 +39,19 @@ The logic described in the above can be implemented in the following order.
 ![last provider login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
 ![idp login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
+<a id="login-flow-authenticate-with-latest-login-type"></a>
 #### 1. Authenticate with Latest Login Type
 
 * If a previous authentication has been recorded, try to authenticate with no need of ID and password.
 * Call **[TCGBGamebase loginForLastLoggedInProviderWithViewController:completion:]**.
 
+<a id="login-flow-1-1-when-authentication-is-successful"></a>
 #### 1-1. When Authentication is Successful
 
 * Congratulations! Successfully authenticated
 * Get a user ID with **[TCGBGamebase userID]** to implement a game logic.
 
+<a id="login-flow-1-2-when-authentication-fails"></a>
 #### 1-2. When Authentication Fails
 
 * Network error
@@ -54,18 +63,21 @@ The logic described in the above can be implemented in the following order.
 * Other errors
     * Authentication with the previous login type has failed. **'2. Authenticate with the designated IdP'**.
 
+<a id="login-flow-authenticate-with-specified-idp"></a>
 #### 2. Authenticate with Specified IdP
 
 * Try to authenticate by specifying an IdP type.
     * Types that can be authenticated are declared in **TCGBAuthIdPs** of the **TCGBConstants.h** file.
 * Call **[TCGBGamebase loginWithType:viewController:completion:]** API.
 
+<a id="login-flow-2-1-when-authentication-is-successful"></a>
 #### 2-1. When Authentication is Successful
 
 * Congratulations! Successfully authenticated.
 * Get a user ID with **[TCGBGamebase userID]** to implement a game logic.
 
-### 2-2. When Authentication Fails
+<a id="login-flow-2-2-when-authentication-fails"></a>
+#### 2-2. When Authentication Fails
 
 * Network error
     * If the error code is either **TCGB_ERROR_SOCKET_ERROR(110)** or **TCGB_ERROR_SOCKET_RESPONSE_TIMEOUT(101)**, authentication failed because of a temporary network problem. In this case, call **[TCGBGamebase loginWithType:viewController:completion:]** again or try authenticating later.
@@ -76,7 +88,8 @@ The logic described in the above can be implemented in the following order.
 * Other errors
     * Informs users of an error and returns them to the state where they can select an authentication IdP type (usually title screen or login screen).
 
-### Login as the Latest Login IdP
+<a id="login-as-the-latest-login-idp"></a>
+### Login as the Latest Login IdP { #login-as-the-latest-login-idp }
 
 Try login with the most recently logged-in IdP. If a token is expired
 or its authentication fails, return failure.<br/>
@@ -123,7 +136,8 @@ Note that a login should be implemented for the IdP.
 }
 ```
 
-### Login with IdP
+<a id="login-with-idp"></a>
+### Login with IdP { #login-with-idp }
 
 To call a specific IdP login, call **[TCGBGamebase loginWithType:viewController:completion:]**.<br/>
 If it is the first login-trial via Gamebase, or login information (access token) has been expired, it is required to use this API to try a login.<br/>
@@ -194,7 +208,8 @@ However, access token of each IdP is managed by SDK of each IdP.<br/>
 }
 ```
 
-### Login with Credential
+<a id="login-with-credential"></a>
+### Login with Credential { #login-with-credential }
 
 This game interface allows authentication to be made with SDK provided by IdP, before login to Gamebase with provided access token.
 
@@ -206,7 +221,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 | kTCGBAuthLoginWithCredentialProviderNameKeyname | Set IdP type                      | facebook, iosgamecenter, naver, google, twitter, line, appleid, hangame, weibo, kakaogame |
 | kTCGBAuthLoginWithCredentialAccessTokenKeyname | Set authentication information (access token) received after login IdP |                   | 
 | kTCGBAuthLoginWithCredentialIgnoreAlreadyLoggedInKeyname | Allow login attempts using other accounts while logged into Gamebase without logging out  | **BOOL** |      
-|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | One of the LINE service regions to log in  | [See Login with IdP ](./ios-authentication/#login-with-idp)|                                  
+|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | One of the LINE service regions to log in  | [See Login with IdP ](#login-with-idp)|                                  
 
 
 > [Note]
@@ -231,12 +246,15 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 }
 ```
 
-### Authentication Additional Information Settings
+<a id="authentication-additional-information-settings"></a>
+### Authentication Additional Information Settings { #authentication-additional-information-settings }
 
 [Console Guide](./oper-app/#authentication-information)
 
-## Logout
+<a id="logout"></a>
+## Logout { #logout }
 
+<a id="logout-import-header-file"></a>
 #### Import Header File
 
 Import the following header file to the ViewController to implement a logout.
@@ -245,6 +263,7 @@ Import the following header file to the ViewController to implement a logout.
 #import <Gamebase/Gamebase.h>
 ```
 
+<a id="logout-api"></a>
 #### Logout API
 
 Try to log out from logged-in IdP. In many cases, the log-out button is located on the game configuration screen.
@@ -268,9 +287,11 @@ Following shows a log-out example code with a click of the log-out button.
 
 
 
-## Withdraw
+<a id="withdraw"></a>
+## Withdraw { #withdraw }
 
-### Import Header File
+<a id="withdraw-import-header-file"></a>
+### Import Header File { #withdraw-import-header-file }
 
 Import the following header file to the ViewController to implement withdrawal.
 
@@ -278,7 +299,8 @@ Import the following header file to the ViewController to implement withdrawal.
 #import <Gamebase/Gamebase.h>
 ```
 
-### Withdraw API
+<a id="withdraw-api"></a>
+### Withdraw API { #withdraw-api }
 
 Attempts account withdrawal while logged in.
 
@@ -307,7 +329,8 @@ Following shows an exemplary withdrawal code with a click of the withdraw button
 }
 ```
 
-## Mapping
+<a id="mapping"></a>
+## Mapping { #mapping }
 
 Mapping refers to connecting or disconnecting an existing login account to/from another IdP account.
 
@@ -334,20 +357,24 @@ Mapping API includes Add Mapping API and Remove Mapping API.
 > If the mapping is successful during a Guest login, the Guest IdP disappears.
 >
 
-### Add Mapping Flow
+<a id="add-mapping-flow"></a>
+### Add Mapping Flow { #add-mapping-flow }
 
 Implement mapping in the following order.
 
 ![add mapping flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_add_mapping_flow_2.30.0.png)
 
+<a id="add-mapping-flow-login"></a>
 #### 1. Login
 Mapping means to add an IdP account integration to a current account, so login is a prerequisite.
 First, call a login API and log in.
 
+<a id="add-mapping-flow-mapping"></a>
 #### 2. Mapping
 
 Call **[TCGBGamebase addMappingWithType:viewController:completion:]** to try mapping.
 
+<a id="add-mapping-flow-2-1-when-mapping-is-successful"></a>
 #### 2-1. When mapping is successful
 
 * Congratulations! Successfully added an IdP account integrated with the current account.
@@ -355,6 +382,7 @@ Call **[TCGBGamebase addMappingWithType:viewController:completion:]** to try map
     * <font color="red">[Caution]</font><br/> : The Guest account is an exception. If the mapping attempt performed while logged in with the Guest account is successful, the Guest IdP is **deleted** and the 'currently logged-in IdP' is also changed to the mapped IdP.
 * Mapping simply adds IdP integration.
 
+<a id="add-mapping-flow-2-2-when-mapping-fails"></a>
 #### 2-2. When mapping fails
 
 * Network error
@@ -368,7 +396,8 @@ Call **[TCGBGamebase addMappingWithType:viewController:completion:]** to try map
 * Other errors
     * The mapping attempt has failed.
 
-### Import Header file into ViewController
+<a id="import-header-file-into-viewcontroller"></a>
+### Import Header file into ViewController { #import-header-file-into-viewcontroller }
 
 Import the following header file to the ViewController to implement mapping.
 
@@ -378,7 +407,8 @@ Import the following header file to the ViewController to implement mapping.
 
 
 
-### Add Mapping API
+<a id="add-mapping-api"></a>
+### Add Mapping API { #add-mapping-api }
 
 Try mapping to another IdP while logged-in to a specific IdP.<br/>
 
@@ -386,7 +416,7 @@ Try mapping to another IdP while logged-in to a specific IdP.<br/>
 
 | Keyname                                  | Usage                        | Value Type                           |
 | ---------------------------------------- | ------------------------------ | ------------------------------ |
-|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | A region to perform login among LINE service regions  | [See Login with IdP](./ios-authentication/#login-with-idp)|
+|kTCGBAuthLoginWithCredentialLineChannelRegionKeyname | A region to perform login among LINE service regions  | [See Login with IdP](#login-with-idp)|
 
 **API**
 
@@ -415,7 +445,8 @@ Below is an example of mapping to Facebook.
 }
 ```
 
-### AddMapping with Credential
+<a id="addmapping-with-credential"></a>
+### AddMapping with Credential { #addmapping-with-credential }
 
 This game interface allows authentication to be made with SDK provided by IdP, before applying Gamebase AddMapping with provided access token.
 
@@ -480,7 +511,8 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 }
 ```
 
-### Add Mapping Forcibly
+<a id="add-mapping-forcibly"></a>
+### Add Mapping Forcibly { #add-mapping-forcibly }
 If there is any account mapped to a specific IdP, try **force** mapping.
 When you try **force mapping**, you need `ForcingMappingTicket` obtained from the AddMapping API.
 
@@ -519,7 +551,8 @@ The following is an example of force mapping to Facebook:
 }
 ```
 
-### Change Login with ForcingMappingTicket
+<a id="change-login-with-forcingmappingticket"></a>
+### Change Login with ForcingMappingTicket { #change-login-with-forcingmappingticket }
 
 When there is an account already mapped to a specific IdP, **change the login account**.
 **When changing the login account**, the `ForcingMappingTicket` obtained from the AddMapping API is required.
@@ -562,7 +595,8 @@ The following is an example of trying to change the login account to Facebook.
 }
 ```
 
-### Remove Mapping API
+<a id="remove-mapping-api"></a>
+### Remove Mapping API { #remove-mapping-api }
 
 Remove mapping with a specific IdP. <br/>
 If IdP mapping is not removed, error will occur.<br/>
@@ -578,7 +612,8 @@ After mapping is removed, Gamebase processes logout of the IdP.
 }];
 ```
 
-### Get IdP Mapping List
+<a id="get-idp-mapping-list"></a>
+### Get IdP Mapping List { #get-idp-mapping-list }
 Check the list of mapped accounts to IdPs.
 
 ```objectivec
@@ -587,7 +622,8 @@ NSArray* authMappingList = [TCGBGamebase authMappingList];
 ```
 
 
-## Gamebase User's Information
+<a id="gamebase-users-information"></a>
+## Gamebase User's Information { #gamebase-users-information }
 Process authentication with Gamebase, in order to get information required to create an app.
 
 > <font color="red">[Caution]</font><br/>
@@ -596,7 +632,8 @@ Process authentication with Gamebase, in order to get information required to cr
 >
 > If authentication information is needed, log in using the "[TCGBGamebase loginWithType:IDP_CODE viewController:topViewController completion:completion];" API, using the {IDP_CODE} parameter that is same as that of the IDPCode to be used, instead of "[TCGBGamebase loginForLastLoggedInProvider]".
 
-### Get Authentication Information for Gamebase
+<a id="get-authentication-information-for-gamebase"></a>
+### Get Authentication Information for Gamebase { #get-authentication-information-for-gamebase }
 Get authentication information issued by Gamebase.
 
 ```objectivec
@@ -611,7 +648,8 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 ```
 
 
-### Get Authentication Information for External IdP
+<a id="get-authentication-information-for-external-idp"></a>
+### Get Authentication Information for External IdP { #get-authentication-information-for-external-idp }
 
 * Information such as access token, user ID, and profile of an external authentication IdP can be gotten by calling Gamebase Server API after login.
     * [Game > Gamebase > API Guide > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
@@ -630,7 +668,8 @@ NSString* lastProviderName = [TCGBGamebase lastLoggedInProvider];
 > For appleid login using iOS 12 or earlier, the authentication information cannot be viewed.
 >
 
-### Get Banned User Information
+<a id="get-banned-user-information"></a>
+### Get Banned User Information { #get-banned-user-information }
 
 If a user is registered while being banned in Gamebase Console,
 the user will see the following usage restriction code when attempting to log in to the game. Ban information can be checked using the **[TCGBBanInfo banInfoFromError:error]** method.
@@ -640,7 +679,8 @@ the user will see the following usage restriction code when attempting to log in
 
 
 
-## TransferAccount
+<a id="transferaccount"></a>
+## TransferAccount { #transferaccount }
 Issues a key to transfer the guest account to another device.
 
 This key is called **TransferAccountInfo**.
@@ -652,7 +692,8 @@ The issued TransferAccountInfo calls the **requestTransferAccount** API from ano
 > Transfer of guest account using TransferAccountInfo is allowed only when logged in to a guest account or not logged in.
 > If the logged-in guest account has already been mapped to an IdP (Google, Facebook etc.) account, account transfer is not supported.
 
-### Issue TransferAccount
+<a id="issue-transferaccount"></a>
+### Issue TransferAccount { #issue-transferaccount }
 Issues TransferAccountInfo to transfer the guest account.
 
 **API**
@@ -671,7 +712,8 @@ Issues TransferAccountInfo to transfer the guest account.
  }
 ```
 
-### Query TransferAccount
+<a id="query-transferaccount"></a>
+### Query TransferAccount { #query-transferaccount }
 Queries the TransferAccountInfo information issued for guest account transfer to the Gamebase server.
 
 **API**
@@ -691,7 +733,8 @@ Queries the TransferAccountInfo information issued for guest account transfer to
 ```
 
 
-### Renew TransferAccount
+<a id="renew-transferaccount"></a>
+### Renew TransferAccount { #renew-transferaccount }
 Renews the issued TransferAccountInfo information.
 There are two types of renewal: **Auto Renew** and **Manual Renew**. 
 You can select either **Renew Password Only** or **Renew Both ID and Password** to renew the TransferAccountInfo information.
@@ -727,7 +770,8 @@ You can select either **Renew Password Only** or **Renew Both ID and Password** 
 
 
 
-### Transfer Guest Account to Another Device
+<a id="transfer-guest-account-to-another-device"></a>
+### Transfer Guest Account to Another Device { #transfer-guest-account-to-another-device }
 Transfers the account with TransferAccount issued with **issueTransfer** API.
 When account transfer is successful, a transfer completion message will be displayed from the device where TransferAccount has been issued and a new account will be created when a guest logs in.
 On the device where the account transfer was successfully made, the guest account from the previous device where TransferAccount was issued can still be used.
@@ -774,7 +818,8 @@ On the device where the account transfer was successfully made, the guest accoun
 
 
 
-## TemporaryWithdrawal
+<a id="temporarywithdrawal"></a>
+## TemporaryWithdrawal { #temporarywithdrawal }
 
 This is a 'pending withdrawal" feature.
 By requesting a temporary withdrawal, the account is not immediately withdrawn. Instead, it is withdrawn after a specific grace period.
@@ -787,7 +832,8 @@ The grace period can be changed in the console.
 
 If login is successful, the AuthToken.getTemporaryWithdrawalInfo() API can be called to determine if the user is in the status of pending withdrawal.
 
-### Request TemporaryWithdrawal
+<a id="request-temporarywithdrawal"></a>
+### Request TemporaryWithdrawal { #request-temporarywithdrawal }
 
 Requests a temporary withdrawal.
 The account is automatically withdrawn after a specific grace period set in the console.
@@ -824,7 +870,8 @@ The account is automatically withdrawn after a specific grace period set in the 
 }
 ```
 
-### Check TemporaryWithdrawal User
+<a id="check-temporarywithdrawal-user"></a>
+### Check TemporaryWithdrawal User { #check-temporarywithdrawal-user }
 
 For games using the Pending Withdrawal feature must notify their users that they are in grace period if **TCGBAuthToken.tcgbMember.temporaryWithdrawal** is used and it returns a valid TemporaryWithdrawalInfo object instead of null.
 
@@ -852,7 +899,8 @@ For games using the Pending Withdrawal feature must notify their users that they
 ```
 
 
-### Cancel TemporaryWithdrawal
+<a id="cancel-temporarywithdrawal"></a>
+### Cancel TemporaryWithdrawal { #cancel-temporarywithdrawal }
 
 Cancels a withdrawal request.
 If the grace period is over and the withdrawal process is completed, it cannot be undone.
@@ -889,7 +937,8 @@ If the grace period is over and the withdrawal process is completed, it cannot b
 }
 ```
 
-### Withdraw Immediately
+<a id="withdraw-immediately"></a>
+### Withdraw Immediately { #withdraw-immediately }
 
 Immediately withdraws the account, ignoring the grace period.
 The internal mechanics are the same as the **[TCGBGamebase withdrawWithViewController:completion:]** API.
@@ -918,7 +967,8 @@ Instant withdrawal cannot be undone, so it is important to ask the user several 
 }
 ```
 
-## GraceBan
+<a id="graceban"></a>
+## GraceBan { #graceban }
 
 * This is a 'purchase abuse automatic release' function.
     * The purchase abuse automatic release function allows users who should be banned due to purchase abuse automatic lockdown to be banned after ban suspension status.
@@ -965,7 +1015,8 @@ Instant withdrawal cannot be undone, so it is important to ask the user several 
 }
 ```
 
-## Error Handling
+<a id="error-handling"></a>
+## Error Handling { #error-handling }
 
 | Category       | Error                                    | Error Code | Description                              |
 | -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
