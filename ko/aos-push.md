@@ -26,7 +26,7 @@
 
 그리고 다음 Notification Options 가이드를 참고하여 **default_small_icon**(AndroidManifest.xml) 또는 **setSmallIconName**(API)을 설정해야 합니다.
 [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > Notification Options](./aos-started/#notification-options)
-[Game > Gamebase > Android SDK 사용 가이드 > 푸시 > Notification Options > Set Notification Options with RegisterPush in Runtime](#set-notification-options-with-registerpush-in-runtime)
+[Game > Gamebase > Android SDK 사용 가이드 > 푸시 > Notification Options > Set Notification Options with RegisterPush in Runtime](#notification-options-set-notification-options-with-registerpush-in-runtime)
 
 <a id="register-push"></a>
 ### Register Push { #register-push }
@@ -90,7 +90,6 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 [Game > Gamebase > Android SDK 사용 가이드 > 시작하기 > Setting > AndroidManifest.xml > Notification Options](./aos-started/#notification-options)
 
 <a id="notification-options-set-notification-options-with-registerpush-in-runtime"></a>
-<a id="set-notification-options-with-registerpush-in-runtime"></a>
 #### Set Notification Options with RegisterPush in Runtime
 
 알림 옵션을 AndroidManifest.xml 에 정의하지 않고 런타임에 설정할 수도 있습니다. 또는 AndroidManifest.xml 에 정의한 값을 런타임에 변경할 수도 있습니다.
