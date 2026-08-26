@@ -270,9 +270,34 @@ Gamebase Consoleに登録されたメンテナンス情報です。
 <br/>
 ##### Change Default Maintenance HTML
 
-```
-Not translated yet
-```
+enablePopupとenableLaunchingStatusPopupの値がいずれもtrueの場合、ゲームがメンテナンス状態の時、自動的にメンテナンスポップアップが表示されます。
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_popup_android_2.30.0.png)
+
+ここで**詳細表示**ボタンをクリックするとメンテナンス情報が自動的にWebビューで表示されます。
+![](https://static.toastoven.net/prod_gamebase/DevelopersGuide/maintenance_webview_android_2.30.0.png)
+
+この時に表示されるhtmlファイルを修正したい場合は、次のリンクのhtmlファイルをダウンロードして自由に修正した後、'assets/Gamebase'フォルダに格納します。するとGamebase SDKに内蔵された基本htmlファイルの代わりにそのhtmlファイルを使用してメンテナンス情報を表示します。
+[htmlファイルダウンロードLINK](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gamebase-maintenance.html)
+
+**1.4 notice**
+
+Gamebase Consoleに登録された告知情報です。
+
+* message：メッセージ
+* title：タイトル
+* url：メンテナンスURL
+
+[Game > Gamebase > コンソール使用ガイド > 運営 > Notice](./oper-operation/#notice)
+
+**1.5 user**
+
+Gamebase初期化を実行したユーザー情報です。
+
+* testDevice:テスト端末情報(Statusが200台の場合のみ伝達)
+    * matchingFlag:ユーザー端末がGamebaseコンソールに設定されたテスト端末の情報と同じかどうか
+    * matchingTypes
+        * テスト端末情報とマッチングされたタイプ
+        * matchingFlagがtrueの場合にのみ伝達   
 
 <a id="launching-information-tcproduct"></a>
 #### 2. tcProduct

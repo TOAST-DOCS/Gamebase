@@ -346,6 +346,21 @@ gamebaseProductIdは一般的にはストアに登録したアイテムのIDと�
 
 **Example**
 
+```objectivec
+- (void)viewDidLoad {
+    TCGBPurchasableConfiguration *configuration = [[TCGBPurchasableConfiguration alloc] init];
+
+    [TCGBPurchase requestActivatedPurchasesWithConfiguration:configuration completion:^(NSArray<TCGBPurchasableReceipt *> *purchasableReceiptArray, TCGBError *error) {
+        if (error != nil) {
+            // To Requesting Activated Item List Failed cause of the error
+            return;
+        }
+
+        // Should Deal With This Activated Items.
+    }];
+}
+```
+
 <a id="restore-purchase"></a>
 ### Restore Purchase { #restore-purchase }
 

@@ -350,6 +350,15 @@ end
     <string>{Issued LINE ChannleID}</string>
 </dict>
 ```
+
+**Twitter**
+
+* Gamebase iOS SDK 2.66.3 or below
+    * URL Scheme must be configured.
+        * Go to **Xcode > Target > Info > URL Types** and add **tcgb.{Bundle ID}.twitter**
+    * Need to configure Apps > Target Project > App Details > Callback URL on the Developer site of Twitter.
+        *  Add **tcgb.{Bundle ID}.twitter://**.
+
 <a id="3rd-party-provider-sdk-guide"></a>
 ## 3rd-Party Provider SDK Guide { #3rd-party-provider-sdk-guide }
 
