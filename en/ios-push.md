@@ -24,7 +24,7 @@ This document describes the process of getting authentication information for AP
 
 <a id="settings-implementing-notification-service-extension"></a>
 #### Implementing Notification Service Extension
-* For tasks such as collecting inbound indicators and setting the notification sound, see [NHN Cloud Push Guide](https://docs.toast.com/en/TOAST/en/toast-sdk/push-ios/#notification-service-extension) to implement the **Notification Service Extension** for the application.
+* For tasks such as collecting inbound indicators and setting the notification sound, see [NHN Cloud Push Guide](https://docs.nhncloud.com/en/nhncloud-sdk/en/push-ios/#notification-service-extension) to implement the **Notification Service Extension** for the application.
 
 
 <a id="settings-setting-up-xcode-project"></a>

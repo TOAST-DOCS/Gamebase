@@ -648,8 +648,8 @@ else
 ```
 
 * NHN Cloud IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [NHN Cloud > SDK 사용 가이드 > IAP > Android > 오류 코드](https://docs.nhncloud.com/ko/nhncloud/ko/nhncloud-sdk/iap-android/#_32)
-    * [NHN Cloud > SDK 사용 가이드 > IAP > iOS > 에러 코드](https://docs.nhncloud.com/ko/nhncloud/ko/nhncloud-sdk/iap-ios/#_17)
+    * [NHN Cloud > SDK 사용 가이드 > IAP > Android > 오류 코드](https://docs.nhncloud.com/ko/nhncloud-sdk/ko/iap-android/#_33)
+    * [NHN Cloud > SDK 사용 가이드 > IAP > iOS > 에러 코드](https://docs.nhncloud.com/ko/nhncloud-sdk/ko/iap-ios/#_18)
 
 
 

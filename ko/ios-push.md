@@ -24,7 +24,7 @@
 
 <a id="settings-implementing-notification-service-extension"></a>
 #### Notification Service Extension 구현
-* 수신 지표 수집, 알림음 설정 등을 위해서는 [NHN Cloud Push 가이드](https://docs.toast.com/ko/TOAST/ko/toast-sdk/push-ios/#notification-service-extension)를 참고하여 애플리케이션에 **Notification Service Extension**을 구현해야 합니다.
+* 수신 지표 수집, 알림음 설정 등을 위해서는 [NHN Cloud Push 가이드](https://docs.nhncloud.com/ko/nhncloud-sdk/ko/push-ios/#notification-service-extension)를 참고하여 애플리케이션에 **Notification Service Extension**을 구현해야 합니다.
 
 
 <a id="settings-setting-up-xcode-project"></a>

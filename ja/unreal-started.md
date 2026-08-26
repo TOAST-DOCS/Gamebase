@@ -240,7 +240,7 @@ bEnableSignInWithAppleSupport=True
 次のようなイシューによりRich Push Notification機能を使用できません。
 
 * Unrealはプロジェクトに[Notification Service Extension](https://developer.apple.com/documentation/usernotifications/unnotificationserviceextension?language=objc)を追加できる方法を提供しません。
-    * [NHN Cloud Push Notification Service Extension作成](https://docs.toast.com/e  n/TOAST/en/toast-sdk/push-ios/#notification-service-extension)
+    * [NHN Cloud Push Notification Service Extension作成](https://docs.nhncloud.com/ja/nhncloud-sdk/ja/push-ios/#notification-service-extension)
 
 <a id="ios-settings-error-in-unreal-builds-due-to-warning-messages-of-ios-sdk"></a>
 #### iOS SDKのWarningメッセージによるUnrealビルドエラー

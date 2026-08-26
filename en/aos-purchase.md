@@ -400,7 +400,7 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, configuration, new Game
 List activated subscriptions for a current user ID. 
 Paid subscriptions (auto-renewable subscription, or auto-renewed consumable subscription) can be queried before they're expired. 
 For subscription life cycle, refer to the following document.
-[NHN Cloud > SDK User Guide > IAP > Android > Google Play Store Subscription (Regular payment) feature > Subscription Lifecycle Handing](https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-android/#subscription-lifecycle-handling)
+[NHN Cloud > SDK User Guide > IAP > Android > Google Play Store Subscription (Regular payment) feature > Subscription Lifecycle Handing](https://docs.nhncloud.com/en/nhncloud-sdk/en/iap-android/#subscription-lifecycle-handling)
 > <font color="red">[Caution]</font><br/>
 >
 > Current subscriptions for Android are supported by Google Play Store only.
@@ -451,7 +451,7 @@ You can view the status of purchased subscription products based on your current
 Subscription products that have been paid for (auto-renewable subscriptions, auto-renewable consumable subscription products) can be viewed until they expire.
 You can retrieve the status of expired subscription products with the **PurchasableConfiguration.setIncludeExpiredSubscriptions(true)** API.
 For subscription status codes, see the following document.
- [NHN Cloud > SDK User Guide > IAP > Android > NHN Cloud IAP Class Reference > IapSubscriptionStatus.StatusCode](https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-android/#iapsubscriptionstatusstatuscode).
+ [NHN Cloud > SDK User Guide > IAP > Android > NHN Cloud IAP Class Reference > IapSubscriptionStatus.StatusCode](https://docs.nhncloud.com/en/nhncloud-sdk/en/iap-android/#iapsubscriptionstatusstatuscode).
 
 > <font color="red">[Caution]</font><br/>
 >
@@ -678,5 +678,5 @@ Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataC
 ```
 
 * For NHN Cloud IAP SDK error codes, refer to the document below.
-    * [NHN Cloud > NHN Cloud SDK User Guide > NHN Cloud IAP > Android > Error Codes](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-android/#error-codes)
+    * [NHN Cloud > NHN Cloud SDK User Guide > NHN Cloud IAP > Android > Error Codes](https://docs.nhncloud.com/en/nhncloud-sdk/en/iap-android/#error-codes)
 
