@@ -3,8 +3,8 @@
 <a id="game-gamebase-release-notes-android"></a>
 ## Game > Gamebase > Release Notes > Android { #game-gamebase-release-notes-android }
 
-<a id="820-2026-07-28"></a>
-### 2.82.0 (2026. 07. 28.) { #820-2026-07-28 }
+<a id="2-82-0-2026-07-28"></a>
+### 2.82.0 (2026. 07. 28.) { #2-82-0-2026-07-28 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.82.0/GamebaseSDK-Android.zip)
 
@@ -18,8 +18,8 @@
 
 * Fixed an issue where the game build failed when applying 2.81.0 in an environment below AGP 8.0 without upgrading the R8 version.
 
-<a id="810-2026-06-23"></a>
-### 2.81.0 (2026. 06. 23.) { #810-2026-06-23 }
+<a id="2-81-0-2026-06-23"></a>
+### 2.81.0 (2026. 06. 23.) { #2-81-0-2026-06-23 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.0/GamebaseSDK-Android.zip)
 
@@ -30,8 +30,8 @@
     * Applied Google Play Billing Library 8.3.0.
     * Updated to reflect the OneStore V21 server domain change.
 
-<a id="802-2026-04-28"></a>
-### 2.80.2 (2026. 04. 28.) { #802-2026-04-28 }
+<a id="2-80-2-2026-04-28"></a>
+### 2.80.2 (2026. 04. 28.) { #2-80-2-2026-04-28 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.80.2/GamebaseSDK-Android.zip)
 
@@ -40,8 +40,8 @@
 
 * External SDK update: Hangame Android SDK(1.17.4)
 
-<a id="801-2026-03-30"></a>
-### 2.80.1 (2026. 03. 30.) { #801-2026-03-30 }
+<a id="2-80-1-2026-03-30"></a>
+### 2.80.1 (2026. 03. 30.) { #2-80-1-2026-03-30 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.80.1/GamebaseSDK-Android.zip)
 
@@ -50,8 +50,8 @@
 
 * Fixed an issue where the Pending event-related logic added in version 2.80.0 was causing excessive load on the IAP server.
 
-<a id="800-2026-02-13"></a>
-### 2.80.0 (2026. 02. 13.) { #800-2026-02-13 }
+<a id="2-80-0-2026-02-13"></a>
+### 2.80.0 (2026. 02. 13.) { #2-80-0-2026-02-13 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.80.0/GamebaseSDK-Android.zip)
 
@@ -68,8 +68,8 @@
 * Fixed an issue where the terms window occasionally appeared oversized.
 * Fixed an issue where the automatic notification permission popup was not displayed when code obfuscation was applied.
 
-<a id="790-2026-01-27"></a>
-### 2.79.0 (2026. 01. 27.) { #790-2026-01-27 }
+<a id="2-79-0-2026-01-27"></a>
+### 2.79.0 (2026. 01. 27.) { #2-79-0-2026-01-27 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.79.0/GamebaseSDK-Android.zip)
 
@@ -79,8 +79,8 @@
 * Added support for targetSdk 36. Fixed an issue where the back navigation in WebView did not function correctly when running a targetSdk 36 build on an Android 16 device.
 * Improved internal logic
 
-<a id="780-2025-12-23"></a>
-### 2.78.0 (2025. 12. 23.) { #780-2025-12-23 }
+<a id="2-78-0-2025-12-23"></a>
+### 2.78.0 (2025. 12. 23.) { #2-78-0-2025-12-23 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.78.0/GamebaseSDK-Android.zip)
 
@@ -90,8 +90,8 @@
 * External SDK update: Play Age Signals library (0.0.2)
     * The Play Age Signals library has been updated.
 
-<a id="770-2025-12-09"></a>
-### 2.77.0 (2025. 12. 09.) { #770-2025-12-09 }
+<a id="2-77-0-2025-12-09"></a>
+### 2.77.0 (2025. 12. 09.) { #2-77-0-2025-12-09 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.77.0/GamebaseSDK-Android.zip)
 
@@ -99,8 +99,8 @@
 #### Feature Updates
 * Improved internal payment logic
 
-<a id="760-2025-11-28"></a>
-### 2.76.0 (2025. 11. 28.) { #760-2025-11-28 }
+<a id="2-76-0-2025-11-28"></a>
+### 2.76.0 (2025. 11. 28.) { #2-76-0-2025-11-28 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.76.0/GamebaseSDK-Android.zip)
 
@@ -117,8 +117,8 @@
 * **Gamebase.Purchase.requestItemListAtIAPConsole()** API has been deprecated.
     * Use **Gamebase.Purchase.requestItemListPurchasable()** API.
 
-<a id="751-2025-10-17"></a>
-### 2.75.1 (2025. 10. 17.) { #751-2025-10-17 }
+<a id="2-75-1-2025-10-17"></a>
+### 2.75.1 (2025. 10. 17.) { #2-75-1-2025-10-17 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.1/GamebaseSDK-Android.zip)
 
@@ -128,8 +128,8 @@
 * External SDK update: Hangame Android SDK(1.17.3)
 * Improved internal logic
 
-<a id="750-2025-09-23"></a>
-### 2.75.0 (2025. 09. 23.) { #750-2025-09-23 }
+<a id="2-75-0-2025-09-23"></a>
+### 2.75.0 (2025. 09. 23.) { #2-75-0-2025-09-23 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-Android.zip)
 
@@ -144,8 +144,8 @@
     * gamebase-adapter-purchase-amazon, gamebase-adapter-push-adm
 * Improved internal logic
 
-<a id="731-2025-08-12"></a>
-### 2.73.1 (2025. 08. 12.) { #731-2025-08-12 }
+<a id="2-73-1-2025-08-12"></a>
+### 2.73.1 (2025. 08. 12.) { #2-73-1-2025-08-12 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.1/GamebaseSDK-Android.zip)
 
@@ -162,8 +162,8 @@
 * Fixed an issue where the size of the dialog exceeds the screen size on devices with punch holes when selecting Terms and Conditions ->  Learn More.
 
 
-<a id="730-2025-07-15"></a>
-### 2.73.0 (2025. 07. 15.) { #730-2025-07-15 }
+<a id="2-73-0-2025-07-15"></a>
+### 2.73.0 (2025. 07. 15.) { #2-73-0-2025-07-15 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-Android.zip)
 
@@ -182,8 +182,8 @@ The minimum Android Gradle Plugin version has been increased to 7.4.2 or later. 
 
 * Fixed an issue where the login webview would incorrectly calculate margin sizes when rotating the screen.
 
-<a id="720-2025-06-24"></a>
-### 2.72.0 (2025. 06. 24.) { #720-2025-06-24 }
+<a id="2-72-0-2025-06-24"></a>
+### 2.72.0 (2025. 06. 24.) { #2-72-0-2025-06-24 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.0/GamebaseSDK-Android.zip)
 
@@ -201,8 +201,8 @@ The minimum Android Gradle Plugin version has been increased to 7.4.2 or later. 
     * Issues that fail to call Gamebase.login(idp) -&gt; Gamebase.addMapping("line") -&gt; AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER(3302) -&gt; Gamebase.changeLogin(ForcingMappingTicket)
     * Issues that fail to call Gamebase.login("line") -&gt; Gamebase.addMapping(idP) -&gt; AUTH\_ADD\_MAPPING\_ALREADY\_MAPPED\_TO\_OTHER\_MEMBER(3302) -&gt; Gamebase.changeLogin(ForcingMappingTicket)
 
-<a id="712-2025-05-20"></a>
-### 2.71.2 (2025. 05. 20.) { #712-2025-05-20 }
+<a id="2-71-2-2025-05-20"></a>
+### 2.71.2 (2025. 05. 20.) { #2-71-2-2025-05-20 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.2/GamebaseSDK-Android.zip)
 
@@ -213,8 +213,8 @@ The minimum Android Gradle Plugin version has been increased to 7.4.2 or later. 
 * Added Sign-in with Google login on devices with older versions of Google Play Services
 * Improved internal logic
 
-<a id="711-2025-04-29"></a>
-### 2.71.1 (2025. 04. 29.) { #711-2025-04-29 }
+<a id="2-71-1-2025-04-29"></a>
+### 2.71.1 (2025. 04. 29.) { #2-71-1-2025-04-29 }
 
 [SDK Download](https://static.toaㄴㄴstoven.net/toastcloud/sdk_download/gamebase/v2.71.1/GamebaseSDK-Android.zip)
 
@@ -223,8 +223,8 @@ The minimum Android Gradle Plugin version has been increased to 7.4.2 or later. 
 
 * Fixed an error related to webview size calculation
 
-<a id="710-2025-04-15"></a>
-### 2.71.0 (2025. 04. 15.) { #710-2025-04-15 }
+<a id="2-71-0-2025-04-15"></a>
+### 2.71.0 (2025. 04. 15.) { #2-71-0-2025-04-15 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.0/GamebaseSDK-Android.zip)
 
@@ -241,8 +241,8 @@ The minimum Android Gradle Plugin version has been increased to 7.4.2 or later. 
 
 * Changed behavior to return an **INVALID_PARAMETER(3)** error instead of throwing an exception when calling Gamebase initialization with storeCode set to null.
 
-<a id="701-2025-03-13"></a>
-### 2.70.1 (2025. 03. 13.) { #701-2025-03-13 }
+<a id="2-70-1-2025-03-13"></a>
+### 2.70.1 (2025. 03. 13.) { #2-70-1-2025-03-13 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.1/GamebaseSDK-Android.zip)
 
@@ -252,8 +252,8 @@ The minimum Android Gradle Plugin version has been increased to 7.4.2 or later. 
 * Resized the X-buttons in the Apple ID, Steam, and Twitter login navigation bars.
 * Fixed an issue that prevented Kotlin files from referencing AuthProvider's IdP constant (e.g. AuthProvider.GUEST).
 
-<a id="700-2025-03-11"></a>
-### 2.70.0 (2025. 03. 11.) { #700-2025-03-11 }
+<a id="2-70-0-2025-03-11"></a>
+### 2.70.0 (2025. 03. 11.) { #2-70-0-2025-03-11 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.0/GamebaseSDK-Android.zip)
 
@@ -302,8 +302,8 @@ The minimum Android Gradle Plugin version has been increased to 7.4.2 or later. 
 * Fixed an issue where LaunchingInfo data was not updated in the user event handler.
 * Fixed an issue where the aspect ratio of image notices was displayed differently from the original image ratio in Unity builds.
 
-<a id="690-2025-01-21"></a>
-### 2.69.0 (2025. 01. 21.) { #690-2025-01-21 }
+<a id="2-69-0-2025-01-21"></a>
+### 2.69.0 (2025. 01. 21.) { #2-69-0-2025-01-21 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.69.0/GamebaseSDK-Android.zip)
 
@@ -334,8 +334,8 @@ The minimum Android Gradle Plugin version has been increased to 7.4.2 or later. 
 * Added defensive code to address an issue where the loading progress bar occasionally did not disappear or caused a crash.
 * Added defensive code to prevent crashes caused by duplicate callback invocations in WebSocket under certain conditions.
 
-<a id="680-2024-11-26"></a>
-### 2.68.0 (2024. 11. 26.) { #680-2024-11-26 }
+<a id="2-68-0-2024-11-26"></a>
+### 2.68.0 (2024. 11. 26.) { #2-68-0-2024-11-26 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.0/GamebaseSDK-Android.zip)
 
 ```
@@ -363,8 +363,8 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
     * Authentication method changed from AuthCode to OIDC token.
 * Fixed webview not redirecting URLs when a registered custom scheme is matched.
 
-<a id="670-2024-10-29"></a>
-### 2.67.0 (2024. 10. 29.) { #670-2024-10-29 }
+<a id="2-67-0-2024-10-29"></a>
+### 2.67.0 (2024. 10. 29.) { #2-67-0-2024-10-29 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.67.0/GamebaseSDK-Android.zip)
 
 <a id="670-2024-10-29-added-features"></a>
@@ -387,8 +387,8 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
 #### Bug Fixes
 * Fixed an issue where touching Detail after disconnecting from the network while the terms screen was exposed would cause the terms popup to exit.
 
-<a id="663-2024-09-10"></a>
-### 2.66.3 (2024. 09. 10.) { #663-2024-09-10 }
+<a id="2-66-3-2024-09-10"></a>
+### 2.66.3 (2024. 09. 10.) { #2-66-3-2024-09-10 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.3/GamebaseSDK-Android.zip)
 
 <a id="663-2024-09-10-feature-updates"></a>
@@ -397,8 +397,8 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
     * Fixed an issue where Native Crash logs are intermittently not reported on Android 13 and above devices.
     * Improved Amazon payment reprocessing.
 
-<a id="662-2024-08-27"></a>
-### 2.66.2 (2024. 08. 27.) { #662-2024-08-27 }
+<a id="2-66-2-2024-08-27"></a>
+### 2.66.2 (2024. 08. 27.) { #2-66-2-2024-08-27 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.2/GamebaseSDK-Android.zip)
 
 <a id="662-2024-08-27-feature-updates"></a>
@@ -413,16 +413,16 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
 * Fixed an issue where, when an Activity is destroyed, the WebView floating on top of the destroyed Activity is closed and the close event callback is missing.
 * Added defensive logic to prevent the Hangame Login Adapter from causing an already resumed error if a duplicate callback is received when logging into an external idP.
 
-<a id="661-2024-07-23"></a>
-### 2.66.1 (2024. 07. 23.) { #661-2024-07-23 }
+<a id="2-66-1-2024-07-23"></a>
+### 2.66.1 (2024. 07. 23.) { #2-66-1-2024-07-23 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.1/GamebaseSDK-Android.zip)
 
 <a id="661-2024-07-23-bug-fixes"></a>
 #### Bug Fixes
 * Fixed an issue where the `gamebase://dismiss` scheme did not work on Android 14 devices when built with targetSdk 34, preventing custom schemes from exiting the webview.
 
-<a id="660-2024-07-10"></a>
-### 2.66.0 (2024. 07. 10.) { #660-2024-07-10 }
+<a id="2-66-0-2024-07-10"></a>
+### 2.66.0 (2024. 07. 10.) { #2-66-0-2024-07-10 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.0/GamebaseSDK-Android.zip)
 
 <a id="660-2024-07-10-added-features"></a>
@@ -431,8 +431,8 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
     * For more details on how to set, see the following document.
         * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > GPGS IdP](./aos-started/#gpgs-idp)
 
-<a id="651-2024-06-25"></a>
-### 2.65.1 (2024. 06. 25.) { #651-2024-06-25 }
+<a id="2-65-1-2024-06-25"></a>
+### 2.65.1 (2024. 06. 25.) { #2-65-1-2024-06-25 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.1/GamebaseSDK-Android.zip)
 
 <a id="651-2024-06-25-feature-updates"></a>
@@ -443,8 +443,8 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
 #### Bug Fixes  
 * Fixed an error where, when an empty image notice is exposed if there were no registered image notices, a crash occurs on closing after checking the Show less for today.
 
-<a id="650-2024-06-11"></a>
-### 2.65.0 (2024. 06. 11.) { #650-2024-06-11 }
+<a id="2-65-0-2024-06-11"></a>
+### 2.65.0 (2024. 06. 11.) { #2-65-0-2024-06-11 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.65.0/GamebaseSDK-Android.zip)
 
@@ -462,8 +462,8 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
         * For more information, see [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > Gradle > Root level build.gradle](./aos-started/#root-level-buildgradle).
 * Improved internal logic
 
-<a id="640-2024-05-28"></a>
-### 2.64.0 (2024. 05. 28.) { #640-2024-05-28 }
+<a id="2-64-0-2024-05-28"></a>
+### 2.64.0 (2024. 05. 28.) { #2-64-0-2024-05-28 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.64.0/GamebaseSDK-Android.zip)
 
@@ -476,8 +476,8 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
 #### Bug Fixes
 * Fixed a bug where Gamebase internal messages do not appear correctly due to string resource reference failures on devices below API Level 23 (OS 6.0, M).
 
-<a id="630-2024-04-23"></a>
-### 2.63.0 (2024. 04. 23.) { #630-2024-04-23 }
+<a id="2-63-0-2024-04-23"></a>
+### 2.63.0 (2024. 04. 23.) { #2-63-0-2024-04-23 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.63.0/GamebaseSDK-Android.zip)
 
@@ -485,8 +485,8 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
 #### Feature Updates
 * Improved internal logic
 
-<a id="621-2024-03-29"></a>
-### 2.62.1 (2024. 03. 29.) { #621-2024-03-29 }
+<a id="2-62-1-2024-03-29"></a>
+### 2.62.1 (2024. 03. 29.) { #2-62-1-2024-03-29 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.62.1/GamebaseSDK-Android.zip)
 
@@ -495,8 +495,8 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
 * Fixed a bug where the Gamebase.loginForLastLoggedInProvider call would always fail on devices below Android 7.0 (API Level 24) and the Guest account would be lost. 
     * This bug only occurs in Gamebase Android SDK 2.62.0.
 
-<a id="620-2024-03-26"></a>
-### 2.62.0 (2024. 03. 26.) { #620-2024-03-26 }
+<a id="2-62-0-2024-03-26"></a>
+### 2.62.0 (2024. 03. 26.) { #2-62-0-2024-03-26 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.62.0/GamebaseSDK-Android.zip)
 
 <a id="620-2024-03-26-feature-updates"></a>
@@ -509,8 +509,8 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
 * Improved internal logic so that Preference cannot be copied for use.
 * Incorporated the gamebase-sdk-base module into a single gamebase-sdk module.
 
-<a id="610-2024-02-27"></a>
-### 2.61.0 (2024. 02. 27.) { #610-2024-02-27 }
+<a id="2-61-0-2024-02-27"></a>
+### 2.61.0 (2024. 02. 27.) { #2-61-0-2024-02-27 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.61.0/GamebaseSDK-Android.zip)
 
 <a id="610-2024-02-27-feature-updates"></a>
@@ -520,8 +520,8 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
 * Added a declaration to the AndroidManifest to enable the use of Photo Picker, which does not require permission, when uploading photos to the Customer Center. Accordingly, the runtime permission request for READ_EXTERNAL_STORAGE has been removed.
 * Improved internal logic
 
-<a id="600-2024-01-23"></a>
-### 2.60.0 (2024. 01. 23.) { #600-2024-01-23 }
+<a id="2-60-0-2024-01-23"></a>
+### 2.60.0 (2024. 01. 23.) { #2-60-0-2024-01-23 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.60.0/GamebaseSDK-Android.zip)
 
 <a id="600-2024-01-23-feature-updates"></a>
@@ -534,8 +534,8 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
 #### Bug Fixes
 * Fixed an issue where ConcurrentModificationException exception occurs intermittenly when running the app.
 
-<a id="590-2023-12-19"></a>
-### 2.59.0 (2023. 12. 19.) { #590-2023-12-19 }
+<a id="2-59-0-2023-12-19"></a>
+### 2.59.0 (2023. 12. 19.) { #2-59-0-2023-12-19 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.59.0/GamebaseSDK-Android.zip)
 
 <a id="590-2023-12-19-feature-updates"></a>
@@ -547,8 +547,8 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
 #### Bug Fixes
 * Fixed an issue where .wav format files could not be uploaded in the Customer Center.
 
-<a id="580-2023-11-28"></a>
-### 2.58.0 (2023. 11. 28.) { #580-2023-11-28 }
+<a id="2-58-0-2023-11-28"></a>
+### 2.58.0 (2023. 11. 28.) { #2-58-0-2023-11-28 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.58.0/GamebaseSDK-Android.zip)
 
 <a id="580-2023-11-28-feature-updates"></a>
@@ -561,8 +561,8 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
 #### Bug Fixes
 * Added a defense code to prevent a crash when an empty string is entered in the message of the Gamebase.Logger.report(String message, ...) API.
 
-<a id="570-2023-10-31"></a>
-### 2.57.0 (2023. 10. 31.) { #570-2023-10-31 }
+<a id="2-57-0-2023-10-31"></a>
+### 2.57.0 (2023. 10. 31.) { #2-57-0-2023-10-31 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.57.0/GamebaseSDK-Android.zip)
 
 <a id="570-2023-10-31-feature-updates"></a>
@@ -580,8 +580,8 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
 #### Bug Fixes
 * Fixed a bug where an EmptyStackException would rarely occur when Gamebase WebView close().
 
-<a id="561-2023-10-17"></a>
-### 2.56.1 (2023. 10. 17.) { #561-2023-10-17 }
+<a id="2-56-1-2023-10-17"></a>
+### 2.56.1 (2023. 10. 17.) { #2-56-1-2023-10-17 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.56.1/GamebaseSDK-Android.zip)
 
 <a id="561-2023-10-17-feature-updates"></a>
@@ -591,16 +591,16 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
     * When new or app updates are made to the Google Play Store after 2023/11/01, it is necessary to apply the corresponding version. For more information, please refer to the following link.
     * [Google Play Billing Library version deprecation](https://developer.android.com/google/play/billing/deprecation-faq)
 
-<a id="560-2023-09-26"></a>
-### 2.56.0 (2023. 09. 26.) { #560-2023-09-26 }
+<a id="2-56-0-2023-09-26"></a>
+### 2.56.0 (2023. 09. 26.) { #2-56-0-2023-09-26 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.56.0/GamebaseSDK-Android.zip)
 
 <a id="560-2023-09-26-feature-updates"></a>
 #### Feature Updates
 * External SDK update: Hangame Android SDK (1.7.1)
 
-<a id="550-2023-09-12"></a>
-### 2.55.0 (2023. 09. 12.) { #550-2023-09-12 }
+<a id="2-55-0-2023-09-12"></a>
+### 2.55.0 (2023. 09. 12.) { #2-55-0-2023-09-12 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.55.0/GamebaseSDK-Android.zip)
 
 <a id="550-2023-09-12-feature-updates"></a>
@@ -615,8 +615,8 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
 * Fixed an issue where the navigation bar reappears when the windowFocus is changed in API Level 28, 29 fullscreen webview.
 * Added a defensive logic to prevent crashing if Weibo login is successful but access token is returned as null from Weibo SDK intermittently.
 
-<a id="530-2023-08-17"></a>
-### 2.53.0 (2023. 08. 17.) { #530-2023-08-17 }
+<a id="2-53-0-2023-08-17"></a>
+### 2.53.0 (2023. 08. 17.) { #2-53-0-2023-08-17 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.53.0/GamebaseSDK-Android.zip)
 
 <a id="530-2023-08-17-added-features"></a>
@@ -633,8 +633,8 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
     * To use the enhanced file attachment feature in the Customer Center, you need to add permission settings to the AndroidManifest.xml by following the guide below.
     * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > Contact](./aos-started/#contact)
 
-<a id="521-2023-07-17"></a>
-### 2.52.1 (2023. 07. 17.) { #521-2023-07-17 }
+<a id="2-52-1-2023-07-17"></a>
+### 2.52.1 (2023. 07. 17.) { #2-52-1-2023-07-17 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.1/GamebaseSDK-Android.zip)
 
 <a id="521-2023-07-17-feature-updates"></a>
@@ -645,8 +645,8 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
 #### Bug Fixes
 * Fixed an issue where a crash occurs on Android 4.4 (OS 19 Kitkat) devices due to the mimum supported OS version raised to 21 starting from OkHttp 3.13.
 
-<a id="520-2023-06-27"></a>
-### 2.52.0 (2023. 06. 27.) { #520-2023-06-27 }
+<a id="2-52-0-2023-06-27"></a>
+### 2.52.0 (2023. 06. 27.) { #2-52-0-2023-06-27 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.0/GamebaseSDK-Android.zip)
 
 <a id="520-2023-06-27-added-features"></a>
@@ -669,8 +669,8 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
 * Fixed a bug where the navigation bar and X button overlapps in horisontal mode of Render outside safe area.
 * Fixed the Terms and Conditions details page that appears when you click "Detail" in the Terms and Conditions window to not be clickable in the background until it finishes loading.
 
-<a id="501-2023-07-17"></a>
-### 2.50.1 (2023. 07. 17.) { #501-2023-07-17 }
+<a id="2-50-1-2023-07-17"></a>
+### 2.50.1 (2023. 07. 17.) { #2-50-1-2023-07-17 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.52.1/GamebaseSDK-Android.zip)
 
 <a id="501-2023-07-17-feature-updates"></a>
@@ -681,8 +681,8 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
 #### Bug Fixes
 * Fixed an issue where a crash occurs on Android 4.4 (OS 19 Kitkat) devices due to the mimum supported OS version raised to 21 starting from OkHttp 3.13.
 
-<a id="500-2023-05-16"></a>
-### 2.50.0 (2023. 05. 16.) { #500-2023-05-16 }
+<a id="2-50-0-2023-05-16"></a>
+### 2.50.0 (2023. 05. 16.) { #2-50-0-2023-05-16 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.50.0/GamebaseSDK-Android.zip)
 
 <a id="500-2023-05-16-added-features"></a>
@@ -697,8 +697,8 @@ Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
 #### Bug Fixes
 * Fixed an error where, when calling the Terms and Conditions API, Activity size is reduced within a safe area.
 
-<a id="490-2023-04-25"></a>
-### 2.49.0 (2023. 04. 25.) { #490-2023-04-25 }
+<a id="2-49-0-2023-04-25"></a>
+### 2.49.0 (2023. 04. 25.) { #2-49-0-2023-04-25 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.0/GamebaseSDK-Android.zip)
 ```
 Raised the minimum supported version to Android 4.4.(minSdk 16 -> 19)
@@ -722,8 +722,8 @@ Raised the minimum supported version to Android 4.4.(minSdk 16 -> 19)
     * gamebase-adapter-push-adm
     * gamebase-adapter-push-fcm
 
-<a id="480-2023-03-28"></a>
-### 2.48.0 (2023. 03. 28.) { #480-2023-03-28 }
+<a id="2-48-0-2023-03-28"></a>
+### 2.48.0 (2023. 03. 28.) { #2-48-0-2023-03-28 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.48.0/GamebaseSDK-Android.zip)
 
 <a id="480-2023-03-28-feature-updates"></a>
@@ -736,8 +736,8 @@ Raised the minimum supported version to Android 4.4.(minSdk 16 -> 19)
 #### Bug Fixes
 * Fixed a bug where, when proguard is applied in Unity, API calls related to Purchase fails.
 
-<a id="470-2023-02-14"></a>
-### 2.47.0 (2023. 02. 14.) { #470-2023-02-14 }
+<a id="2-47-0-2023-02-14"></a>
+### 2.47.0 (2023. 02. 14.) { #2-47-0-2023-02-14 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.47.0/GamebaseSDK-Android.zip)
 
 <a id="470-2023-02-14-feature-updates"></a>
@@ -745,8 +745,8 @@ Raised the minimum supported version to Android 4.4.(minSdk 16 -> 19)
 * External SDK update: Hangame Android SDK (1.6.3)
 * Improved the internal logic
 
-<a id="460-2023-01-31"></a>
-### 2.46.0 (2023. 01. 31.) { #460-2023-01-31 }
+<a id="2-46-0-2023-01-31"></a>
+### 2.46.0 (2023. 01. 31.) { #2-46-0-2023-01-31 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.46.0/GamebaseSDK-Android.zip)
 
 <a id="460-2023-01-31-added-features"></a>
@@ -761,8 +761,8 @@ Raised the minimum supported version to Android 4.4.(minSdk 16 -> 19)
 #### Feature Updates
 * External SDK update: Kakaogame SDK (3.14.14)
 
-<a id="450-2022-12-27"></a>
-### 2.45.0 (2022. 12. 27.) { #450-2022-12-27 }
+<a id="2-45-0-2022-12-27"></a>
+### 2.45.0 (2022. 12. 27.) { #2-45-0-2022-12-27 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.45.0/GamebaseSDK-Android.zip)
 
@@ -800,8 +800,8 @@ Raised the minimum supported version to Android 4.4.(minSdk 16 -> 19)
 * Fixed an issue where ConcurrentModification exceptions occur intermittenly while running the app.
 * Fixed an issue where, when calling Gamebase.getAuthProviderUserID() after logging in with Hangame thirdIdP, NullPointerException occurs.
 
-<a id="442-2022-11-29"></a>
-### 2.44.2 (2022. 11. 29.) { #442-2022-11-29 }
+<a id="2-44-2-2022-11-29"></a>
+### 2.44.2 (2022. 11. 29.) { #2-44-2-2022-11-29 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.2/GamebaseSDK-Android.zip)
 
 <a id="442-2022-11-29-added-features"></a>
@@ -819,8 +819,8 @@ Raised the minimum supported version to Android 4.4.(minSdk 16 -> 19)
 #### Bug Fixes
 * Removed the 'deprecated' annotaion incorrectly declared on the 'itemName' field of the PurchasableItem V0 class.
 
-<a id="441-2022-10-25"></a>
-### 2.44.1 (2022. 10. 25.) { #441-2022-10-25 }
+<a id="2-44-1-2022-10-25"></a>
+### 2.44.1 (2022. 10. 25.) { #2-44-1-2022-10-25 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.1/GamebaseSDK-Android.zip)
 
 <a id="441-2022-10-25-added-features"></a>
@@ -838,8 +838,8 @@ Raised the minimum supported version to Android 4.4.(minSdk 16 -> 19)
 #### Bug Fixes
 * Fixed a bug where, when calling the **Gamebase.Push.registerPush** API from a device running Android 6.0(M, API Level 23), **IllegalArgumentException** exception occurs.
 
-<a id="440-2022-10-11"></a>
-### 2.44.0 (2022. 10. 11.) { #440-2022-10-11 }
+<a id="2-44-0-2022-10-11"></a>
+### 2.44.0 (2022. 10. 11.) { #2-44-0-2022-10-11 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.44.0/GamebaseSDK-Android.zip)
 
 <a id="440-2022-10-11-feature-updates"></a>
@@ -852,8 +852,8 @@ Raised the minimum supported version to Android 4.4.(minSdk 16 -> 19)
 #### Bug Fixes
 * Fixed an issue where a crash occurs when logging with the previous version of IdP while logging with Hangame IdP, when no error occurs if you log in with an invalid third-party IdP after using a valid third-party IdP.
 
-<a id="430-2022-09-07"></a>
-### 2.43.0 (2022. 09. 07.) { #430-2022-09-07 }
+<a id="2-43-0-2022-09-07"></a>
+### 2.43.0 (2022. 09. 07.) { #2-43-0-2022-09-07 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.0/GamebaseSDK-Android.zip)
 
 <a id="430-2022-09-07-added-features"></a>
@@ -878,16 +878,16 @@ Raised the minimum supported version to Android 4.4.(minSdk 16 -> 19)
 #### Bug Fixes
 * Fixed an issue where a crash occurs when forcibly lowering the Naver Login SDK version to 4.1.4 to use the Naver PLUG SDK or Naver Cafe SDK.
 
-<a id="421-2022-07-26"></a>
-### 2.42.1 (2022. 07. 26.) { #421-2022-07-26 }
+<a id="2-42-1-2022-07-26"></a>
+### 2.42.1 (2022. 07. 26.) { #2-42-1-2022-07-26 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Android.zip)
 
 <a id="421-2022-07-26-feature-updates"></a>
 #### Feature Updates
 * External SDK update: Facebook Android SDK(11.3.0)
 
-<a id="420-2022-07-26"></a>
-### 2.42.0 (2022. 07. 26.) { #420-2022-07-26 }
+<a id="2-42-0-2022-07-26"></a>
+### 2.42.0 (2022. 07. 26.) { #2-42-0-2022-07-26 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.0/GamebaseSDK-Android.zip)
 
 <a id="420-2022-07-26-feature-updates"></a>
@@ -901,24 +901,24 @@ Raised the minimum supported version to Android 4.4.(minSdk 16 -> 19)
 * Fixed an issue where Naver web login fails from LDPlayer.
 * Fixed an issue where a crash occurs when Twiter login fails due to a low OS verison.
 
-<a id="412-2022-07-22"></a>
-### 2.41.2 (2022. 07. 22.) { #412-2022-07-22 }
+<a id="2-41-2-2022-07-22"></a>
+### 2.41.2 (2022. 07. 22.) { #2-41-2-2022-07-22 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.2/GamebaseSDK-Android.zip)
 
 <a id="412-2022-07-22-feature-updates"></a>
 #### Feature Updates 
 * Changed the default WebView settings to 'Allow cookies'.
 
-<a id="411-2022-07-12"></a>
-### 2.41.1 (2022. 07. 12.) { #411-2022-07-12 }
+<a id="2-41-1-2022-07-12"></a>
+### 2.41.1 (2022. 07. 12.) { #2-41-1-2022-07-12 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.1/GamebaseSDK-Android.zip)
 
 <a id="411-2022-07-12-bug-fixes"></a>
 #### Bug Fixes
 * Fixed an issue where the 'View' button in the Terms and Conditions screen does not work.
 
-<a id="410-2022-07-05"></a>
-### 2.41.0 (2022. 07. 05.) { #410-2022-07-05 }
+<a id="2-41-0-2022-07-05"></a>
+### 2.41.0 (2022. 07. 05.) { #2-41-0-2022-07-05 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.0/GamebaseSDK-Android.zip)
 
 <a id="410-2022-07-05-feature-updates"></a>
@@ -931,8 +931,8 @@ Raised the minimum supported version to Android 4.4.(minSdk 16 -> 19)
 #### Bug Fixes
 * Fixed an issue where the system crashes intermittently or login fails when trying login right after Hangame IdP logout
 
-<a id="400-2022-05-24"></a>
-### 2.40.0 (2022. 05. 24.) { #400-2022-05-24 }
+<a id="2-40-0-2022-05-24"></a>
+### 2.40.0 (2022. 05. 24.) { #2-40-0-2022-05-24 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Android.zip)
 
 <a id="400-2022-05-24-added-features"></a>
@@ -955,16 +955,16 @@ Raised the minimum supported version to Android 4.4.(minSdk 16 -> 19)
             <meta-data android:name="com.nhncloud.sdk.push.deviceId.salt"
                        android:value="ApplicationForGoogleStore" />
 
-<a id="390-2022-05-10"></a>
-### 2.39.0 (2022. 05. 10.) { #390-2022-05-10 }
+<a id="2-39-0-2022-05-10"></a>
+### 2.39.0 (2022. 05. 10.) { #2-39-0-2022-05-10 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.39.0/GamebaseSDK-Android.zip)
 
 <a id="390-2022-05-10-feature-updates"></a>
 #### Feature Updates
 * External SDK update: TOAST Android SDK(0.30.1)
 
-<a id="380-2022-05-03"></a>
-### 2.38.0 (2022. 05. 03.) { #380-2022-05-03 }
+<a id="2-38-0-2022-05-03"></a>
+### 2.38.0 (2022. 05. 03.) { #2-38-0-2022-05-03 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.38.0/GamebaseSDK-Android.zip)
 
 <a id="380-2022-05-03-added-features"></a>
@@ -986,8 +986,8 @@ Raised the minimum supported version to Android 4.4.(minSdk 16 -> 19)
 * External SDK update: TOAST Android SDK(0.30.0)
 * Fixed unnatural sentences in the Traditional Chinese (zh-TW) language set of Display Language.
 
-<a id="370-2022-04-26"></a>
-### 2.37.0 (2022. 04. 26.) { #370-2022-04-26 }
+<a id="2-37-0-2022-04-26"></a>
+### 2.37.0 (2022. 04. 26.) { #2-37-0-2022-04-26 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.37.0/GamebaseSDK-Android.zip)
 
 <a id="370-2022-04-26-added-features"></a>
@@ -1000,8 +1000,8 @@ Raised the minimum supported version to Android 4.4.(minSdk 16 -> 19)
 * External SDK update: TOAST Gamebase IAP Android SDK(0.18.3)
 * Made improvements so that, when userId and gamebaseProductId are missing from the Amazon Appstore payment data, userId and gamebaseProductId are automatically filled in.
 
-<a id="360-2022-04-12"></a>
-### 2.36.0 (2022. 04. 12.) { #360-2022-04-12 }
+<a id="2-36-0-2022-04-12"></a>
+### 2.36.0 (2022. 04. 12.) { #2-36-0-2022-04-12 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.36.0/GamebaseSDK-Android.zip)
 
 <a id="360-2022-04-12-feature-updates"></a>
@@ -1010,8 +1010,8 @@ Raised the minimum supported version to Android 4.4.(minSdk 16 -> 19)
 * Made improvements so that sms_hash is generated internally in Hangame Android SDK v1.4.5.
     * sms_hash does not need to be set anymore.
 
-<a id="350-2022-03-29"></a>
-### 2.35.0 (2022. 03. 29.) { #350-2022-03-29 }
+<a id="2-35-0-2022-03-29"></a>
+### 2.35.0 (2022. 03. 29.) { #2-35-0-2022-03-29 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.35.0/GamebaseSDK-Android.zip)
 
 ```
@@ -1052,8 +1052,8 @@ The ZIP file for distribution no longer includes AAR files.
 #### Bug Fixes
 * Fixed an issue where the **GamebaseWebViewConfiguration.Builder.setNavigationBarVisible()** API, which hides the WebView's navigation bar, did not work properly.
 
-<a id="340-2022-02-22"></a>
-### 2.34.0 (2022. 02. 22.) { #340-2022-02-22 }
+<a id="2-34-0-2022-02-22"></a>
+### 2.34.0 (2022. 02. 22.) { #2-34-0-2022-02-22 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.34.0/GamebaseSDK-Android.zip)
 
 <a id="340-2022-02-22-added-features"></a>
@@ -1073,8 +1073,8 @@ The ZIP file for distribution no longer includes AAR files.
 #### Bug Fixes
 * Fixed a bug where, when a user selected **Do not show again today** on an image notice, the image notice is not displayed even after 24 hours have passed.
 
-<a id="330-20220125"></a>
-### 2.33.0 (2022.01.25) { #330-20220125 }
+<a id="2-33-0-2022-01-25"></a>
+### 2.33.0 (2022. 01. 25.) { #2-33-0-2022-01-25 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-Android.zip)
 
 <a id="330-20220125-added-features"></a>
@@ -1087,8 +1087,8 @@ The ZIP file for distribution no longer includes AAR files.
 * External SDK update: PAYCO Android SDK(1.5.7), Hangame Android SDK(1.4.3.1), TOAST Gamebase IAP Android SDK(0.18.1)
 * Added logic to check whether the launching information has not changed immediately after successful login.
 
-<a id="320-20211228"></a>
-### 2.32.0 (2021.12.28) { #320-20211228 }
+<a id="2-32-0-2021-12-28"></a>
+### 2.32.0 (2021. 12. 28.) { #2-32-0-2021-12-28 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.32.0/GamebaseSDK-Android.zip)
 
 <a id="320-20211228-added-features"></a>
@@ -1107,8 +1107,8 @@ The ZIP file for distribution no longer includes AAR files.
 #### Bug Fixes
 * Fixed a bug in Gamebase Android SDK 2.31.0 where an IdP account cannot be changed because IdP logout is not called even when logout is called.
 
-<a id="310-20211214"></a>
-### 2.31.0 (2021.12.14) { #310-20211214 }
+<a id="2-31-0-2021-12-14"></a>
+### 2.31.0 (2021. 12. 14.) { #2-31-0-2021-12-14 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.31.0/GamebaseSDK-Android.zip)
 
 <a id="310-20211214-added-features"></a>
@@ -1133,8 +1133,8 @@ The ZIP file for distribution no longer includes AAR files.
 * Fixed an issue where the launch pop-up was intermittently displayed in English when calling Gamebase initialization as soon as the app was executed.
 * Improved the scheduler so that it always checks whether the launch information has changed when the app is switched from the background to the foreground status.
 
-<a id="300-20211123"></a>
-### 2.30.0 (2021.11.23) { #300-20211123 }
+<a id="2-30-0-2021-11-23"></a>
+### 2.30.0 (2021. 11. 23.) { #2-30-0-2021-11-23 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.30.0/GamebaseSDK-Android.zip)
 
 <a id="300-20211123-added-features"></a>
@@ -1152,8 +1152,8 @@ The ZIP file for distribution no longer includes AAR files.
 * Fixed an error where the time on the default maintenance webview was displayed in the device language even though DisplayLanguageCode was set.
 * Improved the network error that occurred repeatedly by trying to communicate with a disconnected connection when a communication error occurs.
 
-<a id="290-20211109"></a>
-### 2.29.0 (2021.11.09) { #290-20211109 }
+<a id="2-29-0-2021-11-09"></a>
+### 2.29.0 (2021. 11. 09.) { #2-29-0-2021-11-09 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.29.0/GamebaseSDK-Android.zip)
 
 <a id="290-20211109-added-features"></a>
@@ -1173,8 +1173,8 @@ The ZIP file for distribution no longer includes AAR files.
 * Added DisplayLanguage.Code class, which was described only in the DisplayLanguage guide document and was not actually included in the SDK.
     * [Game > Gamebase > Android SDK User Guide > ETC > Display Language > Types of language codes supported by Gamebase](./aos-etc/#types-of-language-codes-supported-by-gamebase)
 
-<a id="280-20210928"></a>
-### 2.28.0 (2021.09.28) { #280-20210928 }
+<a id="2-28-0-2021-09-28"></a>
+### 2.28.0 (2021. 09. 28.) { #2-28-0-2021-09-28 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.28.0/GamebaseSDK-Android.zip)
 
 <a id="280-20210928-added-features"></a>
@@ -1193,8 +1193,8 @@ The ZIP file for distribution no longer includes AAR files.
 #### Feature Updates
 * External SDK update: PAYCO Android SDK(1.5.6)
 
-<a id="271-20210914"></a>
-### 2.27.1 (2021.09.14) { #271-20210914 }
+<a id="2-27-1-2021-09-14"></a>
+### 2.27.1 (2021. 09. 14.) { #2-27-1-2021-09-14 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.1/GamebaseSDK-Android.zip)
 
 <a id="271-20210914-feature-updates"></a>
@@ -1211,8 +1211,8 @@ The ZIP file for distribution no longer includes AAR files.
 * Fixed a bug where the Chinese text was not displayed in the maintenance pop-up.
 * Fixed a bug where, if [Credential Login](./aos-authentication/#login-with-credential) is performed, [Login as the Latest Login IdP](./aos-authentication/#login-as-the-latest-login-idp ) call always fails.
 
-<a id="270-20210824"></a>
-### 2.27.0 (2021.08.24) { #270-20210824 }
+<a id="2-27-0-2021-08-24"></a>
+### 2.27.0 (2021. 08. 24.) { #2-27-0-2021-08-24 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.27.0/GamebaseSDK-Android.zip)
 
 <a id="270-20210824-feature-updates"></a>
@@ -1220,8 +1220,8 @@ The ZIP file for distribution no longer includes AAR files.
 * Updated the external SDK: TOAST Android SDK (0.27.1)
 * Added ONE Store V16 store
 
-<a id="260-20210810"></a>
-### 2.26.0 (2021.08.10) { #260-20210810 }
+<a id="2-26-0-2021-08-10"></a>
+### 2.26.0 (2021. 08. 10.) { #2-26-0-2021-08-10 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-Android.zip)
 
 <a id="260-20210810-feature-updates"></a>
@@ -1249,8 +1249,8 @@ The ZIP file for distribution no longer includes AAR files.
 #### Bug Fixes
 * Fixed an issue where the language code of the message sent from the Push console does not match because the language code of the device is applied to the Push notification language setting without any extra processing.
 
-<a id="250-20210727"></a>
-### 2.25.0 (2021.07.27) { #250-20210727 }
+<a id="2-25-0-2021-07-27"></a>
+### 2.25.0 (2021. 07. 27.) { #2-25-0-2021-07-27 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.25.0/GamebaseSDK-Android.zip)
 
 <a id="250-20210727-more-features"></a>
@@ -1275,8 +1275,8 @@ The ZIP file for distribution no longer includes AAR files.
     * Weibo Android SDK(11.6.0)
 * Fixed a crash that occurred when logging in to Weibo.
 
-<a id="240-20210629"></a>
-### 2.24.0 (2021.06.29) { #240-20210629 }
+<a id="2-24-0-2021-06-29"></a>
+### 2.24.0 (2021. 06. 29.) { #2-24-0-2021-06-29 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.24.0/GamebaseSDK-Android.zip)
 
 <a id="240-20210629-feature-updates"></a>
@@ -1284,16 +1284,16 @@ The ZIP file for distribution no longer includes AAR files.
 * Change the internal launch URL
 * Fixed incorrect wording in SDK attachments
 
-<a id="230-20210614"></a>
-### 2.23.0 (2021.06.14) { #230-20210614 }
+<a id="2-23-0-2021-06-14"></a>
+### 2.23.0 (2021. 06. 14.) { #2-23-0-2021-06-14 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.23.0/GamebaseSDK-Android.zip)
 
 <a id="230-20210614-bug-fixes"></a>
 #### Bug Fixes
 * Fixed the issue of the title of the suspended view details web view not being displayed
 
-<a id="220-20210525"></a>
-### 2.22.0 (2021.05.25) { #220-20210525 }
+<a id="2-22-0-2021-05-25"></a>
+### 2.22.0 (2021. 05. 25.) { #2-22-0-2021-05-25 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.22.0/GamebaseSDK-Android.zip)
 
 <a id="220-20210525-feature-updates"></a>
@@ -1305,16 +1305,16 @@ The ZIP file for distribution no longer includes AAR files.
 * The following error has been fixed: When a user logs out and logs in again with another user ID, a payment at Google Play Store is successful but the return value is sometimes "Failed."
 * The following error has been fixed: When the name of an app package contains a capital letter, the "Sign In with Apple" log-in fails.
 
-<a id="211-20210419"></a>
-### 2.21.1 (2021.04.19) { #211-20210419 }
+<a id="2-21-1-2021-04-19"></a>
+### 2.21.1 (2021. 04. 19.) { #2-21-1-2021-04-19 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.1/GamebaseSDK-Android.zip)
 
 <a id="211-20210419-bug-fixes"></a>
 #### Bug Fixes
 * Fixed an issue where the system crashes when canceling Hangame login via PAYCO
 
-<a id="210-20210413"></a>
-### 2.21.0 (2021.04.13) { #210-20210413 }
+<a id="2-21-0-2021-04-13"></a>
+### 2.21.0 (2021. 04. 13.) { #2-21-0-2021-04-13 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.21.0/GamebaseSDK-Android.zip)
 
 <a id="210-20210413-more-features"></a>
@@ -1329,24 +1329,24 @@ The ZIP file for distribution no longer includes AAR files.
 #### Bug Fixes
 * Fixed a crashing error caused when calling payment API on build with Proguard applied.
 
-<a id="202-20210330"></a>
-### 2.20.2 (2021.03.30) { #202-20210330 }
+<a id="2-20-2-2021-03-30"></a>
+### 2.20.2 (2021. 03. 30.) { #2-20-2-2021-03-30 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.20.2/GamebaseSDK-Android.zip)
 
 <a id="202-20210330-feature-updates"></a>
 #### Feature Updates
 * Updated to Billing Client Version 3.0.3 where payment errors caused by Android 11 devices in Google Play Store are fixed
 
-<a id="201-20210223"></a>
-### 2.20.1 (2021.02.23) { #201-20210223 }
+<a id="2-20-1-2021-02-23"></a>
+### 2.20.1 (2021. 02. 23.) { #2-20-1-2021-02-23 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.20.1/GamebaseSDK-Android.zip)
 
 <a id="201-20210223-bug-fixes"></a>
 #### Bug Fixes
 * Fixed a logic that could cause the push-fcm module to crash during initialization
 
-<a id="200-20210209"></a>
-### 2.20.0 (2021.02.09) { #200-20210209 }
+<a id="2-20-0-2021-02-09"></a>
+### 2.20.0 (2021. 02. 09.) { #2-20-0-2021-02-09 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.20.0/GamebaseSDK-Android.zip)
 
 <a id="200-20210209-more-features"></a>
@@ -1360,8 +1360,8 @@ The ZIP file for distribution no longer includes AAR files.
 #### Feature Updates
 * Changed to display the Customer Center without login if the Customer Center type is TOAST organization product (Online Contact).
 
-<a id="191-december-29-2020"></a>
-### 2.19.1 (December 29, 2020) { #191-december-29-2020 }
+<a id="2-19-1-2020-12-29"></a>
+### 2.19.1 (December 29, 2020) { #2-19-1-2020-12-29 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.1/GamebaseSDK-Android.zip)
 
 <a id="191-december-29-2020-more-features"></a>
@@ -1382,8 +1382,8 @@ The ZIP file for distribution no longer includes AAR files.
 * [SDK] 2.19.1
 	* (Android) Weibo 로그인 시도 후 다른 IdP로 로그인 시 크래시가 발생하는 문제 수정
 
-<a id="182-december-15-2020"></a>
-### 2.18.2 (December 15, 2020) { #182-december-15-2020 }
+<a id="2-18-2-2020-12-15"></a>
+### 2.18.2 (December 15, 2020) { #2-18-2-2020-12-15 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.18.2/GamebaseSDK-Android.zip)
 
 <a id="182-december-15-2020-more-features"></a>
@@ -1409,8 +1409,8 @@ The ZIP file for distribution no longer includes AAR files.
 * [SDK] 2.18.2
     * (Android) Fixed the issue where WebView custom scheme does not run on a 5.0 - 6.0 OS device
 
-<a id="181-november-10-2020"></a>
-### 2.18.1 (November 10, 2020) { #181-november-10-2020 }
+<a id="2-18-1-2020-11-10"></a>
+### 2.18.1 (November 10, 2020) { #2-18-1-2020-11-10 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.18.1/GamebaseSDK-Android.zip)
 
 <a id="181-november-10-2020-more-features"></a>
@@ -1428,8 +1428,8 @@ The ZIP file for distribution no longer includes AAR files.
 * [SDK] 2.18.1
     * (Android) Fixed an issue where a crash would occur after a Google transaction is approved in 2.18.0
 
-<a id="171-october-13-2020"></a>
-### 2.17.1 (October 13, 2020) { #171-october-13-2020 }
+<a id="2-17-1-2020-10-13"></a>
+### 2.17.1 (October 13, 2020) { #2-17-1-2020-10-13 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.17.1/GamebaseSDK-Android.zip)
 
 ```
@@ -1451,8 +1451,8 @@ Contact our Customer Center if you want to use the Hangame authentication.
 * [SDK] 2.17.1
 	* (Android) Fixed an issue where a crash would occur in the kotlinx-coroutine module when ImageNotice API is called in 2.17.0
 	
-<a id="160-september-22-2020"></a>
-### 2.16.0 (September 22, 2020) { #160-september-22-2020 }
+<a id="2-16-0-2020-09-22"></a>
+### 2.16.0 (September 22, 2020) { #2-16-0-2020-09-22 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.16.0/GamebaseSDK-Android.zip)
 
 <a id="160-september-22-2020-more-features"></a>
@@ -1462,8 +1462,8 @@ Contact our Customer Center if you want to use the Hangame authentication.
 		* (Common) Added API (Gamebase.Contact.requestContactURL): Returns Customer Center URL
 		* (Common) Added the ContactConfiguration parameter so userName can be configured for Customer Center API
 		
-<a id="150-august-25-2020"></a>
-### 2.15.0 (August 25, 2020) { #150-august-25-2020 }
+<a id="2-15-0-2020-08-25"></a>
+### 2.15.0 (August 25, 2020) { #2-15-0-2020-08-25 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.15.0/GamebaseSDK-Android.zip)
 ```
 Updated Google Billing Client in the Gamebase SDK 2.15.0 version. 
@@ -1486,8 +1486,8 @@ you may encounter an issue during reprocessing if a different billing client ver
 * [SDK] 2.15.0
     * (Common) TOAST SDK Updates: Android(0.23.0), iOS(0.26.0), Unity(0.21.0)
 
-<a id="130-july-28-2020"></a>
-### 2.13.0 (July 28, 2020) { #130-july-28-2020 }
+<a id="2-13-0-2020-07-28"></a>
+### 2.13.0 (July 28, 2020) { #2-13-0-2020-07-28 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.13.0/GamebaseSDK-Android.zip)
 
 <a id="130-july-28-2020-feature-updates"></a>
@@ -1501,8 +1501,8 @@ you may encounter an issue during reprocessing if a different billing client ver
     * (Android) Fixed an issue in which the ANDROID_ACTIVITY_DESTROYED(31) error is returned for the close callback when an webview is closed 
     * (Android) Fixed error in which the ProGuard declaraction is missing from the payment module 
 
-<a id="120-july-14-2020"></a>
-### 2.12.0 (July 14, 2020) { #120-july-14-2020 }
+<a id="2-12-0-2020-07-14"></a>
+### 2.12.0 (July 14, 2020) { #2-12-0-2020-07-14 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.12.0/GamebaseSDK-Android.zip)
 
 <a id="120-july-14-2020-more-features"></a>
@@ -1510,8 +1510,8 @@ you may encounter an issue during reprocessing if a different billing client ver
 * Image Notices: Shows image popups within a game according to exposed period and priority order 
     * [SDK] 2.12.0: Added Show Image Notice API 
   
-<a id="110-june-23-2020"></a>
-### 2.11.0 (June 23, 2020) { #110-june-23-2020 }
+<a id="2-11-0-2020-06-23"></a>
+### 2.11.0 (June 23, 2020) { #2-11-0-2020-06-23 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.11.0/GamebaseSDK-Android.zip)
 
 <a id="110-june-23-2020-more-features"></a>
@@ -1519,8 +1519,8 @@ you may encounter an issue during reprocessing if a different billing client ver
 * [SDK] 2.11.0
 	* Added Purchase API: Request for payment with Product ID, and enter additional information (UserPayload) to be confirmed when payment is completed 
 
-<a id="100-may-26-2020"></a>
-### 2.10.0 (May 26, 2020) { #100-may-26-2020 }
+<a id="2-10-0-2020-05-26"></a>
+### 2.10.0 (May 26, 2020) { #2-10-0-2020-05-26 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.10.0/GamebaseSDK-Android.zip)
 
 <a id="100-may-26-2020-more-features"></a>
@@ -1529,8 +1529,8 @@ you may encounter an issue during reprocessing if a different billing client ver
 	* (Common) Added GamebaseEventHandler which has all previous event systems 
 		* Includes ServerPush and Observer, and checks promotional purchase or push events 
 
-<a id="91-may-12-2020"></a>
-### 2.9.1 (May 12, 2020) { #91-may-12-2020 }
+<a id="2-9-1-2020-05-12"></a>
+### 2.9.1 (May 12, 2020) { #2-9-1-2020-05-12 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.9.1/GamebaseSDK-Android.zip)
 
 <a id="91-may-12-2020-bug-fixes"></a>
@@ -1539,8 +1539,8 @@ you may encounter an issue during reprocessing if a different billing client ver
 	* (Android) Fixed an error in which an indicator level becomes null after mapped and does not show properly on the purchase indicator  
 	* (iOS) Fixed the inavailability of a build on an unreal engine since warning is considered as a build error 
 
-<a id="90-april-28-2020"></a>
-### 2.9.0 (April 28, 2020) { #90-april-28-2020 }
+<a id="2-9-0-2020-04-28"></a>
+### 2.9.0 (April 28, 2020) { #2-9-0-2020-04-28 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.9.0/GamebaseSDK-Android.zip)
 
 <a id="90-april-28-2020-more-features"></a>
@@ -1555,17 +1555,18 @@ you may encounter an issue during reprocessing if a different billing client ver
 	* (Common) Updated TOAST SDK: Android(v0.21.0), iOS(v0.23.0), Unity(0.20.1)
 	* (Common) Updated PAYCO Login SDK: Android(v1.5.0), iOS(v1.4.0)
 
-<a id="81-april-14-2020"></a>
-### 2.8.1 (April 14, 2020) { #81-april-14-2020 }
+<a id="2-8-1-2020-04-14"></a>
+### 2.8.1 (April 14, 2020) { #2-8-1-2020-04-14 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.8.1/GamebaseSDK-Android.zip)
 
 <a id="81-april-14-2020-feature-updates"></a>
 #### Feature Updates 
 * [SDK] 2.8.1 
 	* (Common) Added internal indicators to check Analytics delivery results
+	* (Android) Modified codes that may cause crashes after process restarts
 	
-<a id="80-march-24-2020"></a>
-### 2.8.0 (March 24, 2020) { #80-march-24-2020 }
+<a id="2-8-0-2020-03-24"></a>
+### 2.8.0 (March 24, 2020) { #2-8-0-2020-03-24 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.8.0/GamebaseSDK-Android.zip)
 
 <a id="80-march-24-2020-more-features"></a>
@@ -1579,8 +1580,8 @@ you may encounter an issue during reprocessing if a different billing client ver
 	* (Common) Updated to further show a popup to move to stores when it fails to initialize on an app version not registered on console 
 	* (Android) Fixed codes that may fail due to initialization timing when payment-related API is called immediately after login 
 	
-<a id="72-march-10-2020"></a>
-### 2.7.2 (March 10, 2020) { #72-march-10-2020 }
+<a id="2-7-2-2020-03-10"></a>
+### 2.7.2 (March 10, 2020) { #2-7-2-2020-03-10 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.7.2/GamebaseSDK-Android.zip)
 
 <a id="72-march-10-2020-feature-updates"></a>
@@ -1589,8 +1590,8 @@ you may encounter an issue during reprocessing if a different billing client ver
       * Gamebase 초기화중 ToastLogger 초기화 부분에서 크래쉬가 발생할 수 있는 코드를 수정
       * 서버 버전을 v1.2.1 로 업데이트 하였습니다.
 
-<a id="71-february-25-2020"></a>
-### 2.7.1 (February 25, 2020) { #71-february-25-2020 }
+<a id="2-7-1-2020-02-25"></a>
+### 2.7.1 (February 25, 2020) { #2-7-1-2020-02-25 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.7.1/GamebaseSDK-Android.zip)
 
 <a id="71-february-25-2020-feature-updates"></a>
@@ -1598,8 +1599,8 @@ you may encounter an issue during reprocessing if a different billing client ver
 * [SDK] 2.7.1
 	* (Common) Updated to return value, after guest login, when GetAuthProviderUserID is called
 
-<a id="70-january-21-2020"></a>
-### 2.7.0 (January 21, 2020) { #70-january-21-2020 }
+<a id="2-7-0-2020-01-21"></a>
+### 2.7.0 (January 21, 2020) { #2-7-0-2020-01-21 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.7.0/GamebaseSDK-Android.zip)
 
 <a id="70-january-21-2020-bug-fixes"></a>
@@ -1608,8 +1609,8 @@ you may encounter an issue during reprocessing if a different billing client ver
 	* (Android) Modified not to occur crash when the traceError, which is a required parameter, is missing at the server response 
 	* (Android) Modified not to occur exceptions when Firebase setting is missing 
 
-<a id="62-december-24-2019"></a>
-### 2.6.2 (December 24, 2019) { #62-december-24-2019 }
+<a id="2-6-2-2019-12-24"></a>
+### 2.6.2 (December 24, 2019) { #2-6-2-2019-12-24 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.6.2/GamebaseSDK-Android.zip)
 
 <a id="62-december-24-2019-feature-updates"></a>
@@ -1617,8 +1618,8 @@ you may encounter an issue during reprocessing if a different billing client ver
 * [SDK] 2.6.2
 	* (Common) TOAST SDK Updates: Android(0.19.4), iOS(0.20.1), Unity(0.18.0)
 
-<a id="61-december-10-2019"></a>
-### 2.6.1 (December 10, 2019) { #61-december-10-2019 }
+<a id="2-6-1-2019-12-10"></a>
+### 2.6.1 (December 10, 2019) { #2-6-1-2019-12-10 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.6.1/GamebaseSDK-Android.zip)
 
 <a id="61-december-10-2019-bug-fixes"></a>
@@ -1628,8 +1629,8 @@ you may encounter an issue during reprocessing if a different billing client ver
   * (Android) Fixed the wrong delivery of TOAST Analytics User Data to java address 
   * (Android) Fixed crash occurrence when IAP is not enabled  
 
-<a id="60-november-12-2019"></a>
-### 2.6.0 (November 12, 2019) { #60-november-12-2019 }
+<a id="2-6-0-2019-11-12"></a>
+### 2.6.0 (November 12, 2019) { #2-6-0-2019-11-12 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.6.0/GamebaseSDK-Android.zip)
 
 ```
@@ -1645,8 +1646,8 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
   * (Android) Added the payment feature for Google subscription  
   * (Android) Since Gamebase Android SDK is deployed by Bintray, it only takes a gradle setting to enable Gamebase. 
 
-<a id="50-august-27-2019"></a>
-### 2.5.0 (August 27, 2019) { #50-august-27-2019 }
+<a id="2-5-0-2019-08-27"></a>
+### 2.5.0 (August 27, 2019) { #2-5-0-2019-08-27 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.5.0/GamebaseSDK-Android.zip)
 
 <a id="50-august-27-2019-more-features"></a>
@@ -1654,8 +1655,8 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 * [SDK] 2.5.0
 	* Provides API which opens CS URL entered on a console via webview 
 	
-<a id="44-july-23-2019"></a>
-### 2.4.4 (July 23, 2019) { #44-july-23-2019 }
+<a id="2-4-4-2019-07-23"></a>
+### 2.4.4 (July 23, 2019) { #2-4-4-2019-07-23 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.4.4/GamebaseSDK-Android.zip)
 
 <a id="44-july-23-2019-feature-updates"></a>
@@ -1664,8 +1665,8 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 	* (Common) Format changed for member error code
 	* (Unity) Key added for GamebaseServerPushType (TRANSFER_KICKOUT)
 
-<a id="42-june-25-2019"></a>
-### 2.4.2 (June 25, 2019) { #42-june-25-2019 }
+<a id="2-4-2-2019-06-25"></a>
+### 2.4.2 (June 25, 2019) { #2-4-2-2019-06-25 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.4.2/GamebaseSDK-Android.zip)
 
 <a id="42-june-25-2019-features-updateschanges"></a>
@@ -1678,8 +1679,8 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 * [SDK] 2.4.2
 	* (Common) Fixed Bugs in Analytics: Modified to initialize indicators data that are saved before logout, withdrawal, or account transfer. 
 	
-<a id="40-may-28-2019"></a>
-### 2.4.0 (May 28, 2019) { #40-may-28-2019 }
+<a id="2-4-0-2019-05-28"></a>
+### 2.4.0 (May 28, 2019) { #2-4-0-2019-05-28 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.4.0/GamebaseSDK-Android.zip)
 
 <a id="40-may-28-2019-feature-updateschanges"></a>
@@ -1691,8 +1692,8 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 
     * (Android) NAVER SDK Version Updated (v4.2.5): Bug of NAVER SDK fixed (fixed the issue, in which authentication process was stopped due to forced closure of activities when the app was restarted via app icon while NAVER login was underway)  
 
-<a id="31-20190516"></a>
-### 2.3.1 (2019.05.16) { #31-20190516 }
+<a id="2-3-1-2019-05-16"></a>
+### 2.3.1 (2019. 05. 16.) { #2-3-1-2019-05-16 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.3.1/GamebaseSDK-Android.zip)
 
 <a id="31-20190516-1"></a>
@@ -1700,8 +1701,8 @@ Find Upgrade Guide at: Game > Gamebase > Upgrade Guide
 * [SDK] 2.3.1
     * (Android)2.3.0버전에서 Twitter 로그인 되지 않던 문제 수정
 
-<a id="30-20190423"></a>
-### 2.3.0 (2019.04.23) { #30-20190423 }
+<a id="2-3-0-2019-04-23"></a>
+### 2.3.0 (2019. 04. 23.) { #2-3-0-2019-04-23 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.3.0/GamebaseSDK-Android.zip)
     
 ```
@@ -1721,8 +1722,8 @@ Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
     * (Android)최근 로그인한 Provider로 로그인 및 웹소켓 응답 실패를 받았을 경우(Timeout, network disable 등) AuthToken을 삭제 처리하지 않도록 수정
     * (Android)IdP로그인 시 AuthAdapter 내부에서 발생하는 MemoryLeak을 수정
 
-<a id="22-20190411"></a>
-### 2.2.2 (2019.04.11) { #22-20190411 }
+<a id="2-2-2-2019-04-11"></a>
+### 2.2.2 (2019. 04. 11.) { #2-2-2-2019-04-11 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.2.2/GamebaseSDK-Android.zip)
 
 <a id="22-20190411-1"></a>
@@ -1730,8 +1731,8 @@ Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
 * [SDK] 2.2.2
     * (Android)Gamebase 초기화 이전 TransferAccount API 호출시, 콜백이 오지 않는 이슈를 수정
 
-<a id="20-20190326"></a>
-### 2.2.0 (2019.03.26) { #20-20190326 }
+<a id="2-2-0-2019-03-26"></a>
+### 2.2.0 (2019. 03. 26.) { #2-2-0-2019-03-26 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.2.0/GamebaseSDK-Android.zip)
 
 <a id="20-20190326-1"></a>
@@ -1751,8 +1752,8 @@ Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
 * [SDK] 2.2.0
     * (Android)IAP SDK 버전을 최신버전인 v1.5.3 버전으로 업데이트
 
-<a id="10-20190226"></a>
-### 2.1.0 (2019.02.26) { #10-20190226 }
+<a id="2-1-0-2019-02-26"></a>
+### 2.1.0 (2019. 02. 26.) { #2-1-0-2019-02-26 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.1.0/GamebaseSDK-Android.zip)
 
 <a id="10-20190226-1"></a>
@@ -1767,8 +1768,8 @@ Gamebase를 사용하면 50여개의 중국스토어 연동이 가능합니다.
 * [SDK] 2.1.0
     * (Android)Gamebase 초기화 이전, onActivityResult()가 호출되면서 이상 동작하던 버그 수정
 
-<a id="00-20190129"></a>
-### 2.0.0 (2019.01.29) { #00-20190129 }
+<a id="2-0-0-2019-01-29"></a>
+### 2.0.0 (2019. 01. 29.) { #2-0-0-2019-01-29 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.0.0/GamebaseSDK-Android.zip)
 
 ```
@@ -1791,8 +1792,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
         * Launching 정보 전달
         * logout, withdraw API에 Callback 추가
 
-<a id="145-20181227"></a>
-### 1.14.5 (2018.12.27) { #145-20181227 }
+<a id="1-14-5-2018-12-27"></a>
+### 1.14.5 (2018. 12. 27.) { #1-14-5-2018-12-27 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.14.5/GamebaseSDK-Android.zip)
 
 <a id="145-20181227-1"></a>
@@ -1810,8 +1811,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
         * 결제 재처리 로직(requestRetryTransaction)에서 데이터가 불완전할 때 호출이 실패하는 문제를 수정
         * 크래시를 방지하기 위해 모든 IAP SDK 호출부에 예외 처리
 
-<a id="142-20181115"></a>
-### 1.14.2 (2018.11.15) { #142-20181115 }
+<a id="1-14-2-2018-11-15"></a>
+### 1.14.2 (2018. 11. 15.) { #1-14-2-2018-11-15 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.14.2/GamebaseSDK-Android.zip)
 
 <a id="142-20181115-1"></a>
@@ -1824,8 +1825,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * [SDK] 1.14.2
     * (Android)에뮬레이터 환경에서 스토어앱(PlayStore, OneStore 등)이 없는 상태에서 "앱 설치/업데이트"시 스토어 미체크로 인한 crash 버그를 수정
     
-<a id="141-20181023"></a>
-### 1.14.1 (2018.10.23) { #141-20181023 }
+<a id="1-14-1-2018-10-23"></a>
+### 1.14.1 (2018. 10. 23.) { #1-14-1-2018-10-23 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.14.1/GamebaseSDK-Android.zip)
 
 <a id="141-20181023-1"></a>
@@ -1852,8 +1853,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * [SDK] 1.14.1
     * (Android)Auth API 호출 후 콜백에서 다시 Auth API 중복 호출시 정상 호출이 되지 않는 버그 수정
     
-<a id="130-20180913"></a>
-### 1.13.0 (2018.09.13) { #130-20180913 }
+<a id="1-13-0-2018-09-13"></a>
+### 1.13.0 (2018. 09. 13.) { #1-13-0-2018-09-13 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.13.0/GamebaseSDK-Android.zip)
 
 <a id="130-20180913-1"></a>
@@ -1870,8 +1871,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * [SDK] 1.13.0
     * (Android)NaverCafe SDK와의 충돌로 NAVER 로그인 시 발생하던 오류 해결
         
-<a id="122-20180828"></a>
-### 1.12.2 (2018.08.28) { #122-20180828 }
+<a id="1-12-2-2018-08-28"></a>
+### 1.12.2 (2018. 08. 28.) { #1-12-2-2018-08-28 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.12.2/GamebaseSDK-Android.zip)
 
 <a id="122-20180828-1"></a>
@@ -1884,8 +1885,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * [SDK] 1.12.2
     * (Android)auth-twitter-adapter 를 포함한 상태에서 TargetSdk 28로 빌드시 초기화 에러가 발생하는 문제 수정
 
-<a id="121-20180809"></a>
-### 1.12.1 (2018.08.09) { #121-20180809 }
+<a id="1-12-1-2018-08-09"></a>
+### 1.12.1 (2018. 08. 09.) { #1-12-1-2018-08-09 }
 
 <a id="121-20180809-1"></a>
 #### 기능 개선/변경
@@ -1898,8 +1899,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * (Android)TencentPush SDK 업데이트 (3.2.3)
     * (Android)Onestore v17(API v5) 지원 : Gamebase에서는 v16(스토어코드=TS)은 제공하지 않습니다.
 
-<a id="111-20180705"></a>
-### 1.11.1 (2018.07.05) { #111-20180705 }
+<a id="1-11-1-2018-07-05"></a>
+### 1.11.1 (2018. 07. 05.) { #1-11-1-2018-07-05 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.11.1/GamebaseSDK-Android.zip)
 
 <a id="111-20180705-1"></a>
@@ -1914,8 +1915,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * (Android)Gamebase.addObserver()를 통해 ObserverMessage를 수신하였을 경우, ObserverMessage.data.code의 타입이 int가 아니라 String인 버그를 수정
 
 
-<a id="110-20180626"></a>
-### 1.11.0 (2018.06.26) { #110-20180626 }
+<a id="1-11-0-2018-06-26"></a>
+### 1.11.0 (2018. 06. 26.) { #1-11-0-2018-06-26 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.11.0/GamebaseSDK-Android.zip)
 
 <a id="110-20180626-1"></a>
@@ -1933,8 +1934,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * (Android)GamebaseConfiguration.Builder 의 setServerApiVerseion API를 제거
     * (Android)getAuthBanInfo() API, class AuthBanInfo 이름을 변경 : getBanInfo(), class BanInfo
 
-<a id="90-20180503"></a>
-### 1.9.0 (2018.05.03) { #90-20180503 }
+<a id="1-9-0-2018-05-03"></a>
+### 1.9.0 (2018. 05. 03.) { #1-9-0-2018-05-03 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.9.0/GamebaseSDK-Android.zip)
 
 <a id="90-20180503-1"></a>
@@ -1950,8 +1951,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * [SDK] 1.9.0
     * (Android) Heartbeat 에서 잘못된 사용자로 판정되는 경우 이용정지 팝업 창이 뜨지 않도록 수정(iOS 와 동일한 로직으로 수정)
 
-<a id="81-20180412"></a>
-### 1.8.1 (2018.04.12) { #81-20180412 }
+<a id="1-8-1-2018-04-12"></a>
+### 1.8.1 (2018. 04. 12.) { #1-8-1-2018-04-12 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.8.1/GamebaseSDK-Android.zip)
 
 <a id="81-20180412-1"></a>
@@ -1959,8 +1960,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * [SDK] 1.8.1
     * (Android. iOS)registerPush를 호출시 displayLanguageCode를 null로 전달하면 registerPush가 실패하는 버그 수정
 
-<a id="80-20180405"></a>
-### 1.8.0 (2018.04.05) { #80-20180405 }
+<a id="1-8-0-2018-04-05"></a>
+### 1.8.0 (2018. 04. 05.) { #1-8-0-2018-04-05 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.8.0/GamebaseSDK-Android.zip)
 
 <a id="80-20180405-1"></a>
@@ -1976,8 +1977,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * [SDK] 1.8.0
     * (공통)Observer 기능 추가에 따라 다음 API Deprecated : LaunchingStatus Listener, Network Listener(기존 사용자는 계속 사용 가능)
 
-<a id="70-20180222"></a>
-### 1.7.0 (2018.02.22) { #70-20180222 }
+<a id="1-7-0-2018-02-22"></a>
+### 1.7.0 (2018. 02. 22.) { #1-7-0-2018-02-22 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.7.0/GamebaseSDK-Android.zip)
 
 <a id="70-20180222-1"></a>
@@ -1986,8 +1987,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * NAVER IdP 인증 추가
     * Display Language 설정 추가: 단말기 언어와 별도로 게임내에서 게임유저의 노출 언어를 설정할 수 있도록 Display 언어를 추가하였습니다.
 
-<a id="50-20171221"></a>
-### 1.5.0 (2017.12.21) { #50-20171221 }
+<a id="1-5-0-2017-12-21"></a>
+### 1.5.0 (2017. 12. 21.) { #1-5-0-2017-12-21 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.5.0/GamebaseSDK-Android.zip)
 <a id="50-20171221-1"></a>
 #### 기능 추가
@@ -1995,8 +1996,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * WebView가 닫힐 때 발생하는 Close Callback 추가
     * WebView에서 사용하는 Custom Scheme의 Event를 받을 수 있는 기능 추가
 
-<a id="40-20171123"></a>
-### 1.4.0 (2017.11.23) { #40-20171123 }
+<a id="1-4-0-2017-11-23"></a>
+### 1.4.0 (2017. 11. 23.) { #1-4-0-2017-11-23 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.4.0/GamebaseSDK-Android.zip)
 
 <a id="40-20171123-1"></a>
@@ -2004,8 +2005,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * [SDK] 1.4.0 업데이트
     * (Android)Gamebase 제공 팝업 창을 사용하지 않는 경우 이용정지 정보가 null로 리턴되는 오류 수정
 
-<a id="30-20171026"></a>
-### 1.3.0 (2017.10.26) { #30-20171026 }
+<a id="1-3-0-2017-10-26"></a>
+### 1.3.0 (2017. 10. 26.) { #1-3-0-2017-10-26 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.3.0/GamebaseSDK-Android.zip)
 
 <a id="30-20171026-1"></a>
@@ -2013,8 +2014,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * [SDK] 1.3.0 업데이트
     * Credential을 이용한 AddMapping API추가
 
-<a id="20-20170921"></a>
-### 1.2.0 (2017.09.21) { #20-20170921 }
+<a id="1-2-0-2017-09-21"></a>
+### 1.2.0 (2017. 09. 21.) { #1-2-0-2017-09-21 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.2.0/GamebaseSDK-Android.zip)
 
 <a id="20-20170921-1"></a>
@@ -2024,8 +2025,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * 이용정지 사용자 팝업 창 노출
 
 
-<a id="15-20170720"></a>
-### 1.1.5 (2017.07.20) { #15-20170720 }
+<a id="1-1-5-2017-07-20"></a>
+### 1.1.5 (2017. 07. 20.) { #1-1-5-2017-07-20 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.5/GamebaseSDK-Android.zip)
 
 <a id="15-20170720-1"></a>
@@ -2036,8 +2037,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * TCPush SDK 1.4.1 로 업데이트
     * IAP SDK 1.3.3.20170627 로 업데이트
 
-<a id="14-20170525"></a>
-### 1.1.4 (2017.05.25) { #14-20170525 }
+<a id="1-1-4-2017-05-25"></a>
+### 1.1.4 (2017. 05. 25.) { #1-1-4-2017-05-25 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.4/GamebaseSDK-Android.zip)
 <a id="14-20170525-1"></a>
 #### 기능 개선/변경
@@ -2045,8 +2046,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * 런타임 중 결제 Store를 변경할 수 있는 API 제공
     * (Android)TCPushSdk v1.4 적용, Tencent Push 기능 제공
 
-<a id="13-20170420"></a>
-### 1.1.3 (2017.04.20) { #13-20170420 }
+<a id="1-1-3-2017-04-20"></a>
+### 1.1.3 (2017. 04. 20.) { #1-1-3-2017-04-20 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.3/GamebaseSDK-Android.zip)
 <a id="13-20170420-1"></a>
 #### 기능 개선/변경
@@ -2060,8 +2061,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * (Android)Facebook SDK v4.19.0 이상에서 초기화시 크래시 오류 수정
 
 
-<a id="12-20170404"></a>
-### 1.1.2 (2017.04.04) { #12-20170404 }
+<a id="1-1-2-2017-04-04"></a>
+### 1.1.2 (2017. 04. 04.) { #1-1-2-2017-04-04 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.2/GamebaseSDK-Android.zip)
 
 <a id="12-20170404-1"></a>
@@ -2069,8 +2070,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 * [SDK] 1.1.2 업데이트
     * 게임론칭시 점검, 긴급공지 팝업 창 개선
 
-<a id="10-20170321"></a>
-### 1.1.0 (2017.03.21) { #10-20170321 }
+<a id="1-1-0-2017-03-21"></a>
+### 1.1.0 (2017. 03. 21.) { #1-1-0-2017-03-21 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.1.0/GamebaseSDK-Android.zip)
 
 <a id="10-20170321-1"></a>
@@ -2079,8 +2080,8 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * 외부 AccessToken을 받아서 idPLogin을 해주는 인터페이스를 추가
     * [UI 기능 추가](./aos-ui) : Custom Webview, AlertDialog
 
-<a id="00-20170309"></a>
-### 1.0.0 (2017.03.09) { #00-20170309 }
+<a id="1-0-0-2017-03-09"></a>
+### 1.0.0 (2017. 03. 09.) { #1-0-0-2017-03-09 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v1.0.0/GamebaseSDK-Android.zip)
 
 <a id="00-20170309-1"></a>

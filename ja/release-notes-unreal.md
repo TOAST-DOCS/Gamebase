@@ -3,8 +3,8 @@
 <a id="game-gamebase-release-notes-unreal"></a>
 ## Game > Gamebase > リリースノート > Unreal { #game-gamebase-release-notes-unreal }
 
-<a id="811-2026-06-23"></a>
-### 2.81.1 (2026. 06. 23.) { #811-2026-06-23 }
+<a id="2-81-1-2026-06-23"></a>
+### 2.81.1 (2026. 06. 23.) { #2-81-1-2026-06-23 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.1/GamebaseSDK-Unreal.zip)
 
 <a id="811-2026-06-23-feature-updates"></a>
@@ -15,11 +15,11 @@
 <a id="811-2026-06-23-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
 
-* [Gamebase Android SDK 2.81.0](./release-notes-android/#2810-2026-06-23)
-* [Gamebase iOS SDK 2.81.3](./release-notes-ios/#2813-2026-05-27)
+* [Gamebase Android SDK 2.81.0](./release-notes-android/#2-81-0-2026-06-23)
+* [Gamebase iOS SDK 2.81.3](./release-notes-ios/#2-81-3-2026-05-27)
 
-<a id="810-2026-03-24"></a>
-### 2.81.0 (2026. 03. 24.) { #810-2026-03-24 }
+<a id="2-81-0-2026-03-24"></a>
+### 2.81.0 (2026. 03. 24.) { #2-81-0-2026-03-24 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.81.0/GamebaseSDK-Unreal.zip)
 
 <a id="810-2026-03-24-1"></a>
@@ -30,11 +30,11 @@
 <a id="810-2026-03-24-2"></a>
 #### 플랫폼별 변경 사항
 
-* [Gamebase Android SDK 2.80.0](./release-notes-android/#2800-2026-02-13)
-* [Gamebase iOS SDK 2.80.0](./release-notes-ios/#2800-2026-02-13)
+* [Gamebase Android SDK 2.80.0](./release-notes-android/#2-80-0-2026-02-13)
+* [Gamebase iOS SDK 2.80.0](./release-notes-ios/#2-80-0-2026-02-13)
 
-<a id="800-2026-02-13"></a>
-### 2.80.0 (2026. 02. 13.) { #800-2026-02-13 }
+<a id="2-80-0-2026-02-13"></a>
+### 2.80.0 (2026. 02. 13.) { #2-80-0-2026-02-13 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.80.0/GamebaseSDK-Unreal.zip)
 
 <a id="800-2026-02-13-feature-updates"></a>
@@ -50,11 +50,11 @@
 <a id="800-2026-02-13-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
 
-* [Gamebase Android SDK 2.80.0](./release-notes-android/#2800-2026-02-13)
-* [Gamebase iOS SDK 2.80.0](./release-notes-ios/#2800-2026-02-13)
+* [Gamebase Android SDK 2.80.0](./release-notes-android/#2-80-0-2026-02-13)
+* [Gamebase iOS SDK 2.80.0](./release-notes-ios/#2-80-0-2026-02-13)
 
-<a id="790-2026-01-27"></a>
-### 2.79.0 (2026. 01. 27.) { #790-2026-01-27 }
+<a id="2-79-0-2026-01-27"></a>
+### 2.79.0 (2026. 01. 27.) { #2-79-0-2026-01-27 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.79.0/GamebaseSDK-Unreal.zip)
 
 <a id="790-2026-01-27-feature-updates"></a>
@@ -65,11 +65,11 @@
 <a id="790-2026-01-27-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
 
-* [Gamebase Android SDK 2.79.0](./release-notes-android/#2790-2026-01-27)
-* [Gamebase iOS SDK 2.79.0](./release-notes-ios/#2790-2026-01-27)
+* [Gamebase Android SDK 2.79.0](./release-notes-android/#2-79-0-2026-01-27)
+* [Gamebase iOS SDK 2.79.0](./release-notes-ios/#2-79-0-2026-01-27)
 
-<a id="780-2026-01-13"></a>
-### 2.78.0 (2026. 01. 13.) { #780-2026-01-13 }
+<a id="2-78-0-2026-01-13"></a>
+### 2.78.0 (2026. 01. 13.) { #2-78-0-2026-01-13 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.78.0/GamebaseSDK-Unreal.zip)
 
 <a id="780-2026-01-13-added-features"></a>
@@ -91,11 +91,11 @@
 <a id="780-2026-01-13-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
 
-* [Gamebase Android SDK 2.78.0](./release-notes-android/#2780-2025-12-23)
-* [Gamebase iOS SDK 2.77.0](./release-notes-ios/#2770-2025-12-09)
+* [Gamebase Android SDK 2.78.0](./release-notes-android/#2-78-0-2025-12-23)
+* [Gamebase iOS SDK 2.77.0](./release-notes-ios/#2-77-0-2025-12-09)
 
-<a id="760-2025-11-28"></a>
-### 2.76.0 (2025. 11. 28.) { #760-2025-11-28 }
+<a id="2-76-0-2025-11-28"></a>
+### 2.76.0 (2025. 11. 28.) { #2-76-0-2025-11-28 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.76.0/GamebaseSDK-Unreal.zip)
 
 <a id="760-2025-11-28-added-features"></a>
@@ -120,11 +120,11 @@
 <a id="760-2025-11-28-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
 
-* [Gamebase Android SDK 2.76.0](./release-notes-android/#2760-2025-11-28)
-* [Gamebase iOS SDK 2.75.0](./release-notes-ios/#2750-2025-09-23)
+* [Gamebase Android SDK 2.76.0](./release-notes-android/#2-76-0-2025-11-28)
+* [Gamebase iOS SDK 2.75.0](./release-notes-ios/#2-75-0-2025-09-23)
 
-<a id="750-2025-11-11"></a>
-### 2.75.0 (2025. 11. 11.) { #750-2025-11-11 }
+<a id="2-75-0-2025-11-11"></a>
+### 2.75.0 (2025. 11. 11.) { #2-75-0-2025-11-11 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.75.0/GamebaseSDK-Unreal.zip)
 
 <a id="750-2025-11-11-feature-updates"></a>
@@ -142,11 +142,11 @@
 <a id="750-2025-11-11-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
 
-* [Gamebase Android SDK 2.75.1](./release-notes-android/#2751-2025-10-17)
-* [Gamebase iOS SDK 2.75.0](./release-notes-ios/#2750-2025-09-23)
+* [Gamebase Android SDK 2.75.1](./release-notes-android/#2-75-1-2025-10-17)
+* [Gamebase iOS SDK 2.75.0](./release-notes-ios/#2-75-0-2025-09-23)
 
-<a id="740-2025-08-26"></a>
-### 2.74.0 (2025. 08. 26.) { #740-2025-08-26 }
+<a id="2-74-0-2025-08-26"></a>
+### 2.74.0 (2025. 08. 26.) { #2-74-0-2025-08-26 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.74.0/GamebaseSDK-Unreal.zip)
 
 <a id="740-2025-08-26-added-features"></a>
@@ -169,11 +169,11 @@
 <a id="740-2025-08-26-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
 
-* [Gamebase Android SDK 2.73.1](./release-notes-android/#2731-2025-08-12)
-* [Gamebase iOS SDK 2.73.1](./release-notes-ios/#2731-2025-08-12)
+* [Gamebase Android SDK 2.73.1](./release-notes-android/#2-73-1-2025-08-12)
+* [Gamebase iOS SDK 2.73.1](./release-notes-ios/#2-73-1-2025-08-12)
 
-<a id="731-2025-07-29"></a>
-### 2.73.1 (2025. 07. 29.) { #731-2025-07-29 }
+<a id="2-73-1-2025-07-29"></a>
+### 2.73.1 (2025. 07. 29.) { #2-73-1-2025-07-29 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.1/GamebaseSDK-Unreal.zip)
 
 <a id="731-2025-07-29-feature-updates"></a>
@@ -192,11 +192,11 @@
 <a id="731-2025-07-29-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
 
-* [Gamebase Android SDK 2.73.0](./release-notes-android/#2730-2025-07-15)
-* [Gamebase iOS SDK 2.73.0](./release-notes-ios/#2730-2025-07-15)
+* [Gamebase Android SDK 2.73.0](./release-notes-android/#2-73-0-2025-07-15)
+* [Gamebase iOS SDK 2.73.0](./release-notes-ios/#2-73-0-2025-07-15)
 
-<a id="730-2025-07-15"></a>
-### 2.73.0 (2025. 07. 15.) { #730-2025-07-15 }
+<a id="2-73-0-2025-07-15"></a>
+### 2.73.0 (2025. 07. 15.) { #2-73-0-2025-07-15 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.73.0/GamebaseSDK-Unreal.zip)
 
 <a id="730-2025-07-15-feature-updates"></a>
@@ -219,11 +219,11 @@
 <a id="730-2025-07-15-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
 
-* [Gamebase Android SDK 2.73.0](./release-notes-android/#2730-2025-07-15)
-* [Gamebase iOS SDK 2.73.0](./release-notes-ios/#2730-2025-07-15)
+* [Gamebase Android SDK 2.73.0](./release-notes-android/#2-73-0-2025-07-15)
+* [Gamebase iOS SDK 2.73.0](./release-notes-ios/#2-73-0-2025-07-15)
 
-<a id="720-2025-06-24"></a>
-### 2.72.0 (2025. 06. 24.) { #720-2025-06-24 }
+<a id="2-72-0-2025-06-24"></a>
+### 2.72.0 (2025. 06. 24.) { #2-72-0-2025-06-24 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.72.0/GamebaseSDK-Unreal.zip)
 
 <a id="720-2025-06-24-added-features"></a>
@@ -247,11 +247,11 @@
 <a id="720-2025-06-24-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
 
-* [Gamebase Android SDK 2.72.0](./release-notes-android/#2720-2025-06-24)
-* [Gamebase iOS SDK 2.72.0](./release-notes-ios/#2720-2025-06-24)
+* [Gamebase Android SDK 2.72.0](./release-notes-android/#2-72-0-2025-06-24)
+* [Gamebase iOS SDK 2.72.0](./release-notes-ios/#2-72-0-2025-06-24)
 
-<a id="711-2025-4-29"></a>
-### 2.71.1 (2025. 4. 29.) { #711-2025-4-29 }
+<a id="2-71-1-2025-04-29"></a>
+### 2.71.1 (2025. 4. 29.) { #2-71-1-2025-04-29 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.1/GamebaseSDK-Unreal.zip)
 
 <a id="711-2025-4-29-feature-updates"></a>
@@ -269,11 +269,11 @@
 <a id="711-2025-4-29-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
 
-* [Gamebase Android SDK 2.71.1](./release-notes-android/#2711-2025-04-29)
-* [Gamebase iOS SDK 2.71.0](./release-notes-ios/#2710-2025-04-15)
+* [Gamebase Android SDK 2.71.1](./release-notes-android/#2-71-1-2025-04-29)
+* [Gamebase iOS SDK 2.71.0](./release-notes-ios/#2-71-0-2025-04-15)
 
-<a id="710-2025-4-15"></a>
-### 2.71.0 (2025. 4. 15.) { #710-2025-4-15 }
+<a id="2-71-0-2025-04-15"></a>
+### 2.71.0 (2025. 4. 15.) { #2-71-0-2025-04-15 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.71.0/GamebaseSDK-Unreal.zip)
 
 <a id="710-2025-4-15-added-features"></a>
@@ -302,11 +302,11 @@
 <a id="710-2025-4-15-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
 
-* [Gamebase Android SDK 2.71.0](./release-notes-android/#2710-2025-04-15)
-* [Gamebase iOS SDK 2.71.0](./release-notes-ios/#2710-2025-04-15)
+* [Gamebase Android SDK 2.71.0](./release-notes-android/#2-71-0-2025-04-15)
+* [Gamebase iOS SDK 2.71.0](./release-notes-ios/#2-71-0-2025-04-15)
 
-<a id="700-2025-3-11"></a>
-### 2.70.0 (2025. 3. 11.) { #700-2025-3-11 }
+<a id="2-70-0-2025-03-11"></a>
+### 2.70.0 (2025. 3. 11.) { #2-70-0-2025-03-11 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.70.0/GamebaseSDK-Unreal.zip)
 
 <a id="700-2025-3-11-added-features"></a>
@@ -335,11 +335,11 @@
 <a id="700-2025-3-11-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
 
-* [Gamebase Android SDK 2.70.0](./release-notes-android/#2700-2025-03-11)
-* [Gamebase iOS SDK 2.70.0](./release-notes-ios/#2700-2025-03-11)
+* [Gamebase Android SDK 2.70.0](./release-notes-android/#2-70-0-2025-03-11)
+* [Gamebase iOS SDK 2.70.0](./release-notes-ios/#2-70-0-2025-03-11)
 
-<a id="691-2025-3-4"></a>
-### 2.69.1 (2025. 3. 4.) { #691-2025-3-4 }
+<a id="2-69-1-2025-03-04"></a>
+### 2.69.1 (2025. 3. 4.) { #2-69-1-2025-03-04 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.69.1/GamebaseSDK-Unreal.zip)
 
 <a id="691-2025-3-4-added-features"></a>
@@ -366,11 +366,11 @@
 <a id="691-2025-3-4-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
 
-* [Gamebase Android SDK 2.69.0](./release-notes-android/#2690-2025-01-21)
-* [Gamebase iOS SDK 2.69.0](./release-notes-ios/#2690-2025-01-21)
+* [Gamebase Android SDK 2.69.0](./release-notes-android/#2-69-0-2025-01-21)
+* [Gamebase iOS SDK 2.69.0](./release-notes-ios/#2-69-0-2025-01-21)
 
-<a id="690-2025-2-11"></a>
-### 2.69.0 (2025. 2. 11.) { #690-2025-2-11 }
+<a id="2-69-0-2025-02-11"></a>
+### 2.69.0 (2025. 2. 11.) { #2-69-0-2025-02-11 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.69.0/GamebaseSDK-Unreal.zip)
 
 <a id="690-2025-2-11-added-features"></a>
@@ -404,11 +404,11 @@
 
 <a id="690-2025-2-11-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
-* [Gamebase Android SDK 2.69.0](./release-notes-android/#2690-2025-01-21)
-* [Gamebase iOS SDK 2.69.0](./release-notes-ios/#2690-2025-01-21)
+* [Gamebase Android SDK 2.69.0](./release-notes-android/#2-69-0-2025-01-21)
+* [Gamebase iOS SDK 2.69.0](./release-notes-ios/#2-69-0-2025-01-21)
 
-<a id="681-2025-01-21"></a>
-### 2.68.1 (2025. 01. 21.) { #681-2025-01-21 }
+<a id="2-68-1-2025-01-21"></a>
+### 2.68.1 (2025. 01. 21.) { #2-68-1-2025-01-21 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.1/GamebaseSDK-Unreal.zip)
 
 <a id="681-2025-01-21-feature-updates"></a>
@@ -427,11 +427,11 @@
 
 <a id="681-2025-01-21-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
-* [Gamebase Android SDK 2.68.0](./release-notes-android/#2680-2024-11-26)
-* [Gamebase iOS SDK 2.68.1](./release-notes-ios/#2681-2024-12-10)
+* [Gamebase Android SDK 2.68.0](./release-notes-android/#2-68-0-2024-11-26)
+* [Gamebase iOS SDK 2.68.1](./release-notes-ios/#2-68-1-2024-12-10)
 
-<a id="680-2024-12-10"></a>
-### 2.68.0 (2024. 12. 10.) { #680-2024-12-10 }
+<a id="2-68-0-2024-12-10"></a>
+### 2.68.0 (2024. 12. 10.) { #2-68-0-2024-12-10 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.68.0/GamebaseSDK-Unreal.zip)
 
 <a id="680-2024-12-10-feature-updates"></a>
@@ -453,11 +453,11 @@
 
 <a id="680-2024-12-10-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
-* [Gamebase Android SDK 2.68.0](./release-notes-android/#2680-2024-11-26)
-* [Gamebase iOS SDK 2.68.1](./release-notes-ios/#2681-2024-12-10)
+* [Gamebase Android SDK 2.68.0](./release-notes-android/#2-68-0-2024-11-26)
+* [Gamebase iOS SDK 2.68.1](./release-notes-ios/#2-68-1-2024-12-10)
 
-<a id="672-2024-11-26"></a>
-### 2.67.2 (2024. 11. 26.) { #672-2024-11-26 }
+<a id="2-67-2-2024-11-26"></a>
+### 2.67.2 (2024. 11. 26.) { #2-67-2-2024-11-26 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.67.2/GamebaseSDK-Unreal.zip)
 
 <a id="672-2024-11-26-feature-updates"></a>
@@ -470,11 +470,11 @@
 
 <a id="672-2024-11-26-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
-* [Gamebase Android SDK 2.67.0](./release-notes-android/#2670-2024-10-29)
-* [Gamebase iOS SDK 2.67.0](./release-notes-ios/#2670-2024-10-29)
+* [Gamebase Android SDK 2.67.0](./release-notes-android/#2-67-0-2024-10-29)
+* [Gamebase iOS SDK 2.67.0](./release-notes-ios/#2-67-0-2024-10-29)
 
-<a id="671-2024-11-14"></a>
-### 2.67.1 (2024. 11. 14.) { #671-2024-11-14 }
+<a id="2-67-1-2024-11-14"></a>
+### 2.67.1 (2024. 11. 14.) { #2-67-1-2024-11-14 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.67.1/GamebaseSDK-Unreal.zip)
 
 <a id="671-2024-11-14-feature-updates"></a>
@@ -497,11 +497,11 @@
 
 <a id="671-2024-11-14-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
-* [Gamebase Android SDK 2.67.0](./release-notes-android/#2670-2024-10-29)
-* [Gamebase iOS SDK 2.67.0](./release-notes-ios/#2670-2024-10-29)
+* [Gamebase Android SDK 2.67.0](./release-notes-android/#2-67-0-2024-10-29)
+* [Gamebase iOS SDK 2.67.0](./release-notes-ios/#2-67-0-2024-10-29)
 
-<a id="670-2024-10-30"></a>
-### 2.67.0 (2024. 10. 30.) { #670-2024-10-30 }
+<a id="2-67-0-2024-10-30"></a>
+### 2.67.0 (2024. 10. 30.) { #2-67-0-2024-10-30 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.67.0/GamebaseSDK-Unreal.zip)
 
 <a id="670-2024-10-30-added-features"></a>
@@ -524,11 +524,11 @@
 
 <a id="670-2024-10-30-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
-* [Gamebase Android SDK 2.67.0](./release-notes-android/#2670-2024-10-29)
-* [Gamebase iOS SDK 2.67.0](./release-notes-ios/#2670-2024-10-29)
+* [Gamebase Android SDK 2.67.0](./release-notes-android/#2-67-0-2024-10-29)
+* [Gamebase iOS SDK 2.67.0](./release-notes-ios/#2-67-0-2024-10-29)
 
-<a id="661-2024-09-10"></a>
-### 2.66.1 (2024. 09. 10.) { #661-2024-09-10 }
+<a id="2-66-1-2024-09-10"></a>
+### 2.66.1 (2024. 09. 10.) { #2-66-1-2024-09-10 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.1/GamebaseSDK-Unreal.zip)
 
 <a id="661-2024-09-10-feature-updates"></a>
@@ -537,11 +537,11 @@
 
 <a id="661-2024-09-10-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
-* [Gamebase Android SDK 2.66.3](./release-notes-android/#2663-2024-09-10)
-* [Gamebase iOS SDK 2.66.2](./release-notes-ios/#2662-2024-08-27)
+* [Gamebase Android SDK 2.66.3](./release-notes-android/#2-66-3-2024-09-10)
+* [Gamebase iOS SDK 2.66.2](./release-notes-ios/#2-66-2-2024-08-27)
 
-<a id="660-2024-08-27"></a>
-### 2.66.0 (2024. 08. 27.) { #660-2024-08-27 }
+<a id="2-66-0-2024-08-27"></a>
+### 2.66.0 (2024. 08. 27.) { #2-66-0-2024-08-27 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.66.0/GamebaseSDK-Unreal.zip)
 
 <a id="660-2024-08-27-feature-updates"></a>
@@ -554,11 +554,11 @@
 
 <a id="660-2024-08-27-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
-* [Gamebase Android SDK 2.66.2](./release-notes-android/#2662-2024-08-27)
-* [Gamebase iOS SDK 2.66.2](./release-notes-ios/#2662-2024-08-27)
+* [Gamebase Android SDK 2.66.2](./release-notes-android/#2-66-2-2024-08-27)
+* [Gamebase iOS SDK 2.66.2](./release-notes-ios/#2-66-2-2024-08-27)
 
-<a id="640-2024-06-11"></a>
-### 2.64.0 (2024. 06. 11.) { #640-2024-06-11 }
+<a id="2-64-0-2024-06-11"></a>
+### 2.64.0 (2024. 06. 11.) { #2-64-0-2024-06-11 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.64.0/GamebaseSDK-Unreal.zip)
 
 <a id="640-2024-06-11-feature-updates"></a>
@@ -572,11 +572,11 @@
 
 <a id="640-2024-06-11-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
-* [Gamebase Android SDK 2.64.0](./release-notes-android/#2640-2024-05-28)
-* [Gamebase iOS SDK 2.64.0](./release-notes-ios/#2640-2024-05-28)
+* [Gamebase Android SDK 2.64.0](./release-notes-android/#2-64-0-2024-05-28)
+* [Gamebase iOS SDK 2.64.0](./release-notes-ios/#2-64-0-2024-05-28)
 
-<a id="630-2024-04-23"></a>
-### 2.63.0 (2024. 04. 23.) { #630-2024-04-23 }
+<a id="2-63-0-2024-04-23"></a>
+### 2.63.0 (2024. 04. 23.) { #2-63-0-2024-04-23 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.63.0/GamebaseSDK-Unreal.zip)
 
 <a id="630-2024-04-23-added-features"></a>
@@ -590,11 +590,11 @@
 
 <a id="630-2024-04-23-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
-* [Gamebase Android SDK 2.63.0](./release-notes-android/#2630-2024-04-23)
-* [Gamebase iOS SDK 2.63.0](./release-notes-ios/#2630-2024-04-23)
+* [Gamebase Android SDK 2.63.0](./release-notes-android/#2-63-0-2024-04-23)
+* [Gamebase iOS SDK 2.63.0](./release-notes-ios/#2-63-0-2024-04-23)
 
-<a id="620-2024-03-26"></a>
-### 2.62.0 (2024. 03. 26.) { #620-2024-03-26 }
+<a id="2-62-0-2024-03-26"></a>
+### 2.62.0 (2024. 03. 26.) { #2-62-0-2024-03-26 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.62.0/GamebaseSDK-Unreal.zip)
 
 <a id="620-2024-03-26-added-features"></a>
@@ -607,11 +607,11 @@
 
 <a id="620-2024-03-26-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
-* [Gamebase Android SDK 2.62.0](./release-notes-android/#2620-2024-03-26)
-* [Gamebase iOS SDK 2.62.0](./release-notes-ios/#2620-2024-03-26)
+* [Gamebase Android SDK 2.62.0](./release-notes-android/#2-62-0-2024-03-26)
+* [Gamebase iOS SDK 2.62.0](./release-notes-ios/#2-62-0-2024-03-26)
 
-<a id="600-2024-02-15"></a>
-### 2.60.0 (2024. 02. 15.) { #600-2024-02-15 }
+<a id="2-60-0-2024-02-15"></a>
+### 2.60.0 (2024. 02. 15.) { #2-60-0-2024-02-15 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.60.0/GamebaseSDK-Unreal.zip)
 
 <a id="600-2024-02-15-feature-updates"></a>
@@ -620,11 +620,11 @@
 
 <a id="600-2024-02-15-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
-* [Gamebase Android SDK 2.60.0](./release-notes-android/#2600-2024-01-23)
-* [Gamebase iOS SDK 2.60.1](./release-notes-ios/#2601-2024-02-15)
+* [Gamebase Android SDK 2.60.0](./release-notes-android/#2-60-0-2024-01-23)
+* [Gamebase iOS SDK 2.60.1](./release-notes-ios/#2-60-1-2024-02-15)
 
-<a id="580-2023-11-28"></a>
-### 2.58.0 (2023. 11. 28.) { #580-2023-11-28 }
+<a id="2-58-0-2023-11-28"></a>
+### 2.58.0 (2023. 11. 28.) { #2-58-0-2023-11-28 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.58.0/GamebaseSDK-Unreal.zip)
 
 <a id="580-2023-11-28-bug-fixes"></a>
@@ -634,25 +634,26 @@
 
 <a id="580-2023-11-28-platform-specific-changes"></a>
 #### プラットフォーム別の変更点
-* [Gamebase Android SDK 2.58.0](./release-notes-android/#2580-2023-11-28)
-* [Gamebase iOS SDK 2.58.0](./release-notes-ios/#2580-2023-11-28)
+* [Gamebase Android SDK 2.58.0](./release-notes-android/#2-58-0-2023-11-28)
+* [Gamebase iOS SDK 2.58.0](./release-notes-ios/#2-58-0-2023-11-28)
 
-<a id="570-2023-11-14"></a>
-### 2.57.0 (2023. 11. 14.) { #570-2023-11-14 }
+<a id="2-57-0-2023-11-14"></a>
+### 2.57.0 (2023. 11. 14.) { #2-57-0-2023-11-14 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.57.0/GamebaseSDK-Unreal.zip)
 
 <a id="570-2023-11-14-added-features"></a>
 #### 機能改善/変更
-
-<!-- TODO: translate body -->
+* Windowsプラットフォームのサポートを追加
+    * [Windows設定ツール](./unreal-started/#windows-settings)が追加されました。
+    * プラットフォームでサポートするAPIは、各文書の`UNREAL_WINDOWS`項目をご確認ください。
 
 <a id="570-2023-11-14-platform-specific-changes"></a>
 #### プラットフォーム別の変更点
-* [Gamebase Android SDK 2.57.0](./release-notes-android/#2570-2023-10-31)
-* [Gamebase iOS SDK 2.57.0](./release-notes-ios/#2570-2023-10-31)
+* [Gamebase Android SDK 2.57.0](./release-notes-android/#2-57-0-2023-10-31)
+* [Gamebase iOS SDK 2.57.0](./release-notes-ios/#2-57-0-2023-10-31)
 
-<a id="560-2023-10-17"></a>
-### 2.56.0 (2023. 10. 17.) { #560-2023-10-17 }
+<a id="2-56-0-2023-10-17"></a>
+### 2.56.0 (2023. 10. 17.) { #2-56-0-2023-10-17 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.56.0/GamebaseSDK-Unreal.zip)
 
 <a id="560-2023-10-17-added-features"></a>
@@ -679,11 +680,11 @@
 
 <a id="560-2023-10-17-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
-* [Gamebase Android SDK 2.56.0](./release-notes-android/#2560-2023-09-26)
-* [Gamebase iOS SDK 2.55.2](./release-notes-ios/#2552-2023-09-26)
+* [Gamebase Android SDK 2.56.0](./release-notes-android/#2-56-0-2023-09-26)
+* [Gamebase iOS SDK 2.55.2](./release-notes-ios/#2-55-2-2023-09-26)
 
-<a id="491-2023-04-14"></a>
-### 2.49.1 (2023. 04. 14.) { #491-2023-04-14 }
+<a id="2-49-1-2023-04-14"></a>
+### 2.49.1 (2023. 04. 14.) { #2-49-1-2023-04-14 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.1/GamebaseSDK-Unreal.zip)
 
 <a id="491-2023-04-14-bug-fixes"></a>
@@ -692,11 +693,11 @@
 
 <a id="491-2023-04-14-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
-* [Gamebase Android SDK 2.48.0](./release-notes-android/#2480-2023-03-28)
-* [Gamebase iOS SDK 2.49.0](./release-notes-ios/#2490-2023-04-11)
+* [Gamebase Android SDK 2.48.0](./release-notes-android/#2-48-0-2023-03-28)
+* [Gamebase iOS SDK 2.49.0](./release-notes-ios/#2-49-0-2023-04-11)
 
-<a id="490-2023-04-11"></a>
-### 2.49.0 (2023. 04. 11.) { #490-2023-04-11 }
+<a id="2-49-0-2023-04-11"></a>
+### 2.49.0 (2023. 04. 11.) { #2-49-0-2023-04-11 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.49.0/GamebaseSDK-Unreal.zip)
 
 <a id="490-2023-04-11-added-features"></a>
@@ -729,11 +730,11 @@
     
 <a id="490-2023-04-11-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
-* [Gamebase Android SDK 2.48.0](./release-notes-android/#2480-2023-03-28)
-* [Gamebase iOS SDK 2.49.0](./release-notes-ios/#2490-2023-04-11)
+* [Gamebase Android SDK 2.48.0](./release-notes-android/#2-48-0-2023-03-28)
+* [Gamebase iOS SDK 2.49.0](./release-notes-ios/#2-49-0-2023-04-11)
 
-<a id="433-2022-10-04"></a>
-### 2.43.3 (2022. 10. 04.) { #433-2022-10-04 }
+<a id="2-43-3-2022-10-04"></a>
+### 2.43.3 (2022. 10. 04.) { #2-43-3-2022-10-04 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.43.3/GamebaseSDK-Unreal.zip)
 
 <a id="433-2022-10-04-feature-updates"></a>
@@ -743,11 +744,11 @@
     
 <a id="433-2022-10-04-platform-specific-changes"></a>
 #### プラットフォーム別変更事項
-* [Gamebase Android SDK 2.43.0](./release-notes-android/#2430-2022-09-07)
-* [Gamebase iOS SDK 2.43.3](./release-notes-ios/#2433-2022-10-04)
+* [Gamebase Android SDK 2.43.0](./release-notes-android/#2-43-0-2022-09-07)
+* [Gamebase iOS SDK 2.43.3](./release-notes-ios/#2-43-3-2022-10-04)
 
-<a id="421-2022-08-09"></a>
-### 2.42.1 (2022. 08. 09.) { #421-2022-08-09 }
+<a id="2-42-1-2022-08-09"></a>
+### 2.42.1 (2022. 08. 09.) { #2-42-1-2022-08-09 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.42.1/GamebaseSDK-Unreal.zip)
 
 <a id="421-2022-08-09-added-features"></a>
@@ -771,11 +772,11 @@
     
 <a id="421-2022-08-09-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
-* [Gamebase Android SDK 2.42.1](./release-notes-android/#2421-2022-07-26)
-* [Gamebase iOS SDK 2.42.1](./release-notes-ios/#2421-2022-08-09)
+* [Gamebase Android SDK 2.42.1](./release-notes-android/#2-42-1-2022-07-26)
+* [Gamebase iOS SDK 2.42.1](./release-notes-ios/#2-42-1-2022-08-09)
 
-<a id="410-2022-07-05"></a>
-### 2.41.0 (2022. 07. 05.) { #410-2022-07-05 }
+<a id="2-41-0-2022-07-05"></a>
+### 2.41.0 (2022. 07. 05.) { #2-41-0-2022-07-05 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.41.0/GamebaseSDK-Unreal.zip)
 
 <a id="410-2022-07-05-added-features"></a>
@@ -785,11 +786,11 @@
 
 <a id="410-2022-07-05-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
-* [Gamebase Android SDK 2.41.0](./release-notes-android/#2410-2022-07-05)
-* [Gamebase iOS SDK 2.41.0](./release-notes-ios/#2410-2022-07-05)
+* [Gamebase Android SDK 2.41.0](./release-notes-android/#2-41-0-2022-07-05)
+* [Gamebase iOS SDK 2.41.0](./release-notes-ios/#2-41-0-2022-07-05)
 
-<a id="401-2022-06-14"></a>
-### 2.40.1 (2022. 06. 14.) { #401-2022-06-14 }
+<a id="2-40-1-2022-06-14"></a>
+### 2.40.1 (2022. 06. 14.) { #2-40-1-2022-06-14 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.1/GamebaseSDK-Unreal.zip)
 
 <a id="401-2022-06-14-bug-fixes"></a>
@@ -797,8 +798,8 @@
 * クラッシュが発生することがあるロジックが修正されました。
 * (iOS)同じAPIを連続して呼び出すとき、コールバックが正常に伝達されない問題が修正されました。
 
-<a id="400-2022-05-24"></a>
-### 2.40.0 (2022. 05. 24.) { #400-2022-05-24 }
+<a id="2-40-0-2022-05-24"></a>
+### 2.40.0 (2022. 05. 24.) { #2-40-0-2022-05-24 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.40.0/GamebaseSDK-Unreal.zip)
 
 <a id="400-2022-05-24-added-features"></a>
@@ -839,19 +840,19 @@
     
 <a id="400-2022-05-24-platform-specific-changes"></a>
 #### 各プラットフォームの変更事項
-* [Gamebase Android SDK 2.40.0](./release-notes-android/#2400-2022-05-24)
-* [Gamebase iOS SDK 2.40.0](./release-notes-ios/#2400-2022-05-24)
+* [Gamebase Android SDK 2.40.0](./release-notes-android/#2-40-0-2022-05-24)
+* [Gamebase iOS SDK 2.40.0](./release-notes-ios/#2-40-0-2022-05-24)
 
-<a id="331-2022-02-22"></a>
-### 2.33.1 (2022. 02. 22.) { #331-2022-02-22 }
+<a id="2-33-1-2022-02-22"></a>
+### 2.33.1 (2022. 02. 22.) { #2-33-1-2022-02-22 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.1/GamebaseSDK-Unreal.zip)
 
 <a id="331-2022-02-22-bug-fixes"></a>
 #### 不具合修正
 * iOSビルド時に発生するエラーを修正しました。
 
-<a id="330-20220125"></a>
-### 2.33.0 (2022.01.25) { #330-20220125 }
+<a id="2-33-0-2022-01-25"></a>
+### 2.33.0 (2022. 01. 25.) { #2-33-0-2022-01-25 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.33.0/GamebaseSDK-Unreal.zip)
 
@@ -885,11 +886,11 @@
     
 <a id="330-20220125-platform-specific-changes"></a>
 #### プラットフォーム別の変更事項
-* [Gamebase Android SDK 2.33.0](./release-notes-android/#2330-20220125)
-* [Gamebase iOS SDK 2.33.0](./release-notes-ios/#2330-20220125)
+* [Gamebase Android SDK 2.33.0](./release-notes-android/#2-33-0-2022-01-25)
+* [Gamebase iOS SDK 2.33.0](./release-notes-ios/#2-33-0-2022-01-25)
 
-<a id="261-20211123"></a>
-### 2.26.1 (2021.11.23) { #261-20211123 }
+<a id="2-26-1-2021-11-23"></a>
+### 2.26.1 (2021. 11. 23.) { #2-26-1-2021-11-23 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.1/GamebaseSDK-Unreal.zip)
 
 <a id="261-20211123-bug-fixes"></a>
@@ -897,8 +898,8 @@
 * GamebaseDisplayLanguageCodeフィンランド語の誤字を修正
     * Finish → Finnish
 
-<a id="260-20210928"></a>
-### 2.26.0 (2021.09.28) { #260-20210928 }
+<a id="2-26-0-2021-09-28"></a>
+### 2.26.0 (2021. 09. 28.) { #2-26-0-2021-09-28 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.26.0/GamebaseSDK-Unreal.zip)
 
 <a id="260-20210928-added-features"></a>
@@ -914,8 +915,8 @@
 * 内部ローンチURLの変更
 * GamebaseからAndroid multidexの適用削除
 
-<a id="192-20210629"></a>
-### 2.19.2 (2021.06.29) { #192-20210629 }
+<a id="2-19-2-2021-06-29"></a>
+### 2.19.2 (2021. 06. 29.) { #2-19-2-2021-06-29 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.2/GamebaseSDK-Unreal.zip)
 
 <a id="192-20210629-bug-fixes"></a>
@@ -923,16 +924,16 @@
 * イメージ告知ShowImageNotices API呼び出し時にonEventCallbackを登録していない場合、閉じるボタンを押した時にクラッシュが発生する問題を修正
 * Android設定ツール - Enable Hangame、Enable Weiboが正常に動作しない問題を修正
 
-<a id="191-20210209"></a>
-### 2.19.1(2021.02.09) { #191-20210209 }
+<a id="2-19-1-2021-02-09"></a>
+### 2.19.1 (2021. 02. 09.) { #2-19-1-2021-02-09 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.1/GamebaseSDK-Unreal.zip)
 
 <a id="191-20210209-bug-fixes"></a>
 #### 不具合修正 
 * Unityビルド中に除外されるファイルが生じた時に発生するコンパイルエラーを修正
 
-<a id="190-20210126"></a>
-### 2.19.0 (2021.01.26) { #190-20210126 }
+<a id="2-19-0-2021-01-26"></a>
+### 2.19.0 (2021. 01. 26.) { #2-19-0-2021-01-26 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.19.0/GamebaseSDK-Unreal.zip)
 
 <a id="190-20210126-more-features"></a>
@@ -946,8 +947,8 @@
 	* Android設定ツールを提供
 	* Unreal 4.26サポート
 
-<a id="150-october-27-2020"></a>
-### 2.15.0 (2020.10.27) { #150-october-27-2020 }
+<a id="2-15-0-2020-10-27"></a>
+### 2.15.0 (2020. 10. 27.) { #2-15-0-2020-10-27 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.15.0/GamebaseSDK-Unreal.zip)
 
 <a id="150-october-27-2020-more-features"></a>
@@ -972,8 +973,8 @@
 * [SDK] 2.15.0    
     * (Unreal)決済モジュールにProGuard宣言が抜けていたエラーを修正
 
-<a id="91-august-25-2020"></a>
-### 2.9.1 (2020.08.25) { #91-august-25-2020 }
+<a id="2-9-1-2020-08-25"></a>
+### 2.9.1 (2020. 08. 25.) { #2-9-1-2020-08-25 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.9.1/GamebaseSDK-Unreal.zip)
 
 <a id="91-august-25-2020-more-features"></a>
@@ -988,8 +989,8 @@
     * (Unreal) iOS Plugin内部Gamebase SDK for iOSバージョンアップデート(2.9.1)
     * (Unreal) UObjectリファレンシング処理が抜けていた部分を修正
 
-<a id="90-may-12-2020"></a>
-### 2020. 05. 12. { #90-may-12-2020 }
+<a id="2-9-0-2020-05-12"></a>
+### 2.9.0 (2020. 05. 12.) { #2-9-0-2020-05-12 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.9.0/GamebaseSDK-Unreal.zip)
 
 <a id="90-may-12-2020-more-features"></a>
