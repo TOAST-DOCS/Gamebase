@@ -33,7 +33,7 @@ Gamebase can be setup as below.
 <a id="download"></a>
 ### Download { #download }
 
-* [Download Gamebase iOS SDK](/Download/#game-gamebase)
+* [Download Gamebase iOS SDK](../../../../Download/#game-gamebase)
 
 Download Gamebase.xcframework.zip and required adapters.<br/>
 Also download SDK files to authenticate each IdP, which are required only for a login.<br/>

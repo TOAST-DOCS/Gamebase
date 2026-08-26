@@ -50,7 +50,7 @@ Supported Platforms
 1. Gamebase Unreal SDKをダウンロードして、プロジェクトパスに`Plugins`フォルダを作成し、ダウンロードしたSDK内部 **NHNCloud**フォルダを追加します。
 2. Unrealエディタで`Settings > Plugins`ウィンドウを開き、`Project > NHN Cloud > Gamebase Plugin`プラグインを探して有効にします。
 
-* [Download Gamebase Unreal SDK](/Download/#game-gamebase)
+* [Download Gamebase Unreal SDK](../../../../Download/#game-gamebase)
 
 <a id="module-settings"></a>
 ### Module Settings { #module-settings }

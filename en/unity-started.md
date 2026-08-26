@@ -50,7 +50,7 @@ Can easily install the Gamebase SDK using the SettingTool.
 ### Installing SettingTool { #installing-settingtool }
 
 1. Download the SettingTool.
-    * [Download Gamebase Setting Tool](/Download/#game-gamebase)
+    * [Download Gamebase Setting Tool](../../../../Download/#game-gamebase)
 2. After running the Unity project, import the GamebaseUnitySettingTool_{version}.unitypackage file.
 
 <a id="using-the-setting-tool"></a>
