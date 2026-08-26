@@ -16,13 +16,13 @@ Following information is required to use Server API.
 To call API, below address is needed, which is also available in the Gamebase Console.
 > https://api-gamebase.cloud.toast.com
 
-![image alt](./image/Server_Developers_Guide/pre_server_address_v1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.2.png)
 
 <a id="advance-notice-appid"></a>
 #### AppId
 
 App ID, as a project ID of NHN Cloud, can be found on the **Project List** page of the Console.
-![image alt](./image/Server_Developers_Guide/pre_appId_v1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
 <a id="advance-notice-secretkey"></a>
 #### SecretKey
@@ -31,7 +31,7 @@ Secret Key, as a control access of API, can be found in the Gambase Console. It 
 > [Note]<br>
 > When a secret key is exposed and a wrong call is made, click **Create** to create a new secret key and replace the old one.
 
-![image alt](./image/Server_Developers_Guide/pre_secret_key_v1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.2.png)
 
 <a id="advance-notice-transactionid"></a>
 #### TransactionId

@@ -456,7 +456,7 @@ For subscription status codes, see the following document.
 > <font color="red">[Caution]</font><br/>
 >
 > * The subscription status code is only returned correctly if you follow the guide below to set up the subscription event.
->     * Go to [Game > Gamebase > Store Console Guide > Google Console Guide and set up event propagation of real-time subscription information within Google's system](./console-google-guide/#set-up-event-propagation-of-real-time-subscription-information-within-googles-system)
+>     * Go to [Game > Gamebase > Store Console Guide > Google Console Guide and set up event propagation of real-time subscription information within Google's system](./console-google-guide/#set-up-google-notifications-to-receive-real-time-subscription-status)
 >     * The status code for a subscription product purchased without setting up events always returns 0 (PURCHASED).
 > * Subscription products currently only supports Google Play Store.
 
@@ -644,7 +644,7 @@ Refer to the guide below for instructions on handling promotion and pending paym
 | PURCHASE_UNKNOWN_ERROR                    | 4999       | Unknown error in purchase.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry) and we'll reply at the earliest possible moment. |
 
 * Refer to the following document for the entire error code.
-    * [Entire Error Codes](./error-codes#client-sdk)
+    * [Entire Error Codes](./error-code/#client-sdk)
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 

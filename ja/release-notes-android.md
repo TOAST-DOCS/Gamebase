@@ -1173,7 +1173,7 @@ Gamebase Android SDKは今後、Maven Centralでのみ配布します。
 #### 機能改善・変更
 * 外部SDKアップデート：TOAST Android SDK(0.27.4)
 * DisplayLanguageガイド文書でのみ案内し、実際のSDKには含まれていなかったDisplayLanguage.Codeクラスを追加しました。
-    * [Game > Gamebase > Android SDK使用ガイド > ETC > Display Language > Gamebaseでサポートする言語コードの種類](./aos-etc/#types-of-language-codes-supported-by-gamebase)
+    * [Game > Gamebase > Android SDK使用ガイド > ETC > Display Language > Gamebaseでサポートする言語コードの種類](./aos-etc/#display-language-types-of-language-codes-supported-by-gamebase)
 
 <a id="2-28-0-2021-09-28"></a>
 ### 2.28.0 (2021. 09. 28.) { #2-28-0-2021-09-28 }

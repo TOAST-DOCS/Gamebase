@@ -1446,7 +1446,7 @@ public void Login()
 | Auth(Unknown) | AUTH_UNKNOWN_ERROR | 3999 | Unknown error (Undefined error) |
 
 * Refer to the following document for the entire error codes.
-    * [Entire Error Codes](./error-codes#client-sdk)
+    * [Entire Error Codes](./error-code/#client-sdk)
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 

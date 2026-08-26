@@ -758,4 +758,4 @@ Click 'Detail' in maintenance status to change maintenance page.
 | SERVER\_INVALID\_RESPONSE                         | 8003       | Invalid response is returned from the server.  | 
 
 * Refer to the following document for the entire error codes:
-    * [Entire Error Codes](./error-codes#client-sdk)
+    * [Entire Error Codes](./error-code/#client-sdk)

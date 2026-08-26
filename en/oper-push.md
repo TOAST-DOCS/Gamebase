@@ -254,7 +254,7 @@ Click the **Delete** or **Modify** button to delete or modify the event key info
 <a id="authentication"></a>
 ## Authentication { #authentication }
 You can manage the certificate used for push sending.
-![push_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_11_kr_240422.png)
+![push_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/en/push_11_en_240422.png)
 
 > [Note]
 > FCM Server Key certificates will be deprecated on June 20, 2024.

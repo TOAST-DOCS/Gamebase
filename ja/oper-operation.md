@@ -304,7 +304,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 - **修正日**：告知が最終的に修正された時刻を表示します。
 - **クリック率(%)**：ゲーム内にイメージ告知が表示された数とイメージ告知をクリックした数を簡単な統計で表示します。全体比率の値を表示し、確認ボタンを押すと表示期間の日別表示数とクリック数をグラフで確認できます。
  * 告知の表示期間範囲内のユーザーが検索して照会した日付別データは、ファイルとしてダウンロードして確認できます。
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_09_ja_240625.jpg)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_09_ja_240625.png)
 ```
 (1)予定：イメージ告知が表示される予定の状態
 (2)表示中：現在、イメージ告知が表示中の状態
@@ -315,7 +315,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 ### Register Image notice { #register-image-notice }
 
 **イメージ告知**リストから**登録**ボタンを選択すると、イメージ告知を登録できます。
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_04_ko_250415.png)
+![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_04_ja_250415.png)
 
 <a id="register-image-notice-1-target"></a>
 #### (1)対象

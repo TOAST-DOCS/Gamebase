@@ -135,7 +135,7 @@ Following information is provided by Gamebase for launching.
 
 * [Android Developer Guide > Launching Info](./aos-initialization/#launching-information)
 * [iOS Developer Guide > Launching Info](./ios-initialization/#launching-information)
-* [Unity Developer Guide > Launching Info](./unity-initialization/#launching-informations)
+* [Unity Developer Guide > Launching Info](./unity-initialization/#launching-information)
 * [Unreal Developer Guide > Launching Info](./unreal-initialization/#launching-information)
 * [Operator Guide > App Info(App, Client, Installed URL)](./oper-app): Set status of app and client, and installation URL
 * [Operator Guide > Operator(Maintenance,Notice)](./oper-operation): Register maintenance and notice
@@ -239,7 +239,7 @@ The following shows the service structure of Gamebase with simple description
 ## Console Role { #console-role }
 
 As for the standard member policy and permission for NHN Cloud, see the following guide.
-* [NHN Cloud > Console User Guide > Manage Members](/nhncloud/en/console-guide/#manage-members)
+* [NHN Cloud > Console User Guide > Manage Members](/nhncloud/en/console-guide/#member-management)
 
 <a id="manage-role"></a>
 ### Manage Role { #manage-role }
