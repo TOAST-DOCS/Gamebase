@@ -90,6 +90,7 @@ Gamebase.Push.registerPush(activity, configuration, new GamebaseCallback() {
 [Game > Gamebase > Android SDK使用ガイド > 始める > Setting > AndroidManifest.xml > Notification Options](./aos-started/#notification-options)
 
 <a id="notification-options-set-notification-options-with-registerpush-in-runtime"></a>
+<a id="set-notification-options-with-registerpush-in-runtime"></a>
 #### Set Notification Options with RegisterPush in Runtime
 
 通知オプションをAndroidManifest.xmlに定義しないで、ランタイムに設定することもできます。またはAndroidManifest.xmlに定義した値をランタイムに変更することもできます。

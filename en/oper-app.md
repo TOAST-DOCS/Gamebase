@@ -642,7 +642,7 @@ If you have a Unity build, change **AppDelegate** to **UnityAppController**.
 #### 11. GPGS v2
 
 For Google Play Games Services (GPGS) v2 authentication, you need to obtain a **Web Application Client ID** from Google Cloud Console and enter the Gamebase Callback URL in the Authorised Redirect URI field, the same as how to add Google authentication type.
-[Game > Gamebase > Console User Guide > Apps > App > Authentication Information > 2. Google](#2-google)
+[Game > Gamebase > Console User Guide > Apps > App > Authentication Information > 2. Google](#app-authentication-information-google)
 
 **Input Field**
 

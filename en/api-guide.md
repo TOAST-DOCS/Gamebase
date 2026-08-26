@@ -2396,7 +2396,7 @@ N/A
 | pendingRefundNotification.marketExpiryTimeMillis | Long | Required | Expiration time for registering the opinion<br>- 24 hours from when Google Play last sent the notification<br>- Epoch time (milliseconds) |
 
 > [Note]
-> You can retrieve detailed information about the payment subject to the chargeback by calling the [Get Payment Transaction](#get-payment-transaction) API with the `pendingRefundNotification.accessToken` value delivered in the callback.
+> You can retrieve detailed information about the payment subject to the chargeback by calling the [Get Payment Transaction](#purchase-iap-get-payment-transaction) API with the `pendingRefundNotification.accessToken` value delivered in the callback.
 
 > [Caution]
 > A callback with the same `refundReviewSeq` may be delivered more than once.
@@ -2490,7 +2490,7 @@ N/A
 | marketAppId | String | Required | Market app ID |
 | paymentSeq | String | Required | IAP payment number |
 | paymentId | String | Required | Market payment number |
-| decision | Enum | Required | [Review decision](#refund-review-decision) |
+| decision | Enum | Required | [Review decision](#google-play-reply-refund-review-refund-review-decision) |
 | sampleContentProvided | Boolean | Required | Whether a sample or trial was provided before purchase |
 | consumptionPercentage | Integer | Optional | Consumption percentage<br>- In milli-units<br>- `0` to `100000` represents 0% to 100% |
 | consumptionEvents | Array[Object] | Optional | List of consumption events |

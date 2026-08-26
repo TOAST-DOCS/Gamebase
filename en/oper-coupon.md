@@ -96,7 +96,7 @@ You have to register the item in the Coupon Item menu first to be able to select
 
 > [Note]
 >
-> Regarding coupon item registration, see [Coupon Item](#Coupon_Item).
+> Regarding coupon item registration, see [Coupon Item](#coupon-items).
 
 
 <a id="update-coupons"></a>

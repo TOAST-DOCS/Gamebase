@@ -642,7 +642,7 @@ Unity 빌드인 경우 **AppDelegate**를 **UnityAppController**로 변경하세
 #### 11. GPGS v2
 
 GPGS(Google Play Games Services) v2 인증을 위해서는 Google 인증 타입 추가 방법과 동일하게 Google Cloud Console에서 **Web Application Client ID**를 발급 받고 승인된 리디렉션 URI란에 Gamebase Callback URL을 입력해야 합니다.
-[Game > Gamebase > 콘솔 사용 가이드 > 앱 > App > Authentication Information > 2. Google](#2-google)
+[Game > Gamebase > 콘솔 사용 가이드 > 앱 > App > Authentication Information > 2. Google](#app-authentication-information-google)
 
 **입력 필드**
 

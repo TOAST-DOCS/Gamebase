@@ -2396,7 +2396,7 @@ Google Play에서 차지백 검토 요청 알림(`PendingRefundReviewNotificatio
 | pendingRefundNotification.marketExpiryTimeMillis | Long | Required | 의견 등록 만료 시각<br>- Google Play가 알림을 최종 전송한 시점부터 24시간<br>- Epoch Time(milliseconds) |
 
 > [참고]
-> 콜백으로 전달된 `pendingRefundNotification.accessToken`으로 [Get Payment Transaction](#get-payment-transaction) API를 호출하면 차지백 대상 결제의 상세 정보를 조회할 수 있습니다.
+> 콜백으로 전달된 `pendingRefundNotification.accessToken`으로 [Get Payment Transaction](#purchase-iap-get-payment-transaction) API를 호출하면 차지백 대상 결제의 상세 정보를 조회할 수 있습니다.
 
 > [주의]
 > 동일한 `refundReviewSeq`의 콜백이 중복으로 전달될 수 있습니다.
@@ -2490,7 +2490,7 @@ Google Play에서 차지백 검토 요청 알림(`PendingRefundReviewNotificatio
 | marketAppId | String | Required | 마켓 앱 ID |
 | paymentSeq | String | Required | IAP 결제 번호 |
 | paymentId | String | Required | 마켓 결제 번호 |
-| decision | Enum | Required | [검토 의견](#refund-review-decision) |
+| decision | Enum | Required | [검토 의견](#google-play-reply-refund-review-refund-review-decision) |
 | sampleContentProvided | Boolean | Required | 구매 전 샘플 또는 체험 제공 여부 |
 | consumptionPercentage | Integer | Optional | 소비 비율<br>- milli-units 단위<br>- `0`~`100000`은 0~100%를 의미 |
 | consumptionEvents | Array[Object] | Optional | 소비 이벤트 목록 |

@@ -90,6 +90,7 @@ To find out how to set the options, see the following guide:
 [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > Notification Options](./aos-started/#notification-options)
 
 <a id="notification-options-set-notification-options-with-registerpush-in-runtime"></a>
+<a id="set-notification-options-with-registerpush-in-runtime"></a>
 #### Set Notification Options with RegisterPush in Runtime
 
 You can also set the notification options at runtime without defining them in AndroidManifest.xml, or you can change the value set in AndroidManifest.xml at runtime as well.

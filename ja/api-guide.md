@@ -2396,7 +2396,7 @@ Google Playからチャージバック検討リクエストの通知(`PendingRef
 | pendingRefundNotification.marketExpiryTimeMillis | Long | Required | 意見登録の提出期限<br>- Google Playが通知を最終送信した時点から24時間<br>- Epoch Time(milliseconds) |
 
 > [参考]
-> コールバックで送信された `pendingRefundNotification.accessToken` を使用して [Get Payment Transaction](#get-payment-transaction) APIを呼び出すと、チャージバック対象決済の詳細情報を照会できます。
+> コールバックで送信された `pendingRefundNotification.accessToken` を使用して [Get Payment Transaction](#purchase-iap-get-payment-transaction) APIを呼び出すと、チャージバック対象決済の詳細情報を照会できます。
 
 > [注意]
 > 同一の `refundReviewSeq` のコールバックが重複して送信される場合があります。
@@ -2490,7 +2490,7 @@ Google Playからチャージバック検討リクエストの通知(`PendingRef
 | marketAppId | String | Required | マーケットアプリID |
 | paymentSeq | String | Required | IAP決済番号 |
 | paymentId | String | Required | マーケット決済番号 |
-| decision | Enum | Required | [検討意見](#refund-review-decision) |
+| decision | Enum | Required | [検討意見](#google-play-reply-refund-review-refund-review-decision) |
 | sampleContentProvided | Boolean | Required | 購入前のサンプルまたは体験提供の有無 |
 | consumptionPercentage | Integer | Optional | 消費割合<br>- milli-units単位<br>- `0`～`100000`は0～100%を意味 |
 | consumptionEvents | Array[Object] | Optional | 消費イベントリスト |
