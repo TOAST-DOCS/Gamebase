@@ -400,7 +400,7 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, configuration, new Game
 현재 사용자 ID 기준으로 활성화된 구독 목록을 조회합니다.
 결제가 완료된 구독 상품(자동 갱신형 구독, 자동 갱신형 소비성 구독 상품)은 만료되기 전까지 계속 조회할 수 있습니다.
 구독 수명 주기 처리는 다음 문서를 참조하시기 바랍니다.
-[NHN Cloud > SDK 사용 가이드 > IAP > Android > Google Play Store 구독(정기 결제) 기능 > 구독 수명 주기 처리](/nhncloud-sdk/ko/iap-android/#_28)
+[NHN Cloud > SDK 사용 가이드 > IAP > Android > Google Play Store 구독(정기 결제) 기능 > 구독 수명 주기 처리](/nhncloud-sdk/ko/iap-android/#subscription-lifecycle-handling)
 
 > <font color="red">[주의]</font><br/>
 >
@@ -678,5 +678,5 @@ Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataC
 ```
 
 * NHN Cloud IAP SDK 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud IAP > Android > 오류 코드](/nhncloud-sdk/ko/iap-android/#_33)
+    * [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud IAP > Android > 오류 코드](/nhncloud-sdk/ko/iap-android/#error-codes)
 
