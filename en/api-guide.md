@@ -2473,8 +2473,7 @@ N/A
   "consumptionPercentage": 100000,
   "consumptionEvents": [
     {
-      "consumptionTime": "2026-06-08T15:54:02+09:00"
-,
+      "consumptionTime": "2026-06-08T15:54:02+09:00",
       "ipAddress": "203.0.113.10",
       "consumptionItemDescription": "ruby_500 used",
       "location": {

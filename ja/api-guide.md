@@ -2473,8 +2473,7 @@ Google Playからチャージバック検討リクエストの通知(`PendingRef
   "consumptionPercentage": 100000,
   "consumptionEvents": [
     {
-      "consumptionTime": "2026-06-08T15:54:02+09:00"
-,
+      "consumptionTime": "2026-06-08T15:54:02+09:00",
       "ipAddress": "203.0.113.10",
       "consumptionItemDescription": "ruby_500 使用",
       "location": {
