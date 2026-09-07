@@ -1,3 +1,5 @@
+<!-- machine_translated: true -->
+
 <!-- pre-align:aligned sig=c663b6fda511 -->
 
 <a id="game-gamebase-api-v13-guide"></a>
@@ -2471,14 +2473,15 @@ Google Playからチャージバック検討リクエストの通知(`PendingRef
   "consumptionPercentage": 100000,
   "consumptionEvents": [
     {
-      "consumptionTime": 1780901642182,
+      "consumptionTime": "2026-06-08T15:54:02+09:00"
+,
       "ipAddress": "203.0.113.10",
       "consumptionItemDescription": "ruby_500 使用",
       "location": {
-        "regionCode": "JP",
-        "administrativeArea": "Tokyo",
-        "locality": "Minato-ku",
-        "sublocality": "Nishishinbashi"
+        "regionCode": "KR",
+        "administrativeArea": "Seoul",
+        "locality": "Seoul",
+        "sublocality": "Gangnam-gu"
       }
     }
   ]
@@ -2494,7 +2497,7 @@ Google Playからチャージバック検討リクエストの通知(`PendingRef
 | sampleContentProvided | Boolean | Required | 購入前のサンプルまたは体験提供の有無 |
 | consumptionPercentage | Integer | Optional | 消費割合<br>- milli-units単位<br>- `0`～`100000`は0～100%を意味 |
 | consumptionEvents | Array[Object] | Optional | 消費イベントリスト |
-| consumptionEvents[].consumptionTime | Long | Optional | 消費発生時刻<br>- Epoch Time(milliseconds) |
+| consumptionEvents[].consumptionTime | String | Optional | 消費発生日時<br>- RFC 3339 形式<br>- 例: `2026-06-08T06:54:02Z`, `2026-06-08T15:54:02+09:00` |
 | consumptionEvents[].ipAddress | String | Optional | 消費時点のIPアドレス |
 | consumptionEvents[].consumptionItemDescription | String | Optional | 消費アイテムの説明 |
 | consumptionEvents[].location | Object | Optional | 消費位置 |
