@@ -104,8 +104,8 @@ void USample::ShowImageNotices(int32 ColorR, int32 ColorG, int32 ColorB, int32 C
 
 | Parameter                              | Values                                   | Description        |
 | -------------------------------------- | ---------------------------------------- | ------------------ |
-| BackgroundColor          | FColor       | バックグラウンド背景色           |
-| timeOut                  | int64        | イメージ告知最大ローディング時間(単位: millisecond)<br/>**default**: 5000 |
+| BackgroundColor          | FColor       | バックグラウンド色           |
+| TimeOut                  | int64        | イメージ告知最大ローディング時間(単位: millisecond)<br/>**default**: 5000 |
 
 
 <a id="close-imagenotices"></a>

@@ -1288,61 +1288,60 @@ void USample::Login()
 <a id="error-handling"></a>
 ## Error Handling { #error-handling }
 
-| Category | Error | Error Code | Description |
-| --- | --- | --- | --- |
+| Category       | Error                                    | Error Code | Description                              |
 | -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
-| Auth           | INVALID\_MEMBER                          | 6          | A request for invalid member.                        |
-|                | BANNED\_MEMBER                           | 7          | The member has been banned.                               |
-|                | AUTH\_USER\_CANCELED                     | 3001       | Tje login has been cancelled.                            |
+| Auth           | INVALID\_MEMBER                          | 6          | The request is for an invalid member.                        |
+|                | BANNED\_MEMBER                           | 7          | The member is banned.                               |
+|                | AUTH\_USER\_CANCELED                     | 3001       | Login has been canceled.                            |
 |                | AUTH\_NOT\_SUPPORTED\_PROVIDER           | 3002       | The authentication method is not supported.                        |
 |                | AUTH\_NOT\_EXIST\_MEMBER                 | 3003       | The member does not exist or has withdrawn.                      |
-|                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | Failed to initialize an external authentication library. |
-|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | Error occurred in the external authentication library. <br/> Check the error details.  |
+|                | AUTH\_EXTERNAL\_LIBRARY\_INITIALIZATION\_ERROR | 3006 | Failed to initialize the external authentication library. |
+|                | AUTH\_EXTERNAL\_LIBRARY\_ERROR           | 3009       | An error occurred in the external authentication library. <br/>Check the detailed error. |
 |                | AUTH\_ALREADY\_IN\_PROGRESS\_ERROR       | 3010       | The previous authentication process has not been completed. |
-|                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | Logged out because the Gamebase Access Token is not valid.<br/>Please try logging in again. |
+|                | AUTH\_INVALID\_GAMEBASE\_TOKEN           | 3011       | You have been logged out because the Gamebase Access Token is not valid.<br/>Try logging in again. |
 |                | AUTH\_AUTHENTICATION\_SERVER\_ERROR      | 3012       | An error occurred from the authentication server. |
-| TransferAccount| SAME\_REQUESTOR                          | 8          | Used TransferAccount on a same device.  |
-|                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | Attempted to transfer on a non-guest account, or mapped a non-guest IdP to account.  |
-|                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | TransferAccount has been expired.  |
-|                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | Account transfer is locked due to many inputs of invalid TransferAccount. |
-|                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | TransferAccount ID is invalid. |
-|                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | TransferAccount password is invalid. |
-|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccount is not set up. <br/> Please enable it first on NHN Cloud Gamebase Console.  |
-|                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | TransferAccount does not exist. Please get TransferAccount issued.  |
-|                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | TransferAccount already exists. |
-|                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | TransferAccount has already been used. |
-| Auth (Login) | AUTH_TOKEN_LOGIN_FAILED | 3101 | Token login failed.  |
-|  | AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO | 3102 | Token information is invalid.  |
-|  | AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | There's no last login IdP information.  |
-| IdP Login | AUTH_IDP_LOGIN_FAILED | 3201 | IdP login has failed.   |
-|  | AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3202 | IdP information is invalid. (IdP information is unavialable on console.) |
+| TransferAccount| SAME\_REQUESTOR                          | 8          | The issued TransferAccount was used on the same device. |
+|                | NOT\_GUEST\_OR\_HAS\_OTHERS              | 9          | A transfer was attempted from a non-guest account, or an IdP other than guest is linked to the account. |
+|                | AUTH_TRANSFERACCOUNT_EXPIRED             | 3041       | The TransferAccount has expired. |
+|                | AUTH_TRANSFERACCOUNT_BLOCK               | 3042       | The account transfer feature has been locked due to multiple invalid TransferAccount entries. |
+|                | AUTH_TRANSFERACCOUNT_INVALID_ID          | 3043       | The TransferAccount ID is not valid. |
+|                | AUTH_TRANSFERACCOUNT_INVALID_PASSWORD    | 3044       | The TransferAccount password is not valid. |
+|                | AUTH_TRANSFERACCOUNT_CONSOLE_NO_CONDITION | 3045      | TransferAccount is not configured. <br/> Configure it first in the NHN Cloud Gamebase Console. |
+|                | AUTH_TRANSFERACCOUNT_NOT_EXIST           | 3046       | The TransferAccount does not exist. Issue a TransferAccount first. |
+|                | AUTH_TRANSFERACCOUNT_ALREADY_EXIST_ID    | 3047       | The TransferAccount already exists. |
+|                | AUTH_TRANSFERACCOUNT_ALREADY_USED        | 3048       | The TransferAccount has already been used. |
+| Auth (Login) | AUTH_TOKEN_LOGIN_FAILED | 3101 | Token login has failed. |
+|  | AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO | 3102 | The token information is not valid. |
+|  | AUTH_TOKEN_LOGIN_INVALID_LAST_LOGGED_IN_IDP | 3103 | There is no information on the most recently logged in IdP. |
+| IdP Login | AUTH_IDP_LOGIN_FAILED | 3201 | IdP login has failed. |
+|  | AUTH_IDP_LOGIN_INVALID_IDP_INFO | 3202 | The IdP information is not valid (the IdP information does not exist in the console). |
 | Add Mapping | AUTH_ADD_MAPPING_FAILED | 3301 | Failed to add mapping. |
-|  | AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302 | Mapped to another member. |
-|  | AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP | 3303 | Already mapped to same IdP. |
-|  | AUTH_ADD_MAPPING_INVALID_IDP_INFO | 3304 | IdP information is invalid (IdP information is unavailable on console).  |
-|                | AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP    | 3305       | AddMapping is unavailable with Guest IdP.  |
-| Add Mapping Forcibly | AUTH_ADD_MAPPING_FORCIBLY_NOT_EXIST_KEY         | 3311       | ForcingMappingKey does not exist. <br/> Check ForcingMappingTicket again. |
-|                      | AUTH_ADD_MAPPING_FORCIBLY_ALREADY_USED_KEY      | 3312       | ForcingMappingKey has already been used.  |
-|                      | AUTH_ADD_MAPPING_FORCIBLY_EXPIRED_KEY           | 3313       | ForcingMappingKey is expired.  |
-|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_IDP         | 3314       | ForcingMappingKey has been used for another IdP. <br/> The ForcingMappingKey is applied for the attempt of force mapping to a same IdP.  |
-|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_AUTHKEY     | 3315       | ForcingMappingKey has been used for another account.  <br/> The ForcingMappingKey is applied for the attempt of force mapping to a same IdP and account.  |
-| Remove Mapping | AUTH_REMOVE_MAPPING_FAILED | 3401 | Failed to delete mapping  |
-|  | AUTH_REMOVE_MAPPING_LAST_MAPPED\_IDP | 3402 | Unable to delete the last mapped IdP. |
-|  | AUTH_REMOVE_MAPPING_LOGGED_IN\_IDP | 3403 | The IdP is currently logged-in.  |
-| Logout | AUTH_LOGOUT_FAILED | 3501 | Failed to log out. |
-| Withdrawal     | AUTH\_WITHDRAW\_FAILED                   | 3601       | Failed to withdraw.                             |
-|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | The user is already under temporary withdrawal.                   |
-|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | The user is not under temporary withdrawal.                    |
-| Not Playable | AUTH_NOT_PLAYABLE | 3701 | Unavailable to play game (e.g. due to maintenance or service closed.)  |
-| Auth(Unknown) | AUTH_UNKNOWN_ERROR | 3999 | Unknown error (undefined error). |
+|  | AUTH_ADD_MAPPING_ALREADY_MAPPED_TO_OTHER_MEMBER | 3302 | Already mapped to another member. |
+|  | AUTH_ADD_MAPPING_ALREADY_HAS_SAME_IDP | 3303 | Already mapped to the same IdP. |
+|  | AUTH_ADD_MAPPING_INVALID_IDP_INFO | 3304 | The IdP information is not valid (the IdP information does not exist in the console). |
+|                | AUTH_ADD_MAPPING_CANNOT_ADD_GUEST_IDP    | 3305       | AddMapping is not available with the guest IdP. |
+| Add Mapping Forcibly | AUTH_ADD_MAPPING_FORCIBLY_NOT_EXIST_KEY         | 3311       | The force mapping key (ForcingMappingKey) does not exist. <br/>Check the ForcingMappingTicket again. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_ALREADY_USED_KEY      | 3312       | The force mapping key (ForcingMappingKey) has already been used. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_EXPIRED_KEY           | 3313       | The force mapping key (ForcingMappingKey) has expired. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_IDP         | 3314       | The force mapping key (ForcingMappingKey) was used for a different IdP. <br/>The issued ForcingMappingKey is used to attempt force mapping on the same IdP. |
+|                      | AUTH_ADD_MAPPING_FORCIBLY_DIFFERENT_AUTHKEY     | 3315       | The force mapping key (ForcingMappingKey) was used for a different account. <br/>The issued ForcingMappingKey is used to attempt force mapping on the same IdP and account. |
+| Remove Mapping | AUTH_REMOVE_MAPPING_FAILED | 3401 | Failed to remove mapping. |
+|  | AUTH_REMOVE_MAPPING_LAST_MAPPED\_IDP | 3402 | The last mapped IdP cannot be removed. |
+|  | AUTH_REMOVE_MAPPING_LOGGED_IN\_IDP | 3403 | This is the IdP that you are currently logged in with. |
+| Logout | AUTH_LOGOUT_FAILED | 3501 | Logout has failed. |
+| Withdrawal     | AUTH\_WITHDRAW\_FAILED                   | 3601       | Withdrawal has failed.                              |
+|                | AUTH\_WITHDRAW\_ALREADY\_TEMPORARY\_WITHDRAW | 3602   | The user has already requested temporary withdrawal.                    | 
+|                | AUTH\_WITHDRAW\_NOT\_TEMPORARY\_WITHDRAW | 3603       | The user has not requested temporary withdrawal.                     | 
+| Not Playable | AUTH_NOT_PLAYABLE | 3701 | The service is in a state where playing is not possible (under maintenance or service terminated, etc.). |
+| Auth(Unknown) | AUTH_UNKNOWN_ERROR | 3999 | An unknown error has occurred. (An undefined error.) |
 
-* Please see the following document for the entire error codes. 
+* For the full list of error codes, refer to the following document.
     * [Error Codes](./error-code/#client-sdk)
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 
-* The error is returned when an error occurs in external authentication library.
-* The information on the error in external authentication library is included in the error details, and you can find detailed error code and message as follows.
+* This error is returned when an error occurs in the external authentication library.
+* The error information from the external authentication library is included in the detailed error, and the detailed error code and message can be checked as follows.
 
 ```cpp
 GamebaseError* gamebaseError = Error; // GamebaseError object via callback
@@ -1366,4 +1365,4 @@ else
 }
 ```
 
-* For detailed error codes, see the Developer page on each external authentication library.
+* For detailed error codes, refer to the Developer page of each external authentication library.

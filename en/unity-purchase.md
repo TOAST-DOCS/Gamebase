@@ -641,15 +641,15 @@ Supported Platforms
 | Error                                       | Error Code | Description                              |
 |---------------------------------------------| ---------- | ---------------------------------------- |
 | PURCHASE_NOT_INITIALIZED                    | 4001       | The purchase module has not been initialized.<br>Check if the gamebase-adapter-purchase-IAP module has been added to project. |
-| PURCHASE_USER_CANCELED                      | 4002       | Purchase has been cancelled. |
+| PURCHASE_USER_CANCELED                      | 4002       | The game user cancelled the item purchase. |
 | PURCHASE_NOT_FINISHED\_PREVIOUS\_PURCHASING | 4003       | API has been called when a purchase logic is not completed. |
 | PURCHASE_NOT_ENOUGH_CASH                    | 4004       | Cannot purchase due to shortage of cash of the store. |
 | PURCHASE_INACTIVE_PRODUCT_ID                | 4005       | Product is not activated.   |
 | PURCHASE_NOT_EXIST_PRODUCT_ID               | 4006       | Requested for purchase with invalid GamebaseProductID. |
 | PURCHASE_LIMIT_EXCEEDED                     | 4007       | You have exceeded your monthly purchase limit.              |
-| PURCHASE_PENDING                            | 4008       | 결제를 완료하려면 추가 확인이 필요합니다. |
+| PURCHASE_PENDING                            | 4008       | Additional verification is required to complete your payment. |
 | PURCHASE_NOT_SUPPORTED_MARKET               | 4010       | The store is not supported.<br>The stores you can select are AS (App Store), GG (Google), ONESTORE, GALAXY, HUAWEI, and MYCARD. |
-| PURCHASE_EXTERNAL_LIBRARY_ERROR             | 4201       | Error in IAP library.<br>Check the code details. |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR             | 4201       | Error in NHN Cloud IAP library.<br/>Check the error details. |
 | PURCHASE_UNKNOWN_ERROR                      | 4999       | Unknown error in purchase.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry) and we'll reply at the earliest possible moment. |
 
 * Refer to the following document for the entire error code.

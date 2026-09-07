@@ -303,7 +303,7 @@ void USample::QueryTerms()
 | -------------------- | --------------------------------| ------------------- |
 | TermsSeq             | int32                           | KEY for the entire terms and conditions.<br/>This value is required when calling updateTerms API.          |
 | TermsVersion         | FString                         | T&C version.<br/>This value is required when calling updateTerms API.              |
-| TermsCountryType     | FString                         | Terms and conditions type.<br/> - KOREAN: Korean terms and conditions <br/> - GDPR: European terms and conditions <br/> - ETC: Other countries' terms and conditions         |
+| termsCountryType     | FString                         | Terms and conditions type.<br/> - KOREAN: Korean terms and conditions <br/> - GDPR: European terms and conditions <br/> - ETC: Other countries' terms and conditions         |
 | Contents             | TArray<FGamebaseTermsContent>   | Terms and conditions info          |
 
 

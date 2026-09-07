@@ -406,7 +406,7 @@ Under same user ID, you can query all subscriptions purchased both on Android an
 
 | API                             | Mandatory(M) / Optional(O) | Description                                                                    |
 | ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
-| allStores                       | O                          | Return unconsumed lists purchased with the same UserID from a different store.<br/>Default is **false**. |
+| bAllStores                       | O                          | Return unconsumed lists purchased with the same UserID from a different store.<br/>Default is **false**. |
 
 **API**
 
@@ -609,7 +609,7 @@ Supported Platforms
 | Error                                       | Error Code | Description                              |
 | ------------------------------------------- | ---------- | ---------------------------------------- |
 | PURCHASE_NOT_INITIALIZED                    | 4001       | The purchase module has not been initialized.<br>Check if the gamebase-adapter-purchase-IAP module has been added to project. |
-| PURCHASE_USER_CANCELED                      | 4002       | Purchase has been cancelled. |
+| PURCHASE_USER_CANCELED                      | 4002       | The game user canceled the item purchase. |
 | PURCHASE_NOT_FINISHED\_PREVIOUS\_PURCHASING | 4003       | API has been called when a purchase logic is not completed. |
 | PURCHASE_NOT_ENOUGH_CASH                    | 4004       | Cannot purchase due to shortage of cash of the store. |
 | PURCHASE_INACTIVE_PRODUCT_ID                | 4005       | Product is not activated.   |

@@ -48,10 +48,10 @@ NHN Cloudの統合アプリ内決済サービスであるIAP(In-App Purchase)を
 | ONE Store | ONESTORE | only Android |
 | GALAXY Store | GALAXY | only Android |
 | Huawei AppGallery | HUAWEI | only Android |
-| My Card | MYCARD | only Android |
-| Windows | WIN | only Unity Standalone |
+| MyCard | MYCARD | only Android |
+| Windows | WIN | Standaloneに限る |
 | macOS | MAC | Standaloneに限る |
-| Web | WEB | only Unity WebGL|
+| Web | WEB | WebGLに限る |
 
 <a id="gamebaseconfiguration-displaylanguagecode"></a>
 #### 4. displayLanguageCode

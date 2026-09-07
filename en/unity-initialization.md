@@ -48,10 +48,10 @@ Store information required to initialize In-App Purchase (IAP) of NHN Cloud.
 | ONE Store | ONESTORE | only Android |
 | GALAXY Store | GALAXY | only Android |
 | Huawei AppGallery | HUAWEI | only Android |
-| My Card | MYCARD | only Android |
-| Windows | WIN | only Unity Standalone |
+| MyCard | MYCARD | only Android |
+| Windows | WIN | only Standalone |
 | macOS | MAC | only Standalone |
-| Web | WEB | only Unity WebGL|
+| Web | WEB | only WebGL |
 
 <a id="gamebaseconfiguration-displaylanguagecode"></a>
 #### 4. displayLanguageCode

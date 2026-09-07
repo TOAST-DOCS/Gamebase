@@ -561,7 +561,16 @@ public void ShowWebView()
 <a id="show-webview-predefined-custom-scheme"></a>
 #### Predefined Custom Scheme
 
-<!-- TODO: translate body -->
+Gamebaseで指定されたスキームです。
+
+| scheme | 用途 |
+| ----------------------------- | ------------------------------ |
+| gamebase://dismiss | ウェブビューを閉じます。 |
+| gamebase://goBack | ウェブビューを前のページに戻ります。 |
+| gamebase://getUserId          | 現在ログイン中のゲームユーザーのユーザーIDを表示します。 |
+| gamebase://getMaintenanceInfo | メンテナンス内容をWebPageに表示します。 |
+| gamebase://showwebview?link={URLEncodedURL} | linkパラメータのURLをウェブビューで開きます。<br>URLEncodedURL：ウェブビューで開くURL。<br>URLデコードが必要。 |
+| gamebase://openbrowser?link={URLEncodedURL} | linkパラメータのURLを外部ブラウザで開きます。<br/>URLEncodedURL：外部ブラウザで開くURL<br/>URLデコードが必要。 |
 
 <a id="close-webview"></a>
 ### Close WebView { #close-webview }
