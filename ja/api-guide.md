@@ -2478,10 +2478,10 @@ Google Playからチャージバック検討リクエストの通知(`PendingRef
       "ipAddress": "203.0.113.10",
       "consumptionItemDescription": "ruby_500 使用",
       "location": {
-        "regionCode": "KR",
-        "administrativeArea": "Seoul",
-        "locality": "Seoul",
-        "sublocality": "Gangnam-gu"
+        "regionCode": "JP",
+        "administrativeArea": "Tokyo",
+        "locality": "Minato-ku",
+        "sublocality": "Nishishinbashi"
       }
     }
   ]
