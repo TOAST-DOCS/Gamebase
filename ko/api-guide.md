@@ -2471,8 +2471,7 @@ Google Play에서 차지백 검토 요청 알림(`PendingRefundReviewNotificatio
   "consumptionPercentage": 100000,
   "consumptionEvents": [
     {
-      "consumptionTime": "2026-06-08T15:54:02+09:00"
-,
+      "consumptionTime": "2026-06-08T15:54:02+09:00",
       "ipAddress": "203.0.113.10",
       "consumptionItemDescription": "ruby_500 사용",
       "location": {

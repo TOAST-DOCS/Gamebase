@@ -1,3 +1,5 @@
+<!-- machine_translated: true -->
+
 <!-- pre-align:aligned sig=c663b6fda511 -->
 
 <a id="game-gamebase-api-v13-guide"></a>
@@ -2471,7 +2473,7 @@ N/A
   "consumptionPercentage": 100000,
   "consumptionEvents": [
     {
-      "consumptionTime": 1780901642182,
+      "consumptionTime": "2026-06-08T15:54:02+09:00",
       "ipAddress": "203.0.113.10",
       "consumptionItemDescription": "ruby_500 used",
       "location": {
@@ -2494,7 +2496,7 @@ N/A
 | sampleContentProvided | Boolean | Required | Whether a sample or trial was provided before purchase |
 | consumptionPercentage | Integer | Optional | Consumption percentage<br>- In milli-units<br>- `0` to `100000` represents 0% to 100% |
 | consumptionEvents | Array[Object] | Optional | List of consumption events |
-| consumptionEvents[].consumptionTime | Long | Optional | Time the consumption occurred<br>- Epoch time (milliseconds) |
+| consumptionEvents[].consumptionTime | String | Optional | Time when consumption occurred<br>- RFC 3339 format<br>- Example: `2026-06-08T06:54:02Z`, `2026-06-08T15:54:02+09:00` |
 | consumptionEvents[].ipAddress | String | Optional | IP address at the time of consumption |
 | consumptionEvents[].consumptionItemDescription | String | Optional | Description of the consumed item |
 | consumptionEvents[].location | Object | Optional | Consumption location |
