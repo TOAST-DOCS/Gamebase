@@ -2471,7 +2471,8 @@ Google Play에서 차지백 검토 요청 알림(`PendingRefundReviewNotificatio
   "consumptionPercentage": 100000,
   "consumptionEvents": [
     {
-      "consumptionTime": 1780901642182,
+      "consumptionTime": "2026-06-08T15:54:02+09:00"
+,
       "ipAddress": "203.0.113.10",
       "consumptionItemDescription": "ruby_500 사용",
       "location": {
@@ -2494,7 +2495,7 @@ Google Play에서 차지백 검토 요청 알림(`PendingRefundReviewNotificatio
 | sampleContentProvided | Boolean | Required | 구매 전 샘플 또는 체험 제공 여부 |
 | consumptionPercentage | Integer | Optional | 소비 비율<br>- milli-units 단위<br>- `0`~`100000`은 0~100%를 의미 |
 | consumptionEvents | Array[Object] | Optional | 소비 이벤트 목록 |
-| consumptionEvents[].consumptionTime | Long | Optional | 소비 발생 시각<br>- Epoch Time(milliseconds) |
+| consumptionEvents[].consumptionTime | String | Optional | 소비 발생 시각<br>- RFC 3339 형식<br>- 예: `2026-06-08T06:54:02Z`, `2026-06-08T15:54:02+09:00` |
 | consumptionEvents[].ipAddress | String | Optional | 소비 시점의 IP 주소 |
 | consumptionEvents[].consumptionItemDescription | String | Optional | 소비 아이템 설명 |
 | consumptionEvents[].location | Object | Optional | 소비 위치 |
