@@ -14,7 +14,7 @@ This menu provides functions that are required for an app operation.
 <a id="maintenance"></a>
 ## Maintenance { #maintenance }
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_01_en_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/en/gamebase_maintenance_01_en_240625.png)
 
 Can easily register maintenance in the Console, when required.
 Retrieve maintenance history of registered apps and check progress at a glance, and search maintenance by registered causes of maintenance.
@@ -30,14 +30,14 @@ Gamebase provides maintenance pop-ups and detail pages to show to game users whi
 Default maintenance pop-up of Gamebase.
 ![gamebase_op_img](https://static.toastoven.net/prod_gamebase/gamebase_op_02_201812.png)
 Default maintenance page of Gamebase (with cause and time of maintenance)
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_02_en_240105.jpg)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/en/gamebase_maintenance_02_en_240105.jpg)
 
 <a id="register-maintenance"></a>
 ### Register Maintenance { #register-maintenance }
 
 Click **Register** under the **Maintenance** tab, to register maintenance.
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_03_en_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/en/gamebase_maintenance_03_en_240625.png)
 
 >  <font color="red">[Caution] </font><br/>
 >  
@@ -52,7 +52,7 @@ Select the maintenance target.
 - Some clients : Select it when maintenance is required only for certain client versions. Click the 'Select version' button to display the list of the client versions registered from the client menu.
 <br>**Example of selecting Some clients**
 <br>Select All is possible by client status and by store. Just select the client version to perform maintenance, and click the Confirm button.
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
 
 <a id="register-maintenance-2-reason"></a>
 #### (2) Reason
@@ -85,7 +85,7 @@ This is useful when creating the maintenance page format you want.
 
 ##### 4-3) External page
 
-![image alt](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_05_en_240625.png)
+![image alt](../static/images/ConsoleGuide/Operation/en/gamebase_maintenance_05_en_240625.png)
 If you own a maintenance page or template, the maintenance page can be linked to URL.
 Preview of the URL to connect is also supported.
 To be provided with maintenance information, choose **Provide Information** and enter messages in **Message**: maintenance information registered in Gamebase (maintenance time, messages, and etc.) can be provided on the maintenance page.
@@ -111,7 +111,7 @@ To register maintenance again with similar content, you may copy and paste for a
 <a id="notice"></a>
 ## Notice { #notice }
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_06_en_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/en/gamebase_maintenance_06_en_240625.png)
 
 Provides pop-up notifications during app execution. The pop-ups will show before logins; in case of errors in external authentication or game server, pop-ups need to be registered.
 Can easily check the list of registered notifications with status and search messages.
@@ -126,7 +126,7 @@ Status of notice is classified into three as below.
 
 Clicking the 'Register' button on the main screen of Notice redirects you to the screen where you can register a notice.
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_07_en_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/en/gamebase_maintenance_07_en_240625.png)
 
 <a id="register-notice-1-target"></a>
 #### (1) Target
@@ -136,7 +136,7 @@ Select a target to show notification.
 - Some Clients: When only a particular client version requires maintenance. Click 'Select a Version' to show the list of client versions registered in the client menu.
   <br>**Example of selecting particular clients**
   <br>Can select a client status and all for each store, and select a client version for maintenance and press OK.
-  ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
+  ![gamebase_op_img](../static/images/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
 
 
 <a id="register-notice-2-target-country"></a>
@@ -201,7 +201,7 @@ You can register a game notice on the console to display both images and message
 You can view all registered game notices at a glance. Game notices with the status set to **Exposing** are displayed in the in-game notice list based on their registration date.
 You can also search for game notices by their posting status and title.
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_01_ko_250415.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_01_ko_250415.png)
 
 (1) **Status**: You can search for game notices by their posting status.
   - Scheduled: Game notice scheduled for exposure
@@ -222,7 +222,7 @@ The information displayed for each item is as follows:
 
 <a id="register-game-notice"></a>
 ### Register Game notice { #register-game-notice }
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_02_ko_250415.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_02_ko_250415.png)
 
 Click the **Register** button in the **Game Notice** list to rsgister the game notice.
 
@@ -235,7 +235,7 @@ Select the target to expose the game notice to.
 - Some clients : Select it when exposure is required only for certain client versions. Click the **Select version** button to display the list of the client versions registered from the client menu.
   <br>**Example of selecting Some clients**
   <br>Select All is possible by client status and by store. Just select the client version to expose, and click the **Confirm** button.
-  ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240611.png)
+  ![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240611.png)
 
 
 <a id="register-game-notice-2-target-country"></a>
@@ -277,7 +277,7 @@ If you want to register the game notice again with the similar details to the al
 > The uploaded image is automatically deleted 14 days after the exposure date of the game notice ends.
 <a id="modify-game-notice-setting"></a>
 ### Modify Game notice Setting { #modify-game-notice-setting }
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_03_ko_250415.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_03_ko_250415.png)
 
 You can configure the basic settings for game notices, and the configured information will be applied to all notices uniformly.
 - Use Image List: When enabled, the images registered in the game notice will also be displayed on the in-game list screen.
@@ -286,7 +286,7 @@ You can configure the basic settings for game notices, and the configured inform
 <a id="image-notice"></a>
 ## Image Notice { #image-notice }
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_08_en_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/en/gamebase_maintenance_08_en_240625.png)
 
 You can easily provide the notice as an image within the game by registering the image into the console.
 The list of the current notices is exposed at the top of the list, and the list of the completed notices is displayed separately at the bottom.
@@ -309,7 +309,7 @@ What's displayed on each item is as follows:
 - **Click-Through Rate (%)**: Shows simple statistics about how many times the image notice has been displayed within the game and how many times it has actually been clicked. It shows the value against the total percentage, and you can see the graph on daily impressions and clicks during the display period by clicking the 'Confirm' button.
     * You can download and check the click-through rate data by date that users searched for and viewed within the display period. 
 - **Status** : Shows the display status as follows.
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_09_en_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/en/gamebase_maintenance_09_en_240625.png)
 
 ```
 (1) To be exposed: The image notice is expected to be exposed
@@ -321,7 +321,7 @@ What's displayed on each item is as follows:
 ### Register Image notice { #register-image-notice }
 
 You can register the image notice by selecting the **Register** button from the **Image Notice** list.
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_10_en_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/en/gamebase_maintenance_10_en_240625.png)
 
 <a id="register-image-notice-1-target"></a>
 #### (1) Target
@@ -332,7 +332,7 @@ Select the target to expose the image notice to.
 - Some clients : Select it when exposure is required only for certain client versions. Click the 'Select version' button to display the list of the client versions registered from the client menu.
 <br>**Example of selecting Some clients**
 <br>Select All is possible by client status and by store. Just select the client version to expose, and click the Confirm button.
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
 
 
 <a id="register-image-notice-2-target-country"></a>
@@ -394,7 +394,7 @@ If you want to register the notice image again with the similar details to the a
 
 <a id="modify-image-notice-setting"></a>
 ### Modify Image notice setting { #modify-image-notice-setting }
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_10_en_240709.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/en/gamebase_maintenance_10_en_240709.png)
 You can make basic settings for the image notice popup, and the information you set will be batch applied to all image notice.
 
 - Image Notice Type: Specify the image notice posting type. You can choose from the following types:
@@ -411,14 +411,14 @@ You can make basic settings for the image notice popup, and the information you 
 ## Kick Out { #kick-out }
 If you need to disconnect users for reasons such as game maintenance, you can easily do so in the console.
 You can see the kickout history and kickout registrations at a glance.
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_11_en_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/en/gamebase_maintenance_11_en_240625.png)
 
 <a id="register-kick-out"></a>
 ### Register Kick Out { #register-kick-out }
 
 Clicking the **Register** button on the **Kickout** tab redirects you to the screen where you can register a kickout.
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_12_en_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/en/gamebase_maintenance_12_en_240625.png)
 
 <a id="1-target-to-process"></a>
 ### (1) Target to process { #1-target-to-process }
@@ -427,7 +427,7 @@ Select the target client to kick out.
 - Some clients : Select it when kickout is required only for certain client versions. Click the 'Select Version' button to display the list of the client versions registered from the client menu.
 <br>**[Example of selecting Some clients]**
 <br>Select All is possible by client status and by store. Just select the client version to perform maintenance, and click the Confirm button.
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
 
 <a id="2-reason"></a>
 ### (2) Reason { #2-reason }

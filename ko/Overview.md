@@ -6,7 +6,7 @@
 게임플랫폼 선두 기업 NHN의 10년 노하우를 담은 Gamebase, 자신 있게 추천합니다. 
 Gamebase SDK만 적용하면 모든 서비스를 손쉽게 이용 가능합니다. 
 
-![Gamebase_summary](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/ko/Gamebase_overview_00_kr_202501.png)
+![Gamebase_summary](../static/images/Overview/ko/Gamebase_overview_00_kr_202501.png)
 
 <a id="gamebase-sample-app"></a>
 ## Gamebase Sample App { #gamebase-sample-app }
@@ -245,15 +245,15 @@ NHN Cloud의 기본적인 멤버 정책과 권한에 대해서는 다음 가이�
 
 **Console > 프로젝트 설정 > 멤버 관리**
 프로젝트 설정 화면에서 토스트 회원을 추가하거나 등록된 회원에게 개별적인 권한 부여가 가능합니다. 한 명의 회원에게 여러개의 권한을 중복하여 지급할 수 있습니다.
-![프로젝트권한](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/ko/gamebase_overview_01_ko_240105.png)
+![프로젝트권한](../static/images/Overview/ko/gamebase_overview_01_ko_240105.png)
 
 **Console > 프로젝트 설정 > 권한 그룹 관리**
 운영상의 편의를 위해서 자주 사용하는 권한은 *권한 그룹*으로 등록하여 토스트 회원에게 권한 그룹 단위로 권한을 줄 수 있습니다.
-![프로젝트권한그룹](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/ko/gamebase_overview_02_ko_240105.png)
+![프로젝트권한그룹](../static/images/Overview/ko/gamebase_overview_02_ko_240105.png)
 
 **Console > 조직 설정 > 프로젝트 공통 권한 그룹 설정**
 조직 관리 화면에서 조직내의 프로젝트에서 공통으로 사용하는 권한 그룹을 관리할 수 있습니다.
-![조직권한그룹](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/ko/gamebase_overview_03_ko_240105.png)
+![조직권한그룹](../static/images/Overview/ko/gamebase_overview_03_ko_240105.png)
 
 <a id="permissions-list-provided-by-gamebase"></a>
 ### Gamebase에서 제공하는 권한 목록 { #permissions-list-provided-by-gamebase }

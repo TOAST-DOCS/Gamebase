@@ -19,7 +19,7 @@ Analytics is composed of the following:
 
 Real-time concurrence indicators, as well as maintenance and push information of current app users are available.  
 
-![analytics_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_01_en_240103.png)
+![analytics_01](../static/images/ConsoleGuide/Analytics/en/analytics_01_en_240103.png)
 
 <a id="real-time-concurrence-change-graphs-of-real-time-concurrent-users"></a>
 #### 1. Change Graphs of Real-Time Concurrent Users 
@@ -41,7 +41,7 @@ Push information delivered to Gamebase around the clock of the day, to check ris
 ### Dashboard { #dashboard }
 
 A variety of user indicators can be easily noticed in real time. 
-![analytics_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_02_en_240103.png)
+![analytics_02](../static/images/ConsoleGuide/Analytics/en/analytics_02_en_240103.png)
 
 <a id="dashboard-for-real-time-user-status"></a>
 #### 1. Dashboard for Real-Time User Status 
@@ -82,7 +82,7 @@ Share by each OS, app version, store or country, is available on a graph: shows 
 ### Users { #users }
 
 Basic user indicators are available. 
-![analytics_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_03_en_240103.png)
+![analytics_03](../static/images/ConsoleGuide/Analytics/en/analytics_03_en_240103.png)
 
 <a id="users-user-status"></a>
 #### 1. User Status 
@@ -106,7 +106,7 @@ Shows basic indicators for daily users during selected period on graphs or table
 
 <a id="service-environment"></a>
 ### Service Environment { #service-environment }
-![analytics_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_04_en_240103.png)
+![analytics_04](../static/images/ConsoleGuide/Analytics/en/analytics_04_en_240103.png)
 
 User indicators are available on each environment. 
 
@@ -124,7 +124,7 @@ User indicators are available on each environment.
 
 <a id="user-inflow-and-outflow"></a>
 ### User Inflow and Outflow { #user-inflow-and-outflow }
-![analytics_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_05_kr_240103.png)
+![analytics_05](../static/images/ConsoleGuide/Analytics/ko/analytics_05_kr_240103.png)
 
 You can find a day-by-day trend of app user inflow and outflow.
 Weekly and monthly inflow/outflow metrics are updated and reflected as of 10 am.
@@ -154,7 +154,7 @@ Weekly and monthly inflow/outflow metrics are updated and reflected as of 10 am.
 
 <a id="retention"></a>
 ### Retention { #retention }
-![analytics_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_06_en_240103.png)
+![analytics_06](../static/images/ConsoleGuide/Analytics/en/analytics_06_en_240103.png)
 
 Retention refers to how many subscribed users remain in service for the next 180 days after subscribed. 
 
@@ -166,7 +166,7 @@ You can check the retention data either by including or excluding users who subs
       
 <a id="ltv"></a>
 ### LTV { #ltv }
-![analytics_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_07_en_240103.png)
+![analytics_07](../static/images/ConsoleGuide/Analytics/en/analytics_07_en_240103.png)
 
 LTV is an index representing the expected annual revenue from a single user in the selected user group.
 
@@ -194,7 +194,7 @@ The following restrictions are applied for accurate estimation of LTV:
 
 <a id="life-cycle"></a>
 ### Life Cycle { #life-cycle }
-![analytics_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_08_en_240103.png)
+![analytics_08](../static/images/ConsoleGuide/Analytics/en/analytics_08_en_240103.png)
 
 Life Cycle is an index used to check the trend of daily active users since the first inflow of users. Data is retained for up to 3 years.
 
@@ -208,7 +208,7 @@ Life Cycle is an index used to check the trend of daily active users since the f
 
 <a id="frequency7"></a>
 ### Frequency7 { #frequency7 }
-![analytics_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_09_en_240103.png)
+![analytics_09](../static/images/ConsoleGuide/Analytics/en/analytics_09_en_240103.png)
 
 The Frequency7 index provides information about weekly visitor and ratio of DAU. It can be used to see immersion, loyalty, and other information at a glance.
 
@@ -231,7 +231,7 @@ If there is a user who visited the site on March 1, 2, 3, 6, and 7, as of March 
 ### Purchase Amount { #purchase-amount }
 
 Shows indicators of purchase amount.   
-![analytics_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_10_en_240103.png)
+![analytics_10](../static/images/ConsoleGuide/Analytics/en/analytics_10_en_240103.png)
 
 <a id="purchase-amount-status-table-for-purchase-amount"></a>
 #### 1.Status Table for Purchase Amount 
@@ -246,7 +246,7 @@ Monthly cumulative purchase amount can only be checked on daily view
 
 <a id="paying-users"></a>
 ### Paying Users { #paying-users }
-![analytics_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_11_en_240103.png)
+![analytics_11](../static/images/ConsoleGuide/Analytics/en/analytics_11_en_240103.png)
 
 Indicators of paying users are displayed. 
 Refer to the following glossaries:
@@ -267,7 +267,7 @@ Refer to the following glossaries:
 ### Item Sales Indicators { #item-sales-indicators }
 
 Sales indicators of Gamebase items are available. 
-![analytics_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_12_en_240103.png)
+![analytics_12](../static/images/ConsoleGuide/Analytics/en/analytics_12_en_240103.png)
 
 * Item: List of items registered at Gamebase 
 * 10 Best-Selling Items: List of 10 most selling items by the price or number of sales 
@@ -279,7 +279,7 @@ Sales indicators of Gamebase items are available.
 
 <a id="first-purchase"></a>
 ### First Purchase { #first-purchase }
-![analytics_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_13_en_240103.png)
+![analytics_13](../static/images/ConsoleGuide/Analytics/en/analytics_13_en_240103.png)
 
 First-purchase information of newly paying users can be found. 
 
@@ -298,7 +298,7 @@ All purchased items are displayed in the order of purchase amount.
 ### Concurrent Group Users { #concurrent-group-users }
 
  Indicators of concurrent users for all Gamebase projects are available.  
-![analytics_14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_14_en_240103.png)
+![analytics_14](../static/images/ConsoleGuide/Analytics/en/analytics_14_en_240103.png)
 
 * Real-Time Group Concurrence : Shows real-time concurrent users (CCU) of a Gamebase project. 
 * Project Group Concurrence : Shows app users by selected period or filter.
@@ -307,7 +307,7 @@ All purchased items are displayed in the order of purchase amount.
 ### Group Comparison Indicators { #group-comparison-indicators }
 
 Projects of Gamebase users can be filtered and compared by group. 
-![analytics_15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_15_en_240103.png)
+![analytics_15](../static/images/ConsoleGuide/Analytics/en/analytics_15_en_240103.png)
 
 * DAU: Daily active users, by member number, logged in more than once 
 * NRU: Newly Registered Users of the day 
@@ -339,7 +339,7 @@ There are three types of transfer indicators as below:
 You can find each type of selected transfer indicators, as well as access and sales information on a particular date.  
 Concurrent access is available via CCU for the day, or DAU on each date. 
 Information is updated at every 10 minutes for the day.  
-![analytics_16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_16_en_240103.png)
+![analytics_16](../static/images/ConsoleGuide/Analytics/en/analytics_16_en_240103.png)
 
 * CCU (Concurrent User): Concurrent real-time users measured at every minute (number of login users) 
 * DAU (Daily Active User): Active users, who log in more than once
@@ -351,7 +351,7 @@ Information is updated at every 10 minutes for the day.
 ### Status by Level { #status-by-level }
 
 Access and sales status are available at each level.
-![analytics_17](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_17_en_240103.png)
+![analytics_17](../static/images/ConsoleGuide/Analytics/en/analytics_17_en_240103.png)
 
 * DAU (Daily Active User): Daily active users, by user ID, who log in more than once 
 * Avg.Playtime: Average total play time on each day of the level (sum of playtime of DAU/DAU)
@@ -366,7 +366,7 @@ Access and sales status are available at each level.
 ### Status by Channel { #status-by-channel }
 
 Access and sales status are available by world/server/channel. 
-![analytics_18](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_18_en_240103.png)
+![analytics_18](../static/images/ConsoleGuide/Analytics/en/analytics_18_en_240103.png)
 
 * DAU (Daily Active User): Daily active users, by user ID, who log in more than once 
 * Avg.Playtime: Average total play time on each day of the level (sum of playtime of DAU/DAU)
@@ -381,7 +381,7 @@ Access and sales status are available by world/server/channel.
 ### Status by Class { #status-by-class }
 
 Access and sales status are available by class/occupation. 
-![analytics_19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_19_en_240103.png)
+![analytics_19](../static/images/ConsoleGuide/Analytics/en/analytics_19_en_240103.png)
 
 * DAU (Daily Active User): Daily active users, by user ID, who log in more than once 
 * Avg.Playtime: Average total play time on each day of the level (sum of playtime of DAU/DAU)
@@ -401,7 +401,7 @@ Find the level-up information of each user.
 * Successful Level-up User: Users who achieved the level 
 * Average Level-up Achievement Time (minutes): Average achievement time (minutes) of level-up users 
 
-![analytics_20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_20_en_240103.png)
+![analytics_20](../static/images/ConsoleGuide/Analytics/en/analytics_20_en_240103.png)
 
 <a id="item-sales-status"></a>
 ### Item Sales Status { #item-sales-status }
@@ -413,7 +413,7 @@ Click **Conditions** and select query values as below:
 * Number of Purchases 
 * PU (Paying User) 
 * New PU 
-![analytics_21](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_21_en_240103.png)
+![analytics_21](../static/images/ConsoleGuide/Analytics/en/analytics_21_en_240103.png)
 
 
 <a id="top-50-sales-items"></a>
@@ -421,4 +421,4 @@ Click **Conditions** and select query values as below:
 
 Find the 50 most selling items for each type and value of selected transfer indicators. 
 
-![analytics_22](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_22_en_240103.png)
+![analytics_22](../static/images/ConsoleGuide/Analytics/en/analytics_22_en_240103.png)

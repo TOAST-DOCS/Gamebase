@@ -26,7 +26,7 @@ Steam連動のために以下の3つの情報を正確に入力してくださ�
 * Steamworksで製品を登録した後に発行されるアプリの固有識別情報です。
 * **Steamworks > App Admin >** (プロジェクト名)に表示されたApp IDを入力します。
 
-![Steam Store App ID](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_iap/console_steam/steam_console_app_02_kor.png)
+![Steam Store App ID](../static/images/console_steam/steam_console_app_02_kor.png)
 
 
 <a id="steam-web-api-key"></a>
@@ -36,7 +36,7 @@ Steam連動のために以下の3つの情報を正確に入力してくださ�
 * **Steamworks > Users & Permissions**で新規作成または発行済みのキー値を入力します。
   * より詳細な発行方法は[Steamworks Publisher Web API Key](https://partner.steamgames.com/doc/webapi_overview/auth)を参照してください。
 
-![Steam Web API Key](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_iap/console_steam/steam_console_app_03_kor.png)
+![Steam Web API Key](../static/images/console_steam/steam_console_app_03_kor.png)
 
 
 <a id="steam-default-currency"></a>
@@ -47,7 +47,7 @@ Steam連動のために以下の3つの情報を正確に入力してくださ�
   * **販売アイテム設定**セクション内の **国別販売アイテム情報の入力**項目をご参照ください。
 
 
-Steamのデフォルト通貨](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_iap/console_steam/steam_console_app_04_kor.png)
+Steamのデフォルト通貨](../static/images/console_steam/steam_console_app_04_kor.png)
 
 
 
