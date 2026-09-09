@@ -565,20 +565,6 @@ public void ShowWebView()
 > iPadOS 13 이상에서 웹뷰는 기본적으로 데스크톱 모드입니다.
 > contentMode =`GamebaseWebViewContentMode.MOBILE` 설정으로 모바일 모드로 변경할 수 있습니다.
 
-<a id="show-webview-predefined-custom-scheme"></a>
-#### Predefined Custom Scheme
-
-Gamebase에서 지정해 놓은 스킴입니다.
-
-| scheme | 용도 |
-| ----------------------------- | ------------------------------ |
-| gamebase://dismiss | 웹뷰 닫기 |
-| gamebase://goBack | 웹뷰 뒤로 가기 |
-| gamebase://getUserId          | 현재 로그인중인 있는 게임 유저의 사용자 ID를 표시 |
-| gamebase://getMaintenanceInfo | 점검 내용을 WebPage에 표시 |
-| gamebase://showwebview?link={URLEncodedURL} | link 파라메터의 URL 을 웹뷰로 열기.<br>URLEncodedURL : 웹뷰로 열 URL.<br>URL 디코딩 필요. |
-| gamebase://openbrowser?link={URLEncodedURL} | link 파라메터의 URL을 외부 브라우저로 열기<br/>URLEncodedURL : 외부 브라우저로 열 URL<br/>URL 디코딩 필요 |
-
 <a id="close-webview"></a>
 ### Close WebView { #close-webview }
 

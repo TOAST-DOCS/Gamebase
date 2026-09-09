@@ -563,20 +563,6 @@ public void ShowWebView()
 > In iPadOS 13 or later, WebView is the default desktop mode.
 > You can use the contentMode =`GamebaseWebViewContentMode.MOBILE` setting to switch to the mobile mode.
 
-<a id="show-webview-predefined-custom-scheme"></a>
-#### Predefined Custom Scheme
-
-This is the scheme that has been set by Gamebase.
-
-| scheme | Usage |
-| ----------------------------- | ------------------------------ |
-| gamebase://dismiss | Close WebView |
-| gamebase://goBack | Go back on WebView |
-| gamebase://getUserId | Display the user ID of the currently logged in game user |
-| gamebase://getMaintenanceInfo | Display maintenance information on WebPage |
-| gamebase://showwebview?link={URLEncodedURL} | Open URL of the link parameter with WebView.<br>URLEncodedURL: URL to open with WebView.<br>Requires URL decoding. |
-| gamebase://openbrowser?link={URLEncodedURL} | Open URL of the link parameter with an external browser<br/>URLEncodedURL: URL to open with an external browser<br/>URL decoding required |
-
 <a id="close-webview"></a>
 ### Close WebView { #close-webview }
 

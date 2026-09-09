@@ -558,11 +558,6 @@ public void ShowWebView()
 > contentMode =`GamebaseWebViewContentMode.MOBILE`設定でモバイルモードに変更できます。
 
 
-<a id="show-webview-predefined-custom-scheme"></a>
-#### Predefined Custom Scheme
-
-<!-- TODO: translate body -->
-
 <a id="close-webview"></a>
 ### Close WebView { #close-webview }
 
