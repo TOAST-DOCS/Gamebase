@@ -21,7 +21,7 @@ AppGuard를 연동하는 방법은 [AppGuard](#appguard)를 참고하시기 바�
 
 검색 조건에 맞는 이용 정지/이용 정지 해제 게임 유저 목록을 조회합니다.
 
-![gamebase_ban_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/ko/gamebase_ban_01_240813.png)
+![gamebase_ban_01](../static/images/ConsoleGuide/Ban/ko/gamebase_ban_01_240813.png)
 
 **검색 조건**
 
@@ -69,19 +69,19 @@ AppGuard를 연동하는 방법은 [AppGuard](#appguard)를 참고하시기 바�
 
 이용 정지 조회 화면에서 **등록** 버튼을 클릭하면 이용 정지 등록이 가능합니다.
 
-![gamebase_ban_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/ko/gamebase_ban_02_240813.png)
+![gamebase_ban_02](../static/images/ConsoleGuide/Ban/ko/gamebase_ban_02_240813.png)
 <a id="register-ban-1-user-id"></a>
 #### (1) 유저 ID
 이용 정지를 등록할 Gamebase 유저 아이디를 입력합니다. 한 번에 다수의 유저를 등록할 수 있으며, 등록 방법은 아래 두가지입니다.
 
 - **사용자 입력**: 등록할 유저 아이디를 입력 창에 직접 입력한 후 **Enter** 키를 누르거나 **추가** 버튼을 클릭합니다. 유저 아이디 유효성을 검사하므로 유효하지 않은 유저 아이디는 입력이 불가능합니다.
 - **일괄 등록**: CSV 파일만 업로드할 수 있으며 예시 파일은 Console 화면에서 다운로드할 수 있습니다. 일괄 등록은 1회 최대 10,000명까지 가능합니다.
-  ![gamebase_ban_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/ko/gamebase_ban_03_240813.png)
+  ![gamebase_ban_03](../static/images/ConsoleGuide/Ban/ko/gamebase_ban_03_240813.png)
 
 > [참고]</br>
 >
 > 일괄 등록을 진행하다가 실패하면 팝업이 표시됩니다. 해당 팝업에서 **Download** 버튼을 클릭하면 등록에 실패한 유저 목록을 파일로 다운로드할 수 있습니다.  
-> ![gamebase_ban_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/ko/gamebase_ban_04_240813.png)
+> ![gamebase_ban_04](../static/images/ConsoleGuide/Ban/ko/gamebase_ban_04_240813.png)
 
 <a id="register-ban-2-period"></a>
 #### (2) 기간
@@ -115,7 +115,7 @@ AppGuard를 연동하는 방법은 [AppGuard](#appguard)를 참고하시기 바�
 
 이용 정지 조회 화면에서 **해제** 버튼을 클릭하면 이용 정지를 해제할 수 있습니다.
 
-![gamebase_ban_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/ko/gamebase_ban_05_240813.png)
+![gamebase_ban_05](../static/images/ConsoleGuide/Ban/ko/gamebase_ban_05_240813.png)
 
 <a id="release-ban-release-reason"></a>
 #### 해제 사유
@@ -129,13 +129,13 @@ AppGuard를 연동하는 방법은 [AppGuard](#appguard)를 참고하시기 바�
 - **사용자 입력**: 등록할 유저 아이디를 입력 창에 직접 입력한 후 **Enter** 키를 누르거나 **추가** 버튼을 클릭합니다. 유저 아이디 유효성을 검사하므로 유효하지 않은 유저 아이디는 입력이 불가능합니다.
 - **일괄 등록**: CSV 파일만 업로드할 수 있으며 예시 파일은 Console 화면에서 다운로드할 수 있습니다. 일괄 등록은 1회 최대 10,000명까지 가능합니다.
 
-![gamebase_ban_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/ko/gamebase_ban_06_240813.png)
+![gamebase_ban_06](../static/images/ConsoleGuide/Ban/ko/gamebase_ban_06_240813.png)
 
 
 > [참고]
 >
 > 일괄 등록을 진행하다가 실패하면 팝업이 표시됩니다. 해당 팝업에서 **Download** 버튼을 클릭하면 등록에 실패한 시용자 목록을 파일로 다운로드할 수 있습니다.  
-> ![gamebase_ban_04_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/ko/gamebase_ban_04_240813.png)
+> ![gamebase_ban_04_201812](../static/images/ConsoleGuide/Ban/ko/gamebase_ban_04_240813.png)
 
 <a id="template"></a>
 ## Template { #template }
@@ -148,13 +148,13 @@ AppGuard를 연동하는 방법은 [AppGuard](#appguard)를 참고하시기 바�
 등록된 템플릿 목록을 검색할 수 있습니다.
 새 템플릿을 등록하거나 등록된 템플릿을 수정할 수 있으며, 등록된 템플릿을 삭제할 수는 없습니다.
 
-![gamebase_ban_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/ko/gamebase_ban_08_240813.png)
+![gamebase_ban_07](../static/images/ConsoleGuide/Ban/ko/gamebase_ban_08_240813.png)
 
 - 템플릿 목록화면에서 노출메시지 항목에는 템플릿 등록시 '기본 언어'로 입력한 노출 메시지가 표시됩니다.
 
 <a id="register-template"></a>
 ### Register Template { #register-template }
-![gamebase_ban_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/ko/gamebase_ban_09_240813.png)
+![gamebase_ban_09](../static/images/ConsoleGuide/Ban/ko/gamebase_ban_09_240813.png)
 
 <a id="register-template-1-name"></a>
 #### (1) 이름
@@ -172,7 +172,7 @@ AppGuard를 연동하는 방법은 [AppGuard](#appguard)를 참고하시기 바�
 > <font color="red">[중요]</font>
 > AppGuard 연동 기능은 NHN Cloud에서 해당 기능을 적용하려는 서비스와 동일한 프로젝트에 NHN AppGuard 서비스를 활성화한 경우에만 이용할 수 있습니다.
 
-![gamebase_ban_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/ko/gamebase_ban_10_240813.png)
+![gamebase_ban_10](../static/images/ConsoleGuide/Ban/ko/gamebase_ban_10_240813.png)
 
 - **연동 여부**: AppGuard에서 탐지 또는 제재된 유저를 자동으로 Gamebase 이용 정지 유저로 등록하고자 하는 경우에 활성화합니다.
 - **자동 이용 정지**는 **즉시 차단**, **조건 차단** 두 가지가 있습니다.

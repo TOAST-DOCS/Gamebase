@@ -14,7 +14,7 @@
 <a id="maintenance"></a>
 ## Maintenance { #maintenance }
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_01_ko_240611.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_01_ko_240611.png)
 
 게임 점검이 필요한 경우 Console에서 손쉽게 등록할 수 있습니다.
 등록한 앱 점검 내역 조회와 점검 등록 내용 및 진행 상태 등을 한눈에 확인할 수 있으며 등록된 점검 사유로 점검 검색이 가능합니다.
@@ -30,7 +30,7 @@ Gamebase에서는 점검진행 중 게임내에서 사용자에게 보여줄 점
 Gamebase에서 기본으로 제공하는 점검 팝업
 ![gamebase_op_img](https://static.toastoven.net/prod_gamebase/gamebase_op_02_201812.png)
 Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점검 시간 표시)
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_02_ko_240105.jpg)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_02_ko_240105.jpg)
 
 
 <a id="register-maintenance"></a>
@@ -38,7 +38,7 @@ Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점�
 
 **점검** 탭에서 **등록** 버튼을 클릭하면 점검을 등록하는 화면으로 이동합니다.
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_03_ko_240611.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_03_ko_240611.png)
 
 >  <font color="red">[주의] </font><br/>
 >  
@@ -53,7 +53,7 @@ Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점�
 - 일부 클라이언트 : 특정 클라이언트 버전에만 점검이 필요한 경우 선택합니다. '버전 선택'버튼을 클릭하면 클라이언트 메뉴에서 등록한 클라이언트 버전리스트가 출력됩니다.
   <br>**일부 클라이언트 선택 화면 예시**
   <br>클라이언트 상태 및 스토어별 전체 선택이 가능하며, 점검을 원하는 클라이언트 버전을 선택 후 확인 버튼을 누르면 됩니다.
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240611.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240611.png)
 
 <a id="register-maintenance-2-reason"></a>
 #### (2) 사유
@@ -85,7 +85,7 @@ Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점�
 원하는 점검 페이지 형식을 만들고자 할 때 유용하게 사용할 수 있습니다.
 
 ##### 4-3) 외부 페이지
-![image alt](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_05_ko_240611.png)
+![image alt](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_05_ko_240611.png)
 자체 점검 페이지 또는 점검 템플릿을 가지고 있을 경우 점검 페이지를 해당 URL로 연결할 수 있습니다.
 연결하는 URL의 미리보기 페이지도 함께 지원합니다.
 점검 정보를 별도로 입력하여 점검 정보를 전달받고 싶은 경우 **점검 정보 제공** 항목을 선택하고 **노출 메시지**에 메시지를 입력합니다. 점검 페이지에 Gamebase 점검 내용에 등록한 점검 정보(점검 시간 정보, 메시지 등)를 전달받을 수 있습니다.
@@ -111,7 +111,7 @@ Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점�
 <a id="notice"></a>
 ## Notice { #notice }
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_06_ko_240611.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_06_ko_240611.png)
 
 앱 실행시 팝업 형태로 노출되는 공지를 제공합니다. 로그인 이전에 노출되는 팝업이므로 외부 인증 장애나 게임 서버 장애가 발생한 경우 등록하여 사용하면 됩니다.
 등록된 공지리스트와 진행상태 등을 한눈에 확인 가능하며 공지메시지로 검색도 가능합니다.
@@ -126,7 +126,7 @@ Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점�
 
 공지 메인화면에서 '등록'버튼을 클릭하면 공지를 등록하는 화면으로 이동합니다.
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_07_ko_240611.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_07_ko_240611.png)
 
 <a id="register-notice-1-target"></a>
 #### (1) 대상
@@ -137,7 +137,7 @@ Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점�
 - 일부 클라이언트 : 특정 클라이언트 버전에만 점검이 필요한 경우 선택합니다. '버전 선택'버튼을 클릭하면 클라이언트 메뉴에서 등록한 클라이언트 버전리스트가 출력됩니다.
   <br>**일부 클라이언트 선택 화면 예시**
   <br>클라이언트 상태 및 스토어별 전체 선택이 가능하며, 점검을 원하는 클라이언트 버전을 선택 후 확인 버튼을 누르면 됩니다.
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240611.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240611.png)
 
 
 <a id="register-notice-2-target-country"></a>
@@ -203,7 +203,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 등록된 게임 공지 정보를 한눈에 확인할 수 있으며, **노출 중** 상태인 게임 공지의 등록 일자 기준으로 게임 내에 게임 공지 목록이 표시됩니다.
 게임 공지 메시지의 게시 상태와 제목으로 게임 공지 검색이 가능합니다. 
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_01_ko_250415.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_01_ko_250415.png)
 
 (1) **상태**: 게임 내 게임 공지의 게시 상태를 기준으로 게임 공지 목록 검색이 가능합니다.
   - 예정: 게임 공지가 노출될 예정
@@ -224,7 +224,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 
 <a id="register-game-notice"></a>
 ### Register Game notice { #register-game-notice }
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_02_ko_250415.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_02_ko_250415.png)
 
 **게임 공지** 목록에서 **등록** 버튼을 선택하면 게임 공지를 등록할 수 있습니다.
 
@@ -237,7 +237,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 - 일부 클라이언트: 특정 클라이언트 버전에만 노출이 필요한 경우 선택합니다. **버전 선택**을 클릭하면 클라이언트 메뉴에서 등록한 클라이언트 버전 목록이 출력됩니다.
   <br>**일부 클라이언트 선택 화면 예시**
   <br>클라이언트 상태 및 스토어별 전체 선택이 가능하며, 노출을 원하는 클라이언트 버전을 선택한 뒤 **확인**을 클릭합니다.
-  ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240611.png)
+  ![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240611.png)
 
 
 <a id="register-game-notice-2-target-country"></a>
@@ -282,7 +282,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 
 <a id="modify-game-notice-setting"></a>
 ### Modify Game notice Setting { #modify-game-notice-setting }
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_03_ko_250415.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_03_ko_250415.png)
 
 게임 공지의 기본적인 설정을 할 수 있으면, 설정한 정보는 모든 게임 공지에 일괄 적용됩니다.
 - 이미지 목록 사용: 이미지 목록 사용 시 게임 공지에 등록한 이미지가 게임 내의 목록 화면에서도 노출됩니다.
@@ -290,7 +290,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 <a id="image-notice"></a>
 ## Image notice { #image-notice }
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_08_ko_240611.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_08_ko_240611.png)
 
 콘솔에 이미지를 등록하여 게임 내에 이미지로 공지를 손쉽게 제공할 수 있습니다.
 사용자가 검색한 기간 내 현재 진행 중인 공지는 상위에 최대 10개까지 표시되며, 완료된 공지는 하위에 별도 목록으로 표시됩니다. 
@@ -311,7 +311,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 - **수정일**: 공지가 최종적으로 수정된 시각을 보여줍니다.
 - **클릭률(%)**: 게임 내에 이미지 공지가 표시된 숫자와 이미지 공지를 실제 클릭한 숫자를 간단한 통계로 보여줍니다. 전체 비율에 대한 값을 표시해 주며 확인 버튼을 클릭하면 노출 기간 동안의 일별 노출 수와 클릭 수를 그래프를 통해 확인할 수 있습니다.
 	* 공지의 노출 기간 범위 내 사용자가 검색해 조회한 일자별 데이터는 파일로 다운로드하여 확인하실 수 있습니다.
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_09_ko_240611.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_09_ko_240611.png)
 - **상태** : 표시 상태를 보여줍니다. 각 상태는 아래와 같습니다.
 ```
 (1) 예정: 이미지 공지가 노출될 예정인 상태
@@ -323,7 +323,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 ### Register Image notice { #register-image-notice }
 
 **이미지 공지** 목록에서 **등록** 버튼을 선택하면 이미지 공지를 등록할 수 있습니다.
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_250415.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_250415.png)
 
 <a id="register-image-notice-1-target"></a>
 #### (1) 대상
@@ -334,7 +334,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 - 일부 클라이언트 : 특정 클라이언트 버전에만 노출이 필요한 경우 선택합니다. '버전 선택'버튼을 클릭하면 클라이언트 메뉴에서 등록한 클라이언트 버전 리스트가 출력됩니다.
   <br>**일부 클라이언트 선택 화면 예시**
   <br>클라이언트 상태 및 스토어별 전체 선택이 가능하며, 노출을 원하는 클라이언트 버전을 선택 후 확인 버튼을 누르면 됩니다.
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240611.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240611.png)
 
 
 <a id="register-image-notice-2-target-country"></a>
@@ -395,7 +395,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 
 <a id="modify-image-notice-setting"></a>
 ### Modify Image notice setting { #modify-image-notice-setting }
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_10_ko_240709.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_10_ko_240709.png)
 이미지 공지 팝업의 기본적인 설정을 할 수 있으며, 설정한 정보는 모든 이미지 공지에 일괄 적용됩니다.
 
 - 이미지 공지 타입: 이미지 공지 게시 타입을 지정할 수 있습니다. 선택할 수 있는 게시 타입은 아래와 같습니다.
@@ -412,14 +412,14 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 ## Kick Out { #kick-out }
 게임 점검 등의 이유로 유저의 연결을 해제할 경우 Console에서 손쉽게 유저의 연결을 해제할 수 있습니다.
 등록한 킥아웃 내역 조회와 킥아웃 등록 내용을 한눈에 확인할 수 있습니다.
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_11_ko_240611.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_11_ko_240611.png)
 
 <a id="register-kick-out"></a>
 ### Register Kick Out { #register-kick-out }
 
 **킥아웃** 탭에서 **등록** 버튼을 클릭하면 킥아웃을 등록하는 화면으로 이동합니다.
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_12_ko_240611.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_12_ko_240611.png)
 
 <a id="1-target-to-process"></a>
 ### (1) 처리대상 { #1-target-to-process }
@@ -428,7 +428,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 - 일부 클라이언트 : 특정 클라이언트 버전에만 킥아웃이 필요한 경우 선택합니다. '버전 선택'버튼을 클릭하면 클라이언트 메뉴에서 등록한 클라이언트 버전리스트가 출력됩니다.
   <br>**일부 클라이언트 선택 화면 예시**
   <br>클라이언트 상태 및 스토어별 전체 선택이 가능하며, 점검을 원하는 클라이언트 버전을 선택 후 확인 버튼을 누르면 됩니다.
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240611.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240611.png)
 
 <a id="2-reason"></a>
 ### (2) 사유 { #2-reason }

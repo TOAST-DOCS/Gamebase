@@ -18,7 +18,7 @@ Analyticsは、次のメニューで構成されています。
 ### リアルタイム同時接続 { #real-time-concurrence }
 
 現在、アプリユーザーのリアルタイム同時接続指標およびメンテナンス、プッシュ情報を確認できます。
-![analytics_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_01_jp_240103.png)
+![analytics_01](../static/images/ConsoleGuide/Analytics/jp/analytics_01_jp_240103.png)
 
 <a id="real-time-concurrence-change-graphs-of-real-time-concurrent-users"></a>
 #### 1. リアルタイム同時接続者(CCU)変化グラフ
@@ -40,7 +40,7 @@ Analyticsは、次のメニューで構成されています。
 ### ダッシュボード { #dashboard }
 
 リアルタイムにゲームユーザーの多様な指標をひと目で確認できます。
-![analytics_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_02_jp_240103.png)
+![analytics_02](../static/images/ConsoleGuide/Analytics/jp/analytics_02_jp_240103.png)
 
 <a id="dashboard-for-real-time-user-status"></a>
 #### 1. リアルタイムユーザー状況ダッシュボード
@@ -82,7 +82,7 @@ Analyticsは、次のメニューで構成されています。
 ### ユーザー { #users }
 
 ユーザーの基本指標を確認できます。
-![analytics_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_03_jp_240103.png)
+![analytics_03](../static/images/ConsoleGuide/Analytics/jp/analytics_03_jp_240103.png)
 
 <a id="users-user-status"></a>
 #### 1. ユーザー状況
@@ -107,7 +107,7 @@ Analyticsは、次のメニューで構成されています。
 
 <a id="service-environment"></a>
 ### ユーザー環境 { #service-environment }
-![analytics_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_04_jp_240103.png)
+![analytics_04](../static/images/ConsoleGuide/Analytics/jp/analytics_04_jp_240103.png)
 
 利用環境ごとのユーザー指標を確認できます。
 
@@ -127,7 +127,7 @@ Analyticsは、次のメニューで構成されています。
 ### ユーザーの流入と流出 { #user-inflow-and-outflow }
 
 アプリユーザーの流入、流出数の日付別推移を確認できます。
-![analytics_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_05_jp_240103.png)
+![analytics_05](../static/images/ConsoleGuide/Analytics/jp/analytics_05_jp_240103.png)
 毎週、毎月の流入/流出指標は午前10時時点で更新されて反映されます。
 
 * 流入ユーザー(新規+復帰)：流入ユーザーは新規加入者と復帰ユーザーの合計(新規加入者 + 復帰ユーザー)
@@ -156,7 +156,7 @@ Analyticsは、次のメニューで構成されています。
 ### Retention { #retention }
 
 Retentionは、特定の日に加入したユーザーが、加入した次の日から180日間、どれだけ残っているかを確認できる指標です。
-![analytics_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_06_jp_240103.png)
+![analytics_06](../static/images/ConsoleGuide/Analytics/jp/analytics_06_jp_240103.png)
 
 
 当日退会者除外オプションを選択すると、加入当日に退会したユーザーを除外して確認できます。
@@ -167,7 +167,7 @@ Retentionは、特定の日に加入したユーザーが、加入した次の�
 
 <a id="ltv"></a>
 ### LTV { #ltv }
-![analytics_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_07_jp_240103.png)
+![analytics_07](../static/images/ConsoleGuide/Analytics/jp/analytics_07_jp_240103.png)
 
 LTVは、選択された利用者グループで、利用者1人の1年間の期待売上を表す推定指標です。
 
@@ -195,7 +195,7 @@ LTVを正確に推定するために、以下の制限条件があります。
 
 <a id="life-cycle"></a>
 ### Life Cycle { #life-cycle }
-![analytics_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_08_jp_240103.png)
+![analytics_08](../static/images/ConsoleGuide/Analytics/jp/analytics_08_jp_240103.png)
 
 Life Cycleは、最初に利用者が流入した時点から、日別の利用者推移を確認できる指標です。データは最大3年まで提供されます。
 
@@ -209,7 +209,7 @@ Life Cycleは、最初に利用者が流入した時点から、日別の利用�
 
 <a id="frequency7"></a>
 ### Frequency7 { #frequency7 }
-![analytics_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_09_jp_240103.png)
+![analytics_09](../static/images/ConsoleGuide/Analytics/jp/analytics_09_jp_240103.png)
 
 Frequency7指標は、DAUの一週間間の訪問数と比率情報を提供します。ゲーム没入度、忠誠度などをひと目で把握できます。
 
@@ -232,7 +232,7 @@ Frequency7の基準は、以下の3つに分けられます。
 ### 決済額 { #purchase-amount }
 
 決済額の指標を確認できます。
-![analytics_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_10_jp_240103.png)
+![analytics_10](../static/images/ConsoleGuide/Analytics/jp/analytics_10_jp_240103.png)
 
 <a id="purchase-amount-status-table-for-purchase-amount"></a>
 #### 1. 決済額状況表
@@ -249,7 +249,7 @@ Frequency7の基準は、以下の3つに分けられます。
 ### 有料ユーザー { #paying-users }
 
 有料ユーザー(PU)の指標を確認できます。
-![analytics_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_11_jp_240103.png)
+![analytics_11](../static/images/ConsoleGuide/Analytics/jp/analytics_11_jp_240103.png)
 
 次は、グラフと表で使われる用語説明です。
 
@@ -268,7 +268,7 @@ Frequency7の基準は、以下の3つに分けられます。
 ### アイテム販売指標 { #item-sales-indicators }
 
 Gamebaseに登録したアイテムの販売指標を確認できます。
-![analytics_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_12_jp_240103.png)
+![analytics_12](../static/images/ConsoleGuide/Analytics/jp/analytics_12_jp_240103.png)
 
 * アイテム：Gamebaseに登録したアイテムリスト
 * ベストアイテムTop 10：販売金額別、販売数別に販売量が多いアイテムTop 10のリスト
@@ -280,7 +280,7 @@ Gamebaseに登録したアイテムの販売指標を確認できます。
 
 <a id="first-purchase"></a>
 ### 初回購入 { #first-purchase }
-![analytics_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_13_jp_240103.png)
+![analytics_13](../static/images/ConsoleGuide/Analytics/jp/analytics_13_jp_240103.png)
 
 新規有料ユーザーの初回購入に関する情報を確認できます。
 
@@ -300,7 +300,7 @@ Gamebaseに登録したアイテムの販売指標を確認できます。
 ### グループ同時接続者 { #concurrent-group-users }
 
 Gamebaseサービスユーザーが属するすべてのプロジェクトの同時接続指標を確認できます。
-![analytics_14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_14_jp_240103.png)
+![analytics_14](../static/images/ConsoleGuide/Analytics/jp/analytics_14_jp_240103.png)
 
 * リアルタイムグループ同時接続：Gamebaseサービスユーザーが属するプロジェクトのリアルタイム同時接続者(CCU)を表します。
 * プロジェクトグループ同時接続：選択された期間、フィルタを基準にアプリユーザー数を表示します。
@@ -309,7 +309,7 @@ Gamebaseサービスユーザーが属するすべてのプロジェクトの同
 ### グループ比較指標 { #group-comparison-indicators }
 
 Gamebaseサービスユーザーが属するプロジェクトを、フィルタと組み合わせてグループで比較できます。
-![analytics_15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_15_jp_240103.png)
+![analytics_15](../static/images/ConsoleGuide/Analytics/jp/analytics_15_jp_240103.png)
 
 * DAU：日間memberno基準でログイン1回以上のアクティブユーザー数(Daily Active Users)
 * NRU：当日新規加入者
@@ -340,7 +340,7 @@ Gamebaseサービスユーザーが属するプロジェクトを、フィルタ
 
 選択された転送指標の種類と、各日付の接続、売上情報を確認できます。
 同時接続者は、当日はCCUを提供し、日付別はDAU情報を提供します。当日の場合は10分単位で情報が更新されます。
-![analytics_16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_16_jp_240103.png)
+![analytics_16](../static/images/ConsoleGuide/Analytics/jp/analytics_16_jp_240103.png)
 
 * CCU (Concurrent User)：10分単位で測定されたリアルタイム同時接続者数(ログイン利用者数)
 * DAU (Daily Active User)：利用者ID基準で、1日に1回以上ログインしたアクティブ利用者数
@@ -352,7 +352,7 @@ Gamebaseサービスユーザーが属するプロジェクトを、フィルタ
 ### Status By Level { #status-by-level }
 
 レベル別に接続、売上状況を確認できます。
-![analytics_17](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_17_jp_240103.png)
+![analytics_17](../static/images/ConsoleGuide/Analytics/jp/analytics_17_jp_240103.png)
 
 * DAU (Daily Active User)：利用者ID基準で、1日に1回以上ログインしたアクティブ利用者数
 * Avg.Playtime：該当レベルの日付別の全Playtimeの平均(DAUのPlaytimeの合計 / DAU)
@@ -367,7 +367,7 @@ Gamebaseサービスユーザーが属するプロジェクトを、フィルタ
 ### Status By Channel { #status-by-channel }
 
 ワールド/サーバー/チャンネル別に接続、売上状況を確認できます。
-![analytics_18](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_18_jp_240103.png)
+![analytics_18](../static/images/ConsoleGuide/Analytics/jp/analytics_18_jp_240103.png)
 
 * DAU (Daily Active User)：利用者ID基準で、1日に1回以上ログインしたアクティブ利用者数
 * Avg.Playtime：該当レベルの日付別の全Playtimeの平均(DAUのPlaytimeの合計 / DAU)
@@ -382,7 +382,7 @@ Gamebaseサービスユーザーが属するプロジェクトを、フィルタ
 ### Status By Class { #status-by-class }
 
 クラス/職業別に接続、売上状況を確認できます。
-![analytics_19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_19_jp_240103.png)
+![analytics_19](../static/images/ConsoleGuide/Analytics/jp/analytics_19_jp_240103.png)
 
 * DAU (Daily Active User)：利用者ID基準で、1日に1回以上ログインしたアクティブ利用者数
 * Avg.Playtime：該当レベルの日付別の全Playtimeの平均(DAUのPlaytimeの合計 / DAU)
@@ -401,7 +401,7 @@ Gamebaseサービスユーザーが属するプロジェクトを、フィルタ
 * 達成レベル：達成したレベル
 * レベルアップ達成利用者：該当レベルを達成した利用者数
 * レベルアップ平均達成時間(分)：該当レベルを達成した利用者の平均達成時間(分)
-![analytics_20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_20_jp_240103.png)
+![analytics_20](../static/images/ConsoleGuide/Analytics/jp/analytics_20_jp_240103.png)
 
 <a id="item-sales-status"></a>
 ### Item Sales Status { #item-sales-status }
@@ -414,11 +414,11 @@ Gamebaseサービスユーザーが属するプロジェクトを、フィルタ
 * PU (Paying User)
 * 新規PU
 
-![analytics_21](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_21_jp_240103.png)
+![analytics_21](../static/images/ConsoleGuide/Analytics/jp/analytics_21_jp_240103.png)
 
 <a id="top-50-sales-items"></a>
 ### Item Sales TOP 50 { #top-50-sales-items }
 
 選択された転送指標の種類および値に応じて、アイテム販売上位50個の項目を確認できます。
 
-![analytics_22](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_22_jp_240103.png)
+![analytics_22](../static/images/ConsoleGuide/Analytics/jp/analytics_22_jp_240103.png)
