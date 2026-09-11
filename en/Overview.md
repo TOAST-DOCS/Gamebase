@@ -40,7 +40,7 @@ Apply them fast to the needs of your service!
 
 Gamebase supports OAuth login based on ID and passwords, using accounts of many identity providers (IdPs); guest login by using UUID of a device. Its authentication service is based on member information provided by external IdP, without having its own member system. In other words, user's ID or passwords are not saved in Gamebase.
 
-* **Provides many authentication methods via single interface. **
+* **Provides many authentication methods via single interface.**
   Development costs can be saved by enabling external IdP development easier and faster.  Developers can easily implement authentication without concerning complicated procedure and legal or policy issues.
 
 * **Provides various external IdP authentication methods.**
@@ -100,9 +100,9 @@ Gamebase supports the following stores:
 
 * **In-app purchase of many stores on a single interface** 
   Since further store development gets easy and fast via single-interface API, you can save development costs. Developers can easily implement purchase without having to learn the complexity of integration.  
-* **Standalone payment verification server for secure and stable purchases **
+* **Standalone payment verification server for secure and stable purchases**
   Gamebase helps to stabilize purchase transactions by setting up a seperate server to verify payment with external stores. Given the network status could be unstable, payment retries and item credits are managed separately.   
-* **Buying as well as subscription and promotion **
+* **Buying as well as subscription and promotion**
   The subscription feature of Google PlayStore and Appstore is enabled to sell users monthly products. Google's promotion is also available in each game without further implementation. More features of external stores are to be added to Gamebase.  
 * **Flawless response to customer inquiries supported by web console features (e.g. query purchase list**
   On the web console, user can check his purchase list and item credit status; can even cancel purchase and respond to abusive acts. 
