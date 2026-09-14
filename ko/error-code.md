@@ -1,6 +1,10 @@
-## Game > Gamebase > 오류 코드
+<!-- pre-align:aligned sig=34320c7ef9d1 -->
 
-## Client SDK
+<a id="game-gamebase-error-code"></a>
+## Game > Gamebase > 오류 코드 { #game-gamebase-error-code }
+
+<a id="client-sdk"></a>
+## Client SDK { #client-sdk }
 
 | Category        | Platform           | Error                                    | Error Code | Description                                    |
 | --------------- | ------------------ | ---------------------------------------- | ---------- | ---------------------------------------- |
@@ -110,7 +114,8 @@
 <br/>
 <br/>
 
-## Server
+<a id="server"></a>
+## Server { #server }
 | Module  | Error Code            | Description                              |
 | ------- | --------------------- | ---------------------------------------- |
 | Common  | -4000001<br/>-4000006 | 잘못된 파라미터 유형으로 API 호출 <br/>- 예) 파라미터는 int형으로 선언돼 있는데, string형 데이터로 API가 호출됨 |

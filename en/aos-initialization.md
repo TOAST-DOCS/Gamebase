@@ -1,8 +1,12 @@
-## Game > Gamebase > Android Developer's Guide > Initialization
+<!-- pre-align:aligned sig=4c9d12d60980 -->
+
+<a id="game-gamebase-android-developers-guide-initialization"></a>
+## Game > Gamebase > Android Developer's Guide > Initialization { #game-gamebase-android-developers-guide-initialization }
 
 To use Gamebase Android SDK, initialization is required.
 
-### onActivityResult
+<a id="onactivityresult"></a>
+### onActivityResult { #onactivityresult }
 
 For normal operations of Gamebase, make sure to call **Gamebase.onActivityResult(int, int, Intent)** from **Activity#onActivityResult(int, int, Intent)**.
 
@@ -12,26 +16,29 @@ For normal operations of Gamebase, make sure to call **Gamebase.onActivityResult
 + (void)Gamebase.onActivityResult(int requestCode, int resultCode, Intent data);
 ```
 
-### Initialization Flow
+<a id="initialization-flow"></a>
+### Initialization Flow { #initialization-flow }
 
 When the game starts, enable the Debug Mode and reset the Gamebase to implement the flow as shown below so that entering the game will be determined based on the Launching Status Code.
 
 ![initialization flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/initialization_flow_2.19.0.png)
 
-### Configuration Settings
+<a id="configuration-settings"></a>
+### Configuration Settings { #configuration-settings }
 
 To initialize Gamebase, Gamebase setting can be modified with GamebaseConfiguration.Builder.
 
 | API                                      | Mandatory(M) / Optional(O) | Description                              |
 | ---------------------------------------- | -------------------------- | ---------------------------------------- |
-| newBuilder(String appId, String appVersion, String storeCode) | **M**                      | The GamebaseConfiguration.Builder object can be created with the newBuilder() function.<br/><br/> **appId:** Enter an App ID issued from NHN Cloud Project.<br/> **appVersion:** Update or maintenance status can be decided upon a game version. Specify a game version. <br/> **storeCode** refers to the store in which APK is deployed. Find each store code in the following guide. [Purchase - Initialization](./aos-purchase/#6-initialization) |
+| newBuilder(String appId, String appVersion, String storeCode) | **M**                      | The GamebaseConfiguration.Builder object can be created with the newBuilder() function.<br/><br/> **appId:** Enter an App ID issued from NHN Cloud Project.<br/> **appVersion:** Update or maintenance status can be decided upon a game version. Specify a game version. <br/> **storeCode** refers to the store in which APK is deployed. Find each store code in the following guide. [Purchase - Initialization](./aos-purchase/#initialization) |
 | build()                                  | **M**                      | Convert Builder completed with setting to a configuration object.<br/>Required for **Gamebase.initialize()** API. |
 | enablePopup(boolean enable)              | O                          | **[UI]**<br/>When a game user cannot play games due to system maintenance or banned from use, reasons need to be displayed by pop-ups.<br/>If it is set to **true** , Gamebase will automatically display information via pop-ups.<br/>The default value is **false**.<br/>When set to **false** , get information from launching results and display why user cannot play games by using customized UI. |
 | enableLaunchingStatusPopup(boolean enable) | O                          | **[UI]**<br/>Depending on the launching results, when available to log in (mainly due to maintenance), you may decide whether to allow Gamebase to automatically display pop-ups.<br/>Works only when **enablePopup(true)**.<br/>The default value is **true**. |
 | enableBanPopup(boolean enable)           | O                          | **[UI]**<br/>When game user is banned, you can change whether to allow Gamebase to automatically display a pop-up on the reasons.<br/>Works only when **enablePopup(true)**.<br/>The default value is **true**. |
 | enableGPGSSignInCheck(boolean enable)    | O                          | When integrating the ‘GPGS auto-login’ feature, choose whether to ask the user for a GPGS login only once after installing the app or every time Gamebase is initialized.<br/>If set to **true**, re-display the GPGS login window on Gamebase initialization, even if the user declines the GPGS login.<br/>If set to **false**, the GPGS login window will only be shown once when the app is first launched, and will not be shown again even if it is rejected. To re-login to GPGS, you must set it in the **Google Play Games** application.<br/>The default value is **true**. |
 
-### Debug Mode
+<a id="debug-mode"></a>
+### Debug Mode { #debug-mode }
 * Gamebase shows warning and error logs only.
 * To turn on system logs for the reference of development, call **Gamebase.setDebugMode(true)**.
 
@@ -46,7 +53,8 @@ Please see the following guide to set in the console.
 * [Setting the console client](./oper-app/#client)
 
 
-### Initialize
+<a id="initialize"></a>
+### Initialize { #initialize }
 
 Call **Gamebase#initialize(Activity, GamebaseConfiguration, and GamebaseDataCallback)** from **Activity#onCreate(Bundle)** to initialize Gamebase SDK.
 
@@ -118,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-### Launching Information
+<a id="launching-information"></a>
+### Launching Information { #launching-information }
 
 Check launching status by calling 'Gamebase#initialize()'.<br/>
 Follow each launching code to decide on the game play.
@@ -194,6 +203,7 @@ With the getLaunchingInformations API, you can get the LaunchingInfo object afte
 LaunchingInfo includes values set on Gamebase Console, as well as game status.
 
 
+<a id="launching-information-launching"></a>
 #### 1. launching
 
 Refers to Gamebase launching data.
@@ -289,6 +299,7 @@ Below is the user information who initialized Gamebase.
         * Type matched with the test device information
         * Forwarded when matchingFlag is true
 
+<a id="launching-information-tcproduct"></a>
 #### 2. tcProduct
 
 AppKey of NHN Cloud linked to Gamebase:
@@ -298,6 +309,7 @@ AppKey of NHN Cloud linked to Gamebase:
 * iap
 * push
 
+<a id="launching-information-tciap"></a>
 #### 3. tcIap
 
 IAP store information registered on NHN Cloud console:
@@ -308,6 +320,7 @@ IAP store information registered on NHN Cloud console:
 
 [Game > Gamebase > Console User Guide > Payment](./oper-purchase/)
 
+<a id="launching-information-tclaunching"></a>
 #### 4. tcLaunching
 
 User-input information for NHN Cloud launching console:
@@ -317,7 +330,8 @@ User-input information for NHN Cloud launching console:
 
 [Game > Gamebase > Console User Guide > Management > Config](./oper-management/#config)
 
-### Handling Unregistered Version
+<a id="handling-unregistered-version"></a>
+### Handling Unregistered Version { #handling-unregistered-version }
 
 By initializing GameClientVersion which is not registered on Gamebase console, error occurs like follows: **LAUNCHING_UNREGISTERED_CLIENT(2004)**.  
 Under enablePopup(true), or enableLaunchingStatusPopup(true), popup shows for a forced update, and the user could be linked to the market.  
@@ -370,7 +384,8 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 });
 ```
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                        | Error Code | Description                |
 | ---------------------------- | ---------- | -------------------------- |

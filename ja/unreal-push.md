@@ -1,14 +1,18 @@
-## Game > Gamebase > Unreal SDK使用ガイド > プッシュ
+<!-- pre-align:aligned sig=ad1ffd3bcb05 -->
+
+<a id="game-gamebase-user-guide-for-unreal-sdk-push"></a>
+## Game > Gamebase > Unreal SDK使用ガイド > プッシュ { #game-gamebase-user-guide-for-unreal-sdk-push }
 
 ここでは各プラットフォームでプッシュ通知を使用するのに必要な設定方法を説明します。
 
-### Settings
+<a id="settings"></a>
+### Settings { #settings }
 
 AndroidやiOSでプッシュを設定する方法は、次の文書を参照してください。
 
 * Android
     * [Android Push Settings](aos-push/#settings)
-    * [Firebase Notification Settings](aos-started/₩1#firebase-notification)
+    * [Firebase Notification Settings](./aos-started/#resources-firebase-notification)
 * iOS
     * [iOS Push Settings](ios-push#settings)
 
@@ -16,7 +20,8 @@ AndroidやiOSでプッシュを設定する方法は、次の文書を参照し�
 >
 > 外部プラグインでプッシュ関連処理がある場合、Gamebaseプッシュ機能が正常に動作しない可能性があります。
 
-### Register Push
+<a id="register-push"></a>
+### Register Push { #register-push }
 
 次のAPIを呼び出して、TOAST Pushに該当ユーザーを登録します。
 プッシュ同意(enablePush)、広告性プッシュ同意(enableAdPush)、夜間広告性プッシュ同意(enableAdNightPush)値をユーザーから受け取り、次のAPIを呼び出して登録を完了します。
@@ -36,6 +41,7 @@ void RegisterPush(const FGamebasePushConfiguration& Configuration, const FGameba
 void RegisterPush(const FGamebasePushConfiguration& Configuration, const FGamebaseNotificationOptions& NotificationOptions, const FGamebaseErrorDelegate& Callback);
 ```
 
+<a id="register-push-fgamebasepushconfiguration"></a>
 #### FGamebasePushConfiguration
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
 | ------------- | ------------- | ---------------------------------- | ------------------ |
@@ -72,11 +78,13 @@ void USample::RegisterPush(bool bPushEnabled, bool bADAgreement, bool bADAgreeme
 }
 ```
 
-### Notification Options
+<a id="notification-options"></a>
+### Notification Options { #notification-options }
 
 * 端末に表示する通知をどのような形式で表示するかをNotification Optionsで変更できます。
 * Notification Optionsは、AndroidManifest.xmlに設定したり、ランタイムにregisterPush APIを呼び出して変更できます。
 
+<a id="notification-options-set-notification-options-with-registerpush-in-runtime"></a>
 #### Set Notification Options with RegisterPush in Runtime
 
 RegisterPush APIを呼び出す時、FGamebaseNotificationOptionsの引数を追加して通知オプションを設定できます。
@@ -128,6 +136,7 @@ void USample::RegisterPushWithOption(bool bPushEnabled, bool bADAgreement, bool 
 }
 ```
 
+<a id="notification-options-get-notificationoptions"></a>
 #### Get NotificationOptions
 
 プッシュを登録する時、既に設定している通知オプション値を取得します。
@@ -168,7 +177,8 @@ void USample::GetNotificationOptions()
 ```
 
 
-### Request Push Settings
+<a id="request-push-settings"></a>
+### Request Push Settings { #request-push-settings }
 
 ユーザーのプッシュ設定を照会するには、次のAPIを利用します。
 コールバックされるPushConfiguration値でユーザー設定値を取得できます。
@@ -211,6 +221,7 @@ void USample::QueryTokenInfo()
 ```
 
 
+<a id="request-push-settings-fgamebasepushtokeninfo"></a>
 #### FGamebasePushTokenInfo
 
 | Parameter           | Values                 | Description         |
@@ -225,6 +236,7 @@ void USample::QueryTokenInfo()
 | Agreement           | FGamebasePushAgreement | 受信同意有無       |
 | bSandbox             | bool                   | sandboxかどうか(iOS Only)        |
 
+<a id="request-push-settings-fgamebasepushagreement"></a>
 #### FGamebasePushAgreement
 
 | Parameter        | Values  | Description               |
@@ -234,7 +246,8 @@ void USample::QueryTokenInfo()
 | bAdAgreementNight | bool | 夜間広告性通知表示同意有無 |
 
 
-### Event Handling
+<a id="event-handling"></a>
+### Event Handling { #event-handling }
 
 * プッシュメッセージが到着したときやプッシュメッセージをクリックしたときに、イベント処理を行うことができます。
 * イベントの登録方法はGamebaseEventHandlerガイドを参照してください。
@@ -243,6 +256,7 @@ void USample::QueryTokenInfo()
     * [ Game > Gamebase > Unreal SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./unreal-etc/#push-click-action)
 
 
+<a id="event-handling-setting-for-apns-sandbox"></a>
 #### Setting for APNS Sandbox
 
 * SandboxModeを有効にすると、APNS SandboxへPushを送信するように登録できます。
@@ -269,7 +283,8 @@ void USample::SetSandboxMode(bool bIsSandbox)
 ```
 
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |
@@ -278,7 +293,7 @@ void USample::SetSandboxMode(bool bIsSandbox)
 | PUSH_UNKNOWN_ERROR             | 5999       | 定義されていないプッシュエラーです。<br>全てのログを[サポート](https://toast.com/support/inquiry)へご送付ください。迅速に対応いたします。
 
 * エラーコードの一覧は、次の文書を参照してください。
-    * [エラーコード](./Error-code/#client-sdk)
+    * [エラーコード](./error-code/#client-sdk)
 
 **PUSH_EXTERNAL_LIBRARY_ERROR**
 

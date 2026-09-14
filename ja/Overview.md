@@ -1,4 +1,7 @@
-## Game > Gamebase > 概要
+<!-- pre-align:aligned sig=8c4ae870b803 -->
+
+<a id="game-gamebase-overview"></a>
+## Game > Gamebase > 概要 { #game-gamebase-overview }
 
 ゲームプラットフォーム企業NHNの10年のノウハウを詰め込んだGamebaseを自信を持って推薦します。 
 Gamebase SDKを適用すれば、ゲームに必要な共通サービスを簡単に利用できます。 
@@ -6,7 +9,8 @@ Gamebase SDKを適用すれば、ゲームに必要な共通サービスを簡�
 ![Gamebase_summary](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/jp/Gamebase_overview_00_jp_202501.png)
 
 
-## Gamebase Sample App
+<a id="gamebase-sample-app"></a>
+## Gamebase Sample App { #gamebase-sample-app }
 
 Gamebaseのさまざまな機能を確認できるようにサンプルアプリを提供しています。
 サンプルアプリを利用してゲームアプリでGamebaseが提供する機能を確認し、どのような方式で動作するのかを予測できます。
@@ -16,20 +20,24 @@ Gamebaseのさまざまな機能を確認できるようにサンプルアプリ
 ![Gamebase_sample_app](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_Sample_App1.png)
 * QRコードを利用してSample App APKをダウンロードできます。(サポートプラットフォーム：Android OS)
 
-## 主要機能
+<a id="key-features"></a>
+## 主要機能 { #key-features }
 
-### Gamebaseアナリティクス
+<a id="gamebase-analytics"></a>
+### Gamebaseアナリティクス { #gamebase-analytics }
 
 Gamebase SDKを適用すれば、売上、利用者、ゲームバランシング指標を無料で提供します。 
 ゲームで発生する売上、同時接続者、利用者、レベル、アイテム販売など、ゲーム事業と運営に必要な指標サービスを提供します。
 すぐに適用して、サービスに積極的に活用してみてください。
 ![Gamebase_analytics](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_02_201903_jp.png)
 
+<a id="gamebase-analytics-reference"></a>
 #### 関連リンク
 
 * [Console ご利用ガイド > Analytics](./oper-analytics) 
 
-### 認証
+<a id="authentication"></a>
+### 認証 { #authentication }
 
 Gamebaseは、様々なIdP(アイデンティティプロバイダー)のアカウントを利用したID・パスワードベースのOAuthログインと端末のUUIDを利用したゲストログインに対応しています。Gamebaseの認証は、独自の会員システムを構築せずに、外部IdPが提供する会員情報を利用して認証サービスを提供するサービスです。独自の会員システムがないということは、ユーザーのID・パスワードをGamebaseの内部に保存しないということを意味します。
 
@@ -68,6 +76,7 @@ Gamebaseは、様々なIdP(アイデンティティプロバイダー)のアカ�
 * **一人のゲームユーザーが複数の外部IdPを同時に使用することができるように、マッピング(mapping)機能を提供します。**
   例えば、Facebook認証を使用してゲームを利用しているユーザーがGoogle認証でも同じユーザーIDを使用することができるよう、マッピング機能を提供します。一つのユーザーIDにFacebookとGoogleの認証をマッピングすれば、ゲームユーザーは、あるデバイスではFacebook、他のデバイスではGoogleで認証してゲームをすることができます。
 
+<a id="authentication-reference"></a>
 #### Reference
 
 * [Android SDK使用ガイド > 認証](./aos-authentication)
@@ -75,7 +84,8 @@ Gamebaseは、様々なIdP(アイデンティティプロバイダー)のアカ�
 * [Unity SDK使用ガイド > 認証](./unity-authentication)
 * [Unreal SDK使用ガイド > 認証](./unreal-authentication)
 
-### Payment
+<a id="payment"></a>
+### Payment { #payment }
 
 ゲーム会社は開発したゲームを複数のストアにリリースすることで、少ない労力で収益を最大化することができます。Gamebaseは簡単に複数のストアの連携をサポートするため、主要ストアごとに決済連携仕様を学ぶ必要がありません。
 
@@ -99,6 +109,7 @@ Gamebaseは、様々なIdP(アイデンティティプロバイダー)のアカ�
 * **ウェブコンソールでの多様な機能(決済履歴照会機能など)で、顧客からの問い合わせに円滑に対応できます。**
   ウェブコンソールでユーザーの決済履歴とアイテム支給状態の確認ができます。決済のキャンセルおよび不正行為対応も可能です。
 
+<a id="payment-reference"></a>
 #### 関連リンク
 
 * [Android SDK使用ガイド > 認証](./aos-purchase)
@@ -106,7 +117,8 @@ Gamebaseは、様々なIdP(アイデンティティプロバイダー)のアカ�
 * [Unity SDK使用ガイド > 認証](./unity-purchase)
 * [Unreal SDK使用ガイド > 認証](./unreal-purchase)
 
-### ローンチ
+<a id="launching"></a>
+### ローンチ { #launching }
 
 サービス中のゲームアプリは、最初に始めるときさまざまな情報が必要です。Gamebaseでは、ゲームアプリを起動する初期段階において運営に必要なデータをゲームアプリに提供しており、これをローンチ（Launching）と呼んでいます。
 起動情報は、Gamebase コンソールからリアルタイムで設定することができ、SDKを初期化したり起動状態を変更する際にゲームから確認することができます。
@@ -120,6 +132,7 @@ Gamebaseで提供される起動情報は、次の通りです。
 * 認証情報
 * ゲームアプリ内URLリスト
 
+<a id="launching-reference"></a>
 #### 関連リンク
 
 * [Android SDK使用ガイド > 初期化 > Launching Information](./aos-initialization/#launching-information)
@@ -129,7 +142,8 @@ Gamebaseで提供される起動情報は、次の通りです。
 * [コンソール使用ガイド > アプリ](./oper-app)：アプリ、クライアントステータス及びインストールURLの設定
 * [コンソール使用ガイド > 運営](./oper-operation)：メンテナンス、お知らせ登録
 
-### グローバル展開への適応
+<a id="for-global"></a>
+### グローバル展開への適応 { #for-global }
 
 Gamebaseは、基本的にゲームのグローバルオープンに対応しており、グローバル環境におけるゲーム運営をサポートするため、次のような機能を提供します。
 
@@ -140,7 +154,8 @@ Gamebaseは、基本的にゲームのグローバルオープンに対応して
 * **運営者の現地の標準時(local timezone)を選択して簡単に時間を入力できます。**
 	* ベトナムでゲームを運営する場合、ベトナムの標準時(timezone)を選択すればベトナム時間ベースで入力できるため、韓国時間に変更する手間を省くことができます。
 
-### 他のNHN Cloudサービスとの連携
+<a id="using-the-other-nhn-cloud-service"></a>
+### 他のNHN Cloudサービスとの連携 { #using-the-other-nhn-cloud-service }
 
 * ゲームで必要なTOASTサービスをより簡単に連携できるようにサポートします。 
   * GamebaseのユーザーIDで各サービスのAPIを使用することができるようにGamebaseでラッピング(wrapping)してAPIを提供します。したがってユーザーは、サービスのAPIを直接呼び出す必要がありません。
@@ -148,7 +163,8 @@ Gamebaseは、基本的にゲームのグローバルオープンに対応して
   * [Game > Leaderboard](https://toast.com/service/game/leaderboard)：リアルタイムの大容量ランキングサービス
   * [Security > AppGuard](https://toast.com/service/security/appguard)：リアルタイムでアプリケーションのコード操作を防止するサービス
 
-## 用語一覧
+<a id="glossary"></a>
+## 用語一覧 { #glossary }
 
 次は、Gamebaseのサービス用語をまとめたものです。
 
@@ -161,7 +177,8 @@ Gamebaseは、基本的にゲームのグローバルオープンに対応して
 | IdPトークン  | IdP SDKから認証した後に受け取るアクセストークン(access token)  |
 | IdPログイン| 外部IdPログイン(Facebook、Googleなど)           |
 
-## サービス構造
+<a id="service-architecture"></a>
+## サービス構造 { #service-architecture }
 
 以下は、Gamebaseのサービス構造と簡単な説明です。
 ![論理構成図](http://static.toastoven.net/prod_gamebase/Overview/Gamebase_overview_03_202203_en.png)
@@ -173,49 +190,56 @@ Gamebaseは、基本的にゲームのグローバルオープンに対応して
 | Console         | - ウェブコンソール                              |
 
 
-## プラットフォームガイド
+<a id="platform-guide"></a>
+## プラットフォームガイド { #platform-guide }
 
-### クライアントアプリ開発者向けガイド
+<a id="client-developers-guide"></a>
+### クライアントアプリ開発者向けガイド { #client-developers-guide }
 
 * [Android SDK使用ガイド](./aos-started/)
 * [iOS SDK使用ガイド](./ios-started/)
 * [Unity SDK使用ガイド](./unity-started/)
 * [Unreal SDK使用ガイド](./unreal-started/)
 
-### サーバー開発者向けガイド
+<a id="server-developers-guide"></a>
+### サーバー開発者向けガイド { #server-developers-guide }
 
 * [APIガイド](./api-guide/)
 
-### コンソール操作ガイド
+<a id="operators-guide"></a>
+### コンソール操作ガイド { #operators-guide }
 
 * [Console ご利用ガイド](./oper-operating-indicator/)
 
-## 機能別ガイド
+<a id="functional-guide"></a>
+## 機能別ガイド { #functional-guide }
 
 | 機能名               | 詳細                             | クライアント                                   | サーバー                                 | コンソール                                 |
 | --------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | Analytics                  | リアルタイム指標, 売上指標, 利用者指標, バランシング指標 | [[Android](./aos-etc/#analytics)] [[iOS](./ios-etc/#analytics)] [[Unity](./unity-etc/#analytics)] |                                          | [[Analytics]](./oper-analytics)  ||
-| Login                 | ゲスト、サードパーティ認証に対応  <br> - [対応IdP](./Overview/#authentication) |  [[Android](./aos-authentication/#login)] [[iOS](./ios-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[トークン検証](./api-guide/#token-authentication)] <br> [[会員照会](./api-guide/#get-member)] | [[App] > 認証情報設定](./oper-app/#authentication-information) <br> [[Member] > 会員照会](./oper-member/#member) <br> - 基本情報、ログイン履歴、プレイ時間、決済履歴など |
+| Login                 | ゲスト、サードパーティ認証に対応  <br> - [対応IdP](#authentication) |  [[Android](./aos-authentication/#login)] [[iOS](./ios-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[トークン検証](./api-guide/#token-authentication)] <br> [[会員照会](./api-guide/#get-member)] | [[App] > 認証情報設定](./oper-app/#authentication-information) <br> [[Member] > 会員照会](./oper-member/#member) <br> - 基本情報、ログイン履歴、プレイ時間、決済履歴など |
 | Logout                | ログアウト                                    | [[Android](./aos-authentication/#logout)]  [[iOS](./ios-authentication/#logout)] [[Unity](./unity-authentication/#logout)] |                                          |                                          |
 | Withdraw              | ゲーム退会 <br> -  ゲームユーザーのユーザーID、マッピング情報などすべての情報を削除 | [[Android](./aos-authentication/#withdraw)] [[iOS](./ios-authentication/#withdraw)] [[Unity](./unity-authentication/#withdraw)] |                                          |                                          |
 | Mapping               | 一つのユーザーIDに複数のIdPを連携する機能           | [[Android](./aos-authentication/#mapping)] [[iOS](./ios-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)] |                                          |                                          |
-| Purchase(IAP)         | (TOASTサービスの連携) <br> アプリ内決済  | [[Android](./aos-purchase/#purchase)] [[iOS](./ios-purchase/#purchase)] [[Unity](./unity-purchase/#purchase)] | [[Wrapping API](./api-guide/#purchase-iap)] | [[Purchase]](./oper-purchase/#app)<br> [- アイテム登録](./oper-purchase/#item) <br> [- 決済情報の照会](./oper-purchase/#transactions) |
-| Push                  | (TOASTサービスの連携) <br> Pushメッセージの送信及び結果の確認 | [[Android](./aos-push/#push)] [[iOS](./ios-push/#push)] [[Unity](./unity-push/#push)] |                                          | [[Push]](./oper-push/#push) <br/>- リアルタイム、予約Push送信 |
+| Purchase(IAP)         | (TOASTサービスの連携) <br> アプリ内決済  | [[Android](./aos-purchase/)] [[iOS](./ios-purchase/)] [[Unity](./unity-purchase/)] | [[Wrapping API](./api-guide/#purchase-iap)] | [[Purchase]](./oper-purchase/#app)<br> [- アイテム登録](./oper-purchase/#product-register) <br> [- 決済情報の照会](./oper-purchase/#transactions) |
+| Push                  | (TOASTサービスの連携) <br> Pushメッセージの送信及び結果の確認 | [[Android](./aos-push/)] [[iOS](./ios-push/)] [[Unity](./unity-push/)] |                                          | [[Push]](./oper-push/#push) <br/>- リアルタイム、予約Push送信 |
 | Leaderboard           | (TOASTサービスの連携) <br> リアルタイムの大容量ランキング照会及び登録 |                                          | [[Wrapping API](./api-guide/#leaderboard)] |                                          |
 | Webview               | SDKで基本的なWebView UIを提供<br/>システムポップアップ、トースト(toast) UIを提供 | [[Android](./aos-ui/#webview)] [[iOS](./ios-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
 | [Operator] Maintenance | (運営)メンテナンス機能                               |                                          | [[メンテナンス有無の確認](./api-guide/#maintenance)] | [[Maintenance]](./oper-operation/#maintenance)<br>- メンテナンス登録、メンテナンス解除 |
 | [Operator] Notice      | (運営)緊急のお知らせ機能 <br> -  ゲームユーザーがアプリを起動する際にポップアップ形式でお知らせの確認が可能 |                                          |                                          | [[Notice]](./oper-operation/#notice) <br/>-お知らせ登録 |
 | [Operator] Image Notice         | (運営)イメージ告知機能 <br> - ゲーム内ポップアップ形式のイメージ告知表示 | [[Android](./aos-ui/#imagenotice)] [[iOS](./ios-ui/#imagenotice)] [[Unity](./unity-ui/#imagenotice)] <br/> - イメージ告知表示 |                             | [[Image Notice]](./oper-operation/#image-notice) <br/>- イメージ告知管理 |
-| [Operator] Ban         | (Operational) Register/Release banned game users <br> -  Register/Release banned game users | [[iOS](./ios-authentication/#get-banned-user-information)][[Android](./aos-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-infomation)] <br/> -Check information of banned users |   [[Retrieving the ban history of game users](./api-guide/#ban-histories)                                       | [[Ban]](./oper-ban/#ban) <br/>-Register and Release Ban |
+| [Operator] Ban         | (Operational) Register/Release banned game users <br> -  Register/Release banned game users | [[iOS](./ios-authentication/#get-banned-user-information)][[Android](./aos-authentication/#get-banned-user-information)] [[Unity](./unity-authentication/#get-banned-user-information)] <br/> -Check information of banned users |   [[Retrieving the ban history of game users](./api-guide/#ban-histories)                                       | [[Ban]](./oper-ban/#ban) <br/>-Register and Release Ban |
 | [Operator] Coupon         | (運営)クーポン管理<br>- 発行、履歴照会 |  |                                      [[クーポン有効性検証およびクーポン状態変更](./api-guide/#coupon)  | [[Coupon]](./oper-coupon) <br/>- クーポン発行 |
 | [Operator] Customer Service         | (運営) 1:1お問い合わせ受付および処理 <br> -  FAQ、告知事項管理 | [[Android](./aos-etc/#contact)] [[iOS](./ios-etc/#contact)] [[Unity](./unity-etc/#contact)] <br/> - サポートWebページをWebビューで表示 |                                        | [[Customer Service]](./oper-customer-service) <br/>- サポートお問い合わせ処理<br>- FAQ/告知管理 |
 
-## Console Role
+<a id="console-role"></a>
+## Console Role { #console-role }
 
 NHN Cloudの基本的なメンバーポリシーと権限については、次のガイドを参考にしてください。
-* [NHN Cloud > コンソール使用ガイド > メンバー管理](https://docs.nhncloud.com/ja/nhncloud/ja/console-guide/#_13)
+* [NHN Cloud > コンソール使用ガイド > メンバー管理](/nhncloud/ja/console-guide/#member-management)
 
-### Manage Role
+<a id="manage-role"></a>
+### Manage Role { #manage-role }
 
 **Console > プロジェクト設定 > メンバー管理**
 プロジェクト設定画面でTOAST会員を追加したり、会員に個別に権限を付与できます。1人の会員に複数の権限を付与できます。
@@ -229,7 +253,8 @@ NHN Cloudの基本的なメンバーポリシーと権限については、次�
 組織管理画面で組織内のプロジェクトで共通で使用する権限グループを管理できます。
 ![組織権限グループ](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/jp/gamebase_overview_03_ja_240105.png)
 
-### Gamebaseで提供する権限リスト
+<a id="permissions-list-provided-by-gamebase"></a>
+### Gamebaseで提供する権限リスト { #permissions-list-provided-by-gamebase }
 
 | サービス | 権限 | 説明 |
 | --- | --- | --- |
@@ -287,8 +312,10 @@ NHN Cloudの基本的なメンバーポリシーと権限については、次�
 | Gamebase | PUSH ADMIN | | ● | |
 | Gamebase | PUSH VIEWER | |  | ● |
 
-## Privacy Policy
-### 個人情報処理及び法令遵守の案内
+<a id="privacy-policy"></a>
+## Privacy Policy { #privacy-policy }
+<a id="information-on-privacy-and-compliance"></a>
+### 個人情報処理及び法令遵守の案内 { #information-on-privacy-and-compliance }
 Gamebaseサービスを利用する過程で、お客様は関連法令(情報通信網法、個人情報保護法、電子商取引法、個人情報保護法など)に基づく義務を熟知し、遵守する必要があります。
 NHN Cloudはサービス提供会社として、お客様がGamebaseサービスを安全に利用できるように積極的に支援するパートナーであり、お客様が管理する投稿、利用者の個人情報などについては責任を負いません。
 また、顧客が利用者の個人情報を収集する過程で、顧客とNHNクラウド間の個人情報処理に関する業務委託関係が発生する場合があります。

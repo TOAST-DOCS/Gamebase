@@ -1,8 +1,12 @@
-## Game > Gamebase > Console ご利用ガイド > 会員
+<!-- pre-align:aligned sig=f02fea74321d -->
+
+<a id="game-gamebase-console-guide-member"></a>
+## Game > Gamebase > Console ご利用ガイド > 会員 { #game-gamebase-console-guide-member }
 
 ゲームにログインした会員情報を照会します。
 
-## Search Member
+<a id="search-member"></a>
+## Search Member { #search-member }
 
 User IDを入力すると、会員情報を検索することができます。
 ユーザーIDは、初めてログインする際にGamebaseが自動的に発行するユーザー識別子です。送信時に混乱を防ぐため、同じ発音の文字を取り除き、「ABCDFGHJKLMNPQRSTWXYZ1346789」だけを使用しています。
@@ -11,7 +15,8 @@ IdP IDはIdPで提供するID情報で、ログイン時に入力する情報で
 検索されたユーザーの詳細情報を上の方に表示し、ログイン、マッピング、決済、利用停止、プレイ時間などの履歴は下の方にタブ形式で表示されます。
 
 
-### Detail Information
+<a id="detail-information"></a>
+### Detail Information { #detail-information }
 ![member_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_01_jp_240103.png)
 
 **User **
@@ -27,6 +32,7 @@ IdP IDはIdPで提供するID情報で、ログイン時に入力する情報で
 - **プッシュ不可情報照会**：ゲームユーザーのプッシュトークンおよびタグ情報を照会。
 ![member_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_02_jp_240103.png)
 
+<a id="detail-information-changing-account-status"></a>
 #### アカウント状態変更
 ![member_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_03_jp_240103.png)
 
@@ -44,6 +50,7 @@ Gamebaseでは、複数の外部IdPを連動することができます。つま
 - **Idp ID**：外部IdPが提供するID(Facebook no、PAYCO IDなど)
 - **登録日**：ユーザーが初めて該当するIdPを登録した時間
 
+<a id="detail-information-mapping"></a>
 #### マッピング追加
 
 照会したゲームユーザーのIdP情報を追加できる機能です。
@@ -56,6 +63,7 @@ Gamebaseでは、複数の外部IdPを連動することができます。つま
 ![member_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_04_jp_240103.png)
 ![member_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_05_jp_240103.png)
 
+<a id="detail-information-unmapping"></a>
 #### マッピング解除
 多重マッピングしたアカウントは、リクエストに応じてIdP情報の連携を解除できます。
 各々のアカウントは、少なくとも1個の接続情報が存在する必要があるため、2個以上の接続情報がある時のみボタンが有効になります。
@@ -65,7 +73,8 @@ Gamebaseでは、複数の外部IdPを連動することができます。つま
 * **解除**ボタンをクリックすると、下記のように最終確認ウィンドウが表示されるので、IdP情報を確認します。**確認**ボタンをクリックすると、マッピングが解除されます。
 ![member_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_07_jp_240103.png)
 
-### Login History
+<a id="login-history"></a>
+### Login History { #login-history }
 ![member_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_08_jp_240103.png)
 
 照会したユーザーのログイン内訳を照会します。
@@ -87,7 +96,8 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
 - **Gamebase SDK Version**：アプリに使用されたGamebase SDKのバージョン情報
 - **etc**：その他、ログイン時に使用された上記項目以外の情報
 
-### Mapping History
+<a id="mapping-history"></a>
+### Mapping History { #mapping-history }
 ![member_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_09_jp_240103.png)
 
 照会したユーザーのマッピング、マッピング解除履歴を照会します。直近3ヶ月(90日)間の履歴がすべて表示されます。
@@ -105,7 +115,8 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
 マッピングされたIdP履歴をクリックした場合、該当IdPを基準にGamebase IDにマッピングされた履歴を表示します。
 ![member_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_10_jp_240103.png)
 
-### Purchase History
+<a id="purchase-history"></a>
+### Purchase History { #purchase-history }
 ![member_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_11_jp_240103.png)
 
 照会したユーザーの商品購入内訳を照会します。
@@ -123,7 +134,8 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
 - **決済日時**：ユーザーが購入を完了した時間
 - **払戻日時**：ユーザーのアイテムが払い戻された時間
 
-### Ban History
+<a id="ban-history"></a>
+### Ban History { #ban-history }
 ![member_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_12_jp_240103.png)
 
 
@@ -138,23 +150,28 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
 - **解除理由**：運営者が利用停止の解除を行う際に入力した実際の解除理由
 - **解除登録者/解除登録日**：利用停止を解除した運営者/システム情報及び日時
 
-### Playtime
+<a id="playtime"></a>
+### Playtime { #playtime }
 ![member_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_13_jp_240103.png)
 照会したユーザーがゲームをプレイした時間を日付ごとに照会します。
 照会したい日付を入力して照会することができ、最大1ヶ月(30日)まで照会可能です。
 
-### Coupon using history
+<a id="coupon-using-history"></a>
+### Coupon using history { #coupon-using-history }
 ![member_14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_14_jp_240103.png)
 
-### Inquiry history
+<a id="inquiry-histoy"></a>
+### Inquiry history { #inquiry-histoy }
 ![member_15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_15_jp_240103.png)
 
-### Withdraw History
+<a id="withdraw-history"></a>
+### Withdraw History { #withdraw-history }
 ![member_16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_16_jp_240103.png)
 照会したユーザーが退会したゲームユーザーの場合、退会履歴を表示します。
 このメニューは、退会したゲームユーザーを照会する場合にのみ表示され、ゲームユーザーの退会経路を照会できます。
 
-## Transfer account
+<a id="transfer-account"></a>
+## Transfer account { #transfer-account }
 **端末移行**機能を使用する場合にのみ使用できます。[端末移行機能の有効化](./oper-app/#transfer-account)
 ゲームユーザーの端末移行キーの発行および検証履歴を確認できます。遮断されたキーの遮断解除や、有効期限が切れたキーの再発行ができます。
 ![member_17](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_17_jp_240103.png)
@@ -172,12 +189,14 @@ SDKからログイン関連のAPIを呼び出すとき、履歴が追加され�
 該当ゲームユーザーに発行されたキーの履歴を照会できます。
 デフォルトで最後に発行されたキーが選択されていて、他のキーを選択すると、選択したキーの履歴を照会できます。
 
-### 端末移行キーの再発行
+<a id="reissuance-transfer-account"></a>
+### 端末移行キーの再発行 { #reissuance-transfer-account }
 ![member_18](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_18_jp_240103.png)
 **再発行**ボタンをクリックすると、新しい端末移行キーを再発行できます。再発行すると、以前に発行されたキーは使用できません。
 - **ID、パスワード再発行**：ID、パスワードを再発行します。
 - **パスワード再発行**：IDは以前に発行されたIDをそのまま使用し、パスワードのみ再発行します。
 
+<a id="reissuance-transfer-account-cautions-for-reissuance"></a>
 #### 再発行時の注意事項
 - パスワードは再発行時に一度だけ表示されるため、再発行した後、必ず情報を別途保管してください。
 - 保管していなかった場合、パスワードを探す方法がないため、再発行する必要があります。

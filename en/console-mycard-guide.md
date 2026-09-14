@@ -1,6 +1,10 @@
-## Game > Gamebase > Store Console Guide > MyCard Console Guide
+<!-- pre-align:aligned sig=a9f5312decac -->
 
-## Register MyCard store
+<a id="game-gamebase-store-console-guide-mycard-console-guide"></a>
+## Game > Gamebase > Store Console Guide > MyCard Console Guide { #game-gamebase-store-console-guide-mycard-console-guide }
+
+<a id="register-mycard-store"></a>
+## Register MyCard store { #register-mycard-store }
 
 - MyCard does not provide a web console where customers can log in. (As of July 2023)
 - Integration with MyCard is processed according to the information entered in the NHN Cloud IAP console.

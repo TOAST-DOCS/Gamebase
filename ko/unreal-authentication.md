@@ -1,6 +1,10 @@
-## Game > Gamebase > Unreal SDK 사용 가이드 > 인증
+<!-- pre-align:aligned sig=3b6c59994f8b -->
 
-## Login
+<a id="game-gamebase-user-guide-for-unreal-sdk-authentication"></a>
+## Game > Gamebase > Unreal SDK 사용 가이드 > 인증 { #game-gamebase-user-guide-for-unreal-sdk-authentication }
+
+<a id="login"></a>
+## Login { #login }
 
 Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 
@@ -9,7 +13,8 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
     * [3rd-Party Provider SDK Guide](aos-started#3rd-party-provider-sdk-guide)
 
 
-### Login Flow
+<a id="login-flow"></a>
+### Login Flow { #login-flow }
 
 많은 게임이 타이틀 화면에 로그인을 구현합니다.
 
@@ -21,16 +26,19 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 ![last provider login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
 ![idp login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
+<a id="login-flow-authenticate-with-previous-login-type"></a>
 #### 1. 이전 로그인 유형으로 인증
 
 * 이전에 인증했던 기록이 있다면 ID와 비밀번호를 입력받지 않고 인증을 시도합니다.
 * **LoginForLastLoggedInProvider API**를 호출합니다.
 
+<a id="login-flow-1-1-when-authentication-is-successful"></a>
 #### 1-1. 인증에 성공한 경우
 
 * 축하합니다! 인증에 성공했습니다.
 * **GetUserID API**로 사용자 ID를 획득하여 게임 로직을 구현하시면 됩니다.
 
+<a id="login-flow-1-2-when-authentication-fails"></a>
 #### 1-2. 인증에 실패한 경우
 
 * 네트워크 오류
@@ -42,17 +50,20 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 * 그 외 오류
     * 이전 로그인 유형으로 인증에 실패했습니다. **'2. 지정된 IdP로 인증'**을 진행합니다.
 
+<a id="login-flow-authenticate-with-specified-idp"></a>
 #### 2. 지정된 IdP로 인증
 
 * IdP 유형을 직접 지정하여 인증을 시도합니다.
     * 인증 가능한 유형은 **GamebaseAuthProvider** 클래스에 선언돼 있습니다.
 * **Login(ProviderName, callback) API**를 호출합니다.
 
+<a id="login-flow-2-1-when-authentication-is-successful"></a>
 #### 2-1. 인증에 성공한 경우
 
 * 축하합니다! 인증에 성공했습니다.
 * **GetUserID API**로 사용자 ID를 획득하여 게임 로직을 구현하시면 됩니다.
 
+<a id="login-flow-2-2-when-authentication-fails"></a>
 #### 2-2. 인증에 실패한 경우
 
 * 네트워크 오류
@@ -64,7 +75,8 @@ Gamebase에서는 게스트 로그인을 기본으로 지원합니다.<br/>
 * 그 외의 오류
     * 오류가 발생했다는 것을 게임 유저에게 알리고, 게임 유저가 인증 IdP 유형을 선택할 수 있는 상태(주로 타이틀 화면 또는 로그인 화면)로 되돌아갑니다.
 
-### Login as the Latest Login IdP
+<a id="login-with-the-latest-login-idp"></a>
+### Login as the Latest Login IdP { #login-with-the-latest-login-idp }
 
 가장 최근에 로그인한 IdP로 로그인을 시도합니다.
 해당 로그인에 대한 토큰이 만료되었거나, 토큰에 대한 검증 등에 실패하면 실패를 반환합니다.
@@ -122,7 +134,8 @@ void USample::LoginForLastLoggedInProvider()
 }
 ```
 
-### Login with GUEST
+<a id="login-with-guest"></a>
+### Login with GUEST { #login-with-guest }
 
 Gamebase는 게스트 로그인을 지원합니다.
 
@@ -178,7 +191,8 @@ void USample::Login()
 }
 ```
 
-### Login with IdP
+<a id="login-with-idp"></a>
+### Login with IdP { #login-with-idp }
 
 다음은 특정 IdP로 로그인할 수 있게 하는 예시 코드입니다
 로그인할 수 있는 IdP 유형은 **GamebaseAuthProvider** 클래스에서 확인할 수 있습니다.
@@ -266,6 +280,7 @@ void USample::LoginWithAdditionalInfo()
 }
 ```
 
+<a id="login-with-idp-cancel-login-with-external-browser"></a>
 #### Cancel Login with External Browser
 
 Windows 환경에서 SDK를 사용하지 않는 IdP의 경우 외부 브라우저를 통해 로그인을 진행합니다.
@@ -291,7 +306,8 @@ void USample::CancelLogin()
 }
 ```
 
-### Login with Credential
+<a id="login-with-credential"></a>
+### Login with Credential { #login-with-credential }
 
 IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급 받은 Access Token 등을 이용하여, Gamebase에 로그인할 수 있는 인터페이스입니다.
 
@@ -304,7 +320,7 @@ IdP에서 제공하는 SDK를 사용해 게임에서 직접 인증한 후 발급
 | GamebaseAuthProviderCredential::AuthorizationCode | Google 로그인 이후 받은 인증 정보(Authorization Code) 설정 |                                          |
 | GamebaseAuthProviderCredential::GamebaseAccessToken | IdP 인증 정보가 아닌 Gamebase Access Token으로 로그인하는 경우 사용 |  |
 | GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn | Gamebase에 로그인한 상태에서 로그아웃을 하지 않고 다른 계정을 이용해 로그인을 시도하는 것을 허용 | **bool** |
-| GamebaseAuthProviderCredential::LineChannelRegion | LINE 서비스 제공 지역 설정 | [Login with IdP 참고](./unreal-authentication/#login-with-idp) |
+| GamebaseAuthProviderCredential::LineChannelRegion | LINE 서비스 제공 지역 설정 | [Login with IdP 참고](#login-with-idp) |
 
 > [TIP]
 >
@@ -360,7 +376,8 @@ void USample::LoginWithCredential()
 ```
 
 
-## Logout
+<a id="logout"></a>
+## Logout { #logout }
 로그인된 IdP에서 로그아웃을 시도합니다. 주로 게임의 설정 화면에 로그아웃 버튼을 두고, 버튼을 클릭하면 실행되도록 구현하는 경우가 많습니다.
 로그아웃이 성공하더라도, 게임 유저 데이터는 유지됩니다.
 로그아웃에 성공하면 해당 IdP로 인증했던 기록을 제거하므로 다음에 로그인할 때 ID, 비밀번호 입력 창이 나타납니다.<br/><br/>
@@ -398,7 +415,8 @@ void USample::Logout()
 ```
 
 
-## Withdraw
+<a id="withdraw"></a>
+## Withdraw { #withdraw }
 
 로그인 상태에서 탈퇴를 시도합니다.
 
@@ -445,7 +463,8 @@ void USample::Withdraw()
 }
 ```
 
-## Mapping
+<a id="mapping"></a>
+## Mapping { #mapping }
 
 매핑은 기존에 로그인된 계정에 다른 IdP의 계정을 연동하거나 해제시키는 기능입니다.
 
@@ -473,26 +492,31 @@ void USample::Withdraw()
 > Guest 로그인 중에 매핑을 성공하면 Guest IdP는 사라집니다.
 >
 
-### Add Mapping Flow
+<a id="add-mapping-flow"></a>
+### Add Mapping Flow { #add-mapping-flow }
 
 매핑은 다음 순서로 구현할 수 있습니다.
 
 ![add mapping flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_add_mapping_flow_2.30.0.png)
 
+<a id="add-mapping-flow-login"></a>
 #### 1. 로그인
 매핑은 현재 계정에 IdP 계정 연동을 추가하는 것이므로 우선 로그인이 돼 있어야 합니다.
 먼저 로그인 API를 호출해 로그인합니다.
 
+<a id="add-mapping-flow-mapping"></a>
 #### 2. 매핑
 
 **AddMapping API**를 호출해 매핑을 시도합니다.
 
+<a id="add-mapping-flow-2-1-when-mapping-is-successful"></a>
 #### 2-1. 매핑에 성공한 경우
 
 * 축하합니다! 현재 계정과 연동 중인 IdP 계정이 추가되었습니다.
 * 매핑에 성공해도 '현재 로그인 중인 IdP'가 바뀌지는 않습니다. <br>즉, Google 계정으로 로그인한 후, Facebook 계정 매핑 시도가 성공했다고 해서 '현재 로그인 중인 IdP'가 Google에서 Facebook으로 변경되지는 않습니다. Google 상태로 유지됩니다.
 * 매핑은 단순히 IdP 연동만 추가합니다.
 
+<a id="add-mapping-flow-2-2-when-mapping-fails"></a>
 #### 2-2. 매핑에 실패한 경우
 
 * 네트워크 오류
@@ -507,7 +531,8 @@ void USample::Withdraw()
     * 매핑 시도에 실패했습니다.
 
 
-### Add Mapping
+<a id="add-mapping"></a>
+### Add Mapping { #add-mapping }
 
 특정 IdP에 로그인된 상태에서 다른 IdP로 매핑을 시도합니다.
 매핑하려는 IdP의 계정이 이미 다른 계정에 연동되어 있다면
@@ -549,7 +574,8 @@ void USample::AddMapping(const FString& ProviderName)
 }
 ```
 
-### AddMapping with Credential
+<a id="addmapping-with-credential"></a>
+### AddMapping with Credential { #addmapping-with-credential }
 
 게임에서 직접 IdP에서 제공하는 SDK로 먼저 인증하고 발급 받은 Access Token 등을 이용해, Gamebase AddMapping을 할 수 있는 인터페이스입니다.
 
@@ -614,7 +640,8 @@ void USample::AddMappingWithCredential()
 }
 ```
 
-### Add Mapping Forcibly
+<a id="add-mapping-forcibly"></a>
+### Add Mapping Forcibly { #add-mapping-forcibly }
 
 특정 IdP에 이미 매핑된 계정이 있을 때, **강제로** 매핑을 시도합니다.
 **강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
@@ -680,7 +707,8 @@ void USample::AddMappingForcibly(const FString& ProviderName)
 }
 ```
 
-### Change Login with ForcingMappingTicket
+<a id="change-login-with-forcingmappingticket"></a>
+### Change Login with ForcingMappingTicket { #change-login-with-forcingmappingticket }
 
 특정 IdP에 이미 매핑된 계정이 있다면 현재 계정에서 로그아웃하고 매핑된 계정으로 로그인합니다.
 이때, AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
@@ -744,7 +772,8 @@ void USample::ChangeLoginWithFacebook(const FString& ProviderName)
 }
 ```
 
-### Remove Mapping
+<a id="remove-mapping"></a>
+### Remove Mapping { #remove-mapping }
 
 특정 IdP에 대한 연동을 해제합니다. 만약, 해제할 IdP가 유일한 IdP라면, 실패를 반환합니다.
 연동 해제 후에는 Gamebase 내부에서, 해당 IdP에 대한 로그아웃을 처리합니다.
@@ -781,7 +810,8 @@ void USample::RemoveMapping(const FString& ProviderName)
 }
 ```
 
-### Get Mapping List
+<a id="get-mapping-list"></a>
+### Get Mapping List { #get-mapping-list }
 
 사용자 ID에 연동된 IdP 목록을 반환합니다.<br/>
 
@@ -812,13 +842,16 @@ void USample::GetAuthMappingList()
 }
 ```
 
-## Gamebase User's Information
+<a id="gamebase-users-information"></a>
+## Gamebase User's Information { #gamebase-users-information }
 
 Gamebase에서 인증 절차를 진행한 후, 앱을 제작할 때 필요한 정보를 획득할 수 있습니다.
 
-### Get Authentication Information for Gamebase
+<a id="get-authentication-information-for-gamebase"></a>
+### Get Authentication Information for Gamebase { #get-authentication-information-for-gamebase }
 Gamebase를 통하여 인증절차를 진행 후, 앱을 제작할 때 필요한 정보를 얻을 수 있습니다.
 
+<a id="get-authentication-information-for-gamebase-userid"></a>
 #### UserID
 
 Gamebase에서 발급한 UserID를 가져올 수 있습니다.
@@ -842,6 +875,7 @@ void USample::GetUserID()
 }
 ```
 
+<a id="get-authentication-information-for-gamebase-accesstoken"></a>
 #### AccessToken
 
 Gamebase에서 발급한 Access Token을 가져올 수 있습니다.
@@ -866,6 +900,7 @@ void USample::GetAccessToken()
 }
 ```
 
+<a id="get-authentication-information-for-gamebase-last-loggedin-provider-name"></a>
 #### Last LoggedIn Provider Name
 
 Gamebase에서 마지막 로그인에 성공한 ProviderName을 가져올 수 있습니다.
@@ -904,7 +939,8 @@ void USample::GetLastLoggedInProvider()
 }
 ```
 
-### Get Authentication Information for External IdP
+<a id="get-authentication-information-for-external-idp"></a>
+### Get Authentication Information for External IdP { #get-authentication-information-for-external-idp }
 
 * 외부 인증 IdP의 Access Token, 사용자 ID, Profile 등의 정보는 로그인 후 게임 서버에서 Gamebase Server API를 호출하여 가져올 수 있습니다.
     * [Game > Gamebase > API 가이드 > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
@@ -918,13 +954,15 @@ void USample::GetLastLoggedInProvider()
 > * "Gamebase.LoginForLastLoggedInProvider()" API로 로그인한 경우에는 인증 정보를 가져올 수 없습니다.
 >     * 사용자 정보가 필요하다면 "Gamebase.LoginForLastLoggedInProvider()" 대신, 사용하고자 하는 IDPCode와 동일한 {IDP_CODE}를 파라미터로 하여 "Gamebase.Login(IDP_CODE, callback)" API로 로그인 해야 합니다.
 
-### Get Banned User Information
+<a id="get-banned-user-information"></a>
+### Get Banned User Information { #get-banned-user-information }
 
 Gamebase Console에 제재된 게임 유저로 등록될 경우, 로그인을 시도하면 아래와 같은 이용 제한 정보 코드(**BANNED_MEMBER(7)**)가 표시될 수 있습니다.
 **FGamebaseBanInfo::From API**를 이용해 제재 정보를 확인할 수 있습니다.
 
 
-## TransferAccount
+<a id="transferaccount"></a>
+## TransferAccount { #transferaccount }
 게스트 계정을 다른 단말기로 이전하기 위해 계정 이전을 위한 키를 발급받는 기능입니다.
 
 이 키를 **TransferAccountInfo**라고 부릅니다.
@@ -935,7 +973,8 @@ Gamebase Console에 제재된 게임 유저로 등록될 경우, 로그인을 �
 > TransferAccountInfo를 이용한 계정 이전은 게스트 로그인 상태 또는 로그인되어 있지 않은 상태에서만 가능합니다.
 > 로그인한 게스트 계정이 이미 다른 외부 IdP (Google, Facebook, PAYCO 등) 계정과 매핑이 되어 있다면 계정 이전이 지원되지 않습니다.
 
-### Issue TransferAccount
+<a id="issue-transferaccount"></a>
+### Issue TransferAccount { #issue-transferaccount }
 게스트 계정 이전을 위한 TransferAccountInfo를 발급합니다.
 
 **API**
@@ -964,7 +1003,8 @@ void USample::IssueTransferAccount()
 }
 ```
 
-### Query TransferAccount
+<a id="query-transferaccount"></a>
+### Query TransferAccount { #query-transferaccount }
 게스트 계정 이전을 위해 이미 발급 받은 TransferAccountInfo 정보를 게임베이스 서버에 질의합니다.
 
 **API**
@@ -993,7 +1033,8 @@ void USample::QueryTransferAccount()
 }
 ```
 
-### Renew TransferAccount
+<a id="renew-transferaccount"></a>
+### Renew TransferAccount { #renew-transferaccount }
 이미 발급 받은 TransferAccountInfo 정보를 갱신합니다.
 "자동 갱신", "수동 갱신"의 방법이 있으며, "Password만 갱신", "ID와 Password 모두 갱신" 등의 설정을 통해
 TransferAccountInfo 정보를 갱신할 수 있습니다.
@@ -1032,7 +1073,8 @@ void USample::RenewTransferAccount(const FString& AccountId, const FString& Acco
 ```
 
 
-### Transfer Guest Account to Another Device
+<a id="transfer-guest-account-to-another-device"></a>
+### Transfer Guest Account to Another Device { #transfer-guest-account-to-another-device }
 **issueTransfer** API로 발급 받은 TransferAccount를 통해 계정을 이전하는 기능입니다.
 계정 이전 성공 시 TransferAccount를 발급 받은 단말기에서 이전 완료 메시지가 표시될 수 있고, Guest 로그인 시 새로운 계정이 생성됩니다.
 계정 이전이 성공한 단말기에서는 TransferAccount를 발급받았던 단말기의 게스트 계정을 계속해서 사용할 수 있습니다.
@@ -1068,7 +1110,8 @@ void USample::TransferAccountWithIdPLogin(const FString& AccountId, const FStrin
 ```
 
 
-## TemporaryWithdrawal
+<a id="temporarywithdrawal"></a>
+## TemporaryWithdrawal { #temporarywithdrawal }
 
 '탈퇴 유예' 기능입니다.
 임시 탈퇴를 요청하여 즉시 탈퇴가 진행되지 않고 일정 기간의 유예 기간이 지나면 탈퇴가 이루어집니다.
@@ -1081,7 +1124,8 @@ void USample::TransferAccountWithIdPLogin(const FString& AccountId, const FStrin
 
 로그인이 성공하면 AuthToken.member.temporaryWithdrawal로 탈퇴 유예 상태인 유저인지 판단할 수 있습니다.
 
-### Request TemporaryWithdrawal
+<a id="request-temporarywithdrawal"></a>
+### Request TemporaryWithdrawal { #request-temporarywithdrawal }
 
 임시 탈퇴를 요청합니다.
 콘솔에 지정된 기간이 지나면 자동으로 탈퇴 진행이 완료됩니다.
@@ -1112,7 +1156,8 @@ void USample::RequestWithdrawal()
 }
 ```
 
-### Check TemporaryWithdrawal User
+<a id="check-temporarywithdrawal-user"></a>
+### Check TemporaryWithdrawal User { #check-temporarywithdrawal-user }
 
 탈퇴 유예를 사용하는 게임은 로그인 후 항상 AuthToken.member.temporaryWithdrawal가 null이 아니라면 해당 유저에게 탈퇴 진행 중이라는 사실을 알려야 합니다.
 
@@ -1146,7 +1191,8 @@ void USample::Login()
 }
 ```
 
-### Cancel TemporaryWithdrawal
+<a id="cancel-temporarywithdrawal"></a>
+### Cancel TemporaryWithdrawal { #cancel-temporarywithdrawal }
 
 탈퇴 요청을 취소합니다.
 탈퇴 요청 후 기간이 만료되어 탈퇴가 완료되면 취소가 불가능합니다.
@@ -1176,7 +1222,8 @@ void USample::CancelTemporaryWithdrawal()
 }
 ```
 
-### Withdraw Immediately
+<a id="withdraw-immediately"></a>
+### Withdraw Immediately { #withdraw-immediately }
 
 탈퇴 유예 기간을 무시하고 즉시 탈퇴를 진행합니다.
 실제 내부 동작은 Withdraw API와 동일합니다.
@@ -1209,7 +1256,8 @@ void USample::WithdrawImmediately()
 }
 ```
 
-## GraceBan
+<a id="graceban"></a>
+## GraceBan { #graceban }
 
 * '결제 어뷰징 자동 해제' 기능입니다.
     * 결제 어뷰징 자동 해제 기능은 결제 어뷰징 자동 제재로 이용 정지가 되어야 할 사용자가 '이용 정지 유예 상태' 후 이용 정지가 되도록 합니다.
@@ -1264,7 +1312,8 @@ void USample::Login()
 }
 ```
 
-## Error Handling
+<a id="error-handling"></a>
+## Error Handling { #error-handling }
 
 | Category       | Error                                    | Error Code | Description                              |
 | -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
@@ -1314,7 +1363,7 @@ void USample::Login()
 | Auth(Unknown) | AUTH_UNKNOWN_ERROR | 3999 | 알 수 없는 오류입니다. (정의되지 않은 오류입니다.) |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [오류 코드](./Error-code/#client-sdk)
+    * [오류 코드](./error-code/#client-sdk)
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 

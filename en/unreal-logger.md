@@ -1,8 +1,12 @@
-## Game > Gamebase > User Guide for Unreal SDK > Logger
+<!-- pre-align:aligned sig=02b9b48cba43 -->
+
+<a id="game-gamebase-user-guide-for-unreal-sdk-logger"></a>
+## Game > Gamebase > User Guide for Unreal SDK > Logger { #game-gamebase-user-guide-for-unreal-sdk-logger }
 
 This document describes how to Log & Crach Search API.
 
-### Settings
+<a id="settings"></a>
+### Settings { #settings }
 
 * Windows
     * To set the value of ProjectVersion in Log & Crash Search, you must enter the appropriate version for ProjectVersion in GeneralProjectSettings in DefaultGame.ini.
@@ -11,7 +15,8 @@ This document describes how to Log & Crach Search API.
             ProjectVersion=1.0.0
             
                 
-### Initialize
+<a id="initialize"></a>
+### Initialize { #initialize }
 Initialize NHN Cloud Logger SDK with appkey issued from Log & Crash Search. 
 
 **API**
@@ -38,7 +43,8 @@ void USample::InitializeLogger()
 }
 ```
 
-### Send Logs
+<a id="send-logs"></a>
+### Send Logs { #send-logs }
 Send logs to Log & Crash Server. 
 NHN Cloud Logger SDK can send logs of the five levels as below: 
 
@@ -121,7 +127,8 @@ void USample::FatalLogger()
 }
 ```
 
-### Set User-Defined Fields
+<a id="set-user-defined-fields"></a>
+### Set User-Defined Fields { #set-user-defined-fields }
 Set user-defined field as needed. 
 With user-defined field setting, set value is sent to server along with logs every time Send Logs API is called. 
 
@@ -145,9 +152,10 @@ void USample::SetLoggerUserField()
 }
 ```
 
-### Crash Reporter
+<a id="crash-reporter"></a>
+### Crash Reporter { #crash-reporter }
 
 * Windows
     * To interpret crashes that occur in your SDK in Log & Crash Search, you need to upload a symbol file to the console
     * During the build process, a .sym file and a .zip file containing the compressed .sym file are generated in the project's binary output path.
-    * Check out the [Log & Crash Search console guide](https://docs.nhncloud.com/en/Data%20&%20Analytics/Log%20&%20Crash%20Search/en/console-guide/#symbol-file) to upload.
+    * Check out the [Log & Crash Search console guide](/Data%20&%20Analytics/Log%20&%20Crash%20Search/en/console-guide/#symbol-file) to upload.

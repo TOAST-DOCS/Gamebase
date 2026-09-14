@@ -1,4 +1,7 @@
-## Game > Gamebase > コンソール使用ガイド > Analytics
+<!-- pre-align:aligned sig=a5c57b38e752 -->
+
+<a id="game-gamebase-console-guide-analytics"></a>
+## Game > Gamebase > コンソール使用ガイド > Analytics { #game-gamebase-console-guide-analytics }
 
 アプリユーザーの状況、売上関連の指標を表とグラフで確認できます。
 Analyticsは、次のメニューで構成されています。
@@ -9,12 +12,15 @@ Analyticsは、次のメニューで構成されています。
 * グループ同時接続：Gamebaseサービスユーザーが属するプロジェクトのグループ同時接続とグループ別基本指標
 * 利用環境：インストールURL呼び出しに対する統計指標
 
-## リアルタイムモニタリング
-### リアルタイム同時接続
+<a id="real-time-monitoring"></a>
+## リアルタイムモニタリング { #real-time-monitoring }
+<a id="real-time-concurrence"></a>
+### リアルタイム同時接続 { #real-time-concurrence }
 
 現在、アプリユーザーのリアルタイム同時接続指標およびメンテナンス、プッシュ情報を確認できます。
 ![analytics_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_01_jp_240103.png)
 
+<a id="real-time-concurrence-change-graphs-of-real-time-concurrent-users"></a>
 #### 1. リアルタイム同時接続者(CCU)変化グラフ
 1分ごとにデータを更新し、リアルタイムに変更された指標を確認できます。
 
@@ -22,17 +28,21 @@ Analyticsは、次のメニューで構成されています。
 * 決済額：当日0時～24時にユーザーがGamebaseで決済した金額の合計。払い戻し、決済キャンセルなどの情報が含まれていない純粋な決済額です。
 * 新規加入者(NRU)：新規加入者。当日0時～24時にログインログが初めて収集されたユーザー(memberno基準)
 
+<a id="real-time-concurrence-maintenance-information"></a>
 #### 2. メンテナンス情報
 当日0時～24時にGamebaseに登録されたメンテナンス情報で、メンテナンス後の同時接続者の増減推移を確認できます。
 
+<a id="real-time-concurrence-push-information"></a>
 #### 3. プッシュ情報
 当日0時～24時にGamebaseに送信されたプッシュ情報で、送信後の同時接続者の増減推移を確認できます。
 
-### ダッシュボード
+<a id="dashboard"></a>
+### ダッシュボード { #dashboard }
 
 リアルタイムにゲームユーザーの多様な指標をひと目で確認できます。
 ![analytics_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_02_jp_240103.png)
 
+<a id="dashboard-for-real-time-user-status"></a>
 #### 1. リアルタイムユーザー状況ダッシュボード
 アプリユーザーおよび決済指標を確認できます。
 日付が今日の場合は10分ごとに更新され、それ以外の時は、その日の指標を表示します。
@@ -52,9 +62,11 @@ Analyticsは、次のメニューで構成されています。
 
 ※ MCU、ACU、ARPUの場合、フィルタが全体の場合のみ確認できます。
 
+<a id="dashboard-real-time-graphs-of-change-for-major-indicators"></a>
 #### 2. 主要指標リアルタイム変化グラフ
 同時接続者(CCU)、新規加入者(NRU)、決済額、PU指標の変化を10分間隔で確認できます。
 
+<a id="dashboard-status-of-real-time-share"></a>
 #### 3. リアルタイム占有率状況
 ユーザーのOS、アプリバージョン、ストア、国についての占有率をグラフで確認できます。
 日付が今日の場合はCCUを基準に、過去の日付の場合はDAUを基準に表示します。
@@ -64,12 +76,15 @@ Analyticsは、次のメニューで構成されています。
 * ストア占有率：DAUのうち、ストア占有比率(当日はCCU基準)
 * 国別占有率：DAUのうち、国別占有比率(当日はCCU基準)
 
-## ユーザー指標
-### ユーザー
+<a id="user-indicators"></a>
+## ユーザー指標 { #user-indicators }
+<a id="users"></a>
+### ユーザー { #users }
 
 ユーザーの基本指標を確認できます。
 ![analytics_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_03_jp_240103.png)
 
+<a id="users-user-status"></a>
 #### 1. ユーザー状況
 選択された期間のユーザー基本指標を表示します。
 
@@ -84,12 +99,14 @@ Analyticsは、次のメニューで構成されています。
 * 平均CCU：選択した期間のCCUの平均
 * 平均ゲーム時間(Avg.Playtime(/DAU))： 照会された期間中に利用時間の平均(DAUの利用時間の合計 / DAU)
 
+<a id="users-daily-indicators"></a>
 #### 2. 日別指標
 選択された期間の日別ユーザー基本指標をグラフと表で表示します。
 
 ※ MCU、累積ユーザー(ACU)の場合、フィルタが全体の場合のみ確認できます。
 
-### ユーザー環境
+<a id="service-environment"></a>
+### ユーザー環境 { #service-environment }
 ![analytics_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_04_jp_240103.png)
 
 利用環境ごとのユーザー指標を確認できます。
@@ -106,7 +123,8 @@ Analyticsは、次のメニューで構成されています。
     * PU：有料商品を決済したユーザー(ゲームユーザー)(=再購入PU + 新規PU)
     * 決済額：ユーザーが決済した総額
 
-### ユーザーの流入と流出
+<a id="user-inflow-and-outflow"></a>
+### ユーザーの流入と流出 { #user-inflow-and-outflow }
 
 アプリユーザーの流入、流出数の日付別推移を確認できます。
 ![analytics_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_05_jp_240103.png)
@@ -134,7 +152,8 @@ Analyticsは、次のメニューで構成されています。
   * 週別：前週及び基準週のログが全て収集されたユーザー数
   * 月別：前月及び基準月のログが全て収集されたユーザー数
 
-### Retention
+<a id="retention"></a>
+### Retention { #retention }
 
 Retentionは、特定の日に加入したユーザーが、加入した次の日から180日間、どれだけ残っているかを確認できる指標です。
 ![analytics_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_06_jp_240103.png)
@@ -146,16 +165,19 @@ Retentionは、特定の日に加入したユーザーが、加入した次の�
     * 新規加入者(New User) =当日加入者 - 加入当日に退会した人
    例) 1月1日に100人新規加入、このうち20人が1月1日に退会したなら、実際の新規加入者を80人(100人-20人)と計算
 
-### LTV
+<a id="ltv"></a>
+### LTV { #ltv }
 ![analytics_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_07_jp_240103.png)
 
 LTVは、選択された利用者グループで、利用者1人の1年間の期待売上を表す推定指標です。
 
 国/OS別、日付別にLTVチャートを提供し、下段の表にはLTV、累積NRU、累積PU、累積決済金額情報を詳細に確認できます。
 
+<a id="ltv-estimation-method"></a>
 #### 推定方法
 Gamebaseでは、LTV推定方法として、登録後365日経過時点の累積ARPUを使用します。 
 
+<a id="ltv-user-group-conditions"></a>
 #### 利用者グループ条件
 利用者グループの条件は以下の通りです。
 
@@ -163,6 +185,7 @@ Gamebaseでは、LTV推定方法として、登録後365日経過時点の累積
 * 国
 * OS
 
+<a id="ltv-restriction-conditions"></a>
 #### 制限条件
 LTVを正確に推定するために、以下の制限条件があります。
 
@@ -170,7 +193,8 @@ LTVを正確に推定するために、以下の制限条件があります。
 * 利用者グループのPU(決済利用者数)が30人以上必要です。
 * 利用者グループ中、最も新しい加入日から7日経過している必要があります。
 
-### Life Cycle
+<a id="life-cycle"></a>
+### Life Cycle { #life-cycle }
 ![analytics_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_08_jp_240103.png)
 
 Life Cycleは、最初に利用者が流入した時点から、日別の利用者推移を確認できる指標です。データは最大3年まで提供されます。
@@ -183,7 +207,8 @@ Life Cycleは、最初に利用者が流入した時点から、日別の利用�
 * 平均CCU：選択された期間のCCUの平均
 * 平均ゲーム時間 - Avg.Playtime(/DAU)：照会期間のPlaytime平均(DAUのPlaytimeの合計 / DAU)
 
-### Frequency7
+<a id="frequency7"></a>
+### Frequency7 { #frequency7 }
 ![analytics_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_09_jp_240103.png)
 
 Frequency7指標は、DAUの一週間間の訪問数と比率情報を提供します。ゲーム没入度、忠誠度などをひと目で把握できます。
@@ -201,22 +226,27 @@ Frequency7の基準は、以下の3つに分けられます。
 * 連続訪問回数：2日(3/6, 3/7)
 * 最大連続訪問回数：3日(3/1, 3/2, 3/3)
 
-## 売上指標
-### 決済額
+<a id="sales-indicators"></a>
+## 売上指標 { #sales-indicators }
+<a id="purchase-amount"></a>
+### 決済額 { #purchase-amount }
 
 決済額の指標を確認できます。
 ![analytics_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_10_jp_240103.png)
 
+<a id="purchase-amount-status-table-for-purchase-amount"></a>
 #### 1. 決済額状況表
 選択した期間の決済額を表示します。
 総決済額と、主要ストアの国別決済額を確認できます。
 
+<a id="purchase-amount-sales-trend"></a>
 #### 2. 売上推移
 日付別に新規売上、再購入売上、PU(決済ユーザー)の推移をグラフで確認できます。
 下記の表ではストア、国家、 IdP別の売上を確認できます。
 日間照会時にのみ月単位累積決済金額を確認できます。
 
-### 有料ユーザー
+<a id="paying-users"></a>
+### 有料ユーザー { #paying-users }
 
 有料ユーザー(PU)の指標を確認できます。
 ![analytics_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_11_jp_240103.png)
@@ -234,7 +264,8 @@ Frequency7の基準は、以下の3つに分けられます。
 * ARPPU：有料ユーザー1人あたりの平均決済額(決済額/PU)
 * ARPNPU：新規有料ユーザーの平均決済額(決済額/NPU)
 
-### アイテム販売指標
+<a id="item-sales-indicators"></a>
+### アイテム販売指標 { #item-sales-indicators }
 
 Gamebaseに登録したアイテムの販売指標を確認できます。
 ![analytics_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_12_jp_240103.png)
@@ -247,7 +278,8 @@ Gamebaseに登録したアイテムの販売指標を確認できます。
 * PU：アイテム別購入者数
 * 決済比率：アイテム別決済比重
 
-### 初回購入
+<a id="first-purchase"></a>
+### 初回購入 { #first-purchase }
 ![analytics_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_13_jp_240103.png)
 
 新規有料ユーザーの初回購入に関する情報を確認できます。
@@ -262,8 +294,10 @@ Gamebaseに登録したアイテムの販売指標を確認できます。
 * 新規PU(NPU)：有料商品を初めて決済したユーザー(New Paying Users)
 * 新規決済額：新規PUの決済額
 
-## グループ同時接続
-### グループ同時接続者
+<a id="group-concurrence"></a>
+## グループ同時接続 { #group-concurrence }
+<a id="concurrent-group-users"></a>
+### グループ同時接続者 { #concurrent-group-users }
 
 Gamebaseサービスユーザーが属するすべてのプロジェクトの同時接続指標を確認できます。
 ![analytics_14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_14_jp_240103.png)
@@ -271,7 +305,8 @@ Gamebaseサービスユーザーが属するすべてのプロジェクトの同
 * リアルタイムグループ同時接続：Gamebaseサービスユーザーが属するプロジェクトのリアルタイム同時接続者(CCU)を表します。
 * プロジェクトグループ同時接続：選択された期間、フィルタを基準にアプリユーザー数を表示します。
 
-### グループ比較指標
+<a id="group-comparison-indicators"></a>
+### グループ比較指標 { #group-comparison-indicators }
 
 Gamebaseサービスユーザーが属するプロジェクトを、フィルタと組み合わせてグループで比較できます。
 ![analytics_15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_15_jp_240103.png)
@@ -283,7 +318,8 @@ Gamebaseサービスユーザーが属するプロジェクトを、フィルタ
 
 ※グラフに表示されるグループ名は**{appId} _ {OS} _ {国}**の形式です。
 
-## Transmission
+<a id="transmission"></a>
+## Transmission { #transmission }
 
 **転送指標**タブは、ゲームからAPIで指標を転送する時に確認できます。
 転送指標の種類は下記の3個です。
@@ -299,7 +335,8 @@ Gamebaseサービスユーザーが属するプロジェクトを、フィルタ
 >
 > - [アプリ > Analytics Indicator](./oper-app/#analytics-indicator)
 
-### Concurrent Status
+<a id="concurrent-status"></a>
+### Concurrent Status { #concurrent-status }
 
 選択された転送指標の種類と、各日付の接続、売上情報を確認できます。
 同時接続者は、当日はCCUを提供し、日付別はDAU情報を提供します。当日の場合は10分単位で情報が更新されます。
@@ -311,7 +348,8 @@ Gamebaseサービスユーザーが属するプロジェクトを、フィルタ
 * 決済件数：有料商品の決済件数
 * 決済金額：有料商品の決済金額
 
-### Status By Level
+<a id="status-by-level"></a>
+### Status By Level { #status-by-level }
 
 レベル別に接続、売上状況を確認できます。
 ![analytics_17](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_17_jp_240103.png)
@@ -325,7 +363,8 @@ Gamebaseサービスユーザーが属するプロジェクトを、フィルタ
 * 新規PU：有料商品を初めて決済した利用者
 * 再購入PU：全体PU - 新規PU(再購入PUは1日間のデータで、前日を基準に計算)
 
-### Status By Channel
+<a id="status-by-channel"></a>
+### Status By Channel { #status-by-channel }
 
 ワールド/サーバー/チャンネル別に接続、売上状況を確認できます。
 ![analytics_18](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_18_jp_240103.png)
@@ -339,7 +378,8 @@ Gamebaseサービスユーザーが属するプロジェクトを、フィルタ
 * 新規PU：有料商品を初めて決済した利用者
 * 再購入PU：全体PU - 新規PU(再購入PUは1日間のデータで、前日を基準に計算)
 
-### Status By Class
+<a id="status-by-class"></a>
+### Status By Class { #status-by-class }
 
 クラス/職業別に接続、売上状況を確認できます。
 ![analytics_19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_19_jp_240103.png)
@@ -353,7 +393,8 @@ Gamebaseサービスユーザーが属するプロジェクトを、フィルタ
 * 新規PU：有料商品を初めて決済した利用者
 * 再購入PU：全体PU - 新規PU(再購入PUは1日間のデータで、前日を基準に計算)
 
-### Level Up
+<a id="level-ups"></a>
+### Level Up { #level-ups }
 
 利用者のレベルアップ情報を確認できます。
 
@@ -362,7 +403,8 @@ Gamebaseサービスユーザーが属するプロジェクトを、フィルタ
 * レベルアップ平均達成時間(分)：該当レベルを達成した利用者の平均達成時間(分)
 ![analytics_20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_20_jp_240103.png)
 
-### Item Sales Status
+<a id="item-sales-status"></a>
+### Item Sales Status { #item-sales-status }
 
 選択された転送指標の種類ごとにアイテム販売状況を確認できます。
 **条件**ボタンをクリックし、下記の照会値を選択できます。
@@ -374,7 +416,8 @@ Gamebaseサービスユーザーが属するプロジェクトを、フィルタ
 
 ![analytics_21](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/jp/analytics_21_jp_240103.png)
 
-### Item Sales TOP 50
+<a id="top-50-sales-items"></a>
+### Item Sales TOP 50 { #top-50-sales-items }
 
 選択された転送指標の種類および値に応じて、アイテム販売上位50個の項目を確認できます。
 

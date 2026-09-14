@@ -1,8 +1,12 @@
-## Game > Gamebase > Console ご利用ガイド > 管理
+<!-- pre-align:aligned sig=dfa37aebcdc0 -->
+
+<a id="game-gamebase-console-guide-management"></a>
+## Game > Gamebase > Console ご利用ガイド > 管理 { #game-gamebase-console-guide-management }
 
 Gamebaseを使用するゲームに対する照会権限の管理、通知送信の設定、通知内訳の照会などの機能を使用することができます。
 
-## Authorization
+<a id="authorization"></a>
+## Authorization { #authorization }
 
 Gamebase Consoleの使用権限を管理できます。
 ![management_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Management/jp/management_01_jp_240103.png)
@@ -18,14 +22,17 @@ Gamebase Consoleの使用権限を管理できます。
 * 新しいメンバーを登録したい場合、TOASTプロジェクトメンバー管理から追加する必要があります。
 * 自分自身の権限は修正することができません。
 
-## Alarm
+<a id="alarm"></a>
+## Alarm { #alarm }
 
 Gamebaseの通知機能を使用してゲームユーザーの増加率や減少率、最小同時接続者数の変化などに対する通知を受け取ることができます。
 
-### Alarm
+<a id="alarm-2"></a>
+### Alarm { #alarm-2 }
 
 ![management_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Management/jp/management_02_jp_240103.png)
 
+<a id="alarm-2-1-activate-decrease-alarms"></a>
 #### (1) 減少通知
 同時接続者数が減少したときに通知を受け取るかどうかを設定します。通知を受け取りたい場合、**減少通知**を**On**に設定します。
 
@@ -33,17 +40,21 @@ Gamebaseの通知機能を使用してゲームユーザーの増加率や減少
 - **メンテナンスによる同時接続者数減少の通知を無視する**：アプリをメンテナンスする場合は、当然、同時接続者数が減少します。
   この場合、**メンテナンスによる同時接続者数減少の通知を無視する**を**On**に設定して通知を受け取らないようにすることができます。
 
+<a id="alarm-2-2-activate-increase-alarms"></a>
 #### (2) 増加通知
 同時接続者数が増加したときに通知を受け取るように設定することができます。
 機能を有効にすれば、運営者が通知を受け取る数値を設定することができます。
 
+<a id="alarm-2-3-message-language"></a>
 #### (3) メッセージ言語
 通知送信メッセージの言語を選択することができます。現在は韓国語と英語のメッセージのみ対応しており、追加リクエストがある場合、他の言語も追加する予定です。
 
+<a id="alarm-2-4-minimum-number-of-concurrent-access"></a>
 #### (4) 最小同時接続者数
 **最小同時接続者数**に指定した数より少ない人数がアプリに接続した場合に通知を受け取るようにすることができます。例えば、**最小同時接続者数**を「500人」に設定した場合、同時接続者数が500人以下になったときに通知を受け取ることになります。最小設定値は100人で、100人未満には設定できません。
 
-### Alarm Log
+<a id="alarm-log"></a>
+### Alarm Log { #alarm-log }
 
 通知ログは、通知メニューの下にあり、通知が発生した履歴を照会することができます。
 最大30日まで照会することができ、照会後に**Search**ボタンをクリックすると、リアルタイムでフィルタリングすることもできます。
@@ -55,33 +66,39 @@ Gamebaseの通知機能を使用してゲームユーザーの増加率や減少
 - 新規の同時接続者数：通知が送信される瞬間取得した同時接続者数の情報
 - 変化率(設定値)：変化率の値は過去の同時接続者数と比較した新規の同時接続者数に関する情報。設定値は通知が発生した際に送信のために設定しておいた値
 
-### Webhook
+<a id="webhook"></a>
+### Webhook { #webhook }
 Gamebaseで基本提供されるSMS/Email以外で別途通知を受け取ることができるWebhook設定機能を提供します。
 外部システムのWebhook URLを通して通知送信をリクエストする場合、一緒に通知を送信します。
 
+<a id="webhook-1-retrieve-list"></a>
 #### (1) リスト照会
 ![management_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Management/jp/management_04_jp_240103.png)
 現在、通知を受け取ることができるWebhookに対する登録内訳を確認することができます。
 登録されたWebhook URLが必要な場合、右の**URLコピー**をクリックして簡単にコピーすることができます。
 
+<a id="webhook-2-register"></a>
 #### (2) 登録
 ![management_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Management/jp/management_05_jp_240103.png)
 **登録**ボタンをクリックして外部システムから発行されたWebhook情報を登録することができます。
 現在はDoorayとSlackのみ登録でき、今後、リクエストがあれば新しいリストを追加する予定です。
 
+<a id="webhook-3-retrievemodifydelete-details"></a>
 #### (3) 詳細照会/修正/削除
 ![management_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Management/jp/management_06_jp_240103.png)
 各項目をクリックすると、詳細情報を照会することができます。
 登録された情報を変更したい場合は**修正**ボタンをクリックします。該当するWebhookが必要でない場合は、**削除**ボタンをクリックして項目を削除することもできます。
 
-### Recipient List
+<a id="recipient-list"></a>
+### Recipient List { #recipient-list }
 
 アラームを受信するユーザーを設定できます。新しいメンバーを登録するにはNHN Cloudプロジェクトメンバー管理から追加する必要があります。
 ![management_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Management/jp/management_07_jp_240103.png)
 GamebaseではメールとSMSでアラームを送信できます。
 メールとSMSは、NHN Cloud登録時に入力した情報を利用して送信し、メールアドレス/番号を間違えて登録した場合にはアラームを受け取れない場合もあります。携帯電話番号情報はNHN Cloudの**マイ情報管理**ページで確認できます。
 
-## Config
+<a id="config"></a>
+## Config { #config }
 
 GamebaseとNHN Cloudサービスの連携関連設定が行えます。
 

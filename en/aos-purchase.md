@@ -1,10 +1,14 @@
-## Game > Gamebase > Android Developer's Guide > Purchase
+<!-- pre-align:aligned sig=bacf30302c7a -->
+
+<a id="game-gamebase-android-developers-guide-purchase"></a>
+## Game > Gamebase > Android Developer's Guide > Purchase { #game-gamebase-android-developers-guide-purchase }
 
 This page describes how to set In-App Purchase (IAP).
 
 Gamebase provides an integrated purchase API to easily link IAP of many stores in a game.
 
-### Initialization
+<a id="initialization"></a>
+### Initialization { #initialization }
 
 > <font color="red">[Caution]</font><br/>
 >
@@ -28,9 +32,10 @@ GamebaseConfiguration configuration = GamebaseConfiguration.newBuilder(APP_ID, A
 Gamebase.initialize(activity, configuration, callback);
 ```
 
-### Purchase Flow
+<a id="purchase-flow"></a>
+### Purchase Flow { #purchase-flow }
 
-Purchase of an item can be divided into **Purchase Flow**, **[Consume Flow](./aos-purchase/#consume-flow)**, and **[Reprocess Flow](./aos-purchase/#retry-transaction-flow)**.
+Purchase of an item can be divided into **Purchase Flow**, **[Consume Flow](#consume-flow)**, and **[Reprocess Flow](#retry-transaction-flow)**.
 It is recommended to implement the **Purchase Flow** in the following order:
 
 ![purchase flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_flow_001_2.10.0.png)
@@ -39,7 +44,8 @@ It is recommended to implement the **Purchase Flow** in the following order:
 2. The game client attempts to make a purchase by calling **requestPurchase** of the Gamebase SDK.
 3. If the purchase is successful, call **requestItemListOfNotConsumed** to check the unconsumed purchase details, and if there is an item to provide, proceed with the Consume Flow.
 
-### Consume Flow
+<a id="consume-flow"></a>
+### Consume Flow { #consume-flow }
 
 If there's a value on the list of unconsumed purchases, proceed with the **Consume Flow** in the following order:
 
@@ -63,19 +69,21 @@ If there's a value on the list of unconsumed purchases, proceed with the **Consu
 3. Regardless of whether the item has been provided, the game server completes the item provision by calling the Gamebase server's consume API so that the unspent payment list is no longer returned.
     * [Game > Gamebase > API Guide > Purchase(IAP) > Consume](./api-guide/#consume)
 
-### Retry Transaction Flow
+<a id="retry-transaction-flow"></a>
+### Retry Transaction Flow { #retry-transaction-flow }
 
 ![retry transaction flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/purchase_retry_transaction_flow_2.19.0.png)
 
 * There are cases where the store purchase has been made successfully but the process was not properly completed due to errors.
-* Call **requestItemListOfNotConsumed** to run reprocessing and proceed with the [Consume Flow](./aos-purchase/#consume-flow) for any unprovided items.
+* Call **requestItemListOfNotConsumed** to run reprocessing and proceed with the [Consume Flow](#consume-flow) for any unprovided items.
 * It is recommended to call reprocessing at the following times:
     * After login is completed
     * Before making a purchase
     * When entering the store (or lobby) in a game
     * When checking the user profile or mailbox
 
-### Purchase Items
+<a id="purchase-items"></a>
+### Purchase Items { #purchase-items }
 
 Request purchase by calling the following API using the gamebaseProductId of the item to purchase.<br/>
 The gamebaseProductId is generally the same as the ID of item registered at the store, but it can be changed in the Gamebase console. 
@@ -238,7 +246,8 @@ class PurchasableReceipt {
 }
 ```
 
-### List Purchasable Items
+<a id="list-purchasable-items"></a>
+### List Purchasable Items { #list-purchasable-items }
 
 To retrieve the list of items, call the following API. Information of each item is included in the array of callback return.
 
@@ -336,7 +345,8 @@ class PurchasableItem {
 }
 ```
 
-### List Non-Consumed Items
+<a id="list-non-consumed-items"></a>
+### List Non-Consumed Items { #list-non-consumed-items }
 
 * List non-consumed consumables (CONSUMABLE) and consumable subscriptions (CONSUMABLE_AUTO_RENEWABLE).
 * In case there is any non-purchased item, request the game server (item server) to proceed with item delivery (provision).
@@ -384,12 +394,13 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, configuration, new Game
 });
 ```
 
-### List Activated Subscriptions
+<a id="list-activated-subscriptions"></a>
+### List Activated Subscriptions { #list-activated-subscriptions }
 
 List activated subscriptions for a current user ID. 
 Paid subscriptions (auto-renewable subscription, or auto-renewed consumable subscription) can be queried before they're expired. 
 For subscription life cycle, refer to the following document.
-[NHN Cloud > SDK User Guide > IAP > Android > Google Play Store Subscription (Regular payment) feature > Subscription Lifecycle Handing](https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-android/#subscription-lifecycle-handling)
+[NHN Cloud > SDK User Guide > IAP > Android > Google Play Store Subscription (Regular payment) feature > Subscription Lifecycle Handing](/nhncloud-sdk/en/iap-android/#subscription-lifecycle-handling)
 > <font color="red">[Caution]</font><br/>
 >
 > Current subscriptions for Android are supported by Google Play Store only.
@@ -433,18 +444,19 @@ Gamebase.Purchase.requestActivatedPurchases(activity, configuration, new Gamebas
 ```
 
 
-### List Status of Subscriptions
+<a id="list-status-of-subscriptions"></a>
+### List Status of Subscriptions { #list-status-of-subscriptions }
 
 You can view the status of purchased subscription products based on your current user ID.
 Subscription products that have been paid for (auto-renewable subscriptions, auto-renewable consumable subscription products) can be viewed until they expire.
 You can retrieve the status of expired subscription products with the **PurchasableConfiguration.setIncludeExpiredSubscriptions(true)** API.
 For subscription status codes, see the following document.
- [NHN Cloud > SDK User Guide > IAP > Android > NHN Cloud IAP Class Reference > IapSubscriptionStatus.StatusCode](https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-android/#iapsubscriptionstatusstatuscode).
+ [NHN Cloud > SDK User Guide > IAP > Android > NHN Cloud IAP Class Reference > IapSubscriptionStatus.StatusCode](/nhncloud-sdk/en/iap-android/#iapsubscriptionstatusstatuscode).
 
 > <font color="red">[Caution]</font><br/>
 >
 > * The subscription status code is only returned correctly if you follow the guide below to set up the subscription event.
->     * Go to [Game > Gamebase > Store Console Guide > Google Console Guide and set up event propagation of real-time subscription information within Google's system](./console-google-guide/#set-up-event-propagation-of-real-time-subscription-information-within-googles-system)
+>     * Go to [Game > Gamebase > Store Console Guide > Google Console Guide and set up event propagation of real-time subscription information within Google's system](./console-google-guide/#set-up-google-notifications-to-receive-real-time-subscription-status)
 >     * The status code for a subscription product purchased without setting up events always returns 0 (PURCHASED).
 > * Subscription products currently only supports Google Play Store.
 
@@ -608,13 +620,15 @@ class PurchasableSubscriptionStatus {
 }
 ```
 
-### Event by Purchase
+<a id="event-by-purchase"></a>
+### Event by Purchase { #event-by-purchase }
 
 You can receive and handle events via the GamebaseEventHandler when an item is acquired through a promotion code or a pending payment is completed.
 Refer to the guide below for instructions on handling promotion and pending payment events using the GamebaseEventHandler.
 [Game > Gamebase > User Guide for Android SDK > ETC > Gamebase Event Handler](./aos-etc/#purchase-updated)
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                                     | Error Code | Description                              |
 | ----------------------------------------- | ---------- | ---------------------------------------- |
@@ -630,7 +644,7 @@ Refer to the guide below for instructions on handling promotion and pending paym
 | PURCHASE_UNKNOWN_ERROR                    | 4999       | Unknown error in purchase.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry) and we'll reply at the earliest possible moment. |
 
 * Refer to the following document for the entire error code.
-    * [Entire Error Codes](./error-codes#client-sdk)
+    * [Entire Error Codes](./error-code/#client-sdk)
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
@@ -664,5 +678,5 @@ Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataC
 ```
 
 * For NHN Cloud IAP SDK error codes, refer to the document below.
-    * [NHN Cloud > NHN Cloud SDK User Guide > NHN Cloud IAP > Android > Error Codes](https://docs.toast.com/en/TOAST/en/toast-sdk/iap-android/#error-codes)
+    * [NHN Cloud > NHN Cloud SDK User Guide > NHN Cloud IAP > Android > Error Codes](/nhncloud-sdk/en/iap-android/#error-codes)
 

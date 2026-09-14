@@ -1,24 +1,33 @@
-## Game > Gamebase > Upgrade Guide
+<!-- pre-align:aligned sig=d60b1633360c -->
 
-## 2.81.4
+<a id="game-gamebase-upgrade-guide"></a>
+## Game > Gamebase > Upgrade Guide { #game-gamebase-upgrade-guide }
 
-### Unity
+<a id="section-1"></a>
+## 2.81.4 { #section-1 }
+
+<a id="unity"></a>
+### Unity { #unity }
 
 * Assembly Definition (.asmdef) has been applied to the Gamebase Unity SDK source, and the SDK is compiled into a separate **Gamebase** assembly, independent of the default assembly (Assembly-CSharp).
     * Since the Gamebase assembly has autoReferenced enabled, projects that do not use a separate Assembly Definition can use the Gamebase API as before without any additional configuration.
     * If your game code uses its own Assembly Definition (.asmdef), you must add the **Gamebase** assembly to the **Assembly Definition References** of the assembly that calls the Gamebase API.
 
-## 2.81.2
+<a id="section-2"></a>
+## 2.81.2 { #section-2 }
 
-### iOS
+<a id="ios"></a>
+### iOS { #ios }
 
 * The following issue occurs in Gamebase iOS SDK versions below 2.81.2.
     * When Gamebase is initialized immediately after launch while the app supports SceneDelegate, the callback is not received.
     * Use Gamebase iOS SDK 2.81.2, in which this issue has been resolved.
 
-## 2.81.0
+<a id="section-3"></a>
+## 2.81.0 { #section-3 }
 
-### Android
+<a id="android"></a>
+### Android { #android }
 
 * Gamebase Android SDK 2.81.0 has an issue where the build fails in game projects using a version of R8 earlier than 8.0.44.
     * The R8 version is determined by the AGP in Unity Editor. This occurs on Unity 2022 LTS and earlier, and does not occur on Unity 2023, Unity 6, and later.
@@ -35,58 +44,72 @@
                 }
             }
 
-## 2.80.1
+<a id="section-4"></a>
+## 2.80.1 { #section-4 }
 
-### Unity
+<a id="section-4-unity"></a>
+### Unity { #section-4-unity }
 
 * Auth.AuthToken의 extraParams 타입이 Dictionary&lt;string, string&gt;에서 Dictionary&lt;string, object&gt;로 변경되었습니다.
 
-## 2.80.0
+<a id="section-5"></a>
+## 2.80.0 { #section-5 }
 
-### Android
+<a id="section-5-android"></a>
+### Android { #section-5-android }
 
 * Gamebase Android SDK 2.80.0 has the following issue:
     * The Pending event-related logic causes excessive load on the IAP server.
     * Use Gamebase Android SDK 2.80.1, in which this issue has been resolved.
 
-### iOS
+<a id="section-5-ios"></a>
+### iOS { #section-5-ios }
 
 * The minimum supported Xcode version has been updated from 16.0 to 26.0.
 * **+[TCGBPurchase setPromotionIAPHandler:]** The API is deprecated.
 
-### Unreal
+<a id="unreal"></a>
+### Unreal { #unreal }
 
 * (iOS) Required entries are automatically added to Info.plist depending on the features enabled in Project Settings.
     * To manage `AdditionalPlistData` manually, enable **Disable Auto Info.plist Update** in [iOS Settings](./unreal-started/#ios-settings).
 
-## 2.79.0
+<a id="section-6"></a>
+## 2.79.0 { #section-6 }
 
-### iOS
+<a id="section-6-ios"></a>
+### iOS { #section-6-ios }
 
 * **+[TCGBConfiguration setStoreCode:]** API is deprecated.
 * **-[TCGBPurchase setStoreCode:]** API is deprecated.
 * **TCGBPurchase.storeCode** API is deprecated.
 
-## 2.77.0
+<a id="section-7"></a>
+## 2.77.0 { #section-7 }
 
-### Common
+<a id="common"></a>
+### Common { #common }
 
 * We have updated the recommended guide for the IdP Revoked event in GamebaseEventHandler, which occurs when an Apple ID account is revoked.
     * You need to notify users that the IdP is disabled and ensure they log out and log back in, rather than withdrawing from the service.
     
-### iOS
+<a id="section-7-ios"></a>
+### iOS { #section-7-ios }
 
 * **+[TCGBPurchase requestItemListAtIAPConsoleWithCompletion:]** API is deprecated.
     * Use **+[TCGBPurchase requestItemListPurchasableWithCompletion:]** API.
 
-### Unity
+<a id="section-7-unity"></a>
+### Unity { #section-7-unity }
 
 * **Gamebase.Purchase.RequestItemListAtIAPConsole():** API is deprecated.
     * **Use Gamebase.Purchase.RequestItemListPurchasable()** API.
 
-## 2.76.0
+<a id="section-8"></a>
+## 2.76.0 { #section-8 }
 
-### Android
+<a id="section-8-android"></a>
+### Android { #section-8-android }
 
 * **Gamebase.Purchase.requestItemListAtIAPConsole()** API has been deprecated.
     * Use **Gamebase.Purchase.requestItemListPurchasable()** API.
@@ -94,28 +117,35 @@
     * [Game > Gamebase > Android SDK User Guide > ETC > Age Signals Support](./aos-etc/#age-signals-support)
     * To ensure compatibility with future updates, please upgrade to Gamebase Android SDK 2.78.0 (Play Age Signals v0.0.2).
 
-### Unreal
+<a id="section-8-unreal"></a>
+### Unreal { #section-8-unreal }
 
 * `IGamebasePurchase::RequestItemListAtIAPConsole()` API has been deprecated.
     * Use `IGamebasePurchase::RequestItemListPurchasable()` API
 
-## 2.75.0
+<a id="section-9"></a>
+## 2.75.0 { #section-9 }
 
-### iOS
+<a id="section-9-ios"></a>
+### iOS { #section-9-ios }
 
 * The minimum supported version of Xcode for Kakaogame authentication has changed from 16.0 to 16.2.
 
-## 2.71.2
+<a id="section-10"></a>
+## 2.71.2 { #section-10 }
 
-### Android
+<a id="section-10-android"></a>
+### Android { #section-10-android }
 
 * Gamebase Android SDK 2.71.2 has the following issues:
     * The WebSocket module may intermittently crash with an ArrayIndexOutOfBoundsException when the network connection is lost and then recovered, or when the app is moved to the background and then brought back to the foreground.    
     * Use Gamebase Android SDK 2.72.0, which has fixed this issue.
 
-## 2.70.0
+<a id="section-11"></a>
+## 2.70.0 { #section-11 }
 
-### Android
+<a id="section-11-android"></a>
+### Android { #section-11-android }
 
 * In NHN Cloud Android SDK 1.9.5 used by Gamebase Android SDK 2.70.0, attempting a purchase on devices running Android 7.0 (API Level 24) or lower may cause a crash.
     * To work around this issue, Gradle needs to add a [Java 8+ API desugaring support](https://developer.android.com/studio/write/java8-support#library-desugaring) declaration for lower OSes.
@@ -136,43 +166,54 @@
     * Using desugar_jdk_libs version 1.x may cause a crash during Kakaogame login. We recommend using version 2.x instead.
         * The required AGP (Android Gradle Plugin) and Gradle versions may vary depending on the Unity Editor version. You may need to update them accordingly. 
 
-## 2.69.0
+<a id="section-12"></a>
+## 2.69.0 { #section-12 }
 
-### Unity
+<a id="section-12-unity"></a>
+### Unity { #section-12-unity }
 
 * When using GPGS AutoLogin, use the newly added asynchronous API **RequestLastLoggedInProvider(GamebaseCallback.GamebaseDelegate\<string> callback)** instead of the synchronous **GetLastLoggedInProvider()** API.
 
-### Unreal
+<a id="section-12-unreal"></a>
+### Unreal { #section-12-unreal }
 
 *  Fixed the terms query result API, FGamebaseQueryTermsResult.
     * Fixed an issue where the value of TermsCountryType was not being set.
     * bPushEnabled, bAdAgreement, bAdAgreementNight has been removed.
 * When using GPGS AutoLogin, use the newly added asynchronous API **RequestLastLoggedInProvider(GamebaseCallback.GamebaseDelegate\<string> callback)** instead of the synchronous **GetLastLoggedInProvider()** API.
 
-### Android
+<a id="section-12-android"></a>
+### Android { #section-12-android }
 
 * When including the **gamebase-adapter-auth-gpgs-autologin** module in the build, use the newly added asynchronous API **requestLastLoggedInProvider(GamebaseDataCallback&lt;String&gt;)** instead of the synchronous **getLastLoggedInProvider()** API.
 
-## 2.68.1
+<a id="section-13"></a>
+## 2.68.1 { #section-13 }
 
-### Unreal
+<a id="section-13-unreal"></a>
+### Unreal { #section-13-unreal }
 
 * (Windows) Changed to allow the WebView plugin to be selected as an optional component.
     * Refer to the [WebView Plugins guide](./unreal-started/#windows-settings) for updates.
 * (Windows) Added a feature to generate a compressed file containing symbol files in the project binary path when sending crash logs.
     * [Crash Reporter](./unreal-logger/#crash-reporter)
 
-## 2.68.0
+<a id="section-14"></a>
+## 2.68.0 { #section-14 }
 
-### Android
+<a id="section-14-android"></a>
+### Android { #section-14-android }
 
+<a id="section-14-android-changed-minimum-support-version"></a>
 #### Changed Minimum Support Version
 
 * Raised the minimum supported version to Android 5.0 or later. (minSdk 19 -> 21)
 
-## 2.67.1
+<a id="section-15"></a>
+## 2.67.1 { #section-15 }
 
-### Unreal
+<a id="section-15-unreal"></a>
+### Unreal { #section-15-unreal }
 
 * (Windows) Changed the Purchase settings to allow selecting only one store.
     * The store reset is required.
@@ -182,22 +223,28 @@
 * (Windows) Changed the supported version of the Steamworks SDK to 1.59.
     * Refer to the [Steamworks upgrade guide](./unreal-started/#windows-settings) for updates.
 
-## 2.67.0
+<a id="section-16"></a>
+## 2.67.0 { #section-16 }
 
-### Unity
+<a id="section-16-unity"></a>
+### Unity { #section-16-unity }
 
+<a id="section-16-unity-changed-minimum-support-version"></a>
 #### Changed Minimum Support Version
 
 * Changed the minimum supported Unity version from 2020.3.0 to 2020.3.16.
 * If you need support for a lower version of Unity, contact [Contact Center](https://toast.com/support/inquiry).
 
-### Unreal
+<a id="section-16-unreal"></a>
+### Unreal { #section-16-unreal }
 
+<a id="section-16-unreal-changed-minimum-support-version"></a>
 #### Changed Minimum Support Version
 
 * Changed the minimum supported version from UE 4.26 to UE 4.27.
 
-### Android, iOS
+<a id="android-ios"></a>
+### Android, iOS { #android-ios }
 
 * Change the Twitter authentication method to OAuth 2.0 so that login will not work without changing the settings below.
     * Issue OAuth 2.0 Client ID and Client Secret
@@ -208,27 +255,35 @@
     * For more information, see the following link.
         * [Game > Gamebase > Console User Guide > App > Authentication Information > 6. Twitter](./oper-app/#6-twitter)
 
-## 2.66.3
+<a id="section-17"></a>
+## 2.66.3 { #section-17 }
 
-### Unity
+<a id="section-17-unity"></a>
+### Unity { #section-17-unity }
 
+<a id="section-17-unity-changed-minimum-support-version"></a>
 #### Changed Minimum Support Version
 
 * Changed the minimum supported Unity version from 2018.4.0 to 2020.3.0.
 * If you need support for a lower version of Unity, contact [Customer Center](https://toast.com/support/inquiry).
 
-## 2.66.2
+<a id="section-18"></a>
+## 2.66.2 { #section-18 }
 
-### iOS
+<a id="section-18-ios"></a>
+### iOS { #section-18-ios }
 
+<a id="section-18-ios-changeddeprecated-apis"></a>
 #### Changed/Deprecated APIs
 
 * Deprecated the following field.
     * **TCGBWebViewConfiguration.orientationMask**
     
-## 2.66.0
+<a id="section-19"></a>
+## 2.66.0 { #section-19 }
 
-### Unreal
+<a id="section-19-unreal"></a>
+### Unreal { #section-19-unreal }
 
 * Made changes to how to use APIs.
     * Changed the API from being provided by **IGamebase**, which inherits from `IModuleInterface`, to being provided by **UGamebaseSubsystem**, which inherits from `UGameInstanceSubsystem`.
@@ -251,35 +306,43 @@ if (UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebas
             }
         );
 
-## 2.65.0
+<a id="section-20"></a>
+## 2.65.0 { #section-20 }
 
-### Common
+<a id="section-20-common"></a>
+### Common { #section-20-common }
 
 * Fixed an issue when using the image notice feature in Gamebase SDK 2.65.0.
     * Changed the success callback to be called instead of an error if there are no image notices to display.
     * If there are no registered image notices, an empty notice screen appears, at which point Android will crash if you check Stop viewing today and close it.
     * Please use Gamebase SDK 2.65.1 or later, where the issue has been resolved.
 
-### Android
+<a id="section-20-android"></a>
+### Android { #section-20-android }
 
 * With the application of Google billing client version 6.2.1, additional settings are required to make payments on Android OS 4.4 (API Level 19) devices.
     * For more information, see [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > Gradle > Root level build.gradle](./aos-started/#root-level-buildgradle).
 
-### iOS
+<a id="section-20-ios"></a>
+### iOS { #section-20-ios }
 
 * With Facebook SDK updated to 17.0.1, changed to Dynamic Framework.
     * If you download the Gamebase SDK and set it up directly in Xcode, you must add the Facebook SDK to Embedded Frameworks.
     * For more information, see [Game > Gamebase > iOS SDK User Guide > Getting Started > Setting > Xcode Settings](./ios-started/#xcode-settings).
 
-## 2.64.0
+<a id="section-21"></a>
+## 2.64.0 { #section-21 }
 
-### iOS
+<a id="section-21-ios"></a>
+### iOS { #section-21-ios }
 
 * Raised the minimum supported version of Kakaogame from 12.0 to 13.0.
 
-## 2.63.0
+<a id="section-22"></a>
+## 2.63.0 { #section-22 }
 
-### iOS
+<a id="section-22-ios"></a>
+### iOS { #section-22-ios }
 
 * With the Facebook SDK updated to 17.0.0, you must add FacebookClientToken and FacebookDisplayName to your Info.plist.
 ```
@@ -289,61 +352,75 @@ if (UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebas
 <string>{FACEBOOK_DISPLAY_NAME}</string>
 ```
 
-### Unreal
+<a id="section-22-unreal"></a>
+### Unreal { #section-22-unreal }
 
 * Changed the way Android Firebase Notification is set up so that you need to specify it directly in the settings tool instead of the google-services-json.xml file inside the plugin
     * Removed the previously provided Gamebase/Source/Gamebase/ThirdParty/Android/res/values/google-services-json.xml file
      * Set the `GoogleServicesFilePath` value in the [Android Settings Tool](./unreal-started/#android-settings) under FCM in the Push entry in the [Android Settings Tool] (./unreal-started/#android-settings) to the google-services.json file downloaded from the Firebase console.
 
-## 2.62.0
+<a id="section-23"></a>
+## 2.62.0 { #section-23 }
 
-### Android
+<a id="section-23-android"></a>
+### Android { #section-23-android }
      
 * Gamebase Android SDK 2.62.0 causes the following issues on devices below Android 7.0 (API Level 24). 
     * The Gamebase.loginForLastLoggedInProvider call always fails.
     * Guest accounts are lost.
     * Please use Gamebase Android SDK 2.62.1 where the issue was fixed.
 
-### iOS
+<a id="section-23-ios"></a>
+### iOS { #section-23-ios }
 * Raised the minimum supported version of Xcode from 14.1 to 15.
 * Raised the minimum supported version of Gamebase iOS from 11.0 to 12.0.
 * Applied Privacy Manifest and signature to Gamebase and Gamebase Adapter.
     * For new releases or updates after May 1, 2024, you must apply Gamebase iOS SDK 2.62.0 or later according to the Apple policy.
 * Raised the minimum supported version of LINE from 11.0 to 13.0.
 
-### Unity
+<a id="section-23-unity"></a>
+### Unity { #section-23-unity }
    
 * Completed corresponding actions to comply with the Apple Privacy Policy.
     * Added the Privacy Manifest file.
     * Applied signatures to Framework.
     * For new releases or updates after May 1, 2024, you must apply Gamebase SDK for Unity 2.62.0 or later according to the Apple policy.
 
-## 2.59.0
+<a id="section-24"></a>
+## 2.59.0 { #section-24 }
 
-### iOS
+<a id="section-24-ios"></a>
+### iOS { #section-24-ios }
 
 * Changed the NAVER iOS SDK used by GamebaseAuthNaverAdapter to xcframework.
 
-## 2.58.0
+<a id="section-25"></a>
+## 2.58.0 { #section-25 }
 
-### Android
+<a id="section-25-android"></a>
+### Android { #section-25-android }
 
+<a id="section-25-android-twitter-idp"></a>
 #### Twitter IdP
 * Updated minSDKVersion to 21 from 19 after Twitter API server certificate update.
 
-### iOS
+<a id="section-25-ios"></a>
+### iOS { #section-25-ios }
 
 * Changed the PAYCO iOS SDK used by GamebaseAuthPaycoAdapter to xcframework.
 
-## 2.57.0
+<a id="section-26"></a>
+## 2.57.0 { #section-26 }
 
-### iOS
+<a id="section-26-ios"></a>
+### iOS { #section-26-ios }
 
 * Added the Privacy manifest fils.
     * In the Privacy manifest file, you can see a list of APIs that need to specify what data the Gamebase iOS SDK collects and why it is allowed.
     * Please update to Gamebase iOS SDK 2.57.0 or later by Spring 2024 according to the Apple policies. 
 
-### Unreal
+<a id="section-26-unreal"></a>
+### Unreal { #section-26-unreal }
  
 * The Gamebase module has been separated. To use the Gamebase code, add the **GamebaseInterface** module as a dependency module in the module's Build.cs file.
 
@@ -355,40 +432,52 @@ if (UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebas
             }
         );
 
-## 2.56.0
+<a id="section-27"></a>
+## 2.56.0 { #section-27 }
 
-### Unreal
+<a id="section-27-unreal"></a>
+### Unreal { #section-27-unreal }
 
 * The provided type has changed from USTRUCT to a general structure.
     * If the type received as a result is not a value provided by default, it is provided in TOptional form. If you used the value previously, you can use the value through Value.GetValue() after checking whether it is a value set through the Value.IsSet() API.
 
-## 2.55.0
+<a id="section-28"></a>
+## 2.55.0 { #section-28 }
 
-### Android
+<a id="section-28-android"></a>
+### Android { #section-28-android }
 
+<a id="section-28-android-naver-idp"></a>
 #### Naver IdP
 * Raised the minimum supported version from 19 to 21 due to Naver Login SDK's updates.
 
+<a id="section-28-android-mycard-adapter"></a>
 #### MyCard Adapter
 * Raised the minimum supported version from 19 to 21 due to NHN Cloud SDK's updates.
 
-## 2.54.0
+<a id="section-29"></a>
+## 2.54.0 { #section-29 }
 
-### iOS
+<a id="section-29-ios"></a>
+### iOS { #section-29-ios }
 
 * Changed Gamebase SDK to xcframework.
 * Updated Facebook iOS SDK to 14.1.0. Set the Facebook Client Token in AdditionalInfo in the Gamebase Console.
     * [Game > Gamebase > Console User Guide > App > App > Authentication Information > 1. Facebook](./oper-app/#1-facebook) 
 
-## 2.53.0
+<a id="section-30"></a>
+## 2.53.0 { #section-30 }
 
-### Android
+<a id="section-30-android"></a>
+### Android { #section-30-android }
 
+<a id="section-30-android-contact"></a>
 #### Contact
 
 * If you are using the 'Customer Center' feature, you will need to add permission settings to the AndroidManifest.xml following the guide below to ensure that permission requests work properly when selecting attachments.
     * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > AndroidManifest.xml > Contact](./aos-started/#contact)
 
+<a id="section-30-android-line-idp"></a>
 #### Line IdP
 
 * For the following content of declaration to the AndroidManifest.xml when using Line IdP as shown in [Getting Started](./aos-started), the content is now unnecessary due to the Line SDK update so please delete the following.
@@ -414,19 +503,24 @@ if (UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebas
 </manifest>
 ```
 
-## 2.52.0
+<a id="section-31"></a>
+## 2.52.0 { #section-31 }
 
-### Android
+<a id="section-31-android"></a>
+### Android { #section-31-android }
 
 * Confirmed that a crash occurred on Android 4.4 (OS 19 Kitkat) devices.
     * Please use the Gamebase Android SDK 2.52.1 where the issue was fixed.
 
-### Unity
+<a id="section-31-unity"></a>
+### Unity { #section-31-unity }
 
 * The **ONE Store v17** purchase adapter, which was displayed as '**IapOnestore**', is now displayed as '**IapOnestoreV17**' starting with the Gamebase Setting Tool (v2.7.0).
 
-### iOS
+<a id="section-31-ios"></a>
+### iOS { #section-31-ios }
 
+<a id="section-31-ios-weibo-idp"></a>
 #### Weibo IdP
 
 * With the WeiboSDK updated to 3.3.3, you must add weibosdk3.3 to info.plist.
@@ -442,6 +536,7 @@ if (UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebas
 </key>
 ```
 
+<a id="section-31-ios-changeddeprecated-apis"></a>
 #### Changed/Deprecated APIs
 * Starting from iOS 16.4, the following APIs have been deprecated as Apple deprecated the CTCarrier class.
     * **+[TCGBGamebase countryCode]**
@@ -453,16 +548,20 @@ if (UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebas
     * **+[TCGBUtil carrierCode]**
     * **+[TCGBUtil carrierName]**
 
-## 2.50.0
+<a id="section-32"></a>
+## 2.50.0 { #section-32 }
 
-### Android
+<a id="section-32-android"></a>
+### Android { #section-32-android }
 
 * Confirmed that a crash occurred on Android 4.4 (OS 19 Kitkat) devices.
     * Please use the Gamebase Android SDK 2.50.1 where the issue was fixed.
 
-## 2.49.0
+<a id="section-33"></a>
+## 2.49.0 { #section-33 }
 
-### Unreal
+<a id="section-33-unreal"></a>
+### Unreal { #section-33-unreal }
 
 * Raised the minimum supported version from 4.22 to 4.26.
 * Please update to a new API due to changes to the Query Unconsumed Purchases API.
@@ -480,22 +579,27 @@ if (UGamebaseSubsystem* GamebaseSubsystem = UGameInstance::GetSubsystem<UGamebas
             // Unity: New API
             void RequestActivatedPurchases(const FGamebasePurchasableConfiguration& Configuration, const FGamebasePurchasableReceiptListDelegate& onCallback);
 
-### Android
+<a id="section-33-android"></a>
+### Android { #section-33-android }
 
 ```
 Raised the minimum supported verision to Android 4.4.(minSdk 16 -> 19)
 ```
 
-## 2.47.0
+<a id="section-34"></a>
+## 2.47.0 { #section-34 }
 
-### Android
+<a id="section-34-android"></a>
+### Android { #section-34-android }
 
 * When applying Proguard in Unity, API calls related to Purchase fail.
     * The issue has been fixed in the version of 2.48.0.
 
-## 2.45.0
+<a id="section-35"></a>
+## 2.45.0 { #section-35 }
 
-### Android, iOS, Unity
+<a id="android-ios-unity"></a>
+### Android, iOS, Unity { #android-ios-unity }
 
 * Please update to a new API due to changes to the Query Unconsumed Purchases API.
 
@@ -537,33 +641,42 @@ Raised the minimum supported verision to Android 4.4.(minSdk 16 -> 19)
             + (void)requestActivatedPurchasesWithConfiguration:(TCGBPurchasableConfiguration *)configuration
                                                     completion:(void(^)(NSArray<TCGBPurchasableReceipt *> * _Nullable purchasableReceiptArray, TCGBError * _Nullable error))completion;
 
-## 2.42.2
+<a id="section-36"></a>
+## 2.42.2 { #section-36 }
 
-### Unity
+<a id="section-36-unity"></a>
+### Unity { #section-36-unity }
 
 * Added the ONE store v19 Purchase Adapter to Gamebase SettingTool(v2.5.0).
     * When enabling ONE store v19 Adapter in **SettingTool > Android**, you are connected to the download page of iap_sdk-v19.xx.xx.aar, and must copy the file in **Assets > Plugins > Android**.
 
-## 2.44.0
+<a id="section-37"></a>
+## 2.44.0 { #section-37 }
 
-### Android
+<a id="section-37-android"></a>
+### Android { #section-37-android }
 
 * Confirmed that a crash occurred on Android 6.0 (M, API Level 23) when calling registerPush in Gamebase Android SDK 2.44.0.
     * Please use Gamebase Android SDK 2.44.1 where the issue was fixed.  
 
-## 2.43.3
+<a id="section-38"></a>
+## 2.43.3 { #section-38 }
 
-### Unreal
+<a id="section-38-unreal"></a>
+### Unreal { #section-38-unreal }
 
 * Changed to Google Billing Client 5.0.0. When using the Online SubSystem GooglePlay plugin provided by Unreal, you must add the value to the /Config/Android/AndroidEngine.ini file so that a build error would not occur.
 
             [OnlineSubsystemGooglePlay.Store]
             bUseGooglePlayBillingApiV2=False
 
-## 2.42.1
+<a id="section-39"></a>
+## 2.42.1 { #section-39 }
 
-### Unity
+<a id="section-39-unity"></a>
+### Unity { #section-39-unity }
     
+<a id="section-39-unity-changeddeprecated-apis"></a>
 #### Changed/Deprecated APIs
 * The enableFixedFontSize field in FGamebaseWebViewConfiguration is no longer supported.
 * Default values have been added to some fields of GamebaseWebViewConfiguration, which may behave differently if no values are set.
@@ -571,11 +684,13 @@ Raised the minimum supported verision to Android 4.4.(minSdk 16 -> 19)
     * The default value of the isNavigationBarVisible field to enable the navigation bar is set to true.
     * The default value of the isBackButtonVisible field to enable Go Back button in the webview is set to true.
 
-### Unreal
+<a id="section-39-unreal"></a>
+### Unreal { #section-39-unreal }
 
 * (iOS) Added the**Xcode Path** setting to change the path of Xcode in [the iOS Settings tool](./unreal-started/#ios-settings).
     * If you don’t change the path, it is set to default (default: /Applications/Xcode.app).
 
+<a id="section-39-unreal-changeddeprecated-apis"></a>
 #### Changed/Deprecated APIs
 * The enableKickoutPopup property of FGamebaseConfiguration is no longer supported.
 * Default values have been added to some fields in FGamebaseConfiguration, which may behave differently if no values are set.
@@ -587,24 +702,29 @@ Raised the minimum supported verision to Android 4.4.(minSdk 16 -> 19)
     * The default value of the isNavigationBarVisible field to enable the navigation bar is set to true.
     * The default value of the isBackButtonVisible field to enable the Go Back button in WebVeiw is set to true.
 
-## 2.41.0
+<a id="section-40"></a>
+## 2.41.0 { #section-40 }
 
-### Android
+<a id="section-40-android"></a>
+### Android { #section-40-android }
 
 * When the custom scheme event registered in WebView works, the WebView is automatically closed.
     * If you want to maintain WebView when the custom scheme works as before, call **GamebaseWebViewConfiguration.Builder.enableAutoCloseByCustomScheme(false)** API.
 * There is a bug where the 'View' button in the Terms and Conditions screen does not work in Gamebase Android SDK 2.41.0.
     * To use the Gamebase's Terms and Conditions screen, use the Gamebase Android SDK 2.41.1 where the bug is fixed.
 
-### Unity
+<a id="section-40-unity"></a>
+### Unity { #section-40-unity }
 
 * Added the required updates to Gamebase SettingTool. (v2.4.0)
     * You need to intall the latest version of SettingTool after completely deleting the previous version of SettingTool from Unity projects.
     * SettingTool v1 is no longer supported.
 
-## 2.40.0
+<a id="section-41"></a>
+## 2.40.0 { #section-41 }
 
-### Unreal
+<a id="section-41-unreal"></a>
+### Unreal { #section-41-unreal }
 
 * The enableKickoutPopup property of FGamebaseConfiguration is no longer supported.
 * Changed the name of the following APIs.
@@ -616,18 +736,24 @@ Raised the minimum supported verision to Android 4.4.(minSdk 16 -> 19)
 * (iOS) Facebook iOS SDK has been updated to version 9.2.0, so engine code needs to be modified in order to use swift.
     * [Game > Gamebase > Unreal SDK User Guide > Getting Started > Installation > iOS Settings > Facebook SDK](./unreal-started/#ios-settings)
 
-## 2.36.0
+<a id="section-42"></a>
+## 2.36.0 { #section-42 }
 
-### Android
+<a id="section-42-android"></a>
+### Android { #section-42-android }
 
+<a id="section-42-android-hangame-sdk"></a>
 #### Hangame SDK
 * Made improvements so that sms_hash is generated internally in Hangame Android SDK v1.4.5.
     * sms_hash does not need to be set anymore.
 
-## 2.35.0
+<a id="section-43"></a>
+## 2.35.0 { #section-43 }
 
-### Android
+<a id="section-43-android"></a>
+### Android { #section-43-android }
 
+<a id="section-43-android-naver-idp"></a>
 #### NAVER IdP
 
 * From this version, a token is not deleted when performing NAVER logout.
@@ -639,62 +765,77 @@ Raised the minimum supported verision to Android 4.4.(minSdk 16 -> 19)
 {"logout_and_delete_token":true}
 ```
 
-## 2.34.0
+<a id="section-44"></a>
+## 2.34.0 { #section-44 }
 
-### Android
+<a id="section-44-android"></a>
+### Android { #section-44-android }
 
+<a id="section-44-android-changeddeprecated-apis"></a>
 #### Changed/Deprecated APIs
 
 * The following field has been deprecated because whether to display the kickout popup window can be set during kickout registration in the Gamebase console.
     * **UIPopupConfiguration.enableKickoutPopup**
 
-### iOS
+<a id="section-44-ios"></a>
+### iOS { #section-44-ios }
 
+<a id="section-44-ios-changeddeprecated-apis"></a>
 #### Changed/Deprecated APIs
 
 * The following APIs have been deprecated because whether to display the kickout popup window can be set during kickout registration in the Gamebase console.
     * **-[TCGBConfiguration enableKickoutPopup:]**
     * **-[TCGBConfiguration isEnableKickoutPopup]**
 
-### Unity
+<a id="section-44-unity"></a>
+### Unity { #section-44-unity }
 
 * The enableKickoutPopup property of GamebaseConfiguration is no longer supported.
 
-## 2.33.0
+<a id="section-45"></a>
+## 2.33.0 { #section-45 }
 
-### iOS
+<a id="section-45-ios"></a>
+### iOS { #section-45-ios }
 
 * The error code mapped to TCGB_ERROR_UNKNOWN_ERROR has been changed.
     * Changed the error code mapped to the TCGB_ERROR_UNKNOWN_ERROR error from 999 to 9999.
     * Newly added the TCGB_ERROR_SOCKET_UNKNOWN_ERROR error mapped to the error code 999.
 
-### Unity
+<a id="section-45-unity"></a>
+### Unity { #section-45-unity }
 
 * The error code mapped to GamebaseErrorCode.UNKNOWN_ERROR has been changed.
     * Changed the error code mapped to the GamebaseErrorCode.UNKNOWN_ERROR error from 999 to 9999.
     * Newly added the GamebaseErrorCode.SOCKET_UNKNOWN_ERROR error mapped to the error code 999.
 
-### Unreal
+<a id="section-45-unreal"></a>
+### Unreal { #section-45-unreal }
 
 * The error code mapped to GamebaseErrorCode.UNKNOWN_ERROR has been changed.
     * Changed the error code mapped to the GamebaseErrorCode::UNKNOWN_ERROR error from 999 to 9999.
     * Newly added the GamebaseErrorCode::SOCKET_UNKNOWN_ERROR error mapped to the error code 999.
 
-## 2.32.0
+<a id="section-46"></a>
+## 2.32.0 { #section-46 }
 
-### Android
+<a id="section-46-android"></a>
+### Android { #section-46-android }
 
 * The category for a GamebaseEventHandler event that occurs when the Gamebase Access Token expires and cannot be recovered has been changed from **GamebaseEventCategory.OBSERVER_HEARTBEAT** to **GamebaseEventCategory.LOGGED_OUT**.
     * If you implemented the code to perform login when the GamebaseEventObserverData.code value is **GamebaseError.AUTH_TOKEN_LOGIN_INVALID_TOKEN_INFO(3102)** in the **GamebaseEventCategory.OBSERVER_HEARTBEAT** event, change it to perform login in the **GamebaseEventCategory.LOGGED_OUT** event.
 
-## 2.29.0 
+<a id="section-47"></a>
+## 2.29.0 { #section-47 }
  
-### iOS
+<a id="section-47-ios"></a>
+### iOS { #section-47-ios }
 
 * The minimum supported version of Xcode has been changed from 12 to 13.
     * An error occurs if you run archive build in Xcode 12. Please update to Xcode 13.
 
-### Unity 
+<a id="section-47-unity"></a>
+### Unity { #section-47-unity }
  
 * Setting Tool 2.0.0 has been released.
     * The folder structure has been changed, so you must delete the previous version of the Setting Tool completely and reinstall the tool.
@@ -704,23 +845,29 @@ Raised the minimum supported verision to Android 4.4.(minSdk 16 -> 19)
     * Check the following guide for changed features and how to use them.
         * [Game > Gamebase > Unity Developer's Guide > Getting Started > Specification of Setting Tool](./unity-started/#specification-of-setting-tool)
  
-## 2.26.0
+<a id="section-48"></a>
+## 2.26.0 { #section-48 }
 
-### Unity
+<a id="section-48-unity"></a>
+### Unity { #section-48-unity }
 
 * If you're using this version, you need to manually delete **Assets/Gamebase/Toast/IAP/Plugins** before use.
     * If Gamebase Unity SDK 2.27.0 or higher is applied, you do not need to delete it.
 
-### Unreal
+<a id="section-48-unreal"></a>
+### Unreal { #section-48-unreal }
 
 * The multidex setting has been removed from Gamebase. To enable multidex, see the following guide.
     * [Game > Gamebase > Unreal SDK User Guide > Getting Started > Installation > Android Settings > Enable multidex](./unreal-started/#android-settings)
 
 
-## 2.25.0
+<a id="section-49"></a>
+## 2.25.0 { #section-49 }
 
-### Android
+<a id="section-49-android"></a>
+### Android { #section-49-android }
 
+<a id="section-49-android-changed-minimum-support-version"></a>
 #### Changed Minimum Support Version
 
 * The minimum Android Gradle Plugin(AGP) version has changed from 2.3.0 to 3.2.0 .
@@ -729,6 +876,7 @@ Raised the minimum supported verision to Android 4.4.(minSdk 16 -> 19)
         * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > Android 11](./aos-started/#android-11)
 * Please contact [Customer Service]( https://toast.com/support/inquiry) if you need support for an earlier version of AGP.
 
+<a id="section-49-android-androidx"></a>
 #### AndroidX
 
 * Please apply the following changes to Gradle since the dependency of the Android Support Library has been changed to AndroidX.
@@ -753,6 +901,7 @@ android {
 }
 ```
 
+<a id="section-49-android-under-agp-340"></a>
 #### Under AGP 3.4.0
 
 * If the Android Gradle Plugin version is lower than 3.4.0, the build will fail, so the following declaration is required in the gradle.properties file:
@@ -764,6 +913,7 @@ android.enableD8.desugaring=true
 android.enableIncrementalDesugaring=false
 ```
 
+<a id="section-49-android-line-idp"></a>
 #### LINE IdP
 
 * When using the LINE IdP, the build may fail depending on the AGP version as there is a **&lt;queries&gt;** tag inside the LINE SDK.
@@ -777,20 +927,24 @@ android.enableIncrementalDesugaring=false
       ... >
 ```
 
-### iOS
+<a id="section-49-ios"></a>
+### iOS { #section-49-ios }
 
 * Changed to return TCGB_ERROR_AUTH_EXTERNAL_LIBRARY_ERROR (3009) error when an ASAuthorizationErrorUnknown error occurs in Sign In with an Apple OS.
 
-### Unity
+<a id="section-49-unity"></a>
+### Unity { #section-49-unity }
 
 * If you're using this version, you need to manually delete **Assets/Gamebase/Toast/IAP/Plugins** before use.
     * If Gamebase Unity SDK 2.27.0 or higher is applied, you do not need to delete it.
 
+<a id="section-49-unity-changed-minimum-support-version"></a>
 #### Changed Minimum Support Version
 
 * The minimum Unity version changed from April 16, 2017 to April 0, 2018.
 * Please contact [Customer Service]( https://toast.com/support/inquiry) if you need support for an older version of Unity.
 
+<a id="section-49-unity-androidx-build"></a>
 #### AndroidX Build
 
 * Please add the following declaration when building Android due to AndroidX migration of the Gamebase Android SDK.
@@ -814,6 +968,7 @@ android.useAndroidX=true
 android.enableJetifier=true
 ```
 
+<a id="section-49-unity-under-agp-340"></a>
 #### Under AGP 3.4.0
 
 * If the Unity Editor version is 2018.4.3 or lower or 2019.1.6 or lower, the build will fail because the AGP version is low (3.2.0), so add the following declaration.
@@ -829,8 +984,10 @@ android.enableJetifier=true
 }
 ```
 
-### Unreal
+<a id="section-49-unreal"></a>
+### Unreal { #section-49-unreal }
 
+<a id="section-49-unreal-androidx-build"></a>
 #### AndroidX Build
 
 * Please add the following declaration to UPL when building Android due to AndroidX migration of the Gamebase Android SDK.
@@ -844,16 +1001,20 @@ android.enableJetifier=true
 </gradleProperties>
 ```
 
-## 2.21.2
+<a id="section-50"></a>
+## 2.21.2 { #section-50 }
 
-### iOS
+<a id="section-50-ios"></a>
+### iOS { #section-50-ios }
 
 * If you enable bitcode and **archive build** in Gamebase iOS SDK 2.21.1, error occurs.
     * If you want to use bitcode, use Gamebase iOS SDK 2.21.2 to avoid any associated error.
 
-## 2.21.0
+<a id="section-51"></a>
+## 2.21.0 { #section-51 }
 
-### Android
+<a id="section-51-android"></a>
+### Android { #section-51-android }
 
 * If a wrong jCenter build is deployed so that **jcenter()** was declared before **mavenCentral()** was declared in Gamebase Android SDK 2.21.0, all Gamebase APIs might crash.
     * In this case, use a properly deployed Gamebase Android SDK 2.21.1 or declare **mavenCentral()** ahead of **jcenter()**.
@@ -869,6 +1030,7 @@ repositories {
 }
 ```
 
+<a id="section-51-android-line-idp"></a>
 #### LINE IdP
 
 * If you are using LINE IdP, due to the LINE SDK update, you must configure **JavaVersion.VERSION_1_8** in Gradle to make the build succeed.
@@ -883,15 +1045,19 @@ android {
 }
 ```
 
-### iOS
+<a id="section-51-ios"></a>
+### iOS { #section-51-ios }
 
 * Error occurs when using bitcode in Gamebase iOS SDK 2.21.0.
     * If you want to use bitcode, use Gamebase iOS SDK 2.21.1 instead.
 
-## 2.20.2
+<a id="section-52"></a>
+## 2.20.2 { #section-52 }
 
-### iOS
+<a id="section-52-ios"></a>
+### iOS { #section-52-ios }
 
+<a id="section-52-ios-facebook-idp"></a>
 #### Facebook IdP
 
 * In Gamebase iOS SDK 2.20.2, Facebook SDK has been updated to 9.1.0. 
@@ -900,19 +1066,25 @@ android {
         * FacebookAdvertiserIDCollectionEnabled
 * To find out more, see the [Facebook iOS SDK Guide](https://developers.facebook.com/docs/app-events/getting-started-app-events-ios).
 
-## 2.19.0
+<a id="section-53"></a>
+## 2.19.0 { #section-53 }
 
-### Android
+<a id="section-53-android"></a>
+### Android { #section-53-android }
 
+<a id="section-53-android-weibo-idp"></a>
 #### Weibo IdP
 
 * Alternating the call between Weibo IdP login and another IdP login in Gamebase Android SDK 2.19.0 will lead to a crash.
     * If the Weibo IdP is being used, please use Gamebase Android SDK 2.19.1 where the issue has been fixed.
 
-## 2.18.2
+<a id="section-54"></a>
+## 2.18.2 { #section-54 }
 
-### Android
+<a id="section-54-android"></a>
+### Android { #section-54-android }
 
+<a id="section-54-android-removed-apis"></a>
 #### Removed APIs
 
 * In Gamebase Android SDK 2.6.0, the following features were removed after being deprecated.
@@ -920,41 +1092,54 @@ android {
     * **GamebaseConfiguration.Builder.setTencentAccessKey()**
     * **GamebaseConfiguration.Builder.setTencentAccessId()**
 
-## 2.18.0
+<a id="section-55"></a>
+## 2.18.0 { #section-55 }
 
-### Android
+<a id="section-55-android"></a>
+### Android { #section-55-android }
 
+<a id="section-55-android-purchase-google"></a>
 #### Purchase Google
 
 * Calling the Google item payment in Gamebase Android SDK 2.18.0 causes a crash.
     * Please use the Gamebase Android SDK 2.18.1 where the issue has been fixed.
 
-## 2.17.0
+<a id="section-56"></a>
+## 2.17.0 { #section-56 }
 
-### Android
+<a id="section-56-android"></a>
+### Android { #section-56-android }
 
 * Calling Gamebase.ImageNotice.showImageNotices API in Gamebase Android SDK 2.17.0 causes a crash.
     * Please use Gamebase Android SDK 2.17.4 where the crash issues from 2.17.0 and custom scheme event failure from OS 5.0 - 6.0 have been fixed.
 
-## 2.15.1
+<a id="section-57"></a>
+## 2.15.1 { #section-57 }
 
-### iOS
+<a id="section-57-ios"></a>
+### iOS { #section-57-ios }
 
 * If the type **GamebaseEventCategory** defined by the SDK is used in place of the NSString, it has to be updated to **TCGBGamebaseEventCategory**.
 
-## 2.15.0
+<a id="section-58"></a>
+## 2.15.0 { #section-58 }
 
-### Android
+<a id="section-58-android"></a>
+### Android { #section-58-android }
 
+<a id="section-58-android-purchase-google"></a>
 #### Purchase Google
 
 * If **gamebase-adapter-purchase-google** is being used, the previous Game Client Version must be set to **Update to the latest version required** if the Gamebase SDK version earlier than 2.15.0 is to be upgraded to 2.15.0 or later.
 	* The Google Billing Client module has been updated. Because of this, when purchasing an item while different billing client versions have been applied to multiple devices, any resultant error could lead to a reprocessing problem.
 
-## 2.6.0
+<a id="section-59"></a>
+## 2.6.0 { #section-59 }
 
-### Unity
+<a id="section-59-unity"></a>
+### Unity { #section-59-unity }
 
+<a id="section-59-unity-android-limitation"></a>
 #### Android Limitation
 
 * With Android Support Library upgraded to 28.0.0, an Android build fails in Unity 5, Unity 2017.1, and Unity 2017.2.  
@@ -979,6 +1164,7 @@ buildscript {
 }
 ```
 
+<a id="section-59-unity-firebase-push"></a>
 #### Firebase Push
 
 * In case of using Firebase Cloud Messaging, download a google-services.json file from Firebase Console and convert it into XML. Include XML resource in your project.
@@ -986,6 +1172,7 @@ buildscript {
 * Refer to the below guide for implementation.
     * [\[Game > Gamebase > Android Developer's Guide > Push > Settings > Firebase\]](./aos-push/#firebase)
 
+<a id="section-59-unity-standalone"></a>
 #### Standalone
 
 * Removed Japan Purchase
@@ -996,13 +1183,16 @@ buildscript {
         * Asset/Toast/IAP
         * Asset/Toast/Standalone
 
-### Android
+<a id="section-59-android"></a>
+### Android { #section-59-android }
 
+<a id="section-59-android-limitation"></a>
 #### Limitation
 
 * Changed the minSdkVersion from 15 (IceCreamSandwichMR1, 4.0.3) to 16 (JellyBean, 4.1).
 	* When your minSdkVersion of the project is 15, since normal operation is not ensured for any device below OS 4.1, change it to 16.
 
+<a id="section-59-android-removed-apis"></a>
 #### Removed APIs
 
 * Following functions have been removed: replace them with alternatives.
@@ -1012,6 +1202,7 @@ buildscript {
     * Removed **new GamebaseConfiguration.Builder.setAppId()**: replace it with  **GamebaseConfiguration.newBuilder()**.
     * Removed **new GamebaseConfiguration.Builder.setAppVersion()**: replace it with **GamebaseConfiguration.newBuilder()**.
 
+<a id="section-59-android-changeddeprecated-apis"></a>
 #### Changed/Deprecated APIs
 
 * No need to call Gamebase.activeApp() any more since it is automatically called.
@@ -1042,23 +1233,29 @@ android {
 }
 ```
 
-## 2.4.4
+<a id="section-60"></a>
+## 2.4.4 { #section-60 }
 
-### Unity
+<a id="section-60-unity"></a>
+### Unity { #section-60-unity }
 
 * Updated the setting tool.
     * Due to changes in the folder structure, the previous SettingTool must be completely removed before re-installed. 
 
-## 2.2.2
+<a id="section-61"></a>
+## 2.2.2 { #section-61 }
 
-### Unity
+<a id="section-61-unity"></a>
+### Unity { #section-61-unity }
 
 * Changed the variable name from **storeCodeAOS** to **storeCodeAndroid** for the GamebaseUnitySDKSettings class.
     * If there is any code or prefab which defines store code in reference of **storeCodeAOS**, change the variable to **storeCodeAndroid**, so as variable reference does not fail.
 
-## 2.2.0
+<a id="section-62"></a>
+## 2.2.0 { #section-62 }
 
-### Unity
+<a id="section-62-unity"></a>
+### Unity { #section-62-unity }
 
 * Changed the Package Name of GamebaseMainActivity.
     * Unless the MainActivity declaration of AndroidManifest.xml is changed like below, crash may occur:
@@ -1084,10 +1281,13 @@ android {
 </manifest>
 ```
 
-## 2.1.0
+<a id="section-63"></a>
+## 2.1.0 { #section-63 }
 
-### Common
+<a id="section-63-common"></a>
+### Common { #section-63-common }
 
+<a id="section-63-common-removed-apis"></a>
 #### Removed APIs
 
 * Removed TransferKey which is not used.

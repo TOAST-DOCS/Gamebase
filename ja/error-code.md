@@ -1,6 +1,10 @@
-## Game > Gamebase > エラーコード
+<!-- pre-align:aligned sig=34320c7ef9d1 -->
 
-## Client SDK
+<a id="game-gamebase-error-code"></a>
+## Game > Gamebase > エラーコード { #game-gamebase-error-code }
+
+<a id="client-sdk"></a>
+## Client SDK { #client-sdk }
 
 | Category        | Platform           | Error                                    | Error Code | Description                                    |
 | --------------- | ------------------ | ---------------------------------------- | ---------- | ---------------------------------------- |
@@ -111,7 +115,8 @@
 <br/>
 
 
-## Server
+<a id="server"></a>
+## Server { #server }
 | Module  | Error Code            | Description                              |
 | ------- | --------------------- | ---------------------------------------- |
 | Common  | -4000001<br/>-4000006 | 正しくないパラメータータイプでのAPI呼び出し <br/>例) パラメーターはintタイプで宣言されているが、stringタイプのデータでAPIが呼び出されている |
