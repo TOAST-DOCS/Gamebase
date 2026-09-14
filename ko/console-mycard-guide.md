@@ -1,6 +1,10 @@
-## Game > Gamebase > 스토어 콘솔 가이드 > MyCard 콘솔 가이드
+<!-- pre-align:aligned sig=a9f5312decac -->
 
-## MyCard 스토어 등록
+<a id="game-gamebase-store-console-guide-mycard-console-guide"></a>
+## Game > Gamebase > 스토어 콘솔 가이드 > MyCard 콘솔 가이드 { #game-gamebase-store-console-guide-mycard-console-guide }
+
+<a id="register-mycard-store"></a>
+## MyCard 스토어 등록 { #register-mycard-store }
 
 - MyCard에서는 고객사가 로그인 가능한 웹콘솔을 제공하지 않습니다. (2023년 7월 기준)
 - MyCard 연동은 NHN Cloud IAP 콘솔에 입력한 정보를 기준으로 처리 됩니다.

@@ -1,37 +1,47 @@
-## Game > Gamebase > API v1.0 Guide
+<!-- pre-align:aligned sig=645a5f5a2911 -->
+
+<a id="game-gamebase-api-v10-guide"></a>
+## Game > Gamebase > API v1.0 Guide { #game-gamebase-api-v10-guide }
 
 Gamebase Server API provides APIs as follows, in the RESTful format.
 
-## Advance Notice
+<a id="advance-notice"></a>
+## Advance Notice { #advance-notice }
 
 Following information is required to use Server API.
 
+<a id="advance-notice-server-address"></a>
 #### Server Address
 
 To call API, below address is needed, which is also available in the Gamebase Console.
 > https://api-gamebase.cloud.toast.com
 
-![image alt](./image/Server_Developers_Guide/pre_server_address_v1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_server_address_v1.2.png)
 
+<a id="advance-notice-appid"></a>
 #### AppId
 
 App ID, as a project ID of NHN Cloud, can be found on the **Project List** page of the Console.
-![image alt](./image/Server_Developers_Guide/pre_appId_v1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_appId_v1.2.png)
 
+<a id="advance-notice-secretkey"></a>
 #### SecretKey
 
 Secret Key, as a control access of API, can be found in the Gambase Console. It must be set at the HTTP header to call Server API.
 > [Note]<br>
 > When a secret key is exposed and a wrong call is made, click **Create** to create a new secret key and replace the old one.
 
-![image alt](./image/Server_Developers_Guide/pre_secret_key_v1.2.png)
+![image alt](http://static.toastoven.net/prod_gamebase/Server_Developers_Guide/pre_secret_key_v1.2.png)
 
+<a id="advance-notice-transactionid"></a>
 #### TransactionId
 
 AS part of managing API internally within a server that calls API, TransactionId is provided.  By setting a transaction ID at the HTTP header from a calling server to call API, the Gamebase server delivers results with corresponding TransactionId set at the response HTTP Header and Response Body Header of results.
 
-## Common
+<a id="common"></a>
+## Common { #common }
 
+<a id="common-http-header"></a>
 #### HTTP Header
 
 Following items should be set at the HTTP Header to call API.
@@ -42,6 +52,7 @@ Following items should be set at the HTTP Header to call API.
 | X-Secret-Key | mandatory |Refer to description of SecretKey  |
 | X-TCGB-Transaction-Id | optional | Refer to description of TransactionId |
 
+<a id="common-api-response"></a>
 #### API Response
 
 As a response to all API requests, **HTTP 200 OK** is delivered. Whether an API request is successful or not can be determined in reference of the Header of Response Body.
@@ -81,8 +92,10 @@ X-TCGB-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | resultCode | int | Result code<br>0 for success; return error codes, for failure |
 | resultMessage | String | Result message  |
 
-## Authentication
+<a id="authentication"></a>
+## Authentication { #authentication }
 
+<a id="authentication-token-authentication"></a>
 #### Token Authentication
 
 Authenticates an Access Token issued to a login user. If it is normal, return information of a corresponding user.
@@ -171,8 +184,10 @@ Check common requirements.
 
 [Error Code](./error-code/#server)
 
-## Launching
+<a id="launching"></a>
+## Launching { #launching }
 
+<a id="launching-get-simple-launching"></a>
 #### Get Simple Launching
 
 In the console, you can view the launching information provided when starting up a client app, such as the server address, install URL, current maintenance status, maintenance time, and messages.
@@ -304,8 +319,10 @@ Check Common Factors
 
 <br>
 
-## Member
+<a id="member"></a>
+## Member { #member }
 
+<a id="member-get-member"></a>
 #### Get Member
 
 Retrieve detailed information of a single member.
@@ -407,6 +424,7 @@ Check common requirements.
 
 [Error Code](./error-code/#server)
 
+<a id="member-get-members"></a>
 #### Get Members
 
 Retrieves brief information about multiple members.
@@ -468,6 +486,7 @@ Check common requirements.
 [Error Code](./error-code/#server)
 
 
+<a id="member-get-idp-information"></a>
 #### Get IdP Information
 
 Retrieve IdP information mapped with user ID.
@@ -530,6 +549,7 @@ Check common requirements.
 
 [Error Code](./error-code/#server)
 
+<a id="member-get-userid-information-with-auth-key"></a>
 #### Get UserId Information with Auth key
 
 Retrieve a user ID mapped to user authentication key.
@@ -589,6 +609,7 @@ Check common requirements.
 
 [Error Code](./error-code/#server)
 
+<a id="member-ban-histories"></a>
 #### Ban Histories
 
 Looks up users' ban history.
@@ -696,6 +717,7 @@ Check Common Factors
 
 [Error code](./error-code/#server)
 
+<a id="member-ban-release-histories"></a>
 #### Ban Release Histories.
 
 Queries the user's unban history.
@@ -806,8 +828,10 @@ Check Common Factors
 
 <br>
 
-## Maintenance
+<a id="maintenance"></a>
+## Maintenance { #maintenance }
 
+<a id="maintenance-check-maintenance-set"></a>
 #### Check Maintenance Set
 
 Check whether maintenance is currently set.
@@ -872,10 +896,12 @@ N/A
 [Error Code](./error-code/#server)
 
 
-## Purchase(IAP)
+<a id="purchaseiap"></a>
+## Purchase(IAP) { #purchaseiap }
 
 Gamebase provides **Wrapping** to Server API of NHN Cloud IAP. With Wrapping, NHN Cloud products become available at a user server on a consistent interface.
 
+<a id="purchaseiap-wrapping-api"></a>
 #### Wrapping API
 
 | API | Method | Wrapping URI | IAP URI |
@@ -886,7 +912,7 @@ Gamebase provides **Wrapping** to Server API of NHN Cloud IAP. With Wrapping, NH
 
 **For more information of the API, click the following link.**
 
-[IAP Guide](https://docs.nhncloud.com/en/Mobile%20Service/IAP/en/api-guide-for-toast-sdk/)
+[IAP Guide](/Mobile%20Service/IAP/en/api-guide-for-toast-sdk/)
 
 ##### Example of API Call
 
@@ -898,10 +924,12 @@ X-Secret-Key: IgsaAP
 POST https://api-gamebase.cloud.toast.com/tcgb-inapp/v1.0/apps/{appId}/consume/{paymentSeq}/items/{itemSeq}
 ```
 
-## Leaderboard
+<a id="leaderboard"></a>
+## Leaderboard { #leaderboard }
 
 Gamebase provides Wrapping to server API of NHN Cloud Leaderboard. With Wrapping, NHN Cloud products become available at a user server on a consistent interface.
 
+<a id="leaderboard-wrapping-api"></a>
 #### Wrapping API
 | API | Method | Wrapping URI | Leaderboard URI |
 | --- | --- | --- | --- |
@@ -919,7 +947,7 @@ Gamebase provides Wrapping to server API of NHN Cloud Leaderboard. With Wrapping
 **For more information of the API, click the following link.**
 
 
-[Leaderboard Guide](https://docs.nhncloud.com/en/Game/Leaderboard/en/api-guide/)
+[Leaderboard Guide](/Game/Leaderboard/en/api-guide/)
 
 ##### Example of API Call
 
@@ -931,9 +959,11 @@ X-Secret-Key: IgsaAP
 GET https://api-gamebase.cloud.toast.com/tcgb-leaderboard/v1.0/apps/{appId}/factors/{factor}/user-count
 ```
 
-## Others
+<a id="others"></a>
+## Others { #others }
 
-### Support
+<a id="support"></a>
+### Support { #support }
 
 To inquire about causes of failure in API call, upload **API Call URL (with HTTP body, if available) along with response results** to [Customer Center](https://cloud.toast.com/support/faq), and we'll respond ASAP.
 

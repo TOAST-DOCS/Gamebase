@@ -1,19 +1,26 @@
-## Game > Gamebase > iOS SDK ご利用ガイド > UI
+<!-- pre-align:aligned sig=8711ba179e34 -->
 
-## GameNotice
+<a id="game-gamebase-ios-developers-guide-ui"></a>
+## Game > Gamebase > iOS SDK ご利用ガイド > UI { #game-gamebase-ios-developers-guide-ui }
+
+<a id="gamenotice"></a>
+## GameNotice { #gamenotice }
 
 コンソールに画像と一緒に登録した告知事項を表示する機能です。
 
 ![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_001.png) 
 ![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_002.png)
 
-### Open GameNotice
+<a id="open-gamenotice"></a>
+### Open GameNotice { #open-gamenotice }
 
 ゲーム告知を画面に表示します。
 
+<a id="open-gamenotice-required-parameter"></a>
 #### Requiredパラメータ
 * viewController:ゲーム告知が表示されるViewControllerです。
 
+<a id="open-gamenotice-optional-parameter"></a>
 #### Optionalパラメータ
 * completion:ゲーム告知が終了したときにユーザーにコールバックで通知します。
 
@@ -41,19 +48,23 @@
 }
 ```
 
-## ImageNotice
+<a id="imagenotice"></a>
+## ImageNotice { #imagenotice }
 
 コンソールにイメージを登録した後、ユーザーに告知を表示できます。
 
 ![ImageNotice Example](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/DevelopersGuide/imageNotice-guide-landscape-ja_v3.png)
 
-### Show ImageNotices
+<a id="show-imagenotices"></a>
+### Show ImageNotices { #show-imagenotices }
 
 イメージ告知を画面に表示します。
 
+<a id="show-imagenotices-required-parameter"></a>
 #### Requiredパラメータ
 * viewController ：イメージ告知が表示されるViewControllerです。
  
+<a id="show-imagenotices-optional-parameter"></a>
 #### Optionalパラメータ
 * configuration ： TCGBImageNoticeConfigurationで背景色などのイメージ告知設定を変更できます。
 * closeCompletion ：イメージ告知が全て終了する時、ユーザーにコールバックで知らせます。
@@ -97,7 +108,8 @@
 }
 ```
 
-### Custom ImageNotices
+<a id="custom-imagenotices"></a>
+### Custom ImageNotices { #custom-imagenotices }
 
 ユーザー設定イメージ告知を画面に表示します。
 TCGBImageNoticeConfigurationでユーザー設定イメージ告知を作成できます。
@@ -126,6 +138,7 @@ TCGBImageNoticeConfigurationでユーザー設定イメージ告知を作成で�
 ```
 
 
+<a id="custom-imagenotices-tcgbimagenoticeconfiguration"></a>
 #### TCGBImageNoticeConfiguration
 
 | Parameter                              | Values                                   | Description        |
@@ -135,7 +148,8 @@ TCGBImageNoticeConfigurationでユーザー設定イメージ告知を作成で�
 | enableAutoCloseByCustomScheme    | YES or NO   | カスタムスキームイベント発生時、告知全体を閉じる、または次の告知を表示<br/>**default**: YES         |
 
 
-### Close ImageNotices
+<a id="close-imagenotices"></a>
+### Close ImageNotices { #close-imagenotices }
 
 closeImageNotices APIを呼び出して現在表示中のイメージ告知を全て終了できます。
 
@@ -153,7 +167,8 @@ closeImageNotices APIを呼び出して現在表示中のイメージ告知を�
 }
 ```
 
-## Terms
+<a id="terms"></a>
+## Terms { #terms }
 
 Gamebaseコンソールに設定した約款を表示します。
 
@@ -163,7 +178,8 @@ showTermsView APIは、Webビューで約款ウィンドウを表示します。
 GameのUIに合った約款ウィンドウを直接作成したい場合は、queryTerms APIを呼び出して、 Gamebaseコンソールに設定した約款項目を呼び出すことができます。
 ユーザーが約款に同意した場合、項目別の同意有無をupdateTerms APIを介してGamebaseサーバーへ送信してください。
 
-### showTermsView
+<a id="showtermsview"></a>
+### showTermsView { #showtermsview }
 
 約款ウィンドウを画面に表示します。
 ユーザーが約款に同意した場合、同意の有無をサーバーに登録します。
@@ -178,9 +194,11 @@ GameのUIに合った約款ウィンドウを直接作成したい場合は、qu
 > * TCGBPushConfigurationがnilではない場合、**ログイン後に**[TCGBPush registerPushWithConfiguration:completion:] APIを呼び出してください。
 >
 
+<a id="showtermsview-required-parameter"></a>
 #### Requiredパラメータ
 * viewController：約款ウィンドウが表示されるViewControllerです。
  
+<a id="showtermsview-optional-parameter"></a>
 #### Optionalパラメータ
 * configuration : TCGBTermsConfigurationで約款ウィンドウを強制的に表示するかどうかなどの設定を変更できます。
 * completion：約款同意後、約款ウィンドウが終了する時、ユーザーにコールバックで伝えます。コールバックで来るTCGBDataContainerオブジェクトは、TCGBPushConfigurationに変換してログイン後、registerPush APIに使用できます。
@@ -251,7 +269,8 @@ GameのUIに合った約款ウィンドウを直接作成したい場合は、qu
 | isTermsUIOpened            | BOOL                            | 約款ウィンドウが画面に表示されているかどうかを表します。          |
 | TCGBPushConfiguration      | TCGBPushConfiguration           | 約款にプッシュ受信同意有無を追加した場合、プッシュ受信同意有無についての情報を持っています。    |
 
-### queryTerms
+<a id="queryterms"></a>
+### queryTerms { #queryterms }
 
 Gamebaseは単純な形式のWebビューで約款を表示します。
 ゲームUIに合った約款を直接作成したい場合は、queryTerms APIを呼び出してGamebaseコンソールに設定した約款情報をダウンロードして活用できます。
@@ -267,6 +286,7 @@ Gamebaseは単純な形式のWebビューで約款を表示します。
 > * コンソールで「基本約款設定」をしない場合、約款言語と異なる国コードで設定された端末からqueryTerms APIを呼び出した場合、**TCGB_ERROR_UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**エラーが発生します。
 >     * コンソールで「基本約款設定」を行ったり、**TCGB_ERROR_UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)**エラーが発生した時は、約款を表示しないように処理してください。
 
+<a id="queryterms-required-parameter"></a>
 #### Requiredパラメータ
 * viewController :最上位ViewControllerです。
 * completion :API呼び出し結果をユーザーにコールバックで伝えます。コールバックで返されたTCGBQueryTermsResultでコンソールに設定された約款情報を取得できます。
@@ -308,6 +328,7 @@ Gamebaseは単純な形式のWebビューで約款を表示します。
 }
 ```
 
+<a id="queryterms-tcgbquerytermsresult"></a>
 #### TCGBQueryTermsResult
 
 | Parameter            | Values                          | Description         |
@@ -318,6 +339,7 @@ Gamebaseは単純な形式のWebビューで約款を表示します。
 | contents             | Array< TCGBTermsContentDetail > | 約款項目情報       |
 
 
+<a id="queryterms-tcgbtermscontentdetail"></a>
 #### TCGBTermsContentDetail
 
 | Parameter            | Values                | Description         |
@@ -332,7 +354,8 @@ Gamebaseは単純な形式のWebビューで約款を表示します。
 | detailPageUrl        | String                | 約款詳細表示URL。<br/> 設定されていない場合はフィールドなし          |
 
 
-### updateTerms
+<a id="updateterms"></a>
+### updateTerms { #updateterms }
 
 queryTerms APIでダウンロードした約款情報でUIを直接作った場合は、
 ゲームユーザーが約款に同意した内容をupdateTerms APIを介してGamebaseサーバーへ送信してください。
@@ -346,10 +369,12 @@ queryTerms APIでダウンロードした約款情報でUIを直接作った場�
 > プッシュ受信同意有無は、**ログイン後に**[TCGBPush registerPushWithConfiguration:completion:] APIを呼び出して保存してください。
 >
 
+<a id="updateterms-required-parameter"></a>
 #### Requiredパラメータ
 * viewController :最上位ViewControllerです。
 * configuration :サーバーに登録するユーザーの任意約款情報です。
  
+<a id="updateterms-optional-parameter"></a>
 #### Optionalパラメータ
 
 * completion ：任意約款情報をサーバーに登録した後、ユーザーにコールバックで伝えます。
@@ -394,6 +419,7 @@ queryTerms APIでダウンロードした約款情報でUIを直接作った場�
 ```
 
 
+<a id="updateterms-tcgbupdatetermsconfiguration"></a>
 #### TCGBUpdateTermsConfiguration
 
 | Parameter            | Mandatory(M) / Optional(O) | Values                    | Description         |
@@ -402,6 +428,7 @@ queryTerms APIでダウンロードした約款情報でUIを直接作った場�
 | termsSeq             | **M**                      | int                       | 約款全体KEY。<br/>queryTerms APIを呼び出してダウンロードした値を伝達する必要があります。             |
 | contents             | **M**                      | Array< TCGBTermsContent > | 任意約款ユーザー同意情報 |
 
+<a id="updateterms-tcgbtermscontent"></a>
 #### TCGBTermsContent
 
 | Parameter            | Mandatory(M) / Optional(O) | Values             | Description         |
@@ -409,7 +436,8 @@ queryTerms APIでダウンロードした約款情報でUIを直接作った場�
 | termsContentSeq      | **M**                      | int                | 任意約款項目KEY      |
 | agreed               | **M**                      | BOOL               | 任意約款項目同意有無 |
 
-### isShowingTermsView
+<a id="isshowingtermsview"></a>
+### isShowingTermsView { #isshowingtermsview }
 
 現在約款ウィンドウが画面に表示されているかどうかを知ることができます。
 
@@ -426,12 +454,14 @@ queryTerms APIでダウンロードした約款情報でUIを直接作った場�
 }
 ```
 
-## WebView
+<a id="webview"></a>
+## WebView { #webview }
 
 Gamebaseでは、基本的なWebViewに対応しています。<br/>
 WebViewの関連リソース(画像及びhtml、その他のリソース)はGamebase.bundleに含まれています。
 
-### Show WebView
+<a id="show-webview"></a>
+### Show WebView { #show-webview }
 
 WebViewを表示します。<br/>
 
@@ -461,6 +491,7 @@ WebViewを表示します。<br/>
 
 ![Webview Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/aos-developers-guide-ui-001_1.0.0.png)
 
+<a id="show-webview-custom-webview"></a>
 #### Custom WebView
 ユーザーが指定したWebViewを表示します。<br/>TCGBWebViewConfigurationでユーザーが指定したWebViewを作成することができます。
 
@@ -488,6 +519,7 @@ WebViewを表示します。<br/>
 ```
 
 
+<a id="show-webview-custom-scheme"></a>
 #### Custom Scheme
 
 Gamebase WebViewで読み込んだウェブページ内にスキーム(scheme)で特定の機能を使用したり、ウェブページの内容を変更することができます。
@@ -506,6 +538,7 @@ Gamebaseで指定したスキームです。<br/>
 
 
 
+<a id="show-webview-user-custom-scheme"></a>
 #### User Custom Scheme
 
 Gamebaseにスキーム名とブロックを指定し、任意の機能を追加することができます。
@@ -536,6 +569,7 @@ Gamebaseにスキーム名とブロックを指定し、任意の機能を追加
 ```
 
 
+<a id="show-webview-tcgbwebviewconfiguration"></a>
 #### TCGBWebViewConfiguration
 
 | Parameter                              | Values                                   | Description        |
@@ -560,7 +594,8 @@ Gamebaseにスキーム名とブロックを指定し、任意の機能を追加
 
 
 
-### Close WebView
+<a id="close-webview"></a>
+### Close WebView { #close-webview }
 次のAPIを通じて、表示されているWebViewを閉じることができます。
 
 ```objectivec
@@ -571,7 +606,8 @@ Gamebaseにスキーム名とブロックを指定し、任意の機能を追加
 ```
 
 
-## Open External Browser
+<a id="open-external-browser"></a>
+## Open External Browser { #open-external-browser }
 
 次のAPIを使用して外部ブラウザを開くことができます。パラメータに渡されるURLは有効な値である必要があります。
 
@@ -584,10 +620,12 @@ Gamebaseにスキーム名とブロックを指定し、任意の機能を追加
 ```
 
 
-## Alert
+<a id="alert"></a>
+## Alert { #alert }
 
 システム通知を表示できます。<br/>
 
+<a id="alert-types-of-alert"></a>
 #### Types of Alert
 1. 「確認」ボタンを1つだけ提供し、確認ボタンをクリックするとcompletionを呼び出します。
 2. 「確認」ボタンを1つだけ提供し、completionは提供しません。
@@ -606,6 +644,7 @@ Gamebaseにスキーム名とブロックを指定し、任意の機能を追加
 }
 ```
 
+<a id="alert-types-of-actionsheet"></a>
 #### Types of ActionSheet
 
 1. 基本的に**Cancel**ボタンがあるActionSheetを提供します。
@@ -635,7 +674,8 @@ Gamebaseにスキーム名とブロックを指定し、任意の機能を追加
 ```
 
 
-## Toast
+<a id="toast"></a>
+## Toast { #toast }
 
 次のAPIを使用して簡単に[Android トースト(toast)](https://developer.android.com/guide/topics/ui/notifiers/toasts.html)のメッセージを表示することができます。<br/>
 簡単なメッセージと表示される時間を設定することができます。
@@ -654,7 +694,8 @@ Gamebaseにスキーム名とブロックを指定し、任意の機能を追加
 ```
 
 
-## Error Handling
+<a id="error-handling"></a>
+## Error Handling { #error-handling }
 
 
 | Error                           | Error Code | Description                 |

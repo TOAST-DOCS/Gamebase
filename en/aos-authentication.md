@@ -1,6 +1,10 @@
-## Game > Gamebase > Android Developer's Guide > Authentication
+<!-- pre-align:aligned sig=c96f308f5a99 -->
 
-## Login
+<a id="game-gamebase-android-developers-guide-authentication"></a>
+## Game > Gamebase > Android Developer's Guide > Authentication { #game-gamebase-android-developers-guide-authentication }
+
+<a id="login"></a>
+## Login { #login }
 
 Gamebase supports Guest logins by default.
 
@@ -9,7 +13,8 @@ Gamebase supports Guest logins by default.
     * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > Gradle](./aos-started/#gradle)
     * [Game > Gamebase > Android SDK User Guide > Getting Started > Setting > Console > 3rd-Party Provider SDK Guide](./aos-started/#console)
 
-### Login Flow
+<a id="login-flow"></a>
+### Login Flow { #login-flow }
 
 In many games, login is implemented on a title page.
 
@@ -21,16 +26,19 @@ The logic described above can be implemented in the following order:
 ![last provider login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
 ![idp login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
+<a id="login-flow-authenticate-with-latest-login-type"></a>
 #### 1. Authenticate with Latest Login Type
 
 * If a previous authentication has been recorded, try to authenticate with no need of ID and passwords.
 * Call **Gamebase.loginForLastLoggedInProvider()**.
 
+<a id="login-flow-1-1-when-authentication-is-successful"></a>
 #### 1-1. When Authentication is Successful
 
 * Congratulations! Successfully authenticated.
 * Get a user ID with **Gamebase.getUserID()** to implement a game logic.
 
+<a id="login-flow-1-2-when-authentication-fails"></a>
 #### 1-2. When Authentication Fails
 
 * Network error
@@ -42,17 +50,20 @@ The logic described above can be implemented in the following order:
 * Other errors
     * As authentication with latest login type has failed, follow **'2. Authenticate with Specified IdP'**.
 
+<a id="login-flow-authenticate-with-specified-idp"></a>
 #### 2. Authenticate with Specified IdP
 
 * Try to authenticate by specifying an IdP type
     * Types that can be authenticated are declared in the **AuthProvider** class.
 * Call **Gamebase.login(activity, idpType, callback)** API.
 
+<a id="login-flow-2-1-when-authentication-is-successful"></a>
 #### 2-1. When Authentication is Successful
 
 * Congratulations! Successfully authenticated.
 * Get a user ID with **Gamebase.getUserID()** to implement a game logic.
 
+<a id="login-flow-2-2-when-authentication-fails"></a>
 #### 2-2. When Authentication Fails
 
 * Network error
@@ -64,7 +75,8 @@ The logic described above can be implemented in the following order:
 * Other errors
     * Notify that an error has occurred, and return to the state (mostly in title or login screen) in which user can select an authentication IdP type.
 
-### Login as the Latest Login IdP
+<a id="login-as-the-latest-login-idp"></a>
+### Login as the Latest Login IdP { #login-as-the-latest-login-idp }
 
 Try login with the most recently logged-in IdP. <br/>
 If a token is expired or its authentication fails, return failure. <br/>
@@ -125,7 +137,8 @@ Gamebase.loginForLastLoggedInProvider(activity, new GamebaseDataCallback<AuthTok
 }
 ```
 
-### Login with GUEST
+<a id="login-with-guest"></a>
+### Login with GUEST { #login-with-guest }
 
 Gamebase supports Guest logins.
 
@@ -186,7 +199,8 @@ private static void onLoginForGuest(final Activity activity) {
 ```
 
 
-### Login with IdP
+<a id="login-with-idp"></a>
+### Login with IdP { #login-with-idp }
 
 Following is a login example with a specific IdP.<br/>
 You can find the types of IdP that can login, with **AuthProvider** class.
@@ -261,7 +275,8 @@ private static void onLoginForGoogle(final Activity activity) {
 }
 ```
 
-### Login with Credential
+<a id="login-with-credential"></a>
+### Login with Credential { #login-with-credential }
 
 This game interface allows authentication to be made with SDK provided by IdP, before login to Gamebase with provided access token.
 
@@ -275,7 +290,7 @@ This game interface allows authentication to be made with SDK provided by IdP, b
 | AuthProviderCredentialConstants.GAMEBASE_ACCESS_TOKEN | Used when logging in with Gamebase Access Token instead of IdP authentication information |  |
 | AuthProviderCredentialConstants.IGNORE_ALREADY_LOGGED_IN | While logged in to Gamebase, allow login attempts with other account without logging out | **boolean** |
 | AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | Display loading animation until the API call ends | **boolean**<br>**default**: true |
-| AuthProviderCredentialConstants.LINE_CHANNEL_REGION |  Set LINE Service Region| [See Login with IdP](./aos-authentication/#login-with-idp) |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION |  Set LINE Service Region| [See Login with IdP](#login-with-idp) |
 
 > [Note]
 >
@@ -344,11 +359,13 @@ private static void onLoginWithCredential(final Activity activity) {
 }
 ```
 
-### Authentication Additional Information Settings
+<a id="authentication-additional-information-settings"></a>
+### Authentication Additional Information Settings { #authentication-additional-information-settings }
 
 [Console Guide](./oper-app/#authentication-information)
 
-## Logout
+<a id="logout"></a>
+## Logout { #logout }
 
 Try to log out from logged-in IdP. In many cases, the logout button is located on the game configuration screen.
 Even if a logout is successful, a game user's data remain.
@@ -398,7 +415,8 @@ private static void onLogout(final Activity activity) {
 }
 ```
 
-## Withdraw
+<a id="withdraw"></a>
+## Withdraw { #withdraw }
 
 Attempts account withdrawal while logged in.
 
@@ -455,7 +473,8 @@ private static void onWithdraw(final Activity activity) {
 }
 ```
 
-## Mapping
+<a id="mapping"></a>
+## Mapping { #mapping }
 
 Mapping refers to connecting or disconnecting an existing login account to/from another IdP account.
 
@@ -483,21 +502,25 @@ Mapping API includes Add Mapping API and Remove Mapping API.
 > When mapping is successfully done during guest login, guest IdP disappears. 
 >
 
-### Add Mapping Flow
+<a id="add-mapping-flow"></a>
+### Add Mapping Flow { #add-mapping-flow }
 
 Implement mapping in the following order:
 
 ![add mapping flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_add_mapping_flow_2.30.0.png)
 
+<a id="add-mapping-flow-login"></a>
 #### 1. Login
 
 Mapping means to add an IdP account integration to a current account, so login is a prerequisite.
 First, call a login API and log in.
 
+<a id="add-mapping-flow-mapping"></a>
 #### 2. Mapping
 
 Call **Gamebase.addMapping(activity, idpType, callback)** to try mapping.
 
+<a id="add-mapping-flow-2-1-when-mapping-is-successful"></a>
 #### 2-1. When mapping is successful
 
 * Congratulations! Successfully added an IdP account integrated with the current account.
@@ -505,6 +528,7 @@ Call **Gamebase.addMapping(activity, idpType, callback)** to try mapping.
     * <font color="red">[Caution]</font> : The Guest account is an exception. If the mapping attempt performed while logged in with the Guest account is successful, the Guest IdP is **deleted** and the 'currently logged-in IdP' is also changed to the mapped IdP.
 * Mapping simply adds IdP integration.
 
+<a id="add-mapping-flow-2-2-when-mapping-fails"></a>
 #### 2-2. When mapping fails
 
 * Network error
@@ -518,7 +542,8 @@ Call **Gamebase.addMapping(activity, idpType, callback)** to try mapping.
 * Other errors
     * The mapping attempt has failed.
 
-### Add Mapping
+<a id="add-mapping"></a>
+### Add Mapping { #add-mapping }
 
 Try mapping to another IdP while logged-in to a specific IdP.<br/>
 
@@ -527,7 +552,7 @@ Try mapping to another IdP while logged-in to a specific IdP.<br/>
 | Keyname                                  | Usage                                  | Value Type                                     |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | Display loading animation until the API call ends | **boolean**<br>**default**: true |
-| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Set LINE Service Region | [See Login with IdP](./aos-authentication/#login-with-idp) |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Set LINE Service Region | [See Login with IdP](#login-with-idp) |
 
 Below is an example of mapping to Facebook.
 
@@ -596,7 +621,8 @@ private static void addMappingForFacebook(final Activity activity) {
 }
 ```
 
-### Add Mapping with Credential
+<a id="add-mapping-with-credential"></a>
+### Add Mapping with Credential { #add-mapping-with-credential }
 
 This interface can be used for Gamebase AddMapping by an access token issued by the game client directly from the IdP.
 
@@ -608,7 +634,7 @@ This interface can be used for Gamebase AddMapping by an access token issued by 
 | AuthProviderCredentialConstants.ACCESS_TOKEN | Set authentication information (access token) received after login IdP.<br/>Not applied for Google authentication. |                                          |
 | AuthProviderCredentialConstants.AUTHORIZATION_CODE | Enter one time authorization code (OTAC) which can be obtained after Google login. |                                          |
 | AuthProviderCredentialConstants.SHOW_LOADING_ANIMATION | Display loading animation until the API call ends | **boolean**<br>**default**: true |                                    |
-| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Set LINE Service Region | [See Login with IdP](./aos-authentication/#login-with-idp) |
+| AuthProviderCredentialConstants.LINE_CHANNEL_REGION | Set LINE Service Region | [See Login with IdP](#login-with-idp) |
 
 > [Note]
 >
@@ -689,7 +715,8 @@ private static void addMappingWithCredential(final Activity activity) {
 }
 ```
 
-### Add Mapping Forcibly
+<a id="add-mapping-forcibly"></a>
+### Add Mapping Forcibly { #add-mapping-forcibly }
 
 If there is any account mapped to a specific IdP, try **force** mapping.
 When you try **force mapping**, you need `ForcingMappingTicket` obtained from the AddMapping API.
@@ -750,7 +777,8 @@ private static void addMappingForciblyFacebook(final Activity activity) {
 }
 ```
 
-### Change Login with ForcingMappingTicket
+<a id="change-login-with-forcingmappingticket"></a>
+### Change Login with ForcingMappingTicket { #change-login-with-forcingmappingticket }
 
 When there is an account already mapped to a specific IdP, log out from the current account and log in with the account already mapped to the IdP.
 At this time, you need the `ForcingMappingTicket` obtained from the AddMapping API.
@@ -808,7 +836,8 @@ private static void changeLoginFacebook(final Activity activity) {
 }
 ```
 
-### Remove Mapping
+<a id="remove-mapping"></a>
+### Remove Mapping { #remove-mapping }
 
 Unlink a specific IdP. Returns fail when trying to disconnect an account currently logged in.<br/>
 After mapping is removed, Gamebase processes logout of the IdP.
@@ -860,10 +889,12 @@ private static void removeMappingForFacebook(final Activity activity) {
 ```
 
 
-## Gamebase User's Information
+<a id="gamebase-users-information"></a>
+## Gamebase User's Information { #gamebase-users-information }
 Process authentication with Gamebase, in order to get information required to create an app.
 
-### Get Authentication Information for Gamebase
+<a id="get-authentication-information-for-gamebase"></a>
+### Get Authentication Information for Gamebase { #get-authentication-information-for-gamebase }
 Get authentication information issued by Gamebase.
 
 **API**
@@ -894,7 +925,8 @@ String lastLoggedInProvider = Gamebase.getLastLoggedInProvider();
 Gamebase.requestLastLoggedInProvider((lastLoggedInProvider, exception) -> ...);
 ```
 
-### Get Authentication Information for External IdP
+<a id="get-authentication-information-for-external-idp"></a>
+### Get Authentication Information for External IdP { #get-authentication-information-for-external-idp }
 
 * Information such as access token, user ID, and profile of an external authentication IdP can be gotten by calling Gamebase Server API after login.
     * [Game > Gamebase > API Guide > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
@@ -908,14 +940,16 @@ Gamebase.requestLastLoggedInProvider((lastLoggedInProvider, exception) -> ...);
 > * When logged in with the "Gamebase.loginForLastLoggedInProvider()" API, the authentication info cannot be retrieved.
 >     * If you need the user info, instead of "Gamebase.loginForLastLoggedInProvider()", use the {IDP_CODE} identical to the IDPCode that you want to use as the parameter to log in as the "Gamebase.login(activity, IDP_CODE, callback)" API.
 
-### Get Banned User Information
+<a id="get-banned-user-information"></a>
+### Get Banned User Information { #get-banned-user-information }
 
 For users who are registered as banned in the Gamebase Console,
 information codes of restricted use will be displayed as below, when they try to log in. The ban information can be found by using the **BanInfo.from(exception)** method.
 
 * BANNED_MEMBER(7)
 
-## TransferAccount
+<a id="transferaccount"></a>
+## TransferAccount { #transferaccount }
 Issues a key to transfer the guest account to another device.
 
 This key is called **TransferAccountInfo**.
@@ -926,7 +960,8 @@ The issued TransferAccountInfo calls the **requestTransferAccount** API from ano
 > Transfer of guest account using TransferAccountInfo is allowed only when logged in to a guest account or not logged in.
 > If the logged-in guest account has already been mapped to an IdP (Google, Facebook, PAYCO, etc.) account, account transfer is not supported.
 
-### Issue TransferAccount
+<a id="issue-transferaccount"></a>
+### Issue TransferAccount { #issue-transferaccount }
 Issues TransferAccountInfo to transfer the guest account.
 
 **API**
@@ -953,7 +988,8 @@ Gamebase.issueTransferAccount(new GamebaseDataCallback<TransferAccountInfo>() {
 });
 ```
 
-### Query TransferAccount
+<a id="query-transferaccount"></a>
+### Query TransferAccount { #query-transferaccount }
 Queries the TransferAccountInfo information issued for guest account transfer to the Gamebase server.
 
 **API**
@@ -981,7 +1017,8 @@ Gamebase.queryTransferAccount(new GamebaseDataCallback<TransferAccountInfo>() {
 ```
 
 
-### Renew TransferAccount
+<a id="renew-transferaccount"></a>
+### Renew TransferAccount { #renew-transferaccount }
 Renews the issued TransferAccountInfo information.
 There are two types of renewal: **Auto Renew** and **Manual Renew**. You can select either **Renew Password Only** or **Renew Both ID and Password** to renew the TransferAccountInfo information.
 
@@ -1013,7 +1050,8 @@ Gamebase.renewTransferAccount(autoConfig, new GamebaseDataCallback<TransferAccou
 });
 ```
 
-### Transfer Guest Account to Another Device
+<a id="transfer-guest-account-to-another-device"></a>
+### Transfer Guest Account to Another Device { #transfer-guest-account-to-another-device }
 Transfers the account with TransferAccount issued with **issueTransfer** API.
 When account transfer is successful, a transfer completion message will be displayed from the device where TransferAccount has been issued and a new account will be created when a guest logs in.
 On the device where the account transfer was successfully made, the guest account from the previous device where TransferAccount was issued can still be used.
@@ -1058,7 +1096,8 @@ Gamebase.transferAccountWithIdPLogin(accountId, accountPassword, new GamebaseDat
 });
 ```
 
-## TemporaryWithdrawal
+<a id="temporarywithdrawal"></a>
+## TemporaryWithdrawal { #temporarywithdrawal }
 
 'Suspension of Withdrawal' is available. 
 At the request for a temporary withdrawal, user can withdraw after certain period of suspension.  
@@ -1071,7 +1110,8 @@ Suspension period can be changed from the console.
 
 After login, the withdrawal status of a user can be found with  AuthToken.getTemporaryWithdrawalInfo() API to see if the user is suspended from withdrawal.  
 
-### Request TemporaryWithdrawal
+<a id="request-temporarywithdrawal"></a>
+### Request TemporaryWithdrawal { #request-temporarywithdrawal }
 
 Send a request for a temporary withdrawal. 
 After a certain period specified on console, user withdrawal is automatically processed.  
@@ -1111,7 +1151,8 @@ public static void testRequestWithdraw() {
 }
 ```
 
-### Check TemporaryWithdrawal User
+<a id="check-temporarywithdrawal-user"></a>
+### Check TemporaryWithdrawal User { #check-temporarywithdrawal-user }
 
 Games enabling the suspension of withdrawal must always call AuthToken.getTemporaryWithdrawalInfo() API, after login; and if the result returns a valid  TemporaryWithdrawalInfo object, the user must be notified that withdrawal is underway.  
 
@@ -1139,7 +1180,8 @@ public static void testLogin() {
 }
 ```
 
-### Cancel TemporaryWithdrawal
+<a id="cancel-temporarywithdrawal"></a>
+### Cancel TemporaryWithdrawal { #cancel-temporarywithdrawal }
 
 Cancel request for a withdrawal.   
 After withdrawal is completed and if the request has expired, withdrawal cannot be reverted.
@@ -1179,7 +1221,8 @@ public static void testCancelWithdraw() {
 }
 ```
 
-### Withdraw Immediately
+<a id="withdraw-immediately"></a>
+### Withdraw Immediately { #withdraw-immediately }
 
 Withdraw immediately without considering the suspension period.  
 It runs the same as Gamebase.withdraw() API. 
@@ -1211,7 +1254,8 @@ public static void testWithdrawImmediately() {
 }
 ```
 
-## GraceBan
+<a id="graceban"></a>
+## GraceBan { #graceban }
 
 * This is a 'purchase abuse automatic release' function.
     * The purchase abuse automatic release function allows users who should be banned due to purchase abuse automatic lockdown to be banned after ban suspension status.
@@ -1261,7 +1305,8 @@ public static void testLogin() {
 }
 ```
 
-## Error Handling
+<a id="error-handling"></a>
+## Error Handling { #error-handling }
 
 | Category       | Error                                    | Error Code | Description                              |
 | -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |

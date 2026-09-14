@@ -1,10 +1,14 @@
-## Game > Gamebase > 콘솔 사용 가이드 > 푸시
+<!-- pre-align:aligned sig=d3ea5903307f -->
+
+<a id="game-gamebase-console-guide-push"></a>
+## Game > Gamebase > 콘솔 사용 가이드 > 푸시 { #game-gamebase-console-guide-push }
 
 앱 이용자에게 푸시 알림을 발송할 수 있습니다.
 
 Gamebase에서는 NHN Cloud Push 서비스를 사용해 푸시 알림을 발송합니다.
 
-## Push
+<a id="push"></a>
+## Push { #push }
 
 > <font color="red">[중요]</font><br/>
 >
@@ -13,22 +17,26 @@ Gamebase에서는 NHN Cloud Push 서비스를 사용해 푸시 알림을 발송�
 푸시를 발송한 이력과 등록된 푸시 예약 목록을 확인할 수 있습니다.
 ![push_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_01_kr_240103.png)
 
-### Registered List
+<a id="registered-list"></a>
+### Registered List { #registered-list }
 
 예약 목록에서 푸시를 선택하면 푸시의 예상 발송 시간 및 등록 정보들을 확인할 수 있습니다. **전송 취소** 버튼을 클릭하여 예약 발송을 취소하거나 **복사** 버튼을 클릭하여 등록된 푸시 등록 정보를 이용해 새 푸시를 등록할 수 있습니다.
 
-### Send History
+<a id="send-history"></a>
+### Send History { #send-history }
 
 발송 이력 목록에서 푸시를 선택하면 전송된 푸시의 상세 내역을 조회할 수 있습니다.
 **복사** 버튼을 클릭하면 발송된 푸시의 등록 정보를 이용해 손쉽게 푸시를 등록할 수 있습니다.
 ![push_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_02_kr_240103.png)
 
-### Register Push
+<a id="register-push"></a>
+### Register Push { #register-push }
 
 새로운 푸시를 등록하려면 **등록** 버튼을 클릭합니다.
 콘솔에 등록한 값이 실제 단말기에서 어떻게 보일지 오른쪽의 미리 보기에서 확인할 수 있습니다.
 ![push_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_03_kr_240103.png)
 
+<a id="register-push-1-send-type"></a>
 #### (1) 발송 타입
 
 발송 주기를 선택합니다.
@@ -39,6 +47,7 @@ Gamebase에서는 NHN Cloud Push 서비스를 사용해 푸시 알림을 발송�
 	- 매주: 발송할 요일을 선택해 특정 요일에만 푸시 메시지를 발송합니다. 요일은 중복으로 선택할 수 있습니다.
 	- 매월: 한 달을 기준으로 원하는 일자에 푸시 메시지를 발송합니다. 일자(1~31)만 입력 가능하며 한 개 또는 그 이상의 일자를 입력할 수 있습니다. 예를 들어 1일, 5일, 10일 발송을 원하는 경우 1, 5, 10을 입력하면 됩니다.
 
+<a id="register-push-2-recipient"></a>
 #### (2) 발송 대상
 푸시 메시지를 발송할 대상을 선택합니다.
 - **전체 발송**: OS별로 선택할 수 있습니다. 선택한 OS를 사용하는 사용자는 모두 푸시 메시지를 수신합니다.
@@ -48,11 +57,13 @@ Gamebase에서는 NHN Cloud Push 서비스를 사용해 푸시 알림을 발송�
 	- AND: 선택한 태그를 모두 만족하는 유저에게만 푸시 메시지를 발송합니다.
 	- OR: 선택한 태그 중 하나라도 조건을 만족하는 유저에게 푸시 메시지를 발송합니다.
 
+<a id="register-push-3-event-key"></a>
 #### (3) 이벤트 키
 푸시 발송 통계에 사용하는 이벤트 키를 선택합니다.
 **선택** 버튼을 클릭하면 이벤트 키 선택 팝업이 나타나며 **수집 중** 상태의 이벤트키를 선택할 수 있습니다.
 ![push_4](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_04_kr_240103.png)
 
+<a id="register-push-4-target-country"></a>
 #### (4) 대상 국가
 
 푸시 메시지를 발송할 국가를 선택합니다.
@@ -65,6 +76,7 @@ Gamebase에서는 NHN Cloud Push 서비스를 사용해 푸시 알림을 발송�
 > 국가 판단 기준
 > 사용자의 **USIM 국가 코드**를 기준으로 판단하며 USIM이 없을 경우 단말기에 설정되어 있는 국가를 기준으로 푸시 메시지가 표시됩니다.
 
+<a id="register-push-5-message-type"></a>
 #### (5) 메시지 타입
 
 > [참고]
@@ -80,6 +92,7 @@ Gamebase에서는 NHN Cloud Push 서비스를 사용해 푸시 알림을 발송�
 >
 > **홍보성**을 선택한 후 입력 메시지에 '(광고)' 문구를 입력하면 '(광고)' 문구가 중복되므로 주의하세요.
 
+<a id="register-push-6-message-body"></a>
 #### (6) 메시지 내용
 
 사용자에게 표시할 푸시 메시지를 입력합니다.
@@ -93,29 +106,34 @@ Gamebase에서는 NHN Cloud Push 서비스를 사용해 푸시 알림을 발송�
 > 대부분은 사용자의 푸시 토큰을 등록하지 않은 경우입니다. 사용자의 푸시 토큰을 등록했는지 확인해주세요.
 > 플랫폼에서 푸시 토큰을 등록하는 방법은 다음 문서를 참고하시기 바랍니다.
 >
-> - [Android > Register Push](./aos-push/#2-register-push)
-> - [iOS > Register Push](./ios-push/#2-register-push)
-> - [Unity > Register Push](./unity-push/#2-register-push)
+> - [Android > Register Push](./aos-push/#register-push)
+> - [iOS > Register Push](./ios-push/#register-push)
+> - [Unity > Register Push](./unity-push/#register-push)
 
+<a id="register-push-7-message-text-color-only-android"></a>
 #### (7) 메시지 글자색(Android에 한함)
 
 Android에서는 단말기에 표시되는 푸시 메시지의 글자색을 지정할 수 있습니다.
 제목과 내용의 색을 각각 지정할 수 있으며 글자색 선택 창에서 색을 선택하거나 RGB Hex값을 직접 입력할 수 있습니다.
 선택된 글자색은 오른쪽의 미리 보기 화면에서 확인할 수 있습니다.
 
+<a id="register-push-8-message-click-action-optional"></a>
 #### (8) 메시지 클릭 액션(선택 항목)
 푸시 메시지를 클릭할 때 이동할 URL이나 Scheme을 설정할 수 있습니다.
 
+<a id="register-push-9-custom-fields-optional"></a>
 #### (9) 사용자 정의 필드(선택 항목)
 푸시 메시지에 함께 전달하고자 하는 사용자 정의 키를 설정할 수 있습니다.
 필드 추가 버튼을 이용하여 항목을 생성할 수 있으며, 최대 10개까지 생성 가능합니다.
 
+<a id="register-push-10-notification-sound-optional"></a>
 #### (10) 알림음(선택 항목)
 
 단말기에서 푸시를 수신할 때 재생되는 알림음을 설정할 수 있습니다.
 **알림음 추가** 버튼을 클릭해 설정할 수 있으며 설정하지 않으면 기본 알림음이 재생됩니다.
 외부 URL 주소 또는 앱 내 배포된 알림음 파일 경로를 입력합니다.
 
+<a id="register-push-11-large-icon-only-android"></a>
 #### (11) 큰 아이콘(Android에 한함)
 
 **큰 아이콘 추가** 버튼을 누르면 푸시 메시지 수신 시 오른쪽에 표시될 아이콘 이미지를 설정할 수 있습니다.
@@ -123,6 +141,7 @@ Android에서는 단말기에 표시되는 푸시 메시지의 글자색을 지�
 **외부**를 선택하고 표시할 아이콘 이미지의 외부 URL을 입력하거나 **내부**를 선택해 앱 내에 배포한 아이콘 이미지 파일 경로를 입력합니다.
 외부 이미지일 때는 오른쪽 미리 보기에서 아이콘을 미리 확인할 수 있습니다.
 
+<a id="register-push-12-button"></a>
 #### (12) 버튼
 
 푸시 메시지 수신 시 메시지 하단에 표시되는 버튼을 최대 3개까지 설정해 함께 보낼 수 있습니다.
@@ -133,18 +152,21 @@ Android에서는 단말기에 표시되는 푸시 메시지의 글자색을 지�
 - 응답: 푸시 메시지에서 버튼을 클릭하면 응답할 수 있는 창이 나타납니다. iOS에서는 전송 버튼 이름을 함께 설정할 수 있습니다.
 - 닫기: 푸시 메시지에서 버튼을 클릭하면 푸시가 닫힙니다. 버튼 이름만 지정할 수 있습니다.
 
+<a id="register-push-13-media-ios"></a>
 #### (13) 미디어(iOS)
 
 iOS 푸시 메시지 수신 시에 동적으로 실행되는 미디어를 추가할 수 있습니다.
 **IMAGE**, **GIF**, **VIDEO**, **AUDIO** 항목을 설정할 수 있으며 연결할 외부 URL 또는 내부 파일 경로를 입력할 수 있습니다.
 
+<a id="register-push-14-media-android"></a>
 #### (14) 미디어(Android)
 
 Android 푸시 메시지 수신 시에 실행되는 미디어를 추가할 수 있습니다.
 현재 Android에서는 **IMAGE** 항목만 설정할 수 있으며 연결할 외부 URL 또는 내부 파일 경로를 입력할 수 있습니다.
 
 
-## Statistics
+<a id="statistics"></a>
+## Statistics { #statistics }
 
 푸시 메시지, 토큰, 수신 설정과 관련된 지표들을 표와 그래프로 확인할 수 있습니다.
 통계는 다음의 메뉴로 구성되어 있습니다.
@@ -153,7 +175,8 @@ Android 푸시 메시지 수신 시에 실행되는 미디어를 추가할 수 �
 - 토큰 등록: 푸시 토큰 등록 및 삭제 관련 지표
 - 수신 설정: 푸시 수신 설정 관련 지표
 
-### 발송/수신
+<a id="outboundinbound"></a>
+### 발송/수신 { #outboundinbound }
 ![push_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_05_kr_240103.png)
 
 1. 발송/수신 통계 
@@ -165,7 +188,7 @@ Android 푸시 메시지 수신 시에 실행되는 미디어를 추가할 수 �
 * 수신확인율: 기간내 전체 수신 확인 수 / 전체 수신 성공 수
 
 > [참고]
-> 수신율과 수신확인율 통계 데이터를 수집하기 위해서는 **설정** > [메시지 수신 및 확인](#Setting)을 **ON**으로 설정해야 합니다.
+> 수신율과 수신확인율 통계 데이터를 수집하기 위해서는 **설정** > [메시지 수신 및 확인](#setting)을 **ON**으로 설정해야 합니다.
 
 2. 푸시 발송 리스트
 선택된 기간 동안 푸시 메시지 발송 목록
@@ -175,7 +198,8 @@ Android 푸시 메시지 수신 시에 실행되는 미디어를 추가할 수 �
 
 * 선택된 기간이 24시간 이하인 경우에만 **분** 단위 선택이 가능합니다.
 
-### 토큰 등록
+<a id="token-registration"></a>
+### 토큰 등록 { #token-registration }
 ![push_6](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_06_kr_240103.png)
 
 1. 토큰 등록 통계
@@ -192,7 +216,8 @@ Android 푸시 메시지 수신 시에 실행되는 미디어를 추가할 수 �
 3. 언어
 선택된 기간 동안의 사용자 언어에 따른 토큰 등록, 삭제 통계를 보여줍니다.
 
-### 수신 설정
+<a id="inbound-settings"></a>
+### 수신 설정 { #inbound-settings }
 선택된 기간 동안의 수신 설정 관련 통계를 보여줍니다.
 ![push_7](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_07_kr_240103.png)
 
@@ -203,23 +228,27 @@ Android 푸시 메시지 수신 시에 실행되는 미디어를 추가할 수 �
 |정보성 동의, 광고 전체 거부| O | | |
 |정보성 및 광고 주간 동의, 야간 거부| O | O | |
 
-## Event Key
+<a id="event-key"></a>
+## Event Key { #event-key }
 푸시 발송 통계에 사용하는 이벤트키를 관리할 수 있습니다.
 ![push_8](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_08_kr_240103.png)
 
 Push에서 푸시 메시지를 발송할 때 사용할 이벤트키를 등록할 수 있습니다.
 
-### Event Key register
+<a id="event-key-register"></a>
+### Event Key register { #event-key-register }
 ![push_9](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_09_kr_240103.png)
 
-### Event Key detail
+<a id="event-key-detail"></a>
+### Event Key detail { #event-key-detail }
 등록된 이벤트 키를 관리할 수 있습니다.
 ![push_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_10_kr_240103.png)
 
 
 상단의 **삭제**, **수정** 버튼을 클릭해 이벤트키 정보를 수정하거나 삭제할 수 있습니다.
 
-## Authentication
+<a id="authentication"></a>
+## Authentication { #authentication }
 푸시 발송에 사용하는 인증서를 관리할 수 있습니다.
 ![push_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_11_kr_240422.png)
 
@@ -231,29 +260,34 @@ Push에서 푸시 메시지를 발송할 때 사용할 이벤트키를 등록할
 > FCM Service Account Credential을 등록하면 FCM Server Key 인증서는 삭제됩니다. FCM Server Key를 복구하려면 다시 FCM Server Key 인증서를 등록하시면 됩니다.
 
 
-### Authentication register
+<a id="authentication-register"></a>
+### Authentication register { #authentication-register }
 ![push_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_12_kr_240103.png)
 ![push_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_13_kr_240103.png)
 ![push_14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_14_kr_240103.png)
 ![push_15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_15_kr_240103.png)
 
-## Tag
+<a id="tag"></a>
+## Tag { #tag }
 
 유저를 특정 기준으로 묶어서 전송할 수 있는 태그 기능을 제공합니다.
 ![push_16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_16_kr_240103.png)
 
 NHN Cloud Push에서 푸시 메시지를 발송할 때 사용할 태그명을 등록할 수 있습니다.
 
-### Tag register
+<a id="tag-register"></a>
+### Tag register { #tag-register }
 ![push_17](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_17_kr_240103.png)
 
-### Tag detail
+<a id="tag-detail"></a>
+### Tag detail { #tag-detail }
 
 등록된 태그의 관리 및 해당 태그에 등록된 유저의 목록을 관리할 수 있습니다.
 ![push_18](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_18_kr_240103.png)
 
 상단의 **삭제**, **수정** 버튼을 클릭해 태그 정보를 수정하거나 삭제할 수 있으며 하단의 유저 ID 관리 기능을 사용해 태그에 유저를 등록하거나 삭제할 수 있습니다.
 
+<a id="tag-detail-add-users"></a>
 #### 유저 등록
 
 ##### 단건 등록
@@ -267,6 +301,7 @@ NHN Cloud Push에서 푸시 메시지를 발송할 때 사용할 태그명을 �
 
 **파일 등록**으로는 한 번에 최대 1,000명까지 등록할 수 있습니다.
 
+<a id="tag-detail-delete-users"></a>
 #### 유저 삭제
 
 ![push_21](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_21_kr_240103.png)
@@ -274,26 +309,31 @@ NHN Cloud Push에서 푸시 메시지를 발송할 때 사용할 태그명을 �
 태그에 등록된 유저를 삭제하려면 유저 목록에서 왼쪽의 체크 박스를 선택한 후 **삭제** 버튼을 클릭합니다.
 
 
-## Setting
+<a id="setting"></a>
+## Setting { #setting }
 푸시 관련 설정을 할 수 있습니다.
 ![gamebase_push_20_202205](https://static.toastoven.net/prod_gamebase/gamebase_push_20_202205.png)
 
-### 메시지 수신 및 확인 설정
+<a id="settings-for-receiving-and-confirming-the-message"></a>
+### 메시지 수신 및 확인 설정 { #settings-for-receiving-and-confirming-the-message }
 발송된 메시지의 수신과 확인 정보를 수집하는 기능입니다.
 
-### 중복 메시지 방지 설정
+<a id="settings-for-preventing-duplicate-messages"></a>
+### 중복 메시지 방지 설정 { #settings-for-preventing-duplicate-messages }
 내용이 완전히 같은 메시지가 여러 번 발송 요청 되어도 설정한 시간동안 발송하지 않는 기능입니다.
 
 * 1분부터 60분까지 1분 간격으로 설정할 수 있습니다.
 
-### 광고 표시 문구 위치 설정
+<a id="settings-for-ad-display-text-position"></a>
+### 광고 표시 문구 위치 설정 { #settings-for-ad-display-text-position }
 광고성 메시지 발송 시 표시되는 광고 표시 위치를 설정할 수 있습니다.
 
 * 우측 **미리보기** 버튼 클릭 시 설정한 광고 표시 문구 위치에 따른 푸시 예시를 확인할 수 있습니다.
 
 ![push_23](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_23_kr_240103.png)
 
-### 토큰 설정
+<a id="token-settings"></a>
+### 토큰 설정 { #token-settings }
 
 토큰 만료 기간 설정 및 앱 유형을 설정할 수 있습니다.
 
@@ -302,7 +342,8 @@ NHN Cloud Push에서 푸시 메시지를 발송할 때 사용할 태그명을 �
 	* 다중 토큰: UID(사용자 아이디)는 여러 개의 토큰을 가질 수 있습니다. 한 사용자가 동시 여러 기기에서 사용할 수 있는 앱입니다.
 	* 단일 토큰: UID는 하나의 토큰만 가질 수 있습니다. 한 사용자가 한 기기에서만 사용할 수 있는 앱입니다.
 
-### 발송 내역 저장
+<a id="save-outbound-history"></a>
+### 발송 내역 저장 { #save-outbound-history }
 
 메시지 발송 내역을 NHN Cloud Log & Crash Search에 저장하는 기능입니다.
 

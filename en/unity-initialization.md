@@ -1,8 +1,12 @@
-## Game > Gamebase > Unity Developer's Guide > Initialization
+<!-- pre-align:aligned sig=008150b67ed5 -->
+
+<a id="game-gamebase-unity-developers-guide-initialization"></a>
+## Game > Gamebase > Unity Developer's Guide > Initialization { #game-gamebase-unity-developers-guide-initialization }
 
 To use Gamebase Unity SDK, initialization is required, and App ID and app version should be registered in the NHN Cloud Console.
 
-### GamebaseConfiguration 
+<a id="gamebaseconfiguration"></a>
+### GamebaseConfiguration { #gamebaseconfiguration }
 
 Following settings are required for initialization.
 
@@ -18,18 +22,21 @@ Following settings are required for initialization.
 | useWebViewLogin | Standalone | O |
 | enableGPGSSignInCheck | Android | O | 
 
+<a id="gamebaseconfiguration-app-id"></a>
 #### 1. App ID
 
 Project ID registered in NHN Cloud.
 
 [Game > Gamebase > Console Guide > App > App](./oper-app/#app)
 
+<a id="gamebaseconfiguration-appversion"></a>
 #### 2. appVersion
 
 Client version registered in NHN Cloud.
 
 [Game > Gamebase > Console Guide > App > Client](./oper-app/#client)
 
+<a id="gamebaseconfiguration-storecode"></a>
 #### 3. storeCode
 
 Store information required to initialize In-App Purchase (IAP) of NHN Cloud.
@@ -46,12 +53,14 @@ Store information required to initialize In-App Purchase (IAP) of NHN Cloud.
 | macOS | MAC | only Standalone |
 | Web | WEB | only Unity WebGL|
 
+<a id="gamebaseconfiguration-displaylanguagecode"></a>
 #### 4. displayLanguageCode
 
 The display language on the Gamebase UI and SystemDialog can be changed into another language, which is not set on a device, as the user wants. 
 
 [Game > Gamebase > Unity SDK User Guide > ETC > Additional Features > Display Language](./unity-etc/#display-language)
 
+<a id="gamebaseconfiguration-enablepopup"></a>
 #### 5. enablePopup
 
 When a game user cannot play games due to system maintenance or banned from use, reasons need to be displayed by pop-ups.
@@ -61,6 +70,7 @@ This setting is related to applying default pop-ups provided by Gamebase SDK.
 * False: All pop-ups provided by Gamebase are not exposed.
 * Default: False
 
+<a id="gamebaseconfiguration-enablelaunchingstatuspopup"></a>
 #### 6. enableLaunchingStatusPopup
 
 This setting is related to applying default pop-ups provided by Gamebase, when the LaunchingStatus is disabled to play games.
@@ -68,16 +78,19 @@ For LaunchingStatus, refer to Status/Code below Launching.
 
 * Default: True
 
+<a id="gamebaseconfiguration-enablebanpopup"></a>
 #### 7. enableBanPopup
 
 This setting is related to applying default pop-ups provided by Gamebase, when the game user has been banned.
 
 * Default: True
 
+<a id="gamebaseconfiguration-usewebviewlogin"></a>
 #### 8. useWebViewLogin
 
 Set whether or not to log in to WebView on a (Standalone) platform.
 
+<a id="gamebaseconfiguration-enablegpgssignincheck"></a>
 #### 9. enableGPGSSignInCheck
 
 When integrating the 'GPGS Auto Login' feature on the Android platform, set whether to display the GPGS login window only once when the app is first run after installation.
@@ -86,7 +99,8 @@ When integrating the 'GPGS Auto Login' feature on the Android platform, set whet
 * False : The GPGS login window will only appear once when you first launch the app.
 * Default: true
 
-### Debug Mode
+<a id="debug-mode"></a>
+### Debug Mode { #debug-mode }
 * Gamebase only displays the (warning) and error log.
 * To turn on system logs for development reference, call **Gamebase.SetDebugMode(true)**.
 
@@ -122,7 +136,8 @@ public void SetDebugModeSample(bool isDebugMode)
 }
 ```
 
-### Initialize
+<a id="initialize"></a>
+### Initialize { #initialize }
 
 Initialize SDK.
 
@@ -238,11 +253,13 @@ public class SampleInitialization
 }
 ```
 
-### Launching Information
+<a id="launching-information"></a>
+### Launching Information { #launching-information }
 
 When Gamebase Unity SDK is initialized by using Initialize API, LaunchingInfo object results will be delievered.
 This LaunchingInfo object contains settings of the NHN Cloud Gamebase Console and game status.
 
+<a id="launching-information-launching"></a>
 #### 1. Launching
 
 Launching information of Gamebase.
@@ -336,6 +353,7 @@ Below is the user information who initialized Gamebase.
         * Type matched with the test device information
         * Forwarded when matchingFlag is true
         
+<a id="launching-information-tcproduct"></a>
 #### 2. tcProduct
 
 Appkey of NHN Cloud Products linked to Gamebase.
@@ -345,6 +363,7 @@ Appkey of NHN Cloud Products linked to Gamebase.
 * iap
 * push
 
+<a id="launching-information-tciap"></a>
 #### 3. tcIap
 
 IAP store information registered in the NHN Cloud Console.
@@ -355,6 +374,7 @@ IAP store information registered in the NHN Cloud Console.
  
 [Game > Gamebase > Console Guide > Purchase](./oper-purchase/)
 
+<a id="launching-information-tclaunching"></a>
 #### 4. tcLaunching
 
 Refers to user-input information on NHN Cloud Launching Console.  
@@ -364,7 +384,8 @@ Refers to user-input information on NHN Cloud Launching Console.
  
 [Game > Gamebase > Console Guide > Management > Config](./oper-management/#config)
 
-### Get Launching Information
+<a id="get-launching-information"></a>
+### Get Launching Information { #get-launching-information }
 
 With the GetLaunchingInformations API, you can get the LaunchingInfo object even after initialization.
 
@@ -397,7 +418,8 @@ public GamebaseResponse.Launching.LaunchingInfo GetLaunchingInformations()
 }
 ```
 
-### Handling Unregistered Version
+<a id="handling-unregistered-version"></a>
+### Handling Unregistered Version { #handling-unregistered-version }
  	 
 By initializing GameClientVersion which is not registered on Gamebase console, error occurs like follows: **LAUNCHING_UNREGISTERED_CLIENT(2004)**.  
 Under enablePopup(true), or enableLaunchingStatusPopup(true), popup shows for a forced update, and the user could be linked to the market.
@@ -480,7 +502,8 @@ public class SampleInitialization
 }
 ```
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                              | Error Code | Description            |
 | ---------------------------------- | ---------- | ---------------------- |

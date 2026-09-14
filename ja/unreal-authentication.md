@@ -1,6 +1,10 @@
-## Game > Gamebase > Unreal SDK使用ガイド > 認証
+<!-- pre-align:aligned sig=3b6c59994f8b -->
 
-## Login
+<a id="game-gamebase-user-guide-for-unreal-sdk-authentication"></a>
+## Game > Gamebase > Unreal SDK使用ガイド > 認証 { #game-gamebase-user-guide-for-unreal-sdk-authentication }
+
+<a id="login"></a>
+## Login { #login }
 
 Gamebaseではゲストログインをデフォルトでサポートします。<br/>
 
@@ -9,7 +13,8 @@ Gamebaseではゲストログインをデフォルトでサポートします。
     * [3rd-Party Provider SDK Guide](aos-started#3rd-party-provider-sdk-guide)
 
 
-### Login Flow
+<a id="login-flow"></a>
+### Login Flow { #login-flow }
 
 多くのゲームがタイトル画面でログインを実装します。
 
@@ -21,16 +26,19 @@ Gamebaseではゲストログインをデフォルトでサポートします。
 ![last provider login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/login_for_last_logged_in_provider_flow_2.19.0.png)
 ![idp login flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/idp_login_flow_2.19.0.png)
 
+<a id="login-flow-authenticate-with-previous-login-type"></a>
 #### 1. 以前のログインタイプで認証
 
 * 以前に認証した記録があれば、IDとパスワードを入力しないで認証を試行します。
 * **LoginForLastLoggedInProvider API**を呼び出します。
 
+<a id="login-flow-1-1-when-authentication-is-successful"></a>
 #### 1-1. 認証が成功した場合
 
 * 認証に成功しました。
 * **GetUserID API**でユーザーIDを取得し、ゲームロジックを実装してください。
 
+<a id="login-flow-1-2-when-authentication-fails"></a>
 #### 1-2. 認証が失敗した場合
 
 * ネットワークエラー
@@ -42,17 +50,20 @@ Gamebaseではゲストログインをデフォルトでサポートします。
 * その他のエラー
     * 以前のログインタイプで認証できませんでした。**「2. 指定されたIdPで認証」**を行います。
 
+<a id="login-flow-authenticate-with-specified-idp"></a>
 #### 2. 指定されたIdPで認証
 
 * IdPタイプを直接指定して認証を試行します。
     * 認証可能なタイプは**GamebaseAuthProvider**クラスに宣言されています。
 * **Login(ProviderName, callback) API**を呼び出します。
 
+<a id="login-flow-2-1-when-authentication-is-successful"></a>
 #### 2-1. 認証に成功した場合
 
 * 認証に成功しました。
 * **GetUserID API**でユーザーIDを取得し、ゲームロジックを実装してください。
 
+<a id="login-flow-2-2-when-authentication-fails"></a>
 #### 2-2. 認証に失敗した場合
 
 * ネットワークエラー
@@ -64,7 +75,8 @@ Gamebaseではゲストログインをデフォルトでサポートします。
 * その他のエラー
     * エラーが発生したことをゲームユーザーに伝え、ゲームが認証IdPタイプを選択できる状態(主にタイトル画面またはログイン画面)へ戻ります。
 
-### Login as the Latest Login IdP
+<a id="login-with-the-latest-login-idp"></a>
+### Login as the Latest Login IdP { #login-with-the-latest-login-idp }
 
 最近ログインしたIdPでログインを試行します。
 該当ログインに対するトークンの有効期限が切れているか、トークンの検証などに失敗すると、失敗を返します。
@@ -122,7 +134,8 @@ void USample::LoginForLastLoggedInProvider()
 }
 ```
 
-### Login with GUEST
+<a id="login-with-guest"></a>
+### Login with GUEST { #login-with-guest }
 
 Gamebaseはゲストログインをサポートします。
 
@@ -178,7 +191,8 @@ void USample::Login()
 }
 ```
 
-### Login with IdP
+<a id="login-with-idp"></a>
+### Login with IdP { #login-with-idp }
 
 次は、特定IdPでログインできるようにするサンプルコードです。
 ログインすることができるIdPタイプは **GamebaseAuthProvider**クラスで確認できます。
@@ -264,6 +278,7 @@ void USample::LoginWithAdditionalInfo()
 }
 ```
 
+<a id="login-with-idp-cancel-login-with-external-browser"></a>
 #### Cancel Login with External Browser
 
 Windows環境でSDKを使用しないIdPの場合、外部ブラウザを通じてログインを行います。
@@ -289,7 +304,8 @@ void USample::CancelLogin()
 }
 ```
 
-### Login with Credential
+<a id="login-with-credential"></a>
+### Login with Credential { #login-with-credential }
 
 IdPで提供するSDKを使用して、ゲームで直接認証した後、発行されたアクセストークンなどを利用して、Gamebaseにログインできるインターフェイスです。
 
@@ -301,7 +317,7 @@ IdPで提供するSDKを使用して、ゲームで直接認証した後、発�
 | GamebaseAuthProviderCredential::AccessToken | IdPログイン後に取得した認証情報(Access Token)設定<br/>Google認証時には使用しない |  
 | GamebaseAuthProviderCredential::AuthorizationCode | Googleログイン後に取得した認証情報(Authorization Code)設定 |                                          |
 | GamebaseAuthProviderCredential::GamebaseAccessToken | IdP認証情報ではなくGamebase Access Tokenでログインを行いたい場合に使用 |  |
-| GamebaseAuthProviderCredential::LineChannelRegion | Lineサービス提供地域設定 | [Login with IdP参照](./unreal-authentication/#login-with-idp) |
+| GamebaseAuthProviderCredential::LineChannelRegion | Lineサービス提供地域設定 | [Login with IdP参照](#login-with-idp) |
 
 > [TIP]
 >
@@ -357,7 +373,8 @@ void USample::LoginWithCredential()
 ```
 
 
-## Logout
+<a id="logout"></a>
+## Logout { #logout }
 ログインしたIdPからログアウトを試行します。主にゲームの設定画面にログアウトボタンを設置し、ボタンをクリックすると実行されるように実装する場合が多いです。
 ログアウトが成功しても、ゲームユーザーデータは維持されます。
 ログアウトに成功すると、該当IdPで認証した記録を消去するため、次にログインする時、ID、パスワード入力ウィンドウが表示されます。<br/><br/>
@@ -395,7 +412,8 @@ void USample::Logout()
 ```
 
 
-## Withdraw
+<a id="withdraw"></a>
+## Withdraw { #withdraw }
 
 ログイン状態で退会を試行します。
 
@@ -442,7 +460,8 @@ void USample::Withdraw()
 }
 ```
 
-## Mapping
+<a id="mapping"></a>
+## Mapping { #mapping }
 
 マッピングは、既にログインしているアカウントに他のIdPのアカウントを連携または、解除する機能です。
 
@@ -466,26 +485,31 @@ GamebaseのMapping APIを使用して既にログインしているアカウン�
 
 MappingにはMapping追加/解除APIがあります。
 
-### Add Mapping Flow
+<a id="add-mapping-flow"></a>
+### Add Mapping Flow { #add-mapping-flow }
 
 マッピングは、次の順序で実装できます。
 
 ![add mapping flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/auth_add_mapping_flow_2.30.0.png)
 
+<a id="add-mapping-flow-login"></a>
 #### 1. ログイン
 マッピングは、現在のアカウントにIdPアカウント連携を追加することです。優先的にログインする必要があります。
 先にログインAPIを呼び出してログインします。
 
+<a id="add-mapping-flow-mapping"></a>
 #### 2. マッピング
 
 **AddMapping API**を呼び出してマッピングを試行します。
 
+<a id="add-mapping-flow-2-1-when-mapping-is-successful"></a>
 #### 2-1. マッピングが成功した場合
 
 * 現在のアカウントと連携中のIdPアカウントが追加されました。
 * マッピングに成功しても「現在ログイン中のIdP」は変わりません。<br>すなわち、Googleアカウントでログインした後、Facebookアカウントマッピングの試行が成功したからといって、「現在ログイン中のIdP」がGoogleからFacebookには変更されません。Googleの状態で維持されます。
 * マッピングは単純にIdPの連携のみ追加します。
 
+<a id="add-mapping-flow-2-2-when-mapping-fails"></a>
 #### 2-2. マッピングが失敗した場合
 
 * ネットワークエラー
@@ -500,7 +524,8 @@ MappingにはMapping追加/解除APIがあります。
     * マッピングの試行が失敗しました。
 
 
-### Add Mapping
+<a id="add-mapping"></a>
+### Add Mapping { #add-mapping }
 
 特定IdPにログインした状態で、他のIdPにMappingを試行します。
 MappingをしようとするIdPのアカウントがすでに他のアカウントに連携している場合、
@@ -542,7 +567,8 @@ void USample::AddMapping(const FString& ProviderName)
 }
 ```
 
-### AddMapping with Credential
+<a id="addmapping-with-credential"></a>
+### AddMapping with Credential { #addmapping-with-credential }
 
 ゲームで直接IdPから提供するSDKで先に認証を行い、発行されたアクセストークンなどを利用して、Gamebase AddMappingを行うことができるインターフェイスです。
 
@@ -608,7 +634,8 @@ void USample::AddMappingWithCredential()
 }
 ```
 
-### Add Mapping Forcibly
+<a id="add-mapping-forcibly"></a>
+### Add Mapping Forcibly { #add-mapping-forcibly }
 
 特定IdPにすでにマッピングされているアカウントがある時、**強制的に**マッピングを試行します。
 **強制マッピング**を試行する時は、AddMapping APIで取得した`ForcingMappingTicket`が必要です。
@@ -675,7 +702,8 @@ void USample::AddMappingForcibly(const FString& providerName)
 ```
 
 
-### Change Login with ForcingMappingTicket
+<a id="change-login-with-forcingmappingticket"></a>
+### Change Login with ForcingMappingTicket { #change-login-with-forcingmappingticket }
 
 特定IdPにすでにマッピングされているアカウントがある場合、現在のアカウントからログアウトし、マッピングされたアカウントにログインします。
 このとき、AddMapping APIで取得した`ForcingMappingTicket`が必要です。
@@ -739,7 +767,8 @@ void USample::ChangeLoginWithFacebook(const FString& ProviderName)
 }
 ```
 
-### Remove Mapping
+<a id="remove-mapping"></a>
+### Remove Mapping { #remove-mapping }
 
 特定IdPの連携を解除します。もし解除するIdが唯一のIdPの場合、失敗を返します。
 連携解除後は、Gamebase内部で該当IdPのログアウト処理を行います。
@@ -776,7 +805,8 @@ void USample::RemoveMapping(const FString& ProviderName)
 }
 ```
 
-### Get Mapping List
+<a id="get-mapping-list"></a>
+### Get Mapping List { #get-mapping-list }
 
 ユーザーIDに連携されているIdPリストを返します。<br/>
 
@@ -806,12 +836,15 @@ void USample::GetAuthMappingList()
 }
 ```
 
-## Gamebase User's Information
+<a id="gamebase-users-information"></a>
+## Gamebase User's Information { #gamebase-users-information }
 
 Gamebaseを通して認証手順を進行した後、アプリを製作する時に必要な情報を取得できます。
 
-### Get Authentication Information for Gamebase
+<a id="get-authentication-information-for-gamebase"></a>
+### Get Authentication Information for Gamebase { #get-authentication-information-for-gamebase }
 
+<a id="get-authentication-information-for-gamebase-userid"></a>
 #### UserID
 
 Gamebaseで発行したUserIDを取得できます。
@@ -835,6 +868,7 @@ void USample::GetUserID()
 }
 ```
 
+<a id="get-authentication-information-for-gamebase-accesstoken"></a>
 #### AccessToken
 
 Gamebaseで発行したアクセストークンを取得できます。
@@ -859,6 +893,7 @@ void USample::GetAccessToken()
 }
 ```
 
+<a id="get-authentication-information-for-gamebase-last-loggedin-provider-name"></a>
 #### Last LoggedIn Provider Name
 
 Gamebaseで最後にログインに成功したProviderNameを取得できます。
@@ -897,7 +932,8 @@ void USample::GetLastLoggedInProvider()
 }
 ```
 
-### Get Authentication Information for External IdP
+<a id="get-authentication-information-for-external-idp"></a>
+### Get Authentication Information for External IdP { #get-authentication-information-for-external-idp }
 
 * 外部認証IdPのアクセストークン、ユーザーID、Profileなどの情報はログイン後、ゲームサーバーでGamebase Server APIを呼び出して取得できます。
     * [Game > Gamebase > APIガイド > Authentication > Get IdP Token and Profiles](./api-guide/#get-idp-token-and-profiles)
@@ -911,13 +947,15 @@ void USample::GetLastLoggedInProvider()
 > * "Gamebase.LoginForLastLoggedInProvider()" APIでログインした場合には認証情報を取得できません。
 >     * ユーザー情報が必要な場合は"Gamebase.LoginForLastLoggedInProvider()"の代わりに、使用したいIDPCodeと同じ{IDP_CODE}をパラメータにして"Gamebase.Login(IDP_CODE, callback)" APIでログインする必要があります。
 
-### Get Banned User Infomation
+<a id="get-banned-user-information"></a>
+### Get Banned User Infomation { #get-banned-user-information }
 
 Gamebase Consoleに制裁中のゲームユーザーで登録する場合、
 ログイン試行時、利用制限情報コード(**BANNED_MEMBER(7)**)が表示される場合があり、**FGamebaseBanInfo::From API**を利用して制裁情報を確認できます。
 
 
-## TransferAccount
+<a id="transferaccount"></a>
+## TransferAccount { #transferaccount }
 ゲストアカウントを他の端末へ移行するためにアカウント移行用のキーを発行する機能です。
 
 このキーを**TransferAccountInfo**と呼びます。
@@ -928,7 +966,8 @@ Gamebase Consoleに制裁中のゲームユーザーで登録する場合、
 > TransferAccountInfoを利用したアカウント移行は、ゲストログイン状態またはログインしていない状態でのみ可能です。
 > ログインしたゲストアカウントがすでに他の外部IdP (Google、Facebook、Paycoなど)アカウントとマッピングされている場合、アカウント移行がサポートされません。
 
-### Issue TransferAccount
+<a id="issue-transferaccount"></a>
+### Issue TransferAccount { #issue-transferaccount }
 ゲストアカウント移行のためのTransferAccountInfoを発行します。
 
 **API**
@@ -958,7 +997,8 @@ void USample::IssueTransferAccount()
 }
 ```
 
-### Query TransferAccount
+<a id="query-transferaccount"></a>
+### Query TransferAccount { #query-transferaccount }
 ゲストアカウント移行のためにすでに発行したTransferAccountInfo情報をGamebaseサーバーに問い合わせます。
 
 **API**
@@ -987,7 +1027,8 @@ void USample::QueryTransferAccount()
 }
 ```
 
-### Renew TransferAccount
+<a id="renew-transferaccount"></a>
+### Renew TransferAccount { #renew-transferaccount }
 発行されたTransferAccountInfo情報を更新します。
 方法は「自動更新」と「手動更新」があり、「Passwordのみ更新」、「IDとPasswordを更新」などの設定をしてTransferAccountInfo情報を更新できます。
 
@@ -1027,7 +1068,8 @@ void USample::RenewTransferAccount(const FString& accountId, const FString& acco
 ```
 
 
-### Transfer Guest Account to Another Device
+<a id="transfer-guest-account-to-another-device"></a>
+### Transfer Guest Account to Another Device { #transfer-guest-account-to-another-device }
 **issueTransfer**APIで発行されたTransferAccountでアカウントを移行する機能です。
 アカウントの移行に成功すると、TransferAccountを発行した端末で移行完了メッセージが表示される場合があり、Guestログイン時に新しいアカウントが作成されます。
 アカウント移行が成功した端末では、TransferAccountを発行した端末のゲストアカウントを継続して使用できます。
@@ -1063,7 +1105,8 @@ void USample::TransferAccountWithIdPLogin(const FString& accountId, const FStrin
 ```
 
 
-## TemporaryWithdrawal
+<a id="temporarywithdrawal"></a>
+## TemporaryWithdrawal { #temporarywithdrawal }
 
 退会猶予機能です。
 一時退会をリクエストすると、即時に退会が行われずに一定の猶予期間が過ぎると退会が行われます。
@@ -1076,7 +1119,8 @@ void USample::TransferAccountWithIdPLogin(const FString& accountId, const FStrin
 
 ログインが成功すると、AuthToken.Member.TemporaryWithdrawalで退会猶予状態のユーザーかを判断できます。
 
-### Request TemporaryWithdrawal
+<a id="request-temporarywithdrawal"></a>
+### Request TemporaryWithdrawal { #request-temporarywithdrawal }
 
 一時退会をリクエストします。
 コンソールに指定した期間が過ぎると自動的に退会処理が完了します。
@@ -1117,7 +1161,8 @@ void USample::Login()
 }
 ```
 
-### Check TemporaryWithdrawal User
+<a id="check-temporarywithdrawal-user"></a>
+### Check TemporaryWithdrawal User { #check-temporarywithdrawal-user }
 
 退会猶予を使用するゲームは、AuthToken.Member.TemporaryWithdrawalがnullでない場合、ログイン後に該当ユーザーへ退会進行中という事実を毎回伝える必要があります。
 
@@ -1151,7 +1196,8 @@ void USample::Login()
 }
 ```
 
-### Cancel TemporaryWithdrawal
+<a id="cancel-temporarywithdrawal"></a>
+### Cancel TemporaryWithdrawal { #cancel-temporarywithdrawal }
 
 退会リクエストをキャンセルします。
 退会リクエスト後、猶予期間が過ぎて退会が完了すると、キャンセルできません。
@@ -1181,7 +1227,8 @@ void USample::CancelTemporaryWithdrawal()
 }
 ```
 
-### Withdraw Immediately
+<a id="withdraw-immediately"></a>
+### Withdraw Immediately { #withdraw-immediately }
 
 退会猶予期間を無視して即時に退会を行います。
 実際の内部動作はWithdraw APIと同じです。
@@ -1214,7 +1261,8 @@ void USample::WithdrawImmediately()
 }
 ```
 
-## GraceBan
+<a id="graceban"></a>
+## GraceBan { #graceban }
 
 * 「決済アビューズ自動解除」機能です。
     * 決済アビューズ自動解除機能は、決済アビューズ自動制裁で利用停止になるべきユーザーが利用停止猶予状態後に利用停止になるようにします。
@@ -1269,7 +1317,8 @@ void USample::Login()
 }
 ```
 
-## Error Handling
+<a id="error-handling"></a>
+## Error Handling { #error-handling }
 
 | Category       | Error                                    | Error Code | Description                              |
 | -------------- | ---------------------------------------- | ---------- | ---------------------------------------- |
@@ -1319,7 +1368,7 @@ void USample::Login()
 | Auth(Unknown) | AUTH_UNKNOWN_ERROR | 3999 | 不明なエラーです。(定義されていないエラーです。) |
 
 * エラーコードの一覧は、次の文書を参照してください。
-    * [エラーコード](./Error-code/#client-sdk)
+    * [エラーコード](./error-code/#client-sdk)
 
 **AUTH_EXTERNAL_LIBRARY_ERROR**
 

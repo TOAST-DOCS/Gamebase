@@ -1,9 +1,12 @@
+<!-- pre-align:aligned sig=9ca0a1936f8a -->
 
-## Game > Gamebase > Unity SDK 사용 가이드 > 시작하기
+<a id="game-gamebase-unity-developers-guide-getting-started"></a>
+## Game > Gamebase > Unity SDK 사용 가이드 > 시작하기 { #game-gamebase-unity-developers-guide-getting-started }
 
 Gamebase Unity SDK 사용 환경과 초기 설정 방법을 설명합니다.
 
-## Environments
+<a id="environments"></a>
+## Environments { #environments }
 
 > [참고] 
 >
@@ -11,11 +14,13 @@ Gamebase Unity SDK 사용 환경과 초기 설정 방법을 설명합니다.
 >
 > * 2022.3.10f1 ~ 6000.3.21f1
 
+<a id="environments-dependencies"></a>
 #### Dependencies
 
 * [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
 * [Gamebase iOS SDK - Dependencies](./ios-started/#setting)
 
+<a id="environments-supported-platforms"></a>
 #### Supported Platforms
 
 * iOS
@@ -28,24 +33,28 @@ Gamebase Unity SDK 사용 환경과 초기 설정 방법을 설명합니다.
 * Editor
     * 일부 기능만 지원합니다.
 
-## Gamebase SDK SettingTool
+<a id="gamebase-sdk-settingtool"></a>
+## Gamebase SDK SettingTool { #gamebase-sdk-settingtool }
 
 SettingTool을 이용하여 Gamebase SDK를 간편하게 설치할 수 있습니다.
 
-### SettingTool 스펙
+<a id="specification-of-setting-tool"></a>
+### SettingTool 스펙 { #specification-of-setting-tool }
 
 1. Gamebase SDK 설치
 2. Gamebase SDK 업데이트
 3. Gamebase SDK 설정 관리
 4. Gamebase SDK 제거
 
-### SettingTool 설치
+<a id="installing-settingtool"></a>
+### SettingTool 설치 { #installing-settingtool }
 
 1. SettingTool을 다운로드합니다.
     * [Download Gamebase Setting Tool](/Download/#game-gamebase)
 2. Unity 프로젝트 실행 후 GamebaseUnitySettingTool\_{version}.unitypackage 파일을 임포트 합니다.
 
-### SettingTool 사용
+<a id="using-the-setting-tool"></a>
+### SettingTool 사용 { #using-the-setting-tool }
 
 Unity Editor의 상단 메뉴 바에서 **Tools > Gamebase**를 선택하여 SettingTool 기능을 사용할 수 있습니다.
 
@@ -60,7 +69,8 @@ Unity Editor의 상단 메뉴 바에서 **Tools > Gamebase**를 선택하여 Set
 4. Refresh SettingTool
     * SettingTool 데이터를 갱신합니다.
 
-## Gamebase SDK 설치
+<a id="installing-gamebase-sdk"></a>
+## Gamebase SDK 설치 { #installing-gamebase-sdk }
 
 **Tools > Gamebase > Setup Wizard** 메뉴를 선택합니다.
 
@@ -73,7 +83,8 @@ Unity Editor의 상단 메뉴 바에서 **Tools > Gamebase**를 선택하여 Set
 >
 > * [Required Settings](#required-settings)를 통해 설치에 **필수적인 설정**을 확인할 수 있습니다.
 
-## SDK 최신 버전 업데이트
+<a id="updating-the-sdk-to-the-latest-version"></a>
+## SDK 최신 버전 업데이트 { #updating-the-sdk-to-the-latest-version }
 
 **Tools > Gamebase > Update Latest Version**메뉴를 선택합니다.
 
@@ -82,7 +93,8 @@ Unity Editor의 상단 메뉴 바에서 **Tools > Gamebase**를 선택하여 Set
 
 ![unity-developers-guide-started-settingtool-3.0.0-latestupdate](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-3.0.0-latestupdate-ko.png)
 
-## Gamebase SDK 기능 편집
+<a id="editing-gamebase-sdk-features"></a>
+## Gamebase SDK 기능 편집 { #editing-gamebase-sdk-features }
 
 **Tools > Gamebase > Customize...** 메뉴를 선택합니다.
 
@@ -95,7 +107,8 @@ Unity Editor의 상단 메뉴 바에서 **Tools > Gamebase**를 선택하여 Set
 >
 > * [Required Settings](#required-settings)를 통해 설치에 **필수적인 설정**을 확인할 수 있습니다.
 
-## Required Settings
+<a id="required-settings"></a>
+## Required Settings { #required-settings }
 
 SettingTool에서는 **필수적인 설정**을 확인하고 수정할 수 있는 UI를 제공합니다.
 **Setup Wizard**와 **Customize** 메뉴에서 확인할 수 있으며 모든 설정이 완료되면 해당 항목은 사라집니다.
@@ -104,7 +117,8 @@ SettingTool에서는 **필수적인 설정**을 확인하고 수정할 수 있�
 >
 > * Required Settings를 해결하지 않으면 실행하거나 빌드할 때 오류가 발생할 수 있습니다.
 
-### EDM4U 설치
+<a id="installing-edm4u"></a>
+### EDM4U 설치 { #installing-edm4u }
 
 Android, iOS 플랫폼을 사용하는 경우 [EDM4U(External Dependency Manager)](https://github.com/googlesamples/unity-jar-resolver)가 필요합니다.
 
@@ -112,7 +126,8 @@ Android, iOS 플랫폼을 사용하는 경우 [EDM4U(External Dependency Manager
 >
 > * 프로젝트에 EDM4U가 설치되어 있지 않다면, 먼저 [다운로드](https://github.com/googlesamples/unity-jar-resolver/raw/refs/heads/master/external-dependency-manager-latest.unitypackage)한 후 UnityPackage 파일을 임포트하여 설치합니다.
 
-### Android Publishing Settings
+<a id="android-publishing-settings"></a>
+### Android Publishing Settings { #android-publishing-settings }
 
 Gamebase의 Android SDK 설정을 위해 필수적인 파일을 생성해야 합니다.
 
@@ -126,7 +141,8 @@ Gamebase의 Android SDK 설정을 위해 필수적인 파일을 생성해야 합
     * gradleTemplate.properties 생성
         * **Custom Gradle Properties Template**을 활성화
 
-### Android Activity 설정
+<a id="android-activity-settings"></a>
+### Android Activity 설정 { #android-activity-settings }
 
 Android Lifecycle 관리를 위해 Gamebase에서 제공되는 Activity를 MainActivity로 설정해야 합니다.
 
@@ -152,7 +168,8 @@ Application Entry Point에 따라 설정하는 MainActivity가 다릅니다.
 >
 > * MainActivity는 반드시 Gamebase에서 제공되는 Activity를 사용하거나 상속 받아야 합니다.
 
-### AndroidManifest.xml 설정
+<a id="androidmanifestxml-configuration"></a>
+### AndroidManifest.xml 설정 { #androidmanifestxml-configuration }
 
 ```xml
 <manifest>
@@ -181,7 +198,8 @@ Application Entry Point에 따라 설정하는 MainActivity가 다릅니다.
 </manifest>
 ```
 
-### Android EDM4U 설정
+<a id="android-edm4u-settings"></a>
+### Android EDM4U 설정 { #android-edm4u-settings }
 
 **Assets > External Dependency Manager > Android Resolver > Settings > Android Resolver Settings**
 
@@ -192,7 +210,8 @@ Application Entry Point에 따라 설정하는 MainActivity가 다릅니다.
     * Patch gradleTemplate.properties: 활성화
     * ![unity-developers-guide-started-settingtool-edm4u-settings-android-1.2.182](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-edm4u-settings-android-1.2.182.png)
 
-### Android EDM4U 수동 Resolve
+<a id="android-edm4u-manual-resolve"></a>
+### Android EDM4U 수동 Resolve { #android-edm4u-manual-resolve }
 
 Setting Tool로 Gamebase SDK를 설치할 때 EDM4U가 설치되어 있을 경우 Resolve가 자동으로 실행하여 설정합니다.
 
@@ -200,7 +219,8 @@ EDM4U 설치가 되어있지 않거나 별도로 변경이 필요할 때 수동�
 
 **Assets > External Dependency Manager > Android Resolver > Force Resolve**
 
-### iOS CocoaPods 설치
+<a id="ios-cocoapods-installation"></a>
+### iOS CocoaPods 설치 { #ios-cocoapods-installation }
 
 iOS 플랫폼을 서비스할 경우 CocoaPods가 설치되어 있어야 하며, 설치 및 자세한 설명은 [CocoaPods 공식 사이트](https://cocoapods.org/)를 참고하시기 바랍니다.
 
@@ -208,7 +228,8 @@ EDM4U에서 CocoaPods 설치할 수도 있습니다.
 
 **Assets > External Dependency Manager > iOS Resolver > install Cocoapods**
 
-### iOS EDM4U 설정
+<a id="ios-edm4u-settings"></a>
+### iOS EDM4U 설정 { #ios-edm4u-settings }
 
 > **Assets > External Dependency Manager > iOS Resolver > Settings > iOS Resolver Settings**
 
@@ -221,6 +242,7 @@ EDM4U에서 CocoaPods 설치할 수도 있습니다.
     * Link frameworks statically: 비활성화
   * ![unity-developers-guide-started-settingtool-edm4u-settings-ios-1.2.182](https://static.toastoven.net/prod_gamebase/UnityDevelopersGuide/unity-developers-guide-started-settingtool-edm4u-settings-ios-1.2.182.png)
 
+<a id="ios-edm4u-settings-additional-ios-module-settings"></a>
 #### iOS 모듈별 추가 설정
 
 * 선택한 모듈에 따라 Xcode를 통해 직접 설정해야 합니다.
@@ -230,16 +252,19 @@ EDM4U에서 CocoaPods 설치할 수도 있습니다.
 3. TARGETS > UnityFramework에 iOS SDK 설정을 추가합니다.
     * [iOS SDK 설정 가이드](./ios-started)
 
-## 오류 발생 시
+<a id="in-case-of-errors"></a>
+## 오류 발생 시 { #in-case-of-errors }
 
 * Setting Tool에서 예기치 않은 오류가 발생하면 창을 닫고 다시 실행하세요.
 * 다시 실행해도 오류가 해결되지 않을 경우, **Assets/NhnCloud/GamebaseTools/SettingTool/Editor/Scripts**에서 SettingToolWindow.cs 파일을 열고, ShowWindow 메서드에서 SettingTool.SetDebugMode(true); 코드를 주석 해제 후, 로그를 전달해 주시기 바랍니다.
 
-## API Reference
+<a id="api-reference"></a>
+## API Reference { #api-reference }
 
 API Reference는 GamebaseUnitySDK 내에 포함돼 있습니다.
 
-## API Supported Platforms
+<a id="api-supported-platforms"></a>
+## API Supported Platforms { #api-supported-platforms }
 
 API별 지원하는 플랫폼은 아래와 같은 아이콘으로 구분합니다.
 
@@ -262,7 +287,8 @@ Supported Platforms
 * GamebaseErrorCode.NOT\_SUPPORTED\_UNITY\_WEBGL
 * GamebaseErrorCode.NOT\_SUPPORTED\_UNITY\_EDITOR
 
-## API Deprecate Governance
+<a id="api-deprecate-governance"></a>
+## API Deprecate Governance { #api-deprecate-governance }
 
 Gamebase에서 더 이상 지원하지 않는 API는 Deprecate 처리합니다.
 Deprecated 된 API는 다음 조건이 충족되면 사전 공지 없이 삭제될 수 있습니다.

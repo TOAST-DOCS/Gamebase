@@ -1,4 +1,7 @@
-## Game > Gamebase > Unity Developer's Guide > Push
+<!-- pre-align:aligned sig=fef16f4bcb48 -->
+
+<a id="game-gamebase-unity-developers-guide-push"></a>
+## Game > Gamebase > Unity Developer's Guide > Push { #game-gamebase-unity-developers-guide-push }
 
 This document describes how to set push notifications for each platform.
 
@@ -6,7 +9,8 @@ This document describes how to set push notifications for each platform.
 >
 > If there is push-related processing in an external package, the Gamebase push function may not work properly.
 
-### Settings
+<a id="settings"></a>
+### Settings { #settings }
 
 For how to set up push on Android or iOS, refer to the following documents.
 
@@ -17,7 +21,8 @@ For how to set up push on Android or iOS, refer to the following documents.
     * [iOS Push Settings](ios-push#settings)
 
 
-### Register Push
+<a id="register-push"></a>
+### Register Push { #register-push }
 
 Call the following API to register the user for NHN Cloud Push.
 Get the values of consent to receiving push (enablePush), consent to receiving advertisement push (enableAdPush), and consent to receiving night-time advertisement push (enableAdNightPush) from the user, and call the following API to complete the registration.
@@ -38,6 +43,7 @@ public static void RegisterPush(GamebaseRequest.Push.PushConfiguration pushConfi
 public static void RegisterPush(GamebaseRequest.Push.PushConfiguration pushConfiguration, GamebaseRequest.Push.NotificationOptions options, GamebaseCallback.ErrorDelegate callback);
 ```
 
+<a id="register-push-gamebaserequestpushpushconfiguration"></a>
 #### GamebaseRequest.Push.PushConfiguration
 
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
@@ -77,16 +83,13 @@ public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNig
     });
 }
 ```
-#### Setting for APNS Sandbox
-* Enable the SandboxMode, and push messages can be registered and sent via APNS Sandbox. 
-* Sending from Console
-    * Select **iOS Sandbox** from **Target** of the Push menu, and send.
-
-### Notification Options
+<a id="notification-options"></a>
+### Notification Options { #notification-options }
 
 * You can use the Notification Options to change how the notification will be displayed in the device.
 * You can call the registerPush API at runtime to change it.
 
+<a id="notification-options-set-notification-options-with-registerpush-in-runtime"></a>
 #### Set Notification Options with RegisterPush in Runtime
 
 When calling the RegisterPush API, you can add the GamebaseRequest.Push.NotificationOptions argument to set the notification options.
@@ -136,6 +139,7 @@ public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNig
 }
 ```
 
+<a id="notification-options-get-notificationoptions"></a>
 #### Get NotificationOptions
 
 Retrieves the notification options value which was set previously when registering the push notification.
@@ -167,7 +171,8 @@ public void GetNotificationOptionsSample()
 }
 ```
 
-### Request Push Settings
+<a id="request-push-settings"></a>
+### Request Push Settings { #request-push-settings }
 
 To retrieve user's push setting, apply API as below.
 From GamebaseResponse.Push.TokenInfo callback values, you can get user's value set.
@@ -209,6 +214,7 @@ public void QueryTokenInfoSample(bool isSandbox)
 }
 ```
 
+<a id="request-push-settings-gamebaseresponsepushtokeninfo"></a>
 #### GamebaseResponse.Push.TokenInfo
 
 | Parameter           | Values                | Description         |
@@ -223,6 +229,7 @@ public void QueryTokenInfoSample(bool isSandbox)
 | agreement           | GamebaseResponse.Push.Agreement | Opt in        |
 | sandbox             | bool                  | Whether to use sandbox (iOS Only)        |
 
+<a id="request-push-settings-gamebaseresponsepushagreement"></a>
 #### GamebaseResponse.Push.Agreement
 
 | Parameter        | Values  | Description               |
@@ -232,7 +239,8 @@ public void QueryTokenInfoSample(bool isSandbox)
 | adAgreementNight | bool | Opt in to display night advertisement notifications  |
 
 
-### Event Handling
+<a id="event-handling"></a>
+### Event Handling { #event-handling }
 
 * You can handle events when a push message is received or clicked.
 * For how to register event handlers, refer to the GamebaseEventHandler guide.
@@ -240,6 +248,7 @@ public void QueryTokenInfoSample(bool isSandbox)
     * [ Game > Gamebase > Unity SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./unity-etc/#push-click-message)
     * [ Game > Gamebase > Unity SDK User Guide > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./unity-etc/#push-click-action)
 
+<a id="event-handling-setting-for-apns-sandbox"></a>
 #### Setting for APNS Sandbox
 * By turning on the SandboxMode, it can be registered so that the push will be sent with the APNS Sandbox.
 * How to send console
@@ -264,7 +273,8 @@ public void SetSandboxModeSample()
 }
 ```
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |

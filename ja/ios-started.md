@@ -1,6 +1,10 @@
-## Game > Gamebase > iOS SDK ご利用ガイド > はじめる
+<!-- pre-align:aligned sig=18f341083517 -->
 
-## Environments
+<a id="game-gamebase-ios-developers-guide-getting-started"></a>
+## Game > Gamebase > iOS SDK ご利用ガイド > はじめる { #game-gamebase-ios-developers-guide-getting-started }
+
+<a id="environments"></a>
+## Environments { #environments }
 
 
 > [INFO]
@@ -21,11 +25,13 @@
 > * https://developer.apple.com/ios/submit/
 >
 
-## Setting
+<a id="setting"></a>
+## Setting { #setting }
 
 Gamebaseは、次のような方法で設定できます。
 
-### Download
+<a id="download"></a>
+### Download { #download }
 
 * [Download Gamebase iOS SDK](/Download/#game-gamebase)
 
@@ -74,7 +80,8 @@ Gamebase.xcframework及び必要なadapterをダウンロードします。<br/>
 > 各IdPが提供する外部SDKに対する設定は、各IdPのガイドドキュメントをご参考ください。
 >
 
-### Xcode Settings
+<a id="xcode-settings"></a>
+### Xcode Settings { #xcode-settings }
 
 解凍すると、次のようにGamebase.xcframeworkなどのSDKを確認することができます。
 
@@ -128,7 +135,8 @@ Gamebase.xcframework及び必要なadapterをダウンロードします。<br/>
 > * 各ターゲットにGamebase iOS SDKを重複してimportすると、動作に問題が生じることがあるため、注意する必要があります。
 > 
 
-### CocoaPods Settings
+<a id="cocoapods-settings"></a>
+### CocoaPods Settings { #cocoapods-settings }
 
 Gamebase iOS SDKは、CocoaPodsを使用して設定できます。
 
@@ -187,7 +195,8 @@ end
 >
 >
 
-### IdP Settings
+<a id="idp-settings"></a>
+### IdP Settings { #idp-settings }
 
 > <font color="red">[注意]</font><br/>
 >
@@ -198,6 +207,7 @@ end
     * [Game > Gamebase > コンソール使用ガイド > アプリ > Authentication Information](./oper-app/#authentication-information)
 * Gamebase iOS SDKは、IdPごとに追加設定を行う必要があります。
 
+<a id="idp-settings-facebook"></a>
 #### Facebook
 
 * URL Schemeを設定する必要があります。
@@ -221,20 +231,23 @@ end
 <string>{FACEBOOK_DISPLAY_NAME}</string>
 ```
 
+<a id="idp-settings-google"></a>
 #### Google
 
 * URL Schemeを設定する必要があります。
     * **Google Cloud Platform > APIs & Services > Credentials**で発行されたiOS URL schemeを**Xcode > Target > Info > URL Types**に追加する必要があります。
 * Gamebase iOS SDK 2.34.1以下は追加設定が必要です。
 
-    * [Game > Gamebase > iOS SDK使用ガイド > 始める > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
+    * [Game > Gamebase > iOS SDK使用ガイド > 始める > IdP settings (Legacy)](#idp-settings-legacy)
 
+<a id="idp-settings-payco"></a>
 #### PAYCO
 
 * URL Schemeを設定する必要があります。
     * **Xcode > Target > Info > URL Types**に**tcgb.{Bundle ID}.payco**を追加する必要があります。
     * **Xcode > Target > Info > URL Types**に**paycologinsdk**を追加する必要があります。
 
+<a id="idp-settings-naver"></a>
 #### NAVER
 
 * URL Schemeを設定する必要があります。
@@ -249,8 +262,9 @@ end
 </array>
 ```
 * Gamebase iOS SDK 1.12.1以下は追加設定が必要です。
-    * [Game > Gamebase > iOS SDK使用ガイド > 始める > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
+    * [Game > Gamebase > iOS SDK使用ガイド > 始める > IdP settings (Legacy)](#idp-settings-legacy)
 
+<a id="idp-settings-line"></a>
 #### LINE
 
 * URL Schemeを設定する必要があります。
@@ -264,11 +278,13 @@ end
 </array>
 ```
 * Gamebase iOS SDK 2.42.2以下は追加設定が必要です。
-    * [Game > Gamebase > iOS SDK使用ガイド > はじめる > IdP settings (Legacy)](./ios-started/#idp-settings-legacy)
+    * [Game > Gamebase > iOS SDK使用ガイド > はじめる > IdP settings (Legacy)](#idp-settings-legacy)
 
+<a id="idp-settings-game-center"></a>
 #### Game Center
 * Entitlements.plistにGame Centerエンタイトルメント(`com.apple.developer.game-center`)がない場合は、直接追加する必要があります。
 
+<a id="idp-settings-weibo"></a>
 #### Weibo
 
 * URL Schemeを設定する必要があります。
@@ -284,7 +300,8 @@ end
 </array>
 ```
 
-### IdP Settings (Legacy)
+<a id="idp-settings-legacy"></a>
+### IdP Settings (Legacy) { #idp-settings-legacy }
 
 **Google**
 
@@ -342,7 +359,8 @@ end
     * TwitterのDeveloperサイトのApps > 対象プロジェクト > App Details > Callback URL項目を設定する必要があります。
         *  **tcgb.{Bundle ID}.twitter://**を追加します。    
     
-## 3rd-Party Provider SDK Guide
+<a id="3rd-party-provider-sdk-guide"></a>
+## 3rd-Party Provider SDK Guide { #3rd-party-provider-sdk-guide }
 
 * [Facebook for developers](https://developers.facebook.com/docs/ios)
 * [NAVER for developers](https://developers.naver.com/docs/login/ios/ios.md)
@@ -353,15 +371,18 @@ end
 * [Google Sign-In for iOS](https://developers.google.com/identity/sign-in/ios)
 * [Kakaogame SDK 3.0 Guide for Channeling](https://kakaogames.atlassian.net/wiki/spaces/KS3GFC/overview)
 
-## Sample App
+<a id="sample-app"></a>
+## Sample App { #sample-app }
 
 * [https://github.com/nhn/toast.gamebase.ios.sample](https://github.com/nhn/toast.gamebase.ios.sample)
 
-## API Reference
+<a id="api-reference"></a>
+## API Reference { #api-reference }
 
 SDKの中に含まれています。
 
-## API Deprecate Governance
+<a id="api-deprecate-governance"></a>
+## API Deprecate Governance { #api-deprecate-governance }
 
 GamebaseでサポートしないAPIは、使用していないもの(deprecate)として処理します。
 使用していない(deprecated) APIは、次の条件を満たす場合、事前告知を行わずに削除されることがあります。

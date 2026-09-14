@@ -1,12 +1,17 @@
-## Game > Gamebase > コンソール使用ガイド > クーポン
+<!-- pre-align:aligned sig=4800987c46f8 -->
+
+<a id="game-gamebase-console-user-guide-coupons"></a>
+## Game > Gamebase > コンソール使用ガイド > クーポン { #game-gamebase-console-user-guide-coupons }
 
 ゲーム運営中に、ゲームユーザーに配布するクーポンを大量に作成して管理できる機能です。
 
-## Coupon Publish
+<a id="publish-coupons"></a>
+## Coupon Publish { #publish-coupons }
 
 アプリ内で使用できるクーポンを発行または検索できます。
 
-### Search Coupon publish
+<a id="search-coupon-publish"></a>
+### Search Coupon publish { #search-coupon-publish }
 
 検索条件にマッチしたクーポン発行履歴を検索します。
 
@@ -31,11 +36,13 @@
 - **ダウンロード**：発行したクーポンの詳細コードリストのダウンロード
 - **支給アイテム**：発行したクーポンの登録可否を表示
 
-### Publish coupon
+<a id="publish-coupon"></a>
+### Publish coupon { #publish-coupon }
 
 クーポン発行検索画面で**登録**ボタンを押すとクーポンを発行できます。
 ![gamebase_coupon_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_02_240813.png)
 
+<a id="publish-coupon-coupon-type"></a>
 #### (1)クーポンタイプ
 発行するクーポンのタイプを設定できます。
 各タイプの内容は下記のとおりです。
@@ -43,30 +50,37 @@
 - **シリアル**：任意のクーポン番号を作成してクーポンコードを発行します。
 - **キーワード**：指定されたキーワードの名前をユーザが使用できるクーポンコードで発行します。
 
+<a id="publish-coupon-coupon-name"></a>
 #### (2)クーポン名
 発行したクーポンの目的を把握できるクーポン名を入力します。
 
+<a id="publish-coupon-coupon-code"></a>
 #### (3)クーポンコード
 
 **キーワードクーポン発行時*にユーザーが使用できる固有クーポンコードを入力します。
 
+<a id="publish-coupon-store"></a>
 #### (4)ストア
 発行したクーポンを使用できるストアを選択します。
 現在は**全て**のクーポンのみ発行可能です。今後、ストアごとにクーポンを発行できるように項目を追加する予定です。
 
+<a id="publish-coupon-valid-period"></a>
 #### (5)有効期間
 発行したクーポンを使用できる期間を設定します。
 
+<a id="publish-coupon-number-of-issuance"></a>
 #### 6. 発行数
 
 発行時に作成するクーポンコードの数を設定します。
 1回のリクエストで最大100万個のクーポンコードを作成できます。
 
+<a id="publish-coupon-number-of-coupons-allowed-per-user"></a>
 #### 7. ユーザー別使用可能数
 
 1人のユーザーが最大で使用できるクーポンの数を設定します。
 設定できる最大数は99個です。無制限に使用できるようにするには、0に設定します。
 
+<a id="publish-coupon-item"></a>
 #### 8. アイテム
 
 クーポンコードの登録時に支給するアイテム情報を入力します。
@@ -76,34 +90,41 @@
 
 > [参考]
 >
-> クーポンアイテムを登録する方法は[Coupon Item](./oper-coupon/#Coupon_Item)を参照してください。
+> クーポンアイテムを登録する方法は[Coupon Item](#coupon-items)を参照してください。
 
-### Update publish coupon
+<a id="update-coupons"></a>
+### Update publish coupon { #update-coupons }
 
 発行したクーポン情報を修正するには詳細情報で**修正**ボタンをクリックします。
 発行済みのクーポンコードのタイプは修正できないため、新しいタイプのクーポンを発行するには発行情報を新たに登録する必要があります。
 
 ![gamebase_coupon_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_03_240813.png)
 
+<a id="update-coupons-coupon-name"></a>
 #### (1)クーポン名
 発行したクーポンの目的を把握できるクーポン名を入力します。
 
+<a id="update-coupons-store"></a>
 #### (2)ストア
 発行したクーポンを使用できるストアを選択します。
 現在は**全て**のクーポンのみ発行可能です。今後、ストアごとにクーポンを発行できるように項目を追加する予定です。
 
+<a id="update-coupons-valid-period"></a>
 #### (3)有効期間
 発行したクーポンを使用できる期間を設定します。
 
+<a id="update-coupons-available-count-per-user"></a>
 #### (4)ユーザー別使用可能数
 発行したクーポンを、1人のユーザーが使用できる最大数を設定します。
 現在設定できる最大数は100個で、0に設定すると無制限で使用可能に設定できます。
 
+<a id="update-coupons-item"></a>
 #### (5)アイテム
 クーポンコード登録時に支給するアイテム情報を入力します。
 支給するアイテムを選択し、右側の欄に該当アイテムの支給数を入力します。
 アイテムを登録するには、クーポンアイテムメニューで先にアイテムを登録する必要があります。
 
+<a id="update-coupons-send-coupon"></a>
 #### (6)クーポン送信
 発行されたクーポン情報を利用してユーザーに直接クーポンを送信できる機能を提供します。
 
@@ -130,17 +151,19 @@
 
 > [参考1]
 >
-> クーポンアイテムを登録する方法は[Coupon Item](./oper-coupon/#coupon-item)を参照してください。
+> クーポンアイテムを登録する方法は[Coupon Item](#coupon-items)を参照してください。
 >
 > [参考2]
 >
 > クーポンを送信するには、SMS商品を有効にする必要があります。
 
+<a id="update-coupons-issue-additional-coupons"></a>
 #### 7. クーポン追加発行
 クーポンタイプがシリアルの場合、1回10万個ずつ、最大100万個まで(初期発行数を含めて)追加で発行できます。
 
 ![gamebase_coupon_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_05_240813.png)
 
+<a id="update-coupons-coupon-statistics"></a>
 #### 8. クーポン統計
 クーポン発行詳細情報画面の下部でSMS送信履歴を照会することができ、送信に関連する統計の照会およびファイルダウンロードが行えます。
 ![gamebase_coupon_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_06_240813.png)
@@ -151,19 +174,28 @@
 - **作成中**：リクエストしたダウンロードファイルを作成中です。
 - **ダウンロード**：ダウンロードファイルの作成が完了している場合、ダウンロードボタンが有効になり、ボタンを押すと送信詳細履歴をダウンロードできます。
 
-## Coupon history
+<a id="query-coupon-history"></a>
+## Coupon history { #query-coupon-history }
 発行したクーポンの使用履歴を照会できる機能を提供します。
 検索条件に応じて、下記のような検索画面を提供します。
 
-### クーポンコード別照会
+<a id="properties"></a>
+### Properties { #properties }
+
+<!-- TODO: translate body -->
+
+<a id="properties-query-by-coupon-code"></a>
+#### クーポンコード別照会
 クーポンコードを直接入力して、使用履歴を照会できます。
 ![gamebase_coupon_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_07_240813.png)
 
-### ユーザーID別照会
+<a id="properties-query-by-user-id"></a>
+#### ユーザーID別照会
 ユーザーIDから該当ユーザーがクーポンを使用した履歴を照会できます。
 ![gamebase_coupon_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_08_240813.png)
 
-### クーポン名照会
+<a id="properties-query-by-coupon-name"></a>
+#### クーポン名照会
 クーポン名およびその他の検索条件で使用履歴を照会できます。
 ![gamebase_coupon_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_09_240813.png)
 
@@ -171,18 +203,22 @@
 (2) **使用有無**：使用有無を選択して照会できる機能を提供します。現在は使用したクーポンのみ照会可能で、今後は別の状態の検索条件も提供する予定です。
 (3) **クーポン使用日**：期間を設定して該当期間に使用したクーポンのみを照会できる機能を提供します。
 
-## Coupon Item
+<a id="coupon-items"></a>
+## Coupon Item { #coupon-items }
 クーポンコード使用時に支給するクーポンアイテムを照会、管理できます。
 
-### クーポンアイテム照会
+<a id="search-coupon-item"></a>
+### クーポンアイテム照会 { #search-coupon-item }
 登録されたクーポンアイテムの内訳を照会できます。
 フィルタを使い、アイテムID/アイテム名で検索することもできます。
 ![gamebase_coupon_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_10_240813.png)
 
-### クーポンアイテムの登録
+<a id="register-coupon-item"></a>
+### クーポンアイテムの登録 { #register-coupon-item }
 クーポンコード使用時に支給するアイテムを登録します。
 アイテムは1件ずつ入力するか、ファイルを通して登録できます。
 
+<a id="register-coupon-item-register-by-case"></a>
 #### 1件登録
 
 ![gamebase_coupon_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_11_240813.png)
@@ -194,13 +230,15 @@
 ##### (2)アイテム名
 登録されたアイテムを区別することができるアイテム名を入力します。
 
+<a id="register-coupon-item-register-by-file-upload"></a>
 #### ファイルアップロード
 
 ![gamebase_coupon_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_12_240813.png)
 一度に大量に登録したい時は、ファイルを利用して登録できます。
 ファイルを利用して登録する場合は、一度に最大10,000件まで登録することができます。テンプレートファイルをダウンロードした後、該当の形式に合わせて作成したものをアップロードすると、正常にファイルを利用してアイテム登録作業を行うことができます。
 
-### クーポンアイテムの修正
+<a id="update-coupon-item"></a>
+### クーポンアイテムの修正 { #update-coupon-item }
 登録したアイテムの情報を修正することができます。該当アイテムを使用したくない場合は、「使用しない」に設定してクーポン発行時に該当アイテムが表示されないように変更できます。
 
 > [参考]
@@ -209,8 +247,10 @@
 
 ![gamebase_coupon_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_13_240813.png)
 
+<a id="update-coupon-item-item-name"></a>
 #### (1)アイテム名
 区別することができるアイテム名を入力します。
 
+<a id="update-coupon-item-availability"></a>
 #### (2)使用有無
 **使用**状態の場合にのみクーポン登録時にアイテムを追加できます。アイテムをクーポン登録画面で表示しない場合は、使用有無を**使用しない**に変更してください。最初のアイテム登録時は常に**使用**で登録されます。
