@@ -1,8 +1,12 @@
-## Game > Gamebase > 콘솔 사용 가이드 > 회원
+<!-- pre-align:aligned sig=f02fea74321d -->
+
+<a id="game-gamebase-console-guide-member"></a>
+## Game > Gamebase > 콘솔 사용 가이드 > 회원 { #game-gamebase-console-guide-member }
 
 게임에 로그인한 회원 정보를 조회합니다.
 
-## Search Member
+<a id="search-member"></a>
+## Search Member { #search-member }
 
 User ID/IdP ID를 입력하면 회원정보를 검색할 수 있습니다.
 사용자 아이디(User ID)는 최초로 로그인할 때 Gamebase에서 자동으로 발급하는 사용자 식별자입니다. 전달 시 혼란을 줄이고자 같은 발음의 문자를 배제하여 "ABCDFGHJKLMNPQRSTWXYZ1346789" 문자만을 사용하고 있습니다.
@@ -10,7 +14,8 @@ IdP ID는 IdP에서 제공하는 아이디 정보로써 로그인 시 입력하�
 
 검색된 사용자의 상세 정보를 위쪽에 표시하고 로그인, 매핑, 결제, 이용 정지, 플레이 시간 등의 이력은 아래쪽에 탭 형태로 표시됩니다.
 
-### Detail Information
+<a id="detail-information"></a>
+### Detail Information { #detail-information }
 ![member_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/ko/member_01_kr_240103.png)
 
 **User **
@@ -34,6 +39,7 @@ Gamebase에서는 여러 개의 외부 IdP를 연동할 수 있습니다. 즉, �
 - **Idp ID**: 외부 IdP에서 제공하는 아이디(Facebook no, PAYCO 아이디 등)
 - **등록일**: 사용자가 최초로 해당 IdP를 등록한 시간
 
+<a id="detail-information-changing-account-status"></a>
 #### 계정 상태 변경
 ![member_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/ko/member_03_kr_240103.png)
 
@@ -43,6 +49,7 @@ Gamebase에서는 여러 개의 외부 IdP를 연동할 수 있습니다. 즉, �
 - **이용 정지**: 이용정지 해제를 진행할 수 있습니다.
 - **탈퇴**: 해당 버튼이 표시되지 않습니다.
 
+<a id="detail-information-mapping"></a>
 #### 매핑 추가
 
 조회한 게임 유저의 IdP 정보를 추가할 수 있는 기능입니다.
@@ -55,6 +62,7 @@ Gamebase에서는 여러 개의 외부 IdP를 연동할 수 있습니다. 즉, �
 ![member_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/ko/member_04_kr_240103.png)
 ![member_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/ko/member_05_kr_240103.png)
 
+<a id="detail-information-unmapping"></a>
 #### 매핑 해제
 다중 매핑이 된 계정은 요청에 따라 IdP 정보 연동을 해제할 수 있습니다.
 각각의 계정은 최소 1개의 연결 정보가 있어야 하므로 2개 이상의 연결 정보가 있을 때만 버튼이 활성화됩니다.
@@ -66,7 +74,8 @@ Gamebase에서는 여러 개의 외부 IdP를 연동할 수 있습니다. 즉, �
 
 ![member_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/ko/member_07_kr_240103.png)
 
-### Login History
+<a id="login-history"></a>
+### Login History { #login-history }
 ![member_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/ko/member_08_kr_240103.png)
 
 조회한 사용자의 로그인 내역을 조회합니다.
@@ -88,7 +97,8 @@ SDK에서 로그인 관련 API를 호출할 때 이력이 추가됩니다.
 - **Gamebase SDK Version**: 앱에 사용된 Gamebase SDK의 버전 정보
 - **etc**: 기타 로그인 시 사용된 위 항목 외 정보
 
-### Mapping History
+<a id="mapping-history"></a>
+### Mapping History { #mapping-history }
 ![member_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/ko/member_09_kr_240103.png)
 
 조회한 사용자의 매핑, 매핑 해제된 이력을 조회합니다. 조회 가능한 최대 날짜는 3개월(90일)입니다.
@@ -107,7 +117,8 @@ SDK에서 로그인 관련 API를 호출할 때 이력이 추가됩니다.
 
 ![member_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/ko/member_10_kr_240103.png)
 
-### Purchase History
+<a id="purchase-history"></a>
+### Purchase History { #purchase-history }
 ![member_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/ko/member_11_kr_240103.png)
 조회한 사용자의 상품 구입 내역을 조회합니다.
 원하는 날짜를 입력하여 조회할 수 있으며 조회 가능한 최대 날짜는 1개월(30일)입니다.
@@ -124,7 +135,8 @@ SDK에서 로그인 관련 API를 호출할 때 이력이 추가됩니다.
 - **결제일시**: 사용자가 구입을 완료한 시간
 - **환불일시**: 사용자가 아이템을 환불한 시간
 
-### Ban History
+<a id="ban-history"></a>
+### Ban History { #ban-history }
 ![member_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/ko/member_12_kr_240103.png)
 
 조회한 사용자의 이용 정지 내역을 조회할 수 있습니다.
@@ -138,23 +150,28 @@ SDK에서 로그인 관련 API를 호출할 때 이력이 추가됩니다.
 - **해제 사유**: 운영자가 이용 정지 해제를 진행할 때 입력한 실제 해제 사유
 - **해제 등록자/해제 등록일**: 이용 정지를 해제한 운영자/시스템 정보 및 일시
 
-### Playtime
+<a id="playtime"></a>
+### Playtime { #playtime }
 ![member_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/ko/member_13_kr_240103.png)
 조회한 사용자가 게임을 플레이한 시간을 일자별로 조회합니다.
 원하는 날짜를 입력하여 조회할 수 있으며 조회가 가능한 최대 날짜는 1개월(30일)입니다.
 
-### Coupon using history
+<a id="coupon-using-history"></a>
+### Coupon using history { #coupon-using-history }
 ![member_14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/ko/member_14_kr_240103.png)
 
-### Inquiry history
+<a id="inquiry-histoy"></a>
+### Inquiry history { #inquiry-histoy }
 ![member_15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/ko/member_15_kr_240103.png)
 
-### Withdraw History
+<a id="withdraw-history"></a>
+### Withdraw History { #withdraw-history }
 ![member_16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/ko/member_16_kr_240103.png)
 조회한 사용자가 탈퇴한 사용자라면 탈퇴 이력을 보여줍니다.
 이 메뉴는 탈퇴이거나 탈퇴 유예 상태의 유저를 조회할 경우에만 나타나며 유저의 탈퇴내역을 상세히 조회할 수 있습니다.
 
-## Transfer account
+<a id="transfer-account"></a>
+## Transfer account { #transfer-account }
 **단말기 이전** 기능을 사용할 경우에만 사용하실 수 있습니다. [단말기 이전 기능 활성화](./oper-app/#transfer-account)
 게임 유저의 단말기 이전 키의 발급 및 검증 이력을 확인할 수 있습니다. 차단된 키를 차단 해제하거나 만료된 키를 재발급할 수 있습니다.
 
@@ -173,7 +190,8 @@ SDK에서 로그인 관련 API를 호출할 때 이력이 추가됩니다.
 해당 게임 유저에게 발급된 키의 이력을 조회할 수 있습니다.
 기본적으로 가장 최근에 발급된 키가 선택되어 있으며 다른 키를 선택할 경우 선택한 키의 이력을 확인할 수 있습니다.
 
-### Reissuance Transfer account
+<a id="reissuance-transfer-account"></a>
+### Reissuance Transfer account { #reissuance-transfer-account }
 
 **재발급** 버튼을 클릭하면 새로운 단말기 이전 키를 다시 발급할 수 있습니다. 재발급하면 이전에 발급된 키는 더는 사용할 수 없습니다.
 
@@ -182,6 +200,7 @@ SDK에서 로그인 관련 API를 호출할 때 이력이 추가됩니다.
 - **ID,비밀번호 재발급**: ID, 비밀번호를 모두 새로 발급합니다.
 - **비밀번호 재발급**: ID는 이전에 발급된 ID를 그대로 사용하고 비밀번호만 재발급합니다.
 
+<a id="reissuance-transfer-account-cautions-for-reissuance"></a>
 #### 재발급 시 주의 사항
 - 비밀번호는 재발급 시 한 번만 표시되므로 재발급 진행 이후 꼭 해당 정보를 별도로 보관하셔야 합니다.
 - 보관하지 못하셨을 경우 따로 비밀번호를 찾을 수 있는 방법이 없으므로 재발급을 다시 진행해 주셔야 합니다.

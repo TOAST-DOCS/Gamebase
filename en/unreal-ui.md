@@ -1,12 +1,17 @@
-## Game > Gamebase > User Guide for Unreal SDK > UI
+<!-- pre-align:aligned sig=95a59ace3365 -->
 
-## GameNotice
+<a id="game-gamebase-user-guide-for-unreal-sdk-ui"></a>
+## Game > Gamebase > User Guide for Unreal SDK > UI { #game-gamebase-user-guide-for-unreal-sdk-ui }
+
+<a id="gamenotice"></a>
+## GameNotice { #gamenotice }
 
 This feature displays registered notices with images on the console.
 
 ![GameNotice Example](https://static.toastoven.net/prod_gamebase/DevelopersGuide/gameNotice_guide_001.png)
 
-### Open GameNotice
+<a id="open-gamenotice"></a>
+### Open GameNotice { #open-gamenotice }
 
 Show the game notice on the screen.
 
@@ -48,13 +53,15 @@ void USample::OpenGameNotice()
 }
 ```
 
-## ImageNotice
+<a id="imagenotice"></a>
+## ImageNotice { #imagenotice }
 
 You can pop up a notice to users after registering an image to the console.
 
 ![ImageNotice Example](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/DevelopersGuide/imageNotice-guide-landscape-en_v3.png)
 
-### Show ImageNotices
+<a id="show-imagenotices"></a>
+### Show ImageNotices { #show-imagenotices }
 
 Show the image notice on the screen.
 
@@ -93,6 +100,7 @@ void USample::ShowImageNotices(int32 ColorR, int32 ColorG, int32 ColorB, int32 C
 }
 ```
 
+<a id="show-imagenotices-fgamebaseimagenoticeconfiguration"></a>
 #### FGamebaseImageNoticeConfiguration
 
 | Parameter                              | Values                                   | Description        |
@@ -101,7 +109,8 @@ void USample::ShowImageNotices(int32 ColorR, int32 ColorG, int32 ColorB, int32 C
 | TimeOut                  | int64        | Image notice max loading time (in millisecond)<br/>**default**: 5000                     |
 
 
-### Close ImageNotices
+<a id="close-imagenotices"></a>
+### Close ImageNotices { #close-imagenotices }
 
 You can call the closeImageNotices API to terminate all image notices currently being displayed.
 
@@ -116,7 +125,8 @@ void CloseImageNotices();
 ```
 
 
-## Terms
+<a id="terms"></a>
+## Terms { #terms }
 
 Shows the Terms and Conditions specified in the Gamebase Console.
 
@@ -126,7 +136,8 @@ ShowTermsView API displays the terms and conditions window in WebView.
 If you want to create your own terms and conditions window appropriate for the Game UI, call the QueryTerms API to load the terms and conditions set in the Gamebase console.
 If users agree to the terms and conditions, please use the UpdateTerms API to send the user consent of each item to the Gamebase server.
 
-### ShowTermsView
+<a id="showtermsview"></a>
+### ShowTermsView { #showtermsview }
 
 Shows the terms and conditions window on the screen.
 If users agree to the terms and conditions, register the user consent data in the server.
@@ -139,6 +150,7 @@ However, if the Terms and Conditions reconsent requirement has been changed to *
 > * FGamebasePushConfiguration.pushEnabled value is always true.
 > * If FGamebasePushConfiguration is not null, call IGamebase::Get().GetPush().RegisterPush() **after login**.
 
+<a id="showtermsview-optional-parameter"></a>
 #### Optional parameter
 
 * GamebaseTermsConfiguration: Using the GamebaseTermsConfiguration object, you can change settings such as whether to forcibly display the terms and conditions agreement window.
@@ -222,7 +234,8 @@ void USample::AfterLogin()
 ```
 
 
-### QueryTerms
+<a id="queryterms"></a>
+### QueryTerms { #queryterms }
 
 Gamebase displays the terms and conditions with a simple WebView.
 If you want to create the terms and conditions appropriate for the game UI, call the QueryTerms API to download the terms and conditions information set in the Gamebase Console for later use.
@@ -238,6 +251,7 @@ The "optional" terms items will return the user's consent status when queried af
 > * If you do not touch the 'Terms and Conditions settings' in the console, **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** error occurs when you call the queryTerms API from the device with the country code different from the terms and conditions language.
 >     * If you complete the 'Terms and Conditions settings' in the console or if **UI_TERMS_NOT_EXIST_FOR_DEVICE_COUNTRY(6922)** error occurs, please make sure the terms and conditions are not displayed.
 
+<a id="queryterms-required-parameter"></a>
 #### Required parameter
 * callback: Uses a callback to inform the user about the API call result. With the GamebaseResponse.Terms.QueryTermsResult that comes as callback, you can acquire the terms and conditions information set in the console.
  
@@ -282,6 +296,7 @@ void USample::QueryTerms()
 }
 ```
 
+<a id="queryterms-gamebaseresponsetermsquerytermsresult"></a>
 #### GamebaseResponse.Terms.QueryTermsResult
 
 | Parameter            | Values                          | Description         |
@@ -292,6 +307,7 @@ void USample::QueryTerms()
 | Contents             | TArray<FGamebaseTermsContent>   | Terms and conditions info          |
 
 
+<a id="queryterms-gamebaseresponsetermscontentdetail"></a>
 #### GamebaseResponse.Terms.ContentDetail
 
 | Parameter            | Values                | Description         |
@@ -306,7 +322,8 @@ void USample::QueryTerms()
 | DetailPageUrl        | FString               | URL for the full terms and conditions.<br/> If none, null. |
 
 
-### UpdateTerms
+<a id="updateterms"></a>
+### UpdateTerms { #updateterms }
 
 If the UI has been created manually with the terms and conditions info downloaded from the QueryTerms API,
 please use the UpdateTerms API to send the game user's agreement history to the Gamebase server.
@@ -320,10 +337,12 @@ It can be used to terminate the agreement to optional terms and conditions as we
 > Push accept status should be stored by calling the Gamebase.Push.RegisterPush API **after login**.
 >
 
+<a id="updateterms-required-parameter"></a>
 #### Required parameter
 
 * Configuration: Information of optional T&C of users who will be registered on the server.
  
+<a id="updateterms-optional-parameter"></a>
 #### Optional parameter
 
 * Callback: Registers the information of optional terms and conditions on the server, and uses the callback to inform the user.
@@ -374,6 +393,7 @@ void USample::UpdateTerms(int32 TermsSeq, const FString& TermsVersion, int32 Ter
 }
 ```
 
+<a id="updateterms-gamebaserequesttermsupdatetermsconfiguration"></a>
 #### GamebaseRequest.Terms.UpdateTermsConfiguration
 
 | Parameter            | Mandatory(M) / Optional(O) | Values                    | Description         |
@@ -382,6 +402,7 @@ void USample::UpdateTerms(int32 TermsSeq, const FString& TermsVersion, int32 Ter
 | TermsSeq             | **M**                      | int32                       | KEY for the entire terms and conditions.<br/>The queryTerms API must be called to pass the downloaded value.             |
 | Contents             | **M**                      | List< Content > | Info on whether user agrees to the optional terms and conditions  |
 
+<a id="updateterms-gamebaserequesttermscontent"></a>
 #### GamebaseRequest.Terms.Content
 
 | Parameter            | Mandatory(M) / Optional(O) | Values             | Description         |
@@ -389,7 +410,8 @@ void USample::UpdateTerms(int32 TermsSeq, const FString& TermsVersion, int32 Ter
 | TermsContentSeq      | **M**                      | int32                | KEY for optional terms and conditions      |
 | bAgreed               | **M**                      | bool               | Info on whether user agrees to optional terms and conditions  |
 
-### IsShowingTermsView
+<a id="isshowingtermsview"></a>
+### IsShowingTermsView { #isshowingtermsview }
 
 Determines whether the current terms and conditions window is being displayed on the screen.
 
@@ -410,9 +432,11 @@ void USample::IsShowingTermsView()
 }
 ```
 
-## Webview
+<a id="webview"></a>
+## Webview { #webview }
 
-### Show WebView
+<a id="show-webview"></a>
+### Show WebView { #show-webview }
 
 Shows WebView.<br/>
 
@@ -465,6 +489,7 @@ void USample::ShowWebView(const FString& Url)
 ```
 
 
+<a id="show-webview-fgamebasewebviewconfiguration"></a>
 #### FGamebaseWebViewConfiguration
 
 | Parameter                | Values                                           | Description |
@@ -494,6 +519,7 @@ void USample::ShowWebView(const FString& Url)
 > In iPadOS 13 or later, WebView is the default desktop mode.
 > You can use the contentMode =`GamebaseWebViewContentMode::MOBILE` setting to switch to the mobile mode.
 
+<a id="show-webview-predefined-custom-scheme"></a>
 #### Predefined Custom Scheme
 
 Refers to the scheme specified by Gamebase.
@@ -506,7 +532,8 @@ Refers to the scheme specified by Gamebase.
 | gamebase://goBack | Go Back of WebView |
 
 
-### Close WebView
+<a id="close-webview"></a>
+### Close WebView { #close-webview }
 
 With the following API, you can close the Webview of the current display.
 
@@ -531,7 +558,8 @@ void USample::CloseWebView()
 ```
 
 
-## Open External Browser
+<a id="open-external-browser"></a>
+## Open External Browser { #open-external-browser }
 
 With the following API, you can open an external browser. The URL sent to parameters must be valid. 
 
@@ -555,7 +583,8 @@ void USample::OpenWebBrowser(const FString& Url)
 ```
 
 
-## Alert
+<a id="alert"></a>
+## Alert { #alert }
 
 Shows notifications of the system. 
 Callback registration is also available on the system notification. 
@@ -589,7 +618,8 @@ void USample::ShowAlertEvent(const FString& Title, const FString& Message)
 }
 ```
 
-## Toast
+<a id="toast"></a>
+## Toast { #toast }
 
 With the following API, it gets easy to display messages. 
 
@@ -612,7 +642,8 @@ void USample::ShowToast(const FString& Message, EGamebaseToastExposureTime Expos
 }
 ```
 
-## Error Handling
+<a id="error-handling"></a>
+## Error Handling { #error-handling }
 
 | Error              | Error Code | Description                 |
 | ------------------ | ---------- | --------------------------- |

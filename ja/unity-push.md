@@ -1,4 +1,7 @@
-## Game > Gamebase > Unity SDK ご利用ガイド > Push
+<!-- pre-align:aligned sig=fef16f4bcb48 -->
+
+<a id="game-gamebase-unity-developers-guide-push"></a>
+## Game > Gamebase > Unity SDK ご利用ガイド > Push { #game-gamebase-unity-developers-guide-push }
 
 ここではプラットフォームごとにPush通知を使用するために必要な設定方法についてご案内いたします。
 
@@ -6,7 +9,8 @@
 >
 > 外部パッケージでプッシュ関連処理がある場合、Gamebaseプッシュ機能が正常に動作しない可能性があります。
 
-### Settings
+<a id="settings"></a>
+### Settings { #settings }
 
 
 AndroidやiOSでPushを設定する方法は、次のドキュメントを参照してください。<br/>
@@ -18,7 +22,8 @@ AndroidやiOSでPushを設定する方法は、次のドキュメントを参照
     * [iOS Push Settings](ios-push#settings)
 
 
-### Register Push
+<a id="register-push"></a>
+### Register Push { #register-push }
 
 次のAPIを呼び出してNHN Cloud Pushに該当するユーザーを登録します。
 Pushの同意状態(enablePush)、Push型広告の同意状態(enableAdPush)、夜間のPush型広告の同意状態(enableAdNightPush)の値をユーザーから取得し、次のAPIを呼び出して登録を完了させます。
@@ -39,6 +44,7 @@ public static void RegisterPush(GamebaseRequest.Push.PushConfiguration pushConfi
 public static void RegisterPush(GamebaseRequest.Push.PushConfiguration pushConfiguration, GamebaseRequest.Push.NotificationOptions options, GamebaseCallback.ErrorDelegate callback);
 ```
 
+<a id="register-push-gamebaserequestpushpushconfiguration"></a>
 #### GamebaseRequest.Push.PushConfiguration
 
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
@@ -79,16 +85,13 @@ public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNig
 }
 ```
 
-#### Setting for APNS Sandbox
-* SandboxModeを有効にすると、APNS SandboxへPushを送信するように登録できます。
-* コンソールから送信する方法
-    * Pushメニューの**対象**から**iOS Sandbox**を選択した後、送信します。
-
-### Notification Options
+<a id="notification-options"></a>
+### Notification Options { #notification-options }
 
 * 端末に表示する通知をどのような形式で表示するかをNotification Optionsで変更できます。
 * 実行時にregisterPush APIを呼び出して変更できます。
 
+<a id="notification-options-set-notification-options-with-registerpush-in-runtime"></a>
 #### Set Notification Options with RegisterPush in Runtime
 
 RegisterPush APIを呼び出す時、GamebaseRequest.Push.NotificationOptions引数を追加して通知オプションを設定できます。
@@ -139,6 +142,7 @@ public void RegisterPush(bool pushEnabled, bool adAgreement, bool adAgreementNig
 }
 ```
 
+<a id="notification-options-get-notificationoptions"></a>
 #### Get NotificationOptions
 
 
@@ -169,7 +173,8 @@ public void GetNotificationOptionsSample()
 }
 ```
 
-### Request Push Settings
+<a id="request-push-settings"></a>
+### Request Push Settings { #request-push-settings }
 
 ユーザーのPush設定を照会するために、次のAPIを利用します。<br/>
 コールバックによるGamebaseResponse.Push.TokenInfoの値からユーザー設定値を取得することができます。
@@ -211,6 +216,7 @@ public void QueryTokenInfoSample(bool isSandbox)
 }
 ```
 
+<a id="request-push-settings-gamebaseresponsepushtokeninfo"></a>
 #### GamebaseResponse.Push.TokenInfo
 
 | Parameter           | Values                | Description         |
@@ -225,6 +231,7 @@ public void QueryTokenInfoSample(bool isSandbox)
 | agreement           | GamebaseResponse.Push.Agreement | 受信同意有無       |
 | sandbox             | bool                  | sandboxかどうか(iOS Only)        |
 
+<a id="request-push-settings-gamebaseresponsepushagreement"></a>
 #### GamebaseResponse.Push.Agreement
 
 | Parameter        | Values  | Description               |
@@ -233,7 +240,8 @@ public void QueryTokenInfoSample(bool isSandbox)
 | adAgreement      | bool | 広告性通知表示同意有無     |
 | adAgreementNight | bool | 夜間広告性通知表示同意有無 |
 
-### Event Handling
+<a id="event-handling"></a>
+### Event Handling { #event-handling }
 
 * プッシュメッセージが到着した場合、またはプッシュメッセージをクリックしたときにイベント処理を行うことができます。
 * イベント登録方法はGamebaseEventHandlerガイドを参照してください。
@@ -241,6 +249,7 @@ public void QueryTokenInfoSample(bool isSandbox)
     * [ Game > Gamebase > Unity SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Push Click Message](./unity-etc/#push-click-message)
     * [ Game > Gamebase > Unity SDK使用ガイド > ETC > Additional Features > Gamebase Event Handler > Push Click Action](./unity-etc/#push-click-action)
 
+<a id="event-handling-setting-for-apns-sandbox"></a>
 #### Setting for APNS Sandbox
 * SandboxModeをオンにすると、APNS SandboxでPushを送信するように登録できます。
 * コンソール送信方法
@@ -265,7 +274,8 @@ public void SetSandboxModeSample()
 }
 ```
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                          | Error Code | Description                              |
 | ------------------------------ | ---------- | ---------------------------------------- |

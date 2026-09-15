@@ -1,4 +1,7 @@
-## Game > Gamebase > コンソール使用ガイド > サポート
+<!-- pre-align:aligned sig=bf3230130c47 -->
+
+<a id="game-gamebase-console-user-guide-customer-center"></a>
+## Game > Gamebase > コンソール使用ガイド > サポート { #game-gamebase-console-user-guide-customer-center }
 
 ゲーム運営中、ユーザーからのお問い合わせを処理することができます。またサポートページを利用して提供できる告知事項、 FAQなどの設定を管理できます。
 お問い合わせ処理時にユーザーに送信されるメールの設定を行ったり、よく使う返答をテンプレートとして登録して活用することもできます。
@@ -6,16 +9,19 @@
 > このメニューを利用するには。アプリ - サポート設定でGamebase提供サポート項目を選択する必要があります。
 >
 
-## Help Center Web Page 
+<a id="help-center-web-page"></a>
+## Help Center Web Page { #help-center-web-page }
 
 ユーザーに表示されるサポートWebページについて説明します。
 この画面からユーザーは1:1お問い合わせを登録し、お問い合わせ履歴の照会が行えます。またよくある質問と告知事項を確認できます。
 
-### Main 
+<a id="main"></a>
+### Main { #main }
 
 ゲームでGamebase SDKを利用してサポートページをオープンすると、次のような画面がユーザーに表示されます。
 ![main](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_help_center_01_ja_240105.jpg)
 
+<a id="main-1-11-inquiry"></a>
 #### (1) 1:1お問い合わせ
 
 **1:1お問い合わせ**ボタンを押すと、1:1お問い合わせを登録する画面に移動します。
@@ -23,9 +29,9 @@
 ![問い合わせる](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_help_center_02_ja_240105.jpg)
 
 次は、問い合わせを登録する時に入力する項目です。
-登録されたお問い合わせは**[サポート > 顧客お問い合わせ](./oper-customer-service/#inquiry)**コンソールで確認し、返信処理が可能です。
+登録されたお問い合わせは**[サポート > 顧客お問い合わせ](#inquiry)**コンソールで確認し、返信処理が可能です。
 
-1. お問い合わせタイプ：受付お問い合わせタイプを選択します。受付お問い合わせタイプは[サポート > 顧客お問い合わせ](./oper-customer-service/#inquiry)で登録、修正、削除できます。
+1. お問い合わせタイプ：受付お問い合わせタイプを選択します。受付お問い合わせタイプは[サポート > 顧客お問い合わせ](#inquiry)で登録、修正、削除できます。
 2. 返信メール：お問い合わせに関する返信を受け取るメールアドレスを入力します。コンソールでお問い合わせ処理を完了すると、入力したメールアドレスへ自動的にメールを送信します。
 3. 名前(ニックネーム)：ゲームで使用するニックネームを入力します。最大10文字まで入力できます。
 ゲームニックネームを追加情報に設定してサポートページを開くと、ユーザーが入力しなくても自動的にニックネームが入力されます。
@@ -35,8 +41,9 @@
 
 > [参考] 
 > 受付お問い合わせタイプを選択した時、そのお問い合わせタイプにテンプレートが設定されている場合、お問い合わせ内容に自動的にテンプレート内容が入力されます。
-> テンプレート設定は[サポート > 顧客お問い合わせ > お問い合わせタイプ管理](./oper-customer-service/#inquiry)で行うことができます。
+> テンプレート設定は[サポート > 顧客お問い合わせ > お問い合わせタイプ管理](#inquiry)で行うことができます。
 
+<a id="main-2-my-inquiries"></a>
 #### (2)お問い合わせ履歴
 
 ログインしてサポートWebページにアクセスすると**お問い合わせ履歴**ボタンが表示されます。押すと、以前に顧客が問い合わせた履歴を確認する画面に移動します。
@@ -48,17 +55,19 @@
 > ログインしないで問い合わせを行うと、メールでのみお問い合わせ履歴の確認が行えます。お問い合わせ履歴からの確認はできません。
 > ![お問い合わせ履歴_ログインなし](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_help_center_04_ja_240105.jpg)
 
+<a id="main-3-frequently-asked-questions"></a>
 #### (3)よくある質問
 
 FAQでは、カテゴリー質問および、よくある質問などを確認できます。リストには最大12個が表示されます。
-内容を自由に検索したり、カテゴリーボタンを押して[サポート > FAQ](./oper-customer-service/#faq)に登録されたFAQ内容を確認できます。
+内容を自由に検索したり、カテゴリーボタンを押して[サポート > FAQ](#faq)に登録されたFAQ内容を確認できます。
 ![FAQ](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_help_center_05_ja_240105.jpg)
 
 1)確認したい検索ワードを入力して検索ワードが含まれたFAQを確認できます。
 2)よくある質問に登録された質問を確認できます。
 3) FAQの登録時に設定した**FAQタイプ管理**ごとにFAQを確認できます。
-4) FAQカテゴリーは[Gamebase Console > サポート >  FAQタイプ管理](./oper-customer-service/#search-faq)で追加または削除できます。
+4) FAQカテゴリーは[Gamebase Console > サポート >  FAQタイプ管理](#search-faq)で追加または削除できます。
 
+<a id="main-4-notices"></a>
 #### (4)告知事項
 **サポート > 告知事項**に登録された記事を確認できます。
 
@@ -66,11 +75,13 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 作成日降順でソートされて告知事項記事が表示され、上部固定に指定した告知は太いフォントで上部に優先表示されます。表示期間が過ぎた記事は、一覧に表示されません。記事を押すと、詳細内容を確認できます。
 ![告知事項](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_help_center_06_ja_240105.jpg)
 
-## Inquiry
+<a id="inquiry"></a>
+## Inquiry { #inquiry }
 顧客からのお問い合わせを処理したり照会できます。
 その他にも顧客がお問い合わせを登録しようとする時に必要な受付タイプ項目を設定することができ、お問い合わせが処理された時にユーザーに送信されるPushアラームの設定も行えます。
 
-### Search Inquiry
+<a id="search-inquiry"></a>
+### Search Inquiry { #search-inquiry }
 
 検索条件に合った顧客お問い合わせ履歴を検索します。
 
@@ -96,6 +107,7 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
     - 解決：お問い合わせが解決した状態です。
     - 完了：担当者が完了処理または解決したお問い合わせが2週間経過すると自動的に完了状態になります。
 
+<a id="search-inquiry-manage-inquiry-type"></a>
 #### 1. 問い合わせタイプ管理
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_inquiry_02_ja_240105.jpg)
 
@@ -106,6 +118,7 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 > [参考]
 > サポート言語選択状況は、アプリ - サポート設定で確認できます。
 
+<a id="search-inquiry-send-reply-settings"></a>
 #### 2. 返信送信設定
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_inquiry_03_ja_240105.jpg)
 
@@ -116,7 +129,8 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 > 1. この機能を使用するには、NHN Cloud Push商品を先に有効にする必要があります。
 > 2. 返信送信設定の言語選択は、サポートでサポートされる言語に関係なく、Gamebaseでサポートされるすべての言語を登録できます。
 
-### Inquiry details
+<a id="inquiry-details"></a>
+### Inquiry details { #inquiry-details }
 
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_inquiry_04_ja_240105.jpg)
 
@@ -134,6 +148,7 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 > 右側Xボタンをクリックしてウィンドウを閉じることができます。ユーザーIDをクリックするともう一度表示されます。
 > 既存会員メニューで使用していた機能と同じようにユーザー情報が照会されるため、ユーザーお問い合わせ対応時に必要な情報を一画面で便利に確認できます。
 
+<a id="inquiry-details-send-reply-settings"></a>
 #### 1. 返信送信設定
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_inquiry_03_ja_240105.jpg)
 
@@ -148,11 +163,13 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 > お問い合わせ処理が完了したお問い合わせを照会する時は、お問い合わせ履歴および処理履歴を照会することができ、処理した時に登録した添付ファイルがある場合は、該当項目を押してダウンロードできます。
 
 
-## FAQ
+<a id="faq"></a>
+## FAQ { #faq }
 
 サポートページで提供されるFAQ項目の管理を行えます。
 
-### Search FAQ
+<a id="search-faq"></a>
+### Search FAQ { #search-faq }
 
 登録されているFAQ項目を検索できます。
 
@@ -173,6 +190,7 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 - **修正日**：FAQが最後に登録または修正された日付情報を表示します。
 - **状態**：FAQが現在表示されているかどうかを表示します。表示中 / 非表示状態があります。
 
+<a id="search-faq-manage-faq-type"></a>
 #### FAQタイプ管理
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_faq_02_ja_240105.jpg)
 
@@ -182,38 +200,46 @@ FAQ登録または修正時に選択できるタイプを管理できます。
 > [参考]
 > サポート言語選択状況はアプリ - サポート設定で確認できます。
 
-### Register or Update FAQ
+<a id="register-or-update-faq"></a>
+### Register or Update FAQ { #register-or-update-faq }
 FAQを登録したり、既に登録されているFAQ情報を修正できます。
 登録または修正時に変更できる項目は全て同じです。
 
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_faq_03_ja_240105.jpg)
 
+<a id="register-or-update-faq-status"></a>
 #### 1. 状態
 登録または修正するFAQの表示状態を選択します。
 表示 / 非表示項目があり、サポートページで実際のユーザーに表示するかどうかを選択してください。
 
+<a id="register-or-update-faq-type"></a>
 #### 2. タイプ
 FAQタイプ管理で、登録されたタイプを元に登録または修正するFAQのタイプを選択します。
 
+<a id="register-or-update-faq-frequently-asked-questions"></a>
 #### 3. よくある質問
 サポートページのよくある質問欄にその質問を表示するかどうかをチェックします。
 
+<a id="register-or-update-faq-question"></a>
 #### 4. 質問
 FAQ質問内容を入力します。
 > [参考]
 > アプリ - サポートで設定したサポート言語を全て入力すると登録できます。
 
+<a id="register-or-update-faq-answer"></a>
 #### 5. 返答
 FAQ質問への返答内容を入力します。
 Text Editorを利用して自由な形式で返答を入力することができ、その形式のままWebページに表示されます。
 > [参考]
 > アプリ - サポートで設定したサポート言語を全て入力すると登録できます。
 
-## Notice
+<a id="notice"></a>
+## Notice { #notice }
 
 サポートページで提供する告知事項の管理を行えます。
 
-### Search Notice
+<a id="search-notice"></a>
+### Search Notice { #search-notice }
 
 登録されている告知事項リストを検索できます。
 
@@ -234,6 +260,7 @@ Text Editorを利用して自由な形式で返答を入力することができ
 - **表示期間**：該当告知事項の表示期間を表示します。
 - **状態**：告知事項の現在の状態を表示します。予定 / 表示中 / 終了状態があります。
 
+<a id="search-notice-manage-header"></a>
 #### 頭文言管理
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_notice_02_ja_240105.jpg)
 
@@ -243,45 +270,55 @@ Text Editorを利用して自由な形式で返答を入力することができ
 > [参考]
 > サポート言語選択状況は、アプリ - サポート設定で確認できます。
 
-### Register or Update Notice
+<a id="register-or-update-notice"></a>
+### Register or Update Notice { #register-or-update-notice }
 新しい告知事項を登録したり、既に登録されている告知事項情報を修正できます。
 登録または修正時に変更できる項目は全て同じです。
 
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_notice_03_ja_240105.jpg)
 
+<a id="register-or-update-notice-date-of-exposure"></a>
 #### 1. 表示日
 告知事項を表示したい期間を設定します。
 
+<a id="register-or-update-notice-display-time"></a>
 #### 2. 表示時刻
 告知事項の内容を表示する時、実際にユーザーに表示する日付を選択します。
 
+<a id="register-or-update-notice-header"></a>
 #### 3. 頭文言
 告知事項の頭文言を選択します。
 
+<a id="register-or-update-notice-pin-to-top"></a>
 #### 4. 上部固定
 告知事項を上部に固定して常に表示されるようにします。
 
+<a id="register-or-update-notice-subject"></a>
 #### 5. タイトル
 告知事項のタイトルを入力します。
 
+<a id="register-or-update-notice-body"></a>
 #### 6. 内容
 告知事項の内容を入力します。
 Text Editorを利用して自由な形式で返答を入力することができ、その形式のままWebページに表示されます。
 > [参考]
 > アプリ - サポートで設定したサポート言語を全て入力すると登録できます。
 
+<a id="register-or-update-notice-attach-file"></a>
 #### 7. ファイル添付
 該当告知事項に一緒に表示するファイルを添付できます。
 10MB以内のファイルを最大5個まで添付できます。
 添付ファイルは、告知事項に一緒に表示され、クリックするとダウンロードできます。
 
-## Answer template
+<a id="answer-template"></a>
+## Answer template { #answer-template }
 
 顧客からのお問い合わせを処理する時に、繰り返し入力を頻繁に行う場合、テンプレートを使用して処理できる機能をサポートします。
 また、顧客がお問い合わせを作成する時、必要な情報を作成できるようにお問い合わせタイプ別のテンプレートを使用できるように機能をサポートします。
 
 
-### Search Template
+<a id="search-template"></a>
+### Search Template { #search-template }
 現在登録されているテンプレートリストを表示し、右上に検索ワードを入力して現在登録されているテンプレートを検索できます。
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_template_01_ja_240105.jpg)
 
@@ -290,24 +327,29 @@ Text Editorを利用して自由な形式で返答を入力することができ
 - **修正者**：返答テンプレートを最後に登録または修正したユーザーの情報を表示します。
 - **修正日**：返答テンプレートが最後に登録または修正された日付情報を表示します。
 
-### Register or Update Template
+<a id="register-or-update-template"></a>
+### Register or Update Template { #register-or-update-template }
 返答テンプレートを新たに登録したり、登録されている返答テンプレート情報を修正できます。
 登録または修正時に変更できる項目は全て同じです。
 
 ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_template_02_ja_240105.jpg)
 
+<a id="register-or-update-template-classification"></a>
 #### 1. 区分
 - **お問い合わせ処理**：顧客お問い合わせに対するデフォルトの返答メッセージです。
 - **お問い合わせタイプ**：ユーザーのお問い合わせ入力にデフォルトで表示されるメッセージです。
 
+<a id="register-or-update-template-template-name"></a>
 #### 2. テンプレート名
 お問い合わせを処理する時に、テンプレート選択項目に表示されるテンプレート名を入力します。
 
+<a id="register-or-update-template-body"></a>
 #### 3. 内容
 お問い合わせを処理する際、テンプレートが選択されている時に入力される内容を入力します。
 Text editorを利用して自由に入力でき、入力された内容がそのままお問い合わせの処理時に適用されます。
 
-## Email Config
+<a id="email-config"></a>
+## Email Config { #email-config }
 お問い合わせの処理が完了した場合、ユーザーに送信するメール形式を設定できます。
 最初に有効にした場合、基本テンプレートが提供され、その後はText editorを利用して自由に修正できます。
 

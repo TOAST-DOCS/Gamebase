@@ -1,4 +1,7 @@
-## Game > Gamebase > 콘솔 사용 가이드 > 운영
+<!-- pre-align:aligned sig=abe84fae62cb -->
+
+<a id="game-gamebase-console-guide-operation"></a>
+## Game > Gamebase > 콘솔 사용 가이드 > 운영 { #game-gamebase-console-guide-operation }
 
 앱 운영 시 필요한 기능들을 제공하는 메뉴입니다.
 
@@ -8,7 +11,8 @@
 * 이미지 공지(Image notice): 게임 유저에게 이미지 형태로 제공하는 이미지 공지 관리
 * 킥 아웃(Kick out): 앱을 사용하는 유저의 연결을 해제
 
-## Maintenance
+<a id="maintenance"></a>
+## Maintenance { #maintenance }
 
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_01_ko_240611.png)
 
@@ -29,7 +33,8 @@ Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점�
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_02_ko_240105.jpg)
 
 
-### Register Maintenance
+<a id="register-maintenance"></a>
+### Register Maintenance { #register-maintenance }
 
 **점검** 탭에서 **등록** 버튼을 클릭하면 점검을 등록하는 화면으로 이동합니다.
 
@@ -40,6 +45,7 @@ Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점�
 >  **업데이트 필수와 점검이 동시에 설정**돼 있을 경우 서비스 상태는 '업데이트 필수'가 됩니다.
 >  점검 진행 도중 사용자에게 업데이트 필수 팝업을 표시하고 싶지 않다면 점검 완료 이후에 서비스 상태를 '업데이트 필수'로 변경해야 합니다.
 
+<a id="register-maintenance-1-target"></a>
 #### (1) 대상
 점검을 진행할 대상을 선택합니다.
 
@@ -49,14 +55,17 @@ Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점�
   <br>클라이언트 상태 및 스토어별 전체 선택이 가능하며, 점검을 원하는 클라이언트 버전을 선택 후 확인 버튼을 누르면 됩니다.
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240611.png)
 
+<a id="register-maintenance-2-reason"></a>
 #### (2) 사유
 점검이 진행되는 사유를 입력합니다.
 이 입력정보는 게임 유저에게 노출되지 않으며 해당 점검을 등록하는 간단한 사유에 대하여 입력하시면 됩니다.
 
+<a id="register-maintenance-3-time"></a>
 #### (3) 시간
 점검이 진행될 시간을 설정합니다.
 타임존의 경우 기본적으로 'UTC+09:00'가 선택돼 있으며, 서비스를 하는 국가의 시간대를 선택해 점검을 등록하는 것도 가능합니다.
 
+<a id="register-maintenance-4-maintenance-page"></a>
 #### (4) 점검 페이지
 사용자에게 제공할 점검 페이지 유형을 설정합니다.
 **Gamebase 제공 페이지(웹뷰)**, **사용자 정의 HTML(웹뷰)**, **외부 페이지** 중 선택할 수 있으며 각 항목별로 입력 창이 달라집니다.
@@ -87,17 +96,20 @@ Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점�
 - beginDate: 점검 등록 시 입력한 시작 시간
 - endDate: 점검 등록 시 입력한 종료 시간
 
+<a id="register-maintenance-5-popup-messages"></a>
 #### (5) 노출 메시지
 점검 시 보여질 메시지를 설정합니다.
 '기본 언어로 자동 번역'버튼을 선택할 경우 기본언어로 입력된 내용을 기반으로 내용을 번역하여 각 항목에 설정된 언어에 맞게 내용이 입력됩니다.
 
-### Modify Maintenance
+<a id="modify-maintenance"></a>
+### Modify Maintenance { #modify-maintenance }
 
 등록한 점검의 상세내용을 확인하고 수정, 삭제가 가능합니다.
 기본적으로 입력 항목은 등록 화면과 동일하며, 점검을 잘못 등록하였을 때 삭제버튼을 통하여 점검 삭제도 가능합니다.
 유사한 내용으로 점검을 다시 등록하고자 하는 경우 복사기능을 통하여 점검을 쉽게 등록 하실 수 있습니다.
 
-## Notice
+<a id="notice"></a>
+## Notice { #notice }
 
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_06_ko_240611.png)
 
@@ -109,12 +121,14 @@ Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점�
 (2) 노출중 : 공지 노출중
 (3) 완료 : 공지 노출시간 종료
 
-### Register Notice
+<a id="register-notice"></a>
+### Register Notice { #register-notice }
 
 공지 메인화면에서 '등록'버튼을 클릭하면 공지를 등록하는 화면으로 이동합니다.
 
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_07_ko_240611.png)
 
+<a id="register-notice-1-target"></a>
 #### (1) 대상
 
 공지를 노출할 대상을 선택합니다.
@@ -126,6 +140,7 @@ Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점�
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240611.png)
 
 
+<a id="register-notice-2-target-country"></a>
 #### (2) 대상 국가
 공지를 노출할 국가를 선택합니다.
 
@@ -138,16 +153,19 @@ Gamebase에서 기본으로 제공하는 점검 페이지(점검 사유와 점�
 > 국가 판단 기준
 > 사용자의 **USIM 국가코드** 기준으로 판단하며 USIM이 없을 경우 **Device**에 설정되어 있는 국가를 기준으로 공지가 노출됩니다.
 
+<a id="register-notice-3-number-of-impressions"></a>
 #### (3) 노출 횟수
 공지가 사용자에게 노출되는 회수를 선택합니다.
 
 - 기간 중 1회 노출 : 노출기간 중 1회 노출
 - 앱 시작할때마다 항상 노출 : 노출기간 중 사용자가 앱을 실행할 때마다 공지를 노출
 
+<a id="register-notice-4-time"></a>
 #### (4) 노출 시간
 공지가 표시될 시간을 설정합니다.
 Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비스하는 국가의 시간대를 선택하여 점검을 등록하는 것도 가능합니다.
 
+<a id="register-notice-5-message"></a>
 #### (5) 메시지
 사용자에게 노출할 공지메시지를 입력합니다.
 메시지는 다국어로 입력이 가능하며, 등록된 언어 중에 선택된 언어는 '기본언어'로 설정됩니다.
@@ -155,6 +173,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 '기본 언어로 자동 번역'버튼을 선택할 경우 기본언어로 입력된 내용을 기반으로 내용을 번역하여 각 항목에 설정된 언어에 맞게 내용이 입력됩니다.
 
 
+<a id="register-notice-6-bottom-button-type"></a>
 #### (6) 하단 버튼 타입
 공지 팝업 하단에 노출될 버튼의 타입을 지정합니다.
 - 닫기: 닫기 버튼만 노출.
@@ -165,17 +184,20 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
   - 고객 센터 연결: Gamebase 제공 고객 센터 설정 시 사용자가 **자세히 보기**를 클릭하면 고객 센터를 웹뷰로 오픈합니다.
 
 
+<a id="register-notice-example-of-a-notice-pop-up"></a>
 #### 긴급 공지 팝업 예시
 **닫기**를 선택할 경우 왼쪽 이미지와 같이 '닫기(CLOSE)' 버튼만 노출되며, **닫기+자세히 보기**를 선택할 경우 오른쪽 이미지와 같이 '닫기(CLOSE)'와 '자세히 보기(SHOW DETAIL)' 버튼이 노출됩니다. 
 ![gamebase_op_img](https://static.toastoven.net/prod_gamebase/gamebase_op_08_201812.png)
 
-### Modify Notice
+<a id="modify-notice"></a>
+### Modify Notice { #modify-notice }
 
 등록한 공지의 상세내용을 확인하고 수정, 삭제가 가능합니다.
 기본적으로 입력 항목은 등록 화면과 동일하며, 공지를 잘못 등록한 경우 삭제 버튼을 클릭해 삭제할 수 있습니다.
 유사한 내용으로 점검을 다시 등록하고자 하는 경우 복사 기능을 통하여 공지를 쉽게 등록할 수 있습니다.
 
-## Game notice
+<a id="game-notice"></a>
+## Game notice { #game-notice }
 
 콘솔에 게임 공지를 등록하여 게임 내에 이미지와 공지를 같이 제공할 수 있습니다.
 등록된 게임 공지 정보를 한눈에 확인할 수 있으며, **노출 중** 상태인 게임 공지의 등록 일자 기준으로 게임 내에 게임 공지 목록이 표시됩니다.
@@ -190,6 +212,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 
  (2) **제목**: 기본으로 선택된 언어의 게임 공지 제목을 포함하는 게임 공지 목록 검색이 가능합니다.
 
+<a id="game-notice-properties"></a>
 #### properties
 각 항목에 표시되는 내용은 아래와 같습니다.
 
@@ -199,11 +222,13 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 - **게시 시간(+09:00)**: 게임 공지가 노출되는 시간 정보를 한국 시각 기준(+09:00)으로 변경하여 보여줍니다.
 - **수정일**: 게임 공지가 최종적으로 수정된 시각을 보여줍니다.
 
-### Register Game notice
+<a id="register-game-notice"></a>
+### Register Game notice { #register-game-notice }
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_02_ko_250415.png)
 
 **게임 공지** 목록에서 **등록** 버튼을 선택하면 게임 공지를 등록할 수 있습니다.
 
+<a id="register-game-notice-1-target"></a>
 #### (1) 대상
 
 게임 공지를 노출할 대상을 선택합니다.
@@ -215,6 +240,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
   ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240611.png)
 
 
+<a id="register-game-notice-2-target-country"></a>
 #### (2) 대상 국가
 공지를 노출할 국가를 선택합니다.
 
@@ -227,10 +253,12 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 > 국가 판단 기준
 > 사용자의 **USIM** 국가 코드 기준으로 판단하며 USIM이 없을 경우 **단말기**에 설정되어 있는 국가를 기준으로 공지가 노출됩니다.
 
+<a id="register-game-notice-3-time-of-exposure"></a>
 #### (3) 게시 기간
 등록된 게임 공지가 게임 내에 노출될 시간을 설정합니다.
 타임존의 경우 기본적으로 'UTC+09:00'가 선택되어 있으며, 서비스를 하는 국가의 시간대를 선택해 점검을 등록하는 것도 가능합니다.
 
+<a id="register-game-notice-4-notice-image"></a>
 #### (4) 공지 내용 및 이미지
 게임 내에 노출할 공지 내용과 이미지를 등록합니다.
 언어별로 노출하고자 하는 공지 내용과 이미지를 설정할 수 있으며 단말기의 언어에 맞게 공지 내용과 이미지가 노출됩니다.
@@ -241,7 +269,8 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 >
 > 업로드한 이미지는 게임 공지의 노출 기간 만료 후 14일이 지나면 자동으로 삭제됩니다.
 
-### Modify Game notice
+<a id="modify-game-notice"></a>
+### Modify Game notice { #modify-game-notice }
 
 등록한 게임 공지의 상세 내용을 확인하고 수정, 삭제가 가능합니다.
 이미지를 교체하고자 할 경우 수정 화면에서 다시 등록할 수 있으며 그 외에도 게임 공지의 게시 기간이나 노출 대상 등을 수정할 수 있습니다.
@@ -251,13 +280,15 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 >
 > 업로드한 이미지는 게임 공지의 노출 기간 만료 후 14일이 지나면 자동으로 삭제됩니다.
 
-### Modify Game notice Setting
+<a id="modify-game-notice-setting"></a>
+### Modify Game notice Setting { #modify-game-notice-setting }
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_03_ko_250415.png)
 
 게임 공지의 기본적인 설정을 할 수 있으면, 설정한 정보는 모든 게임 공지에 일괄 적용됩니다.
 - 이미지 목록 사용: 이미지 목록 사용 시 게임 공지에 등록한 이미지가 게임 내의 목록 화면에서도 노출됩니다.
 
-## Image notice
+<a id="image-notice"></a>
+## Image notice { #image-notice }
 
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_08_ko_240611.png)
 
@@ -269,6 +300,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 >
 > 이미지 공지 팝업의 일괄 적용되는 기본적인 설정은 **Gamebase > 이미지 공지 > 설정**에서 가능합니다.
 
+<a id="image-notice-properties"></a>
 #### properties
 각 항목에 표시되는 내용은 아래와 같습니다.
 
@@ -287,11 +319,13 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 (3) 완료: 노출시간 종료
 ```
 
-### Register Image notice
+<a id="register-image-notice"></a>
+### Register Image notice { #register-image-notice }
 
 **이미지 공지** 목록에서 **등록** 버튼을 선택하면 이미지 공지를 등록할 수 있습니다.
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_250415.png)
 
+<a id="register-image-notice-1-target"></a>
 #### (1) 대상
 
 이미지 공지를 노출할 대상을 선택합니다.
@@ -303,6 +337,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240611.png)
 
 
+<a id="register-image-notice-2-target-country"></a>
 #### (2) 대상 국가
 공지를 노출할 국가를 선택합니다.
 
@@ -316,14 +351,17 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 > 사용자의 **USIM** 국가 코드 기준으로 판단하며 USIM이 없을 경우 **단말기**에 설정되어 있는 국가를 기준으로 공지가 노출됩니다.
 
 
+<a id="register-image-notice-3-reason"></a>
 #### (3) 사유
 이미지 공지가 등록된 사유를 입력합니다.
 입력 정보는 게임 유저에게 노출되지 않으며 운영상 식별을 위한 정보를 간단히 입력하면 됩니다.
 
+<a id="register-image-notice-4-time-of-exposure"></a>
 #### (4) 노출 시간
 등록된 이미지가 게임 내에 노출될 시간을 설정합니다.
 타임존의 경우 기본적으로 'UTC+09:00'가 선택되어 있으며, 서비스를 하는 국가의 시간대를 선택해 점검을 등록하는 것도 가능합니다.
 
+<a id="register-image-notice-5-image"></a>
 #### (5) 이미지
 게임 내에 노출할 이미지를 등록합니다. 메모를 입력할 경우 이미지 공지의 이미지 위로 입력한 문구가 노출됩니다. 메모는 최대 60자까지 입력 가능합니다.  
 언어별로 노출하고자 하는 이미지를 설정할 수 있으며 단말기의 언어에 맞게 이미지가 노출됩니다.
@@ -334,6 +372,7 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 > 
 > 업로드한 이미지는 이미지 공지의 노출 기간 만료 후 14일이 지나면 자동으로 삭제됩니다.
 
+<a id="register-image-notice-6-image-click-action"></a>
 #### (6) 이미지 클릭 동작
 게임 유저가 이미지 공지를 클릭했을 때 처리할 클릭 동작을 설정합니다.
 클릭 동작은 언어별로 노출하고자 하는 이미지마다 설정이 가능하며 설정할 수 있는 클릭 동작은 아래와 같습니다.
@@ -347,13 +386,15 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
 > **URL 열기** 항목에 특정 **http** URL을 사용하고 싶은 경우에는 Android 빌드에 도메인 예외 선언을 추가해야 합니다.
 > 그렇지 않은 경우 OS의 기본 제약으로 Android 9.0 이상의 단말기에서는 비정상적으로 페이지가 노출됩니다.
   
-### Modify Image notice
+<a id="modify-image-notice"></a>
+### Modify Image notice { #modify-image-notice }
 
 등록한 이미지 공지의 상세 내용을 확인하고 수정, 삭제가 가능합니다.
 이미지를 교체하고자 할 경우 수정 화면에서 다시 등록할 수 있으며 그 외에도 이미지 공지의 노출 시간이나 노출 대상 등을 수정할 수 있습니다.
 등록된 이미지 공지와 유사한 내용으로 이미지 공지를 다시 등록하고자 하는 경우 복사 기능을 통해 이미지만 새롭게 업로드하여 등록할 수 있습니다.
 
-### Modify Image notice setting
+<a id="modify-image-notice-setting"></a>
+### Modify Image notice setting { #modify-image-notice-setting }
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_10_ko_240709.png)
 이미지 공지 팝업의 기본적인 설정을 할 수 있으며, 설정한 정보는 모든 이미지 공지에 일괄 적용됩니다.
 
@@ -367,18 +408,21 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
   - 팝업 재 노출 설정: **오늘은 그만 보기** 설정을 적용한 경우에 이미지 공지 팝업의 재노출 시점을 지정할 수 있습니다.
 
 
-## Kick Out
+<a id="kick-out"></a>
+## Kick Out { #kick-out }
 게임 점검 등의 이유로 유저의 연결을 해제할 경우 Console에서 손쉽게 유저의 연결을 해제할 수 있습니다.
 등록한 킥아웃 내역 조회와 킥아웃 등록 내용을 한눈에 확인할 수 있습니다.
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_11_ko_240611.png)
 
-### Register Kick Out
+<a id="register-kick-out"></a>
+### Register Kick Out { #register-kick-out }
 
 **킥아웃** 탭에서 **등록** 버튼을 클릭하면 킥아웃을 등록하는 화면으로 이동합니다.
 
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_12_ko_240611.png)
 
-### (1) 처리대상
+<a id="1-target-to-process"></a>
+### (1) 처리대상 { #1-target-to-process }
 킥아웃 대상이 될 클라이언트를 선택합니다.
 - 전체 클라이언트 : 모든 클라이언트 버전에 킥아웃이 필요한 경우 선택합니다.
 - 일부 클라이언트 : 특정 클라이언트 버전에만 킥아웃이 필요한 경우 선택합니다. '버전 선택'버튼을 클릭하면 클라이언트 메뉴에서 등록한 클라이언트 버전리스트가 출력됩니다.
@@ -386,14 +430,17 @@ Timezone의 경우 기본적으로 'UTC+09:00'이 선택되어 있으며, 서비
   <br>클라이언트 상태 및 스토어별 전체 선택이 가능하며, 점검을 원하는 클라이언트 버전을 선택 후 확인 버튼을 누르면 됩니다.
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240611.png)
 
-### (2) 사유
+<a id="2-reason"></a>
+### (2) 사유 { #2-reason }
 킥아웃이 진행되는 사유를 최대 100자까지 작성할 수 있습니다.
 이 입력 정보는 게임 유저에게 노출되지 않으며 운영 목적으로 해당 킥아웃을 등록하는 간단한 사유에 대해 입력하시면 됩니다.
 
-### (3) 팝업 노출 여부
+<a id="3-whether-to-expose-popup"></a>
+### (3) 팝업 노출 여부 { #3-whether-to-expose-popup }
 - 팝업 노출: 킥아웃 시 유저에게 노출되는 팝업에 메시지를 입력할 수 있습니다.
 - 팝업 노출 안함: 킥아웃 시 팝업을 노출하지 않습니다.
 
-### (4) 메시지
+<a id="4-message"></a>
+### (4) 메시지 { #4-message }
 유저에게 노출할 킥아웃 메시지입니다. **팝업 노출 여부**가 **팝업 노출**인 경우에만 작성할 수 있습니다.
 '기본 언어로 자동 번역'버튼을 선택할 경우 기본언어로 입력된 내용을 기반으로 내용을 번역하여 각 항목에 설정된 언어에 맞게 내용이 입력됩니다.

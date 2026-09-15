@@ -1,8 +1,12 @@
-## Game > Gamebase > Console Guide > Management
+<!-- pre-align:aligned sig=dfa37aebcdc0 -->
+
+<a id="game-gamebase-console-guide-management"></a>
+## Game > Gamebase > Console Guide > Management { #game-gamebase-console-guide-management }
 
 You can manage search authority on Gamebase games, set alarm delivery, and retrieve alarm history.
 
-## Authorization
+<a id="authorization"></a>
+## Authorization { #authorization }
 
 You can manage the Gamebase Console access permission.
 ![management_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Management/en/management_01_en_240103.png)
@@ -11,14 +15,17 @@ You can manage the Gamebase Console access permission.
 * To register a new member, they must be added in Manage Members menu of the NHN Cloud project.
 * One's own permission cannot be changed.
 
-## Alarm
+<a id="alarm"></a>
+## Alarm { #alarm }
 
 Gamebase Alarm notifies increase/decrease rate of game users, or change of initial number of concurrent access.
 
-### Alarm
+<a id="alarm-2"></a>
+### Alarm { #alarm-2 }
 
 ![management_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Management/en/management_02_en_240103.png)
 
+<a id="alarm-2-1-activate-decrease-alarms"></a>
 #### (1) Activate Decrease Alarms
 Set whether to receive alarms for decreased concurrent access. To receive alarms, set **On** for Activate Decrease Alarms.
 
@@ -26,17 +33,21 @@ Set whether to receive alarms for decreased concurrent access. To receive alarms
 - **Ignore Alarms for Decrease due to maintenance**: The number of concurrent access cannot help but decrease while app is under maintenance.
   In this case, set **On** for **Ignore Alarms for Decrease due to Maintenance** so as not to receive alarms.
 
+<a id="alarm-2-2-activate-increase-alarms"></a>
 #### (2) Activate Increase Alarms
 You may set to receive alarms when concurrent access increases.
 The operator can set criteria to receive alarms when the function is activated.
 
+<a id="alarm-2-3-message-language"></a>
 #### (3) Message Language
 Select a language for alarm messages. Now only Korean and English are supported, and other languages will be added at the request.
 
+<a id="alarm-2-4-minimum-number-of-concurrent-access"></a>
 #### (4) Minimum Number of Concurrent Access
 You can receive alarms when there is lower number of app access than specified **minimum number of concurrent access**. For example, if the **minimum number of concurrent access** is '500', you will receive an alarm when the number is lower than 500. You cannot set below 100 as it is the minimum number.
 
-### Alarm Log
+<a id="alarm-log"></a>
+### Alarm Log { #alarm-log }
 
 In Alarm Log, which is under the Alarm Menu, you can retrieve history of alarm occurrences.
 Logs can be retrieved up to 30 days, and real-time filtering by using **Search** Textbox is also available.
@@ -48,26 +59,31 @@ Logs can be retrieved up to 30 days, and real-time filtering by using **Search**
 - Number of New Concurrent Access: Information of concurrent access collected at the moment when alarm is sent
 - Rate of Change (Value Set): Rate of change refers to the number of new concurrent access as compared to previous concurrent access. Value set is the value which has been set to deliver when alarm occurs.
 
-### Webhook
+<a id="webhook"></a>
+### Webhook { #webhook }
 Webhook configuration is provided to receive alarms, other than SMS/Email as default Gamebase functions.
 When there is a request for alarm delivery via Webhook URL of an external system, alarm is sent altogether.
 
+<a id="webhook-1-retrieve-list"></a>
 #### (1) Retrieve List
 ![management_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Management/en/management_04_en_240103.png)
 Retrieve the list of registered webhooks that can receive alarms.
 When a registered webhook URL is required, click **Copy URL** on the right.
 
+<a id="webhook-2-register"></a>
 #### (2) Register
 ![management_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Management/en/management_05_en_240103.png)
 Click **Register** to register webhook information from external systems.
 Currently, only Dooray and Slack can be registered, and the list is to be added at the request.
 
+<a id="webhook-3-retrievemodifydelete-details"></a>
 #### (3) Retrieve/Modify/Delete Details
 ![management_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Management/en/management_06_en_240103.png)
 Click each item to retrieve details.
 To change registered information, click **Modify**. You may click to **Delete** a webhook when it is not required.
 
-### Recipient List
+<a id="recipient-list"></a>
+### Recipient List { #recipient-list }
 
 You can set the user to receive notifications. To register a new member, they must be added in Manage Members menu of the NHN Cloud  project.
 ![management_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Management/en/management_07_en_240103.png)
@@ -75,7 +91,8 @@ In Gamebase, you can use the email or SMS to send the notification.
 Both emails and SMS are sent out using the information that was entered when joining NHN Cloud, and member who registered invalid email address or phone number may not receive the notification. The mobile phone number is found in the **Manage My Information** page of the NHN Cloud.
 
 
-## Config
+<a id="config"></a>
+## Config { #config }
 
 You can set the integration between Gamebase and NHN Cloud service.
 

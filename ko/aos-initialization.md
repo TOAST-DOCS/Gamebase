@@ -1,8 +1,12 @@
-## Game > Gamebase > Android SDK 사용 가이드 > 초기화
+<!-- pre-align:aligned sig=4c9d12d60980 -->
+
+<a id="game-gamebase-android-developers-guide-initialization"></a>
+## Game > Gamebase > Android SDK 사용 가이드 > 초기화 { #game-gamebase-android-developers-guide-initialization }
 
 Gamebase Android SDK를 사용하려면 먼저 초기화를 진행해야 합니다.
 
-### onActivityResult
+<a id="onactivityresult"></a>
+### onActivityResult { #onactivityresult }
 
 Gamebase의 정상적인 동작을 위해 반드시 **Activity#onActivityResult(int, int, Intent)**에서 **Gamebase.onActivityResult(int, int, Intent)**를 호출해야 합니다.
 
@@ -12,26 +16,29 @@ Gamebase의 정상적인 동작을 위해 반드시 **Activity#onActivityResult(
 + (void)Gamebase.onActivityResult(int requestCode, int resultCode, Intent data);
 ```
 
-### Initialization Flow
+<a id="initialization-flow"></a>
+### Initialization Flow { #initialization-flow }
 
 게임이 시작되면 Debug Mode 를 설정하고, Gamebase 를 초기화하여 Launching Status Code 에 따라 게임 진입여부를 결정하도록 아래 Flow 와 같이 구현하시면 됩니다.
 
 ![initialization flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/initialization_flow_2.19.0.png)
 
-### Configuration Settings
+<a id="configuration-settings"></a>
+### Configuration Settings { #configuration-settings }
 
 Gamebase를 초기화할 때, GamebaseConfiguration.Builder 객체로 Gamebase 설정을 변경할 수 있습니다.
 
 | API                                      | Mandatory(M) / Optional(O) | Description                              |
 | ---------------------------------------- | -------------------------- | ---------------------------------------- |
-| newBuilder(String appId, String appVersion, String storeCode) | **M**                      | GamebaseConfiguration.Builder 객체는 newBuilder() 함수를 통해 생성할 수 있습니다.<br/><br/> **appId**는 NHN Cloud Project로 발급 받은 앱 ID를 입력합니다. <br/> **appVersion**은 게임이 서비스 상태, 업데이트 상태 혹은 점검 상태 등에 해당하는지 판단하는 곳에 쓰입니다. 게임 버전을 지정해 주세요. <br/> **storeCode**는 APK가 배포되는 스토어를 의미합니다. 스토어별 코드는 다음 가이드를 참고하시기 바랍니다. [Purchase - Initialization](./aos-purchase/#6-initialization) |
+| newBuilder(String appId, String appVersion, String storeCode) | **M**                      | GamebaseConfiguration.Builder 객체는 newBuilder() 함수를 통해 생성할 수 있습니다.<br/><br/> **appId**는 NHN Cloud Project로 발급 받은 앱 ID를 입력합니다. <br/> **appVersion**은 게임이 서비스 상태, 업데이트 상태 혹은 점검 상태 등에 해당하는지 판단하는 곳에 쓰입니다. 게임 버전을 지정해 주세요. <br/> **storeCode**는 APK가 배포되는 스토어를 의미합니다. 스토어별 코드는 다음 가이드를 참고하시기 바랍니다. [Purchase - Initialization](./aos-purchase/#initialization) |
 | build()                                  | **M**                      | 설정을 마친 Builder를 Configuration 객체로 변환합니다.<br/>**Gamebase.initialize()** API에서 필요합니다. |
 | enablePopup(boolean enable)              | O                          | **[UI]**<br/>시스템 점검, 이용 제재(ban) 등 게임 유저가 게임을 플레이할 수 없는 상황에서 팝업 창 등으로 사유를 표시해야 할 때가 있습니다.<br/>**true**로 설정하면 Gamebase가 해당 상황에서 정보 팝업 창을 자동으로 표시합니다.<br/>기본값은 **false**입니다.<br/>**false** 상태에서는 론칭 결과를 통해 정보를 획득한 후 자체 UI를 구현해 게임을 플레이할 수 없는 이유를 표시해 주시기 바랍니다. |
 | enableLaunchingStatusPopup(boolean enable) | O                          | **[UI]**<br/>론칭 결과에 따라 로그인할 수 없는 상태에서(주로 점검 상태) Gamebase가 자동으로 팝업 창을 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup(true)** 상태에서만 동작합니다.<br/>기본값은 **true**입니다. |
 | enableBanPopup(boolean enable)           | O                          | **[UI]**<br/>게임 유저가 이용 제재를 당한 상태일 때 Gamebase가 자동으로 제재 사유를 팝업 창으로 표시할지 여부를 변경할 수 있습니다.<br/>**enablePopup(true)** 상태에서만 동작합니다.<br/>기본값은 **true**입니다. |
 | enableGPGSSignInCheck(boolean enable)    | O                          | 'GPGS 자동 로그인' 기능 연동 시 유저에게 GPGS 로그인을 앱 설치 후 한번만 물어볼지, Gamebase 초기화 때마다 확인할지 선택합니다.<br/>**true**로 설정하면 유저가 GPGS 로그인을 거부하더라도 Gamebase 초기화 때 GPGS 로그인 창을 다시 표시합니다.<br/>**false**로 설정하면 앱 최초 실행 시에만 GPGS 로그인 창이 한번 표시되고, 거부하더라도 다시 표시되지 않습니다. GPGS 로그인을 다시 하기 위해서는 **Google Play Games** 애플리케이션에서 설정해야 합니다.<br/>기본값은 **true**입니다. |
 
-### Debug Mode
+<a id="debug-mode"></a>
+### Debug Mode { #debug-mode }
 * Gamebase는 경고(warning)와 오류 로그만을 표시합니다.
 * 개발에 참고할 수 있는 시스템 로그를 켜려면 **Gamebase.setDebugMode(true)**를 호출하시기 바랍니다.
 
@@ -46,7 +53,8 @@ Gamebase를 초기화할 때, GamebaseConfiguration.Builder 객체로 Gamebase �
 * [콘솔 Client 설정](./oper-app/#client)
 
 
-### Initialize
+<a id="initialize"></a>
+### Initialize { #initialize }
 
 **Activity#onCreate(Bundle)**에서 **Gamebase#initialize(Activity, GamebaseConfiguration, GamebaseDataCallback)**을 호출하여 Gamebase SDK를 초기화합니다.
 
@@ -118,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-### Launching Information
+<a id="launching-information"></a>
+### Launching Information { #launching-information }
 
 Gamebase#initialize 호출 결과로 론칭 상태를 확인할 수 있습니다.<br/>
 론칭 코드에 따라 게임 플레이 여부를 판단하시기 바랍니다.
@@ -194,6 +203,7 @@ getLaunchingInformations() API를 이용하면 초기화 이후에도 LaunchingI
 LaunchingInfo 객체에는 Gamebase 콘솔에 설정한 값들과 게임 상태 등이 포함돼 있습니다.
 
 
+<a id="launching-information-launching"></a>
 #### 1. launching
 
 Gamebase 론칭 정보입니다.
@@ -289,6 +299,7 @@ Gamebase 초기화를 실행한 사용자 정보입니다.
         * 테스트 단말기 정보와 매칭된 타입
         * matchingFlag가 true일 경우에만 전달
 
+<a id="launching-information-tcproduct"></a>
 #### 2. tcProduct
 
 Gamebase와 연계된 NHN Cloud 서비스의 앱키(Appkey)입니다.
@@ -298,6 +309,7 @@ Gamebase와 연계된 NHN Cloud 서비스의 앱키(Appkey)입니다.
 * iap
 * push
 
+<a id="launching-information-tciap"></a>
 #### 3. tcIap
 
 NHN Cloud 콘솔에 등록된 IAP 스토어 정보입니다.
@@ -308,6 +320,7 @@ NHN Cloud 콘솔에 등록된 IAP 스토어 정보입니다.
 
 [Game > Gamebase > 콘솔 사용 가이드 > 결제](./oper-purchase/)
 
+<a id="launching-information-tclaunching"></a>
 #### 4. tcLaunching
 
 NHN Cloud Launching 콘솔에서 사용자가 입력한 정보입니다.
@@ -318,7 +331,8 @@ NHN Cloud Launching 콘솔에서 사용자가 입력한 정보입니다.
 [Game > Gamebase > 콘솔 사용 가이드 > 관리 > Config](./oper-management/#config)
 
 
-### Handling Unregistered Version
+<a id="handling-unregistered-version"></a>
+### Handling Unregistered Version { #handling-unregistered-version }
 
 Gamebase 콘솔에 등록되지 않은 GameClientVersion 을 초기화를 하면 **LAUNCHING_UNREGISTERED_CLIENT(2004)** 에러가 발생합니다.
 enablePopup(true), enableLaunchingStatusPopup(true) 상태라면 강제 업데이트 팝업 창이 표시되고, 마켓으로 이동할 수 있습니다.
@@ -371,7 +385,8 @@ Gamebase.initialize(activity, configuration, new GamebaseDataCallback<LaunchingI
 });
 ```
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                        | Error Code | Description                |
 | ---------------------------- | ---------- | -------------------------- |

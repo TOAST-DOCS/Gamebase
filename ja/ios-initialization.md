@@ -1,8 +1,12 @@
-## Game > Gamebase > iOS SDK ご利用ガイド > 初期化
+<!-- pre-align:aligned sig=4e4168cc7b07 -->
+
+<a id="game-gamebase-ios-developers-guide-initialization"></a>
+## Game > Gamebase > iOS SDK ご利用ガイド > 初期化 { #game-gamebase-ios-developers-guide-initialization }
 
 Gamebase iOS SDKを使用するためには、まず初期化を行う必要があります。
 
-### Import Header File
+<a id="import-header-file"></a>
+### Import Header File { #import-header-file }
 
 まず、Gamebaseのヘッダーファイルをアプリに持ってくる必要があります。<br/>
 AppDelegate.hなどGamebase機能を初期化する場所に次のヘッダーファイルを持ってきます。
@@ -11,13 +15,15 @@ AppDelegate.hなどGamebase機能を初期化する場所に次のヘッダー�
 #import <Gamebase/Gamebase.h>
 ```
 
-### Initialization Flow
+<a id="initialization-flow"></a>
+### Initialization Flow { #initialization-flow }
 
 ゲームが始まったらDebug Modeを設定し、Gamebaseを初期化して、Launching Status Codeに従ってゲームに進入可否を決定するように、以下のフローのように実装してください。
 
 ![initialization flow](https://static.toastoven.net/prod_gamebase/DevelopersGuide/initialization_flow_2.19.0.png)
 
-### Configuration Settings
+<a id="configuration-settings"></a>
+### Configuration Settings { #configuration-settings }
 
 Gamebaseを初期化する際に、TCGBConfigurationの客体でGamebaseの設定を変更することができます。
 
@@ -29,7 +35,8 @@ Gamebaseを初期化する際に、TCGBConfigurationの客体でGamebaseの設�
 | enableBanPopup:                   | O                          | **[UI]**<br/>ゲームユーザーが利用を制限された状態のとき、Gamebaseが自動でbanされた理由をポップアップで表示するかどうかを変更することができます。<br/>**enablePopup:YES** の状態でのみ動作します。<br/>デフォルトは**YES**です。|
 
 
-### Debug Mode
+<a id="debug-mode"></a>
+### Debug Mode { #debug-mode }
 Gamebaseは、警告(warning)とエラーログだけを表示します。
 開発の参考になるシステムログをオンにしたいときは、**[TCGBGamebase setDebugMode:YES]**を呼び出してください。
 
@@ -45,7 +52,8 @@ Gamebaseは、警告(warning)とエラーログだけを表示します。
 
 
 
-### Initialize
+<a id="initialize"></a>
+### Initialize { #initialize }
 **application:didFinishLaunchingWithOptions:**メソッドで次のように初期化を進めます。
 
 
@@ -87,7 +95,8 @@ Gamebaseは、警告(warning)とエラーログだけを表示します。
 
 
 
-### Launching Information
+<a id="launching-information"></a>
+### Launching Information { #launching-information }
 
 Gamebase初期化の呼び出し結果により起動状態を確認することができます。<br/>
 起動状態は、Gamebase初期化後に呼び出さなければなりません。
@@ -131,6 +140,7 @@ NSDictionary* launchingInfo = [TCGBLaunching launchingInformations];
 ```
 
 
+<a id="launching-information-launching"></a>
 #### 1. launching
 
 Gamebaseローンチ情報です。
@@ -224,6 +234,7 @@ Gamebase初期化を実行したユーザー情報です。
         * テスト端末情報とマッチングされたタイプ
     * matchingFlagがtrueの場合のみ伝達 
 
+<a id="launching-information-tcproduct"></a>
 #### 2. tcProduct
 
 Gamebaseと連携したNHN Cloudサービスのアプリケーションキーです。
@@ -233,6 +244,7 @@ Gamebaseと連携したNHN Cloudサービスのアプリケーションキーで
 * iap
 * push
 
+<a id="launching-information-tciap"></a>
 #### 3. tcIap
 
 NHN Cloudコンソールに登録されたIAPストア情報です。
@@ -243,6 +255,7 @@ NHN Cloudコンソールに登録されたIAPストア情報です。
 
 [Game > Gamebase > コンソール使用ガイド > 決済](./oper-purchase/)
 
+<a id="launching-information-tclaunching"></a>
 #### 4. tcLaunching
 
 NHN Cloud Launching Consoleでユーザーが入力した情報です。
@@ -253,7 +266,8 @@ NHN Cloud Launching Consoleでユーザーが入力した情報です。
 [Game > Gamebase > コンソール使用ガイド > 管理 > Config](./oper-management/#config)
 
 
-### Handling Unregistered Version
+<a id="handling-unregistered-version"></a>
+### Handling Unregistered Version { #handling-unregistered-version }
       
 Gamebaseコンソールに登録されていないGameClientVersionを初期化すると、**LAUNCHING_UNREGISTERED_CLIENT(2004)**エラーが発生します。
 enablePopup(true)、enableLaunchingStatusPopup(true)状態の場合、強制アップデートポップアップが表示され、マーケットへ移動する場合があります。
@@ -306,7 +320,8 @@ Gamebaseポップアップを使用していない場合はUpdateInfoをTCGBErro
 }
 ```
 
-## Lifecycle Event
+<a id="lifecycle-event"></a>
+## Lifecycle Event { #lifecycle-event }
 
 iOSのアプリイベントを管理したい場合、次の**UIApplicationDelegate**プロトコルを設計します。
 
@@ -315,7 +330,8 @@ iOSのアプリイベントを管理したい場合、次の**UIApplicationDeleg
 > SceneDelegate(iOS 13以上)を使用している場合は、**UISceneDelegate**プロトコルを実装する必要があります。
 >
 
-### DidFinishLaunching Event
+<a id="didfinishlaunching-event"></a>
+### DidFinishLaunching Event { #didfinishlaunching-event }
 **application:didFinishLaunchingWithOptions:**メソッドを呼び出しして、Gamebaseにアプリが起動されたことを伝える必要があります。
 
 ```objectivec
@@ -325,7 +341,8 @@ iOSのアプリイベントを管理したい場合、次の**UIApplicationDeleg
 }
 ```
 
-### OpenURL Event
+<a id="openurl-event"></a>
+### OpenURL Event { #openurl-event }
 **application:openURL:options:** メソッドを呼び出してアプリケーションの外部URL Openの試みをGamebaseに知らせなければなりません。Gamebaseでは、各Idpの認証用SDKに該当する値を送り、必要な動作をするように知らせます。
 
 ```objectivec
@@ -345,7 +362,8 @@ SceneDelegate(iOS 13以上)を使用する場合は、**scene:openURLContexts:**
 ```
 
 
-### DidBecomeActive Event
+<a id="didbecomeactive-event"></a>
+### DidBecomeActive Event { #didbecomeactive-event }
 **applicationDidBecomeActive:**メソッドを呼び出してアプリを有効にするかどうかをGamebaseに知らせなければなりません。Gamebaseでは、各Idpの認証用SDKに該当する値を送り、必要な動作をするように知らせます。
 
 
@@ -366,7 +384,8 @@ SceneDelegate(iOS 13以上)を使用する場合は、**sceneDidBecomeActive:**�
 }
 ```
 
-### DidEnterBackground Event
+<a id="didenterbackground-event"></a>
+### DidEnterBackground Event { #didenterbackground-event }
 **applicationDidEnterBackground**メソッドを呼び出してGamebaseにアプリがバックグランド(background)に切り替わるということを知らせる必要があります。
 
 
@@ -386,7 +405,8 @@ SceneDelegate(iOS 13以上)を使用する場合は、**sceneDidEnterBackground:
 }
 ```
 
-### WillEnterForeground Event
+<a id="willenterforeground-event"></a>
+### WillEnterForeground Event { #willenterforeground-event }
 **applicationWillEnterForeground**メソッドを呼び出してGamebaseにアプリがフォアグラウンド(foreground)に切り替わるということを知らせる必要があります。
 
 ```objectivec
@@ -405,7 +425,8 @@ SceneDelegate(iOS 13以上)を使用する場合は、**sceneWillEnterForeground
 }
 ```
 
-### Error Handling
+<a id="error-handling"></a>
+### Error Handling { #error-handling }
 
 | Error                              | Error Code | Description            |
 | ---------------------------------- | ---------- | ---------------------- |

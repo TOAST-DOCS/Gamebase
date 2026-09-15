@@ -1,8 +1,12 @@
-## Game > Gamebase > Unreal SDK使用ガイド > Logger
+<!-- pre-align:aligned sig=02b9b48cba43 -->
+
+<a id="game-gamebase-user-guide-for-unreal-sdk-logger"></a>
+## Game > Gamebase > Unreal SDK使用ガイド > Logger { #game-gamebase-user-guide-for-unreal-sdk-logger }
 
 ここではLog & Crash Search転送APIを使用する方法を説明します。
 
-### Settings
+<a id="settings"></a>
+### Settings { #settings }
 
 * Windows
     * Log & Crash SearchでProjectVersionの値を設定するには、DefaultGame.iniでGeneralProjectSettingsのProjectVersionに合ったバージョンを入力する必要があります。
@@ -11,7 +15,8 @@
             ProjectVersion=1.0.0
             
             
-### Initialize
+<a id="initialize"></a>
+### Initialize { #initialize }
 Log & Crash Searchで発行されたAppKeyで、NHN Cloud Logger SDKを初期化します。
 
 **API**
@@ -38,7 +43,8 @@ void USample::InitializeLogger()
 }
 ```
 
-### Send Logs
+<a id="send-logs"></a>
+### Send Logs { #send-logs }
 Log & Crash Serverへログを転送します。
 NHN Cloud Logger SDKは、下記5つのレベルのログを転送できます。 
 * DEBUG
@@ -119,7 +125,8 @@ void USample::FatalLogger()
 }
 ```
 
-### Set User-Defined Fields
+<a id="set-user-defined-fields"></a>
+### Set User-Defined Fields { #set-user-defined-fields }
 ユーザー定義フィールドを設定します。 
 ユーザー定義フィールドを設定すると、ログ転送APIを呼び出すたびに設定した値とログをサーバーへ転送します。
 
@@ -143,9 +150,10 @@ void USample::SetLoggerUserField()
 }
 ```
 
-### Crash Reporter
+<a id="crash-reporter"></a>
+### Crash Reporter { #crash-reporter }
 
 * Windows
     * Log & Crash SearchでSDKで発生したクラッシュを解析するには、シンボルファイルをコンソールにアップロードする必要があります。
     * ビルド時、プロジェクトのバイナリ作成パスに .symファイルと該当ファイルを圧縮した .zipファイル作成されます。
-    * [Log & Crash Searchコンソールガイド](https://docs.nhncloud.com/ko/Data%20&%20Analytics/Log%20&%20Crash%20Search/ko/console-guide/#_21)を確認してアップロードします。
+    * [Log & Crash Searchコンソールガイド](/Data%20&%20Analytics/Log%20&%20Crash%20Search/ja/console-guide/#_21)を確認してアップロードします。

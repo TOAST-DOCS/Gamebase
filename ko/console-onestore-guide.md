@@ -1,8 +1,12 @@
-## Game > Gamebase > 스토어 콘솔 가이드 > ONEStore 콘솔 가이드
+<!-- pre-align:aligned sig=978cae155453 -->
+
+<a id="game-gamebase-store-console-guide-onestore-console-guide"></a>
+## Game > Gamebase > 스토어 콘솔 가이드 > ONEStore 콘솔 가이드 { #game-gamebase-store-console-guide-onestore-console-guide }
 
 원스토어에서 라이선스 키 및 OAuth 인증 정보를 생성하여 IAP 앱 정보에 등록합니다.
 
-### 원스토어 키 생성
+<a id="create-one-store-key"></a>
+### 원스토어 키 생성 { #create-one-store-key }
 ```
 Apps > 앱 선택 >In-App정보 > 인증 및 라이선스
 ```

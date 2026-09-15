@@ -1,4 +1,7 @@
-## Game > Gamebase > Console for AWS
+<!-- pre-align:aligned sig=34353879a174 -->
+
+<a id="game-gamebase-console-for-aws"></a>
+## Game > Gamebase > Console for AWS { #game-gamebase-console-for-aws }
 
 AWS marketplaceを介して会員登録を行ったユーザーがログインするまでのコンソールの基本設定と使用方法を説明します。
 Gamebase for AWSのコンソール
@@ -6,7 +9,8 @@ Gamebase for AWSのコンソール
 *プロジェクト、サービス管理
 *サービスを利用する会員の管理
 
-## クイックガイド
+<a id="section-1"></a>
+## クイックガイド { #section-1 }
 
 コンソールから提供している基本機能についてクイックガイドです。
 
@@ -15,11 +19,13 @@ Gamebase for AWSのコンソール
 ![Gamebase-for-aws_quick-guide](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_quick-guide-03-202108-ja.png)
 ![Gamebase-for-aws_quick-guide](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_quick-guide-04-202108-ja.png)
 
-## プロジェクトの管理
+<a id="section-2"></a>
+## プロジェクトの管理 { #section-2 }
 
 Gamebaseはプロジェクト単位で利用が可能で、これに従って課金を行います。
 
-### プロジェクト生成
+<a id="section-2-1"></a>
+### プロジェクト生成 { #section-2-1 }
 * Aws marketplaceのページを介して登録した管理者ユーザーのみプロジェクトを作成·修正·削除が可能です。
 * プロジェクト名と説明を入力すると、プロジェクトのIDは自動的に作成されます。
 * プロジェクトを作成するとGamebaseサービスは自動的に有効化されます。
@@ -35,7 +41,8 @@ Gamebaseはプロジェクト単位で利用が可能で、これに従って課
 4.	プロジェクトが作成されると、メニューにプロジェクト名が表示されます。
 5.	「ダッシュボード」画面でプロジェクト情報を確認します。
 
-### プロジェクト編集
+<a id="section-2-2"></a>
+### プロジェクト編集 { #section-2-2 }
 
 プロジェクト詳細画面の右上の編集ボタンをクリックすると、プロジェクト編集画面が表示されます。
 * 編集画面ではプロジェクト情報の修正·削除、利用中のサービスの無効化が可能です。
@@ -43,12 +50,14 @@ Gamebaseはプロジェクト単位で利用が可能で、これに従って課
 * プロジェクトで利用中のサービスがない場合はプロジェクトの削除は可能です。
 * プロジェクトを削除すると、プロジェクトのリソースはすべて削除され復旧は不可能です。
 	
-### プロジェクト変更
+<a id="section-2-3"></a>
+### プロジェクト変更 { #section-2-3 }
 
 * 上部にあるプロジェクト名をクリックすると、登録されたプロジェクトリストを確認できます。
 
 
-## 会員 
+<a id="section-3"></a>
+## 会員 { #section-3 }
 
 | 区分     | 管理者 | 一般 | 
 | ------ | ------------ | ------------ | 
@@ -57,10 +66,12 @@ Gamebaseはプロジェクト単位で利用が可能で、これに従って課
 | 권한 | - プロジェクトの管理: 生成/修正/削除<br>- 一般会員管理
  | 権限が付与されているコンソールのみアクセス可能 | 
 
-### プロジェクトへ一般会員追加
+<a id="section-3-1"></a>
+### プロジェクトへ一般会員追加 { #section-3-1 }
 
 以下の手順でコンソールにアクセスできる一般会員を追加することが可能です。
 
+<a id="section-3-1-1"></a>
 #### 1. 一般会員を追加
 
 ![Gamebase-for-aws_create-ID](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_member-01-202108-ja.png)
@@ -71,6 +82,7 @@ Gamebaseはプロジェクト単位で利用が可能で、これに従って課
 4.	受信したメールを利用してパスワードを変更すると、追加されたIDでログインが可能になります。
 
 
+<a id="section-3-1-2"></a>
 #### 2. プロジェクトメンバーに追加
 
 ![Gamebase-for-aws_project-member](https://static.toastoven.net/prod_gamebase/console-for-aws/console_Gamebase-for-aws_member-02-202108-ja.png)
@@ -79,7 +91,8 @@ Gamebaseはプロジェクト単位で利用が可能で、これに従って課
 2.	1で追加した一般会員IDを入力して、グループ権限を付与し、現在のプロジェクトにアクセスすることができます。
 
 
-### グループの権限管理
+<a id="section-3-2"></a>
+### グループの権限管理 { #section-3-2 }
 
 一般会員のサービスコンソールへのアクセス権限を管理できます。
 **名前 > 一般/グループ管理**をクリックして、既存グループの管理ページにて権限グループの作成、修正、削除が可能です。

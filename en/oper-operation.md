@@ -1,4 +1,7 @@
-## Game > Gamebase > Console Guide > Operation
+<!-- pre-align:aligned sig=abe84fae62cb -->
+
+<a id="game-gamebase-console-guide-operation"></a>
+## Game > Gamebase > Console Guide > Operation { #game-gamebase-console-guide-operation }
 
 This menu provides functions that are required for an app operation.
 
@@ -8,7 +11,8 @@ This menu provides functions that are required for an app operation.
 * (Image notice): Manage image notices which is provided as an image to game users
 * (Kick out): Disconnect the app user
 
-## Maintenance
+<a id="maintenance"></a>
+## Maintenance { #maintenance }
 
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_01_en_240625.png)
 
@@ -28,7 +32,8 @@ Default maintenance pop-up of Gamebase.
 Default maintenance page of Gamebase (with cause and time of maintenance)
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_02_en_240105.jpg)
 
-### Register Maintenance
+<a id="register-maintenance"></a>
+### Register Maintenance { #register-maintenance }
 
 Click **Register** under the **Maintenance** tab, to register maintenance.
 
@@ -39,6 +44,7 @@ Click **Register** under the **Maintenance** tab, to register maintenance.
 > If **Update Required and Maintenance are both enabled**, the service status becomes 'Update Required'.
 >  If you do not want to show a popup about required updates to users during the maintenance, the service status must be changed to 'Update Required' after the maintenance.
 
+<a id="register-maintenance-1-target"></a>
 #### (1) Target
 Select the maintenance target.
 
@@ -48,14 +54,17 @@ Select the maintenance target.
 <br>Select All is possible by client status and by store. Just select the client version to perform maintenance, and click the Confirm button.
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
 
+<a id="register-maintenance-2-reason"></a>
 #### (2) Reason
 Enter the reason why the maintenance is needed.
 This information is not exposed to game users. You just need to enter a brief explanation as to why you registered the maintenance.
 
+<a id="register-maintenance-3-time"></a>
 #### (3) Time
 Set when to conduct the maintenance.
 As for timezone, 'UTC+09:00' is selected by default, and you can also register maintenance by selecting the timezone of the country you are providing service to.
 
+<a id="register-maintenance-4-maintenance-page"></a>
 #### (4) Maintenance page
 Set the type of the maintenance page which will be shown to users.
 You can choose **Page provided by Gamebase (WebView)**, **Custom HTML (WebView)**, or **External page**, and the input window is different for each item.
@@ -87,17 +96,20 @@ Maintenance parameters are as follows: all delivered with URL encoded.
 - beginDate:  Start time entered for maintenance registration
 - endDate:  End time entered for maintenance registration.
 
+<a id="register-maintenance-5-popup-messages"></a>
 #### (5) Popup Messages 
 Set a message to show for maintenance. 
 Click **Auto Translate to Default Language** and messages in default language are translated into a language set for each item. 
 
-### Modify Maintenance
+<a id="modify-maintenance"></a>
+### Modify Maintenance { #modify-maintenance }
 
 Can check, modify, and delete details of registered maintenance.
 Input items are same as Registration page, and Delete button is also available.
 To register maintenance again with similar content, you may copy and paste for an easy registration.
 
-## Notice
+<a id="notice"></a>
+## Notice { #notice }
 
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_06_en_240625.png)
 
@@ -109,12 +121,14 @@ Status of notice is classified into three as below.
 (2) In Progress: Notice is now showing
 (3) Completed: Notice time has been completed
 
-### Register Notice
+<a id="register-notice"></a>
+### Register Notice { #register-notice }
 
 Clicking the 'Register' button on the main screen of Notice redirects you to the screen where you can register a notice.
 
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_07_en_240625.png)
 
+<a id="register-notice-1-target"></a>
 #### (1) Target
 
 Select a target to show notification.
@@ -125,6 +139,7 @@ Select a target to show notification.
   ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
 
 
+<a id="register-notice-2-target-country"></a>
 #### (2) Target Country
 Select a country to show notification.
 
@@ -136,22 +151,26 @@ Select a country to show notification.
 > Criteria of Country Selection
 > Notice shows on the basis of user's **USIM Country Code** ; when USIM is not available, it shows based on countries set on **Device**.
 
+<a id="register-notice-3-number-of-impressions"></a>
 #### (3) Number of Impressions
 Select a number of times a notice shows to users.
 
 - One impression during the impression period: Shows one time during impression period
 - Always show when you start an app: Shows every time user starts an app during impression period
 
+<a id="register-notice-4-time"></a>
 #### (4) Time
 Set time to show notices.
 For a timezone, 'UTC+09:00' is provided as default, and maintenance can be registered by selecting a timezone of a country at service.
 
+<a id="register-notice-5-message"></a>
 #### (5) Message
 Enter notice messages to show to users.
 Can register many languages, for those who speak other languages than registered, a default language will show.
 To add a language, click **+** on the right, and if a language you want is not on the list, contact [Customer Center](https://toast.com/support/inquiry)to add as required.
 Click **Auto Translate to Default Language** and messages in default language are translated into a language set for each item. 
 
+<a id="register-notice-6-bottom-button-type"></a>
 #### (6) bottom button type
 Specify the type of the buttons which will be exposed at the bottom of the notice popup.
 - Close: Expose the Close button only.
@@ -162,18 +181,21 @@ Specify the type of the buttons which will be exposed at the bottom of the notic
   - Connect to Customer Center: When set to Customer Center Provided by Gamebase, the customer center opens in WebView when the user clicks the 'Read more' button.
 
 
+<a id="register-notice-example-of-a-notice-pop-up"></a>
 #### Example of a Notice Pop-up
 Selecting **Close** will only expose the ‘CLOSE’ button, as shown in the image on the left, while selecting **Close+Show Detail** will expose the ‘CLOSE’ and ‘SHOW DETAIL’ buttons, as shown in the image on the right.
 ![gamebase_op_img](https://static.toastoven.net/prod_gamebase/gamebase_op_08_201812.png)
 
-### Modify Notice
+<a id="modify-notice"></a>
+### Modify Notice { #modify-notice }
 
 You can read, edit, or delete the details of the registered notice.
 By default, the input items are identical to those of the registration screen. You can also delete the notice by clicking the 'Delete' button if the notice has been entered incorrectly.
 If you want reregister the maintenance with similar details, you can use the copy function to easily register the notice.
 
 
-## Game Notice
+<a id="game-notice"></a>
+## Game Notice { #game-notice }
 
 You can register a game notice on the console to display both images and messages in the game.
 You can view all registered game notices at a glance. Game notices with the status set to **Exposing** are displayed in the in-game notice list based on their registration date.
@@ -188,6 +210,7 @@ You can also search for game notices by their posting status and title.
 
  (2) **Title**: You can search the list of game notices that include titles in the default selected language.
 
+<a id="game-notice-properties"></a>
 #### properties
 The information displayed for each item is as follows:
 
@@ -197,11 +220,13 @@ The information displayed for each item is as follows:
 - **Posting Time(+09:00)**: Displays the exposure time of the game notice converted to Korea Standard Time (KST, +09:00).
 - **Modified Date**: Shows the last modified time of the game notice.
 
-### Register Game notice
+<a id="register-game-notice"></a>
+### Register Game notice { #register-game-notice }
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_02_ko_250415.png)
 
 Click the **Register** button in the **Game Notice** list to rsgister the game notice.
 
+<a id="register-game-notice-1-target"></a>
 #### (1) Target
 
 Select the target to expose the game notice to.
@@ -213,6 +238,7 @@ Select the target to expose the game notice to.
   ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240611.png)
 
 
+<a id="register-game-notice-2-target-country"></a>
 #### (2) Target country
 Select the country to expose the notice to.
 
@@ -224,10 +250,12 @@ Select the country to expose the notice to.
 >
 > Criteria for determining the country
 > This is determined based on the criteria of **USIM** country code. If there is no USIM, the notice is exposed based on the country setting of the **device**.
+<a id="register-game-notice-3-time-of-exposure"></a>
 #### (3) Time of exposure
 Set the time when the registered notice will be exposed within the game.
 As for timezone, 'UTC+09:00' is selected by default, and you can also register maintenance by selecting the timezone of the country you are providing service to.
 
+<a id="register-game-notice-4-notice-image"></a>
 #### (4) Notice & Image
 Register the notices and images to be displayed in the game.
 You can set notices and images for each language, and they will be displayed based on the device's language settings.
@@ -237,7 +265,8 @@ The registered image is displayed in its entirety within the game while maintain
 > [Note]
 >
 > The uploaded image is automatically deleted 14 days after the exposure date of the game notice ends.
-### Modify Game notice
+<a id="modify-game-notice"></a>
+### Modify Game notice { #modify-game-notice }
 
 You can read, edit, or delete the details of the registered game notice.
 You can also register the image from the Edit screen again to replace the previous image, and edit the time and target to expose the game notice.
@@ -246,14 +275,16 @@ If you want to register the game notice again with the similar details to the al
 > [Note]
 >
 > The uploaded image is automatically deleted 14 days after the exposure date of the game notice ends.
-### Modify Game notice Setting
+<a id="modify-game-notice-setting"></a>
+### Modify Game notice Setting { #modify-game-notice-setting }
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_03_ko_250415.png)
 
 You can configure the basic settings for game notices, and the configured information will be applied to all notices uniformly.
 - Use Image List: When enabled, the images registered in the game notice will also be displayed on the in-game list screen.
 
 
-## Image Notice
+<a id="image-notice"></a>
+## Image Notice { #image-notice }
 
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_08_en_240625.png)
 
@@ -266,6 +297,7 @@ The exposure sequence can be set by directly moving the row in the list of the c
 >
 > Basic settings to bulk apply image notice popups can be found in **Gamebase > Image Notice > Settings**.
 
+<a id="image-notice-properties"></a>
 #### properties
 What's displayed on each item is as follows:
 
@@ -285,11 +317,13 @@ What's displayed on each item is as follows:
 (3) Finished: The exposure has ended
 ```
 
-### Register Image notice
+<a id="register-image-notice"></a>
+### Register Image notice { #register-image-notice }
 
 You can register the image notice by selecting the **Register** button from the **Image Notice** list.
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_10_en_240625.png)
 
+<a id="register-image-notice-1-target"></a>
 #### (1) Target
 
 Select the target to expose the image notice to.
@@ -301,6 +335,7 @@ Select the target to expose the image notice to.
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
 
 
+<a id="register-image-notice-2-target-country"></a>
 #### (2) Target country
 Select the country to expose the notice to.
 
@@ -314,14 +349,17 @@ Select the country to expose the notice to.
 > This is determined based on the criteria of **USIM** country code. If there is no USIM, the notice is exposed based on the country setting of the **device**.
 
 
+<a id="register-image-notice-3-reason"></a>
 #### (3) Reason
 Enter the reason why the image notice has been registered.
 The input information is not exposed to the game user, and you just need to enter brief information for administrative use.
 
+<a id="register-image-notice-4-time-of-exposure"></a>
 #### (4) Time of exposure
 Set the time when the registered image will be exposed within the game.
 As for timezone, 'UTC+09:00' is selected by default, and you can also register maintenance by selecting the timezone of the country you are providing service to.
 
+<a id="register-image-notice-5-image"></a>
 #### (5) Image
 Register the image to expose within the game. When a memo is entered, the specified text will appear over the image in the image notice. The memo can contain up to 60 characters.
 You can set the image that you want to expose per language, and the image is exposed according to the language of the device.
@@ -333,6 +371,7 @@ You can see the original image by clicking the preview image.
 >
 > The uploaded image is automatically deleted 14 days after the exposure date of the image notice ends.
 
+<a id="register-image-notice-6-image-click-action"></a>
 #### (6) Image Click Action
 Set the click action to handle when a game user clicks on an image notice. The click action can be set for each image you want to display per language, and the following click actions can be set.
 
@@ -345,14 +384,16 @@ Set the click action to handle when a game user clicks on an image notice. The c
 > If you want to use a specific **http** URL for the **Open URL** field, you must add a domain exception declaration to your Android build.
 > Otherwise, the page will display abnormally on Android 9.0+ devices due to the OS's native limitations.
   
-### Modify Image notice
+<a id="modify-image-notice"></a>
+### Modify Image notice { #modify-image-notice }
 
 You can read, edit, or delete the details of the registered images notice.
 You can also register the image from the Edit screen again to replace the previous image, and edit the time and target to expose the image notice.
 If you want to register the notice image again with the similar details to the already registered image notice, you can use the copy function to register by uploading a new image only.
 
 
-### Modify Image notice setting
+<a id="modify-image-notice-setting"></a>
+### Modify Image notice setting { #modify-image-notice-setting }
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_10_en_240709.png)
 You can make basic settings for the image notice popup, and the information you set will be batch applied to all image notice.
 
@@ -366,18 +407,21 @@ You can make basic settings for the image notice popup, and the information you 
   - Popup re-display settings: Specify when to re-display the image notice popup when the **Show No More Today** setting is applied.
 
 
-## Kick Out
+<a id="kick-out"></a>
+## Kick Out { #kick-out }
 If you need to disconnect users for reasons such as game maintenance, you can easily do so in the console.
 You can see the kickout history and kickout registrations at a glance.
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_11_en_240625.png)
 
-### Register Kick Out
+<a id="register-kick-out"></a>
+### Register Kick Out { #register-kick-out }
 
 Clicking the **Register** button on the **Kickout** tab redirects you to the screen where you can register a kickout.
 
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_12_en_240625.png)
 
-### (1) Target to process
+<a id="1-target-to-process"></a>
+### (1) Target to process { #1-target-to-process }
 Select the target client to kick out.
 - Entire client : Select it when kickout is required for all client versions.
 - Some clients : Select it when kickout is required only for certain client versions. Click the 'Select Version' button to display the list of the client versions registered from the client menu.
@@ -385,14 +429,17 @@ Select the target client to kick out.
 <br>Select All is possible by client status and by store. Just select the client version to perform maintenance, and click the Confirm button.
 ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/en/gamebase_maintenance_04_en_240625.png)
 
-### (2) Reason
+<a id="2-reason"></a>
+### (2) Reason { #2-reason }
 You can write the reason for the kickout, up to 100 characters.
 This input information is not exposed to the game user, and you can enter a brief reason for registering the kickout for operational purposes.
 
-### (3) Whether to Expose Popup
+<a id="3-whether-to-expose-popup"></a>
+### (3) Whether to Expose Popup { #3-whether-to-expose-popup }
 - Expose Popup: You can enter a message in the popup that is exposed to the user upon kickout.
 - Do Not Expose Popup: Popup is not exposed when kicking out.
 
-### (4) Message
+<a id="4-message"></a>
+### (4) Message { #4-message }
 A kickout message to expose to users. You can write the message only when **Whether to Expose Popup** is **Expose Popup**.
 If you select 'Auto-translate to default language', the message is translated based on what was entered in the default language and the message is filled out using the appropriate language set for each item.
