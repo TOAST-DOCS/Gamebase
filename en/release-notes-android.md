@@ -1,6 +1,6 @@
 <!-- machine_translated: true -->
 
-<!-- pre-align:aligned sig=4c88926373f0 -->
+<!-- pre-align:aligned sig=28cf8b9f9a55 -->
 
 <a id="game-gamebase-release-notes-android"></a>
 ## Game > Gamebase > Release Notes > Android { #game-gamebase-release-notes-android }
