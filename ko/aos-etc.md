@@ -31,13 +31,20 @@ Gamebase에서 지원하는 부가 기능을 설명합니다.
 이와 같이 `단말기에 설정된 언어가 아닌, 다른 언어로 Gamebase 메시지를 표시하고 싶은` 애플리케이션을 위해 Gamebase는 `Display Language` 라는 기능을 제공합니다.
 
 Gamebase는 Display Language로 설정한 언어로 Gamebase 메시지를 표시합니다.
+Display Language로 설정할 수 있는 언어 코드는 BCP 47 언어 태그(Language Tag) 표준을 따르며, 대소문자를 엄격하게 구분합니다.
+
+* 기본 언어: ISO 639-1 표준의 소문자 2자리 언어 코드 (예: ko, en, ja)
+* 지역 구분이 필요한 언어(중국어 등): ISO 639- 1(소문자)-ISO 3166-1(대문자) 조합의 형태 (예: zh-CN, zh-TW)
+
 Display Language에 입력하는 언어 코드는 반드시 아래의 표(**Gamebase에서 지원하는 언어코드의 종류**)에 지정된 코드만을 사용할 수 있습니다.
 
 > <font color="red">[주의]</font><br/>
 >
 > * Display Language는 단말기 설정 언어와 무관하게 Gamebase의 표시 언어를 변경하고 싶은 경우에만 사용하시기 바랍니다.
-> * Display Language Code는 ISO-639 형태의 값으로, 대소문자를 구분합니다.
-> 'EN'이나 'zh-cn'과 같이 설정하면 문제가 발생할 수 있습니다.
+> * 대소문자 구분(Case-Sensitive):
+>     * 2자리 언어 코드는 반드시 소문자로 입력해야 합니다. (예: ko (O) / KO, Ko (X))
+>     * 지역 코드가 포함된 중국어는 언어(소문자)-국가(대문자) 형식을 정확히 지켜야 합니다. (예: zh-CN (O) / zh-cn, ZH-CN (X))
+>     * 'EN'이나 'zh-cn'과 같이 설정하면 문제가 발생할 수 있습니다.
 > * 만일 Display Language Code로 입력한 값이 아래의 표(**Gamebase에서 지원하는 언어코드의 종류**)에 존재하지 않는다면, Display Langauge Code는 Gamebase 콘솔에서 설정한 기본 언어로 지정됩니다.
 >     * 만일 Gamebase 콘솔에서 언어 설정을 하지 않았다면 영어(en)가 기본 언어로 설정됩니다.
 
@@ -628,7 +635,7 @@ void processObserver(String category, GamebaseEventObserverData data) {
 <a id="gamebase-event-handler-purchase-updated"></a>
 #### Purchase Updated
 
-* Promotion 코드 입력을 통해 상품을 획득한 경우 또는 Pending 결제(느린 결제, 부모 동의 등)가 완료되었을 때 발생하는 이벤트입니다.
+* OOAP(Out-Of App Purchases, Promotion 코드 입력이나 Google Play Points, Rewards 등)를 통해 상품을 획득한 경우나 Pending 결제(느린 결제, 부모 동의 등)가 완료되었을 때, 또는 재처리(로그인 후, 앱 포그라운드 복귀시, 결제 직전 자동 호출)가 성공했을 때 발생하는 이벤트입니다.
 * 결제 영수증 정보를 획득할 수 있습니다.
 
 **Example**
@@ -642,8 +649,8 @@ void eventHandlerSample(Activity activity) {
                 case GamebaseEventCategory.PURCHASE_UPDATED:
                     PurchasableReceipt receipt = PurchasableReceipt.from(message.data);
                     if (receipt != null) {
-                        // If the user got item by 'Promotion Code' or
-                        // 'Lazy purchase', or 'Parents permission',...,
+                        // If the user got item by 'OOAP(Out-Of App Purchases)' or
+                        // 'Pending', or 'Retry transaction succeeded',...,
                         // this event will be occurred.
                     }
                     break;
