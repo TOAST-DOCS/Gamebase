@@ -1,3 +1,5 @@
+<!-- machine_translated: true -->
+
 <!-- pre-align:aligned sig=7ac23bca4f79 -->
 
 <a id="game-gamebase-android-sdk-user-guide-etc"></a>
@@ -30,16 +32,23 @@ For example, if the language configured for the device is English and you change
 
 For this, Gamebase provides a Display Language feature for applications that want to use a language that is not the language configured by the device for Gamebase.
 
-Gamebase displays its messages in the language set in Display Language.
-The language code entered for Display Language should be one of the codes listed in the table (**Types of language codes supported by Gamebase) below:
+Gamebase displays messages in the language set as the Display Language.
+The language codes that can be set as the Display Language follow the BCP 47 language tag (Language Tag) standard, and are strictly case sensitive.
+
+* Default Language: A lowercase 2-letter language code from the ISO 639-1 standard (e.g., ko, en, ja)
+* For languages that require regional distinction (such as Chinese): A combination of ISO 639-1 (lowercase) and ISO 3166-1 (uppercase) (e.g., zh-CN, zh-TW)
+
+For the Display Language, you can only use the language codes specified in the table below (**Types of language codes supported by Gamebase**).
 
 > <font color="red">[Caution]</font><br/>
 >
-> * Use Display Language only when you want to change the language displayed in Gamebase to a language other than the one configured by the device.
-> * Display Language Code is a case-sensitive value in the form of ISO-639.
-> There could be a problem if it is configured as a value such as 'EN' or 'zh-cn'.
-> * If the value entered for Display Language Code does not exist in the table below (**Types of Language Codes Supported by Gamebase**), Display Language Code is set to the default language set in the Gamebase console.
->     * If the language is not set in the Gamebase console, English (en) is set as the default language.
+> * Use Display Language only when you want to change the display language of Gamebase regardless of the device's language settings.
+> * Case-Sensitive:
+>     * 2-character language codes must be entered in lowercase. (e.g., ko(O) / KO, Ko(X))
+>     * Chinese with a region code must strictly follow the language(lowercase)-country(uppercase) format. (e.g., zh-CN(O) / zh-cn, ZH-CN(X))
+>     * Setting values such as 'EN' or 'zh-cn' may cause issues.
+> * If the value entered as the Display Language Code does not exist in the table below (**Types of language codes supported by Gamebase**), the Display Language Code is set to the default language configured in the Gamebase console.
+>     * If no language has been set in the Gamebase console, English (en) is set as the default language.
 
 > [Note]
 >
@@ -628,8 +637,8 @@ void processObserver(String category, GamebaseEventObserverData data) {
 <a id="gamebase-event-handler-purchase-updated"></a>
 #### Purchase Updated
 
-* This event is triggered when a user acquires an item via a promotion code or when a pending payment (e.g., slow-process payments, parental consent) is successfully completed.
-* Can acquire payment receipt information.
+* This event is triggered when a user acquires an item through OOAP (Out-Of-App Purchases, such as promotion code entry, Google Play Points, or Rewards), when a pending payment (e.g., slow-process payments, parental consent) is successfully completed, or when a retry transaction (automatically called after login, upon returning to the app foreground, or just before a payment) succeeds.
+* You can retrieve payment receipt information.
 
 **Example**
 
@@ -642,8 +651,8 @@ void eventHandlerSample(Activity activity) {
                 case GamebaseEventCategory.PURCHASE_UPDATED:
                     PurchasableReceipt receipt = PurchasableReceipt.from(message.data);
                     if (receipt != null) {
-                        // If the user got item by 'Promotion Code' or
-                        // 'Lazy purchase', or 'Parents permission',...,
+                        // If the user got item by 'OOAP(Out-Of App Purchases)' or
+                        // 'Pending', or 'Retry transaction succeeded',...,
                         // this event will be occurred.
                     }
                     break;
