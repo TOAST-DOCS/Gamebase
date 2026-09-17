@@ -21,7 +21,7 @@ Retrieve the list of game users who are banned/released from banning, as search 
 
 Retrieve the list of game users who are banned/released from banning, as search conditions allow.
 
-![gamebase_ban_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_01_240813.png)
+![gamebase_ban_01](../static/images/ConsoleGuide/Ban/en/gamebase_ban_01_240813.png)
 
 **Search Conditions**
 
@@ -69,19 +69,19 @@ Retrieve the list of game users who are banned/released from banning, as search 
 
 You can register banning by clicking **Register** on the Retrieve Ban page.
 
-![gamebase_ban_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_02_240813.png)
+![gamebase_ban_02](../static/images/ConsoleGuide/Ban/en/gamebase_ban_02_240813.png)
 <a id="register-ban-1-user-id"></a>
 #### (1) User ID
 Enter a Gamebase user ID to register banning. Multiple users can be registered at once, following the two methods as below.
 
 - **User Input**: Directly enter a user ID to register and press **Enter** or click **Add.** As validity is checked for user IDs, invalid user IDs cannot be entered.
 - **Batch Registration**: Can upload CSV files only, and an example file can be downloaded from the Console page. Up to 10,000 persons can be registered at once by batch.
-  ![gamebase_ban_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_03_240813.png)
+  ![gamebase_ban_03](../static/images/ConsoleGuide/Ban/en/gamebase_ban_03_240813.png)
 
 > [Note]</br>
 >
 > If batch registration fails during progress, a pop-up will be displayed. Click **Download** from the pop-up to download the list of users who are failed to be registered in a file.
-> ![gamebase_ban_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_04_240813.png)
+> ![gamebase_ban_04](../static/images/ConsoleGuide/Ban/en/gamebase_ban_04_240813.png)
 
 <a id="register-ban-2-period"></a>
 #### (2) Period
@@ -115,7 +115,7 @@ If you select this option and register banning, data of the game user is deleted
 
 You can release banning by clicking **Release** on the Retrieve Ban page.
 
-![gamebase_ban_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_05_240813.png)
+![gamebase_ban_05](../static/images/ConsoleGuide/Ban/en/gamebase_ban_05_240813.png)
 
 <a id="release-ban-release-reason"></a>
 #### Release Reason
@@ -129,13 +129,13 @@ Enter a Gamebase user ID to release banning. Multiple users can be registered at
 - **User Input**: Directly enter a user ID to register and press **Enter** or click **Add.** As validity is checked for user IDs, invalid user IDs cannot be entered.
 - **Batch Registration**: Can upload CSV files only, and an example file can be downloaded from the Console page. Up to 10,000 persons can be registered by batch at once.
 
-![gamebase_ban_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_06_240813.png)
+![gamebase_ban_06](../static/images/ConsoleGuide/Ban/en/gamebase_ban_06_240813.png)
 
 
 > [Note]
 >
 > If batch registration fails during progress, a pop-up will be displayed. Click **Download** from the pop-up to download the list of users who are failed to be registered in a file.
-> ![gamebase_ban_04_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_04_240813.png)
+> ![gamebase_ban_04_201812](../static/images/ConsoleGuide/Ban/en/gamebase_ban_04_240813.png)
 
 <a id="template"></a>
 ## Template { #template }
@@ -148,13 +148,13 @@ You can register templates by language, and a message of banning will be display
 Allows you to search the list of registered templates.
 You can register a new template, or modify registered templates, but cannot delete them.
 
-![gamebase_ban_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_08_240813.png)
+![gamebase_ban_07](../static/images/ConsoleGuide/Ban/en/gamebase_ban_08_240813.png)
 
 - In the template list, the Message item will show messages in a language entered as 'Default Language' while registering a template.
 
 <a id="register-template"></a>
 ### Register Template { #register-template }
-![gamebase_ban_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_09_240813.png)
+![gamebase_ban_09](../static/images/ConsoleGuide/Ban/en/gamebase_ban_09_240813.png)
 
 <a id="register-template-1-name"></a>
 #### (1) Name
@@ -172,7 +172,7 @@ Click **Auto Translate to Default Language** and messages in the default languag
 > <font color="red">[Important Note]</font>
 > The AppGuard integration function is available only when the NHN AppGuard service is activated in the same project as the service to which the function is to be applied in NHN Cloud.
 
-![gamebase_ban_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/en/gamebase_ban_10_240813.png)
+![gamebase_ban_10](../static/images/ConsoleGuide/Ban/en/gamebase_ban_10_240813.png)
 
 - **Linking**: Enable this if you want to automatically register the users detected or restricted by AppGuard as Gamebase-banned users.
 - There are two types of **Auto Ban**: **Immediate Block** and **Conditional Block**.

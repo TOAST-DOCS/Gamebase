@@ -16,7 +16,7 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 ## Real-time Monitoring { #real-time-monitoring }
 <a id="real-time-concurrence"></a>
 ### Concurrent User { #real-time-concurrence }
-![analytics_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_01_kr_240103.png)
+![analytics_01](../static/images/ConsoleGuide/Analytics/ko/analytics_01_kr_240103.png)
 
 현재 앱 이용자의 실시간 동접 지표 및 점검, 푸시 정보를 확인할 수 있습니다.
 
@@ -39,7 +39,7 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 
 <a id="dashboard"></a>
 ### Dashboard { #dashboard }
-![analytics_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_02_kr_240103.png)
+![analytics_02](../static/images/ConsoleGuide/Analytics/ko/analytics_02_kr_240103.png)
 
 실시간 이용자 현황에 대한 여러 지표를 한눈에 확인할 수 있습니다.
 
@@ -81,7 +81,7 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 ## User Statistics { #user-indicators }
 <a id="users"></a>
 ### User { #users }
-![analytics_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_03_kr_251119.png)
+![analytics_03](../static/images/ConsoleGuide/Analytics/ko/analytics_03_kr_251119.png)
 
 이용자의 기본 지표들을 확인할 수 있습니다.
 
@@ -108,7 +108,7 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 
 <a id="service-environment"></a>
 ### User Environment { #service-environment }
-![analytics_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_04_kr_240103.png)
+![analytics_04](../static/images/ConsoleGuide/Analytics/ko/analytics_04_kr_240103.png)
 
 이용 환경에 따른 이용자의 지표를 확인할 수 있습니다.
 
@@ -126,7 +126,7 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 
 <a id="user-inflow-and-outflow"></a>
 ### User Inflow and Outflow { #user-inflow-and-outflow }
-![analytics_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_05_kr_240103.png)
+![analytics_05](../static/images/ConsoleGuide/Analytics/ko/analytics_05_kr_240103.png)
 
 앱 이용자의 유입, 유출에 대한 일자별 추이를 확인할 수 있습니다.
 주간, 월간 유입/유출 지표는 오전 10시 기준으로 업데이트되어 반영됩니다.
@@ -155,7 +155,7 @@ Analytics는 다음의 메뉴로 구성되어 있습니다.
 
 <a id="retention"></a>
 ### Retention { #retention }
-![analytics_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_06_kr_240103.png)
+![analytics_06](../static/images/ConsoleGuide/Analytics/ko/analytics_06_kr_240103.png)
 
 Retention은 특정일에 가입한 이용자가 D+1일부터 D+180일까지 얼마나 잔존해 있는지를 보여 주는 지표입니다.
 
@@ -167,7 +167,7 @@ Retention은 특정일에 가입한 이용자가 D+1일부터 D+180일까지 얼
 
 <a id="ltv"></a>
 ### LTV { #ltv }
-![analytics_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_07_kr_240103.png)
+![analytics_07](../static/images/ConsoleGuide/Analytics/ko/analytics_07_kr_240103.png)
 
 LTV는 선택된 이용자 그룹에서 이용자 1명의 1년간 기대 매출을 나타내는 추정 지표입니다.
 
@@ -195,7 +195,7 @@ LTV의 정확한 추정을 위해 아래의 제한 조건이 있습니다.
 
 <a id="life-cycle"></a>
 ### Life Cycle { #life-cycle }
-![analytics_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_08_kr_240103.png)
+![analytics_08](../static/images/ConsoleGuide/Analytics/ko/analytics_08_kr_240103.png)
 
 Life Cycle은 최초로 이용자가 유입된 시점부터, 일별 이용자 추이를 확인할 수 있는 지표입니다. 데이터는 최대 3년까지 제공됩니다.
 
@@ -209,7 +209,7 @@ Life Cycle은 최초로 이용자가 유입된 시점부터, 일별 이용자 �
 
 <a id="frequency7"></a>
 ### Frequency7 { #frequency7 }
-![analytics_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_09_kr_240103.png)
+![analytics_09](../static/images/ConsoleGuide/Analytics/ko/analytics_09_kr_240103.png)
 
 Frequency7 지표는 DAU의 일주일간 방문 수와 비율 정보를 제공합니다. 게임 몰입도, 충성도 등을 한눈에 파악할 수 있습니다.
 
@@ -230,7 +230,7 @@ Frequency7 기준은 아래 3개로 나뉩니다.
 ## Sales Statistics { #sales-indicators }
 <a id="purchase-amount"></a>
 ### Payment Amount { #purchase-amount }
-![analytics_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_10_kr_240103.png)
+![analytics_10](../static/images/ConsoleGuide/Analytics/ko/analytics_10_kr_240103.png)
 
 결제 금액에 대한 지표를 확인할 수 있습니다.
 
@@ -247,7 +247,7 @@ Frequency7 기준은 아래 3개로 나뉩니다.
 
 <a id="paying-users"></a>
 ### Paying User { #paying-users }
-![analytics_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_11_kr_240103.png)
+![analytics_11](../static/images/ConsoleGuide/Analytics/ko/analytics_11_kr_240103.png)
 
 유료 이용자(PU)에 관한 지표를 확인할 수 있습니다.
 아래는 그래프와 표에 나온 용어 설명입니다.
@@ -266,7 +266,7 @@ Frequency7 기준은 아래 3개로 나뉩니다.
 
 <a id="item-sales-indicators"></a>
 ### Item Sales { #item-sales-indicators }
-![analytics_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_12_kr_240103.png)
+![analytics_12](../static/images/ConsoleGuide/Analytics/ko/analytics_12_kr_240103.png)
 
 등록된 아이템의 판매 지표를 확인할 수 있습니다.
 
@@ -280,7 +280,7 @@ Frequency7 기준은 아래 3개로 나뉩니다.
 
 <a id="first-purchase"></a>
 ### First Purchase { #first-purchase }
-![analytics_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_13_kr_240103.png)
+![analytics_13](../static/images/ConsoleGuide/Analytics/ko/analytics_13_kr_240103.png)
 
 신규 유료 이용자의 첫 구매에 관한 정보를 확인할 수 있습니다.
 
@@ -297,7 +297,7 @@ Frequency7 기준은 아래 3개로 나뉩니다.
 ## Concurrent Group User { #group-concurrence }
 <a id="concurrent-group-users"></a>
 ### Concurrent Group User { #concurrent-group-users }
-![analytics_14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_14_kr_240103.png)
+![analytics_14](../static/images/ConsoleGuide/Analytics/ko/analytics_14_kr_240103.png)
 
 Gamebase 서비스 이용자가 속한 모든 프로젝트의 동접 지표를 확인할 수 있습니다.
 
@@ -306,7 +306,7 @@ Gamebase 서비스 이용자가 속한 모든 프로젝트의 동접 지표를 �
 
 <a id="group-comparison-indicators"></a>
 ### Group Comparison { #group-comparison-indicators }
-![analytics_15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_15_kr_240103.png)
+![analytics_15](../static/images/ConsoleGuide/Analytics/ko/analytics_15_kr_240103.png)
 
 Gamebase 서비스 이용자가 속한 프로젝트들을 필터와 조합하여 그룹으로 비교할 수 있습니다.
 
@@ -339,7 +339,7 @@ Gamebase 서비스 이용자가 속한 프로젝트들을 필터와 조합하여
 
 선택된 전송 지표 종류와 날짜의 접속, 매출 정보를 확인할 수 있습니다.
 동시 접속자는 당일은 CCU를 제공하며, 일자별은 DAU 정보를 제공합니다. 당일이면 10분 단위로 정보가 갱신됩니다.
-![analytics_16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_16_kr_240103.png)
+![analytics_16](../static/images/ConsoleGuide/Analytics/ko/analytics_16_kr_240103.png)
 
 * CCU (Concurrent User): 10분 단위로 측정된 실시간 동시 접속자 수(로그인 이용자 수)
 * DAU (Daily Active User): 일간 이용자 아이디 기준, 로그인 1회 이상 액티브 이용자 수
@@ -351,7 +351,7 @@ Gamebase 서비스 이용자가 속한 프로젝트들을 필터와 조합하여
 ### Status By Level { #status-by-level }
 
 레벨별로 접속, 매출 현황을 확인할 수 있습니다.
-![analytics_17](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_17_kr_240103.png)
+![analytics_17](../static/images/ConsoleGuide/Analytics/ko/analytics_17_kr_240103.png)
 
 * DAU (Daily Active User): 일간 이용자 아이디 기준, 로그인 1회 이상 액티브 이용자 수
 * Avg.Playtime: 해당 레벨의 일자별 전체 Playtime의 평균(DAU의 Playtime의 합 / DAU)
@@ -366,7 +366,7 @@ Gamebase 서비스 이용자가 속한 프로젝트들을 필터와 조합하여
 ### Status By Channel { #status-by-channel }
 
 월드/서버/채널별로 접속, 매출 현황을 확인할 수 있습니다.
-![analytics_18](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_18_kr_240103.png)
+![analytics_18](../static/images/ConsoleGuide/Analytics/ko/analytics_18_kr_240103.png)
 
 * DAU (Daily Active User): 일간 이용자 아이디 기준, 로그인 1회 이상 액티브 이용자 수
 * Avg.Playtime: 해당 레벨의 일자별 전체 Playtime의 평균(DAU의 Playtime의 합 / DAU)
@@ -381,7 +381,7 @@ Gamebase 서비스 이용자가 속한 프로젝트들을 필터와 조합하여
 ### Status By Class { #status-by-class }
 
 클래스/직업별로 접속, 매출 현황을 확인할 수 있습니다.
-![analytics_19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_19_kr_240103.png)
+![analytics_19](../static/images/ConsoleGuide/Analytics/ko/analytics_19_kr_240103.png)
 
 * DAU (Daily Active Users): 일간 이용자 아이디 기준, 로그인 1회 이상 액티브 이용자 수
 * Avg.Playtime: 해당 레벨의 일자별 전체 Playtime의 평균(DAU의 Playtime의 합 / DAU)
@@ -400,7 +400,7 @@ Gamebase 서비스 이용자가 속한 프로젝트들을 필터와 조합하여
 * 달성 레벨: 달성한 레벨
 * 레벨 업 달성 이용자: 해당 레벨을 달성한 이용자 수
 * 레벨 업 평균 달성 시간(분): 해당 레벨을 달성한 이용자들의 평균 달성 시간(분)
-![analytics_20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_20_kr_240103.png)
+![analytics_20](../static/images/ConsoleGuide/Analytics/ko/analytics_20_kr_240103.png)
 
 <a id="item-sales-status"></a>
 ### Item Sales Status { #item-sales-status }
@@ -411,11 +411,11 @@ Gamebase 서비스 이용자가 속한 프로젝트들을 필터와 조합하여
 * 결제 건수
 * PU (Paying User)
 * 신규 PU
-![analytics_21](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_21_kr_240103.png)
+![analytics_21](../static/images/ConsoleGuide/Analytics/ko/analytics_21_kr_240103.png)
 
 <a id="top-50-sales-items"></a>
 ### Item Sales TOP 50 { #top-50-sales-items }
 
 선택된 전송 지표 종류 및 값에 따른 아이템 판매 상위 50개 항목을 확인할 수 있습니다.
 
-![analytics_22](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_22_kr_240103.png)
+![analytics_22](../static/images/ConsoleGuide/Analytics/ko/analytics_22_kr_240103.png)

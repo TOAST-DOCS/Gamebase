@@ -118,7 +118,7 @@ Gamebase.xcframework及び必要なadapterをダウンロードします。<br/>
 * 8) FacebookAuthAdapterを使用する場合にはFacebook SDKを**Target > Build Phases > Embeded Frameworks**に追加する必要があります。
 ![Facebook Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_2.65.0-facebook-embeded.png)
 * 9) PaycoAuthAdapterを使用する場合にはPAYCO SDKを**Target > Build Phases > Embeded Frameworks**に追加する必要があります。
-![PAYCO Embeded Frameworks](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/iOSDevelopersGuide/started-xcode-settings-payco-embeded-20241025.png)
+![PAYCO Embeded Frameworks](../static/images/iOSDevelopersGuide/started-xcode-settings-payco-embeded-20241025.png)
 
 > [INFO]
 >
