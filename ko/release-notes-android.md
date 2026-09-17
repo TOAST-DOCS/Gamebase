@@ -17,7 +17,7 @@
 <a id="830-2026-09-17-feature-updates"></a>
 #### 기능 개선/변경
 
-* 로그인 후 또는 앱을 백그라운드에서 포그라운드로 복귀 했을때 실행되는 자동 재처리가 성공할 경우, Gamebase Event Handler의 Purchase Updated 이벤트가 발생합니다.
+* 로그인 후 또는 앱을 백그라운드에서 포그라운드로 복귀했을 때 실행되는 자동 재처리 성공 시 Gamebase Event Handler의 Purchase Updated 이벤트가 발생합니다.
     * [Game > Gamebase > Android SDK 사용 가이드 > ETC > Additional Features > Gamebase Event Handler > Purchase Updated](./aos-etc/#gamebase-event-handler-purchase-updated)
 
 <a id="2-82-0-2026-07-28"></a>
