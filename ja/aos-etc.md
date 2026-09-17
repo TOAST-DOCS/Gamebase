@@ -1,3 +1,5 @@
+<!-- machine_translated: true -->
+
 <!-- pre-align:aligned sig=7ac23bca4f79 -->
 
 <a id="game-gamebase-android-sdk-user-guide-etc"></a>
@@ -30,16 +32,23 @@ Gamebaseで対応している付加機能について説明します。
 
 このように`端末に設定された言語ではなく、他の言語でGamebaseのメッセージを表示したい`アプリケーションのためにGamebaseは`Display Language`という機能を提供します。
 
-GamebaseはDisplay Languageで設定した言語でGamebaseのメッセージを表示します。
-Display Languageに入力する言語コードは、以下の表(**Gamebaseでサポートする言語コードの種類**)で指定したコードだけを使用できます。
+GamebaseはDisplay Languageに設定した言語でGamebaseのメッセージを表示します。
+Display Languageに設定できる言語コードはBCP 47言語タグ（Language Tag）標準に従い、大文字と小文字を厳密に区別します。
+
+* デフォルト言語: ISO 639-1 標準の小文字 2 桁の言語コード（例: ko、en、ja）
+* 地域の区別が必要な言語（中国語など）: ISO 639-1（小文字）-ISO 3166-1（大文字）の組み合わせ形式（例: zh-CN、zh-TW）
+
+Display Language に入力する言語コードは、必ず以下の表（**Gamebase でサポートする言語コードの種類**）に指定されたコードのみを使用できます。
 
 > <font color="red">[注意]</font><br/>
 >
-> * Display Languageは、端末設定言語と関係なくGamebaseの表示言語を変更したい場合にのみ使用してください。
-> * Display Language CodeはISO-639形式の値で、大文字/小文字を区別します。
-> 'EN'または'zh-cn'と設定すると問題が発生する場合があります。
-> * もしDisplay Language Codeに入力した値が以下の表(**Gamebaseでサポートする言語コードの種類**)に存在しない場合、Display Langauge CodeはGamebaseコンソールで設定したデフォルト言語に指定されます。
->     * もしGamebaseコンソールで言語設定を行っていなければ英語(en)がデフォルト言語に設定されます。
+> * Display Language は、端末の設定言語に関係なく Gamebase の表示言語を変更したい場合にのみご使用ください。
+> * 大文字と小文字の区別 (Case-Sensitive):
+>     * 2桁の言語コードは必ず小文字で入力する必要があります。(例: ko(O) / KO, Ko(X))
+>     * 地域コードを含む中国語は、言語(小文字)-国(大文字) の形式を正確に守る必要があります。(例: zh-CN(O) / zh-cn, ZH-CN(X))
+>     * 「EN」や「zh-cn」のように設定すると、問題が発生する場合があります。
+> * Display Language Code として入力した値が下の表(**Gamebase でサポートする言語コードの種類**)に存在しない場合、Display Language Code は Gamebase コンソールで設定したデフォルト言語に設定されます。
+>     * Gamebase コンソールで言語設定を行っていない場合は、英語(en) がデフォルト言語として設定されます。
 
 > [参考]
 >
@@ -629,8 +638,8 @@ void processObserver(String category, GamebaseEventObserverData data) {
 <a id="gamebase-event-handler-purchase-updated"></a>
 #### Purchase Updated
 
-* Promotionコード入力により商品を取得した場合、またはPending決済(遅延決済、保護者の同意など)が完了した際に発生するイベントです。
-* 決済領収書情報を取得できます。
+* OOAP（Out-Of App Purchases、Promotion コード入力や Google Play Points、Rewards など）を通じて商品を取得した場合や、Pending 決済（遅延決済、保護者の同意など）が完了したとき、または再処理（ログイン後、アプリのフォアグラウンド復帰時、決済直前の自動呼び出し）が成功したときに発生するイベントです。
+* 決済の領収書情報を取得できます。
 
 **Example**
 
@@ -643,8 +652,8 @@ void eventHandlerSample(Activity activity) {
                 case GamebaseEventCategory.PURCHASE_UPDATED:
                     PurchasableReceipt receipt = PurchasableReceipt.from(message.data);
                     if (receipt != null) {
-                        // If the user got item by 'Promotion Code' or
-                        // 'Lazy purchase', or 'Parents permission',...,
+                        // If the user got item by 'OOAP(Out-Of App Purchases)' or
+                        // 'Pending', or 'Retry transaction succeeded',...,
                         // this event will be occurred.
                     }
                     break;
