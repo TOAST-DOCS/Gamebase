@@ -283,7 +283,28 @@ void USample::LoginWithAdditionalInfo()
 <a id="login-with-idp-cancel-login-with-external-browser"></a>
 #### Cancel Login with External Browser
 
-<!-- TODO: translate body -->
+For IdPs that do not use the SDK in a Windows environment, login is performed through an external browser.
+If the login flow goes through an external browser during the login process, you can call this API to stop the Login process and deliver the result.
+
+**API**
+
+Supported Platforms
+
+<span style="color:#F9D0C4; font-size: 10pt">■</span> UNREAL_WINDOWS
+
+```cpp
+void CancelLoginWithExternalBrowser();
+```
+
+**Example**
+
+```cpp
+void USample::CancelLogin()
+{
+    UGamebaseSubsystem* Subsystem = UGameInstance::GetSubsystem<UGamebaseSubsystem>(GetGameInstance());
+    Subsystem->CancelLoginWithExternalBrowser();
+}
+```
 
 <a id="login-with-credential"></a>
 ### Login with Credential { #login-with-credential }

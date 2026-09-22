@@ -948,8 +948,6 @@ Standaloneでサービスされているアプリから接続されるアドレ�
 <a id="transfer-account-properties"></a>
 ### Properties { #transfer-account-properties }
 
-<!-- TODO: translate body -->
-
 <a id="transfer-account-properties-issue"></a>
 #### 発行
 端末移行発行キーの形式を設定します。

@@ -182,8 +182,6 @@
 <a id="properties"></a>
 ### Properties { #properties }
 
-<!-- TODO: translate body -->
-
 <a id="properties-query-by-coupon-code"></a>
 #### クーポンコード別照会
 クーポンコードを直接入力して、使用履歴を照会できます。
