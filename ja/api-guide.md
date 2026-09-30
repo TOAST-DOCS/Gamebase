@@ -2621,6 +2621,7 @@ Gamebaseは、NHN Cloud PushサービスのサーバーAPIで**Wrapping**機能�
 |   | トークンで照会 | GET | /tcgb-push/v1.3/apps/{appId}/tokens/{token} | /push/v2.4/appkeys/{appkey}/tokens/{token} |
 |   | UIDで照会 | GET | /tcgb-push/v1.3/apps/{appId}/tokens | /push/v2.4/appkeys/{appkey}/tokens |
 |   | 削除 | DELETE | /tcgb-push/v1.3/apps/{appId}/tokens/{token} | /push/v2.4/appkeys/{appkey}/tokens/{token} |
+
 <br/>
 
 **当該APIの詳細については次のリンクを参照してください。**
@@ -2686,6 +2687,7 @@ X-Secret-Key: IgsaAP
 | WEB | Web |
 | WINDOWS | Windows |
 | MACOS | macOS |
+
 <br/>
 
 <a id="store-code"></a>
@@ -2704,6 +2706,7 @@ X-Secret-Key: IgsaAP
 | MYCARD | Global MyCard |
 | EPIC | Epic Games Store |
 | STEAM | STEAM Store |
+
 <br/>
 
 <a id="identity-provider-code"></a>
@@ -2738,6 +2741,7 @@ X-Secret-Key: IgsaAP
 | T | 退会猶予状態のユーザー |
 | P | 利用停止猶予状態のユーザー |
 | M | 消失したアカウント |
+
 <br/>
 
 <a id="store-reference-status"></a>
@@ -2762,6 +2766,7 @@ X-Secret-Key: IgsaAP
 | | IN_GRACE | 猶予中 |
 | | EXPIRED | 期限切れ |
 | | NOT_APPOINTED | 適切な特定状態なし |
+
 <br/>
 
 <a id="withdrawal-event-type"></a>
@@ -2780,6 +2785,7 @@ X-Secret-Key: IgsaAP
 | WAGE | 猶予期間満了に伴うシステム自動退会 |
 | WAT | 退会猶予状態<br>- 最終退会状態ではない |
 | WAC | 退会猶予のキャンセル |
+
 <br/>
 
 <a id="support"></a>

@@ -2619,6 +2619,7 @@ Gamebase는 NHN Cloud Push 서비스의 서버 API에 대해 **Wrapping** 기능
 |   | 토큰으로 조회 | GET | /tcgb-push/v1.3/apps/{appId}/tokens/{token} | /push/v2.4/appkeys/{appkey}/tokens/{token} |
 |   | UID로 조회 | GET | /tcgb-push/v1.3/apps/{appId}/tokens | /push/v2.4/appkeys/{appkey}/tokens |
 |   | 삭제 | DELETE | /tcgb-push/v1.3/apps/{appId}/tokens/{token} | /push/v2.4/appkeys/{appkey}/tokens/{token} |
+
 <br/>
 
 **해당 API에 대한 상세 설명은 다음 링크를 참고하시기 바랍니다.**
@@ -2684,6 +2685,7 @@ X-Secret-Key: IgsaAP
 | WEB | Web |
 | WINDOWS | Windows |
 | MACOS | macOS |
+
 <br/>
 
 <a id="store-code"></a>
@@ -2702,6 +2704,7 @@ X-Secret-Key: IgsaAP
 | MYCARD | Global MyCard |
 | EPIC | Epic Games Store |
 | STEAM | STEAM Store |
+
 <br/>
 
 <a id="identity-provider-code"></a>
@@ -2736,6 +2739,7 @@ X-Secret-Key: IgsaAP
 | T | 탈퇴 유예 상태인 유저 |
 | P | 이용 정지 유예 상태인 유저 |
 | M | 유실된 계정 |
+
 <br/>
 
 <a id="store-reference-status"></a>
@@ -2760,6 +2764,7 @@ X-Secret-Key: IgsaAP
 | | IN_GRACE | 유예 중 |
 | | EXPIRED | 만료 |
 | | NOT_APPOINTED | 알맞은 특정 상태 없음 |
+
 <br/>
 
 <a id="withdrawal-event-type"></a>
@@ -2778,6 +2783,7 @@ X-Secret-Key: IgsaAP
 | WAGE | 유예 기간 만료에 따른 시스템 자동 탈퇴 |
 | WAT | 탈퇴 유예 상태<br>- 최종 탈퇴 상태가 아님 |
 | WAC | 탈퇴 유예 취소 |
+
 <br/>
 
 <a id="support"></a>

@@ -207,6 +207,7 @@ static void ShowTermsView(GamebaseRequest.Terms.GamebaseTermsConfiguration confi
 
 
 **GamebaseResponse.Terms.ShowTermsViewResult**
+
 | Parameter              | Values                          | Description         |
 | ---------------------- | --------------------------------| ------------------- |
 | isTermsUIOpened        | bool                            | **true**：約款ウィンドウが表示され、ユーザーが同意して約款ウィンドウが終了しました。<br>**false**：すでに約款に同意していて約款ウィンドウが表示されずに約款ウィンドウが終了しました。 |
