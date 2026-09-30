@@ -12,9 +12,9 @@ Create your license key and OAuth credentials in the one-store to register for t
 Apps > select App > In-App information > Licensing & in-app billing
 ```
 
-![[]](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/iap_52.PNG)
+![[]](../static/images/StoreConsoleGuide/iap_52.PNG)
 
-![[]](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/ONEStore/en/store_info_registration_en_231226.png)
+![[]](../static/images/StoreConsoleGuide/ONEStore/en/store_info_registration_en_231226.png)
 
 | Key | Description                                             |
 | ------------- | ------------------------------ |

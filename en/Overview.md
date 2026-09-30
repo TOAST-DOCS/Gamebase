@@ -6,7 +6,7 @@
 Gamebase is a strongly recommended service as it embraces a decade's operational knowhow of NHN, a leading game platform provider. 
 All you need to do is apply the Gamebase SDK and all services are at your fingertips.
 
-![Gamebase_summary](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/en/Gamebase_overview_00_en_202501.png)
+![Gamebase_summary](../static/images/Overview/en/Gamebase_overview_00_en_202501.png)
 
 <a id="gamebase-sample-app"></a>
 ## Gamebase Sample App { #gamebase-sample-app }
@@ -246,15 +246,15 @@ As for the standard member policy and permission for NHN Cloud, see the followin
 
 **Console > Project Settings > Manage Members**
 On the Project Settings screen, you can add Toast members, or grant permissions to registered members individually. Multiple permissions can be granted to a single member.
-![Project Permission](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/en/gamebase_overview_01_en_240105.png)
+![Project Permission](../static/images/Overview/en/gamebase_overview_01_en_240105.png)
 
 **Console > Project Settings > Manage Group Permission**
 For the ease of operation, group permission can be granted to a Toast member by registering frequently used permissions as *group permission*.
-![Project Permission Group](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/en/gamebase_overview_02_en_240105.png)
+![Project Permission Group](../static/images/Overview/en/gamebase_overview_02_en_240105.png)
 
 **Console > Organization Settings > Project Common Permission Group Settings**
 On the Organization Admin screen, you can manage the permission group commonly used in the project within the organization.
-![Organization Permission Group](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/Overview/en/gamebase_overview_03_en_240105.png)
+![Organization Permission Group](../static/images/Overview/en/gamebase_overview_03_en_240105.png)
 
 <a id="permissions-list-provided-by-gamebase"></a>
 ### Permissions list provided by Gamebase { #permissions-list-provided-by-gamebase }

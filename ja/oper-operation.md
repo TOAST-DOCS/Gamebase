@@ -14,7 +14,7 @@
 <a id="maintenance"></a>
 ## Maintenance { #maintenance }
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_01_ja_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/jp/gamebase_maintenance_01_ja_240625.png)
 
 ゲームメンテナンスが必要な場合、Consoleから簡単に登録することができます。
 登録したアプリメンテナンス内訳の照会とメンテナンスの登録内容及び進行状態などを一目で確認でき、登録されたメンテナンス理由でメンテナンスを検索することができます。
@@ -30,14 +30,14 @@ Gamebaseでは、メンテナンスが進行しているゲーム内でユーザ
 Gamebaseで基本提供するメンテナンスポップアップ
 ![gamebase_op_img](https://static.toastoven.net/prod_gamebase/gamebase_op_02_201812.png)
 Gamebaseで基本提供するメンテナンスページ(メンテナンス理由とメンテナンス時間を表示)
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_02_ja_240105.jpg)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/jp/gamebase_maintenance_02_ja_240105.jpg)
 
 <a id="register-maintenance"></a>
 ### Register Maintenance { #register-maintenance }
 
 **メンテナンス**タブから**登録**ボタンをクリックすると、メンテナンスを登録する画面へ移動します。
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_03_ja_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/jp/gamebase_maintenance_03_ja_240625.png)
 
 >  <font color="red">[注意] </font><br/>
 >  
@@ -52,7 +52,7 @@ Gamebaseで基本提供するメンテナンスページ(メンテナンス理�
 - 一部クライアント：特定クライアントバージョンにのみメンテナンスが必要な場合に選択します。「バージョン選択」ボタンを押すと、クライアントメニューで登録したクライアントバージョンリストが出力されます。
   <br>**一部クライアント選択画面例**
  <br>クライアントの状態およびストア別全体選択が可能で、メンテナンスを行いたいクライアントのバージョンを選択して確認ボタンを押してください。
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_04_ja_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/jp/gamebase_maintenance_04_ja_240625.png)
 
 <a id="register-maintenance-2-reason"></a>
 #### (2)理由
@@ -85,7 +85,7 @@ Gamebaseで基本提供するメンテナンスページ(メンテナンス理�
 
 ##### 4-3)外部ページ
 
-![image alt](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_05_ja_240625.png)
+![image alt](../static/images/ConsoleGuide/Operation/jp/gamebase_maintenance_05_ja_240625.png)
 メンテナンスページまたはメンテナンステンプレートを既にお持ちの場合、メンテナンスページを該当するURLでリンクさせることができます。
 リンクさせるURLのプレビューページも併せてサポートします。
 メンテナンス情報を別途入力してメンテナンス情報を受け取りたい場合、**メンテナンス情報の提供**項目を選択して**表示するメッセージ**にメッセージを入力します。メンテナンスページでGamebaseのメンテナンス内容に登録したメンテナンス情報(メンテナンス時間の情報、メッセージなど)を受け取ることができます。
@@ -111,7 +111,7 @@ Gamebaseで基本提供するメンテナンスページ(メンテナンス理�
 <a id="notice"></a>
 ## Notice { #notice }
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_06_ja_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/jp/gamebase_maintenance_06_ja_240625.png)
 
 アプリを起動する際にポップアップ形式で表示されるお知らせを提供します。ログインする前に表示されるポップアップですので、外部認証障害やゲームサーバーに障害が発生した場合、登録して使用してください。
 登録されたお知らせリストと進行状態などを一目で確認でき、お知らせメッセージでも検索できます。
@@ -126,7 +126,7 @@ Gamebaseで基本提供するメンテナンスページ(メンテナンス理�
 
 告知メイン画面で「登録」ボタンを押すと告知を登録する画面に移動します。
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_07_ja_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/jp/gamebase_maintenance_07_ja_240625.png)
 
 <a id="register-notice-1-target"></a>
 #### (1) 対象
@@ -137,7 +137,7 @@ Gamebaseで基本提供するメンテナンスページ(メンテナンス理�
 - 一部のクライアント：特定のクライアントバージョンに対してだけメンテナンスが必要な場合に選択します。「バージョン 選択」ボタンをクリックすると、クライアントメニューから登録したクライアントバージョンのリストが出力されます。
   <br>**一部のクライアントを選択する画面の例**
   <br>クライアントの状態及びストアごとに全体を選択することができ、メンテナンスが必要なクライアントバージョンを選択してから確認ボタンを押してください。
-  ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_04_ja_240625.png)
+  ![gamebase_op_img](../static/images/ConsoleGuide/Operation/jp/gamebase_maintenance_04_ja_240625.png)
 
 <a id="register-notice-2-target-country"></a>
 #### (2) 対象国家
@@ -199,7 +199,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 登録されたゲーム告知情報を一目で確認することができ、**表示中**状態のゲーム告知の登録日を基準にゲーム内にゲーム告知リストが表示されます。
 ゲーム告知メッセージの掲示状態とタイトルでゲーム告知の検索が可能です。 
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_01_ko_250415.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_01_ko_250415.png)
 
 (1) **状態**：ゲーム内ゲーム告知の掲示状態を基準にゲーム告知リストの検索が可能です。
   - 予定：ゲーム告知が表示される予定
@@ -220,7 +220,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 
 <a id="register-game-notice"></a>
 ### Register Game notice { #register-game-notice }
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_02_ko_250415.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_02_ko_250415.png)
 
 **ゲーム告知**リストで**登録** ボタンを選択するとゲーム告知を登録できます。
 
@@ -233,7 +233,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 - 一部クライアント：特定クライアントバージョンにのみ表示が必要な場合に選択します。**バージョン選択**をクリックすると、クライアントメニューで登録したクライアントバージョンリストが表示されます。
   <br>**一部クライアント選択画面の例**
   <br>クライアント状態及びストアごとに全体選択が可能で、表示したいクライアントバージョンを選択した後、**確認**をクリックします。
-  ![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240611.png)
+  ![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_04_ko_240611.png)
 
 
 <a id="register-game-notice-2-target-country"></a>
@@ -275,7 +275,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 > アップロードした画像はゲーム告知の表示期間終了後、14日が経過すると自動的に削除されます。
 <a id="modify-game-notice-setting"></a>
 ### Modify Game notice Setting { #modify-game-notice-setting }
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/ko/gamebase_maintenance_03_ko_250415.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/ko/gamebase_maintenance_03_ko_250415.png)
 
 ゲーム告知の基本的な設定ができる場合、設定した情報は全てのゲーム告知に一括適用されます。
 - 画像リスト使用：画像リストを使用すると、ゲーム告知に登録した画像がゲーム内のリスト画面にも表示されます。
@@ -283,7 +283,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 <a id="image-notice"></a>
 ## Image notice { #image-notice }
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_08_ja_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/jp/gamebase_maintenance_08_ja_240625.png)
 
 コンソールにイメージを登録してゲーム内にイメージで告知を簡単に提供できます。
 ユーザーが検索した期間内現在進行中の告知は上部に最大10件まで表示され、完了した告知は下部に別のリストとして表示されます。
@@ -304,7 +304,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 - **修正日**：告知が最終的に修正された時刻を表示します。
 - **クリック率(%)**：ゲーム内にイメージ告知が表示された数とイメージ告知をクリックした数を簡単な統計で表示します。全体比率の値を表示し、確認ボタンを押すと表示期間の日別表示数とクリック数をグラフで確認できます。
  * 告知の表示期間範囲内のユーザーが検索して照会した日付別データは、ファイルとしてダウンロードして確認できます。
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_09_ja_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/jp/gamebase_maintenance_09_ja_240625.png)
 ```
 (1)予定：イメージ告知が表示される予定の状態
 (2)表示中：現在、イメージ告知が表示中の状態
@@ -315,7 +315,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 ### Register Image notice { #register-image-notice }
 
 **イメージ告知**リストから**登録**ボタンを選択すると、イメージ告知を登録できます。
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_04_ja_250415.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/jp/gamebase_maintenance_04_ja_250415.png)
 
 <a id="register-image-notice-1-target"></a>
 #### (1)対象
@@ -326,7 +326,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 - 一部のクライアント：特定のクライアントバージョンにのみ表示する必要がある場合に選択します。「バージョン選択」ボタンを押すと、クライアントメニューで登録したクライアントバージョンリストが出力されます。
   <br>**一部のクライアント選択画面例**
  <br>クライアントの状態およびストア別全体選択が可能で、表示したいクライアントバージョンを選択して確認ボタンを押してください。
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_04_ja_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/jp/gamebase_maintenance_04_ja_240625.png)
 
 
 <a id="register-image-notice-2-target-country"></a>
@@ -388,7 +388,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 
 <a id="modify-image-notice-setting"></a>
 ### Modify Image notice setting { #modify-image-notice-setting }
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_10_ja_240709.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/jp/gamebase_maintenance_10_ja_240709.png)
 画像告知ポップアップの基本的な設定を行うことができ、設定した情報はすべての画像告知に一括適用されます。
 
 - 画像告知タイプ：画像告知の投稿タイプを指定できます。選択できる投稿タイプは次のとおりです。
@@ -404,14 +404,14 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 ## Kick Out { #kick-out }
 ゲームメンテナンスなどの理由でユーザーの接続を解除する場合は、Consoleから簡単にユーザーの接続を解除できます。
 登録したキックアウト内容は、ひと目で確認できます。
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_11_ja_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/jp/gamebase_maintenance_11_ja_240625.png)
 
 <a id="register-kick-out"></a>
 ### Register Kick Out { #register-kick-out }
 
 **キックアウト**タブで**登録**ボタンを押すと、キックアウトを登録する画面に移動します。
 
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_12_ja_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/jp/gamebase_maintenance_12_ja_240625.png)
 
 <a id="1-target-to-process"></a>
 ### (1)処理対象 { #1-target-to-process }
@@ -420,7 +420,7 @@ Timezoneの場合、基本的に「UTC+09:00」が選択されており、サー
 - 一部のクライアント：特定のクライアントバージョンにのみキックアウトが必要な場合に選択します。「バージョン選択」ボタンを押すと、クライアントメニューで登録したクライアントバージョンリストが出力されます。
   <br>**[一部のクライアント選択画面例]**
  <br>クライアントの状態およびストア別全体選択が可能で、メンテナンスを行いいたいクライアントバージョンを選択し、確認ボタンを押してください。
-![gamebase_op_img](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Operation/jp/gamebase_maintenance_04_ja_240625.png)
+![gamebase_op_img](../static/images/ConsoleGuide/Operation/jp/gamebase_maintenance_04_ja_240625.png)
 
 <a id="2-reason"></a>
 ### (2)理由 { #2-reason }

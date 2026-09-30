@@ -15,7 +15,7 @@ Gamebase에서는 NHN Cloud Push 서비스를 사용해 푸시 알림을 발송�
 > 서비스 중인 게임에서 **Gamebase SDK 2.6.0 이상** 버전을 적용한 경우에 사용하는 메뉴입니다.
 
 푸시를 발송한 이력과 등록된 푸시 예약 목록을 확인할 수 있습니다.
-![push_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_01_kr_240103.png)
+![push_01](../static/images/ConsoleGuide/Push/ko/push_01_kr_240103.png)
 
 <a id="registered-list"></a>
 ### Registered List { #registered-list }
@@ -27,14 +27,14 @@ Gamebase에서는 NHN Cloud Push 서비스를 사용해 푸시 알림을 발송�
 
 발송 이력 목록에서 푸시를 선택하면 전송된 푸시의 상세 내역을 조회할 수 있습니다.
 **복사** 버튼을 클릭하면 발송된 푸시의 등록 정보를 이용해 손쉽게 푸시를 등록할 수 있습니다.
-![push_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_02_kr_240103.png)
+![push_02](../static/images/ConsoleGuide/Push/ko/push_02_kr_240103.png)
 
 <a id="register-push"></a>
 ### Register Push { #register-push }
 
 새로운 푸시를 등록하려면 **등록** 버튼을 클릭합니다.
 콘솔에 등록한 값이 실제 단말기에서 어떻게 보일지 오른쪽의 미리 보기에서 확인할 수 있습니다.
-![push_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_03_kr_240103.png)
+![push_03](../static/images/ConsoleGuide/Push/ko/push_03_kr_240103.png)
 
 <a id="register-push-1-send-type"></a>
 #### (1) 발송 타입
@@ -61,7 +61,7 @@ Gamebase에서는 NHN Cloud Push 서비스를 사용해 푸시 알림을 발송�
 #### (3) 이벤트 키
 푸시 발송 통계에 사용하는 이벤트 키를 선택합니다.
 **선택** 버튼을 클릭하면 이벤트 키 선택 팝업이 나타나며 **수집 중** 상태의 이벤트키를 선택할 수 있습니다.
-![push_4](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_04_kr_240103.png)
+![push_4](../static/images/ConsoleGuide/Push/ko/push_04_kr_240103.png)
 
 <a id="register-push-4-target-country"></a>
 #### (4) 대상 국가
@@ -177,7 +177,7 @@ Android 푸시 메시지 수신 시에 실행되는 미디어를 추가할 수 �
 
 <a id="outboundinbound"></a>
 ### 발송/수신 { #outboundinbound }
-![push_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_05_kr_240103.png)
+![push_05](../static/images/ConsoleGuide/Push/ko/push_05_kr_240103.png)
 
 1. 발송/수신 통계 
 
@@ -200,7 +200,7 @@ Android 푸시 메시지 수신 시에 실행되는 미디어를 추가할 수 �
 
 <a id="token-registration"></a>
 ### 토큰 등록 { #token-registration }
-![push_6](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_06_kr_240103.png)
+![push_6](../static/images/ConsoleGuide/Push/ko/push_06_kr_240103.png)
 
 1. 토큰 등록 통계
 
@@ -219,7 +219,7 @@ Android 푸시 메시지 수신 시에 실행되는 미디어를 추가할 수 �
 <a id="inbound-settings"></a>
 ### 수신 설정 { #inbound-settings }
 선택된 기간 동안의 수신 설정 관련 통계를 보여줍니다.
-![push_7](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_07_kr_240103.png)
+![push_7](../static/images/ConsoleGuide/Push/ko/push_07_kr_240103.png)
 
 |구분|정보성|광고성|야간 광고성|
 |------|:---:|:---:|:---:|
@@ -231,18 +231,18 @@ Android 푸시 메시지 수신 시에 실행되는 미디어를 추가할 수 �
 <a id="event-key"></a>
 ## Event Key { #event-key }
 푸시 발송 통계에 사용하는 이벤트키를 관리할 수 있습니다.
-![push_8](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_08_kr_240103.png)
+![push_8](../static/images/ConsoleGuide/Push/ko/push_08_kr_240103.png)
 
 Push에서 푸시 메시지를 발송할 때 사용할 이벤트키를 등록할 수 있습니다.
 
 <a id="event-key-register"></a>
 ### Event Key register { #event-key-register }
-![push_9](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_09_kr_240103.png)
+![push_9](../static/images/ConsoleGuide/Push/ko/push_09_kr_240103.png)
 
 <a id="event-key-detail"></a>
 ### Event Key detail { #event-key-detail }
 등록된 이벤트 키를 관리할 수 있습니다.
-![push_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_10_kr_240103.png)
+![push_10](../static/images/ConsoleGuide/Push/ko/push_10_kr_240103.png)
 
 
 상단의 **삭제**, **수정** 버튼을 클릭해 이벤트키 정보를 수정하거나 삭제할 수 있습니다.
@@ -250,7 +250,7 @@ Push에서 푸시 메시지를 발송할 때 사용할 이벤트키를 등록할
 <a id="authentication"></a>
 ## Authentication { #authentication }
 푸시 발송에 사용하는 인증서를 관리할 수 있습니다.
-![push_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_11_kr_240422.png)
+![push_11](../static/images/ConsoleGuide/Push/ko/push_11_kr_240422.png)
 
 각 인증서 별로 **등록**, **수정**, **삭제** 버튼을 클릭해 인증서를 등록, 수정, 삭제할 수 있습니다.
 
@@ -262,28 +262,28 @@ Push에서 푸시 메시지를 발송할 때 사용할 이벤트키를 등록할
 
 <a id="authentication-register"></a>
 ### Authentication register { #authentication-register }
-![push_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_12_kr_240103.png)
-![push_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_13_kr_240103.png)
-![push_14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_14_kr_240103.png)
-![push_15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_15_kr_240103.png)
+![push_12](../static/images/ConsoleGuide/Push/ko/push_12_kr_240103.png)
+![push_13](../static/images/ConsoleGuide/Push/ko/push_13_kr_240103.png)
+![push_14](../static/images/ConsoleGuide/Push/ko/push_14_kr_240103.png)
+![push_15](../static/images/ConsoleGuide/Push/ko/push_15_kr_240103.png)
 
 <a id="tag"></a>
 ## Tag { #tag }
 
 유저를 특정 기준으로 묶어서 전송할 수 있는 태그 기능을 제공합니다.
-![push_16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_16_kr_240103.png)
+![push_16](../static/images/ConsoleGuide/Push/ko/push_16_kr_240103.png)
 
 NHN Cloud Push에서 푸시 메시지를 발송할 때 사용할 태그명을 등록할 수 있습니다.
 
 <a id="tag-register"></a>
 ### Tag register { #tag-register }
-![push_17](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_17_kr_240103.png)
+![push_17](../static/images/ConsoleGuide/Push/ko/push_17_kr_240103.png)
 
 <a id="tag-detail"></a>
 ### Tag detail { #tag-detail }
 
 등록된 태그의 관리 및 해당 태그에 등록된 유저의 목록을 관리할 수 있습니다.
-![push_18](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_18_kr_240103.png)
+![push_18](../static/images/ConsoleGuide/Push/ko/push_18_kr_240103.png)
 
 상단의 **삭제**, **수정** 버튼을 클릭해 태그 정보를 수정하거나 삭제할 수 있으며 하단의 유저 ID 관리 기능을 사용해 태그에 유저를 등록하거나 삭제할 수 있습니다.
 
@@ -291,11 +291,11 @@ NHN Cloud Push에서 푸시 메시지를 발송할 때 사용할 태그명을 �
 #### 유저 등록
 
 ##### 단건 등록
-![push_19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_19_kr_240103.png)
+![push_19](../static/images/ConsoleGuide/Push/ko/push_19_kr_240103.png)
 
 ##### 파일 등록
 
-![push_20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_20_kr_240103.png)
+![push_20](../static/images/ConsoleGuide/Push/ko/push_20_kr_240103.png)
 
 **등록** 버튼을 클릭하면 위와 같이 등록 팝업이 나타나며 직접 ID를 입력하거나 파일을 등록해 입력할 수 있습니다.
 
@@ -304,7 +304,7 @@ NHN Cloud Push에서 푸시 메시지를 발송할 때 사용할 태그명을 �
 <a id="tag-detail-delete-users"></a>
 #### 유저 삭제
 
-![push_21](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_21_kr_240103.png)
+![push_21](../static/images/ConsoleGuide/Push/ko/push_21_kr_240103.png)
 
 태그에 등록된 유저를 삭제하려면 유저 목록에서 왼쪽의 체크 박스를 선택한 후 **삭제** 버튼을 클릭합니다.
 
@@ -330,7 +330,7 @@ NHN Cloud Push에서 푸시 메시지를 발송할 때 사용할 태그명을 �
 
 * 우측 **미리보기** 버튼 클릭 시 설정한 광고 표시 문구 위치에 따른 푸시 예시를 확인할 수 있습니다.
 
-![push_23](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Push/ko/push_23_kr_240103.png)
+![push_23](../static/images/ConsoleGuide/Push/ko/push_23_kr_240103.png)
 
 <a id="token-settings"></a>
 ### 토큰 설정 { #token-settings }

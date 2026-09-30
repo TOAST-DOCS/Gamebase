@@ -15,7 +15,7 @@
 
 検索条件にマッチしたクーポン発行履歴を検索します。
 
-![gamebase_coupon_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_01_240813.png)
+![gamebase_coupon_01](../static/images/ConsoleGuide/Coupon/jp/gamebase_coupon_01_240813.png)
 
 **検索条件**
 
@@ -40,7 +40,7 @@
 ### Publish coupon { #publish-coupon }
 
 クーポン発行検索画面で**登録**ボタンを押すとクーポンを発行できます。
-![gamebase_coupon_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_02_240813.png)
+![gamebase_coupon_02](../static/images/ConsoleGuide/Coupon/jp/gamebase_coupon_02_240813.png)
 
 <a id="publish-coupon-coupon-type"></a>
 #### (1)クーポンタイプ
@@ -98,7 +98,7 @@
 発行したクーポン情報を修正するには詳細情報で**修正**ボタンをクリックします。
 発行済みのクーポンコードのタイプは修正できないため、新しいタイプのクーポンを発行するには発行情報を新たに登録する必要があります。
 
-![gamebase_coupon_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_03_240813.png)
+![gamebase_coupon_03](../static/images/ConsoleGuide/Coupon/jp/gamebase_coupon_03_240813.png)
 
 <a id="update-coupons-coupon-name"></a>
 #### (1)クーポン名
@@ -128,7 +128,7 @@
 #### (6)クーポン送信
 発行されたクーポン情報を利用してユーザーに直接クーポンを送信できる機能を提供します。
 
-![gamebase_coupon_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_04_240813.png)
+![gamebase_coupon_04](../static/images/ConsoleGuide/Coupon/jp/gamebase_coupon_04_240813.png)
 ##### (1)送信タイプ：送信タイプを選択します。 MMS/SMSをサポートし、MMSの場合はタイトルを追加で入力して送信する必要があります。
 
 ##### (2)テンプレート選択：NHN Cloud Cloud SMSサービスでテンプレートを登録している場合は、テンプレートを選択して送信できます。登録されたテンプレートがない場合は選択する必要がありません。
@@ -161,12 +161,12 @@
 #### 7. クーポン追加発行
 クーポンタイプがシリアルの場合、1回10万個ずつ、最大100万個まで(初期発行数を含めて)追加で発行できます。
 
-![gamebase_coupon_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_05_240813.png)
+![gamebase_coupon_05](../static/images/ConsoleGuide/Coupon/jp/gamebase_coupon_05_240813.png)
 
 <a id="update-coupons-coupon-statistics"></a>
 #### 8. クーポン統計
 クーポン発行詳細情報画面の下部でSMS送信履歴を照会することができ、送信に関連する統計の照会およびファイルダウンロードが行えます。
-![gamebase_coupon_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_06_240813.png)
+![gamebase_coupon_06](../static/images/ConsoleGuide/Coupon/jp/gamebase_coupon_06_240813.png)
 
 リクエスト統計項目を利用して実際に送信したSMSの送信統計を確認することができます。右側のダウンロードリクエストボタンを押して送信結果の詳細履歴をダウンロードして確認できます。
 ダウンロードをリクエストした後の状態は次の通りです。
@@ -187,17 +187,17 @@
 <a id="properties-query-by-coupon-code"></a>
 #### クーポンコード別照会
 クーポンコードを直接入力して、使用履歴を照会できます。
-![gamebase_coupon_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_07_240813.png)
+![gamebase_coupon_07](../static/images/ConsoleGuide/Coupon/jp/gamebase_coupon_07_240813.png)
 
 <a id="properties-query-by-user-id"></a>
 #### ユーザーID別照会
 ユーザーIDから該当ユーザーがクーポンを使用した履歴を照会できます。
-![gamebase_coupon_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_08_240813.png)
+![gamebase_coupon_08](../static/images/ConsoleGuide/Coupon/jp/gamebase_coupon_08_240813.png)
 
 <a id="properties-query-by-coupon-name"></a>
 #### クーポン名照会
 クーポン名およびその他の検索条件で使用履歴を照会できます。
-![gamebase_coupon_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_09_240813.png)
+![gamebase_coupon_09](../static/images/ConsoleGuide/Coupon/jp/gamebase_coupon_09_240813.png)
 
 (1) **クーポン名**：クーポン発行メニューから、発行したクーポンを選択できます。
 (2) **使用有無**：使用有無を選択して照会できる機能を提供します。現在は使用したクーポンのみ照会可能で、今後は別の状態の検索条件も提供する予定です。
@@ -211,7 +211,7 @@
 ### クーポンアイテム照会 { #search-coupon-item }
 登録されたクーポンアイテムの内訳を照会できます。
 フィルタを使い、アイテムID/アイテム名で検索することもできます。
-![gamebase_coupon_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_10_240813.png)
+![gamebase_coupon_10](../static/images/ConsoleGuide/Coupon/jp/gamebase_coupon_10_240813.png)
 
 <a id="register-coupon-item"></a>
 ### クーポンアイテムの登録 { #register-coupon-item }
@@ -221,7 +221,7 @@
 <a id="register-coupon-item-register-by-case"></a>
 #### 1件登録
 
-![gamebase_coupon_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_11_240813.png)
+![gamebase_coupon_11](../static/images/ConsoleGuide/Coupon/jp/gamebase_coupon_11_240813.png)
 
 ##### (1)アイテムID
 アプリ内に登録されたアイテムの固有IDを入力します。クーポンコード使用時、ここに入力された情報が実際のサーバーに結果データとして伝達されます。そのため、アイテムを提供することができるサーバーで区別することができる固有のアイテムIDを入力する必要があります。
@@ -233,7 +233,7 @@
 <a id="register-coupon-item-register-by-file-upload"></a>
 #### ファイルアップロード
 
-![gamebase_coupon_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_12_240813.png)
+![gamebase_coupon_12](../static/images/ConsoleGuide/Coupon/jp/gamebase_coupon_12_240813.png)
 一度に大量に登録したい時は、ファイルを利用して登録できます。
 ファイルを利用して登録する場合は、一度に最大10,000件まで登録することができます。テンプレートファイルをダウンロードした後、該当の形式に合わせて作成したものをアップロードすると、正常にファイルを利用してアイテム登録作業を行うことができます。
 
@@ -245,7 +245,7 @@
 >
 > アイテムID情報は変更できないため、アイテムIDを間違えた場合は、新しいアイテムIDで再度登録する必要があります。
 
-![gamebase_coupon_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Coupon/jp/gamebase_coupon_13_240813.png)
+![gamebase_coupon_13](../static/images/ConsoleGuide/Coupon/jp/gamebase_coupon_13_240813.png)
 
 <a id="update-coupon-item-item-name"></a>
 #### (1)アイテム名

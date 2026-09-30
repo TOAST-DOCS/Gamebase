@@ -118,7 +118,7 @@ By decompression, following SDKs will show, including Gamebase.xcframework.
  * 8) If you are using the FacebookAuthAdapter, you must add the Facebook SDK to **Target > Build Phases > Embedded Frameworks**.
 ![Facebook Embeded Frameworks](https://static.toastoven.net/prod_gamebase/iOSDevelopersGuide/ios-developers-guide-started-001_2.65.0-facebook-embeded.png)
 * 9) If you are using the PaycoAuthAdapter, you must add the PAYCO SDK to **Target > Build Phases > Embeded Frameworks**.
-![PAYCO Embeded Frameworks](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/iOSDevelopersGuide/started-xcode-settings-payco-embeded-20241025.png)
+![PAYCO Embeded Frameworks](../static/images/iOSDevelopersGuide/started-xcode-settings-payco-embeded-20241025.png)
 
 > [INFO]
 >

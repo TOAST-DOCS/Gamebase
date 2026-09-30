@@ -26,7 +26,7 @@ For other topics not covered on this page, see the **Game > Gamebase > [Console 
 * A unique identifier for your app that you receive after registering your product in Steamworks.
 * Enter the App ID as shown in **Steamworks > App Admin >** (Project Name).
 
-![Steam Store App ID](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_iap/console_steam/steam_console_app_02_kor.png)
+![Steam Store App ID](../static/images/console_steam/steam_console_app_02_kor.png)
 
 
 <a id="steam-web-api-key"></a>
@@ -36,7 +36,7 @@ For other topics not covered on this page, see the **Game > Gamebase > [Console 
 * In **Steamworks > Users & Permissions**, enter the value of your newly created or existing issued key.
   * See [Steamworks Publisher Web API Key](https://partner.steamgames.com/doc/webapi_overview/auth) for more information.
 
-![Steam Web API Key](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_iap/console_steam/steam_console_app_03_kor.png)
+![Steam Web API Key](../static/images/console_steam/steam_console_app_03_kor.png)
 
 
 <a id="steam-default-currency"></a>
@@ -47,7 +47,7 @@ For other topics not covered on this page, see the **Game > Gamebase > [Console 
   * See **Enter country-specific sales item information** in the **Setting up sales items** section.
 
 
-![STEAM Default Currency](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_iap/console_steam/steam_console_app_04_kor.png)
+![STEAM Default Currency](../static/images/console_steam/steam_console_app_04_kor.png)
 
 
 

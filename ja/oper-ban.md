@@ -21,7 +21,7 @@ AppGuardを連携する方法は、[AppGuard](#appguard)をご参考ください
 
 検索条件に合った利用停止状態/利用停止状態が解除されたゲームユーザーのリストを照会します。
 
-![gamebase_ban_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/jp/gamebase_ban_01_240813.png)
+![gamebase_ban_01](../static/images/ConsoleGuide/Ban/jp/gamebase_ban_01_240813.png)
 
 **検索条件**
 
@@ -65,18 +65,18 @@ AppGuardを連携する方法は、[AppGuard](#appguard)をご参考ください
 
 利用停止照会画面から**登録**ボタンをクリックすると、利用停止の登録ができます。
 
-![gamebase_ban_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/jp/gamebase_ban_02_240813.png)
+![gamebase_ban_02](../static/images/ConsoleGuide/Ban/jp/gamebase_ban_02_240813.png)
 <a id="register-ban-1-user-id"></a>
 #### (1) ユーザーID
 利用停止を登録するGamebaseのユーザーIDを入力します。一度に複数のユーザーを登録することができ、登録方法は次の二つです。
 
 - **ユーザー入力**：登録するユーザーIDを入力ウィンドウに直接入力した後、**Enter**キーを押したり**追加**ボタンをクリックします。ユーザーIDの有効性をチェックするため、有効でないユーザーIDは入力が不可能です。
 - **一括登録**：CSVファイルのみアップロードでき、サンプルファイルはConsole画面からダウンロードすることができます。一括登録は1回につき最大10,000人まで可能です。
-  ![gamebase_ban_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/jp/gamebase_ban_03_240813.png)
+  ![gamebase_ban_03](../static/images/ConsoleGuide/Ban/jp/gamebase_ban_03_240813.png)
 
 > [参考]</br>
 > 一括登録を進行する途中に失敗すると、ポップアップが表示されます。該当するポップアップから**Download**ボタンをクリックすると、登録に失敗したユーザーリストをファイルでダウンロードすることができます。 
-> ![gamebase_ban_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/jp/gamebase_ban_04_240813.png)
+> ![gamebase_ban_04](../static/images/ConsoleGuide/Ban/jp/gamebase_ban_04_240813.png)
 
 <a id="register-ban-2-period"></a>
 #### (2) 期間
@@ -111,7 +111,7 @@ AppGuardを連携する方法は、[AppGuard](#appguard)をご参考ください
 
 利用停止照会画面から**解除**ボタンをクリックすると、利用停止を解除することができます。
 
-![gamebase_ban_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/jp/gamebase_ban_05_240813.png)
+![gamebase_ban_05](../static/images/ConsoleGuide/Ban/jp/gamebase_ban_05_240813.png)
 
 <a id="release-ban-release-reason"></a>
 #### 解除理由
@@ -125,11 +125,11 @@ AppGuardを連携する方法は、[AppGuard](#appguard)をご参考ください
 - **ユーザー入力**： 登録するユーザーIDを入力ウィンドウに直接入力した後、**Enter**キーを押したり**追加**ボタンをクリックします。ユーザーIDの有効性をチェックするため、有効でないユーザーIDは入力が不可能です。
 - **一括登録**： CSVファイルのみアップロードでき、サンプルファイルはConsole画面からダウンロードすることができます。一括登録は1回につき最大10,000人まで可能です。
 
-![gamebase_ban_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/jp/gamebase_ban_06_240813.png)
+![gamebase_ban_06](../static/images/ConsoleGuide/Ban/jp/gamebase_ban_06_240813.png)
 
 > [参考]
 > 一括登録を進行する途中に失敗すると、ポップアップが表示されます。該当するポップアップから**Download**ボタンをクリックすると、登録に失敗したユーザーリストをファイルでダウンロードすることができます。  
-> ![gamebase_ban_04_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/jp/gamebase_ban_04_240813.png)
+> ![gamebase_ban_04_201812](../static/images/ConsoleGuide/Ban/jp/gamebase_ban_04_240813.png)
 
 <a id="template"></a>
 ## Template { #template }
@@ -142,13 +142,13 @@ AppGuardを連携する方法は、[AppGuard](#appguard)をご参考ください
 登録されたテンプレートリストを検索することができます。
 新しいテンプレートを登録したり、登録されたテンプレートを修正することができ、登録されたテンプレートを削除することはできません。
 
-![gamebase_ban_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/jp/gamebase_ban_08_240813.png)
+![gamebase_ban_07](../static/images/ConsoleGuide/Ban/jp/gamebase_ban_08_240813.png)
 
 -テンプレートリスト画面の表示メッセージ項目には、テンプレート登録時に「基本言語」で入力した表示メッセージが表示されます。
 
 <a id="register-template"></a>
 ### Register Template { #register-template }
-![gamebase_ban_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/jp/gamebase_ban_09_240813.png)
+![gamebase_ban_09](../static/images/ConsoleGuide/Ban/jp/gamebase_ban_09_240813.png)
 
 <a id="register-template-1-name"></a>
 #### (1) 名前
@@ -166,7 +166,7 @@ AppGuardを連携する方法は、[AppGuard](#appguard)をご参考ください
 > <font color="red">[重要]</font>
 > AppGuard連動機能は、NHN Cloudで該当機能を適用しようとしているサービスと同じプロジェクトにNHN AppGuardサービスを有効化した場合にのみ利用できます。
 
-![gamebase_ban_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Ban/jp/gamebase_ban_10_240813.png)
+![gamebase_ban_10](../static/images/ConsoleGuide/Ban/jp/gamebase_ban_10_240813.png)
 
 - **連携有無**：AppGuardで検知または制裁したユーザーを、自動的にGamebase利用停止ユーザーとして登録したい場合に有効にします。
 - **自動利用停止**は**即時遮断**、**条件遮断**の2つがあります。

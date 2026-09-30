@@ -18,7 +18,7 @@ NHN Cloudプロジェクト1つにつき1つのGamebaseアプリを管理する�
 
 <a id="basic-information"></a>
 ### 基本情報 { #basic-information }
-![gamebase_app_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_01_ja_240105.png)
+![gamebase_app_01](../static/images/ConsoleGuide/App/jp/gamebase_app_01_ja_240105.png)
 
 <a id="basic-information-1-installation-url"></a>
 #### (1)インストールURL
@@ -54,7 +54,7 @@ NHN Cloudプロジェクト1つにつき1つのGamebaseアプリを管理する�
 
 <a id="server-address"></a>
 ### サーバーアドレス { #server-address }
-![gamebase_app_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_02_ja_240105.png)
+![gamebase_app_02](../static/images/ConsoleGuide/App/jp/gamebase_app_02_ja_240105.png)
 
 - ゲームでゲームサーバーアドレス(IP、URLなど)をリアルタイムで受け取る必要がある時に使用します。
 - サーバーアドレスを設定すると、クライアントの初期化後に「ローンチ情報」で入力された情報を確認できます。
@@ -63,14 +63,14 @@ NHN Cloudプロジェクト1つにつき1つのGamebaseアプリを管理する�
 
 <a id="language-settings"></a>
 ### 言語設定 { #language-settings }
-![gamebase_app_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_03_ja_240105.png)
+![gamebase_app_03](../static/images/ConsoleGuide/App/jp/gamebase_app_03_ja_240105.png)
 - 各メニューの多言語設定でデフォルトで表示する言語をあらかじめ指定できます。
 - 多言語項目を表示する時、選択した言語が表示され、基本言語も設定した項目が選択されています。
 - 使用したくない場合は該当欄を空白にしてください。
 
 <a id="authentication-information"></a>
 ### 認証情報 { #authentication-information }
-![gamebase_app_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_04_ja_240625.png)
+![gamebase_app_04](../static/images/ConsoleGuide/App/jp/gamebase_app_04_ja_240625.png)
 
 アプリでログインする時に使用するIdPの認証情報を登録、修正、削除できます。
 
@@ -85,7 +85,7 @@ NHN Cloudプロジェクト1つにつき1つのGamebaseアプリを管理する�
 
 <a id="in-app-url"></a>
 ### アプリ内URL { #in-app-url }
-![gamebase_app_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_05_ja_240105.png)
+![gamebase_app_05](../static/images/ConsoleGuide/App/jp/gamebase_app_05_ja_240105.png)
 クライアントの再配布を行わずに、アプリ内でよく使用するURLをConsoleを利用してリアルタイムで修正できます。
 
 - 利用約款
@@ -103,7 +103,7 @@ NHN Cloudプロジェクト1つにつき1つのGamebaseアプリを管理する�
 
 <a id="customer-center-developers-own-customer-center"></a>
 #### 1. 開発会社独自のサポート
-![gamebase_app_06](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_06_ja_240105.png)
+![gamebase_app_06](../static/images/ConsoleGuide/App/jp/gamebase_app_06_ja_240105.png)
 開発会社で独自にサポートを使用している場合に設定します。
 設定項目は以下の通りです。
 * **サポートURL** ：現在提供または使用している開発会社独自のサポートアドレスを入力します。
@@ -111,7 +111,7 @@ NHN Cloudプロジェクト1つにつき1つのGamebaseアプリを管理する�
 
 <a id="customer-center-provided-by-gamebase"></a>
 #### 2. Gamebase提供のサポート
-![gamebase_app_07](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_07_ja_240105.png)
+![gamebase_app_07](../static/images/ConsoleGuide/App/jp/gamebase_app_07_ja_240105.png)
 Gamebaseで提供するサポート機能を使用したい時に設定します。
 設定項目は以下の通りです。
 * **サポートURL** ：顧客からのお問い合わせを受けるページ情報を提供します。このURLはGamebase提供サポートを選択する場合は自動的に作成され、このURLから顧客のお問い合わせを別のWebページを介して受信できます。
@@ -121,7 +121,7 @@ Gamebaseで提供するサポート機能を使用したい時に設定します
 
 <a id="customer-center-nhn-cloud-organization-product-online-contact"></a>
 #### 3. NHN Cloud組織商品(Online Contact)
-![gamebase_app_08](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_08_ja_240105.png)
+![gamebase_app_08](../static/images/ConsoleGuide/App/jp/gamebase_app_08_ja_240105.png)
 NHN Cloudで組織ごとに提供されるOnline contact商品を使用する場合に設定します。
 設定項目は以下の通りです。
 * **サポートURL**：NHN Cloud Online Contactで提供されるアドレスを入力します。この情報はNHN Cloud Online Contactに接続して確認できます。
@@ -133,7 +133,7 @@ NHN Cloudで組織ごとに提供されるOnline contact商品を使用する場
 >
 > 1) NHN Cloud Online Contactに会員連携方式設定
 > サービス管理 -> ヘルプセンター -> 会員連携
-> ![gamebase_app_09](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_09_ja_240105.png)
+> ![gamebase_app_09](../static/images/ConsoleGuide/App/jp/gamebase_app_09_ja_240105.png)
 > 会員連携有効化：有効化
 > ログインタイプ：GET方式
 > Token検証URL: https://web-gamebase.nhncloud.com/tcgb-web/v1.0/apps/{appId}/online-contact/login-status
@@ -141,25 +141,25 @@ NHN Cloudで組織ごとに提供されるOnline contact商品を使用する場
 > 
 > 2) OC組織Keyを取得してOC組織Key項目に入力
 > 全体管理 -> 契約サービス状況 -> 組織情報に移動した後、OC組織情報のOC組織KeyをコピーしてGamebase OC組織Key項目に入力
-> ![gamebase_app_10](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_10_ja_240105.png)
+> ![gamebase_app_10](../static/images/ConsoleGuide/App/jp/gamebase_app_10_ja_240105.png)
 >
 > 3) NHN Cloud Online contactサポートページアドレスを取得してサポートURLに入力
 > ヘルプセンター -> 下位メニュー選択 -> 右上の「ヘルプセンター」をクリック
-> ![gamebase_app_11](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_11_ja_240105.png)
+> ![gamebase_app_11](../static/images/ConsoleGuide/App/jp/gamebase_app_11_ja_240105.png)
 > ブラウザ上部に表示されたアドレスをGamebaseサポートURL項目に入力
-> ![gamebase_app_12](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_12_ja_240105.png)
+> ![gamebase_app_12](../static/images/ConsoleGuide/App/jp/gamebase_app_12_ja_240105.png)
 >
 
 <a id="test-device"></a>
 ### Test Device { #test-device }
 
-![gamebase_app_13](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_13_ja_240105.png)
+![gamebase_app_13](../static/images/ConsoleGuide/App/jp/gamebase_app_13_ja_240105.png)
 テスト端末に登録されると、Gamebaseを使用するアプリがメンテナンス中でも正常にゲームにアクセスできます。
 テスト端末を登録するには**Device Key**または**IP**情報を登録する必要があります。直接入力するか、**ゲームユーザーID**を照会して登録できます。
 メンテナンス時にゲームがプレイできるようにしたり、端末ごとにDebug Logを出力するかどうかを設定してテスト端末を管理できます。
 今後使用しないテスト端末を削除することもできます。
 接続履歴確認ボタンを押すと、該当端末を利用して**メンテナンスが進行される間の接続時間と詳細接続ログ**を確認できます。
-![gamebase_app_14](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_14_ja_240105.png)
+![gamebase_app_14](../static/images/ConsoleGuide/App/jp/gamebase_app_14_ja_240105.png)
 
 > [参考]
 > テスト端末は最大100個まで登録できます。
@@ -174,8 +174,8 @@ NHN Cloudで組織ごとに提供されるOnline contact商品を使用する場
 
 照会画面で**登録**ボタンを押すと、テスト端末を登録できる画面が表示されます。**Device Key**を直接入力するか、**ゲームユーザーID**を検索してテスト端末を登録できます。
 
-![gamebase_app_15](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_15_ja_240105.png)
-![gamebase_app_16](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_16_ja_240105.png)
+![gamebase_app_15](../static/images/ConsoleGuide/App/jp/gamebase_app_15_ja_240105.png)
+![gamebase_app_16](../static/images/ConsoleGuide/App/jp/gamebase_app_16_ja_240105.png)
 
 **(1)ゲームユーザーIDを利用して登録**
 
@@ -194,7 +194,7 @@ NHN Cloudで組織ごとに提供されるOnline contact商品を使用する場
 <a id="test-device-3-delete"></a>
 #### (3)削除
 
-![gamebase_app_17](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_17_ja_240105.png)
+![gamebase_app_17](../static/images/ConsoleGuide/App/jp/gamebase_app_17_ja_240105.png)
 
 
 テスト端末照会画面で削除したいテスト端末をチェックした後、左上の削除ボタンを押すと、テスト端末情報が削除されます。削除された情報は復旧できないため、削除する前にもう一度確認してから削除してください。
@@ -212,8 +212,8 @@ Facebookの開発サイトに登録したアプリの{アプリID}と{アプリ�
 - Secret Key：{App Secret Code}
 '- 追加情報：Facebook Permission & Facebook Client Token (json format)
 
-![gamebase_app_18](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_18_ja_240105.png)
-![gamebase_app_19](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_19_ja_240105.png)
+![gamebase_app_18](../static/images/ConsoleGuide/App/jp/gamebase_app_18_ja_240105.png)
+![gamebase_app_19](../static/images/ConsoleGuide/App/jp/gamebase_app_19_ja_240105.png)
 
 ##### Additional Info Settings
 * **NHN Cloud Console > Gamebase > App > 認証情報 > 追加情報**項目にJSON string形式の情報を設定する必要があります。
@@ -222,7 +222,7 @@ Facebookの開発サイトに登録したアプリの{アプリID}と{アプリ�
 
         { "facebook_permission": ["public_profile", "email"], "facebook_client_token": "Your Facebook Client Token" }
 
-![gamebase_app_20](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_20_ja_240105.png)
+![gamebase_app_20](../static/images/ConsoleGuide/App/jp/gamebase_app_20_ja_240105.png)
 
 **Reference URL**<br />
 
@@ -269,7 +269,7 @@ Facebookの開発サイトに登録したアプリの{アプリID}と{アプリ�
 * Google Credential Managerに移行されたバージョン（2.68.0）以降では、Google Cloud Consoleで以下のように設定する必要があります。
 * **Google Cloud Console > Google認証プラットフォーム > 対象** メニューで**ユーザータイプ**を**外部**に、**掲示状態**を**プロダクション段階**に設定します。
     * このように設定されていない状態でログインしようとすると、無条件にキャンセルされます。
-    * ![](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/DevelopersGuide/aos-google-oauth-setting-production-en.png)
+    * ![](../static/images/DevelopersGuide/aos-google-oauth-setting-production-en.png)
     
 ##### Google Cloud Console - iOS
 
@@ -377,9 +377,9 @@ NAVER Developersサイトで申請して発行された{client_id}および{clie
 
 ##### Developer Portal
 
-![gamebase_app_twitter_02_ko_241024](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_twitter_02_en_241024.png)
+![gamebase_app_twitter_02_ko_241024](../static/images/ConsoleGuide/App/en/gamebase_app_twitter_02_en_241024.png)
 
-![gamebase_app_twitter_03_ko_241024](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_twitter_03_en_241024.png)
+![gamebase_app_twitter_03_ko_241024](../static/images/ConsoleGuide/App/en/gamebase_app_twitter_03_en_241024.png)
 
 Twitter認証のためには、Developer PortalでCallback URI欄に次の値を入力します。
 * https://id-gamebase.toast.com/oauth/callback
@@ -395,7 +395,7 @@ Developer Portalでアプリを登録し、 **OAuth 2.0 Client IDとClient Secre
 - Client ID: {OAuth 2.0 Client ID}
 - Secret Key: {OAuth 2.0 Client Secret}
 
-![gamebase_app_twitter_01_ko_241024](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_twitter_01_en_241024.png)
+![gamebase_app_twitter_01_ko_241024](../static/images/ConsoleGuide/App/en/gamebase_app_twitter_01_en_241024.png)
 
 **Reference URL**<br />
 - [Twitter Application Management](https://developer.x.com/)
@@ -448,7 +448,7 @@ Sign In with Apple機能を使用するには、AppStore Connect、Gamebase Cons
 [NHN Cloud Consoleへ](https://console.toast.com/)
 
 * Gamebase
-![SecretKey設定](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_22_ja_240105.png)
+![SecretKey設定](../static/images/ConsoleGuide/App/jp/gamebase_app_22_ja_240105.png)
 
 ###### Client ID Settings
 > アプリのBundle IDを設定します。
@@ -538,7 +538,7 @@ Gamebase Console > AppでAppleを追加すると、基本値に下記のJSON値�
 > Sign In with Appleが設定されていない場合は、残りの項目も設定が必要です。
 
 1. Apple開発者サイトで、設定したService IDを以下のようにService ID項目に追加します。(既にSign In with Apple設定値がある場合は、他の値は変更する必要がありません。)
-![Set Service ID for Sign In with Apple JS](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_23_ja_240105.png)
+![Set Service ID for Sign In with Apple JS](../static/images/ConsoleGuide/App/jp/gamebase_app_23_ja_240105.png)
 
 
 <a id="app-authentication-information-weibo"></a>
@@ -582,7 +582,7 @@ Weiboガイド文書に従ってデフォルトですべての権限が宣言さ
 Weiboガイド文書に従ってuniversalLinkを設定できます。
 入力しない場合、任意の値に設定されます。
 
-![gamebase_app_24](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_app_24_ja_240105.png)
+![gamebase_app_24](../static/images/ConsoleGuide/App/jp/gamebase_app_24_ja_240105.png)
 
 
 **Reference URL**
@@ -653,9 +653,9 @@ Steam認証のためにSteamworksから**App ID**と**Web API**を発行し、Ga
 - Client ID: {App ID}
 - Secret Key: {Web API}
 
-![gamebase_app_steam_01_en_241025.png](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_steam_01_en_241025.png)
+![gamebase_app_steam_01_en_241025.png](../static/images/ConsoleGuide/App/en/gamebase_app_steam_01_en_241025.png)
 
-![gamebase_app_steam_02_en_241025.png](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/en/gamebase_app_steam_02_en_241025.png)
+![gamebase_app_steam_02_en_241025.png](../static/images/ConsoleGuide/App/en/gamebase_app_steam_02_en_241025.png)
 
 <a id="app-authentication-information-epic-games"></a>
 #### 13. Epic Games
@@ -677,7 +677,7 @@ Steam認証のためにSteamworksから**App ID**と**Web API**を発行し、Ga
 - Secret Key: {Client Secret}
 - 추가정보: deployment_id, scope (json format)
 
-![에픽 앱 정보](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_iap/console_epic/epic_console_app_03_kor.png)
+![에픽 앱 정보](../static/images/console_epic/epic_console_app_03_kor.png)
 
 **Reference URL**
 
@@ -725,7 +725,7 @@ Steam認証のためにSteamworksから**App ID**と**Web API**を発行し、Ga
 <a id="client-list"></a>
 ### Client List { #client-list }
 
-![image alt](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_client_01_ja_240105.png)
+![image alt](../static/images/ConsoleGuide/App/jp/gamebase_client_01_ja_240105.png)
 現在登録されたクライアントリストを確認できます。
 OSごとに区分されて表示され、アイコン内の数字はクライアント登録時に入力したバージョンを意味します。
 アイコンリストはサービス状態が <font color="white" style="background-color:#eed14c">テスト</font>、<font color="white" style="background-color:#eba34b">ベータサービス</font>、<font color="white" style="background-color:#eb7e4b">審査中</font>、<font color="white" style="background-color:#88C637">サービス</font>、<font color="white" style="background-color:#2AB1A6">アップデート推奨(サービス中)</font>のリストのみ表示されます。OS別の右下にある矢印をクリックすると<font color="white" style="background-color:#A1A1A1">アップデート必須</font>、<font color="white" style="background-color:#CCCCCC">終了</font> 状態のクライアントリストを確認できます。
@@ -736,7 +736,7 @@ OSごとに区分されて表示され、アイコン内の数字はクライア
 
 Gamebase Consoleで管理するクライアント登録情報を説明します。
 **クライアント**タブで**AOS登録**、**iOS登録**ボタンなどを押すと、クライアント登録画面が表示されます。登録されたクライアントの入力値を修正または削除したい場合は、アイコンリストからアイコンを押すか、クライアント全体リストからクライアントを選択してください。
-![gamebase_client_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_client_02_ja_240105.png)
+![gamebase_client_02](../static/images/ConsoleGuide/App/jp/gamebase_client_02_ja_240105.png)
 <a id="properties-1-store"></a>
 #### (1)ストア
 (<font color="red">必須</font>)クライアントを配布するストアを選択します。
@@ -759,7 +759,7 @@ OSごとに選択できるストアが異なります。
 
 - <font color="white" style="background-color:#A1A1A1">アップデート必須</font>：サービス不可。<br/>現在ゲームでサービスをサポートしないバージョンのため、最新バージョンインストール案内ポップアップを表示します。<br />以下は「アップデート必須」状態の時にGamebase SDKがデフォルトで提供するポップアップです。 <br/> 「アップデート必須」状態のときにポップアップボタンを追加できます。 **詳細表示ボタン追加**から**ボタン追加**を選択する場合、接続するURLを設定できます。
 
-![gamebase_client_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_client_04_ja_240105.png)
+![gamebase_client_04](../static/images/ConsoleGuide/App/jp/gamebase_client_04_ja_240105.png)
 
 >  <font color="red">[注意] </font>
 >  **アップデート必須とメンテナンスが同時に設定**されている場合、サービス状態は「アップデート必須」になります。
@@ -778,7 +778,7 @@ OSごとに選択できるストアが異なります。
 > サービス状態を選択すると、アプリに設定されている言語設定情報に基づいて各状態に合った基本メッセージが提供されます。言語を追加したり基本メッセージの文言を変更することもできます。
 > 以前に各状態で設定した各言語の設定がある場合は、アプリの言語設定情報に関係なく以前に登録した内容を呼び出して表示されます。
 > アプリの言語設定に設定された情報がない場合、5個(韓国語、英語、日本語、簡体字、繁体字)の言語で基本メッセージが提供されます。言語を追加したり基本メッセージの文言を変更することもできます。
-> ![gamebase_client_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_client_03_ja_240105.png)
+> ![gamebase_client_03](../static/images/ConsoleGuide/App/jp/gamebase_client_03_ja_240105.png)
 
 <a id="properties-4-server-address"></a>
 #### (4)サーバーアドレス
@@ -798,11 +798,11 @@ Gamebase SDKのDebug Logが'OFF'状態でも、コンソールで'ON'に設定�
 <a id="terms-of-service"></a>
 ## Terms Of Service { #terms-of-service }
 ゲームに表示する約款を作成し、構成を設定します。
-![gamebase_terms_of_service_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_terms_of_service_01_ja_240105.png)
+![gamebase_terms_of_service_01](../static/images/ConsoleGuide/App/jp/gamebase_terms_of_service_01_ja_240105.png)
 <a id="1-created-terms-and-conditions-list"></a>
 ### (1)作成された約款リスト { #1-created-terms-and-conditions-list }
 - **+**ボタンを押して約款を追加で作成できます。
-![gamebase_terms_of_service_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_terms_of_service_02_ja_240105.png)
+![gamebase_terms_of_service_02](../static/images/ConsoleGuide/App/jp/gamebase_terms_of_service_02_ja_240105.png)
 
 <a id="2-terms-and-conditions-country-type"></a>
 ### (2)約款の国タイプ { #2-terms-and-conditions-country-type }
@@ -831,7 +831,7 @@ Gamebase SDKのDebug Logが'OFF'状態でも、コンソールで'ON'に設定�
 	- なし：詳細ページが存在しない場合です。
 	- URL入力：詳細ページのURLを設定できます。
 	- 直接入力：詳細ページを作成できます。
-![gamebase_terms_of_service_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_terms_of_service_03_ja_240105.png)
+![gamebase_terms_of_service_03](../static/images/ConsoleGuide/App/jp/gamebase_terms_of_service_03_ja_240105.png)
 - 表示するテキスト
 	- ゲームに表示するテキストです。
 	- **+**ボタンを押して言語を追加できます。
@@ -852,11 +852,11 @@ Gamebase SDKのDebug Logが'OFF'状態でも、コンソールで'ON'に設定�
 ## Terms Of Service Deploy { #terms-of-service-deploy }
 
 ゲームに表示する約款配布および配布履歴です。
-![gamebase_terms_of_service_deploy_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_terms_of_service_deploy_01_ja_240105.jpg)
+![gamebase_terms_of_service_deploy_01](../static/images/ConsoleGuide/App/jp/gamebase_terms_of_service_deploy_01_ja_240105.jpg)
 
 <a id="1-default-terms-and-conditions-settings"></a>
 ### (1)基本約款設定 { #1-default-terms-and-conditions-settings }
-![gamebase_terms_of_service_deploy_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_terms_of_service_deploy_02_ja_240105.jpg)
+![gamebase_terms_of_service_deploy_02](../static/images/ConsoleGuide/App/jp/gamebase_terms_of_service_deploy_02_ja_240105.jpg)
 
 - 作成した約款のうち、設定された配布国以外の国から接続する場合、デフォルトで表示される約款を選択します。
 
@@ -872,7 +872,7 @@ Gamebase SDKのDebug Logが'OFF'状態でも、コンソールで'ON'に設定�
 
 <a id="3-preview"></a>
 ### (3)プレビュー { #3-preview }
-![gamebase_terms_of_service_deploy_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_terms_of_service_deploy_03_ja_240105.jpg)
+![gamebase_terms_of_service_deploy_03](../static/images/ConsoleGuide/App/jp/gamebase_terms_of_service_deploy_03_ja_240105.jpg)
 
 - 約款リストから選択した約款をプレビューできます。
 
@@ -885,7 +885,7 @@ Gamebase SDKのDebug Logが'OFF'状態でも、コンソールで'ON'に設定�
 
 <a id="4-terms-and-conditions-distribution-and-distribution-history-distribution-history"></a>
 #### 配布履歴
-![gamebase_terms_of_service_deploy_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_terms_of_service_deploy_04_ja_240105.jpg)
+![gamebase_terms_of_service_deploy_04](../static/images/ConsoleGuide/App/jp/gamebase_terms_of_service_deploy_04_ja_240105.jpg)
 - 約款リストから選択した約款の配布履歴です。
 
 <a id="installed-url"></a>
@@ -893,7 +893,7 @@ Gamebase SDKのDebug Logが'OFF'状態でも、コンソールで'ON'に設定�
 
 ゲームをインストールするためのストアURL情報を管理します。
 
-![gamebase_installed_url_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_installed_url_01_ja_240105.jpg)
+![gamebase_installed_url_01](../static/images/ConsoleGuide/App/jp/gamebase_installed_url_01_ja_240105.jpg)
 
 * クライアント状態が<font color="white" style="background-color:#2AB1A6">アップデート推奨(サービス中)</font>または<font color="white" style="background-color:#A1A1A1">アップデート必須</font>の時、ストアごとに提供するアドレスの値を設定します。
 * ユーザーがPCやモバイルで短縮URLをクリックすると、ユーザー端末情報(デバイス、オペレーションシステム、ストアなど)を利用して入力されたサイトにリダイレクトします。
@@ -911,7 +911,7 @@ _[例3] PCからインストールURLを入力した場合_
 
 入力されたインストールURL情報を変更したい場合、**修正**ボタンをクリックします。
 
-![gamebase_installed_url_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_installed_url_02_ja_240105.jpg)
+![gamebase_installed_url_02](../static/images/ConsoleGuide/App/jp/gamebase_installed_url_02_ja_240105.jpg)
 
 - 各項目はPC、モバイルごとにそれぞれ設定することができます。PCとモバイルを分ける必要がない場合、同じ値をそれぞれ入力してください。
 - 探しているストアがリストに表示されない場合、[カスタマーセンター](https://toast.com/support/inquiry)までご連絡ください。該当するストアを追加いたします。
@@ -938,10 +938,10 @@ Standaloneでサービスされているアプリから接続されるアドレ�
 ユーザーは、現在ゲーム中の端末で移行のためのキーを発行し、移行する端末にキーを入力することで、簡単にゲーム端末を変更できます。
 **端末移行**機能は、デフォルトで無効になっています。使用するには**端末移行**で**使用する**をクリックします。
 
-![gamebase_transfer_account_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_transfer_account_01_ja_240105.jpg)
+![gamebase_transfer_account_01](../static/images/ConsoleGuide/App/jp/gamebase_transfer_account_01_ja_240105.jpg)
 **使用する**ボタンをクリックした後、端末移行に必要な情報を入力します。
 
-![amebase_transfer_account_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_transfer_account_02_ja_240105.jpg)
+![amebase_transfer_account_02](../static/images/ConsoleGuide/App/jp/gamebase_transfer_account_02_ja_240105.jpg)
 端末移行機能に必要な値を設定できる画面です。
 各項目の説明は下記の通りです。
 
@@ -982,7 +982,7 @@ Standaloneでサービスされているアプリから接続されるアドレ�
 
 <a id="transfer-account-properties-after-initial-setting-completed"></a>
 #### 初期設定完了後
-![gamebase_transfer_account_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_transfer_account_03_ja_240105.jpg)
+![gamebase_transfer_account_03](../static/images/ConsoleGuide/App/jp/gamebase_transfer_account_03_ja_240105.jpg)
 初期設定が完了すると、ゲームユーザーは端末移行機能の無効化のみ可能です。設定の変更が必要な場合はサポートにお問い合わせください。
 **使用しない**ボタンをクリックして機能を無効化できます。既に発行された端末移行キーはすべて削除されるため、有効化した後は無効化するかどうかを慎重に選択する必要があります。
 
@@ -994,21 +994,21 @@ Analyticsに指標を記録するための転送指標を確認および設定�
 ### ユーザーレベル(INT)ごと { #by-user-level-int }
 Analyticsシステムに送信されたレベル指標項目を確認できます。
 この項目では別の修正項目がなく、照会のみ行えます。
-![gamebase_analytics_indicator_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_analytics_indicator_02_ja_240105.jpg)
+![gamebase_analytics_indicator_02](../static/images/ConsoleGuide/App/jp/gamebase_analytics_indicator_02_ja_240105.jpg)
 
 <a id="search-by-worldserverchannel-and-classprofession"></a>
 ### ワールド/サーバー/チャンネル別、クラス/職業別照会 { #search-by-worldserverchannel-and-classprofession }
 各項目に設定されている転送指標項目を確認できます。
 照会画面では、設定された項目の指標を記録したくない場合に削除ボタンを押して登録された項目の削除ができます。
 項目を削除した後は、**Analyticsメニューで指標に表示されず、**削除した項目の指標が記録されなくなるため、注意が必要です。
-![gamebase_analytics_indicator_03](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_analytics_indicator_03_ja_240105.jpg)
+![gamebase_analytics_indicator_03](../static/images/ConsoleGuide/App/jp/gamebase_analytics_indicator_03_ja_240105.jpg)
 
 <a id="register-each-worldserverchannel-and-classprofession"></a>
 ### ワールド/サーバー/チャンネル別、クラス/職業別登録 { #register-each-worldserverchannel-and-classprofession }
 Analytics指標に記録したい情報を新たに登録できます。
 下の方にある追加ボタンを利用して登録できます。**項目は最大100個**まで新規で登録できます。
 登録画面では登録されたデータの**指標画面表示項目の修正だけを提供**し、削除したい場合は再度照会画面に移動して削除を行う必要があります。
-![gamebase_analytics_indicator_04](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/App/jp/gamebase_analytics_indicator_04_ja_240105.jpg)
+![gamebase_analytics_indicator_04](../static/images/ConsoleGuide/App/jp/gamebase_analytics_indicator_04_ja_240105.jpg)
 
 <a id="register-each-worldserverchannel-and-classprofession-1-channelidclassid-enter-the-information-of-the-separator-to-be-stacked-in-analytics-enter-the-id-information-you-want-to-set-when-stacking-indexes"></a>
 #### (1) ChannelId / ClassId：Analytics内に記録するセパレータ情報を入力します。指標を記録したい時に設定するID情報を入力してください。

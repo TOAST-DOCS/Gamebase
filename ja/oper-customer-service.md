@@ -19,14 +19,14 @@
 ### Main { #main }
 
 ゲームでGamebase SDKを利用してサポートページをオープンすると、次のような画面がユーザーに表示されます。
-![main](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_help_center_01_ja_240105.jpg)
+![main](../static/images/ConsoleGuide/CustomerService/jp/gamebase_help_center_01_ja_240105.jpg)
 
 <a id="main-1-11-inquiry"></a>
 #### (1) 1:1お問い合わせ
 
 **1:1お問い合わせ**ボタンを押すと、1:1お問い合わせを登録する画面に移動します。
 
-![問い合わせる](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_help_center_02_ja_240105.jpg)
+![問い合わせる](../static/images/ConsoleGuide/CustomerService/jp/gamebase_help_center_02_ja_240105.jpg)
 
 次は、問い合わせを登録する時に入力する項目です。
 登録されたお問い合わせは**[サポート > 顧客お問い合わせ](#inquiry)**コンソールで確認し、返信処理が可能です。
@@ -47,20 +47,20 @@
 #### (2)お問い合わせ履歴
 
 ログインしてサポートWebページにアクセスすると**お問い合わせ履歴**ボタンが表示されます。押すと、以前に顧客が問い合わせた履歴を確認する画面に移動します。
-![お問い合わせ履歴_ログイン](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_help_center_03_ja_240105.jpg)
+![お問い合わせ履歴_ログイン](../static/images/ConsoleGuide/CustomerService/jp/gamebase_help_center_03_ja_240105.jpg)
 
 お問い合わせ履歴は、基本10個のリストを確認することができ、10個以上の場合、**さらに表示**を押すと、10個が追加で表示されます。
 
 > [参考]ログインしていない場合は、お問い合わせ履歴を確認できません。
 > ログインしないで問い合わせを行うと、メールでのみお問い合わせ履歴の確認が行えます。お問い合わせ履歴からの確認はできません。
-> ![お問い合わせ履歴_ログインなし](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_help_center_04_ja_240105.jpg)
+> ![お問い合わせ履歴_ログインなし](../static/images/ConsoleGuide/CustomerService/jp/gamebase_help_center_04_ja_240105.jpg)
 
 <a id="main-3-frequently-asked-questions"></a>
 #### (3)よくある質問
 
 FAQでは、カテゴリー質問および、よくある質問などを確認できます。リストには最大12個が表示されます。
 内容を自由に検索したり、カテゴリーボタンを押して[サポート > FAQ](#faq)に登録されたFAQ内容を確認できます。
-![FAQ](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_help_center_05_ja_240105.jpg)
+![FAQ](../static/images/ConsoleGuide/CustomerService/jp/gamebase_help_center_05_ja_240105.jpg)
 
 1)確認したい検索ワードを入力して検索ワードが含まれたFAQを確認できます。
 2)よくある質問に登録された質問を確認できます。
@@ -73,7 +73,7 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 
 メイン画面では、最近作成した3個の記事が表示され、上部固定記事は太いフォントで表示されます。**more**を押して登録された全ての告知事項を確認できます。
 作成日降順でソートされて告知事項記事が表示され、上部固定に指定した告知は太いフォントで上部に優先表示されます。表示期間が過ぎた記事は、一覧に表示されません。記事を押すと、詳細内容を確認できます。
-![告知事項](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_help_center_06_ja_240105.jpg)
+![告知事項](../static/images/ConsoleGuide/CustomerService/jp/gamebase_help_center_06_ja_240105.jpg)
 
 <a id="inquiry"></a>
 ## Inquiry { #inquiry }
@@ -85,7 +85,7 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 
 検索条件に合った顧客お問い合わせ履歴を検索します。
 
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_inquiry_01_ja_240105.jpg)
+![gamebase_ban_01_201812](../static/images/ConsoleGuide/CustomerService/jp/gamebase_inquiry_01_ja_240105.jpg)
 
 **検索条件**
 
@@ -109,7 +109,7 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 
 <a id="search-inquiry-manage-inquiry-type"></a>
 #### 1. 問い合わせタイプ管理
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_inquiry_02_ja_240105.jpg)
+![gamebase_ban_01_201812](../static/images/ConsoleGuide/CustomerService/jp/gamebase_inquiry_02_ja_240105.jpg)
 
 ユーザーがお問い合わせの登録時に選択できる受付タイプ項目を管理できます。
 サポートする言語ごとに登録が可能で、各項目の最大文字数は20文字です。
@@ -120,7 +120,7 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 
 <a id="search-inquiry-send-reply-settings"></a>
 #### 2. 返信送信設定
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_inquiry_03_ja_240105.jpg)
+![gamebase_ban_01_201812](../static/images/ConsoleGuide/CustomerService/jp/gamebase_inquiry_03_ja_240105.jpg)
 
 お問い合わせに対する処理が完了した場合、ユーザーにPushメッセージで通知を送信したい場合にこの機能を設定できます。
 使用したい場合は、上部にある「送信」をチェックすると、処理完了時、ユーザーに完了Pushアラームが送信されます。
@@ -132,7 +132,7 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 <a id="inquiry-details"></a>
 ### Inquiry details { #inquiry-details }
 
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_inquiry_04_ja_240105.jpg)
+![gamebase_ban_01_201812](../static/images/ConsoleGuide/CustomerService/jp/gamebase_inquiry_04_ja_240105.jpg)
 
 ユーザーからのお問い合わせの詳細内容確認し、お問い合わせの処理を行うことができます。
 お問い合わせを処理した後、ユーザーが追加でお問い合わを行うことができます。
@@ -143,14 +143,14 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 以降の処理が完了した場合、お問い合わせの際に登録したemailへ担当者が作成した内容がユーザーに送信されます。
 この時、返信項目を利用してお問い合わせ処理を完了時、該当ユーザーにPushアラームが送信されるかどうかを確認できます。
 > [参考]
-> ![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_inquiry_05_ja_240105.jpg)
+> ![gamebase_ban_01_201812](../static/images/ConsoleGuide/CustomerService/jp/gamebase_inquiry_05_ja_240105.jpg)
 > ログインしたユーザーがお問い合わせを登録した場合、該当ユーザーの情報が一画面で照会されて確認できます。
 > 右側Xボタンをクリックしてウィンドウを閉じることができます。ユーザーIDをクリックするともう一度表示されます。
 > 既存会員メニューで使用していた機能と同じようにユーザー情報が照会されるため、ユーザーお問い合わせ対応時に必要な情報を一画面で便利に確認できます。
 
 <a id="inquiry-details-send-reply-settings"></a>
 #### 1. 返信送信設定
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_inquiry_03_ja_240105.jpg)
+![gamebase_ban_01_201812](../static/images/ConsoleGuide/CustomerService/jp/gamebase_inquiry_03_ja_240105.jpg)
 
 お問い合わせの処理が完了した時、ユーザーにPushメッセージを利用して通知を送信したい場合に、この機能を設定できます。
 使用したい場合は、上部にある「送信」をチェックすると、処理完了時、ユーザーに完了Pushアラームが送信されます。
@@ -173,7 +173,7 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 
 登録されているFAQ項目を検索できます。
 
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_faq_01_ja_240105.jpg)
+![gamebase_ban_01_201812](../static/images/ConsoleGuide/CustomerService/jp/gamebase_faq_01_ja_240105.jpg)
 
 **検索条件**
 
@@ -192,7 +192,7 @@ FAQでは、カテゴリー質問および、よくある質問などを確認�
 
 <a id="search-faq-manage-faq-type"></a>
 #### FAQタイプ管理
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_faq_02_ja_240105.jpg)
+![gamebase_ban_01_201812](../static/images/ConsoleGuide/CustomerService/jp/gamebase_faq_02_ja_240105.jpg)
 
 FAQ登録または修正時に選択できるタイプを管理できます。
 サポートする言語ごとに登録が可能で、各項目の最大文字数は20文字です。
@@ -205,7 +205,7 @@ FAQ登録または修正時に選択できるタイプを管理できます。
 FAQを登録したり、既に登録されているFAQ情報を修正できます。
 登録または修正時に変更できる項目は全て同じです。
 
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_faq_03_ja_240105.jpg)
+![gamebase_ban_01_201812](../static/images/ConsoleGuide/CustomerService/jp/gamebase_faq_03_ja_240105.jpg)
 
 <a id="register-or-update-faq-status"></a>
 #### 1. 状態
@@ -243,7 +243,7 @@ Text Editorを利用して自由な形式で返答を入力することができ
 
 登録されている告知事項リストを検索できます。
 
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_notice_01_ja_240105.jpg)
+![gamebase_ban_01_201812](../static/images/ConsoleGuide/CustomerService/jp/gamebase_notice_01_ja_240105.jpg)
 
 **検索条件**
 
@@ -262,7 +262,7 @@ Text Editorを利用して自由な形式で返答を入力することができ
 
 <a id="search-notice-manage-header"></a>
 #### 頭文言管理
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_notice_02_ja_240105.jpg)
+![gamebase_ban_01_201812](../static/images/ConsoleGuide/CustomerService/jp/gamebase_notice_02_ja_240105.jpg)
 
 告知事項の登録または修正時に選択できる頭文言を管理できます。
 サポートする言語ごとに登録が可能で、各項目の最大文字数は20文字です。
@@ -275,7 +275,7 @@ Text Editorを利用して自由な形式で返答を入力することができ
 新しい告知事項を登録したり、既に登録されている告知事項情報を修正できます。
 登録または修正時に変更できる項目は全て同じです。
 
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_notice_03_ja_240105.jpg)
+![gamebase_ban_01_201812](../static/images/ConsoleGuide/CustomerService/jp/gamebase_notice_03_ja_240105.jpg)
 
 <a id="register-or-update-notice-date-of-exposure"></a>
 #### 1. 表示日
@@ -320,7 +320,7 @@ Text Editorを利用して自由な形式で返答を入力することができ
 <a id="search-template"></a>
 ### Search Template { #search-template }
 現在登録されているテンプレートリストを表示し、右上に検索ワードを入力して現在登録されているテンプレートを検索できます。
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_template_01_ja_240105.jpg)
+![gamebase_ban_01_201812](../static/images/ConsoleGuide/CustomerService/jp/gamebase_template_01_ja_240105.jpg)
 
 **結果**
 - **テンプレート名**：お問い合わせの処理k時にテンプレート項目に表示され、選択できるテンプレート名です。
@@ -332,7 +332,7 @@ Text Editorを利用して自由な形式で返答を入力することができ
 返答テンプレートを新たに登録したり、登録されている返答テンプレート情報を修正できます。
 登録または修正時に変更できる項目は全て同じです。
 
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_template_02_ja_240105.jpg)
+![gamebase_ban_01_201812](../static/images/ConsoleGuide/CustomerService/jp/gamebase_template_02_ja_240105.jpg)
 
 <a id="register-or-update-template-classification"></a>
 #### 1. 区分
@@ -355,7 +355,7 @@ Text editorを利用して自由に入力でき、入力された内容がその
 
 テスト送信機能が提供され、この機能を利用して現在入力したテンプレートを利用してユーザーにどのような形式で送信されるのかを事前に確認できます。
 
-![gamebase_ban_01_201812](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/CustomerService/jp/gamebase_template_03_ja_240105.jpg)
+![gamebase_ban_01_201812](../static/images/ConsoleGuide/CustomerService/jp/gamebase_template_03_ja_240105.jpg)
 
 > [参考]
 > 発信アドレスに設定されたメールがSPFレコードが設定されていない場合は、メールがスパム処理されることがあります。 

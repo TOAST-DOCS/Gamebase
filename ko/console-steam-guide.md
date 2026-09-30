@@ -26,7 +26,7 @@ Steam 연동을 위해 다음의 3가지 정보를 정확히 입력하세요.
 * Steamworks에서 제품을 등록한 뒤 발급 받는 앱의 고유 식별 정보입니다.
 * **Steamworks > App Admin >** (프로젝트 명)에 표시된 앱 ID를 입력합니다.
 
-![Steam 스토어 앱 ID](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_iap/console_steam/steam_console_app_02_kor.png)
+![Steam 스토어 앱 ID](../static/images/console_steam/steam_console_app_02_kor.png)
 
 
 <a id="steam-web-api-key"></a>
@@ -36,7 +36,7 @@ Steam 연동을 위해 다음의 3가지 정보를 정확히 입력하세요.
 * **Steamworks > Users & Permissions**에서 신규 생성 또는 기존 발급 받은 키 값을 입력합니다.
   * 보다 자세한 발급 방법은 [Steamworks Publisher Web API Key](https://partner.steamgames.com/doc/webapi_overview/auth)를 참고하세요.
 
-![Steam Web API Key](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_iap/console_steam/steam_console_app_03_kor.png)
+![Steam Web API Key](../static/images/console_steam/steam_console_app_03_kor.png)
 
 
 <a id="steam-default-currency"></a>
@@ -47,7 +47,7 @@ Steam 연동을 위해 다음의 3가지 정보를 정확히 입력하세요.
   * **판매 아이템 설정** 섹션 내 **국가별 판매 아이템 정보 입력** 항목을 참고하세요.
 
 
-![Steam 기본 통화](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_iap/console_steam/steam_console_app_04_kor.png)
+![Steam 기본 통화](../static/images/console_steam/steam_console_app_04_kor.png)
 
 
 
