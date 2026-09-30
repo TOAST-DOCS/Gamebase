@@ -18,7 +18,7 @@ Detailed information of searched users are displayed in the above, while history
 ### Detail Information { #detail-information }
 ![member_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/en/member_01_en_240103.png)
 
-**User **
+**User**
 
 - **User ID**: Gamebase user ID
 - **Country code(USIM)**: If it fails to retrieve USIM country code from the user's device, it will display 'ZZ.' To check the country code configured for your device, see the **Login History** shown below.
@@ -40,7 +40,7 @@ You can change user account status to these below:
 - **Banned**: You can lift a ban on the account.
 - **Withdrawn**: 'Modify Status' button won't be shown.
 
-**Identity Provider **
+**Identity Provider**
 
 In Gamebase, many external IdPs can be integrated. In short, a user can log in by registering two IdPs, such as Facebook and Google in one user ID. IdP can be registered when **Login with Specific IDP** or '**Add Mapping'** API is called from SDK.
 

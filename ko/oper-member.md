@@ -18,7 +18,7 @@ IdP ID는 IdP에서 제공하는 아이디 정보로써 로그인 시 입력하�
 ### Detail Information { #detail-information }
 ![member_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/ko/member_01_kr_240103.png)
 
-**User **
+**User**
 
 - **유저 ID**: Gamebase 사용자 아이디
 - **국가코드(USIM)**: 사용자 단말기의 USIM 국가 코드로 수집에 실패하면 'ZZ'로 표기됩니다. 단말기에 설정된 국가 코드를 확인하고 싶다면 하단의 **로그인 이력**에서 확인하세요.
@@ -31,7 +31,7 @@ IdP ID는 IdP에서 제공하는 아이디 정보로써 로그인 시 입력하�
 - **푸시 부가정보 조회**: 게임 유저의 푸시 토큰 및 태그 정보 조회.
 ![member_02](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/ko/member_02_kr_240103.png)
 
-**Identity Provider **
+**Identity Provider**
 
 Gamebase에서는 여러 개의 외부 IdP를 연동할 수 있습니다. 즉, 사용자가 하나의 사용자 아이디에 Facebook, Google 두 개의 IdP를 등록하여 로그인할 수 있습니다. SDK에서 **Login using a specific IdP**나 '**Add Mapping** API를 호출하는 경우에 IdP가 등록됩니다.
 

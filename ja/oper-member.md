@@ -19,7 +19,7 @@ IdP IDはIdPで提供するID情報で、ログイン時に入力する情報で
 ### Detail Information { #detail-information }
 ![member_01](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Member/jp/member_01_jp_240103.png)
 
-**User **
+**User**
 
 - **ユーザーID**：GamebaseユーザーID
 - **国コード(USIM)**：ユーザー端末のUSIM国コードの収集に失敗すると、'ZZ'と表記されます。端末に設定された国コードを確認したい場合は下部の**ログイン履歴**から確認してください。
@@ -42,7 +42,7 @@ IdP IDはIdPで提供するID情報で、ログイン時に入力する情報で
 - **利用停止**：利用停止解除ができません。
 - **退会**：該当ボタンが表示されません。
 
-**Identity Provider **
+**Identity Provider**
 
 Gamebaseでは、複数の外部IdPを連動することができます。つまり、ユーザーが一つのユーザーIDにFacebook、Googleの二つのIdPを登録してログインすることができます。SDKから**Login using a specific IdP**や**Add Mapping**APIを呼び出す際にIdPが登録されます。
 

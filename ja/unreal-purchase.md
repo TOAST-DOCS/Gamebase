@@ -608,9 +608,7 @@ Supported Platforms
 | PURCHASE_PENDING                          | 4008       | 決済を完了するには追加の確認が必要です。 |
 | PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | サポートしないストアです。<br>選択できるストアはAS(App Store)、GG(Google)、ONESTORE、GALAXYです。 |
 | PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN Cloud IAPライブラリエラーです。<br/>詳細エラーを確認してください。 |
-| PURCHASE_UNKNOWN_ERROR                    | 4999       | 定義されていない購入エラーです。<br>全てのログを[サポート](https://toast.com/support/inquiry)へご送付ください。迅速に対応いたします。
-* エラーコードの一覧は、次の文書を参照してください。
-    * [エラーコード](./error-code/#client-sdk)
+| PURCHASE_UNKNOWN_ERROR                    | 4999       | 定義されていない購入エラーです。<br>全てのログを[サポート](https://toast.com/support/inquiry)へご送付ください。迅速に対応いたします。* エラーコードの一覧は、次の文書を参照してください。    * [エラーコード](./error-code/#client-sdk)
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
