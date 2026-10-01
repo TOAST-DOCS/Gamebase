@@ -20,32 +20,27 @@
 <a id="february-24-2026"></a>
 ### February 24, 2026 { #february-24-2026 }
 
-<!-- TODO: translate body -->
-
 <a id="february-24-2026-added-features"></a>
 #### Added Features
 
-<!-- TODO: translate body -->
+* Added the "Get Coupon Information by Coupon Code" API to retrieve coupon information by coupon code.
 
 <a id="december-23-2025"></a>
 ### December 23, 2025 { #december-23-2025 }
 
-<!-- TODO: translate body -->
-
 <a id="december-23-2025-added-features"></a>
 #### Added Features
 
-<!-- TODO: translate body -->
+* Added `eventLogType` to the request parameters of the "Withdraw Histories" API
+* Added the "SIWA Account Webhook" API for processing Sign in with Apple account-related operations
 
 <a id="august-27-2024"></a>
 ### August 27, 2024 { #august-27-2024 }
 
-<!-- TODO: translate body -->
-
 <a id="august-27-2024-added-features"></a>
 #### Added Features
 
-<!-- TODO: translate body -->
+* Added the 'paymentToken' field to the payment history query API request body
 
 <a id="october-31-2023"></a>
 ### October 31, 2023 { #october-31-2023 }

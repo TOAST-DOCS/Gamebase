@@ -16,7 +16,10 @@ After binary file registration, Check the package name.
 <a id="iap-public-key"></a>
 ## IAP Public Key 생성하기 { #iap-public-key }
 
-<!-- TODO: translate body -->
+> [Note]
+> https://developer.samsung.com/iap/isn/requirements.html#Create-an-IAP-key-in-Seller-Portal
+
+* [Galaxy Store Seller Portal](https://seller.samsungapps.com/main/sellerMain.as) > Seller Support > IAP Service > IAP Key > Create IAP Key
 
 <a id="registering-app-from-the-console"></a>
 ## Registering app from the console { #registering-app-from-the-console }
@@ -25,5 +28,9 @@ Please enter Package Name in the Store App ID.
 <a id="register-real-time-server-notification-isn"></a>
 ## Register Real-time Server Notification (ISN) { #register-real-time-server-notification-isn }
 
-<!-- TODO: translate body -->
+* App > Select an app > <strong>In App Purchase</strong> > More > <strong>Instant Server Notification (ISN)</strong>
+![galaxy_isn](https://static.toastoven.net/prod_iap/console_galaxy/galaxy_isn.png)
+
+* ISN url: ```https://api-iap.nhncloudservice.com/markets/GALAXY/notification/{Galaxy Store Package Name}/receive```
+* If you're using the Gamebase sandbox, enter the ISN url as ```https://sandbox-api-iap.nhncloudservice.com/markets/GALAXY/notification/{Galaxy Store Package Name}/receive```
 
