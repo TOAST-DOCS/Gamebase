@@ -1378,7 +1378,7 @@ The ZIP file for distribution no longer includes AAR files.
 
 * Fixed a bug where the 'Unregistered Game Version' error pop-up was displayed only in English.
 * Fixed a bug where the Chinese text was not displayed in the maintenance pop-up.
-* Fixed a bug where, if [Credential Login](./aos-authentication/#login-with-credential) is performed, [Login as the Latest Login IdP](./aos-authentication/#login-as-the-latest-login-idp ) call always fails.
+* Fixed a bug where, if [Credential Login](./aos-authentication/#login-with-credential) is performed, [Login as the Latest Login IdP](./aos-authentication/#login-as-the-latest-login-idp) call always fails.
 
 <a id="2-27-0-2021-08-24"></a>
 ### 2.27.0 (2021. 08. 24.) { #2-27-0-2021-08-24 }

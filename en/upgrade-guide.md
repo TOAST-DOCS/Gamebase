@@ -1170,7 +1170,7 @@ buildscript {
 * In case of using Firebase Cloud Messaging, download a google-services.json file from Firebase Console and convert it into XML. Include XML resource in your project.
     * XML resource is required in Gamebase version 2.6.0 or higher. Under 2.6.0, Firebase Push works without XML resource.
 * Refer to the below guide for implementation.
-    * [\[Game > Gamebase > Android Developer's Guide > Push > Settings > Firebase\]](./aos-push/#firebase)
+    * [\[Game > Gamebase > Android Developer's Guide > Push > Settings > Firebase\]](./aos-push/#settings)
 
 <a id="section-59-unity-standalone"></a>
 #### Standalone
