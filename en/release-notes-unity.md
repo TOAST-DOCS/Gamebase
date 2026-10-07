@@ -2274,7 +2274,7 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
 <a id="12-20170404-1"></a>
 #### 기능 개선/변경
 * [SDK] 1.1.2 update
-    * Improved checkpoint and emergency announcement popup design at game launch
+    * Improved maintenance and emergency announcement popup design at game launch
     * Added Unity Plugin debug logs and detailed exception handling
 
 <a id="1-1-0-2017-03-21"></a>
@@ -2299,4 +2299,4 @@ Gamebase 2.0의 개선된 전체 지표를 활용하기 위해서는 SDK 업데�
     * Provides a mapping feature that allows a single user to use multiple external IDPs simultaneously
     * Provides web console features for game operations, including game app status management, maintenance, and emergency notices
     * Provides a web console screen for checking real-time operational metrics
-    * NHN Cloud Product Integration: PUSH, IAP
+    * Integrated with TOAST Cloud products: PUSH, IAP

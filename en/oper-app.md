@@ -695,7 +695,7 @@ At this point, you must enter the deploy ID and the {scope} required for authent
 
 ##### Additional Info Settings
 
-* You must configure the JSON string information in **NHN Cloud Console > Gamebase > App > Credentials > Additional Info**.
+* You must configure the JSON string information in **NHN Cloud Console > Gamebase > App > Authentication Information > Additional Information**.
 * For Epic Games, you must set the **deployment_id** found in **Product Settings > SDK Download and Credentials > EOS SDK Credentials > Deploy**, and the **scope**, which is the permission scope to request during OAuth authentication.
 * **deployment_id** must be set to identify the EOS (Epic Online Services) service environment.
 * **scope** is set to retrieve information such as the user's profile, friend list, and presence status during authentication.

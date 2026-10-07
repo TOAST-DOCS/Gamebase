@@ -43,15 +43,15 @@ NHN Cloudの統合アプリ内決済サービスであるIAP(In-App Purchase)を
 
 | Store       | Code | Description  |
 | ----------- | ---- | ------------ |
-| App Store | AS | only iOS |
-| Google Play | GG | only Android |
-| ONE Store | ONESTORE | only Android |
-| GALAXY Store | GALAXY | only Android |
-| Huawei AppGallery | HUAWEI | only Android |
-| My Card | MYCARD | only Android |
-| Windows | WIN | only Unity Standalone |
+| App Store | AS | iOSに限る |
+| Google Play | GG | Androidに限る |
+| ONE Store | ONESTORE | Androidに限る |
+| GALAXY Store | GALAXY | Androidに限る |
+| Huawei AppGallery | HUAWEI | Androidに限る |
+| MyCard | MYCARD | Androidに限る |
+| Windows | WIN | Standaloneに限る |
 | macOS | MAC | Standaloneに限る |
-| Web | WEB | only Unity WebGL|
+| Web | WEB | WebGLに限る |
 
 <a id="gamebaseconfiguration-displaylanguagecode"></a>
 #### 4. displayLanguageCode

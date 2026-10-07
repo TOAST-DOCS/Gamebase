@@ -25,7 +25,6 @@ Gamebase APIを使用するには、次のヘッダファイルをインクル�
 | AppID | ALL | M |
 | AppVersion | ALL | M |
 | StoreCode | ALL | M |
-| DisplayLanguageCode | ALL | O |
 | bEnablePopup | ALL | O |
 | bEnableLaunchingStatusPopup | ALL | O |
 | bEnableBanPopup | ALL | O |
