@@ -42,7 +42,8 @@ Supported Platforms
 <a id="environments-dependencies"></a>
 #### Dependencies
 
-<!-- TODO: translate body -->
+* [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
+* [Gamebase iOS SDK - Dependencies](./ios-started/#setting)
 
 <a id="installation"></a>
 ## Installation { #installation }

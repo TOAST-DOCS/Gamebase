@@ -1170,7 +1170,8 @@ Gamebase provides features to respond to customer inquiries.
 <a id="contact-permissions-settings"></a>
 #### Permissions Settings
 
-<!-- TODO: translate body -->
+* [Game > Gamebase > Android SDK User Guide > ETC > Contact](aos-etc/#contact)
+* [Game > Gamebase > iOS SDK User Guide > ETC > Contact](ios-etc/#contact)
 
 <a id="contact-customer-service-type"></a>
 #### Customer Service Type

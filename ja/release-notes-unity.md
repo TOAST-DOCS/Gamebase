@@ -574,7 +574,8 @@
 <a id="620-2024-03-26-platform-specific-changes"></a>
 #### プラットフォーム別変更事項
 
-<!-- TODO: translate body -->
+* [Gamebase Android SDK 2.62.0](./release-notes-android/#2-62-0-2024-03-26)
+* [Gamebase iOS SDK 2.62.0](./release-notes-ios/#2-62-0-2024-03-26)
 
 <a id="2-61-0-2024-02-27"></a>
 ### 2.61.0 (2024. 02. 27.) { #2-61-0-2024-02-27 }
@@ -1530,7 +1531,9 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
 <a id="130-july-28-2020-bug-fixes"></a>
 #### バグ修正
 
-<!-- TODO: translate body -->
+* [SDK] 2.13.0
+    * (Android) WebView 終了時に終了コールバックで ANDROID_ACTIVITY_DESTROYED(31) エラーが返される問題を修正
+    * (Android) 決済モジュールに ProGuard の宣言が欠落しているエラーを修正
 
 <a id="2-12-0-2020-07-14"></a>
 ### 2.12.0 (2020. 07. 14.) { #2-12-0-2020-07-14 }
@@ -1592,7 +1595,9 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
 <a id="100-may-26-2020-bug-fixes"></a>
 #### バグ修正
 
-<!-- TODO: translate body -->
+* [SDK] 2.9.1
+    * (Android) マッピング後に指標レベルが null になり、決済指標に正常に反映されないバグを修正
+    * (iOS) Unreal エンジンでビルドすると、warning をビルドエラーと判定してビルドできない問題を修正
 
 <a id="2-9-1-2020-04-29"></a>
 ### 2.9.1 (2020. 04. 29.) { #2-9-1-2020-04-29 }
