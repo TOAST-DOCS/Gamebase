@@ -50,7 +50,7 @@
 <a id="section-4-unity"></a>
 ### Unity { #section-4-unity }
 
-* Auth.AuthToken의 extraParams 타입이 Dictionary&lt;string, string&gt;에서 Dictionary&lt;string, object&gt;로 변경되었습니다.
+* Auth.AuthTokenのextraParamsの型がDictionary&lt;string, string&gt;からDictionary&lt;string, object&gt;に変更されました。
 
 <a id="section-5"></a>
 ## 2.80.0 { #section-5 }

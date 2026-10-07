@@ -639,10 +639,10 @@ void USample::AddMappingWithCredential()
 <a id="add-mapping-forcibly"></a>
 ### Add Mapping Forcibly { #add-mapping-forcibly }
 
-특정 IdP에 이미 매핑된 계정이 있을 때, **강제로** 매핑을 시도합니다.
+When an account is already mapped to a specific IdP, this attempts **forcible** mapping.
 **강제 매핑**을 시도할 때는 AddMapping API에서 획득한 `ForcingMappingTicket`이 필요합니다.
 
-다음은 Facebook에 강제 매핑을 시도하는 예시입니다.
+The following is an example of attempting force mapping with Facebook.
 
 **API**
 
