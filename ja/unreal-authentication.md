@@ -314,10 +314,11 @@ IdPで提供するSDKを使用して、ゲームで直接認証した後、発�
 | keyname | a use | 値種類 |
 | ---------------------------------------- | ------------------------------------ | ------------------------------ |
 | GamebaseAuthProviderCredential::ProviderName | IdPタイプ設定                         | GamebaseAuthProvider::Google<br> GamebaseAuthProvider::Facebook<br>GamebaseAuthProvider::Naver<br>GamebaseAuthProvider::Twitter<br>GamebaseAuthProvider::Line<br>GamebaseAuthProvider::Hangame<br>GamebaseAuthProvider::AppleId<br>GamebaseAuthProvider::Weibo<br>GamebaseAuthProvider::GameCenter<br>GamebaseAuthProvider::Payco<br>GamebaseAuthProvider::Steam<br>GamebaseAuthProvider::EpicGames |
-| GamebaseAuthProviderCredential::AccessToken | IdPログイン後に取得した認証情報(Access Token)設定<br/>Google認証時には使用しない |  
+| GamebaseAuthProviderCredential::AccessToken | IdPログイン後に取得した認証情報(Access Token)設定<br/>Google認証時には使用しない |  |
 | GamebaseAuthProviderCredential::AuthorizationCode | Googleログイン後に取得した認証情報(Authorization Code)設定 |                                          |
 | GamebaseAuthProviderCredential::GamebaseAccessToken | IdP認証情報ではなくGamebase Access Tokenでログインを行いたい場合に使用 |  |
-| GamebaseAuthProviderCredential::LineChannelRegion | Lineサービス提供地域設定 | [Login with IdP参照](#login-with-idp) |
+| GamebaseAuthProviderCredential::IgnoreAlreadyLoggedIn | Gamebaseにログインした状態でログアウトせずに別のアカウントでログインを試みることを許可 | **bool** |
+| GamebaseAuthProviderCredential::LineChannelRegion | LINEサービス提供地域設定 | [Login with IdP参照](#login-with-idp) |
 
 > [TIP]
 >

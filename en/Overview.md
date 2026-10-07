@@ -185,9 +185,8 @@ The following shows the service structure of Gamebase with simple description
 
 | Component           | Description                                       |
 | --------------- | ---------------------------------------- |
-| Gamebase SDK    | - Client development SDK                      |
-| Gateway         | - Provides mashup API between internal and external modules.<br/>- Delivers to backend services at the request of client and server.|
-| Gamebase Server | - Processes internal logic of Gamebase. <br>- Provides data for client's initial execution  <br>- Issues/manages user identifier keys and manages mapping <br>- Collects and manages concurrent access indicators per game. |
+| Gamebase SDK    | - Client development SDK                       |
+| Gamebase Server | - Provides mashup API between internal and external modules and processes internal logic <br>- Provides data for client's initial execution <br>- Issues/manages user identifier keys and manages mapping <br>- Collects and manages concurrent access indicators per game |
 | Console         | - Web Console                              |
 
 
