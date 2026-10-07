@@ -26,7 +26,7 @@ Galaxy Store Seller Portal > Ap > Select App > Binary
 App登録ポップアップウィンドウでStore ID Galaxy Storeを選択し、Store App ID欄にPackage Nameを入力します。
 ![[]](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/StoreConsoleGuide/GalaxyStore/jp/store_info_registration_jp_231226.png)
 <a id="register-real-time-server-notification-isn"></a>
-## 실시간 서버 알림 (ISN) 등록 { #register-real-time-server-notification-isn }
+## リアルタイムサーバー通知 (ISN) 登録 { #register-real-time-server-notification-isn }
 
 * アプリ > アプリ選択 > <strong>In App Purchase</strong> > もっと見る > <strong>リアルタイムサーバー通知 (ISN)</strong>
 ![galaxy_isn](https://static.toastoven.net/prod_iap/console_galaxy/galaxy_isn.png)

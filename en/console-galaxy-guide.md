@@ -14,7 +14,7 @@ After binary file registration, Check the package name.
  
 
 <a id="iap-public-key"></a>
-## IAP Public Key 생성하기 { #iap-public-key }
+## Create IAP Public Key { #iap-public-key }
 
 > [Note]
 > https://developer.samsung.com/iap/isn/requirements.html#Create-an-IAP-key-in-Seller-Portal

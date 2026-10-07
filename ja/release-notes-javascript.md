@@ -69,7 +69,7 @@
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.6.2/GamebaseSDK-JavaScript.zip)
 #### 機能改善/変更
 * [SDK] 2.6.2
-	* 불필요한 오류 로그 제거
+	* 不要なエラーログを削除
 
 ### 2.4.4 (2019.07.23)
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.4.4/GamebaseSDK-JavaScript.zip)

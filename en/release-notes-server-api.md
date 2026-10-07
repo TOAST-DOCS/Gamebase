@@ -180,31 +180,31 @@
 
 <a id="2019-03-26-1"></a>
 #### 기능 추가
-* TransferAccount 기능 추가: guest 사용자가 매핑없이 최대 2개의 키를 이용하여 새로운 기기로 이전할 수 있는 기능
+* Added TransferAccount feature: a feature that allows guest users to transfer to a new device using up to 2 keys without mapping
 	- (Server API)
-		* 발급된 TransferAccount의 ID/PW 검증하는 서버 API (validateTransferAccount)
+		* Server API to validate the ID/PW of an issued TransferAccount (validateTransferAccount)
 
 <a id="2018-06-26"></a>
 ### 2018. 06. 26. { #2018-06-26 }
 
 <a id="2018-06-26-1"></a>
 #### 기능 추가
-* getSimpleLaunching : 클라이언트 앱 기동시 제공되는 Launching 정보 확인용 API
+* getSimpleLaunching : API for checking Launching information provided when the client app starts
 
 <a id="2017-11-30"></a>
 ### 2017. 11. 30. { #2017-11-30 }
 
 <a id="2017-11-30-1"></a>
 #### 기능 개선/변경
-* [점검 조회 API](./api-guide/#check-maintenance-set) 결과를 List 에서 단일 객체로 변경
+* Changed the result of the [Check Maintenance API](./api-guide/#check-maintenance-set) from a list to a single object
 
 <a id="2017-04-04"></a>
 ### 2017. 04. 04. { #2017-04-04 }
 
 <a id="2017-04-04-1"></a>
 #### 기능 개선/변경
-* [IAP](./api-guide/#purchase-iap) API 연동 : 아이템 조회, 미소비내역 조회
-* checkAccessToken API 응답 결과에, 로그인 시 사용된 IdP 관련 정보 포함하는 스펙 추가
+* [IAP](./api-guide/#purchase-iap) API integration: Query items, Query unconsumed purchase history
+* Added a spec to include IdP-related information used at login in the checkAccessToken API response
 
 
 <a id="2017-03-21"></a>
@@ -212,17 +212,17 @@
 
 <a id="2017-03-21-1"></a>
 #### 기능 개선/변경
-* [Leaderboard](./api-guide/#leaderboard), [IAP](./api-guide/#purchase-iap) API 연동
+* [Leaderboard](./api-guide/#leaderboard), [IAP](./api-guide/#purchase-iap) API integration
 
 <a id="2017-03-09"></a>
 ### 2017. 03. 09. { #2017-03-09 }
 
 <a id="2017-03-09-1"></a>
 #### 신규 상품 출시
-* 게임에서 공통적으로 필요한 기능들을 제공하여 손쉽고 효율적으로 게임 개발이 가능하도록 돕는 서비스입니다.
-	* 다양한 인증 지원 : Guest , 3rd Party(Google , Facebook, GameCenter 등) 인증
-	* 로그아웃 및 회원탈퇴 기능을 제공
-	* 하나의 User가 여러 개의 외부 IDP를 동시에 사용할 수 있도록 mapping기능을 제공
-	* 게임운영을 위한 게임 앱 상태관리, 점검, 긴급공지 등의 기능을 웹콘솔로 제공
-	* 실시간 운영지표 확인 가능한 웹콘솔 화면 제공
-	* TOAST Cloud상품 연동 : PUSH, IAP
+* This is a service that helps you develop games easily and efficiently by providing features that are commonly needed in games.
+	* Various authentication support: Guest, 3rd party (Google, Facebook, GameCenter, etc.) authentication
+	* Provided logout and membership withdrawal features
+	* Provides a mapping feature that allows a single user to use multiple external IDPs simultaneously
+	* Provides features for game operations via web console, including game app status management, maintenance, and emergency notifications
+	* Provides a web console screen for checking real-time operational metrics
+	* Integrate with TOAST Cloud Products: PUSH, IAP

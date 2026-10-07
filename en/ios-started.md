@@ -281,7 +281,7 @@ end
 
 <a id="idp-settings-game-center"></a>
 #### Game Center
-* Entitlements.plist에 Game Center entitlement(`com.apple.developer.game-center`)이 없다면 직접 추가해야 합니다.
+* If there is no Game Center entitlement (`com.apple.developer.game-center`) in the Entitlements.plist file, you must add it manually.
 
 <a id="idp-settings-weibo"></a>
 #### Weibo
