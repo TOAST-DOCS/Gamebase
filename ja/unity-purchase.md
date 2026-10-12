@@ -1,3 +1,5 @@
+<!-- machine_translated: true -->
+
 <!-- pre-align:aligned sig=b4a1a494b1cb -->
 
 <a id="game-gamebase-unity-developers-guide-purchase"></a>
@@ -70,6 +72,9 @@ AndroidやiOSでアプリ内決済機能を設定する方法は、次のドキ�
 
 <a id="purchase-items"></a>
 ### Purchase Items { #purchase-items }
+
+購入したいアイテムのgamebaseProductIdを使用して購入をリクエストします。<br/>
+gamebaseProductIdは一般的にストアに登録したアイテムのidと同じですが、Gamebaseコンソールで変更することもできます。<br/>
 
 購入したいアイテムのitemSeqを利用して次のAPIを呼び出し、購入をリクエストします。
 ゲームユーザーが購入をキャンセルする場合、**PURCHASE_USER_CANCELED**エラーが返されます。
@@ -200,6 +205,7 @@ public class PurchasableReceipt
     /// </summary>
     public long expiryTime;
 
+
     /// <summary>
     /// 決済したストアコードです。
     /// GamebaseStoreCodeクラスでストアコードリストを確認できます。
@@ -208,7 +214,6 @@ public class PurchasableReceipt
 
     /// <summary>
     /// Gamebase.Purchase.requestPurchase API呼び出し時にpayloadで渡された値です。
-    ///
     /// スストアサーバーの状態によっては情報が失われる場合があるため、使用を推奨しません。
     /// </summary>
     public string payload;
@@ -224,6 +229,11 @@ public class PurchasableReceipt
     /// - (Android) Gamebase決済サーバーで一時的に検証ロジックをオフにする場合にはfalseのみ出力されるため、常に有効な値が保障されません。
     /// </summary>
     public bool isTestPurchase;
+
+    /// <summary>
+    /// 決済アダプターが渡す追加情報です。
+    /// </summary>
+    public Dictionary<string, string> extras;
 }
 ```
 
