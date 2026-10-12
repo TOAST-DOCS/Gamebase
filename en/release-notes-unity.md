@@ -1,7 +1,38 @@
+<!-- machine_translated: true -->
+
 <!-- pre-align:aligned sig=602ad029c65d -->
 
 <a id="game-gamebase-release-notes-unity"></a>
 ## Game > Gamebase > Release Notes > Unity { #game-gamebase-release-notes-unity }
+
+<a id="2-83-0-2026-10-13"></a>
+### October 13, 2026 { #2-83-0-2026-10-13 }
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.83.0/GamebaseSDK-Unity.zip)
+
+<a id="830-2026-10-13-added-features"></a>
+#### Added Features
+* (Windows, macOS) Added support for Predefined Custom Scheme in WebView.
+* (Windows, macOS) Added a View Details button to the maintenance pop-up to display the maintenance details page.
+* Added an extras field to GamebaseResponse.Purchase.PurchasableReceipt.
+
+<a id="830-2026-10-13-feature-updates"></a>
+#### Feature Updates
+* Added support for Fast Enter Play Mode in the Unity editor.
+* Deprecated GamebaseResponse.Event.PurchasableReceipt. Use GamebaseResponse.Purchase.PurchasableReceipt instead.
+
+<a id="830-2026-10-13-bug-fixes"></a>
+#### Bug Fixes
+* (Android, iOS) Fixed an issue where some receipt information in the PURCHASE_UPDATED event was missing.
+* (Windows, macOS, WebGL) Fixed an issue where login could not be retried in certain situations.
+* (WebGL) Fixed an issue where restarting the app after switching accounts with ChangeLogin caused login with the account prior to the switch.
+* (macOS) Fixed an issue where WebView was not displayed correctly in Apple Silicon environments.
+* (Windows, macOS) Fixed an issue where a crash occurred when closing the app after using WebView.
+* (Windows, macOS) Fixed an issue where the gamebase://openbrowser and gamebase://dismiss schemes were processed in duplicate in WebView.
+
+<a id="830-2026-10-13-platform-specific-changes"></a>
+#### Platform-specific Changes
+* [Gamebase Android SDK 2.83.0](./release-notes-android/#2-83-0-2026-09-17)
+* [Gamebase iOS SDK 2.82.1](./release-notes-ios/#2-82-1-2026-08-25)
 
 <a id="2-82-0-2026-08-11"></a>
 ### 2.82.0 (2026. 08. 11.) { #2-82-0-2026-08-11 }
