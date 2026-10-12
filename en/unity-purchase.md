@@ -1,3 +1,5 @@
+<!-- machine_translated: true -->
+
 <!-- pre-align:aligned sig=b4a1a494b1cb -->
 
 <a id="game-gamebase-unity-developers-guide-purchase"></a>
@@ -145,7 +147,7 @@ public class PurchasableReceipt
     /// This is an important piece of information used to call 'Consume' server API with purchaseToken.
     ///    
     /// Caution: Call Consume API from game server!
-    /// <para/><see href="https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
+    /// <para/><see href="https://docs.toast.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap">Consume API</see>
     /// </summary>
     public string paymentSeq;
 
@@ -155,7 +157,7 @@ public class PurchasableReceipt
     /// In Consume API, the parameter must be named 'accessToken' to be passed.
     ///    
     /// Caution: Call Consume API from game server!
-    /// <para/><see href="https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
+    /// <para/><see href="https://docs.toast.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap">Consume API</see>
     /// </summary>
     public string purchaseToken;
 
@@ -204,7 +206,7 @@ public class PurchasableReceipt
     public long expiryTime;
 
 
-     /// <summary>
+    /// <summary>
     /// The store code where the purchase is made.
     /// You can check the store code list from GamebaseStoreCode class.
     /// </summary>
@@ -227,6 +229,11 @@ public class PurchasableReceipt
     /// - (Android) If the validation logic is temporarily turned off in the Gamebase payment server, the value is output as false only, so it is not always guaranteed to be a valid value.
     /// </summary>
     public bool isTestPurchase;
+
+    /// <summary>
+    /// Additional information passed by the payment adapter.
+    /// </summary>
+    public Dictionary<string, string> extras;
 }
 ```
 
