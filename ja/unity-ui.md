@@ -1,3 +1,5 @@
+<!-- machine_translated: true -->
+
 <!-- pre-align:aligned sig=be2848d30bdd -->
 
 <a id="game-gamebase-unity-developers-guide-ui"></a>
@@ -559,6 +561,18 @@ public void ShowWebView()
 > iPadOS 13以上でWebViewは基本的にデスクトップモードです。
 > contentMode =`GamebaseWebViewContentMode.MOBILE`設定でモバイルモードに変更できます。
 
+<a id="show-webview-predefined-custom-scheme"></a>
+#### Predefined Custom Scheme
+
+Gamebaseで指定されたスキームです。
+
+| scheme               | 用途                                  |
+| -------------------- | ------------------------------------- |
+| gamebase://dismiss   | Webビューを閉じる                          |
+| gamebase://goback    | Webビューで戻る                     |
+| gamebase://getuserid | 現在ログイン中のユーザーのIDを表示 |
+| gamebase://showwebview?link={URLEncodedURL} | linkパラメータのURLをWebビューで開く。<br>URLEncodedURL：WebビューでURL。<br>URLデコードが必要。 |
+| gamebase://openbrowser?link={URLEncodedURL} | linkパラメータのURLを外部ブラウザで開く。<br>URLEncodedURL：外部ブラウザで開くURL。<br>URLデコードが必要。 |
 
 <a id="close-webview"></a>
 ### Close WebView { #close-webview }
