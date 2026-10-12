@@ -1,7 +1,19 @@
+<!-- machine_translated: true -->
+
 <!-- pre-align:aligned sig=d60b1633360c -->
 
 <a id="game-gamebase-upgrade-guide"></a>
 ## Game > Gamebase > Upgrade Guide { #game-gamebase-upgrade-guide }
+
+<a id="2-83-0"></a>
+## 2.83.0 { #2-83-0 }
+
+<a id="2-83-0-unity"></a>
+### Unity { #2-83-0-unity }
+
+* The **GamebaseResponse.Event.PurchasableReceipt** class has been deprecated.
+    * Use the **GamebaseResponse.Purchase.PurchasableReceipt** class instead.
+    * Convert the data from the PURCHASE_UPDATED event using the **GamebaseResponse.Purchase.PurchasableReceipt.From(message.data)** API.
 
 <a id="section-1"></a>
 ## 2.81.4 { #section-1 }
