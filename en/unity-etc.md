@@ -1,3 +1,5 @@
+<!-- machine_translated: true -->
+
 <!-- pre-align:aligned sig=d1c091670b0d -->
 
 <a id="game-gamebase-unity-sdk-user-guide-etc"></a>
@@ -391,14 +393,14 @@ public class GamebaseEventMessage
 ```cs
 public void AddEventHandlerSample()
 {
-    Gamebase.AddEventHandler(GamebaseObserverHandler);
+    Gamebase.AddEventHandler(GamebaseEventHandler);
 }
 
-private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage message)
+private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage message)
 {
     switch (message.category)
     {
-          case GamebaseEventCategory.IDP_REVOKED:
+        case GamebaseEventCategory.IDP_REVOKED:
             {
                 GamebaseResponse.Event.GamebaseEventIdPRevokedData idPRevokedData = GamebaseResponse.Event.GamebaseEventIdPRevokedData.From(message.data);
                 if (idPRevokedData != null)
@@ -474,10 +476,11 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
             }
         case GamebaseEventCategory.PURCHASE_UPDATED:
             {
-                GamebaseResponse.Event.PurchasableReceipt purchasableReceipt = GamebaseResponse.Event.PurchasableReceipt.From(message.data);
+                GamebaseResponse.Purchase.PurchasableReceipt purchasableReceipt = GamebaseResponse.Purchase.PurchasableReceipt.From(message.data);
                 if (purchasableReceipt != null)
                 {
-                    // If the user got item by 'Promotion Code',
+                    // If the user got item by 'OOAP(Out-Of App Purchases)' or
+                    // 'Pending', or 'Retry transaction succeeded',...,
                     // this event will be occurred.
                 }
                 break;
@@ -526,7 +529,7 @@ private void GamebaseObserverHandler(GamebaseResponse.Event.GamebaseEventMessage
 | LoggedOut | GamebaseEventCategory.LOGGED_OUT | GamebaseResponse.Event.GamebaseEventLoggedOutData.from(message.data) | \- |
 | ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED<br>GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseResponse.Event.GamebaseEventServerPushData.from(message.data) | \- |
 | Observer | GamebaseEventCategory.OBSERVER_LAUNCHING<br>GamebaseEventCategory.OBSERVER_NETWORK<br>GamebaseEventCategory.OBSERVER_HEARTBEAT | GamebaseResponse.Event.GamebaseEventObserverData.from(message.data) | \- |
-| Purchase - Promotion payment | GamebaseEventCategory.PURCHASE_UPDATED | GamebaseResponse.Event.PurchasableReceipt.from(message.data) | \- |
+| Purchase<br>- Promotion payment<br>- Pending payment | GamebaseEventCategory.PURCHASE_UPDATED | GamebaseResponse.Purchase.PurchasableReceipt.From(message.data) | \- |
 | Push - Message received | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) |  |
 | Push - Message clicked | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) |  |
 | Push - Action clicked | GamebaseEventCategory.PUSH_CLICK_ACTION | GamebaseResponse.Event.PushAction.from(message.data) | Operates when the RichMessage button is clicked. |
@@ -868,7 +871,7 @@ private void CheckWebView(GamebaseResponse.Event.GamebaseEventObserverData obser
 <a id="gamebase-event-handler-purchase-updated"></a>
 #### Purchase Updated
 
-* This event is triggered when an App Store promotion product purchase is completed or when a pending payment delayed by 'Ask to Buy' is finalized.
+* This event is triggered when a payment is completed outside the app, such as a promotion payment or a delayed payment.
 * Can acquire payment receipt information.
 
 **Example**
@@ -885,10 +888,12 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
     {
         case GamebaseEventCategory.PURCHASE_UPDATED:
             {
-                GamebaseResponse.Event.PurchasableReceipt purchasableReceipt = GamebaseResponse.Event.PurchasableReceipt.From(message.data);
+                GamebaseResponse.Purchase.PurchasableReceipt purchasableReceipt = GamebaseResponse.Purchase.PurchasableReceipt.From(message.data);
                 if (purchasableReceipt != null)
                 {
-                    // If a promotion or pending purchase is completed, this event will be occurred.
+                    // If the user got item by 'OOAP(Out-Of App Purchases)' or
+                    // 'Pending', or 'Retry transaction succeeded',...,
+                    // this event will be occurred.
                 }
                 break;
             }
