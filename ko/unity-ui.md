@@ -575,7 +575,7 @@ Gamebase에서 지정해 놓은 스킴입니다.
 | gamebase://dismiss   | 웹뷰 닫기                          |
 | gamebase://goback    | 웹뷰 뒤로 가기                     |
 | gamebase://getuserid | 현재 로그인 중인 사용자의 아이디 표시 |
-| gamebase://showwebview?link={URLEncodedURL} | link 파라메터의 URL 을 웹뷰로 열기.<br>URLEncodedURL : 웹뷰로 열 URL.<br>URL 디코딩 필요. |
+| gamebase://showwebview?link={URLEncodedURL} | link 파라미터의 URL을 웹뷰로 열기.<br>URLEncodedURL : 웹뷰로 열 URL.<br>URL 디코딩 필요. |
 | gamebase://openbrowser?link={URLEncodedURL} | link 파라메터의 URL 을 외부 브라우저로 열기.<br>URLEncodedURL : 외부 브라우저로 열 URL.<br>URL 디코딩 필요. |
 
 <a id="close-webview"></a>
