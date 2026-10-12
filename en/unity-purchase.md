@@ -147,7 +147,7 @@ public class PurchasableReceipt
     /// This is an important piece of information used to call 'Consume' server API with purchaseToken.
     ///    
     /// Caution: Call Consume API from game server!
-    /// <para/><see href="https://docs.toast.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap">Consume API</see>
+    /// <para/><see href="https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
     /// </summary>
     public string paymentSeq;
 
@@ -157,7 +157,7 @@ public class PurchasableReceipt
     /// In Consume API, the parameter must be named 'accessToken' to be passed.
     ///    
     /// Caution: Call Consume API from game server!
-    /// <para/><see href="https://docs.toast.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap">Consume API</see>
+    /// <para/><see href="https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
     /// </summary>
     public string purchaseToken;
 
