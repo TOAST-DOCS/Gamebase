@@ -1,4 +1,4 @@
-<!-- pre-align:aligned sig=602ad029c65d -->
+<!-- pre-align:aligned sig=68d69d649810 -->
 
 <a id="game-gamebase-release-notes-unity"></a>
 ## Game > Gamebase > 릴리스 노트 > Unity { #game-gamebase-release-notes-unity }
