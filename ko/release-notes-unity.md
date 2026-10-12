@@ -10,7 +10,7 @@
 <a id="830-2026-10-13-added-features"></a>
 #### 기능 추가
 * (Windows, macOS) 웹뷰에서 Predefined Custom Scheme을 지원합니다.
-* (Windows, macOS) 점검 팝업에서 점검 상세 페이지를 웹뷰로 표시합니다.
+* (Windows, macOS) 점검 팝업에 점검 상세 페이지를 표시하는 자세히 보기 버튼을 추가했습니다.
 * GamebaseResponse.Purchase.PurchasableReceipt에 extras 필드를 추가했습니다.
 
 <a id="830-2026-10-13-feature-updates"></a>
@@ -22,7 +22,10 @@
 #### 버그 수정
 * (Android, iOS) PURCHASE_UPDATED 이벤트의 영수증 정보 일부가 누락되는 문제를 수정했습니다.
 * (Windows, macOS, WebGL) 특정 상황에서 로그인을 다시 시도할 수 없는 문제를 수정했습니다.
-* (Windows, macOS) 웹뷰 사용 시 발생하던 여러 문제를 수정했습니다.
+* (WebGL) ChangeLogin으로 계정 전환 후 앱을 재시작하면 전환 전 계정으로 로그인되는 문제를 수정했습니다.
+* (macOS) Apple Silicon 환경에서 웹뷰가 정상적으로 표시되지 않는 문제를 수정했습니다.
+* (Windows, macOS) 웹뷰를 사용한 후 앱을 종료하면 크래시가 발생하는 문제를 수정했습니다.
+* (Windows, macOS) 웹뷰에서 gamebase://openbrowser, gamebase://dismiss 스킴이 중복으로 처리되는 문제를 수정했습니다.
 
 <a id="830-2026-10-13-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
