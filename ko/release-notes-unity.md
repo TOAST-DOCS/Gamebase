@@ -3,6 +3,35 @@
 <a id="game-gamebase-release-notes-unity"></a>
 ## Game > Gamebase > 릴리스 노트 > Unity { #game-gamebase-release-notes-unity }
 
+<a id="2-83-0-2026-10-13"></a>
+### 2.83.0 (2026. 10. 13.) { #2-83-0-2026-10-13 }
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.83.0/GamebaseSDK-Unity.zip)
+
+<a id="830-2026-10-13-added-features"></a>
+#### 기능 추가
+* (Windows, macOS) 웹뷰에서 Predefined Custom Scheme을 지원합니다.
+* (Windows, macOS) 점검 팝업에 점검 상세 페이지를 표시하는 자세히 보기 버튼을 추가했습니다.
+* GamebaseResponse.Purchase.PurchasableReceipt에 extras 필드를 추가했습니다.
+
+<a id="830-2026-10-13-feature-updates"></a>
+#### 기능 개선/변경
+* Unity 에디터의 빠른 플레이 모드 진입(Fast Enter Play Mode) 환경을 지원합니다.
+* GamebaseResponse.Event.PurchasableReceipt를 Deprecated 처리했습니다. GamebaseResponse.Purchase.PurchasableReceipt를 사용하세요.
+
+<a id="830-2026-10-13-bug-fixes"></a>
+#### 버그 수정
+* (Android, iOS) PURCHASE_UPDATED 이벤트의 영수증 정보 일부가 누락되는 문제를 수정했습니다.
+* (Windows, macOS, WebGL) 특정 상황에서 로그인을 다시 시도할 수 없는 문제를 수정했습니다.
+* (WebGL) ChangeLogin으로 계정 전환 후 앱을 재시작하면 전환 전 계정으로 로그인되는 문제를 수정했습니다.
+* (macOS) Apple Silicon 환경에서 웹뷰가 정상적으로 표시되지 않는 문제를 수정했습니다.
+* (Windows, macOS) 웹뷰를 사용한 후 앱을 종료하면 크래시가 발생하는 문제를 수정했습니다.
+* (Windows, macOS) 웹뷰에서 gamebase://openbrowser, gamebase://dismiss 스킴이 중복으로 처리되는 문제를 수정했습니다.
+
+<a id="830-2026-10-13-platform-specific-changes"></a>
+#### 플랫폼별 변경 사항
+* [Gamebase Android SDK 2.83.0](./release-notes-android/#2-83-0-2026-09-17)
+* [Gamebase iOS SDK 2.82.1](./release-notes-ios/#2-82-1-2026-08-25)
+
 <a id="2-82-0-2026-08-11"></a>
 ### 2.82.0 (2026. 08. 11.) { #2-82-0-2026-08-11 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.82.0/GamebaseSDK-Unity.zip)
