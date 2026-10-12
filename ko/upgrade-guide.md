@@ -1,4 +1,4 @@
-<!-- pre-align:aligned sig=d60b1633360c -->
+<!-- pre-align:aligned sig=18600c8f0bac -->
 
 <a id="game-gamebase-upgrade-guide"></a>
 ## Game > Gamebase > Upgrade Guide { #game-gamebase-upgrade-guide }
