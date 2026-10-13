@@ -1,7 +1,17 @@
-<!-- pre-align:aligned sig=d60b1633360c -->
+<!-- pre-align:aligned sig=18600c8f0bac -->
 
 <a id="game-gamebase-upgrade-guide"></a>
 ## Game > Gamebase > Upgrade Guide { #game-gamebase-upgrade-guide }
+
+<a id="2-83-0"></a>
+## 2.83.0 { #2-83-0 }
+
+<a id="2-83-0-unity"></a>
+### Unity { #2-83-0-unity }
+
+* **GamebaseResponse.Event.PurchasableReceipt** 클래스가 deprecated되었습니다.
+    * **GamebaseResponse.Purchase.PurchasableReceipt** 클래스를 사용하세요.
+    * PURCHASE_UPDATED 이벤트의 데이터는 **GamebaseResponse.Purchase.PurchasableReceipt.From(message.data)** API로 변환하세요.
 
 <a id="section-1"></a>
 ## 2.81.4 { #section-1 }
@@ -1170,7 +1180,7 @@ buildscript {
 * Firebase Cloud Messaging 을 사용하는 경우, Firebase Console 에서 다운로드 받은 google-services.json 파일을 xml 리소스로 변환하여 프로젝트에 포함하여야 Push가 정상동작 합니다.
     * Gamebase 2.5.0 이전 버전에서는 xml 리소스가 없어도 Push가 동작했지만, Gamebase 2.6.0 이상부터는 xml 리소스가 반드시 필요합니다.
 * 아래 가이드를 참고하여 구현하시기 바랍니다.
-    * [\[Game > Gamebase > Android SDK 사용 가이드 > 푸시 > Settings > Firebase\]](./aos-push/#firebase)
+    * [\[Game > Gamebase > Android SDK 사용 가이드 > 푸시 > Settings > Firebase\]](./aos-push/#settings)
 
 <a id="section-59-unity-standalone"></a>
 #### Standalone

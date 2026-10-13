@@ -1227,7 +1227,7 @@ List non-consumed payment, which is not consumed even if paid up.
 
 **[Request Header]**
 
-공통 사항 확인
+Checks common items
 
 **[Path Variable]**
 
@@ -1237,7 +1237,7 @@ List non-consumed payment, which is not consumed even if paid up.
 
 **[Request Parameter]**
 
-없음
+None
 
 **[Request Body]**
 

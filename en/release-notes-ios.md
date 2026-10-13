@@ -427,7 +427,7 @@
 #### Feature Updates
 * External SDK update
     * PAYCO iOS SDK (1.5.9)
-        * PAYCO iOS SDK가 xcframework로 변경되었습니다.
+        * Changed PAYCO iOS SDK to xcframework.
     * Kakaogame iOS SDK (3.17.5)
 * Improved the logic to get the top most ViewController
 * Modified the initialization callback to be called after the Gamebase launch popup window has completely exited.

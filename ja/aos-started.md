@@ -397,7 +397,20 @@ android {
 <a id="androidmanifestxml-huawei-store"></a>
 #### Huawei Store
 
-<!-- TODO: translate body -->
+* Unity などのマルチプラットフォームビルドの場合、apply plugin の代わりに以下の内容を追加すると、正常に決済できます。
+* agconnect-services.json の cp_id、app_id フィールドの値を AndroidManifest.xml の meta-data に入力します。
+
+```xml
+<meta-data  
+    android:name="com.huawei.hms.client.appid"  
+    android:value="appid=123456789">  
+</meta-data>
+<meta-data
+    android:name="com.huawei.hms.client.cpid"
+    android:value="cpid=1234567891234">
+</meta-data>
+```
+注意: 正常に決済を行うには、ユーザー端末に Huawei App Gallery がインストールされている必要があります。
 
 <a id="androidmanifestxml-mycard"></a>
 #### MyCard
@@ -471,6 +484,7 @@ class MyApplication: GamebaseMyCardApplication() {
 
 | meta-data key | value type | description |
 | ------------- | ---------- | ----------- |
+| com.nhncloud.sdk.push.deviceId.salt | String | 異なるアプリケーションが1つのGamebaseプロジェクトを共有する場合、プッシュが正常に動作しません。<br/>各アプリごとに異なる任意の'salt'値を指定する必要があります。 |
 | com.toast.sdk.push.notification.default_priority | int | 優先順位。<br/>以下の5つの値を設定できます。<br/>NoticationComapt.PRIORITY_MIN : -2<br/> NoticationComapt.PRIORITY_LOW : -1<br/>NoticationComapt.PRIORITY_DEFAULT : 0<br/>NoticationComapt.PRIORITY_HIGH : 1<br/>NoticationComapt.PRIORITY_MAX : 2 |
 | com.toast.sdk.push.notification.default_background_color | int | 背景色。 |
 | com.toast.sdk.push.notification.default_light_color | int | LED色。 |

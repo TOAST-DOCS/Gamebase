@@ -31,6 +31,7 @@ Show the game notice on the screen.
                               completion:(nullable void(^)(TCGBError * _Nullable))completion;
 ```
 **ErrorCode**
+
 | Error | Error Code | Description |
 | --- | --- | --- |
 | TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebase is not initialized. |

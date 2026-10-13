@@ -1,7 +1,19 @@
-<!-- pre-align:aligned sig=d60b1633360c -->
+<!-- machine_translated: true -->
+
+<!-- pre-align:aligned sig=18600c8f0bac -->
 
 <a id="game-gamebase-upgrade-guide"></a>
 ## Game > Gamebase > Upgrade Guide { #game-gamebase-upgrade-guide }
+
+<a id="2-83-0"></a>
+## 2.83.0 { #2-83-0 }
+
+<a id="2-83-0-unity"></a>
+### Unity { #2-83-0-unity }
+
+* **GamebaseResponse.Event.PurchasableReceipt**クラスはdeprecatedになりました。
+    * **GamebaseResponse.Purchase.PurchasableReceipt**クラスを使用してください。
+    * PURCHASE_UPDATEDイベントのデータは**GamebaseResponse.Purchase.PurchasableReceipt.From(message.data)** APIで変換してください。
 
 <a id="section-1"></a>
 ## 2.81.4 { #section-1 }
@@ -50,7 +62,7 @@
 <a id="section-4-unity"></a>
 ### Unity { #section-4-unity }
 
-* Auth.AuthToken의 extraParams 타입이 Dictionary&lt;string, string&gt;에서 Dictionary&lt;string, object&gt;로 변경되었습니다.
+* Auth.AuthTokenのextraParamsの型がDictionary&lt;string, string&gt;からDictionary&lt;string, object&gt;に変更されました。
 
 <a id="section-5"></a>
 ## 2.80.0 { #section-5 }
@@ -1169,7 +1181,7 @@ buildscript {
 * Firebase Cloud Messagingを使用している場合Firebaseコンソールからgoogle-services.jsonファイルをダウンロードし、xmlリソースに変換してプロジェクトに追加しないとPushが正常に動作しません。
     * Gamebase 2.5.0 以前のバージョンではxmlリソースなしてPush動作に問題ありませんでしたが、Gamebase 2.6.0からは必ずxmlリソースが必要です。
 * 下のガイドを参考にしてPush設定を行ってください。
-    * [\[Game > Gamebase > Android SDK ご利用ガイド > Push > Settings > Firebase\]](./aos-push/#firebase)
+    * [\[Game > Gamebase > Android SDK ご利用ガイド > Push > Settings > Firebase\]](./aos-push/#settings)
 
 <a id="section-59-unity-standalone"></a>
 #### Standalone

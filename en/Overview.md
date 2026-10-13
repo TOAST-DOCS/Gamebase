@@ -40,7 +40,7 @@ Apply them fast to the needs of your service!
 
 Gamebase supports OAuth login based on ID and passwords, using accounts of many identity providers (IdPs); guest login by using UUID of a device. Its authentication service is based on member information provided by external IdP, without having its own member system. In other words, user's ID or passwords are not saved in Gamebase.
 
-* **Provides many authentication methods via single interface. **
+* **Provides many authentication methods via single interface.**
   Development costs can be saved by enabling external IdP development easier and faster.  Developers can easily implement authentication without concerning complicated procedure and legal or policy issues.
 
 * **Provides various external IdP authentication methods.**
@@ -100,9 +100,9 @@ Gamebase supports the following stores:
 
 * **In-app purchase of many stores on a single interface** 
   Since further store development gets easy and fast via single-interface API, you can save development costs. Developers can easily implement purchase without having to learn the complexity of integration.  
-* **Standalone payment verification server for secure and stable purchases **
+* **Standalone payment verification server for secure and stable purchases**
   Gamebase helps to stabilize purchase transactions by setting up a seperate server to verify payment with external stores. Given the network status could be unstable, payment retries and item credits are managed separately.   
-* **Buying as well as subscription and promotion **
+* **Buying as well as subscription and promotion**
   The subscription feature of Google PlayStore and Appstore is enabled to sell users monthly products. Google's promotion is also available in each game without further implementation. More features of external stores are to be added to Gamebase.  
 * **Flawless response to customer inquiries supported by web console features (e.g. query purchase list**
   On the web console, user can check his purchase list and item credit status; can even cancel purchase and respond to abusive acts. 
@@ -185,9 +185,8 @@ The following shows the service structure of Gamebase with simple description
 
 | Component           | Description                                       |
 | --------------- | ---------------------------------------- |
-| Gamebase SDK    | - Client development SDK                      |
-| Gateway         | - Provides mashup API between internal and external modules.<br/>- Delivers to backend services at the request of client and server.|
-| Gamebase Server | - Processes internal logic of Gamebase. <br>- Provides data for client's initial execution  <br>- Issues/manages user identifier keys and manages mapping <br>- Collects and manages concurrent access indicators per game. |
+| Gamebase SDK    | - Client development SDK                       |
+| Gamebase Server | - Provides mashup API between internal and external modules and processes internal logic <br>- Provides data for client's initial execution <br>- Issues/manages user identifier keys and manages mapping <br>- Collects and manages concurrent access indicators per game |
 | Console         | - Web Console                              |
 
 
@@ -219,11 +218,11 @@ The following shows the service structure of Gamebase with simple description
 | Feature               | Description                              | Client                                   | Server                                   | Console                                  |
 | --------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | Analytics                  | - Real-time Indicators<br>- Sales Indicators<br>- User Indicators<br>- Balancing Indicators | [[Android](./aos-etc/#analytics)] [[iOS](./ios-etc/#analytics)] [[Unity](./unity-etc/#analytics)] |                                          | [[Analytics]](./oper-analytics)   ||
-| Login                 | Support Guest and 3rd Party authentication<br/>- [Supported IdPs](#authentication) | [[iOS](./ios-authentication/#login)] [[Android](./aos-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[Token Authentication](./api-guide/#token-authentication)] <br> [[Retrieve Member](./api-guide/#get-member)] | [[App] > Setting Authentication Information](./oper-app/#authentication-information) <br> [[Member] > Retrieve](./oper-member/#member) <br> - Basic information, login history, playtime, purchase history, and etc. |
+| Login                 | Support Guest and 3rd Party authentication<br/>- [Supported IdPs](#authentication) | [[iOS](./ios-authentication/#login)] [[Android](./aos-authentication/#login)] [[Unity](./unity-authentication/#login)] | [[Token Authentication](./api-guide/#token-authentication)] <br> [[Retrieve Member](./api-guide/#get-member)] | [[App] > Setting Authentication Information](./oper-app/#authentication-information) <br> [[Member] > Retrieve](./oper-member/#search-member) <br> - Basic information, login history, playtime, purchase history, and etc. |
 | Logout                | Logout                                     | [[iOS](./ios-authentication/#logout)] [[Android](./aos-authentication/#logout)] [[Unity](./unity-authentication/#logout)] |                                          |                                          |
 | Withdraw              | Withdraw from a game<br/> - Delete all information of a game user, including user ID and mapping information | [[iOS](./ios-authentication/#withdraw)] [[Android](./aos-authentication/#withdraw)] [[Unity](./unity-authentication/#withdraw)] |                                          |                                          |
 | Mapping               | Integrate one user ID to many IdPs           | [[iOS](./ios-authentication/#mapping)] [[Android](./aos-authentication/#mapping)] [[Unity](./unity-authentication/#mapping)] |                                          |                                          |
-| Purchase(IAP)         | (TOAST Integration) <br/> InApp Purchase <br/>- Supported stores: Google and App Store | [[iOS](./ios-purchase/)] [[Android](./aos-purchase/)] [[Unity](./unity-purchase/)] | [[Wrapping API](./api-guide/#purchase-iap)] | [[Purchase]](./oper-purchase/#app)<br> [- Register Items](./oper-purchase/#product-register) <br> [- Retrieve Transaction](./oper-purchase/#transactions) |
+| Purchase(IAP)         | (TOAST Integration) <br/> InApp Purchase <br/>- Supported stores: Google and App Store | [[iOS](./ios-purchase/)] [[Android](./aos-purchase/)] [[Unity](./unity-purchase/)] | [[Wrapping API](./api-guide/#purchase-iap)] | [[Purchase]](./oper-purchase/#game-gamebase-console-user-guide-purchase)<br> [- Register Items](./oper-purchase/#product-register) <br> [- Retrieve Transaction](./oper-purchase/#transactions) |
 | Push                  | (TOAST Integration) <br>Send push messages and check results | [[iOS](./ios-push/)] [[Android](./aos-push/)] [[Unity](./unity-push/)] |                                          | [[Push]](./oper-push/#push) <br/>- Real-time delivery |
 | Leaderboard           | (TOAST Integration)<br> Retrieve and register real-time ranking of large-capacity data |                                          | [[Wrapping API](./api-guide/#leaderboard)] |                                          |
 | Webview               | SDK provides default WebView UI<br/>Provides both system pop-up and TOAST UI | [[iOS](./ios-ui/#webview)] [[Android](./aos-ui/#webview)] [[Unity](./unity-ui/#webview)] |                                          |                                          |
