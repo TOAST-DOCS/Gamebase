@@ -4,7 +4,7 @@
 ## Game > Gamebase > Store Console Guide > Google Console Guide { #game-gamebase-store-console-guide-google-console-guide }
 
 > [Notice]
-> This document covers how to register and link the information of apps released on Google Play to the [Gamebase IAP](https://docs.toast.com/ko/Game/Gamebase/ko/oper-purchase/) console.
+> This document covers how to register and link the information of apps released on Google Play to the [Gamebase IAP](https://docs.nhncloud.com/ko/Game/Gamebase/ko/oper-purchase/) console.
 > For more details on console settings to release apps on Google Play, refer to the Google Play Console guide provided by Google.
 
 

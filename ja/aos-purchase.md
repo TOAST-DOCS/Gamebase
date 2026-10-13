@@ -143,7 +143,7 @@ class PurchasableReceipt {
     // 決済識別子です。
     // purchaseTokenと一緒にConsumeサーバーAPIを呼び出すのに使用する重要な情報です。
     //
-    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // Consume API : https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // 注意：Consume APIは、ゲームサーバーで呼び出してください！
     @NonNull
     String paymentSeq;
@@ -152,7 +152,7 @@ class PurchasableReceipt {
     // paymentSeqと一緒にConsumeサーバーAPIを呼び出すのに使用する重要な情報です。
     // Consume APIでは「accessToken」という名前のパラメータで渡す必要があります。
     //
-    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // Consume API : https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // 注意：Consume APIは、ゲームサーバーで呼び出してください！
     @Nullable
     String purchaseToken;
@@ -524,7 +524,7 @@ class PurchasableSubscriptionStatus {
     // 決済識別子です。
     // purchaseTokenと一緒に「Consume」サーバーAPIを呼び出すために使用する重要な情報です。
     //
-    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // Consume API : https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // 注意: Consume APIはゲームサーバーで呼び出してください！
     @NonNull
     String paymentSeq;
@@ -533,7 +533,7 @@ class PurchasableSubscriptionStatus {
     // paymentSeqと一緒に「Consume」サーバーAPIを呼び出すために使用する重要な情報です。
     // Consume APIでは'accessToken'という名前のパラメータで渡す必要があります。
     //
-    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // Consume API : https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // 注意: Consume APIは、ゲームサーバーで呼び出してください！
     @NonNull
     String purchaseToken;

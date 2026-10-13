@@ -145,7 +145,7 @@ public class PurchasableReceipt
     /// purchaseToken과 함께 'Consume' 서버 API를 호출하는 데 사용하는 중요한 정보입니다.
     ///    
     /// 주의: Consume API 는 게임 서버에서 호출하세요!
-    /// <para/><see href="https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
+    /// <para/><see href="https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
     /// </summary>
     public string paymentSeq;
 
@@ -155,7 +155,7 @@ public class PurchasableReceipt
     /// Consume API 에서는 'accessToken' 라는 이름의 파라메터로 전달해야 합니다.
     ///    
     /// 주의: Consume API 는 게임 서버에서 호출하세요!
-    /// <para/><see href="https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
+    /// <para/><see href="https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
     /// </summary>
     public string purchaseToken;
 
@@ -443,7 +443,7 @@ public void RequestActivatedPurchasesSample(bool allStores)
                 
                 // You will need paymentSeq and purchaseToken when calling the Consume API.
                 // Refer to the following document for the Consume API.
-                // https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+                // https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
                 message.AppendLine(string.Format("paymentSeq:{0}", purchasableReceipt.paymentSeq));
                 message.AppendLine(string.Format("purchaseToken:{0}", purchasableReceipt.purchaseToken));
                 message.AppendLine(string.Format("marketItemId:{0}", purchasableReceipt.marketItemId));
@@ -552,7 +552,7 @@ public class PurchasableSubscriptionStatus
     /// purchaseToken과 함께 'Consume' 서버 API를 호출하는 데 사용하는 중요한 정보입니다.
     ///    
     /// 주의: Consume API는 게임 서버에서 호출하세요!
-    /// <para/><see href="https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
+    /// <para/><see href="https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
     public string paymentSeq;
 
     /// <summary>
@@ -594,7 +594,7 @@ public class PurchasableSubscriptionStatus
     /// paymentSeq로 'Consume' 서버 API를 호출하는 데 사용되는 중요한 정보입니다.
     /// Consume API에서 매개변수 이름을 'accessToken'으로 지정해야 전달됩니다.
     ///
-    /// <para/><see href="https://docs.toast.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap">Purchase IAP</see>
+    /// <para/><see href="https://docs.nhncloud.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap">Purchase IAP</see>
     /// </summary>
     public string purchaseToken;
 

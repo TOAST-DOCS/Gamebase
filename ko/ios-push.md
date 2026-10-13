@@ -16,7 +16,7 @@
 
 여기에서는 푸시 알림 전송에 필요한 APNS JWT 인증 정보를 얻는 과정을 설명합니다.
 
-* [Notification > Push > Console Guide > APNS JWT 인증 정보 얻기](https://docs.toast.com/en/Notification/Push/en/console-guide/#get-authentication-information-for-apns-jwt) 가이드를 참고하여 ANPS JWT 등록에 필요한 필수 인증 정보를 얻습니다.
+* [Notification > Push > Console Guide > APNS JWT 인증 정보 얻기](https://docs.nhncloud.com/en/Notification/Push/en/console-guide/#get-authentication-information-for-apns-jwt) 가이드를 참고하여 ANPS JWT 등록에 필요한 필수 인증 정보를 얻습니다.
 
 <a id="settings-registering-gamebase-console"></a>
 #### Gamebase Console 등록

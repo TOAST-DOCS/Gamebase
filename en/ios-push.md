@@ -16,7 +16,7 @@
 
 This document describes the process of getting authentication information for APNS JWT required to deliver push notifications.
 
-* Go to [Notification > Push > Console Guide > Getting APNS JWT credentials](https://docs.toast.com/en/Notification/Push/en/console-guide/#get-authentication-information-for-apns-jwt) and get the authentication information required to register ANPS JWT.
+* Go to [Notification > Push > Console Guide > Getting APNS JWT credentials](https://docs.nhncloud.com/en/Notification/Push/en/console-guide/#get-authentication-information-for-apns-jwt) and get the authentication information required to register ANPS JWT.
 
 <a id="settings-registering-gamebase-console"></a>
 #### Registering Gamebase Console 
