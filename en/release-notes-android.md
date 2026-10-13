@@ -6,7 +6,7 @@
 ## Game > Gamebase > Release Notes > Android { #game-gamebase-release-notes-android }
 
 <a id="2-83-0-2026-09-17"></a>
-### 2.83.0 (September 17, 2026) { #2-83-0-2026-09-17 }
+### 2.83.0 (2026. 09. 17.) { #2-83-0-2026-09-17 }
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.83.0/GamebaseSDK-Android.zip)
 
