@@ -124,7 +124,7 @@ User indicators are available on each environment.
 
 <a id="user-inflow-and-outflow"></a>
 ### User Inflow and Outflow { #user-inflow-and-outflow }
-![analytics_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/ko/analytics_05_kr_240103.png)
+![analytics_05](https://kr1-api-object-storage.nhncloudservice.com/v1/AUTH_2acdfabf4efe4efc8a04c00b348110c9/cdn_origin/prod_gamebase/ConsoleGuide/Analytics/en/analytics_05_en_240103.png)
 
 You can find a day-by-day trend of app user inflow and outflow.
 Weekly and monthly inflow/outflow metrics are updated and reflected as of 10 am.

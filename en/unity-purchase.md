@@ -1,3 +1,5 @@
+<!-- machine_translated: true -->
+
 <!-- pre-align:aligned sig=b4a1a494b1cb -->
 
 <a id="game-gamebase-unity-developers-guide-purchase"></a>
@@ -204,7 +206,7 @@ public class PurchasableReceipt
     public long expiryTime;
 
 
-     /// <summary>
+    /// <summary>
     /// The store code where the purchase is made.
     /// You can check the store code list from GamebaseStoreCode class.
     /// </summary>
@@ -227,6 +229,11 @@ public class PurchasableReceipt
     /// - (Android) If the validation logic is temporarily turned off in the Gamebase payment server, the value is output as false only, so it is not always guaranteed to be a valid value.
     /// </summary>
     public bool isTestPurchase;
+
+    /// <summary>
+    /// Additional information passed by the payment adapter.
+    /// </summary>
+    public Dictionary<string, string> extras;
 }
 ```
 
