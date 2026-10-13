@@ -1111,8 +1111,8 @@ Raised the minimum supported version to Android 4.4.(minSdk 16 -> 19)
             }
             
     * To apply Proguard, you must apply it by referring to the following guide.
-        * [NHN Cloud > SDK User Guide > TOAST Push > Android > Amazon Device Messaging Settings > Download the ADM SDK](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#download-the-adm-sdk)
-        * [NHN Cloud > SDK User Guide > TOAST Push > Android > Amazon Device Messaging Settings > Proguard settings](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#proguard-settings)
+        * [NHN Cloud > SDK User Guide > TOAST Push > Android > Amazon Device Messaging Settings > Download the ADM SDK](https://docs.nhncloud.com/en/TOAST/en/toast-sdk/push-android/#download-the-adm-sdk)
+        * [NHN Cloud > SDK User Guide > TOAST Push > Android > Amazon Device Messaging Settings > Proguard settings](https://docs.nhncloud.com/en/TOAST/en/toast-sdk/push-android/#proguard-settings)
 
 <a id="380-2022-05-03-feature-updates"></a>
 #### Feature Updates

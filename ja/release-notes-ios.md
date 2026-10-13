@@ -1212,7 +1212,7 @@ Gamebase の XCode 最小サポートバージョンが 10 から 11 に変更�
 #### 機能改善・変更
 
 * 外部SDKアップデート：TOAST iOS SDK(0.27.0)
-* iOS 14 beta変更事項を対応したIAP SDK新規バージョンが適用されました。 [TOAST SDK Release Notes](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0270-20200911)
+* iOS 14 beta変更事項を対応したIAP SDK新規バージョンが適用されました。 [TOAST SDK Release Notes](https://docs.nhncloud.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0270-20200911)
 
 <a id="2-15-0-2020-08-25"></a>
 ### 2.15.0 (2020. 08. 25.) { #2-15-0-2020-08-25 }
