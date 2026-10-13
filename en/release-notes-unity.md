@@ -6,7 +6,7 @@
 ## Game > Gamebase > Release Notes > Unity { #game-gamebase-release-notes-unity }
 
 <a id="2-83-0-2026-10-13"></a>
-### October 13, 2026 { #2-83-0-2026-10-13 }
+### 2.83.0 (2026. 10. 13.) { #2-83-0-2026-10-13 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.83.0/GamebaseSDK-Unity.zip)
 
 <a id="830-2026-10-13-added-features"></a>
