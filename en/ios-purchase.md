@@ -148,13 +148,13 @@ When a game user cancels purchase, the **TCGB_ERROR_PURCHASE_USER_CANCELED** is 
 
 // Payment identifier
 // This is an important piece of information used to call 'Consume' server API with purchaseToken
-// Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+// Consume API : https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
 // Caution : Call Consume API from game server!
 @property (nonatomic, strong) NSString *paymentSeq;
 
 // Payment identifier
 // Used to call 'Consume' server API with paymentSeq
-// Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+// Consume API : https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
 // Caution : Call Consume API from game server!
 @property (nonatomic, strong) NSString *purchaseToken;
 

@@ -143,7 +143,7 @@ class PurchasableReceipt {
     // Payment identifier.
     // This is an important piece of information used to call 'Consume' Server API with purchaseToken.
     //
-    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // Consume API : https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // Caution: Call Consume API from game server!
     @NonNull
     String paymentSeq;
@@ -152,7 +152,7 @@ class PurchasableReceipt {
     // This is an important piece of information used to call 'Consume' server API with paymentSeq.
     // In Consume API, the parameter must be named 'accessToken' to be passed.
     //
-    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // Consume API : https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // In Consume API, the parameter must be named 'accessToken' to be passed.
     @Nullable
     String purchaseToken;
@@ -525,7 +525,7 @@ class PurchasableSubscriptionStatus {
     // Payment identifier
     // This is an important piece of information used to call 'Consume' Server API with purchaseToken.
     //
-    // Consume API: https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // Consume API: https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // Caution: Call the Consume API from game server!
     @NonNull
     String paymentSeq;
@@ -534,7 +534,7 @@ class PurchasableSubscriptionStatus {
     // This is an important piece of information used to call 'Consume' server API with paymentSeq.
     // In Consume API, the parameter must be named 'accessToken' to be passed.
     //
-    // Consume API: https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // Consume API: https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // Caution: Call Consume API from game server!
     @NonNull
     String purchaseToken;
