@@ -1,3 +1,5 @@
+<!-- machine_translated: true -->
+
 <!-- pre-align:aligned sig=be2848d30bdd -->
 
 <a id="game-gamebase-unity-developers-guide-ui"></a>
@@ -549,6 +551,8 @@ public void ShowWebView()
 |                          | GamebaseWebViewContentMode.MOBILE           | Mobile browser                                                                    |
 |                          | GamebaseWebViewContentMode.DESKTOP          | Desktop browser                                                                   |
 | navigationColor          | Color                                       | Color of Navigation Bar <br>**default**: GamebaseColor.RGB255(18, 93, 230)        |
+| navigationTitleColor                  | Color                                       | Color of Navigation Bar Title <br>**default**: GamebaseColor.RGB255(255, 255, 255) |
+| navigationIconTintColor               | Color                                       | Color of Navigation Bar Icon <br>**default**: null                               |
 | barHeight                | height                                   | Height of Navigation Bar                                                          |
 | isNavigationBarVisible   | true or false                            | Activate or deactivate Navigation Bar<br>**default**: true                        |
 | isBackButtonVisible      | true or false                            | Activate or deactivate Go Back Button<br>**default**: true                        |
@@ -562,6 +566,19 @@ public void ShowWebView()
 >
 > In iPadOS 13 or later, WebView is the default desktop mode.
 > You can use the contentMode =`GamebaseWebViewContentMode.MOBILE` setting to switch to the mobile mode.
+
+<a id="show-webview-predefined-custom-scheme"></a>
+#### Predefined Custom Scheme
+
+These are schemes defined by Gamebase.
+
+| Scheme               | Description                                  |
+| -------------------- | --------------------------------------------- |
+| gamebase://dismiss   | Close WebView                          |
+| gamebase://goback    | Go back in WebView                     |
+| gamebase://getuserid | Display the ID of the currently logged-in user |
+| gamebase://showwebview?link={URLEncodedURL} | Open the URL of the link parameter in WebView.<br>URLEncodedURL: URL to open in WebView.<br>URL decoding is required. |
+| gamebase://openbrowser?link={URLEncodedURL} | Open the URL of the link parameter in an external browser.<br>URLEncodedURL: URL to open in an external browser.<br>URL decoding is required. |
 
 <a id="close-webview"></a>
 ### Close WebView { #close-webview }

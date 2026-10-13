@@ -115,9 +115,9 @@ Get the values of Enable foreground push (foregroundEnabled), Enable badge (badg
 #### TCGBNotificationOptions
 | Parameter     | Mandatory(M) /<br/>Optional(O) | Values            | Description        |
 | ------------- | ------------- | ---------------------------------- | ------------------ |
-| foregroundEnabled   | M     | BOOL         | 앱이 포그라운드 상태일때의 알림 노출 여부<br/>**default**: NO           |
-| badgeEnabled        | M     | BOOL         | 배지 아이콘 사용 여부<br/>**default**: YES           |
-| soundEnabled        | M     | BOOL         | 알림음 사용 여부<br/>**default**: YES           |
+| foregroundEnabled   | M     | BOOL         | Whether to display notifications when the app is in the foreground<br/>**default**: NO           |
+| badgeEnabled        | M     | BOOL         | Whether to use badge icon<br/>**default**: YES           |
+| soundEnabled        | M     | BOOL         | Whether to use notification sound<br/>**default**: YES           |
 
 <a id="register-push-register-push-example"></a>
 #### Example

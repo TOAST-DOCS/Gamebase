@@ -1,7 +1,43 @@
-<!-- pre-align:aligned sig=602ad029c65d -->
+<!-- machine_translated: true -->
+
+<!-- pre-align:aligned sig=68d69d649810 -->
 
 <a id="game-gamebase-release-notes-unity"></a>
 ## Game > Gamebase > リリースノート > Unity { #game-gamebase-release-notes-unity }
+
+<a id="2-83-0-2026-10-13"></a>
+### 2.83.0 (2026. 10. 13.) { #2-83-0-2026-10-13 }
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.83.0/GamebaseSDK-Unity.zip)
+
+<a id="830-2026-10-13-added-features"></a>
+#### 機能追加
+
+* (Windows, macOS) WebビューでPredefined Custom Schemeをサポートします。
+* (Windows, macOS) メンテナンスポップアップにメンテナンス詳細ページを表示する詳細表示ボタンを追加しました。
+* GamebaseResponse.Purchase.PurchasableReceiptにextrasフィールドを追加しました。
+
+<a id="830-2026-10-13-feature-updates"></a>
+#### 機能改善/変更
+
+* UnityエディタのFast Enter Play Mode環境をサポートします。
+* GamebaseResponse.Event.PurchasableReceiptをDeprecated処理しました。GamebaseResponse.Purchase.PurchasableReceiptを使用してください。
+
+<a id="830-2026-10-13-bug-fixes"></a>
+#### バグ修正
+
+* (Android, iOS) PURCHASE_UPDATEDイベントのレシート情報の一部が欠落する問題を修正しました。
+* (Windows, macOS, WebGL) 特定の状況でログインを再試行できない問題を修正しました。
+* (WebGL) ChangeLoginでアカウント切り替え後にアプリを再起動すると、切り替え前のアカウントでログインされる問題を修正しました。
+* (macOS) Apple Silicon環境でWebビューが正常に表示されない問題を修正しました。
+* (Windows, macOS) Webビューを使用した後にアプリを終了するとクラッシュが発生する問題を修正しました。
+* (Windows, macOS) Webビューでgamebase://openbrowser、gamebase://dismissスキームが重複して処理される問題を修正しました。
+
+<a id="830-2026-10-13-platform-specific-changes"></a>
+#### プラットフォーム別の変更事項
+
+* [Gamebase Android SDK 2.83.0](./release-notes-android/#2-83-0-2026-09-17)
+* [Gamebase iOS SDK 2.82.1](./release-notes-ios/#2-82-1-2026-08-25)
 
 <a id="2-82-0-2026-08-11"></a>
 ### 2.82.0 (2026. 08. 11.) { #2-82-0-2026-08-11 }
@@ -76,7 +112,7 @@
 
 <a id="810-2026-03-24-1"></a>
 #### 기능 추가
-* (Windows, macOS) 외부 브라우저 로그인 IDP에 Epicgames가 추가되었습니다.
+* (Windows、macOS) 外部ブラウザログインIDPにEpicgamesが追加されました。
 
 <a id="810-2026-03-24-2"></a>
 #### 플랫폼별 변경 사항
@@ -89,12 +125,12 @@
 
 <a id="801-2026-03-10-1"></a>
 #### 버그 수정
-* (iOS) GameCenter에서 AddMapping 수행 시 오류가 발생하던 문제를 수정했습니다.
-* (Windows) WebView 오픈시, 타이틀 영역을 클릭하면 웹뷰가 닫히는 문제를 수정했습니다.
+* (iOS) GameCenterでAddMappingを実行した際にエラーが発生する問題を修正しました。
+* (Windows) WebViewを開いた際、タイトル領域をクリックするとWebViewが閉じる問題を修正しました。
 
 <a id="801-2026-03-10-2"></a>
 #### 기능 개선
-* (Windows) WebView 내부 로직을 개선하였습니다.
+* (Windows) WebViewの内部ロジックを改善しました。
 
 <a id="2-80-0-2026-02-13"></a>
 ### 2.80.0 (2026. 02. 13.) { #2-80-0-2026-02-13 }
@@ -574,7 +610,8 @@
 <a id="620-2024-03-26-platform-specific-changes"></a>
 #### プラットフォーム別変更事項
 
-<!-- TODO: translate body -->
+* [Gamebase Android SDK 2.62.0](./release-notes-android/#2-62-0-2024-03-26)
+* [Gamebase iOS SDK 2.62.0](./release-notes-ios/#2-62-0-2024-03-26)
 
 <a id="2-61-0-2024-02-27"></a>
 ### 2.61.0 (2024. 02. 27.) { #2-61-0-2024-02-27 }
@@ -1530,7 +1567,9 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
 <a id="130-july-28-2020-bug-fixes"></a>
 #### バグ修正
 
-<!-- TODO: translate body -->
+* [SDK] 2.13.0
+    * (Android) WebView 終了時に終了コールバックで ANDROID_ACTIVITY_DESTROYED(31) エラーが返される問題を修正
+    * (Android) 決済モジュールに ProGuard の宣言が欠落しているエラーを修正
 
 <a id="2-12-0-2020-07-14"></a>
 ### 2.12.0 (2020. 07. 14.) { #2-12-0-2020-07-14 }
@@ -1592,7 +1631,9 @@ gamebase-adapter-purchase-googleを使用する場合、Gamebase SDK 2.15.0未�
 <a id="100-may-26-2020-bug-fixes"></a>
 #### バグ修正
 
-<!-- TODO: translate body -->
+* [SDK] 2.9.1
+    * (Android) マッピング後に指標レベルが null になり、決済指標に正常に反映されないバグを修正
+    * (iOS) Unreal エンジンでビルドすると、warning をビルドエラーと判定してビルドできない問題を修正
 
 <a id="2-9-1-2020-04-29"></a>
 ### 2.9.1 (2020. 04. 29.) { #2-9-1-2020-04-29 }

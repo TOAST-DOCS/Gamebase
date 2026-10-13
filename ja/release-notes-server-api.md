@@ -20,22 +20,19 @@
 <a id="february-24-2026"></a>
 ### 2026. 02. 24. { #february-24-2026 }
 
-<!-- TODO: translate body -->
-
 <a id="february-24-2026-added-features"></a>
 #### 機能追加
 
-<!-- TODO: translate body -->
+* クーポンコードでクーポン情報を照会する「Get Coupon Information by Coupon Code」APIが追加
 
 <a id="december-23-2025"></a>
 ### 2025. 12. 23. { #december-23-2025 }
 
-<!-- TODO: translate body -->
-
 <a id="december-23-2025-added-features"></a>
 #### 機能追加
 
-<!-- TODO: translate body -->
+* "Withdraw Histories" APIのリクエストパラメータにeventLogTypeを追加
+* Sign in with Appleアカウント関連の処理のための「SIWA Account Webhook」APIを追加
 
 <a id="august-27-2024"></a>
 ### 2024. 08. 27. { #august-27-2024 }
@@ -54,12 +51,10 @@
 <a id="august-17-2023"></a>
 ### 2023. 08. 17. { #august-17-2023 }
 
-<!-- TODO: translate body -->
-
 <a id="august-17-2023-added-features"></a>
 #### 機能追加
 
-<!-- TODO: translate body -->
+* 現在利用停止中のユーザーを照会する「Get Ban Members」APIが追加
 
 <a id="july-25-2023"></a>
 ### 2023. 07. 25. { #july-25-2023 }

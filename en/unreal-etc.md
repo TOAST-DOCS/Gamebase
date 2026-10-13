@@ -614,7 +614,7 @@ void USample::CheckHeartbeat(const FGamebaseEventObserverData& Data)
 <a id="gamebase-event-handler-purchase-updated"></a>
 #### Purchase Updated
 
-* Promotion 코드 입력을 통해 상품을 획득한 경우 또는 Pending 결제(느린 결제, 부모 동의 등)가 완료되었을 때 발생하는 이벤트입니다.
+* This event is triggered when a user acquires an item via a promotion code or when a pending payment (e.g., slow-process payments, parental consent) is successfully completed.
 * Can acquire payment receipt information.
 
 **Example**
@@ -883,7 +883,8 @@ Gamebase provides features for customer response.
 <a id="contact-permission-settings"></a>
 #### Permission Settings
 
-<!-- TODO: translate body -->
+* [Game > Gamebase > Android SDK User Guide > ETC > Contact](aos-etc/#contact)
+* [Game > Gamebase > iOS SDK User Guide > ETC > Contact](ios-etc/#contact)
 
 <a id="contact-customer-service-type"></a>
 #### Customer Service Type
