@@ -31,12 +31,14 @@
                               completion:(nullable void(^)(TCGBError * _Nullable))completion;
 ```
 **ErrorCode**
+
 | Error | Error Code | Description |
 | --- | --- | --- |
 | TCGB\_ERROR\_NOT\_INITIALIZED | 1 | Gamebaseが初期化されていません。 |
 | TCGB\_ERROR\_UI\_GAME\_NOTICE\_FAIL\_INVALID\_URL | 6941 | ゲーム告知URLの作成に失敗しました。 |
 | TCGB\_ERROR\_WEBVIEW\_TIMEOUT | 7002 | 約款Webビュー表示中にタイムアウトが発生しました。 |
 | TCGB\_ERROR\_WEBVIEW\_HTTP\_ERROR | 7003 | 約款Webビューを開いている途中にHTTPエラーが発生しました。 |
+
 **Example**
 ```objectivec
 - (void)openGameNotice {

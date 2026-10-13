@@ -5,8 +5,6 @@
 <a id="game-gamebase-unity-sdk-usage-guide-authentication"></a>
 ## Game > Gamebase > Unity SDK Usage Guide > Authentication { #game-gamebase-unity-sdk-usage-guide-authentication }
 
-<!-- TODO: translate body -->
-
 <a id="login"></a>
 ## Login { #login }
 

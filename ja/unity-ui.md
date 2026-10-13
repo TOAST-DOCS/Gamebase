@@ -1,3 +1,5 @@
+<!-- machine_translated: true -->
+
 <!-- pre-align:aligned sig=be2848d30bdd -->
 
 <a id="game-gamebase-unity-developers-guide-ui"></a>
@@ -207,6 +209,7 @@ static void ShowTermsView(GamebaseRequest.Terms.GamebaseTermsConfiguration confi
 
 
 **GamebaseResponse.Terms.ShowTermsViewResult**
+
 | Parameter              | Values                          | Description         |
 | ---------------------- | --------------------------------| ------------------- |
 | isTermsUIOpened        | bool                            | **true**：約款ウィンドウが表示され、ユーザーが同意して約款ウィンドウが終了しました。<br>**false**：すでに約款に同意していて約款ウィンドウが表示されずに約款ウィンドウが終了しました。 |
@@ -393,6 +396,7 @@ static void UpdateTerms(GamebaseRequest.Terms.UpdateTermsConfiguration configura
 | Error | Error Code | Description |
 | --- | --- | --- |
 | NOT\_INITIALIZED | 1 | Gamebaseが初期化されていません。 |
+| NOT\_LOGGED_IN | 2 | ログインが必要です。（Standaloneに限る） |
 | UI\_TERMS\_UNREGISTERED\_SEQ | 6923 | 登録されていない約款Seq値を設定しました。 |
 | UI\_TERMS\_ALREADY\_IN\_PROGRESS\_ERROR | 6924 | 以前に呼び出されたTerms APIがまだ完了していません。<br/>しばらくしてから再度試行してください。 |
 
@@ -557,6 +561,18 @@ public void ShowWebView()
 > iPadOS 13以上でWebViewは基本的にデスクトップモードです。
 > contentMode =`GamebaseWebViewContentMode.MOBILE`設定でモバイルモードに変更できます。
 
+<a id="show-webview-predefined-custom-scheme"></a>
+#### Predefined Custom Scheme
+
+Gamebaseで指定されたスキームです。
+
+| scheme               | 用途                                  |
+| -------------------- | ------------------------------------- |
+| gamebase://dismiss   | Webビューを閉じる                          |
+| gamebase://goback    | Webビューで戻る                     |
+| gamebase://getuserid | 現在ログイン中のユーザーのIDを表示 |
+| gamebase://showwebview?link={URLEncodedURL} | linkパラメータのURLをWebビューで開く。<br>URLEncodedURL：WebビューでURL。<br>URLデコードが必要。 |
+| gamebase://openbrowser?link={URLEncodedURL} | linkパラメータのURLを外部ブラウザで開く。<br>URLEncodedURL：外部ブラウザで開くURL。<br>URLデコードが必要。 |
 
 <a id="close-webview"></a>
 ### Close WebView { #close-webview }

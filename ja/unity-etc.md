@@ -1,3 +1,5 @@
+<!-- machine_translated: true -->
+
 <!-- pre-align:aligned sig=d1c091670b0d -->
 
 <a id="game-gamebase-unity-sdk-user-guide-etc"></a>
@@ -358,8 +360,6 @@ public static string GetCountryCode()
 * Gamebaseは各種イベントを**GamebaseEventHandler**という1つのイベントシステムで全て処理できます。
 * GamebaseEventHandlerは以下のAPIを利用して簡単にListenerを追加/削除できます。
 
-* GamebaseEventHandlerは下記のAPIを利用して簡単にHandlerを追加/削除できます。
-
 **API**
 
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
@@ -476,10 +476,11 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
             }
         case GamebaseEventCategory.PURCHASE_UPDATED:
             {
-                GamebaseResponse.Event.PurchasableReceipt purchasableReceipt = GamebaseResponse.Event.PurchasableReceipt.From(message.data);
+                GamebaseResponse.Purchase.PurchasableReceipt purchasableReceipt = GamebaseResponse.Purchase.PurchasableReceipt.From(message.data);
                 if (purchasableReceipt != null)
                 {
-                    // If the user got item by 'Promotion Code',
+                    // If the user got item by 'OOAP(Out-Of App Purchases)' or
+                    // 'Pending', or 'Retry transaction succeeded',...,
                     // this event will be occurred.
                 }
                 break;
@@ -528,7 +529,7 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
 | LoggedOut | GamebaseEventCategory.LOGGED_OUT | GamebaseResponse.Event.GamebaseEventLoggedOutData.from(message.data) | \- |
 | ServerPush | GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT_MESSAGE_RECEIVED<br>GamebaseEventCategory.SERVER_PUSH_APP_KICKOUT<br>GamebaseEventCategory.SERVER_PUSH_TRANSFER_KICKOUT | GamebaseResponse.Event.GamebaseEventServerPushData.from(message.data) | \- |
 | Observer | GamebaseEventCategory.OBSERVER_LAUNCHING<br>GamebaseEventCategory.OBSERVER_NETWORK<br>GamebaseEventCategory.OBSERVER_HEARTBEAT | GamebaseResponse.Event.GamebaseEventObserverData.from(message.data) | \- |
-| Purchase - プロモーション決済 | GamebaseEventCategory.PURCHASE_UPDATED | GamebaseResponse.Event.PurchasableReceipt.from(message.data) | \- |
+| Purchase<br>- プロモーション決済<br>- 遅延決済 | GamebaseEventCategory.PURCHASE_UPDATED | GamebaseResponse.Purchase.PurchasableReceipt.From(message.data) | \- |
 | Push - メッセージ受信 | GamebaseEventCategory.PUSH_RECEIVED_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
 | Push - メッセージクリック | GamebaseEventCategory.PUSH_CLICK_MESSAGE | GamebaseResponse.Event.PushMessage.from(message.data) | |
 | Push - アクションクリック | GamebaseEventCategory.PUSH_CLICK_ACTION | GamebaseResponse.Event.PushAction.from(message.data) | RichMessageボタンを押すと動作します。 |
@@ -870,7 +871,7 @@ private void CheckWebView(GamebaseResponse.Event.GamebaseEventObserverData obser
 <a id="gamebase-event-handler-purchase-updated"></a>
 #### Purchase Updated
 
-* App Storeのプロモーション商品の購入完了、またはAsk to Buyなどにより遅延した決済が完了した際に発生するイベントです。
+* プロモーション決済や遅延した決済など、アプリ外で決済が完了した際に発生するイベントです。
 * 決済領収書情報を取得できます。
 
 **Example**
@@ -887,10 +888,12 @@ private void GamebaseEventHandler(GamebaseResponse.Event.GamebaseEventMessage me
     {
         case GamebaseEventCategory.PURCHASE_UPDATED:
             {
-                GamebaseResponse.Event.PurchasableReceipt purchasableReceipt = GamebaseResponse.Event.PurchasableReceipt.From(message.data);
+                GamebaseResponse.Purchase.PurchasableReceipt purchasableReceipt = GamebaseResponse.Purchase.PurchasableReceipt.From(message.data);
                 if (purchasableReceipt != null)
                 {
-                    // If a promotion or pending purchase is completed, this event will be occurred.
+                    // If the user got item by 'OOAP(Out-Of App Purchases)' or
+                    // 'Pending', or 'Retry transaction succeeded',...,
+                    // this event will be occurred.
                 }
                 break;
             }

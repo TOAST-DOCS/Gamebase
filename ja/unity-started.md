@@ -18,7 +18,8 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 <a id="environments-dependencies"></a>
 #### Dependencies
 
-<!-- TODO: translate body -->
+* [Gamebase Android SDK - Dependencies](./aos-started/#dependencies)
+* [Gamebase iOS SDK - Dependencies](./ios-started/#setting)
 
 <a id="environments-supported-platforms"></a>
 #### Supported Platforms

@@ -2621,6 +2621,7 @@ Gamebase provides **Wrapping** function for the Server API of the NHN Cloud Push
 |   | View by token | GET | /tcgb-push/v1.3/apps/{appId}/tokens/{token} | /push/v2.4/appkeys/{appkey}/tokens/{token} |
 |   | View by UID | GET | /tcgb-push/v1.3/apps/{appId}/tokens | /push/v2.4/appkeys/{appkey}/tokens |
 |   | Delete | DELETE | /tcgb-push/v1.3/apps/{appId}/tokens/{token} | /push/v2.4/appkeys/{appkey}/tokens/{token} |
+
 <br/>
 
 **For more information of the API, click the following link.**
@@ -2686,6 +2687,7 @@ The code defined internally by Gamebase for the OS of the user device.
 | WEB | Web |
 | WINDOWS | Windows |
 | MACOS | macOS |
+
 <br/>
 
 <a id="store-code"></a>
@@ -2704,6 +2706,7 @@ The code defined internally by Gamebase for the store where the app is installed
 | MYCARD | Global MyCard |
 | EPIC | Epic Games Store |
 | STEAM | STEAM Store |
+
 <br/>
 
 <a id="identity-provider-code"></a>
@@ -2738,6 +2741,7 @@ The code defined internally by Gamebase for the user's current status.
 | T | Withdrawal-suspended user |
 | P | Ban-suspended user |
 | M | Missing account |
+
 <br/>
 
 <a id="store-reference-status"></a>
@@ -2762,6 +2766,7 @@ Payment reference status provided by the payment system (in-app purchase in stor
 | | IN_GRACE | In grace period |
 | | EXPIRED | Expired |
 | | NOT_APPOINTED | No corresponding condition |
+
 <br/>
 
 <a id="withdrawal-event-type"></a>
@@ -2780,6 +2785,7 @@ An event occurrence path that indicates where the user withdrawal occurred.
 | WAGE | Automatic withdrawal from the system upon expiration of the grace period |
 | WAT | Withdrawal grace period status<br>- Not a final withdrawal status |
 | WAC | Cancellation of withdrawal grace period |
+
 <br/>
 
 <a id="support"></a>

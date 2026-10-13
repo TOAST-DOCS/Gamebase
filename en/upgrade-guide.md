@@ -1,7 +1,19 @@
-<!-- pre-align:aligned sig=d60b1633360c -->
+<!-- machine_translated: true -->
+
+<!-- pre-align:aligned sig=18600c8f0bac -->
 
 <a id="game-gamebase-upgrade-guide"></a>
 ## Game > Gamebase > Upgrade Guide { #game-gamebase-upgrade-guide }
+
+<a id="2-83-0"></a>
+## 2.83.0 { #2-83-0 }
+
+<a id="2-83-0-unity"></a>
+### Unity { #2-83-0-unity }
+
+* The **GamebaseResponse.Event.PurchasableReceipt** class has been deprecated.
+    * Use the **GamebaseResponse.Purchase.PurchasableReceipt** class instead.
+    * Convert the data from the PURCHASE_UPDATED event using the **GamebaseResponse.Purchase.PurchasableReceipt.From(message.data)** API.
 
 <a id="section-1"></a>
 ## 2.81.4 { #section-1 }
@@ -50,7 +62,7 @@
 <a id="section-4-unity"></a>
 ### Unity { #section-4-unity }
 
-* Auth.AuthToken의 extraParams 타입이 Dictionary&lt;string, string&gt;에서 Dictionary&lt;string, object&gt;로 변경되었습니다.
+* Modified the type of Auth.AuthToken's extraParams from Dictionary&lt;string, string&gt; to Dictionary&lt;string, object&gt;.
 
 <a id="section-5"></a>
 ## 2.80.0 { #section-5 }
@@ -1170,7 +1182,7 @@ buildscript {
 * In case of using Firebase Cloud Messaging, download a google-services.json file from Firebase Console and convert it into XML. Include XML resource in your project.
     * XML resource is required in Gamebase version 2.6.0 or higher. Under 2.6.0, Firebase Push works without XML resource.
 * Refer to the below guide for implementation.
-    * [\[Game > Gamebase > Android Developer's Guide > Push > Settings > Firebase\]](./aos-push/#firebase)
+    * [\[Game > Gamebase > Android Developer's Guide > Push > Settings > Firebase\]](./aos-push/#settings)
 
 <a id="section-59-unity-standalone"></a>
 #### Standalone

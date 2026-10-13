@@ -406,7 +406,7 @@ Under same user ID, you can query all subscriptions purchased both on Android an
 
 | API                             | Mandatory(M) / Optional(O) | Description                                                                    |
 | ------------------------------- | -------------------------- | ------------------------------------------------------------------------------ |
-| allStores                       | O                          | Return unconsumed lists purchased with the same UserID from a different store.<br/>Default is **false**. |
+| bAllStores                       | O                          | Return unconsumed lists purchased with the same UserID from a different store.<br/>Default is **false**. |
 
 **API**
 

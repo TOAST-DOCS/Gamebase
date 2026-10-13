@@ -43,15 +43,15 @@ Store information required to initialize In-App Purchase (IAP) of NHN Cloud.
 
 | Store       | Code | Description  |
 | ----------- | ---- | ------------ |
-| App Store | AS | only iOS |
-| Google Play | GG | only Android |
-| ONE Store | ONESTORE | only Android |
-| GALAXY Store | GALAXY | only Android |
-| Huawei AppGallery | HUAWEI | only Android |
-| My Card | MYCARD | only Android |
-| Windows | WIN | only Unity Standalone |
-| macOS | MAC | only Standalone |
-| Web | WEB | only Unity WebGL|
+| App Store | AS | iOS only |
+| Google Play | GG | Android only |
+| ONE Store | ONESTORE | Android only |
+| GALAXY Store | GALAXY | Android only |
+| Huawei AppGallery | HUAWEI | Android only |
+| MyCard | MYCARD | Android only |
+| Windows | WIN | Standalone only |
+| macOS | MAC | Standalone only |
+| Web | WEB | WebGL only |
 
 <a id="gamebaseconfiguration-displaylanguagecode"></a>
 #### 4. displayLanguageCode

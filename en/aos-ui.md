@@ -90,8 +90,7 @@ Gamebase.GameNotice.openGameNotice(
 | --- | --- | --- |
 | newBuilder() | **M** | GameNoticeConfiguration.Builder object can be created using the newBuilder() function. |
 | build() | **M** | Converts the configured builder into a Configuration object. |
-| setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | Game notice background color.<br>Colors are in ARGB order.
-<br>Use the string value converted by the android.graphics.Color.parseColor(String) API.<br>**default**: #CC000000 |
+| setBackgroundColor(int backgroundColor)<br>setBackgroundColor(String backgroundColor) | O | Game notice background color.<br>Colors are in ARGB order.<br>Use the string value converted by the android.graphics.Color.parseColor(String) API.<br>**default**: #CC000000 |
 
 <a id="imagenotice"></a>
 ## ImageNotice { #imagenotice }
