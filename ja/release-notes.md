@@ -213,7 +213,7 @@ GamebaseのXCodeの最小サポートバージョンが10から11に変更され
 	* Push > プッシュ: Tencent Push を削除
 	* 購入 (IAP) > 決済情報: 払い戻し状態で領収書検証ボタンが表示されないように変更
 * [SDK] 2.18.2
-    * (共通) TOAST SDK アップデート: [Android(0.24.2)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0242-20201124)、[iOS(0.27.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0271-20201124)、[Unity(0.21.3)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-unity/#0213-20201124)
+    * (共通) TOAST SDK アップデート: [Android(0.24.2)](https://docs.nhncloud.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0242-20201124)、[iOS(0.27.1)](https://docs.nhncloud.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0271-20201124)、[Unity(0.21.3)](https://docs.nhncloud.com/ko/TOAST/ko/toast-sdk/release-notes-unity/#0213-20201124)
 	* (Android) 暗号化ロジックのセキュリティ警告解決のための外部 SDK アップデート: Payco Login SDK(1.5.3)、Hangame ID SDK(1.3.2)
 	* (Android) Tencent Push モジュールを削除
 	* (Android) Gamebase Android SDK 2.6.0 で deprecated になった関数を削除
@@ -267,7 +267,7 @@ GamebaseのXCodeの最小サポートバージョンが10から11に変更され
 <a id="2020-11-10-2"></a>
 #### 機能改善/変更
 * [SDK] 2.18.0
-    * (Android) TOAST SDK アップデート: [Android(0.24.1)](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0240-20201027)-GooglePlay Billing Library v.3.0.1 適用
+    * (Android) TOAST SDK アップデート: [Android(0.24.1)](https://docs.nhncloud.com/ko/TOAST/ko/toast-sdk/release-notes-android/#0240-20201027)-GooglePlay Billing Library v.3.0.1 適用
     * (Android) WebView SSL セキュリティ警告への対応処理を追加
     * (iOS) iOS 13 以上から提供される SceneDelegate 対応 API を追加
 
@@ -361,7 +361,7 @@ Hangame認証の使用を希望する場合は、事前にカスタマーセン�
 #### 機能改善/変更
 * [SDK] 2.15.1
     * (iOS) TOAST SDK アップデート: iOS(0.27.0)
-	* iOS 14 beta の変更事項に対応した IAP SDK の新バージョンが適用されました。[TOAST SDK Release Notes](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0270-20200911)
+	* iOS 14 beta の変更事項に対応した IAP SDK の新バージョンが適用されました。[TOAST SDK Release Notes](https://docs.nhncloud.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0270-20200911)
 
 <a id="2020-09-15"></a>
 ### 2020. 09. 15. { #2020-09-15 }
@@ -1062,8 +1062,8 @@ Gamebase SDK 2.6.0 未満のバージョンから 2.6.0 にアップグレード
 #### 機能改善/変更
 * [SDK] 2.4.0
 	* (共通) 指標関連 Class 変更
-        * LevelUpData Class: userLevel、levelUpTime パラメータが必須に変更 / その他フィールド削除 [詳細 [Android](https://docs.nhncloud.com/ko/Game/Gamebase/ko/aos-etc/#game-user-data-settings) / [iOS](https://docs.nhncloud.com/ko/Game/Gamebase/ko/ios-etc/#game-user-data-settings) / [Unity](https://docs.nhncloud.com/ko/Game/Gamebase/ko/unity-etc/#game-user-data-settings) / [JavaScript](http://docs.toast.com/ko/Game/Gamebase/ko/js-etc/#game-user-data-settings)]
-        * GameUserData Class: classId(ゲームユーザーの職業) フィールド追加 [詳細 [Android](https://docs.nhncloud.com/ko/Game/Gamebase/ko/aos-etc/#level-up-trace) / [iOS](https://docs.nhncloud.com/ko/Game/Gamebase/ko/ios-etc/#level-up-trace) / [Unity](https://docs.nhncloud.com/ko/Game/Gamebase/ko/unity-etc/#level-up-trace) / [JavaScript](http://docs.toast.com/ko/Game/Gamebase/ko/js-etc/#level-up-trace)]
+        * LevelUpData Class: userLevel、levelUpTime パラメータが必須に変更 / その他フィールド削除 [詳細 [Android](https://docs.nhncloud.com/ko/Game/Gamebase/ko/aos-etc/#game-user-data-settings) / [iOS](https://docs.nhncloud.com/ko/Game/Gamebase/ko/ios-etc/#game-user-data-settings) / [Unity](https://docs.nhncloud.com/ko/Game/Gamebase/ko/unity-etc/#game-user-data-settings) / [JavaScript](https://docs.nhncloud.com/ko/Game/Gamebase/ko/js-etc/#game-user-data-settings)]
+        * GameUserData Class: classId(ゲームユーザーの職業) フィールド追加 [詳細 [Android](https://docs.nhncloud.com/ko/Game/Gamebase/ko/aos-etc/#level-up-trace) / [iOS](https://docs.nhncloud.com/ko/Game/Gamebase/ko/ios-etc/#level-up-trace) / [Unity](https://docs.nhncloud.com/ko/Game/Gamebase/ko/unity-etc/#level-up-trace) / [JavaScript](https://docs.nhncloud.com/ko/Game/Gamebase/ko/js-etc/#level-up-trace)]
     * (Android)Naver SDK バージョンアップデート (v4.2.5): Naver SDK バグ修正 (Naver ログイン中にアプリアイコンからアプリを再起動した場合、Activity が強制終了されることで認証プロセスが中断される問題を解決)
     * (Unity)StandaloneWebview が 32bit ビルドをサポートしました (SDK サイズが 53.6MB から 99.2MB に増加)
 * [Server]

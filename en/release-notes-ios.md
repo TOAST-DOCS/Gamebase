@@ -1214,7 +1214,7 @@ If you want to use Hangame authentication, please contact the Customer Center in
 #### Feature Updates
 
 * External SDK update: TOAST iOS SDK (0.27.0)
-* A new version of IAP SDK is applied to support the changes made to iOS 14 beta. [TOAST SDK Release Notes](https://docs.toast.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0270-20200911)
+* A new version of IAP SDK is applied to support the changes made to iOS 14 beta. [TOAST SDK Release Notes](https://docs.nhncloud.com/ko/TOAST/ko/toast-sdk/release-notes-ios/#0270-20200911)
 
 <a id="2-15-0-2020-08-25"></a>
 ### 2.15.0 (2020. 08. 25.) { #2-15-0-2020-08-25 }

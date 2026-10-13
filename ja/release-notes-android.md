@@ -1110,8 +1110,8 @@ Android Gradle Plugin最小バージョンが7.4.2以上に引き上げられま
             }
             
     * Proguardを適用する場合、次のガイドを確認して適用する必要があります。
-        * [NHN Cloud > SDK使用ガイド > TOAST Push > Android > Amazon Device Messaging設定 > ADM SDKダウンロード](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#download-the-adm-sdk)
-        * [NHN Cloud > SDK使用ガイド > TOAST Push > Android > Amazon Device Messaging設定 > Proguard設定](https://docs.toast.com/en/TOAST/en/toast-sdk/push-android/#proguard-settings)
+        * [NHN Cloud > SDK使用ガイド > TOAST Push > Android > Amazon Device Messaging設定 > ADM SDKダウンロード](https://docs.nhncloud.com/en/TOAST/en/toast-sdk/push-android/#download-the-adm-sdk)
+        * [NHN Cloud > SDK使用ガイド > TOAST Push > Android > Amazon Device Messaging設定 > Proguard設定](https://docs.nhncloud.com/en/TOAST/en/toast-sdk/push-android/#proguard-settings)
 
 <a id="380-2022-05-03-feature-updates"></a>
 #### 機能改善・変更
