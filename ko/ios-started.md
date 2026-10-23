@@ -52,11 +52,11 @@ Gamebase.xcframework 및 필요한 Adapter들을 다운로드합니다.<br/>
 |  | GamebaseAuthTwitterAdapter.xcframework | | Twitter 로그인을 지원 | iOS 15 이상 |
 |  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.11.2 | LINE 로그인을 지원 | iOS 15 이상 |
 |  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 15 이상 |
-|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.17.2 | Hangame 로그인을 지원 | iOS 15 이상 |
+|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.18.1 | Hangame 로그인을 지원 | iOS 15 이상 |
 |  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.4.0 | Weibo 로그인을 지원 | iOS 15 이상 |
 |  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.20.0 | Kakao 로그인을 지원 | iOS 15 이상 |
 |  | GamebaseAuthSteamAdapter.xcframework |  | Steam 로그인을 지원 | iOS 15 이상 |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit<br/>NHNCloudIAP 1.8.5 | 게임 내 결제 지원 | iOS 15 이상 |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit<br/>NHNCloudIAP 1.11.0 | 게임 내 결제 지원 | iOS 15 이상 |
 | Gamebase Push Adapters | GamebasePushAdapter.xcframework | NHNCloudPush 1.8.5 | Push를 지원 | iOS 15 이상 |
 
 
@@ -177,6 +177,26 @@ end
 > **pod 'Gamebase', '2.77.0'**과 같이 작성해 특정 버전을 지정할 수 있습니다. 각각의 pod에 버전을 명시하지 않으면 최신 버전이 설정됩니다.<br/>
 > 특정 Adapter만 선택해서 적용할 수 있습니다.
 > 
+
+<br/>
+
+> <font color="red">[주의]</font><br/>
+>
+> Xcode 27부터는 iOS 15.0 미만의 Deployment Target을 지원하지 않습니다.<br/>
+> Gamebase가 사용하는 일부 외부 SDK의 pod은 Deployment Target이 iOS 15.0 미만으로 설정되어 있어, Xcode 27에서 빌드하면 오류가 발생합니다.<br/>
+> Podfile에 **post_install**을 추가하면 각 pod이 Podfile의 **platform :ios, '15.0'** 설정을 따르게 되어 오류가 발생하지 않습니다.<br/>
+> 이미 post_install을 사용하고 있다면 기존 post_install 안에 코드를 추가하세요. Podfile에는 post_install을 하나만 작성할 수 있습니다.
+>
+
+```ruby
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+        end
+    end
+end
+```
 
 <br/>
 
