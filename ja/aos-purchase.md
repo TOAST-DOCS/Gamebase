@@ -510,7 +510,7 @@ class PurchasableSubscriptionStatus {
     
     // 購読ステータスコードです。
     //
-    // 購読ステータスコード : https://docs.nhncloud.com/en/Game/Gamebase/en/aos-purchase/#subscription-status-code
+    // 購読ステータスコード : https://docs.nhncloud.com/ja/Game/Gamebase/ja/aos-purchase/#subscription-status-code
     public int statusCode;
     
     // 購読ステータスコードの説明です。

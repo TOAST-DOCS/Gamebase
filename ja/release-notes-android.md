@@ -21,7 +21,7 @@
 <a id="840-2026-10-27-feature-updates"></a>
 #### 機能改善/変更
 
-* 外部SDKアップデート: NHN Cloud Android SDK(1.14.0)、Hangame Android SDK(1.18.1)、Naver Login Android SDK(5.11.2)、Kakaogame SDK(3.21.5)
+* 外部SDKアップデート: NHN Cloud Android SDK(1.14.0)、Hangame Android SDK(1.18.1)、Naver Login Android SDK(5.11.2)、Kakaogame Android SDK(3.21.5)
 * Gamebaseがゲームアプリビルドに適用するProGuardルールの縮小により、ゲームアプリのR8コード最適化の範囲を拡大
 * Googleログインキャンセル時に、キャンセル理由の指標(ログ)を記録
 * `GamebaseConfiguration.Builder.setAdditionalInfo()`に渡した項目のうち、キーまたは値が`null`の項目は無視されます。

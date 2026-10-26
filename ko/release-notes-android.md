@@ -19,7 +19,7 @@
 <a id="840-2026-10-27-feature-updates"></a>
 #### 기능 개선/변경
 
-* 외부 SDK 업데이트: NHN Cloud Android SDK(1.14.0), Hangame Android SDK(1.18.1), Naver Login Android SDK(5.11.2), Kakaogame SDK(3.21.5)
+* 외부 SDK 업데이트: NHN Cloud Android SDK(1.14.0), Hangame Android SDK(1.18.1), Naver Login Android SDK(5.11.2), Kakaogame Android SDK(3.21.5)
 * Gamebase가 게임 앱 빌드에 적용하는 ProGuard 규칙 축소로 게임 앱의 R8 코드 최적화 범위 확대
 * Google 로그인 취소 시 취소 사유의 지표(로그) 기록
 * `GamebaseConfiguration.Builder.setAdditionalInfo()`에 전달한 항목 중 키 또는 값이 `null`인 항목은 무시합니다.
