@@ -5,6 +5,17 @@
 <a id="game-gamebase-release-notes-unity"></a>
 ## Game > Gamebase > Release Notes > Unity { #game-gamebase-release-notes-unity }
 
+<a id="2-84-0-2026-10-27"></a>
+### 2.84.0 (October 27, 2026) { #2-84-0-2026-10-27 }
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.84.0/GamebaseSDK-Unity.zip)
+
+#### Added Features
+* Added the additionalInfo field to GamebaseConfiguration
+
+#### Platform-Specific Changes
+* [Gamebase Android SDK 2.84.0](./release-notes-android/#2-84-0-2026-10-27)
+* [Gamebase iOS SDK 2.84.0](./release-notes-ios/#2-84-0-2026-10-27)
+
 <a id="2-83-0-2026-10-13"></a>
 ### 2.83.0 (2026. 10. 13.) { #2-83-0-2026-10-13 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.83.0/GamebaseSDK-Unity.zip)
