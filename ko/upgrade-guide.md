@@ -3,6 +3,16 @@
 <a id="game-gamebase-upgrade-guide"></a>
 ## Game > Gamebase > Upgrade Guide { #game-gamebase-upgrade-guide }
 
+<a id="2-84-0"></a>
+## 2.84.0 { #2-84-0 }
+
+<a id="2-84-0-android"></a>
+### Android { #2-84-0-android }
+
+* Kakaogame 인증 최소 지원 버전이 Android 7.0 이상으로 상향됩니다.(minSdk 23 → 24)
+    * Kakaogame SDK 3.21.5의 최소 지원 버전 변경에 따른 업데이트입니다.
+    * gamebase-adapter-auth-kakaogame을 사용하는 경우 게임 앱의 minSdkVersion을 24 이상으로 설정하세요.
+
 <a id="2-83-0"></a>
 ## 2.83.0 { #2-83-0 }
 
