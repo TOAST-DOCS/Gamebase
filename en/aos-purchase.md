@@ -1,6 +1,6 @@
 <!-- machine_translated: true -->
 
-<!-- pre-align:aligned sig=bacf30302c7a -->
+<!-- pre-align:aligned sig=5547d1a1cb18 -->
 
 <a id="game-gamebase-android-developers-guide-purchase"></a>
 ## Game > Gamebase > Android Developer's Guide > Purchase { #game-gamebase-android-developers-guide-purchase }
