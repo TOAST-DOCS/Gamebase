@@ -4,7 +4,7 @@
 ## Game > Gamebase > 스토어 콘솔 가이드 > Google 콘솔 가이드 { #game-gamebase-store-console-guide-google-console-guide }
 
 > [공지]
-> 본 문서는 Google Play로 출시된 앱의 정보를 [Gamebase IAP](https://docs.toast.com/ko/Game/Gamebase/ko/oper-purchase/) 콘솔에 등록 및 연동시키는 방법을 다룹니다.
+> 본 문서는 Google Play로 출시된 앱의 정보를 [Gamebase IAP](https://docs.nhncloud.com/ko/Game/Gamebase/ko/oper-purchase/) 콘솔에 등록 및 연동시키는 방법을 다룹니다.
 > Google Play로 앱을 출시하기 위한 보다 자세한 콘솔 설정 관련 사항들은 Google이 제공하는 Google Play Console 가이드를 참조하시길 바랍니다.
 
 <a id="google-site"></a>

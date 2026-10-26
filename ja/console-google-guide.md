@@ -4,7 +4,7 @@
 ## Game > Gamebase > ストアコンソールガイド > Googleコンソールガイド { #game-gamebase-store-console-guide-google-console-guide }
 
 > [告知]
-> 本文書はGoogle Playにリリースされたアプリの情報を[[Gamebase IAP](https://docs.toast.com/ko/Game/Gamebase/ko/oper-purchase/)コンソールに登録および連動させる方法について扱います。
+> 本文書はGoogle Playにリリースされたアプリの情報を[[Gamebase IAP](https://docs.nhncloud.com/ko/Game/Gamebase/ko/oper-purchase/)コンソールに登録および連動させる方法について扱います。
 > Google Playにアプリをリリースするためのより詳細なコンソール設定関連事項については、Googleが提供するGoogle Play Consoleガイドを参照してください。
 
 <a id="google-site"></a>

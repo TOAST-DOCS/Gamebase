@@ -1,9 +1,19 @@
 <!-- machine_translated: true -->
 
-<!-- pre-align:aligned sig=18600c8f0bac -->
+<!-- pre-align:aligned sig=38bfe43b74fe -->
 
 <a id="game-gamebase-upgrade-guide"></a>
 ## Game > Gamebase > Upgrade Guide { #game-gamebase-upgrade-guide }
+
+<a id="2-84-0"></a>
+## 2.84.0 { #2-84-0 }
+
+<a id="2-84-0-android"></a>
+### Android { #2-84-0-android }
+
+* The minimum supported version for Kakaogame authentication has been raised to Android 7.0 or later (minSdk 23 → 24).
+    * This update is due to the minimum supported version change in Kakaogame SDK 3.21.5.
+    * If you are using gamebase-adapter-auth-kakaogame, set the minSdkVersion of your game app to 24 or later.
 
 <a id="2-83-0"></a>
 ## 2.83.0 { #2-83-0 }

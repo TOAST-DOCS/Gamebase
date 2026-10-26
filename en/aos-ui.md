@@ -1,3 +1,5 @@
+<!-- machine_translated: true -->
+
 <!-- pre-align:aligned sig=3ec693c0ed98 -->
 
 <a id="game-gamebase-android-developers-guide-ui"></a>
@@ -377,6 +379,7 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | getNode1DepthPosition   | int                   | Primary item exposure sequence.           |
 | getNode2DepthPosition   | int                   | Secondary item exposure sequence.<br/> If none, -1           |
 | getDetailPageUrl        | String                | URL for the full terms and conditions.<br/> If none, null. |
+| getDisplayType          | String                | Display method for terms items<br/> - `CHECKBOX`: Item that requires agreement via checkbox <br/> - `GUIDE`: Item that displays guidance only without a checkbox. This item is not subject to agreement, so it is not sent via the `updateTerms` API.<br/> If no value is present, it is treated as `CHECKBOX`. |
 
 <a id="updateterms"></a>
 ### updateTerms { #updateterms }

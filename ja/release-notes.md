@@ -137,7 +137,7 @@ Push > Push（旧）コンソールメニュー機能が除外されました。
 	* 購入(IAP) > 決済不正行為モニタリング: Apple App Store を追加 
 * [SDK] 2.19.0
 	* (Unreal) SDK リリース: 2.16.0〜2.19.0 の累積内容を反映
-		* [Android 設定ツール](https://docs.toast.com/ko/Game/Gamebase/ko/unreal-started/#android-settings) を提供: Gamebase_Android_UPL.xml ファイルを修正する代わりに、設定ツールをご使用ください。
+		* [Android 設定ツール](https://docs.nhncloud.com/ko/Game/Gamebase/ko/unreal-started/#android-settings) を提供: Gamebase_Android_UPL.xml ファイルを修正する代わりに、設定ツールをご使用ください。
 		* カスタマーセンター機能を追加	
 		* 認証を追加: Hangame、Weibo
 		* Galaxy Store を追加
@@ -394,7 +394,7 @@ Gamebase SDK 2.15.0 で、Google Billing Client モジュールが更新され�
     * (共通) プッシュ API を追加しました: プッシュトークン情報の確認 (Gamebase.Push.queryTokenInfo API)
 * [SDK] 2.9.1
     * (Unreal) Unreal 4.22〜4.25 をサポートしました。
-    * (Unreal) PLCrashReporter の問題をサポートしました: [ガイド](http://docs.toast.com/ko/Game/Gamebase/ko/unreal-started/#ios-settings)
+    * (Unreal) PLCrashReporter の問題をサポートしました: [ガイド](https://docs.nhncloud.com/ko/Game/Gamebase/ko/unreal-started/#ios-settings)
 
 <a id="2020-08-25-2"></a>
 #### 機能改善/変更
@@ -1062,8 +1062,8 @@ Gamebase SDK 2.6.0 未満のバージョンから 2.6.0 にアップグレード
 #### 機能改善/変更
 * [SDK] 2.4.0
 	* (共通) 指標関連 Class 変更
-        * LevelUpData Class: userLevel、levelUpTime パラメータが必須に変更 / その他フィールド削除 [詳細 [Android](http://docs.toast.com/ko/Game/Gamebase/ko/aos-etc/#game-user-data-settings) / [iOS](http://docs.toast.com/ko/Game/Gamebase/ko/ios-etc/#game-user-data-settings) / [Unity](http://docs.toast.com/ko/Game/Gamebase/ko/unity-etc/#game-user-data-settings) / [JavaScript](http://docs.toast.com/ko/Game/Gamebase/ko/js-etc/#game-user-data-settings)]
-        * GameUserData Class: classId(ゲームユーザーの職業) フィールド追加 [詳細 [Android](http://docs.toast.com/ko/Game/Gamebase/ko/aos-etc/#level-up-trace) / [iOS](http://docs.toast.com/ko/Game/Gamebase/ko/ios-etc/#level-up-trace) / [Unity](http://docs.toast.com/ko/Game/Gamebase/ko/unity-etc/#level-up-trace) / [JavaScript](http://docs.toast.com/ko/Game/Gamebase/ko/js-etc/#level-up-trace)]
+        * LevelUpData Class: userLevel、levelUpTime パラメータが必須に変更 / その他フィールド削除 [詳細 [Android](https://docs.nhncloud.com/ko/Game/Gamebase/ko/aos-etc/#game-user-data-settings) / [iOS](https://docs.nhncloud.com/ko/Game/Gamebase/ko/ios-etc/#game-user-data-settings) / [Unity](https://docs.nhncloud.com/ko/Game/Gamebase/ko/unity-etc/#game-user-data-settings) / [JavaScript](http://docs.toast.com/ko/Game/Gamebase/ko/js-etc/#game-user-data-settings)]
+        * GameUserData Class: classId(ゲームユーザーの職業) フィールド追加 [詳細 [Android](https://docs.nhncloud.com/ko/Game/Gamebase/ko/aos-etc/#level-up-trace) / [iOS](https://docs.nhncloud.com/ko/Game/Gamebase/ko/ios-etc/#level-up-trace) / [Unity](https://docs.nhncloud.com/ko/Game/Gamebase/ko/unity-etc/#level-up-trace) / [JavaScript](http://docs.toast.com/ko/Game/Gamebase/ko/js-etc/#level-up-trace)]
     * (Android)Naver SDK バージョンアップデート (v4.2.5): Naver SDK バグ修正 (Naver ログイン中にアプリアイコンからアプリを再起動した場合、Activity が強制終了されることで認証プロセスが中断される問題を解決)
     * (Unity)StandaloneWebview が 32bit ビルドをサポートしました (SDK サイズが 53.6MB から 99.2MB に増加)
 * [Server]

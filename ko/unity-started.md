@@ -12,7 +12,7 @@ Gamebase Unity SDK 사용 환경과 초기 설정 방법을 설명합니다.
 >
 > Unity 지원 버전
 >
-> * 2022.3.10f1 ~ 6000.3.21f1
+> * 2022.3.10f1~6000.6.7f1
 
 <a id="environments-dependencies"></a>
 #### Dependencies
@@ -246,6 +246,8 @@ EDM4U에서 CocoaPods 설치할 수도 있습니다.
 #### iOS 모듈별 추가 설정
 
 * 선택한 모듈에 따라 Xcode를 통해 직접 설정해야 합니다.
+
+<!-- -->
 
 1. Unity 프로젝트에서 iOS 빌드를 진행합니다.
 2. 생성된 Xcode 프로젝트를 엽니다.
