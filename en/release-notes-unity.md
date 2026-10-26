@@ -663,6 +663,7 @@
 <a id="570-2023-10-31-added-features"></a>
 #### Added Features
 (Common) Added the Gamebase.Logger.Report API to send logs related to exceptions in try/catch statements.
+
 * (iOS) Added the AUTH_IDP_LOGIN_EXTERNAL_AUTHENTICATION_REQUIRED error code.
 
 <a id="570-2023-10-31-platform-specific-changes"></a>
