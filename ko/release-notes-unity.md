@@ -4,11 +4,11 @@
 ## Game > Gamebase > 릴리스 노트 > Unity { #game-gamebase-release-notes-unity }
 
 <a id="2-84-0-2026-10-27"></a>
-### 2.84.0 (2026. 10. 27.) { #2-84-0-2026-10-27 }
+### 2.84.0(2026. 10. 27.) { #2-84-0-2026-10-27 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.84.0/GamebaseSDK-Unity.zip)
 
-#### 기능 추가
-* GamebaseConfiguration에 additionalInfo 필드를 추가했습니다.
+#### 신규 기능 추가
+* GamebaseConfiguration에 additionalInfo 필드 추가
 
 #### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.84.0](./release-notes-android/#2-84-0-2026-10-27)
