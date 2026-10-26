@@ -1,3 +1,5 @@
+<!-- machine_translated: true -->
+
 <!-- pre-align:aligned sig=63d46c12bfa4 -->
 
 <a id="game-gamebase-android-developers-guide-getting-started"></a>
@@ -19,19 +21,19 @@ To execute Gamebase in Android, the following system environment is required.
 
 | Gamebase SDK | Gamebase Adapter | External SDK | Purpose | minSdkVersion |
 | --- | --- | --- | --- | --- |
-| Gamebase | gamebase-sdk | nhncloud-core-1.12.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-jdk8<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>age-signals-0.0.2 | Include the interface and core logic of Gamebase | API 22(Lollipop MR1, OS 5.1) |
+| Gamebase | gamebase-sdk | nhncloud-core-1.14.0<br>nhncloud-common<br>nhncloud-crash-reporter-ndk<br>nhncloud-logger<br>gson-2.8.9<br>okhttp-3.12.13<br>kotlin-stdlib-1.8.0<br>kotlin-stdlib-jdk8<br>kotlinx-coroutines-core-1.6.4<br>kotlinx-coroutines-android<br>age-signals-0.0.2 | Include the interface and core logic of Gamebase | API 22(Lollipop MR1, OS 5.1) |
 | Gamebase Auth Adapters | gamebase-adapter-auth-appleid | - | Support Sign In With Apple login | - |
 |  | gamebase-adapter-auth-facebook | facebook-login-18.0.0 | Support Facebook login | - |
 |  | gamebase-adapter-auth-google | credentials-play-services-auth-1.3.0<br>play-services-auth-20.3.0 | Support Google login | - |
 |  | gamebase-adapter-auth-gpgs-v2 | play-services-games-v2-20.1.2 | Support GPGS(Google Play Games Services) V2 login<br>Based on Player ID | - |
 |  | gamebase-adapter-auth-gpgs-autologin | play-services-games-v2-20.1.2 | Support Google Play Games Services (GPGS) auto-sign-in | - |
-|  | gamebase-adapter-auth-hangame | hangame-id-1.17.4 | Support Hangame login | - |
+|  | gamebase-adapter-auth-hangame | hangame-id-1.18.1 | Support Hangame login | - |
 |  | gamebase-adapter-auth-line | linesdk-5.8.1 | Support LINE login | - |
-|  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.8.0 | Support NAVER login  | - |
+|  | gamebase-adapter-auth-naver | naveridlogin-android-sdk-5.11.2 | Support NAVER login  | - |
 |  | gamebase-adapter-auth-payco | payco-login-1.5.17 | Support PAYCO login | - |
 |  | gamebase-adapter-auth-twitter | - | Support Twitter login | API 25(Nougat, OS 7.1.1) |
 |  | gamebase-adapter-auth-weibo | sinaweibosdk.core-13.10.5 | Support Weibo login | - |
-|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.19.3<br>kakaogame.gamesdk-3.19.3<br>kakaogame.common-3.19.3<br>kakao.sdk.v2-auth-2.17.0<br>kakao.sdk.v2-partner-auth-2.17.0<br>kakao.sdk.v2-common-2.17.0<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 23(Marshmallow, OS 6.0) |
+|  | gamebase-adapter-auth-kakaogame | kakaogame.idp_kakao-3.21.5<br>kakaogame.gamesdk-3.21.5<br>kakaogame.common-3.21.5<br>kakao.sdk.v2-auth-2.21.7<br>kakao.sdk.v2-partner-auth-2.21.7<br>kakao.sdk.v2-common-2.21.7<br>play-services-ads-identifier-17.0.0 | Support Kakao login | API 24(Nougat, OS 7.0) |
 |  | gamebase-adapter-auth-steam | - | Support Steam login | API 25(Nougat, OS 7.1.1) |
 | Gamebase IAP Adapters | gamebase-adapter-toastiap | nhn-iap-core-2.1.0 | Support in-app purchase | - |
 |  | gamebase-adapter-purchase-galaxy | nhn-iap-galaxy-2.1.0 | Support Samsung Galaxy Store |  - |
@@ -140,9 +142,6 @@ repositories {
     
     // >>> [Huawei App Gallery]
     maven { url 'https://developer.huawei.com/repo/' }
-
-    // >>> [ONE store v21]
-    maven { url 'https://repo.onestore.co.kr/repository/onestore-sdk-public' }
 }
 
 dependencies {
@@ -184,6 +183,7 @@ dependencies {
     implementation "com.toast.android.gamebase:gamebase-adapter-auth-kakaogame:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-paychorus-external:$GAMEBASE_SDK_VERSION"
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-paychorus-google:$GAMEBASE_SDK_VERSION"
+
     // >>> [ONE store v16]
     implementation "com.toast.android.gamebase:gamebase-adapter-purchase-onestore-v16:$GAMEBASE_SDK_VERSION"
     // >>> [ONE store v17]
