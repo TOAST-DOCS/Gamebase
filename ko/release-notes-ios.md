@@ -4,7 +4,7 @@
 ## Game > Gamebase > 릴리스 노트 > iOS { #game-gamebase-release-notes-ios }
 
 <a id="2-84-0-2026-10-27"></a>
-### 2.84.0 (2026. 10. 27.) { #2-84-0-2026-10-27 }
+### 2.84.0(2026. 10. 27.) { #2-84-0-2026-10-27 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.84.0/GamebaseSDK-iOS.zip)
 
 <a id="840-2026-10-27-feature-updates"></a>
