@@ -21,7 +21,7 @@
 <a id="840-2026-10-27-feature-updates"></a>
 #### Feature Updates
 
-* Updated external SDKs: NHN Cloud Android SDK (1.14.0), Hangame Android SDK (1.18.1), Naver Login Android SDK (5.11.2), Kakaogame SDK (3.21.5)
+* Updated external SDKs: NHN Cloud Android SDK (1.14.0), Hangame Android SDK (1.18.1), Naver Login Android SDK (5.11.2), Kakaogame Android SDK (3.21.5)
 * Expanded the R8 code optimization scope for game apps by reducing the ProGuard rules that Gamebase applies to game app builds
 * Added metrics logging of cancellation reasons when Google login is canceled
 * Items with a key or value of `null` among those passed to `GamebaseConfiguration.Builder.setAdditionalInfo()` are now ignored.
