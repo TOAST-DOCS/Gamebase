@@ -1,3 +1,5 @@
+<!-- machine_translated: true -->
+
 <!-- pre-align:aligned sig=18f341083517 -->
 
 <a id="game-gamebase-ios-developers-guide-getting-started"></a>
@@ -52,11 +54,11 @@ Gamebase.xcframework及び必要なadapterをダウンロードします。<br/>
 |  | GamebaseAuthTwitterAdapter.xcframework | | Twitterログインをサポート | iOS 15以上 |
 |  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.11.2 | LINEログインをサポート | iOS 15以上 |
 |  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 15以上 |
-|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.17.2 | Hangameログインをサポート | iOS 15以上 |
+|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.18.1 | Hangameログインをサポート | iOS 15以上 |
 |  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.4.0 | Weiboログインをサポート | iOS 15以上 |
 |  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.20.0 | Kakaoログインをサポート | iOS 15以上 |
 |  | GamebaseAuthSteamAdapter.xcframework |  | Steamログインをサポート | iOS 15以上 |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit.xcframework<br/>NHNCloudIAP 1.8.5 | ゲーム内決済をサポート | iOS 15以上 |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit<br/>NHNCloudIAP 1.11.0 | ゲーム内決済をサポート | iOS 15以上 |
 | Gamebase Push Adapters | GamebasePushAdapter.xcframework | NHNCloudPush 1.8.5 | Pushをサポート | iOS 15以上 |
 
 
@@ -177,6 +179,24 @@ end
 > **pod 'Gamebase', '2.77.0'**のように入力して、特定バージョンを指定できます。それぞれのpodにバージョンを明示しない場合は最新バージョンが設定されます。<br/>
 > 特定Adapterのみを任意で適用できます。
 >
+
+<br/>
+
+!!! danger "注意"
+    Xcode 27以降、iOS 15.0未満のDeployment Targetはサポートされていません。<br/>
+    Gamebaseが使用する一部の外部SDKのpodはDeployment TargetがiOS 15.0未満に設定されているため、Xcode 27でビルドするとエラーが発生します。<br/>
+    Podfileに**post_install**を追加すると、各podがPodfileの**platform :ios, '15.0'**の設定に従うようになり、エラーが発生しません。<br/>
+    すでにpost_installを使用している場合は、既存のpost_install内にコードを追加してください。Podfileにはpost_installを1つだけ記述できます。
+
+```ruby
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+        end
+    end
+end
+```
 
 <br/>
 

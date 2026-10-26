@@ -148,13 +148,13 @@ gamebaseProductId는 일반적으로는 스토어에 등록한 아이템의 ID�
 
 // 결제 식별자
 // purchaseToken 과 함께 'Consume' 서버 API를 호출하는데 사용
-// Consume API: https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+// Consume API: https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
 // 주의: Consume API 는 게임 서버에서 호출하세요!
 @property (nonatomic, strong) NSString *paymentSeq;
 
 // 결제 식별자
 // paymentSeq 와 함께 'Consume' 서버 API를 호출하는데 사용
-// Consume API: https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+// Consume API: https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
 // 주의: Consume API 는 게임 서버에서 호출하세요!
 @property (nonatomic, strong) NSString *purchaseToken;
 

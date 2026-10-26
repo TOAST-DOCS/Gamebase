@@ -1,4 +1,6 @@
-<!-- pre-align:aligned sig=bacf30302c7a -->
+<!-- machine_translated: true -->
+
+<!-- pre-align:aligned sig=5547d1a1cb18 -->
 
 <a id="game-gamebase-android-developers-guide-purchase"></a>
 ## Game > Gamebase > Android SDK ご利用ガイド > 決済 { #game-gamebase-android-developers-guide-purchase }
@@ -143,7 +145,7 @@ class PurchasableReceipt {
     // 決済識別子です。
     // purchaseTokenと一緒にConsumeサーバーAPIを呼び出すのに使用する重要な情報です。
     //
-    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // Consume API : https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // 注意：Consume APIは、ゲームサーバーで呼び出してください！
     @NonNull
     String paymentSeq;
@@ -152,7 +154,7 @@ class PurchasableReceipt {
     // paymentSeqと一緒にConsumeサーバーAPIを呼び出すのに使用する重要な情報です。
     // Consume APIでは「accessToken」という名前のパラメータで渡す必要があります。
     //
-    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // Consume API : https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // 注意：Consume APIは、ゲームサーバーで呼び出してください！
     @Nullable
     String purchaseToken;
@@ -398,14 +400,15 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, configuration, new Game
 ### List Activated Subscriptions { #list-activated-subscriptions }
 
 現在のユーザーID基準で有効になっている定期購入リストを照会します。
-決済が完了した定期購入商品(自動更新型定期購入、自動更新型消費性定期購入商品)は、有効期限が切れる前まで照会できます。
-購読ライフサイクル処理は、次の文書をご覧ください。
-[NHN Cloud > SDK使用ガイド > IAP > Android > Google Play Store購読(定期的決済)機能 > 購読ライフサイクル処理](/nhncloud-sdk/ja/iap-android/#subscription-lifecycle-handling)
+決済が完了した定期購入商品(自動更新型定期購入、自動更新型消費性定期購入商品)は、有効期限が切れる前まで引き続き照会できます。
+購読ライフサイクル処理は、次の項目を参照してください。
+[Google Play Store購読(定期決済)機能 > 購読ライフサイクル処理](#subscription-lifecycle-handling)
 
 > <font color="red">[注意]</font><br/>
 >
 > 現在定期購入商品は、Androidの場合はGoogle Playストアのみサポートします。
 >
+
 **PurchasableConfiguration**
 
 | API                             | Mandatory(M) / Optional(O) | Description                                                               |
@@ -448,9 +451,9 @@ Gamebase.Purchase.requestActivatedPurchases(activity, configuration, new Gamebas
 
 現在のユーザーID基準で購入した購読商品の状態を照会できます。
 決済が完了した購読商品(自動更新型購読、自動更新型消費性購読商品)は、期限が切れる前まで継続して照会できます。
-**PurchasableConfiguration.setIncludeExpiredSubscriptions(true)**APIで、有効期限が切れた購読商品の状態も照会できます。
-購読ステータスコードは、次の文書を参照してください。
-[NHN Cloud > SDK使用ガイド > IAP > Android > NHN Cloud IAP Class Reference > IapSubscriptionStatus.StatusCode](/nhncloud-sdk/ja/iap-android/#iapsubscriptionstatusstatuscode)
+**PurchasableConfiguration.setIncludeExpiredSubscriptions(true)** APIで、期限切れの購読商品の状態も照会できます。
+購読ステータスコードは、次の項目を参照してください。
+[購読ステータスコード](#subscription-status-code)
 
 > <font color="red">[注意]</font><br/>
 >
@@ -507,7 +510,7 @@ class PurchasableSubscriptionStatus {
     
     // 購読ステータスコードです。
     //
-    // IapSubscriptionStatus.StatusCode : https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-android/#iapsubscriptionstatusstatuscode
+    // 購読ステータスコード : https://docs.nhncloud.com/en/Game/Gamebase/en/aos-purchase/#subscription-status-code
     public int statusCode;
     
     // 購読ステータスコードの説明です。
@@ -522,18 +525,18 @@ class PurchasableSubscriptionStatus {
     String currency;
     
     // 決済識別子です。
-    // purchaseTokenと一緒に「Consume」サーバーAPIを呼び出すために使用する重要な情報です。
+    // purchaseTokenと一緒に'Consume'サーバーAPIを呼び出すために使用する重要な情報です。
     //
-    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // Consume API: https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // 注意: Consume APIはゲームサーバーで呼び出してください！
     @NonNull
     String paymentSeq;
     
     // 決済識別子です。
-    // paymentSeqと一緒に「Consume」サーバーAPIを呼び出すために使用する重要な情報です。
+    // paymentSeqと一緒に'Consume'サーバーAPIを呼び出すために使用する重要な情報です。
     // Consume APIでは'accessToken'という名前のパラメータで渡す必要があります。
     //
-    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // Consume API: https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // 注意: Consume APIは、ゲームサーバーで呼び出してください！
     @NonNull
     String purchaseToken;
@@ -542,11 +545,11 @@ class PurchasableSubscriptionStatus {
     @NonNull
     String marketItemId;
     
-//商品タイプとして、次の値が来ることができます。
+    // 商品タイプとして、次の値が来ることができます。
     // * UNKNOWN：認識できないタイプ。 Gamebase SDKをアップデートするか、Gamebaseサポートにお問い合わせください。
     // * CONSUMABLE：消費性商品。
     // * AUTO_RENEWABLE：購読商品。
-    // * CONSUMABLE_AUTO_RENEWABLE：購読商品購を購入したユーザーに定期的に消費が可能な商品を支給したい場合に使用される「消費が可能な購読商品」。
+    // * CONSUMABLE_AUTO_RENEWABLE：購読型商品を購入したユーザーに定期的に消費が可能な商品を支給したい場合に使用される'消費が可能な購読商品'。
     @NonNull
     String productType;
     
@@ -570,11 +573,11 @@ class PurchasableSubscriptionStatus {
     long expiryTime;
     
     // Google決済時に使用される値で、次の値が来ることができます。
-    // しかしGoogleサーバーで障害が発生してGamebase決済サーバーで一時的に検証ロジックをオフにした場合には
-    // nullのみ返されるため常に有効な値を保障するわけではないことに注意してください。
-    // * null :一般決済
-    // * Test :テスト決済
-    // * Promo : Promotion決済
+    // Googleサーバーで障害が発生し、Gamebase決済サーバーで一時的に検証ロジックを終了する場合、
+    // nullのみ返されるため、常に有効な値を保証しない場合があります。
+    // * null: 一般決済
+    // * Test: テスト決済
+    // * Promo: Promotion決済
     @Nullable
     String purchaseType;
     
@@ -619,6 +622,138 @@ class PurchasableSubscriptionStatus {
 }
 ```
 
+<a id="subscription-status-code"></a>
+#### 購読ステータスコード
+
+* **PurchasableSubscriptionStatus.statusCode**で返される購読ステータスを表すコードです。
+
+| Name | Code | Status | Description |
+| ---- | ---- | ------ | ----------- |
+| ACTIVE | 0 | 活性 | 購読がアクティブな状態です。 |
+| CANCELED | 3 | キャンセル | 購読がキャンセルされました。 |
+| ON_HOLD | 5 | アカウント保留 | 定期決済がアカウント保留状態になりました(有効化されている場合)。 |
+| IN_GRACE_PERIOD | 6 | 猶予期間 | 定期決済が猶予期間状態に移行しました(有効化されている場合)。 |
+| PAUSED | 10 | 一時停止 | 購読が一時停止されました。 |
+| REVOKED | 12 | 解約 | ユーザーが定期決済を期限切れ前にキャンセルしました。 |
+| EXPIRED | 13 | 期限切れ | 定期決済が期限切れになりました。 |
+| UNKNOWN | 9999 | 未定義 | 定義されていない状態です。 |
+
+<a id="google-play-store-subscription"></a>
+### Google Play Storeサブスクリプション(定期決済)機能 { #google-play-store-subscription }
+
+Google Playストアのサブスクリプション決済の更新や期限切れなどのライフサイクルに応じたイベントを処理する方法を説明します。
+詳細については、[定期決済別機能追加](https://developer.android.com/google/play/billing/billing_subscriptions)を参照してください。
+
+<a id="subscription-lifecycle-handling"></a>
+#### サブスクリプションのライフサイクル処理
+
+Google Play Storeのサブスクリプションは、ライフサイクル中にさまざまな状態変化を経るため、アプリは各状態に応じて対応する必要があります。
+
+* **有効化状態(Active)**: 定期決済コンテンツにアクセスでき、自動更新が進行中の状態
+* **キャンセル(Cancelled)**: 定期決済コンテンツにアクセスできるが、ユーザーがサブスクリプション商品をこれ以上使用しないとしてキャンセルし、自動更新が停止された状態
+* **猶予期間(In grace period)**: 支払い方法の問題により定期決済が失敗したが、定期決済コンテンツにはアクセスできる状態(ユーザーが支払い方法を変更するのを待つ状態)
+* **アカウント保留(On hold)**: 支払い方法の問題により定期決済が失敗して保留中の状態(猶予期間が有効になっている場合、猶予期間中に支払い方法を変更しなかったため決済が保留された状態)
+* **一時停止(Pause)**: 定期決済商品を一時的に停止した状態
+* **期限切れ(Expired)**: 定期決済商品が期限切れになった状態
+
+| 状態 | 未消費決済照会<br>(NhnCloudIap.queryConsumablePurchases) | 有効化されたサブスクリプション照会<br>(NhnCloudIap.queryActivatedPurchases) | 期限切れ時間 | 自動更新可否 |
+| --- | ------------------------------------------------- | ------------------------------------------------- | ----- | -------- |
+| 有効化状態(Active) | Yes | Yes | 未来時間 | Yes |
+| キャンセル(Cancelled) | Yes | Yes | 未来時間 | No |
+| 猶予期間(In grace period) | No | Yes | 未来時間 | Yes |
+| アカウント保留(On hold) | No | No | 過去時間 | Yes |
+| 一時停止(Pause) | No | No | 過去時間 | Yes |
+| 期限切れ(Expired) | No | No | 過去時間 | No |
+
+<a id="subscription-grace-period"></a>
+#### 猶予期間
+
+猶予期間が有効になっている場合、決済サイクルの終了時に決済手段に問題があると、定期決済は猶予期間に移行します。<br/>
+<span style="color:#e11d21">猶予期間中、ユーザーは定期決済コンテンツにアクセスできる必要があります。</span>
+詳細については、[猶予期間](https://developer.android.com/google/play/billing/subs#grace)を参照してください。
+
+> <font color="red">[注意]</font><br/>
+>
+> * 猶予期間中に決済手段の変更などで復元された場合、自動更新を再開します。
+> * NHN IAPは、更新された決済の結果を決済アップデートリスナー(IapService.PurchaseUpdatedListener)で通知します。
+> * ゲームやアプリは、重要な動作中に決済アップデートリスナーが不要なポップアップをユーザーに表示しないように注意する必要があります。
+
+##### 一般サブスクリプション商品(AUTO_RENEWABLE)
+
+* 猶予期間中、一般サブスクリプション商品は定期決済コンテンツにアクセスできる必要があります。
+* 猶予期間中は`NhnCloudIap.queryActivatedPurchases()`で照会できます。
+
+##### 消費性サブスクリプション商品(CONSUMABLE_AUTO_RENEWABLE)
+
+* 猶予期間が始まると、Googleは新しいレシートを発行しますが、決済手段を変更しない場合はアカウント保留状態になるか、キャンセルされます。
+* 消費性サブスクリプション商品は、猶予期間中に商品を消費できないよう`NhnCloudIap.queryConsumablePurchases()`では照会されません。
+
+<a id="subscription-account-hold"></a>
+#### アカウント保留
+
+アカウント保留とは、支払い方法の問題により更新が失敗したときのユーザー状態を指します。
+決済に失敗すると猶予期間中に再試行し、猶予期間中も決済が失敗すると、定期決済の状態は保留状態になります。
+アカウント保留状態のユーザーは、定期決済コンテンツにアクセスすることはできません。
+アカウント保留期間は最大30日です。
+アカウント保留期間が終了する前に支払い方法を修正しない場合、キャンセル処理されます。
+詳細については、[アカウント保留](https://developer.android.com/google/play/billing/subs#account-hold)を参照してください。
+
+> <font color="red">[注意]</font><br/>
+>
+> * アカウント保留期間中に支払い方法の修正などにより復元された場合、自動更新を再開します。
+> * NHN IAPは、更新された決済の決済結果を決済更新リスナー(IapService.PurchaseUpdatedListener)で通知します。
+> * ゲームやアプリは、重要な動作中に決済更新リスナーが不要なポップアップをユーザーに表示しないよう注意する必要があります。
+
+##### 一般サブスクリプション商品(AUTO_RENEWABLE)
+
+* アカウント保留期間中、一般サブスクリプション商品は定期決済コンテンツにアクセスすることはできません。
+* アカウント保留期間中、`NhnCloudIap.queryActivatedPurchases()`で照会されません。
+
+##### 消費性サブスクリプション商品(CONSUMABLE_AUTO_RENEWABLE)
+
+* アカウント保留期間中、消費性サブスクリプション商品は新しい購入を作成しません。
+* アカウント保留期間中、`NhnCloudIap.queryConsumablePurchases()`で新しい購入が照会されません。
+
+<a id="subscription-pause"></a>
+#### 一時停止
+
+一時停止機能を設定すると、ユーザーが定期決済を1週間から3か月の間、一時停止できます。
+定期決済の一時停止は、現在のサブスクリプション期間が終了した後に適用されます。
+一時停止期間が終了すると、定期決済が自動的に再開されます。
+詳細については、[一時停止](https://developer.android.com/google/play/billing/subs#pause)を参照してください。
+
+> <font color="red">[注意]</font><br/>
+>
+> * 一時停止期間が終了すると、自動更新を再開します。
+> * NHN IAPは、更新された決済の決済結果を決済アップデートリスナー(IapService.PurchaseUpdatedListener)で通知します。
+> * ゲームやアプリは、重要な動作中に決済アップデートリスナーが不要なポップアップをユーザーに表示しないよう注意する必要があります。
+
+##### 一般サブスクリプション商品(AUTO_RENEWABLE)
+
+* 一時停止期間中、一般サブスクリプション商品は定期決済コンテンツにアクセスできません。
+* 一時停止期間中、`NhnCloudIap.queryActivatedPurchases()`で照会されません。
+
+##### 消費性サブスクリプション商品(CONSUMABLE_AUTO_RENEWABLE)
+
+* 一時停止期間中、消費性サブスクリプション商品は新しい購入を生成しません。
+* 一時停止期間中、`NhnCloudIap.queryConsumablePurchases()`で新しい購入が照会されません。
+
+<a id="subscription-resubscribe"></a>
+#### 定期決済の再申請
+
+定期決済の再申請機能を設定すると、ユーザーが定期決済の期限切れ日から12か月以内にキャンセルした定期決済を再申請できます。
+定期決済の再申請では、新しい定期決済および購入トークンが作成されます。
+定期決済が期限切れになった後、ユーザーはGoogle Play定期決済センターで期限切れから1年まで同じ商品を再購入できます。
+詳細については、[定期決済の再申請](https://developer.android.com/google/play/billing/subs#resubscribe)を参照してください。
+
+> <font color="red">[注意]</font><br/>
+>
+> アプリやゲーム内の画面で購入が行われないため、ユーザーデータ(`IapPurchase.getDeveloperPayload()`)を使用できません。
+> <font color="red">[注意]</font><br/>
+>
+> * Google Playストアで定期決済の再申請によりサブスクリプション商品を購入する場合、NHN IAPは購入した決済の決済結果を決済アップデートリスナー(IapService.PurchaseUpdatedListener)で通知します。
+> * ゲームやアプリは、重要な動作中に決済アップデートリスナーが不要なポップアップをユーザーに表示しないよう注意する必要があります。
+
 <a id="event-by-purchase"></a>
 ### Event by Purchase { #event-by-purchase }
 
@@ -639,7 +774,7 @@ GamebaseEventHandlerでプロモーション決済及び遅延決済イベント
 | PURCHASE_LIMIT_EXCEEDED                   | 4007       | 月の購入限度を超過しました。             |
 | PURCHASE_PENDING                          | 4008       | 決済を完了するには追加の確認が必要です。 |
 | PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | このストアには対応していません。<br>選択可能なストアはGG(Google)、ONESTORE、GALAXY、HUAWEI, MYCARDです。 |
-| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN Cloud IAPライブラリエラーです。<br/>詳細エラーを確認してください。 |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN IAPライブラリエラーです。<br/>詳細エラーを確認してください。 |
 | PURCHASE_UNKNOWN_ERROR                    | 4999       | 定義されていない購入エラーです。<br>ログ全体を[カスタマーセンター](https://toast.com/support/inquiry)にアップロードしてください。なるべく早くお答えいたします。|
 
 * 全体のエラーコードは、次のドキュメントをご参考ください。
@@ -647,8 +782,8 @@ GamebaseEventHandlerでプロモーション決済及び遅延決済イベント
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* このエラーはNHN Cloud IAPライブラリでエラーが発生した時に返されます。
-* NHN Cloud IAPライブラリで発生したエラー情報は詳細エラーに含まれており、詳細なエラーコードおよびメッセージは次のように確認できます。 
+* このエラーはNHN IAPライブラリでエラーが発生した時に返されます。
+* NHN IAPライブラリで発生したエラー情報は詳細エラーに含まれており、詳細なエラーコードおよびメッセージは次のように確認できます。
 
 ```java
 Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataCallback<PurchasableReceipt>() {
@@ -676,5 +811,57 @@ Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataC
 });
 ```
 
-* NHN Cloud IAP SDKのエラーコードは、次のドキュメントをご参考ください。
-    * [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud IAP > Android > エラーコード](/nhncloud-sdk/ja/iap-android/#error-codes)
+* NHN IAP SDKのエラーコードについては、次の項目を参照してください。
+    * [NHN IAP SDKエラーコード](#nhn-iap-sdk-error-codes)
+
+<a id="nhn-iap-sdk-error-codes"></a>
+#### NHN IAP SDKエラーコード
+
+* **PURCHASE_EXTERNAL_LIBRARY_ERROR**の詳細エラー(`exception.getDetailCode()`)として返されるNHN IAP SDKのエラーコードです。
+
+##### 共通エラーコード
+
+| RESULT | CODE | DESC |
+| ------ | ---- | ---- |
+| FEATURE_NOT_SUPPORTED | -2 | リクエストした機能はサポートされていません。<br>Requested feature is not supported. |
+| SERVICE_DISCONNECTED | -1 | ストアサービスが接続されていません。<br>Store service is not connected. |
+| OK | 0 | 成功。<br>Success. |
+| USER_CANCELED | 1 | ユーザーキャンセル。<br>User canceled. |
+| SERVICE_UNAVAILABLE | 2 | ネットワークが接続されていません。<br>Network connection is down. |
+| BILLING_UNAVAILABLE | 3 | リクエストされたタイプのAPI Versionはサポートされていません。<br>API version is not supported for the type requested. |
+| PRODUCT_UNAVAILABLE | 4 | リクエストした商品は使用できません。<br>Requested product is not available. |
+| DEVELOPER_ERROR | 5 | 無効な引数がAPIに提供されました。開発段階で発生するエラーです。<br>Developer error. |
+| ERROR | 6 | API操作中に重大なエラーが発生しました。<br>Fatal error during the API action. |
+| PRODUCT_ALREADY_OWNED | 7 | すでに所持している商品のため、購入できませんでした。<br>Failure to purchase since item is already owned. |
+| PRODUCT_NOT_OWNED | 8 | 所持していない商品のため、消費できません。<br>Failure to consume since item is not owned. |
+| USER_ID_NOT_REGISTERED | 9 | ユーザーIDが登録されていません。<br>User ID Is not registered. |
+| NETWORK_ERROR | 12 | ネットワークエラーが発生しました。<br>A network error occurred during the operation. |
+| UNDEFINED_ERROR | 9999 | 定義されていないエラー<br>Undefined error. |
+
+##### サーバーエラーコード
+
+| RESULT | CODE | DESC |
+| ------ | ---- | ---- |
+| INACTIVATED_APP | 101 | 有効化されていないアプリです。<br>App is not active. |
+| VERIFY_PURCHASE_FAILED | 103 | 決済検証に失敗しました。<br>Failure to verify purchase. |
+| PURCHASE_ALREADY_CONSUMED | 104 | すでに消費済みの購入です。<br>Purchase already consumed. |
+| PURCHASE_ALREADY_REFUNDED | 105 | 返金済みの購入です。<br>Purchase already refunded. |
+| PURCHASE_LIMIT_EXCEEDED | 106 | 購入上限を超えました。<br>Purchase limit exceeded. |
+
+##### ONE storeエラーコード
+
+| RESULT | CODE | DESC |
+| ------ | ---- | ---- |
+| ONESTORE_NEED_LOGIN | 301 | ONE storeサービスにログインしていません。<br>ONE store service is not logged in. |
+| ONESTORE_NEED_UPDATE | 302 | ONE storeサービスがアップデートまたはインストールされていません。<br>ONE store service is not updated or installed. |
+| ONESTORE_SECURITY_ERROR | 303 | 異常なアプリから決済をリクエストしました。<br>Abnormal purchase request. |
+| ONESTORE_PURCHASE_FAILED | 304 | 決済リクエストに失敗しました。<br>Purchase request failed. |
+
+##### Galaxy storeエラーコード
+
+| RESULT | CODE | DESC |
+| ------ | ---- | ---- |
+| GALAXY_NOT_LOGGED_IN | 501 | Galaxy storeサービスにログインしていません。<br>Galaxy service is not logged in. |
+| GALAXY_NOT_UPDATED | 502 | Galaxy storeサービスがアップデートまたはインストールされていません。<br>Galaxy service is not updated or installed. |
+| GALAXY_PURCHASE_FAILED | 503 | 異常なアプリから決済をリクエストしました。<br>Galaxy purchase failed. |
+| GALAXY_SERVICE_DENIED | 504 | 決済リクエストに失敗しました。<br>PurGalaxy service denied. |

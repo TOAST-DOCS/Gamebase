@@ -147,13 +147,13 @@ gamebaseProductIdは一般的にはストアに登録したアイテムのIDと�
 
 // 決済識別子
 // purchaseTokenと一緒にConsumeサーバーAPIを呼び出すために使用
-// Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+// Consume API : https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
 // 注意：Consume APIは、ゲームサーバーで呼び出してください！
 @property (nonatomic, strong) NSString *paymentSeq;
 
 // 決済識別子
 // paymentSeqと一緒にConsumeサーバーAPIを呼び出すために使用
-// Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+// Consume API : https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
 // 注意：Consume APIは、ゲームサーバーで呼び出してください！
 @property (nonatomic, strong) NSString *purchaseToken;
 

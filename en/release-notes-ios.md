@@ -1,9 +1,24 @@
 <!-- machine_translated: true -->
 
-<!-- pre-align:aligned sig=090e4b3f6de5 -->
+<!-- pre-align:aligned sig=7ca1b655ce98 -->
 
 <a id="game-gamebase-release-notes-ios"></a>
 ## Game > Gamebase > Release Notes > iOS { #game-gamebase-release-notes-ios }
+
+<a id="2-84-0-2026-10-27"></a>
+### 2.84.0 (October 27, 2026) { #2-84-0-2026-10-27 }
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.84.0/GamebaseSDK-iOS.zip)
+
+<a id="840-2026-10-27-feature-updates"></a>
+#### Feature Updates
+* External SDK updates
+    * Hangame iOS SDK (1.18.1)
+    * NHN Cloud IAP iOS SDK (1.11.0)
+
+<a id="840-2026-10-27-bug-fixes"></a>
+#### Bug Fixes
+* Fixed an issue where debug logs from NHN Cloud SDK were not output even when debug mode was enabled.
+* Fixed an issue where the top buttons of the Gamebase web view were hidden behind window controls in window mode on iPadOS 26 or later.
 
 <a id="2-82-1-2026-08-25"></a>
 ### 2.82.1 (2026. 08. 25.) { #2-82-1-2026-08-25 }
