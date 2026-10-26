@@ -380,6 +380,7 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | getNode1DepthPosition   | int                   | 1단계 항목 노출 순서           |
 | getNode2DepthPosition   | int                   | 2단계 항목 노출 순서<br/> 없을 경우 -1           |
 | getDetailPageUrl        | String                | 약관 자세히 보기 URL<br/> 없을 경우 null. |
+| getDisplayType          | String                | 약관 항목 표시 방식<br/> - CHECKBOX: 체크 박스로 동의를 받는 항목 <br/> - GUIDE: 체크 박스 없이 안내만 표시하는 항목. 동의 대상이 아니므로 updateTerms API로 전송하지 않습니다.<br/> 값이 없으면 CHECKBOX로 처리합니다. |
 
 <a id="updateterms"></a>
 ### updateTerms { #updateterms }
