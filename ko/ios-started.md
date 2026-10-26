@@ -185,12 +185,6 @@ end
     Gamebase가 사용하는 일부 외부 SDK의 pod은 Deployment Target이 iOS 15.0 미만으로 설정되어 있어, Xcode 27에서 빌드하면 오류가 발생합니다.<br/>
     Podfile에 **post_install**을 추가하면 각 pod이 Podfile의 **platform :ios, '15.0'** 설정을 따르게 되어 오류가 발생하지 않습니다.<br/>
     이미 post_install을 사용하고 있다면 기존 post_install 안에 코드를 추가하세요. Podfile에는 post_install을 하나만 작성할 수 있습니다.
->
-> Xcode 27부터는 iOS 15.0 미만의 Deployment Target을 지원하지 않습니다.<br/>
-> Gamebase가 사용하는 일부 외부 SDK의 pod은 Deployment Target이 iOS 15.0 미만으로 설정되어 있어, Xcode 27에서 빌드하면 오류가 발생합니다.<br/>
-> Podfile에 **post_install**을 추가하면 각 pod이 Podfile의 **platform :ios, '15.0'** 설정을 따르게 되어 오류가 발생하지 않습니다.<br/>
-> 이미 post_install을 사용하고 있다면 기존 post_install 안에 코드를 추가하세요. Podfile에는 post_install을 하나만 작성할 수 있습니다.
->
 
 ```ruby
 post_install do |installer|
