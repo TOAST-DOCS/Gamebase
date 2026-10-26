@@ -11,7 +11,7 @@
 #### 기능 개선/변경
 * 외부 SDK 업데이트
     * Hangame iOS SDK (1.18.1)
-    * NHN Cloud IAP iOS SDK (1.11.0)
+    * NHN Cloud IAP iOS SDK(1.11.0)
 
 <a id="840-2026-10-27-bug-fixes"></a>
 #### 버그 수정
