@@ -10,10 +10,12 @@
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.84.0/GamebaseSDK-Unity.zip)
 
+<a id="2-84-0-2026-10-27-added-features"></a>
 #### 新規機能追加
 
 * GamebaseConfigurationにadditionalInfoフィールドを追加
 
+<a id="2-84-0-2026-10-27-platform-specific-changes"></a>
 #### プラットフォーム別変更事項
 
 * [Gamebase Android SDK 2.84.0](./release-notes-android/#2-84-0-2026-10-27)
