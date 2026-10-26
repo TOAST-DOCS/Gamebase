@@ -1,3 +1,5 @@
+<!-- machine_translated: true -->
+
 <!-- pre-align:aligned sig=18f341083517 -->
 
 <a id="game-gamebase-ios-developers-guide-getting-started"></a>
@@ -52,11 +54,11 @@ Then, include corresponding SDK files to a target of your project.
 |  | GamebaseAuthTwitterAdapter.xcframework | | Supports Twitter login | iOS 15 or later |
 |  | GamebaseAuthLineAdapter.xcframework | LineSDK 5.11.2 | Supports LINE login  | iOS 15 or later |
 |  | GamebaseAuthAppleidAdapter.xcframework |  | Sign In with Apple | iOS 15 or later |
-|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.17.2 | Supports Hangame login | iOS 15 or later |
+|  | GamebaseAuthHangameAdapter.xcframework | HangameID SDK 1.18.1 | Supports Hangame login | iOS 15 or later |
 |  | GamebaseAuthWeiboAdapter.xcframework | weibo_ios_sdk-3.4.0 | Supports Weibo login | iOS 15 or later |
 |  | GamebaseAuthKakaogameAdapter.xcframework | KakaoGame 3.20.0 | Supports Kakao login | iOS 15 or later |
 |  | GamebaseAuthSteamAdapter.xcframework |  | Supports Steam login | iOS 15 or later |
-| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit<br/>NHNCloudIAP 1.8.5 | Supports in-game purchase | iOS 15 or later |
+| Gamebase IAP Adapters | GamebasePurchaseIAPAdapter.xcframework | StoreKit<br/>NHNCloudIAP 1.11.0 | Supports in-game purchase | iOS 15 or later |
 | Gamebase Push Adapters | GamebasePushAdapter.xcframework | NHNCloudPush 1.8.5 | Supports Push | iOS 15 or later |
 
 
@@ -177,6 +179,24 @@ end
 > You can specify versions by writing in this way: **pod 'Gamebase', '2.77.0'**. If no version is specified in each pod, the newest version is used.<br/>
 > Only some specific Adapters can be selected and applied.
 > 
+
+<br/>
+
+!!! danger "Caution"
+    Starting with Xcode 27, Deployment Targets below iOS 15.0 are not supported.<br/>
+    Some external SDK pods used by Gamebase have their Deployment Target set below iOS 15.0, which causes errors when building with Xcode 27.<br/>
+    Adding **post_install** to the Podfile causes each pod to follow the **platform :ios, '15.0'** setting in the Podfile, preventing the errors.<br/>
+    If you are already using post_install, add the code inside the existing post_install block. A Podfile can only have one post_install block.
+
+```ruby
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+        end
+    end
+end
+```
 
 <br/>
 
