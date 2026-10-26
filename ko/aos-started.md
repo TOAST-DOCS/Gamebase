@@ -139,9 +139,6 @@ repositories {
     
     // >>> [Huawei App Gallery]
     maven { url 'https://developer.huawei.com/repo/' }
-
-    // >>> [ONE store v21]
-    maven { url 'https://repo.onestore.co.kr/repository/onestore-sdk-public' }
 }
 
 dependencies {
