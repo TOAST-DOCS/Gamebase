@@ -508,7 +508,7 @@ class PurchasableSubscriptionStatus {
     
     // 구독 상태 코드입니다.
     //
-    // 구독 상태 코드 : https://docs.nhncloud.com/en/Game/Gamebase/en/aos-purchase/#subscription-status-code
+    // 구독 상태 코드 : https://docs.nhncloud.com/ko/Game/Gamebase/ko/aos-purchase/#subscription-status-code
     public int statusCode;
     
     // 구독 상태 코드에 대한 설명입니다.
