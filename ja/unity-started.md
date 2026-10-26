@@ -1,3 +1,5 @@
+<!-- machine_translated: true -->
+
 <!-- pre-align:aligned sig=9ca0a1936f8a -->
 
 <a id="game-gamebase-unity-developers-guide-getting-started"></a>
@@ -13,7 +15,7 @@ Gamebase Unity SDKの使用環境及び初期設定について説明します�
 > 
 > Unity対応バージョン
 >
-> * 2022.3.10f1 ~ 6000.3.21f1
+> * 2022.3.10f1 ~ 6000.6.7f1
 
 <a id="environments-dependencies"></a>
 #### Dependencies
