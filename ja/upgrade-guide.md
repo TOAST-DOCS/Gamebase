@@ -1,6 +1,6 @@
 <!-- machine_translated: true -->
 
-<!-- pre-align:aligned sig=18600c8f0bac -->
+<!-- pre-align:aligned sig=38bfe43b74fe -->
 
 <a id="game-gamebase-upgrade-guide"></a>
 ## Game > Gamebase > Upgrade Guide { #game-gamebase-upgrade-guide }
