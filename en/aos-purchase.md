@@ -1,4 +1,6 @@
-<!-- pre-align:aligned sig=bacf30302c7a -->
+<!-- machine_translated: true -->
+
+<!-- pre-align:aligned sig=5547d1a1cb18 -->
 
 <a id="game-gamebase-android-developers-guide-purchase"></a>
 ## Game > Gamebase > Android Developer's Guide > Purchase { #game-gamebase-android-developers-guide-purchase }
@@ -399,11 +401,12 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, configuration, new Game
 
 List activated subscriptions for a current user ID. 
 Paid subscriptions (auto-renewable subscription, or auto-renewed consumable subscription) can be queried before they're expired. 
-For subscription life cycle, refer to the following document.
-[NHN Cloud > SDK User Guide > IAP > Android > Google Play Store Subscription (Regular payment) feature > Subscription Lifecycle Handing](/nhncloud-sdk/en/iap-android/#subscription-lifecycle-handling)
+For subscription life cycle, refer to the following.
+[Google Play Store Subscription (Regular Payment) Feature > Subscription Lifecycle Handling](#subscription-lifecycle-handling)
+
 > <font color="red">[Caution]</font><br/>
 >
-> Current subscriptions for Android are supported by Google Play Store only.
+> Subscription products currently only support the Google Play Store for Android.
 >
 
 **PurchasableConfiguration**
@@ -450,8 +453,8 @@ Gamebase.Purchase.requestActivatedPurchases(activity, configuration, new Gamebas
 You can view the status of purchased subscription products based on your current user ID.
 Subscription products that have been paid for (auto-renewable subscriptions, auto-renewable consumable subscription products) can be viewed until they expire.
 You can retrieve the status of expired subscription products with the **PurchasableConfiguration.setIncludeExpiredSubscriptions(true)** API.
-For subscription status codes, see the following document.
- [NHN Cloud > SDK User Guide > IAP > Android > NHN Cloud IAP Class Reference > IapSubscriptionStatus.StatusCode](/nhncloud-sdk/en/iap-android/#iapsubscriptionstatusstatuscode).
+For subscription status codes, see the following.
+[Subscription Status Code](#subscription-status-code)
 
 > <font color="red">[Caution]</font><br/>
 >
@@ -508,7 +511,7 @@ class PurchasableSubscriptionStatus {
     
     // Subscription status code.
     //
-    // IapSubscriptionStatus.StatusCode : https://docs.nhncloud.com/en/TOAST/en/toast-sdk/iap-android/#iapsubscriptionstatusstatuscode
+    // Subscription status code: https://docs.nhncloud.com/en/Game/Gamebase/en/aos-purchase/#subscription-status-code
     public int statusCode;
     
     // Description for subscription status code.
@@ -575,7 +578,7 @@ class PurchasableSubscriptionStatus {
     // it returns only null, so please remember that it does not guarantee a valid return value at all times.
     // * null: Normal payment
     // * Test: Test payment
-    // * Promotion: Promotion payment
+    // * Promo: Promotion payment
     @Nullable
     String purchaseType;
     
@@ -620,6 +623,138 @@ class PurchasableSubscriptionStatus {
 }
 ```
 
+<a id="subscription-status-code"></a>
+#### Subscription Status Codes
+
+* This is the code representing the subscription status returned by **PurchasableSubscriptionStatus.statusCode**.
+
+| Name | Code | Status | Description |
+| ---- | ---- | ------ | ----------- |
+| ACTIVE | 0 | Active | The subscription is active. |
+| CANCELED | 3 | Canceled | The subscription has been canceled. |
+| ON_HOLD | 5 | Account Hold | The recurring payment has entered an account hold state (if enabled). |
+| IN_GRACE_PERIOD | 6 | Grace Period | The recurring payment has transitioned to a grace period state (if enabled). |
+| PAUSED | 10 | Paused | The subscription has been paused. |
+| REVOKED | 12 | Revoked | The user canceled the recurring payment before the expiration time. |
+| EXPIRED | 13 | Expired | The recurring payment has expired. |
+| UNKNOWN | 9999 | Undefined | This is an undefined state. |
+
+<a id="google-play-store-subscription"></a>
+### Google Play Store Subscription (Recurring Payment) Features { #google-play-store-subscription }
+
+This section describes how to handle lifecycle events such as renewal and expiration of subscription payments on the Google Play Store.
+For more information, see [Added Features per Subscription](https://developer.android.com/google/play/billing/billing_subscriptions).
+
+<a id="subscription-lifecycle-handling"></a>
+#### Handle Subscription Lifecycle
+
+Google Play Store subscriptions go through various status changes throughout their lifecycle, and apps must respond to each status accordingly.
+
+* **Active**: Subscription content is accessible and auto-renewal is in progress.
+* **Cancelled**: Subscription content is accessible, but the user has cancelled the subscription, so auto-renewal is suspended.
+* **Grace Period (In grace period)**: The subscription payment failed due to a payment method issue, but subscription content remains accessible (the system is waiting for the user to update their payment method).
+* **On Hold**: The subscription payment failed due to a payment method issue and the subscription is on hold (if a grace period is enabled, this occurs when the user does not update their payment method during the grace period, causing the payment to be placed on hold).
+* **Pause**: The subscription has been temporarily paused.
+* **Expired**: The subscription has expired.
+
+| Status | Unconsumed Purchase Query<br>(NhnCloudIap.queryConsumablePurchases) | Active Subscription Query<br>(NhnCloudIap.queryActivatedPurchases) | Expiration Time | Auto-Renewal |
+| --- | ------------------------------------------------- | ------------------------------------------------- | ----- | -------- |
+| Active | Yes | Yes | Future time | Yes |
+| Cancelled | Yes | Yes | Future time | No |
+| Grace Period (In grace period) | No | Yes | Future time | Yes |
+| On Hold | No | No | Past time | Yes |
+| Pause | No | No | Past time | Yes |
+| Expired | No | No | Past time | No |
+
+<a id="subscription-grace-period"></a>
+#### Grace Period
+
+If grace period is enabled and there is an issue with the payment method at the end of a billing cycle, the subscription transitions to a grace period.<br/>
+<span style="color:#e11d21">Users must be able to access subscription content during the grace period.</span>
+For more information, see [Grace Period](https://developer.android.com/google/play/billing/subs#grace).
+
+> <font color="red">[Caution]</font><br/>
+>
+> * If the subscription is restored during the grace period (for example, by updating the payment method), automatic renewal resumes.
+> * NHN IAP notifies the payment result of renewed payments via the payment update listener (IapService.PurchaseUpdatedListener).
+> * Games and apps must ensure that the payment update listener does not expose unnecessary pop-ups to users during critical operations.
+
+##### Standard Subscription Products (AUTO_RENEWABLE)
+
+* During the grace period, users must be able to access subscription content for standard subscription products.
+* During the grace period, you can query these products using `NhnCloudIap.queryActivatedPurchases()`.
+
+##### Consumable Subscription Products (CONSUMABLE_AUTO_RENEWABLE)
+
+* When the grace period begins, Google issues a new receipt, but if the payment method is not updated, the account will enter a hold state or the subscription will be canceled.
+* Consumable subscription products are not returned by `NhnCloudIap.queryConsumablePurchases()` during the grace period to prevent products from being consumed.
+
+<a id="subscription-account-hold"></a>
+#### Account Hold
+
+Account hold refers to the user state when renewal fails due to a payment method issue.
+If payment fails, it is retried during the grace period. If payment still fails during the grace period, the subscription status becomes account hold.
+Users in account hold status cannot access subscription content.
+The account hold period lasts up to 30 days.
+If the payment method is not updated before the account hold period ends, the subscription is canceled.
+For more information, see [Account Hold](https://developer.android.com/google/play/billing/subs#account-hold).
+
+> <font color="red">[Caution]</font><br/>
+>
+> * If restored during the account hold period by updating the payment method or similar action, auto-renewal resumes.
+> * NHN IAP notifies the payment result of renewed purchases through the purchase update listener (IapService.PurchaseUpdatedListener).
+> * Games and apps must ensure that the purchase update listener does not expose unnecessary pop-ups to users during critical operations.
+
+##### General Subscription Products (AUTO_RENEWABLE)
+
+* During the account hold period, general subscription products cannot access subscription content.
+* During the account hold period, these are not retrieved with `NhnCloudIap.queryActivatedPurchases()`.
+
+##### Consumable Subscription Products (CONSUMABLE_AUTO_RENEWABLE)
+
+* During the account hold period, consumable subscription products do not create new purchases.
+* During the account hold period, new purchases are not retrieved with `NhnCloudIap.queryConsumablePurchases()`.
+
+<a id="subscription-pause"></a>
+#### Pause
+
+When the pause feature is enabled, users can pause their recurring payments for a period between 1 week and 3 months.
+The pause of recurring payments takes effect after the current subscription period ends.
+When the pause period ends, recurring payments are automatically resumed.
+For more information, see [Pause](https://developer.android.com/google/play/billing/subs#pause).
+
+> <font color="red">[Caution]</font><br/>
+>
+> * When the pause period ends, auto-renewal resumes.
+> * NHN IAP notifies the payment results of renewed payments via the payment update listener (IapService.PurchaseUpdatedListener).
+> * Games or apps must ensure that the payment update listener does not display unnecessary popups to users during critical operations.
+
+##### Standard Subscription Products (AUTO_RENEWABLE)
+
+* During the pause period, standard subscription products cannot access subscription content.
+* During the pause period, they are not retrieved by `NhnCloudIap.queryActivatedPurchases()`.
+
+##### Consumable Subscription Products (CONSUMABLE_AUTO_RENEWABLE)
+
+* During the pause period, consumable subscription products do not generate new purchases.
+* During the pause period, new purchases are not retrieved by `NhnCloudIap.queryConsumablePurchases()`.
+
+<a id="subscription-resubscribe"></a>
+#### Resubscription
+
+When the resubscription feature is enabled, users can resubscribe to a subscription that they canceled within 12 months of the subscription expiration date.
+Resubscription creates a new subscription and purchase token.
+After a subscription expires, users can repurchase the same product for up to one year after expiration through the Google Play subscription center.
+For more information, see [Resubscription](https://developer.android.com/google/play/billing/subs#resubscribe).
+
+> <font color="red">[Caution]</font><br/>
+>
+> Since the purchase does not proceed through the in-app or in-game screen, user data (`IapPurchase.getDeveloperPayload()`) cannot be used.
+> <font color="red">[Caution]</font><br/>
+>
+> * When a subscription product is purchased through resubscription from the Google Play Store, NHN IAP notifies the purchase result through the purchase update listener (IapService.PurchaseUpdatedListener).
+> * Games and apps must ensure that the purchase update listener does not expose unnecessary pop-ups to users during important operations.
+
 <a id="event-by-purchase"></a>
 ### Event by Purchase { #event-by-purchase }
 
@@ -640,7 +775,7 @@ Refer to the guide below for instructions on handling promotion and pending paym
 | PURCHASE_LIMIT_EXCEEDED                   | 4007       | You have exceeded your monthly purchase limit.             |
 | PURCHASE_PENDING                          | 4008       | Additional verification is required to complete your payment. |
 | PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | The store is not supported.<br>You can choose either GG (Google), ONESTORE, GALAXY, HUAWEI, or MYCARD. |
-| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | Error in NHN Cloud IAP library.<br>Check the error details.  |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | Error in NHN IAP library.<br>Check the error details.  |
 | PURCHASE_UNKNOWN_ERROR                    | 4999       | Unknown error in purchase.<br>Please upload the entire logs to [Customer Center](https://toast.com/support/inquiry) and we'll reply at the earliest possible moment. |
 
 * Refer to the following document for the entire error code.
@@ -648,8 +783,8 @@ Refer to the guide below for instructions on handling promotion and pending paym
 
 **PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* The error is returned when an error occurs in NHN Cloud IAP library.
-* The information on the error in NHN Cloud IAP library is included in the error details, and you can find detailed error code and message as follows.
+* The error is returned when an error occurs in NHN IAP library.
+* The information on the error in NHN IAP library is included in the error details, and you can find detailed error code and message as follows.
 
 ```java
 Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataCallback<PurchasableReceipt>() {
@@ -677,6 +812,58 @@ Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataC
 });
 ```
 
-* For NHN Cloud IAP SDK error codes, refer to the document below.
-    * [NHN Cloud > NHN Cloud SDK User Guide > NHN Cloud IAP > Android > Error Codes](/nhncloud-sdk/en/iap-android/#error-codes)
+* For NHN IAP SDK error codes, refer to the following:
+    * [NHN IAP SDK Error Codes](#nhn-iap-sdk-error-codes)
+
+<a id="nhn-iap-sdk-error-codes"></a>
+#### NHN IAP SDK Error Codes
+
+* These are NHN IAP SDK error codes returned as the detailed error (`exception.getDetailCode()`) of **PURCHASE_EXTERNAL_LIBRARY_ERROR**.
+
+##### Common Error Codes
+
+| RESULT | CODE | DESC |
+| ------ | ---- | ---- |
+| FEATURE_NOT_SUPPORTED | -2 | Requested feature is not supported. |
+| SERVICE_DISCONNECTED | -1 | Store service is not connected. |
+| OK | 0 | Success. |
+| USER_CANCELED | 1 | User canceled. |
+| SERVICE_UNAVAILABLE | 2 | Network connection is down. |
+| BILLING_UNAVAILABLE | 3 | API version is not supported for the type requested. |
+| PRODUCT_UNAVAILABLE | 4 | Requested product is not available. |
+| DEVELOPER_ERROR | 5 | Developer error. |
+| ERROR | 6 | Fatal error during the API action. |
+| PRODUCT_ALREADY_OWNED | 7 | Failure to purchase since item is already owned. |
+| PRODUCT_NOT_OWNED | 8 | Failure to consume since item is not owned. |
+| USER_ID_NOT_REGISTERED | 9 | User ID is not registered. |
+| NETWORK_ERROR | 12 | A network error occurred during the operation. |
+| UNDEFINED_ERROR | 9999 | Undefined error. |
+
+##### Server Error Codes
+
+| RESULT | CODE | DESC |
+| ------ | ---- | ---- |
+| INACTIVATED_APP | 101 | App is not active. |
+| VERIFY_PURCHASE_FAILED | 103 | Failure to verify purchase. |
+| PURCHASE_ALREADY_CONSUMED | 104 | Purchase already consumed. |
+| PURCHASE_ALREADY_REFUNDED | 105 | Purchase already refunded. |
+| PURCHASE_LIMIT_EXCEEDED | 106 | Purchase limit exceeded. |
+
+##### ONE store Error Codes
+
+| RESULT | CODE | DESC |
+| ------ | ---- | ---- |
+| ONESTORE_NEED_LOGIN | 301 | ONE store service is not logged in. |
+| ONESTORE_NEED_UPDATE | 302 | ONE store service is not updated or installed. |
+| ONESTORE_SECURITY_ERROR | 303 | Abnormal purchase request. |
+| ONESTORE_PURCHASE_FAILED | 304 | Purchase request failed. |
+
+##### Galaxy store Error Codes
+
+| RESULT | CODE | DESC |
+| ------ | ---- | ---- |
+| GALAXY_NOT_LOGGED_IN | 501 | Galaxy service is not logged in. |
+| GALAXY_NOT_UPDATED | 502 | Galaxy service is not updated or installed. |
+| GALAXY_PURCHASE_FAILED | 503 | Galaxy purchase failed. |
+| GALAXY_SERVICE_DENIED | 504 | Galaxy service denied. |
 

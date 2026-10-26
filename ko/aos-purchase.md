@@ -1,4 +1,4 @@
-<!-- pre-align:aligned sig=bacf30302c7a -->
+<!-- pre-align:aligned sig=5547d1a1cb18 -->
 
 <a id="game-gamebase-android-developers-guide-purchase"></a>
 ## Game > Gamebase > Android SDK 사용 가이드 > 결제 { #game-gamebase-android-developers-guide-purchase }
