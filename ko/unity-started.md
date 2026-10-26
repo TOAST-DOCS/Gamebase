@@ -247,6 +247,8 @@ EDM4U에서 CocoaPods 설치할 수도 있습니다.
 
 * 선택한 모듈에 따라 Xcode를 통해 직접 설정해야 합니다.
 
+<!-- -->
+
 1. Unity 프로젝트에서 iOS 빌드를 진행합니다.
 2. 생성된 Xcode 프로젝트를 엽니다.
 3. TARGETS > UnityFramework에 iOS SDK 설정을 추가합니다.

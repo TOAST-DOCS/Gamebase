@@ -1,9 +1,22 @@
 <!-- machine_translated: true -->
 
-<!-- pre-align:aligned sig=68d69d649810 -->
+<!-- pre-align:aligned sig=e299a2575402 -->
 
 <a id="game-gamebase-release-notes-unity"></a>
 ## Game > Gamebase > Release Notes > Unity { #game-gamebase-release-notes-unity }
+
+<a id="2-84-0-2026-10-27"></a>
+### 2.84.0 (October 27, 2026) { #2-84-0-2026-10-27 }
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.84.0/GamebaseSDK-Unity.zip)
+
+<a id="2-84-0-2026-10-27-added-features"></a>
+#### Added Features
+* Added the additionalInfo field to GamebaseConfiguration
+
+<a id="2-84-0-2026-10-27-platform-specific-changes"></a>
+#### Platform-Specific Changes
+* [Gamebase Android SDK 2.84.0](./release-notes-android/#2-84-0-2026-10-27)
+* [Gamebase iOS SDK 2.84.0](./release-notes-ios/#2-84-0-2026-10-27)
 
 <a id="2-83-0-2026-10-13"></a>
 ### 2.83.0 (2026. 10. 13.) { #2-83-0-2026-10-13 }
@@ -650,6 +663,7 @@
 <a id="570-2023-10-31-added-features"></a>
 #### Added Features
 (Common) Added the Gamebase.Logger.Report API to send logs related to exceptions in try/catch statements.
+
 * (iOS) Added the AUTH_IDP_LOGIN_EXTERNAL_AUTHENTICATION_REQUIRED error code.
 
 <a id="570-2023-10-31-platform-specific-changes"></a>

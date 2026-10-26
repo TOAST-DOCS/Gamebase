@@ -1,3 +1,5 @@
+<!-- machine_translated: true -->
+
 <!-- pre-align:aligned sig=9ca0a1936f8a -->
 
 <a id="game-gamebase-unity-developers-guide-getting-started"></a>
@@ -10,9 +12,9 @@ This guide describes the environments and initial setting of Gamebase Unity SDK.
 
 > [Note]
 > 
-> Supported Unity versions
+> Unity supported versions
 >
-> * 2022.3.10f1 ~ 6000.3.21f1
+> * 2022.3.10f1 ~ 6000.6.7f1
 
 <a id="environments-dependencies"></a>
 #### Dependencies
@@ -247,6 +249,8 @@ CocoaPods can also be installed through EDM4U.
 #### Additional iOS Module Settings
 
 * Depending on the selected module, May need to configure settings directly through Xcode.
+
+<!-- -->
 
 1. Build the iOS project in Unity.
 2. Open the generated Xcode project.

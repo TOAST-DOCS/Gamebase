@@ -1,9 +1,35 @@
 <!-- machine_translated: true -->
 
-<!-- pre-align:aligned sig=28cf8b9f9a55 -->
+<!-- pre-align:aligned sig=80a282b229f9 -->
 
 <a id="game-gamebase-release-notes-android"></a>
 ## Game > Gamebase > リリースノート > Android { #game-gamebase-release-notes-android }
+
+<a id="2-84-0-2026-10-27"></a>
+### 2.84.0(2026. 10. 27.) { #2-84-0-2026-10-27 }
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.84.0/GamebaseSDK-Android.zip)
+
+<a id="840-2026-10-27-added-features"></a>
+#### 新規機能追加
+
+* 利用規約情報(GamebaseTermsContentDetail)に、利用規約項目の表示方式を示すdisplayTypeフィールドを追加
+    * `GUIDE`: チェックボックスなしで案内のみ表示する項目
+    * `CHECKBOX`: チェックボックスで同意を取得する項目
+    * [Game > Gamebase > Android SDK使用ガイド > UI > Terms > queryTerms](./aos-ui/#queryterms)
+
+<a id="840-2026-10-27-feature-updates"></a>
+#### 機能改善/変更
+
+* 外部SDKアップデート: NHN Cloud Android SDK(1.14.0)、Hangame Android SDK(1.18.1)、Naver Login Android SDK(5.11.2)、Kakaogame SDK(3.21.5)
+* Gamebaseがゲームアプリビルドに適用するProGuardルールの縮小により、ゲームアプリのR8コード最適化の範囲を拡大
+* Googleログインキャンセル時に、キャンセル理由の指標(ログ)を記録
+* `GamebaseConfiguration.Builder.setAdditionalInfo()`に渡した項目のうち、キーまたは値が`null`の項目は無視されます。
+
+<a id="840-2026-10-27-bug-fixes"></a>
+#### バグ修正
+
+* プッシュクリックアクションをURLに設定した通知をタップした後、アプリに再度アクセスできない、またはWebページが繰り返し起動される現象を修正
 
 <a id="2-83-0-2026-09-17"></a>
 ### 2.83.0 (2026. 09. 17.) { #2-83-0-2026-09-17 }
