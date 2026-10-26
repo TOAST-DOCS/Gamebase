@@ -399,7 +399,7 @@ Gamebase.Purchase.requestItemListOfNotConsumed(activity, configuration, new Game
 
 현재 사용자 ID 기준으로 활성화된 구독 목록을 조회합니다.
 결제가 완료된 구독 상품(자동 갱신형 구독, 자동 갱신형 소비성 구독 상품)은 만료되기 전까지 계속 조회할 수 있습니다.
-구독 수명 주기 처리는 다음 항목을 참조하시기 바랍니다.
+구독 수명 주기 처리는 다음 항목을 참조하세요.
 [Google Play Store 구독(정기 결제) 기능 > 구독 수명 주기 처리](#subscription-lifecycle-handling)
 
 > <font color="red">[주의]</font><br/>
@@ -450,7 +450,7 @@ Gamebase.Purchase.requestActivatedPurchases(activity, configuration, new Gamebas
 현재 사용자 ID 기준으로 구입한 구독 상품의 상태를 조회할 수 있습니다.
 결제가 완료된 구독 상품(자동 갱신형 구독, 자동 갱신형 소비성 구독 상품)은 만료되기 전까지 계속 조회할 수 있습니다.
 **PurchasableConfiguration.setIncludeExpiredSubscriptions(true)** API로 만료된 구독 상품의 상태도 조회할 수 있습니다.
-구독 상태 코드는 다음 항목을 참조하시기 바랍니다.
+구독 상태 코드는 다음 항목을 참조하세요.
 [구독 상태 코드](#subscription-status-code)
 
 > <font color="red">[주의]</font><br/>
@@ -632,77 +632,85 @@ class PurchasableSubscriptionStatus {
 | ON_HOLD | 5 | 계정 보류 | 정기 결제가 계정 보류 상태가 되었습니다(사용 설정된 경우). |
 | IN_GRACE_PERIOD | 6 | 유예 기간 | 정기 결제가 유예 기간 상태로 전환되었습니다(사용 설정된 경우). |
 | PAUSED | 10 | 일시 중지 | 구독이 일시 중지되었습니다. |
-| REVOKED | 12 | 해지 | 정기 결제가 만료 시간 전에 사용자에 의해 취소되었습니다. |
+| REVOKED | 12 | 해지 | 사용자가 정기 결제를 만료 시간 전에 취소했습니다. |
 | EXPIRED | 13 | 만료 | 정기 결제가 만료되었습니다. |
-| UNKNOWN | 9999 | 미정의 | 정의 되지 않은 상태입니다. |
+| UNKNOWN | 9999 | 미정의 | 정의되지 않은 상태입니다. |
 
 <a id="google-play-store-subscription"></a>
 ### Google Play Store 구독(정기 결제) 기능 { #google-play-store-subscription }
 
-구글 스토어의 구독 결제의 갱신 및 만료와 같은 수명주기에 따른 이벤트를 처리하는 방법을 설명합니다.
+구글 스토어의 구독 결제의 갱신 및 만료와 같은 수명 주기에 따른 이벤트를 처리하는 방법을 설명합니다.
 자세한 사항은 [정기 결제별 기능 추가](https://developer.android.com/google/play/billing/billing_subscriptions)을 참고하세요.
 
 <a id="subscription-lifecycle-handling"></a>
 #### 구독 수명 주기 처리
 
-Google Play Store의 구독은 수명주기 동안 다양한 상태 변경을 거치며 앱은 각 상태에 따라 대응해야 합니다.
+Google Play Store의 구독은 수명 주기 동안 다양한 상태 변경을 거치며 앱은 각 상태에 따라 대응해야 합니다.
 
-* **활성화 상태(Active)**: 정기 결제 콘텐츠에 엑세스 할 수 있으며 자동 갱신이 진행되는 상태
-* **취소(Cancelled)**: 정기 결제 콘텐츠에 엑세스 할 수 있으나 사용자가 구독 상품을 더 이상 사용하지 않는다고 취소하여 자동 갱신이 정지된 상태
-* **유예 기간 (In grace period)**: 결제 수단 문제로 정기 결제가 실패하였으나 정기 결제 콘텐츠에는 엑세스 할 수 있는 상태 (사용자가 결제 수단을 변경하기를 기다리는 상태)
-* **계정 보류 (On hold)**: 결제 수단 문제로 정기 결제가 실패하여 보류 상태 (유예 기간이 사용 설정되어있다면 유예 기간 동안 결제 수단을 변경하지 않아 결제가 보류된 상태)
-* **일시중지 (Pause)**: 정기 결제 상품을 일시적으로 중지한 상태
-* **만료 (Expired)**: 정기 결제 상품이 만료된 상태
+* **활성화 상태(Active)**: 정기 결제 콘텐츠에 액세스 할 수 있으며 자동 갱신이 진행되는 상태
+* **취소(Cancelled)**: 정기 결제 콘텐츠에 액세스 할 수 있으나 사용자가 구독 상품을 더 이상 사용하지 않는다고 취소하여 자동 갱신이 정지된 상태
+* **유예 기간(In grace period)**: 결제 수단 문제로 정기 결제가 실패하였으나 정기 결제 콘텐츠에는 액세스 할 수 있는 상태(사용자가 결제 수단을 변경하기를 기다리는 상태)
+* **계정 보류(On hold)**: 결제 수단 문제로 정기 결제가 실패하여 보류 상태(유예 기간이 사용 설정되어있다면 유예 기간 동안 결제 수단을 변경하지 않아 결제가 보류된 상태)
+* **일시중지(Pause)**: 정기 결제 상품을 일시적으로 중지한 상태
+* **만료(Expired)**: 정기 결제 상품이 만료된 상태
 
 | 상태 | 미소비 결제 조회<br>(NhnCloudIap.queryConsumablePurchases) | 활성화된 구독 조회<br>(NhnCloudIap.queryActivatedPurchases) | 만료 시간 | 자동 갱신 여부 |
 | --- | ------------------------------------------------- | ------------------------------------------------- | ----- | -------- |
-| 활성화 상태 (Active) | Yes | Yes | 미래시간 | Yes |
-| 취소 (Cancelled) | Yes | Yes | 미래시간 | No |
-| 유예 기간 (In grace period) | No | Yes | 미래시간 | Yes |
-| 계정 보류 (On hold) | No | No | 과거시간 | Yes |
-| 일시중지 (Pause) | No | No | 과거시간 | Yes |
-| 만료 (Expired) | No | No | 과거시간 | No |
+| 활성화 상태(Active) | Yes | Yes | 미래시간 | Yes |
+| 취소(Cancelled) | Yes | Yes | 미래시간 | No |
+| 유예 기간(In grace period) | No | Yes | 미래시간 | Yes |
+| 계정 보류(On hold) | No | No | 과거시간 | Yes |
+| 일시중지(Pause) | No | No | 과거시간 | Yes |
+| 만료(Expired) | No | No | 과거시간 | No |
 
 <a id="subscription-grace-period"></a>
 #### 유예 기간
 
 유예 기간이 사용 설정된 경우 결제 주기가 끝날 때 결제 수단에 문제가 있다면 정기 결제는 유예 기간으로 전환됩니다.<br/>
-<span style="color:#e11d21">유예 기간 동안 사용자는 정기 결제 콘텐츠에 엑세스 할 수 있어야 합니다.</span>
+<span style="color:#e11d21">유예 기간 동안 사용자는 정기 결제 콘텐츠에 액세스 할 수 있어야 합니다.</span>
 자세한 사항은 [유예 기간](https://developer.android.com/google/play/billing/subs#grace)을 참고하세요.
 
-> <span style="color:#e11d21">**주의!)**</span> 유예 기간 중 결제 수단 수정 등으로 복원되면 자동 갱신을 재개합니다. NHN IAP는 갱신된 결제건을 결제 업데이트 리스너(IapService.PurchaseUpdatedListener)를 통해 결제 결과를 통지합니다. 게임이나 앱은 중요한 동작 중 결제 업데이트 리스너에 의해 불필요한 팝업이 사용자에게 노출되지 않도록 주의해야합니다.
+> <font color="red">[주의]</font><br/>
+>
+> * 유예 기간 중 결제 수단 수정 등으로 복원되면 자동 갱신을 재개합니다.
+> * NHN IAP는 갱신된 결제건의 결제 결과를 결제 업데이트 리스너(IapService.PurchaseUpdatedListener)로 통지합니다.
+> * 게임이나 앱은 중요한 동작 중 결제 업데이트 리스너가 불필요한 팝업을 사용자에게 노출하지 않도록 주의해야 합니다.
 
-##### 일반 구독 상품 (AUTO_RENEWABLE)
+##### 일반 구독 상품(AUTO_RENEWABLE)
 
-* 유예 기간 동안 일반 구독 상품은 정기 결제 콘텐츠에 엑세스 할 수 있어야 합니다.
-* 유예 기간 동안 NhnCloudIap.queryActivatedPurchases()로 조회할 수 있습니다.
+* 유예 기간 동안 일반 구독 상품은 정기 결제 콘텐츠에 액세스 할 수 있어야 합니다.
+* 유예 기간 동안 `NhnCloudIap.queryActivatedPurchases()`로 조회할 수 있습니다.
 
-##### 소비성 구독 상품 (CONSUMABLE_AUTO_RENEWABLE)
+##### 소비성 구독 상품(CONSUMABLE_AUTO_RENEWABLE)
 
 * 유예 기간이 시작되면 구글은 새로운 영수증을 발급하나 결제 수단을 수정하지 않으면 계정 보류 상태가 되거나 취소됩니다.
-* 소비성 구독 상품은 유예 기간 동안 상품을 소비할 수 없도록 NhnCloudIap.queryConsumablePurchases()로 조회되지 않습니다.
+* 소비성 구독 상품은 유예 기간 동안 상품을 소비할 수 없도록 `NhnCloudIap.queryConsumablePurchases()`로 조회되지 않습니다.
 
 <a id="subscription-account-hold"></a>
 #### 계정 보류
 
 계정 보류는 결제 수단 문제로 갱신이 실패했을 때의 사용자 상태를 말합니다.
 결제에 실패하면 유예 기간 동안 재시도하고, 유예 기간 동안에도 결제가 실패하면 정기 결제 상태는 보류 상태가 됩니다.
-계정 보류 상태가 사용자는 정기 결제 콘텐츠에 액세스 할 수 없습니다.
+계정 보류 상태인 사용자는 정기 결제 콘텐츠에 액세스 할 수 없습니다.
 계정 보류 기간은 최대 30일입니다.
 계정 보류 기간이 종료되기 전에 결제 수단을 수정하지 않으면 취소 처리됩니다.
 자세한 사항은 [계정 보류](https://developer.android.com/google/play/billing/subs#account-hold)를 참고하세요.
 
-> <span style="color:#e11d21">**주의!)**</span> 계정 보류 기간 중 결제 수단 수정 등으로 복원되면 자동 갱신을 재개합니다. NHN IAP는 갱신된 결제건을 결제 업데이트 리스너(IapService.PurchaseUpdatedListener)를 통해 결제 결과를 통지합니다. 게임이나 앱은 중요한 동작 중 결제 업데이트 리스너에 의해 불필요한 팝업이 사용자에게 노출되지 않도록 주의해야합니다.
+> <font color="red">[주의]</font><br/>
+>
+> * 계정 보류 기간 중 결제 수단 수정 등으로 복원되면 자동 갱신을 재개합니다.
+> * NHN IAP는 갱신된 결제건의 결제 결과를 결제 업데이트 리스너(IapService.PurchaseUpdatedListener)로 통지합니다.
+> * 게임이나 앱은 중요한 동작 중 결제 업데이트 리스너가 불필요한 팝업을 사용자에게 노출하지 않도록 주의해야 합니다.
 
-##### 일반 구독 상품 (AUTO_RENEWABLE)
+##### 일반 구독 상품(AUTO_RENEWABLE)
 
-* 계정 보류 기간 동안 일반 구독 상품은 정기 결제 콘텐츠에 엑세스 할 수 없습니다.
-* 계정 보류 기간 동안 NhnCloudIap.queryActivatedPurchases()로 조회되지 않습니다.
+* 계정 보류 기간 동안 일반 구독 상품은 정기 결제 콘텐츠에 액세스 할 수 없습니다.
+* 계정 보류 기간 동안 `NhnCloudIap.queryActivatedPurchases()`로 조회되지 않습니다.
 
-##### 소비성 구독 상품 (CONSUMABLE_AUTO_RENEWABLE)
+##### 소비성 구독 상품(CONSUMABLE_AUTO_RENEWABLE)
 
 * 계정 보류 기간 동안 소비성 구독 상품은 새로운 구매를 생성하지 않습니다.
-* 계정 보류 기간 동안 NhnCloudIap.queryConsumablePurchases()로 새로운 구매가 조회되지 않습니다.
+* 계정 보류 기간 동안 `NhnCloudIap.queryConsumablePurchases()`로 새로운 구매가 조회되지 않습니다.
 
 <a id="subscription-pause"></a>
 #### 일시중지
@@ -712,28 +720,37 @@ Google Play Store의 구독은 수명주기 동안 다양한 상태 변경을 �
 일시중지 기간이 끝나면 정기 결제가 자동으로 재개됩니다.
 자세한 사항은 [일시중지](https://developer.android.com/google/play/billing/subs#pause)를 참고하세요.
 
-> <span style="color:#e11d21">**주의!)**</span> 일시중지 기간이 끝나면 자동 갱신을 재개합니다. NHN IAP는 갱신된 결제건을 결제 업데이트 리스너(IapService.PurchaseUpdatedListener)를 통해 결제 결과를 통지합니다. 게임이나 앱은 중요한 동작 중 결제 업데이트 리스너에 의해 불필요한 팝업이 사용자에게 노출되지 않도록 주의해야합니다.
+> <font color="red">[주의]</font><br/>
+>
+> * 일시중지 기간이 끝나면 자동 갱신을 재개합니다.
+> * NHN IAP는 갱신된 결제건의 결제 결과를 결제 업데이트 리스너(IapService.PurchaseUpdatedListener)로 통지합니다.
+> * 게임이나 앱은 중요한 동작 중 결제 업데이트 리스너가 불필요한 팝업을 사용자에게 노출하지 않도록 주의해야 합니다.
 
-##### 일반 구독 상품 (AUTO_RENEWABLE)
+##### 일반 구독 상품(AUTO_RENEWABLE)
 
-* 일시중지 기간 동안 일반 구독 상품은 정기 결제 콘텐츠에 엑세스 할 수 없습니다.
-* 일시중지 기간 동안 NhnCloudIap.queryActivatedPurchases()로 조회되지 않습니다.
+* 일시중지 기간 동안 일반 구독 상품은 정기 결제 콘텐츠에 액세스 할 수 없습니다.
+* 일시중지 기간 동안 `NhnCloudIap.queryActivatedPurchases()`로 조회되지 않습니다.
 
-##### 소비성 구독 상품 (CONSUMABLE_AUTO_RENEWABLE)
+##### 소비성 구독 상품(CONSUMABLE_AUTO_RENEWABLE)
 
 * 일시중지 기간 동안 소비성 구독 상품은 새로운 구매를 생성하지 않습니다.
-* 일시중지 기간 동안 NhnCloudIap.queryConsumablePurchases()로 새로운 구매가 조회되지 않습니다.
+* 일시중지 기간 동안 `NhnCloudIap.queryConsumablePurchases()`로 새로운 구매가 조회되지 않습니다.
 
 <a id="subscription-resubscribe"></a>
 #### 정기 결제 재신청
 
-정기 결제 재신청 기능을 설정하면 사용자가 정기 결제 만료일로 부터 12개월 이내에 취소한 정기 결제를 재신청할 수 있습니다.
+정기 결제 재신청 기능을 설정하면 사용자가 정기 결제 만료일로부터 12개월 이내에 취소한 정기 결제를 재신청할 수 있습니다.
 정기 결제 재신청은 새 정기 결제 및 구매 토큰이 생성됩니다.
-정기 결제가 만료된 이후 사용자는 구글 플레이 정기 결제 센터를 통해 만료 후 1년까지 동일한 상품을 다시 구매할 수 있습니다.
+정기 결제가 만료된 이후 사용자는 구글 플레이 정기 결제 센터에서 만료 후 1년까지 동일한 상품을 다시 구매할 수 있습니다.
 자세한 사항은 [정기 결제 재신청](https://developer.android.com/google/play/billing/subs#resubscribe)을 참고하세요.
 
-> <span style="color:#e11d21">**주의!)**</span> 앱이나 게임 내 화면에서 구매가 진행되지 않으므로 사용자 데이터(IapPurchase.getDeveloperPayload())를 사용할 수 없습니다.<br/>
-> <span style="color:#e11d21">**주의!)**</span> 구글 플레이 스토어에서 정기 결제 재신청으로 구독 상품을 구매할 경우 NHN IAP는 구매한 결제건을 결제 업데이트 리스너(IapService.PurchaseUpdatedListener)를 통해 결제 결과를 통지합니다. 게임이나 앱은 중요한 동작 중 결제 업데이트 리스너에 의해 불필요한 팝업이 사용자에게 노출되지 않도록 주의해야합니다.
+> <font color="red">[주의]</font><br/>
+>
+> 앱이나 게임 내 화면에서 구매가 진행되지 않으므로 사용자 데이터(`IapPurchase.getDeveloperPayload()`)를 사용할 수 없습니다.
+> <font color="red">[주의]</font><br/>
+>
+> * 구글 플레이 스토어에서 정기 결제 재신청으로 구독 상품을 구매할 경우 NHN IAP는 구매한 결제건의 결제 결과를 결제 업데이트 리스너(IapService.PurchaseUpdatedListener)로 통지합니다.
+> * 게임이나 앱은 중요한 동작 중 결제 업데이트 리스너가 불필요한 팝업을 사용자에게 노출하지 않도록 주의해야합니다.
 
 <a id="event-by-purchase"></a>
 ### Event by Purchase { #event-by-purchase }
@@ -755,7 +772,7 @@ GamebaseEventHandler로 프로모션 결제 및 지연 결제 이벤트를 처�
 | PURCHASE_LIMIT_EXCEEDED                   | 4007       | 월 구매 한도를 초과했습니다.             |
 | PURCHASE_PENDING                          | 4008       | 결제를 완료하려면 추가 확인이 필요합니다. |
 | PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 지원하지 않는 스토어입니다.<br>선택 가능한 스토어는 GG(Google), ONESTORE, GALAXY, HUAWEI, MYCARD입니다. |
-| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN IAP 라이브러리 오류입니다.<br/>상세 오류를 확인하십시오. |
+| PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN IAP 라이브러리 오류입니다.<br/>상세 오류를 확인하세요. |
 | PURCHASE_UNKNOWN_ERROR                    | 4999       | 정의되지 않은 구매 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
@@ -792,13 +809,13 @@ Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataC
 });
 ```
 
-* NHN IAP SDK 오류 코드는 다음 항목을 참고하시기 바랍니다.
+* NHN IAP SDK 오류 코드는 다음 항목을 참고하세요.
     * [NHN IAP SDK 오류 코드](#nhn-iap-sdk-error-codes)
 
 <a id="nhn-iap-sdk-error-codes"></a>
 #### NHN IAP SDK 오류 코드
 
-* **PURCHASE_EXTERNAL_LIBRARY_ERROR**의 상세 오류(exception.getDetailCode())로 반환되는 NHN IAP SDK의 오류 코드입니다.
+* **PURCHASE_EXTERNAL_LIBRARY_ERROR**의 상세 오류(`exception.getDetailCode()`)로 반환되는 NHN IAP SDK의 오류 코드입니다.
 
 ##### 공통 오류 코드
 
@@ -809,7 +826,7 @@ Gamebase.Purchase.requestPurchase(activity, gamebaseProductId, new GamebaseDataC
 | OK | 0 | 성공.<br>Success. |
 | USER_CANCELED | 1 | 사용자 취소.<br>User canceled. |
 | SERVICE_UNAVAILABLE | 2 | 네트워크가 연결되지 않았습니다.<br>Network connection is down. |
-| BILLING_UNAVAILABLE | 3 | 요청된 유형에 대해 API Version이 지원되지 않습니다.<br>API version is not supported for the type requested. |
+| BILLING_UNAVAILABLE | 3 | 요청된 유형의 API Version이 지원되지 않습니다.<br>API version is not supported for the type requested. |
 | PRODUCT_UNAVAILABLE | 4 | 요청한 상품을 사용할 수 없습니다.<br>Requested product is not available. |
 | DEVELOPER_ERROR | 5 | 잘못된 인수가 API에 제공되었습니다. 개발 단계에서 발생하는 오류입니다.<br>Developer error. |
 | ERROR | 6 | API 작업 중 심각한 오류가 발생했습니다.<br>Fatal error during the API action. |
