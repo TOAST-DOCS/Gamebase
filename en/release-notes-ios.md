@@ -1,6 +1,6 @@
 <!-- machine_translated: true -->
 
-<!-- pre-align:aligned sig=090e4b3f6de5 -->
+<!-- pre-align:aligned sig=7ca1b655ce98 -->
 
 <a id="game-gamebase-release-notes-ios"></a>
 ## Game > Gamebase > Release Notes > iOS { #game-gamebase-release-notes-ios }
