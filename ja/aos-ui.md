@@ -1,3 +1,5 @@
+<!-- machine_translated: true -->
+
 <!-- pre-align:aligned sig=3ec693c0ed98 -->
 
 <a id="game-gamebase-android-developers-guide-ui"></a>
@@ -380,6 +382,7 @@ Gamebase.Terms.queryTerms(activity, new GamebaseDataCallback<GamebaseQueryTermsR
 | getNode1DepthPosition   | int                   | 1段階項目表示順序。           |
 | getNode2DepthPosition   | int                   | 2段階項目表示順序。<br/> ない場合は-1           |
 | getDetailPageUrl        | String                | 約款詳細表示URL。<br/> ない場合はnull。 |
+| getDisplayType          | String                | 約款項目の表示方式<br/> - `CHECKBOX`: チェックボックスで同意を取得する項目 <br/> - `GUIDE`: チェックボックスなしで案内のみを表示する項目。同意対象ではないため、`updateTerms` APIで送信しません。<br/> 値がない場合は`CHECKBOX`として処理します。 |
 
 <a id="updateterms"></a>
 ### updateTerms { #updateterms }
