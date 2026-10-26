@@ -5,6 +5,32 @@
 <a id="game-gamebase-release-notes-android"></a>
 ## Game > Gamebase > Release Notes > Android { #game-gamebase-release-notes-android }
 
+<a id="2-84-0-2026-10-27"></a>
+### 2.84.0 (October 27, 2026) { #2-84-0-2026-10-27 }
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.84.0/GamebaseSDK-Android.zip)
+
+<a id="840-2026-10-27-added-features"></a>
+#### Added Features
+
+* Added a displayType field to the terms information (GamebaseTermsContentDetail) to indicate how terms items are displayed
+    * `GUIDE`: An item that displays guidance only, without a checkbox
+    * `CHECKBOX`: An item that uses a checkbox to obtain consent
+    * [Game > Gamebase > Android SDK User Guide > UI > Terms > queryTerms](./aos-ui/#queryterms)
+
+<a id="840-2026-10-27-feature-updates"></a>
+#### Feature Updates
+
+* Updated external SDKs: NHN Cloud Android SDK (1.14.0), Hangame Android SDK (1.18.1), Naver Login Android SDK (5.11.2), Kakaogame SDK (3.21.5)
+* Expanded the R8 code optimization scope for game apps by reducing the ProGuard rules that Gamebase applies to game app builds
+* Added metrics logging of cancellation reasons when Google login is canceled
+* Items with a key or value of `null` among those passed to `GamebaseConfiguration.Builder.setAdditionalInfo()` are now ignored.
+
+<a id="840-2026-10-27-bug-fixes"></a>
+#### Bug Fixes
+
+* Fixed an issue where, after tapping a notification with the push click action set to a URL, users could not re-enter the app or the web page was launched repeatedly.
+
 <a id="2-83-0-2026-09-17"></a>
 ### 2.83.0 (2026. 09. 17.) { #2-83-0-2026-09-17 }
 
