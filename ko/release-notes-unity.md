@@ -7,9 +7,11 @@
 ### 2.84.0(2026. 10. 27.) { #2-84-0-2026-10-27 }
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.84.0/GamebaseSDK-Unity.zip)
 
+<a id="2-84-0-2026-10-27-added-features"></a>
 #### 신규 기능 추가
 * GamebaseConfiguration에 additionalInfo 필드 추가
 
+<a id="2-84-0-2026-10-27-platform-specific-changes"></a>
 #### 플랫폼별 변경 사항
 * [Gamebase Android SDK 2.84.0](./release-notes-android/#2-84-0-2026-10-27)
 * [Gamebase iOS SDK 2.84.0](./release-notes-ios/#2-84-0-2026-10-27)
