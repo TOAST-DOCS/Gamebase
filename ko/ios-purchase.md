@@ -484,7 +484,7 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 | NHNCloudIAPErrorPaymentNotAvailable | 17 | 구매 진행 불가 상태(e.g. 앱 내 구입 제한 설정) |
 | NHNCloudIAPErrorPurchaseLimitExceeded | 18 | 월 구매 한도 초과 |
 | NHNCloudIAPErrorNetworkNotAvailable | 100 | 네트워크 사용 불가 |
-| NHNCloudIAPErrorRequestFailed | 101 | HTTP Status Code 가 200이 아니거나 서버에서 요청을 제대로 읽지 못함 |
+| NHNCloudIAPErrorRequestFailed | 101 | HTTP Status Code가 200이 아니거나 서버에서 요청을 제대로 읽지 못함 |
 | NHNCloudIAPErrorRequestTimeout | 102 | 타임아웃 |
 | NHNCloudIAPErrorRequestInvalid | 103 | 잘못된 요청 (파라미터 오류 등) |
 | NHNCloudIAPErrorURLInvalid | 104 | URL 오류 |
