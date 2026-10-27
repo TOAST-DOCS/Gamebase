@@ -486,7 +486,7 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 | NHNCloudIAPErrorNetworkNotAvailable | 100 | 네트워크 사용 불가 |
 | NHNCloudIAPErrorRequestFailed | 101 | HTTP Status Code가 200이 아니거나 서버에서 요청을 제대로 읽지 못함 |
 | NHNCloudIAPErrorRequestTimeout | 102 | 타임아웃 |
-| NHNCloudIAPErrorRequestInvalid | 103 | 잘못된 요청 (파라미터 오류 등) |
+| NHNCloudIAPErrorRequestInvalid | 103 | 잘못된 요청(파라미터 오류 등) |
 | NHNCloudIAPErrorURLInvalid | 104 | URL 오류 |
 | NHNCloudIAPErrorResponseInvalid | 105 | 서버 응답 오류 |
 | NHNCloudIAPErrorAlreadyInprogress | 106 | 동일 요청 이미 수행중 |
