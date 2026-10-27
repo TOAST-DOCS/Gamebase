@@ -1,4 +1,4 @@
-<!-- pre-align:aligned sig=b5df3c0f60cb -->
+<!-- pre-align:aligned sig=b39c5cf176bb -->
 
 <a id="game-gamebase-ios-developers-guide-purchase"></a>
 ## Game > Gamebase > iOS SDK 사용 가이드 > 결제 { #game-gamebase-ios-developers-guide-purchase }
@@ -20,6 +20,9 @@ Gamebase는 하나의 통합된 결제 API를 제공해 게임에서 손쉽게 �
 1. 테스트용 앱 빌드 업로드
 2. In-App Purchases 아이템 등록 및 승인
 3. Sandbox Tester 계정 등록
+
+<!-- -->
+
 * Detail Guide for iTunes-Connect: [Apple Guide](https://help.apple.com/itunes-connect/developer/#/devb57be10e7)
 
 <a id="settings-register-at-gamebase-console"></a>
