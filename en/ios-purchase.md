@@ -22,6 +22,9 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
 1. Upload a tester app-build
 2. Register and approve IAP
 3. Register a Sandbox Tester account
+
+<!-- -->
+
 * Detail Guide for iTunes-Connect: [Apple Guide](https://help.apple.com/itunes-connect/developer/#/devb57be10e7)
 
 <a id="settings-register-at-gamebase-console"></a>
@@ -286,6 +289,7 @@ To retrieve the list of items, call the following API. Information of each item 
 ### List Non-Consumed Items { #list-non-consumed-items }
 
 Request a list of non-consumed items, which have not been normally consumed (delivered, or provided) after purchase.<br/>
+
 * In case there is any non-purchased item, request the game server (item server) to proceed with item delivery (provision).
 
 * If the purchase is not completed normally, this API also serves the reprocessing function, so call it in the following situations:
