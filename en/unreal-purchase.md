@@ -187,14 +187,14 @@ struct FGamebasePurchasableReceipt
 
     // Payment identifier.
     // This is an important piece of information used to call 'Consume' server API with purchaseToken.
-    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // Consume API : https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // Caution: Call Consume API from game server!
     FString PaymentSeq;
 
     // Payment identifier.
     // This is an important piece of information used to call 'Consume' server API with paymentSeq.
     // In Consume API, the parameter must be named 'accessToken' to be passed.
-    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // Consume API : https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // Caution: Call Consume API from game server!
     FString PurchaseToken;
 
@@ -524,7 +524,7 @@ struct FGamebasePurchasableSubscriptionStatus
     // Payment identifier
     // This is important information used to call the ‘Consume’ server API along with purchaseToken.
     //    
-    // Caution: Call the Consume API from the game server! (https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap)
+    // Caution: Call the Consume API from the game server! (https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap)
     FString PaymentSeq;
 
     // Product ID for the purchased product.
@@ -552,7 +552,7 @@ struct FGamebasePurchasableSubscriptionStatus
     // Payment identifier.
     // As paymentSeq, important information to call the 'Consume' server API.
     // It is sent only when the parameter name is set to ‘access_Token’ from Consume API.
-    // Note: https://docs.toast.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap
+    // Note: https://docs.nhncloud.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap
     FString PurchaseToken;
 
     // Time of product purchase .(epoch time)

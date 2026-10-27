@@ -16,7 +16,7 @@
 
 ここではPush通知の送信に必要なAPNS JWT認証情報を取得するプロセスを説明します。
 
-* [Notification > Push > Console Guide > APNS JWT認証情報を取得する](https://docs.toast.com/en/Notification/Push/en/console-guide/#get-authentication-information-for-apns-jwt)ガイドを参考にしてANPS JWTの登録に必要な必須認証情報を取得します。
+* [Notification > Push > Console Guide > APNS JWT認証情報を取得する](https://docs.nhncloud.com/en/Notification/Push/en/console-guide/#get-authentication-information-for-apns-jwt)ガイドを参考にしてANPS JWTの登録に必要な必須認証情報を取得します。
 
 <a id="settings-registering-gamebase-console"></a>
 #### Gamebase Console登録

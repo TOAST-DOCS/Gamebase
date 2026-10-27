@@ -1,9 +1,25 @@
 <!-- machine_translated: true -->
 
-<!-- pre-align:aligned sig=68d69d649810 -->
+<!-- pre-align:aligned sig=e299a2575402 -->
 
 <a id="game-gamebase-release-notes-unity"></a>
 ## Game > Gamebase > リリースノート > Unity { #game-gamebase-release-notes-unity }
+
+<a id="2-84-0-2026-10-27"></a>
+### 2.84.0(2026. 10. 27.) { #2-84-0-2026-10-27 }
+
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gamebase/v2.84.0/GamebaseSDK-Unity.zip)
+
+<a id="2-84-0-2026-10-27-added-features"></a>
+#### 新規機能追加
+
+* GamebaseConfigurationにadditionalInfoフィールドを追加
+
+<a id="2-84-0-2026-10-27-platform-specific-changes"></a>
+#### プラットフォーム別変更事項
+
+* [Gamebase Android SDK 2.84.0](./release-notes-android/#2-84-0-2026-10-27)
+* [Gamebase iOS SDK 2.84.0](./release-notes-ios/#2-84-0-2026-10-27)
 
 <a id="2-83-0-2026-10-13"></a>
 ### 2.83.0 (2026. 10. 13.) { #2-83-0-2026-10-13 }

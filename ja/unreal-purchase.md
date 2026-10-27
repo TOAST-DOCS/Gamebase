@@ -189,14 +189,14 @@ struct FGamebasePurchasableReceipt
 
     // 決済識別子です。
     // purchaseTokenと一緒に「Consume」サーバーAPIを呼び出すのに使用する重要な情報です。
-    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // Consume API : https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // 注意：Consume APIはゲームサーバーで呼び出してください！
     FString PaymentSeq;
 
     // 決済識別子です。
     // paymentSeqと一緒に「Consume」サーバーAPIを呼び出すのに使用する重要な情報です。
     // Consume APIでは「accessToken」という名前のパラメータで伝達する必要があります。
-    // Consume API : https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+    // Consume API : https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
     // 注意：Consume APIはゲームサーバーで呼び出してください！
     FString PurchaseToken;
 
@@ -520,7 +520,7 @@ struct FGamebasePurchasableSubscriptionStatus
     // 決済識別子です。
     // purchaseTokenと一緒にConsumeサーバーAPIを呼び出すために使用する重要な情報です。
     //    
-    // 注意：Consume APIはゲームサーバーで呼び出してください！ (https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap)
+    // 注意：Consume APIはゲームサーバーで呼び出してください！ (https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap)
     FString PaymentSeq;
     // 購入商品の商品IDです。
     FString MarketItemId;
@@ -543,7 +543,7 @@ struct FGamebasePurchasableSubscriptionStatus
     // Payment識別子。
     // paymentSeqで'Consume'サーバーAPIを呼び出すために使われる重要な情報です。
     // Consume APIで引数名を'accessToken'に指定する必要があります。
-    // 参考: https://docs.toast.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap
+    // 参考: https://docs.nhncloud.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap
     FString PurchaseToken;
     // 商品を購入した時間。(epoch time)
     int64 PurchaseTime;

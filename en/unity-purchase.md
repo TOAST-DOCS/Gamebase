@@ -147,7 +147,7 @@ public class PurchasableReceipt
     /// This is an important piece of information used to call 'Consume' server API with purchaseToken.
     ///    
     /// Caution: Call Consume API from game server!
-    /// <para/><see href="https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
+    /// <para/><see href="https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
     /// </summary>
     public string paymentSeq;
 
@@ -157,7 +157,7 @@ public class PurchasableReceipt
     /// In Consume API, the parameter must be named 'accessToken' to be passed.
     ///    
     /// Caution: Call Consume API from game server!
-    /// <para/><see href="https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
+    /// <para/><see href="https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
     /// </summary>
     public string purchaseToken;
 
@@ -446,7 +446,7 @@ public void RequestActivatedPurchasesSample(bool allStores)
                 
                 // You will need paymentSeq and purchaseToken when calling the Consume API.
                 // Refer to the following document for the Consume API.
-                // https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap
+                // https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap
                 message.AppendLine(string.Format("paymentSeq:{0}", purchasableReceipt.paymentSeq));
                 message.AppendLine(string.Format("purchaseToken:{0}", purchasableReceipt.purchaseToken));
                 message.AppendLine(string.Format("marketItemId:{0}", purchasableReceipt.marketItemId));
@@ -548,7 +548,7 @@ public class PurchasableSubscriptionStatus
     /// This is an important piece of information used to call 'Consume' server API with purchaseToken.
     ///    
     /// Caution: Call Consume API from game server!
-    /// <para/><see href="https://docs.toast.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
+    /// <para/><see href="https://docs.nhncloud.com/en/Game/Gamebase/en/api-guide/#purchase-iap">Consume API</see>
     public string paymentSeq;
     /// <summary>
     /// Product ID of purchased item.
@@ -583,7 +583,7 @@ public class PurchasableSubscriptionStatus
     /// This is an important piece of information used to call 'Consume' server API with paymentSeq.
     /// In Consume API, the parameter must be named 'accessToken' to be passed.
     ///
-    /// <para/><see href="https://docs.toast.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap">Purchase IAP</see>
+    /// <para/><see href="https://docs.nhncloud.com/ko/Game/Gamebase/ko/api-guide/#purchase-iap">Purchase IAP</see>
     /// </summary>
     public string purchaseToken;
     /// <summary>
