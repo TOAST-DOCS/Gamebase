@@ -22,6 +22,9 @@ Gamebaseは、一つの統合された決済APIを提供することで、ゲー
 1. テスト用アプリのビルドをアップロード
 2. In-App Purchasesアイテムの登録及び承認
 3. Sandbox Testerアカウントの登録
+
+<!-- -->
+
 * Detail Guide for iTunes-Connect:[Apple Guide](https://help.apple.com/itunes-connect/developer/#/devb57be10e7)
 
 <a id="settings-register-at-gamebase-console"></a>
