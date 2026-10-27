@@ -470,7 +470,7 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 | NHNCloudIAPErrorProductNotAvailable | 3 | 상품 정보 획득 실패 |
 | NHNCloudIAPErrorProductInvalid | 4 | 원결제의 상품 아이디와 현재 상품 아이디 불일치 |
 | NHNCloudIAPErrorAlreadyOwned | 5 | 이미 소유한 상품 |
-| NHNCloudIAPErrorAlreadyInProgress | 6 | 이미 진행중인 요청 있음 |
+| NHNCloudIAPErrorAlreadyInProgress | 6 | 이미 진행 중인 요청 있음 |
 | NHNCloudIAPErrorUserInvalid | 7 | 현재 사용자 아이디가 결제 사용자 아이디와 불일치 |
 | NHNCloudIAPErrorPaymentInvalid | 8 | 결제 추가정보(ApplicationUsername) 획득 실패 |
 | NHNCloudIAPErrorPaymentCancelled | 9 | 스토어 결제 취소 |
