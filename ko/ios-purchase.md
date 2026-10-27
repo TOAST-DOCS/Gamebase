@@ -481,7 +481,7 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 | NHNCloudIAPErrorExpired | 14 | 구독 만료 |
 | NHNCloudIAPErrorRenewalPaymentNotFound | 15 | 영수증내에 갱신 결제와 일치하는 결제 정보가 없음 |
 | NHNCloudIAPErrorRestoreFailed | 16 | 복원 실패 |
-| NHNCloudIAPErrorPaymentNotAvailable | 17 | 구매 진행 불가 상태 (e.g. 앱 내 구입 제한 설정) |
+| NHNCloudIAPErrorPaymentNotAvailable | 17 | 구매 진행 불가 상태(e.g. 앱 내 구입 제한 설정) |
 | NHNCloudIAPErrorPurchaseLimitExceeded | 18 | 월 구매 한도 초과 |
 | NHNCloudIAPErrorNetworkNotAvailable | 100 | 네트워크 사용 불가 |
 | NHNCloudIAPErrorRequestFailed | 101 | HTTP Status Code 가 200이 아니거나 서버에서 요청을 제대로 읽지 못함 |
