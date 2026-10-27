@@ -465,7 +465,7 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 | Error | Error Code | Description |
 | --- | --- | --- |
 | NHNCloudIAPErrorUnknown | 0 | 알 수 없음 |
-| NHNCloudIAPErrorNotInitialized | 1 | 초기화 하지 않음 |
+| NHNCloudIAPErrorNotInitialized | 1 | 초기화하지 않음 |
 | NHNCloudIAPErrorStoreNotAvailable | 2 | 스토어 사용 불가 |
 | NHNCloudIAPErrorProductNotAvailable | 3 | 상품 정보 획득 실패 |
 | NHNCloudIAPErrorProductInvalid | 4 | 원결제의 상품 아이디와 현재 상품 아이디 불일치 |
