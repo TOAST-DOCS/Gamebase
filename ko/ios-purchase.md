@@ -489,6 +489,6 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 | NHNCloudIAPErrorRequestInvalid | 103 | 잘못된 요청(파라미터 오류 등) |
 | NHNCloudIAPErrorURLInvalid | 104 | URL 오류 |
 | NHNCloudIAPErrorResponseInvalid | 105 | 서버 응답 오류 |
-| NHNCloudIAPErrorAlreadyInprogress | 106 | 동일 요청 이미 수행중 |
+| NHNCloudIAPErrorAlreadyInprogress | 106 | 동일 요청 이미 수행 중 |
 | NHNCloudIAPErrorRequiresSecureConnection | 107 | Allow Arbitrary Loads 미설정 |
 
