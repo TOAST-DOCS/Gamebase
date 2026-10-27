@@ -455,7 +455,7 @@ NSString *detailErrorMessage = [error detailErrorMessage];
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
-* NHN IAP 오류 코드는 아래 [NHN IAP 오류 코드](#nhn-iap-error-codes)를 참고하시기 바랍니다.
+* NHN IAP 오류 코드는 아래 [NHN IAP 오류 코드](#nhn-iap-error-codes)를 참고하세요.
 
 <a id="nhn-iap-error-codes"></a>
 #### NHN IAP 오류 코드 { #nhn-iap-error-codes }
