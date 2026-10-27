@@ -431,7 +431,7 @@ Facebook SDK, Google Mobile Ads SDK와 같이 SDK 내에 In App Purchase(App Sto
 | TCGB_ERROR_PURCHASE_LIMIT_EXCEEDED                   | 4007       | 월 구매 한도를 초과했습니다.             |
 | TCGB_ERROR_PURCHASE_PENDING                          | 4008       | 결제를 완료하려면 추가 확인이 필요합니다. |
 | TCGB_ERROR_PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | 지원하지 않는 스토어입니다. iOS의 지원가능한 스토어는 "AS"입니다. |
-| TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN Cloud IAP 라이브러리 오류입니다.<br/>상세 오류를 확인하십시오. |
+| TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN IAP 라이브러리 오류입니다.<br/>상세 오류를 확인하십시오. |
 | TCGB_ERROR_PURCHASE_UNKNOWN_ERROR                    | 4999       | 정의되지 않은 구매 오류입니다.<br>전체 로그를 [고객 센터](https://toast.com/support/inquiry)에 올려 주시면 가능한 한 빠르게 답변 드리겠습니다. |
 
 * 전체 오류 코드는 다음 문서를 참고하시기 바랍니다.
@@ -441,8 +441,8 @@ Facebook SDK, Google Mobile Ads SDK와 같이 SDK 내에 In App Purchase(App Sto
 
 **TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* 이 오류는 NHN Cloud IAP 라이브러리에서 오류가 발생했을 때 반환됩니다.
-* NHN Cloud IAP 라이브러리에서 발생한 오류 정보는 상세 오류에 포함되어 있으며 상세한 오류 코드 및 메시지는 다음과 같이 확인할 수 있습니다. 
+* 이 오류는 NHN IAP 라이브러리에서 오류가 발생했을 때 반환됩니다.
+* NHN IAP 라이브러리에서 발생한 오류 정보는 상세 오류에 포함되어 있으며 상세한 오류 코드 및 메시지는 다음과 같이 확인할 수 있습니다. 
 
 
 ```objectivec
@@ -455,6 +455,40 @@ NSString *detailErrorMessage = [error detailErrorMessage];
 NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
-* NHN Cloud IAP 오류 코드는 다음 문서를 참고하시기 바랍니다.
-    * [NHN Cloud > NHN Cloud SDK 사용 가이드 > NHN Cloud IAP > iOS > 오류 코드](/nhncloud-sdk/ko/iap-ios/#error-codes)
+* NHN IAP 오류 코드는 아래 [NHN IAP 오류 코드](#nhn-iap-error-codes)를 참고하시기 바랍니다.
+
+<a id="nhn-iap-error-codes"></a>
+#### NHN IAP 오류 코드 { #nhn-iap-error-codes }
+
+* 오류 도메인: `com.nhncloud.iap`
+
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NHNCloudIAPErrorUnknown | 0 | 알 수 없음 |
+| NHNCloudIAPErrorNotInitialized | 1 | 초기화 하지 않음 |
+| NHNCloudIAPErrorStoreNotAvailable | 2 | 스토어 사용 불가 |
+| NHNCloudIAPErrorProductNotAvailable | 3 | 상품 정보 획득 실패 |
+| NHNCloudIAPErrorProductInvalid | 4 | 원결제의 상품 아이디와 현재 상품 아이디 불일치 |
+| NHNCloudIAPErrorAlreadyOwned | 5 | 이미 소유한 상품 |
+| NHNCloudIAPErrorAlreadyInProgress | 6 | 이미 진행중인 요청 있음 |
+| NHNCloudIAPErrorUserInvalid | 7 | 현재 사용자 아이디가 결제 사용자 아이디와 불일치 |
+| NHNCloudIAPErrorPaymentInvalid | 8 | 결제 추가정보(ApplicationUsername) 획득 실패 |
+| NHNCloudIAPErrorPaymentCancelled | 9 | 스토어 결제 취소 |
+| NHNCloudIAPErrorPaymentFailed | 10 | 스토어 결제 실패 |
+| NHNCloudIAPErrorVerifyFailed | 11 | 영수증 검증 실패 |
+| NHNCloudIAPErrorChangePurchaseStatusFailed | 12 | 구매 상태 변경 실패 |
+| NHNCloudIAPErrorPurchaseStatusInvalid | 13 | 구매 진행 불가 상태 |
+| NHNCloudIAPErrorExpired | 14 | 구독 만료 |
+| NHNCloudIAPErrorRenewalPaymentNotFound | 15 | 영수증내에 갱신 결제와 일치하는 결제 정보가 없음 |
+| NHNCloudIAPErrorRestoreFailed | 16 | 복원 실패 |
+| NHNCloudIAPErrorPaymentNotAvailable | 17 | 구매 진행 불가 상태 (e.g. 앱 내 구입 제한 설정) |
+| NHNCloudIAPErrorPurchaseLimitExceeded | 18 | 월 구매 한도 초과 |
+| NHNCloudIAPErrorNetworkNotAvailable | 100 | 네트워크 사용 불가 |
+| NHNCloudIAPErrorRequestFailed | 101 | HTTP Status Code 가 200이 아니거나 서버에서 요청을 제대로 읽지 못함 |
+| NHNCloudIAPErrorRequestTimeout | 102 | 타임아웃 |
+| NHNCloudIAPErrorRequestInvalid | 103 | 잘못된 요청 (파라미터 오류 등) |
+| NHNCloudIAPErrorURLInvalid | 104 | URL 오류 |
+| NHNCloudIAPErrorResponseInvalid | 105 | 서버 응답 오류 |
+| NHNCloudIAPErrorAlreadyInprogress | 106 | 동일 요청 이미 수행중 |
+| NHNCloudIAPErrorRequiresSecureConnection | 107 | Allow Arbitrary Loads 미설정 |
 
