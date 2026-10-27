@@ -1,6 +1,6 @@
 <!-- machine_translated: true -->
 
-<!-- pre-align:aligned sig=b5df3c0f60cb -->
+<!-- pre-align:aligned sig=b39c5cf176bb -->
 
 <a id="game-gamebase-ios-developers-guide-purchase"></a>
 ## Game > Gamebase > iOS Developer's Guide> Purchase { #game-gamebase-ios-developers-guide-purchase }
