@@ -1,4 +1,6 @@
-<!-- pre-align:aligned sig=b5df3c0f60cb -->
+<!-- machine_translated: true -->
+
+<!-- pre-align:aligned sig=b39c5cf176bb -->
 
 <a id="game-gamebase-ios-developers-guide-purchase"></a>
 ## Game > Gamebase > iOS Developer's Guide> Purchase { #game-gamebase-ios-developers-guide-purchase }
@@ -20,6 +22,9 @@ Gamebase provides an integrated purchase API to easily link IAP of many stores i
 1. Upload a tester app-build
 2. Register and approve IAP
 3. Register a Sandbox Tester account
+
+<!-- -->
+
 * Detail Guide for iTunes-Connect: [Apple Guide](https://help.apple.com/itunes-connect/developer/#/devb57be10e7)
 
 <a id="settings-register-at-gamebase-console"></a>
@@ -284,6 +289,7 @@ To retrieve the list of items, call the following API. Information of each item 
 ### List Non-Consumed Items { #list-non-consumed-items }
 
 Request a list of non-consumed items, which have not been normally consumed (delivered, or provided) after purchase.<br/>
+
 * In case there is any non-purchased item, request the game server (item server) to proceed with item delivery (provision).
 
 * If the purchase is not completed normally, this API also serves the reprocessing function, so call it in the following situations:
@@ -431,7 +437,7 @@ If In-App Purchase (for App Store) is included to SDK, like Facebook SDK or Goog
 | TCGB_ERROR_PURCHASE_LIMIT_EXCEEDED                         | 4007       | You have exceeded your monthly purchase limit.               |
 | TCGB_ERROR_PURCHASE_PENDING                          | 4008       | Additional verification is required to complete your payment. |
 | TCGB\_ERROR\_PURCHASE\_NOT\_SUPPORTED\_MARKET              | 4010       | The store is not supported.<br />iOS supports "AS".                  |
-| TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR            | 4201       | Error in NHN Cloud IAP library.<br>Please check the error details.         |
+| TCGB\_ERROR\_PURCHASE\_EXTERNAL\_LIBRARY\_ERROR            | 4201       | Error in NHN IAP library.<br>Please check the error details.         |
 | TCGB\_ERROR\_PURCHASE\_UNKNOWN\_ERROR                      | 4999       | Unknown error in purchase.<br>Please upload the entire logs to the [Customer Center](https://toast.com/support/inquiry) and we'll return at the earliest possible moment. 
 
 * Refer to the following document for the entire error code.
@@ -441,8 +447,8 @@ If In-App Purchase (for App Store) is included to SDK, like Facebook SDK or Goog
 
 **TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* This error occurs when an error occurs in NHN Cloud IAP library.
-* The information on the error in NHN Cloud IAP library is included in the error details, and you can find detailed error code and message as follows.
+* This error occurs when an error occurs in NHN IAP library.
+* The information on the error in NHN IAP library is included in the error details, and you can find detailed error code and message as follows.
 
 ```objectivec
 TCGBError *tcgbError = error; // TCGBError object via callback
@@ -455,5 +461,39 @@ NSLog(@"TCGBError: %@", [tcgbError description]);
 ```
 
 
-* See the guide for the NHN Cloud IAP error codes.  
-    * [NHN Cloud > User Guide for NHN CLoud SDK > NHN Cloud IAP > iOS > Error Codes](/nhncloud-sdk/en/iap-ios/#error-codes)
+* For NHN IAP error codes, refer to [NHN IAP Error Codes](#nhn-iap-error-codes) below.
+
+<a id="nhn-iap-error-codes"></a>
+#### NHN IAP Error Codes { #nhn-iap-error-codes }
+
+* Error domain: `com.nhncloud.iap`
+
+| Error | Error Code | Description |
+| --- | --- | --- |
+| NHNCloudIAPErrorUnknown | 0 | Unknown |
+| NHNCloudIAPErrorNotInitialized | 1 | Not initialized |
+| NHNCloudIAPErrorStoreNotAvailable | 2 | Store not available |
+| NHNCloudIAPErrorProductNotAvailable | 3 | Failed to retrieve product information |
+| NHNCloudIAPErrorProductInvalid | 4 | Product ID of the original payment does not match the current product ID |
+| NHNCloudIAPErrorAlreadyOwned | 5 | Product already owned |
+| NHNCloudIAPErrorAlreadyInProgress | 6 | Request already in progress |
+| NHNCloudIAPErrorUserInvalid | 7 | Current user ID does not match the payment user ID |
+| NHNCloudIAPErrorPaymentInvalid | 8 | Failed to retrieve additional payment information (ApplicationUsername) |
+| NHNCloudIAPErrorPaymentCancelled | 9 | Store payment cancelled |
+| NHNCloudIAPErrorPaymentFailed | 10 | Store payment failed |
+| NHNCloudIAPErrorVerifyFailed | 11 | Receipt verification failed |
+| NHNCloudIAPErrorChangePurchaseStatusFailed | 12 | Failed to change purchase status |
+| NHNCloudIAPErrorPurchaseStatusInvalid | 13 | Purchase cannot proceed |
+| NHNCloudIAPErrorExpired | 14 | Subscription expired |
+| NHNCloudIAPErrorRenewalPaymentNotFound | 15 | No payment information matching the renewal payment found in the receipt |
+| NHNCloudIAPErrorRestoreFailed | 16 | Restore failed |
+| NHNCloudIAPErrorPaymentNotAvailable | 17 | Purchase cannot proceed (e.g. in-app purchase restrictions set) |
+| NHNCloudIAPErrorPurchaseLimitExceeded | 18 | Monthly purchase limit exceeded |
+| NHNCloudIAPErrorNetworkNotAvailable | 100 | Network not available |
+| NHNCloudIAPErrorRequestFailed | 101 | HTTP status code is not 200, or the server failed to read the request properly |
+| NHNCloudIAPErrorRequestTimeout | 102 | Timeout |
+| NHNCloudIAPErrorRequestInvalid | 103 | Invalid request (e.g. parameter error) |
+| NHNCloudIAPErrorURLInvalid | 104 | URL error |
+| NHNCloudIAPErrorResponseInvalid | 105 | Server response error |
+| NHNCloudIAPErrorAlreadyInprogress | 106 | Identical request already in progress |
+| NHNCloudIAPErrorRequiresSecureConnection | 107 | Allow Arbitrary Loads not configured |
