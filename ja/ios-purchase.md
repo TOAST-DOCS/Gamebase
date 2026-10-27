@@ -1,3 +1,5 @@
+<!-- machine_translated: true -->
+
 <!-- pre-align:aligned sig=b5df3c0f60cb -->
 
 <a id="game-gamebase-ios-developers-guide-purchase"></a>
@@ -428,7 +430,7 @@ Facebook SDK、Google AdMob SDKなどのように、SDK内にIn App Purchase(App
 | TCGB_ERROR_PURCHASE_LIMIT_EXCEEDED                   | 4007       | 月の購入限度を超過しました。             |
 | TCGB_ERROR_PURCHASE_PENDING                          | 4008       | 決済を完了するには追加の確認が必要です。 |
 | TCGB_ERROR_PURCHASE_NOT_SUPPORTED_MARKET             | 4010       | サポートしないストアです。 iOSのサポート可能なストアは"AS"です。 |
-| TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN Cloud IAPライブラリエラーです。<br/>詳細エラーを確認してください。 |
+| TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR           | 4201       | NHN IAPライブラリエラーです。<br/>詳細エラーを確認してください。 |
 | TCGB_ERROR_PURCHASE_UNKNOWN_ERROR                    | 4999       | 定義されていない購入エラーです。<br>全てのログを[サポート](https://toast.com/support/inquiry)に送ってください。できるだけ早く回答いたします。 |
 
 * 全体のエラーコードは、次のドキュメントをご参考ください。
@@ -438,8 +440,8 @@ Facebook SDK、Google AdMob SDKなどのように、SDK内にIn App Purchase(App
 
 **TCGB_ERROR_PURCHASE_EXTERNAL_LIBRARY_ERROR**
 
-* このエラーはNHN Cloud IAPライブラリでエラーが発生した時に返されます。
-* NHN Cloud IAPライブラリで発生したエラー情報は詳細エラーに含まれており、詳細なエラーコードおよびメッセージは次のように確認できます。 
+* このエラーはNHN IAPライブラリでエラーが発生した時に返されます。
+* NHN IAPライブラリで発生したエラー情報は詳細エラーに含まれており、詳細なエラーコードおよびメッセージは次のように確認できます。
 
 
 ```objectivec
@@ -452,5 +454,39 @@ NSString *detailErrorMessage = [error detailErrorMessage];
 NSLog(@"TCGBError:%@", [tcgbError description]);
 ```
 
-* NHN Cloud IAPエラーコードは、次の文書を参照してください。
-    * [NHN Cloud > NHN Cloud SDK使用ガイド > NHN Cloud IAP > iOS > エラーコード](/nhncloud-sdk/ja/iap-ios/#error-codes)
+* NHN IAPエラーコードについては、以下の[NHN IAPエラーコード](#nhn-iap-error-codes)を参照してください。
+
+<a id="nhn-iap-error-codes"></a>
+#### NHN IAPエラーコード { #nhn-iap-error-codes }
+
+* エラードメイン: `com.nhncloud.iap`
+
+| Error | Error Code | 説明 |
+| --- | --- | --- |
+| NHNCloudIAPErrorUnknown | 0 | 不明 |
+| NHNCloudIAPErrorNotInitialized | 1 | 未初期化 |
+| NHNCloudIAPErrorStoreNotAvailable | 2 | ストア使用不可 |
+| NHNCloudIAPErrorProductNotAvailable | 3 | 商品情報の取得失敗 |
+| NHNCloudIAPErrorProductInvalid | 4 | 元の決済の商品IDと現在の商品IDが不一致 |
+| NHNCloudIAPErrorAlreadyOwned | 5 | すでに所有している商品 |
+| NHNCloudIAPErrorAlreadyInProgress | 6 | すでに進行中のリクエストあり |
+| NHNCloudIAPErrorUserInvalid | 7 | 現在のユーザーIDと決済ユーザーIDが不一致 |
+| NHNCloudIAPErrorPaymentInvalid | 8 | 決済追加情報(ApplicationUsername)の取得失敗 |
+| NHNCloudIAPErrorPaymentCancelled | 9 | ストア決済キャンセル |
+| NHNCloudIAPErrorPaymentFailed | 10 | ストア決済失敗 |
+| NHNCloudIAPErrorVerifyFailed | 11 | 領収書の検証失敗 |
+| NHNCloudIAPErrorChangePurchaseStatusFailed | 12 | 購入状態の変更失敗 |
+| NHNCloudIAPErrorPurchaseStatusInvalid | 13 | 購入進行不可の状態 |
+| NHNCloudIAPErrorExpired | 14 | サブスクリプション期限切れ |
+| NHNCloudIAPErrorRenewalPaymentNotFound | 15 | 領収書内に更新決済と一致する決済情報がない |
+| NHNCloudIAPErrorRestoreFailed | 16 | 復元失敗 |
+| NHNCloudIAPErrorPaymentNotAvailable | 17 | 購入進行不可の状態(e.g.アプリ内購入の制限設定) |
+| NHNCloudIAPErrorPurchaseLimitExceeded | 18 | 月間購入限度超過 |
+| NHNCloudIAPErrorNetworkNotAvailable | 100 | ネットワーク使用不可 |
+| NHNCloudIAPErrorRequestFailed | 101 | HTTP Status Codeが200以外、またはサーバーがリクエストを正常に読み取れない |
+| NHNCloudIAPErrorRequestTimeout | 102 | タイムアウト |
+| NHNCloudIAPErrorRequestInvalid | 103 | 不正なリクエスト(パラメータエラーなど) |
+| NHNCloudIAPErrorURLInvalid | 104 | URLエラー |
+| NHNCloudIAPErrorResponseInvalid | 105 | サーバーレスポンスエラー |
+| NHNCloudIAPErrorAlreadyInprogress | 106 | 同一リクエストがすでに処理中 |
+| NHNCloudIAPErrorRequiresSecureConnection | 107 | Allow Arbitrary Loads未設定 |
